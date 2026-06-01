@@ -28,7 +28,8 @@ with open("oyuncular.json", "w", encoding="utf-8") as f:
     json.dump(oyuncular, f, ensure_ascii=False, indent=2)
 
 with open("kadınlar_super_ligi_2026.csv", "w", newline="", encoding="utf-8-sig") as f:
-    writer = csv.DictWriter(f, fieldnames=["oyuncu","takim","mac_sayisi","gol_sayisi"])
+    alan_adlari = list(oyuncular[0].keys()) if oyuncular else ["oyuncu","takim","mac_sayisi","gol_sayisi"]
+    writer = csv.DictWriter(f, fieldnames=alan_adlari)
     writer.writeheader()
     writer.writerows(oyuncular)
 

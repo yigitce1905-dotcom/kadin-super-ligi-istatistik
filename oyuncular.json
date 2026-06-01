@@ -3,2352 +3,3920 @@
     "oyuncu": "JELENA KARLİCİC",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 25,
-    "gol_sayisi": 12
+    "gol_sayisi": 12,
+    "gol_ort": 0.48,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2036
   },
   {
     "oyuncu": "JULIETTE NANA",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 25,
-    "gol_sayisi": 9
+    "gol_sayisi": 9,
+    "gol_ort": 0.36,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1986
   },
   {
     "oyuncu": "REGINA IBIANG OTU",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 25,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.2,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2145
   },
   {
     "oyuncu": "VANESA LEVENAJ",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 25,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.04,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2154
   },
   {
     "oyuncu": "MARIE GISELE DIVINE NGAH MANGA",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 24,
-    "gol_sayisi": 27
+    "gol_sayisi": 27,
+    "gol_ort": 1.12,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1406
   },
   {
     "oyuncu": "ANDREA STASKOVA",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 20
+    "gol_sayisi": 20,
+    "gol_ort": 0.83,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1601
   },
   {
     "oyuncu": "FLOURISH CHIOMA SABASTINE",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 11
+    "gol_sayisi": 11,
+    "gol_ort": 0.46,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1970
   },
   {
     "oyuncu": "MESUARE BEGALLO",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 24,
-    "gol_sayisi": 9
+    "gol_sayisi": 9,
+    "gol_ort": 0.38,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2018
   },
   {
     "oyuncu": "BUSEM ŞEKER",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 8
+    "gol_sayisi": 8,
+    "gol_ort": 0.33,
+    "sari_kart": 2,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1924
   },
   {
     "oyuncu": "MILICA MIJATOVIC",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 24,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.29,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1419
   },
   {
     "oyuncu": "MARIJA ALEKSIC",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.29,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1995
   },
   {
     "oyuncu": "FADIMATOU ARETOUYAP KOME",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 6
+    "gol_sayisi": 6,
+    "gol_ort": 0.25,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2080
   },
   {
     "oyuncu": "PERİTAN BOZDAĞ",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.21,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1037
   },
   {
     "oyuncu": "ELİZABETH OPPONG",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 24,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.12,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2025
   },
   {
     "oyuncu": "NAIMA LAMARI",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 24,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.08,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2148
   },
   {
     "oyuncu": "EMİNE YAREN ÇOLAK",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 24,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.08,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1814
   },
   {
     "oyuncu": "AMINATA HAIDARA",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 24,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.04,
+    "sari_kart": 7,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1431
   },
   {
     "oyuncu": "ZOE VAN EYNDE",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 24,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.04,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1585
   },
   {
     "oyuncu": "BEYZA EMİNE SARUHAN",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 24,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2152
   },
   {
     "oyuncu": "MARY ATINUKE SAIKI",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 24,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2072
   },
   {
     "oyuncu": "MELISSA SANDRINE BEHINAN",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 23,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.3,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1949
   },
   {
     "oyuncu": "SULIAT OLAJUMOKE ABIDEEN",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 23,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.3,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1761
   },
   {
     "oyuncu": "RASMATA SAWADOGO",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 23,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.22,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2070
   },
   {
     "oyuncu": "CHANG JANG",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 23,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.13,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1798
   },
   {
     "oyuncu": "ÖZNUR TAŞ",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 23,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.13,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2040
   },
   {
     "oyuncu": "CHIOMA OLISE",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 23,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.13,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1712
   },
   {
     "oyuncu": "MARIA APARECIDA SOUZA ALVES",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 23,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1766
   },
   {
     "oyuncu": "CANSU NUR KAYA",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 23,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1449
   },
   {
     "oyuncu": "KEZBAN TAĞ",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 23,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1135
   },
   {
     "oyuncu": "SUDENUR YOLCU",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 23,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2040
   },
   {
     "oyuncu": "NATALIA OLESZKIEWICZ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 22,
-    "gol_sayisi": 30
+    "gol_sayisi": 30,
+    "gol_ort": 1.36,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1885
   },
   {
     "oyuncu": "DONJETA HALILAJ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 22,
-    "gol_sayisi": 19
+    "gol_sayisi": 19,
+    "gol_ort": 0.86,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1903
   },
   {
     "oyuncu": "SAMARIA SARAI GOMEZ MEJIA",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 22,
-    "gol_sayisi": 9
+    "gol_sayisi": 9,
+    "gol_ort": 0.41,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1763
   },
   {
     "oyuncu": "MELİKE DİNÇEL",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 22,
-    "gol_sayisi": 9
+    "gol_sayisi": 9,
+    "gol_ort": 0.41,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1939
   },
   {
     "oyuncu": "MARTA NAIZIA DA SILVA CINTRA",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 22,
-    "gol_sayisi": 8
+    "gol_sayisi": 8,
+    "gol_ort": 0.36,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1411
   },
   {
     "oyuncu": "EBRU TOPÇU",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 22,
-    "gol_sayisi": 8
+    "gol_sayisi": 8,
+    "gol_ort": 0.36,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1832
   },
   {
     "oyuncu": "ECE TÜRKOĞLU",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 22,
-    "gol_sayisi": 6
+    "gol_sayisi": 6,
+    "gol_ort": 0.27,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1736
   },
   {
     "oyuncu": "JULIA HICKELSBERGEN FULLER",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 22,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.23,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1794
   },
   {
     "oyuncu": "ANA INES COSTA MENDES DIAS",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.18,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 804
   },
   {
     "oyuncu": "KEVSER KARTAL",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 22,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.18,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1901
   },
   {
     "oyuncu": "İPEK KAYA",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 22,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.18,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1777
   },
   {
     "oyuncu": "EZMİRALDA FRANJA",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.14,
+    "sari_kart": 3,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1939
   },
   {
     "oyuncu": "SUHDE NUR ARPACI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.14,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1861
   },
   {
     "oyuncu": "MATEJA ZVER",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.14,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1110
   },
   {
     "oyuncu": "NEVCAN KELEŞ",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 22,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.14,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1980
   },
   {
     "oyuncu": "NESLİHAN DEMİRDÖGEN",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 22,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.14,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1407
   },
   {
     "oyuncu": "EDA KARATAŞ",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 22,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1906
   },
   {
     "oyuncu": "SUZZY DEDE TEYE",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1926
   },
   {
     "oyuncu": "LUSHOMO MWEEMBA",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 22,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1980
   },
   {
     "oyuncu": "HEIDI LYNNE RUTH",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1920
   },
   {
     "oyuncu": "RAFAELA SUDRE DOS SANTOS",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1850
   },
   {
     "oyuncu": "NEHİR ZEYTÜNLÜ",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 22,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.09,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1177
   },
   {
     "oyuncu": "MAIKO BEBIA",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1513
   },
   {
     "oyuncu": "VIVIAN NASAKA MAKOKHA",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 22,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1691
   },
   {
     "oyuncu": "FATMA KARA",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 22,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1875
   },
   {
     "oyuncu": "RABİYA İSGİ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 22,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1755
   },
   {
     "oyuncu": "YELİZ AÇAR",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 22,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1870
   },
   {
     "oyuncu": "SILA BESRA TETİK",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 22,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1754
   },
   {
     "oyuncu": "AYTAJ SHARIFOVA",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1972
   },
   {
     "oyuncu": "MERVE ODABAŞOĞLU",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 22,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1950
   },
   {
     "oyuncu": "OLHA OVDIYCHUK",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 8
+    "gol_sayisi": 8,
+    "gol_ort": 0.38,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1574
   },
   {
     "oyuncu": "ARZU KARABULUT",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 8
+    "gol_sayisi": 8,
+    "gol_ort": 0.38,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1307
   },
   {
     "oyuncu": "KONYA TAJAE PLUMMER",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 21,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.24,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1849
   },
   {
     "oyuncu": "KALTRINA BIQKAJ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 21,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.24,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1237
   },
   {
     "oyuncu": "İNAYET FUNDA ALTINKAYA",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 21,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.24,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1204
   },
   {
     "oyuncu": "BUKET KARADAĞ",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 21,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.19,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1242
   },
   {
     "oyuncu": "OLUWATOSIN BLESSING DEMEHIN",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 4,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1787
   },
   {
     "oyuncu": "BEYZA KOCATÜRK",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1385
   },
   {
     "oyuncu": "DERYA ARHAN",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1808
   },
   {
     "oyuncu": "SHKURTE MALIQI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 2,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1872
   },
   {
     "oyuncu": "ILARJA ZARKA",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1734
   },
   {
     "oyuncu": "MERTHA TEMBO",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1865
   },
   {
     "oyuncu": "KARLA DANIELA ZEMPOALTECA HERNANDEZ",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1854
   },
   {
     "oyuncu": "MERYEM SEVENT",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 21,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1401
   },
   {
     "oyuncu": "VUSALA HACIYEVA",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1191
   },
   {
     "oyuncu": "MARIGONE TAHIRI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1654
   },
   {
     "oyuncu": "NAGEHAN AKŞAN",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 21,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1610
   },
   {
     "oyuncu": "GAMZE NUR YAMAN",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 21,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1846
   },
   {
     "oyuncu": "İSMİGÜL YALÇINER",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 21,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1850
   },
   {
     "oyuncu": "MARIEM HOUIJ",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 20,
-    "gol_sayisi": 19
+    "gol_sayisi": 19,
+    "gol_ort": 0.95,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1640
   },
   {
     "oyuncu": "NGO MBELECK GENEVIEVE EDITH",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 20,
-    "gol_sayisi": 19
+    "gol_sayisi": 19,
+    "gol_ort": 0.95,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1245
   },
   {
     "oyuncu": "YAĞMUR URAZ",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 20,
-    "gol_sayisi": 16
+    "gol_sayisi": 16,
+    "gol_ort": 0.8,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 727
   },
   {
     "oyuncu": "ZEYNEP GAMZE KOÇER",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 20,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.2,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1622
   },
   {
     "oyuncu": "TEODORA NICOARA",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 20,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.2,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1661
   },
   {
     "oyuncu": "JUANITA AGUADZE",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 20,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.15,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 438
   },
   {
     "oyuncu": "İLAYDA CİVELEK",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 20,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.15,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1671
   },
   {
     "oyuncu": "RABİA NUR KÜÇÜK",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 20,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.1,
+    "sari_kart": 5,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1501
   },
   {
     "oyuncu": "NIKOLINA MİLOVİC",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 20,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1496
   },
   {
     "oyuncu": "BENAN ALTINTAŞ",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 20,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 841
   },
   {
     "oyuncu": "ELİF KESKİN",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 20,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1559
   },
   {
     "oyuncu": "SUDE TOPÇU",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 20,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1642
   },
   {
     "oyuncu": "SEVİNC FAYIL QIZI JAFARZADE",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 20,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 7,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1576
   },
   {
     "oyuncu": "FLORENTİNA KOLGECİ",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 20,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1754
   },
   {
     "oyuncu": "BEATRIZ BUENO NICOLETI",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 20,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1771
   },
   {
     "oyuncu": "SUZIE MBİANDJİ",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 20,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1167
   },
   {
     "oyuncu": "ELIZABETH OWUSUAA",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 19,
-    "gol_sayisi": 13
+    "gol_sayisi": 13,
+    "gol_ort": 0.68,
+    "sari_kart": 6,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1702
   },
   {
     "oyuncu": "ESRA MANYA",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 19,
-    "gol_sayisi": 9
+    "gol_sayisi": 9,
+    "gol_ort": 0.47,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1376
   },
   {
     "oyuncu": "FREDRICA TORKUDZOR",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 19,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.26,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1321
   },
   {
     "oyuncu": "LINA FERNANDE MARTINEZ ALVAREZ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 19,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.21,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1619
   },
   {
     "oyuncu": "ECEMNUR ÖZTÜRK",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 19,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.16,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 730
   },
   {
     "oyuncu": "ALEYNA MERAL",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 19,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 857
   },
   {
     "oyuncu": "MERYEM KÜÇÜKBİRİNCİ",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 19,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 6,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1710
   },
   {
     "oyuncu": "ELİF KESGİN",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 19,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1309
   },
   {
     "oyuncu": "NAZLI ÖRNEK",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 19,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1433
   },
   {
     "oyuncu": "DİDEM KARAGENÇ",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 19,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1070
   },
   {
     "oyuncu": "RREZONA RAMADANI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 19,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1644
   },
   {
     "oyuncu": "ÇİĞDEM BELCİ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 19,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1639
   },
   {
     "oyuncu": "AYŞE DEMİRCİ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 19,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1146
   },
   {
     "oyuncu": "ECEM CUMERT",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 19,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1354
   },
   {
     "oyuncu": "İLAYDA ATÇI",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 19,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.05,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1340
   },
   {
     "oyuncu": "ÖZGE ŞENGEL",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 19,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 6,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1447
   },
   {
     "oyuncu": "AGNESA GASHI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 19,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 5,
+    "kirmizi_kart": 2,
+    "toplam_dakika": 1686
   },
   {
     "oyuncu": "GÜLBİN HIZ",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 19,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1557
   },
   {
     "oyuncu": "YAĞMUR FATMANUR OCAK",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 19,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 874
   },
   {
     "oyuncu": "MARIA PAULA SALAS ZUNIGA",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 18,
-    "gol_sayisi": 15
+    "gol_sayisi": 15,
+    "gol_ort": 0.83,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 891
   },
   {
     "oyuncu": "UGOCHI CYNTHIA EMENAYO",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 18,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 2,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1499
   },
   {
     "oyuncu": "BAHAR KOL",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 18,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 969
   },
   {
     "oyuncu": "BERRA BAYRAKTAR",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 18,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 741
   },
   {
     "oyuncu": "SEDA NUR İNCİK",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 18,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 814
   },
   {
     "oyuncu": "JACKLINE ADONG",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 18,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1562
   },
   {
     "oyuncu": "AMIRA OULD BRAHAM",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 18,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.11,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 989
   },
   {
     "oyuncu": "DİLARA YILMAZ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 18,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 1,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1025
   },
   {
     "oyuncu": "FATMA ATAŞ",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 18,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 923
   },
   {
     "oyuncu": "AYŞE NUR SERT",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 18,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1209
   },
   {
     "oyuncu": "PAULA RUESS",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 18,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 4,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1457
   },
   {
     "oyuncu": "BLERTA SMAILI",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 18,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1252
   },
   {
     "oyuncu": "BAHAR GÜVENÇ MAVİ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 18,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1453
   },
   {
     "oyuncu": "SELİN SİVRİKAYA",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 18,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1475
   },
   {
     "oyuncu": "FATMA KILINÇ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 18,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 886
   },
   {
     "oyuncu": "SEVİLAY DUMAN",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 18,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1320
   },
   {
     "oyuncu": "ÜMRAN ÖZEV",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 18,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1266
   },
   {
     "oyuncu": "FERDA İPEK ÇEVİK",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 18,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 991
   },
   {
     "oyuncu": "ARMISA KUÇ",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 17,
-    "gol_sayisi": 13
+    "gol_sayisi": 13,
+    "gol_ort": 0.76,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1405
   },
   {
     "oyuncu": "BİRGÜL SADIKOĞLU",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 17,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.41,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1194
   },
   {
     "oyuncu": "ZEYNEP KERİMOĞLU",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 17,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.41,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 454
   },
   {
     "oyuncu": "SEVGİ ÇINAR KARAOĞLU",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 17,
-    "gol_sayisi": 6
+    "gol_sayisi": 6,
+    "gol_ort": 0.35,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 804
   },
   {
     "oyuncu": "MELİKE ÖZTÜRK",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 17,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.24,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 724
   },
   {
     "oyuncu": "BAŞAK İÇİNÖZBEBEK",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 17,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.18,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 983
   },
   {
     "oyuncu": "AZRA TIRAŞ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 17,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.12,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 510
   },
   {
     "oyuncu": "OLİVİA İNALÖZ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 17,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1293
   },
   {
     "oyuncu": "ECE TEKMEN",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 17,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1406
   },
   {
     "oyuncu": "ŞEFİKA ÖZ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 17,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 854
   },
   {
     "oyuncu": "FİDAN JAFAROVA",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 17,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1035
   },
   {
     "oyuncu": "SELDA AKGÖZ",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 17,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1530
   },
   {
     "oyuncu": "BERNA YENİÇERİ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 17,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1243
   },
   {
     "oyuncu": "RABİYA KARAGÜL",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 17,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 698
   },
   {
     "oyuncu": "FATOU DAO",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 16,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.06,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1176
   },
   {
     "oyuncu": "ANGEL KEZIAH ESHIRENDAH MUKASA",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 16,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1440
   },
   {
     "oyuncu": "NAZMİYE AYTOP",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 16,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1264
   },
   {
     "oyuncu": "SEVGİ SEVİN ERGEN",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 16,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 6,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1060
   },
   {
     "oyuncu": "ARİFE ŞENTÜRK",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 16,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 274
   },
   {
     "oyuncu": "SÜHEYLA ÇALÇINAR",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 16,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1301
   },
   {
     "oyuncu": "LIUBOV SHMATKO",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 15,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.07,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1056
   },
   {
     "oyuncu": "KAFAYAT FOLAKEMI SHITTU",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 15,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1216
   },
   {
     "oyuncu": "EZGİ ÇAĞLAR",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 15,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1350
   },
   {
     "oyuncu": "ZERDA TAŞCI",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 15,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1180
   },
   {
     "oyuncu": "JALE AĞAYAR QIZIZHALA MAHSIMOVA",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 15,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1306
   },
   {
     "oyuncu": "TÜLİN BALUR",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 15,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 974
   },
   {
     "oyuncu": "VALENTINA GIACINTI",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 14,
-    "gol_sayisi": 14
+    "gol_sayisi": 14,
+    "gol_ort": 1.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 967
   },
   {
     "oyuncu": "MELİKE PEKEL",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 14,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.36,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 756
   },
   {
     "oyuncu": "AZRA ARDOS",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 14,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.36,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 564
   },
   {
     "oyuncu": "GEORGINA AYISHA AOYEM",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 14,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.21,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 530
   },
   {
     "oyuncu": "SARAH YASONGAMO MAKANDA",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 14,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.14,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1188
   },
   {
     "oyuncu": "LETAGO MADIBA",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 14,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.07,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 427
   },
   {
     "oyuncu": "NİLAY GÜRELER",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 14,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.07,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1147
   },
   {
     "oyuncu": "NARGIZ ALIYEVA",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 14,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1260
   },
   {
     "oyuncu": "ELLEN COLEMAN",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 14,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 934
   },
   {
     "oyuncu": "NUR YUNTÜR",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 14,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 468
   },
   {
     "oyuncu": "FATMANUR YANTUR",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 14,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1095
   },
   {
     "oyuncu": "ÇAĞLA DOĞAN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 14,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 960
   },
   {
     "oyuncu": "BAŞAK GÜNDOĞDU",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 13,
-    "gol_sayisi": 11
+    "gol_sayisi": 11,
+    "gol_ort": 0.85,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 304
   },
   {
     "oyuncu": "NİHAL SARAÇ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 13,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.31,
+    "sari_kart": 3,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 725
   },
   {
     "oyuncu": "ŞEHRİBAN DÜLEK",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 13,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.23,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1170
   },
   {
     "oyuncu": "FATMA SARE ÖZTÜRK",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 13,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.15,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 928
   },
   {
     "oyuncu": "GİZEM AYDIN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 13,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 865
   },
   {
     "oyuncu": "İLKNUR ERYOLDAŞ",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 13,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 830
   },
   {
     "oyuncu": "LYDIA NAYELI RANGEL HERNANDEZ",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 13,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 638
   },
   {
     "oyuncu": "DIANA LUCAS MSEWA",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 13,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 398
   },
   {
     "oyuncu": "MEDİNE ERKAN",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 13,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 859
   },
   {
     "oyuncu": "ARMERA TUKAJ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 13,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 348
   },
   {
     "oyuncu": "HÜMEYRA ŞANVER",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 13,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 1020
   },
   {
     "oyuncu": "NATALIA MUNTEANU",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 13,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1170
   },
   {
     "oyuncu": "SERPİL İŞLER",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 13,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1048
   },
   {
     "oyuncu": "MARTA ALEXANDRA COX VILLARREAL",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 12,
-    "gol_sayisi": 7
+    "gol_sayisi": 7,
+    "gol_ort": 0.58,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 812
   },
   {
     "oyuncu": "OUASSİLA ALOUACHE",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 12,
-    "gol_sayisi": 5
+    "gol_sayisi": 5,
+    "gol_ort": 0.42,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1031
   },
   {
     "oyuncu": "ELENA GRACINDA SANTOS",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 12,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.25,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 489
   },
   {
     "oyuncu": "CANSU İRİŞ",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 12,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.25,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1048
   },
   {
     "oyuncu": "OUAFAA HAMRI",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 12,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.17,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1032
   },
   {
     "oyuncu": "NOELA PATRICK LUHALA",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 12,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.17,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1080
   },
   {
     "oyuncu": "ZOTE NINA KPAHO",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 12,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.17,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1080
   },
   {
     "oyuncu": "BERFİN ELİF CEYLAN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 12,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 965
   },
   {
     "oyuncu": "İREM EREN",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 12,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 217
   },
   {
     "oyuncu": "ALEXANDRA TAKOUNDA ENGOLO",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 12,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 612
   },
   {
     "oyuncu": "AÇELYA NOMAK",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 12,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.08,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1079
   },
   {
     "oyuncu": "DUYGU YILMAZ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 12,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1071
   },
   {
     "oyuncu": "AYSHAN AHMADOVA",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 12,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 903
   },
   {
     "oyuncu": "JOY EBINEMIERE BOKIRI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 12,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 842
   },
   {
     "oyuncu": "AYŞE ŞEVVAL AY",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 12,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1043
   },
   {
     "oyuncu": "ZEYNEP ÜLKÜ KAHYA",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 12,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 1048
   },
   {
     "oyuncu": "AQSA MUSHTAQ",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 11,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.27,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 687
   },
   {
     "oyuncu": "MESUDE ALAYONT",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 11,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.18,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 429
   },
   {
     "oyuncu": "SUDE NAZ ÖZ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 11,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.09,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 658
   },
   {
     "oyuncu": "NURSEL ÖZKAN",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 11,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.09,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 192
   },
   {
     "oyuncu": "BEYZA SEMERCİOĞLU",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 11,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.09,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 264
   },
   {
     "oyuncu": "DİYAN CEYHAN",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 252
   },
   {
     "oyuncu": "KEVINE OSSOL",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 920
   },
   {
     "oyuncu": "ECENAZ BAYKUŞ",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 638
   },
   {
     "oyuncu": "FATLINDA RAMAJ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 741
   },
   {
     "oyuncu": "YAĞMUR BEREN GÖNÜLLÜ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 435
   },
   {
     "oyuncu": "BERİL BECEREN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 990
   },
   {
     "oyuncu": "MADINATOU ROUAMBA",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 987
   },
   {
     "oyuncu": "KERİME KAYMAZ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 954
   },
   {
     "oyuncu": "SKAISTE PETRAUSKAITE",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 985
   },
   {
     "oyuncu": "DANA MARGARETHA WILHELMINA FOEDERER",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 11,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 902
   },
   {
     "oyuncu": "SULIYAT DAMOLA HASSAN",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.3,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 900
   },
   {
     "oyuncu": "VICTORIA THALITA ALVRANGA DIAS",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.2,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 715
   },
   {
     "oyuncu": "LALIA DALI USAGE STORTI",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 653
   },
   {
     "oyuncu": "KARİNA SOCARRAS VİLLALONGA",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 730
   },
   {
     "oyuncu": "ESMANUR SOLAK",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 485
   },
   {
     "oyuncu": "ROSE TEYE BAAH",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 846
   },
   {
     "oyuncu": "GÖKNUR GÜLERYÜZ",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 900
   },
   {
     "oyuncu": "MARIE LAURE KONG",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 856
   },
   {
     "oyuncu": "DOROTHEE MUKESHIMANA",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 900
   },
   {
     "oyuncu": "MARIAM AYONI AJIBOLA",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 3,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 900
   },
   {
     "oyuncu": "MARIAM DIAKITE",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 653
   },
   {
     "oyuncu": "MELİSA ORAL",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 809
   },
   {
     "oyuncu": "ARZU AKKURT",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 95
   },
   {
     "oyuncu": "JUSTİCE TWENEBOAA",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 10,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 811
   },
   {
     "oyuncu": "LARA ANTUNES PINTASSILGO",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 9,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.44,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 384
   },
   {
     "oyuncu": "MARGITA VASOVIC",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.22,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 698
   },
   {
     "oyuncu": "ARYANA LYNN HARVEY",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.22,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 607
   },
   {
     "oyuncu": "TIJANA ZARKOVIC",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.11,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 766
   },
   {
     "oyuncu": "MEDİNE BOZALİ",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 9,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.11,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 149
   },
   {
     "oyuncu": "PEREIRA DA SILVA SYLVIA BEATRIZ",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.11,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 700
   },
   {
     "oyuncu": "DARIJA DUKIC",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 766
   },
   {
     "oyuncu": "ŞEVVAL DURSUN",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 339
   },
   {
     "oyuncu": "MELDA ÇETİN",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 725
   },
   {
     "oyuncu": "ALMA KRAJNİC",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 627
   },
   {
     "oyuncu": "ZEYNEP BUĞAAKÇA",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 327
   },
   {
     "oyuncu": "YANA DERKACH",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 324
   },
   {
     "oyuncu": "AICHA HAMIDECHE",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 305
   },
   {
     "oyuncu": "EMİNE ECEM ESEN",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 297
   },
   {
     "oyuncu": "EBRU ŞAHİN",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 271
   },
   {
     "oyuncu": "ÖZLEM AKKAYA",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 357
   },
   {
     "oyuncu": "İREM DAMLA ŞAHİN",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 9,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 810
   },
   {
     "oyuncu": "ASİA BRAGONZİ",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 8,
-    "gol_sayisi": 3
+    "gol_sayisi": 3,
+    "gol_ort": 0.38,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 308
   },
   {
     "oyuncu": "KARYNA ALKHOVIK",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 8,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.25,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 334
   },
   {
     "oyuncu": "MERYEM CENNET ÇAL",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 8,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.25,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 676
   },
   {
     "oyuncu": "OLGA MASSOMBO",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 8,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.25,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 263
   },
   {
     "oyuncu": "İREM ACAR",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.12,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 616
   },
   {
     "oyuncu": "ESMANUR DURAL",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 8,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.12,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 100
   },
   {
     "oyuncu": "CANSU GÜREL",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 8,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.12,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 279
   },
   {
     "oyuncu": "SELVİ BEYZA AYDOĞDU",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 204
   },
   {
     "oyuncu": "ZÜLEYHA GÖLGELİKAYA",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 530
   },
   {
     "oyuncu": "EMİNE BURKAY",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 342
   },
   {
     "oyuncu": "HABİBE NUR IŞIKOĞLU",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 631
   },
   {
     "oyuncu": "ELİF REYYAN AĞKEMİK",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 611
   },
   {
     "oyuncu": "SEMA POLAT",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 373
   },
   {
     "oyuncu": "GÜLSÜM ÇAKIR",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 383
   },
   {
     "oyuncu": "ROBERTA APRILE",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 720
   },
   {
     "oyuncu": "MEHRİBAN SHAHMAMMADOVA",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 717
   },
   {
     "oyuncu": "MELİSA NİLGÜN KESER",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 8,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 642
   },
   {
     "oyuncu": "ELANUR LAÇIN",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 7,
-    "gol_sayisi": 4
+    "gol_sayisi": 4,
+    "gol_ort": 0.57,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 117
   },
   {
     "oyuncu": "ELENA SHESTERNEVA",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 7,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.29,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 397
   },
   {
     "oyuncu": "GÜLPERİ ATICI",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 7,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.14,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 355
   },
   {
     "oyuncu": "YAŞAM GÖKSU",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 7,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.14,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 393
   },
   {
     "oyuncu": "MARY ABOSEDE SALAMI",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 578
   },
   {
     "oyuncu": "SARA MALİQİ",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 561
   },
   {
     "oyuncu": "JAYLEN KENNEDY CRIM",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 342
   },
   {
     "oyuncu": "DAMLA KÖSE",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 84
   },
   {
     "oyuncu": "FAİZA BINT IBRAHIM",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 577
   },
   {
     "oyuncu": "MARTHA BBOSA NALUNKUUMA",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 383
   },
   {
     "oyuncu": "SÜMEYYE GÜNAYDIN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 137
   },
   {
     "oyuncu": "TÜRKAN SİVRİ",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 311
   },
   {
     "oyuncu": "MERYEM MAS",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 7,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 4,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 610
   },
   {
     "oyuncu": "VALENTINA TROKA",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 6,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.33,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 159
   },
   {
     "oyuncu": "DİLAN BORA",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 6,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.33,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 120
   },
   {
     "oyuncu": "PRECIOUS ADJWOA HAIZEL",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 6,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.33,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 453
   },
   {
     "oyuncu": "MAVIS OWUSU",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 6,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.33,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 328
   },
   {
     "oyuncu": "DEFNESU ALDEMİR",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 6,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.17,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 407
   },
   {
     "oyuncu": "BERRA PEKGÖZ",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 6,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.17,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 67
   },
   {
     "oyuncu": "RUKİYE CANBAL",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 6,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.17,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 519
   },
   {
     "oyuncu": "DORİS AKAHEEH",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 6,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.17,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 477
   },
   {
     "oyuncu": "HİLAL SUBAY",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 410
   },
   {
     "oyuncu": "PRINCESS MEGAN ATEGBAYON IBINI ISEI",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 233
   },
   {
     "oyuncu": "EZGİ ADA ÇINAR",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 56
   },
   {
     "oyuncu": "SİNEM BASAK",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 36
   },
   {
     "oyuncu": "HATİCE YAŞAR",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 236
   },
   {
     "oyuncu": "DİLAN ASLAN",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 39
   },
   {
     "oyuncu": "MARIA ASUNCION QUINONES GOICOECHEA",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 540
   },
   {
     "oyuncu": "MARIA INES VIEIRA MAIA",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 252
   },
   {
     "oyuncu": "KENNYA KINDA ESTHER CORDNER",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 519
   },
   {
     "oyuncu": "SUZAN SAYACA",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 123
   },
   {
     "oyuncu": "ELİF AYTEKİN",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 540
   },
   {
     "oyuncu": "SUDE MİHRİ ÇINAR",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 493
   },
   {
     "oyuncu": "ESRA EROL",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 540
   },
   {
     "oyuncu": "İLAYDA AKDENİZ",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 6,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 273
   },
   {
     "oyuncu": "PRİNCELLA ADUBEA",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 5,
-    "gol_sayisi": 2
+    "gol_sayisi": 2,
+    "gol_ort": 0.4,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 289
   },
   {
     "oyuncu": "DOĞA SELEN SANCAR",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 436
   },
   {
     "oyuncu": "GÜZİDE ALÇU",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 386
   },
   {
     "oyuncu": "EVDOKIA DIMITROVA POPADINOVA",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 237
   },
   {
     "oyuncu": "AYŞE AKBALIK",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 13
   },
   {
     "oyuncu": "LIVIA LOPES DOS SANTOS",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 222
   },
   {
     "oyuncu": "ZEYNEP GÜL KESKİN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 65
   },
   {
     "oyuncu": "SILA KÜÇÜKBIYIK",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 365
   },
   {
     "oyuncu": "LINA YANG",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 36
   },
   {
     "oyuncu": "VITORIA SILVA DE ALMEIDA",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 171
   },
   {
     "oyuncu": "İREM BARUT",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 380
   },
   {
     "oyuncu": "ESİN NİSA SİVASLI",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 297
   },
   {
     "oyuncu": "EFLİN SARAN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 5,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 201
   },
   {
     "oyuncu": "TANIA RITA PONTES MATUES",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 4,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.25,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 164
   },
   {
     "oyuncu": "GÜL BEYZA AKPINAR",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 346
   },
   {
     "oyuncu": "HUDA BOZO",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 189
   },
   {
     "oyuncu": "KARDELEN PATOĞLU",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 350
   },
   {
     "oyuncu": "OLIVIA MATILDE JOHANSSON ALCAIDE",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 37
   },
   {
     "oyuncu": "NAZLICAN PARLAK",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 299
   },
   {
     "oyuncu": "SEVAL TEKİN",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 122
   },
   {
     "oyuncu": "FATMA ŞAHİN",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 292
   },
   {
     "oyuncu": "AYŞENUR ARIK",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 193
   },
   {
     "oyuncu": "BLESSING AUGUSTINE NKOR",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 67
   },
   {
     "oyuncu": "TUĞÇE BAYINDIR",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 360
   },
   {
     "oyuncu": "MAYARA CRISTINA DA SILVA",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 46
   },
   {
     "oyuncu": "MİNENUR SARIOĞLU",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 137
   },
   {
     "oyuncu": "ELİF ESRA ŞANLI",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 360
   },
   {
     "oyuncu": "CEMİLE BERİL GÜNAY",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 290
   },
   {
     "oyuncu": "ECRİN KOYUN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 4,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 194
   },
   {
     "oyuncu": "ESLEM YÜCE",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 22
   },
   {
     "oyuncu": "GÜLŞAH ALTIN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 29
   },
   {
     "oyuncu": "HİRANUR SÖNMEZ",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 248
   },
   {
     "oyuncu": "EVA VASILIKI VLASSOPOULOS",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 135
   },
   {
     "oyuncu": "EMİNE DEMİR",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 23
   },
   {
     "oyuncu": "EBRAR ULUHANLI",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 260
   },
   {
     "oyuncu": "HIVA ETEMADINASAB",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 190
   },
   {
     "oyuncu": "KEZBAN YORĞA",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 77
   },
   {
     "oyuncu": "AHLAM HATAB",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 232
   },
   {
     "oyuncu": "ELİF GÖRMEZ",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 256
   },
   {
     "oyuncu": "SENEM PINAR ÖZER",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 181
   },
   {
     "oyuncu": "TUANA DEMİRBAŞ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 205
   },
   {
     "oyuncu": "ÖZLEM ALİOSMANOĞLU",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 26
   },
   {
     "oyuncu": "EZGİ KILIÇ",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 60
   },
   {
     "oyuncu": "ESMA SULTAN ÇELİK",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 193
   },
   {
     "oyuncu": "ASYA BAYRAKTAR",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 3,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 108
   },
   {
     "oyuncu": "ZEYNEP IRMAK ÖLMEZER",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 2,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 55
   },
   {
     "oyuncu": "ÇİMEN ERDİN",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 69
   },
   {
     "oyuncu": "NARİN YAKUT",
     "takim": "GALATASARAY GAIN",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 74
   },
   {
     "oyuncu": "GİZEM YAZICI",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 123
   },
   {
     "oyuncu": "ABIGAIL PAOLA CHAVES",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180
   },
   {
     "oyuncu": "CEYDA ÖZKAN",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180
   },
   {
     "oyuncu": "IMAN DUMANJIC",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 144
   },
   {
     "oyuncu": "ÖZGE OĞURGÜL",
     "takim": "AMED SPORTİF FAALİYETLER",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 46
   },
   {
     "oyuncu": "DİLARA KOCABAĞ",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180
   },
   {
     "oyuncu": "ANDREA GURTNER",
     "takim": "TRABZONSPOR A.Ş.",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 112
   },
   {
     "oyuncu": "ELİF CEREN MUTLU",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 67
   },
   {
     "oyuncu": "DIAKIESE KALUZODI ISABELLE",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 31
   },
   {
     "oyuncu": "HİCRAN AKDOĞAN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 36
   },
   {
     "oyuncu": "IRMAK AKBUDAK",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 3
   },
   {
     "oyuncu": "DİLARA YÜKSEL",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 2
   },
   {
     "oyuncu": "FAUSTINA WORWORNYO AKPO",
     "takim": "GAZİANTEP ALG SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180
   },
   {
     "oyuncu": "ERVA KARAKUŞ",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 16
   },
   {
     "oyuncu": "ALİYE TECER",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 115
   },
   {
     "oyuncu": "RABİA SOLAK",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 94
   },
   {
     "oyuncu": "ECRİN NAZ ŞENTÜRK",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 103
   },
   {
     "oyuncu": "GÖZDE UÇAR",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 69
   },
   {
     "oyuncu": "MEVLÜDE MELEK OKUYAN",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 49
   },
   {
     "oyuncu": "BÜŞRA KENET",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180
   },
   {
     "oyuncu": "ECE AYDIN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 2,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180
   },
   {
     "oyuncu": "DİLARASU PILIÇ",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 1,
-    "gol_sayisi": 1
+    "gol_sayisi": 1,
+    "gol_ort": 1.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 35
   },
   {
     "oyuncu": "SÜMEYRA KIVANÇ",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90
   },
   {
     "oyuncu": "NİSA DEREN KANDEMİR",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0
   },
   {
     "oyuncu": "NAZLI PEKER",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0
   },
   {
     "oyuncu": "MERVE NUR TAŞUCU",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 7
   },
   {
     "oyuncu": "SÜMEYYE TERTEMİZ",
     "takim": "HAKKARİGÜCÜ SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0
   },
   {
     "oyuncu": "CHUENE PRECIOUS MORIFI",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 20
   },
   {
     "oyuncu": "ZEYNEP ERDOĞAN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90
   },
   {
     "oyuncu": "DENİZ AY",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 80
   },
   {
     "oyuncu": "BUSE NUR KARATAŞ",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 44
   },
   {
     "oyuncu": "BEREN LİVA ÇEŞTAN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 10
   },
   {
     "oyuncu": "ELİFENUR KARABULUT",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90
   },
   {
     "oyuncu": "SOULAIMA JABRANI",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 8
   },
   {
     "oyuncu": "SENEM DUMAN",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 8
   },
   {
     "oyuncu": "DAMLA GENÇ",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0
   },
   {
     "oyuncu": "DURU ARSLAN",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0
   },
   {
     "oyuncu": "NEHİR KAYA",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 15
   },
   {
     "oyuncu": "HACER ARICI",
     "takim": "FATİH VATAN SPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 5
   },
   {
     "oyuncu": "NAGİHAN BULUT",
     "takim": "ÜNYE KADIN SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 30
   },
   {
     "oyuncu": "BEYZA KAYGUSUZ",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 17
   },
   {
     "oyuncu": "BÜŞRA BERFİN EREN",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 7
   },
   {
     "oyuncu": "HAZAL KÖKSALDI",
     "takim": "PROLİFT GİRESUN SANAYİSPOR",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0
   },
   {
     "oyuncu": "İREM PEHLİVAN",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90
   },
   {
     "oyuncu": "GAMZE AĞIRMAN",
     "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 11
   },
   {
     "oyuncu": "ZEYNEP AKDENİZ",
     "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90
   },
   {
     "oyuncu": "GÖKCE ALMILA ÖZCAN",
     "takim": "ŞİLE BİLGİDOĞA",
     "mac_sayisi": 1,
-    "gol_sayisi": 0
+    "gol_sayisi": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 20
   }
 ]
