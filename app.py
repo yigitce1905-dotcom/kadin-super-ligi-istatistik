@@ -184,6 +184,8 @@ def puan_durumu_cek():
 
 df_tam, ham_liste = veri_yukle()
 oyuncu_detay = {o["oyuncu"]: o for o in ham_liste} if ham_liste else {}
+# SoccerDonna zenginleştirmesi (sd_profiller yüklendikten sonra)
+
 
 
 _DIZIN = pathlib.Path(__file__).parent  # app.py'nin bulunduğu klasör
@@ -197,6 +199,34 @@ def sd_profiller_yukle():
     return {}
 
 sd_profiller = sd_profiller_yukle()
+
+
+def mevki_normalize(pozisyon: str) -> str:
+    if not pozisyon: return "Bilinmiyor"
+    if "Goalkeeper"  in pozisyon: return "Kaleci"
+    if "Defend" in pozisyon or "Back" in pozisyon: return "Defans"
+    if "Midfield"    in pozisyon: return "Orta Saha"
+    if "Striker" in pozisyon or "Forward" in pozisyon or "Wing" in pozisyon: return "Forvet"
+    return "Bilinmiyor"
+
+
+def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
+    """df_tam'a Mevki, Uyruk ve Boy sütunlarını ekler."""
+    df = df.copy()
+    df["Mevki"] = df["Oyuncu"].map(
+        lambda o: mevki_normalize(sd_profiller.get(o, {}).get("Position", ""))
+    )
+    df["Uyruk"] = df["Oyuncu"].map(
+        lambda o: sd_profiller.get(o, {}).get("Nationality", "")
+    )
+    df["Boy"] = df["Oyuncu"].map(
+        lambda o: sd_profiller.get(o, {}).get("Height", "")
+    )
+    return df
+
+
+if not df_tam.empty:
+    df_tam = df_zenginlestir(df_tam)  # Mevki + Uyruk + Boy ekle
 
 
 def max_seri(dizi):
@@ -247,9 +277,9 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📋 Oyuncu Listesi", "👤 Oyuncu Profili",
-    "⚡ Karşılaştırma",  "🏆 Lig Tablosu", "🌟 En İyiler"
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+    "📋 Oyuncu Listesi", "👤 Oyuncu Profili", "⚡ Karşılaştırma",
+    "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler"
 ])
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -259,7 +289,7 @@ with tab1:
     if df_tam.empty:
         st.info("Veri yok."); st.stop()
 
-    f1, f2, f3 = st.columns([2, 2, 1])
+    f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
     with f1:
         secenekler = ["— Tüm oyuncular —"] + sorted(df_tam["Oyuncu"].tolist())
         secili_oyuncu = st.selectbox("Oyuncu Ara", secenekler,
@@ -268,6 +298,9 @@ with tab1:
         takimlar = ["Tüm Takımlar"] + sorted(df_tam["Takım"].dropna().unique().tolist())
         secili_takim = st.selectbox("Takım", takimlar)
     with f3:
+        mevki_secenekler = ["Tüm Mevkiler", "Kaleci", "Defans", "Orta Saha", "Forvet"]
+        secili_mevki = st.selectbox("Mevki", mevki_secenekler)
+    with f4:
         siralama = st.selectbox("Sırala", ["Maç ↓","Gol ↓","Dakika ↓","Sarı ↓","Gol/Maç ↓"])
 
     df = df_tam.copy()
@@ -275,6 +308,8 @@ with tab1:
         df = df[df["Oyuncu"] == secili_oyuncu]
     if secili_takim != "Tüm Takımlar":
         df = df[df["TümTakımlar"].str.contains(secili_takim, na=False)]
+    if secili_mevki != "Tüm Mevkiler" and "Mevki" in df.columns:
+        df = df[df["Mevki"] == secili_mevki]
 
     siralama_map = {"Maç ↓":"Maç","Gol ↓":"Gol","Dakika ↓":"Dakika","Sarı ↓":"Sarı","Gol/Maç ↓":"Gol/Maç"}
     df = df.sort_values(siralama_map[siralama], ascending=False).reset_index(drop=True)
@@ -823,9 +858,120 @@ with tab3:
         )
 
 # ══════════════════════════════════════════════════════════════════════════════
-# SEKME 4 — LİG TABLOSU
+# SEKME 4 — TAKIMLAR
 # ══════════════════════════════════════════════════════════════════════════════
 with tab4:
+    st.markdown("### 🏟️ Takım Analizi")
+
+    if not df_tam.empty:
+        takim_listesi_tam = sorted(df_tam["Takım"].dropna().unique().tolist())
+        secili_t = st.selectbox("Takım seç", takim_listesi_tam, key="takim_sayfasi")
+        df_t = df_tam[df_tam["Takım"] == secili_t].copy()
+
+        st.markdown("---")
+
+        # ── Takım özet istatistikleri ─────────────────────────────────────
+        t1, t2, t3, t4, t5 = st.columns(5)
+        for kol, sayi, etiket in [
+            (t1, len(df_t),                  "Oyuncu"),
+            (t2, int(df_t["Gol"].sum()),      "Toplam Gol"),
+            (t3, int(df_t["Maç"].sum()),      "Toplam Maç"),
+            (t4, int(df_t["Dakika"].sum()),   "Toplam Dakika"),
+            (t5, int(df_t["Sarı"].sum()),     "Sarı Kart"),
+        ]:
+            kol.markdown(
+                f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
+                f'<div class="etiket">{etiket}</div></div>',
+                unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        sol, sag = st.columns(2)
+
+        # ── Kadro tablosu ─────────────────────────────────────────────────
+        with sol:
+            st.markdown("##### 👥 Kadro")
+            kadro = df_t.sort_values("Maç", ascending=False)[
+                ["Oyuncu","Mevki","Maç","Gol","Dakika","Sarı"]
+            ].reset_index(drop=True)
+            kadro.index += 1
+            st.dataframe(kadro, use_container_width=True, height=400,
+                column_config={
+                    "Oyuncu": st.column_config.TextColumn("Oyuncu", width="medium"),
+                    "Mevki":  st.column_config.TextColumn("Mevki",  width="small"),
+                    "Maç":    st.column_config.NumberColumn("Maç",   format="%d"),
+                    "Gol":    st.column_config.NumberColumn("Gol",   format="%d"),
+                    "Dakika": st.column_config.NumberColumn("Dk",    format="%d"),
+                    "Sarı":   st.column_config.NumberColumn("🟨",    format="%d"),
+                })
+
+        # ── Mevki dağılımı + uyruk ─────────────────────────────────────
+        with sag:
+            st.markdown("##### 📊 Mevki Dağılımı")
+            if "Mevki" in df_t.columns:
+                mevki_sayilari = df_t["Mevki"].value_counts()
+                MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
+                              "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555"}
+                fig_mevki = go.Figure(go.Pie(
+                    labels=mevki_sayilari.index,
+                    values=mevki_sayilari.values,
+                    marker_colors=[MEVKI_RENK.get(m,"#555") for m in mevki_sayilari.index],
+                    textinfo="label+value",
+                    hole=0.4,
+                ))
+                fig_mevki.update_layout(
+                    paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
+                    height=200, margin=dict(l=0,r=0,t=10,b=0),
+                    showlegend=False)
+                st.plotly_chart(fig_mevki, use_container_width=True)
+
+            st.markdown("##### 🌍 Uyruk Dağılımı")
+            if "Uyruk" in df_t.columns:
+                uyruk_sayilari = df_t[df_t["Uyruk"]!=""]["Uyruk"].value_counts().head(8)
+                fig_uyruk = go.Figure(go.Bar(
+                    x=uyruk_sayilari.values,
+                    y=uyruk_sayilari.index,
+                    orientation="h",
+                    marker_color="#2979ff",
+                    text=uyruk_sayilari.values,
+                    textposition="outside",
+                ))
+                fig_uyruk.update_layout(
+                    paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+                    font=dict(color="#e0e0e0"), height=250,
+                    xaxis=dict(gridcolor="#2d3561"),
+                    yaxis=dict(gridcolor="#2d3561"),
+                    margin=dict(l=10,r=30,t=10,b=10))
+                st.plotly_chart(fig_uyruk, use_container_width=True)
+
+        # ── Scatter: verimlilik ────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("##### ⚡ Dakika-Gol Verimliliği")
+        fig_s = go.Figure()
+        for mevki, renk in [("Kaleci","#00c853"),("Defans","#2979ff"),
+                              ("Orta Saha","#ff6d00"),("Forvet","#e040fb"),("Bilinmiyor","#555")]:
+            alt = df_t[df_t.get("Mevki","") == mevki] if "Mevki" in df_t.columns else df_t
+            if alt.empty: continue
+            fig_s.add_trace(go.Scatter(
+                x=alt["Dakika"], y=alt["Gol"],
+                mode="markers+text", name=mevki,
+                marker=dict(color=renk, size=10),
+                text=alt["Oyuncu"].str.split().str[-1],
+                textposition="top center", textfont=dict(size=9),
+                hovertemplate="%{text}<br>%{x} dk, %{y} gol<extra></extra>",
+            ))
+        fig_s.update_layout(
+            paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+            font=dict(color="#e0e0e0"), height=380,
+            xaxis=dict(title="Toplam Dakika", gridcolor="#2d3561"),
+            yaxis=dict(title="Toplam Gol", gridcolor="#2d3561"),
+            legend=dict(orientation="h", y=1.1),
+            margin=dict(l=40,r=20,t=40,b=40))
+        st.plotly_chart(fig_s, use_container_width=True)
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 5 — LİG TABLOSU
+# ══════════════════════════════════════════════════════════════════════════════
+with tab5:
     st.markdown("### Puan Durumu")
 
     # Oyuncu verisinden takım istatistikleri hesapla
@@ -883,13 +1029,83 @@ with tab4:
             st.caption("TFF puan cetveli yüklenemedi.")
 
 # ══════════════════════════════════════════════════════════════════════════════
-# SEKME 5 — EN İYİLER
+# SEKME 6 — EN İYİLER
 # ══════════════════════════════════════════════════════════════════════════════
-with tab5:
+with tab6:
     st.markdown("### 🌟 2025-2026 Sezonu En İyileri")
     if df_tam.empty:
         st.info("Veri yok.")
     else:
+        # ── Lig Geneli Verimlilik Scatter ──────────────────────────────
+        st.markdown("#### ⚡ Tüm Ligde Dakika-Gol Verimliliği")
+        st.caption("Sağ üst = hem çok oynadı hem çok gol attı. Her renk bir mevki.")
+        fig_lig = go.Figure()
+        MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
+                      "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555555"}
+        for mevki, renk in MEVKI_RENK.items():
+            alt = df_tam[df_tam.get("Mevki", pd.Series(dtype=str)) == mevki] if "Mevki" in df_tam.columns else pd.DataFrame()
+            if "Mevki" in df_tam.columns:
+                alt = df_tam[df_tam["Mevki"] == mevki]
+            else:
+                alt = pd.DataFrame()
+            if alt.empty: continue
+            fig_lig.add_trace(go.Scatter(
+                x=alt["Dakika"], y=alt["Gol"],
+                mode="markers", name=mevki,
+                marker=dict(color=renk, size=7, opacity=0.8),
+                text=alt["Oyuncu"],
+                hovertemplate="%{text}<br>%{x} dk · %{y} gol<extra></extra>",
+            ))
+        # En golcülerin etiketini göster
+        top10 = df_tam.nlargest(10, "Gol")
+        fig_lig.add_trace(go.Scatter(
+            x=top10["Dakika"], y=top10["Gol"],
+            mode="text", showlegend=False,
+            text=top10["Oyuncu"].str.split().str[-1],
+            textposition="top center", textfont=dict(size=9, color="#e0e0e0"),
+        ))
+        fig_lig.update_layout(
+            paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+            font=dict(color="#e0e0e0"), height=420,
+            xaxis=dict(title="Toplam Dakika", gridcolor="#2d3561"),
+            yaxis=dict(title="Toplam Gol",    gridcolor="#2d3561"),
+            legend=dict(orientation="h", y=1.08),
+            margin=dict(l=40,r=20,t=40,b=40))
+        st.plotly_chart(fig_lig, use_container_width=True)
+
+        # ── Uyruk Analizi ─────────────────────────────────────────────
+        st.markdown("---")
+        st.markdown("#### 🌍 Uyruk Dağılımı")
+        if "Uyruk" in df_tam.columns:
+            ua, ub = st.columns(2)
+            with ua:
+                st.markdown("**Oyuncu sayısına göre**")
+                uyruk_sayi = df_tam[df_tam["Uyruk"]!=""]["Uyruk"].value_counts().head(15)
+                fig_u = go.Figure(go.Bar(
+                    x=uyruk_sayi.values, y=uyruk_sayi.index,
+                    orientation="h", marker_color="#2979ff",
+                    text=uyruk_sayi.values, textposition="outside",
+                ))
+                fig_u.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+                    font=dict(color="#e0e0e0"), height=400,
+                    xaxis=dict(gridcolor="#2d3561"), yaxis=dict(gridcolor="#2d3561"),
+                    margin=dict(l=10,r=40,t=10,b=10))
+                st.plotly_chart(fig_u, use_container_width=True)
+            with ub:
+                st.markdown("**Gol sayısına göre**")
+                uyruk_gol = df_tam[df_tam["Uyruk"]!=""].groupby("Uyruk")["Gol"].sum().sort_values(ascending=False).head(15)
+                fig_ug = go.Figure(go.Bar(
+                    x=uyruk_gol.values, y=uyruk_gol.index,
+                    orientation="h", marker_color="#00c853",
+                    text=uyruk_gol.values, textposition="outside",
+                ))
+                fig_ug.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+                    font=dict(color="#e0e0e0"), height=400,
+                    xaxis=dict(gridcolor="#2d3561"), yaxis=dict(gridcolor="#2d3561"),
+                    margin=dict(l=10,r=40,t=10,b=10))
+                st.plotly_chart(fig_ug, use_container_width=True)
+
+        st.markdown("---")
         # Yardımcı: top-N kart
         def en_iyi_kart(baslik, df_siralali, sutunlar, ikon="🥇"):
             st.markdown(f"#### {ikon} {baslik}")
