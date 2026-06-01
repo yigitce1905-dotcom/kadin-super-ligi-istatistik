@@ -202,24 +202,27 @@ def sd_profiller_yukle():
 sd_profiller = sd_profiller_yukle()
 
 @st.cache_data(ttl=86400)
-def manuel_yaslar_yukle() -> dict:
+def manuel_yaslar_yukle() -> tuple:
     yol = _DIZIN / "manual_ages.json"
-    if yol.exists():
-        with open(yol, encoding="utf-8") as f:
-            raw = json.load(f)
-        result = {}
-        today = pd.Timestamp.today()
-        for isim, veri in raw.items():
-            try:
-                born_dt = pd.to_datetime(veri["born"], format="%d.%m.%Y")
-                age = (today - born_dt).days / 365.25
-                result[isim] = round(age, 1)
-            except Exception:
-                pass
-        return result
-    return {}
+    if not yol.exists():
+        return {}, {}, {}
+    with open(yol, encoding="utf-8") as f:
+        raw = json.load(f)
+    ages, positions, nationalities = {}, {}, {}
+    today = pd.Timestamp.today()
+    for isim, veri in raw.items():
+        try:
+            born_dt = pd.to_datetime(veri["born"], format="%d.%m.%Y")
+            ages[isim] = round((today - born_dt).days / 365.25, 1)
+        except Exception:
+            pass
+        if "position" in veri:
+            positions[isim] = veri["position"]
+        if "nationality" in veri:
+            nationalities[isim] = veri["nationality"]
+    return ages, positions, nationalities
 
-_MANUEL_YAS = manuel_yaslar_yukle()
+_MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle()
 
 
 def mevki_normalize(pozisyon: str) -> str:
@@ -247,10 +250,12 @@ def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
     """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler."""
     df = df.copy()
     df["Mevki"] = df["Oyuncu"].map(
-        lambda o: mevki_normalize(sd_profiller.get(o, {}).get("Position", ""))
+        lambda o: mevki_normalize(
+            _MANUEL_MEVKI.get(o) or sd_profiller.get(o, {}).get("Position", "")
+        )
     )
     df["Uyruk"] = df["Oyuncu"].map(
-        lambda o: _ilk_uyruk(sd_profiller.get(o, {}).get("Nationality", ""))
+        lambda o: _MANUEL_UYRUK.get(o) or _ilk_uyruk(sd_profiller.get(o, {}).get("Nationality", ""))
     )
     df["Boy"] = df["Oyuncu"].map(
         lambda o: sd_profiller.get(o, {}).get("Height", "")
