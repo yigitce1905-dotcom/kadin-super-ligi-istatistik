@@ -4,6 +4,7 @@ Türkiye Kadınlar Süper Ligi 2025-2026 — Streamlit Web Arayüzü
 import json, os, pathlib, requests
 import pandas as pd
 import plotly.graph_objects as go
+import plotly.express as px
 import streamlit as st
 from bs4 import BeautifulSoup
 
@@ -290,9 +291,10 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
     "📋 Oyuncu Listesi", "👤 Oyuncu Profili", "⚡ Karşılaştırma",
-    "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro"
+    "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
+    "🗺️ Dünya Haritası", "🔍 Gelişmiş Arama", "🎂 Yaş Analizi",
 ])
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1573,6 +1575,314 @@ with tab7:
                 })
         else:
             st.info("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 8 — DÜNYA HARİTASI
+# ══════════════════════════════════════════════════════════════════════════════
+_NAT_FIX = {
+    "United States of America": "United States",
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina",
+    "Burkina Faso": "Burkina Faso",
+    "Korea, Republic": "South Korea",
+    "Ivory Coast": "Ivory Coast",
+    "Congo DR": "Democratic Republic of the Congo",
+}
+
+def _harita_verisi():
+    """soccerdonna_profiller.json'dan uyruk bazlı oyuncu sayısını döndürür."""
+    rows = []
+    for isim, profil in sd_profiller.items():
+        nat = profil.get("Nationality", "")
+        if nat:
+            nat = _NAT_FIX.get(nat, nat)
+            rows.append(nat)
+    if not rows:
+        return pd.DataFrame()
+    s = pd.Series(rows).value_counts().reset_index()
+    s.columns = ["Uyruk", "Oyuncu"]
+    return s
+
+with tab8:
+    st.markdown("##### 🗺️ Oyuncuların Dünya Haritası")
+    st.caption("SoccerDonna verisi · Kadın Futbol Süper Ligi oyuncularının uyruk dağılımı")
+
+    cnt = _harita_verisi()
+
+    if cnt.empty:
+        st.warning("Uyruk verisi bulunamadı.")
+    else:
+        fig_map = px.choropleth(
+            cnt,
+            locations="Uyruk",
+            locationmode="country names",
+            color="Oyuncu",
+            hover_name="Uyruk",
+            hover_data={"Oyuncu": True, "Uyruk": False},
+            color_continuous_scale=[
+                [0.0, "#1a3a2a"],
+                [0.2, "#0d5c3a"],
+                [0.5, "#00a86b"],
+                [1.0, "#00c853"],
+            ],
+            labels={"Oyuncu": "Oyuncu Sayısı"},
+        )
+        fig_map.update_geos(
+            bgcolor="#0f1117",
+            showcoastlines=True, coastlinecolor="#2a3a2a",
+            showland=True, landcolor="#1a1f36",
+            showocean=True, oceancolor="#0f1117",
+            showframe=False,
+            projection_type="natural earth",
+        )
+        fig_map.update_layout(
+            paper_bgcolor="#0f1117",
+            font=dict(color="#e0e0e0"),
+            margin=dict(l=0, r=0, t=10, b=0),
+            height=480,
+            coloraxis_colorbar=dict(
+                title="Oyuncu",
+                tickfont=dict(color="#8899aa"),
+                titlefont=dict(color="#8899aa"),
+                bgcolor="#1a1f36",
+                bordercolor="#2a3a2a",
+            ),
+        )
+        st.plotly_chart(fig_map, use_container_width=True)
+
+        k1, k2, k3, k4 = st.columns(4)
+        top = cnt.iloc[0]
+        yabanci = cnt[cnt["Uyruk"] != "Turkey"]["Oyuncu"].sum()
+        for kol, sayi, etiket in [
+            (k1, len(sd_profiller),       "Toplam Oyuncu"),
+            (k2, cnt["Uyruk"].nunique(),   "Farklı Uyruk"),
+            (k3, f"{top['Oyuncu']} ({top['Uyruk']})", "En Çok"),
+            (k4, int(yabanci),             "Yabancı Oyuncu"),
+        ]:
+            kol.markdown(
+                f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
+                f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown("##### 🏳️ Uyruk Sıralaması (İlk 20)")
+        top20 = cnt.head(20).sort_values("Oyuncu")
+        fig_bar = go.Figure(go.Bar(
+            x=top20["Oyuncu"], y=top20["Uyruk"], orientation="h",
+            marker=dict(color=top20["Oyuncu"],
+                        colorscale=[[0,"#0d3b2e"],[1,"#00c853"]], showscale=False),
+            text=top20["Oyuncu"], textposition="outside",
+            textfont=dict(color="#e0e0e0", size=11),
+            hovertemplate="%{y}: %{x} oyuncu<extra></extra>",
+        ))
+        fig_bar.update_layout(
+            paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+            xaxis=dict(showgrid=False, color="#505870"),
+            yaxis=dict(color="#e0e0e0"),
+            margin=dict(l=10, r=40, t=5, b=5), height=520,
+            font=dict(color="#e0e0e0"),
+        )
+        st.plotly_chart(fig_bar, use_container_width=True)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 9 — GELİŞMİŞ OYUNCU ARAMA
+# ══════════════════════════════════════════════════════════════════════════════
+with tab9:
+    st.markdown("##### 🔍 Gelişmiş Oyuncu Arama")
+    st.caption("Uyruk, mevki, yaş ve maç sayısına göre filtrele")
+
+    if df_tam.empty:
+        st.warning("Veri yok.")
+    else:
+        fa1, fa2, fa3 = st.columns([2, 2, 2])
+        fb1, fb2, fb3 = st.columns([2, 2, 2])
+
+        all_nats = sorted(df_tam["Uyruk"].dropna().replace("", pd.NA).dropna().unique())
+        all_pos  = sorted(df_tam["Mevki"].dropna().replace("Bilinmiyor", pd.NA).dropna().unique())
+
+        with fa1:
+            sel_nats = st.multiselect("🌍 Uyruk", all_nats, placeholder="Tümü", key="as_nat")
+        with fa2:
+            sel_pos = st.multiselect("📋 Mevki", all_pos, placeholder="Tümü", key="as_pos")
+        with fa3:
+            isim_q = st.text_input("👤 İsim", placeholder="Ara…", key="as_isim")
+
+        mac_max = int(df_tam["Maç"].max()) if not df_tam.empty else 30
+        with fb1:
+            min_mac = st.slider("📅 Min. Maç", 0, mac_max, 0, key="as_mac")
+        with fb2:
+            min_gol = st.slider("⚽ Min. Gol", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
+        with fb3:
+            sort_by = st.selectbox("Sırala", ["Maç ↓", "Gol ↓", "Dakika ↓", "Oyuncu ↑"], key="as_sort")
+
+        mask = pd.Series(True, index=df_tam.index)
+        if sel_nats:
+            mask &= df_tam["Uyruk"].isin(sel_nats)
+        if sel_pos:
+            mask &= df_tam["Mevki"].isin(sel_pos)
+        if isim_q.strip():
+            mask &= df_tam["Oyuncu"].str.contains(isim_q.strip(), case=False, na=False)
+        mask &= df_tam["Maç"] >= min_mac
+        mask &= df_tam["Gol"] >= min_gol
+
+        filtered = df_tam[mask].copy()
+        sort_map = {"Maç ↓": ("Maç", False), "Gol ↓": ("Gol", False),
+                    "Dakika ↓": ("Dakika", False), "Oyuncu ↑": ("Oyuncu", True)}
+        sc, sa = sort_map[sort_by]
+        filtered = filtered.sort_values(sc, ascending=sa).reset_index(drop=True)
+
+        st.markdown(
+            f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0;'>"
+            f"🎯 {len(filtered)} oyuncu bulundu</div>", unsafe_allow_html=True)
+
+        if filtered.empty:
+            st.info("Filtrelerle eşleşen oyuncu yok.")
+        else:
+            show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
+            show = [c for c in show if c in filtered.columns]
+            st.dataframe(filtered[show], hide_index=True, use_container_width=True,
+                height=min(600, 45 + len(filtered) * 35))
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 10 — YAŞ ANALİZİ
+# ══════════════════════════════════════════════════════════════════════════════
+def _yas_df():
+    """soccerdonna_profiller.json'dan yaş verisi üretir."""
+    rows = []
+    for isim, profil in sd_profiller.items():
+        dob = profil.get("Date of birth", "")
+        age_str = profil.get("Age", "")
+        try:
+            born_dt = pd.to_datetime(dob, dayfirst=True, errors="coerce")
+            age_num = float(str(age_str).split()[0]) if age_str else None
+        except Exception:
+            born_dt, age_num = pd.NaT, None
+        rows.append({
+            "isim": isim,
+            "born_dt": born_dt,
+            "yas": age_num,
+            "dogum_yili": born_dt.year if not pd.isna(born_dt) else None,
+        })
+    df = pd.DataFrame(rows).dropna(subset=["yas"])
+    # oyuncular.json'daki takım bilgisini birleştir
+    takim_map = dict(zip(df_tam["Oyuncu"], df_tam["Takım"])) if not df_tam.empty else {}
+    df["takim"] = df["isim"].map(takim_map).fillna("Bilinmiyor")
+    return df
+
+with tab10:
+    st.markdown("##### 🎂 Yaş Analizi")
+    st.caption("SoccerDonna verisi")
+
+    yas_df = _yas_df()
+
+    if yas_df.empty:
+        st.warning("Yaş verisi bulunamadı.")
+    else:
+        avg_age = yas_df["yas"].mean()
+        youngest = yas_df.loc[yas_df["yas"].idxmin()]
+        oldest   = yas_df.loc[yas_df["yas"].idxmax()]
+        u23      = int((yas_df["yas"] < 23).sum())
+
+        k1, k2, k3, k4 = st.columns(4)
+        for kol, sayi, etiket in [
+            (k1, f"{avg_age:.1f}", "Lig Ort. Yaşı"),
+            (k2, f"{youngest['yas']:.0f} — {youngest['isim']}", "En Genç"),
+            (k3, f"{oldest['yas']:.0f} — {oldest['isim']}", "En Yaşlı"),
+            (k4, u23, "U-23 Oyuncu"),
+        ]:
+            kol.markdown(
+                f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
+                f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        col_hist, col_takim = st.columns([3, 2], gap="large")
+
+        with col_hist:
+            st.markdown("**📊 Yaş Dağılımı**")
+            fig_hist = go.Figure(go.Histogram(
+                x=yas_df["yas"], nbinsx=20,
+                marker=dict(color="#00a86b", line=dict(color="#00c853", width=0.8)),
+                opacity=0.85,
+                hovertemplate="Yaş: %{x:.0f}<br>Oyuncu: %{y}<extra></extra>",
+            ))
+            fig_hist.add_vline(x=avg_age, line_dash="dash", line_color="#ffab00",
+                annotation_text=f"Ort: {avg_age:.1f}",
+                annotation_position="top right",
+                annotation_font=dict(color="#ffab00", size=11))
+            fig_hist.update_layout(
+                paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                xaxis=dict(title="Yaş", color="#8899aa", gridcolor="#1e2340"),
+                yaxis=dict(title="Oyuncu Sayısı", color="#8899aa", gridcolor="#1e2340"),
+                bargap=0.08, margin=dict(l=10,r=10,t=10,b=10),
+                height=320, font=dict(color="#e0e0e0"),
+            )
+            st.plotly_chart(fig_hist, use_container_width=True)
+
+            st.markdown("**📅 Doğum Yılı Dağılımı**")
+            by_year = (yas_df.dropna(subset=["dogum_yili"])
+                       .groupby("dogum_yili").size()
+                       .reset_index(name="sayi").sort_values("dogum_yili"))
+            fig_year = go.Figure(go.Bar(
+                x=by_year["dogum_yili"], y=by_year["sayi"],
+                marker=dict(color=by_year["sayi"],
+                            colorscale=[[0,"#0d3b2e"],[1,"#00c853"]], showscale=False),
+                hovertemplate="%{x}: %{y} oyuncu<extra></extra>",
+            ))
+            fig_year.update_layout(
+                paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                xaxis=dict(title="Doğum Yılı", color="#8899aa", gridcolor="#1e2340", dtick=2),
+                yaxis=dict(title="Oyuncu", color="#8899aa", gridcolor="#1e2340"),
+                bargap=0.1, margin=dict(l=10,r=10,t=10,b=10),
+                height=260, font=dict(color="#e0e0e0"),
+            )
+            st.plotly_chart(fig_year, use_container_width=True)
+
+        with col_takim:
+            st.markdown("**🏟 Takım Yaş Ortalamaları**")
+            takim_yas = (yas_df[yas_df["takim"] != "Bilinmiyor"]
+                         .groupby("takim")["yas"]
+                         .agg(["mean","min","max","count"]).round(1)
+                         .reset_index()
+                         .rename(columns={"takim":"Takım","mean":"Ort","min":"Min","max":"Max","count":"Oyuncu"})
+                         .sort_values("Ort"))
+            st.dataframe(takim_yas, hide_index=True, use_container_width=True, height=400,
+                column_config={
+                    "Ort": st.column_config.NumberColumn(format="%.1f"),
+                    "Min": st.column_config.NumberColumn(format="%.0f"),
+                    "Max": st.column_config.NumberColumn(format="%.0f"),
+                })
+            if not takim_yas.empty:
+                g = takim_yas.iloc[0]; y = takim_yas.iloc[-1]
+                st.markdown(
+                    f"<div style='font-size:12px;color:#8899aa;margin-top:8px;'>"
+                    f"🟢 En genç: <b style='color:#00c853'>{g['Takım']}</b> ({g['Ort']} yaş)<br>"
+                    f"🔴 En yaşlı: <b style='color:#ff6b6b'>{y['Takım']}</b> ({y['Ort']} yaş)</div>",
+                    unsafe_allow_html=True)
+
+            st.markdown("<br>**⚽ Mevkiye Göre Ortalama Yaş**")
+            pos_yas_map = dict(zip(df_tam["Oyuncu"], df_tam["Mevki"])) if not df_tam.empty else {}
+            yas_df["mevki"] = yas_df["isim"].map(pos_yas_map).fillna("Bilinmiyor")
+            mevki_yas = (yas_df[yas_df["mevki"] != "Bilinmiyor"]
+                         .groupby("mevki")["yas"].mean().round(1)
+                         .reset_index().rename(columns={"mevki":"Mevki","yas":"Ort. Yaş"})
+                         .sort_values("Ort. Yaş", ascending=False))
+            fig_pos = go.Figure(go.Bar(
+                x=mevki_yas["Ort. Yaş"], y=mevki_yas["Mevki"], orientation="h",
+                marker=dict(color="#00a86b"),
+                text=mevki_yas["Ort. Yaş"], textposition="outside",
+                textfont=dict(color="#e0e0e0", size=12),
+                hovertemplate="%{y}: %{x:.1f} yaş<extra></extra>",
+            ))
+            fig_pos.update_layout(
+                paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                xaxis=dict(range=[0,35], color="#505870", showgrid=False),
+                yaxis=dict(color="#e0e0e0"),
+                margin=dict(l=10,r=50,t=5,b=5), height=180,
+                font=dict(color="#e0e0e0"),
+            )
+            st.plotly_chart(fig_pos, use_container_width=True)
+
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
