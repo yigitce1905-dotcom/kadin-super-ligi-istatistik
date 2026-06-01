@@ -1,0 +1,2354 @@
+[
+  {
+    "oyuncu": "JELENA KARLİCİC",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 25,
+    "gol_sayisi": 12
+  },
+  {
+    "oyuncu": "JULIETTE NANA",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 25,
+    "gol_sayisi": 9
+  },
+  {
+    "oyuncu": "REGINA IBIANG OTU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 25,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "VANESA LEVENAJ",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 25,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "MARIE GISELE DIVINE NGAH MANGA",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 24,
+    "gol_sayisi": 27
+  },
+  {
+    "oyuncu": "ANDREA STASKOVA",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 20
+  },
+  {
+    "oyuncu": "FLOURISH CHIOMA SABASTINE",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 11
+  },
+  {
+    "oyuncu": "MESUARE BEGALLO",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 24,
+    "gol_sayisi": 9
+  },
+  {
+    "oyuncu": "BUSEM ŞEKER",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 8
+  },
+  {
+    "oyuncu": "MILICA MIJATOVIC",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 24,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "MARIJA ALEKSIC",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "FADIMATOU ARETOUYAP KOME",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 6
+  },
+  {
+    "oyuncu": "PERİTAN BOZDAĞ",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "ELİZABETH OPPONG",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 24,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "NAIMA LAMARI",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 24,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "EMİNE YAREN ÇOLAK",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 24,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "AMINATA HAIDARA",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 24,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ZOE VAN EYNDE",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 24,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BEYZA EMİNE SARUHAN",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 24,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARY ATINUKE SAIKI",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 24,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MELISSA SANDRINE BEHINAN",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 23,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "SULIAT OLAJUMOKE ABIDEEN",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 23,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "RASMATA SAWADOGO",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 23,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "CHANG JANG",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 23,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "ÖZNUR TAŞ",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 23,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "CHIOMA OLISE",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 23,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "MARIA APARECIDA SOUZA ALVES",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 23,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "CANSU NUR KAYA",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 23,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KEZBAN TAĞ",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 23,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SUDENUR YOLCU",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 23,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NATALIA OLESZKIEWICZ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 22,
+    "gol_sayisi": 30
+  },
+  {
+    "oyuncu": "DONJETA HALILAJ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 22,
+    "gol_sayisi": 19
+  },
+  {
+    "oyuncu": "SAMARIA SARAI GOMEZ MEJIA",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 22,
+    "gol_sayisi": 9
+  },
+  {
+    "oyuncu": "MELİKE DİNÇEL",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 22,
+    "gol_sayisi": 9
+  },
+  {
+    "oyuncu": "MARTA NAIZIA DA SILVA CINTRA",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 22,
+    "gol_sayisi": 8
+  },
+  {
+    "oyuncu": "EBRU TOPÇU",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 22,
+    "gol_sayisi": 8
+  },
+  {
+    "oyuncu": "ECE TÜRKOĞLU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 22,
+    "gol_sayisi": 6
+  },
+  {
+    "oyuncu": "JULIA HICKELSBERGEN FULLER",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 22,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "ANA INES COSTA MENDES DIAS",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "KEVSER KARTAL",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 22,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "İPEK KAYA",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 22,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "EZMİRALDA FRANJA",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "SUHDE NUR ARPACI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "MATEJA ZVER",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "NEVCAN KELEŞ",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 22,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "NESLİHAN DEMİRDÖGEN",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 22,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "EDA KARATAŞ",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 22,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "SUZZY DEDE TEYE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "LUSHOMO MWEEMBA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 22,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "HEIDI LYNNE RUTH",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "RAFAELA SUDRE DOS SANTOS",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "NEHİR ZEYTÜNLÜ",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 22,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "MAIKO BEBIA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "VIVIAN NASAKA MAKOKHA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 22,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "FATMA KARA",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 22,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "RABİYA İSGİ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 22,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "YELİZ AÇAR",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 22,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "SILA BESRA TETİK",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 22,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AYTAJ SHARIFOVA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MERVE ODABAŞOĞLU",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 22,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "OLHA OVDIYCHUK",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 8
+  },
+  {
+    "oyuncu": "ARZU KARABULUT",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 8
+  },
+  {
+    "oyuncu": "KONYA TAJAE PLUMMER",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 21,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "KALTRINA BIQKAJ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 21,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "İNAYET FUNDA ALTINKAYA",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 21,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "BUKET KARADAĞ",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 21,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "OLUWATOSIN BLESSING DEMEHIN",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BEYZA KOCATÜRK",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "DERYA ARHAN",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "SHKURTE MALIQI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ILARJA ZARKA",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "MERTHA TEMBO",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "KARLA DANIELA ZEMPOALTECA HERNANDEZ",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "MERYEM SEVENT",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 21,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "VUSALA HACIYEVA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIGONE TAHIRI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NAGEHAN AKŞAN",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 21,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GAMZE NUR YAMAN",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 21,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "İSMİGÜL YALÇINER",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 21,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIEM HOUIJ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 20,
+    "gol_sayisi": 19
+  },
+  {
+    "oyuncu": "NGO MBELECK GENEVIEVE EDITH",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 20,
+    "gol_sayisi": 19
+  },
+  {
+    "oyuncu": "YAĞMUR URAZ",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 20,
+    "gol_sayisi": 16
+  },
+  {
+    "oyuncu": "ZEYNEP GAMZE KOÇER",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 20,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "TEODORA NICOARA",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 20,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "JUANITA AGUADZE",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 20,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "İLAYDA CİVELEK",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 20,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "RABİA NUR KÜÇÜK",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 20,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "NIKOLINA MİLOVİC",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 20,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BENAN ALTINTAŞ",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 20,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ELİF KESKİN",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 20,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SUDE TOPÇU",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 20,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SEVİNC FAYIL QIZI JAFARZADE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 20,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FLORENTİNA KOLGECİ",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 20,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BEATRIZ BUENO NICOLETI",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 20,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SUZIE MBİANDJİ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 20,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELIZABETH OWUSUAA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 19,
+    "gol_sayisi": 13
+  },
+  {
+    "oyuncu": "ESRA MANYA",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 19,
+    "gol_sayisi": 9
+  },
+  {
+    "oyuncu": "FREDRICA TORKUDZOR",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 19,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "LINA FERNANDE MARTINEZ ALVAREZ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 19,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "ECEMNUR ÖZTÜRK",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 19,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "ALEYNA MERAL",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 19,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "MERYEM KÜÇÜKBİRİNCİ",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 19,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "ELİF KESGİN",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 19,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "NAZLI ÖRNEK",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 19,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "DİDEM KARAGENÇ",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 19,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "RREZONA RAMADANI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 19,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "ÇİĞDEM BELCİ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 19,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "AYŞE DEMİRCİ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 19,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ECEM CUMERT",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 19,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "İLAYDA ATÇI",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 19,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ÖZGE ŞENGEL",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 19,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AGNESA GASHI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 19,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÜLBİN HIZ",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 19,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "YAĞMUR FATMANUR OCAK",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 19,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIA PAULA SALAS ZUNIGA",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 18,
+    "gol_sayisi": 15
+  },
+  {
+    "oyuncu": "UGOCHI CYNTHIA EMENAYO",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 18,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "BAHAR KOL",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 18,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "BERRA BAYRAKTAR",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 18,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "SEDA NUR İNCİK",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 18,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "JACKLINE ADONG",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 18,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "AMIRA OULD BRAHAM",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 18,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "DİLARA YILMAZ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 18,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "FATMA ATAŞ",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 18,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "AYŞE NUR SERT",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 18,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "PAULA RUESS",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 18,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BLERTA SMAILI",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 18,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BAHAR GÜVENÇ MAVİ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 18,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "SELİN SİVRİKAYA",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 18,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FATMA KILINÇ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 18,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SEVİLAY DUMAN",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 18,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ÜMRAN ÖZEV",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 18,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FERDA İPEK ÇEVİK",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 18,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ARMISA KUÇ",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 17,
+    "gol_sayisi": 13
+  },
+  {
+    "oyuncu": "BİRGÜL SADIKOĞLU",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 17,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "ZEYNEP KERİMOĞLU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 17,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "SEVGİ ÇINAR KARAOĞLU",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 17,
+    "gol_sayisi": 6
+  },
+  {
+    "oyuncu": "MELİKE ÖZTÜRK",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 17,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "BAŞAK İÇİNÖZBEBEK",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 17,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "AZRA TIRAŞ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 17,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "OLİVİA İNALÖZ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 17,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ECE TEKMEN",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 17,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ŞEFİKA ÖZ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 17,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FİDAN JAFAROVA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 17,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SELDA AKGÖZ",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 17,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BERNA YENİÇERİ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 17,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "RABİYA KARAGÜL",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 17,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FATOU DAO",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 16,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ANGEL KEZIAH ESHIRENDAH MUKASA",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 16,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NAZMİYE AYTOP",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 16,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SEVGİ SEVİN ERGEN",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 16,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ARİFE ŞENTÜRK",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 16,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SÜHEYLA ÇALÇINAR",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 16,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "LIUBOV SHMATKO",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 15,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "KAFAYAT FOLAKEMI SHITTU",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 15,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EZGİ ÇAĞLAR",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 15,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZERDA TAŞCI",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 15,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "JALE AĞAYAR QIZIZHALA MAHSIMOVA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 15,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "TÜLİN BALUR",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 15,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "VALENTINA GIACINTI",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 14,
+    "gol_sayisi": 14
+  },
+  {
+    "oyuncu": "MELİKE PEKEL",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 14,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "AZRA ARDOS",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 14,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "GEORGINA AYISHA AOYEM",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 14,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "SARAH YASONGAMO MAKANDA",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 14,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "LETAGO MADIBA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 14,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "NİLAY GÜRELER",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 14,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "NARGIZ ALIYEVA",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 14,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELLEN COLEMAN",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 14,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NUR YUNTÜR",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 14,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FATMANUR YANTUR",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 14,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ÇAĞLA DOĞAN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 14,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BAŞAK GÜNDOĞDU",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 13,
+    "gol_sayisi": 11
+  },
+  {
+    "oyuncu": "NİHAL SARAÇ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 13,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "ŞEHRİBAN DÜLEK",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 13,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "FATMA SARE ÖZTÜRK",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 13,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "GİZEM AYDIN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 13,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "İLKNUR ERYOLDAŞ",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 13,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "LYDIA NAYELI RANGEL HERNANDEZ",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 13,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "DIANA LUCAS MSEWA",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 13,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "MEDİNE ERKAN",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 13,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ARMERA TUKAJ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 13,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HÜMEYRA ŞANVER",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 13,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NATALIA MUNTEANU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 13,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SERPİL İŞLER",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 13,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARTA ALEXANDRA COX VILLARREAL",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 12,
+    "gol_sayisi": 7
+  },
+  {
+    "oyuncu": "OUASSİLA ALOUACHE",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 12,
+    "gol_sayisi": 5
+  },
+  {
+    "oyuncu": "ELENA GRACINDA SANTOS",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 12,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "CANSU İRİŞ",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 12,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "OUAFAA HAMRI",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 12,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "NOELA PATRICK LUHALA",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 12,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "ZOTE NINA KPAHO",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 12,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "BERFİN ELİF CEYLAN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 12,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "İREM EREN",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 12,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ALEXANDRA TAKOUNDA ENGOLO",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 12,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "AÇELYA NOMAK",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 12,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "DUYGU YILMAZ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 12,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AYSHAN AHMADOVA",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 12,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "JOY EBINEMIERE BOKIRI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 12,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AYŞE ŞEVVAL AY",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 12,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZEYNEP ÜLKÜ KAHYA",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 12,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AQSA MUSHTAQ",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 11,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "MESUDE ALAYONT",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 11,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "SUDE NAZ ÖZ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 11,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "NURSEL ÖZKAN",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 11,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BEYZA SEMERCİOĞLU",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 11,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "DİYAN CEYHAN",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KEVINE OSSOL",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ECENAZ BAYKUŞ",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FATLINDA RAMAJ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "YAĞMUR BEREN GÖNÜLLÜ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BERİL BECEREN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MADINATOU ROUAMBA",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KERİME KAYMAZ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SKAISTE PETRAUSKAITE",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DANA MARGARETHA WILHELMINA FOEDERER",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 11,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SULIYAT DAMOLA HASSAN",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "VICTORIA THALITA ALVRANGA DIAS",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "LALIA DALI USAGE STORTI",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KARİNA SOCARRAS VİLLALONGA",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ESMANUR SOLAK",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ROSE TEYE BAAH",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÖKNUR GÜLERYÜZ",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIE LAURE KONG",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DOROTHEE MUKESHIMANA",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIAM AYONI AJIBOLA",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIAM DIAKITE",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MELİSA ORAL",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ARZU AKKURT",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "JUSTİCE TWENEBOAA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 10,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "LARA ANTUNES PINTASSILGO",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 9,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "MARGITA VASOVIC",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "ARYANA LYNN HARVEY",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "TIJANA ZARKOVIC",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "MEDİNE BOZALİ",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 9,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "PEREIRA DA SILVA SYLVIA BEATRIZ",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "DARIJA DUKIC",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ŞEVVAL DURSUN",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MELDA ÇETİN",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ALMA KRAJNİC",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZEYNEP BUĞAAKÇA",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "YANA DERKACH",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AICHA HAMIDECHE",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EMİNE ECEM ESEN",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EBRU ŞAHİN",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ÖZLEM AKKAYA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "İREM DAMLA ŞAHİN",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 9,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ASİA BRAGONZİ",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 8,
+    "gol_sayisi": 3
+  },
+  {
+    "oyuncu": "KARYNA ALKHOVIK",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 8,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "MERYEM CENNET ÇAL",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 8,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "OLGA MASSOMBO",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 8,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "İREM ACAR",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ESMANUR DURAL",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 8,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "CANSU GÜREL",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 8,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "SELVİ BEYZA AYDOĞDU",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZÜLEYHA GÖLGELİKAYA",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EMİNE BURKAY",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HABİBE NUR IŞIKOĞLU",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELİF REYYAN AĞKEMİK",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SEMA POLAT",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÜLSÜM ÇAKIR",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ROBERTA APRILE",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MEHRİBAN SHAHMAMMADOVA",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MELİSA NİLGÜN KESER",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 8,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELANUR LAÇIN",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 7,
+    "gol_sayisi": 4
+  },
+  {
+    "oyuncu": "ELENA SHESTERNEVA",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 7,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "GÜLPERİ ATICI",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 7,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "YAŞAM GÖKSU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 7,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "MARY ABOSEDE SALAMI",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SARA MALİQİ",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "JAYLEN KENNEDY CRIM",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DAMLA KÖSE",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FAİZA BINT IBRAHIM",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARTHA BBOSA NALUNKUUMA",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SÜMEYYE GÜNAYDIN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "TÜRKAN SİVRİ",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MERYEM MAS",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 7,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "VALENTINA TROKA",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 6,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "DİLAN BORA",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 6,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "PRECIOUS ADJWOA HAIZEL",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 6,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "MAVIS OWUSU",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 6,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "DEFNESU ALDEMİR",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 6,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "BERRA PEKGÖZ",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 6,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "RUKİYE CANBAL",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 6,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "DORİS AKAHEEH",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 6,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "HİLAL SUBAY",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "PRINCESS MEGAN ATEGBAYON IBINI ISEI",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EZGİ ADA ÇINAR",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SİNEM BASAK",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HATİCE YAŞAR",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DİLAN ASLAN",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIA ASUNCION QUINONES GOICOECHEA",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MARIA INES VIEIRA MAIA",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KENNYA KINDA ESTHER CORDNER",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SUZAN SAYACA",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELİF AYTEKİN",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SUDE MİHRİ ÇINAR",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ESRA EROL",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "İLAYDA AKDENİZ",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 6,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "PRİNCELLA ADUBEA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 5,
+    "gol_sayisi": 2
+  },
+  {
+    "oyuncu": "DOĞA SELEN SANCAR",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÜZİDE ALÇU",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EVDOKIA DIMITROVA POPADINOVA",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AYŞE AKBALIK",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "LIVIA LOPES DOS SANTOS",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZEYNEP GÜL KESKİN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SILA KÜÇÜKBIYIK",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "LINA YANG",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "VITORIA SILVA DE ALMEIDA",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "İREM BARUT",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ESİN NİSA SİVASLI",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EFLİN SARAN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 5,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "TANIA RITA PONTES MATUES",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 4,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "GÜL BEYZA AKPINAR",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HUDA BOZO",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KARDELEN PATOĞLU",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "OLIVIA MATILDE JOHANSSON ALCAIDE",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NAZLICAN PARLAK",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SEVAL TEKİN",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FATMA ŞAHİN",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AYŞENUR ARIK",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BLESSING AUGUSTINE NKOR",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "TUĞÇE BAYINDIR",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MAYARA CRISTINA DA SILVA",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MİNENUR SARIOĞLU",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELİF ESRA ŞANLI",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "CEMİLE BERİL GÜNAY",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ECRİN KOYUN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 4,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ESLEM YÜCE",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÜLŞAH ALTIN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HİRANUR SÖNMEZ",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EVA VASILIKI VLASSOPOULOS",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EMİNE DEMİR",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EBRAR ULUHANLI",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HIVA ETEMADINASAB",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "KEZBAN YORĞA",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "AHLAM HATAB",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELİF GÖRMEZ",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SENEM PINAR ÖZER",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "TUANA DEMİRBAŞ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ÖZLEM ALİOSMANOĞLU",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "EZGİ KILIÇ",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ESMA SULTAN ÇELİK",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ASYA BAYRAKTAR",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 3,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZEYNEP IRMAK ÖLMEZER",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 2,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "ÇİMEN ERDİN",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "NARİN YAKUT",
+    "takim": "GALATASARAY GAIN",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GİZEM YAZICI",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ABIGAIL PAOLA CHAVES",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "CEYDA ÖZKAN",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "IMAN DUMANJIC",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ÖZGE OĞURGÜL",
+    "takim": "AMED SPORTİF FAALİYETLER",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DİLARA KOCABAĞ",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ANDREA GURTNER",
+    "takim": "TRABZONSPOR A.Ş.",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELİF CEREN MUTLU",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DIAKIESE KALUZODI ISABELLE",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HİCRAN AKDOĞAN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "IRMAK AKBUDAK",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DİLARA YÜKSEL",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "FAUSTINA WORWORNYO AKPO",
+    "takim": "GAZİANTEP ALG SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ERVA KARAKUŞ",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ALİYE TECER",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "RABİA SOLAK",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ECRİN NAZ ŞENTÜRK",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÖZDE UÇAR",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MEVLÜDE MELEK OKUYAN",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BÜŞRA KENET",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ECE AYDIN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 2,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DİLARASU PILIÇ",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 1,
+    "gol_sayisi": 1
+  },
+  {
+    "oyuncu": "SÜMEYRA KIVANÇ",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NİSA DEREN KANDEMİR",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NAZLI PEKER",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "MERVE NUR TAŞUCU",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SÜMEYYE TERTEMİZ",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "CHUENE PRECIOUS MORIFI",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZEYNEP ERDOĞAN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DENİZ AY",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BUSE NUR KARATAŞ",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BEREN LİVA ÇEŞTAN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ELİFENUR KARABULUT",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SOULAIMA JABRANI",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "SENEM DUMAN",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DAMLA GENÇ",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "DURU ARSLAN",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NEHİR KAYA",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HACER ARICI",
+    "takim": "FATİH VATAN SPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "NAGİHAN BULUT",
+    "takim": "ÜNYE KADIN SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BEYZA KAYGUSUZ",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "BÜŞRA BERFİN EREN",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "HAZAL KÖKSALDI",
+    "takim": "PROLİFT GİRESUN SANAYİSPOR",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "İREM PEHLİVAN",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GAMZE AĞIRMAN",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "ZEYNEP AKDENİZ",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  },
+  {
+    "oyuncu": "GÖKCE ALMILA ÖZCAN",
+    "takim": "ŞİLE BİLGİDOĞA",
+    "mac_sayisi": 1,
+    "gol_sayisi": 0
+  }
+]
