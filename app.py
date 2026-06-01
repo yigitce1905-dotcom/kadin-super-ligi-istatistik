@@ -1288,6 +1288,15 @@ with tab7:
                 ("Sağ Kanat", "Forvet",    58, 68),
                 ("Santrafor", "Forvet",    34, 88),
             ],
+            "4-1-2-3": [
+                ("Kaleci",    "Kaleci",    34,  8),
+                ("Sol Bek",   "Defans",    10, 25), ("Sol-OB",   "Defans",   25, 25),
+                ("Sağ-OB",    "Defans",    43, 25), ("Sağ Bek",  "Defans",   58, 25),
+                ("Def OM",    "Orta Saha", 34, 43),
+                ("Sol OM",    "Orta Saha", 19, 61), ("Sağ OM",   "Orta Saha",49, 61),
+                ("Sol Kanat", "Forvet",    12, 82), ("Santrafor","Forvet",    34, 82),
+                ("Sağ Kanat", "Forvet",    56, 82),
+            ],
         }
         MEVKI_RENK_F = {
             "Kaleci":    "#ffd700",
