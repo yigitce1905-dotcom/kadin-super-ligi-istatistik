@@ -33,5 +33,14 @@
   "NAZLI ÖRNEK":                      {"source": "manuel", "position": "Defender - Right Back"},
   "RABİYA KARAGÜL":                   {"source": "manuel", "position": "Defender - Left Back"},
   "BEYZA KOCATÜRK":                   {"source": "manuel", "position": "Defender - Left Back"},
-  "EMİNE DEMİR":                      {"source": "manuel", "position": "Defender - Centre Back"}
+  "EMİNE DEMİR":                      {"source": "manuel", "position": "Defender - Centre Back"},
+  "ÖZGE ŞENGEL":                      {"source": "manuel", "position": "Defender - Left Back"},
+  "NİLAY GÜRELER":                    {"source": "manuel", "position": "Defender - Right Back"},
+  "BERİL BECEREN":                    {"source": "manuel", "position": "Midfield - Central Midfield"},
+  "ESİN NİSA SİVASLI":                {"source": "manuel", "position": "Defender - Left Back"},
+  "EFLİN SARAN":                      {"source": "manuel", "position": "Defender - Right Back"},
+  "DIAKIESE KALUZODI ISABELLE":       {"born": "01.01.1998", "source": "manuel", "position": "Striker - Centre Forward"},
+  "ECRİN NAZ ŞENTÜRK":                {"source": "manuel", "position": "Defender - Left Back"},
+  "SÜMEYRA KIVANÇ":                   {"source": "manuel", "position": "Defender - Right Back"},
+  "GÖKCE ALMILA ÖZCAN":               {"source": "manuel", "position": "Midfield - Central Midfield"}
 }
