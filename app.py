@@ -211,18 +211,42 @@ def mevki_normalize(pozisyon: str) -> str:
     return "Bilinmiyor"
 
 
+import re as _re
+
+def _ilk_uyruk(nat_str: str) -> str:
+    """'AlbaniaKosovo' → 'Albania', 'France' → 'France'"""
+    nat_str = (nat_str or "").strip()
+    if not nat_str:
+        return ""
+    # CamelCase birleşimi: büyük harfle başlayan ikinci kelimeyi bul
+    parts = _re.findall(r"[A-Z][a-z''\- ]*(?:[A-Z][a-z''\- ]*)*", nat_str)
+    # Birden fazla parça varsa sadece ilkini al
+    return parts[0].strip() if parts else nat_str
+
+
 def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
-    """df_tam'a Mevki, Uyruk ve Boy sütunlarını ekler."""
+    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler."""
     df = df.copy()
     df["Mevki"] = df["Oyuncu"].map(
         lambda o: mevki_normalize(sd_profiller.get(o, {}).get("Position", ""))
     )
     df["Uyruk"] = df["Oyuncu"].map(
-        lambda o: sd_profiller.get(o, {}).get("Nationality", "")
+        lambda o: _ilk_uyruk(sd_profiller.get(o, {}).get("Nationality", ""))
     )
     df["Boy"] = df["Oyuncu"].map(
         lambda o: sd_profiller.get(o, {}).get("Height", "")
     )
+
+    def _yas(oyuncu):
+        profil = sd_profiller.get(oyuncu, {})
+        if profil.get("es_skoru", 1.0) < 0.80:
+            return None
+        try:
+            return float(str(profil.get("Age", "")).split()[0])
+        except Exception:
+            return None
+
+    df["Yaş"] = df["Oyuncu"].map(_yas)
     return df
 
 
@@ -1593,17 +1617,14 @@ def _harita_verisi():
     """soccerdonna_profiller.json'dan uyruk bazlı oyuncu sayısını döndürür."""
     rows = []
     for isim, profil in sd_profiller.items():
-        nat = profil.get("Nationality", "") or ""
-        nat = nat.strip()
-        if nat:
-            nat = _NAT_FIX.get(nat, nat)
+        nat = _ilk_uyruk(profil.get("Nationality", "") or "")
+        nat = _NAT_FIX.get(nat, nat)
+        if len(nat) > 2:
             rows.append(nat)
     if not rows:
         return pd.DataFrame()
     s = pd.Series(rows).value_counts().reset_index()
     s.columns = ["Uyruk", "Oyuncu"]
-    # Boş veya çok kısa değerleri at
-    s = s[s["Uyruk"].str.len() > 2].reset_index(drop=True)
     return s
 
 with tab8:
@@ -1701,7 +1722,7 @@ with tab9:
         st.warning("Veri yok.")
     else:
         fa1, fa2, fa3 = st.columns([2, 2, 2])
-        fb1, fb2, fb3 = st.columns([2, 2, 2])
+        fb1, fb2, fb3, fb4 = st.columns([2, 2, 2, 2])
 
         all_nats = sorted(df_tam["Uyruk"].dropna().replace("", pd.NA).dropna().unique())
         all_pos  = sorted(df_tam["Mevki"].dropna().replace("Bilinmiyor", pd.NA).dropna().unique())
@@ -1713,13 +1734,19 @@ with tab9:
         with fa3:
             isim_q = st.text_input("👤 İsim", placeholder="Ara…", key="as_isim")
 
+        yas_vals = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
+        yas_min = int(yas_vals.min()) if not yas_vals.empty else 15
+        yas_max = int(yas_vals.max()) if not yas_vals.empty else 40
         mac_max = int(df_tam["Maç"].max()) if not df_tam.empty else 30
+
         with fb1:
-            min_mac = st.slider("📅 Min. Maç", 0, mac_max, 0, key="as_mac")
+            yas_range = st.slider("🎂 Yaş", yas_min, yas_max, (yas_min, yas_max), key="as_yas")
         with fb2:
-            min_gol = st.slider("⚽ Min. Gol", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
+            min_mac = st.slider("📅 Min. Maç", 0, mac_max, 0, key="as_mac")
         with fb3:
-            sort_by = st.selectbox("Sırala", ["Maç ↓", "Gol ↓", "Dakika ↓", "Oyuncu ↑"], key="as_sort")
+            min_gol = st.slider("⚽ Min. Gol", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
+        with fb4:
+            sort_by = st.selectbox("Sırala", ["Maç ↓", "Gol ↓", "Dakika ↓", "Yaş ↑", "Oyuncu ↑"], key="as_sort")
 
         mask = pd.Series(True, index=df_tam.index)
         if sel_nats:
@@ -1730,10 +1757,13 @@ with tab9:
             mask &= df_tam["Oyuncu"].str.contains(isim_q.strip(), case=False, na=False)
         mask &= df_tam["Maç"] >= min_mac
         mask &= df_tam["Gol"] >= min_gol
+        if "Yaş" in df_tam.columns and not yas_vals.empty:
+            yas_mask = df_tam["Yaş"].isna() | df_tam["Yaş"].between(yas_range[0], yas_range[1])
+            mask &= yas_mask
 
         filtered = df_tam[mask].copy()
         sort_map = {"Maç ↓": ("Maç", False), "Gol ↓": ("Gol", False),
-                    "Dakika ↓": ("Dakika", False), "Oyuncu ↑": ("Oyuncu", True)}
+                    "Dakika ↓": ("Dakika", False), "Yaş ↑": ("Yaş", True), "Oyuncu ↑": ("Oyuncu", True)}
         sc, sa = sort_map[sort_by]
         filtered = filtered.sort_values(sc, ascending=sa).reset_index(drop=True)
 
@@ -1744,10 +1774,11 @@ with tab9:
         if filtered.empty:
             st.info("Filtrelerle eşleşen oyuncu yok.")
         else:
-            show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
+            show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Yaş", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
             show = [c for c in show if c in filtered.columns]
             st.dataframe(filtered[show], hide_index=True, use_container_width=True,
-                height=min(600, 45 + len(filtered) * 35))
+                height=min(600, 45 + len(filtered) * 35),
+                column_config={"Yaş": st.column_config.NumberColumn(format="%.0f")})
 
 
 # ══════════════════════════════════════════════════════════════════════════════
