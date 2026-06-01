@@ -47,5 +47,9 @@
   "EZGİ KILIÇ":                       {"source": "manuel", "position": "Defender - Right Back"},
   "BÜŞRA BERFİN EREN":                {"source": "manuel", "position": "Midfield"},
   "NUR YUNTÜR":                       {"source": "manuel", "position": "Midfield - Central Midfield"},
-  "ÇAĞLA DOĞAN":                      {"source": "manuel", "position": "Defender - Left Back"}
+  "ÇAĞLA DOĞAN":                      {"source": "manuel", "position": "Defender - Left Back"},
+  "İLAYDA ATÇI":                      {"source": "manuel", "position": "Defender - Left Back"},
+  "ESMANUR SOLAK":                    {"source": "manuel", "position": "Defender - Left Back"},
+  "DORİS AKAHEEH":                    {"source": "manuel", "position": "Midfield"},
+  "GÜL BEYZA AKPINAR":                {"source": "manuel", "position": "Midfield - Left Wing"}
 }
