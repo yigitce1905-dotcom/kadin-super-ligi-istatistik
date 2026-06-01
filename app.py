@@ -57,6 +57,28 @@ st.markdown("""
 .profil-stat-item .deger { font-size: 1.6rem; font-weight: 700; color: #00c853; }
 .profil-stat-item .ad    { font-size: 0.72rem; color: #8899aa; margin-top: 2px; }
 
+.transfer-badge {
+    display: inline-block;
+    background: #1a3a2a;
+    color: #00c853;
+    font-size: 0.72rem;
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+.takim-detay-satir {
+    background: #0f1117;
+    border-radius: 8px;
+    padding: 10px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.takim-detay-satir .td-adi { color: #e0e0e0; font-weight: 500; }
+.takim-detay-satir .td-stats { color: #8899aa; font-size: 0.85rem; }
+
 .karsilastirma-baslik {
     font-size: 1rem;
     font-weight: 600;
@@ -86,24 +108,31 @@ def veri_yukle():
     else:
         st.warning("oyuncular.json bulunamadı — demo veri kullanılıyor.")
         demo = [
-            {"oyuncu":"Büşra Kılıç","takim":"Beşiktaş","mac_sayisi":28,"gol_sayisi":12,"gol_ort":0.43,"sari_kart":3,"kirmizi_kart":0,"toplam_dakika":2450},
-            {"oyuncu":"Ezgi Koçak","takim":"Galatasaray","mac_sayisi":27,"gol_sayisi":9,"gol_ort":0.33,"sari_kart":1,"kirmizi_kart":0,"toplam_dakika":2200},
+            {"oyuncu":"Büşra Kılıç","takim":"Beşiktaş","tum_takimlar":"Beşiktaş","transfer":False,
+             "mac_sayisi":28,"gol_sayisi":12,"gol_ort":0.43,"sari_kart":3,"kirmizi_kart":0,"toplam_dakika":2450,"takim_detay":[]},
         ]
         df = pd.DataFrame(demo)
 
-    # Sütun adlarını normalize et
     yeniden = {
-        "oyuncu":"Oyuncu","takim":"Takım","mac_sayisi":"Maç",
-        "gol_sayisi":"Gol","gol_ort":"Gol/Maç",
+        "oyuncu":"Oyuncu","takim":"Takım","tum_takimlar":"Tüm Takımlar",
+        "transfer":"Transfer","mac_sayisi":"Maç","gol_sayisi":"Gol","gol_ort":"Gol/Maç",
         "sari_kart":"Sarı","kirmizi_kart":"Kırmızı","toplam_dakika":"Dakika",
+        "takim_detay":"TakımDetay",
     }
     df.rename(columns=yeniden, inplace=True)
+
     for s in ["Maç","Gol","Sarı","Kırmızı","Dakika"]:
         if s not in df.columns: df[s] = 0
         df[s] = pd.to_numeric(df[s], errors="coerce").fillna(0).astype(int)
     if "Gol/Maç" not in df.columns:
         df["Gol/Maç"] = (df["Gol"] / df["Maç"].replace(0,1)).round(2)
     df["Gol/Maç"] = pd.to_numeric(df["Gol/Maç"], errors="coerce").fillna(0.0).round(2)
+    if "Transfer" not in df.columns:
+        df["Transfer"] = False
+    if "Tüm Takımlar" not in df.columns:
+        df["Tüm Takımlar"] = df["Takım"]
+    if "TakımDetay" not in df.columns:
+        df["TakımDetay"] = [[] for _ in range(len(df))]
     return df
 
 df_tam = veri_yukle()
@@ -164,7 +193,8 @@ with tab1:
     if secili_oyuncu != "— Tüm oyuncular —":
         df = df[df["Oyuncu"] == secili_oyuncu]
     if secili_takim != "Tüm Takımlar":
-        df = df[df["Takım"] == secili_takim]
+        # Transfer oyuncuları her iki takımda da görünsün
+        df = df[df["Tüm Takımlar"].str.contains(secili_takim, na=False)]
 
     # Sırala
     siralama_map = {
@@ -185,15 +215,21 @@ with tab1:
     max_mac = int(df_tam["Maç"].max() or 1)
     max_dk  = int(df_tam["Dakika"].max() or 1)
 
+    # Tabloda gösterilecek "Takım" sütunu: transfer varsa 🔄 işareti
+    df = df.copy()
+    df["Takım (Gösterim)"] = df.apply(
+        lambda r: r["Tüm Takımlar"] if r["Transfer"] else r["Takım"], axis=1
+    )
+
     st.dataframe(
-        df[["Oyuncu","Takım","Maç","Gol","Gol/Maç","Sarı","Kırmızı","Dakika"]],
+        df[["Oyuncu","Takım (Gösterim)","Maç","Gol","Gol/Maç","Sarı","Kırmızı","Dakika"]],
         use_container_width=True,
         height=540,
         column_config={
-            "Oyuncu":   st.column_config.TextColumn("Oyuncu",  width="medium"),
-            "Takım":    st.column_config.TextColumn("Takım",   width="medium"),
-            "Maç":      st.column_config.ProgressColumn("Maç",     min_value=0, max_value=max_mac, format="%d"),
-            "Gol":      st.column_config.ProgressColumn("Gol",     min_value=0, max_value=max_gol, format="%d"),
+            "Oyuncu":          st.column_config.TextColumn("Oyuncu",  width="medium"),
+            "Takım (Gösterim)":st.column_config.TextColumn("Takım  🔄=transfer", width="large"),
+            "Maç":      st.column_config.ProgressColumn("Maç",    min_value=0, max_value=max_mac, format="%d"),
+            "Gol":      st.column_config.ProgressColumn("Gol",    min_value=0, max_value=max_gol, format="%d"),
             "Gol/Maç":  st.column_config.NumberColumn("Gol/Maç", format="%.2f"),
             "Sarı":     st.column_config.NumberColumn("🟨 Sarı"),
             "Kırmızı":  st.column_config.NumberColumn("🟥 Kırmızı"),
@@ -210,22 +246,29 @@ with tab2:
                           help="Yazmaya başlayın — isim filtrelenir")
 
     if secili:
-        row = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
-        mac  = int(row["Maç"])
-        gol  = int(row["Gol"])
-        sari = int(row["Sarı"])
-        kir  = int(row["Kırmızı"])
-        dk   = int(row["Dakika"])
-        ort  = round(gol / mac, 2) if mac else 0
-        dk_mac = round(dk / mac, 0) if mac else 0
+        row    = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
+        mac    = int(row["Maç"])
+        gol    = int(row["Gol"])
+        sari   = int(row["Sarı"])
+        kir    = int(row["Kırmızı"])
+        dk     = int(row["Dakika"])
+        ort    = round(gol / mac, 2) if mac else 0
+        dk_mac = round(dk / mac, 0)  if mac else 0
+        transfer = bool(row.get("Transfer", False))
+
+        takim_html = ""
+        if transfer:
+            takim_html = f'<span style="color:#a0aab4">{row["Tüm Takımlar"]}</span> <span class="transfer-badge">🔄 Transfer</span>'
+        else:
+            takim_html = f'<span style="color:#00c853">{row["Takım"]}</span>'
 
         st.markdown(f"""
         <div class="profil-kart">
           <h2>{secili}</h2>
-          <div class="takim-adi">🏟 {row['Takım']}</div>
+          <div class="takim-adi" style="margin-bottom:16px">🏟 {takim_html}</div>
           <div class="profil-stat">
-            <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">Maç</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">Gol</div></div>
+            <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">Toplam Maç</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">Toplam Gol</div></div>
             <div class="profil-stat-item"><div class="deger">{ort}</div><div class="ad">Gol/Maç</div></div>
             <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">Toplam Dk</div></div>
             <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">Dk/Maç</div></div>
@@ -234,6 +277,24 @@ with tab2:
           </div>
         </div>
         """, unsafe_allow_html=True)
+
+        # Transfer oyuncusu ise takım bazlı kırılım göster
+        if transfer:
+            detay = row.get("TakımDetay", [])
+            if detay:
+                st.markdown("<br>**Takım Bazlı İstatistikler**", unsafe_allow_html=False)
+                satirlar = ""
+                for d in detay:
+                    satirlar += f"""
+                    <div class="takim-detay-satir">
+                      <span class="td-adi">🏟 {d['takim']}</span>
+                      <span class="td-stats">
+                        {d['mac']} maç &nbsp;·&nbsp; {d['gol']} gol &nbsp;·&nbsp;
+                        {d['dakika']} dk &nbsp;·&nbsp;
+                        🟨 {d['sari']} &nbsp;🟥 {d['kirmizi']}
+                      </span>
+                    </div>"""
+                st.markdown(satirlar, unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
 

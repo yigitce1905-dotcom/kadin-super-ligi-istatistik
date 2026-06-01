@@ -212,14 +212,24 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict):
     # ── Oynanan dakikaları hesapla ──────────────────────────────────────────
     # İlk 11: 0'dan çıkma dakikasına (yoksa 90'a) kadar
     for kid in set(ilk11_kids):
-        dk = cikan_dk.get(kid, 90)
-        dk = min(dk, 90)  # 90+ ekstra süreyi 90'a yuvarla
-        oyuncu_dict[kid]["dakika"] = oyuncu_dict[kid].get("dakika", 0) + dk
+        dk = min(cikan_dk.get(kid, 90), 90)
+        _dakika_ekle(oyuncu_dict, kid, dk, kisi_takim.get(kid, ""))
 
     # Oyuna girenler: giriş dakikasından 90'a kadar
     for kid in set(giren_kids):
         dk = max(0, 90 - giren_dk.get(kid, 90))
-        oyuncu_dict[kid]["dakika"] = oyuncu_dict[kid].get("dakika", 0) + dk
+        _dakika_ekle(oyuncu_dict, kid, dk, kisi_takim.get(kid, ""))
+
+
+def _dakika_ekle(oyuncu_dict, kid, dk, takim):
+    """Hem toplam hem de takım bazlı dakikayı günceller."""
+    if kid not in oyuncu_dict:
+        return
+    oyuncu_dict[kid]["dakika"] = oyuncu_dict[kid].get("dakika", 0) + dk
+    if takim:
+        ts = oyuncu_dict[kid].setdefault("takim_stats", {})
+        ts.setdefault(takim, {"mac": 0, "gol": 0, "sari": 0, "kirmizi": 0, "dakika": 0})
+        ts[takim]["dakika"] += dk
 
 
 def _ekle(oyuncu_dict, kid, isim, takim, mac=0, gol=0, sari=0, kirmizi=0):
@@ -228,30 +238,67 @@ def _ekle(oyuncu_dict, kid, isim, takim, mac=0, gol=0, sari=0, kirmizi=0):
         return
     if kid not in oyuncu_dict:
         oyuncu_dict[kid] = {
-            "isim": isim, "takim": takim,
-            "mac": 0, "gol": 0, "sari": 0, "kirmizi": 0, "dakika": 0
+            "isim": isim, "dakika": 0,
+            "mac": 0, "gol": 0, "sari": 0, "kirmizi": 0,
+            "takim_stats": {}   # {takim_adi: {mac, gol, sari, kirmizi, dakika}}
         }
     oyuncu_dict[kid]["mac"]     += mac
     oyuncu_dict[kid]["gol"]     += gol
     oyuncu_dict[kid]["sari"]    += sari
     oyuncu_dict[kid]["kirmizi"] += kirmizi
-    if takim and not oyuncu_dict[kid]["takim"]:
-        oyuncu_dict[kid]["takim"] = takim
+
+    # Takım bazlı istatistik
+    if takim:
+        ts = oyuncu_dict[kid].setdefault("takim_stats", {})
+        ts.setdefault(takim, {"mac": 0, "gol": 0, "sari": 0, "kirmizi": 0, "dakika": 0})
+        ts[takim]["mac"]     += mac
+        ts[takim]["gol"]     += gol
+        ts[takim]["sari"]    += sari
+        ts[takim]["kirmizi"] += kirmizi
 
 
 def veriyi_kaydet(oyuncu_dict):
     liste = []
     for v in oyuncu_dict.values():
         mac = v["mac"]
+        ts  = v.get("takim_stats", {})
+
+        # Birincil takım: en çok maç oynanan
+        if ts:
+            birincil = max(ts, key=lambda t: ts[t]["mac"])
+        else:
+            birincil = ""
+
+        # Tüm takımlar listesi: maça göre azalan sırada
+        takim_listesi = sorted(ts.items(), key=lambda x: -x[1]["mac"])
+        transfer      = len(takim_listesi) > 1
+        tum_takimlar  = " / ".join(t for t, _ in takim_listesi) if takim_listesi else ""
+
+        # Profil kartı için detay
+        takim_detay = [
+            {
+                "takim":    t,
+                "mac":      s["mac"],
+                "gol":      s["gol"],
+                "sari":     s["sari"],
+                "kirmizi":  s["kirmizi"],
+                "dakika":   s["dakika"],
+            }
+            for t, s in takim_listesi
+        ]
+
         liste.append({
             "oyuncu":        v["isim"],
-            "takim":         v["takim"],
+            "takim":         birincil,
+            "tum_takimlar":  tum_takimlar,
+            "transfer":      transfer,
             "mac_sayisi":    mac,
             "gol_sayisi":    v["gol"],
             "gol_ort":       round(v["gol"] / mac, 2) if mac else 0,
             "sari_kart":     v["sari"],
             "kirmizi_kart":  v["kirmizi"],
             "toplam_dakika": v["dakika"],
+            "takim_detay":   takim_detay,
         })
     liste.sort(key=lambda x: (-x["mac_sayisi"], -x["gol_sayisi"]))
 
