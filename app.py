@@ -827,7 +827,7 @@ with tab5:
         r1c1, r1c2, r1c3 = st.columns(3)
 
         with r1c1:
-            en_iyi_kart("Gol Krallığı",
+            en_iyi_kart("Gol Kraliçesi",
                 df_tam.nlargest(5,"Gol")[["Oyuncu","Takım","Gol","GolF","GolH","GolP"]],
                 ["Gol"], "⚽")
 
