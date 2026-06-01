@@ -42,5 +42,10 @@
   "DIAKIESE KALUZODI ISABELLE":       {"born": "01.01.1998", "source": "manuel", "position": "Striker - Centre Forward"},
   "ECRİN NAZ ŞENTÜRK":                {"source": "manuel", "position": "Defender - Left Back"},
   "SÜMEYRA KIVANÇ":                   {"source": "manuel", "position": "Defender - Right Back"},
-  "GÖKCE ALMILA ÖZCAN":               {"source": "manuel", "position": "Midfield - Central Midfield"}
+  "GÖKCE ALMILA ÖZCAN":               {"source": "manuel", "position": "Midfield - Central Midfield"},
+  "ELLEN COLEMAN":                    {"source": "manuel", "position": "Defender - Right Back"},
+  "EZGİ KILIÇ":                       {"source": "manuel", "position": "Defender - Right Back"},
+  "BÜŞRA BERFİN EREN":                {"source": "manuel", "position": "Midfield"},
+  "NUR YUNTÜR":                       {"source": "manuel", "position": "Midfield - Central Midfield"},
+  "ÇAĞLA DOĞAN":                      {"source": "manuel", "position": "Defender - Left Back"}
 }
