@@ -127,10 +127,11 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 # ─── VERİ ────────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=600)
 def veri_yukle():
-    if not os.path.exists("oyuncular.json"):
+    yol = pathlib.Path(__file__).parent / "oyuncular.json"
+    if not yol.exists():
         st.warning("oyuncular.json bulunamadı.")
         return pd.DataFrame(), []
-    with open("oyuncular.json", encoding="utf-8") as f:
+    with open(yol, encoding="utf-8") as f:
         liste = json.load(f)
     df = pd.DataFrame([
         {k: v for k, v in o.items() if k not in ("takim_detay","mac_gecmisi")}
@@ -185,10 +186,14 @@ df_tam, ham_liste = veri_yukle()
 oyuncu_detay = {o["oyuncu"]: o for o in ham_liste} if ham_liste else {}
 
 
+import pathlib
+_DIZIN = pathlib.Path(__file__).parent  # app.py'nin bulunduğu klasör
+
 @st.cache_data(ttl=3600)
 def sd_profiller_yukle():
-    if os.path.exists("soccerdonna_profiller.json"):
-        with open("soccerdonna_profiller.json", encoding="utf-8") as f:
+    yol = _DIZIN / "soccerdonna_profiller.json"
+    if yol.exists():
+        with open(yol, encoding="utf-8") as f:
             return json.load(f)
     return {}
 
