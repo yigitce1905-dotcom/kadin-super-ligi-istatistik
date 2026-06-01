@@ -1757,6 +1757,9 @@ def _yas_df():
     """soccerdonna_profiller.json'dan yaş verisi üretir."""
     rows = []
     for isim, profil in sd_profiller.items():
+        # Düşük eşleşme skorlu oyuncuları atla (yanlış profil riski)
+        if profil.get("es_skoru", 1.0) < 0.80:
+            continue
         dob = profil.get("Date of birth", "")
         age_str = profil.get("Age", "")
         try:
@@ -1764,6 +1767,9 @@ def _yas_df():
             age_num = float(str(age_str).split()[0]) if age_str else None
         except Exception:
             born_dt, age_num = pd.NaT, None
+        # Mantıksız yaş değerlerini filtrele (15-45 dışı)
+        if age_num is not None and not (15 <= age_num <= 45):
+            continue
         rows.append({
             "isim": isim,
             "born_dt": born_dt,
