@@ -197,7 +197,7 @@ if not df_tam.empty:
         (k1, len(df_tam),             "Oyuncu"),
         (k2, df_tam["Takım"].nunique(),"Takım"),
         (k3, int(df_tam["Gol"].sum()), "Toplam Gol"),
-        (k4, int(df_tam["Penaltı"].sum()),"Penaltı Golü"),
+        (k4, int(df_tam["GolP"].sum()),   "Penaltı Golü"),
         (k5, int(df_tam["Sarı"].sum()), "Sarı Kart"),
         (k6, transfer_say,             "Transfer"),
     ]:
