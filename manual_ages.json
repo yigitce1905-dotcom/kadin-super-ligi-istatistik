@@ -51,5 +51,9 @@
   "İLAYDA ATÇI":                      {"source": "manuel", "position": "Defender - Left Back"},
   "ESMANUR SOLAK":                    {"source": "manuel", "position": "Defender - Left Back"},
   "DORİS AKAHEEH":                    {"source": "manuel", "position": "Midfield"},
-  "GÜL BEYZA AKPINAR":                {"source": "manuel", "position": "Midfield - Left Wing"}
+  "GÜL BEYZA AKPINAR":                {"source": "manuel", "position": "Midfield - Left Wing"},
+  "SHKURTE MALIQI":                   {"source": "manuel", "position": "Midfield - Defensive Midfield"},
+  "RREZONA RAMADANI":                 {"source": "manuel", "position": "Defender - Right Back"},
+  "AGNESA GASHI":                     {"source": "manuel", "position": "Midfield - Right Wing"},
+  "JUSTİCE TWENEBOAA":                {"source": "manuel", "position": "Midfield"}
 }
