@@ -14,38 +14,114 @@ st.set_page_config(
 
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""<style>
-.stApp { background-color: #0f1117; color: #e0e0e0; }
+
+/* ── Genel ── */
+.stApp { background-color:#0f1117; color:#e0e0e0; }
+
+/* ── Başlık ── */
 .baslik-kutu {
-    background: linear-gradient(135deg,#1a1f36 0%,#0d3b2e 100%);
+    background:linear-gradient(135deg,#1a1f36 0%,#0d3b2e 100%);
     border-left:5px solid #00c853; border-radius:12px;
     padding:22px 30px; margin-bottom:22px;
 }
 .baslik-kutu h1 { color:#fff; font-size:1.8rem; margin:0 0 5px 0; }
 .baslik-kutu p  { color:#a0aab4; margin:0; font-size:0.9rem; }
+
+/* ── Özet kartlar ── */
 .stat-kart { background:#1a1f36; border-radius:10px; padding:14px 18px;
     text-align:center; border-top:3px solid #00c853; margin-bottom:6px; }
 .stat-kart .sayi   { font-size:1.9rem; font-weight:700; color:#00c853; }
 .stat-kart .etiket { font-size:0.75rem; color:#8899aa; margin-top:3px; }
+
+/* ── Profil kartı ── */
 .profil-kart { background:#1a1f36; border-radius:14px; padding:22px 26px;
     border-left:4px solid #00c853; }
 .profil-kart h2 { color:#fff; margin:0 0 4px 0; font-size:1.35rem; }
-.profil-stat { display:flex; gap:14px; flex-wrap:wrap; margin-top:14px; }
-.profil-stat-item { background:#0f1117; border-radius:8px; padding:10px 16px;
-    text-align:center; min-width:76px; }
-.profil-stat-item .deger { font-size:1.5rem; font-weight:700; color:#00c853; }
-.profil-stat-item .ad    { font-size:0.7rem; color:#8899aa; margin-top:2px; }
+.profil-stat { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.profil-stat-item { background:#0f1117; border-radius:8px; padding:10px 14px;
+    text-align:center; min-width:70px; flex:1 1 70px; }
+.profil-stat-item .deger { font-size:1.4rem; font-weight:700; color:#00c853; }
+.profil-stat-item .ad    { font-size:0.68rem; color:#8899aa; margin-top:2px; }
+
+/* ── Diğer bileşenler ── */
 .transfer-badge { display:inline-block; background:#1a3a2a; color:#00c853;
     font-size:0.7rem; border-radius:6px; padding:2px 7px; margin-left:6px; }
 .takim-detay-satir { background:#0f1117; border-radius:8px; padding:9px 14px;
-    margin-bottom:6px; display:flex; justify-content:space-between; align-items:center; }
+    margin-bottom:6px; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:6px; }
 .takim-detay-satir .td-adi   { color:#e0e0e0; font-weight:500; }
 .takim-detay-satir .td-stats { color:#8899aa; font-size:0.82rem; }
-.form-kutu { display:inline-flex; gap:5px; flex-wrap:wrap; margin-top:8px; }
-.form-chip { border-radius:6px; padding:4px 10px; font-size:0.82rem;
-    font-weight:600; display:inline-block; }
+.form-kutu { display:flex; gap:5px; flex-wrap:wrap; margin-top:8px; }
+.form-chip { border-radius:6px; padding:4px 8px; font-size:0.78rem;
+    font-weight:600; display:inline-block; white-space:nowrap; }
 section[data-testid="stSidebar"] { background-color:#12161f; }
 .altbilgi { text-align:center; color:#505870; font-size:0.76rem;
     margin-top:36px; padding-top:14px; border-top:1px solid #1e2340; }
+
+/* ══════════════════════════════════════════════════
+   MOBİL RESPONSIVE  (≤ 768px)
+══════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+
+    /* Streamlit sütunlarını dikey yığ */
+    [data-testid="stHorizontalBlock"] {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+    [data-testid="column"] {
+        width: 100% !important;
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+    }
+
+    /* Başlık küçült */
+    .baslik-kutu { padding:14px 16px; margin-bottom:14px; }
+    .baslik-kutu h1 { font-size:1.2rem; }
+    .baslik-kutu p  { font-size:0.8rem; }
+
+    /* Özet kartlar 2'li grid */
+    .stat-kart { padding:10px 12px; margin-bottom:4px; }
+    .stat-kart .sayi   { font-size:1.5rem; }
+    .stat-kart .etiket { font-size:0.68rem; }
+
+    /* Profil kartı */
+    .profil-kart { padding:14px 16px; }
+    .profil-kart h2 { font-size:1.1rem; }
+    .profil-stat { gap:7px; }
+    .profil-stat-item { padding:8px 10px; min-width:60px; flex:1 1 60px; }
+    .profil-stat-item .deger { font-size:1.2rem; }
+    .profil-stat-item .ad    { font-size:0.62rem; }
+
+    /* Takım detay satırı */
+    .takim-detay-satir { flex-direction:column; align-items:flex-start; }
+    .takim-detay-satir .td-stats { font-size:0.75rem; }
+
+    /* Form chip'leri */
+    .form-chip { font-size:0.72rem; padding:3px 7px; }
+
+    /* Tablo yatay scroll */
+    [data-testid="stDataFrame"] { overflow-x: auto !important; }
+
+    /* Sekme etiketleri küçük */
+    [data-testid="stTabs"] button { font-size:0.75rem !important; padding:6px 8px !important; }
+
+    /* Genel padding azalt */
+    .block-container { padding:1rem 0.75rem !important; }
+
+    /* Plotly grafik yüksekliği azalt */
+    .js-plotly-plot { max-height:300px; }
+}
+
+/* ═══════════════════════════════════════
+   KÜÇÜK MOBİL  (≤ 480px)
+═══════════════════════════════════════ */
+@media (max-width: 480px) {
+    .baslik-kutu h1 { font-size:1rem; }
+    .profil-stat-item { min-width:52px; flex:1 1 52px; }
+    .profil-stat-item .deger { font-size:1rem; }
+    [data-testid="stTabs"] button { font-size:0.68rem !important; padding:5px 6px !important; }
+}
+
 </style>""", unsafe_allow_html=True)
 
 # ─── VERİ ────────────────────────────────────────────────────────────────────
