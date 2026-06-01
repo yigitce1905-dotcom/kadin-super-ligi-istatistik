@@ -1,7 +1,7 @@
 """
 Türkiye Kadınlar Süper Ligi 2025-2026 — Streamlit Web Arayüzü
 """
-import json, os, requests
+import json, os, pathlib, requests
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -186,7 +186,6 @@ df_tam, ham_liste = veri_yukle()
 oyuncu_detay = {o["oyuncu"]: o for o in ham_liste} if ham_liste else {}
 
 
-import pathlib
 _DIZIN = pathlib.Path(__file__).parent  # app.py'nin bulunduğu klasör
 
 @st.cache_data(ttl=3600)
