@@ -201,6 +201,26 @@ def sd_profiller_yukle():
 
 sd_profiller = sd_profiller_yukle()
 
+@st.cache_data(ttl=86400)
+def manuel_yaslar_yukle() -> dict:
+    yol = _DIZIN / "manual_ages.json"
+    if yol.exists():
+        with open(yol, encoding="utf-8") as f:
+            raw = json.load(f)
+        result = {}
+        today = pd.Timestamp.today()
+        for isim, veri in raw.items():
+            try:
+                born_dt = pd.to_datetime(veri["born"], format="%d.%m.%Y")
+                age = (today - born_dt).days / 365.25
+                result[isim] = round(age, 1)
+            except Exception:
+                pass
+        return result
+    return {}
+
+_MANUEL_YAS = manuel_yaslar_yukle()
+
 
 def mevki_normalize(pozisyon: str) -> str:
     if not pozisyon: return "Bilinmiyor"
@@ -214,14 +234,13 @@ def mevki_normalize(pozisyon: str) -> str:
 import re as _re
 
 def _ilk_uyruk(nat_str: str) -> str:
-    """'AlbaniaKosovo' → 'Albania', 'France' → 'France'"""
+    """'TurkeyGermany' → 'Turkey', 'France' → 'France'"""
     nat_str = (nat_str or "").strip()
     if not nat_str:
         return ""
-    # CamelCase birleşimi: büyük harfle başlayan ikinci kelimeyi bul
-    parts = _re.findall(r"[A-Z][a-z''\- ]*(?:[A-Z][a-z''\- ]*)*", nat_str)
-    # Birden fazla parça varsa sadece ilkini al
-    return parts[0].strip() if parts else nat_str
+    # CamelCase geçişine boşluk ekle, ilk kelimeyi al
+    spaced = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_str)
+    return spaced.split()[0]
 
 
 def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
@@ -238,11 +257,12 @@ def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
     )
 
     def _yas(oyuncu):
+        if oyuncu in _MANUEL_YAS:
+            return _MANUEL_YAS[oyuncu]
         profil = sd_profiller.get(oyuncu, {})
-        if profil.get("es_skoru", 1.0) < 0.80:
-            return None
         try:
-            return float(str(profil.get("Age", "")).split()[0])
+            age = float(str(profil.get("Age", "")).split()[0])
+            return age if 15 <= age <= 40 else None
         except Exception:
             return None
 
@@ -1605,12 +1625,15 @@ with tab7:
 # SEKME 8 — DÜNYA HARİTASI
 # ══════════════════════════════════════════════════════════════════════════════
 _NAT_FIX = {
-    "United States of America": "United States",
-    "Bosnia-Herzegovina": "Bosnia and Herzegovina",
-    "Burkina Faso": "Burkina Faso",
-    "Korea, Republic": "South Korea",
-    "Ivory Coast": "Ivory Coast",
-    "Congo DR": "Democratic Republic of the Congo",
+    "United":            "United States",
+    "Cote":              "Ivory Coast",
+    "Congo":             "Republic of the Congo",
+    "Bosnia-Herzegovina":"Bosnia and Herzegovina",
+    "Korea,":            "South Korea",
+    "Burkina":           "Burkina Faso",
+    "El":                "El Salvador",
+    "Costa":             "Costa Rica",
+    "Puerto":            "Puerto Rico",
 }
 
 def _harita_verisi():
@@ -1787,9 +1810,18 @@ with tab9:
 def _yas_df():
     """soccerdonna_profiller.json'dan yaş verisi üretir."""
     rows = []
+    # Manuel override'ları ekle
+    for isim, age_num in _MANUEL_YAS.items():
+        rows.append({
+            "isim": isim,
+            "born_dt": pd.NaT,
+            "yas": age_num,
+            "dogum_yili": None,
+        })
+    already = {r["isim"] for r in rows}
+
     for isim, profil in sd_profiller.items():
-        # Düşük eşleşme skorlu oyuncuları atla (yanlış profil riski)
-        if profil.get("es_skoru", 1.0) < 0.80:
+        if isim in already:
             continue
         dob = profil.get("Date of birth", "")
         age_str = profil.get("Age", "")
@@ -1798,8 +1830,8 @@ def _yas_df():
             age_num = float(str(age_str).split()[0]) if age_str else None
         except Exception:
             born_dt, age_num = pd.NaT, None
-        # Mantıksız yaş değerlerini filtrele (15-45 dışı)
-        if age_num is not None and not (15 <= age_num <= 45):
+        # Mantıksız yaş değerlerini filtrele (15-40 dışı)
+        if age_num is not None and not (15 <= age_num <= 40):
             continue
         rows.append({
             "isim": isim,
