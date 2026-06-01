@@ -229,6 +229,25 @@ if not df_tam.empty:
     df_tam = df_zenginlestir(df_tam)  # Mevki + Uyruk + Boy ekle
 
 
+@st.cache_data(ttl=3600)
+def coaches_yukle():
+    yol = _DIZIN / "coaches.json"
+    if yol.exists():
+        with open(yol, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+coaches_data = coaches_yukle()
+
+def tum_hocalar() -> list:
+    """Sezondaki tüm hocaların listesi (tekrarsız, sıralı)."""
+    hocalar = set()
+    for isim_listesi in coaches_data.values():
+        for h in isim_listesi:
+            hocalar.add(h)
+    return sorted(hocalar)
+
+
 def max_seri(dizi):
     """Ardışık 1'lerin en uzun serisini döndürür."""
     maks = suan = 0
@@ -1311,6 +1330,18 @@ with tab7:
         with col_sol:
             formasyon_sec = st.selectbox("Diziliş", list(FORMASYON.keys()), key="ff_formasyon")
             slotlar = FORMASYON[formasyon_sec]
+
+            # Hoca seçimi
+            hoca_listesi = tum_hocalar()
+            if hoca_listesi:
+                secili_hoca = st.selectbox(
+                    "🧑‍💼 Teknik Direktör",
+                    ["— Hoca seç —"] + hoca_listesi,
+                    key="ff_hoca",
+                )
+            else:
+                secili_hoca = st.text_input("🧑‍💼 Teknik Direktör", key="ff_hoca_text",
+                                            placeholder="Hoca adı girin...")
             st.markdown("---")
 
             secimler   = {}
@@ -1396,10 +1427,27 @@ with tab7:
                     mode="lines", line=dict(color="white", width=1.5),
                     showlegend=False, hoverinfo="skip"))
 
-            # ── Diziliş etiketi (yarı ortası) ─────────────────────
+            # ── Diziliş etiketi (üst) ─────────────────────────────
             fig.add_annotation(x=W/2, y=H+5, text=formasyon_sec,
                 showarrow=False, font=dict(size=16, color="white", family="Arial Black"),
                 bgcolor="rgba(0,0,0,0.4)", borderpad=4)
+
+            # ── Hoca etiketi (alt) ─────────────────────────────────
+            hoca_goster = ""
+            if "ff_hoca" in st.session_state:
+                h = st.session_state["ff_hoca"]
+                if h and h != "— Hoca seç —":
+                    hoca_goster = h
+            elif "ff_hoca_text" in st.session_state:
+                hoca_goster = st.session_state.get("ff_hoca_text","")
+            if hoca_goster:
+                fig.add_annotation(
+                    x=W/2, y=-5.5,
+                    text=f"🧑‍💼 <b>{hoca_goster}</b>",
+                    showarrow=False,
+                    font=dict(size=13, color="white", family="Arial"),
+                    bgcolor="rgba(0,0,0,0.5)", borderpad=5,
+                )
 
             # ── Oyuncu daireleri ───────────────────────────────────
             for etiket, mevki, px, py in slotlar:
@@ -1408,31 +1456,34 @@ with tab7:
                 renk   = MEVKI_RENK_F.get(mevki, "#aaa")
 
                 if dolu:
-                    # Tüm kelimelerden oluşan isim listesi
-                    parcalar = oyuncu.split()
-                    # Soyadı (son kelime), 8 kar sınırı
-                    soyad = parcalar[-1]
-                    kisa  = (soyad[:7] + "…") if len(soyad) > 8 else soyad
-                    hover = f"<b>{oyuncu}</b><br>{etiket}"
-                    marker_renk   = renk
-                    border_renk   = "white"
-                    border_kalin  = 2.5
-                    text_renk     = "#000" if mevki == "Kaleci" else "#fff"
-                    opak = 1.0
+                    hover        = f"<b>{oyuncu}</b><br>{etiket}"
+                    marker_renk  = renk
+                    border_renk  = "white"
+                    border_kalin = 2.5
+                    opak         = 1.0
+                    # Tam isim — iki satıra böl (ad / soyad)
+                    parcalar = oyuncu.title().split()
+                    if len(parcalar) >= 2:
+                        # İlk kelime(ler) + son kelime ayrı satır
+                        isim_ust = " ".join(parcalar[:-1])
+                        isim_alt = parcalar[-1]
+                    else:
+                        isim_ust = parcalar[0]
+                        isim_alt = ""
                 else:
-                    kisa  = ""
-                    hover = etiket
+                    hover        = etiket
                     marker_renk  = "rgba(40,40,40,0.6)"
                     border_renk  = "rgba(255,255,255,0.35)"
                     border_kalin = 1.5
-                    text_renk    = "rgba(255,255,255,0.5)"
-                    opak = 0.7
+                    opak         = 0.7
+                    isim_ust     = ""
+                    isim_alt     = ""
 
                 # Daire
                 fig.add_trace(go.Scatter(
                     x=[px], y=[py], mode="markers",
                     marker=dict(
-                        size=42,
+                        size=44,
                         color=marker_renk,
                         opacity=opak,
                         line=dict(color=border_renk, width=border_kalin),
@@ -1441,18 +1492,29 @@ with tab7:
                     showlegend=False,
                 ))
 
-                # Oyuncu soyadı (daire içinde)
-                fig.add_annotation(
-                    x=px, y=py,
-                    text=f"<b>{kisa}</b>" if dolu else "",
-                    showarrow=False,
-                    font=dict(size=10, color=text_renk, family="Arial"),
-                    bgcolor="rgba(0,0,0,0)",
-                )
+                # Tam isim — daire içinde iki satır
+                if dolu:
+                    # Üst satır (ad)
+                    fig.add_annotation(
+                        x=px, y=py + 1.8,
+                        text=f"<b>{isim_ust}</b>",
+                        showarrow=False,
+                        font=dict(size=8.5, color="white", family="Arial"),
+                        bgcolor="rgba(0,0,0,0)",
+                    )
+                    # Alt satır (soyad, daha büyük)
+                    if isim_alt:
+                        fig.add_annotation(
+                            x=px, y=py - 1.8,
+                            text=f"<b>{isim_alt}</b>",
+                            showarrow=False,
+                            font=dict(size=9.5, color="white", family="Arial Black"),
+                            bgcolor="rgba(0,0,0,0)",
+                        )
 
                 # Mevki etiketi (daire altında)
                 fig.add_annotation(
-                    x=px, y=py - 6.5,
+                    x=px, y=py - 7.5,
                     text=etiket,
                     showarrow=False,
                     font=dict(size=7.5,
