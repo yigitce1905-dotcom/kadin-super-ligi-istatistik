@@ -227,9 +227,9 @@ _MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle()
 
 def mevki_normalize(pozisyon: str) -> str:
     if not pozisyon: return "Bilinmiyor"
-    if "Goalkeeper"  in pozisyon: return "Kaleci"
-    if "Defend" in pozisyon or "Back" in pozisyon: return "Defans"
-    if "Midfield"    in pozisyon: return "Orta Saha"
+    if "Goalkeeper" in pozisyon: return "Kaleci"
+    if "Defend" in pozisyon or "Defence" in pozisyon or "Back" in pozisyon: return "Defans"
+    if "Midfield" in pozisyon: return "Orta Saha"
     if "Striker" in pozisyon or "Forward" in pozisyon or "Wing" in pozisyon: return "Forvet"
     return "Bilinmiyor"
 
