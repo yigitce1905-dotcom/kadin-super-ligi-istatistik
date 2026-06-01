@@ -10,5 +10,15 @@
   "EMİNE ECEM ESEN":             {"born": "01.01.1994", "source": "manuel"},
   "DIAKIESE KALUZODI ISABELLE":       {"born": "01.01.1998", "source": "manuel"},
   "FLORENTİNA KOLGECİ":              {"born": "01.01.2000", "source": "manuel"},
-  "DARIJA DUKIC":                    {"born": "01.01.1996", "source": "manuel", "position": "Midfield", "nationality": "Montenegro"}
+  "DARIJA DUKIC":                    {"born": "01.01.1996", "source": "manuel", "position": "Midfield", "nationality": "Montenegro"},
+  "ZOE VAN EYNDE":                   {"source": "manuel", "position": "Defender - Left Back"},
+  "ÜMRAN ÖZEV":                      {"source": "manuel", "position": "Defender - Right Back"},
+  "ELENA GRACINDA SANTOS":           {"source": "TFF kisiID=2363496", "born": "06.02.1997", "position": "Midfield - Right Wing"},
+  "YELİZ AÇAR":                      {"source": "manuel", "position": "Defender - Centre Back"},
+  "TEODORA NICOARA":                  {"source": "manuel", "position": "Defender - Right Back"},
+  "DİDEM KARAGENÇ":                  {"source": "manuel", "position": "Defender - Left Back"},
+  "ECE TEKMEN":                      {"source": "manuel", "position": "Defender - Right Back"},
+  "BEYZA SEMERCİOĞLU":               {"source": "manuel", "position": "Defender - Right Back"},
+  "RABİA NUR KÜÇÜK":                 {"source": "manuel", "position": "Defender - Left Back"},
+  "BERNA YENİÇERİ":                  {"source": "manuel", "position": "Defender - Right Back"}
 }
