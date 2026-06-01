@@ -1593,7 +1593,8 @@ def _harita_verisi():
     """soccerdonna_profiller.json'dan uyruk bazlı oyuncu sayısını döndürür."""
     rows = []
     for isim, profil in sd_profiller.items():
-        nat = profil.get("Nationality", "")
+        nat = profil.get("Nationality", "") or ""
+        nat = nat.strip()
         if nat:
             nat = _NAT_FIX.get(nat, nat)
             rows.append(nat)
@@ -1601,6 +1602,8 @@ def _harita_verisi():
         return pd.DataFrame()
     s = pd.Series(rows).value_counts().reset_index()
     s.columns = ["Uyruk", "Oyuncu"]
+    # Boş veya çok kısa değerleri at
+    s = s[s["Uyruk"].str.len() > 2].reset_index(drop=True)
     return s
 
 with tab8:
@@ -1612,43 +1615,46 @@ with tab8:
     if cnt.empty:
         st.warning("Uyruk verisi bulunamadı.")
     else:
-        fig_map = px.choropleth(
-            cnt,
-            locations="Uyruk",
-            locationmode="country names",
-            color="Oyuncu",
-            hover_name="Uyruk",
-            hover_data={"Oyuncu": True, "Uyruk": False},
-            color_continuous_scale=[
-                [0.0, "#1a3a2a"],
-                [0.2, "#0d5c3a"],
-                [0.5, "#00a86b"],
-                [1.0, "#00c853"],
-            ],
-            labels={"Oyuncu": "Oyuncu Sayısı"},
-        )
-        fig_map.update_geos(
-            bgcolor="#0f1117",
-            showcoastlines=True, coastlinecolor="#2a3a2a",
-            showland=True, landcolor="#1a1f36",
-            showocean=True, oceancolor="#0f1117",
-            showframe=False,
-            projection_type="natural earth",
-        )
-        fig_map.update_layout(
-            paper_bgcolor="#0f1117",
-            font=dict(color="#e0e0e0"),
-            margin=dict(l=0, r=0, t=10, b=0),
-            height=480,
-            coloraxis_colorbar=dict(
-                title="Oyuncu",
-                tickfont=dict(color="#8899aa"),
-                titlefont=dict(color="#8899aa"),
-                bgcolor="#1a1f36",
-                bordercolor="#2a3a2a",
-            ),
-        )
-        st.plotly_chart(fig_map, use_container_width=True)
+        try:
+            fig_map = px.choropleth(
+                cnt,
+                locations="Uyruk",
+                locationmode="country names",
+                color="Oyuncu",
+                hover_name="Uyruk",
+                hover_data={"Oyuncu": True, "Uyruk": False},
+                color_continuous_scale=[
+                    [0.0, "#1a3a2a"],
+                    [0.2, "#0d5c3a"],
+                    [0.5, "#00a86b"],
+                    [1.0, "#00c853"],
+                ],
+                labels={"Oyuncu": "Oyuncu Sayısı"},
+            )
+            fig_map.update_geos(
+                bgcolor="#0f1117",
+                showcoastlines=True, coastlinecolor="#2a3a2a",
+                showland=True, landcolor="#1a1f36",
+                showocean=True, oceancolor="#0f1117",
+                showframe=False,
+                projection_type="natural earth",
+            )
+            fig_map.update_layout(
+                paper_bgcolor="#0f1117",
+                font=dict(color="#e0e0e0"),
+                margin=dict(l=0, r=0, t=10, b=0),
+                height=480,
+                coloraxis_colorbar=dict(
+                    title="Oyuncu",
+                    tickfont=dict(color="#8899aa"),
+                    titlefont=dict(color="#8899aa"),
+                    bgcolor="#1a1f36",
+                    bordercolor="#2a3a2a",
+                ),
+            )
+            st.plotly_chart(fig_map, use_container_width=True)
+        except Exception as e:
+            st.warning(f"Harita oluşturulamadı: {e}")
 
         k1, k2, k3, k4 = st.columns(4)
         top = cnt.iloc[0]
