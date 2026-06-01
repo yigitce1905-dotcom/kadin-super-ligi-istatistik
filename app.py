@@ -229,15 +229,9 @@ if not df_tam.empty:
     df_tam = df_zenginlestir(df_tam)  # Mevki + Uyruk + Boy ekle
 
 
-@st.cache_data(ttl=3600)
-def coaches_yukle():
-    yol = _DIZIN / "coaches.json"
-    if yol.exists():
-        with open(yol, encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-coaches_data = coaches_yukle()
+# coaches.json — cache yok, her başlatmada taze okunur
+_coaches_yol = _DIZIN / "coaches.json"
+coaches_data = json.load(open(_coaches_yol, encoding="utf-8")) if _coaches_yol.exists() else {}
 
 def tum_hocalar() -> list:
     """Sezondaki tüm hocaların listesi (tekrarsız, sıralı)."""
