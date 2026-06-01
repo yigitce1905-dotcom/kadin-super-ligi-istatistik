@@ -319,54 +319,67 @@ with tab1:
     secili_satirlar = secim.selection.rows if secim and secim.selection else []
     if secili_satirlar:
         tikli_oyuncu = tablo_df.iloc[secili_satirlar[0]]["Oyuncu"]
-        st.session_state["profil_sec"] = tikli_oyuncu  # Profil sekmesini de güncelle
+        st.session_state["profil_sec"] = tikli_oyuncu
         st.markdown("---")
 
-        # Mini profil kartı
         p_row = df_tam[df_tam["Oyuncu"] == tikli_oyuncu]
         if not p_row.empty:
-            p = p_row.iloc[0]
+            p   = p_row.iloc[0]
             sd  = sd_profiller.get(tikli_oyuncu, {})
             MEVKİ_İKON = {"Goalkeeper":"🧤","Defender":"🛡️","Midfield":"⚙️",
                           "Striker":"⚽","Forward":"⚽","Back":"🛡️"}
-            sd_mevki  = sd.get("Position","")
+            sd_mevki   = sd.get("Position","")
             mevki_ikon = next((v for k,v in MEVKİ_İKON.items() if k in sd_mevki),"")
-            transfer  = bool(p.get("Transfer", False))
-            takim_txt = p["TümTakımlar"] if transfer else p["Takım"]
+            transfer   = bool(p.get("Transfer", False))
+            takim_txt  = p["TümTakımlar"] if transfer else p["Takım"]
 
-            sd_bilgi = []
-            if sd.get("Date of birth"): sd_bilgi.append(f"🎂 {sd['Date of birth']}")
-            if sd.get("Nationality"):   sd_bilgi.append(f"🏳️ {sd['Nationality']}")
-            if sd.get("Height"):        sd_bilgi.append(f"📏 {sd['Height']} m")
-            if sd.get("Foot"):          sd_bilgi.append(f"👟 {sd['Foot'].capitalize()}")
-            if sd.get("Market value") and sd["Market value"] not in ("unknown","?",""):
-                sd_bilgi.append(f"💰 {sd['Market value']}")
-            sd_bilgi_str = "  ·  ".join(sd_bilgi)
+            # SD bilgi chip'leri — ayrı ayrı oluştur
+            CHIP_STILI = ("background:#0f1117;border:1px solid #2d3561;border-radius:6px;"
+                          "padding:3px 10px;font-size:0.78rem;color:#c0ccd8;margin-right:6px")
+            chip_parcalar = []
+            if sd.get("Date of birth"): chip_parcalar.append(f'<span style="{CHIP_STILI}">🎂 {sd["Date of birth"]}</span>')
+            if sd.get("Nationality"):   chip_parcalar.append(f'<span style="{CHIP_STILI}">🏳️ {sd["Nationality"]}</span>')
+            if sd.get("Height"):        chip_parcalar.append(f'<span style="{CHIP_STILI}">📏 {sd["Height"]} m</span>')
+            if sd.get("Foot"):          chip_parcalar.append(f'<span style="{CHIP_STILI}">👟 {sd["Foot"].capitalize()}</span>')
+            if sd.get("Market value","") not in ("","unknown","?"):
+                chip_parcalar.append(f'<span style="{CHIP_STILI}">💰 {sd["Market value"]}</span>')
+            chip_html = " ".join(chip_parcalar)
 
-            chip_html = "".join(
-                f'<span style="background:#0f1117;border:1px solid #2d3561;border-radius:6px;'
-                f'padding:3px 10px;font-size:0.78rem;color:#c0ccd8;margin-right:6px">{b}</span>'
-                for b in sd_bilgi
+            # Stat kutuları
+            STAT_STILI = ("background:#0f1117;border-radius:8px;padding:8px 16px;"
+                          "text-align:center;min-width:60px")
+            stat_html = ""
+            for sutun, etiket in [("Gol","GOL"),("Maç","MAÇ"),("Dakika","DK")]:
+                if sutun in p:
+                    deger = int(p[sutun])
+                    stat_html += (f'<div style="{STAT_STILI}">'
+                                  f'<div style="font-size:1.4rem;font-weight:700;color:#00c853">{deger}</div>'
+                                  f'<div style="font-size:0.62rem;color:#8899aa">{etiket}</div></div>')
+
+            # Mevki ve transfer chip
+            mevki_html = ""
+            if sd_mevki:
+                mevki_html = (f'<span style="color:#00c853;font-weight:600">'
+                              f'{mevki_ikon} {sd_mevki}</span>  · ')
+            transfer_html = ""
+            if transfer:
+                transfer_html = (' <span style="background:#1a3a2a;color:#00c853;border-radius:4px;'
+                                 'padding:1px 6px;font-size:0.7rem">🔄 Transfer</span>')
+
+            kart = (
+                '<div style="background:#1a1f36;border-radius:12px;padding:18px 22px;'
+                'border-left:4px solid #00c853;display:flex;'
+                'justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px">'
+                '<div>'
+                f'<div style="font-size:1.15rem;font-weight:700;color:#fff;margin-bottom:4px">{tikli_oyuncu}</div>'
+                f'<div style="color:#8899aa;font-size:0.82rem;margin-bottom:10px">'
+                f'{mevki_html}🏟 {takim_txt}{transfer_html}</div>'
+                f'<div>{chip_html}</div>'
+                '</div>'
+                f'<div style="display:flex;gap:10px;flex-wrap:wrap">{stat_html}</div>'
+                '</div>'
             )
-
-            st.markdown(f"""
-            <div style="background:#1a1f36;border-radius:12px;padding:18px 22px;
-                 border-left:4px solid #00c853;display:flex;
-                 justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
-              <div>
-                <div style="font-size:1.15rem;font-weight:700;color:#fff">{tikli_oyuncu}</div>
-                <div style="color:#8899aa;font-size:0.82rem;margin:3px 0 8px 0">
-                  {'<span style="color:#00c853">'+mevki_ikon+' '+sd_mevki+'</span>  · ' if sd_mevki else ''}
-                  🏟 {takim_txt}
-                  {'  <span style="background:#1a3a2a;color:#00c853;border-radius:4px;padding:1px 6px;font-size:0.7rem">🔄 Transfer</span>' if transfer else ''}
-                </div>
-                <div>{chip_html}</div>
-              </div>
-              <div style="display:flex;gap:12px;flex-wrap:wrap">
-                {''.join(f'<div style="background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center"><div style="font-size:1.3rem;font-weight:700;color:#00c853">{int(p[k])}</div><div style="font-size:0.65rem;color:#8899aa">{l}</div></div>' for k,l in [("Gol","GOL"),("Maç","MAÇ"),("Dakika","DK")] if k in p)}
-              </div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(kart, unsafe_allow_html=True)
             st.caption("👆 Tam profil için 'Oyuncu Profili' sekmesine geç")
     st.caption("⚽F = Ayak golü · ⚽H = Kafa golü · ⚽P = Penaltı · ▶11 = İlk 11 · ↗Yed = Yedek giriş")
 
