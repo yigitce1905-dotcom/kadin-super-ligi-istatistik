@@ -99,10 +99,11 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
     giren_kids:   list[str]      = []
     cikan_dk:     dict[str, int] = {}
     giren_dk_map: dict[str, int] = {}
-    mac_gol:      dict[str, int] = {}
-    mac_gol_ayak: dict[str, int] = {}
-    mac_gol_kafa: dict[str, int] = {}
-    mac_penalti:  dict[str, int] = {}
+    mac_gol:          dict[str, int]       = {}
+    mac_gol_ayak:     dict[str, int]       = {}
+    mac_gol_kafa:     dict[str, int]       = {}
+    mac_penalti:      dict[str, int]       = {}
+    mac_gol_dakika:   dict[str, list]      = {}  # kisiId → [17, 39, ...]
     mac_sari:     dict[str, int] = {}
     mac_kirmizi:  dict[str, int] = {}
 
@@ -165,6 +166,10 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
                 if tip == "F": mac_gol_ayak[kid] = mac_gol_ayak.get(kid, 0) + 1
                 if tip == "H": mac_gol_kafa[kid] = mac_gol_kafa.get(kid, 0) + 1
                 if tip == "P": mac_penalti[kid]  = mac_penalti.get(kid,  0) + 1
+                # Gol dakikasını çıkar ("17.dk" → 17)
+                dk_m = re.search(r",\s*(\d+(?:\+\d+)?)\.dk", metin)
+                if dk_m:
+                    mac_gol_dakika.setdefault(kid, []).append(parse_dk(dk_m.group(1)))
 
         elif bolum_adi == "Kartlar":
             seen = set()
@@ -218,6 +223,7 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
             "gol_ayak":    mac_gol_ayak.get(kid, 0),
             "gol_kafa":    mac_gol_kafa.get(kid, 0),
             "penalti_gol": mac_penalti.get(kid, 0),
+            "gol_dakikalari": mac_gol_dakika.get(kid, []),
             "sari":        mac_sari.get(kid, 0),
             "kirmizi":     mac_kirmizi.get(kid, 0),
         }
