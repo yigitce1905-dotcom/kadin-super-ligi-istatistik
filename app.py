@@ -1241,144 +1241,244 @@ with tab6:
 # ══════════════════════════════════════════════════════════════════════════════
 with tab7:
     st.markdown("### ⚽ Fantasy Kadro Kur")
-    st.caption("Dizilişini seç, her mevkiye oyuncu ata ve kadronun istatistiklerini gör.")
+    st.caption("Dizilişini seç, oyuncuları ata — saha gerçek zamanlı güncellenir.")
 
     if df_tam.empty:
         st.info("Veri yok.")
     else:
-        # ── Diziliş tanımları ────────────────────────────────────────────
-        # Her slot: (etiket, filtre_mevki, x, y)
+        # ── Pitch koordinat sistemi: W=68m, H=105m ────────────────────
+        W, H = 68, 105
+        # Padding için görünüm aralığı
+        XR = [-4, 72]; YR = [-8, 113]
+
+        # Her slot: (etiket, filtre_mevki, x_pitch, y_pitch)
         FORMASYON = {
             "4-3-3": [
-                ("Kaleci",   "Kaleci",   0.50, 0.07),
-                ("Sol Bek",  "Defans",   0.15, 0.27), ("Sol-OB", "Defans", 0.38, 0.27),
-                ("Sağ-OB",   "Defans",   0.62, 0.27), ("Sağ Bek","Defans", 0.85, 0.27),
-                ("Sol OM",   "Orta Saha",0.25, 0.55), ("Merkez OM","Orta Saha",0.50,0.55),
-                ("Sağ OM",   "Orta Saha",0.75, 0.55),
-                ("Sol Kanat","Forvet",   0.20, 0.82), ("Santrafor","Forvet",0.50,0.82),
-                ("Sağ Kanat","Forvet",   0.80, 0.82),
+                ("Kaleci",    "Kaleci",    34, 8),
+                ("Sol Bek",   "Defans",    10, 27), ("Sol-OB",   "Defans",  25, 27),
+                ("Sağ-OB",    "Defans",    43, 27), ("Sağ Bek",  "Defans",  58, 27),
+                ("Sol OM",    "Orta Saha", 16, 56), ("Merkez OM","Orta Saha",34,56),
+                ("Sağ OM",    "Orta Saha", 52, 56),
+                ("Sol Kanat", "Forvet",    12, 83), ("Santrafor","Forvet",   34,83),
+                ("Sağ Kanat", "Forvet",    56, 83),
             ],
             "4-4-2": [
-                ("Kaleci",   "Kaleci",   0.50, 0.07),
-                ("Sol Bek",  "Defans",   0.15, 0.27), ("Sol-OB","Defans",0.38,0.27),
-                ("Sağ-OB",   "Defans",   0.62, 0.27), ("Sağ Bek","Defans",0.85,0.27),
-                ("Sol OM",   "Orta Saha",0.15, 0.55), ("Sol-Merkez","Orta Saha",0.38,0.55),
-                ("Sağ-Merkez","Orta Saha",0.62,0.55), ("Sağ OM","Orta Saha",0.85,0.55),
-                ("Sol Santrafor","Forvet",0.35,0.82), ("Sağ Santrafor","Forvet",0.65,0.82),
+                ("Kaleci",    "Kaleci",    34, 8),
+                ("Sol Bek",   "Defans",    10, 27), ("Sol-OB",   "Defans",  25, 27),
+                ("Sağ-OB",    "Defans",    43, 27), ("Sağ Bek",  "Defans",  58, 27),
+                ("Sol OM",    "Orta Saha", 10, 56), ("Sol-Merkez","Orta Saha",25,56),
+                ("Sağ-Merkez","Orta Saha", 43, 56), ("Sağ OM",  "Orta Saha",58,56),
+                ("Sol Santr", "Forvet",    24, 83), ("Sağ Santr","Forvet",   44,83),
             ],
             "3-5-2": [
-                ("Kaleci",   "Kaleci",   0.50, 0.07),
-                ("Sol-OB",   "Defans",   0.25, 0.27), ("Merkez-OB","Defans",0.50,0.27),
-                ("Sağ-OB",   "Defans",   0.75, 0.27),
-                ("Sol Kanat","Orta Saha",0.10,0.55), ("Sol OM","Orta Saha",0.30,0.55),
-                ("Merkez OM","Orta Saha",0.50,0.55), ("Sağ OM","Orta Saha",0.70,0.55),
-                ("Sağ Kanat","Orta Saha",0.90,0.55),
-                ("Sol Santrafor","Forvet",0.35,0.82), ("Sağ Santrafor","Forvet",0.65,0.82),
+                ("Kaleci",    "Kaleci",    34, 8),
+                ("Sol-OB",    "Defans",    17, 27), ("Merkez-OB","Defans",   34,27),
+                ("Sağ-OB",    "Defans",    51, 27),
+                ("Sol K.",    "Orta Saha",  7, 56), ("Sol OM",  "Orta Saha", 21,56),
+                ("Merkez OM", "Orta Saha", 34, 56), ("Sağ OM",  "Orta Saha",47,56),
+                ("Sağ K.",    "Orta Saha", 61, 56),
+                ("Sol Santr", "Forvet",    24, 83), ("Sağ Santr","Forvet",   44,83),
             ],
             "4-2-3-1": [
-                ("Kaleci",   "Kaleci",   0.50, 0.07),
-                ("Sol Bek",  "Defans",   0.15, 0.25), ("Sol-OB","Defans",0.38,0.25),
-                ("Sağ-OB",   "Defans",   0.62, 0.25), ("Sağ Bek","Defans",0.85,0.25),
-                ("Def OM 1", "Orta Saha",0.35, 0.47), ("Def OM 2","Orta Saha",0.65,0.47),
-                ("Sol Kanat","Forvet",   0.15, 0.67), ("Ofansif OM","Orta Saha",0.50,0.67),
-                ("Sağ Kanat","Forvet",   0.85, 0.67),
-                ("Santrafor","Forvet",   0.50, 0.87),
+                ("Kaleci",    "Kaleci",    34, 8),
+                ("Sol Bek",   "Defans",    10, 25), ("Sol-OB",   "Defans",  25, 25),
+                ("Sağ-OB",    "Defans",    43, 25), ("Sağ Bek",  "Defans",  58, 25),
+                ("Def OM-1",  "Orta Saha", 24, 48), ("Def OM-2","Orta Saha",44,48),
+                ("Sol Kanat", "Forvet",    10, 68), ("Ofansif OM","Orta Saha",34,68),
+                ("Sağ Kanat", "Forvet",    58, 68),
+                ("Santrafor", "Forvet",    34, 88),
             ],
         }
-        MEVKI_RENK_F = {"Kaleci":"#00c853","Defans":"#2979ff",
-                        "Orta Saha":"#ff6d00","Forvet":"#e040fb"}
+        MEVKI_RENK_F = {
+            "Kaleci":    "#ffd700",
+            "Defans":    "#2979ff",
+            "Orta Saha": "#ff6d00",
+            "Forvet":    "#e040fb",
+        }
 
-        # ── Kullanıcı arayüzü ──────────────────────────────────────────
-        col_sol, col_sag = st.columns([1, 1])
+        # ── Layout: Sol seçici, Sağ saha ───────────────────────────────
+        col_sol, col_sag = st.columns([4, 6])
 
         with col_sol:
             formasyon_sec = st.selectbox("Diziliş", list(FORMASYON.keys()), key="ff_formasyon")
             slotlar = FORMASYON[formasyon_sec]
+            st.markdown("---")
 
-            st.markdown("##### Oyuncu Seç")
-            secimler = {}   # slot_etiket → oyuncu_adı
-            zaten_secilen = set()
+            secimler   = {}
+            zaten_sec  = set()
+            GRUP_IKON  = {"Kaleci":"🧤","Defans":"🛡️","Orta Saha":"⚙️","Forvet":"⚽"}
+            onceki_grp = None
 
-            # Gruplara böl
-            grup_adi = {"Kaleci":"🧤 Kaleci", "Defans":"🛡️ Defans",
-                        "Orta Saha":"⚙️ Orta Saha", "Forvet":"⚽ Forvet"}
-            onceki_grup = None
-            for etiket, mevki, x, y in slotlar:
-                if mevki != onceki_grup:
-                    st.markdown(f"**{grup_adi.get(mevki, mevki)}**")
-                    onceki_grup = mevki
-
-                # Mevkiye göre filtrele
-                if "Mevki" in df_tam.columns:
-                    havuz = df_tam[df_tam["Mevki"] == mevki]["Oyuncu"].tolist()
-                else:
-                    havuz = df_tam["Oyuncu"].tolist()
-
-                # Seçilen oyuncuları listeden çıkar
-                secenekler = ["—"] + [o for o in sorted(havuz) if o not in zaten_secilen]
-                secim = st.selectbox(etiket, secenekler, key=f"ff_{etiket}")
+            for etiket, mevki, px, py in slotlar:
+                if mevki != onceki_grp:
+                    st.markdown(f"**{GRUP_IKON.get(mevki,'')} {mevki}**")
+                    onceki_grp = mevki
+                havuz = (df_tam[df_tam["Mevki"] == mevki]["Oyuncu"].tolist()
+                         if "Mevki" in df_tam.columns else df_tam["Oyuncu"].tolist())
+                secenekler = ["—"] + [o for o in sorted(havuz) if o not in zaten_sec]
+                secim = st.selectbox(etiket, secenekler, key=f"ff_{etiket}",
+                                     label_visibility="collapsed")
                 secimler[etiket] = secim
                 if secim != "—":
-                    zaten_secilen.add(secim)
+                    zaten_sec.add(secim)
 
         with col_sag:
-            # ── Saha görselleştirme ───────────────────────────────────
-            fig_saha = go.Figure()
+            # ════════════════════════════════════════════════════════
+            # SAHA ÇİZİMİ
+            # ════════════════════════════════════════════════════════
+            fig = go.Figure()
 
-            # Yeşil çim
-            fig_saha.add_shape(type="rect", x0=0, y0=0, x1=1, y1=1,
-                fillcolor="#2d5a1b", line=dict(color="#1a3a0a", width=2))
+            # ── Çim şeritleri (dekoratif) ──────────────────────────
+            serit_h = H / 7
+            for i in range(8):
+                renk = "#2a7a26" if i % 2 == 0 else "#238f1f"
+                fig.add_shape(type="rect",
+                    x0=0, y0=i*serit_h, x1=W, y1=min((i+1)*serit_h, H),
+                    fillcolor=renk, line_width=0, layer="below")
 
-            # Çizgiler
-            for y_val in [0.5]:  # Orta çizgi
-                fig_saha.add_shape(type="line", x0=0.05, y0=y_val, x1=0.95, y1=y_val,
-                    line=dict(color="rgba(255,255,255,0.4)", width=1))
-            # Ceza sahaları
-            for y0, y1 in [(0, 0.18), (0.82, 1)]:
-                fig_saha.add_shape(type="rect", x0=0.22, y0=y0, x1=0.78, y1=y1,
-                    fillcolor="rgba(0,0,0,0)", line=dict(color="rgba(255,255,255,0.4)", width=1))
-            # Orta daire
-            fig_saha.add_shape(type="circle", x0=0.38, y0=0.43, x1=0.62, y1=0.57,
-                fillcolor="rgba(0,0,0,0)", line=dict(color="rgba(255,255,255,0.3)", width=1))
+            # ── Saha sınırı ────────────────────────────────────────
+            CIZGI = dict(color="rgba(255,255,255,0.9)", width=2)
+            fig.add_shape(type="rect", x0=0, y0=0, x1=W, y1=H,
+                          fillcolor="rgba(0,0,0,0)", line=CIZGI)
 
-            # Oyuncu noktaları
-            for etiket, mevki, x, y in slotlar:
+            # ── Orta çizgi ─────────────────────────────────────────
+            fig.add_shape(type="line", x0=0, y0=H/2, x1=W, y1=H/2, line=CIZGI)
+
+            # ── Orta daire ─────────────────────────────────────────
+            r = 9.15
+            fig.add_shape(type="circle",
+                x0=W/2-r, y0=H/2-r, x1=W/2+r, y1=H/2+r,
+                fillcolor="rgba(0,0,0,0)", line=CIZGI)
+            # Orta nokta
+            fig.add_trace(go.Scatter(x=[W/2], y=[H/2], mode="markers",
+                marker=dict(size=5, color="white"), showlegend=False,
+                hoverinfo="skip"))
+
+            # ── Ceza sahaları ──────────────────────────────────────
+            for y0, y1 in [(0, 16.5), (H-16.5, H)]:
+                fig.add_shape(type="rect",
+                    x0=13.84, y0=y0, x1=54.16, y1=y1,
+                    fillcolor="rgba(0,0,0,0)", line=CIZGI)
+            # 6 yard kutuları
+            for y0, y1 in [(0, 5.5), (H-5.5, H)]:
+                fig.add_shape(type="rect",
+                    x0=24.84, y0=y0, x1=43.16, y1=y1,
+                    fillcolor="rgba(0,0,0,0)", line=CIZGI)
+
+            # ── Kaleler ────────────────────────────────────────────
+            KALE = dict(color="white", width=3)
+            for y0, y1 in [(-2.44, 0), (H, H+2.44)]:
+                fig.add_shape(type="rect",
+                    x0=30.34, y0=y0, x1=37.66, y1=y1,
+                    fillcolor="rgba(255,255,255,0.15)", line=KALE)
+
+            # ── Penaltı noktaları ──────────────────────────────────
+            for py in [11, H-11]:
+                fig.add_trace(go.Scatter(x=[W/2], y=[py], mode="markers",
+                    marker=dict(size=5, color="white"), showlegend=False, hoverinfo="skip"))
+
+            # ── Köşe yayları ───────────────────────────────────────
+            import math
+            for cx, cy, a1, a2 in [(0,0,0,90),(W,0,90,180),(0,H,270,360),(W,H,180,270)]:
+                thetas = [math.radians(a) for a in range(a1, a2+1, 5)]
+                fig.add_trace(go.Scatter(
+                    x=[cx + math.cos(t) for t in thetas],
+                    y=[cy + math.sin(t) for t in thetas],
+                    mode="lines", line=dict(color="white", width=1.5),
+                    showlegend=False, hoverinfo="skip"))
+
+            # ── Diziliş etiketi (yarı ortası) ─────────────────────
+            fig.add_annotation(x=W/2, y=H+5, text=formasyon_sec,
+                showarrow=False, font=dict(size=16, color="white", family="Arial Black"),
+                bgcolor="rgba(0,0,0,0.4)", borderpad=4)
+
+            # ── Oyuncu daireleri ───────────────────────────────────
+            for etiket, mevki, px, py in slotlar:
                 oyuncu = secimler.get(etiket, "—")
-                renk   = MEVKI_RENK_F.get(mevki, "#ffffff")
-                kisa   = oyuncu.split()[-1] if oyuncu != "—" else "?"
                 dolu   = oyuncu != "—"
+                renk   = MEVKI_RENK_F.get(mevki, "#aaa")
 
-                # Daire (oyuncu yeri)
-                fig_saha.add_trace(go.Scatter(
-                    x=[x], y=[y], mode="markers+text",
-                    marker=dict(size=32, color=renk if dolu else "#333",
-                                line=dict(color="#fff", width=2 if dolu else 1)),
-                    text=[kisa], textfont=dict(size=9, color="#fff"),
-                    textposition="middle center",
-                    hovertext=[oyuncu if dolu else etiket],
-                    hoverinfo="text", showlegend=False,
+                if dolu:
+                    # Tüm kelimelerden oluşan isim listesi
+                    parcalar = oyuncu.split()
+                    # Soyadı (son kelime), 8 kar sınırı
+                    soyad = parcalar[-1]
+                    kisa  = (soyad[:7] + "…") if len(soyad) > 8 else soyad
+                    hover = f"<b>{oyuncu}</b><br>{etiket}"
+                    marker_renk   = renk
+                    border_renk   = "white"
+                    border_kalin  = 2.5
+                    text_renk     = "#000" if mevki == "Kaleci" else "#fff"
+                    opak = 1.0
+                else:
+                    kisa  = ""
+                    hover = etiket
+                    marker_renk  = "rgba(40,40,40,0.6)"
+                    border_renk  = "rgba(255,255,255,0.35)"
+                    border_kalin = 1.5
+                    text_renk    = "rgba(255,255,255,0.5)"
+                    opak = 0.7
+
+                # Daire
+                fig.add_trace(go.Scatter(
+                    x=[px], y=[py], mode="markers",
+                    marker=dict(
+                        size=42,
+                        color=marker_renk,
+                        opacity=opak,
+                        line=dict(color=border_renk, width=border_kalin),
+                    ),
+                    hovertext=hover, hoverinfo="text",
+                    showlegend=False,
                 ))
-                # Mevki etiketi altında
-                fig_saha.add_annotation(
-                    x=x, y=y-0.07, text=etiket,
-                    showarrow=False, font=dict(size=7, color="rgba(255,255,255,0.7)"),
+
+                # Oyuncu soyadı (daire içinde)
+                fig.add_annotation(
+                    x=px, y=py,
+                    text=f"<b>{kisa}</b>" if dolu else "",
+                    showarrow=False,
+                    font=dict(size=10, color=text_renk, family="Arial"),
+                    bgcolor="rgba(0,0,0,0)",
                 )
 
-            fig_saha.update_layout(
-                paper_bgcolor="#1a1f36", plot_bgcolor="#2d5a1b",
-                height=480, margin=dict(l=0, r=0, t=20, b=0),
-                xaxis=dict(range=[0,1], showgrid=False, zeroline=False,
-                           showticklabels=False, fixedrange=True),
-                yaxis=dict(range=[-0.05,1.05], showgrid=False, zeroline=False,
-                           showticklabels=False, fixedrange=True, scaleanchor="x"),
-            )
-            st.plotly_chart(fig_saha, use_container_width=True)
+                # Mevki etiketi (daire altında)
+                fig.add_annotation(
+                    x=px, y=py - 6.5,
+                    text=etiket,
+                    showarrow=False,
+                    font=dict(size=7.5,
+                              color="rgba(255,255,255,0.85)" if dolu else "rgba(255,255,255,0.4)"),
+                )
 
-        # ── Kadro özet istatistikleri ──────────────────────────────────
+            # ── Lejant ────────────────────────────────────────────
+            for i, (mevki, renk) in enumerate(MEVKI_RENK_F.items()):
+                fig.add_trace(go.Scatter(
+                    x=[None], y=[None], mode="markers",
+                    marker=dict(size=10, color=renk),
+                    name=mevki, showlegend=True,
+                ))
+
+            fig.update_layout(
+                paper_bgcolor="#0f1117",
+                plot_bgcolor="#238f1f",
+                height=600,
+                margin=dict(l=0, r=0, t=10, b=10),
+                xaxis=dict(range=XR, showgrid=False, zeroline=False,
+                           showticklabels=False, fixedrange=True),
+                yaxis=dict(range=YR, showgrid=False, zeroline=False,
+                           showticklabels=False, fixedrange=True,
+                           scaleanchor="x", scaleratio=1),
+                legend=dict(orientation="h", y=-0.02, font=dict(color="#e0e0e0"),
+                            bgcolor="rgba(0,0,0,0.4)"),
+                hoverlabel=dict(bgcolor="#1a1f36", font_color="white"),
+            )
+            st.plotly_chart(fig, use_container_width=True)
+
+        # ── İstatistikler ──────────────────────────────────────────────
         secili_isimler = [v for v in secimler.values() if v != "—"]
         if secili_isimler:
             st.markdown("---")
-            st.markdown(f"##### 📊 Kadro İstatistikleri  ·  {len(secili_isimler)}/11 seçildi")
+            st.markdown(f"##### 📊 Kadro İstatistikleri — {len(secili_isimler)}/11 oyuncu seçildi")
             df_kadro = df_tam[df_tam["Oyuncu"].isin(secili_isimler)].copy()
 
             k1, k2, k3, k4, k5 = st.columns(5)
@@ -1387,21 +1487,18 @@ with tab7:
                 (k2, int(df_kadro["Maç"].sum()),    "Toplam Maç"),
                 (k3, int(df_kadro["Dakika"].sum()), "Toplam Dakika"),
                 (k4, int(df_kadro["Sarı"].sum()),   "Sarı Kart"),
-                (k5, round(df_kadro["Gol/Maç"].mean(), 2) if not df_kadro.empty else 0, "Ort. Gol/Maç"),
+                (k5, round(df_kadro["Gol/Maç"].mean(),2) if not df_kadro.empty else 0,"Ort. Gol/Maç"),
             ]:
                 kol.markdown(
                     f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
                     f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
-
-            # Seçili oyuncular tablosu
             goster = df_kadro[["Oyuncu","Takım","Mevki","Gol","Maç","Gol/Maç","Dakika","Sarı"]].copy()
-            goster["Mevki_Sıra"] = goster["Mevki"].map(
-                {"Kaleci":0,"Defans":1,"Orta Saha":2,"Forvet":3,"Bilinmiyor":4})
-            goster = goster.sort_values("Mevki_Sıra").drop(columns="Mevki_Sıra").reset_index(drop=True)
+            goster["_s"] = goster["Mevki"].map({"Kaleci":0,"Defans":1,"Orta Saha":2,"Forvet":3,"Bilinmiyor":4})
+            goster = goster.sort_values("_s").drop(columns="_s").reset_index(drop=True)
             goster.index += 1
-            st.dataframe(goster, use_container_width=True, hide_index=False,
+            st.dataframe(goster, use_container_width=True,
                 column_config={
                     "Oyuncu": st.column_config.TextColumn("Oyuncu", width="medium"),
                     "Takım":  st.column_config.TextColumn("Takım",  width="medium"),
@@ -1409,9 +1506,8 @@ with tab7:
                         min_value=0, max_value=int(df_tam["Gol"].max()), format="%d"),
                     "Gol/Maç": st.column_config.NumberColumn("G/M", format="%.2f"),
                 })
-
         else:
-            st.info("Yukarıdan oyuncu seçmeye başla — saha otomatik dolacak.")
+            st.info("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.")
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
