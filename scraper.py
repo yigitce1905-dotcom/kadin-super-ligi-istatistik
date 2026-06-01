@@ -100,6 +100,8 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
     cikan_dk:     dict[str, int] = {}
     giren_dk_map: dict[str, int] = {}
     mac_gol:      dict[str, int] = {}
+    mac_gol_ayak: dict[str, int] = {}
+    mac_gol_kafa: dict[str, int] = {}
     mac_penalti:  dict[str, int] = {}
     mac_sari:     dict[str, int] = {}
     mac_kirmizi:  dict[str, int] = {}
@@ -152,11 +154,17 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
                 if re.search(r"\(KKG\)|\(OG\)", metin, re.IGNORECASE): continue
                 takim      = kisi_takim.get(kid, current_team)
                 isim_temiz = re.sub(r",.*$", "", metin).strip()
-                penalti    = bool(re.search(r"\(P\)", metin, re.IGNORECASE))
-                _ekle(oyuncu_dict, kid, isim_temiz, takim, gol=1, penalti=1 if penalti else 0)
-                mac_gol[kid]     = mac_gol.get(kid, 0) + 1
-                if penalti:
-                    mac_penalti[kid] = mac_penalti.get(kid, 0) + 1
+                # Gol tipi: (F)=ayak (H)=kafa (P)=penaltı
+                tip_m = re.search(r"\(([FHP])\)", metin, re.IGNORECASE)
+                tip   = tip_m.group(1).upper() if tip_m else "F"
+                _ekle(oyuncu_dict, kid, isim_temiz, takim, gol=1,
+                      gol_ayak=1 if tip=="F" else 0,
+                      gol_kafa=1 if tip=="H" else 0,
+                      penalti=1  if tip=="P" else 0)
+                mac_gol[kid] = mac_gol.get(kid, 0) + 1
+                if tip == "F": mac_gol_ayak[kid] = mac_gol_ayak.get(kid, 0) + 1
+                if tip == "H": mac_gol_kafa[kid] = mac_gol_kafa.get(kid, 0) + 1
+                if tip == "P": mac_penalti[kid]  = mac_penalti.get(kid,  0) + 1
 
         elif bolum_adi == "Kartlar":
             seen = set()
@@ -207,6 +215,8 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
             "ilk11":       kid in set(ilk11_kids),
             "dakika":      dk,
             "gol":         mac_gol.get(kid, 0),
+            "gol_ayak":    mac_gol_ayak.get(kid, 0),
+            "gol_kafa":    mac_gol_kafa.get(kid, 0),
             "penalti_gol": mac_penalti.get(kid, 0),
             "sari":        mac_sari.get(kid, 0),
             "kirmizi":     mac_kirmizi.get(kid, 0),
@@ -214,17 +224,21 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
         oyuncu_dict[kid].setdefault("mac_gecmisi", []).append(giris)
 
 
-def _ekle(oyuncu_dict, kid, isim, takim, mac=0, gol=0, penalti=0, sari=0, kirmizi=0):
+def _ekle(oyuncu_dict, kid, isim, takim, mac=0, gol=0,
+          gol_ayak=0, gol_kafa=0, penalti=0, sari=0, kirmizi=0):
     isim = isim.strip()
     if not isim or len(isim) < 2: return
     if kid not in oyuncu_dict:
         oyuncu_dict[kid] = {
             "isim": isim, "dakika": 0, "ilk11_mac": 0, "yedek_mac": 0,
-            "mac": 0, "gol": 0, "penalti_gol": 0, "sari": 0, "kirmizi": 0,
+            "mac": 0, "gol": 0, "gol_ayak": 0, "gol_kafa": 0,
+            "penalti_gol": 0, "sari": 0, "kirmizi": 0,
             "takim_stats": {}, "mac_gecmisi": []
         }
     oyuncu_dict[kid]["mac"]         += mac
     oyuncu_dict[kid]["gol"]         += gol
+    oyuncu_dict[kid]["gol_ayak"]    += gol_ayak
+    oyuncu_dict[kid]["gol_kafa"]    += gol_kafa
     oyuncu_dict[kid]["penalti_gol"] += penalti
     oyuncu_dict[kid]["sari"]        += sari
     oyuncu_dict[kid]["kirmizi"]     += kirmizi
@@ -263,6 +277,8 @@ def veriyi_kaydet(oyuncu_dict):
             "ilk11_mac":     v.get("ilk11_mac", 0),
             "yedek_mac":     v.get("yedek_mac", 0),
             "gol_sayisi":    v["gol"],
+            "gol_ayak":      v.get("gol_ayak", 0),
+            "gol_kafa":      v.get("gol_kafa", 0),
             "penalti_gol":   v.get("penalti_gol", 0),
             "gol_ort":       round(v["gol"] / mac, 2) if mac else 0,
             "sari_kart":     v["sari"],

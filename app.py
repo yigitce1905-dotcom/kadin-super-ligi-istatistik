@@ -139,12 +139,12 @@ def veri_yukle():
     col_map = {
         "oyuncu":"Oyuncu","takim":"Takım","tum_takimlar":"TümTakımlar",
         "transfer":"Transfer","mac_sayisi":"Maç","ilk11_mac":"İlk11",
-        "yedek_mac":"Yedek","gol_sayisi":"Gol","penalti_gol":"Penaltı",
-        "gol_ort":"Gol/Maç","sari_kart":"Sarı","kirmizi_kart":"Kırmızı",
-        "toplam_dakika":"Dakika",
+        "yedek_mac":"Yedek","gol_sayisi":"Gol","gol_ayak":"GolF",
+        "gol_kafa":"GolH","penalti_gol":"GolP","gol_ort":"Gol/Maç",
+        "sari_kart":"Sarı","kirmizi_kart":"Kırmızı","toplam_dakika":"Dakika",
     }
     df.rename(columns=col_map, inplace=True)
-    for s in ["Maç","İlk11","Yedek","Gol","Penaltı","Sarı","Kırmızı","Dakika"]:
+    for s in ["Maç","İlk11","Yedek","Gol","GolF","GolH","GolP","Sarı","Kırmızı","Dakika"]:
         if s not in df.columns: df[s] = 0
         df[s] = pd.to_numeric(df[s], errors="coerce").fillna(0).astype(int)
     df["Gol/Maç"] = pd.to_numeric(df.get("Gol/Maç", 0), errors="coerce").fillna(0.0).round(2)
@@ -256,22 +256,26 @@ with tab1:
     max_dk  = int(df_tam["Dakika"].max() or 1)
 
     st.dataframe(
-        df[["Oyuncu","Takım (Gösterim)","Maç","İlk11","Yedek","Gol","Penaltı","Gol/Maç","Sarı","Kırmızı","Dakika"]],
+        df[["Oyuncu","Takım (Gösterim)","Maç","İlk11","Yedek",
+            "Gol","GolF","GolH","GolP","Gol/Maç","Sarı","Kırmızı","Dakika"]],
         use_container_width=True, height=520,
         column_config={
-            "Oyuncu":           st.column_config.TextColumn("Oyuncu", width="medium"),
-            "Takım (Gösterim)": st.column_config.TextColumn("Takım  🔄=transfer", width="large"),
-            "Maç":     st.column_config.ProgressColumn("Maç",    min_value=0, max_value=max_mac, format="%d"),
-            "İlk11":   st.column_config.NumberColumn("▶ İlk11"),
-            "Yedek":   st.column_config.NumberColumn("↗ Yedek"),
-            "Gol":     st.column_config.ProgressColumn("Gol",    min_value=0, max_value=max_gol, format="%d"),
-            "Penaltı": st.column_config.NumberColumn("⚽P"),
-            "Gol/Maç": st.column_config.NumberColumn("Gol/Maç", format="%.2f"),
-            "Sarı":    st.column_config.NumberColumn("🟨 Sarı"),
-            "Kırmızı": st.column_config.NumberColumn("🟥 Kırmızı"),
-            "Dakika":  st.column_config.ProgressColumn("Dakika", min_value=0, max_value=max_dk, format="%d dk"),
+            "Oyuncu":           st.column_config.TextColumn("Oyuncu",       width="medium"),
+            "Takım (Gösterim)": st.column_config.TextColumn("Takım",        width="medium"),
+            "Maç":     st.column_config.NumberColumn("Maç",   format="%d"),
+            "İlk11":   st.column_config.NumberColumn("▶11",   format="%d",  help="İlk 11'de başladığı maç sayısı"),
+            "Yedek":   st.column_config.NumberColumn("↗Yed",  format="%d",  help="Yedek olarak girdiği maç sayısı"),
+            "Gol":     st.column_config.ProgressColumn("Gol", min_value=0, max_value=max_gol, format="%d"),
+            "GolF":    st.column_config.NumberColumn("⚽F",   format="%d",  help="Ayakla gol (F)"),
+            "GolH":    st.column_config.NumberColumn("⚽H",   format="%d",  help="Kafa golü (H)"),
+            "GolP":    st.column_config.NumberColumn("⚽P",   format="%d",  help="Penaltı golü (P)"),
+            "Gol/Maç": st.column_config.NumberColumn("G/M",  format="%.2f", help="Maç başına gol ortalaması"),
+            "Sarı":    st.column_config.NumberColumn("🟨",    format="%d"),
+            "Kırmızı": st.column_config.NumberColumn("🟥",   format="%d"),
+            "Dakika":  st.column_config.ProgressColumn("Dakika", min_value=0, max_value=max_dk, format="%d"),
         }
     )
+    st.caption("⚽F = Ayak golü · ⚽H = Kafa golü · ⚽P = Penaltı · ▶11 = İlk 11 · ↗Yed = Yedek giriş")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 2 — OYUNCU PROFİLİ
@@ -286,7 +290,9 @@ with tab2:
         detay  = oyuncu_detay[secili]
         mac    = int(row["Maç"])
         gol    = int(row["Gol"])
-        pen    = int(row["Penaltı"])
+        gol_f  = int(row.get("GolF", 0))
+        gol_h  = int(row.get("GolH", 0))
+        pen    = int(row.get("GolP", 0))
         sari   = int(row["Sarı"])
         kir    = int(row["Kırmızı"])
         dk     = int(row["Dakika"])
@@ -296,6 +302,12 @@ with tab2:
         dk_mac = round(dk/mac)     if mac else 0
         ilk11_oran = round(ilk11/mac*100) if mac else 0
         transfer = bool(row.get("Transfer", False))
+        # Gol tipi özeti metni
+        gol_detay_parcalar = []
+        if gol_f: gol_detay_parcalar.append(f"{gol_f}F")
+        if gol_h: gol_detay_parcalar.append(f"{gol_h}H")
+        if pen:   gol_detay_parcalar.append(f"{pen}P")
+        gol_detay = f" ({' · '.join(gol_detay_parcalar)})" if gol_detay_parcalar else ""
 
         # Paylaşılabilir link butonu
         share_url = f"?oyuncu={secili}"
@@ -321,8 +333,10 @@ with tab2:
             <div class="profil-stat-item"><div class="deger">{ilk11_oran}%</div><div class="ad">Starter %</div></div>
             <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">Top. Dakika</div></div>
             <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">Dk/Maç</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">Gol</div></div>
-            <div class="profil-stat-item"><div class="deger">{pen}</div><div class="ad">Penaltı</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">Gol{gol_detay}</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol_f}</div><div class="ad">⚽ Ayak (F)</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol_h}</div><div class="ad">🆕 Kafa (H)</div></div>
+            <div class="profil-stat-item"><div class="deger">{pen}</div><div class="ad">Penaltı (P)</div></div>
             <div class="profil-stat-item"><div class="deger">{ort}</div><div class="ad">Gol/Maç</div></div>
             <div class="profil-stat-item"><div class="deger" style="color:#f5c518">{sari}</div><div class="ad">🟨 Sarı</div></div>
             <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 Kırmızı</div></div>
@@ -479,7 +493,7 @@ with tab3:
         st.markdown("##### Sayısal Karşılaştırma")
         r1_row = df_tam[df_tam["Oyuncu"] == oy1].iloc[0]
         r2_row = df_tam[df_tam["Oyuncu"] == oy2].iloc[0]
-        metrikler = ["Maç","İlk11","Yedek","Gol","Penaltı","Gol/Maç","Sarı","Kırmızı","Dakika"]
+        metrikler = ["Maç","İlk11","Yedek","Gol","GolF","GolH","GolP","Gol/Maç","Sarı","Kırmızı","Dakika"]
 
         sol, orta, sag = st.columns([5,1,5])
         with sol:
