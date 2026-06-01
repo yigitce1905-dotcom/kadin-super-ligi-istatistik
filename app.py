@@ -217,24 +217,28 @@ params = st.query_params
 url_oyuncu = params.get("oyuncu", "")
 
 # ─── BAŞLIK ───────────────────────────────────────────────────────────────────
-st.markdown("""
-<div class="baslik-kutu">
-  <h1>⚽ Türkiye Kadınlar Süper Ligi 2025-2026</h1>
-  <p>30 haftanın tüm oyuncu istatistikleri — maç, gol, kart, dakika, forma ve karşılaştırma</p>
-</div>""", unsafe_allow_html=True)
+bas_sol, bas_sag = st.columns([5, 1])
+with bas_sol:
+    st.markdown("""
+    <div class="baslik-kutu">
+      <h1>⚽ Türkiye Kadınlar Süper Ligi 2025-2026</h1>
+      <p>30 haftanın tüm oyuncu istatistikleri — maç, gol, kart, dakika, forma ve karşılaştırma</p>
+    </div>""", unsafe_allow_html=True)
+with bas_sag:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("🏠 Ana Sayfa", use_container_width=True):
+        st.query_params.clear()
+        st.session_state.clear()
+        st.rerun()
 
 # ─── ÖZET KARTLAR ─────────────────────────────────────────────────────────────
 if not df_tam.empty:
-    k1,k2,k3,k4,k5,k6 = st.columns(6)
-    en_golcu = df_tam.loc[df_tam["Gol"].idxmax(),"Oyuncu"]
-    transfer_say = int(df_tam["Transfer"].sum())
+    k1, k2, k3 = st.columns(3)
+    en_golcu = df_tam.loc[df_tam["Gol"].idxmax(), "Oyuncu"]
     for kol, sayi, etiket in [
-        (k1, len(df_tam),             "Oyuncu"),
-        (k2, df_tam["Takım"].nunique(),"Takım"),
-        (k3, int(df_tam["Gol"].sum()), "Toplam Gol"),
-        (k4, int(df_tam["GolP"].sum()),   "Penaltı Golü"),
-        (k5, int(df_tam["Sarı"].sum()), "Sarı Kart"),
-        (k6, transfer_say,             "Transfer"),
+        (k1, len(df_tam),              "Oyuncu"),
+        (k2, df_tam["Takım"].nunique(), "Takım"),
+        (k3, int(df_tam["Gol"].sum()),  "Toplam Gol"),
     ]:
         kol.markdown(
             f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -679,10 +683,19 @@ with tab3:
     st.caption("2 ile 4 oyuncu arasında seçim yapabilirsiniz.")
 
     oyuncu_listesi2 = sorted(df_tam["Oyuncu"].tolist())
+
+    VARSAYILAN_OYUNCULAR = [
+        "EBRU TOPÇU", "ECE TÜRKOĞLU", "DONJETA HALILAJ", "MILICA MIJATOVIC"
+    ]
+    # Listede bulunanları filtrele, eksikse ilk N oyuncuyla tamamla
+    varsayilan = [o for o in VARSAYILAN_OYUNCULAR if o in oyuncu_listesi2]
+    if len(varsayilan) < 2:
+        varsayilan = oyuncu_listesi2[:4]
+
     secili_oyuncular = st.multiselect(
         "Karşılaştırılacak oyuncuları seç (2-4)",
         oyuncu_listesi2,
-        default=oyuncu_listesi2[:2] if len(oyuncu_listesi2) >= 2 else oyuncu_listesi2,
+        default=varsayilan,
         max_selections=4,
         key="karsilastirma_sec",
     )
