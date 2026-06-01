@@ -185,6 +185,16 @@ df_tam, ham_liste = veri_yukle()
 oyuncu_detay = {o["oyuncu"]: o for o in ham_liste} if ham_liste else {}
 
 
+@st.cache_data(ttl=3600)
+def sd_profiller_yukle():
+    if os.path.exists("soccerdonna_profiller.json"):
+        with open("soccerdonna_profiller.json", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+sd_profiller = sd_profiller_yukle()
+
+
 def max_seri(dizi):
     """Ardışık 1'lerin en uzun serisini döndürür."""
     maks = suan = 0
@@ -343,10 +353,53 @@ with tab2:
             f'<span style="color:#00c853">{row["Takım"]}</span>'
         )
 
+        # SoccerDonna profil verisi
+        sd = sd_profiller.get(secili, {})
+
+        # Mevki emoji
+        MEVKİ_İKON = {
+            "Goalkeeper": "🧤", "Defender": "🛡️", "Midfield": "⚙️",
+            "Striker": "⚽", "Forward": "⚽", "Back": "🛡️",
+        }
+        sd_mevki = sd.get("Position", "")
+        mevki_ikon = next((v for k, v in MEVKİ_İKON.items() if k in sd_mevki), "")
+
+        # SoccerDonna bilgi satırı
+        sd_parcalar = []
+        if sd.get("Date of birth"): sd_parcalar.append(f"🎂 {sd['Date of birth']}")
+        if sd.get("Place of birth"): sd_parcalar.append(f"📍 {sd['Place of birth']}")
+        if sd.get("Nationality"):   sd_parcalar.append(f"🏳️ {sd['Nationality']}")
+        if sd.get("Height"):        sd_parcalar.append(f"📏 {sd['Height']} m")
+        if sd.get("Foot"):          sd_parcalar.append(f"👟 {sd['Foot'].capitalize()}")
+        if sd.get("Market value") and sd["Market value"] not in ("unknown","?",""):
+            sd_parcalar.append(f"💰 {sd['Market value']}")
+        sd_bilgi_html = ""
+        if sd_parcalar:
+            sd_bilgi_html = (
+                '<div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 14px 0">'
+                + "".join(
+                    f'<span style="background:#0f1117;border-radius:6px;padding:4px 10px;'
+                    f'font-size:0.8rem;color:#c0ccd8">{p}</span>'
+                    for p in sd_parcalar
+                )
+                + "</div>"
+            )
+
+        mevki_html = ""
+        if sd_mevki:
+            mevki_html = (
+                f'<div style="margin:6px 0 12px 0">'
+                f'<span style="background:#0d3b2e;color:#00c853;border-radius:6px;'
+                f'padding:4px 12px;font-size:0.82rem;font-weight:600">'
+                f'{mevki_ikon} {sd_mevki}</span></div>'
+            )
+
         st.markdown(f"""
         <div class="profil-kart">
           <h2>{secili}</h2>
-          <div style="margin-bottom:14px">🏟 {takim_html}</div>
+          {mevki_html}
+          <div style="margin-bottom:6px">🏟 {takim_html}</div>
+          {sd_bilgi_html}
           <div class="profil-stat">
             <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">Maç</div></div>
             <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ İlk 11</div></div>
