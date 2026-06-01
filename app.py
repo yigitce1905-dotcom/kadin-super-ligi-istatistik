@@ -155,23 +155,30 @@ def veri_yukle():
 
 @st.cache_data(ttl=1800)
 def puan_durumu_cek():
-    """TFF'den Kadınlar Süper Ligi puan durumunu çeker."""
+    """TFF'den Kadınlar Süper Ligi puan durumunu çeker (table.s-table)."""
     url = "https://www.tff.org/Default.aspx?pageID=1000&hafta=30"
     try:
-        r = requests.get(url, headers={"User-Agent":"Mozilla/5.0"}, timeout=15)
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
         soup = BeautifulSoup(r.content, "lxml")
-        for tablo in soup.find_all("table"):
-            txt = tablo.get_text()
-            if "Puan" in txt and "O" in txt and "G" in txt:
-                satirlar = []
-                for tr in tablo.find_all("tr"):
-                    hücreler = [td.get_text(strip=True) for td in tr.find_all(["td","th"])]
-                    if hücreler: satirlar.append(hücreler)
-                if len(satirlar) > 3:
-                    return satirlar
+        tablo = soup.find("table", class_="s-table")
+        if not tablo:
+            return pd.DataFrame()
+        satirlar = []
+        for tr in tablo.find_all("tr"):
+            huc = [td.get_text(strip=True) for td in tr.find_all(["td","th"])]
+            if huc: satirlar.append(huc)
+        if len(satirlar) < 2:
+            return pd.DataFrame()
+        # İlk satır başlık — temizle
+        baslik = satirlar[0]
+        veri   = satirlar[1:]
+        df = pd.DataFrame(veri, columns=baslik[:len(veri[0])])
+        # Takım adından sıra numarasını ayır (örn. "1.FENERBAHÇE…" → "FENERBAHÇE…")
+        takim_col = df.columns[0]
+        df[takim_col] = df[takim_col].str.replace(r"^\d+\.", "", regex=True).str.strip()
+        return df
     except Exception:
-        pass
-    return []
+        return pd.DataFrame()
 
 
 df_tam, ham_liste = veri_yukle()
@@ -430,90 +437,142 @@ with tab2:
             st.markdown(satirlar, unsafe_allow_html=True)
 
 # ══════════════════════════════════════════════════════════════════════════════
-# SEKME 3 — KARŞILAŞTIRMA
+# SEKME 3 — KARŞILAŞTIRMA (2-4 oyuncu)
 # ══════════════════════════════════════════════════════════════════════════════
 with tab3:
-    st.markdown("### Oyuncu Karşılaştırması")
-    c1, c2 = st.columns(2)
-    oyuncu_listesi2 = sorted(df_tam["Oyuncu"].tolist())
-    with c1:
-        oy1 = st.selectbox("1. Oyuncu", oyuncu_listesi2, key="k1")
-    with c2:
-        oy2 = st.selectbox("2. Oyuncu", oyuncu_listesi2,
-                           index=min(1, len(oyuncu_listesi2)-1), key="k2")
+    st.markdown("### ⚡ Oyuncu Karşılaştırması")
+    st.caption("2 ile 4 oyuncu arasında seçim yapabilirsiniz.")
 
-    if oy1 and oy2 and not df_tam.empty:
-        def radar_deger(oyuncu, metrik):
+    oyuncu_listesi2 = sorted(df_tam["Oyuncu"].tolist())
+    secili_oyuncular = st.multiselect(
+        "Karşılaştırılacak oyuncuları seç (2-4)",
+        oyuncu_listesi2,
+        default=oyuncu_listesi2[:2] if len(oyuncu_listesi2) >= 2 else oyuncu_listesi2,
+        max_selections=4,
+        key="karsilastirma_sec",
+    )
+
+    RENKLER = ["#00c853", "#2979ff", "#ff6d00", "#e040fb"]
+
+    if len(secili_oyuncular) < 2:
+        st.info("En az 2 oyuncu seçin.")
+    elif not df_tam.empty:
+
+        # ── Radar chart ──────────────────────────────────────────────────────
+        kategoriler = ["Maç", "Gol", "Gol/Maç", "Dakika", "Starter %", "Disiplin"]
+
+        def norm(oyuncu, metrik):
             r = df_tam[df_tam["Oyuncu"] == oyuncu]
             if r.empty: return 0
-            val = float(r.iloc[0].get(metrik, 0))
+            val  = float(r.iloc[0].get(metrik, 0))
             maks = float(df_tam[metrik].max())
             return round(val / maks * 100, 1) if maks else 0
 
-        kategoriler = ["Maç", "Gol", "Gol/Maç", "Dakika", "İlk11 %", "Sarı (ters)"]
-
-        def degerler(oyuncu):
-            r = df_tam[df_tam["Oyuncu"] == oyuncu].iloc[0]
-            mac   = int(r["Maç"])
+        def radar_degerleri(oyuncu):
+            r   = df_tam[df_tam["Oyuncu"] == oyuncu].iloc[0]
+            mac = int(r["Maç"])
             return [
-                radar_deger(oyuncu, "Maç"),
-                radar_deger(oyuncu, "Gol"),
-                radar_deger(oyuncu, "Gol/Maç"),
-                radar_deger(oyuncu, "Dakika"),
+                norm(oyuncu, "Maç"),
+                norm(oyuncu, "Gol"),
+                norm(oyuncu, "Gol/Maç"),
+                norm(oyuncu, "Dakika"),
                 round(int(r["İlk11"]) / mac * 100, 1) if mac else 0,
-                round(100 - radar_deger(oyuncu, "Sarı"), 1),  # ters: az kart iyi
+                round(100 - norm(oyuncu, "Sarı"), 1),   # az kart = yüksek puan
             ]
 
-        d1 = degerler(oy1)
-        d2 = degerler(oy2)
-
         fig = go.Figure()
-        for oyuncu, dg, renk in [(oy1, d1, "#00c853"), (oy2, d2, "#2979ff")]:
+        for oyuncu, renk in zip(secili_oyuncular, RENKLER):
+            dg = radar_degerleri(oyuncu)
             fig.add_trace(go.Scatterpolar(
-                r=dg + [dg[0]], theta=kategoriler + [kategoriler[0]],
-                fill="toself", name=oyuncu,
-                line=dict(color=renk, width=2),
-                fillcolor=renk.replace("#","") and renk,
-                opacity=0.25 if oyuncu == oy2 else 0.3,
+                r=dg + [dg[0]],
+                theta=kategoriler + [kategoriler[0]],
+                fill="toself",
+                name=oyuncu,
+                line=dict(color=renk, width=2.5),
+                opacity=0.35,
             ))
         fig.update_layout(
             polar=dict(
                 bgcolor="#1a1f36",
-                radialaxis=dict(visible=True, range=[0,100], gridcolor="#2d3561",
-                                tickfont=dict(color="#8899aa"), tickvals=[25,50,75,100]),
-                angularaxis=dict(tickfont=dict(color="#e0e0e0"), gridcolor="#2d3561")
+                radialaxis=dict(
+                    visible=True, range=[0, 100],
+                    gridcolor="#2d3561", tickfont=dict(color="#8899aa"),
+                    tickvals=[25, 50, 75, 100], ticksuffix="%",
+                ),
+                angularaxis=dict(tickfont=dict(color="#e0e0e0", size=13), gridcolor="#2d3561"),
             ),
-            paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
-            legend=dict(orientation="h", y=-0.1),
-            height=450, margin=dict(l=60,r=60,t=40,b=40)
+            paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+            font=dict(color="#e0e0e0"),
+            legend=dict(orientation="h", y=-0.12, font=dict(size=12)),
+            height=480, margin=dict(l=70, r=70, t=30, b=60),
         )
         st.plotly_chart(fig, use_container_width=True)
+        st.caption("Disiplin = 100 − (sarı kart oranı) · Starter % = ilk 11 oranı · Tüm değerler lig içinde normalize edilmiştir (100 = en iyi).")
 
-        # Sayısal karşılaştırma
-        st.markdown("##### Sayısal Karşılaştırma")
-        r1_row = df_tam[df_tam["Oyuncu"] == oy1].iloc[0]
-        r2_row = df_tam[df_tam["Oyuncu"] == oy2].iloc[0]
-        metrikler = ["Maç","İlk11","Yedek","Gol","GolF","GolH","GolP","Gol/Maç","Sarı","Kırmızı","Dakika"]
+        # ── Sayısal karşılaştırma tablosu ────────────────────────────────────
+        st.markdown("##### 📊 İstatistik Karşılaştırması")
 
-        sol, orta, sag = st.columns([5,1,5])
-        with sol:
-            st.markdown(f'<div style="text-align:center;font-weight:700;color:#00c853;padding:8px;background:#0d3b2e;border-radius:8px;margin-bottom:10px">{oy1}</div>', unsafe_allow_html=True)
-            for m in metrikler:
-                v1 = r1_row.get(m,0); v2 = r2_row.get(m,0)
-                delta = float(v1) - float(v2) if m != "Sarı" else 0
-                st.metric(m, v1, delta=round(delta,2) if delta else None,
-                          delta_color="normal" if m not in ("Sarı","Kırmızı") else "inverse")
-        with orta:
-            st.markdown("<br><br>", unsafe_allow_html=True)
-            for m in metrikler:
-                v1 = float(r1_row.get(m,0)); v2 = float(r2_row.get(m,0))
-                ikon = "🟢" if v1 > v2 else ("🟡" if v1 == v2 else "🔴")
-                if m in ("Sarı","Kırmızı"): ikon = "🟢" if v1 <= v2 else "🔴"
-                st.markdown(f'<div style="text-align:center;font-size:1.1rem;padding:18px 0">{ikon}</div>', unsafe_allow_html=True)
-        with sag:
-            st.markdown(f'<div style="text-align:center;font-weight:700;color:#2979ff;padding:8px;background:#0a1a3a;border-radius:8px;margin-bottom:10px">{oy2}</div>', unsafe_allow_html=True)
-            for m in metrikler:
-                st.metric(m, r2_row.get(m,0))
+        METRIK_ETIKET = {
+            "Maç":     "Maç",
+            "İlk11":   "▶ İlk 11",
+            "Yedek":   "↗ Yedek",
+            "Gol":     "Gol",
+            "GolF":    "⚽ Ayak (F)",
+            "GolH":    "⚽ Kafa (H)",
+            "GolP":    "⚽ Penaltı (P)",
+            "Gol/Maç": "Gol/Maç",
+            "Sarı":    "🟨 Sarı Kart",
+            "Kırmızı": "🟥 Kırmızı",
+            "Dakika":  "Toplam Dakika",
+        }
+        # Kart sayısı düşük olan iyi → ters metrikler
+        TERS = {"Sarı", "Kırmızı"}
+
+        tablo_satirlar = []
+        for metrik, etiket in METRIK_ETIKET.items():
+            satir = {"İstatistik": etiket}
+            degerler_list = []
+            for oy in secili_oyuncular:
+                r = df_tam[df_tam["Oyuncu"] == oy]
+                val = float(r.iloc[0].get(metrik, 0)) if not r.empty else 0
+                degerler_list.append(val)
+
+            # En iyi değeri belirle
+            en_iyi = min(degerler_list) if metrik in TERS else max(degerler_list)
+
+            for oy, val in zip(secili_oyuncular, degerler_list):
+                # Formatla
+                fmt = f"{val:.2f}" if metrik == "Gol/Maç" else f"{int(val)}"
+                # En iyi değer vurgusu
+                if val == en_iyi and degerler_list.count(en_iyi) < len(degerler_list):
+                    fmt = f"★ {fmt}"
+                satir[oy] = fmt
+            tablo_satirlar.append(satir)
+
+        df_karsilastirma = pd.DataFrame(tablo_satirlar)
+        df_karsilastirma = df_karsilastirma.set_index("İstatistik")
+
+        # Oyuncu adlarını renkli başlık olarak göster
+        baslik_html = '<div style="display:flex;gap:12px;margin-bottom:8px;flex-wrap:wrap;">'
+        for oy, renk in zip(secili_oyuncular, RENKLER):
+            baslik_html += (
+                f'<span style="background:{renk}22;color:{renk};border:1px solid {renk}44;'
+                f'border-radius:6px;padding:4px 12px;font-weight:600;font-size:0.85rem">'
+                f'{oy}</span>'
+            )
+        baslik_html += "</div>"
+        st.markdown(baslik_html, unsafe_allow_html=True)
+        st.caption("★ = o kategoride en iyi")
+
+        st.dataframe(
+            df_karsilastirma,
+            use_container_width=True,
+            height=430,
+            column_config={
+                col: st.column_config.TextColumn(col, width="medium")
+                for col in df_karsilastirma.columns
+            },
+        )
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 4 — LİG TABLOSU
@@ -549,20 +608,31 @@ with tab4:
 
         st.markdown("<br>", unsafe_allow_html=True)
 
-        # TFF'den puan durumu dene
-        with st.spinner("TFF puan durumu yükleniyor..."):
-            puan = puan_durumu_cek()
-        if puan:
-            st.markdown("#### TFF Puan Durumu")
-            try:
-                baslik = puan[0]
-                satirlar = puan[1:]
-                df_puan = pd.DataFrame(satirlar, columns=baslik[:len(satirlar[0])])
-                st.dataframe(df_puan, use_container_width=True, hide_index=True)
-            except Exception:
-                st.caption("Puan durumu tablosu parse edilemedi.")
+        # TFF'den resmi puan cetveli
+        st.markdown("#### 🏆 TFF Resmi Puan Cetveli")
+        with st.spinner("TFF'den yükleniyor..."):
+            df_puan = puan_durumu_cek()
+
+        if not df_puan.empty:
+            # Sütun adlarını düzelt — O G B M A Y AV P
+            sutun_aciklama = {
+                "O": "O — Oynadı", "G": "G — Galibiyet", "B": "B — Beraberlik",
+                "M": "M — Mağlubiyet", "A": "A — Atılan", "Y": "Y — Yenilen",
+                "AV": "AV — Averaj", "P": "P — Puan",
+            }
+            df_puan.index = range(1, len(df_puan) + 1)
+            st.dataframe(
+                df_puan,
+                use_container_width=True,
+                height=600,
+                column_config={
+                    col: st.column_config.TextColumn(sutun_aciklama.get(col, col))
+                    for col in df_puan.columns
+                },
+            )
+            st.caption("Kaynak: TFF — tff.org | O=Oynadı · G=Galibiyet · B=Beraberlik · M=Mağlubiyet · A=Atılan · Y=Yenilen · AV=Averaj · P=Puan")
         else:
-            st.caption("TFF puan durumu tablosu bu sayfada bulunamadı.")
+            st.caption("TFF puan cetveli yüklenemedi.")
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
