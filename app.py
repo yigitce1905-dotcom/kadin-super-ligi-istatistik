@@ -2705,6 +2705,17 @@ _TRANSFER_DB = {
     ("Kaleci", "Dusuk",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
     ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
 
+    # ── Sağ Stoper - Merkez Stoper ───────────────────────────────────────
+    ("Sağ Stoper", "Yuksek", "Yerli"):      ["EDA KARATAŞ", "GÜLBİN HIZ", "KEZBAN TAĞ"],
+    ("Sağ Stoper", "Yuksek", "Yabancı"):    ["KONYA TAJAE PLUMMER", "HEİDİ LYNNE RUTH", "BLERTA SMAILI"],
+    ("Sağ Stoper", "Yuksek", "Farketmez"):  ["KONYA TAJAE PLUMMER", "HEİDİ LYNNE RUTH", "EDA KARATAŞ"],
+    ("Sağ Stoper", "Orta",   "Yerli"):      ["MERYEM KÜÇÜKBİRİNCİ", "FATMA SARE ÖZTÜRK", "NARİN YAKUT"],
+    ("Sağ Stoper", "Orta",   "Yabancı"):    ["MADİNATOU ROUAMBA", "MARİAM DİAKİTE", "ARMERA TUKAJ"],
+    ("Sağ Stoper", "Orta",   "Farketmez"):  ["MADİNATOU ROUAMBA", "MERYEM KÜÇÜKBİRİNCİ", "FATMA SARE ÖZTÜRK"],
+    ("Sağ Stoper", "Dusuk",  "Yerli"):      ["DAMLA BOZYEL", "SEVGİ SEVİN ERGEN", "SELİN SİVRİKAYA"],
+    ("Sağ Stoper", "Dusuk",  "Yabancı"):    ["KARLA DANİELA ZEMPOALTECA HERNANDEZ", "AGNESA GASHI", "AYSHAN AHMADOVA"],
+    ("Sağ Stoper", "Dusuk",  "Farketmez"):  ["DAMLA BOZYEL", "SEVGİ SEVİN ERGEN", "KARLA DANİELA ZEMPOALTECA HERNANDEZ"],
+
     # ── Sol Stoper ────────────────────────────────────────────────────────
     ("Sol Stoper", "Yuksek", "Yerli"):      ["İPEK KAYA", "YAŞAM GÖKSU"],
     ("Sol Stoper", "Yuksek", "Yabancı"):    ["LIUBOV SHMATKO", "BLERTA SMAILI", "OLUWATOSIN BLESSING DEMEHIN"],

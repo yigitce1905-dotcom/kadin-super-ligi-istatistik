@@ -70384,5 +70384,43 @@
         "kirmizi": 0
       }
     ]
+  },
+  {
+    "oyuncu": "DAMLA BOZYEL",
+    "takim": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 0,
+    "ilk11_mac": 0,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0,
+    "mac_gecmisi": [],
+    "takim_detay": []
+  },
+  {
+    "oyuncu": "SEJDE ABRAHAMSSON",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "tum_takimlar": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 0,
+    "ilk11_mac": 0,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0,
+    "mac_gecmisi": [],
+    "takim_detay": []
   }
 ]
