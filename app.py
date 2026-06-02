@@ -2705,6 +2705,17 @@ _TRANSFER_DB = {
     ("Kaleci", "Dusuk",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
     ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
 
+    # ── Sağ Bek - Sağ Kanat Bek ──────────────────────────────────────────
+    ("Sağ Bek - Sağ Kanat Bek", "Yuksek", "Yerli"):      ["ELİF KESKİN", "ÜMRAN ÖZEV", "ECE TEKMEN"],
+    ("Sağ Bek - Sağ Kanat Bek", "Yuksek", "Yabancı"):    ["MARIA APARECIDA SOUZA ALVES", "RAFAELA SUDRE DOS SANTOS"],
+    ("Sağ Bek - Sağ Kanat Bek", "Yuksek", "Farketmez"):  ["MARIA APARECIDA SOUZA ALVES", "RAFAELA SUDRE DOS SANTOS", "ELİF KESKİN"],
+    ("Sağ Bek - Sağ Kanat Bek", "Orta",   "Yerli"):      ["ECEM CUMERT", "RABİYA İSGİ", "MEDİNE ERKAN"],
+    ("Sağ Bek - Sağ Kanat Bek", "Orta",   "Yabancı"):    ["JUSTİCE TWENEBOAA", "UGOCHI CYNTHIA EMENAYO", "JALE AĞAYAR QIZIZHALA MAHSIMOVA"],
+    ("Sağ Bek - Sağ Kanat Bek", "Orta",   "Farketmez"):  ["ECEM CUMERT", "RABİYA İSGİ", "MEDİNE ERKAN"],
+    ("Sağ Bek - Sağ Kanat Bek", "Dusuk",  "Yerli"):      ["NAZLI ÖRNEK", "HÜMEYRA ŞANVER", "MELİSA NİLGÜN KESER"],
+    ("Sağ Bek - Sağ Kanat Bek", "Dusuk",  "Yabancı"):    ["RREZONA RAMADANI", "ELLEN COLEMAN", "DORİS AKAHEEH"],
+    ("Sağ Bek - Sağ Kanat Bek", "Dusuk",  "Farketmez"):  ["NAZLI ÖRNEK", "RREZONA RAMADANI", "ELLEN COLEMAN"],
+
     # ── Sağ Stoper - Merkez Stoper ───────────────────────────────────────
     ("Sağ Stoper", "Yuksek", "Yerli"):      ["EDA KARATAŞ", "GÜLBİN HIZ", "KEZBAN TAĞ"],
     ("Sağ Stoper", "Yuksek", "Yabancı"):    ["KONYA TAJAE PLUMMER", "HEİDİ LYNNE RUTH", "BLERTA SMAILI"],
