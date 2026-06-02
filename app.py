@@ -386,20 +386,109 @@ def norm_val(val, maks):
 params = st.query_params
 url_oyuncu = params.get("oyuncu", "")
 
-# ─── BAŞLIK ───────────────────────────────────────────────────────────────────
-bas_sol, bas_sag = st.columns([5, 1])
+# ─── SAYFA DURUMU ─────────────────────────────────────────────────────────────
+if "sayfa" not in st.session_state:
+    st.session_state["sayfa"] = "ana"
+
+# ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
+bas_sol, nav1, nav2, nav3 = st.columns([4, 1, 1, 1])
 with bas_sol:
     st.markdown("""
     <div class="baslik-kutu">
       <h1>⚽ Türkiye Kadınlar Süper Ligi 2025-2026</h1>
       <p>30 haftanın tüm oyuncu istatistikleri — maç, gol, kart, dakika, forma ve karşılaştırma</p>
     </div>""", unsafe_allow_html=True)
-with bas_sag:
+with nav1:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("🏠 Ana Sayfa", use_container_width=True):
         st.query_params.clear()
-        st.session_state.clear()
+        for k in list(st.session_state.keys()):
+            if k != "sayfa":
+                del st.session_state[k]
+        st.session_state["sayfa"] = "ana"
         st.rerun()
+with nav2:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("ℹ️ Hakkında", use_container_width=True):
+        st.session_state["sayfa"] = "hakkinda"
+        st.rerun()
+with nav3:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("📬 İletişim", use_container_width=True):
+        st.session_state["sayfa"] = "iletisim"
+        st.rerun()
+
+# ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
+if st.session_state["sayfa"] == "hakkinda":
+    st.markdown("""
+    <div style='max-width:760px;margin:0 auto;padding:10px 0 40px;'>
+
+    <h2 style='color:#00c853;margin-bottom:6px;'>Biz Kimiz?</h2>
+    <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
+    Türkiye'de kadın futbol liglerini takip eden bir grup futbol delisiyiz.
+    Yıllardır tribünlerde, ekranların başında ve saha kenarlarında bu ligin büyümesine tanıklık ettik.
+    Ama bir şeyin hep eksik kaldığını fark ettik: <b style='color:#fff;'>veri.</b>
+    </p>
+
+    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>Neden Bu Siteyi Kurduk?</h2>
+    <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
+    Bir oyuncuyu bir maçta izlemek, o oyuncu hakkında tam bir fikir vermez. Gözlem yanılabilir —
+    kötü bir gün, yorgunluk, takımın taktik yapısı ya da sadece o günkü rakip; bunların hepsi
+    algıyı bozar. Kulüplerin çoğu hâlâ transferlerde "rakibe karşı oynadığı o maçtaki izlenim"
+    ya da duyuma dayalı kararlar alıyor.
+    </p>
+    <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
+    Biz buna karşı <b style='color:#fff;'>ölçme ve değerlendirme metotları</b> geliştirmeye çalışıyoruz.
+    Henüz değerini bulamamış ya da bulma aşamasındaki oyuncuları verilerle desteklemeyi, onların ligdeki
+    gerçek katkılarını görünür kılmayı hedefliyoruz. Böylece takımlar; sadece rakipleri olduğu maçlardaki
+    gözleme ya da kulaktan dolma bilgilere değil, <b style='color:#fff;'>sezon boyu biriken somut istatistiklere</b>
+    dayanarak daha nitelikli kadrolar oluşturabilsin.
+    </p>
+
+    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>Bu Sitede Ne Var?</h2>
+    <div style='color:#c9d1d9;font-size:14px;line-height:2;'>
+    📋 <b style='color:#fff;'>Oyuncu Listesi</b> — Ligdeki tüm oyuncuların sezon istatistikleri<br>
+    👤 <b style='color:#fff;'>Oyuncu Profili</b> — Her oyuncu için detaylı performans kartı ve karşılaştırma<br>
+    🔄 <b style='color:#fff;'>Transfer Öner</b> — Bütçe ve kriterlere göre yapay zeka destekli transfer önerisi<br>
+    🧤 <b style='color:#fff;'>Kaleciler</b> — Yenilen gol ve maç başına performans analizi<br>
+    🏟️ <b style='color:#fff;'>Takımlar</b> — Takım bazında istatistikler ve kadro analizi<br>
+    🏆 <b style='color:#fff;'>Lig Tablosu</b> — Güncel puan durumu<br>
+    🌟 <b style='color:#fff;'>En İyiler</b> — Kategorilere göre sezonun öne çıkan isimleri<br>
+    ⚽ <b style='color:#fff;'>Fantasy Kadro</b> — Kendi ideal 11'ini oluştur<br>
+    🔍 <b style='color:#fff;'>Gelişmiş Arama</b> — Uyruk, mevki, yaş ve maç sayısına göre filtrele<br>
+    🎂 <b style='color:#fff;'>Yaş Analizi</b> — Ligin yaş dağılımı ve takım profilleri
+    </div>
+
+    <p style='color:#505870;font-size:12px;margin-top:36px;border-top:1px solid #21262d;padding-top:16px;'>
+    ⚠️ Veriler TFF ve SoccerDonna kaynaklarından derlenmektedir. İstatistikler bilgi amaçlıdır;
+    hata veya eksiklik içerebilir. Gözlemlerimiz ve değerlendirmelerimiz kişisel yoruma dayanır,
+    yanılabiliriz — bu yüzden her zaman veriyi ön plana çıkarmaya çalışırız.
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.stop()
+
+# ─── İLETİŞİM SAYFASI ─────────────────────────────────────────────────────────
+if st.session_state["sayfa"] == "iletisim":
+    st.markdown("""
+    <div style='max-width:600px;margin:0 auto;padding:10px 0 40px;'>
+    <h2 style='color:#00c853;margin-bottom:6px;'>İletişim</h2>
+    <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
+    Öneri, hata bildirimi veya iş birliği için bize ulaşabilirsiniz.
+    </p>
+    <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #00c853;margin-top:16px;'>
+      <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>📧 E-posta</div>
+      <div style='color:#fff;font-size:15px;font-weight:600;'>iletisim@kadinligi.com</div>
+      <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>🐦 Sosyal Medya</div>
+      <div style='color:#fff;font-size:15px;'>Yakında aktif olacak</div>
+    </div>
+    <p style='color:#505870;font-size:12px;margin-top:28px;'>
+    Veri hatası veya eksik oyuncu bildirimleri için lütfen oyuncu adı ve doğru bilgiyi içeren
+    bir mesaj gönderin. En kısa sürede güncelliyoruz.
+    </p>
+    </div>
+    """, unsafe_allow_html=True)
+    st.stop()
 
 # ─── ÖZET KARTLAR ─────────────────────────────────────────────────────────────
 if not df_tam.empty:
@@ -417,11 +506,12 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12 = st.tabs([
-    "📋 Oyuncu Listesi", "👤 Oyuncu Profili", "⚡ Karşılaştırma",
-    "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
-    "🗺️ Dünya Haritası", "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
+tab1, tab_transfer, tab2, tab3, tab4, tab5, tab6, tab7, tab9, tab10, tab11 = st.tabs([
+    "📋 Oyuncu Listesi",
     "🔄 Transfer Öner",
+    "👤 Oyuncu Profili", "⚡ Karşılaştırma",
+    "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
+    "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
 ])
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1705,119 +1795,6 @@ with tab7:
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# SEKME 8 — DÜNYA HARİTASI
-# ══════════════════════════════════════════════════════════════════════════════
-_NAT_FIX = {
-    "United":            "United States",
-    "Cote":              "Ivory Coast",
-    "Congo":             "Republic of the Congo",
-    "Bosnia-Herzegovina":"Bosnia and Herzegovina",
-    "Korea,":            "South Korea",
-    "Burkina":           "Burkina Faso",
-    "El":                "El Salvador",
-    "Costa":             "Costa Rica",
-    "Puerto":            "Puerto Rico",
-}
-
-def _harita_verisi():
-    """soccerdonna_profiller.json'dan uyruk bazlı oyuncu sayısını döndürür."""
-    rows = []
-    for isim, profil in sd_profiller.items():
-        nat = _ilk_uyruk(profil.get("Nationality", "") or "")
-        nat = _NAT_FIX.get(nat, nat)
-        if len(nat) > 2:
-            rows.append(nat)
-    if not rows:
-        return pd.DataFrame()
-    s = pd.Series(rows).value_counts().reset_index()
-    s.columns = ["Uyruk", "Oyuncu"]
-    return s
-
-with tab8:
-    st.markdown("##### 🗺️ Oyuncuların Dünya Haritası")
-    st.caption("SoccerDonna verisi · Kadın Futbol Süper Ligi oyuncularının uyruk dağılımı")
-
-    cnt = _harita_verisi()
-
-    if cnt.empty:
-        st.warning("Uyruk verisi bulunamadı.")
-    else:
-        try:
-            fig_map = px.choropleth(
-                cnt,
-                locations="Uyruk",
-                locationmode="country names",
-                color="Oyuncu",
-                hover_name="Uyruk",
-                hover_data={"Oyuncu": True, "Uyruk": False},
-                color_continuous_scale=[
-                    [0.0, "#1a3a2a"],
-                    [0.2, "#0d5c3a"],
-                    [0.5, "#00a86b"],
-                    [1.0, "#00c853"],
-                ],
-                labels={"Oyuncu": "Oyuncu Sayısı"},
-            )
-            fig_map.update_geos(
-                bgcolor="#0f1117",
-                showcoastlines=True, coastlinecolor="#2a3a2a",
-                showland=True, landcolor="#1a1f36",
-                showocean=True, oceancolor="#0f1117",
-                showframe=False,
-                projection_type="natural earth",
-            )
-            fig_map.update_layout(
-                paper_bgcolor="#0f1117",
-                font=dict(color="#e0e0e0"),
-                margin=dict(l=0, r=0, t=10, b=0),
-                height=480,
-                coloraxis_colorbar=dict(
-                    title="Oyuncu",
-                    tickfont=dict(color="#8899aa"),
-                    titlefont=dict(color="#8899aa"),
-                    bgcolor="#1a1f36",
-                    bordercolor="#2a3a2a",
-                ),
-            )
-            st.plotly_chart(fig_map, use_container_width=True)
-        except Exception as e:
-            st.warning(f"Harita oluşturulamadı: {e}")
-
-        k1, k2, k3, k4 = st.columns(4)
-        top = cnt.iloc[0]
-        yabanci = cnt[cnt["Uyruk"] != "Turkey"]["Oyuncu"].sum()
-        for kol, sayi, etiket in [
-            (k1, len(sd_profiller),       "Toplam Oyuncu"),
-            (k2, cnt["Uyruk"].nunique(),   "Farklı Uyruk"),
-            (k3, f"{top['Oyuncu']} ({top['Uyruk']})", "En Çok"),
-            (k4, int(yabanci),             "Yabancı Oyuncu"),
-        ]:
-            kol.markdown(
-                f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
-                f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
-
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown("##### 🏳️ Uyruk Sıralaması (İlk 20)")
-        top20 = cnt.head(20).sort_values("Oyuncu")
-        fig_bar = go.Figure(go.Bar(
-            x=top20["Oyuncu"], y=top20["Uyruk"], orientation="h",
-            marker=dict(color=top20["Oyuncu"],
-                        colorscale=[[0,"#0d3b2e"],[1,"#00c853"]], showscale=False),
-            text=top20["Oyuncu"], textposition="outside",
-            textfont=dict(color="#e0e0e0", size=11),
-            hovertemplate="%{y}: %{x} oyuncu<extra></extra>",
-        ))
-        fig_bar.update_layout(
-            paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-            xaxis=dict(showgrid=False, color="#505870"),
-            yaxis=dict(color="#e0e0e0"),
-            margin=dict(l=10, r=40, t=5, b=5), height=520,
-            font=dict(color="#e0e0e0"),
-        )
-        st.plotly_chart(fig_bar, use_container_width=True)
-
-
-# ══════════════════════════════════════════════════════════════════════════════
 # SEKME 9 — GELİŞMİŞ OYUNCU ARAMA
 # ══════════════════════════════════════════════════════════════════════════════
 with tab9:
@@ -2218,7 +2195,7 @@ _TRANSFER_DB = {
     ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
 }
 
-with tab12:
+with tab_transfer:
     st.markdown("##### 🔄 Transfer Öner")
     st.caption("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi")
 
