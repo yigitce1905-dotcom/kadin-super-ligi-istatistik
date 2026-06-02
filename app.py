@@ -2704,6 +2704,17 @@ _TRANSFER_DB = {
     ("Kaleci", "Dusuk",  "Yerli"):      ["DUYGU YILMAZ", "HİLAL SUBAY", "SUDE TOPÇU"],
     ("Kaleci", "Dusuk",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
     ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
+
+    # ── Hücumcu Orta ──────────────────────────────────────────────────────
+    ("Hücumcu Orta", "Yuksek", "Yerli"):      ["BUSEM ŞEKER", "EBRU TOPÇU", "SEVGİ ÇINAR KARAOĞLU"],
+    ("Hücumcu Orta", "Yuksek", "Yabancı"):    ["DONJETA HALILAJ", "MILICA MIJATOVIC", "JULIA HICKELSBERGEN FULLER"],
+    ("Hücumcu Orta", "Yuksek", "Farketmez"):  ["DONJETA HALILAJ", "BUSEM ŞEKER", "EBRU TOPÇU"],
+    ("Hücumcu Orta", "Orta",   "Yerli"):      ["SEVGİ ÇINAR KARAOĞLU", "MELİKE ÖZTÜRK", "ARZU KARABULUT"],
+    ("Hücumcu Orta", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO", "JULIA HICKELSBERGEN FULLER"],
+    ("Hücumcu Orta", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "SEVGİ ÇINAR KARAOĞLU", "RASMATA SAWADOGO"],
+    ("Hücumcu Orta", "Dusuk",  "Yerli"):      ["DİLARA YILMAZ", "ARİFE ŞENTÜRK", "AÇELYA NOMAK"],
+    ("Hücumcu Orta", "Dusuk",  "Yabancı"):    ["VANESA LEVENAJ", "MAIKO BEBIA", "SUZIE MBİANDJİ"],
+    ("Hücumcu Orta", "Dusuk",  "Farketmez"):  ["VANESA LEVENAJ", "DİLARA YILMAZ", "ARİFE ŞENTÜRK"],
 }
 
 with tab_transfer:
@@ -2771,7 +2782,7 @@ with tab_transfer:
             col_m, col_t = st.columns(2)
             with col_m:
                 st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
-                mevki_secenekler = ["Kaleci", "Sağ Bek ⏳", "Stoper ⏳", "Sol Bek ⏳",
+                mevki_secenekler = ["Kaleci", "Hücumcu Orta", "Sağ Bek ⏳", "Stoper ⏳", "Sol Bek ⏳",
                                     "Ön Libero ⏳", "Merkez Orta Saha ⏳",
                                     "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳"]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
