@@ -2691,12 +2691,18 @@ def transfer_raporu_uret(oneriler: list, mevki: str, butce_label: str, tercih: s
     if not client:
         return "⚠️ Rapor üretilemedi: API bağlantısı kurulamadı."
 
-    kal_df   = kaleci_istatistikleri_hesapla()
-    kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
+    # Kaleci mi değil mi — veri kaynağını buna göre seç
+    if mevki == "Kaleci":
+        kal_df   = kaleci_istatistikleri_hesapla()
+        kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
+        alan_df_dict = {}
+    else:
+        kal_dict = {}
+        _alan_df, _ = veri_yukle()
+        alan_df_dict = {r["Oyuncu"]: r for _, r in _alan_df.iterrows()} if not _alan_df.empty else {}
 
     oyuncu_verileri = []
     for isim in oneriler:
-        r      = kal_dict.get(isim, {})
         profil = sd_profiller.get(isim, {})
         yas    = _MANUEL_YAS.get(isim)
         if not yas:
@@ -2704,11 +2710,22 @@ def transfer_raporu_uret(oneriler: list, mevki: str, butce_label: str, tercih: s
             except: yas = "?"
         nat = _MANUEL_UYRUK.get(isim) or profil.get("Nationality","")
         nat = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat).split()[0] if nat else "—"
-        oyuncu_verileri.append(
-            f"- {isim} | Takım: {r.get('Takım','—')} | "
-            f"{r.get('Maç','—')} maç, {r.get('YenilenGol','—')} yenilen gol, "
-            f"{r.get('G/Maç','—')} G/Maç | Yaş: {yas} | Uyruk: {nat}"
-        )
+
+        if mevki == "Kaleci":
+            r = kal_dict.get(isim, {})
+            oyuncu_verileri.append(
+                f"- {isim} | Takım: {r.get('Takım','—')} | "
+                f"{r.get('Maç','—')} maç, {r.get('YenilenGol','—')} yenilen gol, "
+                f"{r.get('G/Maç','—')} G/Maç | Yaş: {yas} | Uyruk: {nat}"
+            )
+        else:
+            r = alan_df_dict.get(isim, {})
+            oyuncu_verileri.append(
+                f"- {isim} | Takım: {r.get('Takım','—')} | "
+                f"{r.get('Maç','—')} maç, {r.get('Gol','—')} gol, "
+                f"{r.get('Gol/Maç','—')} Gol/Maç | Dakika: {r.get('Dakika','—')} | "
+                f"Yaş: {yas} | Uyruk: {nat}"
+            )
 
     veri_str = "\n".join(oyuncu_verileri)
 
