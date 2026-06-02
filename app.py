@@ -2871,8 +2871,11 @@ with tab_transfer:
             if not oneriler:
                 st.info("Bu kombinasyon için henüz öneri tanımlanmadı.")
             else:
-                kal_df   = kaleci_istatistikleri_hesapla()
-                kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
+                # Kaleci için özel istatistikler, diğer mevkiler için genel oyuncu verisi
+                _kaleci_mevki = mevki_sec == "Kaleci"
+                if _kaleci_mevki:
+                    kal_df   = kaleci_istatistikleri_hesapla()
+                    kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
 
                 st.markdown(
                     f"<div style='color:#00c853;font-weight:700;font-size:16px;margin-bottom:20px;'>"
@@ -2880,11 +2883,6 @@ with tab_transfer:
                     unsafe_allow_html=True)
 
                 for i, isim in enumerate(oneriler, 1):
-                    r      = kal_dict.get(isim, {})
-                    mac    = r.get("Maç", "—")
-                    yg     = r.get("YenilenGol", "—")
-                    gpm    = r.get("G/Maç", "—")
-                    takim  = r.get("Takım", "—")
                     profil = sd_profiller.get(isim, {})
                     yas_v  = profil.get("Age", "—")
                     boy_v  = profil.get("Height", "—")
@@ -2892,16 +2890,27 @@ with tab_transfer:
                     if nat_v:
                         nat_v = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_v).split()[0]
 
-                    renk = "#00c853" if isinstance(gpm, float) and gpm <= 1.0 else \
-                           "#ffab00" if isinstance(gpm, float) and gpm <= 2.0 else "#ff6b6b"
+                    if _kaleci_mevki:
+                        r     = kal_dict.get(isim, {})
+                        mac   = r.get("Maç", "—")
+                        gol   = r.get("YenilenGol", "—")
+                        takim = r.get("Takım", "—")
+                        s2    = "Y.Gol"
+                        renk  = "#00c853" if isinstance(gol, (int,float)) and gol <= 1.0 else \
+                                "#ffab00" if isinstance(gol, (int,float)) and gol <= 2.0 else "#ff6b6b"
+                    else:
+                        o     = oyuncu_detay.get(isim, {})
+                        mac   = o.get("mac_sayisi", "—")
+                        gol   = o.get("gol_sayisi", "—")
+                        takim = o.get("takim", "—")
+                        s2    = "Gol"
+                        renk  = "#00c853"
 
-                    istatlar = [(gpm, "G/Maç"), (mac, "Maç"), (yg, "Y.Gol"),
-                                (yas_v, "Yaş"), (boy_v, "Boy"), (nat_v, "Uyruk")]
+                    istatlar = [(mac, "Maç"), (gol, s2), (yas_v, "Yaş"), (boy_v, "Boy"), (nat_v, "Uyruk")]
                     stat_html = "".join(
                         f"<div style='background:#0f1117;border-radius:8px;padding:8px 14px;"
                         f"text-align:center;'>"
-                        f"<div style='font-size:18px;font-weight:700;"
-                        f"color:{renk if lbl == 'G/Maç' else '#e0e0e0'};'>{val}</div>"
+                        f"<div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{val}</div>"
                         f"<div style='font-size:10px;color:#8899aa;'>{lbl}</div></div>"
                         for val, lbl in istatlar
                     )
