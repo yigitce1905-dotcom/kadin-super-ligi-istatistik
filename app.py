@@ -2716,6 +2716,17 @@ _TRANSFER_DB = {
     ("Sol Stoper", "Dusuk",  "Yabancı"):    ["VUSALA HACIYEVA", "SHKURTE MALIQI", "LUSHOMO MWEEMBA"],
     ("Sol Stoper", "Dusuk",  "Farketmez"):  ["SEVİLAY DUMAN", "VUSALA HACIYEVA", "SHKURTE MALIQI"],
 
+    # ── Sol Bek - Sol Kanat Bek ───────────────────────────────────────────
+    ("Sol Bek - Sol Kanat Bek", "Yuksek", "Yerli"):      ["İLAYDA CİVELEK", "RABİA NUR KÜÇÜK", "YELİZ AÇAR"],
+    ("Sol Bek - Sol Kanat Bek", "Yuksek", "Yabancı"):    ["YANA DERKACH", "ZOE VAN EYNDE", "MERTHA TEMBO"],
+    ("Sol Bek - Sol Kanat Bek", "Yuksek", "Farketmez"):  ["İLAYDA CİVELEK", "YANA DERKACH", "RABİA NUR KÜÇÜK"],
+    ("Sol Bek - Sol Kanat Bek", "Orta",   "Yerli"):      ["BENAN ALTINTAŞ", "ÖZNUR TAŞ", "MESUDE ALAYONT"],
+    ("Sol Bek - Sol Kanat Bek", "Orta",   "Yabancı"):    ["NİKOLİNA MİLOVİC", "MARY ATİNUKE SAİKİ"],
+    ("Sol Bek - Sol Kanat Bek", "Orta",   "Farketmez"):  ["BENAN ALTINTAŞ", "ÖZNUR TAŞ", "NİKOLİNA MİLOVİC"],
+    ("Sol Bek - Sol Kanat Bek", "Dusuk",  "Yerli"):      ["BEYZA KOCATÜRK", "ELİF KESGİN", "SILA BESRA TETİK"],
+    ("Sol Bek - Sol Kanat Bek", "Dusuk",  "Yabancı"):    ["OUAFAA HAMRİ", "PRECİOUS ADJWOA HAİZEL"],
+    ("Sol Bek - Sol Kanat Bek", "Dusuk",  "Farketmez"):  ["BEYZA KOCATÜRK", "ELİF KESGİN", "SILA BESRA TETİK"],
+
     # ── Hücumcu Orta Saha ─────────────────────────────────────────────────
     ("Hücumcu Orta Saha", "Yuksek", "Yerli"):      ["BUSEM ŞEKER", "EBRU TOPÇU", "SEVGİ ÇINAR KARAOĞLU"],
     ("Hücumcu Orta Saha", "Yuksek", "Yabancı"):    ["DONJETA HALILAJ", "MILICA MIJATOVIC", "JULIA HICKELSBERGEN FULLER"],
