@@ -2840,8 +2840,8 @@ with tab_transfer:
                 mevki_secenekler = [
                                     "Kaleci",
                                     "Sağ Bek - Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Bek - Sol Kanat Bek",
-                                    "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
-                                    "Sol Kanat", "Sağ Kanat", "Santrafor",
+                                    "Savunmacı Orta Saha", "Merkez Orta Saha ⏳", "Hücumcu Orta Saha ⏳",
+                                    "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳",
                                 ]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
                                      label_visibility="collapsed")
