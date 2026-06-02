@@ -412,10 +412,11 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11, tab12 = st.tabs([
     "📋 Oyuncu Listesi", "👤 Oyuncu Profili", "⚡ Karşılaştırma",
     "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
     "🗺️ Dünya Haritası", "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
+    "🔄 Transfer Öner",
 ])
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -2116,6 +2117,128 @@ with tab11:
                 "<div style='font-size:11px;color:#8899aa;'>"
                 "🟢 ≤1.0 &nbsp; 🟡 1.0–2.0 &nbsp; 🔴 >2.0 &nbsp; G/Maç</div>",
                 unsafe_allow_html=True)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 12 — TRANSFER ÖNER
+# ══════════════════════════════════════════════════════════════════════════════
+
+# Öneri veri tabanı: (mevki, bütçe, tercih) → [oyuncu adları]
+_TRANSFER_DB = {
+    ("Kaleci", "Yüksek 💎", "Yerli"):      ["SELDA AKGÖZ", "GAMZE NUR YAMAN", "GÖKNUR GÜLERYÜZ"],
+    ("Kaleci", "Yüksek 💎", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOE", "ROBERTA APRILE"],
+    ("Kaleci", "Yüksek 💎", "Farketmez"):  ["NATALIA MUNTEANU", "SELDA AKGÖZ", "GAMZE NUR YAMAN"],
+    ("Kaleci", "Orta 🔵",   "Yerli"):      ["EZGİ ÇAĞLAR", "FATMA ŞAHİN", "İREM DAMLA ŞAHİN"],
+    ("Kaleci", "Orta 🔵",   "Yabancı"):    ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "BEATRIZ BUENO NICOLETI"],
+    ("Kaleci", "Orta 🔵",   "Farketmez"):  ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "EZGİ ÇAĞLAR"],
+    ("Kaleci", "Düşük 🟡",  "Yerli"):      ["DUYGU YILMAZ", "HİLAL SUBAY", "SUDE TOPÇU"],
+    ("Kaleci", "Düşük 🟡",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
+    ("Kaleci", "Düşük 🟡",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
+}
+
+with tab12:
+    st.markdown("##### 🔄 Transfer Öner")
+    st.caption("Bütçe ve kriterlere göre lig içi transfer önerisi")
+
+    col_f1, col_f2, col_f3, col_f4 = st.columns([2, 2, 2, 2])
+
+    with col_f1:
+        buton = st.button("🔍 Transfer Öner", use_container_width=True, type="primary")
+
+    if buton or st.session_state.get("transfer_aktif"):
+        st.session_state["transfer_aktif"] = True
+
+        with col_f2:
+            butce = st.selectbox("💰 Bütçe", ["Yüksek 💎", "Orta 🔵", "Düşük 🟡"], key="tr_butce")
+        with col_f3:
+            mevki_sec = st.selectbox("📋 Mevki", ["Kaleci"], key="tr_mevki")
+        with col_f4:
+            tercih = st.selectbox("🌍 Tercih", ["Farketmez", "Yerli", "Yabancı"], key="tr_tercih")
+
+        anahtar = (mevki_sec, butce, tercih)
+        oneriler = _TRANSFER_DB.get(anahtar, [])
+
+        if not oneriler:
+            st.info("Bu kombinasyon için henüz öneri tanımlanmadı.")
+        else:
+            kal_df = kaleci_istatistikleri_hesapla()
+            kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
+
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown(
+                f"<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:16px;'>"
+                f"🏆 {mevki_sec} · {butce} · {tercih} — Önerilen 3 Oyuncu</div>",
+                unsafe_allow_html=True)
+
+            for i, isim in enumerate(oneriler, 1):
+                r = kal_dict.get(isim, {})
+                mac   = r.get("Maç", "—")
+                yg    = r.get("YenilenGol", "—")
+                gpm   = r.get("G/Maç", "—")
+                takim = r.get("Takım", sd_profiller.get(isim, {}).get("profil_url", "Bilinmiyor"))
+
+                profil = sd_profiller.get(isim, {})
+                yas_val = profil.get("Age", "—")
+                boy_val = profil.get("Height", "—")
+                nat_val = profil.get("Nationality", "—")
+                if nat_val:
+                    import re as _re2
+                    nat_val = _re2.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_val).split()[0]
+
+                renk = "#00c853" if isinstance(gpm, float) and gpm <= 1.0 else \
+                       "#ffab00" if isinstance(gpm, float) and gpm <= 2.0 else "#ff6b6b"
+
+                st.markdown(
+                    f"""
+                    <div style='background:#1a1f36;border-radius:12px;padding:18px 22px;
+                                margin-bottom:12px;border-left:4px solid {renk};'>
+                      <div style='font-size:16px;font-weight:800;color:#fff;margin-bottom:6px;'>
+                        {i}. {isim}
+                      </div>
+                      <div style='font-size:12px;color:#8899aa;margin-bottom:10px;'>
+                        🏟 {takim}
+                      </div>
+                      <div style='display:flex;gap:16px;flex-wrap:wrap;'>
+                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
+                          <div style='font-size:18px;font-weight:700;color:{renk};'>{gpm}</div>
+                          <div style='font-size:10px;color:#8899aa;'>G/Maç</div>
+                        </div>
+                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
+                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{mac}</div>
+                          <div style='font-size:10px;color:#8899aa;'>Maç</div>
+                        </div>
+                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
+                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{yg}</div>
+                          <div style='font-size:10px;color:#8899aa;'>Yenilen Gol</div>
+                        </div>
+                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
+                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{yas_val}</div>
+                          <div style='font-size:10px;color:#8899aa;'>Yaş</div>
+                        </div>
+                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
+                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{boy_val}</div>
+                          <div style='font-size:10px;color:#8899aa;'>Boy</div>
+                        </div>
+                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
+                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{nat_val}</div>
+                          <div style='font-size:10px;color:#8899aa;'>Uyruk</div>
+                        </div>
+                      </div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
+
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown(
+                "<div style='background:#1a1f36;border:1px dashed #00c853;border-radius:10px;"
+                "padding:16px;text-align:center;'>"
+                "<div style='color:#00c853;font-weight:700;font-size:14px;'>📄 Transfer Raporu</div>"
+                "<div style='color:#8899aa;font-size:12px;margin-top:4px;'>"
+                "Bu oyuncular için detaylı analiz raporu yakında burada olacak.</div>"
+                "</div>",
+                unsafe_allow_html=True,
+            )
 
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
