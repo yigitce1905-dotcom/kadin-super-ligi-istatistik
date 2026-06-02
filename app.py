@@ -278,7 +278,6 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 
-@st.cache_data(ttl=86400)
 def manuel_yaslar_yukle() -> tuple:
     yol = _DIZIN / "manual_ages.json"
     if not yol.exists():
