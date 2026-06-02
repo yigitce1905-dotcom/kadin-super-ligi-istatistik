@@ -249,7 +249,12 @@ def giris_formu():
 
 
 def pro_kontrol() -> bool:
-    """Oturum açmış kullanıcının PRO yetkisi var mı?"""
+    """Oturum açmış kullanıcının PRO yetkisi var mı?
+    Admin her zaman PRO sayılır; diğerleri kulup_pro flag'ine göre."""
+    if st.session_state.get("kulup_rol") == "admin":
+        return True
+    if st.session_state.get("kulup_kullanici") == "admin":
+        return True
     return st.session_state.get("kulup_pro", False)
 
 
