@@ -6,6 +6,11 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
+try:
+    from groq import Groq as _Groq
+    _GROQ_OK = True
+except ImportError:
+    _GROQ_OK = False
 from bs4 import BeautifulSoup
 
 st.set_page_config(
@@ -2124,6 +2129,83 @@ with tab11:
 # ══════════════════════════════════════════════════════════════════════════════
 
 # Öneri veri tabanı: (mevki, bütçe, tercih) → [oyuncu adları]
+def _groq_client():
+    """Groq istemcisi oluşturur. Hem lokal .env hem Streamlit secrets destekler."""
+    key = None
+    env_yol = _DIZIN / ".env"
+    if env_yol.exists():
+        for line in env_yol.read_text(encoding="utf-8").strip().splitlines():
+            if line.startswith("GROQ_API_KEY="):
+                key = line.split("=", 1)[1].strip()
+                break
+    if not key:
+        key = st.secrets.get("GROQ_API_KEY", "") if hasattr(st, "secrets") else ""
+    if not key or not _GROQ_OK:
+        return None
+    return _Groq(api_key=key)
+
+
+def transfer_raporu_uret(oneriler: list, mevki: str, butce_label: str, tercih: str) -> str:
+    """Verilen öneri listesi için Groq ile transfer raporu üretir."""
+    client = _groq_client()
+    if not client:
+        return "⚠️ Rapor üretilemedi: API bağlantısı kurulamadı."
+
+    kal_df   = kaleci_istatistikleri_hesapla()
+    kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
+
+    oyuncu_verileri = []
+    for isim in oneriler:
+        r      = kal_dict.get(isim, {})
+        profil = sd_profiller.get(isim, {})
+        yas    = _MANUEL_YAS.get(isim)
+        if not yas:
+            try: yas = int(float(str(profil.get("Age","0")).split()[0]))
+            except: yas = "?"
+        nat = _MANUEL_UYRUK.get(isim) or profil.get("Nationality","")
+        nat = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat).split()[0] if nat else "—"
+        oyuncu_verileri.append(
+            f"- {isim} | Takım: {r.get('Takım','—')} | "
+            f"{r.get('Maç','—')} maç, {r.get('YenilenGol','—')} yenilen gol, "
+            f"{r.get('G/Maç','—')} G/Maç | Yaş: {yas} | Uyruk: {nat}"
+        )
+
+    veri_str = "\n".join(oyuncu_verileri)
+
+    prompt = f"""Sen Türkiye Kadın Futbol Süper Ligi uzmanı bir futbol transfer danışmanısın.
+Bütçe: {butce_label} | Mevki: {mevki} | Tercih: {tercih}
+
+ÖNERILEN OYUNCULAR VE İSTATİSTİKLERİ (2025-26 sezonu):
+{veri_str}
+
+Bu üç oyuncu için kısa ve profesyonel bir transfer raporu yaz:
+
+1. Her oyuncu için ayrı paragraf: performans değerlendirmesi (istatistiklere dayan), \
+transferilebilirlik (mevcut takımındaki konumu), risk faktörü.
+2. Sonda 2 cümlelik genel tavsiye: bu üçten hangisi en öncelikli seçenek ve neden?
+
+Kurallar:
+- Sadece Türkçe yaz
+- Oyuncu isimlerini değiştirme
+- Takım büyüklüğünden bahsederken "küçük takım" yerine "orta ölçekli takım" kullan
+- Veri odaklı ol, klişeden kaçın
+- Maksimum 300 kelime"""
+
+    try:
+        r = client.chat.completions.create(
+            model="llama-3.3-70b-versatile",
+            messages=[
+                {"role": "system", "content": "Sen bir futbol transfer danışmanısın. Sadece Türkçe yaz. İstatistikleri kullan. Küçük takım yerine orta ölçekli takım de."},
+                {"role": "user", "content": prompt},
+            ],
+            max_tokens=800,
+            temperature=0.3,
+        )
+        return r.choices[0].message.content
+    except Exception as e:
+        return f"⚠️ Rapor üretilemedi: {e}"
+
+
 _TRANSFER_DB = {
     ("Kaleci", "Yuksek", "Yerli"):      ["SELDA AKGÖZ", "GAMZE NUR YAMAN", "GÖKNUR GÜLERYÜZ"],
     ("Kaleci", "Yuksek", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOE", "ROBERTA APRILE"],
@@ -2291,17 +2373,32 @@ with tab12:
 
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown(
-                "<div style='background:#1a1f36;border:1px dashed #00c853;border-radius:10px;"
-                "padding:18px;text-align:center;'>"
-                "<div style='color:#00c853;font-weight:700;font-size:15px;'>📄 Transfer Raporu</div>"
-                "<div style='color:#8899aa;font-size:12px;margin-top:6px;'>"
-                "Bu oyuncular için detaylı analiz raporu yakında burada olacak.</div>"
+                "<div style='background:#1a1f36;border:1px solid #00c853;border-radius:10px;"
+                "padding:18px;'>"
+                "<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:6px;'>"
+                "📄 Transfer Raporu</div>"
+                "<div style='color:#8899aa;font-size:12px;'>"
+                "Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.</div>"
                 "</div>",
                 unsafe_allow_html=True)
 
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("📄 Raporu Oluştur", type="primary", use_container_width=False):
+                with st.spinner("Rapor hazırlanıyor…"):
+                    rapor = transfer_raporu_uret(oneriler, mevki_sec, butce_label, tercih)
+                st.session_state["tr_rapor"] = rapor
+
+            if st.session_state.get("tr_rapor"):
+                st.markdown(
+                    f"<div style='background:#1a1f36;border-radius:10px;padding:20px;"
+                    f"border-left:4px solid #00c853;margin-top:12px;'>"
+                    f"<div style='color:#fff;font-size:13px;line-height:1.7;white-space:pre-wrap;'>"
+                    f"{st.session_state['tr_rapor']}</div></div>",
+                    unsafe_allow_html=True)
+
         st.markdown("<br>", unsafe_allow_html=True)
         if st.button("🔄 Yeniden Başla", use_container_width=False):
-            for k in ["tr_adim","tr_butce","tr_mevki","tr_tercih"]:
+            for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih","tr_rapor"]:
                 st.session_state.pop(k, None)
             st.rerun()
 
