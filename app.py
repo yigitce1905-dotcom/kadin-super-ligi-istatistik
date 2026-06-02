@@ -630,7 +630,7 @@ tab11      = _tabs[_ti]; _ti += 1
 # ══════════════════════════════════════════════════════════════════════════════
 with tab1:
     if df_tam.empty:
-        st.info("Veri yok."); st.stop()
+        st.info("Veri yok.")
 
     f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
     with f1:
@@ -1946,104 +1946,100 @@ if tab_benim:
                     font=dict(color="#e0e0e0"),
                 )
                 st.plotly_chart(fig_admin, use_container_width=True)
-            st.stop()
 
-        # ── KULÜP GÖRÜNÜMÜ ────────────────────────────────────────
-
-        st.markdown(f"##### 🏟️ {kulup_ad} — Kadro Paneli")
-        st.caption(f"2025-26 sezonu · {kulup_takim}")
-
-        kadro = df_tam[df_tam["Takım"].str.contains(
-            kulup_takim.split()[0], case=False, na=False
-        )].copy() if not df_tam.empty else pd.DataFrame()
-
-        if kadro.empty:
-            st.warning("Kadro verisi bulunamadı.")
         else:
-            # ── Özet kartlar ────────────────────────────────────────
-            k1,k2,k3,k4,k5 = st.columns(5)
-            en_golcu = kadro.loc[kadro["Gol"].idxmax(),"Oyuncu"] if kadro["Gol"].max()>0 else "—"
-            for kol,sayi,etiket in [
-                (k1, len(kadro),                "Oyuncu"),
-                (k2, int(kadro["Gol"].sum()),   "Toplam Gol"),
-                (k3, int(kadro["Maç"].sum()),   "Toplam Maç"),
-                (k4, int(kadro["Dakika"].sum()),"Toplam Dakika"),
-                (k5, en_golcu,                  "En Golcü"),
-            ]:
-                kol.markdown(
-                    f'<div class="stat-kart"><div class="sayi" style="font-size:1.2rem">{sayi}</div>'
-                    f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+            # ── KULÜP GÖRÜNÜMÜ ────────────────────────────────────────
+            st.markdown(f"##### 🏟️ {kulup_ad} — Kadro Paneli")
+            st.caption(f"2025-26 sezonu · {kulup_takim}")
 
-            st.markdown("<br>", unsafe_allow_html=True)
-            col_k, col_g = st.columns([3,2], gap="large")
+            kadro = df_tam[df_tam["Takım"].str.contains(
+                kulup_takim.split()[0], case=False, na=False
+            )].copy() if not df_tam.empty else pd.DataFrame()
 
-            with col_k:
-                st.markdown("**📋 Kadro İstatistikleri**")
-                goster = kadro[["Oyuncu","Mevki","Maç","İlk11","Gol","Gol/Maç","Dakika","Sarı","Kırmızı"]].copy()
-                goster = goster.sort_values("Gol", ascending=False).reset_index(drop=True)
-                goster.index += 1
-                st.dataframe(goster, use_container_width=True, height=460,
-                    column_config={
-                        "Gol": st.column_config.ProgressColumn(
-                            "Gol", min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
-                        "Gol/Maç": st.column_config.NumberColumn(format="%.2f"),
-                    })
+            if kadro.empty:
+                st.warning("Kadro verisi bulunamadı.")
+            else:
+                k1,k2,k3,k4,k5 = st.columns(5)
+                en_golcu = kadro.loc[kadro["Gol"].idxmax(),"Oyuncu"] if kadro["Gol"].max()>0 else "—"
+                for kol,sayi,etiket in [
+                    (k1, len(kadro),                "Oyuncu"),
+                    (k2, int(kadro["Gol"].sum()),   "Toplam Gol"),
+                    (k3, int(kadro["Maç"].sum()),   "Toplam Maç"),
+                    (k4, int(kadro["Dakika"].sum()),"Toplam Dakika"),
+                    (k5, en_golcu,                  "En Golcü"),
+                ]:
+                    kol.markdown(
+                        f'<div class="stat-kart"><div class="sayi" style="font-size:1.2rem">{sayi}</div>'
+                        f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
 
-            with col_g:
-                st.markdown("**📊 Mevki Dağılımı**")
-                mev_dag = kadro["Mevki"].value_counts().reset_index()
-                mev_dag.columns = ["Mevki","Sayı"]
-                renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
-                            "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
-                fig_pie = go.Figure(go.Pie(
-                    labels=mev_dag["Mevki"], values=mev_dag["Sayı"],
-                    marker_colors=[renk_map.get(m,"#8899aa") for m in mev_dag["Mevki"]],
-                    hole=0.45, textinfo="label+value",
-                    textfont=dict(color="#fff", size=12),
-                ))
-                fig_pie.update_layout(
-                    paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
-                    margin=dict(l=10,r=10,t=10,b=10), height=220,
-                    showlegend=False,
-                )
-                st.plotly_chart(fig_pie, use_container_width=True)
+                st.markdown("<br>", unsafe_allow_html=True)
+                col_k, col_g = st.columns([3,2], gap="large")
 
-                st.markdown("**🌍 Uyruk Dağılımı**")
-                uyr_dag = kadro["Uyruk"].value_counts().head(8).reset_index()
-                uyr_dag.columns = ["Uyruk","Sayı"]
-                fig_uyr = go.Figure(go.Bar(
-                    x=uyr_dag["Sayı"], y=uyr_dag["Uyruk"], orientation="h",
-                    marker=dict(color="#00c853"),
-                    text=uyr_dag["Sayı"], textposition="outside",
-                    textfont=dict(color="#e0e0e0", size=11),
-                ))
-                fig_uyr.update_layout(
-                    paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-                    xaxis=dict(showgrid=False,color="#505870"),
-                    yaxis=dict(color="#e0e0e0"),
-                    margin=dict(l=5,r=30,t=5,b=5), height=240,
-                    font=dict(color="#e0e0e0"),
-                )
-                st.plotly_chart(fig_uyr, use_container_width=True)
+                with col_k:
+                    st.markdown("**📋 Kadro İstatistikleri**")
+                    goster = kadro[["Oyuncu","Mevki","Maç","İlk11","Gol","Gol/Maç","Dakika","Sarı","Kırmızı"]].copy()
+                    goster = goster.sort_values("Gol", ascending=False).reset_index(drop=True)
+                    goster.index += 1
+                    st.dataframe(goster, use_container_width=True, height=460,
+                        column_config={
+                            "Gol": st.column_config.ProgressColumn(
+                                "Gol", min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
+                            "Gol/Maç": st.column_config.NumberColumn(format="%.2f"),
+                        })
 
-            # ── Lig karşılaştırması ──────────────────────────────────
-            st.markdown("---")
-            st.markdown("**📊 Takım vs Lig Ortalaması**")
-            lig_ort  = df_tam.groupby("Takım").agg({"Gol":"sum","Maç":"sum","Dakika":"sum"}).mean()
-            takim_ort = kadro.agg({"Gol":"sum","Maç":"sum","Dakika":"sum"})
+                with col_g:
+                    st.markdown("**📊 Mevki Dağılımı**")
+                    mev_dag = kadro["Mevki"].value_counts().reset_index()
+                    mev_dag.columns = ["Mevki","Sayı"]
+                    renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
+                                "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
+                    fig_pie = go.Figure(go.Pie(
+                        labels=mev_dag["Mevki"], values=mev_dag["Sayı"],
+                        marker_colors=[renk_map.get(m,"#8899aa") for m in mev_dag["Mevki"]],
+                        hole=0.45, textinfo="label+value",
+                        textfont=dict(color="#fff", size=12),
+                    ))
+                    fig_pie.update_layout(
+                        paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
+                        margin=dict(l=10,r=10,t=10,b=10), height=220,
+                        showlegend=False,
+                    )
+                    st.plotly_chart(fig_pie, use_container_width=True)
 
-            c1,c2,c3 = st.columns(3)
-            for kol, metrik, birim in [
-                (c1,"Gol","gol"), (c2,"Maç","maç"), (c3,"Dakika","dakika")
-            ]:
-                takim_val = float(takim_ort[metrik])
-                lig_val   = float(lig_ort[metrik])
-                delta     = takim_val - lig_val
-                kol.metric(
-                    label=f"Toplam {metrik}",
-                    value=f"{int(takim_val)} {birim}",
-                    delta=f"{delta:+.0f} lig ort. farkı",
-                )
+                    st.markdown("**🌍 Uyruk Dağılımı**")
+                    uyr_dag = kadro["Uyruk"].value_counts().head(8).reset_index()
+                    uyr_dag.columns = ["Uyruk","Sayı"]
+                    fig_uyr = go.Figure(go.Bar(
+                        x=uyr_dag["Sayı"], y=uyr_dag["Uyruk"], orientation="h",
+                        marker=dict(color="#00c853"),
+                        text=uyr_dag["Sayı"], textposition="outside",
+                        textfont=dict(color="#e0e0e0", size=11),
+                    ))
+                    fig_uyr.update_layout(
+                        paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                        xaxis=dict(showgrid=False,color="#505870"),
+                        yaxis=dict(color="#e0e0e0"),
+                        margin=dict(l=5,r=30,t=5,b=5), height=240,
+                        font=dict(color="#e0e0e0"),
+                    )
+                    st.plotly_chart(fig_uyr, use_container_width=True)
+
+                st.markdown("---")
+                st.markdown("**📊 Takım vs Lig Ortalaması**")
+                lig_ort   = df_tam.groupby("Takım").agg({"Gol":"sum","Maç":"sum","Dakika":"sum"}).mean()
+                takim_ort = kadro.agg({"Gol":"sum","Maç":"sum","Dakika":"sum"})
+                c1,c2,c3 = st.columns(3)
+                for kol, metrik, birim in [
+                    (c1,"Gol","gol"), (c2,"Maç","maç"), (c3,"Dakika","dakika")
+                ]:
+                    takim_val = float(takim_ort[metrik])
+                    lig_val   = float(lig_ort[metrik])
+                    delta     = takim_val - lig_val
+                    kol.metric(
+                        label=f"Toplam {metrik}",
+                        value=f"{int(takim_val)} {birim}",
+                        delta=f"{delta:+.0f} lig ort. farkı",
+                    )
 
 
 # ══════════════════════════════════════════════════════════════════════════════
