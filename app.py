@@ -230,20 +230,114 @@ def giris_formu():
     """Sidebar'da giriş formu gösterir."""
     if st.session_state.get("kulup_giris"):
         return
-    with st.sidebar.expander("🔐 Kulüp Girişi", expanded=False):
+    with st.sidebar.expander("🔐 Giriş", expanded=False):
         with st.form("giris_form", clear_on_submit=True):
             ku = st.text_input("Kullanıcı adı", placeholder="fenerbahce")
             si = st.text_input("Şifre", type="password", placeholder="••••")
             if st.form_submit_button("Giriş Yap", use_container_width=True):
                 sonuc = giris_dogrula(ku.strip(), si.strip())
                 if sonuc:
-                    st.session_state["kulup_giris"] = True
+                    st.session_state["kulup_giris"]    = True
                     st.session_state["kulup_kullanici"] = ku.strip()
                     st.session_state["kulup_takim"]    = sonuc["takim"]
                     st.session_state["kulup_ad"]       = sonuc["ad"]
+                    st.session_state["kulup_rol"]      = sonuc.get("rol", "kulup")
+                    st.session_state["kulup_pro"]      = sonuc.get("pro", False)
                     st.rerun()
                 else:
                     st.error("Kullanıcı adı veya şifre hatalı.")
+
+
+def pro_kontrol() -> bool:
+    """Oturum açmış kullanıcının PRO yetkisi var mı?"""
+    return st.session_state.get("kulup_pro", False)
+
+
+_PRO_OZELLIKLER = [
+    ("🗄️", "Tüm Oyuncu Veri Tabanına Erişim",          "Süper Lig'deki her oyuncunun tam istatistik geçmişi"),
+    ("📊", "Sıralanabilir Gelişmiş İstatistikler",      "Maç, gol, dakika, kart — tüm metrikler anlık sıralama"),
+    ("🔍", "Akıllı Oyuncu Arama",                       "Uyruk, yaş aralığı, mevki ve performansa göre filtrele"),
+    ("⭐", "Oyuncu Listem — Favori Kaydetme",            "Takip ettiğin oyuncuları kişisel listende topla"),
+    ("📝", "Not Ekle + PDF Yazdır / Kaydet",            "Her oyuncu kartına özel not ekle, raporunu dışa aktar"),
+    ("🏗️", "Stratejik Kadro Planlama Desteği",          "Bütçe ve ihtiyaca göre akıllı kadro kurma senaryoları"),
+    ("🔄", "Talep Üzerine Oyuncu Önerileri",            "Tek tıkla mevki + bütçe bazlı transfer öneri motoru"),
+    ("🎯", "Talep Üzerine Oyuncu Değerlendirmesi",      "AI destekli detaylı bireysel oyuncu analiz raporu"),
+    ("🎬", "Video Analizleri",                          "Seçili oyuncular için maç klibi ve taktik breakdown"),
+    ("🔑", "365 Gün Kesintisiz Erişim",                 "Tüm sezon boyunca platform sınırsız kullanım"),
+]
+
+
+def pro_paywall_goster(ozellik_adi: str = "Bu özellik"):
+    """PRO üyelik satın alma sayfasını gösterir."""
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    ozellik_satiri = "".join(
+        f"<div style='display:flex;align-items:flex-start;gap:12px;padding:10px 0;"
+        f"border-bottom:1px solid #1e2340;'>"
+        f"<span style='font-size:1.3rem;min-width:28px;text-align:center;'>{ikon}</span>"
+        f"<div><div style='color:#fff;font-weight:600;font-size:0.92rem;'>{baslik}</div>"
+        f"<div style='color:#8899aa;font-size:0.78rem;margin-top:2px;'>{aciklama}</div></div>"
+        f"</div>"
+        for ikon, baslik, aciklama in _PRO_OZELLIKLER
+    )
+
+    st.markdown(
+        f"""
+        <div style='max-width:640px;margin:0 auto;'>
+
+          <!-- Kilitli uyarısı -->
+          <div style='background:#1a1f36;border:1px solid #f0a50044;border-radius:12px;
+               padding:16px 22px;display:flex;align-items:center;gap:14px;margin-bottom:28px;'>
+            <span style='font-size:1.6rem;'>🔒</span>
+            <div>
+              <div style='color:#f0c040;font-weight:700;font-size:0.95rem;'>{ozellik_adi} PRO üyelik gerektirir</div>
+              <div style='color:#8899aa;font-size:0.8rem;margin-top:3px;'>
+                Aşağıdaki paketi aktifleştirerek tüm özelliklere anında erişebilirsiniz.
+              </div>
+            </div>
+          </div>
+
+          <!-- Fiyat kartı -->
+          <div style='background:linear-gradient(135deg,#0d2b1e 0%,#1a1f36 100%);
+               border:2px solid #00c853;border-radius:16px;padding:28px 32px;margin-bottom:28px;
+               text-align:center;'>
+            <div style='font-size:0.8rem;color:#00c853;letter-spacing:2px;font-weight:700;
+                 text-transform:uppercase;margin-bottom:8px;'>⚡ PRO Paket</div>
+            <div style='font-size:2.8rem;font-weight:900;color:#fff;line-height:1;'>
+              4.999 <span style='font-size:1.4rem;color:#8899aa;'>TL</span>
+            </div>
+            <div style='color:#8899aa;font-size:0.82rem;margin-top:4px;'>aylık · KDV dahil</div>
+            <div style='margin-top:18px;'>
+              <span style='background:#00c853;color:#000;font-weight:700;font-size:0.85rem;
+                   border-radius:8px;padding:10px 28px;display:inline-block;'>
+                Satın Al — Hemen Başla
+              </span>
+            </div>
+            <div style='color:#505870;font-size:0.75rem;margin-top:10px;'>
+              İptal prosedürü yok · İstediğin an durdur
+            </div>
+          </div>
+
+          <!-- Özellik listesi -->
+          <div style='background:#12161f;border-radius:12px;padding:20px 24px;'>
+            <div style='color:#fff;font-weight:700;font-size:0.9rem;margin-bottom:4px;'>
+              PRO pakete dahil olanlar:
+            </div>
+            {ozellik_satiri}
+          </div>
+
+          <!-- Alt not -->
+          <div style='text-align:center;margin-top:20px;color:#505870;font-size:0.78rem;'>
+            Kurumsal teklif veya demo için
+            <a href='mailto:info@heroyun.com' style='color:#00c853;text-decoration:none;'>
+              info@heroyun.com
+            </a> adresine yazın.
+          </div>
+
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 
 @st.cache_data(ttl=3600)
@@ -457,7 +551,7 @@ with nav1:
     if st.button("🏠 Ana Sayfa", use_container_width=True):
         st.query_params.clear()
         for k in list(st.session_state.keys()):
-            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad"):
+            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
         st.rerun()
@@ -476,7 +570,7 @@ with nav4:
     if st.session_state.get("kulup_giris"):
         kulup_ad = st.session_state.get("kulup_ad","")
         if st.button(f"🚪 {kulup_ad}", use_container_width=True):
-            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad"]:
+            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
                 st.session_state.pop(k, None)
             st.rerun()
     else:
@@ -486,6 +580,21 @@ with nav4:
 
 # Giriş formu sidebar'da her zaman
 giris_formu()
+
+# PRO / üye rozeti sidebar'da göster
+if st.session_state.get("kulup_giris"):
+    _is_pro = st.session_state.get("kulup_pro", False)
+    _badge_bg  = "#0d3b2e" if _is_pro else "#1a1f36"
+    _badge_bdr = "#00c853" if _is_pro else "#445566"
+    _badge_lbl = "⚡ PRO Üye" if _is_pro else "🔓 Üye"
+    _badge_clr = "#00c853"  if _is_pro else "#8899aa"
+    st.sidebar.markdown(
+        f"<div style='background:{_badge_bg};border:1px solid {_badge_bdr};"
+        f"border-radius:8px;padding:8px 14px;text-align:center;margin-top:4px;'>"
+        f"<span style='color:{_badge_clr};font-size:0.8rem;font-weight:700;'>{_badge_lbl}</span>"
+        f"</div>",
+        unsafe_allow_html=True,
+    )
 
 # ─── GİRİŞ GEREKLİ — giriş yoksa sadece login ekranı göster ─────────────────
 if not st.session_state.get("kulup_giris"):
@@ -2192,112 +2301,115 @@ with tab_genç:
 # SEKME 9 — GELİŞMİŞ OYUNCU ARAMA
 # ══════════════════════════════════════════════════════════════════════════════
 with tab9:
-    st.markdown("##### 🔍 Gelişmiş Oyuncu Arama")
-    st.caption("Uyruk, mevki, yaş ve maç sayısına göre filtrele")
-
-    if df_tam.empty:
-        st.warning("Veri yok.")
+    if not pro_kontrol():
+        pro_paywall_goster("🔍 Gelişmiş Arama")
     else:
-        fa1, fa2, fa3 = st.columns([2, 2, 2])
-        fb1, fb2, fb3, fb4 = st.columns([2, 2, 2, 2])
+        st.markdown("##### 🔍 Gelişmiş Oyuncu Arama")
+        st.caption("Uyruk, mevki, yaş ve maç sayısına göre filtrele")
 
-        all_nats = sorted(df_tam["Uyruk"].dropna().replace("", pd.NA).dropna().unique())
-        all_pos  = sorted(df_tam["Mevki"].dropna().replace("Bilinmiyor", pd.NA).dropna().unique())
-
-        with fa1:
-            sel_nats = st.multiselect("🌍 Uyruk", all_nats, placeholder="Tümü", key="as_nat")
-        with fa2:
-            sel_pos = st.multiselect("📋 Mevki", all_pos, placeholder="Tümü", key="as_pos")
-        with fa3:
-            isim_q = st.text_input("👤 İsim", placeholder="Ara…", key="as_isim")
-
-        yas_vals = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
-        yas_min = int(yas_vals.min()) if not yas_vals.empty else 15
-        yas_max = int(yas_vals.max()) if not yas_vals.empty else 40
-        mac_max = int(df_tam["Maç"].max()) if not df_tam.empty else 30
-
-        with fb1:
-            yas_range = st.slider("🎂 Yaş", yas_min, yas_max, (yas_min, yas_max), key="as_yas")
-        with fb2:
-            min_mac = st.slider("📅 Min. Maç", 0, mac_max, 0, key="as_mac")
-        with fb3:
-            min_gol = st.slider("⚽ Min. Gol", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
-        with fb4:
-            sort_by = st.selectbox("Sırala", ["Maç ↓", "Gol ↓", "Dakika ↓", "Yaş ↑", "Oyuncu ↑"], key="as_sort")
-
-        mask = pd.Series(True, index=df_tam.index)
-        if sel_nats:
-            mask &= df_tam["Uyruk"].isin(sel_nats)
-        if sel_pos:
-            mask &= df_tam["Mevki"].isin(sel_pos)
-        if isim_q.strip():
-            mask &= df_tam["Oyuncu"].str.contains(isim_q.strip(), case=False, na=False)
-        mask &= df_tam["Maç"] >= min_mac
-        mask &= df_tam["Gol"] >= min_gol
-        if "Yaş" in df_tam.columns and not yas_vals.empty:
-            yas_mask = df_tam["Yaş"].isna() | df_tam["Yaş"].between(yas_range[0], yas_range[1])
-            mask &= yas_mask
-
-        filtered = df_tam[mask].copy()
-        sort_map = {"Maç ↓": ("Maç", False), "Gol ↓": ("Gol", False),
-                    "Dakika ↓": ("Dakika", False), "Yaş ↑": ("Yaş", True), "Oyuncu ↑": ("Oyuncu", True)}
-        sc, sa = sort_map[sort_by]
-        filtered = filtered.sort_values(sc, ascending=sa).reset_index(drop=True)
-
-        st.markdown(
-            f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0;'>"
-            f"🎯 {len(filtered)} oyuncu bulundu</div>", unsafe_allow_html=True)
-
-        if filtered.empty:
-            st.info("Filtrelerle eşleşen oyuncu yok.")
+        if df_tam.empty:
+            st.warning("Veri yok.")
         else:
-            show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Yaş", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
-            show = [c for c in show if c in filtered.columns]
-            st.dataframe(filtered[show], hide_index=True, use_container_width=True,
-                height=min(600, 45 + len(filtered) * 35),
-                column_config={"Yaş": st.column_config.NumberColumn(format="%.0f")})
+            fa1, fa2, fa3 = st.columns([2, 2, 2])
+            fb1, fb2, fb3, fb4 = st.columns([2, 2, 2, 2])
+
+            all_nats = sorted(df_tam["Uyruk"].dropna().replace("", pd.NA).dropna().unique())
+            all_pos  = sorted(df_tam["Mevki"].dropna().replace("Bilinmiyor", pd.NA).dropna().unique())
+
+            with fa1:
+                sel_nats = st.multiselect("🌍 Uyruk", all_nats, placeholder="Tümü", key="as_nat")
+            with fa2:
+                sel_pos = st.multiselect("📋 Mevki", all_pos, placeholder="Tümü", key="as_pos")
+            with fa3:
+                isim_q = st.text_input("👤 İsim", placeholder="Ara…", key="as_isim")
+
+            yas_vals = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
+            yas_min = int(yas_vals.min()) if not yas_vals.empty else 15
+            yas_max = int(yas_vals.max()) if not yas_vals.empty else 40
+            mac_max = int(df_tam["Maç"].max()) if not df_tam.empty else 30
+
+            with fb1:
+                yas_range = st.slider("🎂 Yaş", yas_min, yas_max, (yas_min, yas_max), key="as_yas")
+            with fb2:
+                min_mac = st.slider("📅 Min. Maç", 0, mac_max, 0, key="as_mac")
+            with fb3:
+                min_gol = st.slider("⚽ Min. Gol", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
+            with fb4:
+                sort_by = st.selectbox("Sırala", ["Maç ↓", "Gol ↓", "Dakika ↓", "Yaş ↑", "Oyuncu ↑"], key="as_sort")
+
+            mask = pd.Series(True, index=df_tam.index)
+            if sel_nats:
+                mask &= df_tam["Uyruk"].isin(sel_nats)
+            if sel_pos:
+                mask &= df_tam["Mevki"].isin(sel_pos)
+            if isim_q.strip():
+                mask &= df_tam["Oyuncu"].str.contains(isim_q.strip(), case=False, na=False)
+            mask &= df_tam["Maç"] >= min_mac
+            mask &= df_tam["Gol"] >= min_gol
+            if "Yaş" in df_tam.columns and not yas_vals.empty:
+                yas_mask = df_tam["Yaş"].isna() | df_tam["Yaş"].between(yas_range[0], yas_range[1])
+                mask &= yas_mask
+
+            filtered = df_tam[mask].copy()
+            sort_map = {"Maç ↓": ("Maç", False), "Gol ↓": ("Gol", False),
+                        "Dakika ↓": ("Dakika", False), "Yaş ↑": ("Yaş", True), "Oyuncu ↑": ("Oyuncu", True)}
+            sc, sa = sort_map[sort_by]
+            filtered = filtered.sort_values(sc, ascending=sa).reset_index(drop=True)
+
+            st.markdown(
+                f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0;'>"
+                f"🎯 {len(filtered)} oyuncu bulundu</div>", unsafe_allow_html=True)
+
+            if filtered.empty:
+                st.info("Filtrelerle eşleşen oyuncu yok.")
+            else:
+                show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Yaş", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
+                show = [c for c in show if c in filtered.columns]
+                st.dataframe(filtered[show], hide_index=True, use_container_width=True,
+                    height=min(600, 45 + len(filtered) * 35),
+                    column_config={"Yaş": st.column_config.NumberColumn(format="%.0f")})
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# SEKME 10 — YAŞ ANALİZİ
-# ══════════════════════════════════════════════════════════════════════════════
-def _yas_df():
-    """soccerdonna_profiller.json'dan yaş verisi üretir."""
-    rows = []
-    # Manuel override'ları ekle
-    for isim, age_num in _MANUEL_YAS.items():
-        rows.append({
-            "isim": isim,
-            "born_dt": pd.NaT,
-            "yas": age_num,
-            "dogum_yili": None,
-        })
-    already = {r["isim"] for r in rows}
+    # ══════════════════════════════════════════════════════════════════════════════
+    # SEKME 10 — YAŞ ANALİZİ
+    # ══════════════════════════════════════════════════════════════════════════════
+    def _yas_df():
+        """soccerdonna_profiller.json'dan yaş verisi üretir."""
+        rows = []
+        # Manuel override'ları ekle
+        for isim, age_num in _MANUEL_YAS.items():
+            rows.append({
+                "isim": isim,
+                "born_dt": pd.NaT,
+                "yas": age_num,
+                "dogum_yili": None,
+            })
+        already = {r["isim"] for r in rows}
 
-    for isim, profil in sd_profiller.items():
-        if isim in already:
-            continue
-        dob = profil.get("Date of birth", "")
-        age_str = profil.get("Age", "")
-        try:
-            born_dt = pd.to_datetime(dob, dayfirst=True, errors="coerce")
-            age_num = float(str(age_str).split()[0]) if age_str else None
-        except Exception:
-            born_dt, age_num = pd.NaT, None
-        # Mantıksız yaş değerlerini filtrele (15-40 dışı)
-        if age_num is not None and not (15 <= age_num <= 40):
-            continue
-        rows.append({
-            "isim": isim,
-            "born_dt": born_dt,
-            "yas": age_num,
-            "dogum_yili": born_dt.year if not pd.isna(born_dt) else None,
-        })
-    df = pd.DataFrame(rows).dropna(subset=["yas"])
-    # oyuncular.json'daki takım bilgisini birleştir
-    takim_map = dict(zip(df_tam["Oyuncu"], df_tam["Takım"])) if not df_tam.empty else {}
-    df["takim"] = df["isim"].map(takim_map).fillna("Bilinmiyor")
-    return df
+        for isim, profil in sd_profiller.items():
+            if isim in already:
+                continue
+            dob = profil.get("Date of birth", "")
+            age_str = profil.get("Age", "")
+            try:
+                born_dt = pd.to_datetime(dob, dayfirst=True, errors="coerce")
+                age_num = float(str(age_str).split()[0]) if age_str else None
+            except Exception:
+                born_dt, age_num = pd.NaT, None
+            # Mantıksız yaş değerlerini filtrele (15-40 dışı)
+            if age_num is not None and not (15 <= age_num <= 40):
+                continue
+            rows.append({
+                "isim": isim,
+                "born_dt": born_dt,
+                "yas": age_num,
+                "dogum_yili": born_dt.year if not pd.isna(born_dt) else None,
+            })
+        df = pd.DataFrame(rows).dropna(subset=["yas"])
+        # oyuncular.json'daki takım bilgisini birleştir
+        takim_map = dict(zip(df_tam["Oyuncu"], df_tam["Takım"])) if not df_tam.empty else {}
+        df["takim"] = df["isim"].map(takim_map).fillna("Bilinmiyor")
+        return df
 
 with tab10:
     st.markdown("##### 🎂 Yaş Analizi")
@@ -2590,188 +2702,190 @@ _TRANSFER_DB = {
 }
 
 with tab_transfer:
-    st.markdown("##### 🔄 Transfer Öner")
-    st.caption("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi")
+    if not pro_kontrol():
+        pro_paywall_goster("Transfer Öner")
+    else:
+        st.markdown("##### 🔄 Transfer Öner")
+        st.caption("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi")
 
-    # Session state başlat
-    if "tr_adim" not in st.session_state:
-        st.session_state["tr_adim"] = 0
+        if "tr_adim" not in st.session_state:
+            st.session_state["tr_adim"] = 0
 
-    adim = st.session_state["tr_adim"]
+        adim = st.session_state["tr_adim"]
 
-    # ── ADIM 0: Başlangıç ───────────────────────────────────────────
-    if adim == 0:
-        st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown(
-            "<div style='text-align:center;padding:40px 0 20px;'>"
-            "<div style='font-size:40px;'>🔄</div>"
-            "<div style='font-size:20px;font-weight:700;color:#fff;margin-top:12px;'>Transfer Asistanı</div>"
-            "<div style='font-size:13px;color:#8899aa;margin-top:8px;'>"
-            "Takımınızın ihtiyacına göre lig içi transfer önerisi alın.</div>"
-            "</div>",
-            unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-        col_b = st.columns([1, 2, 1])[1]
-        with col_b:
-            if st.button("🚀 Başla", use_container_width=True, type="primary"):
-                st.session_state["tr_adim"] = 1
-                st.rerun()
-
-    # ── ADIM 1: Bütçe seç ───────────────────────────────────────────
-    elif adim == 1:
-        st.markdown("### Adım 1 / 3 &nbsp; 💰 Bütçenizi seçin")
-        st.markdown("<br>", unsafe_allow_html=True)
-        c1, c2, c3 = st.columns(3)
-        with c1:
-            if st.button("💎 Yüksek\n\nBüyük kulüp transferi", use_container_width=True):
-                st.session_state["tr_butce"]      = "Yuksek"
-                st.session_state["tr_butce_label"] = "Yüksek 💎"
-                st.session_state["tr_adim"]        = 2
-                st.rerun()
-        with c2:
-            if st.button("🔵 Orta\n\nOrta ölçekli transfer", use_container_width=True):
-                st.session_state["tr_butce"]      = "Orta"
-                st.session_state["tr_butce_label"] = "Orta 🔵"
-                st.session_state["tr_adim"]        = 2
-                st.rerun()
-        with c3:
-            if st.button("🟡 Düşük\n\nBütçe dostu transfer", use_container_width=True):
-                st.session_state["tr_butce"]      = "Dusuk"
-                st.session_state["tr_butce_label"] = "Düşük 🟡"
-                st.session_state["tr_adim"]        = 2
-                st.rerun()
-
-    # ── ADIM 2: Mevki + tercih ──────────────────────────────────────
-    elif adim == 2:
-        butce       = st.session_state.get("tr_butce", "")
-        butce_label = st.session_state.get("tr_butce_label", butce)
-        st.markdown(f"### Adım 2 / 3 &nbsp; 📋 Mevki ve tercih")
-        st.markdown(f"<div style='color:#8899aa;font-size:13px;'>Bütçe: <b style='color:#00c853'>{butce_label}</b></div>", unsafe_allow_html=True)
-        st.markdown("<br>", unsafe_allow_html=True)
-
-        col_m, col_t = st.columns(2)
-        with col_m:
-            st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
-            mevki_secenekler = ["Kaleci", "Sağ Bek ⏳", "Stoper ⏳", "Sol Bek ⏳",
-                                "Ön Libero ⏳", "Merkez Orta Saha ⏳",
-                                "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳"]
-            mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
-                                 label_visibility="collapsed")
-
-        with col_t:
-            st.markdown("**Oyuncu tercihiniz?**")
-            tercih = st.radio("", ["Farketmez", "Yerli", "Yabancı"],
-                              key="tr_tercih_radio", label_visibility="collapsed")
-
-        st.markdown("<br>", unsafe_allow_html=True)
-        col_geri, col_ileri = st.columns([1, 3])
-        with col_geri:
-            if st.button("← Geri", use_container_width=True):
-                st.session_state["tr_adim"] = 1
-                st.rerun()
-        with col_ileri:
-            aktif = "⏳" not in mevki_sec
-            if st.button("Önerileri Gör →", use_container_width=True,
-                         type="primary", disabled=not aktif):
-                st.session_state["tr_mevki"]  = mevki_sec
-                st.session_state["tr_tercih"] = tercih
-                st.session_state["tr_adim"]   = 3
-                st.rerun()
-            if not aktif:
-                st.caption("⏳ Bu mevki için senaryolar yakında eklenecek.")
-
-    # ── ADIM 3: Sonuçlar ────────────────────────────────────────────
-    elif adim == 3:
-        butce       = st.session_state.get("tr_butce", "")
-        butce_label = st.session_state.get("tr_butce_label", butce)
-        mevki_sec   = st.session_state.get("tr_mevki", "")
-        tercih      = st.session_state.get("tr_tercih", "")
-
-        st.markdown(
-            f"<div style='color:#8899aa;font-size:13px;margin-bottom:16px;'>"
-            f"💰 {butce_label} &nbsp;·&nbsp; 📋 {mevki_sec} &nbsp;·&nbsp; 🌍 {tercih}</div>",
-            unsafe_allow_html=True)
-
-        anahtar  = (mevki_sec, butce, tercih)
-        oneriler = _TRANSFER_DB.get(anahtar, [])
-
-        if not oneriler:
-            st.info("Bu kombinasyon için henüz öneri tanımlanmadı.")
-        else:
-            kal_df   = kaleci_istatistikleri_hesapla()
-            kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
-
-            st.markdown(
-                f"<div style='color:#00c853;font-weight:700;font-size:16px;margin-bottom:20px;'>"
-                f"🏆 Önerilen 3 Oyuncu</div>",
-                unsafe_allow_html=True)
-
-            for i, isim in enumerate(oneriler, 1):
-                r      = kal_dict.get(isim, {})
-                mac    = r.get("Maç", "—")
-                yg     = r.get("YenilenGol", "—")
-                gpm    = r.get("G/Maç", "—")
-                takim  = r.get("Takım", "—")
-                profil = sd_profiller.get(isim, {})
-                yas_v  = profil.get("Age", "—")
-                boy_v  = profil.get("Height", "—")
-                nat_v  = profil.get("Nationality", "—")
-                if nat_v:
-                    nat_v = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_v).split()[0]
-
-                renk = "#00c853" if isinstance(gpm, float) and gpm <= 1.0 else \
-                       "#ffab00" if isinstance(gpm, float) and gpm <= 2.0 else "#ff6b6b"
-
-                istatlar = [(gpm, "G/Maç"), (mac, "Maç"), (yg, "Y.Gol"),
-                            (yas_v, "Yaş"), (boy_v, "Boy"), (nat_v, "Uyruk")]
-                stat_html = "".join(
-                    f"<div style='background:#0f1117;border-radius:8px;padding:8px 14px;"
-                    f"text-align:center;'>"
-                    f"<div style='font-size:18px;font-weight:700;"
-                    f"color:{renk if lbl == 'G/Maç' else '#e0e0e0'};'>{val}</div>"
-                    f"<div style='font-size:10px;color:#8899aa;'>{lbl}</div></div>"
-                    for val, lbl in istatlar
-                )
-                st.markdown(
-                    f"<div style='background:#1a1f36;border-radius:12px;padding:18px 22px;"
-                    f"margin-bottom:14px;border-left:4px solid {renk};'>"
-                    f"<div style='font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;'>"
-                    f"{i}. {isim}</div>"
-                    f"<div style='font-size:12px;color:#8899aa;margin-bottom:12px;'>🏟 {takim}</div>"
-                    f"<div style='display:flex;gap:12px;flex-wrap:wrap;'>{stat_html}</div>"
-                    f"</div>",
-                    unsafe_allow_html=True)
-
+        # ── ADIM 0: Başlangıç ───────────────────────────────────────────
+        if adim == 0:
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown(
-                "<div style='background:#1a1f36;border:1px solid #00c853;border-radius:10px;"
-                "padding:18px;'>"
-                "<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:6px;'>"
-                "📄 Transfer Raporu</div>"
-                "<div style='color:#8899aa;font-size:12px;'>"
-                "Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.</div>"
+                "<div style='text-align:center;padding:40px 0 20px;'>"
+                "<div style='font-size:40px;'>🔄</div>"
+                "<div style='font-size:20px;font-weight:700;color:#fff;margin-top:12px;'>Transfer Asistanı</div>"
+                "<div style='font-size:13px;color:#8899aa;margin-top:8px;'>"
+                "Takımınızın ihtiyacına göre lig içi transfer önerisi alın.</div>"
                 "</div>",
                 unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+            col_b = st.columns([1, 2, 1])[1]
+            with col_b:
+                if st.button("🚀 Başla", use_container_width=True, type="primary"):
+                    st.session_state["tr_adim"] = 1
+                    st.rerun()
+
+        # ── ADIM 1: Bütçe seç ───────────────────────────────────────────
+        elif adim == 1:
+            st.markdown("### Adım 1 / 3 &nbsp; 💰 Bütçenizi seçin")
+            st.markdown("<br>", unsafe_allow_html=True)
+            c1, c2, c3 = st.columns(3)
+            with c1:
+                if st.button("💎 Yüksek\n\nBüyük kulüp transferi", use_container_width=True):
+                    st.session_state["tr_butce"]      = "Yuksek"
+                    st.session_state["tr_butce_label"] = "Yüksek 💎"
+                    st.session_state["tr_adim"]        = 2
+                    st.rerun()
+            with c2:
+                if st.button("🔵 Orta\n\nOrta ölçekli transfer", use_container_width=True):
+                    st.session_state["tr_butce"]      = "Orta"
+                    st.session_state["tr_butce_label"] = "Orta 🔵"
+                    st.session_state["tr_adim"]        = 2
+                    st.rerun()
+            with c3:
+                if st.button("🟡 Düşük\n\nBütçe dostu transfer", use_container_width=True):
+                    st.session_state["tr_butce"]      = "Dusuk"
+                    st.session_state["tr_butce_label"] = "Düşük 🟡"
+                    st.session_state["tr_adim"]        = 2
+                    st.rerun()
+
+        # ── ADIM 2: Mevki + tercih ──────────────────────────────────────
+        elif adim == 2:
+            butce       = st.session_state.get("tr_butce", "")
+            butce_label = st.session_state.get("tr_butce_label", butce)
+            st.markdown(f"### Adım 2 / 3 &nbsp; 📋 Mevki ve tercih")
+            st.markdown(f"<div style='color:#8899aa;font-size:13px;'>Bütçe: <b style='color:#00c853'>{butce_label}</b></div>", unsafe_allow_html=True)
+            st.markdown("<br>", unsafe_allow_html=True)
+
+            col_m, col_t = st.columns(2)
+            with col_m:
+                st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
+                mevki_secenekler = ["Kaleci", "Sağ Bek ⏳", "Stoper ⏳", "Sol Bek ⏳",
+                                    "Ön Libero ⏳", "Merkez Orta Saha ⏳",
+                                    "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳"]
+                mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
+                                     label_visibility="collapsed")
+
+            with col_t:
+                st.markdown("**Oyuncu tercihiniz?**")
+                tercih = st.radio("", ["Farketmez", "Yerli", "Yabancı"],
+                                  key="tr_tercih_radio", label_visibility="collapsed")
 
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("📄 Raporu Oluştur", type="primary", use_container_width=False):
-                with st.spinner("Rapor hazırlanıyor…"):
-                    rapor = transfer_raporu_uret(oneriler, mevki_sec, butce_label, tercih)
-                st.session_state["tr_rapor"] = rapor
+            col_geri, col_ileri = st.columns([1, 3])
+            with col_geri:
+                if st.button("← Geri", use_container_width=True):
+                    st.session_state["tr_adim"] = 1
+                    st.rerun()
+            with col_ileri:
+                aktif = "⏳" not in mevki_sec
+                if st.button("Önerileri Gör →", use_container_width=True,
+                             type="primary", disabled=not aktif):
+                    st.session_state["tr_mevki"]  = mevki_sec
+                    st.session_state["tr_tercih"] = tercih
+                    st.session_state["tr_adim"]   = 3
+                    st.rerun()
+                if not aktif:
+                    st.caption("⏳ Bu mevki için senaryolar yakında eklenecek.")
 
-            if st.session_state.get("tr_rapor"):
+        # ── ADIM 3: Sonuçlar ────────────────────────────────────────────
+        elif adim == 3:
+            butce       = st.session_state.get("tr_butce", "")
+            butce_label = st.session_state.get("tr_butce_label", butce)
+            mevki_sec   = st.session_state.get("tr_mevki", "")
+            tercih      = st.session_state.get("tr_tercih", "")
+
+            st.markdown(
+                f"<div style='color:#8899aa;font-size:13px;margin-bottom:16px;'>"
+                f"💰 {butce_label} &nbsp;·&nbsp; 📋 {mevki_sec} &nbsp;·&nbsp; 🌍 {tercih}</div>",
+                unsafe_allow_html=True)
+
+            anahtar  = (mevki_sec, butce, tercih)
+            oneriler = _TRANSFER_DB.get(anahtar, [])
+
+            if not oneriler:
+                st.info("Bu kombinasyon için henüz öneri tanımlanmadı.")
+            else:
+                kal_df   = kaleci_istatistikleri_hesapla()
+                kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
+
                 st.markdown(
-                    f"<div style='background:#1a1f36;border-radius:10px;padding:20px;"
-                    f"border-left:4px solid #00c853;margin-top:12px;'>"
-                    f"<div style='color:#fff;font-size:13px;line-height:1.7;white-space:pre-wrap;'>"
-                    f"{st.session_state['tr_rapor']}</div></div>",
+                    f"<div style='color:#00c853;font-weight:700;font-size:16px;margin-bottom:20px;'>"
+                    f"🏆 Önerilen 3 Oyuncu</div>",
                     unsafe_allow_html=True)
 
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.button("🔄 Yeniden Başla", use_container_width=False):
-            for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih","tr_rapor"]:
-                st.session_state.pop(k, None)
-            st.rerun()
+                for i, isim in enumerate(oneriler, 1):
+                    r      = kal_dict.get(isim, {})
+                    mac    = r.get("Maç", "—")
+                    yg     = r.get("YenilenGol", "—")
+                    gpm    = r.get("G/Maç", "—")
+                    takim  = r.get("Takım", "—")
+                    profil = sd_profiller.get(isim, {})
+                    yas_v  = profil.get("Age", "—")
+                    boy_v  = profil.get("Height", "—")
+                    nat_v  = profil.get("Nationality", "—")
+                    if nat_v:
+                        nat_v = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_v).split()[0]
+
+                    renk = "#00c853" if isinstance(gpm, float) and gpm <= 1.0 else \
+                           "#ffab00" if isinstance(gpm, float) and gpm <= 2.0 else "#ff6b6b"
+
+                    istatlar = [(gpm, "G/Maç"), (mac, "Maç"), (yg, "Y.Gol"),
+                                (yas_v, "Yaş"), (boy_v, "Boy"), (nat_v, "Uyruk")]
+                    stat_html = "".join(
+                        f"<div style='background:#0f1117;border-radius:8px;padding:8px 14px;"
+                        f"text-align:center;'>"
+                        f"<div style='font-size:18px;font-weight:700;"
+                        f"color:{renk if lbl == 'G/Maç' else '#e0e0e0'};'>{val}</div>"
+                        f"<div style='font-size:10px;color:#8899aa;'>{lbl}</div></div>"
+                        for val, lbl in istatlar
+                    )
+                    st.markdown(
+                        f"<div style='background:#1a1f36;border-radius:12px;padding:18px 22px;"
+                        f"margin-bottom:14px;border-left:4px solid {renk};'>"
+                        f"<div style='font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;'>"
+                        f"{i}. {isim}</div>"
+                        f"<div style='font-size:12px;color:#8899aa;margin-bottom:12px;'>🏟 {takim}</div>"
+                        f"<div style='display:flex;gap:12px;flex-wrap:wrap;'>{stat_html}</div>"
+                        f"</div>",
+                        unsafe_allow_html=True)
+
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.markdown(
+                    "<div style='background:#1a1f36;border:1px solid #00c853;border-radius:10px;"
+                    "padding:18px;'>"
+                    "<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:6px;'>"
+                    "📄 Transfer Raporu</div>"
+                    "<div style='color:#8899aa;font-size:12px;'>"
+                    "Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.</div>"
+                    "</div>",
+                    unsafe_allow_html=True)
+
+                st.markdown("<br>", unsafe_allow_html=True)
+                if st.button("📄 Raporu Oluştur", type="primary", use_container_width=False):
+                    with st.spinner("Rapor hazırlanıyor…"):
+                        rapor = transfer_raporu_uret(oneriler, mevki_sec, butce_label, tercih)
+                    st.session_state["tr_rapor"] = rapor
+
+                if st.session_state.get("tr_rapor"):
+                    st.markdown(
+                        f"<div style='background:#1a1f36;border-radius:10px;padding:20px;"
+                        f"border-left:4px solid #00c853;margin-top:12px;'>"
+                        f"<div style='color:#fff;font-size:13px;line-height:1.7;white-space:pre-wrap;'>"
+                        f"{st.session_state['tr_rapor']}</div></div>",
+                        unsafe_allow_html=True)
+
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button("🔄 Yeniden Başla", use_container_width=False):
+                for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih","tr_rapor"]:
+                    st.session_state.pop(k, None)
+                st.rerun()
 
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
