@@ -227,20 +227,64 @@ def giris_dogrula(kullanici: str, sifre: str) -> dict | None:
     return None
 
 def giris_gerekli_ekrani():
-    """Giriş gerektiren sekmelerde gösterilen yönlendirme ekranı."""
+    """Giriş gerektiren sekmelerde gösterilen yönlendirme + PRO tanıtım ekranı."""
     st.markdown("<br>", unsafe_allow_html=True)
+
+    ozellik_satiri = "".join(
+        f"<div style='display:flex;align-items:flex-start;gap:12px;padding:8px 0;"
+        f"border-bottom:1px solid #1e2340;'>"
+        f"<span style='font-size:1.2rem;min-width:26px;text-align:center;'>{ikon}</span>"
+        f"<div><div style='color:#fff;font-weight:600;font-size:0.88rem;'>{baslik}</div>"
+        f"<div style='color:#8899aa;font-size:0.76rem;margin-top:1px;'>{aciklama}</div></div>"
+        f"</div>"
+        for ikon, baslik, aciklama in _PRO_OZELLIKLER
+    )
+
     st.markdown(
-        "<div style='max-width:440px;margin:40px auto;background:#1a1f36;"
-        "border-radius:16px;padding:36px;border:1px solid #00c85344;text-align:center;'>"
-        "<div style='font-size:40px;margin-bottom:12px;'>🔐</div>"
-        "<div style='font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;'>"
-        "Bu özellik giriş gerektiriyor</div>"
-        "<div style='font-size:13px;color:#8899aa;margin-bottom:20px;line-height:1.6;'>"
-        "Transfer Öner, Gelişmiş Arama ve Oyuncu Profili kulüp hesabına özeldir.<br>"
-        "Sol üstten giriş yaparak devam edebilirsiniz.</div>"
-        "<div style='font-size:12px;color:#505870;'>"
-        "Hesabınız yoksa iletişim sayfasından bize ulaşın.</div>"
-        "</div>",
+        f"""
+        <div style='max-width:580px;margin:0 auto;'>
+
+          <!-- Giriş uyarısı -->
+          <div style='background:#1a1f36;border:1px solid #00c85344;border-radius:14px;
+               padding:28px;text-align:center;margin-bottom:24px;'>
+            <div style='font-size:36px;margin-bottom:10px;'>🔐</div>
+            <div style='font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;'>
+              Bu özellik giriş gerektiriyor</div>
+            <div style='font-size:13px;color:#8899aa;line-height:1.7;margin-bottom:16px;'>
+              Transfer Öner, Gelişmiş Arama ve Oyuncu Profili;<br>
+              <b style='color:#e0e0e0;'>kulüpler, menajerler ve scout profesyonellere</b> özel içeriklerdir.<br>
+              Sol üstteki <b style='color:#00c853;'>🔐 Giriş</b> butonunu kullanarak devam edebilirsiniz.
+            </div>
+            <div style='font-size:12px;color:#505870;'>
+              Hesabınız yoksa 📬 İletişim sayfasından bize ulaşın.
+            </div>
+          </div>
+
+          <!-- PRO özellik listesi -->
+          <div style='background:#12161f;border-radius:12px;padding:20px 24px;
+               border:1px solid #1e2340;'>
+            <div style='color:#00c853;font-weight:700;font-size:0.88rem;
+                 letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;'>
+              ⚡ PRO Pakete Dahil Olanlar
+            </div>
+            {ozellik_satiri}
+          </div>
+
+          <!-- Fiyat -->
+          <div style='text-align:center;margin-top:20px;'>
+            <span style='background:linear-gradient(135deg,#0d2b1e,#1a1f36);
+                 border:2px solid #00c853;border-radius:12px;padding:14px 32px;
+                 display:inline-block;'>
+              <div style='color:#00c853;font-size:0.75rem;font-weight:700;
+                   letter-spacing:2px;text-transform:uppercase;'>PRO Paket</div>
+              <div style='color:#fff;font-size:2rem;font-weight:900;line-height:1.1;'>
+                4.999 <span style='font-size:1rem;color:#8899aa;'>TL/ay</span>
+              </div>
+            </span>
+          </div>
+
+        </div>
+        """,
         unsafe_allow_html=True,
     )
 
