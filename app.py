@@ -2706,14 +2706,14 @@ _TRANSFER_DB = {
     ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
 
     # ── Sol Stoper ────────────────────────────────────────────────────────
-    ("Sol Stoper", "Yuksek", "Yerli"):      ["LUSHOMO MWEEMBA", "İPEK KAYA", "YAŞAM GÖKSU"],
+    ("Sol Stoper", "Yuksek", "Yerli"):      ["İPEK KAYA", "YAŞAM GÖKSU"],
     ("Sol Stoper", "Yuksek", "Yabancı"):    ["LIUBOV SHMATKO", "BLERTA SMAILI", "OLUWATOSIN BLESSING DEMEHIN"],
     ("Sol Stoper", "Yuksek", "Farketmez"):  ["LIUBOV SHMATKO", "İPEK KAYA", "YAŞAM GÖKSU"],
     ("Sol Stoper", "Orta",   "Yerli"):      ["MERVE ODABAŞOĞLU", "NEHİR ZEYTÜNLÜ", "SÜHEYLA ÇALÇINAR"],
     ("Sol Stoper", "Orta",   "Yabancı"):    ["ELİZABETH OPPONG", "ZOTE NINA KPAHO", "MARIE LAURE KONG"],
     ("Sol Stoper", "Orta",   "Farketmez"):  ["MERVE ODABAŞOĞLU", "ELİZABETH OPPONG", "NEHİR ZEYTÜNLÜ"],
     ("Sol Stoper", "Dusuk",  "Yerli"):      ["SEVİLAY DUMAN", "ÖZGE ŞENGEL", "ESİN NİSA SİVASLI"],
-    ("Sol Stoper", "Dusuk",  "Yabancı"):    ["VUSALA HACIYEVA", "SHKURTE MALIQI"],
+    ("Sol Stoper", "Dusuk",  "Yabancı"):    ["VUSALA HACIYEVA", "SHKURTE MALIQI", "LUSHOMO MWEEMBA"],
     ("Sol Stoper", "Dusuk",  "Farketmez"):  ["SEVİLAY DUMAN", "VUSALA HACIYEVA", "SHKURTE MALIQI"],
 
     # ── Hücumcu Orta Saha ─────────────────────────────────────────────────
