@@ -226,6 +226,25 @@ def giris_dogrula(kullanici: str, sifre: str) -> dict | None:
         pass
     return None
 
+def giris_gerekli_ekrani():
+    """Giriş gerektiren sekmelerde gösterilen yönlendirme ekranı."""
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(
+        "<div style='max-width:440px;margin:40px auto;background:#1a1f36;"
+        "border-radius:16px;padding:36px;border:1px solid #00c85344;text-align:center;'>"
+        "<div style='font-size:40px;margin-bottom:12px;'>🔐</div>"
+        "<div style='font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;'>"
+        "Bu özellik giriş gerektiriyor</div>"
+        "<div style='font-size:13px;color:#8899aa;margin-bottom:20px;line-height:1.6;'>"
+        "Transfer Öner, Gelişmiş Arama ve Oyuncu Profili kulüp hesabına özeldir.<br>"
+        "Sol üstten giriş yaparak devam edebilirsiniz.</div>"
+        "<div style='font-size:12px;color:#505870;'>"
+        "Hesabınız yoksa iletişim sayfasından bize ulaşın.</div>"
+        "</div>",
+        unsafe_allow_html=True,
+    )
+
+
 def giris_formu():
     """Sidebar'da giriş formu gösterir."""
     if st.session_state.get("kulup_giris"):
@@ -601,23 +620,6 @@ if st.session_state.get("kulup_giris"):
         unsafe_allow_html=True,
     )
 
-# ─── GİRİŞ GEREKLİ — giriş yoksa sadece login ekranı göster ─────────────────
-if not st.session_state.get("kulup_giris"):
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown(
-        "<div style='max-width:420px;margin:60px auto;background:#1a1f36;"
-        "border-radius:16px;padding:40px;border:1px solid #00c85344;text-align:center;'>"
-        "<div style='font-size:48px;margin-bottom:12px;'>⚽</div>"
-        "<div style='font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;'>"
-        "Türkiye Kadınlar Süper Ligi</div>"
-        "<div style='font-size:13px;color:#8899aa;margin-bottom:28px;'>"
-        "İstatistik ve Analiz Platformu</div>"
-        "<div style='font-size:13px;color:#c9d1d9;'>"
-        "Devam etmek için sol üstten giriş yapın.</div>"
-        "</div>",
-        unsafe_allow_html=True,
-    )
-    st.stop()
 
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
 if st.session_state["sayfa"] == "hakkinda":
@@ -883,9 +885,13 @@ with tab1:
 # SEKME 2 — OYUNCU PROFİLİ
 # ══════════════════════════════════════════════════════════════════════════════
 with tab2:
-    oyuncu_listesi = sorted(df_tam["Oyuncu"].tolist())
-    varsayilan_idx = oyuncu_listesi.index(url_oyuncu) if url_oyuncu in oyuncu_listesi else 0
-    secili = st.selectbox("Oyuncu seç", oyuncu_listesi, index=varsayilan_idx, key="profil_sec")
+    if not st.session_state.get("kulup_giris"):
+        giris_gerekli_ekrani()
+        secili = None
+    else:
+        oyuncu_listesi = sorted(df_tam["Oyuncu"].tolist())
+        varsayilan_idx = oyuncu_listesi.index(url_oyuncu) if url_oyuncu in oyuncu_listesi else 0
+        secili = st.selectbox("Oyuncu seç", oyuncu_listesi, index=varsayilan_idx, key="profil_sec")
 
     if secili and secili in oyuncu_detay:
         row    = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
@@ -2306,7 +2312,9 @@ with tab_genç:
 # SEKME 9 — GELİŞMİŞ OYUNCU ARAMA
 # ══════════════════════════════════════════════════════════════════════════════
 with tab9:
-    if not pro_kontrol():
+    if not st.session_state.get("kulup_giris"):
+        giris_gerekli_ekrani()
+    elif not pro_kontrol():
         pro_paywall_goster("🔍 Gelişmiş Arama")
     else:
         st.markdown("##### 🔍 Gelişmiş Oyuncu Arama")
@@ -2773,7 +2781,9 @@ _TRANSFER_DB = {
 }
 
 with tab_transfer:
-    if not pro_kontrol():
+    if not st.session_state.get("kulup_giris"):
+        giris_gerekli_ekrani()
+    elif not pro_kontrol():
         pro_paywall_goster("Transfer Öner")
     else:
         st.markdown("##### 🔄 Transfer Öner")
