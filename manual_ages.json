@@ -22,7 +22,7 @@
   "BERNA YENİÇERİ":                   {"source": "manuel", "position": "Defender - Right Back"},
   "HÜMEYRA ŞANVER":                   {"source": "manuel", "position": "Defender - Right Back"},
   "SUZAN SAYACA":                     {"source": "manuel", "position": "Defender - Left Back"},
-  "RAFAELA SUDRE DOS SANTOS":         {"source": "manuel", "position": "Defender - Right Back"},
+  "RAFAELA SUDRE DOS SANTOS":         {"born": "09.12.1993", "source": "TFF kisiID=2690551", "position": "Defender - Right Back"},
   "MEDİNE ERKAN":                     {"source": "manuel", "position": "Defender - Right Back"},
   "YANA DERKACH":                     {"source": "manuel", "position": "Defender - Left Back"},
   "MELİSA NİLGÜN KESER":             {"source": "manuel", "position": "Defender - Right Back"},
@@ -42,7 +42,7 @@
   "DIAKIESE KALUZODI ISABELLE":       {"born": "01.01.1998", "source": "manuel", "position": "Striker - Centre Forward"},
   "ECRİN NAZ ŞENTÜRK":                {"source": "manuel", "position": "Defender - Left Back"},
   "SÜMEYRA KIVANÇ":                   {"source": "manuel", "position": "Defender - Right Back"},
-  "GÖKCE ALMILA ÖZCAN":               {"source": "manuel", "position": "Midfield - Central Midfield"},
+  "GÖKCE ALMILA ÖZCAN":               {"born": "06.07.2007", "source": "TFF kisiID=2925885", "position": "Midfield - Central Midfield"},
   "ELLEN COLEMAN":                    {"source": "manuel", "position": "Defender - Right Back"},
   "EZGİ KILIÇ":                       {"source": "manuel", "position": "Defender - Right Back"},
   "BÜŞRA BERFİN EREN":                {"source": "manuel", "position": "Midfield"},
@@ -55,5 +55,6 @@
   "SHKURTE MALIQI":                   {"source": "manuel", "position": "Midfield - Defensive Midfield"},
   "RREZONA RAMADANI":                 {"source": "manuel", "position": "Defender - Right Back"},
   "AGNESA GASHI":                     {"source": "manuel", "position": "Midfield - Right Wing"},
-  "JUSTİCE TWENEBOAA":                {"source": "manuel", "position": "Midfield"}
+  "JUSTİCE TWENEBOAA":                {"source": "manuel", "position": "Midfield"},
+  "MARIA APARECIDA SOUZA ALVES":      {"born": "07.07.1993", "source": "TFF kisiID=2690293"}
 }
