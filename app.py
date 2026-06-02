@@ -236,6 +236,9 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
             import ast
             mac_gecmisi = ast.literal_eval(mac_gecmisi)
 
+        # Takım adından eşleştirme için anahtar kelimeler üret
+        takim_kelimeler = [w for w in takim.split() if len(w) > 3]
+
         yenilen = 0
         mac_say = 0
         for m in mac_gecmisi:
@@ -244,7 +247,11 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
             hafta = m.get("hafta")
             gol = None
             for (h, t), g in lookup.items():
-                if h == hafta and (t == takim or takim in t or t in takim):
+                if h != hafta:
+                    continue
+                # Tam eşleşme veya takım adından en az 1 anahtar kelime eşleşmesi
+                if t == takim or takim in t or t in takim or \
+                   any(kw in t for kw in takim_kelimeler):
                     gol = g
                     break
             if gol is not None:
