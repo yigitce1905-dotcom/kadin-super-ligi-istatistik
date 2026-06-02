@@ -487,6 +487,24 @@ with nav4:
 # Giriş formu sidebar'da her zaman
 giris_formu()
 
+# ─── GİRİŞ GEREKLİ — giriş yoksa sadece login ekranı göster ─────────────────
+if not st.session_state.get("kulup_giris"):
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown(
+        "<div style='max-width:420px;margin:60px auto;background:#1a1f36;"
+        "border-radius:16px;padding:40px;border:1px solid #00c85344;text-align:center;'>"
+        "<div style='font-size:48px;margin-bottom:12px;'>⚽</div>"
+        "<div style='font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;'>"
+        "Türkiye Kadınlar Süper Ligi</div>"
+        "<div style='font-size:13px;color:#8899aa;margin-bottom:28px;'>"
+        "İstatistik ve Analiz Platformu</div>"
+        "<div style='font-size:13px;color:#c9d1d9;'>"
+        "Devam etmek için sol üstten giriş yapın.</div>"
+        "</div>",
+        unsafe_allow_html=True,
+    )
+    st.stop()
+
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
 if st.session_state["sayfa"] == "hakkinda":
     st.markdown("""
