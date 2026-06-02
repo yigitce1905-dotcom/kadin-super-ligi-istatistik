@@ -278,7 +278,9 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
     return df.reset_index(drop=True)
 
 
-def manuel_yaslar_yukle() -> tuple:
+@st.cache_data
+def manuel_yaslar_yukle(file_hash: str = "") -> tuple:
+    """file_hash parametresi: dosya değişince cache otomatik bozulur."""
     yol = _DIZIN / "manual_ages.json"
     if not yol.exists():
         return {}, {}, {}
@@ -298,7 +300,9 @@ def manuel_yaslar_yukle() -> tuple:
             nationalities[isim] = veri["nationality"]
     return ages, positions, nationalities
 
-_MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle()
+_manuel_json = _DIZIN / "manual_ages.json"
+_manuel_hash = __import__("hashlib").md5(_manuel_json.read_bytes()).hexdigest() if _manuel_json.exists() else ""
+_MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle(_manuel_hash)
 
 
 def mevki_normalize(pozisyon: str) -> str:
@@ -322,8 +326,9 @@ def _ilk_uyruk(nat_str: str) -> str:
     return spaced.split()[0]
 
 
-def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
-    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler."""
+@st.cache_data
+def df_zenginlestir(df: "pd.DataFrame", file_hash: str = "") -> "pd.DataFrame":
+    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler. file_hash cache bozucu."""
     df = df.copy()
     df["Mevki"] = df["Oyuncu"].map(
         lambda o: mevki_normalize(
@@ -352,7 +357,7 @@ def df_zenginlestir(df: "pd.DataFrame") -> "pd.DataFrame":
 
 
 if not df_tam.empty:
-    df_tam = df_zenginlestir(df_tam)  # Mevki + Uyruk + Boy ekle
+    df_tam = df_zenginlestir(df_tam, _manuel_hash)  # hash değişince otomatik yeniler
 
 
 # coaches.json — cache yok, her başlatmada taze okunur
