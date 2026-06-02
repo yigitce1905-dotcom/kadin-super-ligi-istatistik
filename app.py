@@ -506,9 +506,10 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab_transfer, tab2, tab3, tab4, tab5, tab6, tab7, tab9, tab10, tab11 = st.tabs([
+tab1, tab_transfer, tab_genç, tab2, tab3, tab4, tab5, tab6, tab7, tab9, tab10, tab11 = st.tabs([
     "📋 Oyuncu Listesi",
     "🔄 Transfer Öner",
+    "🌱 Genç Yetenekler",
     "👤 Oyuncu Profili", "⚡ Karşılaştırma",
     "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
     "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
@@ -1792,6 +1793,152 @@ with tab7:
                 })
         else:
             st.info("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME — GENÇ YETENEKLER
+# ══════════════════════════════════════════════════════════════════════════════
+with tab_genç:
+    st.markdown("##### 🌱 Genç Yetenekler")
+    st.caption("23 yaş altı · En az 8 maç · Erken Olgunluk Skoru'na göre sıralı")
+
+    # Veri hazırla
+    @st.cache_data(ttl=3600)
+    def genc_yetenekler_hesapla():
+        rows = []
+        for o in ham_liste:
+            isim = o["oyuncu"]
+            yas  = _MANUEL_YAS.get(isim)
+            if not yas:
+                try: yas = float(str(sd_profiller.get(isim,{}).get("Age","")).split()[0])
+                except: yas = None
+            if not yas or yas >= 23: continue
+
+            mac = int(o.get("mac_sayisi", 0))
+            if mac < 8: continue
+            gol   = int(o.get("gol_sayisi", 0))
+            dk    = int(o.get("toplam_dakika", 0))
+            gpm   = round(gol / mac, 2) if mac else 0
+            dk_mac = round(dk / mac, 0) if mac else 0
+
+            pos = _MANUEL_MEVKI.get(isim) or sd_profiller.get(isim,{}).get("Position","")
+            mevki = mevki_normalize(pos)
+
+            nat = _MANUEL_UYRUK.get(isim) or sd_profiller.get(isim,{}).get("Nationality","")
+            nat = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat).split()[0] if nat else "—"
+
+            # Erken Olgunluk Skoru
+            skor = round((mac/30*40) + (gpm*10*40) + (dk_mac/90*20), 1)
+
+            rows.append({
+                "Oyuncu": isim, "Takım": o["takim"], "Yaş": yas,
+                "Mevki": mevki, "Maç": mac, "Gol": gol,
+                "G/Maç": gpm, "Dk/Maç": int(dk_mac),
+                "Uyruk": nat, "Skor": skor,
+            })
+        return pd.DataFrame(rows).sort_values("Skor", ascending=False).reset_index(drop=True)
+
+    genc_df = genc_yetenekler_hesapla()
+
+    if genc_df.empty:
+        st.warning("Veri bulunamadı.")
+    else:
+        # ── Filtreler ─────────────────────────────────────────────────
+        gf1, gf2, gf3 = st.columns([2, 2, 2])
+        with gf1:
+            yas_ust = st.select_slider("Maksimum Yaş", options=[18, 19, 20, 21, 22, 23], value=23)
+        with gf2:
+            mevki_filtre = st.multiselect("Mevki", ["Kaleci","Defans","Orta Saha","Forvet"],
+                                           placeholder="Tümü", key="gf_mevki")
+        with gf3:
+            tercih_filtre = st.selectbox("Uyruk Tercihi", ["Tümü","Yerli","Yabancı"], key="gf_tercih")
+
+        filtered = genc_df[genc_df["Yaş"] < yas_ust + 1].copy()
+        if mevki_filtre:
+            filtered = filtered[filtered["Mevki"].isin(mevki_filtre)]
+        if tercih_filtre == "Yerli":
+            filtered = filtered[filtered["Uyruk"] == "Turkey"]
+        elif tercih_filtre == "Yabancı":
+            filtered = filtered[filtered["Uyruk"] != "Turkey"]
+
+        st.markdown(
+            f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0 16px;'>"
+            f"🎯 {len(filtered)} genç oyuncu</div>", unsafe_allow_html=True)
+
+        # ── En İlginç 5 ───────────────────────────────────────────────
+        if len(filtered) >= 3:
+            st.markdown("**⭐ Öne Çıkan İsimler**")
+            top5 = filtered.head(5)
+            cols = st.columns(min(5, len(top5)))
+            for idx, (_, r) in enumerate(top5.iterrows()):
+                with cols[idx]:
+                    st.markdown(
+                        f"<div style='background:#1a1f36;border-radius:10px;padding:12px;"
+                        f"text-align:center;border-top:3px solid #00c853;'>"
+                        f"<div style='font-size:11px;font-weight:700;color:#fff;"
+                        f"margin-bottom:4px;'>{r['Oyuncu'].split()[0]}<br>"
+                        f"<span style='font-size:10px;'>{r['Oyuncu'].split()[-1]}</span></div>"
+                        f"<div style='font-size:20px;font-weight:800;color:#00c853;'>{r['Yaş']:.0f}</div>"
+                        f"<div style='font-size:9px;color:#8899aa;'>{r['Mevki']}</div>"
+                        f"<div style='font-size:16px;font-weight:700;color:#fff;margin-top:6px;'>{r['Gol']}</div>"
+                        f"<div style='font-size:9px;color:#8899aa;'>gol · {r['Maç']} maç</div>"
+                        f"</div>", unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        # ── Scatter: Yaş vs Gol/Maç ───────────────────────────────────
+        col_scatter, col_tablo = st.columns([3, 2], gap="large")
+
+        with col_scatter:
+            st.markdown("**📊 Yaş — Gol/Maç Dağılımı**")
+            renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
+                        "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
+            fig_sc = go.Figure()
+            for mev, grp in filtered.groupby("Mevki"):
+                fig_sc.add_trace(go.Scatter(
+                    x=grp["Yaş"], y=grp["G/Maç"],
+                    mode="markers+text",
+                    name=mev,
+                    marker=dict(size=grp["Maç"].clip(8,30)/1.5,
+                                color=renk_map.get(mev,"#8899aa"),
+                                opacity=0.85,
+                                line=dict(color="#0f1117", width=1)),
+                    text=grp["Oyuncu"].str.split().str[0],
+                    textposition="top center",
+                    textfont=dict(size=9, color="#c9d1d9"),
+                    hovertemplate=(
+                        "<b>%{customdata[0]}</b><br>"
+                        "Yaş: %{x}<br>G/Maç: %{y}<br>"
+                        "Maç: %{customdata[1]}<extra></extra>"
+                    ),
+                    customdata=grp[["Oyuncu","Maç"]].values,
+                ))
+            fig_sc.update_layout(
+                paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                xaxis=dict(title="Yaş", color="#8899aa", gridcolor="#1e2340",
+                           range=[14.5, 23.5]),
+                yaxis=dict(title="Gol/Maç", color="#8899aa", gridcolor="#1e2340"),
+                legend=dict(bgcolor="#1a1f36", bordercolor="#30363d",
+                            font=dict(color="#e0e0e0")),
+                margin=dict(l=10, r=10, t=10, b=10),
+                height=420, font=dict(color="#e0e0e0"),
+            )
+            st.plotly_chart(fig_sc, use_container_width=True)
+            st.caption("💡 Nokta büyüklüğü = oynanan maç sayısı")
+
+        with col_tablo:
+            st.markdown("**📋 Tam Liste**")
+            goster = filtered[["Oyuncu","Yaş","Mevki","Takım","Maç","Gol","G/Maç","Skor"]].copy()
+            goster.index = range(1, len(goster)+1)
+            st.dataframe(
+                goster, use_container_width=True, height=420,
+                column_config={
+                    "Yaş":   st.column_config.NumberColumn(format="%.0f"),
+                    "G/Maç": st.column_config.NumberColumn(format="%.2f"),
+                    "Skor":  st.column_config.ProgressColumn(
+                        "Skor", min_value=0, max_value=250, format="%.0f"),
+                },
+            )
 
 
 # ══════════════════════════════════════════════════════════════════════════════
