@@ -1,0 +1,1661 @@
+[
+  {
+    "hafta": 1,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 1,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 1,
+    "ev": "GALATASARAY GAIN",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 4,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 1,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 1,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 1,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 1,
+    "ev": "ALG SPOR",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 15
+  },
+  {
+    "hafta": 1,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 2,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 2,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 2,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 2,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 4
+  },
+  {
+    "hafta": 2,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 2,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 2,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 2,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "ALG SPOR",
+    "ev_gol": 15,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 3,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 6,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 3,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 3,
+    "ev": "ALG SPOR",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 3,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 3,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 3,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 3,
+    "ev": "GALATASARAY GAIN",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 5,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 3,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 4,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 4,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 4,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 1,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 4,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 4,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 4
+  },
+  {
+    "hafta": 4,
+    "ev": "GALATASARAY GAIN",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 4,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 4,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 14,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 5,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 5,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 5,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 5,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 5,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 5,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 2,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 5,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 5,
+    "ev": "GAZİANTEP ALG SPOR KULÜBÜ",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 6,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 6,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 6
+  },
+  {
+    "hafta": 6,
+    "ev": "GALATASARAY GAIN",
+    "dep": "GAZİANTEP ALG SPOR KULÜBÜ",
+    "ev_gol": 17,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 6,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 5,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 6,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 6,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 6,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 6
+  },
+  {
+    "hafta": 7,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 7,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 7,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 7,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 2,
+    "dep_gol": 9
+  },
+  {
+    "hafta": 8,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 8,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 8,
+    "ev": "GALATASARAY GAIN",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 5,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 8,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 8,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 8,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 8,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 8,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 3,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 9,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 9,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 9,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 9,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 9,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 9,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 8
+  },
+  {
+    "hafta": 9,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 9,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 10,
+    "ev": "GALATASARAY GAIN",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 10,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 10,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 10,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 10,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 8,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 10,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 10,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 10,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 11,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 11,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 11,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 11,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 11,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 5,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 11,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 11,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 11,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 12,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 12,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 12,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 12
+  },
+  {
+    "hafta": 12,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 12,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 12,
+    "ev": "GALATASARAY GAIN",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 4,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 12,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 12,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 5,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 13,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 13,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 13,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 13,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 13,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 13,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 13,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 6,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 13,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 14,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 14,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 14,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 14,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 14,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 14,
+    "ev": "GALATASARAY GAIN",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 3,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 14,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 14,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 15,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 15,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 15,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 15,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 15,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 5,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 15,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 5,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 15,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 11,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 15,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 4,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 16,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 16,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 16,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 18,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 16,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 16,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 16,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 16,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 16,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 17,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 17,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 17,
+    "ev": "GALATASARAY GAIN",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 9,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 17,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 17,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 17,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 17,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 17,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 18,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 18,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 18,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 4,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 18,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 4
+  },
+  {
+    "hafta": 18,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 8
+  },
+  {
+    "hafta": 18,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 6,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 18,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 18,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 19,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 19,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 19,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 4,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 19,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 19,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 19,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 5,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 19,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 19,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 20,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 4
+  },
+  {
+    "hafta": 20,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 20,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 20,
+    "ev": "GALATASARAY GAIN",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 20,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 20,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 20,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 20,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 21,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 21,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 21,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 21,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 8,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 21,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 6,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 21,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 7,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 21,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 2,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 22,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 22,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 22,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 22,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 4,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 22,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 22,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 3,
+    "dep_gol": 4
+  },
+  {
+    "hafta": 22,
+    "ev": "GALATASARAY GAIN",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 22,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 23,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 23,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 23,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 23,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 7,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 23,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 4,
+    "dep_gol": 4
+  },
+  {
+    "hafta": 23,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 23,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 23,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 24,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 24,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 24,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 24,
+    "ev": "GALATASARAY GAIN",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 8,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 24,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 24,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 24,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 6,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 24,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 25,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 25,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 25,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 25,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 25,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 11,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 25,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 25,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 7,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 25,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 2,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 26,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 26,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 26,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 26,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 26,
+    "ev": "GALATASARAY GAIN",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 3,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 26,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 26,
+    "ev": "ÇEKMEKÖY BİLGİDOĞA",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 1,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 26,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 27,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 27,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 27,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "ÇEKMEKÖY BİLGİDOĞA",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 27,
+    "ev": "BEYLERBEYİ SPOR KULÜBÜ",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 27,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 27,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 27,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 27,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 28,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 2,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 28,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 28,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 28,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 28,
+    "ev": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 1,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 28,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 28,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 7
+  },
+  {
+    "hafta": 28,
+    "ev": "GALATASARAY GAIN",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 29,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "PROLİFT GİRESUN SANAYİSPOR",
+    "ev_gol": 10,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 29,
+    "ev": "BORNOVA HİTAB SPOR",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 29,
+    "ev": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "dep": "FATİH VATAN SPOR",
+    "ev_gol": 1,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 29,
+    "ev": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "dep": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
+    "ev_gol": 11,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 29,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 29,
+    "ev": "AMED SPORTİF FAALİYETLER",
+    "dep": "GALATASARAY GAIN",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 29,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 8,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 30,
+    "ev": "PROLİFT GİRESUN SANAYİSPOR",
+    "dep": "BEŞİKTAŞ JK KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 6
+  },
+  {
+    "hafta": 30,
+    "ev": "YÜKSEKOVA SPOR KULÜBÜ",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 30,
+    "ev": "GALATASARAY GAIN",
+    "dep": "BEYLERBEYİ SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 30,
+    "ev": "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "dep": "HAKKARİGÜCÜ SPOR",
+    "ev_gol": 0,
+    "dep_gol": 3
+  },
+  {
+    "hafta": 30,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "BORNOVA HİTAB SPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 30,
+    "ev": "FATİH VATAN SPOR",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 1,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 30,
+    "ev": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
+    "dep": "TRABZONSPOR A.Ş.",
+    "ev_gol": 0,
+    "dep_gol": 20
+  },
+  {
+    "hafta": 30,
+    "ev": "ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 5,
+    "dep_gol": 4
+  }
+]

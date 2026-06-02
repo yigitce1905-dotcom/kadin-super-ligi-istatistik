@@ -201,6 +201,69 @@ def sd_profiller_yukle():
 
 sd_profiller = sd_profiller_yukle()
 
+
+@st.cache_data(ttl=86400)
+def mac_sonuclari_yukle() -> list:
+    yol = _DIZIN / "mac_sonuclari.json"
+    if yol.exists():
+        with open(yol, encoding="utf-8") as f:
+            return json.load(f)
+    return []
+
+
+@st.cache_data(ttl=86400)
+def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
+    """Her kaleci için yenilen gol ve maç başına yenilen gol hesaplar."""
+    oyuncu_listesi = ham_liste
+    maclar = mac_sonuclari_yukle()
+
+    # hafta + takım → yenilen gol lookup
+    lookup = {}
+    for m in maclar:
+        lookup[(m["hafta"], m["ev"])]  = m["dep_gol"]
+        lookup[(m["hafta"], m["dep"])] = m["ev_gol"]
+
+    rows = []
+    for o in oyuncu_listesi:
+        isim  = o["oyuncu"]
+        takim = o["takim"]
+        pos   = sd_profiller.get(isim, {}).get("Position", "")
+        if "Goalkeeper" not in pos:
+            continue
+
+        mac_gecmisi = o.get("mac_gecmisi", [])
+        if isinstance(mac_gecmisi, str):
+            import ast
+            mac_gecmisi = ast.literal_eval(mac_gecmisi)
+
+        yenilen = 0
+        mac_say = 0
+        for m in mac_gecmisi:
+            if m.get("dakika", 0) < 45:
+                continue
+            hafta = m.get("hafta")
+            gol = None
+            for (h, t), g in lookup.items():
+                if h == hafta and (t == takim or takim in t or t in takim):
+                    gol = g
+                    break
+            if gol is not None:
+                yenilen += gol
+                mac_say += 1
+
+        gpm = round(yenilen / mac_say, 2) if mac_say > 0 else 0.0
+        rows.append({
+            "Kaleci":     isim,
+            "Takım":      takim,
+            "Maç":        mac_say,
+            "YenilenGol": yenilen,
+            "G/Maç":      gpm,
+        })
+
+    df = pd.DataFrame(rows).sort_values(["Maç", "G/Maç"], ascending=[False, True])
+    return df.reset_index(drop=True)
+
+
 @st.cache_data(ttl=86400)
 def manuel_yaslar_yukle() -> tuple:
     yol = _DIZIN / "manual_ages.json"
@@ -340,10 +403,10 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10 = st.tabs([
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9, tab10, tab11 = st.tabs([
     "📋 Oyuncu Listesi", "👤 Oyuncu Profili", "⚡ Karşılaştırma",
     "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
-    "🗺️ Dünya Haritası", "🔍 Gelişmiş Arama", "🎂 Yaş Analizi",
+    "🗺️ Dünya Haritası", "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
 ])
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1962,6 +2025,88 @@ with tab10:
                 font=dict(color="#e0e0e0"),
             )
             st.plotly_chart(fig_pos, use_container_width=True)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 11 — KALECİLER
+# ══════════════════════════════════════════════════════════════════════════════
+with tab11:
+    st.markdown("##### 🧤 Kaleci İstatistikleri")
+    st.caption("Yenilen gol ve maç başına yenilen gol — en az 5 maç oynayanlar")
+
+    kal_df = kaleci_istatistikleri_hesapla()
+
+    if kal_df.empty:
+        st.warning("Kaleci verisi bulunamadı.")
+    else:
+        aktif = kal_df[kal_df["Maç"] >= 5].copy()
+
+        # Üst kartlar
+        if not aktif.empty:
+            en_iyi = aktif.loc[aktif["G/Maç"].idxmin()]
+            en_kotu = aktif.loc[aktif["G/Maç"].idxmax()]
+            k1, k2, k3, k4 = st.columns(4)
+            for kol, sayi, etiket in [
+                (k1, len(aktif), "Aktif Kaleci"),
+                (k2, int(kal_df["YenilenGol"].sum()), "Toplam Gol"),
+                (k3, f"{en_iyi['G/Maç']} — {en_iyi['Kaleci'].split()[0]}", "En Az Yiyen"),
+                (k4, f"{en_kotu['G/Maç']} — {en_kotu['Kaleci'].split()[0]}", "En Çok Yiyen"),
+            ]:
+                kol.markdown(
+                    f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
+                    f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        col_tablo, col_grafik = st.columns([2, 3], gap="large")
+
+        with col_tablo:
+            st.markdown("**📋 Tüm Kaleciler**")
+            goster = kal_df[kal_df["Maç"] > 0].copy()
+            goster.index = range(1, len(goster) + 1)
+            st.dataframe(
+                goster,
+                use_container_width=True,
+                height=520,
+                column_config={
+                    "G/Maç": st.column_config.NumberColumn(format="%.2f"),
+                    "YenilenGol": st.column_config.NumberColumn("Y.Gol"),
+                },
+            )
+
+        with col_grafik:
+            st.markdown("**📊 Maç Başına Yenilen Gol (≥5 maç)**")
+            plot_df = aktif.sort_values("G/Maç")
+            renkler = ["#00c853" if g <= 1.0 else "#ffab00" if g <= 2.0 else "#ff6b6b"
+                       for g in plot_df["G/Maç"]]
+            fig = go.Figure(go.Bar(
+                x=plot_df["G/Maç"],
+                y=plot_df["Kaleci"],
+                orientation="h",
+                marker=dict(color=renkler),
+                text=[f"{g:.2f}" for g in plot_df["G/Maç"]],
+                textposition="outside",
+                textfont=dict(color="#e0e0e0", size=11),
+                hovertemplate="%{y}<br>%{x:.2f} G/Maç<extra></extra>",
+            ))
+            fig.add_vline(x=1.0, line_dash="dash", line_color="#00c853",
+                          annotation_text="1.0", annotation_font=dict(color="#00c853", size=10))
+            fig.add_vline(x=2.0, line_dash="dash", line_color="#ffab00",
+                          annotation_text="2.0", annotation_font=dict(color="#ffab00", size=10))
+            fig.update_layout(
+                paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                xaxis=dict(title="Maç Başına Yenilen Gol", color="#8899aa",
+                           gridcolor="#1e2340", range=[0, max(plot_df["G/Maç"]) * 1.15]),
+                yaxis=dict(color="#e0e0e0"),
+                margin=dict(l=10, r=60, t=10, b=10),
+                height=500, font=dict(color="#e0e0e0"),
+            )
+            st.plotly_chart(fig, use_container_width=True)
+
+            # Renk açıklaması
+            st.markdown(
+                "<div style='font-size:11px;color:#8899aa;'>"
+                "🟢 ≤1.0 &nbsp; 🟡 1.0–2.0 &nbsp; 🔴 >2.0 &nbsp; G/Maç</div>",
+                unsafe_allow_html=True)
 
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
