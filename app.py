@@ -2784,7 +2784,7 @@ with tab_transfer:
                 st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
                 mevki_secenekler = [
                                     "Kaleci",
-                                    "Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Kanat Bek",
+                                    "Sağ Bek - Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Bek - Sol Kanat Bek",
                                     "Ön Libero", "Merkez Orta Saha", "Hücumcu Orta Saha",
                                     "Sol Kanat", "Sağ Kanat", "Santrafor",
                                 ]
