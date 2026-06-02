@@ -62,5 +62,6 @@
   "OLİVİA İNALÖZ":                    {"source": "manuel", "position": "Defender"},
   "SILA BESRA TETİK":                 {"source": "manuel", "position": "Defender"},
   "AÇELYA NOMAK":                     {"source": "manuel", "position": "Striker - Centre Forward"},
-  "MARIA APARECIDA SOUZA ALVES":      {"born": "07.07.1993", "source": "TFF kisiID=2690293"}
+  "MARIA APARECIDA SOUZA ALVES":      {"born": "07.07.1993", "source": "TFF kisiID=2690293"},
+  "SLAĐANA BULATOVIĆ":                {"source": "manuel", "position": "Midfield - Central Midfield", "nationality": "Montenegro"}
 }

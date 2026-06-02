@@ -70422,5 +70422,24 @@
     "toplam_dakika": 0,
     "mac_gecmisi": [],
     "takim_detay": []
+  },
+  {
+    "oyuncu": "SLAĐANA BULATOVIĆ",
+    "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "tum_takimlar": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 0,
+    "ilk11_mac": 0,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 0,
+    "takim_detay": [],
+    "mac_gecmisi": []
   }
 ]
