@@ -2125,15 +2125,15 @@ with tab11:
 
 # Öneri veri tabanı: (mevki, bütçe, tercih) → [oyuncu adları]
 _TRANSFER_DB = {
-    ("Kaleci", "Yüksek 💎", "Yerli"):      ["SELDA AKGÖZ", "GAMZE NUR YAMAN", "GÖKNUR GÜLERYÜZ"],
-    ("Kaleci", "Yüksek 💎", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOE", "ROBERTA APRILE"],
-    ("Kaleci", "Yüksek 💎", "Farketmez"):  ["NATALIA MUNTEANU", "SELDA AKGÖZ", "GAMZE NUR YAMAN"],
-    ("Kaleci", "Orta 🔵",   "Yerli"):      ["EZGİ ÇAĞLAR", "FATMA ŞAHİN", "İREM DAMLA ŞAHİN"],
-    ("Kaleci", "Orta 🔵",   "Yabancı"):    ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "BEATRIZ BUENO NICOLETI"],
-    ("Kaleci", "Orta 🔵",   "Farketmez"):  ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "EZGİ ÇAĞLAR"],
-    ("Kaleci", "Düşük 🟡",  "Yerli"):      ["DUYGU YILMAZ", "HİLAL SUBAY", "SUDE TOPÇU"],
-    ("Kaleci", "Düşük 🟡",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
-    ("Kaleci", "Düşük 🟡",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
+    ("Kaleci", "Yuksek", "Yerli"):      ["SELDA AKGÖZ", "GAMZE NUR YAMAN", "GÖKNUR GÜLERYÜZ"],
+    ("Kaleci", "Yuksek", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOE", "ROBERTA APRILE"],
+    ("Kaleci", "Yuksek", "Farketmez"):  ["NATALIA MUNTEANU", "SELDA AKGÖZ", "GAMZE NUR YAMAN"],
+    ("Kaleci", "Orta",   "Yerli"):      ["EZGİ ÇAĞLAR", "FATMA ŞAHİN", "İREM DAMLA ŞAHİN"],
+    ("Kaleci", "Orta",   "Yabancı"):    ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "BEATRIZ BUENO NICOLETI"],
+    ("Kaleci", "Orta",   "Farketmez"):  ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "EZGİ ÇAĞLAR"],
+    ("Kaleci", "Dusuk",  "Yerli"):      ["DUYGU YILMAZ", "HİLAL SUBAY", "SUDE TOPÇU"],
+    ("Kaleci", "Dusuk",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
+    ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
 }
 
 with tab12:
@@ -2171,25 +2171,29 @@ with tab12:
         c1, c2, c3 = st.columns(3)
         with c1:
             if st.button("💎 Yüksek\n\nBüyük kulüp transferi", use_container_width=True):
-                st.session_state["tr_butce"] = "Yüksek 💎"
-                st.session_state["tr_adim"]  = 2
+                st.session_state["tr_butce"]      = "Yuksek"
+                st.session_state["tr_butce_label"] = "Yüksek 💎"
+                st.session_state["tr_adim"]        = 2
                 st.rerun()
         with c2:
             if st.button("🔵 Orta\n\nOrta ölçekli transfer", use_container_width=True):
-                st.session_state["tr_butce"] = "Orta 🔵"
-                st.session_state["tr_adim"]  = 2
+                st.session_state["tr_butce"]      = "Orta"
+                st.session_state["tr_butce_label"] = "Orta 🔵"
+                st.session_state["tr_adim"]        = 2
                 st.rerun()
         with c3:
             if st.button("🟡 Düşük\n\nBütçe dostu transfer", use_container_width=True):
-                st.session_state["tr_butce"] = "Düşük 🟡"
-                st.session_state["tr_adim"]  = 2
+                st.session_state["tr_butce"]      = "Dusuk"
+                st.session_state["tr_butce_label"] = "Düşük 🟡"
+                st.session_state["tr_adim"]        = 2
                 st.rerun()
 
     # ── ADIM 2: Mevki + tercih ──────────────────────────────────────
     elif adim == 2:
-        butce = st.session_state.get("tr_butce", "")
+        butce       = st.session_state.get("tr_butce", "")
+        butce_label = st.session_state.get("tr_butce_label", butce)
         st.markdown(f"### Adım 2 / 3 &nbsp; 📋 Mevki ve tercih")
-        st.markdown(f"<div style='color:#8899aa;font-size:13px;'>Bütçe: <b style='color:#00c853'>{butce}</b></div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='color:#8899aa;font-size:13px;'>Bütçe: <b style='color:#00c853'>{butce_label}</b></div>", unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
         col_m, col_t = st.columns(2)
@@ -2225,13 +2229,14 @@ with tab12:
 
     # ── ADIM 3: Sonuçlar ────────────────────────────────────────────
     elif adim == 3:
-        butce     = st.session_state.get("tr_butce", "")
-        mevki_sec = st.session_state.get("tr_mevki", "")
-        tercih    = st.session_state.get("tr_tercih", "")
+        butce       = st.session_state.get("tr_butce", "")
+        butce_label = st.session_state.get("tr_butce_label", butce)
+        mevki_sec   = st.session_state.get("tr_mevki", "")
+        tercih      = st.session_state.get("tr_tercih", "")
 
         st.markdown(
             f"<div style='color:#8899aa;font-size:13px;margin-bottom:16px;'>"
-            f"💰 {butce} &nbsp;·&nbsp; 📋 {mevki_sec} &nbsp;·&nbsp; 🌍 {tercih}</div>",
+            f"💰 {butce_label} &nbsp;·&nbsp; 📋 {mevki_sec} &nbsp;·&nbsp; 🌍 {tercih}</div>",
             unsafe_allow_html=True)
 
         anahtar  = (mevki_sec, butce, tercih)
