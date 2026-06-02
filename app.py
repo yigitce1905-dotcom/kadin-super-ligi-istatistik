@@ -7,6 +7,11 @@ import plotly.graph_objects as go
 import plotly.express as px
 import streamlit as st
 try:
+    import bcrypt as _bcrypt
+    _BCRYPT_OK = True
+except ImportError:
+    _BCRYPT_OK = False
+try:
     from groq import Groq as _Groq
     _GROQ_OK = True
 except ImportError:
@@ -195,6 +200,51 @@ oyuncu_detay = {o["oyuncu"]: o for o in ham_liste} if ham_liste else {}
 
 
 _DIZIN = pathlib.Path(__file__).parent  # app.py'nin bulunduğu klasör
+
+# ─── GİRİŞ SİSTEMİ ───────────────────────────────────────────────────────────
+@st.cache_data
+def kulup_credentials_yukle() -> dict:
+    yol = _DIZIN / "club_credentials.json"
+    if yol.exists():
+        with open(yol, encoding="utf-8") as f:
+            return json.load(f)
+    # Streamlit Secrets fallback
+    try:
+        return dict(st.secrets.get("clubs", {}))
+    except Exception:
+        return {}
+
+def giris_dogrula(kullanici: str, sifre: str) -> dict | None:
+    creds = kulup_credentials_yukle()
+    bilgi = creds.get(kullanici)
+    if not bilgi:
+        return None
+    try:
+        if _BCRYPT_OK and _bcrypt.checkpw(sifre.encode(), bilgi["hash"].encode()):
+            return bilgi
+    except Exception:
+        pass
+    return None
+
+def giris_formu():
+    """Sidebar'da giriş formu gösterir."""
+    if st.session_state.get("kulup_giris"):
+        return
+    with st.sidebar.expander("🔐 Kulüp Girişi", expanded=False):
+        with st.form("giris_form", clear_on_submit=True):
+            ku = st.text_input("Kullanıcı adı", placeholder="fenerbahce")
+            si = st.text_input("Şifre", type="password", placeholder="••••")
+            if st.form_submit_button("Giriş Yap", use_container_width=True):
+                sonuc = giris_dogrula(ku.strip(), si.strip())
+                if sonuc:
+                    st.session_state["kulup_giris"] = True
+                    st.session_state["kulup_kullanici"] = ku.strip()
+                    st.session_state["kulup_takim"]    = sonuc["takim"]
+                    st.session_state["kulup_ad"]       = sonuc["ad"]
+                    st.rerun()
+                else:
+                    st.error("Kullanıcı adı veya şifre hatalı.")
+
 
 @st.cache_data(ttl=3600)
 def sd_profiller_yukle():
@@ -395,7 +445,7 @@ if "sayfa" not in st.session_state:
     st.session_state["sayfa"] = "ana"
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
-bas_sol, nav1, nav2, nav3 = st.columns([4, 1, 1, 1])
+bas_sol, nav1, nav2, nav3, nav4 = st.columns([4, 1, 1, 1, 1])
 with bas_sol:
     st.markdown("""
     <div class="baslik-kutu">
@@ -407,7 +457,7 @@ with nav1:
     if st.button("🏠 Ana Sayfa", use_container_width=True):
         st.query_params.clear()
         for k in list(st.session_state.keys()):
-            if k != "sayfa":
+            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
         st.rerun()
@@ -421,6 +471,21 @@ with nav3:
     if st.button("📬 İletişim", use_container_width=True):
         st.session_state["sayfa"] = "iletisim"
         st.rerun()
+with nav4:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.session_state.get("kulup_giris"):
+        kulup_ad = st.session_state.get("kulup_ad","")
+        if st.button(f"🚪 {kulup_ad}", use_container_width=True):
+            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad"]:
+                st.session_state.pop(k, None)
+            st.rerun()
+    else:
+        if st.button("🔐 Giriş", use_container_width=True):
+            st.session_state["sayfa"] = "giris"
+            st.rerun()
+
+# Giriş formu sidebar'da her zaman
+giris_formu()
 
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
 if st.session_state["sayfa"] == "hakkinda":
@@ -510,14 +575,37 @@ if not df_tam.empty:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
-tab1, tab_transfer, tab_genç, tab2, tab3, tab4, tab5, tab6, tab7, tab9, tab10, tab11 = st.tabs([
-    "📋 Oyuncu Listesi",
-    "🔄 Transfer Öner",
-    "🌱 Genç Yetenekler",
+_giris_var = st.session_state.get("kulup_giris", False)
+_sekmeler = []
+if _giris_var:
+    _sekmeler.append("🏟️ Benim Kadrom")
+_sekmeler += [
+    "📋 Oyuncu Listesi", "🔄 Transfer Öner", "🌱 Genç Yetenekler",
     "👤 Oyuncu Profili", "⚡ Karşılaştırma",
     "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
     "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
-])
+]
+
+_tabs = st.tabs(_sekmeler)
+_ti = 0
+
+if _giris_var:
+    tab_benim = _tabs[_ti]; _ti += 1
+else:
+    tab_benim = None
+
+tab1       = _tabs[_ti]; _ti += 1
+tab_transfer = _tabs[_ti]; _ti += 1
+tab_genç   = _tabs[_ti]; _ti += 1
+tab2       = _tabs[_ti]; _ti += 1
+tab3       = _tabs[_ti]; _ti += 1
+tab4       = _tabs[_ti]; _ti += 1
+tab5       = _tabs[_ti]; _ti += 1
+tab6       = _tabs[_ti]; _ti += 1
+tab7       = _tabs[_ti]; _ti += 1
+tab9       = _tabs[_ti]; _ti += 1
+tab10      = _tabs[_ti]; _ti += 1
+tab11      = _tabs[_ti]; _ti += 1
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 1 — OYUNCU LİSTESİ
@@ -1797,6 +1885,110 @@ with tab7:
                 })
         else:
             st.info("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME — BENİM KADROM (sadece giriş yapanlara)
+# ══════════════════════════════════════════════════════════════════════════════
+if tab_benim:
+    with tab_benim:
+        kulup_takim = st.session_state.get("kulup_takim","")
+        kulup_ad    = st.session_state.get("kulup_ad","")
+
+        st.markdown(f"##### 🏟️ {kulup_ad} — Kadro Paneli")
+        st.caption(f"2025-26 sezonu · {kulup_takim}")
+
+        kadro = df_tam[df_tam["Takım"].str.contains(
+            kulup_takim.split()[0], case=False, na=False
+        )].copy() if not df_tam.empty else pd.DataFrame()
+
+        if kadro.empty:
+            st.warning("Kadro verisi bulunamadı.")
+        else:
+            # ── Özet kartlar ────────────────────────────────────────
+            k1,k2,k3,k4,k5 = st.columns(5)
+            en_golcu = kadro.loc[kadro["Gol"].idxmax(),"Oyuncu"] if kadro["Gol"].max()>0 else "—"
+            for kol,sayi,etiket in [
+                (k1, len(kadro),                "Oyuncu"),
+                (k2, int(kadro["Gol"].sum()),   "Toplam Gol"),
+                (k3, int(kadro["Maç"].sum()),   "Toplam Maç"),
+                (k4, int(kadro["Dakika"].sum()),"Toplam Dakika"),
+                (k5, en_golcu,                  "En Golcü"),
+            ]:
+                kol.markdown(
+                    f'<div class="stat-kart"><div class="sayi" style="font-size:1.2rem">{sayi}</div>'
+                    f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+
+            st.markdown("<br>", unsafe_allow_html=True)
+            col_k, col_g = st.columns([3,2], gap="large")
+
+            with col_k:
+                st.markdown("**📋 Kadro İstatistikleri**")
+                goster = kadro[["Oyuncu","Mevki","Maç","İlk11","Gol","Gol/Maç","Dakika","Sarı","Kırmızı"]].copy()
+                goster = goster.sort_values("Gol", ascending=False).reset_index(drop=True)
+                goster.index += 1
+                st.dataframe(goster, use_container_width=True, height=460,
+                    column_config={
+                        "Gol": st.column_config.ProgressColumn(
+                            "Gol", min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
+                        "Gol/Maç": st.column_config.NumberColumn(format="%.2f"),
+                    })
+
+            with col_g:
+                st.markdown("**📊 Mevki Dağılımı**")
+                mev_dag = kadro["Mevki"].value_counts().reset_index()
+                mev_dag.columns = ["Mevki","Sayı"]
+                renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
+                            "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
+                fig_pie = go.Figure(go.Pie(
+                    labels=mev_dag["Mevki"], values=mev_dag["Sayı"],
+                    marker_colors=[renk_map.get(m,"#8899aa") for m in mev_dag["Mevki"]],
+                    hole=0.45, textinfo="label+value",
+                    textfont=dict(color="#fff", size=12),
+                ))
+                fig_pie.update_layout(
+                    paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
+                    margin=dict(l=10,r=10,t=10,b=10), height=220,
+                    showlegend=False,
+                )
+                st.plotly_chart(fig_pie, use_container_width=True)
+
+                st.markdown("**🌍 Uyruk Dağılımı**")
+                uyr_dag = kadro["Uyruk"].value_counts().head(8).reset_index()
+                uyr_dag.columns = ["Uyruk","Sayı"]
+                fig_uyr = go.Figure(go.Bar(
+                    x=uyr_dag["Sayı"], y=uyr_dag["Uyruk"], orientation="h",
+                    marker=dict(color="#00c853"),
+                    text=uyr_dag["Sayı"], textposition="outside",
+                    textfont=dict(color="#e0e0e0", size=11),
+                ))
+                fig_uyr.update_layout(
+                    paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                    xaxis=dict(showgrid=False,color="#505870"),
+                    yaxis=dict(color="#e0e0e0"),
+                    margin=dict(l=5,r=30,t=5,b=5), height=240,
+                    font=dict(color="#e0e0e0"),
+                )
+                st.plotly_chart(fig_uyr, use_container_width=True)
+
+            # ── Lig karşılaştırması ──────────────────────────────────
+            st.markdown("---")
+            st.markdown("**📊 Takım vs Lig Ortalaması**")
+            lig_ort  = df_tam.groupby("Takım").agg({"Gol":"sum","Maç":"sum","Dakika":"sum"}).mean()
+            takim_ort = kadro.agg({"Gol":"sum","Maç":"sum","Dakika":"sum"})
+
+            c1,c2,c3 = st.columns(3)
+            for kol, metrik, birim in [
+                (c1,"Gol","gol"), (c2,"Maç","maç"), (c3,"Dakika","dakika")
+            ]:
+                takim_val = float(takim_ort[metrik])
+                lig_val   = float(lig_ort[metrik])
+                delta     = takim_val - lig_val
+                kol.metric(
+                    label=f"Toplam {metrik}",
+                    value=f"{int(takim_val)} {birim}",
+                    delta=f"{delta:+.0f} lig ort. farkı",
+                )
 
 
 # ══════════════════════════════════════════════════════════════════════════════
