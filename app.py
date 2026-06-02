@@ -237,7 +237,9 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
             mac_gecmisi = ast.literal_eval(mac_gecmisi)
 
         # Takım adından eşleştirme için anahtar kelimeler üret
-        takim_kelimeler = [w for w in takim.split() if len(w) > 3]
+        # Genel kelimeleri (SPOR, KADIN, FUTBOL vs.) dışla
+        _genel = {"SPOR","KADIN","FUTBOL","TAKIMI","KULÜBÜ","A.Ş","ASK","SK","FK","SPORK"}
+        takim_kelimeler = [w for w in takim.split() if len(w) > 4 and w not in _genel]
 
         yenilen = 0
         mac_say = 0
