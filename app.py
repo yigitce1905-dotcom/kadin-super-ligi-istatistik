@@ -2705,16 +2705,16 @@ _TRANSFER_DB = {
     ("Kaleci", "Dusuk",  "Yabancı"):    ["NARGIZ ALIYEVA", "ROSE TEYE BAAH", "MEHRİBAN SHAHMAMMADOVA"],
     ("Kaleci", "Dusuk",  "Farketmez"):  ["DUYGU YILMAZ", "NARGIZ ALIYEVA", "HİLAL SUBAY"],
 
-    # ── Hücumcu Orta ──────────────────────────────────────────────────────
-    ("Hücumcu Orta", "Yuksek", "Yerli"):      ["BUSEM ŞEKER", "EBRU TOPÇU", "SEVGİ ÇINAR KARAOĞLU"],
-    ("Hücumcu Orta", "Yuksek", "Yabancı"):    ["DONJETA HALILAJ", "MILICA MIJATOVIC", "JULIA HICKELSBERGEN FULLER"],
-    ("Hücumcu Orta", "Yuksek", "Farketmez"):  ["DONJETA HALILAJ", "BUSEM ŞEKER", "EBRU TOPÇU"],
-    ("Hücumcu Orta", "Orta",   "Yerli"):      ["SEVGİ ÇINAR KARAOĞLU", "MELİKE ÖZTÜRK", "ARZU KARABULUT"],
-    ("Hücumcu Orta", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO", "JULIA HICKELSBERGEN FULLER"],
-    ("Hücumcu Orta", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "SEVGİ ÇINAR KARAOĞLU", "RASMATA SAWADOGO"],
-    ("Hücumcu Orta", "Dusuk",  "Yerli"):      ["DİLARA YILMAZ", "ARİFE ŞENTÜRK", "AÇELYA NOMAK"],
-    ("Hücumcu Orta", "Dusuk",  "Yabancı"):    ["VANESA LEVENAJ", "MAIKO BEBIA", "SUZIE MBİANDJİ"],
-    ("Hücumcu Orta", "Dusuk",  "Farketmez"):  ["VANESA LEVENAJ", "DİLARA YILMAZ", "ARİFE ŞENTÜRK"],
+    # ── Hücumcu Orta Saha ─────────────────────────────────────────────────
+    ("Hücumcu Orta Saha", "Yuksek", "Yerli"):      ["BUSEM ŞEKER", "EBRU TOPÇU", "SEVGİ ÇINAR KARAOĞLU"],
+    ("Hücumcu Orta Saha", "Yuksek", "Yabancı"):    ["DONJETA HALILAJ", "MILICA MIJATOVIC", "JULIA HICKELSBERGEN FULLER"],
+    ("Hücumcu Orta Saha", "Yuksek", "Farketmez"):  ["DONJETA HALILAJ", "BUSEM ŞEKER", "EBRU TOPÇU"],
+    ("Hücumcu Orta Saha", "Orta",   "Yerli"):      ["SEVGİ ÇINAR KARAOĞLU", "MELİKE ÖZTÜRK", "ARZU KARABULUT"],
+    ("Hücumcu Orta Saha", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO", "JULIA HICKELSBERGEN FULLER"],
+    ("Hücumcu Orta Saha", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "SEVGİ ÇINAR KARAOĞLU", "RASMATA SAWADOGO"],
+    ("Hücumcu Orta Saha", "Dusuk",  "Yerli"):      ["DİLARA YILMAZ", "ARİFE ŞENTÜRK", "AÇELYA NOMAK"],
+    ("Hücumcu Orta Saha", "Dusuk",  "Yabancı"):    ["VANESA LEVENAJ", "MAIKO BEBIA", "SUZIE MBİANDJİ"],
+    ("Hücumcu Orta Saha", "Dusuk",  "Farketmez"):  ["VANESA LEVENAJ", "DİLARA YILMAZ", "ARİFE ŞENTÜRK"],
 }
 
 with tab_transfer:
@@ -2782,9 +2782,11 @@ with tab_transfer:
             col_m, col_t = st.columns(2)
             with col_m:
                 st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
-                mevki_secenekler = ["Kaleci", "Hücumcu Orta", "Sağ Bek ⏳", "Stoper ⏳", "Sol Bek ⏳",
-                                    "Ön Libero ⏳", "Merkez Orta Saha ⏳",
-                                    "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳"]
+                mevki_secenekler = [
+                                    "Kaleci", "Sağ Bek", "Stoper", "Sol Bek",
+                                    "Ön Libero", "Merkez Orta Saha", "Hücumcu Orta Saha",
+                                    "Sol Kanat", "Sağ Kanat", "Santrafor",
+                                ]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
                                      label_visibility="collapsed")
 
@@ -2800,15 +2802,11 @@ with tab_transfer:
                     st.session_state["tr_adim"] = 1
                     st.rerun()
             with col_ileri:
-                aktif = "⏳" not in mevki_sec
-                if st.button("Önerileri Gör →", use_container_width=True,
-                             type="primary", disabled=not aktif):
+                if st.button("Önerileri Gör →", use_container_width=True, type="primary"):
                     st.session_state["tr_mevki"]  = mevki_sec
                     st.session_state["tr_tercih"] = tercih
                     st.session_state["tr_adim"]   = 3
                     st.rerun()
-                if not aktif:
-                    st.caption("⏳ Bu mevki için senaryolar yakında eklenecek.")
 
         # ── ADIM 3: Sonuçlar ────────────────────────────────────────────
         elif adim == 3:
