@@ -2802,15 +2802,14 @@ _TRANSFER_DB = {
     ("Sol Bek - Sol Kanat Bek", "Dusuk",  "Farketmez"):  ["BEYZA KOCATÜRK", "ELİF KESGİN", "SILA BESRA TETİK"],
 
     # ── Hücumcu Orta Saha ─────────────────────────────────────────────────
-    ("Hücumcu Orta Saha", "Yuksek", "Yerli"):      ["BUSEM ŞEKER", "EBRU TOPÇU", "SEVGİ ÇINAR KARAOĞLU"],
-    ("Hücumcu Orta Saha", "Yuksek", "Yabancı"):    ["DONJETA HALILAJ", "MILICA MIJATOVIC", "JULIA HICKELSBERGEN FULLER"],
-    ("Hücumcu Orta Saha", "Yuksek", "Farketmez"):  ["DONJETA HALILAJ", "BUSEM ŞEKER", "EBRU TOPÇU"],
-    ("Hücumcu Orta Saha", "Orta",   "Yerli"):      ["SEVGİ ÇINAR KARAOĞLU", "MELİKE ÖZTÜRK", "ARZU KARABULUT"],
-    ("Hücumcu Orta Saha", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO", "JULIA HICKELSBERGEN FULLER"],
-    ("Hücumcu Orta Saha", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "SEVGİ ÇINAR KARAOĞLU", "RASMATA SAWADOGO"],
-    ("Hücumcu Orta Saha", "Dusuk",  "Yerli"):      ["DİLARA YILMAZ", "ARİFE ŞENTÜRK", "AÇELYA NOMAK"],
-    ("Hücumcu Orta Saha", "Dusuk",  "Yabancı"):    ["VANESA LEVENAJ", "MAIKO BEBIA", "SUZIE MBİANDJİ"],
-    ("Hücumcu Orta Saha", "Dusuk",  "Farketmez"):  ["VANESA LEVENAJ", "DİLARA YILMAZ", "ARİFE ŞENTÜRK"],
+    ("Hücumcu Orta Saha", "Yuksek", "Yerli"):      ["EBRU TOPÇU", "DİLAN BORA"],
+    ("Hücumcu Orta Saha", "Yuksek", "Yabancı"):    ["MARTA ALEXANDRA COX VILLARREAL", "DONJETA HALILAJ", "MILICA MIJATOVIC"],
+    ("Hücumcu Orta Saha", "Yuksek", "Farketmez"):  ["MARTA ALEXANDRA COX VILLARREAL", "DONJETA HALILAJ", "EBRU TOPÇU"],
+    ("Hücumcu Orta Saha", "Orta",   "Yerli"):      ["MELİKE DİNÇEL"],
+    ("Hücumcu Orta Saha", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO", "VANESA LEVENAJ"],
+    ("Hücumcu Orta Saha", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO"],
+    ("Hücumcu Orta Saha", "Dusuk",  "Yerli"):      ["AÇELYA NOMAK", "ALEYNA MERAL", "OLIVIA MATILDE JOHANSSON ALCAIDE"],
+    ("Hücumcu Orta Saha", "Dusuk",  "Farketmez"):  ["AÇELYA NOMAK", "ALEYNA MERAL", "OLIVIA MATILDE JOHANSSON ALCAIDE"],
 
     # ── Savunmacı Orta Saha ───────────────────────────────────────────────────
     ("Savunmacı Orta Saha", "Yuksek", "Yerli"):     ["BAŞAK İÇİNÖZBEBEK", "MERYEM CENNET ÇAL", "FATMA KARA"],
