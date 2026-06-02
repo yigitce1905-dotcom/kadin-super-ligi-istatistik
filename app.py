@@ -2783,7 +2783,8 @@ with tab_transfer:
             with col_m:
                 st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
                 mevki_secenekler = [
-                                    "Kaleci", "Sağ Bek", "Stoper", "Sol Bek",
+                                    "Kaleci",
+                                    "Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Kanat Bek",
                                     "Ön Libero", "Merkez Orta Saha", "Hücumcu Orta Saha",
                                     "Sol Kanat", "Sağ Kanat", "Santrafor",
                                 ]
