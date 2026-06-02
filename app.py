@@ -2138,107 +2138,167 @@ _TRANSFER_DB = {
 
 with tab12:
     st.markdown("##### 🔄 Transfer Öner")
-    st.caption("Bütçe ve kriterlere göre lig içi transfer önerisi")
+    st.caption("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi")
 
-    col_f1, col_f2, col_f3, col_f4 = st.columns([2, 2, 2, 2])
+    # Session state başlat
+    if "tr_adim" not in st.session_state:
+        st.session_state["tr_adim"] = 0
 
-    with col_f1:
-        buton = st.button("🔍 Transfer Öner", use_container_width=True, type="primary")
+    adim = st.session_state["tr_adim"]
 
-    if buton or st.session_state.get("transfer_aktif"):
-        st.session_state["transfer_aktif"] = True
+    # ── ADIM 0: Başlangıç ───────────────────────────────────────────
+    if adim == 0:
+        st.markdown("<br>", unsafe_allow_html=True)
+        st.markdown(
+            "<div style='text-align:center;padding:40px 0 20px;'>"
+            "<div style='font-size:40px;'>🔄</div>"
+            "<div style='font-size:20px;font-weight:700;color:#fff;margin-top:12px;'>Transfer Asistanı</div>"
+            "<div style='font-size:13px;color:#8899aa;margin-top:8px;'>"
+            "Takımınızın ihtiyacına göre lig içi transfer önerisi alın.</div>"
+            "</div>",
+            unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+        col_b = st.columns([1, 2, 1])[1]
+        with col_b:
+            if st.button("🚀 Başla", use_container_width=True, type="primary"):
+                st.session_state["tr_adim"] = 1
+                st.rerun()
 
-        with col_f2:
-            butce = st.selectbox("💰 Bütçe", ["Yüksek 💎", "Orta 🔵", "Düşük 🟡"], key="tr_butce")
-        with col_f3:
-            mevki_sec = st.selectbox("📋 Mevki", ["Kaleci"], key="tr_mevki")
-        with col_f4:
-            tercih = st.selectbox("🌍 Tercih", ["Farketmez", "Yerli", "Yabancı"], key="tr_tercih")
+    # ── ADIM 1: Bütçe seç ───────────────────────────────────────────
+    elif adim == 1:
+        st.markdown("### Adım 1 / 3 &nbsp; 💰 Bütçenizi seçin")
+        st.markdown("<br>", unsafe_allow_html=True)
+        c1, c2, c3 = st.columns(3)
+        with c1:
+            if st.button("💎 Yüksek\n\nBüyük kulüp transferi", use_container_width=True):
+                st.session_state["tr_butce"] = "Yüksek 💎"
+                st.session_state["tr_adim"]  = 2
+                st.rerun()
+        with c2:
+            if st.button("🔵 Orta\n\nOrta ölçekli transfer", use_container_width=True):
+                st.session_state["tr_butce"] = "Orta 🔵"
+                st.session_state["tr_adim"]  = 2
+                st.rerun()
+        with c3:
+            if st.button("🟡 Düşük\n\nBütçe dostu transfer", use_container_width=True):
+                st.session_state["tr_butce"] = "Düşük 🟡"
+                st.session_state["tr_adim"]  = 2
+                st.rerun()
 
-        anahtar = (mevki_sec, butce, tercih)
+    # ── ADIM 2: Mevki + tercih ──────────────────────────────────────
+    elif adim == 2:
+        butce = st.session_state.get("tr_butce", "")
+        st.markdown(f"### Adım 2 / 3 &nbsp; 📋 Mevki ve tercih")
+        st.markdown(f"<div style='color:#8899aa;font-size:13px;'>Bütçe: <b style='color:#00c853'>{butce}</b></div>", unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        col_m, col_t = st.columns(2)
+        with col_m:
+            st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
+            mevki_secenekler = ["Kaleci", "Sağ Bek ⏳", "Stoper ⏳", "Sol Bek ⏳",
+                                "Ön Libero ⏳", "Merkez Orta Saha ⏳",
+                                "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳"]
+            mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
+                                 label_visibility="collapsed")
+
+        with col_t:
+            st.markdown("**Oyuncu tercihiniz?**")
+            tercih = st.radio("", ["Farketmez", "Yerli", "Yabancı"],
+                              key="tr_tercih_radio", label_visibility="collapsed")
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        col_geri, col_ileri = st.columns([1, 3])
+        with col_geri:
+            if st.button("← Geri", use_container_width=True):
+                st.session_state["tr_adim"] = 1
+                st.rerun()
+        with col_ileri:
+            aktif = "⏳" not in mevki_sec
+            if st.button("Önerileri Gör →", use_container_width=True,
+                         type="primary", disabled=not aktif):
+                st.session_state["tr_mevki"]  = mevki_sec
+                st.session_state["tr_tercih"] = tercih
+                st.session_state["tr_adim"]   = 3
+                st.rerun()
+            if not aktif:
+                st.caption("⏳ Bu mevki için senaryolar yakında eklenecek.")
+
+    # ── ADIM 3: Sonuçlar ────────────────────────────────────────────
+    elif adim == 3:
+        butce     = st.session_state.get("tr_butce", "")
+        mevki_sec = st.session_state.get("tr_mevki", "")
+        tercih    = st.session_state.get("tr_tercih", "")
+
+        st.markdown(
+            f"<div style='color:#8899aa;font-size:13px;margin-bottom:16px;'>"
+            f"💰 {butce} &nbsp;·&nbsp; 📋 {mevki_sec} &nbsp;·&nbsp; 🌍 {tercih}</div>",
+            unsafe_allow_html=True)
+
+        anahtar  = (mevki_sec, butce, tercih)
         oneriler = _TRANSFER_DB.get(anahtar, [])
 
         if not oneriler:
             st.info("Bu kombinasyon için henüz öneri tanımlanmadı.")
         else:
-            kal_df = kaleci_istatistikleri_hesapla()
+            kal_df   = kaleci_istatistikleri_hesapla()
             kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
 
-            st.markdown("<br>", unsafe_allow_html=True)
             st.markdown(
-                f"<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:16px;'>"
-                f"🏆 {mevki_sec} · {butce} · {tercih} — Önerilen 3 Oyuncu</div>",
+                f"<div style='color:#00c853;font-weight:700;font-size:16px;margin-bottom:20px;'>"
+                f"🏆 Önerilen 3 Oyuncu</div>",
                 unsafe_allow_html=True)
 
             for i, isim in enumerate(oneriler, 1):
-                r = kal_dict.get(isim, {})
-                mac   = r.get("Maç", "—")
-                yg    = r.get("YenilenGol", "—")
-                gpm   = r.get("G/Maç", "—")
-                takim = r.get("Takım", sd_profiller.get(isim, {}).get("profil_url", "Bilinmiyor"))
-
+                r      = kal_dict.get(isim, {})
+                mac    = r.get("Maç", "—")
+                yg     = r.get("YenilenGol", "—")
+                gpm    = r.get("G/Maç", "—")
+                takim  = r.get("Takım", "—")
                 profil = sd_profiller.get(isim, {})
-                yas_val = profil.get("Age", "—")
-                boy_val = profil.get("Height", "—")
-                nat_val = profil.get("Nationality", "—")
-                if nat_val:
-                    import re as _re2
-                    nat_val = _re2.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_val).split()[0]
+                yas_v  = profil.get("Age", "—")
+                boy_v  = profil.get("Height", "—")
+                nat_v  = profil.get("Nationality", "—")
+                if nat_v:
+                    nat_v = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_v).split()[0]
 
                 renk = "#00c853" if isinstance(gpm, float) and gpm <= 1.0 else \
                        "#ffab00" if isinstance(gpm, float) and gpm <= 2.0 else "#ff6b6b"
 
-                st.markdown(
-                    f"""
-                    <div style='background:#1a1f36;border-radius:12px;padding:18px 22px;
-                                margin-bottom:12px;border-left:4px solid {renk};'>
-                      <div style='font-size:16px;font-weight:800;color:#fff;margin-bottom:6px;'>
-                        {i}. {isim}
-                      </div>
-                      <div style='font-size:12px;color:#8899aa;margin-bottom:10px;'>
-                        🏟 {takim}
-                      </div>
-                      <div style='display:flex;gap:16px;flex-wrap:wrap;'>
-                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
-                          <div style='font-size:18px;font-weight:700;color:{renk};'>{gpm}</div>
-                          <div style='font-size:10px;color:#8899aa;'>G/Maç</div>
-                        </div>
-                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
-                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{mac}</div>
-                          <div style='font-size:10px;color:#8899aa;'>Maç</div>
-                        </div>
-                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
-                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{yg}</div>
-                          <div style='font-size:10px;color:#8899aa;'>Yenilen Gol</div>
-                        </div>
-                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
-                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{yas_val}</div>
-                          <div style='font-size:10px;color:#8899aa;'>Yaş</div>
-                        </div>
-                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
-                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{boy_val}</div>
-                          <div style='font-size:10px;color:#8899aa;'>Boy</div>
-                        </div>
-                        <div style='background:#0f1117;border-radius:8px;padding:8px 14px;text-align:center;'>
-                          <div style='font-size:18px;font-weight:700;color:#e0e0e0;'>{nat_val}</div>
-                          <div style='font-size:10px;color:#8899aa;'>Uyruk</div>
-                        </div>
-                      </div>
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
+                istatlar = [(gpm, "G/Maç"), (mac, "Maç"), (yg, "Y.Gol"),
+                            (yas_v, "Yaş"), (boy_v, "Boy"), (nat_v, "Uyruk")]
+                stat_html = "".join(
+                    f"<div style='background:#0f1117;border-radius:8px;padding:8px 14px;"
+                    f"text-align:center;'>"
+                    f"<div style='font-size:18px;font-weight:700;"
+                    f"color:{renk if lbl == 'G/Maç' else '#e0e0e0'};'>{val}</div>"
+                    f"<div style='font-size:10px;color:#8899aa;'>{lbl}</div></div>"
+                    for val, lbl in istatlar
                 )
+                st.markdown(
+                    f"<div style='background:#1a1f36;border-radius:12px;padding:18px 22px;"
+                    f"margin-bottom:14px;border-left:4px solid {renk};'>"
+                    f"<div style='font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;'>"
+                    f"{i}. {isim}</div>"
+                    f"<div style='font-size:12px;color:#8899aa;margin-bottom:12px;'>🏟 {takim}</div>"
+                    f"<div style='display:flex;gap:12px;flex-wrap:wrap;'>{stat_html}</div>"
+                    f"</div>",
+                    unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
             st.markdown(
                 "<div style='background:#1a1f36;border:1px dashed #00c853;border-radius:10px;"
-                "padding:16px;text-align:center;'>"
-                "<div style='color:#00c853;font-weight:700;font-size:14px;'>📄 Transfer Raporu</div>"
-                "<div style='color:#8899aa;font-size:12px;margin-top:4px;'>"
+                "padding:18px;text-align:center;'>"
+                "<div style='color:#00c853;font-weight:700;font-size:15px;'>📄 Transfer Raporu</div>"
+                "<div style='color:#8899aa;font-size:12px;margin-top:6px;'>"
                 "Bu oyuncular için detaylı analiz raporu yakında burada olacak.</div>"
                 "</div>",
-                unsafe_allow_html=True,
-            )
+                unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+        if st.button("🔄 Yeniden Başla", use_container_width=False):
+            for k in ["tr_adim","tr_butce","tr_mevki","tr_tercih"]:
+                st.session_state.pop(k, None)
+            st.rerun()
 
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
