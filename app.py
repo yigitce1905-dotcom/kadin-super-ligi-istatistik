@@ -1894,6 +1894,43 @@ if tab_benim:
     with tab_benim:
         kulup_takim = st.session_state.get("kulup_takim","")
         kulup_ad    = st.session_state.get("kulup_ad","")
+        _rol        = st.session_state.get("kulup_kullanici","")
+
+        # ── ADMIN GÖRÜNÜMÜ ────────────────────────────────────────
+        if _rol == "admin":
+            st.markdown("##### 🛡️ Admin Paneli — Tüm Lig Özeti")
+            if not df_tam.empty:
+                k1,k2,k3,k4 = st.columns(4)
+                for kol,sayi,etiket in [
+                    (k1, len(df_tam),              "Toplam Oyuncu"),
+                    (k2, df_tam["Takım"].nunique(), "Takım"),
+                    (k3, int(df_tam["Gol"].sum()),  "Toplam Gol"),
+                    (k4, int(df_tam["Maç"].sum()),  "Toplam Maç"),
+                ]:
+                    kol.markdown(
+                        f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
+                        f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.markdown("**Takım Bazlı Gol Sıralaması**")
+                takim_gol = (df_tam.groupby("Takım")["Gol"].sum()
+                             .sort_values(ascending=False).reset_index())
+                fig_admin = go.Figure(go.Bar(
+                    x=takim_gol["Gol"], y=takim_gol["Takım"], orientation="h",
+                    marker=dict(color="#00c853"),
+                    text=takim_gol["Gol"], textposition="outside",
+                    textfont=dict(color="#e0e0e0"),
+                ))
+                fig_admin.update_layout(
+                    paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                    xaxis=dict(showgrid=False, color="#505870"),
+                    yaxis=dict(color="#e0e0e0"),
+                    margin=dict(l=10,r=40,t=5,b=5), height=420,
+                    font=dict(color="#e0e0e0"),
+                )
+                st.plotly_chart(fig_admin, use_container_width=True)
+            st.stop()
+
+        # ── KULÜP GÖRÜNÜMÜ ────────────────────────────────────────
 
         st.markdown(f"##### 🏟️ {kulup_ad} — Kadro Paneli")
         st.caption(f"2025-26 sezonu · {kulup_takim}")
