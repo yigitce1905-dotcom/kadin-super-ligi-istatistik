@@ -1846,7 +1846,7 @@ with tab_genç:
         # ── Filtreler ─────────────────────────────────────────────────
         gf1, gf2, gf3 = st.columns([2, 2, 2])
         with gf1:
-            yas_ust = st.select_slider("Maksimum Yaş", options=[18, 19, 20, 21, 22, 23], value=23)
+            yas_ust = st.select_slider("Maksimum Yaş", options=[15, 16, 17, 18, 19, 20, 21, 22, 23], value=23)
         with gf2:
             mevki_filtre = st.multiselect("Mevki", ["Kaleci","Defans","Orta Saha","Forvet"],
                                            placeholder="Tümü", key="gf_mevki")
