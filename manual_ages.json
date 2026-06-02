@@ -39,7 +39,7 @@
   "BERİL BECEREN":                    {"source": "manuel", "position": "Defender - Right Back"},
   "ESİN NİSA SİVASLI":                {"source": "manuel", "position": "Defender - Left Back"},
   "EFLİN SARAN":                      {"source": "manuel", "position": "Defender - Right Back"},
-  "DIAKIESE KALUZODI ISABELLE":       {"born": "01.01.1998", "source": "manuel", "position": "Striker - Centre Forward"},
+  "DIAKIESE KALUZODI ISABELLE":       {"born": "01.01.1998", "source": "manuel", "position": "Striker - Centre Forward", "nationality": "Congo"},
   "ECRİN NAZ ŞENTÜRK":                {"source": "manuel", "position": "Defender - Left Back"},
   "SÜMEYRA KIVANÇ":                   {"source": "manuel", "position": "Defender - Right Back"},
   "GÖKCE ALMILA ÖZCAN":               {"born": "06.07.2007", "source": "TFF kisiID=2925885", "position": "Midfield - Central Midfield", "nationality": "Turkey"},
