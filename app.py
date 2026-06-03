@@ -763,6 +763,9 @@ _sekmeler += [
     "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
     "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
 ]
+_is_admin = st.session_state.get("kulup_kullanici") == "admin"
+if _is_admin:
+    _sekmeler.append("🔎 Scouting")
 
 _tabs = st.tabs(_sekmeler)
 _ti = 0
@@ -784,6 +787,7 @@ tab7       = _tabs[_ti]; _ti += 1
 tab9       = _tabs[_ti]; _ti += 1
 tab10      = _tabs[_ti]; _ti += 1
 tab11      = _tabs[_ti]; _ti += 1
+tab_scouting = _tabs[_ti] if _is_admin else None; _ti += (1 if _is_admin else 0)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 1 — OYUNCU LİSTESİ
@@ -3080,6 +3084,144 @@ with tab_transfer:
                     st.session_state.pop(k, None)
                 st.rerun()
 
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME — SCOUTING PANELİ (sadece admin)
+# ══════════════════════════════════════════════════════════════════════════════
+
+@st.cache_data(ttl=3600)
+def scouting_veri_yukle():
+    yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
+    if not yol.exists():
+        return pd.DataFrame()
+    df = pd.read_excel(yol, engine="openpyxl")
+    df.columns = [
+        "İsim","Soyisim","Tam İsmi","Vatandaşlık","Milli Takım",
+        "Doğum Yılı","Boy","Ayak","Vücut Tipi","Bölge",
+        "Mevki 1","Mevki 2","Mevki 3","Rol","Kulüp","Lig","Sözleşme","Mr Danis 25"
+    ]
+    return df
+
+_DANIS_ETIKET = {
+    "Yıldız":     "⭐ Yıldız",
+    "Uzman":      "🎯 Uzman",
+    "Potansiyel": "🌱 Potansiyel",
+    "Yeterli":    "✅ Yeterli",
+    "Yedek":      "🔄 Yedek",
+}
+_DANIS_RENK = {
+    "Yıldız":     "#f59e0b",
+    "Uzman":      "#3b82f6",
+    "Potansiyel": "#10b981",
+    "Yeterli":    "#6b7280",
+    "Yedek":      "#9ca3af",
+}
+_MEVKI_ACIKLAMA = {
+    "GK":"Kaleci","LCB":"Sol Stoper","RCB":"Sağ Stoper","LWB":"Sol Kanat Bek",
+    "RWB":"Sağ Kanat Bek","LFB":"Sol Bek","CMF":"Merkez Orta Saha",
+    "LWF":"Sol Kanat","RWF":"Sağ Kanat","SST":"İkinci Santrafor","CFW":"Santrafor",
+}
+
+if tab_scouting is not None:
+    with tab_scouting:
+        st.markdown("## 🔎 Scouting Havuzu")
+        st.caption("Bu panel yalnızca admin tarafından görüntülenebilir. Veriler Türkiye ligi istatistiklerinden bağımsızdır.")
+
+        sc_df = scouting_veri_yukle()
+
+        if sc_df.empty:
+            st.warning("scouting_oyuncular.xlsx bulunamadı.")
+        else:
+            # ── FİLTRELER ────────────────────────────────────────────
+            st.markdown("---")
+            fc1, fc2, fc3 = st.columns(3)
+            with fc1:
+                bolge_sec = st.selectbox("🗂️ Bölge", ["Tümü"] + sorted(sc_df["Bölge"].dropna().unique().tolist()))
+            with fc2:
+                mevki_opts = sorted(sc_df["Mevki 1"].dropna().unique().tolist())
+                mevki_sec = st.selectbox("📌 Mevki", ["Tümü"] + mevki_opts)
+            with fc3:
+                danis_opts = sorted(sc_df["Mr Danis 25"].dropna().unique().tolist())
+                danis_sec = st.selectbox("🏷️ Değerlendirme", ["Tümü"] + danis_opts)
+
+            filtered = sc_df.copy()
+            if bolge_sec != "Tümü":
+                filtered = filtered[filtered["Bölge"] == bolge_sec]
+            if mevki_sec != "Tümü":
+                filtered = filtered[filtered["Mevki 1"] == mevki_sec]
+            if danis_sec != "Tümü":
+                filtered = filtered[filtered["Mr Danis 25"] == danis_sec]
+
+            st.markdown(f"**{len(filtered)} oyuncu** listeleniyor")
+            st.markdown("---")
+
+            # ── OYUNCU KARTLARI ───────────────────────────────────────
+            for i in range(0, len(filtered), 2):
+                cols = st.columns(2)
+                for j, col in enumerate(cols):
+                    if i + j >= len(filtered):
+                        break
+                    row = filtered.iloc[i + j]
+
+                    danis     = str(row.get("Mr Danis 25","")) if pd.notna(row.get("Mr Danis 25")) else ""
+                    etiket    = _DANIS_ETIKET.get(danis, "")
+                    renk      = _DANIS_RENK.get(danis, "#6b7280")
+                    tam_isim  = str(row.get("Tam İsmi",""))
+                    rol       = str(row.get("Rol",""))
+                    vatandas  = str(row.get("Vatandaşlık",""))
+                    milli     = str(row.get("Milli Takım",""))
+                    d_yil     = row.get("Doğum Yılı","")
+                    yas       = 2026 - int(d_yil) if pd.notna(d_yil) and str(d_yil).isdigit() else "?"
+                    boy       = f"{row.get('Boy','')}m" if pd.notna(row.get("Boy")) else "—"
+                    ayak      = str(row.get("Ayak",""))
+                    vucut     = str(row.get("Vücut Tipi",""))
+                    kulup     = str(row.get("Kulüp",""))
+                    lig       = str(row.get("Lig",""))
+                    sozlesme  = str(row.get("Sözleşme",""))
+                    m1        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 1","")), str(row.get("Mevki 1","")))
+                    m2        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 2","")), "") if pd.notna(row.get("Mevki 2")) else ""
+                    m3        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 3","")), "") if pd.notna(row.get("Mevki 3")) else ""
+                    mevkiler  = " · ".join(filter(None, [m1, m2, m3]))
+                    bolge     = str(row.get("Bölge",""))
+
+                    with col:
+                        st.markdown(f"""
+<div style="
+    border:1px solid {renk};
+    border-radius:12px;
+    padding:16px 18px;
+    margin-bottom:14px;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    position:relative;
+">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}</div>
+    <div style="background:{renk};color:#fff;font-size:0.72rem;font-weight:700;
+         padding:3px 9px;border-radius:20px;white-space:nowrap;">{etiket}</div>
+  </div>
+  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:4px;">
+    🎭 {rol}
+  </div>
+  <div style="color:#64748b;font-size:0.78rem;margin-bottom:10px;">
+    📌 {mevkiler} &nbsp;|&nbsp; 🗂️ {bolge}
+  </div>
+  <hr style="border-color:#334155;margin:8px 0;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:0.80rem;color:#cbd5e1;">
+    <span>🌍 {vatandas}</span>
+    <span>🏴 {milli if milli != vatandas else "—"}</span>
+    <span>📅 {d_yil} ({yas} yaş)</span>
+    <span>📏 {boy} · {ayak} ayak</span>
+    <span>💪 {vucut}</span>
+    <span></span>
+  </div>
+  <hr style="border-color:#334155;margin:8px 0;">
+  <div style="font-size:0.80rem;color:#94a3b8;">
+    🏟️ <b style="color:#e2e8f0;">{kulup}</b><br>
+    🌐 {lig}<br>
+    📄 Sözleşme: {sozlesme}
+  </div>
+</div>
+""", unsafe_allow_html=True)
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
