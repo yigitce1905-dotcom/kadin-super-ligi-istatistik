@@ -844,37 +844,67 @@ if st.session_state.get("sayfa") == "scouting":
         else:
             # ── ARAMA & FİLTRELER ─────────────────────────────────
             st.markdown("---")
-            sa1, sa2 = st.columns([3, 1])
-            with sa1:
+            isim_col = "Tam İsmi" if "Tam İsmi" in sc_df.columns else sc_df.columns[0]
+            vat_col  = "Vatandaşlık" if "Vatandaşlık" in sc_df.columns else None
+
+            # SD'den mevki → normalize eşleme
+            _SD_MEVKI_NORM = {
+                "Goalkeeper":                    "Kaleci",
+                "Defence - Fullback, right":     "Sağ Bek",
+                "Defender - Right Back":         "Sağ Bek",
+                "Defence - Fullback, left":      "Sol Bek",
+                "Defender - Left Back":          "Sol Bek",
+                "Defence - Centre Back":         "Stoper",
+                "Defender - Centre Back":        "Stoper",
+                "Defence":                       "Defans",
+                "Defender":                      "Defans",
+                "Midfield - Defensive Midfield": "Savunmacı Orta Saha",
+                "Midfield - Central Midfield":   "Merkez Orta Saha",
+                "Midfield - Midfield, left":     "Sol Kanat",
+                "Midfield - Midfield, right":    "Sağ Kanat",
+                "Midfield - Attacking Midfield": "Hücumcu Orta Saha",
+                "Midfield - Left Wing":          "Sol Kanat",
+                "Midfield - Right Wing":         "Sağ Kanat",
+                "Midfield":                      "Orta Saha",
+                "Striker - Centre Forward":      "Santrafor",
+                "Striker - Second Striker":      "İkinci Santrafor",
+                "Striker - Left Wing":           "Sol Kanat Forvet",
+                "Striker - Right Wing":          "Sağ Kanat Forvet",
+                "Striker - Attacking Midfield":  "Hücumcu Orta Saha",
+                "Striker":                       "Forvet",
+            }
+
+            # SD doğum yılı aralığı
+            yillar = []
+            for v in sd_data.values():
+                dob = v.get("Date of birth","")
+                if dob and len(dob) >= 4:
+                    try: yillar.append(int(dob[-4:]))
+                    except: pass
+            yil_min = min(yillar) if yillar else 1990
+            yil_max = max(yillar) if yillar else 2008
+
+            # Satır 1: İsim + Vatandaşlık + Mevki kategorisi + Detay
+            sc_r1c1, sc_r1c2, sc_r1c3, sc_r1c4 = st.columns([2, 1, 1, 1])
+            with sc_r1c1:
                 isim_q = st.text_input("👤 Oyuncu Ara", placeholder="İsim yaz…", key="sc_isim")
-            with sa2:
-                vat_col = "Vatandaşlık" if "Vatandaşlık" in sc_df.columns else sc_df.columns[4] if len(sc_df.columns) > 4 else None
+            with sc_r1c2:
                 vat_opts = sorted(sc_df[vat_col].dropna().replace("","").unique().tolist()) if vat_col else []
                 vat_sec = st.selectbox("🌍 Vatandaşlık", ["Tümü"] + [v for v in vat_opts if v], key="sc_vat")
+            with sc_r1c3:
+                sc_kategori = st.selectbox("📌 Mevki", ["Tümü"] + list(_MEVKI_DETAY.keys()), key="sc_kat")
+            with sc_r1c4:
+                sc_detay_opts = ["Tümü"] + (_MEVKI_DETAY.get(sc_kategori, []) if sc_kategori != "Tümü" else [])
+                sc_detay = st.selectbox("↳ Detay", sc_detay_opts, key="sc_detay", disabled=(sc_kategori == "Tümü"))
 
-            sb1, sb2, sb3 = st.columns(3)
-            isim_col = "Tam İsmi" if "Tam İsmi" in sc_df.columns else sc_df.columns[0]
-
-            # SD'den mevki listesi
-            sd_mevkiler = sorted(set(
-                v.get("Position","") for v in sd_data.values()
-                if v.get("Position") and not v.get("bulunamadi")
-            ))
-            with sb1:
-                mevki_sec = st.selectbox("📌 Mevki (SD)", ["Tümü"] + sd_mevkiler, key="sc_mevki")
-            with sb2:
-                # SD'den doğum yılı aralığı
-                yillar = []
-                for v in sd_data.values():
-                    dob = v.get("Date of birth","")
-                    if dob and len(dob) >= 4:
-                        try: yillar.append(int(dob[-4:]))
-                        except: pass
-                yil_min = min(yillar) if yillar else 1990
-                yil_max = max(yillar) if yillar else 2008
+            # Satır 2: Doğum yılı + Ayak
+            sc_r2c1, sc_r2c2, sc_r2c3 = st.columns([2, 1, 1])
+            with sc_r2c1:
                 yil_range = st.slider("📅 Doğum Yılı", yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
-            with sb3:
+            with sc_r2c2:
                 ayak_sec = st.selectbox("🦶 Ayak", ["Tümü", "right", "left", "both"], key="sc_ayak")
+            with sc_r2c3:
+                st.markdown("<br>", unsafe_allow_html=True)
 
             # Filtrele
             filtered = sc_df.copy()
@@ -883,20 +913,28 @@ if st.session_state.get("sayfa") == "scouting":
             if vat_col and vat_sec != "Tümü":
                 filtered = filtered[filtered[vat_col] == vat_sec]
 
-            # SD filtreleri — mevki ve yıl için SD verisine bak
             def sd_filtre(tam_isim):
                 v = sd_data.get(tam_isim, {})
-                if v.get("bulunamadi"): return True  # bulunamayanları göster
-                mevki_ok = (mevki_sec == "Tümü") or (v.get("Position","") == mevki_sec)
-                ayak_ok  = (ayak_sec  == "Tümü") or (v.get("Foot","") == ayak_sec)
+                if v.get("bulunamadi"): return True
+                # Mevki filtresi
+                sd_pos  = v.get("Position","")
+                tr_mevki = _SD_MEVKI_NORM.get(sd_pos, mevki_normalize(sd_pos))
+                if sc_kategori != "Tümü":
+                    if sc_detay != "Tümü":
+                        if tr_mevki != sc_detay: return False
+                    else:
+                        if tr_mevki not in _MEVKI_DETAY.get(sc_kategori, []): return False
+                # Ayak filtresi
+                if ayak_sec != "Tümü" and v.get("Foot","") != ayak_sec:
+                    return False
+                # Yıl filtresi
                 dob = v.get("Date of birth","")
-                yil_ok = True
                 if dob and len(dob) >= 4:
                     try:
                         y = int(dob[-4:])
-                        yil_ok = yil_range[0] <= y <= yil_range[1]
+                        if not (yil_range[0] <= y <= yil_range[1]): return False
                     except: pass
-                return mevki_ok and ayak_ok and yil_ok
+                return True
 
             filtered = filtered[filtered[isim_col].apply(sd_filtre)]
 
