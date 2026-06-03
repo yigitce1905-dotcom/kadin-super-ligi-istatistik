@@ -428,6 +428,36 @@ def mac_sonuclari_yukle() -> list:
     return []
 
 
+GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
+
+@st.cache_data(ttl=300)
+def scouting_gsheet_yukle() -> pd.DataFrame:
+    """Google Sheets'ten scouting oyuncu listesini çeker (251 oyuncu)."""
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc   = gspread.authorize(creds)
+        ws   = gc.open_by_key(GSHEET_ID).sheet1
+        rows = ws.get_all_records()
+        return pd.DataFrame(rows)
+    except Exception as e:
+        return pd.DataFrame()
+
+@st.cache_data(ttl=3600)
+def scouting_sd_yukle() -> dict:
+    """SoccerDonna verilerini JSON'dan yükler."""
+    yol = pathlib.Path(__file__).parent / "scouting_sd_profiller.json"
+    if not yol.exists():
+        return {}
+    import json
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
 @st.cache_data(ttl=3600)
 def scouting_veri_yukle():
     yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
@@ -782,15 +812,16 @@ if st.session_state.get("sayfa") == "scouting":
         <div style='margin-bottom:4px;'>
           <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 Scouting Havuzu</h2>
           <p style='color:#64748b;font-size:0.85rem;'>
-            Yabancı ve yerli oyuncu kurasyonu · 2026-27 kadro planlama · Türkiye ligi verilerinden bağımsız
+            Yabancı oyuncu kurasyonu · 2026-27 kadro planlama · SoccerDonna verileri ile zenginleştirilmiş
           </p>
         </div>
         """, unsafe_allow_html=True)
 
-        sc_df = scouting_veri_yukle()
+        sc_df = scouting_gsheet_yukle()
+        sd_data = scouting_sd_yukle()
 
         if sc_df.empty:
-            st.warning("scouting_oyuncular.xlsx bulunamadı.")
+            st.warning("Google Sheets'e bağlanılamadı veya liste boş.")
         else:
             # ── ARAMA & FİLTRELER ─────────────────────────────────
             st.markdown("---")
@@ -798,38 +829,57 @@ if st.session_state.get("sayfa") == "scouting":
             with sa1:
                 isim_q = st.text_input("👤 Oyuncu Ara", placeholder="İsim yaz…", key="sc_isim")
             with sa2:
-                bolge_sec = st.selectbox("🗂️ Bölge", ["Tümü"] + sorted(sc_df["Bölge"].dropna().unique().tolist()), key="sc_bolge")
+                vat_col = "Vatandaşlık" if "Vatandaşlık" in sc_df.columns else sc_df.columns[4] if len(sc_df.columns) > 4 else None
+                vat_opts = sorted(sc_df[vat_col].dropna().replace("","").unique().tolist()) if vat_col else []
+                vat_sec = st.selectbox("🌍 Vatandaşlık", ["Tümü"] + [v for v in vat_opts if v], key="sc_vat")
 
-            sb1, sb2, sb3, sb4 = st.columns(4)
+            sb1, sb2, sb3 = st.columns(3)
+            isim_col = "Tam İsmi" if "Tam İsmi" in sc_df.columns else sc_df.columns[0]
+
+            # SD'den mevki listesi
+            sd_mevkiler = sorted(set(
+                v.get("Position","") for v in sd_data.values()
+                if v.get("Position") and not v.get("bulunamadi")
+            ))
             with sb1:
-                mevki_opts = sorted(sc_df["Mevki 1"].dropna().unique().tolist())
-                mevki_sec = st.selectbox("📌 Mevki", ["Tümü"] + mevki_opts, key="sc_mevki")
+                mevki_sec = st.selectbox("📌 Mevki (SD)", ["Tümü"] + sd_mevkiler, key="sc_mevki")
             with sb2:
-                vat_opts = sorted(sc_df["Vatandaşlık"].dropna().unique().tolist())
-                vat_sec = st.selectbox("🌍 Vatandaşlık", ["Tümü"] + vat_opts, key="sc_vat")
-            with sb3:
-                danis_opts = sorted(sc_df["Mr Danis 25"].dropna().unique().tolist())
-                danis_sec = st.selectbox("🏷️ Değerlendirme", ["Tümü"] + danis_opts, key="sc_danis")
-            with sb4:
-                yil_min = int(sc_df["Doğum Yılı"].min()) if not sc_df.empty else 1990
-                yil_max = int(sc_df["Doğum Yılı"].max()) if not sc_df.empty else 2008
+                # SD'den doğum yılı aralığı
+                yillar = []
+                for v in sd_data.values():
+                    dob = v.get("Date of birth","")
+                    if dob and len(dob) >= 4:
+                        try: yillar.append(int(dob[-4:]))
+                        except: pass
+                yil_min = min(yillar) if yillar else 1990
+                yil_max = max(yillar) if yillar else 2008
                 yil_range = st.slider("📅 Doğum Yılı", yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
+            with sb3:
+                ayak_sec = st.selectbox("🦶 Ayak", ["Tümü", "right", "left", "both"], key="sc_ayak")
 
             # Filtrele
             filtered = sc_df.copy()
             if isim_q.strip():
-                filtered = filtered[filtered["Tam İsmi"].str.contains(isim_q.strip(), case=False, na=False)]
-            if bolge_sec != "Tümü":
-                filtered = filtered[filtered["Bölge"] == bolge_sec]
-            if mevki_sec != "Tümü":
-                filtered = filtered[filtered["Mevki 1"] == mevki_sec]
-            if vat_sec != "Tümü":
-                filtered = filtered[filtered["Vatandaşlık"] == vat_sec]
-            if danis_sec != "Tümü":
-                filtered = filtered[filtered["Mr Danis 25"] == danis_sec]
-            filtered = filtered[
-                filtered["Doğum Yılı"].between(yil_range[0], yil_range[1])
-            ]
+                filtered = filtered[filtered[isim_col].str.contains(isim_q.strip(), case=False, na=False)]
+            if vat_col and vat_sec != "Tümü":
+                filtered = filtered[filtered[vat_col] == vat_sec]
+
+            # SD filtreleri — mevki ve yıl için SD verisine bak
+            def sd_filtre(tam_isim):
+                v = sd_data.get(tam_isim, {})
+                if v.get("bulunamadi"): return True  # bulunamayanları göster
+                mevki_ok = (mevki_sec == "Tümü") or (v.get("Position","") == mevki_sec)
+                ayak_ok  = (ayak_sec  == "Tümü") or (v.get("Foot","") == ayak_sec)
+                dob = v.get("Date of birth","")
+                yil_ok = True
+                if dob and len(dob) >= 4:
+                    try:
+                        y = int(dob[-4:])
+                        yil_ok = yil_range[0] <= y <= yil_range[1]
+                    except: pass
+                return mevki_ok and ayak_ok and yil_ok
+
+            filtered = filtered[filtered[isim_col].apply(sd_filtre)]
 
             st.markdown(
                 f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:6px 0 12px;'>"
@@ -838,35 +888,31 @@ if st.session_state.get("sayfa") == "scouting":
             if filtered.empty:
                 st.info("Filtrelerle eşleşen oyuncu yok.")
             else:
-                # ── OYUNCU KARTLARI ───────────────────────────────
                 for i in range(0, len(filtered), 2):
                     cols = st.columns(2)
                     for j, col in enumerate(cols):
                         if i + j >= len(filtered):
                             break
-                        row = filtered.iloc[i + j]
-                        danis     = str(row.get("Mr Danis 25","")) if pd.notna(row.get("Mr Danis 25")) else ""
-                        etiket    = _DANIS_ETIKET.get(danis, "")
-                        renk      = _DANIS_RENK.get(danis, "#6b7280")
-                        tam_isim  = str(row.get("Tam İsmi",""))
-                        rol       = str(row.get("Rol",""))
-                        vatandas  = str(row.get("Vatandaşlık",""))
-                        milli     = str(row.get("Milli Takım",""))
-                        d_yil     = row.get("Doğum Yılı","")
-                        yas       = 2026 - int(d_yil) if pd.notna(d_yil) and str(d_yil).isdigit() else "?"
-                        boy       = f"{row.get('Boy','')}m" if pd.notna(row.get("Boy")) else "—"
-                        ayak      = str(row.get("Ayak",""))
-                        vucut     = str(row.get("Vücut Tipi",""))
-                        kulup     = str(row.get("Kulüp",""))
-                        lig       = str(row.get("Lig",""))
-                        sozlesme  = str(row.get("Sözleşme",""))
-                        sd_url    = str(row.get("SD URL","")) if "SD URL" in sc_df.columns and pd.notna(row.get("SD URL")) else ""
-                        m1        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 1","")), str(row.get("Mevki 1","")))
-                        m2        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 2","")), "") if pd.notna(row.get("Mevki 2")) else ""
-                        m3        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 3","")), "") if pd.notna(row.get("Mevki 3")) else ""
-                        mevkiler  = " · ".join(filter(None, [m1, m2, m3]))
-                        bolge_str = str(row.get("Bölge",""))
-                        sd_badge  = f'<a href="{sd_url}" target="_blank" style="font-size:0.72rem;color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>' if sd_url.startswith("http") else ""
+                        row      = filtered.iloc[i + j]
+                        tam_isim = str(row.get(isim_col, ""))
+                        vatandas = str(row.get(vat_col, "")) if vat_col else "—"
+                        vatan2   = str(row.get("Vatandaşlık 2","")) if "Vatandaşlık 2" in sc_df.columns else ""
+
+                        # SoccerDonna verisini birleştir
+                        sd = sd_data.get(tam_isim, {})
+                        dob      = sd.get("Date of birth","—")
+                        yas      = sd.get("Age","?")
+                        boy      = sd.get("Height","—")
+                        mevki    = sd.get("Position","—")
+                        ayak     = sd.get("Foot","—")
+                        kulup    = sd.get("Name in native country","") or sd.get("© " + vatandas, "")
+                        sozlesme = sd.get("Contract until","—")
+                        sd_url   = sd.get("profil_url","")
+                        sd_found = bool(sd) and not sd.get("bulunamadi")
+
+                        sd_badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.72rem;'
+                                    f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
+                        renk = "#3b82f6" if sd_found else "#6b7280"
 
                         with col:
                             st.markdown(f"""
@@ -874,58 +920,30 @@ if st.session_state.get("sayfa") == "scouting":
     background:linear-gradient(135deg,#0f172a,#1e293b);">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
     <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}</div>
-    <div style="background:{renk};color:#fff;font-size:0.72rem;font-weight:700;
-         padding:3px 9px;border-radius:20px;white-space:nowrap;">{etiket}</div>
+    <div style="font-size:0.72rem;color:#64748b;">{sd_badge}</div>
   </div>
-  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:3px;">🎭 {rol}</div>
-  <div style="color:#64748b;font-size:0.78rem;margin-bottom:8px;">📌 {mevkiler} &nbsp;|&nbsp; 🗂️ {bolge_str}</div>
+  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:8px;">📌 {mevki}</div>
   <hr style="border-color:#334155;margin:7px 0;">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;font-size:0.80rem;color:#cbd5e1;">
-    <span>🌍 {vatandas}</span><span>🏴 {milli if milli != vatandas else "—"}</span>
-    <span>📅 {d_yil} ({yas} yaş)</span><span>📏 {boy} · {ayak} ayak</span>
-    <span>💪 {vucut}</span><span>{sd_badge}</span>
+    <span>🌍 {vatandas}</span>
+    <span>🏴 {vatan2 if vatan2 and vatan2 != vatandas else "—"}</span>
+    <span>📅 {dob} ({yas} yaş)</span>
+    <span>📏 {boy} · {ayak} ayak</span>
   </div>
   <hr style="border-color:#334155;margin:7px 0;">
   <div style="font-size:0.80rem;color:#94a3b8;">
-    🏟️ <b style="color:#e2e8f0;">{kulup}</b> &nbsp;·&nbsp; 🌐 {lig}<br>
     📄 Sözleşme: {sozlesme}
+    {"" if sd_found else "<br><span style='color:#475569;font-size:0.75rem;'>⚠️ SoccerDonna verisi bulunamadı</span>"}
   </div>
 </div>""", unsafe_allow_html=True)
 
-                            # SoccerDonna verisi — URL varsa expander'da göster
-                            if sd_url.startswith("http"):
-                                with col.expander("📊 SoccerDonna Verileri"):
-                                    try:
-                                        _sd_r = requests.get(sd_url, headers={"User-Agent":"Mozilla/5.0"}, timeout=8)
-                                        _sd_soup = BeautifulSoup(_sd_r.text, "html.parser")
-                                        _sd_rows = _sd_soup.select("table tr")
-                                        _sd_data = {}
-                                        for _r in _sd_rows:
-                                            _cells = [c.get_text(strip=True) for c in _r.select("td")]
-                                            if len(_cells) >= 2 and _cells[0]:
-                                                _sd_data[_cells[0].rstrip(":")] = _cells[1]
-                                        _show_keys = ["Date of birth","Age","Height","Nationality","Position","Foot","Market value","Contract until"]
-                                        _tr = {"Date of birth":"Doğum","Age":"Yaş","Height":"Boy","Nationality":"Uyruk",
-                                               "Position":"Mevki","Foot":"Ayak","Market value":"Piyasa Değeri","Contract until":"Sözleşme"}
-                                        for k in _show_keys:
-                                            if k in _sd_data:
-                                                st.markdown(f"**{_tr.get(k,k)}:** {_sd_data[k]}")
-                                        # Sezon istatistikleri
-                                        _stat_rows = []
-                                        _in_stats  = False
-                                        for _r in _sd_rows:
-                                            _cells = [c.get_text(strip=True) for c in _r.select("td")]
-                                            if "Competition" in _cells or "Matches" in _cells:
-                                                _in_stats = True
-                                                continue
-                                            if _in_stats and len(_cells) >= 3 and _cells[0]:
-                                                _stat_rows.append(_cells)
-                                        if _stat_rows:
-                                            st.markdown("**Sezon İstatistikleri:**")
-                                            _stat_df = pd.DataFrame(_stat_rows)
-                                            st.dataframe(_stat_df, hide_index=True, use_container_width=True)
-                                    except Exception as _e:
-                                        st.caption(f"Veri çekilemedi: {_e}")
+                            # Sezon istatistikleri expander
+                            if sd_found and sd.get("sezon_istatistikleri"):
+                                with col.expander("📊 Sezon İstatistikleri"):
+                                    _rows = sd["sezon_istatistikleri"]
+                                    if _rows:
+                                        _df = pd.DataFrame(_rows)
+                                        st.dataframe(_df, hide_index=True, use_container_width=True)
     else:
         st.markdown("""
         <div style="max-width:560px;margin:60px auto;text-align:center;
