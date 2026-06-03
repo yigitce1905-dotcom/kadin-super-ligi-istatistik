@@ -577,10 +577,29 @@ _MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle(_manuel_hash)
 
 def mevki_normalize(pozisyon: str) -> str:
     if not pozisyon: return "Bilinmiyor"
-    if "Goalkeeper" in pozisyon: return "Kaleci"
-    if "Defend" in pozisyon or "Defence" in pozisyon or "Back" in pozisyon: return "Defans"
-    if "Midfield" in pozisyon: return "Orta Saha"
-    if "Striker" in pozisyon or "Forward" in pozisyon or "Wing" in pozisyon: return "Forvet"
+    p = pozisyon.lower()
+    # Kaleci
+    if "goalkeeper" in p: return "Kaleci"
+    # Defans — detaylı
+    if "right back" in p or "fullback, right" in p or "rv" == p: return "Sağ Bek"
+    if "left back" in p or "fullback, left" in p or "lv" == p: return "Sol Bek"
+    if "centre back" in p or "center back" in p or "central back" in p: return "Stoper"
+    if "defend" in p or "defence" in p: return "Defans"
+    # Orta Saha — detaylı
+    if "defensive mid" in p or "midfield - def" in p: return "Savunmacı Orta Saha"
+    if "midfield, left" in p or "midfield - left" in p: return "Sol Kanat"
+    if "midfield, right" in p or "midfield - right" in p: return "Sağ Kanat"
+    if "central mid" in p or "midfield - central" in p or "midfield - midfield" in p: return "Merkez Orta Saha"
+    if "attacking mid" in p or "midfield - attack" in p: return "Hücumcu Orta Saha"
+    if "left wing" in p and "mid" in p: return "Sol Kanat"
+    if "right wing" in p and "mid" in p: return "Sağ Kanat"
+    if "midfield" in p: return "Orta Saha"
+    # Forvet — detaylı
+    if "centre forward" in p or "center forward" in p: return "Santrafor"
+    if "second striker" in p: return "İkinci Santrafor"
+    if "left wing" in p or "striker - left" in p: return "Sol Kanat Forvet"
+    if "right wing" in p or "striker - right" in p: return "Sağ Kanat Forvet"
+    if "striker" in p or "forward" in p: return "Forvet"
     return "Bilinmiyor"
 
 
@@ -1038,7 +1057,14 @@ with tab1:
         takimlar = ["Tüm Takımlar"] + sorted(df_tam["Takım"].dropna().unique().tolist())
         secili_takim = st.selectbox("Takım", takimlar)
     with f3:
-        mevki_secenekler = ["Tüm Mevkiler", "Kaleci", "Defans", "Orta Saha", "Forvet"]
+        mevki_secenekler = [
+            "Tüm Mevkiler",
+            "Kaleci",
+            "Sağ Bek", "Sol Bek", "Stoper", "Defans",
+            "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
+            "Sol Kanat", "Sağ Kanat", "Orta Saha",
+            "Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet",
+        ]
         secili_mevki = st.selectbox("Mevki", mevki_secenekler)
     with f4:
         siralama = st.selectbox("Sırala", ["Maç ↓","Gol ↓","Dakika ↓","Sarı ↓","Gol/Maç ↓"])
