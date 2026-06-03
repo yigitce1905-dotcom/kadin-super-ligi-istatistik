@@ -608,12 +608,7 @@ if "sayfa" not in st.session_state:
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
-
-if _nav_is_admin:
-    bas_sol, nav1, nav2, nav3, nav4, nav5 = st.columns([3, 1, 1, 1, 1, 1])
-else:
-    bas_sol, nav1, nav2, nav3, nav4 = st.columns([4, 1, 1, 1, 1])
-    nav5 = None
+bas_sol, nav1, nav2, nav3, nav4, nav5 = st.columns([3, 1, 1, 1, 1, 1])
 
 with bas_sol:
     st.markdown("""
@@ -642,37 +637,24 @@ with nav3:
         st.rerun()
 with nav4:
     st.markdown("<br>", unsafe_allow_html=True)
-    if _nav_is_admin:
-        _sc_active = st.session_state.get("sayfa") == "scouting"
-        _sc_label  = "🔎 Scouting ◀" if _sc_active else "🔎 Scouting"
-        if st.button(_sc_label, use_container_width=True, type="primary" if _sc_active else "secondary"):
-            st.session_state["sayfa"] = "ana" if _sc_active else "scouting"
+    _sc_active = st.session_state.get("sayfa") == "scouting"
+    _sc_label  = "🔎 Scouting ◀" if _sc_active else "🔎 Scouting"
+    if st.button(_sc_label, use_container_width=True, type="primary" if _sc_active else "secondary"):
+        st.session_state["sayfa"] = "ana" if _sc_active else "scouting"
+        st.rerun()
+
+with nav5:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.session_state.get("kulup_giris"):
+        kulup_ad = st.session_state.get("kulup_ad","")
+        if st.button(f"🚪 {kulup_ad}", use_container_width=True):
+            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
+                st.session_state.pop(k, None)
             st.rerun()
     else:
-        if st.session_state.get("kulup_giris"):
-            kulup_ad = st.session_state.get("kulup_ad","")
-            if st.button(f"🚪 {kulup_ad}", use_container_width=True):
-                for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
-                    st.session_state.pop(k, None)
-                st.rerun()
-        else:
-            if st.button("🔐 Giriş", use_container_width=True):
-                st.session_state["sayfa"] = "giris"
-                st.rerun()
-
-if nav5 is not None:
-    with nav5:
-        st.markdown("<br>", unsafe_allow_html=True)
-        if st.session_state.get("kulup_giris"):
-            kulup_ad = st.session_state.get("kulup_ad","")
-            if st.button(f"🚪 {kulup_ad}", use_container_width=True):
-                for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
-                    st.session_state.pop(k, None)
-                st.rerun()
-        else:
-            if st.button("🔐 Giriş", use_container_width=True):
-                st.session_state["sayfa"] = "giris"
-                st.rerun()
+        if st.button("🔐 Giriş", use_container_width=True):
+            st.session_state["sayfa"] = "giris"
+            st.rerun()
 
 # Giriş formu sidebar'da her zaman
 giris_formu()
@@ -763,6 +745,122 @@ if st.session_state["sayfa"] == "iletisim":
     </p>
     </div>
     """, unsafe_allow_html=True)
+    st.stop()
+
+# ─── SCOUTİNG SAYFASI ────────────────────────────────────────────────────────
+if st.session_state.get("sayfa") == "scouting":
+    if _nav_is_admin:
+        st.markdown("""
+        <div style='margin-bottom:8px;'>
+          <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 Scouting Havuzu</h2>
+          <p style='color:#64748b;font-size:0.85rem;'>
+            Yabancı ve yerli oyuncu kurasyonu · 2026-27 kadro planlama · Türkiye ligi verilerinden bağımsız
+          </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        sc_df = scouting_veri_yukle()
+
+        if sc_df.empty:
+            st.warning("scouting_oyuncular.xlsx bulunamadı.")
+        else:
+            st.markdown("---")
+            fc1, fc2, fc3 = st.columns(3)
+            with fc1:
+                bolge_sec = st.selectbox("🗂️ Bölge", ["Tümü"] + sorted(sc_df["Bölge"].dropna().unique().tolist()))
+            with fc2:
+                mevki_opts = sorted(sc_df["Mevki 1"].dropna().unique().tolist())
+                mevki_sec = st.selectbox("📌 Mevki", ["Tümü"] + mevki_opts)
+            with fc3:
+                danis_opts = sorted(sc_df["Mr Danis 25"].dropna().unique().tolist())
+                danis_sec = st.selectbox("🏷️ Değerlendirme", ["Tümü"] + danis_opts)
+
+            filtered = sc_df.copy()
+            if bolge_sec != "Tümü":
+                filtered = filtered[filtered["Bölge"] == bolge_sec]
+            if mevki_sec != "Tümü":
+                filtered = filtered[filtered["Mevki 1"] == mevki_sec]
+            if danis_sec != "Tümü":
+                filtered = filtered[filtered["Mr Danis 25"] == danis_sec]
+
+            st.markdown(f"**{len(filtered)} oyuncu** listeleniyor")
+            st.markdown("---")
+
+            for i in range(0, len(filtered), 2):
+                cols = st.columns(2)
+                for j, col in enumerate(cols):
+                    if i + j >= len(filtered):
+                        break
+                    row = filtered.iloc[i + j]
+                    danis     = str(row.get("Mr Danis 25","")) if pd.notna(row.get("Mr Danis 25")) else ""
+                    etiket    = _DANIS_ETIKET.get(danis, "")
+                    renk      = _DANIS_RENK.get(danis, "#6b7280")
+                    tam_isim  = str(row.get("Tam İsmi",""))
+                    rol       = str(row.get("Rol",""))
+                    vatandas  = str(row.get("Vatandaşlık",""))
+                    milli     = str(row.get("Milli Takım",""))
+                    d_yil     = row.get("Doğum Yılı","")
+                    yas       = 2026 - int(d_yil) if pd.notna(d_yil) and str(d_yil).isdigit() else "?"
+                    boy       = f"{row.get('Boy','')}m" if pd.notna(row.get("Boy")) else "—"
+                    ayak      = str(row.get("Ayak",""))
+                    vucut     = str(row.get("Vücut Tipi",""))
+                    kulup     = str(row.get("Kulüp",""))
+                    lig       = str(row.get("Lig",""))
+                    sozlesme  = str(row.get("Sözleşme",""))
+                    m1        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 1","")), str(row.get("Mevki 1","")))
+                    m2        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 2","")), "") if pd.notna(row.get("Mevki 2")) else ""
+                    m3        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 3","")), "") if pd.notna(row.get("Mevki 3")) else ""
+                    mevkiler  = " · ".join(filter(None, [m1, m2, m3]))
+                    bolge_str = str(row.get("Bölge",""))
+                    with col:
+                        st.markdown(f"""
+<div style="border:1px solid {renk};border-radius:12px;padding:16px 18px;margin-bottom:14px;
+    background:linear-gradient(135deg,#0f172a,#1e293b);">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}</div>
+    <div style="background:{renk};color:#fff;font-size:0.72rem;font-weight:700;
+         padding:3px 9px;border-radius:20px;white-space:nowrap;">{etiket}</div>
+  </div>
+  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:4px;">🎭 {rol}</div>
+  <div style="color:#64748b;font-size:0.78rem;margin-bottom:10px;">📌 {mevkiler} &nbsp;|&nbsp; 🗂️ {bolge_str}</div>
+  <hr style="border-color:#334155;margin:8px 0;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:0.80rem;color:#cbd5e1;">
+    <span>🌍 {vatandas}</span><span>🏴 {milli if milli != vatandas else "—"}</span>
+    <span>📅 {d_yil} ({yas} yaş)</span><span>📏 {boy} · {ayak} ayak</span>
+    <span>💪 {vucut}</span><span></span>
+  </div>
+  <hr style="border-color:#334155;margin:8px 0;">
+  <div style="font-size:0.80rem;color:#94a3b8;">
+    🏟️ <b style="color:#e2e8f0;">{kulup}</b><br>🌐 {lig}<br>📄 Sözleşme: {sozlesme}
+  </div>
+</div>""", unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <div style="max-width:560px;margin:60px auto;text-align:center;
+             background:linear-gradient(135deg,#0f172a,#1e293b);
+             border:1px solid #f59e0b;border-radius:16px;padding:48px 36px;">
+          <div style="font-size:3rem;margin-bottom:16px;">🔎</div>
+          <h2 style="color:#f1f5f9;margin-bottom:12px;">Scouting Havuzu</h2>
+          <p style="color:#94a3b8;font-size:0.95rem;line-height:1.7;margin-bottom:24px;">
+            Yabancı ve yerli oyuncu kurasyonu, 2026-27 kadro planlama önerileri
+            ve detaylı oyuncu profilleri <b style="color:#f59e0b;">PRO üyelik</b> gerektirir.
+          </p>
+          <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;
+               padding:20px;margin-bottom:28px;text-align:left;">
+            <p style="color:#cbd5e1;font-size:0.85rem;margin:0 0 10px;font-weight:600;">PRO ile neler var?</p>
+            <p style="color:#64748b;font-size:0.82rem;line-height:1.8;margin:0;">
+              🌍 Türkiye dışı oyuncu havuzu<br>
+              🎯 Mevki bazlı scouting profilleri<br>
+              📊 Detaylı oyuncu değerlendirmeleri<br>
+              📋 Kadro planlama önerileri<br>
+              🤝 Doğrudan danışmanlık erişimi
+            </p>
+          </div>
+          <p style="color:#475569;font-size:0.80rem;">
+            PRO üyelik için 📬 İletişim sayfasından bize ulaşın.
+          </p>
+        </div>
+        """, unsafe_allow_html=True)
     st.stop()
 
 # ─── ÖZET KARTLAR ─────────────────────────────────────────────────────────────
@@ -3146,112 +3244,6 @@ _MEVKI_ACIKLAMA = {
     "RWB":"Sağ Kanat Bek","LFB":"Sol Bek","CMF":"Merkez Orta Saha",
     "LWF":"Sol Kanat","RWF":"Sağ Kanat","SST":"İkinci Santrafor","CFW":"Santrafor",
 }
-
-if st.session_state.get("sayfa") == "scouting" and _is_admin:
-    st.markdown("""
-    <div style='margin-bottom:8px;'>
-      <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 Scouting Havuzu</h2>
-      <p style='color:#64748b;font-size:0.85rem;'>
-        Yabancı ve yerli oyuncu kurasyonu · 2026-27 kadro planlama · Türkiye ligi verilerinden bağımsız
-      </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-    sc_df = scouting_veri_yukle()
-
-    if sc_df.empty:
-        st.warning("scouting_oyuncular.xlsx bulunamadı.")
-    else:
-        # ── FİLTRELER ────────────────────────────────────────────
-        st.markdown("---")
-        fc1, fc2, fc3 = st.columns(3)
-        with fc1:
-            bolge_sec = st.selectbox("🗂️ Bölge", ["Tümü"] + sorted(sc_df["Bölge"].dropna().unique().tolist()))
-        with fc2:
-            mevki_opts = sorted(sc_df["Mevki 1"].dropna().unique().tolist())
-            mevki_sec = st.selectbox("📌 Mevki", ["Tümü"] + mevki_opts)
-        with fc3:
-            danis_opts = sorted(sc_df["Mr Danis 25"].dropna().unique().tolist())
-            danis_sec = st.selectbox("🏷️ Değerlendirme", ["Tümü"] + danis_opts)
-
-        filtered = sc_df.copy()
-        if bolge_sec != "Tümü":
-            filtered = filtered[filtered["Bölge"] == bolge_sec]
-        if mevki_sec != "Tümü":
-            filtered = filtered[filtered["Mevki 1"] == mevki_sec]
-        if danis_sec != "Tümü":
-            filtered = filtered[filtered["Mr Danis 25"] == danis_sec]
-
-        st.markdown(f"**{len(filtered)} oyuncu** listeleniyor")
-        st.markdown("---")
-
-        # ── OYUNCU KARTLARI ───────────────────────────────────────
-        for i in range(0, len(filtered), 2):
-            cols = st.columns(2)
-            for j, col in enumerate(cols):
-                if i + j >= len(filtered):
-                    break
-                row = filtered.iloc[i + j]
-
-                danis     = str(row.get("Mr Danis 25","")) if pd.notna(row.get("Mr Danis 25")) else ""
-                etiket    = _DANIS_ETIKET.get(danis, "")
-                renk      = _DANIS_RENK.get(danis, "#6b7280")
-                tam_isim  = str(row.get("Tam İsmi",""))
-                rol       = str(row.get("Rol",""))
-                vatandas  = str(row.get("Vatandaşlık",""))
-                milli     = str(row.get("Milli Takım",""))
-                d_yil     = row.get("Doğum Yılı","")
-                yas       = 2026 - int(d_yil) if pd.notna(d_yil) and str(d_yil).isdigit() else "?"
-                boy       = f"{row.get('Boy','')}m" if pd.notna(row.get("Boy")) else "—"
-                ayak      = str(row.get("Ayak",""))
-                vucut     = str(row.get("Vücut Tipi",""))
-                kulup     = str(row.get("Kulüp",""))
-                lig       = str(row.get("Lig",""))
-                sozlesme  = str(row.get("Sözleşme",""))
-                m1        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 1","")), str(row.get("Mevki 1","")))
-                m2        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 2","")), "") if pd.notna(row.get("Mevki 2")) else ""
-                m3        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 3","")), "") if pd.notna(row.get("Mevki 3")) else ""
-                mevkiler  = " · ".join(filter(None, [m1, m2, m3]))
-                bolge_str = str(row.get("Bölge",""))
-
-                with col:
-                    st.markdown(f"""
-<div style="
-    border:1px solid {renk};
-    border-radius:12px;
-    padding:16px 18px;
-    margin-bottom:14px;
-    background:linear-gradient(135deg,#0f172a,#1e293b);
-    position:relative;
-">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
-    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}</div>
-    <div style="background:{renk};color:#fff;font-size:0.72rem;font-weight:700;
-         padding:3px 9px;border-radius:20px;white-space:nowrap;">{etiket}</div>
-  </div>
-  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:4px;">🎭 {rol}</div>
-  <div style="color:#64748b;font-size:0.78rem;margin-bottom:10px;">
-    📌 {mevkiler} &nbsp;|&nbsp; 🗂️ {bolge_str}
-  </div>
-  <hr style="border-color:#334155;margin:8px 0;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:0.80rem;color:#cbd5e1;">
-    <span>🌍 {vatandas}</span>
-    <span>🏴 {milli if milli != vatandas else "—"}</span>
-    <span>📅 {d_yil} ({yas} yaş)</span>
-    <span>📏 {boy} · {ayak} ayak</span>
-    <span>💪 {vucut}</span>
-    <span></span>
-  </div>
-  <hr style="border-color:#334155;margin:8px 0;">
-  <div style="font-size:0.80rem;color:#94a3b8;">
-    🏟️ <b style="color:#e2e8f0;">{kulup}</b><br>
-    🌐 {lig}<br>
-    📄 Sözleşme: {sozlesme}
-  </div>
-</div>
-""", unsafe_allow_html=True)
-
-    st.stop()
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
