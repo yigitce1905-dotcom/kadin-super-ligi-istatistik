@@ -2849,6 +2849,17 @@ _TRANSFER_DB = {
     ("Merkez Orta Saha", "Dusuk",  "Yerli"):     ["MERYEM SEVENT", "MERVE NUR TAŞUCU", "BEYZA EMİNE SARUHAN"],
     ("Merkez Orta Saha", "Dusuk",  "Yabancı"):   ["ILARJA ZARKA", "JOY EBINEMIERE BOKIRI"],
     ("Merkez Orta Saha", "Dusuk",  "Farketmez"): ["MERYEM SEVENT", "ILARJA ZARKA", "MERVE NUR TAŞUCU"],
+
+    # ── Santrafor ─────────────────────────────────────────────────────────
+    ("Santrafor", "Yuksek", "Yerli"):      ["YAĞMUR URAZ"],
+    ("Santrafor", "Yuksek", "Yabancı"):    ["VALENTINA GIACINTI", "ANDREA STASKOVA", "ARMISA KUÇ"],
+    ("Santrafor", "Yuksek", "Farketmez"):  ["VALENTINA GIACINTI", "ANDREA STASKOVA", "ARMISA KUÇ"],
+    ("Santrafor", "Orta",   "Yerli"):      ["MELİKE ÖZTÜRK", "NESLİHAN DEMİRDÖĞEN", "ESRA MANYA"],
+    ("Santrafor", "Orta",   "Yabancı"):    ["MARIE GISELE DIVINE NGAH MANGA", "MARIEM HOUIJ", "VALENTINA TROKA"],
+    ("Santrafor", "Orta",   "Farketmez"):  ["MARIE GISELE DIVINE NGAH MANGA", "MARIEM HOUIJ", "MELİKE ÖZTÜRK"],
+    ("Santrafor", "Dusuk",  "Yerli"):      ["ZEYNEP GAMZE KOÇER", "BUKET KARADAĞ", "ELİF CEREN MUTLU"],
+    ("Santrafor", "Dusuk",  "Yabancı"):    ["ELIZABETH OWUSUAA", "NGO MBELECK GENEVIEVE EDITH", "KENNYA KINDA ESTHER CORDNER"],
+    ("Santrafor", "Dusuk",  "Farketmez"):  ["ELIZABETH OWUSUAA", "NGO MBELECK GENEVIEVE EDITH", "ZEYNEP GAMZE KOÇER"],
 }
 
 with tab_transfer:
@@ -2922,7 +2933,7 @@ with tab_transfer:
                                     "Kaleci",
                                     "Sağ Bek - Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Bek - Sol Kanat Bek",
                                     "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
-                                    "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor ⏳",
+                                    "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor",
                                 ]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
                                      label_visibility="collapsed")
