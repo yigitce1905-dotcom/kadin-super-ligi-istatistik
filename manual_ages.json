@@ -12,7 +12,7 @@
   "ELENA GRACINDA SANTOS": {
     "born": "06.02.1997",
     "source": "TFF kisiID=2363496",
-    "position": "Midfield - Right Wing",
+    "position": "Striker - Right Wing",
     "nationality": "United States"
   },
   "FATMA SARE ÖZTÜRK": {
@@ -40,13 +40,13 @@
   "AYŞE ŞEVVAL AY": {
     "born": "01.01.1999",
     "source": "manuel",
-    "position": "Midfield",
+    "position": "Midfield - Central Midfield",
     "nationality": "Turkey"
   },
   "EMİNE ECEM ESEN": {
     "born": "01.01.1994",
     "source": "manuel",
-    "position": "Midfield",
+    "position": "Midfield - Central Midfield",
     "nationality": "Turkey"
   },
   "DIAKIESE KALUZODI ISABELLE": {
@@ -113,7 +113,7 @@
   "RAFAELA SUDRE DOS SANTOS": {
     "born": "09.12.1993",
     "source": "TFF kisiID=2690551",
-    "position": "Defender - Right Back"
+    "position": "Midfield - Left Wing"
   },
   "MEDİNE ERKAN": {
     "source": "manuel",
@@ -255,27 +255,28 @@
   },
   "BERFİN ELİF CEYLAN": {
     "source": "manuel",
-    "position": "Midfield"
+    "position": "Defender - Centre Back"
   },
   "OLİVİA İNALÖZ": {
     "source": "manuel",
-    "position": "Defender"
+    "position": "Midfield - Attacking Midfield"
   },
   "SILA BESRA TETİK": {
     "source": "manuel",
-    "position": "Defender"
+    "position": "Midfield - Left Wing"
   },
   "AÇELYA NOMAK": {
     "source": "manuel",
-    "position": "Striker - Centre Forward"
+    "position": "Midfield - Attacking Midfield"
   },
   "MARIA APARECIDA SOUZA ALVES": {
     "born": "07.07.1993",
-    "source": "TFF kisiID=2690293"
+    "source": "TFF kisiID=2690293",
+    "position": "Midfield - Right Wing"
   },
   "SLAĐANA BULATOVIĆ": {
     "source": "manuel",
-    "position": "Midfield - Central Midfield",
+    "position": "Midfield - Attacking Midfield",
     "nationality": "Montenegro"
   },
   "SEMA POLAT": {
@@ -513,7 +514,7 @@
     "position": "Midfield - Left Wing"
   },
   "MILICA MIJATOVIC": {
-    "position": "Striker - Centre Forward"
+    "position": "Midfield - Attacking Midfield"
   },
   "ELIZABETH OWUSUAA": {
     "position": "Striker - Centre Forward"
@@ -618,6 +619,291 @@
     "position": "Striker - Right Wing"
   },
   "SEVAL TEKİN": {
+    "position": "Striker - Right Wing"
+  },
+  "SELDA AKGÖZ": {
+    "position": "Goalkeeper"
+  },
+  "İREM PEHLİVAN": {
+    "position": "Goalkeeper"
+  },
+  "SEJDE ABRAHAMSSON": {
+    "position": "Defender - Right Back"
+  },
+  "BLERTA SMAILI": {
+    "position": "Defender - Centre Back"
+  },
+  "EBRU ŞAHİN": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "BAŞAK İÇİNÖZBEBEK": {
+    "position": "Midfield - Central Midfield"
+  },
+  "LYDIA NAYELI RANGEL HERNANDEZ": {
+    "position": "Midfield - Defensive Midfield"
+  },
+  "OLHA OVDIYCHUK": {
+    "position": "Midfield - Left Wing"
+  },
+  "ARMISA KUÇ": {
+    "position": "Striker - Centre Forward"
+  },
+  "MAVIS OWUSU": {
+    "position": "Striker - Left Wing"
+  },
+  "EBRAR ULUHANLI": {
+    "position": "Goalkeeper"
+  },
+  "ECRİN KOYUN": {
+    "position": "Defender - Centre Back"
+  },
+  "ESRA EROL": {
+    "position": "Defender - Centre Back"
+  },
+  "AYŞE DEMİRCİ": {
+    "position": "Midfield - Central Midfield"
+  },
+  "İNAYET FUNDA ALTINKAYA": {
+    "position": "Midfield - Left Wing"
+  },
+  "FATOU DAO": {
+    "position": "Midfield - Right Wing"
+  },
+  "MELİKE DİNÇEL": {
+    "position": "Midfield - Left Wing"
+  },
+  "ECE AYDIN": {
+    "position": "Midfield - Central Midfield"
+  },
+  "DEFNESU ALDEMİR": {
+    "position": "Midfield - Defensive Midfield"
+  },
+  "NAZLICAN PARLAK": {
+    "position": "Midfield - Left Wing"
+  },
+  "MERYEM MAS": {
+    "position": "Midfield - Defensive Midfield"
+  },
+  "GAMZE NUR YAMAN": {
+    "position": "Goalkeeper"
+  },
+  "MADINATOU ROUAMBA": {
+    "position": "Defender - Centre Back"
+  },
+  "DIANA LUCAS MSEWA": {
+    "position": "Midfield - Central Midfield"
+  },
+  "JAYLEN KENNEDY CRIM": {
+    "position": "Striker - Centre Forward"
+  },
+  "CANSU NUR KAYA": {
+    "position": "Midfield - Central Midfield"
+  },
+  "SEVGİ ÇINAR KARAOĞLU": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "LARA ANTUNES PINTASSILGO": {
+    "position": "Striker - Left Wing"
+  },
+  "ELİF CEREN MUTLU": {
+    "position": "Striker - Right Wing"
+  },
+  "ANGEL KEZIAH ESHIRENDAH MUKASA": {
+    "position": "Goalkeeper"
+  },
+  "OLUWATOSIN BLESSING DEMEHIN": {
+    "position": "Defender - Centre Back"
+  },
+  "DANA MARGARETHA WILHELMINA FOEDERER": {
+    "position": "Midfield - Central Midfield"
+  },
+  "MARTA NAIZIA DA SILVA CINTRA": {
+    "position": "Striker - Right Wing"
+  },
+  "MARIE GISELE DIVINE NGAH MANGA": {
+    "position": "Striker - Centre Forward"
+  },
+  "PEREIRA DA SILVA SYLVIA BEATRIZ": {
+    "position": "Defender - Centre Back"
+  },
+  "MARIAM AYONI AJIBOLA": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "FAUSTINA WORWORNYO AKPO": {
+    "position": "Striker - Centre Forward"
+  },
+  "MARTHA BBOSA NALUNKUUMA": {
+    "position": "Striker - Right Wing"
+  },
+  "SULIYAT DAMOLA HASSAN": {
+    "position": "Striker - Centre Forward"
+  },
+  "ROSE TEYE BAAH": {
+    "position": "Goalkeeper"
+  },
+  "KARLA DANIELA ZEMPOALTECA HERNANDEZ": {
+    "position": "Defender - Centre Back"
+  },
+  "KAFAYAT FOLAKEMI SHITTU": {
+    "position": "Midfield - Defensive Midfield"
+  },
+  "HEIDI LYNNE RUTH": {
+    "position": "Defender - Centre Back"
+  },
+  "SEDA NUR İNCİK": {
+    "position": "Midfield - Defensive Midfield"
+  },
+  "SULIAT OLAJUMOKE ABIDEEN": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "MERVE NUR TAŞUCU": {
+    "position": "Midfield - Central Midfield"
+  },
+  "LINA FERNANDE MARTINEZ ALVAREZ": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "BEYZA EMİNE SARUHAN": {
+    "position": "Midfield - Central Midfield"
+  },
+  "UGOCHI CYNTHIA EMENAYO": {
+    "position": "Midfield - Right Wing"
+  },
+  "FERDA İPEK ÇEVİK": {
+    "position": "Midfield - Right Wing"
+  },
+  "ESMANUR DURAL": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "GEORGINA AYISHA AOYEM": {
+    "position": "Striker - Right Wing"
+  },
+  "NGO MBELECK GENEVIEVE EDITH": {
+    "position": "Striker - Centre Forward"
+  },
+  "MELISSA SANDRINE BEHINAN": {
+    "position": "Striker - Left Wing"
+  },
+  "SEVGİ SEVİN ERGEN": {
+    "position": "Defender - Centre Back"
+  },
+  "SUDENUR YOLCU": {
+    "position": "Striker - Right Wing"
+  },
+  "SUHDE NUR ARPACI": {
+    "position": "Defender - Centre Back"
+  },
+  "JOY EBINEMIERE BOKIRI": {
+    "position": "Midfield - Central Midfield"
+  },
+  "SUDE MİHRİ ÇINAR": {
+    "position": "Goalkeeper"
+  },
+  "CEMİLE BERİL GÜNAY": {
+    "position": "Midfield - Right Wing"
+  },
+  "SUZZY DEDE TEYE": {
+    "position": "Midfield - Right Wing"
+  },
+  "AYŞE NUR SERT": {
+    "position": "Midfield - Left Wing"
+  },
+  "RABİA SOLAK": {
+    "position": "Goalkeeper"
+  },
+  "MELİSA ORAL": {
+    "position": "Goalkeeper"
+  },
+  "DENİZ AY": {
+    "position": "Defender - Centre Back"
+  },
+  "ELİF ESRA ŞANLI": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "DİLARA YILMAZ": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "GİZEM AYDIN": {
+    "position": "Midfield - Central Midfield"
+  },
+  "FATMANUR YANTUR": {
+    "position": "Midfield - Left Wing"
+  },
+  "DİLARA YÜKSEL": {
+    "position": "Midfield - Central Midfield"
+  },
+  "IRMAK AKBUDAK": {
+    "position": "Midfield - Right Wing"
+  },
+  "ZEYNEP GÜL KESKİN": {
+    "position": "Midfield - Right Wing"
+  },
+  "ZEYNEP ÜLKÜ KAHYA": {
+    "position": "Midfield - Right Wing"
+  },
+  "TÜLİN BALUR": {
+    "position": "Midfield - Left Wing"
+  },
+  "ŞEHRİBAN DÜLEK": {
+    "position": "Striker - Left Wing"
+  },
+  "CANSU İRİŞ": {
+    "position": "Striker - Left Wing"
+  },
+  "GÖKNUR GÜLERYÜZ": {
+    "position": "Goalkeeper"
+  },
+  "ZEYNEP AKDENİZ": {
+    "position": "Goalkeeper"
+  },
+  "NATALIA MUNTEANU": {
+    "position": "Goalkeeper"
+  },
+  "KONYA TAJAE PLUMMER": {
+    "position": "Defender - Centre Back"
+  },
+  "YAŞAM GÖKSU": {
+    "position": "Defender - Centre Back"
+  },
+  "İPEK KAYA": {
+    "position": "Defender - Centre Back"
+  },
+  "MARIAM DIAKITE": {
+    "position": "Defender - Centre Back"
+  },
+  "REGINA IBIANG OTU": {
+    "position": "Midfield - Defensive Midfield"
+  },
+  "CANSU GÜREL": {
+    "position": "Midfield - Left Wing"
+  },
+  "BUSEM ŞEKER": {
+    "position": "Midfield - Attacking Midfield"
+  },
+  "ECE TÜRKOĞLU": {
+    "position": "Midfield - Central Midfield"
+  },
+  "PERİTAN BOZDAĞ": {
+    "position": "Midfield - Central Midfield"
+  },
+  "MESUDE ALAYONT": {
+    "position": "Midfield - Left Wing"
+  },
+  "YAĞMUR URAZ": {
+    "position": "Striker - Centre Forward"
+  },
+  "ZEYNEP KERİMOĞLU": {
+    "position": "Midfield - Right Wing"
+  },
+  "MARTA ALEXANDRA COX VILLARREAL": {
+    "position": "Midfield - Left Wing"
+  },
+  "FLOURISH CHIOMA SABASTINE": {
+    "position": "Striker - Left Wing"
+  },
+  "OLGA MASSOMBO": {
+    "position": "Striker - Centre Forward"
+  },
+  "KARYNA ALKHOVIK": {
     "position": "Striker - Right Wing"
   }
 }
