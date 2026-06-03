@@ -459,6 +459,50 @@ def scouting_sd_yukle() -> dict:
         return json.load(f)
 
 @st.cache_data(ttl=3600)
+def scouting_leistung_yukle() -> dict:
+    """SoccerDonna kariyer (leistungsdaten) verilerini JSON'dan yükler."""
+    yol = pathlib.Path(__file__).parent / "scouting_leistungsdaten.json"
+    if not yol.exists():
+        return {}
+    import json
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
+
+# ─── Scouting Shortlist (kullanıcı bazlı favoriler) ────────────────────
+# Yapı: { "admin": ["Oyuncu1", ...], "fenerbahce": [...] }
+# NOT: Yerel JSON — Streamlit Cloud'da deploy/restart'ta sıfırlanır.
+#      Kalıcılık için ileride Google Sheets'e taşınacak.
+_SHORTLIST_YOL = pathlib.Path(__file__).parent / "shortlist.json"
+
+def shortlist_yukle() -> dict:
+    if not _SHORTLIST_YOL.exists():
+        return {}
+    import json
+    try:
+        with open(_SHORTLIST_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def shortlist_kaydet(data: dict):
+    import json
+    with open(_SHORTLIST_YOL, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def shortlist_kullanici(kullanici: str) -> list:
+    return shortlist_yukle().get(kullanici, [])
+
+def shortlist_toggle(kullanici: str, oyuncu: str):
+    data = shortlist_yukle()
+    lst  = data.setdefault(kullanici, [])
+    if oyuncu in lst:
+        lst.remove(oyuncu)
+    else:
+        lst.append(oyuncu)
+    shortlist_kaydet(data)
+
+@st.cache_data(ttl=3600)
 def scouting_veri_yukle():
     yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
     if not yol.exists():
@@ -847,6 +891,9 @@ if st.session_state.get("sayfa") == "scouting":
 
         sc_df = scouting_gsheet_yukle()
         sd_data = scouting_sd_yukle()
+        leistung_data = scouting_leistung_yukle()
+        _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
+        _sl_liste     = shortlist_kullanici(_sl_kullanici)
 
         if sc_df.empty:
             st.warning("Google Sheets'e bağlanılamadı veya liste boş.")
@@ -914,6 +961,7 @@ if st.session_state.get("sayfa") == "scouting":
                 ayak_sec = st.selectbox("🦶 Ayak", ["Tümü", "right", "left", "both"], key="sc_ayak")
             with sc_r2c3:
                 st.markdown("<br>", unsafe_allow_html=True)
+                sadece_sl = st.checkbox(f"⭐ Shortlist'im ({len(_sl_liste)})", key="sc_sl")
 
             # Filtrele
             filtered = sc_df.copy()
@@ -947,9 +995,14 @@ if st.session_state.get("sayfa") == "scouting":
 
             filtered = filtered[filtered[isim_col].apply(sd_filtre)]
 
+            if sadece_sl:
+                filtered = filtered[filtered[isim_col].isin(_sl_liste)]
+
+            _bulundu_txt = (f"⭐ Shortlist'inde {len(filtered)} oyuncu" if sadece_sl
+                            else f"🎯 {len(filtered)} oyuncu bulundu")
             st.markdown(
                 f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:6px 0 12px;'>"
-                f"🎯 {len(filtered)} oyuncu bulundu</div>", unsafe_allow_html=True)
+                f"{_bulundu_txt}</div>", unsafe_allow_html=True)
 
             if filtered.empty:
                 st.info("Filtrelerle eşleşen oyuncu yok.")
@@ -1003,8 +1056,59 @@ if st.session_state.get("sayfa") == "scouting":
   </div>
 </div>""", unsafe_allow_html=True)
 
-                            # Sezon istatistikleri expander
-                            if sd_found and sd.get("sezon_istatistikleri"):
+                            # Shortlist ⭐ toggle butonu
+                            _fav = tam_isim in _sl_liste
+                            _lbl = "⭐ Shortlist'te" if _fav else "☆ Shortlist'e ekle"
+                            if st.button(_lbl, key=f"sl_{i+j}", use_container_width=True):
+                                shortlist_toggle(_sl_kullanici, tam_isim)
+                                st.rerun()
+
+                            # Tüm kariyer performansı (leistungsdaten) expander
+                            _kariyer  = leistung_data.get(tam_isim, {})
+                            _sezonlar = _kariyer.get("sezonlar", [])
+                            if _sezonlar:
+                                with col.expander("⚽ Tüm Kariyer Performansı"):
+                                    _satir_html = ""
+                                    for _s in _sezonlar:
+                                        _milli = _s.get("milli")
+                                        _stil  = "color:#7c8aa0;" if _milli else "color:#cbd5e1;"
+                                        _kulup_cell = _s.get("kulup", "")
+                                        if _milli:
+                                            _kulup_cell += ("<span style='color:#f59e0b;font-size:0.6rem;"
+                                                            "margin-left:4px;'>MİLLİ</span>")
+                                        _satir_html += (
+                                            f"<tr style='{_stil}'>"
+                                            f"<td style='padding:4px 6px;'>{_s.get('sezon','')}</td>"
+                                            f"<td style='padding:4px 6px;font-weight:600;'>{_kulup_cell}</td>"
+                                            f"<td style='padding:4px 6px;'>{_s.get('lig','')}</td>"
+                                            f"<td style='padding:4px 6px;text-align:right;'>{_s.get('mac',0)}</td>"
+                                            f"<td style='padding:4px 6px;text-align:right;'>{_s.get('gol',0)}</td>"
+                                            f"<td style='padding:4px 6px;text-align:right;'>{_s.get('asist',0)}</td>"
+                                            f"<td style='padding:4px 6px;text-align:right;'>{_s.get('sari',0)}</td>"
+                                            f"<td style='padding:4px 6px;text-align:right;'>{_s.get('dakika',0)}</td>"
+                                            f"</tr>"
+                                        )
+                                    st.markdown(f"""
+<div style="max-height:380px;overflow-y:auto;">
+<table style="width:100%;border-collapse:collapse;font-size:0.74rem;">
+  <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
+    <th style="text-align:left;padding:5px 6px;">Sezon</th>
+    <th style="text-align:left;padding:5px 6px;">Kulüp</th>
+    <th style="text-align:left;padding:5px 6px;">Lig</th>
+    <th style="text-align:right;padding:5px 6px;">M</th>
+    <th style="text-align:right;padding:5px 6px;">G</th>
+    <th style="text-align:right;padding:5px 6px;">A</th>
+    <th style="text-align:right;padding:5px 6px;">🟨</th>
+    <th style="text-align:right;padding:5px 6px;">Dk</th>
+  </tr></thead>
+  <tbody>{_satir_html}</tbody>
+</table></div>""", unsafe_allow_html=True)
+                                    _g = _kariyer.get("guncelleme", "")
+                                    if _g:
+                                        st.caption(f"📡 SoccerDonna · {_g}")
+
+                            # Sezon istatistikleri expander (profil sayfası — kısmi)
+                            elif sd_found and sd.get("sezon_istatistikleri"):
                                 with col.expander("📊 Sezon İstatistikleri"):
                                     _rows = sd["sezon_istatistikleri"]
                                     if _rows:
