@@ -2850,6 +2850,17 @@ _TRANSFER_DB = {
     ("Merkez Orta Saha", "Dusuk",  "Yabancı"):   ["ILARJA ZARKA", "JOY EBINEMIERE BOKIRI"],
     ("Merkez Orta Saha", "Dusuk",  "Farketmez"): ["MERYEM SEVENT", "ILARJA ZARKA", "MERVE NUR TAŞUCU"],
 
+    # ── Sol Kanat ─────────────────────────────────────────────────────────
+    ("Sol Kanat", "Yuksek", "Yerli"):      ["ARZU KARABULUT", "BİRGÜL SADIKOĞLU"],
+    ("Sol Kanat", "Yuksek", "Yabancı"):    ["FLOURISH CHIOMA SABASTINE", "OLHA OVDIYCHUK", "MARTA NAIZIA DA SILVA CINTRA"],
+    ("Sol Kanat", "Yuksek", "Farketmez"):  ["FLOURISH CHIOMA SABASTINE", "OLHA OVDIYCHUK", "MARTA NAIZIA DA SILVA CINTRA"],
+    ("Sol Kanat", "Orta",   "Yerli"):      ["İNAYET FUNDA ALTINKAYA", "ŞEHRİBAN DÜLEK"],
+    ("Sol Kanat", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "OLGA MASSOMBO", "KALTRINA BIQKAJ"],
+    ("Sol Kanat", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "OLGA MASSOMBO", "İNAYET FUNDA ALTINKAYA"],
+    ("Sol Kanat", "Dusuk",  "Yerli"):      ["CANSU İRİŞ", "AZRA TIRAŞ"],
+    ("Sol Kanat", "Dusuk",  "Yabancı"):    ["LARA ANTUNES PINTASSILGO", "JELENA KARLİCİC", "MELISSA SANDRINE BEHINAN"],
+    ("Sol Kanat", "Dusuk",  "Farketmez"):  ["LARA ANTUNES PINTASSILGO", "JELENA KARLİCİC", "İNAYET FUNDA ALTINKAYA"],
+
     # ── Santrafor ─────────────────────────────────────────────────────────
     ("Santrafor", "Yuksek", "Yerli"):      ["YAĞMUR URAZ"],
     ("Santrafor", "Yuksek", "Yabancı"):    ["VALENTINA GIACINTI", "ANDREA STASKOVA", "ARMISA KUÇ"],
@@ -2933,7 +2944,7 @@ with tab_transfer:
                                     "Kaleci",
                                     "Sağ Bek - Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Bek - Sol Kanat Bek",
                                     "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
-                                    "Sol Kanat ⏳", "Sağ Kanat ⏳", "Santrafor",
+                                    "Sol Kanat", "Sağ Kanat ⏳", "Santrafor",
                                 ]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
                                      label_visibility="collapsed")
