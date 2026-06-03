@@ -428,6 +428,34 @@ def mac_sonuclari_yukle() -> list:
     return []
 
 
+@st.cache_data(ttl=3600)
+def scouting_veri_yukle():
+    yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
+    if not yol.exists():
+        return pd.DataFrame()
+    df = pd.read_excel(yol, engine="openpyxl")
+    df.columns = [
+        "İsim","Soyisim","Tam İsmi","Vatandaşlık","Milli Takım",
+        "Doğum Yılı","Boy","Ayak","Vücut Tipi","Bölge",
+        "Mevki 1","Mevki 2","Mevki 3","Rol","Kulüp","Lig","Sözleşme","Mr Danis 25"
+    ]
+    return df
+
+_DANIS_ETIKET = {
+    "Yıldız":"⭐ Yıldız","Uzman":"🎯 Uzman","Potansiyel":"🌱 Potansiyel",
+    "Yeterli":"✅ Yeterli","Yedek":"🔄 Yedek",
+}
+_DANIS_RENK = {
+    "Yıldız":"#f59e0b","Uzman":"#3b82f6","Potansiyel":"#10b981",
+    "Yeterli":"#6b7280","Yedek":"#9ca3af",
+}
+_MEVKI_ACIKLAMA = {
+    "GK":"Kaleci","LCB":"Sol Stoper","RCB":"Sağ Stoper","LWB":"Sol Kanat Bek",
+    "RWB":"Sağ Kanat Bek","LFB":"Sol Bek","CMF":"Merkez Orta Saha",
+    "LWF":"Sol Kanat","RWF":"Sağ Kanat","SST":"İkinci Santrafor","CFW":"Santrafor",
+}
+
+
 @st.cache_data(ttl=86400)
 def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
     """Her kaleci için yenilen gol ve maç başına yenilen gol hesaplar."""
@@ -3211,39 +3239,6 @@ with tab_transfer:
 # ══════════════════════════════════════════════════════════════════════════════
 # SCOUTING SAYFASI (sadece admin — tam sayfa)
 # ══════════════════════════════════════════════════════════════════════════════
-
-@st.cache_data(ttl=3600)
-def scouting_veri_yukle():
-    yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
-    if not yol.exists():
-        return pd.DataFrame()
-    df = pd.read_excel(yol, engine="openpyxl")
-    df.columns = [
-        "İsim","Soyisim","Tam İsmi","Vatandaşlık","Milli Takım",
-        "Doğum Yılı","Boy","Ayak","Vücut Tipi","Bölge",
-        "Mevki 1","Mevki 2","Mevki 3","Rol","Kulüp","Lig","Sözleşme","Mr Danis 25"
-    ]
-    return df
-
-_DANIS_ETIKET = {
-    "Yıldız":     "⭐ Yıldız",
-    "Uzman":      "🎯 Uzman",
-    "Potansiyel": "🌱 Potansiyel",
-    "Yeterli":    "✅ Yeterli",
-    "Yedek":      "🔄 Yedek",
-}
-_DANIS_RENK = {
-    "Yıldız":     "#f59e0b",
-    "Uzman":      "#3b82f6",
-    "Potansiyel": "#10b981",
-    "Yeterli":    "#6b7280",
-    "Yedek":      "#9ca3af",
-}
-_MEVKI_ACIKLAMA = {
-    "GK":"Kaleci","LCB":"Sol Stoper","RCB":"Sağ Stoper","LWB":"Sol Kanat Bek",
-    "RWB":"Sağ Kanat Bek","LFB":"Sol Bek","CMF":"Merkez Orta Saha",
-    "LWF":"Sol Kanat","RWF":"Sağ Kanat","SST":"İkinci Santrafor","CFW":"Santrafor",
-}
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
