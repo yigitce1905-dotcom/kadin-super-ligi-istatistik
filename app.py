@@ -779,7 +779,7 @@ if st.session_state["sayfa"] == "iletisim":
 if st.session_state.get("sayfa") == "scouting":
     if _nav_is_admin:
         st.markdown("""
-        <div style='margin-bottom:8px;'>
+        <div style='margin-bottom:4px;'>
           <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 Scouting Havuzu</h2>
           <p style='color:#64748b;font-size:0.85rem;'>
             Yabancı ve yerli oyuncu kurasyonu · 2026-27 kadro planlama · Türkiye ligi verilerinden bağımsız
@@ -792,76 +792,140 @@ if st.session_state.get("sayfa") == "scouting":
         if sc_df.empty:
             st.warning("scouting_oyuncular.xlsx bulunamadı.")
         else:
+            # ── ARAMA & FİLTRELER ─────────────────────────────────
             st.markdown("---")
-            fc1, fc2, fc3 = st.columns(3)
-            with fc1:
-                bolge_sec = st.selectbox("🗂️ Bölge", ["Tümü"] + sorted(sc_df["Bölge"].dropna().unique().tolist()))
-            with fc2:
-                mevki_opts = sorted(sc_df["Mevki 1"].dropna().unique().tolist())
-                mevki_sec = st.selectbox("📌 Mevki", ["Tümü"] + mevki_opts)
-            with fc3:
-                danis_opts = sorted(sc_df["Mr Danis 25"].dropna().unique().tolist())
-                danis_sec = st.selectbox("🏷️ Değerlendirme", ["Tümü"] + danis_opts)
+            sa1, sa2 = st.columns([3, 1])
+            with sa1:
+                isim_q = st.text_input("👤 Oyuncu Ara", placeholder="İsim yaz…", key="sc_isim")
+            with sa2:
+                bolge_sec = st.selectbox("🗂️ Bölge", ["Tümü"] + sorted(sc_df["Bölge"].dropna().unique().tolist()), key="sc_bolge")
 
+            sb1, sb2, sb3, sb4 = st.columns(4)
+            with sb1:
+                mevki_opts = sorted(sc_df["Mevki 1"].dropna().unique().tolist())
+                mevki_sec = st.selectbox("📌 Mevki", ["Tümü"] + mevki_opts, key="sc_mevki")
+            with sb2:
+                vat_opts = sorted(sc_df["Vatandaşlık"].dropna().unique().tolist())
+                vat_sec = st.selectbox("🌍 Vatandaşlık", ["Tümü"] + vat_opts, key="sc_vat")
+            with sb3:
+                danis_opts = sorted(sc_df["Mr Danis 25"].dropna().unique().tolist())
+                danis_sec = st.selectbox("🏷️ Değerlendirme", ["Tümü"] + danis_opts, key="sc_danis")
+            with sb4:
+                yil_min = int(sc_df["Doğum Yılı"].min()) if not sc_df.empty else 1990
+                yil_max = int(sc_df["Doğum Yılı"].max()) if not sc_df.empty else 2008
+                yil_range = st.slider("📅 Doğum Yılı", yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
+
+            # Filtrele
             filtered = sc_df.copy()
+            if isim_q.strip():
+                filtered = filtered[filtered["Tam İsmi"].str.contains(isim_q.strip(), case=False, na=False)]
             if bolge_sec != "Tümü":
                 filtered = filtered[filtered["Bölge"] == bolge_sec]
             if mevki_sec != "Tümü":
                 filtered = filtered[filtered["Mevki 1"] == mevki_sec]
+            if vat_sec != "Tümü":
+                filtered = filtered[filtered["Vatandaşlık"] == vat_sec]
             if danis_sec != "Tümü":
                 filtered = filtered[filtered["Mr Danis 25"] == danis_sec]
+            filtered = filtered[
+                filtered["Doğum Yılı"].between(yil_range[0], yil_range[1])
+            ]
 
-            st.markdown(f"**{len(filtered)} oyuncu** listeleniyor")
-            st.markdown("---")
+            st.markdown(
+                f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:6px 0 12px;'>"
+                f"🎯 {len(filtered)} oyuncu bulundu</div>", unsafe_allow_html=True)
 
-            for i in range(0, len(filtered), 2):
-                cols = st.columns(2)
-                for j, col in enumerate(cols):
-                    if i + j >= len(filtered):
-                        break
-                    row = filtered.iloc[i + j]
-                    danis     = str(row.get("Mr Danis 25","")) if pd.notna(row.get("Mr Danis 25")) else ""
-                    etiket    = _DANIS_ETIKET.get(danis, "")
-                    renk      = _DANIS_RENK.get(danis, "#6b7280")
-                    tam_isim  = str(row.get("Tam İsmi",""))
-                    rol       = str(row.get("Rol",""))
-                    vatandas  = str(row.get("Vatandaşlık",""))
-                    milli     = str(row.get("Milli Takım",""))
-                    d_yil     = row.get("Doğum Yılı","")
-                    yas       = 2026 - int(d_yil) if pd.notna(d_yil) and str(d_yil).isdigit() else "?"
-                    boy       = f"{row.get('Boy','')}m" if pd.notna(row.get("Boy")) else "—"
-                    ayak      = str(row.get("Ayak",""))
-                    vucut     = str(row.get("Vücut Tipi",""))
-                    kulup     = str(row.get("Kulüp",""))
-                    lig       = str(row.get("Lig",""))
-                    sozlesme  = str(row.get("Sözleşme",""))
-                    m1        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 1","")), str(row.get("Mevki 1","")))
-                    m2        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 2","")), "") if pd.notna(row.get("Mevki 2")) else ""
-                    m3        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 3","")), "") if pd.notna(row.get("Mevki 3")) else ""
-                    mevkiler  = " · ".join(filter(None, [m1, m2, m3]))
-                    bolge_str = str(row.get("Bölge",""))
-                    with col:
-                        st.markdown(f"""
+            if filtered.empty:
+                st.info("Filtrelerle eşleşen oyuncu yok.")
+            else:
+                # ── OYUNCU KARTLARI ───────────────────────────────
+                for i in range(0, len(filtered), 2):
+                    cols = st.columns(2)
+                    for j, col in enumerate(cols):
+                        if i + j >= len(filtered):
+                            break
+                        row = filtered.iloc[i + j]
+                        danis     = str(row.get("Mr Danis 25","")) if pd.notna(row.get("Mr Danis 25")) else ""
+                        etiket    = _DANIS_ETIKET.get(danis, "")
+                        renk      = _DANIS_RENK.get(danis, "#6b7280")
+                        tam_isim  = str(row.get("Tam İsmi",""))
+                        rol       = str(row.get("Rol",""))
+                        vatandas  = str(row.get("Vatandaşlık",""))
+                        milli     = str(row.get("Milli Takım",""))
+                        d_yil     = row.get("Doğum Yılı","")
+                        yas       = 2026 - int(d_yil) if pd.notna(d_yil) and str(d_yil).isdigit() else "?"
+                        boy       = f"{row.get('Boy','')}m" if pd.notna(row.get("Boy")) else "—"
+                        ayak      = str(row.get("Ayak",""))
+                        vucut     = str(row.get("Vücut Tipi",""))
+                        kulup     = str(row.get("Kulüp",""))
+                        lig       = str(row.get("Lig",""))
+                        sozlesme  = str(row.get("Sözleşme",""))
+                        sd_url    = str(row.get("SD URL","")) if "SD URL" in sc_df.columns and pd.notna(row.get("SD URL")) else ""
+                        m1        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 1","")), str(row.get("Mevki 1","")))
+                        m2        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 2","")), "") if pd.notna(row.get("Mevki 2")) else ""
+                        m3        = _MEVKI_ACIKLAMA.get(str(row.get("Mevki 3","")), "") if pd.notna(row.get("Mevki 3")) else ""
+                        mevkiler  = " · ".join(filter(None, [m1, m2, m3]))
+                        bolge_str = str(row.get("Bölge",""))
+                        sd_badge  = f'<a href="{sd_url}" target="_blank" style="font-size:0.72rem;color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>' if sd_url.startswith("http") else ""
+
+                        with col:
+                            st.markdown(f"""
 <div style="border:1px solid {renk};border-radius:12px;padding:16px 18px;margin-bottom:14px;
     background:linear-gradient(135deg,#0f172a,#1e293b);">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
     <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}</div>
     <div style="background:{renk};color:#fff;font-size:0.72rem;font-weight:700;
          padding:3px 9px;border-radius:20px;white-space:nowrap;">{etiket}</div>
   </div>
-  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:4px;">🎭 {rol}</div>
-  <div style="color:#64748b;font-size:0.78rem;margin-bottom:10px;">📌 {mevkiler} &nbsp;|&nbsp; 🗂️ {bolge_str}</div>
-  <hr style="border-color:#334155;margin:8px 0;">
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:0.80rem;color:#cbd5e1;">
+  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:3px;">🎭 {rol}</div>
+  <div style="color:#64748b;font-size:0.78rem;margin-bottom:8px;">📌 {mevkiler} &nbsp;|&nbsp; 🗂️ {bolge_str}</div>
+  <hr style="border-color:#334155;margin:7px 0;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;font-size:0.80rem;color:#cbd5e1;">
     <span>🌍 {vatandas}</span><span>🏴 {milli if milli != vatandas else "—"}</span>
     <span>📅 {d_yil} ({yas} yaş)</span><span>📏 {boy} · {ayak} ayak</span>
-    <span>💪 {vucut}</span><span></span>
+    <span>💪 {vucut}</span><span>{sd_badge}</span>
   </div>
-  <hr style="border-color:#334155;margin:8px 0;">
+  <hr style="border-color:#334155;margin:7px 0;">
   <div style="font-size:0.80rem;color:#94a3b8;">
-    🏟️ <b style="color:#e2e8f0;">{kulup}</b><br>🌐 {lig}<br>📄 Sözleşme: {sozlesme}
+    🏟️ <b style="color:#e2e8f0;">{kulup}</b> &nbsp;·&nbsp; 🌐 {lig}<br>
+    📄 Sözleşme: {sozlesme}
   </div>
 </div>""", unsafe_allow_html=True)
+
+                            # SoccerDonna verisi — URL varsa expander'da göster
+                            if sd_url.startswith("http"):
+                                with col.expander("📊 SoccerDonna Verileri"):
+                                    try:
+                                        _sd_r = requests.get(sd_url, headers={"User-Agent":"Mozilla/5.0"}, timeout=8)
+                                        _sd_soup = BeautifulSoup(_sd_r.text, "html.parser")
+                                        _sd_rows = _sd_soup.select("table tr")
+                                        _sd_data = {}
+                                        for _r in _sd_rows:
+                                            _cells = [c.get_text(strip=True) for c in _r.select("td")]
+                                            if len(_cells) >= 2 and _cells[0]:
+                                                _sd_data[_cells[0].rstrip(":")] = _cells[1]
+                                        _show_keys = ["Date of birth","Age","Height","Nationality","Position","Foot","Market value","Contract until"]
+                                        _tr = {"Date of birth":"Doğum","Age":"Yaş","Height":"Boy","Nationality":"Uyruk",
+                                               "Position":"Mevki","Foot":"Ayak","Market value":"Piyasa Değeri","Contract until":"Sözleşme"}
+                                        for k in _show_keys:
+                                            if k in _sd_data:
+                                                st.markdown(f"**{_tr.get(k,k)}:** {_sd_data[k]}")
+                                        # Sezon istatistikleri
+                                        _stat_rows = []
+                                        _in_stats  = False
+                                        for _r in _sd_rows:
+                                            _cells = [c.get_text(strip=True) for c in _r.select("td")]
+                                            if "Competition" in _cells or "Matches" in _cells:
+                                                _in_stats = True
+                                                continue
+                                            if _in_stats and len(_cells) >= 3 and _cells[0]:
+                                                _stat_rows.append(_cells)
+                                        if _stat_rows:
+                                            st.markdown("**Sezon İstatistikleri:**")
+                                            _stat_df = pd.DataFrame(_stat_rows)
+                                            st.dataframe(_stat_df, hide_index=True, use_container_width=True)
+                                    except Exception as _e:
+                                        st.caption(f"Veri çekilemedi: {_e}")
     else:
         st.markdown("""
         <div style="max-width:560px;margin:60px auto;text-align:center;
