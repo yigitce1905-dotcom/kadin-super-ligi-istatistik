@@ -625,8 +625,8 @@ def _ilk_uyruk(nat_str: str) -> str:
 
 
 @st.cache_data
-def df_zenginlestir(df: "pd.DataFrame", file_hash: str = "") -> "pd.DataFrame":
-    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler. file_hash cache bozucu."""
+def df_zenginlestir(df: "pd.DataFrame", file_hash: str = "", _v: str = "v2") -> "pd.DataFrame":
+    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler. file_hash + _v cache bozucu."""
     df = df.copy()
     df["Mevki"] = df["Oyuncu"].map(
         lambda o: mevki_normalize(
