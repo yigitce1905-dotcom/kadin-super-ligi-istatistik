@@ -2861,6 +2861,17 @@ _TRANSFER_DB = {
     ("Sol Kanat", "Dusuk",  "Yabancı"):    ["LARA ANTUNES PINTASSILGO", "JELENA KARLİCİC", "MELISSA SANDRINE BEHINAN"],
     ("Sol Kanat", "Dusuk",  "Farketmez"):  ["LARA ANTUNES PINTASSILGO", "JELENA KARLİCİC", "İNAYET FUNDA ALTINKAYA"],
 
+    # ── Sağ Kanat ─────────────────────────────────────────────────────────
+    ("Sağ Kanat", "Yuksek", "Yerli"):      ["BUSEM ŞEKER", "MELİKE PEKEL"],
+    ("Sağ Kanat", "Yuksek", "Yabancı"):    ["MARIA APARECIDA SOUZA ALVES", "NATALIA OLESZKIEWICZ", "ANA INES COSTA MENDES DIAS"],
+    ("Sağ Kanat", "Yuksek", "Farketmez"):  ["MARIA APARECIDA SOUZA ALVES", "NATALIA OLESZKIEWICZ", "BUSEM ŞEKER"],
+    ("Sağ Kanat", "Orta",   "Yerli"):      ["ZEYNEP KERİMOĞLU", "SEVGİ ÇINAR KARAOĞLU"],
+    ("Sağ Kanat", "Orta",   "Yabancı"):    ["JULIA HICKELSBERGEN FULLER", "ELENA GRACINDA SANTOS", "KARYNA ALKHOVIK"],
+    ("Sağ Kanat", "Orta",   "Farketmez"):  ["JULIA HICKELSBERGEN FULLER", "ELENA GRACINDA SANTOS", "ZEYNEP KERİMOĞLU"],
+    ("Sağ Kanat", "Dusuk",  "Yerli"):      ["ECEMNUR ÖZTÜRK", "MELİKE DİNÇEL", "FATMA ATAŞ"],
+    ("Sağ Kanat", "Dusuk",  "Yabancı"):    ["JULIETTE NANA", "SAMARIA SARAI GOMEZ MEJIA", "PRİNCELLA ADUBEA"],
+    ("Sağ Kanat", "Dusuk",  "Farketmez"):  ["JULIETTE NANA", "SAMARIA SARAI GOMEZ MEJIA", "ECEMNUR ÖZTÜRK"],
+
     # ── Santrafor ─────────────────────────────────────────────────────────
     ("Santrafor", "Yuksek", "Yerli"):      ["YAĞMUR URAZ"],
     ("Santrafor", "Yuksek", "Yabancı"):    ["VALENTINA GIACINTI", "ANDREA STASKOVA", "ARMISA KUÇ"],
@@ -2944,7 +2955,7 @@ with tab_transfer:
                                     "Kaleci",
                                     "Sağ Bek - Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Bek - Sol Kanat Bek",
                                     "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
-                                    "Sol Kanat", "Sağ Kanat ⏳", "Santrafor",
+                                    "Sol Kanat", "Sağ Kanat", "Santrafor",
                                 ]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
                                      label_visibility="collapsed")
