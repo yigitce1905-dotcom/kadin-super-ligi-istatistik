@@ -1048,6 +1048,15 @@ with tab1:
     if df_tam.empty:
         st.info("Veri yok.")
 
+    # Mevki kategorileri — geniş → detay
+    _MEVKI_DETAY = {
+        "Kaleci":    ["Kaleci"],
+        "Defans":    ["Sağ Bek", "Sol Bek", "Stoper", "Defans"],
+        "Orta Saha": ["Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
+                      "Sol Kanat", "Sağ Kanat", "Orta Saha"],
+        "Forvet":    ["Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet"],
+    }
+
     f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
     with f1:
         secenekler = ["— Tüm oyuncular —"] + sorted(df_tam["Oyuncu"].tolist())
@@ -1057,25 +1066,30 @@ with tab1:
         takimlar = ["Tüm Takımlar"] + sorted(df_tam["Takım"].dropna().unique().tolist())
         secili_takim = st.selectbox("Takım", takimlar)
     with f3:
-        mevki_secenekler = [
-            "Tüm Mevkiler",
-            "Kaleci",
-            "Sağ Bek", "Sol Bek", "Stoper", "Defans",
-            "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
-            "Sol Kanat", "Sağ Kanat", "Orta Saha",
-            "Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet",
-        ]
-        secili_mevki = st.selectbox("Mevki", mevki_secenekler)
+        secili_kategori = st.selectbox("Mevki", ["Tüm Mevkiler"] + list(_MEVKI_DETAY.keys()), key="ol_kategori")
     with f4:
         siralama = st.selectbox("Sırala", ["Maç ↓","Gol ↓","Dakika ↓","Sarı ↓","Gol/Maç ↓"])
+
+    # Detay filtresi — sadece kategori seçiliyse göster
+    secili_detay = "Tümü"
+    if secili_kategori != "Tüm Mevkiler":
+        detay_secenekler = ["Tümü"] + _MEVKI_DETAY[secili_kategori]
+        secili_detay = st.selectbox(
+            f"↳ {secili_kategori} detayı",
+            detay_secenekler,
+            key="ol_detay"
+        )
 
     df = df_tam.copy()
     if secili_oyuncu != "— Tüm oyuncular —":
         df = df[df["Oyuncu"] == secili_oyuncu]
     if secili_takim != "Tüm Takımlar":
         df = df[df["TümTakımlar"].str.contains(secili_takim, na=False)]
-    if secili_mevki != "Tüm Mevkiler" and "Mevki" in df.columns:
-        df = df[df["Mevki"] == secili_mevki]
+    if secili_kategori != "Tüm Mevkiler" and "Mevki" in df.columns:
+        if secili_detay != "Tümü":
+            df = df[df["Mevki"] == secili_detay]
+        else:
+            df = df[df["Mevki"].isin(_MEVKI_DETAY[secili_kategori])]
 
     siralama_map = {"Maç ↓":"Maç","Gol ↓":"Gol","Dakika ↓":"Dakika","Sarı ↓":"Sarı","Gol/Maç ↓":"Gol/Maç"}
     df = df.sort_values(siralama_map[siralama], ascending=False).reset_index(drop=True)
@@ -2630,17 +2644,19 @@ with tab9:
         if df_tam.empty:
             st.warning("Veri yok.")
         else:
-            fa1, fa2, fa3 = st.columns([2, 2, 2])
+            fa1, fa2, fa3, fa4 = st.columns([2, 1, 1, 2])
             fb1, fb2, fb3, fb4 = st.columns([2, 2, 2, 2])
 
             all_nats = sorted(df_tam["Uyruk"].dropna().replace("", pd.NA).dropna().unique())
-            all_pos  = sorted(df_tam["Mevki"].dropna().replace("Bilinmiyor", pd.NA).dropna().unique())
 
             with fa1:
                 sel_nats = st.multiselect("🌍 Uyruk", all_nats, placeholder="Tümü", key="as_nat")
             with fa2:
-                sel_pos = st.multiselect("📋 Mevki", all_pos, placeholder="Tümü", key="as_pos")
+                as_kategori = st.selectbox("📋 Mevki", ["Tümü"] + list(_MEVKI_DETAY.keys()), key="as_kat")
             with fa3:
+                as_detay_secenekler = ["Tümü"] + (_MEVKI_DETAY.get(as_kategori, []) if as_kategori != "Tümü" else [])
+                as_detay = st.selectbox("↳ Detay", as_detay_secenekler, key="as_detay", disabled=(as_kategori=="Tümü"))
+            with fa4:
                 isim_q = st.text_input("👤 İsim", placeholder="Ara…", key="as_isim")
 
             yas_vals = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
@@ -2660,8 +2676,11 @@ with tab9:
             mask = pd.Series(True, index=df_tam.index)
             if sel_nats:
                 mask &= df_tam["Uyruk"].isin(sel_nats)
-            if sel_pos:
-                mask &= df_tam["Mevki"].isin(sel_pos)
+            if as_kategori != "Tümü":
+                if as_detay != "Tümü":
+                    mask &= df_tam["Mevki"] == as_detay
+                else:
+                    mask &= df_tam["Mevki"].isin(_MEVKI_DETAY.get(as_kategori, []))
             if isim_q.strip():
                 mask &= df_tam["Oyuncu"].str.contains(isim_q.strip(), case=False, na=False)
             mask &= df_tam["Maç"] >= min_mac
