@@ -605,6 +605,15 @@ def mevki_normalize(pozisyon: str) -> str:
 
 import re as _re
 
+# Mevki kategorileri — geniş → detay (global, her yerde kullanılır)
+_MEVKI_DETAY = {
+    "Kaleci":    ["Kaleci"],
+    "Defans":    ["Sağ Bek", "Sol Bek", "Stoper", "Defans"],
+    "Orta Saha": ["Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
+                  "Sol Kanat", "Sağ Kanat", "Orta Saha"],
+    "Forvet":    ["Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet"],
+}
+
 def _ilk_uyruk(nat_str: str) -> str:
     """'TurkeyGermany' → 'Turkey', 'France' → 'France'"""
     nat_str = (nat_str or "").strip()
@@ -1085,15 +1094,6 @@ tab11      = _tabs[_ti]; _ti += 1
 with tab1:
     if df_tam.empty:
         st.info("Veri yok.")
-
-    # Mevki kategorileri — geniş → detay
-    _MEVKI_DETAY = {
-        "Kaleci":    ["Kaleci"],
-        "Defans":    ["Sağ Bek", "Sol Bek", "Stoper", "Defans"],
-        "Orta Saha": ["Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
-                      "Sol Kanat", "Sağ Kanat", "Orta Saha"],
-        "Forvet":    ["Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet"],
-    }
 
     f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
     with f1:
