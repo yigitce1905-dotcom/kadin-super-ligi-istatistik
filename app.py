@@ -1185,6 +1185,46 @@ def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
     st.plotly_chart(fig, use_container_width=True)
 
 
+# ── Veri Kapsama Paneli (admin: eksik veri özeti) ──
+def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
+    isimler = sc_df[isim_col].dropna().astype(str).tolist()
+    toplam = len(isimler)
+    if toplam == 0:
+        st.info("Veri yok.")
+        return
+    mevki_yok, dob_yok, kariyer_yok, sd_yok = [], [], [], []
+    for isim in isimler:
+        sd = sd_data.get(isim, {})
+        if not sd or sd.get("bulunamadi"):
+            sd_yok.append(isim)
+            continue
+        if not sd.get("Position"):
+            mevki_yok.append(isim)
+        if not sd.get("Date of birth"):
+            dob_yok.append(isim)
+        if not leistung_data.get(isim, {}).get("sezonlar"):
+            kariyer_yok.append(isim)
+    c1, c2, c3, c4, c5 = st.columns(5)
+    c1.metric("Toplam", toplam)
+    c2.metric("SD profili yok", len(sd_yok))
+    c3.metric("Mevki eksik", len(mevki_yok))
+    c4.metric("Doğum tarihi eksik", len(dob_yok))
+    c5.metric("Kariyer eksik", len(kariyer_yok))
+
+    def _liste(baslik, lst):
+        if lst:
+            ozet = ", ".join(lst[:40]) + (f" … (+{len(lst)-40})" if len(lst) > 40 else "")
+            st.markdown(f"**{baslik} ({len(lst)}):** <span style='color:#94a3b8;font-size:0.85rem;'>{ozet}</span>",
+                        unsafe_allow_html=True)
+
+    _liste("🔴 SD profili bulunamayan", sd_yok)
+    _liste("📌 Mevkii eksik", mevki_yok)
+    _liste("🎂 Doğum tarihi eksik", dob_yok)
+    _liste("⚽ Kariyer verisi eksik", kariyer_yok)
+    if not (sd_yok or mevki_yok or dob_yok or kariyer_yok):
+        st.success("Tüm oyuncularda mevki, doğum tarihi ve kariyer verisi tam ✅")
+
+
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
     sd_data = scouting_sd_yukle()
@@ -1766,6 +1806,9 @@ if st.session_state.get("sayfa") == "scouting":
             st.markdown("---")
             isim_col = "Tam İsmi" if "Tam İsmi" in sc_df.columns else sc_df.columns[0]
             vat_col  = "Vatandaşlık" if "Vatandaşlık" in sc_df.columns else None
+
+            with st.expander("📊 Veri Kapsama Paneli — eksik veri özeti"):
+                veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data)
 
             # SD'den mevki → normalize eşleme
             _SD_MEVKI_NORM = {
