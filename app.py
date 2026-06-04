@@ -1493,8 +1493,8 @@ def render_ana_lig_profil(secili):
 
         # Paylaşılabilir link butonu
         share_url = f"?oyuncu={secili}"
-        st.markdown(f"🔗 **Paylaşılabilir link:** `{share_url}`")
-        if st.button("📋 Linki Kopyala (adres çubuğuna bakın)"):
+        st.markdown(f"🔗 **{t('Paylaşılabilir link', 'Share link')}:** `{share_url}`")
+        if st.button(t("📋 Linki Kopyala (adres çubuğuna bakın)", "📋 Copy Link (check address bar)")):
             st.query_params["oyuncu"] = secili
 
         takim_html = (
@@ -1552,19 +1552,19 @@ def render_ana_lig_profil(secili):
           <div style="margin-bottom:6px">🏟 {takim_html}</div>
           {sd_bilgi_html}
           <div class="profil-stat">
-            <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">Maç</div></div>
-            <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ İlk 11</div></div>
-            <div class="profil-stat-item"><div class="deger">{yedek}</div><div class="ad">↗ Yedek</div></div>
+            <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{yedek}</div><div class="ad">↗ {t("Yedek","Sub")}</div></div>
             <div class="profil-stat-item"><div class="deger">{ilk11_oran}%</div><div class="ad">Starter %</div></div>
-            <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">Top. Dakika</div></div>
-            <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">Dk/Maç</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">Gol{gol_detay}</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol_f}</div><div class="ad">⚽ Ayak (F)</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol_h}</div><div class="ad">🆕 Kafa (H)</div></div>
-            <div class="profil-stat-item"><div class="deger">{pen}</div><div class="ad">Penaltı (P)</div></div>
-            <div class="profil-stat-item"><div class="deger">{ort}</div><div class="ad">Gol/Maç</div></div>
-            <div class="profil-stat-item"><div class="deger" style="color:#f5c518">{sari}</div><div class="ad">🟨 Sarı</div></div>
-            <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 Kırmızı</div></div>
+            <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">{t("Top. Dakika","Tot. Minutes")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">{t("Dk/Maç","Min/Match")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">{t("Gol","Goals")}{gol_detay}</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol_f}</div><div class="ad">⚽ {t("Ayak (F)","Foot (F)")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{gol_h}</div><div class="ad">🆕 {t("Kafa (H)","Header (H)")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{pen}</div><div class="ad">{t("Penaltı (P)","Penalty (P)")}</div></div>
+            <div class="profil-stat-item"><div class="deger">{ort}</div><div class="ad">{t("Gol/Maç","Goals/Match")}</div></div>
+            <div class="profil-stat-item"><div class="deger" style="color:#f5c518">{sari}</div><div class="ad">🟨 {t("Sarı","Yellow")}</div></div>
+            <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 {t("Kırmızı","Red")}</div></div>
           </div>
         </div>""", unsafe_allow_html=True)
 
@@ -1573,7 +1573,7 @@ def render_ana_lig_profil(secili):
 
         # ── Son 5 maç formu ──────────────────────────────────────────────────
         with p1:
-            st.markdown("##### Son 5 Maç Formu")
+            st.markdown(f"##### {t('Son 5 Maç Formu', 'Last 5 Matches Form')}")
             gecmis = sorted(detay.get("mac_gecmisi",[]), key=lambda x: x["hafta"], reverse=True)[:5]
             if gecmis:
                 chipler = ""
@@ -1591,15 +1591,15 @@ def render_ana_lig_profil(secili):
                     chipler += f'<span class="form-chip" style="background:{renk}">{etiket}</span>'
                 st.markdown(f'<div class="form-kutu">{chipler}</div>', unsafe_allow_html=True)
             else:
-                st.caption("Maç verisi yok.")
+                st.caption(t("Maç verisi yok.", "No match data."))
 
         # ── Lig sıralamaları ─────────────────────────────────────────────────
         with p2:
-            st.markdown("##### Lig Sıralaması")
+            st.markdown(f"##### {t('Lig Sıralaması', 'League Ranking')}")
             r1, r2 = st.columns(2)
             for kol, metrik, etiket in [
-                (r1, "Gol",    "Gol"),
-                (r2, "Dakika", "Dakika"),
+                (r1, "Gol",    t("Gol","Goals")),
+                (r2, "Dakika", t("Dakika","Minutes")),
             ]:
                 s_df = df_tam.sort_values(metrik, ascending=False).reset_index(drop=True)
                 s_df.index += 1
@@ -1614,7 +1614,7 @@ def render_ana_lig_profil(secili):
 
         g1, g2 = st.columns(2)
         with g1:
-            st.markdown("##### Haftalık Performans")
+            st.markdown(f"##### {t('Haftalık Performans', 'Weekly Performance')}")
             if gecmis_tam:
                 haftalar  = [m["hafta"]  for m in gecmis_tam]
                 dakikalar = [m["dakika"] for m in gecmis_tam]
@@ -1637,7 +1637,7 @@ def render_ana_lig_profil(secili):
                 st.plotly_chart(fig, use_container_width=True)
 
         with g2:
-            st.markdown("##### Gol Zamanı Dağılımı")
+            st.markdown(f"##### {t('Gol Zamanı Dağılımı', 'Goal Timing Distribution')}")
             tum_dakikalar = []
             for m in gecmis_tam:
                 tum_dakikalar.extend(m.get("gol_dakikalari", []))
@@ -1659,13 +1659,13 @@ def render_ana_lig_profil(secili):
                     margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
                 st.plotly_chart(fig2, use_container_width=True)
             elif gol > 0:
-                st.caption("Gol dakikası verisi bu sezonda mevcut değil.")
+                st.caption(t("Gol dakikası verisi bu sezonda mevcut değil.", "Goal minute data not available for this season."))
             else:
-                st.caption("Bu oyuncu gol atmadı.")
+                st.caption(t("Bu oyuncu gol atmadı.", "This player has not scored."))
 
         # ── Seriler ──────────────────────────────────────────────────────────
         if gecmis_tam:
-            st.markdown("##### 🔥 Seri Rekorları")
+            st.markdown(f"##### 🔥 {t('Seri Rekorları', 'Streak Records')}")
             # En uzun ardışık maç serisi
             en_uzun_mac = max_seri([1 for _ in gecmis_tam])
             # En uzun gol serisi (ardışık maçlarda gol)
@@ -1676,20 +1676,20 @@ def render_ana_lig_profil(secili):
             en_uzun_temiz = max_seri(temiz)
 
             s1,s2,s3 = st.columns(3)
-            s1.metric("🏃 En Uzun Maç Serisi", f"{en_uzun_mac} maç")
-            s2.metric("⚽ En Uzun Gol Serisi", f"{en_uzun_gol} maç")
-            s3.metric("🛡️ En Uzun Temiz Seri", f"{en_uzun_temiz} maç")
+            s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
+            s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
+            s3.metric(f"🛡️ {t('En Uzun Temiz Seri', 'Longest Clean Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
 
         # ── Transfer kırılımı ─────────────────────────────────────────────────
         if transfer:
-            st.markdown("##### Takım Bazlı İstatistikler")
+            st.markdown(f"##### {t('Takım Bazlı İstatistikler', 'Stats by Club')}")
             satirlar = ""
             for d in detay.get("takim_detay", []):
                 satirlar += f"""
                 <div class="takim-detay-satir">
                   <span class="td-adi">🏟 {d['takim']}</span>
                   <span class="td-stats">
-                    {d['mac']} maç · {d['gol']} gol · {d['dakika']} dk ·
+                    {d['mac']} {t('maç','matches')} · {d['gol']} {t('gol','goals')} · {d['dakika']} {t('dk','min')} ·
                     🟨{d['sari']} 🟥{d['kirmizi']}
                   </span>
                 </div>"""
@@ -1697,7 +1697,7 @@ def render_ana_lig_profil(secili):
 
         # ── Oyuncu Kartı ─────────────────────────────────────────────────────
         st.markdown("---")
-        st.markdown("##### 🃏 Oyuncu Kartı")
+        st.markdown(f"##### 🃏 {t('Oyuncu Kartı', 'Player Card')}")
         st.markdown(f"""
         <div style="max-width:320px;margin:0 auto;
              background:linear-gradient(145deg,#1a1f36,#0d3b2e);
@@ -1705,7 +1705,7 @@ def render_ana_lig_profil(secili):
              box-shadow:0 8px 32px rgba(0,0,0,0.6);
              border:1px solid #00c85344;">
           <div style="font-size:0.68rem;letter-spacing:3px;color:#00c853aa;margin-bottom:4px">
-            KADIN FUTBOL · 2025-2026
+            {t("KADIN FUTBOL · 2025-2026","WOMEN'S FOOTBALL · 2025-2026")}
           </div>
           <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
           <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{row['Takım'][:35]}</div>
@@ -1713,17 +1713,17 @@ def render_ana_lig_profil(secili):
             <div style="background:rgba(0,200,83,0.08);border:1px solid #00c85333;
                  border-radius:8px;padding:10px 6px">
               <div style="font-size:1.5rem;font-weight:800;color:#00c853">{gol}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">GOL</div>
+              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("GOL","GOALS")}</div>
             </div>
             <div style="background:rgba(41,121,255,0.08);border:1px solid #2979ff33;
                  border-radius:8px;padding:10px 6px">
               <div style="font-size:1.5rem;font-weight:800;color:#2979ff">{mac}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">MAÇ</div>
+              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("MAÇ","MATCHES")}</div>
             </div>
             <div style="background:rgba(255,109,0,0.08);border:1px solid #ff6d0033;
                  border-radius:8px;padding:10px 6px">
               <div style="font-size:1.5rem;font-weight:800;color:#ff6d00">{ort}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">G/MAÇ</div>
+              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("G/MAÇ","G/MATCH")}</div>
             </div>
             <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
                  border-radius:8px;padding:10px 6px">
@@ -1733,17 +1733,17 @@ def render_ana_lig_profil(secili):
             <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
                  border-radius:8px;padding:10px 6px">
               <div style="font-size:1.5rem;font-weight:800;color:#e0e0e0">{int(dk_mac)}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">DK/MAÇ</div>
+              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("DK/MAÇ","MIN/MATCH")}</div>
             </div>
             <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
                  border-radius:8px;padding:10px 6px">
               <div style="font-size:1.5rem;font-weight:800;color:#f5c518">{sari}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">🟨 KART</div>
+              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">🟨 {t("KART","CARD")}</div>
             </div>
           </div>
         </div>
         <div style="text-align:center;color:#505870;font-size:0.7rem;margin-top:8px">
-          Ekran görüntüsü alarak paylaşabilirsiniz
+          {t("Ekran görüntüsü alarak paylaşabilirsiniz","You can share by taking a screenshot")}
         </div>
         """, unsafe_allow_html=True)
 
@@ -2396,12 +2396,20 @@ st.markdown("<br>", unsafe_allow_html=True)
 _giris_var = st.session_state.get("kulup_giris", False)
 _sekmeler = []
 if _giris_var:
-    _sekmeler.append("🏟️ Benim Kadrom")
+    _sekmeler.append(t("🏟️ Benim Kadrom", "🏟️ My Squad"))
 _sekmeler += [
-    "📋 Oyuncu Listesi", "🔄 Transfer Öner", "🌱 Genç Yetenekler",
-    "👤 Oyuncu Profili", "⚡ Karşılaştırma",
-    "🏟️ Takımlar", "🏆 Lig Tablosu", "🌟 En İyiler", "⚽ Fantasy Kadro",
-    "🔍 Gelişmiş Arama", "🎂 Yaş Analizi", "🧤 Kaleciler",
+    t("📋 Oyuncu Listesi", "📋 Player List"),
+    t("🔄 Transfer Öner", "🔄 Transfer Suggest"),
+    t("🌱 Genç Yetenekler", "🌱 Young Talents"),
+    t("👤 Oyuncu Profili", "👤 Player Profile"),
+    t("⚡ Karşılaştırma", "⚡ Comparison"),
+    t("🏟️ Takımlar", "🏟️ Teams"),
+    t("🏆 Lig Tablosu", "🏆 League Table"),
+    t("🌟 En İyiler", "🌟 Top Performers"),
+    t("⚽ Fantasy Kadro", "⚽ Fantasy Squad"),
+    t("🔍 Gelişmiş Arama", "🔍 Advanced Search"),
+    t("🎂 Yaş Analizi", "🎂 Age Analysis"),
+    t("🧤 Kaleciler", "🧤 Goalkeepers"),
 ]
 _is_admin = st.session_state.get("kulup_kullanici") == "admin"
 
@@ -2431,38 +2439,46 @@ tab11      = _tabs[_ti]; _ti += 1
 # ══════════════════════════════════════════════════════════════════════════════
 with tab1:
     if df_tam.empty:
-        st.info("Veri yok.")
+        st.info(t("Veri yok.", "No data."))
+
+    _TUM_OYUNCU   = t("— Tüm oyuncular —", "— All players —")
+    _TUM_TAKIM    = t("Tüm Takımlar", "All Teams")
+    _TUM_MEVKI    = t("Tüm Mevkiler", "All Positions")
+    _TUM          = t("Tümü", "All")
+    _SIRALAMA_OPT = ["Maç ↓","Gol ↓","Dakika ↓","Sarı ↓","Gol/Maç ↓"]
+    _SIRALAMA_EN  = {"Maç ↓":"Matches ↓","Gol ↓":"Goals ↓","Dakika ↓":"Minutes ↓","Sarı ↓":"Yellow ↓","Gol/Maç ↓":"Goals/Match ↓"}
 
     f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
     with f1:
-        secenekler = ["— Tüm oyuncular —"] + sorted(df_tam["Oyuncu"].tolist())
-        secili_oyuncu = st.selectbox("Oyuncu Ara", secenekler,
+        secenekler = [_TUM_OYUNCU] + sorted(df_tam["Oyuncu"].tolist())
+        secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), secenekler,
             index=secenekler.index(url_oyuncu) if url_oyuncu in secenekler else 0)
     with f2:
-        takimlar = ["Tüm Takımlar"] + sorted(df_tam["Takım"].dropna().unique().tolist())
-        secili_takim = st.selectbox("Takım", takimlar)
+        takimlar = [_TUM_TAKIM] + sorted(df_tam["Takım"].dropna().unique().tolist())
+        secili_takim = st.selectbox(t("Takım", "Team"), takimlar)
     with f3:
-        secili_kategori = st.selectbox("Mevki", ["Tüm Mevkiler"] + list(_MEVKI_DETAY.keys()), key="ol_kategori")
+        secili_kategori = st.selectbox(t("Mevki", "Position"), [_TUM_MEVKI] + list(_MEVKI_DETAY.keys()), key="ol_kategori")
     with f4:
-        siralama = st.selectbox("Sırala", ["Maç ↓","Gol ↓","Dakika ↓","Sarı ↓","Gol/Maç ↓"])
+        siralama = st.selectbox(t("Sırala", "Sort"), _SIRALAMA_OPT,
+            format_func=lambda x: _SIRALAMA_EN[x] if EN else x)
 
     # Detay filtresi — sadece kategori seçiliyse göster
-    secili_detay = "Tümü"
-    if secili_kategori != "Tüm Mevkiler":
-        detay_secenekler = ["Tümü"] + _MEVKI_DETAY[secili_kategori]
+    secili_detay = _TUM
+    if secili_kategori != _TUM_MEVKI:
+        detay_secenekler = [_TUM] + _MEVKI_DETAY[secili_kategori]
         secili_detay = st.selectbox(
-            f"↳ {secili_kategori} detayı",
+            f"↳ {secili_kategori} {t('detayı', 'detail')}",
             detay_secenekler,
             key="ol_detay"
         )
 
     df = df_tam.copy()
-    if secili_oyuncu != "— Tüm oyuncular —":
+    if secili_oyuncu != _TUM_OYUNCU:
         df = df[df["Oyuncu"] == secili_oyuncu]
-    if secili_takim != "Tüm Takımlar":
+    if secili_takim != _TUM_TAKIM:
         df = df[df["TümTakımlar"].str.contains(secili_takim, na=False)]
-    if secili_kategori != "Tüm Mevkiler" and "Mevki" in df.columns:
-        if secili_detay != "Tümü":
+    if secili_kategori != _TUM_MEVKI and "Mevki" in df.columns:
+        if secili_detay != _TUM:
             df = df[df["Mevki"] == secili_detay]
         else:
             df = df[df["Mevki"].isin(_MEVKI_DETAY[secili_kategori])]
@@ -2476,7 +2492,7 @@ with tab1:
         lambda r: r["TümTakımlar"] if r["Transfer"] else r["Takım"], axis=1)
 
     bas, ind = st.columns([3,1])
-    with bas: st.markdown(f"#### {len(df)} oyuncu")
+    with bas: st.markdown(f"#### {len(df)} {t('oyuncu', 'players')}")
     with ind:
         csv_b = df.to_csv(index=False, encoding="utf-8-sig").encode("utf-8-sig")
         st.download_button("⬇️ CSV", csv_b, "oyuncular.csv", use_container_width=True)
@@ -2494,19 +2510,19 @@ with tab1:
         on_select="rerun",
         selection_mode="single-row",
         column_config={
-            "Oyuncu":           st.column_config.TextColumn("Oyuncu",       width="medium"),
-            "Takım (Gösterim)": st.column_config.TextColumn("Takım",        width="medium"),
-            "Maç":     st.column_config.NumberColumn("Maç",   format="%d"),
-            "İlk11":   st.column_config.NumberColumn("▶11",   format="%d",  help="İlk 11'de başladığı maç sayısı"),
-            "Yedek":   st.column_config.NumberColumn("↗Yed",  format="%d",  help="Yedek olarak girdiği maç sayısı"),
-            "Gol":     st.column_config.ProgressColumn("Gol", min_value=0, max_value=max_gol, format="%d"),
-            "GolF":    st.column_config.NumberColumn("⚽F",   format="%d",  help="Ayakla gol (F)"),
-            "GolH":    st.column_config.NumberColumn("⚽H",   format="%d",  help="Kafa golü (H)"),
-            "GolP":    st.column_config.NumberColumn("⚽P",   format="%d",  help="Penaltı golü (P)"),
-            "Gol/Maç": st.column_config.NumberColumn("G/M",  format="%.2f", help="Maç başına gol ortalaması"),
+            "Oyuncu":           st.column_config.TextColumn(t("Oyuncu","Player"),       width="medium"),
+            "Takım (Gösterim)": st.column_config.TextColumn(t("Takım","Team"),          width="medium"),
+            "Maç":     st.column_config.NumberColumn(t("Maç","Matches"), format="%d"),
+            "İlk11":   st.column_config.NumberColumn("▶11",   format="%d",  help=t("İlk 11'de başladığı maç sayısı","Started in first 11")),
+            "Yedek":   st.column_config.NumberColumn("↗Yed",  format="%d",  help=t("Yedek olarak girdiği maç sayısı","Came on as substitute")),
+            "Gol":     st.column_config.ProgressColumn(t("Gol","Goals"), min_value=0, max_value=max_gol, format="%d"),
+            "GolF":    st.column_config.NumberColumn("⚽F",   format="%d",  help=t("Ayakla gol (F)","Foot goal (F)")),
+            "GolH":    st.column_config.NumberColumn("⚽H",   format="%d",  help=t("Kafa golü (H)","Header goal (H)")),
+            "GolP":    st.column_config.NumberColumn("⚽P",   format="%d",  help=t("Penaltı golü (P)","Penalty goal (P)")),
+            "Gol/Maç": st.column_config.NumberColumn("G/M",  format="%.2f", help=t("Maç başına gol ortalaması","Goals per match average")),
             "Sarı":    st.column_config.NumberColumn("🟨",    format="%d"),
             "Kırmızı": st.column_config.NumberColumn("🟥",   format="%d"),
-            "Dakika":  st.column_config.ProgressColumn("Dakika", min_value=0, max_value=max_dk, format="%d"),
+            "Dakika":  st.column_config.ProgressColumn(t("Dakika","Minutes"), min_value=0, max_value=max_dk, format="%d"),
         }
     )
 
@@ -2544,7 +2560,7 @@ with tab1:
             STAT_STILI = ("background:#0f1117;border-radius:8px;padding:8px 16px;"
                           "text-align:center;min-width:60px")
             stat_html = ""
-            for sutun, etiket in [("Gol","GOL"),("Maç","MAÇ"),("Dakika","DK")]:
+            for sutun, etiket in [("Gol",t("GOL","GOALS")),("Maç",t("MAÇ","MATCHES")),("Dakika",t("DK","MIN"))]:
                 if sutun in p:
                     deger = int(p[sutun])
                     stat_html += (f'<div style="{STAT_STILI}">'
@@ -2575,10 +2591,11 @@ with tab1:
                 '</div>'
             )
             st.markdown(kart, unsafe_allow_html=True)
-            if st.button("👤 Tam Profili Aç", key="ana_lig_profil_ac", use_container_width=True):
+            if st.button(t("👤 Tam Profili Aç", "👤 Full Profile"), key="ana_lig_profil_ac", use_container_width=True):
                 st.query_params["oyuncu"] = tikli_oyuncu
                 st.rerun()
-    st.caption("⚽F = Ayak golü · ⚽H = Kafa golü · ⚽P = Penaltı · ▶11 = İlk 11 · ↗Yed = Yedek giriş")
+    st.caption(t("⚽F = Ayak golü · ⚽H = Kafa golü · ⚽P = Penaltı · ▶11 = İlk 11 · ↗Yed = Yedek giriş",
+                 "⚽F = Foot goal · ⚽H = Header goal · ⚽P = Penalty · ▶11 = Started · ↗Yed = Substitute"))
 
 # ==============================================================================
 # SEKME 2 - OYUNCU PROFILI
@@ -2589,15 +2606,15 @@ with tab2:
     else:
         oyuncu_listesi = sorted(df_tam["Oyuncu"].tolist())
         varsayilan_idx = oyuncu_listesi.index(url_oyuncu) if url_oyuncu in oyuncu_listesi else 0
-        secili = st.selectbox("Oyuncu sec", oyuncu_listesi, index=varsayilan_idx, key="profil_sec")
+        secili = st.selectbox(t("Oyuncu seç", "Select Player"), oyuncu_listesi, index=varsayilan_idx, key="profil_sec")
         render_ana_lig_profil(secili)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 3 — KARŞILAŞTIRMA (2-4 oyuncu)
 # ══════════════════════════════════════════════════════════════════════════════
 with tab3:
-    st.markdown("### ⚡ Oyuncu Karşılaştırması")
-    st.caption("2 ile 4 oyuncu arasında seçim yapabilirsiniz.")
+    st.markdown(f"### ⚡ {t('Oyuncu Karşılaştırması', 'Player Comparison')}")
+    st.caption(t("2 ile 4 oyuncu arasında seçim yapabilirsiniz.", "You can select between 2 and 4 players."))
 
     oyuncu_listesi2 = sorted(df_tam["Oyuncu"].tolist())
 
@@ -2610,7 +2627,7 @@ with tab3:
         varsayilan = oyuncu_listesi2[:4]
 
     secili_oyuncular = st.multiselect(
-        "Karşılaştırılacak oyuncuları seç (2-4)",
+        t("Karşılaştırılacak oyuncuları seç (2-4)", "Select players to compare (2-4)"),
         oyuncu_listesi2,
         default=varsayilan,
         max_selections=4,
@@ -2620,11 +2637,12 @@ with tab3:
     RENKLER = ["#00c853", "#2979ff", "#ff6d00", "#e040fb"]
 
     if len(secili_oyuncular) < 2:
-        st.info("En az 2 oyuncu seçin.")
+        st.info(t("En az 2 oyuncu seçin.", "Select at least 2 players."))
     elif not df_tam.empty:
 
         # ── Radar chart ──────────────────────────────────────────────────────
-        kategoriler = ["Maç", "Gol", "Gol/Maç", "Dakika", "Starter %", "Disiplin"]
+        kategoriler = [t("Maç","Matches"), t("Gol","Goals"), t("Gol/Maç","Goals/Match"),
+                       t("Dakika","Minutes"), "Starter %", t("Disiplin","Discipline")]
 
         def norm(oyuncu, metrik):
             r = df_tam[df_tam["Oyuncu"] == oyuncu]
@@ -2672,26 +2690,27 @@ with tab3:
             height=480, margin=dict(l=70, r=70, t=30, b=60),
         )
         st.plotly_chart(fig, use_container_width=True)
-        st.caption("Disiplin = 100 − (sarı kart oranı) · Starter % = ilk 11 oranı · Tüm değerler lig içinde normalize edilmiştir (100 = en iyi).")
+        st.caption(t("Disiplin = 100 − (sarı kart oranı) · Starter % = ilk 11 oranı · Tüm değerler lig içinde normalize edilmiştir (100 = en iyi).",
+                     "Discipline = 100 − (yellow card rate) · Starter % = starting 11 rate · All values normalized within the league (100 = best)."))
 
         # ── Sayısal karşılaştırma tablosu ────────────────────────────────────
-        st.markdown("##### 📊 İstatistik Karşılaştırması")
+        st.markdown(f"##### 📊 {t('İstatistik Karşılaştırması', 'Stats Comparison')}")
 
         METRIK_ETIKET = {
-            "Maç":     "Maç",
-            "İlk11":   "▶ İlk 11",
-            "Yedek":   "↗ Yedek",
-            "Gol":     "Gol",
-            "GolF":    "⚽ Ayak (F)",
-            "GolH":    "⚽ Kafa (H)",
-            "GolP":    "⚽ Penaltı (P)",
-            "Gol/Maç": "Gol/Maç",
-            "Sarı":    "🟨 Sarı Kart",
-            "Kırmızı": "🟥 Kırmızı",
-            "Dakika":  "Toplam Dakika",
+            "Maç":     t("Maç","Matches"),
+            "İlk11":   f"▶ {t('İlk 11','Starting 11')}",
+            "Yedek":   f"↗ {t('Yedek','Sub')}",
+            "Gol":     t("Gol","Goals"),
+            "GolF":    f"⚽ {t('Ayak (F)','Foot (F)')}",
+            "GolH":    f"⚽ {t('Kafa (H)','Header (H)')}",
+            "GolP":    f"⚽ {t('Penaltı (P)','Penalty (P)')}",
+            "Gol/Maç": t("Gol/Maç","Goals/Match"),
+            "Sarı":    f"🟨 {t('Sarı Kart','Yellow Card')}",
+            "Kırmızı": f"🟥 {t('Kırmızı','Red Card')}",
+            "Dakika":  t("Toplam Dakika","Total Minutes"),
         }
         # Kart sayısı düşük olan iyi → ters metrikler
-        TERS = {"Sarı", "Kırmızı"}
+        TERS = {"Sarı", "Kırmızı"}  # internal column names, stay TR
 
         tablo_satirlar = []
         for metrik, etiket in METRIK_ETIKET.items():
@@ -2715,7 +2734,7 @@ with tab3:
             tablo_satirlar.append(satir)
 
         df_karsilastirma = pd.DataFrame(tablo_satirlar)
-        df_karsilastirma = df_karsilastirma.set_index("İstatistik")
+        df_karsilastirma = df_karsilastirma.set_index(t("İstatistik","Stat"))
 
         # Oyuncu adlarını renkli başlık olarak göster
         baslik_html = '<div style="display:flex;gap:12px;margin-bottom:8px;flex-wrap:wrap;">'
@@ -2727,7 +2746,7 @@ with tab3:
             )
         baslik_html += "</div>"
         st.markdown(baslik_html, unsafe_allow_html=True)
-        st.caption("★ = o kategoride en iyi")
+        st.caption(t("★ = o kategoride en iyi", "★ = best in that category"))
 
         st.dataframe(
             df_karsilastirma,
@@ -2743,11 +2762,11 @@ with tab3:
 # SEKME 4 — TAKIMLAR
 # ══════════════════════════════════════════════════════════════════════════════
 with tab4:
-    st.markdown("### 🏟️ Takım Analizi")
+    st.markdown(f"### 🏟️ {t('Takım Analizi', 'Team Analysis')}")
 
     if not df_tam.empty:
         takim_listesi_tam = sorted(df_tam["Takım"].dropna().unique().tolist())
-        secili_t = st.selectbox("Takım seç", takim_listesi_tam, key="takim_sayfasi")
+        secili_t = st.selectbox(t("Takım seç", "Select Team"), takim_listesi_tam, key="takim_sayfasi")
         df_t = df_tam[df_tam["Takım"] == secili_t].copy()
 
         st.markdown("---")
@@ -2755,11 +2774,11 @@ with tab4:
         # ── Takım özet istatistikleri ─────────────────────────────────────
         t1, t2, t3, t4, t5 = st.columns(5)
         for kol, sayi, etiket in [
-            (t1, len(df_t),                  "Oyuncu"),
-            (t2, int(df_t["Gol"].sum()),      "Toplam Gol"),
-            (t3, int(df_t["Maç"].sum()),      "Toplam Maç"),
-            (t4, int(df_t["Dakika"].sum()),   "Toplam Dakika"),
-            (t5, int(df_t["Sarı"].sum()),     "Sarı Kart"),
+            (t1, len(df_t),                  t("Oyuncu","Players")),
+            (t2, int(df_t["Gol"].sum()),      t("Toplam Gol","Total Goals")),
+            (t3, int(df_t["Maç"].sum()),      t("Toplam Maç","Total Matches")),
+            (t4, int(df_t["Dakika"].sum()),   t("Toplam Dakika","Total Minutes")),
+            (t5, int(df_t["Sarı"].sum()),     t("Sarı Kart","Yellow Cards")),
         ]:
             kol.markdown(
                 f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -2771,7 +2790,7 @@ with tab4:
 
         # ── Kadro tablosu ─────────────────────────────────────────────────
         with sol:
-            st.markdown("##### 👥 Kadro")
+            st.markdown(f"##### 👥 {t('Kadro', 'Squad')}")
             kadro = df_t.sort_values("Maç", ascending=False)[
                 ["Oyuncu","Mevki","Maç","Gol","Dakika","Sarı"]
             ].reset_index(drop=True)
@@ -2788,7 +2807,7 @@ with tab4:
 
         # ── Mevki dağılımı + uyruk ─────────────────────────────────────
         with sag:
-            st.markdown("##### 📊 Mevki Dağılımı")
+            st.markdown(f"##### 📊 {t('Mevki Dağılımı', 'Position Distribution')}")
             if "Mevki" in df_t.columns:
                 mevki_sayilari = df_t["Mevki"].value_counts()
                 MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
@@ -2806,7 +2825,7 @@ with tab4:
                     showlegend=False)
                 st.plotly_chart(fig_mevki, use_container_width=True)
 
-            st.markdown("##### 🌍 Uyruk Dağılımı")
+            st.markdown(f"##### 🌍 {t('Uyruk Dağılımı', 'Nationality Distribution')}")
             if "Uyruk" in df_t.columns:
                 uyruk_sayilari = df_t[df_t["Uyruk"]!=""]["Uyruk"].value_counts().head(8)
                 fig_uyruk = go.Figure(go.Bar(
@@ -2827,7 +2846,7 @@ with tab4:
 
         # ── Scatter: verimlilik ────────────────────────────────────────
         st.markdown("---")
-        st.markdown("##### ⚡ Dakika-Gol Verimliliği")
+        st.markdown(f"##### ⚡ {t('Dakika-Gol Verimliliği', 'Minutes-Goals Efficiency')}")
         fig_s = go.Figure()
         for mevki, renk in [("Kaleci","#00c853"),("Defans","#2979ff"),
                               ("Orta Saha","#ff6d00"),("Forvet","#e040fb"),("Bilinmiyor","#555")]:
@@ -2854,7 +2873,7 @@ with tab4:
 # SEKME 5 — LİG TABLOSU
 # ══════════════════════════════════════════════════════════════════════════════
 with tab5:
-    st.markdown("### Puan Durumu")
+    st.markdown(f"### {t('Puan Durumu', 'League Standings')}")
 
     # Oyuncu verisinden takım istatistikleri hesapla
     if not df_tam.empty:
@@ -2866,10 +2885,10 @@ with tab5:
             TopKirmizi=("Kırmızı", "sum"),
         ).reset_index().sort_values("TopGol", ascending=False)
 
-        takim_ozet.columns = ["Takım","Oyuncu Sayısı","Toplam Gol","Toplam Dakika","Sarı Kart","Kırmızı Kart"]
+        takim_ozet.columns = ["Takım",t("Oyuncu Sayısı","Players"),t("Toplam Gol","Total Goals"),t("Toplam Dakika","Total Minutes"),t("Sarı Kart","Yellow Cards"),t("Kırmızı Kart","Red Cards")]
         takim_ozet.index = range(1, len(takim_ozet)+1)
 
-        st.markdown("#### Takım Bazlı Sezon İstatistikleri")
+        st.markdown(f"#### {t('Takım Bazlı Sezon İstatistikleri', 'Season Stats by Team')}")
         st.dataframe(takim_ozet, use_container_width=True, height=520,
             column_config={
                 "Takım":          st.column_config.TextColumn("Takım", width="large"),
@@ -2885,16 +2904,16 @@ with tab5:
         st.markdown("<br>", unsafe_allow_html=True)
 
         # TFF'den resmi puan cetveli
-        st.markdown("#### 🏆 TFF Resmi Puan Cetveli")
-        with st.spinner("TFF'den yükleniyor..."):
+        st.markdown(f"#### 🏆 {t('TFF Resmi Puan Cetveli', 'TFF Official Standings')}")
+        with st.spinner(t("TFF'den yükleniyor...", "Loading from TFF...")):
             df_puan = puan_durumu_cek()
 
         if not df_puan.empty:
             # Sütun adlarını düzelt — O G B M A Y AV P
             sutun_aciklama = {
-                "O": "O — Oynadı", "G": "G — Galibiyet", "B": "B — Beraberlik",
-                "M": "M — Mağlubiyet", "A": "A — Atılan", "Y": "Y — Yenilen",
-                "AV": "AV — Averaj", "P": "P — Puan",
+                "O": t("O — Oynadı","P — Played"), "G": t("G — Galibiyet","W — Won"), "B": t("B — Beraberlik","D — Draw"),
+                "M": t("M — Mağlubiyet","L — Lost"), "A": t("A — Atılan","GF — Goals For"), "Y": t("Y — Yenilen","GA — Goals Ag."),
+                "AV": t("AV — Averaj","GD — Goal Diff"), "P": t("P — Puan","Pts — Points"),
             }
             df_puan.index = range(1, len(df_puan) + 1)
             st.dataframe(
@@ -2906,21 +2925,23 @@ with tab5:
                     for col in df_puan.columns
                 },
             )
-            st.caption("Kaynak: TFF — tff.org | O=Oynadı · G=Galibiyet · B=Beraberlik · M=Mağlubiyet · A=Atılan · Y=Yenilen · AV=Averaj · P=Puan")
+            st.caption(t("Kaynak: TFF — tff.org | O=Oynadı · G=Galibiyet · B=Beraberlik · M=Mağlubiyet · A=Atılan · Y=Yenilen · AV=Averaj · P=Puan",
+                         "Source: TFF — tff.org | P=Played · W=Won · D=Draw · L=Lost · GF=Goals For · GA=Goals Ag. · GD=Goal Diff · Pts=Points"))
         else:
-            st.caption("TFF puan cetveli yüklenemedi.")
+            st.caption(t("TFF puan cetveli yüklenemedi.", "Could not load TFF standings."))
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 6 — EN İYİLER
 # ══════════════════════════════════════════════════════════════════════════════
 with tab6:
-    st.markdown("### 🌟 2025-2026 Sezonu En İyileri")
+    st.markdown(f"### 🌟 {t('2025-2026 Sezonu En İyileri', '2025-2026 Season Top Performers')}")
     if df_tam.empty:
-        st.info("Veri yok.")
+        st.info(t("Veri yok.", "No data."))
     else:
         # ── Lig Geneli Verimlilik Scatter ──────────────────────────────
-        st.markdown("#### ⚡ Tüm Ligde Dakika-Gol Verimliliği")
-        st.caption("Sağ üst = hem çok oynadı hem çok gol attı. Her renk bir mevki.")
+        st.markdown(f"#### ⚡ {t('Tüm Ligde Dakika-Gol Verimliliği', 'Minutes-Goals Efficiency Across the League')}")
+        st.caption(t("Sağ üst = hem çok oynadı hem çok gol attı. Her renk bir mevki.",
+                     "Top right = played a lot and scored a lot. Each color represents a position."))
         fig_lig = go.Figure()
         MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
                       "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555555"}
@@ -2957,11 +2978,11 @@ with tab6:
 
         # ── Uyruk Analizi ─────────────────────────────────────────────
         st.markdown("---")
-        st.markdown("#### 🌍 Uyruk Dağılımı")
+        st.markdown(f"#### 🌍 {t('Uyruk Dağılımı', 'Nationality Distribution')}")
         if "Uyruk" in df_tam.columns:
             ua, ub = st.columns(2)
             with ua:
-                st.markdown("**Oyuncu sayısına göre**")
+                st.markdown(f"**{t('Oyuncu sayısına göre', 'By number of players')}**")
                 uyruk_sayi = df_tam[df_tam["Uyruk"]!=""]["Uyruk"].value_counts().head(15)
                 fig_u = go.Figure(go.Bar(
                     x=uyruk_sayi.values, y=uyruk_sayi.index,
@@ -2974,7 +2995,7 @@ with tab6:
                     margin=dict(l=10,r=40,t=10,b=10))
                 st.plotly_chart(fig_u, use_container_width=True)
             with ub:
-                st.markdown("**Gol sayısına göre**")
+                st.markdown(f"**{t('Gol sayısına göre', 'By number of goals')}**")
                 uyruk_gol = df_tam[df_tam["Uyruk"]!=""].groupby("Uyruk")["Gol"].sum().sort_values(ascending=False).head(15)
                 fig_ug = go.Figure(go.Bar(
                     x=uyruk_gol.values, y=uyruk_gol.index,
@@ -3009,19 +3030,19 @@ with tab6:
         r1c1, r1c2, r1c3 = st.columns(3)
 
         with r1c1:
-            en_iyi_kart("Gol Kraliçesi",
+            en_iyi_kart(t("Gol Kraliçesi","Top Scorer"),
                 df_tam.nlargest(5,"Gol")[["Oyuncu","Takım","Gol","GolF","GolH","GolP"]],
                 ["Gol"], "⚽")
 
         with r1c2:
-            en_iyi_kart("En Çok Oynayan",
+            en_iyi_kart(t("En Çok Oynayan","Most Minutes"),
                 df_tam.nlargest(5,"Dakika")[["Oyuncu","Takım","Dakika","Maç"]],
                 ["Dakika","Maç"], "🏃")
 
         with r1c3:
             # Min 10 maç şartı
             df_ort = df_tam[df_tam["Maç"]>=10].nlargest(5,"Gol/Maç")[["Oyuncu","Takım","Gol/Maç","Gol","Maç"]]
-            en_iyi_kart("En İyi Gol Ortalaması",
+            en_iyi_kart(t("En İyi Gol Ortalaması","Best Goals/Match"),
                 df_ort, ["Gol/Maç"], "🎯")
 
         st.markdown("<br>", unsafe_allow_html=True)
@@ -3030,19 +3051,19 @@ with tab6:
         r2c1, r2c2, r2c3 = st.columns(3)
 
         with r2c1:
-            en_iyi_kart("Kafa Golü Uzmanı",
+            en_iyi_kart(t("Kafa Golü Uzmanı","Header Specialist"),
                 df_tam[df_tam["GolH"]>0].nlargest(5,"GolH")[["Oyuncu","Takım","GolH","Gol"]],
                 ["GolH"], "🆕")
 
         with r2c2:
-            en_iyi_kart("Penaltı Uzmanı",
+            en_iyi_kart(t("Penaltı Uzmanı","Penalty Specialist"),
                 df_tam[df_tam["GolP"]>0].nlargest(5,"GolP")[["Oyuncu","Takım","GolP","Gol"]],
                 ["GolP"], "🥅")
 
         with r2c3:
             # En temiz oyuncu: sarı kart almadan en çok dakika
             df_temiz = df_tam[(df_tam["Sarı"]==0) & (df_tam["Kırmızı"]==0) & (df_tam["Maç"]>=10)]
-            en_iyi_kart("Disiplin Şampiyonu",
+            en_iyi_kart(t("Disiplin Şampiyonu","Discipline Champion"),
                 df_temiz.nlargest(5,"Dakika")[["Oyuncu","Takım","Dakika","Maç"]],
                 ["Dakika"], "🛡️")
 
@@ -3055,7 +3076,7 @@ with tab6:
             # Starter şampiyonu: en yüksek ilk 11 oranı (min 15 maç)
             df_s = df_tam[df_tam["Maç"]>=15].copy()
             df_s["Starter%"] = (df_s["İlk11"] / df_s["Maç"] * 100).round(1)
-            en_iyi_kart("Starter Şampiyonu",
+            en_iyi_kart(t("Starter Şampiyonu","Starter Champion"),
                 df_s.nlargest(5,"Starter%")[["Oyuncu","Takım","Starter%","Maç"]],
                 ["Starter%"], "▶️")
 
@@ -3074,7 +3095,7 @@ with tab6:
                     })
             if seri_data:
                 df_seri = pd.DataFrame(seri_data).nlargest(5,"Gol Serisi")
-                en_iyi_kart("En Uzun Gol Serisi",
+                en_iyi_kart(t("En Uzun Gol Serisi","Longest Scoring Streak"),
                     df_seri[["Oyuncu","Takım","Gol Serisi","Toplam Gol"]],
                     ["Gol Serisi"], "🔥")
 
@@ -3094,13 +3115,13 @@ with tab6:
                     })
             if temiz_seri_data:
                 df_temiz_s = pd.DataFrame(temiz_seri_data).nlargest(5,"Temiz Seri")
-                en_iyi_kart("En Uzun Kart Almama Serisi",
+                en_iyi_kart(t("En Uzun Kart Almama Serisi","Longest Card-Free Streak"),
                     df_temiz_s[["Oyuncu","Takım","Temiz Seri","Toplam Maç"]],
                     ["Temiz Seri"], "🧹")
 
         # ── Takım başına en golcü ─────────────────────────────────────────────
         st.markdown("<br>")
-        st.markdown("#### 🏟️ Her Takımın Gol Kraliçesi")
+        st.markdown(f"#### 🏟️ {t('Her Takımın Gol Kraliçesi', 'Top Scorer per Team')}")
         takimlar_s = sorted(df_tam["Takım"].dropna().unique())
         cols = st.columns(min(4, len(takimlar_s)))
         for idx, takim in enumerate(takimlar_s):
@@ -3113,7 +3134,7 @@ with tab6:
                         f'margin-bottom:8px;border-top:2px solid #00c853">'
                         f'<div style="color:#8899aa;font-size:0.68rem">{takim[:30]}</div>'
                         f'<div style="font-weight:600;font-size:0.9rem;margin:3px 0">{r["Oyuncu"]}</div>'
-                        f'<div style="color:#00c853;font-size:0.82rem">⚽ {int(r["Gol"])} gol</div>'
+                        f'<div style="color:#00c853;font-size:0.82rem">⚽ {int(r["Gol"])} {t("gol","goals")}</div>'
                         f'</div>',
                         unsafe_allow_html=True
                     )
@@ -3122,11 +3143,12 @@ with tab6:
 # SEKME 7 — FANTASY KADRO
 # ══════════════════════════════════════════════════════════════════════════════
 with tab7:
-    st.markdown("### ⚽ Fantasy Kadro Kur")
-    st.caption("Dizilişini seç, oyuncuları ata — saha gerçek zamanlı güncellenir.")
+    st.markdown(f"### ⚽ {t('Fantasy Kadro Kur', 'Build Fantasy Squad')}")
+    st.caption(t("Dizilişini seç, oyuncuları ata — saha gerçek zamanlı güncellenir.",
+                 "Choose your formation, assign players — the pitch updates in real time."))
 
     if df_tam.empty:
-        st.info("Veri yok.")
+        st.info(t("Veri yok.", "No data."))
     else:
         # ── Pitch koordinat sistemi: W=68m, H=105m ────────────────────
         W, H = 68, 105
@@ -3191,20 +3213,21 @@ with tab7:
         col_sol, col_sag = st.columns([4, 6])
 
         with col_sol:
-            formasyon_sec = st.selectbox("Diziliş", list(FORMASYON.keys()), key="ff_formasyon")
+            formasyon_sec = st.selectbox(t("Diziliş","Formation"), list(FORMASYON.keys()), key="ff_formasyon")
             slotlar = FORMASYON[formasyon_sec]
 
             # Hoca seçimi
             hoca_listesi = tum_hocalar()
             if hoca_listesi:
+                _hoca_sec_sentinel = t("— Hoca seç —", "— Select coach —")
                 secili_hoca = st.selectbox(
-                    "🧑‍💼 Teknik Direktör",
-                    ["— Hoca seç —"] + hoca_listesi,
+                    f"🧑‍💼 {t('Teknik Direktör','Head Coach')}",
+                    [_hoca_sec_sentinel] + hoca_listesi,
                     key="ff_hoca",
                 )
             else:
-                secili_hoca = st.text_input("🧑‍💼 Teknik Direktör", key="ff_hoca_text",
-                                            placeholder="Hoca adı girin...")
+                secili_hoca = st.text_input(f"🧑‍💼 {t('Teknik Direktör','Head Coach')}", key="ff_hoca_text",
+                                            placeholder=t("Hoca adı girin...","Enter coach name..."))
             st.markdown("---")
 
             secimler   = {}
@@ -3299,7 +3322,7 @@ with tab7:
             hoca_goster = ""
             if "ff_hoca" in st.session_state:
                 h = st.session_state["ff_hoca"]
-                if h and h != "— Hoca seç —":
+                if h and h not in ("— Hoca seç —", "— Select coach —"):
                     hoca_goster = h
             elif "ff_hoca_text" in st.session_state:
                 hoca_goster = st.session_state.get("ff_hoca_text","")
@@ -3455,20 +3478,20 @@ if tab_benim:
 
         # ── ADMIN GÖRÜNÜMÜ ────────────────────────────────────────
         if _rol == "admin":
-            st.markdown("##### 🛡️ Admin Paneli — Tüm Lig Özeti")
+            st.markdown(f"##### 🛡️ {t('Admin Paneli — Tüm Lig Özeti', 'Admin Panel — Full League Overview')}")
             if not df_tam.empty:
                 k1,k2,k3,k4 = st.columns(4)
                 for kol,sayi,etiket in [
-                    (k1, len(df_tam),              "Toplam Oyuncu"),
-                    (k2, df_tam["Takım"].nunique(), "Takım"),
-                    (k3, int(df_tam["Gol"].sum()),  "Toplam Gol"),
-                    (k4, int(df_tam["Maç"].sum()),  "Toplam Maç"),
+                    (k1, len(df_tam),              t("Toplam Oyuncu","Total Players")),
+                    (k2, df_tam["Takım"].nunique(), t("Takım","Teams")),
+                    (k3, int(df_tam["Gol"].sum()),  t("Toplam Gol","Total Goals")),
+                    (k4, int(df_tam["Maç"].sum()),  t("Toplam Maç","Total Matches")),
                 ]:
                     kol.markdown(
                         f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
                         f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
                 st.markdown("<br>", unsafe_allow_html=True)
-                st.markdown("**Takım Bazlı Gol Sıralaması**")
+                st.markdown(f"**{t('Takım Bazlı Gol Sıralaması', 'Goals by Team')}**")
                 takim_gol = (df_tam.groupby("Takım")["Gol"].sum()
                              .sort_values(ascending=False).reset_index())
                 fig_admin = go.Figure(go.Bar(
@@ -3488,24 +3511,24 @@ if tab_benim:
 
         else:
             # ── KULÜP GÖRÜNÜMÜ ────────────────────────────────────────
-            st.markdown(f"##### 🏟️ {kulup_ad} — Kadro Paneli")
-            st.caption(f"2025-26 sezonu · {kulup_takim}")
+            st.markdown(f"##### 🏟️ {kulup_ad} — {t('Kadro Paneli', 'Squad Panel')}")
+            st.caption(f"2025-26 {t('sezonu','season')} · {kulup_takim}")
 
             kadro = df_tam[df_tam["Takım"].str.contains(
                 kulup_takim.split()[0], case=False, na=False
             )].copy() if not df_tam.empty else pd.DataFrame()
 
             if kadro.empty:
-                st.warning("Kadro verisi bulunamadı.")
+                st.warning(t("Kadro verisi bulunamadı.", "Squad data not found."))
             else:
                 k1,k2,k3,k4,k5 = st.columns(5)
                 en_golcu = kadro.loc[kadro["Gol"].idxmax(),"Oyuncu"] if kadro["Gol"].max()>0 else "—"
                 for kol,sayi,etiket in [
-                    (k1, len(kadro),                "Oyuncu"),
-                    (k2, int(kadro["Gol"].sum()),   "Toplam Gol"),
-                    (k3, int(kadro["Maç"].sum()),   "Toplam Maç"),
-                    (k4, int(kadro["Dakika"].sum()),"Toplam Dakika"),
-                    (k5, en_golcu,                  "En Golcü"),
+                    (k1, len(kadro),                t("Oyuncu","Players")),
+                    (k2, int(kadro["Gol"].sum()),   t("Toplam Gol","Total Goals")),
+                    (k3, int(kadro["Maç"].sum()),   t("Toplam Maç","Total Matches")),
+                    (k4, int(kadro["Dakika"].sum()),t("Toplam Dakika","Total Minutes")),
+                    (k5, en_golcu,                  t("En Golcü","Top Scorer")),
                 ]:
                     kol.markdown(
                         f'<div class="stat-kart"><div class="sayi" style="font-size:1.2rem">{sayi}</div>'
@@ -3515,7 +3538,7 @@ if tab_benim:
                 col_k, col_g = st.columns([3,2], gap="large")
 
                 with col_k:
-                    st.markdown("**📋 Kadro İstatistikleri**")
+                    st.markdown(f"**📋 {t('Kadro İstatistikleri', 'Squad Stats')}**")
                     goster = kadro[["Oyuncu","Mevki","Maç","İlk11","Gol","Gol/Maç","Dakika","Sarı","Kırmızı"]].copy()
                     goster = goster.sort_values("Gol", ascending=False).reset_index(drop=True)
                     goster.index += 1
@@ -3527,7 +3550,7 @@ if tab_benim:
                         })
 
                 with col_g:
-                    st.markdown("**📊 Mevki Dağılımı**")
+                    st.markdown(f"**📊 {t('Mevki Dağılımı', 'Position Distribution')}**")
                     mev_dag = kadro["Mevki"].value_counts().reset_index()
                     mev_dag.columns = ["Mevki","Sayı"]
                     renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
@@ -3545,7 +3568,7 @@ if tab_benim:
                     )
                     st.plotly_chart(fig_pie, use_container_width=True)
 
-                    st.markdown("**🌍 Uyruk Dağılımı**")
+                    st.markdown(f"**🌍 {t('Uyruk Dağılımı', 'Nationality Distribution')}**")
                     uyr_dag = kadro["Uyruk"].value_counts().head(8).reset_index()
                     uyr_dag.columns = ["Uyruk","Sayı"]
                     fig_uyr = go.Figure(go.Bar(
@@ -3564,20 +3587,20 @@ if tab_benim:
                     st.plotly_chart(fig_uyr, use_container_width=True)
 
                 st.markdown("---")
-                st.markdown("**📊 Takım vs Lig Ortalaması**")
+                st.markdown(f"**📊 {t('Takım vs Lig Ortalaması', 'Team vs League Average')}**")
                 lig_ort   = df_tam.groupby("Takım").agg({"Gol":"sum","Maç":"sum","Dakika":"sum"}).mean()
                 takim_ort = kadro.agg({"Gol":"sum","Maç":"sum","Dakika":"sum"})
                 c1,c2,c3 = st.columns(3)
-                for kol, metrik, birim in [
-                    (c1,"Gol","gol"), (c2,"Maç","maç"), (c3,"Dakika","dakika")
+                for kol, metrik, birim, birim_en in [
+                    (c1,"Gol","gol","goals"), (c2,"Maç","maç","matches"), (c3,"Dakika","dakika","min")
                 ]:
                     takim_val = float(takim_ort[metrik])
                     lig_val   = float(lig_ort[metrik])
                     delta     = takim_val - lig_val
                     kol.metric(
-                        label=f"Toplam {metrik}",
-                        value=f"{int(takim_val)} {birim}",
-                        delta=f"{delta:+.0f} lig ort. farkı",
+                        label=f"{t('Toplam','Total')} {metrik}",
+                        value=f"{int(takim_val)} {t(birim,birim_en)}",
+                        delta=f"{delta:+.0f} {t('lig ort. farkı','vs league avg')}",
                     )
 
 
@@ -3585,8 +3608,9 @@ if tab_benim:
 # SEKME — GENÇ YETENEKLER
 # ══════════════════════════════════════════════════════════════════════════════
 with tab_genç:
-    st.markdown("##### 🌱 Genç Yetenekler")
-    st.caption("23 yaş altı · En az 8 maç · Erken Olgunluk Skoru'na göre sıralı")
+    st.markdown(f"##### 🌱 {t('Genç Yetenekler', 'Young Talents')}")
+    st.caption(t("23 yaş altı · En az 8 maç · Erken Olgunluk Skoru'na göre sıralı",
+                 "Under 23 · At least 8 matches · Sorted by Early Maturity Score"))
 
     # Veri hazırla
     @st.cache_data(ttl=3600)
@@ -3627,17 +3651,20 @@ with tab_genç:
     genc_df = genc_yetenekler_hesapla()
 
     if genc_df.empty:
-        st.warning("Veri bulunamadı.")
+        st.warning(t("Veri bulunamadı.", "No data found."))
     else:
         # ── Filtreler ─────────────────────────────────────────────────
         gf1, gf2, gf3 = st.columns([2, 2, 2])
         with gf1:
-            yas_ust = st.select_slider("Maksimum Yaş", options=[15, 16, 17, 18, 19, 20, 21, 22, 23], value=23)
+            yas_ust = st.select_slider(t("Maksimum Yaş","Maximum Age"), options=[15, 16, 17, 18, 19, 20, 21, 22, 23], value=23)
         with gf2:
-            mevki_filtre = st.multiselect("Mevki", ["Kaleci","Defans","Orta Saha","Forvet"],
-                                           placeholder="Tümü", key="gf_mevki")
+            mevki_filtre = st.multiselect(t("Mevki","Position"), ["Kaleci","Defans","Orta Saha","Forvet"],
+                                           placeholder=t("Tümü","All"), key="gf_mevki")
         with gf3:
-            tercih_filtre = st.selectbox("Uyruk Tercihi", ["Tümü","Yerli","Yabancı"], key="gf_tercih")
+            _gf_nat_opts = ["Tümü","Yerli","Yabancı"]
+            _gf_nat_en   = {"Tümü":"All","Yerli":"Domestic","Yabancı":"Foreign"}
+            tercih_filtre = st.selectbox(t("Uyruk Tercihi","Nationality Filter"), _gf_nat_opts,
+                format_func=lambda x: _gf_nat_en[x] if EN else x, key="gf_tercih")
 
         filtered = genc_df[genc_df["Yaş"] < yas_ust + 1].copy()
         if mevki_filtre:
@@ -3649,11 +3676,11 @@ with tab_genç:
 
         st.markdown(
             f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0 16px;'>"
-            f"🎯 {len(filtered)} genç oyuncu</div>", unsafe_allow_html=True)
+            f"🎯 {len(filtered)} {t('genç oyuncu','young players')}</div>", unsafe_allow_html=True)
 
         # ── En İlginç 5 ───────────────────────────────────────────────
         if len(filtered) >= 3:
-            st.markdown("**⭐ Öne Çıkan İsimler**")
+            st.markdown(f"**⭐ {t('Öne Çıkan İsimler', 'Featured Names')}**")
             top5 = filtered.head(5)
             cols = st.columns(min(5, len(top5)))
             for idx, (_, r) in enumerate(top5.iterrows()):
@@ -3667,7 +3694,7 @@ with tab_genç:
                         f"<div style='font-size:20px;font-weight:800;color:#00c853;'>{r['Yaş']:.0f}</div>"
                         f"<div style='font-size:9px;color:#8899aa;'>{r['Mevki']}</div>"
                         f"<div style='font-size:16px;font-weight:700;color:#fff;margin-top:6px;'>{r['Gol']}</div>"
-                        f"<div style='font-size:9px;color:#8899aa;'>gol · {r['Maç']} maç</div>"
+                        f"<div style='font-size:9px;color:#8899aa;'>{t('gol','goals')} · {r['Maç']} {t('maç','matches')}</div>"
                         f"</div>", unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
@@ -3676,7 +3703,7 @@ with tab_genç:
         col_scatter, col_tablo = st.columns([3, 2], gap="large")
 
         with col_scatter:
-            st.markdown("**📊 Yaş — Gol/Maç Dağılımı**")
+            st.markdown(f"**📊 {t('Yaş — Gol/Maç Dağılımı', 'Age — Goals/Match Distribution')}**")
             renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
                         "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
             fig_sc = go.Figure()
@@ -3710,10 +3737,10 @@ with tab_genç:
                 height=420, font=dict(color="#e0e0e0"),
             )
             st.plotly_chart(fig_sc, use_container_width=True)
-            st.caption("💡 Nokta büyüklüğü = oynanan maç sayısı")
+            st.caption(t("💡 Nokta büyüklüğü = oynanan maç sayısı", "💡 Dot size = number of matches played"))
 
         with col_tablo:
-            st.markdown("**📋 Tam Liste**")
+            st.markdown(f"**📋 {t('Tam Liste', 'Full List')}**")
             goster = filtered[["Oyuncu","Yaş","Mevki","Takım","Maç","Gol","G/Maç","Skor"]].copy()
             goster.index = range(1, len(goster)+1)
             st.dataframe(
@@ -3736,46 +3763,51 @@ with tab9:
     elif not pro_kontrol():
         pro_paywall_goster("🔍 Gelişmiş Arama")
     else:
-        st.markdown("##### 🔍 Gelişmiş Oyuncu Arama")
-        st.caption("Uyruk, mevki, yaş ve maç sayısına göre filtrele")
+        st.markdown(f"##### 🔍 {t('Gelişmiş Oyuncu Arama', 'Advanced Player Search')}")
+        st.caption(t("Uyruk, mevki, yaş ve maç sayısına göre filtrele",
+                     "Filter by nationality, position, age and number of matches"))
 
         if df_tam.empty:
-            st.warning("Veri yok.")
+            st.warning(t("Veri yok.", "No data."))
         else:
             fa1, fa2, fa3, fa4 = st.columns([2, 1, 1, 2])
             fb1, fb2, fb3, fb4 = st.columns([2, 2, 2, 2])
 
             all_nats = sorted(df_tam["Uyruk"].dropna().replace("", pd.NA).dropna().unique())
 
+            _as_tumu = t("Tümü", "All")
             with fa1:
-                sel_nats = st.multiselect("🌍 Uyruk", all_nats, placeholder="Tümü", key="as_nat")
+                sel_nats = st.multiselect(f"🌍 {t('Uyruk','Nationality')}", all_nats, placeholder=t("Tümü","All"), key="as_nat")
             with fa2:
-                as_kategori = st.selectbox("📋 Mevki", ["Tümü"] + list(_MEVKI_DETAY.keys()), key="as_kat")
+                as_kategori = st.selectbox(f"📋 {t('Mevki','Position')}", [_as_tumu] + list(_MEVKI_DETAY.keys()), key="as_kat")
             with fa3:
-                as_detay_secenekler = ["Tümü"] + (_MEVKI_DETAY.get(as_kategori, []) if as_kategori != "Tümü" else [])
-                as_detay = st.selectbox("↳ Detay", as_detay_secenekler, key="as_detay", disabled=(as_kategori=="Tümü"))
+                as_detay_secenekler = [_as_tumu] + (_MEVKI_DETAY.get(as_kategori, []) if as_kategori != _as_tumu else [])
+                as_detay = st.selectbox(f"↳ {t('Detay','Detail')}", as_detay_secenekler, key="as_detay", disabled=(as_kategori==_as_tumu))
             with fa4:
-                isim_q = st.text_input("👤 İsim", placeholder="Ara…", key="as_isim")
+                isim_q = st.text_input(f"👤 {t('İsim','Name')}", placeholder=t("Ara…","Search…"), key="as_isim")
 
             yas_vals = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
             yas_min = int(yas_vals.min()) if not yas_vals.empty else 15
             yas_max = int(yas_vals.max()) if not yas_vals.empty else 40
             mac_max = int(df_tam["Maç"].max()) if not df_tam.empty else 30
 
+            _as_sort_opts = ["Maç ↓", "Gol ↓", "Dakika ↓", "Yaş ↑", "Oyuncu ↑"]
+            _as_sort_en   = {"Maç ↓":"Matches ↓","Gol ↓":"Goals ↓","Dakika ↓":"Minutes ↓","Yaş ↑":"Age ↑","Oyuncu ↑":"Player ↑"}
             with fb1:
-                yas_range = st.slider("🎂 Yaş", yas_min, yas_max, (yas_min, yas_max), key="as_yas")
+                yas_range = st.slider(f"🎂 {t('Yaş','Age')}", yas_min, yas_max, (yas_min, yas_max), key="as_yas")
             with fb2:
-                min_mac = st.slider("📅 Min. Maç", 0, mac_max, 0, key="as_mac")
+                min_mac = st.slider(f"📅 {t('Min. Maç','Min. Matches')}", 0, mac_max, 0, key="as_mac")
             with fb3:
-                min_gol = st.slider("⚽ Min. Gol", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
+                min_gol = st.slider(f"⚽ {t('Min. Gol','Min. Goals')}", 0, int(df_tam["Gol"].max()), 0, key="as_gol")
             with fb4:
-                sort_by = st.selectbox("Sırala", ["Maç ↓", "Gol ↓", "Dakika ↓", "Yaş ↑", "Oyuncu ↑"], key="as_sort")
+                sort_by = st.selectbox(t("Sırala","Sort"), _as_sort_opts,
+                    format_func=lambda x: _as_sort_en[x] if EN else x, key="as_sort")
 
             mask = pd.Series(True, index=df_tam.index)
             if sel_nats:
                 mask &= df_tam["Uyruk"].isin(sel_nats)
-            if as_kategori != "Tümü":
-                if as_detay != "Tümü":
+            if as_kategori != _as_tumu:
+                if as_detay != _as_tumu:
                     mask &= df_tam["Mevki"] == as_detay
                 else:
                     mask &= df_tam["Mevki"].isin(_MEVKI_DETAY.get(as_kategori, []))
@@ -3789,16 +3821,16 @@ with tab9:
 
             filtered = df_tam[mask].copy()
             sort_map = {"Maç ↓": ("Maç", False), "Gol ↓": ("Gol", False),
-                        "Dakika ↓": ("Dakika", False), "Yaş ↑": ("Yaş", True), "Oyuncu ↑": ("Oyuncu", True)}
+                        "Dakika ↓": ("Dakika", False), "Yaş ↑": ("Yaş", True), "Oyuncu ↑": ("Oyuncu", True)}  # internal keys stay TR
             sc, sa = sort_map[sort_by]
             filtered = filtered.sort_values(sc, ascending=sa).reset_index(drop=True)
 
             st.markdown(
                 f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0;'>"
-                f"🎯 {len(filtered)} oyuncu bulundu</div>", unsafe_allow_html=True)
+                f"🎯 {len(filtered)} {t('oyuncu bulundu','players found')}</div>", unsafe_allow_html=True)
 
             if filtered.empty:
-                st.info("Filtrelerle eşleşen oyuncu yok.")
+                st.info(t("Filtrelerle eşleşen oyuncu yok.", "No players match the filters."))
             else:
                 show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Yaş", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
                 show = [c for c in show if c in filtered.columns]
@@ -3849,13 +3881,13 @@ with tab9:
         return df
 
 with tab10:
-    st.markdown("##### 🎂 Yaş Analizi")
-    st.caption("SoccerDonna verisi")
+    st.markdown(f"##### 🎂 {t('Yaş Analizi', 'Age Analysis')}")
+    st.caption(t("SoccerDonna verisi", "SoccerDonna data"))
 
     yas_df = _yas_df()
 
     if yas_df.empty:
-        st.warning("Yaş verisi bulunamadı.")
+        st.warning(t("Yaş verisi bulunamadı.", "Age data not found."))
     else:
         avg_age = yas_df["yas"].mean()
         youngest = yas_df.loc[yas_df["yas"].idxmin()]
@@ -3864,10 +3896,10 @@ with tab10:
 
         k1, k2, k3, k4 = st.columns(4)
         for kol, sayi, etiket in [
-            (k1, f"{avg_age:.1f}", "Lig Ort. Yaşı"),
-            (k2, f"{youngest['yas']:.0f} — {youngest['isim']}", "En Genç"),
-            (k3, f"{oldest['yas']:.0f} — {oldest['isim']}", "En Yaşlı"),
-            (k4, u23, "U-23 Oyuncu"),
+            (k1, f"{avg_age:.1f}", t("Lig Ort. Yaşı","League Avg. Age")),
+            (k2, f"{youngest['yas']:.0f} — {youngest['isim']}", t("En Genç","Youngest")),
+            (k3, f"{oldest['yas']:.0f} — {oldest['isim']}", t("En Yaşlı","Oldest")),
+            (k4, u23, t("U-23 Oyuncu","U-23 Players")),
         ]:
             kol.markdown(
                 f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -3877,7 +3909,7 @@ with tab10:
         col_hist, col_takim = st.columns([3, 2], gap="large")
 
         with col_hist:
-            st.markdown("**📊 Yaş Dağılımı**")
+            st.markdown(f"**📊 {t('Yaş Dağılımı', 'Age Distribution')}**")
             fig_hist = go.Figure(go.Histogram(
                 x=yas_df["yas"], nbinsx=20,
                 marker=dict(color="#00a86b", line=dict(color="#00c853", width=0.8)),
@@ -3897,7 +3929,7 @@ with tab10:
             )
             st.plotly_chart(fig_hist, use_container_width=True)
 
-            st.markdown("**📅 Doğum Yılı Dağılımı**")
+            st.markdown(f"**📅 {t('Doğum Yılı Dağılımı', 'Birth Year Distribution')}**")
             by_year = (yas_df.dropna(subset=["dogum_yili"])
                        .groupby("dogum_yili").size()
                        .reset_index(name="sayi").sort_values("dogum_yili"))
@@ -3917,7 +3949,7 @@ with tab10:
             st.plotly_chart(fig_year, use_container_width=True)
 
         with col_takim:
-            st.markdown("**🏟 Takım Yaş Ortalamaları**")
+            st.markdown(f"**🏟 {t('Takım Yaş Ortalamaları', 'Team Age Averages')}**")
             takim_yas = (yas_df[yas_df["takim"] != "Bilinmiyor"]
                          .groupby("takim")["yas"]
                          .agg(["mean","min","max","count"]).round(1)
@@ -3934,11 +3966,11 @@ with tab10:
                 g = takim_yas.iloc[0]; y = takim_yas.iloc[-1]
                 st.markdown(
                     f"<div style='font-size:12px;color:#8899aa;margin-top:8px;'>"
-                    f"🟢 En genç: <b style='color:#00c853'>{g['Takım']}</b> ({g['Ort']} yaş)<br>"
-                    f"🔴 En yaşlı: <b style='color:#ff6b6b'>{y['Takım']}</b> ({y['Ort']} yaş)</div>",
+                    f"🟢 {t('En genç','Youngest')}: <b style='color:#00c853'>{g['Takım']}</b> ({g['Ort']} {t('yaş','yrs')})<br>"
+                    f"🔴 {t('En yaşlı','Oldest')}: <b style='color:#ff6b6b'>{y['Takım']}</b> ({y['Ort']} {t('yaş','yrs')})</div>",
                     unsafe_allow_html=True)
 
-            st.markdown("<br>**⚽ Mevkiye Göre Ortalama Yaş**")
+            st.markdown(f"<br>**⚽ {t('Mevkiye Göre Ortalama Yaş', 'Average Age by Position')}**")
             pos_yas_map = dict(zip(df_tam["Oyuncu"], df_tam["Mevki"])) if not df_tam.empty else {}
             yas_df["mevki"] = yas_df["isim"].map(pos_yas_map).fillna("Bilinmiyor")
             mevki_yas = (yas_df[yas_df["mevki"] != "Bilinmiyor"]
@@ -3966,13 +3998,14 @@ with tab10:
 # SEKME 11 — KALECİLER
 # ══════════════════════════════════════════════════════════════════════════════
 with tab11:
-    st.markdown("##### 🧤 Kaleci İstatistikleri")
-    st.caption("Yenilen gol ve maç başına yenilen gol — en az 5 maç oynayanlar")
+    st.markdown(f"##### 🧤 {t('Kaleci İstatistikleri', 'Goalkeeper Statistics')}")
+    st.caption(t("Yenilen gol ve maç başına yenilen gol — en az 5 maç oynayanlar",
+                 "Goals conceded and goals conceded per match — min. 5 matches played"))
 
     kal_df = kaleci_istatistikleri_hesapla()
 
     if kal_df.empty:
-        st.warning("Kaleci verisi bulunamadı.")
+        st.warning(t("Kaleci verisi bulunamadı.", "Goalkeeper data not found."))
     else:
         aktif = kal_df[kal_df["Maç"] >= 5].copy()
 
@@ -3982,10 +4015,10 @@ with tab11:
             en_kotu = aktif.loc[aktif["G/Maç"].idxmax()]
             k1, k2, k3, k4 = st.columns(4)
             for kol, sayi, etiket in [
-                (k1, len(aktif), "Aktif Kaleci"),
-                (k2, int(kal_df["YenilenGol"].sum()), "Toplam Gol"),
-                (k3, f"{en_iyi['G/Maç']} — {en_iyi['Kaleci'].split()[0]}", "En Az Yiyen"),
-                (k4, f"{en_kotu['G/Maç']} — {en_kotu['Kaleci'].split()[0]}", "En Çok Yiyen"),
+                (k1, len(aktif), t("Aktif Kaleci","Active GKs")),
+                (k2, int(kal_df["YenilenGol"].sum()), t("Toplam Gol","Total Goals")),
+                (k3, f"{en_iyi['G/Maç']} — {en_iyi['Kaleci'].split()[0]}", t("En Az Yiyen","Fewest Conceded")),
+                (k4, f"{en_kotu['G/Maç']} — {en_kotu['Kaleci'].split()[0]}", t("En Çok Yiyen","Most Conceded")),
             ]:
                 kol.markdown(
                     f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -3995,7 +4028,7 @@ with tab11:
         col_tablo, col_grafik = st.columns([2, 3], gap="large")
 
         with col_tablo:
-            st.markdown("**📋 Tüm Kaleciler**")
+            st.markdown(f"**📋 {t('Tüm Kaleciler', 'All Goalkeepers')}**")
             goster = kal_df[kal_df["Maç"] > 0].copy()
             goster.index = range(1, len(goster) + 1)
             st.dataframe(
@@ -4009,7 +4042,7 @@ with tab11:
             )
 
         with col_grafik:
-            st.markdown("**📊 Maç Başına Yenilen Gol (≥5 maç)**")
+            st.markdown(f"**📊 {t('Maç Başına Yenilen Gol (≥5 maç)', 'Goals Conceded per Match (≥5 matches)')}**")
             plot_df = aktif.sort_values("G/Maç")
             renkler = ["#00c853" if g <= 1.0 else "#ffab00" if g <= 2.0 else "#ff6b6b"
                        for g in plot_df["G/Maç"]]
@@ -4270,8 +4303,9 @@ with tab_transfer:
     elif not pro_kontrol():
         pro_paywall_goster("Transfer Öner")
     else:
-        st.markdown("##### 🔄 Transfer Öner")
-        st.caption("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi")
+        st.markdown(f"##### 🔄 {t('Transfer Öner', 'Transfer Suggest')}")
+        st.caption(t("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi",
+                     "Step-by-step in-league transfer suggestion based on budget and criteria"))
 
         if "tr_adim" not in st.session_state:
             st.session_state["tr_adim"] = 0
@@ -4284,39 +4318,39 @@ with tab_transfer:
             st.markdown(
                 "<div style='text-align:center;padding:40px 0 20px;'>"
                 "<div style='font-size:40px;'>🔄</div>"
-                "<div style='font-size:20px;font-weight:700;color:#fff;margin-top:12px;'>Transfer Asistanı</div>"
-                "<div style='font-size:13px;color:#8899aa;margin-top:8px;'>"
-                "Takımınızın ihtiyacına göre lig içi transfer önerisi alın.</div>"
+                f"<div style='font-size:20px;font-weight:700;color:#fff;margin-top:12px;'>{t('Transfer Asistanı','Transfer Assistant')}</div>"
+                f"<div style='font-size:13px;color:#8899aa;margin-top:8px;'>"
+                f"{t('Takımınızın ihtiyacına göre lig içi transfer önerisi alın.','Get in-league transfer suggestions tailored to your team needs.')}</div>"
                 "</div>",
                 unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
             col_b = st.columns([1, 2, 1])[1]
             with col_b:
-                if st.button("🚀 Başla", use_container_width=True, type="primary"):
+                if st.button(t("🚀 Başla","🚀 Start"), use_container_width=True, type="primary"):
                     st.session_state["tr_adim"] = 1
                     st.rerun()
 
         # ── ADIM 1: Bütçe seç ───────────────────────────────────────────
         elif adim == 1:
-            st.markdown("### Adım 1 / 3 &nbsp; 💰 Bütçenizi seçin")
+            st.markdown(f"### {t('Adım 1 / 3','Step 1 / 3')} &nbsp; 💰 {t('Bütçenizi seçin','Select your budget')}")
             st.markdown("<br>", unsafe_allow_html=True)
             c1, c2, c3 = st.columns(3)
             with c1:
-                if st.button("💎 Yüksek\n\nBüyük kulüp transferi", use_container_width=True):
+                if st.button(t("💎 Yüksek\n\nBüyük kulüp transferi","💎 High\n\nBig club transfer"), use_container_width=True):
                     st.session_state["tr_butce"]      = "Yuksek"
-                    st.session_state["tr_butce_label"] = "Yüksek 💎"
+                    st.session_state["tr_butce_label"] = t("Yüksek 💎","High 💎")
                     st.session_state["tr_adim"]        = 2
                     st.rerun()
             with c2:
-                if st.button("🔵 Orta\n\nOrta ölçekli transfer", use_container_width=True):
+                if st.button(t("🔵 Orta\n\nOrta ölçekli transfer","🔵 Medium\n\nMid-range transfer"), use_container_width=True):
                     st.session_state["tr_butce"]      = "Orta"
-                    st.session_state["tr_butce_label"] = "Orta 🔵"
+                    st.session_state["tr_butce_label"] = t("Orta 🔵","Medium 🔵")
                     st.session_state["tr_adim"]        = 2
                     st.rerun()
             with c3:
-                if st.button("🟡 Düşük\n\nBütçe dostu transfer", use_container_width=True):
+                if st.button(t("🟡 Düşük\n\nBütçe dostu transfer","🟡 Low\n\nBudget-friendly transfer"), use_container_width=True):
                     st.session_state["tr_butce"]      = "Dusuk"
-                    st.session_state["tr_butce_label"] = "Düşük 🟡"
+                    st.session_state["tr_butce_label"] = t("Düşük 🟡","Low 🟡")
                     st.session_state["tr_adim"]        = 2
                     st.rerun()
 
@@ -4324,13 +4358,13 @@ with tab_transfer:
         elif adim == 2:
             butce       = st.session_state.get("tr_butce", "")
             butce_label = st.session_state.get("tr_butce_label", butce)
-            st.markdown(f"### Adım 2 / 3 &nbsp; 📋 Mevki ve tercih")
-            st.markdown(f"<div style='color:#8899aa;font-size:13px;'>Bütçe: <b style='color:#00c853'>{butce_label}</b></div>", unsafe_allow_html=True)
+            st.markdown(f"### {t('Adım 2 / 3','Step 2 / 3')} &nbsp; 📋 {t('Mevki ve tercih','Position and preference')}")
+            st.markdown(f"<div style='color:#8899aa;font-size:13px;'>{t('Bütçe','Budget')}: <b style='color:#00c853'>{butce_label}</b></div>", unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
 
             col_m, col_t = st.columns(2)
             with col_m:
-                st.markdown("**Hangi mevkiye oyuncu arıyorsunuz?**")
+                st.markdown(f"**{t('Hangi mevkiye oyuncu arıyorsunuz?','Which position are you looking for?')}**")
                 mevki_secenekler = [
                                     "Kaleci",
                                     "Sağ Bek - Sağ Kanat Bek", "Sağ Stoper", "Sol Stoper", "Sol Bek - Sol Kanat Bek",
@@ -4341,18 +4375,21 @@ with tab_transfer:
                                      label_visibility="collapsed")
 
             with col_t:
-                st.markdown("**Oyuncu tercihiniz?**")
-                tercih = st.radio("", ["Farketmez", "Yerli", "Yabancı"],
-                                  key="tr_tercih_radio", label_visibility="collapsed")
+                st.markdown(f"**{t('Oyuncu tercihiniz?','Player preference?')}**")
+                _tr_tercih_opts = ["Farketmez", "Yerli", "Yabancı"]
+                _tr_tercih_en   = {"Farketmez":"No preference","Yerli":"Domestic","Yabancı":"Foreign"}
+                tercih = st.radio("", _tr_tercih_opts, key="tr_tercih_radio",
+                    format_func=lambda x: _tr_tercih_en[x] if EN else x,
+                    label_visibility="collapsed")
 
             st.markdown("<br>", unsafe_allow_html=True)
             col_geri, col_ileri = st.columns([1, 3])
             with col_geri:
-                if st.button("← Geri", use_container_width=True):
+                if st.button(t("← Geri","← Back"), use_container_width=True):
                     st.session_state["tr_adim"] = 1
                     st.rerun()
             with col_ileri:
-                if st.button("Önerileri Gör →", use_container_width=True, type="primary"):
+                if st.button(t("Önerileri Gör →","See Suggestions →"), use_container_width=True, type="primary"):
                     st.session_state["tr_mevki"]  = mevki_sec
                     st.session_state["tr_tercih"] = tercih
                     st.session_state["tr_adim"]   = 3
@@ -4374,7 +4411,7 @@ with tab_transfer:
             oneriler = _TRANSFER_DB.get(anahtar, [])
 
             if not oneriler:
-                st.info("Bu kombinasyon için henüz öneri tanımlanmadı.")
+                st.info(t("Bu kombinasyon için henüz öneri tanımlanmadı.", "No suggestions defined for this combination yet."))
             else:
                 # Kaleci için özel istatistikler, diğer mevkiler için genel oyuncu verisi
                 _kaleci_mevki = mevki_sec == "Kaleci"
@@ -4384,7 +4421,7 @@ with tab_transfer:
 
                 st.markdown(
                     f"<div style='color:#00c853;font-weight:700;font-size:16px;margin-bottom:20px;'>"
-                    f"🏆 Önerilen 3 Oyuncu</div>",
+                    f"🏆 {t('Önerilen 3 Oyuncu','3 Recommended Players')}</div>",
                     unsafe_allow_html=True)
 
                 for i, isim in enumerate(oneriler, 1):
@@ -4411,7 +4448,7 @@ with tab_transfer:
                         s2    = "Gol"
                         renk  = "#00c853"
 
-                    istatlar = [(mac, "Maç"), (gol, s2), (yas_v, "Yaş"), (boy_v, "Boy"), (nat_v, "Uyruk")]
+                    istatlar = [(mac, t("Maç","Matches")), (gol, s2), (yas_v, t("Yaş","Age")), (boy_v, t("Boy","Height")), (nat_v, t("Uyruk","Nation"))]
                     stat_html = "".join(
                         f"<div style='background:#0f1117;border-radius:8px;padding:8px 14px;"
                         f"text-align:center;'>"
@@ -4433,16 +4470,16 @@ with tab_transfer:
                 st.markdown(
                     "<div style='background:#1a1f36;border:1px solid #00c853;border-radius:10px;"
                     "padding:18px;'>"
-                    "<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:6px;'>"
-                    "📄 Transfer Raporu</div>"
-                    "<div style='color:#8899aa;font-size:12px;'>"
-                    "Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.</div>"
+                    f"<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:6px;'>"
+                    f"📄 {t('Transfer Raporu','Transfer Report')}</div>"
+                    f"<div style='color:#8899aa;font-size:12px;'>"
+                    f"{t('Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.','Generate an AI-powered detailed analysis report for these three players.')}</div>"
                     "</div>",
                     unsafe_allow_html=True)
 
                 st.markdown("<br>", unsafe_allow_html=True)
-                if st.button("📄 Raporu Oluştur", type="primary", use_container_width=False):
-                    with st.spinner("Rapor hazırlanıyor…"):
+                if st.button(t("📄 Raporu Oluştur","📄 Generate Report"), type="primary", use_container_width=False):
+                    with st.spinner(t("Rapor hazırlanıyor…","Generating report…")):
                         rapor = transfer_raporu_uret(oneriler, mevki_sec, butce_label, tercih)
                     st.session_state["tr_rapor"] = rapor
 
@@ -4455,7 +4492,7 @@ with tab_transfer:
                         unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button("🔄 Yeniden Başla", use_container_width=False):
+            if st.button(t("🔄 Yeniden Başla","🔄 Start Over"), use_container_width=False):
                 for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih","tr_rapor"]:
                     st.session_state.pop(k, None)
                 st.rerun()
@@ -4467,5 +4504,5 @@ with tab_transfer:
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
-    '<div class="altbilgi">Veri kaynağı: TFF — tff.org | 2025-2026 Kadınlar Süper Ligi</div>',
+    f'<div class="altbilgi">{t("Veri kaynağı: TFF — tff.org | 2025-2026 Kadınlar Süper Ligi","Data source: TFF — tff.org | 2025-2026 Women\'s Super League")}</div>',
     unsafe_allow_html=True)
