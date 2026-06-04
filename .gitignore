@@ -3,6 +3,7 @@ __pycache__/
 .streamlit/secrets.toml
 .env
 shortlist.json
+etiketler.json
 preview_kart.html
 ornek_demo.py
 shortlist_preview.py

@@ -550,6 +550,87 @@ def shortlist_toggle(kullanici: str, oyuncu: str):
         lst.append(oyuncu)
     shortlist_kaydet(data)
 
+
+# ─── Scouting Etiketleri (kullanıcı bazlı, oyuncu → etiket) ────────────
+# Yapı: { "admin": {"Oyuncu1": "🔴 Öncelik", ...} }
+# "Etiketler" worksheet (kullanici | oyuncu | etiket); erişilemezse yerel JSON.
+_ETIKETLER  = ["—", "🔴 Öncelik", "👀 İzle", "💰 Pahalı", "✅ Görüşüldü"]
+_ETIKET_YOL = pathlib.Path(__file__).parent / "etiketler.json"
+
+def _etiket_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Etiketler")
+        except Exception:
+            ws = sh.add_worksheet(title="Etiketler", rows=2000, cols=3)
+            ws.update([["kullanici", "oyuncu", "etiket"]])
+            return ws
+    except Exception:
+        return None
+
+def etiket_yukle() -> dict:
+    ws = _etiket_ws()
+    if ws is not None:
+        try:
+            d = {}
+            for r in ws.get_all_records():
+                k = str(r.get("kullanici", "")).strip()
+                o = str(r.get("oyuncu", "")).strip()
+                e = str(r.get("etiket", "")).strip()
+                if k and o and e:
+                    d.setdefault(k, {})[o] = e
+            return d
+        except Exception:
+            pass
+    if not _ETIKET_YOL.exists():
+        return {}
+    import json
+    try:
+        with open(_ETIKET_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def etiket_kaydet(data: dict):
+    ws = _etiket_ws()
+    if ws is not None:
+        try:
+            rows = [["kullanici", "oyuncu", "etiket"]]
+            for k, om in data.items():
+                for o, e in om.items():
+                    if e and e != "—":
+                        rows.append([k, o, e])
+            ws.clear()
+            ws.update(rows)
+            return
+        except Exception:
+            pass
+    import json
+    with open(_ETIKET_YOL, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def etiket_kullanici(kullanici: str) -> dict:
+    return etiket_yukle().get(kullanici, {})
+
+def etiket_ayarla(kullanici: str, oyuncu: str, etiket: str):
+    data = etiket_yukle()
+    om = data.setdefault(kullanici, {})
+    if etiket and etiket != "—":
+        om[oyuncu] = etiket
+    else:
+        om.pop(oyuncu, None)
+    etiket_kaydet(data)
+
+
 @st.cache_data(ttl=3600)
 def scouting_veri_yukle():
     yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
@@ -1676,6 +1757,7 @@ if st.session_state.get("sayfa") == "scouting":
         leistung_data = scouting_leistung_yukle()
         _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
+        _etiket_liste = etiket_kullanici(_sl_kullanici)
 
         if sc_df.empty:
             st.warning("Google Sheets'e bağlanılamadı veya liste boş.")
@@ -1821,11 +1903,15 @@ if st.session_state.get("sayfa") == "scouting":
                         renk = "#3b82f6" if sd_found else "#6b7280"
 
                         with col:
+                            _etk = _etiket_liste.get(tam_isim, "")
+                            _etk_html = (f"<span style='font-size:0.62rem;background:#1e293b;"
+                                         f"border:1px solid #475569;border-radius:4px;padding:1px 6px;"
+                                         f"margin-left:6px;white-space:nowrap;'>{_etk}</span>") if _etk else ""
                             st.markdown(f"""
 <div style="border:1px solid {renk};border-radius:12px;padding:16px 18px;margin-bottom:14px;
     background:linear-gradient(135deg,#0f172a,#1e293b);">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}</div>
+    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}{_etk_html}</div>
     <div style="font-size:0.72rem;color:#64748b;">{sd_badge}</div>
   </div>
   <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:8px;">📌 {mevki}</div>
@@ -1851,6 +1937,14 @@ if st.session_state.get("sayfa") == "scouting":
                                 st.rerun()
                             if st.button("👤 Profili Aç", key=f"prof_{i+j}", use_container_width=True):
                                 st.query_params["oyuncu"] = tam_isim
+                                st.rerun()
+                            _mev_etk = _etiket_liste.get(tam_isim, "—")
+                            _yeni_etk = st.selectbox(
+                                "Etiket", _ETIKETLER,
+                                index=_ETIKETLER.index(_mev_etk) if _mev_etk in _ETIKETLER else 0,
+                                key=f"etk_{i+j}", label_visibility="collapsed")
+                            if _yeni_etk != _mev_etk:
+                                etiket_ayarla(_sl_kullanici, tam_isim, _yeni_etk)
                                 st.rerun()
 
                             # Tüm kariyer performansı (leistungsdaten) expander
