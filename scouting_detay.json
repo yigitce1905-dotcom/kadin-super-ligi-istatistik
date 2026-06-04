@@ -1,0 +1,407 @@
+{
+  "Angelina Portnova": {
+    "rol": "Hükmeden Kaleci",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Kazakistan",
+    "tam_isim_excel": "Angelina Portnova"
+  },
+  "Ajsa Kalac": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Karadağ",
+    "tam_isim_excel": "Ajsa Kalac"
+  },
+  "Tanja Malesija": {
+    "rol": "Çakılı Stoper",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "LCB",
+      "RCB"
+    ],
+    "milli_takim": "Karadağ",
+    "tam_isim_excel": "Tanja Malesija"
+  },
+  "Kedie Johnson": {
+    "rol": "Oyun Kurucu Stoper",
+    "mr_danis": "",
+    "vucut_tipi": "Orta Sha",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "LWB"
+    ],
+    "milli_takim": "Trinidad ve Tobago",
+    "tam_isim_excel": "Kedie K. Johnson"
+  },
+  "Andressa Karolaine": {
+    "rol": "Çakılı Stoper",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezo-Ektomorf",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "RCB",
+      "LCB"
+    ],
+    "milli_takim": "Brezilya",
+    "tam_isim_excel": "Andressa Karolaine Freire Gomes (Kaké)"
+  },
+  "Albina Fomchenko": {
+    "rol": "Hükmeden Kaleci",
+    "mr_danis": "Uzman",
+    "vucut_tipi": "Mezo-Ektomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Rusya Federasyonu",
+    "tam_isim_excel": "Alina Sviridova Fonchenko"
+  },
+  "Klil Keshwar": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Trinidad ve Tobago",
+    "tam_isim_excel": "K'ili Elyada Kemba Keshwar"
+  },
+  "Taina Gondim": {
+    "rol": "Hükmeden Kaleci",
+    "mr_danis": "Uzman",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Brezilya",
+    "tam_isim_excel": "Taina da Silva Gondim"
+  },
+  "Lauren Brzykcy": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Yeterli",
+    "vucut_tipi": "Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Macaristan",
+    "tam_isim_excel": "Lauren Ann Brzakey"
+  },
+  "Olivia Sekany": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Uzman",
+    "vucut_tipi": "Mezo-Ektomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Amerika Birleşik Devletleri",
+    "tam_isim_excel": "Olivia Sekany"
+  },
+  "Emily Alvarado": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Uzman",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Meksika",
+    "tam_isim_excel": "Emily Sofia Alvarado Natividad"
+  },
+  "Sierra Cota-Yarde": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Portekiz",
+    "tam_isim_excel": "Sierra Deolinda Cota-Yarde"
+  },
+  "Ange Bawou": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Kamerun",
+    "tam_isim_excel": "Ange Gabrielle Bawou"
+  },
+  "Andreea Paraluta": {
+    "rol": "Hükmeden Kaleci",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Romanya",
+    "tam_isim_excel": "Andreea Maria Pâralutâ"
+  },
+  "Katarina Popov": {
+    "rol": "Oyun Kurucu Stoper",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Savunma",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "RCB",
+      "LCB",
+      "RFB"
+    ],
+    "milli_takim": "Sırbistan",
+    "tam_isim_excel": "Katarina Popov"
+  },
+  "Zala Mersnik": {
+    "rol": "Hükmeden Kaleci",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Slovenya",
+    "tam_isim_excel": "Zala Meršnik"
+  },
+  "Doris Bacic": {
+    "rol": "Limitli Stoper",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Hırvatistan",
+    "tam_isim_excel": "Doris Bačić"
+  },
+  "Chloe N'Gazi": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Ektomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Cezayir",
+    "tam_isim_excel": "Chloe N'Gazi"
+  },
+  "Shae Yáñez": {
+    "rol": "Libero Kaleci",
+    "mr_danis": "Yeterli",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "İspanya",
+    "tam_isim_excel": "Jessica Shae Yáñez Casey"
+  },
+  "Shelby Hogan": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Yeterli",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Amerika Birleşik Devletleri",
+    "tam_isim_excel": "Shelby Ann Hogan"
+  },
+  "Angelina Anderson": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Yıldız",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Amerika Birleşik Devletleri",
+    "tam_isim_excel": "Angelina Dora Anderson"
+  },
+  "Kaylie Collins": {
+    "rol": "Çizgi Kalecisi",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Kale",
+    "mevki_kod": [
+      "GK"
+    ],
+    "milli_takim": "Amerika Birleşik Devletleri",
+    "tam_isim_excel": "Kaylie Ann Collins"
+  },
+  "Andreia Jacinto": {
+    "rol": "Oyun Kurucu",
+    "mr_danis": "Yıldız",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Orta Saha",
+    "mevki_kod": [
+      "CMF",
+      "AMF",
+      "DMF"
+    ],
+    "milli_takim": "Portekiz",
+    "tam_isim_excel": "Andreia de Jesus Jacinto"
+  },
+  "Imane Chebel": {
+    "rol": "Limitli Stoper",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Orta Saha",
+    "bolge": "Orta Saha",
+    "mevki_kod": [
+      "LCB",
+      "AMF"
+    ],
+    "milli_takim": "Cezayir",
+    "tam_isim_excel": "Imane Chebel"
+  },
+  "Hoda Khalaf": {
+    "rol": "Dengeli Bek",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Orta Saha",
+    "mevki_kod": [
+      "RWB",
+      "RFB",
+      "SST"
+    ],
+    "milli_takim": "Irak",
+    "tam_isim_excel": "Hoda Khalaf"
+  },
+  "Emily Wallrabenstein": {
+    "rol": "Pozisyonunu Tutan",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Orta Saha",
+    "mevki_kod": [
+      "LCB",
+      "LFB",
+      "LWB"
+    ],
+    "milli_takim": "Almanya",
+    "tam_isim_excel": "Emily Reine Zalissa Wallrabenstein"
+  },
+  "Julia Mickenhagen": {
+    "rol": "Oyun Kurucu Stoper",
+    "mr_danis": "Potansiyel",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "LCB",
+      "LFB",
+      "LWB"
+    ],
+    "milli_takim": "Almanya",
+    "tam_isim_excel": "Julia Mickonhagen"
+  },
+  "Mia Gyau": {
+    "rol": "Kanat Bek",
+    "mr_danis": "Yıldız",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Orta Saha",
+    "mevki_kod": [
+      "RWB"
+    ],
+    "milli_takim": "Gana",
+    "tam_isim_excel": "Mia Irene Gyau"
+  },
+  "Tegan McGrady": {
+    "rol": "Dengeli Bek",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "LFB"
+    ],
+    "milli_takim": "Amerika Birleşik Devletleri",
+    "tam_isim_excel": "Tegan Ann McGrady"
+  },
+  "Meaghan Nally": {
+    "rol": "Modern Bek",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Savunma",
+    "mevki_kod": [
+      "RCB",
+      "LCB",
+      "RWB"
+    ],
+    "milli_takim": "Amerika Birleşik Devletleri",
+    "tam_isim_excel": "Meaghan Elizabeth Nally"
+  },
+  "Loreta Kullashi": {
+    "rol": "İçe Kat Eden Kanat",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Hücum",
+    "mevki_kod": [
+      "LWF",
+      "CFW"
+    ],
+    "milli_takim": "İsveç",
+    "tam_isim_excel": "Loreta Kullashi"
+  },
+  "Ines Boutaleb": {
+    "rol": "Sahte 9",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Hücum",
+    "bolge": "Hücum",
+    "mevki_kod": [
+      "SST",
+      "AMF",
+      "CFW"
+    ],
+    "milli_takim": "Cezayir",
+    "tam_isim_excel": "Ines Boutaleb"
+  },
+  "Marlene Flores": {
+    "rol": "Hedef Kanat",
+    "mr_danis": "Yedek",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Hücum",
+    "mevki_kod": [
+      "LWF",
+      "CFW"
+    ],
+    "milli_takim": "Bolivya",
+    "tam_isim_excel": "Marlene Flores Segovia"
+  },
+  "Ivana Rudelic": {
+    "rol": "Hedef Santrfor",
+    "mr_danis": "Uzman",
+    "vucut_tipi": "Hücum",
+    "bolge": "Hücum",
+    "mevki_kod": [
+      "CFW"
+    ],
+    "milli_takim": "Hırvatistan",
+    "tam_isim_excel": "Ivana Rudelić"
+  },
+  "Gloria Douglas": {
+    "rol": "Hedef Kanat",
+    "mr_danis": "",
+    "vucut_tipi": "Hücum",
+    "bolge": "Hücum",
+    "mevki_kod": [
+      "RWF",
+      "CFW"
+    ],
+    "milli_takim": "Porto Riko",
+    "tam_isim_excel": "Gloria Edna Douglas"
+  }
+}

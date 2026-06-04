@@ -485,6 +485,25 @@ def scouting_leistung_yukle() -> dict:
     with open(yol, encoding="utf-8") as f:
         return json.load(f)
 
+@st.cache_data(ttl=3600)
+def scouting_detay_yukle() -> dict:
+    """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
+    yol = pathlib.Path(__file__).parent / "scouting_detay.json"
+    if not yol.exists():
+        return {}
+    import json
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
+# Mr Daniş değerlendirme seviyeleri → renk
+_MR_DANIS_RENK = {
+    "Yıldız":     "#fbbf24",  # altın
+    "Uzman":      "#a78bfa",  # mor
+    "Yeterli":    "#22c55e",  # yeşil
+    "Potansiyel": "#3b82f6",  # mavi
+    "Yedek":      "#94a3b8",  # gri
+}
+
 
 # ─── Scouting Shortlist (kullanıcı bazlı favoriler) ────────────────────
 # Yapı: { "admin": ["Oyuncu1", ...], "fenerbahce": [...] }
@@ -1320,6 +1339,7 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
 def render_scouting_detay(tam_isim):
     sd_data = scouting_sd_yukle()
     leistung_data = scouting_leistung_yukle()
+    detay_data = scouting_detay_yukle()
     sd = sd_data.get(tam_isim, {})
     dob      = sd.get("Date of birth", "—")
     yas      = sd.get("Age", "?")
@@ -1347,6 +1367,32 @@ def render_scouting_detay(tam_isim):
     <span>📏 {boy} · {ayak} ayak</span>
     <span>📄 Sözleşme: {sozlesme}</span>
   </div>
+</div>""", unsafe_allow_html=True)
+
+    # Mr Daniş scouting değerlendirmesi (detay verisi varsa)
+    _dty = detay_data.get(tam_isim, {})
+    if _dty:
+        _rol = _dty.get("rol", "")
+        _mrd = _dty.get("mr_danis", "")
+        _mrc = _MR_DANIS_RENK.get(_mrd, "#475569")
+        _mevk = " · ".join(_dty.get("mevki_kod", []))
+        _satirlar = ""
+        for _et, _vl in [("🎭 Rol", _rol), ("🧬 Vücut Tipi", _dty.get("vucut_tipi", "")),
+                         ("🗺️ Bölge", _dty.get("bolge", "")), ("📍 Mevki Kodları", _mevk),
+                         ("🏳️ Milli Takım", _dty.get("milli_takim", ""))]:
+            if _vl:
+                _satirlar += (f"<div><div style='color:#64748b;font-size:0.74rem;'>{_et}</div>"
+                              f"<div style='color:#f1f5f9;font-weight:600;'>{_vl}</div></div>")
+        _mrd_badge = (f"<span style='background:{_mrc}22;border:1px solid {_mrc};color:{_mrc};"
+                      f"border-radius:6px;padding:3px 12px;font-weight:700;font-size:0.85rem;'>"
+                      f"★ {_mrd}</span>") if _mrd else ""
+        st.markdown(f"""
+<div style="border:1px solid #6366f1;border-radius:12px;padding:16px 20px;margin-bottom:16px;background:#0f172a;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+    <div style="color:#a5b4fc;font-weight:700;font-size:1.0rem;">🎯 Scouting Değerlendirmesi</div>
+    {_mrd_badge}
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
 </div>""", unsafe_allow_html=True)
 
     _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
@@ -2027,6 +2073,7 @@ if st.session_state.get("sayfa") == "scouting":
         sc_df = scouting_gsheet_yukle()
         sd_data = scouting_sd_yukle()
         leistung_data = scouting_leistung_yukle()
+        detay_data = scouting_detay_yukle()
         _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
         _etiket_liste = etiket_kullanici(_sl_kullanici)
@@ -2182,14 +2229,23 @@ if st.session_state.get("sayfa") == "scouting":
                             _etk_html = (f"<span style='font-size:0.62rem;background:#1e293b;"
                                          f"border:1px solid #475569;border-radius:4px;padding:1px 6px;"
                                          f"margin-left:6px;white-space:nowrap;'>{_etk}</span>") if _etk else ""
+                            _dty = detay_data.get(tam_isim, {})
+                            _rol = _dty.get("rol", "")
+                            _mrd = _dty.get("mr_danis", "")
+                            _mrc = _MR_DANIS_RENK.get(_mrd, "#475569")
+                            _mrd_html = (f"<span style='font-size:0.62rem;background:{_mrc}22;"
+                                         f"border:1px solid {_mrc};color:{_mrc};border-radius:4px;"
+                                         f"padding:1px 7px;margin-left:6px;white-space:nowrap;font-weight:700;'>"
+                                         f"★ {_mrd}</span>") if _mrd else ""
+                            _rol_html = (f" &nbsp;·&nbsp; <span style='color:#a5b4fc;'>🎭 {_rol}</span>") if _rol else ""
                             st.markdown(f"""
 <div style="border:1px solid {renk};border-radius:12px;padding:16px 18px;margin-bottom:14px;
     background:linear-gradient(135deg,#0f172a,#1e293b);">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;">
-    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}{_etk_html}</div>
+    <div style="font-size:1.05rem;font-weight:700;color:#f1f5f9;">{tam_isim}{_mrd_html}{_etk_html}</div>
     <div style="font-size:0.72rem;color:#64748b;">{sd_badge}</div>
   </div>
-  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:8px;">📌 {mevki}</div>
+  <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:8px;">📌 {mevki}{_rol_html}</div>
   <hr style="border-color:#334155;margin:7px 0;">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;font-size:0.80rem;color:#cbd5e1;">
     <span>🌍 {vatandas}</span>
