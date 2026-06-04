@@ -471,11 +471,46 @@ def scouting_leistung_yukle() -> dict:
 
 # ─── Scouting Shortlist (kullanıcı bazlı favoriler) ────────────────────
 # Yapı: { "admin": ["Oyuncu1", ...], "fenerbahce": [...] }
-# NOT: Yerel JSON — Streamlit Cloud'da deploy/restart'ta sıfırlanır.
-#      Kalıcılık için ileride Google Sheets'e taşınacak.
+# Kalıcılık: Google Sheets "Shortlist" sayfası (kullanici | oyuncu satırları).
+# Sheet'e erişilemezse (izin/worksheet yok) yerel shortlist.json'a düşer —
+# böylece kurulum öncesi de çalışır, service account'a Editor verilince kalıcı olur.
 _SHORTLIST_YOL = pathlib.Path(__file__).parent / "shortlist.json"
 
+def _shortlist_ws():
+    """'Shortlist' worksheet'ini döndürür (yoksa oluşturur). Hata → None (yerel JSON)."""
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Shortlist")
+        except Exception:
+            ws = sh.add_worksheet(title="Shortlist", rows=2000, cols=2)
+            ws.update([["kullanici", "oyuncu"]])
+            return ws
+    except Exception:
+        return None
+
 def shortlist_yukle() -> dict:
+    ws = _shortlist_ws()
+    if ws is not None:
+        try:
+            d = {}
+            for r in ws.get_all_records():
+                k = str(r.get("kullanici", "")).strip()
+                o = str(r.get("oyuncu", "")).strip()
+                if k and o:
+                    d.setdefault(k, []).append(o)
+            return d
+        except Exception:
+            pass
+    # Yerel JSON fallback
     if not _SHORTLIST_YOL.exists():
         return {}
     import json
@@ -486,6 +521,19 @@ def shortlist_yukle() -> dict:
         return {}
 
 def shortlist_kaydet(data: dict):
+    ws = _shortlist_ws()
+    if ws is not None:
+        try:
+            rows = [["kullanici", "oyuncu"]]
+            for k, lst in data.items():
+                for o in lst:
+                    rows.append([k, o])
+            ws.clear()
+            ws.update(rows)
+            return
+        except Exception:
+            pass
+    # Yerel JSON fallback
     import json
     with open(_SHORTLIST_YOL, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
