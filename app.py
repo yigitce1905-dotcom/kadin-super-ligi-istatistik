@@ -631,6 +631,65 @@ def etiket_ayarla(kullanici: str, oyuncu: str, etiket: str):
     etiket_kaydet(data)
 
 
+# ─── Danışmanlık Talepleri ─────────────────────────────────────────────
+# Talepler Google Sheets "Talepler" sayfasına yazılır + e-posta gönderilir.
+# E-posta için secrets["smtp"] = {email, password (Gmail app password)} gerekir;
+# yoksa talep yine Sheets'e kaydedilir (sahibi oradan görür).
+TALEP_EMAIL = "mehmetbarandanis@gmail.com"
+
+def _talep_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Talepler")
+        except Exception:
+            ws = sh.add_worksheet(title="Talepler", rows=2000, cols=6)
+            ws.update([["tarih", "tip", "isim", "kulup", "email", "detay"]])
+            return ws
+    except Exception:
+        return None
+
+def talep_gonder(tip, isim, kulup, email, detay):
+    """Talebi Sheets'e yazar ve e-posta gönderir. (kayit_ok, mail_ok) döndürür."""
+    from datetime import datetime
+    tarih = datetime.now().strftime("%Y-%m-%d %H:%M")
+    kayit_ok = mail_ok = False
+    ws = _talep_ws()
+    if ws is not None:
+        try:
+            ws.append_row([tarih, tip, isim, kulup, email, detay])
+            kayit_ok = True
+        except Exception:
+            pass
+    try:
+        import smtplib
+        from email.mime.text import MIMEText
+        smtp = st.secrets["smtp"]
+        body = (f"Yeni danışmanlık talebi\n\nTür: {tip}\nAd Soyad: {isim}\n"
+                f"Kulüp: {kulup}\nE-posta / İletişim: {email}\nTarih: {tarih}\n\n"
+                f"Detay:\n{detay}")
+        msg = MIMEText(body, _charset="utf-8")
+        msg["Subject"] = f"[Kadın Ligi] Talep: {tip}"
+        msg["From"] = smtp["email"]
+        msg["To"] = TALEP_EMAIL
+        msg["Reply-To"] = email
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
+            s.login(smtp["email"], smtp["password"])
+            s.send_message(msg)
+        mail_ok = True
+    except Exception:
+        pass
+    return kayit_ok, mail_ok
+
+
 @st.cache_data(ttl=3600)
 def scouting_veri_yukle():
     yol = pathlib.Path(__file__).parent / "scouting_oyuncular.xlsx"
@@ -1768,7 +1827,7 @@ if st.session_state["sayfa"] == "iletisim":
     </p>
     <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #00c853;margin-top:16px;'>
       <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>📧 E-posta</div>
-      <div style='color:#fff;font-size:15px;font-weight:600;'>iletisim@kadinligi.com</div>
+      <div style='color:#fff;font-size:15px;font-weight:600;'>mehmetbarandanis@gmail.com</div>
       <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>🐦 Sosyal Medya</div>
       <div style='color:#fff;font-size:15px;'>Yakında aktif olacak</div>
     </div>
@@ -1778,6 +1837,48 @@ if st.session_state["sayfa"] == "iletisim":
     </p>
     </div>
     """, unsafe_allow_html=True)
+    st.stop()
+
+# ─── TALEP / DANIŞMANLIK SAYFASI ─────────────────────────────────────────────
+if st.session_state["sayfa"] == "talep":
+    st.markdown("""
+    <div style='max-width:680px;margin:0 auto;padding:10px 0 16px;'>
+      <h2 style='color:#00c853;margin-bottom:6px;'>📩 Danışmanlık / Talep</h2>
+      <p style='color:#c9d1d9;font-size:15px;line-height:1.7;'>
+      Scouting ve kadro planlama konusunda profesyonel destek alın.
+      Talebinizi iletin, en kısa sürede size dönüş yapalım.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    _t1, _t2, _t3 = st.columns([1, 3, 1])
+    with _t2:
+        with st.form("talep_form", clear_on_submit=False):
+            tip = st.selectbox("Talep türü", [
+                "Belirli bir oyuncu için detaylı rapor",
+                "Belirli bir mevkiye oyuncu önerisi",
+                "Birkaç oyuncu arasında tercih / kıyas",
+                "Takımı baştan kurma danışmanlığı",
+            ])
+            detay = st.text_area(
+                "Detay / açıklama *", height=130,
+                placeholder="Örn: 23 yaş altı sol bek arıyoruz, fiziksel güçlü, bütçe sınırlı...")
+            _c1, _c2 = st.columns(2)
+            isim  = _c1.text_input("Ad Soyad *")
+            kulup = _c2.text_input("Kulüp")
+            email = st.text_input("E-posta / İletişim bilgisi *")
+            gonder = st.form_submit_button("📨 Talebi Gönder", use_container_width=True, type="primary")
+        if gonder:
+            if not (isim.strip() and email.strip() and detay.strip()):
+                st.error("Lütfen Ad Soyad, E-posta ve Detay alanlarını doldurun.")
+            else:
+                with st.spinner("Talebiniz gönderiliyor..."):
+                    _k, _m = talep_gonder(tip, isim.strip(), kulup.strip(), email.strip(), detay.strip())
+                if _k or _m:
+                    st.success("✅ Talebiniz alındı! En kısa sürede iletişime geçeceğiz.")
+                    st.balloons()
+                else:
+                    st.warning("Talep şu an kaydedilemedi. Lütfen İletişim sayfasındaki "
+                               "e-posta adresinden bize ulaşın.")
+        st.caption(f"Talepler doğrudan {TALEP_EMAIL} adresine iletilir.")
     st.stop()
 
 # ─── SCOUTİNG SAYFASI ────────────────────────────────────────────────────────
@@ -2082,6 +2183,24 @@ if not df_tam.empty:
         kol.markdown(
             f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
             f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+
+st.markdown("<br>", unsafe_allow_html=True)
+
+# ─── DANIŞMANLIK TALEP BANNER (ana sayfada görünür) ───────────────────────────
+_bc1, _bc2 = st.columns([3, 1])
+with _bc1:
+    st.markdown("""
+    <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:12px;
+        padding:13px 20px;border-left:4px solid #00c853;'>
+      <div style='color:#fff;font-size:1.05rem;font-weight:700;'>📩 Kadronu birlikte kuralım</div>
+      <div style='color:#a7f3d0;font-size:0.85rem;margin-top:2px;'>
+      Oyuncu raporu · mevki önerisi · oyuncu kıyası · tam kadro danışmanlığı — talebini ilet.</div>
+    </div>""", unsafe_allow_html=True)
+with _bc2:
+    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+    if st.button("📩 Talep / Danışmanlık", use_container_width=True, type="primary"):
+        st.session_state["sayfa"] = "talep"
+        st.rerun()
 
 st.markdown("<br>", unsafe_allow_html=True)
 
