@@ -651,13 +651,13 @@ def _talep_ws():
         try:
             return sh.worksheet("Talepler")
         except Exception:
-            ws = sh.add_worksheet(title="Talepler", rows=2000, cols=6)
-            ws.update([["tarih", "tip", "isim", "kulup", "email", "detay"]])
+            ws = sh.add_worksheet(title="Talepler", rows=2000, cols=7)
+            ws.update([["tarih", "tip", "isim", "kulup", "email", "detay", "sistem_on_onerisi"]])
             return ws
     except Exception:
         return None
 
-def talep_gonder(tip, isim, kulup, email, detay):
+def talep_gonder(tip, isim, kulup, email, detay, oneri=""):
     """Talebi Sheets'e yazar ve e-posta gönderir. (kayit_ok, mail_ok) döndürür."""
     from datetime import datetime
     tarih = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -665,7 +665,7 @@ def talep_gonder(tip, isim, kulup, email, detay):
     ws = _talep_ws()
     if ws is not None:
         try:
-            ws.append_row([tarih, tip, isim, kulup, email, detay])
+            ws.append_row([tarih, tip, isim, kulup, email, detay, oneri])
             kayit_ok = True
         except Exception:
             pass
@@ -675,7 +675,8 @@ def talep_gonder(tip, isim, kulup, email, detay):
         smtp = st.secrets["smtp"]
         body = (f"Yeni danışmanlık talebi\n\nTür: {tip}\nAd Soyad: {isim}\n"
                 f"Kulüp: {kulup}\nE-posta / İletişim: {email}\nTarih: {tarih}\n\n"
-                f"Detay:\n{detay}")
+                f"Detay:\n{detay}\n\n"
+                f"--- Sistem ön-önerisi (otomatik) ---\n{oneri or '(yok)'}")
         msg = MIMEText(body, _charset="utf-8")
         msg["Subject"] = f"[Kadın Ligi] Talep: {tip}"
         msg["From"] = smtp["email"]
@@ -688,6 +689,18 @@ def talep_gonder(tip, isim, kulup, email, detay):
     except Exception:
         pass
     return kayit_ok, mail_ok
+
+
+def akilli_oneri(kategori, yas_max, oncelik, n=5):
+    """Scouting havuzundan kritere uygun adayları döndürür (talep ön-önerisi)."""
+    havuz = _benzer_havuz("scouting")
+    adaylar = [o for o in havuz
+               if o["kat"] == kategori and o["mac"] >= 10
+               and (yas_max == 0 or 0 < o["yas"] <= yas_max)]
+    anahtar = {"Gol oranı": "gol_mac", "Asist oranı": "asist_mac",
+               "Deneyim (maç)": "mac", "Oynama süresi": "dk_mac"}.get(oncelik, "gol_mac")
+    adaylar.sort(key=lambda o: o[anahtar], reverse=True)
+    return adaylar[:n]
 
 
 @st.cache_data(ttl=3600)
@@ -1052,6 +1065,8 @@ def _benzer_havuz(kaynak):
             "boy":       _boy_cm(p.get("Height", "")),
             "ulke":      p.get("Nationality", ""),
             "mac":       mac,
+            "gol":       sum(s.get("gol", 0) for s in sez),
+            "asist":     sum(s.get("asist", 0) for s in sez),
             "gol_mac":   sum(s.get("gol", 0) for s in sez) / mac,
             "asist_mac": sum(s.get("asist", 0) for s in sez) / mac,
             "dk_mac":    sum(s.get("dakika", 0) for s in sez) / mac,
@@ -1841,44 +1856,101 @@ if st.session_state["sayfa"] == "iletisim":
 
 # ─── TALEP / DANIŞMANLIK SAYFASI ─────────────────────────────────────────────
 if st.session_state["sayfa"] == "talep":
+    # Hero
     st.markdown("""
-    <div style='max-width:680px;margin:0 auto;padding:10px 0 16px;'>
-      <h2 style='color:#00c853;margin-bottom:6px;'>📩 Danışmanlık / Talep</h2>
-      <p style='color:#c9d1d9;font-size:15px;line-height:1.7;'>
-      Scouting ve kadro planlama konusunda profesyonel destek alın.
-      Talebinizi iletin, en kısa sürede size dönüş yapalım.</p>
+    <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:16px;
+        padding:24px 30px;border-left:5px solid #00c853;margin-bottom:22px;'>
+      <h1 style='font-size:1.5rem;margin:0 0 6px;color:#fff;'>⚽ Kadronu birlikte kuralım</h1>
+      <p style='color:#a7f3d0;font-size:0.95rem;line-height:1.6;margin:0;'>
+      Doğru oyuncu, doğru veriyle bulunur. Scouting ve kadro planlamada veri + saha gözü
+      birleşiyor — kulübüne özel danışmanlık.</p>
     </div>
     """, unsafe_allow_html=True)
-    _t1, _t2, _t3 = st.columns([1, 3, 1])
-    with _t2:
-        with st.form("talep_form", clear_on_submit=False):
-            tip = st.selectbox("Talep türü", [
-                "Belirli bir oyuncu için detaylı rapor",
-                "Belirli bir mevkiye oyuncu önerisi",
-                "Birkaç oyuncu arasında tercih / kıyas",
-                "Takımı baştan kurma danışmanlığı",
-            ])
-            detay = st.text_area(
-                "Detay / açıklama *", height=130,
-                placeholder="Örn: 23 yaş altı sol bek arıyoruz, fiziksel güçlü, bütçe sınırlı...")
-            _c1, _c2 = st.columns(2)
-            isim  = _c1.text_input("Ad Soyad *")
-            kulup = _c2.text_input("Kulüp")
-            email = st.text_input("E-posta / İletişim bilgisi *")
-            gonder = st.form_submit_button("📨 Talebi Gönder", use_container_width=True, type="primary")
-        if gonder:
-            if not (isim.strip() and email.strip() and detay.strip()):
-                st.error("Lütfen Ad Soyad, E-posta ve Detay alanlarını doldurun.")
+
+    # Hizmet paketleri
+    st.markdown("##### Hizmetler")
+    _paketler = [
+        ("📋", "Oyuncu Raporu", "Tek oyuncu", "Hedeflediğin oyuncu için derinlemesine analiz: kariyer, güçlü/zayıf yönler, uygunluk ve fiyat öngörüsü."),
+        ("🎯", "Mevki Tarama", "Mevki bazlı", "Belirli bir mevkiye bütçene ve oyun stiline uygun en iyi adayların kısa listesi + kıyas."),
+        ("⚖️", "Oyuncu Kıyası", "2-5 oyuncu", "Aklındaki birkaç oyuncu arasında veri + scouting gözüyle hangisini almalısın kararı."),
+        ("🏟️", "Kadro Kurulumu", "Tam kadro", "Takımı baştan kurma / yeniden yapılandırma danışmanlığı: mevki mevki hedef havuzu."),
+    ]
+    _pc = st.columns(2)
+    for _i, (_ik, _ad, _et, _ac) in enumerate(_paketler):
+        with _pc[_i % 2]:
+            st.markdown(f"""
+            <div style='border:1px solid #334155;border-radius:12px;padding:16px;
+                background:linear-gradient(135deg,#0f172a,#1a1f36);margin-bottom:14px;min-height:150px;'>
+              <div style='font-size:1.5rem;'>{_ik}</div>
+              <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;margin:4px 0 2px;'>{_ad}</div>
+              <div style='color:#64748b;font-size:0.7rem;margin-bottom:8px;'>{_et}</div>
+              <div style='color:#94a3b8;font-size:0.82rem;line-height:1.55;'>{_ac}</div>
+            </div>""", unsafe_allow_html=True)
+
+    # Akıllı ön-öneri
+    st.markdown("##### 🔎 Hızlı Ön-Öneri — talep etmeden dene")
+    st.caption("Kriterini seç, sistem havuzdan anında aday önersin. Detaylı rapor için aşağıdan talep et.")
+    _oc1, _oc2, _oc3 = st.columns(3)
+    _kat   = _oc1.selectbox("Mevki", ["Forvet", "Orta Saha", "Defans", "Kaleci"], key="on_kat")
+    _yas_s = _oc2.selectbox("Yaş", ["Fark etmez", "≤21", "≤24", "≤27"], key="on_yas")
+    _onc   = _oc3.selectbox("Öncelik", ["Gol oranı", "Asist oranı", "Deneyim (maç)", "Oynama süresi"], key="on_onc")
+    _yas_max = {"Fark etmez": 0, "≤21": 21, "≤24": 24, "≤27": 27}[_yas_s]
+    _oneriler = akilli_oneri(_kat, _yas_max, _onc)
+    _oneri_metni = ""
+    if _oneriler:
+        _oneri_metni = (f"Kriter: {_kat} · {_yas_s} · öncelik {_onc}. Öneriler: "
+                        + "; ".join(f"{o['isim']} ({o['yas']}y, {o['gol']}g/{o['mac']}m)" for o in _oneriler))
+        for o in _oneriler:
+            _uyg = min(99, 75 + int(o["gol_mac"] * 12) + (8 if o["yas"] and o["yas"] <= 21 else 0))
+            st.markdown(f"""
+            <div style='border:1px solid #1e3a5f;border-radius:10px;padding:12px 16px;
+                background:#0f172a;margin-bottom:8px;'>
+              <div style='display:flex;justify-content:space-between;align-items:center;'>
+                <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;'>{o['isim']}</div>
+                <div style='background:linear-gradient(90deg,#6366f1,#22c55e);color:#fff;
+                    border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700;'>%{_uyg} uygun</div>
+              </div>
+              <div style='color:#94a3b8;font-size:0.78rem;margin:3px 0 6px;'>{o['ulke']} · {o['yas']} yaş</div>
+              <div style='font-size:0.82rem;color:#cbd5e1;'>
+                ⚽ <b style='color:#22c55e;'>{o['gol']}</b> gol &nbsp;·&nbsp;
+                📊 <b>{round(o['gol_mac'],2)}</b> gol/maç &nbsp;·&nbsp; 🎮 {o['mac']} maç</div>
+            </div>""", unsafe_allow_html=True)
+        st.info("💡 Bu otomatik ön-öneri. Oyun stili, fiyat öngörüsü, video analiz ve alternatifler "
+                "için aşağıdan **detaylı talep** oluştur — seçtiğin kriter ve öneriler talebe eklenir.")
+    else:
+        st.warning("Bu kritere uygun aday bulunamadı, filtreyi gevşetmeyi dene.")
+
+    # Talep formu
+    st.markdown("##### 📨 Detaylı Talep")
+    with st.form("talep_form", clear_on_submit=False):
+        tip = st.selectbox("Talep türü", [
+            "Belirli bir oyuncu için detaylı rapor",
+            "Belirli bir mevkiye oyuncu önerisi",
+            "Birkaç oyuncu arasında tercih / kıyas",
+            "Takımı baştan kurma danışmanlığı",
+        ])
+        detay = st.text_area(
+            "Detay / açıklama *", height=120,
+            placeholder="Örn: 23 yaş altı sol bek arıyoruz, fiziksel güçlü, bütçe sınırlı...")
+        _c1, _c2 = st.columns(2)
+        isim  = _c1.text_input("Ad Soyad *")
+        kulup = _c2.text_input("Kulüp")
+        email = st.text_input("E-posta / İletişim bilgisi *")
+        gonder = st.form_submit_button("📨 Talebi Gönder", use_container_width=True, type="primary")
+    if gonder:
+        if not (isim.strip() and email.strip() and detay.strip()):
+            st.error("Lütfen Ad Soyad, E-posta ve Detay alanlarını doldurun.")
+        else:
+            with st.spinner("Talebiniz gönderiliyor..."):
+                _k, _m = talep_gonder(tip, isim.strip(), kulup.strip(),
+                                      email.strip(), detay.strip(), oneri=_oneri_metni)
+            if _k or _m:
+                st.success("✅ Talebiniz alındı! En kısa sürede iletişime geçeceğiz.")
+                st.balloons()
             else:
-                with st.spinner("Talebiniz gönderiliyor..."):
-                    _k, _m = talep_gonder(tip, isim.strip(), kulup.strip(), email.strip(), detay.strip())
-                if _k or _m:
-                    st.success("✅ Talebiniz alındı! En kısa sürede iletişime geçeceğiz.")
-                    st.balloons()
-                else:
-                    st.warning("Talep şu an kaydedilemedi. Lütfen İletişim sayfasındaki "
-                               "e-posta adresinden bize ulaşın.")
-        st.caption(f"Talepler doğrudan {TALEP_EMAIL} adresine iletilir.")
+                st.warning("Talep şu an kaydedilemedi. Lütfen İletişim sayfasındaki "
+                           "e-posta adresinden bize ulaşın.")
+    st.caption(f"Talepler doğrudan {TALEP_EMAIL} adresine iletilir.")
     st.stop()
 
 # ─── SCOUTİNG SAYFASI ────────────────────────────────────────────────────────
