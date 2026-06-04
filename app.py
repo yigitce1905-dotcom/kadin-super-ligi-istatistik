@@ -1908,17 +1908,18 @@ if st.session_state["sayfa"] == "talep":
     if _oneriler:
         _oneri_metni = (f"Kriter: {_kat} · {_yas_s} · öncelik {_onc}. Öneriler: "
                         + "; ".join(f"{o['isim']} ({o['yas']}y, {o['gol']}g/{o['mac']}m)" for o in _oneriler))
-        for o in _oneriler:
+        for _idx, o in enumerate(_oneriler, 1):
             _uyg = min(99, 75 + int(o["gol_mac"] * 12) + (8 if o["yas"] and o["yas"] <= 21 else 0))
             st.markdown(f"""
             <div style='border:1px solid #1e3a5f;border-radius:10px;padding:12px 16px;
                 background:#0f172a;margin-bottom:8px;'>
               <div style='display:flex;justify-content:space-between;align-items:center;'>
-                <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;'>{o['isim']}</div>
+                <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;'>🔒 Aday #{_idx}</div>
                 <div style='background:linear-gradient(90deg,#6366f1,#22c55e);color:#fff;
                     border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700;'>%{_uyg} uygun</div>
               </div>
-              <div style='color:#94a3b8;font-size:0.78rem;margin:3px 0 6px;'>{o['ulke']} · {o['yas']} yaş</div>
+              <div style='color:#94a3b8;font-size:0.78rem;margin:3px 0 6px;'>{o['yas']} yaş
+                &nbsp;·&nbsp; <span style='color:#475569;'>isim & kulüp talepte paylaşılır</span></div>
               <div style='font-size:0.82rem;color:#cbd5e1;'>
                 ⚽ <b style='color:#22c55e;'>{o['gol']}</b> gol &nbsp;·&nbsp;
                 📊 <b>{round(o['gol_mac'],2)}</b> gol/maç &nbsp;·&nbsp; 🎮 {o['mac']} maç</div>
