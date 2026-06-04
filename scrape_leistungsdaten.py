@@ -276,16 +276,25 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
 
 
 def main():
-    with open(PROFILLER_YOL, encoding="utf-8") as f:
+    args = sys.argv[1:]
+
+    # Kaynak secimi: --analig (Turkiye Super Ligi) veya varsayilan (scouting)
+    if "--analig" in args:
+        prof_yol  = Path(__file__).parent / "soccerdonna_profiller.json"
+        cikti_yol = Path(__file__).parent / "analig_leistungsdaten.json"
+    else:
+        prof_yol  = PROFILLER_YOL
+        cikti_yol = LEISTUNG_YOL
+
+    with open(prof_yol, encoding="utf-8") as f:
         profiller = json.load(f)
 
-    if LEISTUNG_YOL.exists():
-        with open(LEISTUNG_YOL, encoding="utf-8") as f:
+    if cikti_yol.exists():
+        with open(cikti_yol, encoding="utf-8") as f:
             leistung = json.load(f)
     else:
         leistung = {}
 
-    args         = sys.argv[1:]
     sadece_eksik = "--eksik" in args
     arama        = next((a for a in args if not a.startswith("--")), None)
 
@@ -315,13 +324,13 @@ def main():
             print(f"HATA: {e}")
 
         if i % 10 == 0:
-            with open(LEISTUNG_YOL, "w", encoding="utf-8") as f:
+            with open(cikti_yol, "w", encoding="utf-8") as f:
                 json.dump(leistung, f, ensure_ascii=False, indent=2)
             print(f"  [ara kayit: {i} oyuncu]")
 
-    with open(LEISTUNG_YOL, "w", encoding="utf-8") as f:
+    with open(cikti_yol, "w", encoding="utf-8") as f:
         json.dump(leistung, f, ensure_ascii=False, indent=2)
-    print(f"\nTamamlandi: {LEISTUNG_YOL}")
+    print(f"\nTamamlandi: {cikti_yol}")
 
 
 if __name__ == "__main__":

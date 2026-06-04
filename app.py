@@ -729,6 +729,191 @@ def norm_val(val, maks):
     return round(val / maks * 100, 1) if maks else 0
 
 
+# ── Ana lig (TR Süper Lig) kariyer verisi ──
+@st.cache_data(ttl=3600)
+def analig_leistung_yukle() -> dict:
+    yol = pathlib.Path(__file__).parent / "analig_leistungsdaten.json"
+    if not yol.exists():
+        return {}
+    import json
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
+
+# ── Kariyer trend yardımcıları ──
+def _kariyer_sezon_topla(sezonlar):
+    """Kulüp ligleri (milli hariç) sezon bazlı gol/asist/dakika/maç toplamı."""
+    agg = {}
+    for s in sezonlar:
+        if s.get("milli"):
+            continue
+        d = agg.setdefault(s["sezon"], {"gol": 0, "asist": 0, "dakika": 0, "mac": 0})
+        d["gol"]    += s.get("gol", 0)
+        d["asist"]  += s.get("asist", 0)
+        d["dakika"] += s.get("dakika", 0)
+        d["mac"]    += s.get("mac", 0)
+    return dict(sorted(agg.items()))
+
+
+def _kariyer_trend_figuru(sezonlar):
+    """Sezon-sezon gol/asist (bar) + dakika (çizgi) Plotly figürü."""
+    agg = _kariyer_sezon_topla(sezonlar)
+    if not agg:
+        return None
+    sz    = list(agg.keys())
+    gol   = [agg[x]["gol"] for x in sz]
+    asist = [agg[x]["asist"] for x in sz]
+    dk    = [agg[x]["dakika"] for x in sz]
+    fig = go.Figure()
+    fig.add_trace(go.Bar(x=sz, y=gol, name="Gol", marker_color="#22c55e"))
+    fig.add_trace(go.Bar(x=sz, y=asist, name="Asist", marker_color="#3b82f6"))
+    fig.add_trace(go.Scatter(x=sz, y=dk, name="Dakika", yaxis="y2",
+                             mode="lines+markers", line=dict(color="#f59e0b", width=3)))
+    fig.update_layout(
+        barmode="group", height=300,
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1", size=12),
+        margin=dict(l=10, r=10, t=28, b=10),
+        legend=dict(orientation="h", y=1.18, x=0),
+        yaxis=dict(title="Gol / Asist", gridcolor="#1e293b"),
+        yaxis2=dict(title="Dakika", overlaying="y", side="right", showgrid=False),
+        xaxis=dict(gridcolor="#1e293b"),
+    )
+    return fig
+
+
+def _form_rozeti(sezonlar):
+    """Son 2 sezon gol+asist trendine göre form etiketi (HTML)."""
+    agg = _kariyer_sezon_topla(sezonlar)
+    sz  = list(agg.keys())
+    if len(sz) < 2:
+        return ""
+    son    = agg[sz[-1]]["gol"] + agg[sz[-1]]["asist"]
+    onceki = agg[sz[-2]]["gol"] + agg[sz[-2]]["asist"]
+    if son > onceki:
+        return "<span style='color:#22c55e;'>📈 Yükselişte</span>"
+    if son < onceki:
+        return "<span style='color:#ef4444;'>📉 Düşüşte</span>"
+    return "<span style='color:#94a3b8;'>➡️ Stabil</span>"
+
+
+def kariyer_trend_goster(sezonlar):
+    """Trend grafiği + form rozetini bir profil sayfasında render eder."""
+    fig = _kariyer_trend_figuru(sezonlar)
+    if fig is None:
+        return
+    rozet = _form_rozeti(sezonlar)
+    st.markdown(f"#### 📈 Kariyer Trendi &nbsp; {rozet}", unsafe_allow_html=True)
+    st.plotly_chart(fig, use_container_width=True)
+
+
+# ── Benzer oyuncu motoru ──
+def _yas_hesapla(dob):
+    import re
+    from datetime import date
+    m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", dob or "")
+    if not m:
+        return 0.0
+    g, a, y = map(int, m.groups())
+    try:
+        return round((date.today() - date(y, a, g)).days / 365.25, 1)
+    except Exception:
+        return 0.0
+
+
+def _boy_cm(boy):
+    import re
+    m = re.search(r"(\d)[,.](\d{2})", boy or "")
+    return int(m.group(1)) * 100 + int(m.group(2)) if m else 0
+
+
+def _poz_kategori(poz):
+    p = (poz or "").lower()
+    if "goalkeeper" in p or "kaleci" in p:
+        return "Kaleci"
+    if "defen" in p or "back" in p:
+        return "Defans"
+    if "midfield" in p:
+        return "Orta Saha"
+    if "strik" in p or "forward" in p or "wing" in p:
+        return "Forvet"
+    return "?"
+
+
+@st.cache_data(ttl=3600)
+def _benzer_havuz(kaynak):
+    """kaynak: 'analig' | 'scouting' → feature listesi (pozisyon, yaş, fizik, kariyer)."""
+    if kaynak == "analig":
+        profiller = sd_profiller
+        leistung  = analig_leistung_yukle()
+    else:
+        profiller = scouting_sd_yukle()
+        leistung  = scouting_leistung_yukle()
+    havuz = []
+    for isim, p in profiller.items():
+        if not isinstance(p, dict) or p.get("bulunamadi"):
+            continue
+        sez = [s for s in leistung.get(isim, {}).get("sezonlar", []) if not s.get("milli")]
+        mac = sum(s.get("mac", 0) for s in sez)
+        if mac < 5:
+            continue
+        havuz.append({
+            "isim":      isim,
+            "kat":       _poz_kategori(p.get("Position", "")),
+            "yas":       _yas_hesapla(p.get("Date of birth", "")),
+            "boy":       _boy_cm(p.get("Height", "")),
+            "ulke":      p.get("Nationality", ""),
+            "mac":       mac,
+            "gol_mac":   sum(s.get("gol", 0) for s in sez) / mac,
+            "asist_mac": sum(s.get("asist", 0) for s in sez) / mac,
+            "dk_mac":    sum(s.get("dakika", 0) for s in sez) / mac,
+        })
+    return havuz
+
+
+def _benzer_oyuncular(hedef_isim, kaynak, k=5):
+    havuz = _benzer_havuz(kaynak)
+    q = next((o for o in havuz if o["isim"] == hedef_isim), None)
+    if not q or q["kat"] == "?":
+        return []
+    grup  = [o for o in havuz if o["kat"] == q["kat"]]
+    feats = ["yas", "boy", "mac", "gol_mac", "asist_mac", "dk_mac"]
+    rng = {}
+    for fe in feats:
+        vals = [o[fe] for o in grup if o[fe] > 0]
+        rng[fe] = (min(vals), max(vals)) if len(vals) >= 2 else None
+
+    def skor(o):
+        fark, n = 0.0, 0
+        for fe in feats:
+            if not rng[fe]:
+                continue
+            lo, hi = rng[fe]
+            if hi == lo:
+                continue
+            fark += ((q[fe] - lo) / (hi - lo) - (o[fe] - lo) / (hi - lo)) ** 2
+            n += 1
+        return round((1 - (fark / n) ** 0.5) * 100, 1) if n else 0.0
+
+    adaylar = sorted(((skor(o), o) for o in grup if o["isim"] != hedef_isim),
+                     reverse=True, key=lambda x: x[0])
+    return [(o["isim"], s, f"{o['yas']:.0f} yaş · {o['mac']} maç · {o['ulke']}")
+            for s, o in adaylar[:k]]
+
+
+def benzer_oyuncular_goster(hedef_isim, kaynak):
+    sonuc = _benzer_oyuncular(hedef_isim, kaynak)
+    if not sonuc:
+        return
+    st.markdown("#### 🔎 Benzer Oyuncular")
+    st.caption("Aynı mevki · yaş, boy, deneyim ve gol/asist oranlarına göre")
+    for isim, skor, bilgi in sonuc:
+        if st.button(f"%{skor}  ·  {isim}  ·  {bilgi}",
+                     key=f"benzer_{kaynak}_{isim}", use_container_width=True):
+            st.query_params["oyuncu"] = isim
+            st.rerun()
+
+
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
     sd_data = scouting_sd_yukle()
@@ -764,6 +949,7 @@ def render_scouting_detay(tam_isim):
 
     _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
     if _sezonlar:
+        kariyer_trend_goster(_sezonlar)
         st.markdown("#### ⚽ Tüm Kariyer Performansı")
         _satir_html = ""
         for _s in _sezonlar:
@@ -801,6 +987,9 @@ def render_scouting_detay(tam_isim):
             st.caption(f"📡 SoccerDonna · {_g}")
     else:
         st.info("Bu oyuncu için detaylı kariyer verisi bulunamadı.")
+
+    st.markdown("---")
+    benzer_oyuncular_goster(tam_isim, "scouting")
 
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
@@ -1108,6 +1297,16 @@ def render_ana_lig_profil(secili):
           Ekran görüntüsü alarak paylaşabilirsiniz
         </div>
         """, unsafe_allow_html=True)
+
+        # Ana lig kariyer trendi (analig_leistungsdaten.json hazır olunca)
+        _al_sezon = analig_leistung_yukle().get(secili, {}).get("sezonlar", [])
+        if _al_sezon:
+            st.markdown("---")
+            kariyer_trend_goster(_al_sezon)
+
+        # Benzer oyuncular (ana lig havuzu)
+        st.markdown("---")
+        benzer_oyuncular_goster(secili, "analig")
 
 
 # ─── PAYLAŞILABILIR LİNK: URL parametresi varsa otomatik profil aç ──────────
