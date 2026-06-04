@@ -23,6 +23,16 @@ st.set_page_config(
     page_icon="⚽", layout="wide",
 )
 
+# ─── Dil (TR varsayılan / EN hedefli sayfalar) ───
+if "dil" not in st.session_state:
+    st.session_state["dil"] = "TR"
+
+def t(tr, en):
+    """Dile göre metin döndürür (EN seçiliyse İngilizce, değilse Türkçe)."""
+    return en if st.session_state.get("dil") == "EN" else tr
+
+EN = st.session_state.get("dil") == "EN"
+
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""<style>
 
@@ -1717,32 +1727,33 @@ if "sayfa" not in st.session_state:
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
-bas_sol, nav1, nav2, nav3, nav4, nav5 = st.columns([3, 1, 1, 1, 1, 1])
+bas_sol, nav1, nav2, nav3, nav4, nav5, nav_dil = st.columns([3, 1, 1, 1, 1, 1, 0.8])
 
 with bas_sol:
-    st.markdown("""
+    st.markdown(f"""
     <div class="baslik-kutu">
-      <h1>⚽ Kadın Futbolu Veri &amp; Scouting Platformu</h1>
-      <p>Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu ·
-      kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı</p>
+      <h1>{t("⚽ Kadın Futbolu Veri &amp; Scouting Platformu",
+              "⚽ Women's Football Data &amp; Scouting Platform")}</h1>
+      <p>{t("Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
+            "Turkish Women's Super League stats · international player pool · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
     </div>""", unsafe_allow_html=True)
 with nav1:
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("🏠 Ana Sayfa", use_container_width=True):
+    if st.button(t("🏠 Ana Sayfa", "🏠 Home"), use_container_width=True):
         st.query_params.clear()
         for k in list(st.session_state.keys()):
-            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"):
+            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
         st.rerun()
 with nav2:
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("ℹ️ Hakkında", use_container_width=True):
+    if st.button(t("ℹ️ Hakkında", "ℹ️ About"), use_container_width=True):
         st.session_state["sayfa"] = "hakkinda"
         st.rerun()
 with nav3:
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("📬 İletişim", use_container_width=True):
+    if st.button(t("📬 İletişim", "📬 Contact"), use_container_width=True):
         st.session_state["sayfa"] = "iletisim"
         st.rerun()
 with nav4:
@@ -1762,9 +1773,15 @@ with nav5:
                 st.session_state.pop(k, None)
             st.rerun()
     else:
-        if st.button("🔐 Giriş", use_container_width=True):
+        if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True):
             st.session_state["sayfa"] = "giris"
             st.rerun()
+
+with nav_dil:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button("🌐 EN" if not EN else "🌐 TR", use_container_width=True, help="Language / Dil"):
+        st.session_state["dil"] = "EN" if not EN else "TR"
+        st.rerun()
 
 # Giriş formu sidebar'da her zaman
 giris_formu()
@@ -1792,49 +1809,48 @@ if url_oyuncu:
     st.stop()
 
 if st.session_state["sayfa"] == "hakkinda":
-    st.markdown("""
+    st.markdown(f"""
     <div style='max-width:760px;margin:0 auto;padding:10px 0 40px;'>
 
-    <h2 style='color:#00c853;margin-bottom:6px;'>Biz Kimiz?</h2>
+    <h2 style='color:#00c853;margin-bottom:6px;'>{t("Biz Kimiz?", "Who Are We?")}</h2>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
-    Türkiye'de kadın futbol liglerini takip eden bir grup futbol delisiyiz.
-    Yıllardır tribünlerde, ekranların başında ve saha kenarlarında bu ligin büyümesine tanıklık ettik.
-    Ama bir şeyin hep eksik kaldığını fark ettik: <b style='color:#fff;'>veri.</b>
+    {t("Türkiye'de kadın futbol liglerini takip eden bir grup futbol delisiyiz. Yıllardır tribünlerde, ekranların başında ve saha kenarlarında bu ligin büyümesine tanıklık ettik. Ama bir şeyin hep eksik kaldığını fark ettik: <b style='color:#fff;'>veri.</b>",
+       "We are a group of football fanatics following women's football leagues in Türkiye. For years we've witnessed this league grow from the stands, the screens and the touchlines. But we noticed one thing was always missing: <b style='color:#fff;'>data.</b>")}
     </p>
 
-    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>Neden Bu Siteyi Kurduk?</h2>
+    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>{t("Neden Bu Siteyi Kurduk?", "Why Did We Build This?")}</h2>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
-    Bir oyuncuyu bir maçta izlemek, o oyuncu hakkında tam bir fikir vermez. Gözlem yanılabilir —
-    kötü bir gün, yorgunluk, takımın taktik yapısı ya da sadece o günkü rakip; bunların hepsi
-    algıyı bozar. Kulüplerin çoğu hâlâ transferlerde "rakibe karşı oynadığı o maçtaki izlenim"
-    ya da duyuma dayalı kararlar alıyor.
+    {t("Bir oyuncuyu bir maçta izlemek, o oyuncu hakkında tam bir fikir vermez. Gözlem yanılabilir — kötü bir gün, yorgunluk, takımın taktik yapısı ya da sadece o günkü rakip; bunların hepsi algıyı bozar. Kulüplerin çoğu hâlâ transferlerde \"rakibe karşı oynadığı o maçtaki izlenim\" ya da duyuma dayalı kararlar alıyor.",
+       "Watching a player in a single match doesn't give a full picture. Observation can mislead — a bad day, fatigue, the team's tactical setup or just that day's opponent all distort perception. Most clubs still make transfer decisions based on \"the impression from that one match against us\" or on hearsay.")}
     </p>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
-    Biz buna karşı <b style='color:#fff;'>ölçme ve değerlendirme metotları</b> geliştirmeye çalışıyoruz.
-    Henüz değerini bulamamış ya da bulma aşamasındaki oyuncuları verilerle desteklemeyi, onların ligdeki
-    gerçek katkılarını görünür kılmayı hedefliyoruz. Böylece takımlar; sadece rakipleri olduğu maçlardaki
-    gözleme ya da kulaktan dolma bilgilere değil, <b style='color:#fff;'>sezon boyu biriken somut istatistiklere</b>
-    dayanarak daha nitelikli kadrolar oluşturabilsin.
+    {t("Biz buna karşı <b style='color:#fff;'>ölçme ve değerlendirme metotları</b> geliştirmeye çalışıyoruz. Henüz değerini bulamamış ya da bulma aşamasındaki oyuncuları verilerle desteklemeyi, onların ligdeki gerçek katkılarını görünür kılmayı hedefliyoruz. Böylece takımlar; sadece rakipleri olduğu maçlardaki gözleme ya da kulaktan dolma bilgilere değil, <b style='color:#fff;'>sezon boyu biriken somut istatistiklere</b> dayanarak daha nitelikli kadrolar oluşturabilsin.",
+       "Against this, we try to develop <b style='color:#fff;'>measurement and evaluation methods</b>. We aim to back undervalued or rising players with data and make their real contribution to the league visible. So that teams can build better squads based on <b style='color:#fff;'>concrete stats accumulated across the season</b> — not just observation from matches against them or word of mouth.")}
     </p>
 
-    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>Bu Sitede Ne Var?</h2>
+    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>{t("Bu Sitede Ne Var?", "What's on This Site?")}</h2>
     <div style='color:#c9d1d9;font-size:14px;line-height:2;'>
-    📋 <b style='color:#fff;'>Oyuncu Listesi</b> — Ligdeki tüm oyuncuların sezon istatistikleri<br>
-    👤 <b style='color:#fff;'>Oyuncu Profili</b> — Her oyuncu için detaylı performans kartı ve karşılaştırma<br>
-    🔄 <b style='color:#fff;'>Transfer Öner</b> — Bütçe ve kriterlere göre yapay zeka destekli transfer önerisi<br>
+    {t('''📋 <b style='color:#fff;'>Oyuncu Listesi</b> — Ligdeki tüm oyuncuların sezon istatistikleri<br>
+    👤 <b style='color:#fff;'>Oyuncu Profili</b> — Her oyuncu için detaylı performans kartı, kariyer ve benzerlik<br>
+    🔎 <b style='color:#fff;'>Scouting</b> — Uluslararası oyuncu havuzu, shortlist ve etiketler<br>
+    📩 <b style='color:#fff;'>Danışmanlık</b> — Kulübüne özel oyuncu raporu ve kadro planlama<br>
     🧤 <b style='color:#fff;'>Kaleciler</b> — Yenilen gol ve maç başına performans analizi<br>
     🏟️ <b style='color:#fff;'>Takımlar</b> — Takım bazında istatistikler ve kadro analizi<br>
     🏆 <b style='color:#fff;'>Lig Tablosu</b> — Güncel puan durumu<br>
-    🌟 <b style='color:#fff;'>En İyiler</b> — Kategorilere göre sezonun öne çıkan isimleri<br>
-    ⚽ <b style='color:#fff;'>Fantasy Kadro</b> — Kendi ideal 11'ini oluştur<br>
-    🔍 <b style='color:#fff;'>Gelişmiş Arama</b> — Uyruk, mevki, yaş ve maç sayısına göre filtrele<br>
-    🎂 <b style='color:#fff;'>Yaş Analizi</b> — Ligin yaş dağılımı ve takım profilleri
+    🔍 <b style='color:#fff;'>Gelişmiş Arama</b> — Uyruk, mevki, yaş ve maç sayısına göre filtrele''',
+       '''📋 <b style='color:#fff;'>Player List</b> — Season stats of every player in the league<br>
+    👤 <b style='color:#fff;'>Player Profile</b> — Detailed performance card, career & similarity per player<br>
+    🔎 <b style='color:#fff;'>Scouting</b> — International player pool, shortlist and tags<br>
+    📩 <b style='color:#fff;'>Consultancy</b> — Club-tailored player reports and squad planning<br>
+    🧤 <b style='color:#fff;'>Goalkeepers</b> — Goals conceded and per-match performance<br>
+    🏟️ <b style='color:#fff;'>Teams</b> — Team-level stats and squad analysis<br>
+    🏆 <b style='color:#fff;'>League Table</b> — Current standings<br>
+    🔍 <b style='color:#fff;'>Advanced Search</b> — Filter by nationality, position, age and matches''')}
     </div>
 
     <p style='color:#505870;font-size:12px;margin-top:36px;border-top:1px solid #21262d;padding-top:16px;'>
-    ⚠️ Veriler TFF ve SoccerDonna kaynaklarından derlenmektedir. İstatistikler bilgi amaçlıdır;
-    hata veya eksiklik içerebilir. Gözlemlerimiz ve değerlendirmelerimiz kişisel yoruma dayanır,
-    yanılabiliriz — bu yüzden her zaman veriyi ön plana çıkarmaya çalışırız.
+    {t("⚠️ Veriler TFF ve SoccerDonna kaynaklarından derlenmektedir. İstatistikler bilgi amaçlıdır; hata veya eksiklik içerebilir. Gözlemlerimiz ve değerlendirmelerimiz kişisel yoruma dayanır, yanılabiliriz — bu yüzden her zaman veriyi ön plana çıkarmaya çalışırız.",
+       "⚠️ Data is compiled from TFF and SoccerDonna sources. Stats are for informational purposes and may contain errors or gaps. Our observations and evaluations rely on personal judgement and can be wrong — that's why we always try to put the data first.")}
     </p>
     </div>
     """, unsafe_allow_html=True)
@@ -1842,21 +1858,22 @@ if st.session_state["sayfa"] == "hakkinda":
 
 # ─── İLETİŞİM SAYFASI ─────────────────────────────────────────────────────────
 if st.session_state["sayfa"] == "iletisim":
-    st.markdown("""
+    st.markdown(f"""
     <div style='max-width:600px;margin:0 auto;padding:10px 0 40px;'>
-    <h2 style='color:#00c853;margin-bottom:6px;'>İletişim</h2>
+    <h2 style='color:#00c853;margin-bottom:6px;'>{t("İletişim", "Contact")}</h2>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
-    Öneri, hata bildirimi veya iş birliği için bize ulaşabilirsiniz.
+    {t("Öneri, hata bildirimi veya iş birliği için bize ulaşabilirsiniz.",
+       "Reach us for suggestions, bug reports or collaboration.")}
     </p>
     <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #00c853;margin-top:16px;'>
-      <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>📧 E-posta</div>
+      <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>{t("📧 E-posta", "📧 E-mail")}</div>
       <div style='color:#fff;font-size:15px;font-weight:600;'>mehmetbarandanis@gmail.com</div>
-      <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>🐦 Sosyal Medya</div>
-      <div style='color:#fff;font-size:15px;'>Yakında aktif olacak</div>
+      <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>{t("🐦 Sosyal Medya", "🐦 Social Media")}</div>
+      <div style='color:#fff;font-size:15px;'>{t("Yakında aktif olacak", "Coming soon")}</div>
     </div>
     <p style='color:#505870;font-size:12px;margin-top:28px;'>
-    Veri hatası veya eksik oyuncu bildirimleri için lütfen oyuncu adı ve doğru bilgiyi içeren
-    bir mesaj gönderin. En kısa sürede güncelliyoruz.
+    {t("Veri hatası veya eksik oyuncu bildirimleri için lütfen oyuncu adı ve doğru bilgiyi içeren bir mesaj gönderin. En kısa sürede güncelliyoruz.",
+       "For data errors or missing players, please send a message with the player name and correct info. We update as soon as possible.")}
     </p>
     </div>
     """, unsafe_allow_html=True)
@@ -1865,23 +1882,31 @@ if st.session_state["sayfa"] == "iletisim":
 # ─── TALEP / DANIŞMANLIK SAYFASI ─────────────────────────────────────────────
 if st.session_state["sayfa"] == "talep":
     # Hero
-    st.markdown("""
+    st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:16px;
         padding:24px 30px;border-left:5px solid #00c853;margin-bottom:22px;'>
-      <h1 style='font-size:1.5rem;margin:0 0 6px;color:#fff;'>⚽ Kadronu birlikte kuralım</h1>
+      <h1 style='font-size:1.5rem;margin:0 0 6px;color:#fff;'>{t("⚽ Kadronu birlikte kuralım", "⚽ Let's build your squad together")}</h1>
       <p style='color:#a7f3d0;font-size:0.95rem;line-height:1.6;margin:0;'>
-      Doğru oyuncu, doğru veriyle bulunur. Scouting ve kadro planlamada veri + saha gözü
-      birleşiyor — kulübüne özel danışmanlık.</p>
+      {t("Doğru oyuncu, doğru veriyle bulunur. Scouting ve kadro planlamada veri + saha gözü birleşiyor — kulübüne özel danışmanlık.",
+         "The right player is found with the right data. Data and on-field insight combine in scouting and squad planning — consultancy tailored to your club.")}</p>
     </div>
     """, unsafe_allow_html=True)
 
     # Hizmet paketleri
-    st.markdown("##### Hizmetler")
+    st.markdown(t("##### Hizmetler", "##### Services"))
     _paketler = [
-        ("📋", "Oyuncu Raporu", "Tek oyuncu", "Hedeflediğin oyuncu için derinlemesine analiz: kariyer, güçlü/zayıf yönler, uygunluk ve fiyat öngörüsü."),
-        ("🎯", "Mevki Tarama", "Mevki bazlı", "Belirli bir mevkiye bütçene ve oyun stiline uygun en iyi adayların kısa listesi + kıyas."),
-        ("⚖️", "Oyuncu Kıyası", "2-5 oyuncu", "Aklındaki birkaç oyuncu arasında veri + scouting gözüyle hangisini almalısın kararı."),
-        ("🏟️", "Kadro Kurulumu", "Tam kadro", "Takımı baştan kurma / yeniden yapılandırma danışmanlığı: mevki mevki hedef havuzu."),
+        ("📋", t("Oyuncu Raporu", "Player Report"), t("Tek oyuncu", "Single player"),
+         t("Hedeflediğin oyuncu için derinlemesine analiz: kariyer, güçlü/zayıf yönler, uygunluk ve fiyat öngörüsü.",
+           "In-depth analysis of your target player: career, strengths/weaknesses, fit and price estimate.")),
+        ("🎯", t("Mevki Tarama", "Position Scan"), t("Mevki bazlı", "By position"),
+         t("Belirli bir mevkiye bütçene ve oyun stiline uygun en iyi adayların kısa listesi + kıyas.",
+           "Shortlist of the best candidates for a position matching your budget and play style, plus comparison.")),
+        ("⚖️", t("Oyuncu Kıyası", "Player Comparison"), t("2-5 oyuncu", "2-5 players"),
+         t("Aklındaki birkaç oyuncu arasında veri + scouting gözüyle hangisini almalısın kararı.",
+           "Which of the players on your mind to sign, decided with data and scouting insight.")),
+        ("🏟️", t("Kadro Kurulumu", "Squad Building"), t("Tam kadro", "Full squad"),
+         t("Takımı baştan kurma / yeniden yapılandırma danışmanlığı: mevki mevki hedef havuzu.",
+           "Building or rebuilding your team: a target pool position by position.")),
     ]
     _pc = st.columns(2)
     for _i, (_ik, _ad, _et, _ac) in enumerate(_paketler):
@@ -1896,12 +1921,21 @@ if st.session_state["sayfa"] == "talep":
             </div>""", unsafe_allow_html=True)
 
     # Akıllı ön-öneri
-    st.markdown("##### 🔎 Hızlı Ön-Öneri — talep etmeden dene")
-    st.caption("Kriterini seç, sistem havuzdan anında aday önersin. Detaylı rapor için aşağıdan talep et.")
+    st.markdown(t("##### 🔎 Hızlı Ön-Öneri — talep etmeden dene",
+                  "##### 🔎 Quick Pre-Suggestion — try before you request"))
+    st.caption(t("Kriterini seç, sistem havuzdan anında aday önersin. Detaylı rapor için aşağıdan talep et.",
+                 "Pick your criteria and the system suggests candidates instantly. Request a detailed report below."))
+    _kat_en = {"Forvet": "Forward", "Orta Saha": "Midfield", "Defans": "Defense", "Kaleci": "Goalkeeper"}
+    _yas_en = {"Fark etmez": "Any", "≤21": "≤21", "≤24": "≤24", "≤27": "≤27"}
+    _onc_en = {"Gol oranı": "Goal rate", "Asist oranı": "Assist rate",
+               "Deneyim (maç)": "Experience (matches)", "Oynama süresi": "Minutes played"}
     _oc1, _oc2, _oc3 = st.columns(3)
-    _kat   = _oc1.selectbox("Mevki", ["Forvet", "Orta Saha", "Defans", "Kaleci"], key="on_kat")
-    _yas_s = _oc2.selectbox("Yaş", ["Fark etmez", "≤21", "≤24", "≤27"], key="on_yas")
-    _onc   = _oc3.selectbox("Öncelik", ["Gol oranı", "Asist oranı", "Deneyim (maç)", "Oynama süresi"], key="on_onc")
+    _kat   = _oc1.selectbox(t("Mevki", "Position"), ["Forvet", "Orta Saha", "Defans", "Kaleci"],
+                            format_func=lambda x: _kat_en[x] if EN else x, key="on_kat")
+    _yas_s = _oc2.selectbox(t("Yaş", "Age"), ["Fark etmez", "≤21", "≤24", "≤27"],
+                            format_func=lambda x: _yas_en[x] if EN else x, key="on_yas")
+    _onc   = _oc3.selectbox(t("Öncelik", "Priority"), ["Gol oranı", "Asist oranı", "Deneyim (maç)", "Oynama süresi"],
+                            format_func=lambda x: _onc_en[x] if EN else x, key="on_onc")
     _yas_max = {"Fark etmez": 0, "≤21": 21, "≤24": 24, "≤27": 27}[_yas_s]
     _oneriler = akilli_oneri(_kat, _yas_max, _onc)
     _oneri_metni = ""
@@ -1914,52 +1948,68 @@ if st.session_state["sayfa"] == "talep":
             <div style='border:1px solid #1e3a5f;border-radius:10px;padding:12px 16px;
                 background:#0f172a;margin-bottom:8px;'>
               <div style='display:flex;justify-content:space-between;align-items:center;'>
-                <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;'>🔒 Aday #{_idx}</div>
+                <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;'>🔒 {t("Aday","Candidate")} #{_idx}</div>
                 <div style='background:linear-gradient(90deg,#6366f1,#22c55e);color:#fff;
-                    border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700;'>%{_uyg} uygun</div>
+                    border-radius:20px;padding:2px 10px;font-size:0.72rem;font-weight:700;'>%{_uyg} {t("uygun","fit")}</div>
               </div>
-              <div style='color:#94a3b8;font-size:0.78rem;margin:3px 0 6px;'>{o['yas']} yaş
-                &nbsp;·&nbsp; <span style='color:#475569;'>isim & kulüp talepte paylaşılır</span></div>
+              <div style='color:#94a3b8;font-size:0.78rem;margin:3px 0 6px;'>{o['yas']} {t("yaş","y/o")}
+                &nbsp;·&nbsp; <span style='color:#475569;'>{t("isim & kulüp talepte paylaşılır","name & club shared on request")}</span></div>
               <div style='font-size:0.82rem;color:#cbd5e1;'>
-                ⚽ <b style='color:#22c55e;'>{o['gol']}</b> gol &nbsp;·&nbsp;
-                📊 <b>{round(o['gol_mac'],2)}</b> gol/maç &nbsp;·&nbsp; 🎮 {o['mac']} maç</div>
+                ⚽ <b style='color:#22c55e;'>{o['gol']}</b> {t("gol","goals")} &nbsp;·&nbsp;
+                📊 <b>{round(o['gol_mac'],2)}</b> {t("gol/maç","goals/match")} &nbsp;·&nbsp; 🎮 {o['mac']} {t("maç","matches")}</div>
             </div>""", unsafe_allow_html=True)
-        st.info("💡 Bu otomatik ön-öneri. Oyun stili, fiyat öngörüsü, video analiz ve alternatifler "
-                "için aşağıdan **detaylı talep** oluştur — seçtiğin kriter ve öneriler talebe eklenir.")
+        st.info(t("💡 Bu otomatik ön-öneri. Oyun stili, fiyat öngörüsü, video analiz ve alternatifler "
+                  "için aşağıdan **detaylı talep** oluştur — seçtiğin kriter ve öneriler talebe eklenir.",
+                  "💡 This is an automated pre-suggestion. For play style, price estimate, video analysis and "
+                  "alternatives, create a **detailed request** below — your criteria and suggestions are attached."))
     else:
-        st.warning("Bu kritere uygun aday bulunamadı, filtreyi gevşetmeyi dene.")
+        st.warning(t("Bu kritere uygun aday bulunamadı, filtreyi gevşetmeyi dene.",
+                     "No candidate matched this criteria, try loosening the filter."))
 
     # Talep formu
-    st.markdown("##### 📨 Detaylı Talep")
+    st.markdown(t("##### 📨 Detaylı Talep", "##### 📨 Detailed Request"))
+    _tip_opts = [
+        "Belirli bir oyuncu için detaylı rapor",
+        "Belirli bir mevkiye oyuncu önerisi",
+        "Birkaç oyuncu arasında tercih / kıyas",
+        "Takımı baştan kurma danışmanlığı",
+    ]
+    _tip_en = dict(zip(_tip_opts, [
+        "Detailed report on a specific player",
+        "Player suggestion for a position",
+        "Choice / comparison among a few players",
+        "Full squad building consultancy",
+    ]))
     with st.form("talep_form", clear_on_submit=False):
-        tip = st.selectbox("Talep türü", [
-            "Belirli bir oyuncu için detaylı rapor",
-            "Belirli bir mevkiye oyuncu önerisi",
-            "Birkaç oyuncu arasında tercih / kıyas",
-            "Takımı baştan kurma danışmanlığı",
-        ])
+        tip = st.selectbox(t("Talep türü", "Request type"), _tip_opts,
+                           format_func=lambda x: _tip_en[x] if EN else x)
         detay = st.text_area(
-            "Detay / açıklama *", height=120,
-            placeholder="Örn: 23 yaş altı sol bek arıyoruz, fiziksel güçlü, bütçe sınırlı...")
+            t("Detay / açıklama *", "Details / description *"), height=120,
+            placeholder=t("Örn: 23 yaş altı sol bek arıyoruz, fiziksel güçlü, bütçe sınırlı...",
+                          "e.g. Looking for a left-back under 23, physically strong, limited budget..."))
         _c1, _c2 = st.columns(2)
-        isim  = _c1.text_input("Ad Soyad *")
-        kulup = _c2.text_input("Kulüp")
-        email = st.text_input("E-posta / İletişim bilgisi *")
-        gonder = st.form_submit_button("📨 Talebi Gönder", use_container_width=True, type="primary")
+        isim  = _c1.text_input(t("Ad Soyad *", "Full Name *"))
+        kulup = _c2.text_input(t("Kulüp", "Club"))
+        email = st.text_input(t("E-posta / İletişim bilgisi *", "E-mail / Contact info *"))
+        gonder = st.form_submit_button(t("📨 Talebi Gönder", "📨 Send Request"),
+                                       use_container_width=True, type="primary")
     if gonder:
         if not (isim.strip() and email.strip() and detay.strip()):
-            st.error("Lütfen Ad Soyad, E-posta ve Detay alanlarını doldurun.")
+            st.error(t("Lütfen Ad Soyad, E-posta ve Detay alanlarını doldurun.",
+                       "Please fill in Full Name, E-mail and Details."))
         else:
-            with st.spinner("Talebiniz gönderiliyor..."):
+            with st.spinner(t("Talebiniz gönderiliyor...", "Sending your request...")):
                 _k, _m = talep_gonder(tip, isim.strip(), kulup.strip(),
                                       email.strip(), detay.strip(), oneri=_oneri_metni)
             if _k or _m:
-                st.success("✅ Talebiniz alındı! En kısa sürede iletişime geçeceğiz.")
+                st.success(t("✅ Talebiniz alındı! En kısa sürede iletişime geçeceğiz.",
+                             "✅ Your request has been received! We'll get back to you shortly."))
                 st.balloons()
             else:
-                st.warning("Talep şu an kaydedilemedi. Lütfen İletişim sayfasındaki "
-                           "e-posta adresinden bize ulaşın.")
-    st.caption(f"Talepler doğrudan {TALEP_EMAIL} adresine iletilir.")
+                st.warning(t("Talep şu an kaydedilemedi. Lütfen İletişim sayfasındaki e-posta adresinden bize ulaşın.",
+                             "Request could not be saved right now. Please reach us via the e-mail on the Contact page."))
+    st.caption(t(f"Talepler doğrudan {TALEP_EMAIL} adresine iletilir.",
+                 f"Requests are sent directly to {TALEP_EMAIL}."))
     st.stop()
 
 # ─── SCOUTİNG SAYFASI ────────────────────────────────────────────────────────
@@ -2257,9 +2307,9 @@ if not df_tam.empty:
     k1, k2, k3 = st.columns(3)
     en_golcu = df_tam.loc[df_tam["Gol"].idxmax(), "Oyuncu"]
     for kol, sayi, etiket in [
-        (k1, len(df_tam),              "Oyuncu"),
-        (k2, df_tam["Takım"].nunique(), "Takım"),
-        (k3, int(df_tam["Gol"].sum()),  "Toplam Gol"),
+        (k1, len(df_tam),              t("Oyuncu", "Players")),
+        (k2, df_tam["Takım"].nunique(), t("Takım", "Teams")),
+        (k3, int(df_tam["Gol"].sum()),  t("Toplam Gol", "Total Goals")),
     ]:
         kol.markdown(
             f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -2270,16 +2320,17 @@ st.markdown("<br>", unsafe_allow_html=True)
 # ─── DANIŞMANLIK TALEP BANNER (ana sayfada görünür) ───────────────────────────
 _bc1, _bc2 = st.columns([3, 1])
 with _bc1:
-    st.markdown("""
+    st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:12px;
         padding:13px 20px;border-left:4px solid #00c853;'>
-      <div style='color:#fff;font-size:1.05rem;font-weight:700;'>📩 Kadronu birlikte kuralım</div>
+      <div style='color:#fff;font-size:1.05rem;font-weight:700;'>{t("📩 Kadronu birlikte kuralım", "📩 Let's build your squad together")}</div>
       <div style='color:#a7f3d0;font-size:0.85rem;margin-top:2px;'>
-      Oyuncu raporu · mevki önerisi · oyuncu kıyası · tam kadro danışmanlığı — talebini ilet.</div>
+      {t("Oyuncu raporu · mevki önerisi · oyuncu kıyası · tam kadro danışmanlığı — talebini ilet.",
+         "Player report · position suggestion · player comparison · full squad consultancy — send your request.")}</div>
     </div>""", unsafe_allow_html=True)
 with _bc2:
     st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
-    if st.button("📩 Talep / Danışmanlık", use_container_width=True, type="primary"):
+    if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), use_container_width=True, type="primary"):
         st.session_state["sayfa"] = "talep"
         st.rerun()
 
