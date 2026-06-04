@@ -1037,6 +1037,73 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
             st.rerun()
 
 
+# ── Shortlist Karşılaştırma (favori oyuncuları yan yana kıyasla) ──
+def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
+    isimler = [i for i in isimler if i]
+    if len(isimler) < 2:
+        st.info("⚖️ Karşılaştırma için shortlist'inde en az 2 oyuncu olmalı.")
+        return
+    veri = []
+    for isim in isimler:
+        sd  = sd_data.get(isim, {})
+        sez = [s for s in leistung_data.get(isim, {}).get("sezonlar", []) if not s.get("milli")]
+        mac = sum(s.get("mac", 0) for s in sez)
+        veri.append({
+            "isim": isim, "sd": sd, "mac": mac,
+            "gol":   sum(s.get("gol", 0) for s in sez),
+            "asist": sum(s.get("asist", 0) for s in sez),
+            "dakika":sum(s.get("dakika", 0) for s in sez),
+            "gol_mac":   sum(s.get("gol", 0) for s in sez) / mac if mac else 0,
+            "asist_mac": sum(s.get("asist", 0) for s in sez) / mac if mac else 0,
+            "dk_mac":    sum(s.get("dakika", 0) for s in sez) / mac if mac else 0,
+        })
+    # Özet tablo
+    rows = "".join(
+        f"<tr>"
+        f"<td style='padding:5px 8px;font-weight:600;color:#f1f5f9'>{v['isim']}</td>"
+        f"<td style='padding:5px 8px'>{v['sd'].get('Position','—')}</td>"
+        f"<td style='padding:5px 8px'>{v['sd'].get('Nationality','—')}</td>"
+        f"<td style='padding:5px 8px'>{v['sd'].get('Age','?')}</td>"
+        f"<td style='padding:5px 8px;text-align:right'>{v['mac']}</td>"
+        f"<td style='padding:5px 8px;text-align:right'>{v['gol']}</td>"
+        f"<td style='padding:5px 8px;text-align:right'>{v['asist']}</td>"
+        f"<td style='padding:5px 8px;text-align:right'>{v['dakika']}</td></tr>"
+        for v in veri)
+    st.markdown(f"""
+<table style="width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:14px;">
+  <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
+    <th style="text-align:left;padding:6px 8px;">Oyuncu</th>
+    <th style="text-align:left;padding:6px 8px;">Mevki</th>
+    <th style="text-align:left;padding:6px 8px;">Ülke</th>
+    <th style="text-align:left;padding:6px 8px;">Yaş</th>
+    <th style="text-align:right;padding:6px 8px;">Maç</th>
+    <th style="text-align:right;padding:6px 8px;">Gol</th>
+    <th style="text-align:right;padding:6px 8px;">Asist</th>
+    <th style="text-align:right;padding:6px 8px;">Dk</th>
+  </tr></thead><tbody>{rows}</tbody></table>""", unsafe_allow_html=True)
+    # Radar overlay (shortlist içi göreceli normalize)
+    eksenler = [("Gol/Maç", "gol_mac"), ("Asist/Maç", "asist_mac"),
+                ("Dakika/Maç", "dk_mac"), ("Deneyim", "mac")]
+    maxv = {fe: (max((v[fe] for v in veri), default=1) or 1) for _, fe in eksenler}
+    fig = go.Figure()
+    renkler = ["#22c55e", "#3b82f6", "#f59e0b", "#e040fb", "#06b6d4", "#ef4444"]
+    for idx, v in enumerate(veri):
+        r = [round(v[fe] / maxv[fe] * 100) for _, fe in eksenler]
+        theta = [ad for ad, _ in eksenler]
+        fig.add_trace(go.Scatterpolar(
+            r=r + [r[0]], theta=theta + [theta[0]], fill="toself", name=v["isim"],
+            line=dict(color=renkler[idx % len(renkler)]), opacity=0.55))
+    fig.update_layout(
+        height=400, paper_bgcolor="rgba(0,0,0,0)", font=dict(color="#cbd5e1", size=11),
+        margin=dict(l=50, r=50, t=20, b=40),
+        legend=dict(orientation="h", y=-0.12),
+        polar=dict(bgcolor="rgba(0,0,0,0)",
+                   radialaxis=dict(range=[0, 100], gridcolor="#1e293b", tickfont=dict(size=9)),
+                   angularaxis=dict(gridcolor="#334155")))
+    st.caption("Radar: shortlist içindeki en yüksek değere göre oranlanmıştır (göreceli kıyas)")
+    st.plotly_chart(fig, use_container_width=True)
+
+
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
     sd_data = scouting_sd_yukle()
@@ -1718,6 +1785,11 @@ if st.session_state.get("sayfa") == "scouting":
             st.markdown(
                 f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:6px 0 12px;'>"
                 f"{_bulundu_txt}</div>", unsafe_allow_html=True)
+
+            if sadece_sl and len(filtered) >= 2:
+                with st.expander("⚖️ Shortlist Karşılaştırma", expanded=True):
+                    shortlist_karsilastirma_goster(
+                        filtered[isim_col].tolist(), sd_data, leistung_data)
 
             if filtered.empty:
                 st.info("Filtrelerle eşleşen oyuncu yok.")

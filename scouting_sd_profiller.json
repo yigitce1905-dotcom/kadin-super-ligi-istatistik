@@ -1940,10 +1940,6 @@
     "profil_url": "https://www.soccerdonna.de/en/nycole-raysla/profil/spieler_42248.html",
     "vatandaslik": "Brezilya"
   },
-  "Joseph Shwendwsky": {
-    "vatandaslik": "Haiti",
-    "bulunamadi": true
-  },
   "Kathleen McGovern": {
     "© SC Sand": "Date of birth:27.06.2002Place of birth:WishawAge:23Name in native country:Kathleen Mary McGovernHeight:1,70Nationality:ScottlandPosition:Striker - Centre ForwardMarket value:unknownContract until:30.06.2026Contract option:Debut (Club):11.08.2024",
     "Date of birth": "27.06.2002",
@@ -2339,8 +2335,23 @@
     "vatandaslik": "Gana"
   },
   "Viktoria Valyuk": {
-    "vatandaslik": "Beyaz Rusya",
-    "bulunamadi": true
+    "© ABFF": "Date of birth:30.06.2002Place of birth:MaladsetschnaAge:23Name in native country:Виктория ВалюкHeight:1,74Nationality:BelarusPosition:Striker - Centre ForwardFoot:rightMarket value:unknownContract until:?Debut (Club):31.01.2026",
+    "Date of birth": "30.06.2002",
+    "Place of birth": "Maladsetschna",
+    "Age": "23",
+    "Name in native country": "Виктория Валюк",
+    "Height": "1,74",
+    "Nationality": "Belarus",
+    "Position": "Striker - Centre Forward",
+    "Foot": "right",
+    "Contract until": "?",
+    "Debut (Club)": "31.01.2026",
+    "SN": "National team",
+    "-": "Belarus U17",
+    "CompetitionMatches": "Matches",
+    "Total": "14",
+    "profil_url": "https://www.soccerdonna.de/en/viktoryia-valyuk/profil/spieler_46258.html",
+    "vatandaslik": "Beyaz Rusya"
   },
   "Edna Imade": {
     "© Liga F": "Date of birth:05.10.2000Place of birth:Age:25Name in native country:Edna ImadeHeight:1,79Nationality:SpainPosition:Striker - Centre ForwardFoot:rightMarket value:550.000 €Contract until:30.06.2029Debut (Club):06.02.2026",
@@ -2561,8 +2572,23 @@
     "vatandaslik": "Macaristan"
   },
   "Sevinc Caferzade": {
-    "vatandaslik": "Azerbaycan",
-    "bulunamadi": true
+    "© fckrasnodar.ru": "Date of birth:01.06.1994Place of birth:ViravulAge:32Name in native country:Sevinc Fayıl qızı CəfərzadəHeight:1,67Nationality:AzerbaijanPosition:Midfield - Midfield, rightFoot:rightMarket value:unknownContract until:31.05.2026Debut (Club):21.09.2025",
+    "Date of birth": "01.06.1994",
+    "Place of birth": "Viravul",
+    "Age": "32",
+    "Name in native country": "Sevinc Fayıl qızı Cəfərzadə",
+    "Height": "1,67",
+    "Nationality": "Azerbaijan",
+    "Position": "Midfield - Midfield, right",
+    "Foot": "right",
+    "Contract until": "31.05.2026",
+    "Debut (Club)": "21.09.2025",
+    "SN": "National team",
+    "-": "Aserbaidschan U19",
+    "CompetitionMatches": "Matches",
+    "Total": "25",
+    "profil_url": "https://www.soccerdonna.de/en/sevinj-jafarzade/profil/spieler_34988.html",
+    "vatandaslik": "Azerbaycan"
   },
   "Morgane Belkhiter": {
     "© CAF": "Date of birth:23.11.1995Place of birth:La CiotatAge:30Name in native country:مورغان بلخيترHeight:1,70Nationality:AlgeriaFrancePosition:Defence - Fullback, rightFoot:rightMarket value:30.000 €Contract until:30.06.2026Debut (Club):09.12.2023",
@@ -2615,8 +2641,21 @@
     "vatandaslik": "Amerika Birleşik Devletleri"
   },
   "Laurie Moise": {
-    "vatandaslik": "Amerika Birleşik Devletleri",
-    "bulunamadi": true
+    "Photo: unknown": "Date of birth:04.01.2001Place of birth:Montreal, QuebecAge:25Name in native country:Laurie-Ann MoïseHeight:1,70Nationality:HaitiCanadaPosition:Striker - Left WingFoot:leftMarket value:unknownContract until:?",
+    "Date of birth": "04.01.2001",
+    "Place of birth": "Montreal, Quebec",
+    "Age": "25",
+    "Name in native country": "Laurie-Ann Moïse",
+    "Height": "1,70",
+    "Nationality": "HaitiCanada",
+    "Position": "Striker - Left Wing",
+    "Foot": "left",
+    "Contract until": "?",
+    "SN": "National team",
+    "-": "Haiti",
+    "CompetitionMatches": "Matches",
+    "profil_url": "https://www.soccerdonna.de/en/laurie-ann-moise/profil/spieler_99816.html",
+    "vatandaslik": "Amerika Birleşik Devletleri"
   },
   "Olga Massombo": {
     "© CAF": "Date of birth:20.04.1999Place of birth:KinshasaAge:27Height:1,73Nationality:Congo DRCanadaPosition:Striker - Centre ForwardFoot:bothMarket value:unknownContract until:30.06.2026Debut (Club):25.01.2026",
@@ -2636,8 +2675,20 @@
     "vatandaslik": "Kanada"
   },
   "Layssa Oliveira": {
-    "vatandaslik": "Brezilya",
-    "bulunamadi": true
+    "Photo: unknown": "Date of birth:23.05.2002Place of birth:ItapaciAge:24Name in native country:Layssa Cristina Oliveira dos SantosHeight:1,65Nationality:BrazilPosition:Striker - Second StrikerFoot:bothMarket value:unknownContract until:31.12.2026",
+    "Date of birth": "23.05.2002",
+    "Place of birth": "Itapaci",
+    "Age": "24",
+    "Name in native country": "Layssa Cristina Oliveira dos Santos",
+    "Height": "1,65",
+    "Nationality": "Brazil",
+    "Position": "Striker - Second Striker",
+    "Foot": "both",
+    "Contract until": "31.12.2026",
+    "SN": "National team",
+    "-": "Brasilien U17",
+    "profil_url": "https://www.soccerdonna.de/en/layssa/profil/spieler_52368.html",
+    "vatandaslik": "Brezilya"
   },
   "Clarissa Larisey": {
     "© IMAGO": "Date of birth:02.07.1999Place of birth:Ottawa, OntarioAge:26Height:1,65Nationality:CanadaPosition:Striker - Centre ForwardFoot:rightMarket value:70.000 €Contract until:31.12.2027Debut (Club):25.08.2025",
@@ -3171,8 +3222,22 @@
     "vatandaslik": "Lüksemburg"
   },
   "Rafaela Rufino": {
-    "vatandaslik": "Brezilya",
-    "bulunamadi": true
+    "Photo: unknown": "Date of birth:16.09.1993Place of birth:TimoteoAge:32Name in native country:Rafaela de Oliveira RufinoHeight:1,69Nationality:BrazilPosition:Midfield - Defensive MidfieldFoot:rightMarket value:unknownContract until:30.06.2027:24.06.2025Debut (Club):03.09.2023",
+    "Date of birth": "16.09.1993",
+    "Place of birth": "Timoteo",
+    "Age": "32",
+    "Name in native country": "Rafaela de Oliveira Rufino",
+    "Height": "1,69",
+    "Nationality": "Brazil",
+    "Position": "Midfield - Defensive Midfield",
+    "Foot": "right",
+    "Contract until": "30.06.2027",
+    "": "24.06.2025",
+    "Debut (Club)": "03.09.2023",
+    "CompetitionMatches": "Matches",
+    "Total": "20",
+    "profil_url": "https://www.soccerdonna.de/en/rafaela-rufino/profil/spieler_68885.html",
+    "vatandaslik": "Brezilya"
   },
   "Michaely Bihina": {
     "Photo: unknown": "Date of birth:28.12.2003Age:22Name in native country:Michaely Kyria BihinaHeight:1,75Nationality:CameroonPosition:GoalkeeperMarket value:unknownContract until:?Debut (Club):10.05.2026",
@@ -3602,8 +3667,20 @@
     "vatandaslik": "Gana"
   },
   "Jolie Louis": {
-    "vatandaslik": "Amerika Birleşik Devletleri",
-    "bulunamadi": true
+    "Photo: unknown": "Date of birth:07.04.2003Place of birth:Atlanta, GeorgiaAge:23Name in native country:Jolie Anais St. LouisHeight:1,75Nationality:Trinidad and TobagoUnited StatesPosition:Striker - Centre ForwardFoot:rightMarket value:unknownContract until:?",
+    "Date of birth": "07.04.2003",
+    "Place of birth": "Atlanta, Georgia",
+    "Age": "23",
+    "Name in native country": "Jolie Anais St. Louis",
+    "Height": "1,75",
+    "Nationality": "Trinidad and TobagoUnited States",
+    "Position": "Striker - Centre Forward",
+    "Foot": "right",
+    "Contract until": "?",
+    "SN": "National team",
+    "17": "Trinidad & Tobago",
+    "profil_url": "https://www.soccerdonna.de/en/jolie-st-louis/profil/spieler_73861.html",
+    "vatandaslik": "Amerika Birleşik Devletleri"
   },
   "Izzy Engle": {
     "Photo: unknown": "Date of birth:20.07.2006Place of birth:Edina, MinnesotaAge:19Name in native country:Isabela Cristina Lohmann EngleHeight:1,75Nationality:United StatesPosition:Striker - Left WingFoot:rightMarket value:unknownContract until:?",
