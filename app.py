@@ -1722,8 +1722,9 @@ bas_sol, nav1, nav2, nav3, nav4, nav5 = st.columns([3, 1, 1, 1, 1, 1])
 with bas_sol:
     st.markdown("""
     <div class="baslik-kutu">
-      <h1>⚽ Türkiye Kadınlar Süper Ligi 2025-2026</h1>
-      <p>30 haftanın tüm oyuncu istatistikleri — maç, gol, kart, dakika, forma ve karşılaştırma</p>
+      <h1>⚽ Kadın Futbolu Veri &amp; Scouting Platformu</h1>
+      <p>Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu ·
+      kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı</p>
     </div>""", unsafe_allow_html=True)
 with nav1:
     st.markdown("<br>", unsafe_allow_html=True)
