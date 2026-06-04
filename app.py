@@ -116,6 +116,13 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     /* Sekme etiketleri küçük */
     [data-testid="stTabs"] button { font-size:0.75rem !important; padding:6px 8px !important; }
 
+    /* Nav / aksiyon butonları mobilde kompakt */
+    [data-testid="stButton"] button {
+        font-size:0.8rem !important; padding:6px 8px !important; min-height:0 !important;
+    }
+    /* Banner + buton dikey yığılınca aralık */
+    [data-testid="stHorizontalBlock"] [data-testid="column"] { margin-bottom:6px; }
+
     /* Genel padding azalt */
     .block-container { padding:1rem 0.75rem !important; }
 
