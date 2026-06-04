@@ -962,6 +962,81 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
             st.rerun()
 
 
+# ── Radar grafiği (mevki içi yüzdelik profil) ──
+def radar_goster(isim, kaynak):
+    havuz = _benzer_havuz(kaynak)
+    q = next((o for o in havuz if o["isim"] == isim), None)
+    if not q or q["kat"] == "?":
+        return
+    grup = [o for o in havuz if o["kat"] == q["kat"]]
+    if len(grup) < 3:
+        return
+    eksenler = [("Gol/Maç", "gol_mac"), ("Asist/Maç", "asist_mac"),
+                ("Dakika/Maç", "dk_mac"), ("Deneyim", "mac")]
+    r, theta = [], []
+    for ad, fe in eksenler:
+        vals = [o[fe] for o in grup]
+        rank = sum(1 for v in vals if v <= q[fe])
+        r.append(round(rank / len(vals) * 100) if vals else 0)
+        theta.append(ad)
+    fig = go.Figure(go.Scatterpolar(
+        r=r + [r[0]], theta=theta + [theta[0]], fill="toself",
+        line=dict(color="#6366f1"), fillcolor="rgba(99,102,241,0.30)"))
+    fig.update_layout(
+        height=320, paper_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1", size=11), margin=dict(l=50, r=50, t=30, b=30),
+        polar=dict(bgcolor="rgba(0,0,0,0)",
+                   radialaxis=dict(range=[0, 100], gridcolor="#1e293b", tickfont=dict(size=9)),
+                   angularaxis=dict(gridcolor="#334155")),
+        showlegend=False)
+    st.markdown(f"#### 🕸️ {q['kat']} Profili")
+    st.caption("Aynı mevkideki oyunculara göre yüzdelik dilim (100 = en iyi)")
+    st.plotly_chart(fig, use_container_width=True)
+
+
+# ── Çapraz transfer hedefi (ana lig oyuncusuna benzeyen scouting adayları) ──
+def _benzer_skor(q, o, rng, feats):
+    fark, n = 0.0, 0
+    for fe in feats:
+        if not rng[fe]:
+            continue
+        lo, hi = rng[fe]
+        if hi == lo:
+            continue
+        fark += ((q[fe] - lo) / (hi - lo) - (o[fe] - lo) / (hi - lo)) ** 2
+        n += 1
+    return round((1 - (fark / n) ** 0.5) * 100, 1) if n else 0.0
+
+
+def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scouting"):
+    h = _benzer_havuz(hedef_kaynak)
+    a = _benzer_havuz(aday_kaynak)
+    q = next((o for o in h if o["isim"] == hedef_isim), None)
+    if not q or q["kat"] == "?":
+        return
+    grup = [o for o in a if o["kat"] == q["kat"]]
+    if not grup:
+        return
+    feats = ["yas", "boy", "mac", "gol_mac", "asist_mac", "dk_mac"]
+    rng = {}
+    for fe in feats:
+        vals = [o[fe] for o in grup if o[fe] > 0]
+        if q[fe] > 0:
+            vals = vals + [q[fe]]
+        rng[fe] = (min(vals), max(vals)) if len(vals) >= 2 else None
+    ad = sorted(((_benzer_skor(q, o, rng, feats), o) for o in grup),
+                reverse=True, key=lambda x: x[0])
+    if not ad:
+        return
+    st.markdown("#### 🌍 Benzer Transfer Hedefleri")
+    st.caption("Scouting havuzundan bu oyuncuya en yakın yabancı adaylar")
+    for s, o in ad[:5]:
+        if st.button(f"%{s}  ·  {o['isim']}  ·  {o['yas']:.0f} yaş · {o['ulke']}",
+                     key=f"capraz_{o['isim']}", use_container_width=True):
+            st.query_params["oyuncu"] = o["isim"]
+            st.rerun()
+
+
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
     sd_data = scouting_sd_yukle()
@@ -998,6 +1073,7 @@ def render_scouting_detay(tam_isim):
     _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
     if _sezonlar:
         kariyer_trend_goster(_sezonlar)
+        radar_goster(tam_isim, "scouting")
         st.markdown("#### ⚽ Tüm Kariyer Performansı")
         _satir_html = ""
         for _s in _sezonlar:
@@ -1351,10 +1427,15 @@ def render_ana_lig_profil(secili):
         if _al_sezon:
             st.markdown("---")
             kariyer_trend_goster(_al_sezon)
+            radar_goster(secili, "analig")
 
         # Benzer oyuncular (ana lig havuzu)
         st.markdown("---")
         benzer_oyuncular_goster(secili, "analig")
+
+        # Benzer transfer hedefleri (scouting havuzundan — çapraz)
+        st.markdown("---")
+        capraz_transfer_goster(secili)
 
 
 # ─── PAYLAŞILABILIR LİNK: URL parametresi varsa otomatik profil aç ──────────
