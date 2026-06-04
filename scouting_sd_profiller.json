@@ -3439,10 +3439,6 @@
     "profil_url": "https://www.soccerdonna.de/en/ana-milovic/profil/spieler_35346.html",
     "vatandaslik": "Slovenya"
   },
-  "Lorall Romain": {
-    "vatandaslik": "Amerika Birleşik Devletleri",
-    "bulunamadi": true
-  },
   "Ekaterina Miklashevich": {
     "© ABFF": "Date of birth:25.01.1992Place of birth:MaladzyechnaAge:34Name in native country:Миклашевич Екатерина ЛеонидовнаHeight:1,78Nationality:BelarusPosition:GoalkeeperFoot:rightMarket value:unknownContract until:?Debut (Club):11.04.2012",
     "Date of birth": "25.01.1992",
@@ -3497,10 +3493,6 @@
     "23/24": "25.11.2023",
     "profil_url": "https://www.soccerdonna.de/en/sofia-lvarez/profil/spieler_43803.html",
     "vatandaslik": "Meksika"
-  },
-  "Suwaibatu Mohammed": {
-    "vatandaslik": "Gana",
-    "bulunamadi": true
   },
   "Lily Bryant": {
     "Photo: unknown": "Date of birth:23.09.2002Age:23Nationality:United StatesPosition:MidfieldMarket value:unknownContract until:30.06.2027:20.05.2026Debut (Club):13.09.2025",
@@ -4403,5 +4395,22 @@
     "CompetitionMatches": "Matches",
     "Total": "9",
     "profil_url": "https://www.soccerdonna.de/en/chloe-ngazi/profil/spieler_19079.html"
+  },
+  "Joseph Shwendwsky": {
+    "© Zenit St. Petersburg": "Date of birth:18.11.1997Place of birth:DelmasAge:28Name in native country:Shwendesky Macélus JosephHeight:1,78Nationality:HaitiPosition:Striker - Centre ForwardMarket value:unknownContract until:?Debut (Club):19.08.2022",
+    "Date of birth": "18.11.1997",
+    "Place of birth": "Delmas",
+    "Age": "28",
+    "Name in native country": "Shwendesky Macélus Joseph",
+    "Height": "1,78",
+    "Nationality": "Haiti",
+    "Position": "Striker - Centre Forward",
+    "Contract until": "?",
+    "Debut (Club)": "19.08.2022",
+    "SN": "National team",
+    "-": "Haiti",
+    "CompetitionMatches": "Matches",
+    "profil_url": "https://www.soccerdonna.de/en/kiki/profil/spieler_68792.html",
+    "vatandaslik": "Haiti"
   }
 }

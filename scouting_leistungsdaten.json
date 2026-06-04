@@ -43821,5 +43821,186 @@
   "Jolie Louis": {
     "sezonlar": [],
     "guncelleme": "2026-06-04"
+  },
+  "Joseph Shwendwsky": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 63,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 23,
+        "gol": 5,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1144,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Zenit",
+        "lig": "Russian Women’s Cup",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 245,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Zenit",
+        "lig": "Supercup Liga",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 84,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 24,
+        "gol": 7,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 864,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Zenit",
+        "lig": "Russian Women’s Cup",
+        "mac": 2,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 92,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Zenit",
+        "lig": "Supercup Liga",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 7,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 15,
+        "gol": 3,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 458,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Superliga Championship Round",
+        "mac": 5,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 141,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Russian Women’s Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 11,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Supercup Liga",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 38,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Haiti",
+        "lig": "World Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 2,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Haiti",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 27,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Rubin Kazan",
+        "lig": "Superliga",
+        "mac": 17,
+        "gol": 7,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 1121,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Rubin Kazan",
+        "lig": "Superliga Championship Round",
+        "mac": 6,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 159,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Rubin Kazan",
+        "lig": "Russian Women’s Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 58,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-04"
   }
 }
