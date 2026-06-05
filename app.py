@@ -18,8 +18,11 @@ except ImportError:
     _GROQ_OK = False
 from bs4 import BeautifulSoup
 
+_page_title = ("Turkish Women's Super League 2025-2026"
+               if st.session_state.get("dil") == "EN"
+               else "Türkiye Kadınlar Süper Ligi 2025-2026")
 st.set_page_config(
-    page_title="Türkiye Kadınlar Süper Ligi 2025-2026",
+    page_title=_page_title,
     page_icon="⚽", layout="wide",
 )
 
@@ -157,7 +160,7 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 def veri_yukle():
     yol = pathlib.Path(__file__).parent / "oyuncular.json"
     if not yol.exists():
-        st.warning("oyuncular.json bulunamadı.")
+        st.warning(t("oyuncular.json bulunamadı.", "oyuncular.json not found."))
         return pd.DataFrame(), []
     with open(yol, encoding="utf-8") as f:
         liste = json.load(f)
@@ -266,14 +269,14 @@ def giris_gerekli_ekrani():
                padding:28px;text-align:center;margin-bottom:24px;'>
             <div style='font-size:36px;margin-bottom:10px;'>🔐</div>
             <div style='font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;'>
-              Bu özellik giriş gerektiriyor</div>
+              {t("Bu özellik giriş gerektiriyor", "This feature requires login")}</div>
             <div style='font-size:13px;color:#8899aa;line-height:1.7;margin-bottom:16px;'>
-              Transfer Öner, Gelişmiş Arama ve Oyuncu Profili;<br>
-              <b style='color:#e0e0e0;'>kulüpler, menajerler ve scout profesyonellere</b> özel içeriklerdir.<br>
-              Sol üstteki <b style='color:#00c853;'>🔐 Giriş</b> butonunu kullanarak devam edebilirsiniz.
+              {t("Transfer Öner, Gelişmiş Arama ve Oyuncu Profili;", "Transfer Suggest, Advanced Search and Player Profile are")}<br>
+              <b style='color:#e0e0e0;'>{t("kulüpler, menajerler ve scout profesyonellere", "exclusive content for clubs, agents and scouting professionals")}</b>{t(" özel içeriklerdir.", ".")}<br>
+              {t("Sol üstteki", "Use the")} <b style='color:#00c853;'>🔐 {t("Giriş", "Login")}</b> {t("butonunu kullanarak devam edebilirsiniz.", "button at the top left to continue.")}
             </div>
             <div style='font-size:12px;color:#505870;'>
-              Hesabınız yoksa 📬 İletişim sayfasından bize ulaşın.
+              {t("Hesabınız yoksa 📬 İletişim sayfasından bize ulaşın.", "If you don't have an account, reach us via the 📬 Contact page.")}
             </div>
           </div>
 
@@ -282,7 +285,7 @@ def giris_gerekli_ekrani():
                border:1px solid #1e2340;'>
             <div style='color:#00c853;font-weight:700;font-size:0.88rem;
                  letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;'>
-              ⚡ PRO Pakete Dahil Olanlar
+              ⚡ {t("PRO Pakete Dahil Olanlar", "Included in the PRO Package")}
             </div>
             {ozellik_satiri}
           </div>
@@ -293,9 +296,9 @@ def giris_gerekli_ekrani():
                  border:2px solid #00c853;border-radius:12px;padding:14px 32px;
                  display:inline-block;'>
               <div style='color:#00c853;font-size:0.75rem;font-weight:700;
-                   letter-spacing:2px;text-transform:uppercase;'>PRO Paket</div>
+                   letter-spacing:2px;text-transform:uppercase;'>{t("PRO Paket", "PRO Package")}</div>
               <div style='color:#fff;font-size:2rem;font-weight:900;line-height:1.1;'>
-                4.999 <span style='font-size:1rem;color:#8899aa;'>TL/ay</span>
+                4.999 <span style='font-size:1rem;color:#8899aa;'>{t("TL/ay", "TL/mo")}</span>
               </div>
             </span>
           </div>
@@ -310,11 +313,11 @@ def giris_formu():
     """Sidebar'da giriş formu gösterir."""
     if st.session_state.get("kulup_giris"):
         return
-    with st.sidebar.expander("🔐 Giriş", expanded=False):
+    with st.sidebar.expander(t("🔐 Giriş", "🔐 Login"), expanded=False):
         with st.form("giris_form", clear_on_submit=True):
-            ku = st.text_input("Kullanıcı adı", placeholder="fenerbahce")
-            si = st.text_input("Şifre", type="password", placeholder="••••")
-            if st.form_submit_button("Giriş Yap", use_container_width=True):
+            ku = st.text_input(t("Kullanıcı adı", "Username"), placeholder="fenerbahce")
+            si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
+            if st.form_submit_button(t("Giriş Yap", "Log In"), use_container_width=True):
                 sonuc = giris_dogrula(ku.strip(), si.strip())
                 if sonuc:
                     st.session_state["kulup_giris"]    = True
@@ -325,7 +328,7 @@ def giris_formu():
                     st.session_state["kulup_pro"]      = sonuc.get("pro", False)
                     st.rerun()
                 else:
-                    st.error("Kullanıcı adı veya şifre hatalı.")
+                    st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
 
 
 def pro_kontrol() -> bool:
@@ -339,21 +342,23 @@ def pro_kontrol() -> bool:
 
 
 _PRO_OZELLIKLER = [
-    ("🗄️", "Tüm Oyuncu Veri Tabanına Erişim",          "Süper Lig'deki her oyuncunun tam istatistik geçmişi"),
-    ("📊", "Sıralanabilir Gelişmiş İstatistikler",      "Maç, gol, dakika, kart — tüm metrikler anlık sıralama"),
-    ("🔍", "Akıllı Oyuncu Arama",                       "Uyruk, yaş aralığı, mevki ve performansa göre filtrele"),
-    ("⭐", "Oyuncu Listem — Favori Kaydetme",            "Takip ettiğin oyuncuları kişisel listende topla"),
-    ("📝", "Not Ekle + PDF Yazdır / Kaydet",            "Her oyuncu kartına özel not ekle, raporunu dışa aktar"),
-    ("🏗️", "Stratejik Kadro Planlama Desteği",          "Bütçe ve ihtiyaca göre akıllı kadro kurma senaryoları"),
-    ("🔄", "Talep Üzerine Oyuncu Önerileri",            "Tek tıkla mevki + bütçe bazlı transfer öneri motoru"),
-    ("🎯", "Talep Üzerine Oyuncu Değerlendirmesi",      "AI destekli detaylı bireysel oyuncu analiz raporu"),
-    ("🎬", "Video Analizleri",                          "Seçili oyuncular için maç klibi ve taktik breakdown"),
-    ("🔑", "365 Gün Kesintisiz Erişim",                 "Tüm sezon boyunca platform sınırsız kullanım"),
+    ("🗄️", t("Tüm Oyuncu Veri Tabanına Erişim", "Access to the Full Player Database"),          t("Süper Lig'deki her oyuncunun tam istatistik geçmişi", "Complete stats history of every player in the Super League")),
+    ("📊", t("Sıralanabilir Gelişmiş İstatistikler", "Sortable Advanced Statistics"),      t("Maç, gol, dakika, kart — tüm metrikler anlık sıralama", "Matches, goals, minutes, cards — all metrics instantly sortable")),
+    ("🔍", t("Akıllı Oyuncu Arama", "Smart Player Search"),                       t("Uyruk, yaş aralığı, mevki ve performansa göre filtrele", "Filter by nationality, age range, position and performance")),
+    ("⭐", t("Oyuncu Listem — Favori Kaydetme", "My Player List — Save Favorites"),            t("Takip ettiğin oyuncuları kişisel listende topla", "Collect the players you follow in a personal list")),
+    ("📝", t("Not Ekle + PDF Yazdır / Kaydet", "Add Notes + Print / Save PDF"),            t("Her oyuncu kartına özel not ekle, raporunu dışa aktar", "Add custom notes to each player card, export the report")),
+    ("🏗️", t("Stratejik Kadro Planlama Desteği", "Strategic Squad Planning Support"),          t("Bütçe ve ihtiyaca göre akıllı kadro kurma senaryoları", "Smart squad-building scenarios based on budget and needs")),
+    ("🔄", t("Talep Üzerine Oyuncu Önerileri", "On-Demand Player Suggestions"),            t("Tek tıkla mevki + bütçe bazlı transfer öneri motoru", "One-click position + budget based transfer suggestion engine")),
+    ("🎯", t("Talep Üzerine Oyuncu Değerlendirmesi", "On-Demand Player Assessment"),      t("AI destekli detaylı bireysel oyuncu analiz raporu", "AI-powered detailed individual player analysis report")),
+    ("🎬", t("Video Analizleri", "Video Analyses"),                          t("Seçili oyuncular için maç klibi ve taktik breakdown", "Match clips and tactical breakdown for selected players")),
+    ("🔑", t("365 Gün Kesintisiz Erişim", "365 Days of Uninterrupted Access"),                 t("Tüm sezon boyunca platform sınırsız kullanım", "Unlimited platform use throughout the season")),
 ]
 
 
-def pro_paywall_goster(ozellik_adi: str = "Bu özellik"):
+def pro_paywall_goster(ozellik_adi: str = None):
     """PRO üyelik satın alma sayfasını gösterir."""
+    if ozellik_adi is None:
+        ozellik_adi = t("Bu özellik", "This feature")
     st.markdown("<br>", unsafe_allow_html=True)
 
     ozellik_satiri = "".join(
@@ -375,9 +380,9 @@ def pro_paywall_goster(ozellik_adi: str = "Bu özellik"):
                padding:16px 22px;display:flex;align-items:center;gap:14px;margin-bottom:28px;'>
             <span style='font-size:1.6rem;'>🔒</span>
             <div>
-              <div style='color:#f0c040;font-weight:700;font-size:0.95rem;'>{ozellik_adi} PRO üyelik gerektirir</div>
+              <div style='color:#f0c040;font-weight:700;font-size:0.95rem;'>{ozellik_adi} {t("PRO üyelik gerektirir", "requires PRO membership")}</div>
               <div style='color:#8899aa;font-size:0.8rem;margin-top:3px;'>
-                Aşağıdaki paketi aktifleştirerek tüm özelliklere anında erişebilirsiniz.
+                {t("Aşağıdaki paketi aktifleştirerek tüm özelliklere anında erişebilirsiniz.", "Activate the package below to instantly access all features.")}
               </div>
             </div>
           </div>
@@ -387,36 +392,36 @@ def pro_paywall_goster(ozellik_adi: str = "Bu özellik"):
                border:2px solid #00c853;border-radius:16px;padding:28px 32px;margin-bottom:28px;
                text-align:center;'>
             <div style='font-size:0.8rem;color:#00c853;letter-spacing:2px;font-weight:700;
-                 text-transform:uppercase;margin-bottom:8px;'>⚡ PRO Paket</div>
+                 text-transform:uppercase;margin-bottom:8px;'>⚡ {t("PRO Paket", "PRO Package")}</div>
             <div style='font-size:2.8rem;font-weight:900;color:#fff;line-height:1;'>
               4.999 <span style='font-size:1.4rem;color:#8899aa;'>TL</span>
             </div>
-            <div style='color:#8899aa;font-size:0.82rem;margin-top:4px;'>aylık · KDV dahil</div>
+            <div style='color:#8899aa;font-size:0.82rem;margin-top:4px;'>{t("aylık · KDV dahil", "monthly · VAT included")}</div>
             <div style='margin-top:18px;'>
               <span style='background:#00c853;color:#000;font-weight:700;font-size:0.85rem;
                    border-radius:8px;padding:10px 28px;display:inline-block;'>
-                Satın Al — Hemen Başla
+                {t("Satın Al — Hemen Başla", "Buy Now — Get Started")}
               </span>
             </div>
             <div style='color:#505870;font-size:0.75rem;margin-top:10px;'>
-              İptal prosedürü yok · İstediğin an durdur
+              {t("İptal prosedürü yok · İstediğin an durdur", "No cancellation hassle · Stop anytime")}
             </div>
           </div>
 
           <!-- Özellik listesi -->
           <div style='background:#12161f;border-radius:12px;padding:20px 24px;'>
             <div style='color:#fff;font-weight:700;font-size:0.9rem;margin-bottom:4px;'>
-              PRO pakete dahil olanlar:
+              {t("PRO pakete dahil olanlar:", "Included in the PRO package:")}
             </div>
             {ozellik_satiri}
           </div>
 
           <!-- Alt not -->
           <div style='text-align:center;margin-top:20px;color:#505870;font-size:0.78rem;'>
-            Kurumsal teklif veya demo için
+            {t("Kurumsal teklif veya demo için", "For a corporate offer or demo, write to")}
             <a href='mailto:info@heroyun.com' style='color:#00c853;text-decoration:none;'>
               info@heroyun.com
-            </a> adresine yazın.
+            </a>{t(" adresine yazın.", ".")}
           </div>
 
         </div>
@@ -1002,9 +1007,9 @@ def _kariyer_trend_figuru(sezonlar):
     asist = [agg[x]["asist"] for x in sz]
     dk    = [agg[x]["dakika"] for x in sz]
     fig = go.Figure()
-    fig.add_trace(go.Bar(x=sz, y=gol, name="Gol", marker_color="#22c55e"))
-    fig.add_trace(go.Bar(x=sz, y=asist, name="Asist", marker_color="#3b82f6"))
-    fig.add_trace(go.Scatter(x=sz, y=dk, name="Dakika", yaxis="y2",
+    fig.add_trace(go.Bar(x=sz, y=gol, name=t("Gol", "Goals"), marker_color="#22c55e"))
+    fig.add_trace(go.Bar(x=sz, y=asist, name=t("Asist", "Assists"), marker_color="#3b82f6"))
+    fig.add_trace(go.Scatter(x=sz, y=dk, name=t("Dakika", "Minutes"), yaxis="y2",
                              mode="lines+markers", line=dict(color="#f59e0b", width=3)))
     fig.update_layout(
         barmode="group", height=300,
@@ -1012,8 +1017,8 @@ def _kariyer_trend_figuru(sezonlar):
         font=dict(color="#cbd5e1", size=12),
         margin=dict(l=10, r=10, t=28, b=10),
         legend=dict(orientation="h", y=1.18, x=0),
-        yaxis=dict(title="Gol / Asist", gridcolor="#1e293b"),
-        yaxis2=dict(title="Dakika", overlaying="y", side="right", showgrid=False),
+        yaxis=dict(title=t("Gol / Asist", "Goals / Assists"), gridcolor="#1e293b"),
+        yaxis2=dict(title=t("Dakika", "Minutes"), overlaying="y", side="right", showgrid=False),
         xaxis=dict(gridcolor="#1e293b"),
     )
     return fig
@@ -1028,10 +1033,10 @@ def _form_rozeti(sezonlar):
     son    = agg[sz[-1]]["gol"] + agg[sz[-1]]["asist"]
     onceki = agg[sz[-2]]["gol"] + agg[sz[-2]]["asist"]
     if son > onceki:
-        return "<span style='color:#22c55e;'>📈 Yükselişte</span>"
+        return f"<span style='color:#22c55e;'>📈 {t('Yükselişte', 'Rising')}</span>"
     if son < onceki:
-        return "<span style='color:#ef4444;'>📉 Düşüşte</span>"
-    return "<span style='color:#94a3b8;'>➡️ Stabil</span>"
+        return f"<span style='color:#ef4444;'>📉 {t('Düşüşte', 'Declining')}</span>"
+    return f"<span style='color:#94a3b8;'>➡️ {t('Stabil', 'Stable')}</span>"
 
 
 def kariyer_trend_goster(sezonlar):
@@ -1040,7 +1045,7 @@ def kariyer_trend_goster(sezonlar):
     if fig is None:
         return
     rozet = _form_rozeti(sezonlar)
-    st.markdown(f"#### 📈 Kariyer Trendi &nbsp; {rozet}", unsafe_allow_html=True)
+    st.markdown(f"#### 📈 {t('Kariyer Trendi', 'Career Trend')} &nbsp; {rozet}", unsafe_allow_html=True)
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -1136,7 +1141,7 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
 
     adaylar = sorted(((skor(o), o) for o in grup if o["isim"] != hedef_isim),
                      reverse=True, key=lambda x: x[0])
-    return [(o["isim"], s, f"{o['yas']:.0f} yaş · {o['mac']} maç · {o['ulke']}")
+    return [(o["isim"], s, f"{o['yas']:.0f} {t('yaş','yrs')} · {o['mac']} {t('maç','matches')} · {o['ulke']}")
             for s, o in adaylar[:k]]
 
 
@@ -1144,8 +1149,9 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
     sonuc = _benzer_oyuncular(hedef_isim, kaynak)
     if not sonuc:
         return
-    st.markdown("#### 🔎 Benzer Oyuncular")
-    st.caption("Aynı mevki · yaş, boy, deneyim ve gol/asist oranlarına göre")
+    st.markdown(f"#### 🔎 {t('Benzer Oyuncular', 'Similar Players')}")
+    st.caption(t("Aynı mevki · yaş, boy, deneyim ve gol/asist oranlarına göre",
+                 "Same position · based on age, height, experience and goal/assist ratios"))
     for isim, skor, bilgi in sonuc:
         if st.button(f"%{skor}  ·  {isim}  ·  {bilgi}",
                      key=f"benzer_{kaynak}_{isim}", use_container_width=True):
@@ -1162,8 +1168,8 @@ def radar_goster(isim, kaynak):
     grup = [o for o in havuz if o["kat"] == q["kat"]]
     if len(grup) < 3:
         return
-    eksenler = [("Gol/Maç", "gol_mac"), ("Asist/Maç", "asist_mac"),
-                ("Dakika/Maç", "dk_mac"), ("Deneyim", "mac")]
+    eksenler = [(t("Gol/Maç","Goals/Match"), "gol_mac"), (t("Asist/Maç","Assists/Match"), "asist_mac"),
+                (t("Dakika/Maç","Minutes/Match"), "dk_mac"), (t("Deneyim","Experience"), "mac")]
     r, theta = [], []
     for ad, fe in eksenler:
         vals = [o[fe] for o in grup]
@@ -1180,8 +1186,9 @@ def radar_goster(isim, kaynak):
                    radialaxis=dict(range=[0, 100], gridcolor="#1e293b", tickfont=dict(size=9)),
                    angularaxis=dict(gridcolor="#334155")),
         showlegend=False)
-    st.markdown(f"#### 🕸️ {q['kat']} Profili")
-    st.caption("Aynı mevkideki oyunculara göre yüzdelik dilim (100 = en iyi)")
+    st.markdown(f"#### 🕸️ {q['kat']} {t('Profili', 'Profile')}")
+    st.caption(t("Aynı mevkideki oyunculara göre yüzdelik dilim (100 = en iyi)",
+                 "Percentile vs players in the same position (100 = best)"))
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -1219,10 +1226,11 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
                 reverse=True, key=lambda x: x[0])
     if not ad:
         return
-    st.markdown("#### 🌍 Benzer Transfer Hedefleri")
-    st.caption("Scouting havuzundan bu oyuncuya en yakın yabancı adaylar")
+    st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri', 'Similar Transfer Targets')}")
+    st.caption(t("Scouting havuzundan bu oyuncuya en yakın yabancı adaylar",
+                 "Closest foreign candidates to this player from the scouting pool"))
     for s, o in ad[:5]:
-        if st.button(f"%{s}  ·  {o['isim']}  ·  {o['yas']:.0f} yaş · {o['ulke']}",
+        if st.button(f"%{s}  ·  {o['isim']}  ·  {o['yas']:.0f} {t('yaş','yrs')} · {o['ulke']}",
                      key=f"capraz_{o['isim']}", use_container_width=True):
             st.query_params["oyuncu"] = o["isim"]
             st.rerun()
@@ -1232,7 +1240,8 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
 def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
     isimler = [i for i in isimler if i]
     if len(isimler) < 2:
-        st.info("⚖️ Karşılaştırma için shortlist'inde en az 2 oyuncu olmalı.")
+        st.info(t("⚖️ Karşılaştırma için shortlist'inde en az 2 oyuncu olmalı.",
+                  "⚖️ You need at least 2 players in your shortlist to compare."))
         return
     veri = []
     for isim in isimler:
@@ -1263,18 +1272,18 @@ def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
     st.markdown(f"""
 <table style="width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:14px;">
   <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
-    <th style="text-align:left;padding:6px 8px;">Oyuncu</th>
-    <th style="text-align:left;padding:6px 8px;">Mevki</th>
-    <th style="text-align:left;padding:6px 8px;">Ülke</th>
-    <th style="text-align:left;padding:6px 8px;">Yaş</th>
-    <th style="text-align:right;padding:6px 8px;">Maç</th>
-    <th style="text-align:right;padding:6px 8px;">Gol</th>
-    <th style="text-align:right;padding:6px 8px;">Asist</th>
-    <th style="text-align:right;padding:6px 8px;">Dk</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Oyuncu","Player")}</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Mevki","Position")}</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Ülke","Country")}</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Yaş","Age")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("Maç","M")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("Gol","G")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("Asist","A")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("Dk","Min")}</th>
   </tr></thead><tbody>{rows}</tbody></table>""", unsafe_allow_html=True)
     # Radar overlay (shortlist içi göreceli normalize)
-    eksenler = [("Gol/Maç", "gol_mac"), ("Asist/Maç", "asist_mac"),
-                ("Dakika/Maç", "dk_mac"), ("Deneyim", "mac")]
+    eksenler = [(t("Gol/Maç","Goals/Match"), "gol_mac"), (t("Asist/Maç","Assists/Match"), "asist_mac"),
+                (t("Dakika/Maç","Minutes/Match"), "dk_mac"), (t("Deneyim","Experience"), "mac")]
     maxv = {fe: (max((v[fe] for v in veri), default=1) or 1) for _, fe in eksenler}
     fig = go.Figure()
     renkler = ["#22c55e", "#3b82f6", "#f59e0b", "#e040fb", "#06b6d4", "#ef4444"]
@@ -1291,7 +1300,8 @@ def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
         polar=dict(bgcolor="rgba(0,0,0,0)",
                    radialaxis=dict(range=[0, 100], gridcolor="#1e293b", tickfont=dict(size=9)),
                    angularaxis=dict(gridcolor="#334155")))
-    st.caption("Radar: shortlist içindeki en yüksek değere göre oranlanmıştır (göreceli kıyas)")
+    st.caption(t("Radar: shortlist içindeki en yüksek değere göre oranlanmıştır (göreceli kıyas)",
+                 "Radar: scaled to the highest value within the shortlist (relative comparison)"))
     st.plotly_chart(fig, use_container_width=True)
 
 
@@ -1300,7 +1310,7 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
     isimler = sc_df[isim_col].dropna().astype(str).tolist()
     toplam = len(isimler)
     if toplam == 0:
-        st.info("Veri yok.")
+        st.info(t("Veri yok.", "No data."))
         return
     mevki_yok, dob_yok, kariyer_yok, sd_yok = [], [], [], []
     for isim in isimler:
@@ -1315,11 +1325,11 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
         if not leistung_data.get(isim, {}).get("sezonlar"):
             kariyer_yok.append(isim)
     c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric("Toplam", toplam)
-    c2.metric("SD profili yok", len(sd_yok))
-    c3.metric("Mevki eksik", len(mevki_yok))
-    c4.metric("Doğum tarihi eksik", len(dob_yok))
-    c5.metric("Kariyer eksik", len(kariyer_yok))
+    c1.metric(t("Toplam", "Total"), toplam)
+    c2.metric(t("SD profili yok", "No SD profile"), len(sd_yok))
+    c3.metric(t("Mevki eksik", "Missing position"), len(mevki_yok))
+    c4.metric(t("Doğum tarihi eksik", "Missing birth date"), len(dob_yok))
+    c5.metric(t("Kariyer eksik", "Missing career"), len(kariyer_yok))
 
     def _liste(baslik, lst):
         if lst:
@@ -1327,12 +1337,13 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
             st.markdown(f"**{baslik} ({len(lst)}):** <span style='color:#94a3b8;font-size:0.85rem;'>{ozet}</span>",
                         unsafe_allow_html=True)
 
-    _liste("🔴 SD profili bulunamayan", sd_yok)
-    _liste("📌 Mevkii eksik", mevki_yok)
-    _liste("🎂 Doğum tarihi eksik", dob_yok)
-    _liste("⚽ Kariyer verisi eksik", kariyer_yok)
+    _liste(t("🔴 SD profili bulunamayan", "🔴 No SD profile found"), sd_yok)
+    _liste(t("📌 Mevkii eksik", "📌 Missing position"), mevki_yok)
+    _liste(t("🎂 Doğum tarihi eksik", "🎂 Missing birth date"), dob_yok)
+    _liste(t("⚽ Kariyer verisi eksik", "⚽ Missing career data"), kariyer_yok)
     if not (sd_yok or mevki_yok or dob_yok or kariyer_yok):
-        st.success("Tüm oyuncularda mevki, doğum tarihi ve kariyer verisi tam ✅")
+        st.success(t("Tüm oyuncularda mevki, doğum tarihi ve kariyer verisi tam ✅",
+                     "All players have complete position, birth date and career data ✅"))
 
 
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
@@ -1363,9 +1374,9 @@ def render_scouting_detay(tam_isim):
   <hr style="border-color:#334155;">
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px 18px;font-size:0.9rem;color:#cbd5e1;margin-top:10px;">
     <span>🌍 {vatandas}</span>
-    <span>📅 {dob} ({yas} yaş)</span>
-    <span>📏 {boy} · {ayak} ayak</span>
-    <span>📄 Sözleşme: {sozlesme}</span>
+    <span>📅 {dob} ({yas} {t("yaş","yrs")})</span>
+    <span>📏 {boy} · {ayak} {t("ayak","foot")}</span>
+    <span>📄 {t("Sözleşme","Contract")}: {sozlesme}</span>
   </div>
 </div>""", unsafe_allow_html=True)
 
@@ -1377,9 +1388,9 @@ def render_scouting_detay(tam_isim):
         _mrc = _MR_DANIS_RENK.get(_mrd, "#475569")
         _mevk = " · ".join(_dty.get("mevki_kod", []))
         _satirlar = ""
-        for _et, _vl in [("🎭 Rol", _rol), ("🧬 Vücut Tipi", _dty.get("vucut_tipi", "")),
-                         ("🗺️ Bölge", _dty.get("bolge", "")), ("📍 Mevki Kodları", _mevk),
-                         ("🏳️ Milli Takım", _dty.get("milli_takim", ""))]:
+        for _et, _vl in [(f"🎭 {t('Rol','Role')}", _rol), (f"🧬 {t('Vücut Tipi','Body Type')}", _dty.get("vucut_tipi", "")),
+                         (f"🗺️ {t('Bölge','Region')}", _dty.get("bolge", "")), (f"📍 {t('Mevki Kodları','Position Codes')}", _mevk),
+                         (f"🏳️ {t('Milli Takım','National Team')}", _dty.get("milli_takim", ""))]:
             if _vl:
                 _satirlar += (f"<div><div style='color:#64748b;font-size:0.74rem;'>{_et}</div>"
                               f"<div style='color:#f1f5f9;font-weight:600;'>{_vl}</div></div>")
@@ -1389,7 +1400,7 @@ def render_scouting_detay(tam_isim):
         st.markdown(f"""
 <div style="border:1px solid #6366f1;border-radius:12px;padding:16px 20px;margin-bottom:16px;background:#0f172a;">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-    <div style="color:#a5b4fc;font-weight:700;font-size:1.0rem;">🎯 Scouting Değerlendirmesi</div>
+    <div style="color:#a5b4fc;font-weight:700;font-size:1.0rem;">🎯 {t("Scouting Değerlendirmesi","Scouting Assessment")}</div>
     {_mrd_badge}
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
@@ -1399,14 +1410,14 @@ def render_scouting_detay(tam_isim):
     if _sezonlar:
         kariyer_trend_goster(_sezonlar)
         radar_goster(tam_isim, "scouting")
-        st.markdown("#### ⚽ Tüm Kariyer Performansı")
+        st.markdown(f"#### ⚽ {t('Tüm Kariyer Performansı', 'Full Career Performance')}")
         _satir_html = ""
         for _s in _sezonlar:
             _milli = _s.get("milli")
             _stil  = "color:#7c8aa0;" if _milli else "color:#cbd5e1;"
             _kulup_cell = _s.get("kulup", "")
             if _milli:
-                _kulup_cell += "<span style='color:#f59e0b;font-size:0.6rem;margin-left:4px;'>MİLLİ</span>"
+                _kulup_cell += f"<span style='color:#f59e0b;font-size:0.6rem;margin-left:4px;'>{t('MİLLİ','NT')}</span>"
             _satir_html += (
                 f"<tr style='{_stil}'>"
                 f"<td style='padding:4px 8px;'>{_s.get('sezon','')}</td>"
@@ -1421,21 +1432,21 @@ def render_scouting_detay(tam_isim):
         st.markdown(f"""
 <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
   <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
-    <th style="text-align:left;padding:6px 8px;">Sezon</th>
-    <th style="text-align:left;padding:6px 8px;">Kulüp</th>
-    <th style="text-align:left;padding:6px 8px;">Lig</th>
-    <th style="text-align:right;padding:6px 8px;">M</th>
-    <th style="text-align:right;padding:6px 8px;">G</th>
-    <th style="text-align:right;padding:6px 8px;">A</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Sezon","Season")}</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Kulüp","Club")}</th>
+    <th style="text-align:left;padding:6px 8px;">{t("Lig","League")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("M","M")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("G","G")}</th>
+    <th style="text-align:right;padding:6px 8px;">{t("A","A")}</th>
     <th style="text-align:right;padding:6px 8px;">🟨</th>
-    <th style="text-align:right;padding:6px 8px;">Dk</th>
+    <th style="text-align:right;padding:6px 8px;">{t("Dk","Min")}</th>
   </tr></thead><tbody>{_satir_html}</tbody>
 </table>""", unsafe_allow_html=True)
         _g = leistung_data.get(tam_isim, {}).get("guncelleme", "")
         if _g:
             st.caption(f"📡 SoccerDonna · {_g}")
     else:
-        st.info("Bu oyuncu için detaylı kariyer verisi bulunamadı.")
+        st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
 
     st.markdown("---")
     benzer_oyuncular_goster(tam_isim, "scouting")
@@ -1443,7 +1454,7 @@ def render_scouting_detay(tam_isim):
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
-    if st.button("← Listeye Dön", key="odakli_geri"):
+    if st.button(t("← Listeye Dön", "← Back to List"), key="odakli_geri"):
         st.query_params.clear()
         st.rerun()
     st.markdown("---")
@@ -1458,11 +1469,11 @@ def render_odakli_profil(isim):
     if isim in scouting_sd_yukle():
         _admin = st.session_state.get("kulup_kullanici") == "admin"
         if not (_admin or pro_kontrol()):
-            pro_paywall_goster("Scouting oyuncu profili")
+            pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"))
             return
         render_scouting_detay(isim)
         return
-    st.warning(f"Oyuncu bulunamadı: {isim}")
+    st.warning(t(f"Oyuncu bulunamadı: {isim}", f"Player not found: {isim}"))
 
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
@@ -1837,7 +1848,7 @@ if st.session_state.get("kulup_giris"):
     _is_pro = st.session_state.get("kulup_pro", False)
     _badge_bg  = "#0d3b2e" if _is_pro else "#1a1f36"
     _badge_bdr = "#00c853" if _is_pro else "#445566"
-    _badge_lbl = "⚡ PRO Üye" if _is_pro else "🔓 Üye"
+    _badge_lbl = t("⚡ PRO Üye", "⚡ PRO Member") if _is_pro else t("🔓 Üye", "🔓 Member")
     _badge_clr = "#00c853"  if _is_pro else "#8899aa"
     st.sidebar.markdown(
         f"<div style='background:{_badge_bg};border:1px solid {_badge_bdr};"
@@ -2061,11 +2072,12 @@ if st.session_state["sayfa"] == "talep":
 # ─── SCOUTİNG SAYFASI ────────────────────────────────────────────────────────
 if st.session_state.get("sayfa") == "scouting":
     if _nav_is_admin:
-        st.markdown("""
+        st.markdown(f"""
         <div style='margin-bottom:4px;'>
-          <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 Scouting Havuzu</h2>
+          <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 {t("Scouting Havuzu","Scouting Pool")}</h2>
           <p style='color:#64748b;font-size:0.85rem;'>
-            Yabancı oyuncu kurasyonu · 2026-27 kadro planlama · SoccerDonna verileri ile zenginleştirilmiş
+            {t("Yabancı oyuncu kurasyonu · 2026-27 kadro planlama · SoccerDonna verileri ile zenginleştirilmiş",
+               "Foreign player curation · 2026-27 squad planning · enriched with SoccerDonna data")}
           </p>
         </div>
         """, unsafe_allow_html=True)
@@ -2079,14 +2091,14 @@ if st.session_state.get("sayfa") == "scouting":
         _etiket_liste = etiket_kullanici(_sl_kullanici)
 
         if sc_df.empty:
-            st.warning("Google Sheets'e bağlanılamadı veya liste boş.")
+            st.warning(t("Google Sheets'e bağlanılamadı veya liste boş.", "Could not connect to Google Sheets or the list is empty."))
         else:
             # ── ARAMA & FİLTRELER ─────────────────────────────────
             st.markdown("---")
             isim_col = "Tam İsmi" if "Tam İsmi" in sc_df.columns else sc_df.columns[0]
             vat_col  = "Vatandaşlık" if "Vatandaşlık" in sc_df.columns else None
 
-            with st.expander("📊 Veri Kapsama Paneli — eksik veri özeti"):
+            with st.expander(t("📊 Veri Kapsama Paneli — eksik veri özeti", "📊 Data Coverage Panel — missing data summary")):
                 veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data)
 
             # SD'den mevki → normalize eşleme
@@ -2126,34 +2138,37 @@ if st.session_state.get("sayfa") == "scouting":
             yil_min = min(yillar) if yillar else 1990
             yil_max = max(yillar) if yillar else 2008
 
+            _sc_tumu = t("Tümü", "All")
+            _sc_ayak_en = {"Tümü":"All","right":"Right","left":"Left","both":"Both"}
             # Satır 1: İsim + Vatandaşlık + Mevki kategorisi + Detay
             sc_r1c1, sc_r1c2, sc_r1c3, sc_r1c4 = st.columns([2, 1, 1, 1])
             with sc_r1c1:
-                isim_q = st.text_input("👤 Oyuncu Ara", placeholder="İsim yaz…", key="sc_isim")
+                isim_q = st.text_input(f"👤 {t('Oyuncu Ara','Search Player')}", placeholder=t("İsim yaz…","Type a name…"), key="sc_isim")
             with sc_r1c2:
                 vat_opts = sorted(sc_df[vat_col].dropna().replace("","").unique().tolist()) if vat_col else []
-                vat_sec = st.selectbox("🌍 Vatandaşlık", ["Tümü"] + [v for v in vat_opts if v], key="sc_vat")
+                vat_sec = st.selectbox(f"🌍 {t('Vatandaşlık','Nationality')}", [_sc_tumu] + [v for v in vat_opts if v], key="sc_vat")
             with sc_r1c3:
-                sc_kategori = st.selectbox("📌 Mevki", ["Tümü"] + list(_MEVKI_DETAY.keys()), key="sc_kat")
+                sc_kategori = st.selectbox(f"📌 {t('Mevki','Position')}", [_sc_tumu] + list(_MEVKI_DETAY.keys()), key="sc_kat")
             with sc_r1c4:
-                sc_detay_opts = ["Tümü"] + (_MEVKI_DETAY.get(sc_kategori, []) if sc_kategori != "Tümü" else [])
-                sc_detay = st.selectbox("↳ Detay", sc_detay_opts, key="sc_detay", disabled=(sc_kategori == "Tümü"))
+                sc_detay_opts = [_sc_tumu] + (_MEVKI_DETAY.get(sc_kategori, []) if sc_kategori != _sc_tumu else [])
+                sc_detay = st.selectbox(f"↳ {t('Detay','Detail')}", sc_detay_opts, key="sc_detay", disabled=(sc_kategori == _sc_tumu))
 
             # Satır 2: Doğum yılı + Ayak
             sc_r2c1, sc_r2c2, sc_r2c3 = st.columns([2, 1, 1])
             with sc_r2c1:
-                yil_range = st.slider("📅 Doğum Yılı", yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
+                yil_range = st.slider(f"📅 {t('Doğum Yılı','Birth Year')}", yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
             with sc_r2c2:
-                ayak_sec = st.selectbox("🦶 Ayak", ["Tümü", "right", "left", "both"], key="sc_ayak")
+                ayak_sec = st.selectbox(f"🦶 {t('Ayak','Foot')}", [_sc_tumu, "right", "left", "both"], key="sc_ayak",
+                    format_func=lambda x: (_sc_ayak_en.get(x, x) if x != _sc_tumu else _sc_tumu) if EN else x)
             with sc_r2c3:
                 st.markdown("<br>", unsafe_allow_html=True)
-                sadece_sl = st.checkbox(f"⭐ Shortlist'im ({len(_sl_liste)})", key="sc_sl")
+                sadece_sl = st.checkbox(f"⭐ {t('Shortlistim','My Shortlist')} ({len(_sl_liste)})", key="sc_sl")
 
             # Filtrele
             filtered = sc_df.copy()
             if isim_q.strip():
                 filtered = filtered[filtered[isim_col].str.contains(isim_q.strip(), case=False, na=False)]
-            if vat_col and vat_sec != "Tümü":
+            if vat_col and vat_sec != _sc_tumu:
                 filtered = filtered[filtered[vat_col] == vat_sec]
 
             def sd_filtre(tam_isim):
@@ -2162,13 +2177,13 @@ if st.session_state.get("sayfa") == "scouting":
                 # Mevki filtresi
                 sd_pos  = v.get("Position","")
                 tr_mevki = _SD_MEVKI_NORM.get(sd_pos, mevki_normalize(sd_pos))
-                if sc_kategori != "Tümü":
-                    if sc_detay != "Tümü":
+                if sc_kategori != _sc_tumu:
+                    if sc_detay != _sc_tumu:
                         if tr_mevki != sc_detay: return False
                     else:
                         if tr_mevki not in _MEVKI_DETAY.get(sc_kategori, []): return False
                 # Ayak filtresi
-                if ayak_sec != "Tümü" and v.get("Foot","") != ayak_sec:
+                if ayak_sec != _sc_tumu and v.get("Foot","") != ayak_sec:
                     return False
                 # Yıl filtresi
                 dob = v.get("Date of birth","")
@@ -2184,19 +2199,19 @@ if st.session_state.get("sayfa") == "scouting":
             if sadece_sl:
                 filtered = filtered[filtered[isim_col].isin(_sl_liste)]
 
-            _bulundu_txt = (f"⭐ Shortlist'inde {len(filtered)} oyuncu" if sadece_sl
-                            else f"🎯 {len(filtered)} oyuncu bulundu")
+            _bulundu_txt = (f"⭐ {len(filtered)} {t('shortlistinde oyuncu','players in your shortlist')}" if sadece_sl
+                            else f"🎯 {len(filtered)} {t('oyuncu bulundu','players found')}")
             st.markdown(
                 f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:6px 0 12px;'>"
                 f"{_bulundu_txt}</div>", unsafe_allow_html=True)
 
             if sadece_sl and len(filtered) >= 2:
-                with st.expander("⚖️ Shortlist Karşılaştırma", expanded=True):
+                with st.expander(t("⚖️ Shortlist Karşılaştırma", "⚖️ Shortlist Comparison"), expanded=True):
                     shortlist_karsilastirma_goster(
                         filtered[isim_col].tolist(), sd_data, leistung_data)
 
             if filtered.empty:
-                st.info("Filtrelerle eşleşen oyuncu yok.")
+                st.info(t("Filtrelerle eşleşen oyuncu yok.", "No players match the filters."))
             else:
                 for i in range(0, len(filtered), 2):
                     cols = st.columns(2)
@@ -2250,29 +2265,32 @@ if st.session_state.get("sayfa") == "scouting":
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;font-size:0.80rem;color:#cbd5e1;">
     <span>🌍 {vatandas}</span>
     <span>🏴 {vatan2 if vatan2 and vatan2 != vatandas else "—"}</span>
-    <span>📅 {dob} ({yas} yaş)</span>
-    <span>📏 {boy} · {ayak} ayak</span>
+    <span>📅 {dob} ({yas} {t("yaş","yrs")})</span>
+    <span>📏 {boy} · {ayak} {t("ayak","foot")}</span>
   </div>
   <hr style="border-color:#334155;margin:7px 0;">
   <div style="font-size:0.80rem;color:#94a3b8;">
-    📄 Sözleşme: {sozlesme}
-    {"" if sd_found else "<br><span style='color:#475569;font-size:0.75rem;'>⚠️ SoccerDonna verisi bulunamadı</span>"}
+    📄 {t("Sözleşme","Contract")}: {sozlesme}
+    {"" if sd_found else f"<br><span style='color:#475569;font-size:0.75rem;'>⚠️ {t('SoccerDonna verisi bulunamadı','SoccerDonna data not found')}</span>"}
   </div>
 </div>""", unsafe_allow_html=True)
 
                             # Shortlist ⭐ toggle butonu
                             _fav = tam_isim in _sl_liste
-                            _lbl = "⭐ Shortlist'te" if _fav else "☆ Shortlist'e ekle"
+                            _lbl = t("⭐ Shortlist'te","⭐ In Shortlist") if _fav else t("☆ Shortlist'e ekle","☆ Add to Shortlist")
                             if st.button(_lbl, key=f"sl_{i+j}", use_container_width=True):
                                 shortlist_toggle(_sl_kullanici, tam_isim)
                                 st.rerun()
-                            if st.button("👤 Profili Aç", key=f"prof_{i+j}", use_container_width=True):
+                            if st.button(t("👤 Profili Aç","👤 Open Profile"), key=f"prof_{i+j}", use_container_width=True):
                                 st.query_params["oyuncu"] = tam_isim
                                 st.rerun()
                             _mev_etk = _etiket_liste.get(tam_isim, "—")
+                            _ETIKET_EN = {"—":"—", "🔴 Öncelik":"🔴 Priority", "👀 İzle":"👀 Watch",
+                                          "💰 Pahalı":"💰 Expensive", "✅ Görüşüldü":"✅ Contacted"}
                             _yeni_etk = st.selectbox(
-                                "Etiket", _ETIKETLER,
+                                t("Etiket","Tag"), _ETIKETLER,
                                 index=_ETIKETLER.index(_mev_etk) if _mev_etk in _ETIKETLER else 0,
+                                format_func=lambda x: _ETIKET_EN.get(x, x) if EN else x,
                                 key=f"etk_{i+j}", label_visibility="collapsed")
                             if _yeni_etk != _mev_etk:
                                 etiket_ayarla(_sl_kullanici, tam_isim, _yeni_etk)
@@ -2282,15 +2300,15 @@ if st.session_state.get("sayfa") == "scouting":
                             _kariyer  = leistung_data.get(tam_isim, {})
                             _sezonlar = _kariyer.get("sezonlar", [])
                             if _sezonlar:
-                                with col.expander("⚽ Tüm Kariyer Performansı"):
+                                with col.expander(t("⚽ Tüm Kariyer Performansı","⚽ Full Career Performance")):
                                     _satir_html = ""
                                     for _s in _sezonlar:
                                         _milli = _s.get("milli")
                                         _stil  = "color:#7c8aa0;" if _milli else "color:#cbd5e1;"
                                         _kulup_cell = _s.get("kulup", "")
                                         if _milli:
-                                            _kulup_cell += ("<span style='color:#f59e0b;font-size:0.6rem;"
-                                                            "margin-left:4px;'>MİLLİ</span>")
+                                            _kulup_cell += (f"<span style='color:#f59e0b;font-size:0.6rem;"
+                                                            f"margin-left:4px;'>{t('MİLLİ','NT')}</span>")
                                         _satir_html += (
                                             f"<tr style='{_stil}'>"
                                             f"<td style='padding:4px 6px;'>{_s.get('sezon','')}</td>"
@@ -2307,14 +2325,14 @@ if st.session_state.get("sayfa") == "scouting":
 <div style="max-height:380px;overflow-y:auto;">
 <table style="width:100%;border-collapse:collapse;font-size:0.74rem;">
   <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
-    <th style="text-align:left;padding:5px 6px;">Sezon</th>
-    <th style="text-align:left;padding:5px 6px;">Kulüp</th>
-    <th style="text-align:left;padding:5px 6px;">Lig</th>
+    <th style="text-align:left;padding:5px 6px;">{t("Sezon","Season")}</th>
+    <th style="text-align:left;padding:5px 6px;">{t("Kulüp","Club")}</th>
+    <th style="text-align:left;padding:5px 6px;">{t("Lig","League")}</th>
     <th style="text-align:right;padding:5px 6px;">M</th>
     <th style="text-align:right;padding:5px 6px;">G</th>
     <th style="text-align:right;padding:5px 6px;">A</th>
     <th style="text-align:right;padding:5px 6px;">🟨</th>
-    <th style="text-align:right;padding:5px 6px;">Dk</th>
+    <th style="text-align:right;padding:5px 6px;">{t("Dk","Min")}</th>
   </tr></thead>
   <tbody>{_satir_html}</tbody>
 </table></div>""", unsafe_allow_html=True)
@@ -2324,35 +2342,36 @@ if st.session_state.get("sayfa") == "scouting":
 
                             # Sezon istatistikleri expander (profil sayfası — kısmi)
                             elif sd_found and sd.get("sezon_istatistikleri"):
-                                with col.expander("📊 Sezon İstatistikleri"):
+                                with col.expander(t("📊 Sezon İstatistikleri","📊 Season Statistics")):
                                     _rows = sd["sezon_istatistikleri"]
                                     if _rows:
                                         _df = pd.DataFrame(_rows)
                                         st.dataframe(_df, hide_index=True, use_container_width=True)
     else:
-        st.markdown("""
+        st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
              background:linear-gradient(135deg,#0f172a,#1e293b);
              border:1px solid #f59e0b;border-radius:16px;padding:48px 36px;">
           <div style="font-size:3rem;margin-bottom:16px;">🔎</div>
-          <h2 style="color:#f1f5f9;margin-bottom:12px;">Scouting Havuzu</h2>
+          <h2 style="color:#f1f5f9;margin-bottom:12px;">{t("Scouting Havuzu","Scouting Pool")}</h2>
           <p style="color:#94a3b8;font-size:0.95rem;line-height:1.7;margin-bottom:24px;">
-            Yabancı ve yerli oyuncu kurasyonu, 2026-27 kadro planlama önerileri
-            ve detaylı oyuncu profilleri <b style="color:#f59e0b;">PRO üyelik</b> gerektirir.
+            {t("Yabancı ve yerli oyuncu kurasyonu, 2026-27 kadro planlama önerileri ve detaylı oyuncu profilleri",
+               "Curation of foreign and domestic players, 2026-27 squad planning suggestions and detailed player profiles")}
+            <b style="color:#f59e0b;">{t("PRO üyelik","PRO membership")}</b> {t("gerektirir.","required.")}
           </p>
           <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;
                padding:20px;margin-bottom:28px;text-align:left;">
-            <p style="color:#cbd5e1;font-size:0.85rem;margin:0 0 10px;font-weight:600;">PRO ile neler var?</p>
+            <p style="color:#cbd5e1;font-size:0.85rem;margin:0 0 10px;font-weight:600;">{t("PRO ile neler var?","What's in PRO?")}</p>
             <p style="color:#64748b;font-size:0.82rem;line-height:1.8;margin:0;">
-              🌍 Türkiye dışı oyuncu havuzu<br>
-              🎯 Mevki bazlı scouting profilleri<br>
-              📊 Detaylı oyuncu değerlendirmeleri<br>
-              📋 Kadro planlama önerileri<br>
-              🤝 Doğrudan danışmanlık erişimi
+              🌍 {t("Türkiye dışı oyuncu havuzu","International player pool")}<br>
+              🎯 {t("Mevki bazlı scouting profilleri","Position-based scouting profiles")}<br>
+              📊 {t("Detaylı oyuncu değerlendirmeleri","Detailed player assessments")}<br>
+              📋 {t("Kadro planlama önerileri","Squad planning suggestions")}<br>
+              🤝 {t("Doğrudan danışmanlık erişimi","Direct consultancy access")}
             </p>
           </div>
           <p style="color:#475569;font-size:0.80rem;">
-            PRO üyelik için 📬 İletişim sayfasından bize ulaşın.
+            {t("PRO üyelik için 📬 İletişim sayfasından bize ulaşın.","For PRO membership, reach us via the 📬 Contact page.")}
           </p>
         </div>
         """, unsafe_allow_html=True)
@@ -2797,11 +2816,11 @@ with tab4:
             kadro.index += 1
             st.dataframe(kadro, use_container_width=True, height=400,
                 column_config={
-                    "Oyuncu": st.column_config.TextColumn("Oyuncu", width="medium"),
-                    "Mevki":  st.column_config.TextColumn("Mevki",  width="small"),
-                    "Maç":    st.column_config.NumberColumn("Maç",   format="%d"),
-                    "Gol":    st.column_config.NumberColumn("Gol",   format="%d"),
-                    "Dakika": st.column_config.NumberColumn("Dk",    format="%d"),
+                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player"), width="medium"),
+                    "Mevki":  st.column_config.TextColumn(t("Mevki","Position"),  width="small"),
+                    "Maç":    st.column_config.NumberColumn(t("Maç","Matches"),   format="%d"),
+                    "Gol":    st.column_config.NumberColumn(t("Gol","Goals"),   format="%d"),
+                    "Dakika": st.column_config.NumberColumn(t("Dk","Min"),    format="%d"),
                     "Sarı":   st.column_config.NumberColumn("🟨",    format="%d"),
                 })
 
@@ -2885,17 +2904,18 @@ with tab5:
             TopKirmizi=("Kırmızı", "sum"),
         ).reset_index().sort_values("TopGol", ascending=False)
 
-        takim_ozet.columns = ["Takım",t("Oyuncu Sayısı","Players"),t("Toplam Gol","Total Goals"),t("Toplam Dakika","Total Minutes"),t("Sarı Kart","Yellow Cards"),t("Kırmızı Kart","Red Cards")]
+        # Kolon adları iç-anahtar olarak TR kalır; görünen etiketler column_config'te çevrilir
+        takim_ozet.columns = ["Takım","Oyuncu Sayısı","Toplam Gol","Toplam Dakika","Sarı Kart","Kırmızı Kart"]
         takim_ozet.index = range(1, len(takim_ozet)+1)
 
         st.markdown(f"#### {t('Takım Bazlı Sezon İstatistikleri', 'Season Stats by Team')}")
         st.dataframe(takim_ozet, use_container_width=True, height=520,
             column_config={
-                "Takım":          st.column_config.TextColumn("Takım", width="large"),
-                "Oyuncu Sayısı":  st.column_config.NumberColumn("Kadro"),
-                "Toplam Gol":     st.column_config.ProgressColumn("Toplam Gol",
+                "Takım":          st.column_config.TextColumn(t("Takım","Team"), width="large"),
+                "Oyuncu Sayısı":  st.column_config.NumberColumn(t("Kadro","Squad")),
+                "Toplam Gol":     st.column_config.ProgressColumn(t("Toplam Gol","Total Goals"),
                     min_value=0, max_value=int(takim_ozet["Toplam Gol"].max()), format="%d"),
-                "Toplam Dakika":  st.column_config.NumberColumn("Toplam Dk"),
+                "Toplam Dakika":  st.column_config.NumberColumn(t("Toplam Dk","Total Min")),
                 "Sarı Kart":      st.column_config.NumberColumn("🟨"),
                 "Kırmızı Kart":   st.column_config.NumberColumn("🟥"),
             }
@@ -3435,16 +3455,16 @@ with tab7:
         secili_isimler = [v for v in secimler.values() if v != "—"]
         if secili_isimler:
             st.markdown("---")
-            st.markdown(f"##### 📊 Kadro İstatistikleri — {len(secili_isimler)}/11 oyuncu seçildi")
+            st.markdown(f"##### 📊 {t('Kadro İstatistikleri','Squad Stats')} — {len(secili_isimler)}/11 {t('oyuncu seçildi','players selected')}")
             df_kadro = df_tam[df_tam["Oyuncu"].isin(secili_isimler)].copy()
 
             k1, k2, k3, k4, k5 = st.columns(5)
             for kol, sayi, etiket in [
-                (k1, int(df_kadro["Gol"].sum()),    "Toplam Gol"),
-                (k2, int(df_kadro["Maç"].sum()),    "Toplam Maç"),
-                (k3, int(df_kadro["Dakika"].sum()), "Toplam Dakika"),
-                (k4, int(df_kadro["Sarı"].sum()),   "Sarı Kart"),
-                (k5, round(df_kadro["Gol/Maç"].mean(),2) if not df_kadro.empty else 0,"Ort. Gol/Maç"),
+                (k1, int(df_kadro["Gol"].sum()),    t("Toplam Gol","Total Goals")),
+                (k2, int(df_kadro["Maç"].sum()),    t("Toplam Maç","Total Matches")),
+                (k3, int(df_kadro["Dakika"].sum()), t("Toplam Dakika","Total Minutes")),
+                (k4, int(df_kadro["Sarı"].sum()),   t("Sarı Kart","Yellow Cards")),
+                (k5, round(df_kadro["Gol/Maç"].mean(),2) if not df_kadro.empty else 0, t("Ort. Gol/Maç","Avg. Goals/Match")),
             ]:
                 kol.markdown(
                     f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -3457,14 +3477,15 @@ with tab7:
             goster.index += 1
             st.dataframe(goster, use_container_width=True,
                 column_config={
-                    "Oyuncu": st.column_config.TextColumn("Oyuncu", width="medium"),
-                    "Takım":  st.column_config.TextColumn("Takım",  width="medium"),
-                    "Gol":    st.column_config.ProgressColumn("Gol",
+                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player"), width="medium"),
+                    "Takım":  st.column_config.TextColumn(t("Takım","Team"),  width="medium"),
+                    "Gol":    st.column_config.ProgressColumn(t("Gol","Goals"),
                         min_value=0, max_value=int(df_tam["Gol"].max()), format="%d"),
                     "Gol/Maç": st.column_config.NumberColumn("G/M", format="%.2f"),
                 })
         else:
-            st.info("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.")
+            st.info(t("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.",
+                      "Start picking players on the left — the pitch updates live."))
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -3544,9 +3565,16 @@ if tab_benim:
                     goster.index += 1
                     st.dataframe(goster, use_container_width=True, height=460,
                         column_config={
+                            "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
+                            "Mevki":  st.column_config.TextColumn(t("Mevki","Position")),
+                            "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
+                            "İlk11":  st.column_config.NumberColumn(t("İlk11","Started")),
                             "Gol": st.column_config.ProgressColumn(
-                                "Gol", min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
+                                t("Gol","Goals"), min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
                             "Gol/Maç": st.column_config.NumberColumn(format="%.2f"),
+                            "Dakika": st.column_config.NumberColumn(t("Dakika","Minutes")),
+                            "Sarı":   st.column_config.NumberColumn("🟨"),
+                            "Kırmızı": st.column_config.NumberColumn("🟥"),
                         })
 
                 with col_g:
@@ -3746,10 +3774,15 @@ with tab_genç:
             st.dataframe(
                 goster, use_container_width=True, height=420,
                 column_config={
-                    "Yaş":   st.column_config.NumberColumn(format="%.0f"),
+                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
+                    "Yaş":   st.column_config.NumberColumn(t("Yaş","Age"), format="%.0f"),
+                    "Mevki": st.column_config.TextColumn(t("Mevki","Position")),
+                    "Takım": st.column_config.TextColumn(t("Takım","Team")),
+                    "Maç":   st.column_config.NumberColumn(t("Maç","Matches")),
+                    "Gol":   st.column_config.NumberColumn(t("Gol","Goals")),
                     "G/Maç": st.column_config.NumberColumn(format="%.2f"),
                     "Skor":  st.column_config.ProgressColumn(
-                        "Skor", min_value=0, max_value=250, format="%.0f"),
+                        t("Skor","Score"), min_value=0, max_value=250, format="%.0f"),
                 },
             )
 
@@ -3761,7 +3794,7 @@ with tab9:
     if not st.session_state.get("kulup_giris"):
         giris_gerekli_ekrani()
     elif not pro_kontrol():
-        pro_paywall_goster("🔍 Gelişmiş Arama")
+        pro_paywall_goster(t("🔍 Gelişmiş Arama", "🔍 Advanced Search"))
     else:
         st.markdown(f"##### 🔍 {t('Gelişmiş Oyuncu Arama', 'Advanced Player Search')}")
         st.caption(t("Uyruk, mevki, yaş ve maç sayısına göre filtrele",
@@ -3836,7 +3869,18 @@ with tab9:
                 show = [c for c in show if c in filtered.columns]
                 st.dataframe(filtered[show], hide_index=True, use_container_width=True,
                     height=min(600, 45 + len(filtered) * 35),
-                    column_config={"Yaş": st.column_config.NumberColumn(format="%.0f")})
+                    column_config={
+                        "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
+                        "Takım":  st.column_config.TextColumn(t("Takım","Team")),
+                        "Mevki":  st.column_config.TextColumn(t("Mevki","Position")),
+                        "Uyruk":  st.column_config.TextColumn(t("Uyruk","Nationality")),
+                        "Yaş":    st.column_config.NumberColumn(t("Yaş","Age"), format="%.0f"),
+                        "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
+                        "İlk11":  st.column_config.NumberColumn(t("İlk11","Started")),
+                        "Gol":    st.column_config.NumberColumn(t("Gol","Goals")),
+                        "Dakika": st.column_config.NumberColumn(t("Dakika","Minutes")),
+                        "Sarı":   st.column_config.NumberColumn("🟨"),
+                    })
 
 
     # ══════════════════════════════════════════════════════════════════════════════
@@ -3958,9 +4002,11 @@ with tab10:
                          .sort_values("Ort"))
             st.dataframe(takim_yas, hide_index=True, use_container_width=True, height=400,
                 column_config={
-                    "Ort": st.column_config.NumberColumn(format="%.1f"),
+                    "Takım":  st.column_config.TextColumn(t("Takım","Team")),
+                    "Ort": st.column_config.NumberColumn(t("Ort","Avg"), format="%.1f"),
                     "Min": st.column_config.NumberColumn(format="%.0f"),
                     "Max": st.column_config.NumberColumn(format="%.0f"),
+                    "Oyuncu": st.column_config.NumberColumn(t("Oyuncu","Players")),
                 })
             if not takim_yas.empty:
                 g = takim_yas.iloc[0]; y = takim_yas.iloc[-1]
@@ -4036,8 +4082,11 @@ with tab11:
                 use_container_width=True,
                 height=520,
                 column_config={
+                    "Kaleci": st.column_config.TextColumn(t("Kaleci","Goalkeeper")),
+                    "Takım":  st.column_config.TextColumn(t("Takım","Team")),
+                    "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
                     "G/Maç": st.column_config.NumberColumn(format="%.2f"),
-                    "YenilenGol": st.column_config.NumberColumn("Y.Gol"),
+                    "YenilenGol": st.column_config.NumberColumn(t("Y.Gol","GA")),
                 },
             )
 
@@ -4301,7 +4350,7 @@ with tab_transfer:
     if not st.session_state.get("kulup_giris"):
         giris_gerekli_ekrani()
     elif not pro_kontrol():
-        pro_paywall_goster("Transfer Öner")
+        pro_paywall_goster(t("Transfer Öner", "Transfer Suggest"))
     else:
         st.markdown(f"##### 🔄 {t('Transfer Öner', 'Transfer Suggest')}")
         st.caption(t("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi",
