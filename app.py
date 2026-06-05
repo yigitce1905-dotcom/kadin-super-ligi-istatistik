@@ -2731,9 +2731,10 @@ with tab3:
         # Kart sayısı düşük olan iyi → ters metrikler
         TERS = {"Sarı", "Kırmızı"}  # internal column names, stay TR
 
+        _stat_col = t("İstatistik", "Stat")
         tablo_satirlar = []
         for metrik, etiket in METRIK_ETIKET.items():
-            satir = {"İstatistik": etiket}
+            satir = {_stat_col: etiket}
             degerler_list = []
             for oy in secili_oyuncular:
                 r = df_tam[df_tam["Oyuncu"] == oy]
@@ -2753,7 +2754,7 @@ with tab3:
             tablo_satirlar.append(satir)
 
         df_karsilastirma = pd.DataFrame(tablo_satirlar)
-        df_karsilastirma = df_karsilastirma.set_index(t("İstatistik","Stat"))
+        df_karsilastirma = df_karsilastirma.set_index(_stat_col)
 
         # Oyuncu adlarını renkli başlık olarak göster
         baslik_html = '<div style="display:flex;gap:12px;margin-bottom:8px;flex-wrap:wrap;">'
