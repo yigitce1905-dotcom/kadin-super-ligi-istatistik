@@ -930,6 +930,71 @@ _TR_MEVKI_EN = {
 }
 _TR_TERCIH_EN = {"Farketmez": "No preference", "Yerli": "Domestic", "Yabancı": "Foreign"}
 
+# ── Scouting detay (Mr Daniş) görünüm çevirileri — iç değer TR kalır ──
+_MR_DANIS_EN = {
+    "Yıldız": "Star", "Uzman": "Expert", "Potansiyel": "Potential",
+    "Yeterli": "Adequate", "Yedek": "Backup",
+}
+_ROL_EN = {
+    "Dengeli Bek": "Balanced Full-Back", "Hedef Kanat": "Target Winger",
+    "Hedef Santrfor": "Target Striker", "Hükmeden Kaleci": "Commanding Goalkeeper",
+    "Kanat Bek": "Wing-Back", "Libero Kaleci": "Sweeper Keeper",
+    "Limitli Stoper": "Limited Centre-Back", "Modern Bek": "Modern Full-Back",
+    "Oyun Kurucu": "Playmaker", "Oyun Kurucu Stoper": "Ball-Playing Centre-Back",
+    "Pozisyonunu Tutan": "Positional Holder", "Sahte 9": "False 9",
+    "Çakılı Stoper": "No-Nonsense Centre-Back", "Çizgi Kalecisi": "Shot-Stopper",
+    "İçe Kat Eden Kanat": "Inverted Winger",
+}
+_VUCUT_EN = {
+    "Ektomorf": "Ectomorph", "Endomorf": "Endomorph", "Mezomorf": "Mesomorph",
+    "Mezo-Ektomorf": "Meso-Ectomorph", "Mezo-Endomorf": "Meso-Endomorph",
+    "Hücum": "Attack", "Orta Saha": "Midfield", "Orta Sha": "Midfield", "Savunma": "Defense",
+}
+_BOLGE_EN = {"Hücum": "Attack", "Kale": "Goal", "Orta Saha": "Midfield", "Savunma": "Defense"}
+_ETIKET_BADGE_EN = {
+    "🔴 Öncelik": "🔴 Priority", "👀 İzle": "👀 Watch",
+    "💰 Pahalı": "💰 Expensive", "✅ Görüşüldü": "✅ Contacted",
+}
+# Yaygın TR→EN ülke adları (GSheets Vatandaşlık kolonu Türkçe gelir)
+_ULKE_EN = {
+    "Kazakistan": "Kazakhstan", "Almanya": "Germany", "Fransa": "France", "İspanya": "Spain",
+    "İtalya": "Italy", "İngiltere": "England", "Hollanda": "Netherlands", "Belçika": "Belgium",
+    "Brezilya": "Brazil", "Arjantin": "Argentina", "Portekiz": "Portugal", "Rusya": "Russia",
+    "Ukrayna": "Ukraine", "Polonya": "Poland", "İsveç": "Sweden", "Norveç": "Norway",
+    "Danimarka": "Denmark", "Finlandiya": "Finland", "İzlanda": "Iceland", "İrlanda": "Ireland",
+    "İskoçya": "Scotland", "Galler": "Wales", "Avusturya": "Austria", "İsviçre": "Switzerland",
+    "Yunanistan": "Greece", "Sırbistan": "Serbia", "Hırvatistan": "Croatia", "Slovenya": "Slovenia",
+    "Slovakya": "Slovakia", "Çekya": "Czechia", "Macaristan": "Hungary", "Romanya": "Romania",
+    "Bulgaristan": "Bulgaria", "Arnavutluk": "Albania", "Kosova": "Kosovo", "Karadağ": "Montenegro",
+    "Kuzey Makedonya": "North Macedonia", "Bosna-Hersek": "Bosnia-Herzegovina", "Moldova": "Moldova",
+    "Litvanya": "Lithuania", "Letonya": "Latvia", "Estonya": "Estonia", "Belarus": "Belarus",
+    "Gürcistan": "Georgia", "Ermenistan": "Armenia", "Azerbaycan": "Azerbaijan", "Özbekistan": "Uzbekistan",
+    "Kırgızistan": "Kyrgyzstan", "Tacikistan": "Tajikistan", "Türkmenistan": "Turkmenistan",
+    "ABD": "USA", "Amerika": "USA", "Kanada": "Canada", "Meksika": "Mexico", "Kolombiya": "Colombia",
+    "Şili": "Chile", "Peru": "Peru", "Uruguay": "Uruguay", "Paraguay": "Paraguay", "Ekvador": "Ecuador",
+    "Venezuela": "Venezuela", "Bolivya": "Bolivia", "Kosta Rika": "Costa Rica", "Jamaika": "Jamaica",
+    "Nijerya": "Nigeria", "Gana": "Ghana", "Kamerun": "Cameroon", "Senegal": "Senegal",
+    "Fildişi Sahili": "Ivory Coast", "Fas": "Morocco", "Tunus": "Tunisia", "Cezayir": "Algeria",
+    "Mısır": "Egypt", "Güney Afrika": "South Africa", "Kenya": "Kenya", "Zambiya": "Zambia",
+    "Kongo": "Congo", "Burkina Faso": "Burkina Faso", "Mali": "Mali", "Togo": "Togo",
+    "Japonya": "Japan", "Çin": "China", "Güney Kore": "South Korea", "Avustralya": "Australia",
+    "Yeni Zelanda": "New Zealand", "Hindistan": "India", "Tayland": "Thailand", "İran": "Iran",
+    "Türkiye": "Türkiye",
+}
+
+def danis_goster(m):
+    return _MR_DANIS_EN.get(m, m) if EN else m
+def rol_goster(m):
+    return _ROL_EN.get(m, m) if EN else m
+def vucut_goster(m):
+    return _VUCUT_EN.get(m, m) if EN else m
+def bolge_goster(m):
+    return _BOLGE_EN.get(m, m) if EN else m
+def etiket_badge_goster(m):
+    return _ETIKET_BADGE_EN.get(m, m) if EN else m
+def ulke_goster(m):
+    return _ULKE_EN.get((m or "").strip(), m) if EN else m
+
 def _ilk_uyruk(nat_str: str) -> str:
     """'TurkeyGermany' → 'Turkey', 'France' → 'France'"""
     nat_str = (nat_str or "").strip()
@@ -1403,7 +1468,7 @@ def render_scouting_detay(tam_isim):
   <div style="color:#94a3b8;font-size:0.95rem;margin:6px 0 12px;">📌 {mevki}</div>
   <hr style="border-color:#334155;">
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px 18px;font-size:0.9rem;color:#cbd5e1;margin-top:10px;">
-    <span>🌍 {vatandas}</span>
+    <span>🌍 {ulke_goster(vatandas)}</span>
     <span>📅 {dob} ({yas} {t("yaş","yrs")})</span>
     <span>📏 {boy} · {ayak} {t("ayak","foot")}</span>
     <span>📄 {t("Sözleşme","Contract")}: {sozlesme}</span>
@@ -1418,15 +1483,17 @@ def render_scouting_detay(tam_isim):
         _mrc = _MR_DANIS_RENK.get(_mrd, "#475569")
         _mevk = " · ".join(_dty.get("mevki_kod", []))
         _satirlar = ""
-        for _et, _vl in [(f"🎭 {t('Rol','Role')}", _rol), (f"🧬 {t('Vücut Tipi','Body Type')}", _dty.get("vucut_tipi", "")),
-                         (f"🗺️ {t('Bölge','Region')}", _dty.get("bolge", "")), (f"📍 {t('Mevki Kodları','Position Codes')}", _mevk),
-                         (f"🏳️ {t('Milli Takım','National Team')}", _dty.get("milli_takim", ""))]:
+        for _et, _vl in [(f"🎭 {t('Rol','Role')}", rol_goster(_rol)),
+                         (f"🧬 {t('Vücut Tipi','Body Type')}", vucut_goster(_dty.get("vucut_tipi", ""))),
+                         (f"🗺️ {t('Bölge','Region')}", bolge_goster(_dty.get("bolge", ""))),
+                         (f"📍 {t('Mevki Kodları','Position Codes')}", _mevk),
+                         (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_dty.get("milli_takim", "")))]:
             if _vl:
                 _satirlar += (f"<div><div style='color:#64748b;font-size:0.74rem;'>{_et}</div>"
                               f"<div style='color:#f1f5f9;font-weight:600;'>{_vl}</div></div>")
         _mrd_badge = (f"<span style='background:{_mrc}22;border:1px solid {_mrc};color:{_mrc};"
                       f"border-radius:6px;padding:3px 12px;font-weight:700;font-size:0.85rem;'>"
-                      f"★ {_mrd}</span>") if _mrd else ""
+                      f"★ {danis_goster(_mrd)}</span>") if _mrd else ""
         st.markdown(f"""
 <div style="border:1px solid #6366f1;border-radius:12px;padding:16px 20px;margin-bottom:16px;background:#0f172a;">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
@@ -2176,7 +2243,8 @@ if st.session_state.get("sayfa") == "scouting":
                 isim_q = st.text_input(f"👤 {t('Oyuncu Ara','Search Player')}", placeholder=t("İsim yaz…","Type a name…"), key="sc_isim")
             with sc_r1c2:
                 vat_opts = sorted(sc_df[vat_col].dropna().replace("","").unique().tolist()) if vat_col else []
-                vat_sec = st.selectbox(f"🌍 {t('Vatandaşlık','Nationality')}", [_sc_tumu] + [v for v in vat_opts if v], key="sc_vat")
+                vat_sec = st.selectbox(f"🌍 {t('Vatandaşlık','Nationality')}", [_sc_tumu] + [v for v in vat_opts if v],
+                    format_func=lambda x: x if x == _sc_tumu else ulke_goster(x), key="sc_vat")
             with sc_r1c3:
                 sc_kategori = st.selectbox(f"📌 {t('Mevki','Position')}", [_sc_tumu] + list(_MEVKI_DETAY.keys()),
                     format_func=mevki_goster, key="sc_kat")
@@ -2275,7 +2343,7 @@ if st.session_state.get("sayfa") == "scouting":
                             _etk = _etiket_liste.get(tam_isim, "")
                             _etk_html = (f"<span style='font-size:0.62rem;background:#1e293b;"
                                          f"border:1px solid #475569;border-radius:4px;padding:1px 6px;"
-                                         f"margin-left:6px;white-space:nowrap;'>{_etk}</span>") if _etk else ""
+                                         f"margin-left:6px;white-space:nowrap;'>{etiket_badge_goster(_etk)}</span>") if _etk else ""
                             _dty = detay_data.get(tam_isim, {})
                             _rol = _dty.get("rol", "")
                             _mrd = _dty.get("mr_danis", "")
@@ -2283,8 +2351,8 @@ if st.session_state.get("sayfa") == "scouting":
                             _mrd_html = (f"<span style='font-size:0.62rem;background:{_mrc}22;"
                                          f"border:1px solid {_mrc};color:{_mrc};border-radius:4px;"
                                          f"padding:1px 7px;margin-left:6px;white-space:nowrap;font-weight:700;'>"
-                                         f"★ {_mrd}</span>") if _mrd else ""
-                            _rol_html = (f" &nbsp;·&nbsp; <span style='color:#a5b4fc;'>🎭 {_rol}</span>") if _rol else ""
+                                         f"★ {danis_goster(_mrd)}</span>") if _mrd else ""
+                            _rol_html = (f" &nbsp;·&nbsp; <span style='color:#a5b4fc;'>🎭 {rol_goster(_rol)}</span>") if _rol else ""
                             st.markdown(f"""
 <div style="border:1px solid {renk};border-radius:12px;padding:16px 18px;margin-bottom:14px;
     background:linear-gradient(135deg,#0f172a,#1e293b);">
@@ -2295,8 +2363,8 @@ if st.session_state.get("sayfa") == "scouting":
   <div style="color:#94a3b8;font-size:0.82rem;margin-bottom:8px;">📌 {mevki}{_rol_html}</div>
   <hr style="border-color:#334155;margin:7px 0;">
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;font-size:0.80rem;color:#cbd5e1;">
-    <span>🌍 {vatandas}</span>
-    <span>🏴 {vatan2 if vatan2 and vatan2 != vatandas else "—"}</span>
+    <span>🌍 {ulke_goster(vatandas)}</span>
+    <span>🏴 {ulke_goster(vatan2) if vatan2 and vatan2 != vatandas else "—"}</span>
     <span>📅 {dob} ({yas} {t("yaş","yrs")})</span>
     <span>📏 {boy} · {ayak} {t("ayak","foot")}</span>
   </div>
