@@ -900,6 +900,36 @@ _MEVKI_DETAY = {
     "Forvet":    ["Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet"],
 }
 
+# Mevki adı TR→EN gösterim haritası (iç değer TR kalır, sadece görünüm çevrilir)
+_MEVKI_EN = {
+    "Kaleci": "Goalkeeper", "Defans": "Defense", "Orta Saha": "Midfield",
+    "Forvet": "Forward", "Bilinmiyor": "Unknown",
+    "Sağ Bek": "Right Back", "Sol Bek": "Left Back", "Stoper": "Centre Back",
+    "Sağ Kanat Bek": "Right Wing-Back", "Sol Kanat Bek": "Left Wing-Back",
+    "Savunmacı Orta Saha": "Defensive Midfield", "Merkez Orta Saha": "Central Midfield",
+    "Hücumcu Orta Saha": "Attacking Midfield", "Sol Kanat": "Left Wing", "Sağ Kanat": "Right Wing",
+    "Santrafor": "Striker", "İkinci Santrafor": "Second Striker",
+    "Sol Kanat Forvet": "Left Winger", "Sağ Kanat Forvet": "Right Winger",
+}
+
+def mevki_goster(m):
+    """Mevki adını aktif dile göre gösterir (iç değer TR kalır)."""
+    if not EN:
+        return m
+    return _MEVKI_EN.get(m, m)
+
+# Transfer Öner birleşik mevki etiketleri (_TRANSFER_DB anahtarları) + tercih TR→EN
+_TR_MEVKI_EN = {
+    "Kaleci": "Goalkeeper",
+    "Sağ Bek - Sağ Kanat Bek": "Right Back - Right Wing-Back",
+    "Sağ Stoper": "Right Centre Back", "Sol Stoper": "Left Centre Back",
+    "Sol Bek - Sol Kanat Bek": "Left Back - Left Wing-Back",
+    "Savunmacı Orta Saha": "Defensive Midfield", "Merkez Orta Saha": "Central Midfield",
+    "Hücumcu Orta Saha": "Attacking Midfield",
+    "Sol Kanat": "Left Wing", "Sağ Kanat": "Right Wing", "Santrafor": "Striker",
+}
+_TR_TERCIH_EN = {"Farketmez": "No preference", "Yerli": "Domestic", "Yabancı": "Foreign"}
+
 def _ilk_uyruk(nat_str: str) -> str:
     """'TurkeyGermany' → 'Turkey', 'France' → 'France'"""
     nat_str = (nat_str or "").strip()
@@ -2148,10 +2178,12 @@ if st.session_state.get("sayfa") == "scouting":
                 vat_opts = sorted(sc_df[vat_col].dropna().replace("","").unique().tolist()) if vat_col else []
                 vat_sec = st.selectbox(f"🌍 {t('Vatandaşlık','Nationality')}", [_sc_tumu] + [v for v in vat_opts if v], key="sc_vat")
             with sc_r1c3:
-                sc_kategori = st.selectbox(f"📌 {t('Mevki','Position')}", [_sc_tumu] + list(_MEVKI_DETAY.keys()), key="sc_kat")
+                sc_kategori = st.selectbox(f"📌 {t('Mevki','Position')}", [_sc_tumu] + list(_MEVKI_DETAY.keys()),
+                    format_func=mevki_goster, key="sc_kat")
             with sc_r1c4:
                 sc_detay_opts = [_sc_tumu] + (_MEVKI_DETAY.get(sc_kategori, []) if sc_kategori != _sc_tumu else [])
-                sc_detay = st.selectbox(f"↳ {t('Detay','Detail')}", sc_detay_opts, key="sc_detay", disabled=(sc_kategori == _sc_tumu))
+                sc_detay = st.selectbox(f"↳ {t('Detay','Detail')}", sc_detay_opts,
+                    format_func=mevki_goster, key="sc_detay", disabled=(sc_kategori == _sc_tumu))
 
             # Satır 2: Doğum yılı + Ayak
             sc_r2c1, sc_r2c2, sc_r2c3 = st.columns([2, 1, 1])
@@ -2476,7 +2508,8 @@ with tab1:
         takimlar = [_TUM_TAKIM] + sorted(df_tam["Takım"].dropna().unique().tolist())
         secili_takim = st.selectbox(t("Takım", "Team"), takimlar)
     with f3:
-        secili_kategori = st.selectbox(t("Mevki", "Position"), [_TUM_MEVKI] + list(_MEVKI_DETAY.keys()), key="ol_kategori")
+        secili_kategori = st.selectbox(t("Mevki", "Position"), [_TUM_MEVKI] + list(_MEVKI_DETAY.keys()),
+            format_func=mevki_goster, key="ol_kategori")
     with f4:
         siralama = st.selectbox(t("Sırala", "Sort"), _SIRALAMA_OPT,
             format_func=lambda x: _SIRALAMA_EN[x] if EN else x)
@@ -2486,8 +2519,9 @@ with tab1:
     if secili_kategori != _TUM_MEVKI:
         detay_secenekler = [_TUM] + _MEVKI_DETAY[secili_kategori]
         secili_detay = st.selectbox(
-            f"↳ {secili_kategori} {t('detayı', 'detail')}",
+            f"↳ {mevki_goster(secili_kategori)} {t('detayı', 'detail')}",
             detay_secenekler,
+            format_func=mevki_goster,
             key="ol_detay"
         )
 
@@ -2814,6 +2848,8 @@ with tab4:
             kadro = df_t.sort_values("Maç", ascending=False)[
                 ["Oyuncu","Mevki","Maç","Gol","Dakika","Sarı"]
             ].reset_index(drop=True)
+            if EN:
+                kadro["Mevki"] = kadro["Mevki"].map(mevki_goster)
             kadro.index += 1
             st.dataframe(kadro, use_container_width=True, height=400,
                 column_config={
@@ -2833,7 +2869,7 @@ with tab4:
                 MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
                               "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555"}
                 fig_mevki = go.Figure(go.Pie(
-                    labels=mevki_sayilari.index,
+                    labels=[mevki_goster(m) for m in mevki_sayilari.index],
                     values=mevki_sayilari.values,
                     marker_colors=[MEVKI_RENK.get(m,"#555") for m in mevki_sayilari.index],
                     textinfo="label+value",
@@ -2874,11 +2910,11 @@ with tab4:
             if alt.empty: continue
             fig_s.add_trace(go.Scatter(
                 x=alt["Dakika"], y=alt["Gol"],
-                mode="markers+text", name=mevki,
+                mode="markers+text", name=mevki_goster(mevki),
                 marker=dict(color=renk, size=10),
                 text=alt["Oyuncu"].str.split().str[-1],
                 textposition="top center", textfont=dict(size=9),
-                hovertemplate="%{text}<br>%{x} dk, %{y} gol<extra></extra>",
+                hovertemplate="%{text}<br>%{x} " + t("dk","min") + ", %{y} " + t("gol","goals") + "<extra></extra>",
             ))
         fig_s.update_layout(
             paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
@@ -2975,10 +3011,10 @@ with tab6:
             if alt.empty: continue
             fig_lig.add_trace(go.Scatter(
                 x=alt["Dakika"], y=alt["Gol"],
-                mode="markers", name=mevki,
+                mode="markers", name=mevki_goster(mevki),
                 marker=dict(color=renk, size=7, opacity=0.8),
                 text=alt["Oyuncu"],
-                hovertemplate="%{text}<br>%{x} dk · %{y} gol<extra></extra>",
+                hovertemplate="%{text}<br>%{x} " + t("dk","min") + " · %{y} " + t("gol","goals") + "<extra></extra>",
             ))
         # En golcülerin etiketini göster
         top10 = df_tam.nlargest(10, "Gol")
@@ -3563,6 +3599,8 @@ if tab_benim:
                     st.markdown(f"**📋 {t('Kadro İstatistikleri', 'Squad Stats')}**")
                     goster = kadro[["Oyuncu","Mevki","Maç","İlk11","Gol","Gol/Maç","Dakika","Sarı","Kırmızı"]].copy()
                     goster = goster.sort_values("Gol", ascending=False).reset_index(drop=True)
+                    if EN:
+                        goster["Mevki"] = goster["Mevki"].map(mevki_goster)
                     goster.index += 1
                     st.dataframe(goster, use_container_width=True, height=460,
                         column_config={
@@ -3585,7 +3623,7 @@ if tab_benim:
                     renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
                                 "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
                     fig_pie = go.Figure(go.Pie(
-                        labels=mev_dag["Mevki"], values=mev_dag["Sayı"],
+                        labels=[mevki_goster(m) for m in mev_dag["Mevki"]], values=mev_dag["Sayı"],
                         marker_colors=[renk_map.get(m,"#8899aa") for m in mev_dag["Mevki"]],
                         hole=0.45, textinfo="label+value",
                         textfont=dict(color="#fff", size=12),
@@ -3688,6 +3726,7 @@ with tab_genç:
             yas_ust = st.select_slider(t("Maksimum Yaş","Maximum Age"), options=[15, 16, 17, 18, 19, 20, 21, 22, 23], value=23)
         with gf2:
             mevki_filtre = st.multiselect(t("Mevki","Position"), ["Kaleci","Defans","Orta Saha","Forvet"],
+                                           format_func=mevki_goster,
                                            placeholder=t("Tümü","All"), key="gf_mevki")
         with gf3:
             _gf_nat_opts = ["Tümü","Yerli","Yabancı"]
@@ -3721,7 +3760,7 @@ with tab_genç:
                         f"margin-bottom:4px;'>{r['Oyuncu'].split()[0]}<br>"
                         f"<span style='font-size:10px;'>{r['Oyuncu'].split()[-1]}</span></div>"
                         f"<div style='font-size:20px;font-weight:800;color:#00c853;'>{r['Yaş']:.0f}</div>"
-                        f"<div style='font-size:9px;color:#8899aa;'>{r['Mevki']}</div>"
+                        f"<div style='font-size:9px;color:#8899aa;'>{mevki_goster(r['Mevki'])}</div>"
                         f"<div style='font-size:16px;font-weight:700;color:#fff;margin-top:6px;'>{r['Gol']}</div>"
                         f"<div style='font-size:9px;color:#8899aa;'>{t('gol','goals')} · {r['Maç']} {t('maç','matches')}</div>"
                         f"</div>", unsafe_allow_html=True)
@@ -3740,7 +3779,7 @@ with tab_genç:
                 fig_sc.add_trace(go.Scatter(
                     x=grp["Yaş"], y=grp["G/Maç"],
                     mode="markers+text",
-                    name=mev,
+                    name=mevki_goster(mev),
                     marker=dict(size=grp["Maç"].clip(8,30)/1.5,
                                 color=renk_map.get(mev,"#8899aa"),
                                 opacity=0.85,
@@ -3771,6 +3810,8 @@ with tab_genç:
         with col_tablo:
             st.markdown(f"**📋 {t('Tam Liste', 'Full List')}**")
             goster = filtered[["Oyuncu","Yaş","Mevki","Takım","Maç","Gol","G/Maç","Skor"]].copy()
+            if EN:
+                goster["Mevki"] = goster["Mevki"].map(mevki_goster)
             goster.index = range(1, len(goster)+1)
             st.dataframe(
                 goster, use_container_width=True, height=420,
@@ -3813,10 +3854,12 @@ with tab9:
             with fa1:
                 sel_nats = st.multiselect(f"🌍 {t('Uyruk','Nationality')}", all_nats, placeholder=t("Tümü","All"), key="as_nat")
             with fa2:
-                as_kategori = st.selectbox(f"📋 {t('Mevki','Position')}", [_as_tumu] + list(_MEVKI_DETAY.keys()), key="as_kat")
+                as_kategori = st.selectbox(f"📋 {t('Mevki','Position')}", [_as_tumu] + list(_MEVKI_DETAY.keys()),
+                    format_func=mevki_goster, key="as_kat")
             with fa3:
                 as_detay_secenekler = [_as_tumu] + (_MEVKI_DETAY.get(as_kategori, []) if as_kategori != _as_tumu else [])
-                as_detay = st.selectbox(f"↳ {t('Detay','Detail')}", as_detay_secenekler, key="as_detay", disabled=(as_kategori==_as_tumu))
+                as_detay = st.selectbox(f"↳ {t('Detay','Detail')}", as_detay_secenekler,
+                    format_func=mevki_goster, key="as_detay", disabled=(as_kategori==_as_tumu))
             with fa4:
                 isim_q = st.text_input(f"👤 {t('İsim','Name')}", placeholder=t("Ara…","Search…"), key="as_isim")
 
@@ -3868,7 +3911,10 @@ with tab9:
             else:
                 show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Yaş", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
                 show = [c for c in show if c in filtered.columns]
-                st.dataframe(filtered[show], hide_index=True, use_container_width=True,
+                _goster_df = filtered[show].copy()
+                if EN and "Mevki" in _goster_df.columns:
+                    _goster_df["Mevki"] = _goster_df["Mevki"].map(mevki_goster)
+                st.dataframe(_goster_df, hide_index=True, use_container_width=True,
                     height=min(600, 45 + len(filtered) * 35),
                     column_config={
                         "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
@@ -4025,11 +4071,11 @@ with tab10:
                          .reset_index().rename(columns={"mevki":"Mevki","yas":"Ort. Yaş"})
                          .sort_values("Ort. Yaş", ascending=False))
             fig_pos = go.Figure(go.Bar(
-                x=mevki_yas["Ort. Yaş"], y=mevki_yas["Mevki"], orientation="h",
+                x=mevki_yas["Ort. Yaş"], y=[mevki_goster(m) for m in mevki_yas["Mevki"]], orientation="h",
                 marker=dict(color="#00a86b"),
                 text=mevki_yas["Ort. Yaş"], textposition="outside",
                 textfont=dict(color="#e0e0e0", size=12),
-                hovertemplate="%{y}: %{x:.1f} yaş<extra></extra>",
+                hovertemplate="%{y}: %{x:.1f} " + t("yaş","yrs") + "<extra></extra>",
             ))
             fig_pos.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
@@ -4422,14 +4468,14 @@ with tab_transfer:
                                     "Sol Kanat", "Sağ Kanat", "Santrafor",
                                 ]
                 mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
+                                     format_func=lambda x: _TR_MEVKI_EN.get(x, x) if EN else x,
                                      label_visibility="collapsed")
 
             with col_t:
                 st.markdown(f"**{t('Oyuncu tercihiniz?','Player preference?')}**")
                 _tr_tercih_opts = ["Farketmez", "Yerli", "Yabancı"]
-                _tr_tercih_en   = {"Farketmez":"No preference","Yerli":"Domestic","Yabancı":"Foreign"}
                 tercih = st.radio("", _tr_tercih_opts, key="tr_tercih_radio",
-                    format_func=lambda x: _tr_tercih_en[x] if EN else x,
+                    format_func=lambda x: _TR_TERCIH_EN[x] if EN else x,
                     label_visibility="collapsed")
 
             st.markdown("<br>", unsafe_allow_html=True)
@@ -4452,9 +4498,11 @@ with tab_transfer:
             mevki_sec   = st.session_state.get("tr_mevki", "")
             tercih      = st.session_state.get("tr_tercih", "")
 
+            _mevki_disp  = _TR_MEVKI_EN.get(mevki_sec, mevki_sec) if EN else mevki_sec
+            _tercih_disp = _TR_TERCIH_EN.get(tercih, tercih) if EN else tercih
             st.markdown(
                 f"<div style='color:#8899aa;font-size:13px;margin-bottom:16px;'>"
-                f"💰 {butce_label} &nbsp;·&nbsp; 📋 {mevki_sec} &nbsp;·&nbsp; 🌍 {tercih}</div>",
+                f"💰 {butce_label} &nbsp;·&nbsp; 📋 {_mevki_disp} &nbsp;·&nbsp; 🌍 {_tercih_disp}</div>",
                 unsafe_allow_html=True)
 
             anahtar  = (mevki_sec, butce, tercih)
