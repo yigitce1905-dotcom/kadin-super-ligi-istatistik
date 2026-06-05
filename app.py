@@ -1878,6 +1878,9 @@ url_oyuncu = params.get("oyuncu", "")
 # ─── SAYFA DURUMU ─────────────────────────────────────────────────────────────
 if "sayfa" not in st.session_state:
     st.session_state["sayfa"] = "ana"
+# Karşılama ekranı: ana içeriğe geçmeden önce herkese gösterilir (giriş gerekmez)
+if "girildi" not in st.session_state:
+    st.session_state["girildi"] = False
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
@@ -1896,9 +1899,10 @@ with nav1:
     if st.button(t("🏠 Ana Sayfa", "🏠 Home"), use_container_width=True):
         st.query_params.clear()
         for k in list(st.session_state.keys()):
-            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil"):
+            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil","girildi"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
+        st.session_state["girildi"] = True  # Ana Sayfa = doğrudan içeriğe geç (karşılamayı atla)
         st.rerun()
 with nav3:
     st.markdown("<br>", unsafe_allow_html=True)
@@ -2557,6 +2561,25 @@ def render_giris_ekrani():
     render_hakkinda_icerik()
 
 
+# ─── KARŞILAMA EKRANI (ana içeriğe geçmeden önce — herkese açık) ───────────────
+if not st.session_state.get("girildi", False):
+    _kc = st.columns([1, 2, 1])[1]
+    with _kc:
+        if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
+                     type="primary", use_container_width=True, key="karsilama_gec_ust"):
+            st.session_state["girildi"] = True
+            st.rerun()
+    render_giris_ekrani()
+    st.markdown("<br>", unsafe_allow_html=True)
+    _kc2 = st.columns([1, 2, 1])[1]
+    with _kc2:
+        if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
+                     type="primary", use_container_width=True, key="karsilama_gec_alt"):
+            st.session_state["girildi"] = True
+            st.rerun()
+    st.stop()
+
+
 # ─── DANIŞMANLIK BANNER ÖNCESİ BOŞLUK ──────────────────────────────────────────
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -2581,7 +2604,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
 _giris_var = st.session_state.get("kulup_giris", False)
-_sekmeler = [t("🏠 Giriş", "🏠 Home")]
+_sekmeler = []
 if _giris_var:
     _sekmeler.append(t("🏟️ Benim Kadrom", "🏟️ My Squad"))
 _sekmeler += [
@@ -2603,8 +2626,6 @@ _is_admin = st.session_state.get("kulup_kullanici") == "admin"
 _tabs = st.tabs(_sekmeler)
 _ti = 0
 
-tab_giris = _tabs[_ti]; _ti += 1
-
 if _giris_var:
     tab_benim = _tabs[_ti]; _ti += 1
 else:
@@ -2622,12 +2643,6 @@ tab7       = _tabs[_ti]; _ti += 1
 tab9       = _tabs[_ti]; _ti += 1
 tab10      = _tabs[_ti]; _ti += 1
 tab11      = _tabs[_ti]; _ti += 1
-
-# ══════════════════════════════════════════════════════════════════════════════
-# SEKME 0 — GİRİŞ (karşılama: kısa sayısal özet + Hakkında)
-# ══════════════════════════════════════════════════════════════════════════════
-with tab_giris:
-    render_giris_ekrani()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 1 — OYUNCU LİSTESİ
