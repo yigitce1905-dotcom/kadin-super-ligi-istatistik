@@ -320,14 +320,18 @@ def giris_formu():
             if st.form_submit_button(t("Giriş Yap", "Log In"), use_container_width=True):
                 sonuc = giris_dogrula(ku.strip(), si.strip())
                 if sonuc:
+                    giris_logla(ku.strip(), basarili=True)
                     st.session_state["kulup_giris"]    = True
                     st.session_state["kulup_kullanici"] = ku.strip()
                     st.session_state["kulup_takim"]    = sonuc["takim"]
                     st.session_state["kulup_ad"]       = sonuc["ad"]
                     st.session_state["kulup_rol"]      = sonuc.get("rol", "kulup")
                     st.session_state["kulup_pro"]      = sonuc.get("pro", False)
+                    st.session_state["girildi"]        = True  # giriş yapınca doğrudan içeriğe
                     st.rerun()
                 else:
+                    if ku.strip():
+                        giris_logla(ku.strip(), basarili=False)
                     st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
 
 
@@ -590,6 +594,75 @@ def shortlist_toggle(kullanici: str, oyuncu: str):
     else:
         lst.append(oyuncu)
     shortlist_kaydet(data)
+
+
+# ─── Giriş Kaydı (Profilim için: ilk/son giriş, sayı, hatalı giriş) ────────────
+# GSheets "GirisLog" worksheet'i. Cloud'da kalıcı; lokalde GSheets yoksa sessizce atlanır.
+def _giris_log_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("GirisLog")
+        except Exception:
+            ws = sh.add_worksheet(title="GirisLog", rows=2000, cols=5)
+            ws.update([["kullanici", "ilk_giris", "son_giris", "giris_sayisi", "son_hatali_giris"]])
+            return ws
+    except Exception:
+        return None
+
+def giris_log_oku(kullanici: str) -> dict:
+    """Bir kullanıcının giriş kaydını döndürür (yoksa boş dict)."""
+    kullanici = (kullanici or "").strip()
+    ws = _giris_log_ws()
+    if ws is None or not kullanici:
+        return {}
+    try:
+        for r in ws.get_all_records():
+            if str(r.get("kullanici", "")).strip() == kullanici:
+                return r
+    except Exception:
+        pass
+    return {}
+
+def giris_logla(kullanici: str, basarili: bool = True):
+    """Başarılı/başarısız girişi GSheets'e işler. Hata → sessiz (giriş akışını bloklamaz)."""
+    kullanici = (kullanici or "").strip()
+    if not kullanici:
+        return
+    ws = _giris_log_ws()
+    if ws is None:
+        return
+    try:
+        from datetime import datetime
+        now = datetime.now().strftime("%Y-%m-%d %H:%M")
+        records = ws.get_all_records()
+        idx, row = None, {}
+        for i, r in enumerate(records, start=2):  # satır 1 = başlık
+            if str(r.get("kullanici", "")).strip() == kullanici:
+                idx, row = i, r
+                break
+        if basarili:
+            ilk  = str(row.get("ilk_giris", "") or now)
+            sayi = int(row.get("giris_sayisi", 0) or 0) + 1
+            vals = [kullanici, ilk, now, sayi, str(row.get("son_hatali_giris", "") or "")]
+        else:
+            vals = [kullanici, str(row.get("ilk_giris", "") or ""),
+                    str(row.get("son_giris", "") or ""),
+                    int(row.get("giris_sayisi", 0) or 0), now]
+        if idx:
+            ws.update(f"A{idx}:E{idx}", [vals])
+        else:
+            ws.append_row(vals)
+    except Exception:
+        pass
 
 
 # ─── Scouting Etiketleri (kullanıcı bazlı, oyuncu → etiket) ────────────
@@ -1884,7 +1957,7 @@ if "girildi" not in st.session_state:
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
-bas_sol, nav1, nav3, nav4, nav5, nav_dil = st.columns([3, 1, 1, 1, 1, 0.8])
+bas_sol, nav_profil, nav_veri, nav_scout, nav_iletisim, nav_giris, nav_dil = st.columns([2.3, 1, 1.15, 1.4, 1.2, 0.85, 0.6])
 
 with bas_sol:
     st.markdown(f"""
@@ -1894,39 +1967,50 @@ with bas_sol:
       <p>{t("Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
             "Turkish Women's Super League stats · international player pool · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
     </div>""", unsafe_allow_html=True)
-with nav1:
+
+with nav_profil:
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button(t("🏠 Ana Sayfa", "🏠 Home"), use_container_width=True):
+    _pf_active = st.session_state.get("sayfa") == "profil"
+    if st.button(t("👤 Profilim", "👤 My Profile"), use_container_width=True,
+                 type="primary" if _pf_active else "secondary"):
+        st.session_state["sayfa"] = "profil"
+        st.rerun()
+
+with nav_veri:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button(t("📊 TR Veri (Pro)", "📊 TR Data (Pro)"), use_container_width=True):
         st.query_params.clear()
         for k in list(st.session_state.keys()):
             if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil","girildi"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
-        st.session_state["girildi"] = True  # Ana Sayfa = doğrudan içeriğe geç (karşılamayı atla)
+        st.session_state["girildi"] = True
         st.rerun()
-with nav3:
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button(t("📬 İletişim", "📬 Contact"), use_container_width=True):
-        st.session_state["sayfa"] = "iletisim"
-        st.rerun()
-with nav4:
+
+with nav_scout:
     st.markdown("<br>", unsafe_allow_html=True)
     _sc_active = st.session_state.get("sayfa") == "scouting"
-    _sc_label  = "🔎 Scouting ◀" if _sc_active else "🔎 Scouting"
+    _sc_label  = (t("🔎 Scouting (Premium) ◀", "🔎 Scouting (Premium) ◀") if _sc_active
+                  else t("🔎 Scouting (Premium)", "🔎 Scouting (Premium)"))
     if st.button(_sc_label, use_container_width=True, type="primary" if _sc_active else "secondary"):
         st.session_state["sayfa"] = "ana" if _sc_active else "scouting"
         st.rerun()
 
-with nav5:
+with nav_iletisim:
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button(t("📬 İletişim (Basic)", "📬 Contact (Basic)"), use_container_width=True):
+        st.session_state["sayfa"] = "iletisim"
+        st.rerun()
+
+with nav_giris:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.session_state.get("kulup_giris"):
-        kulup_ad = st.session_state.get("kulup_ad","")
-        if st.button(f"🚪 {kulup_ad}", use_container_width=True):
+        if st.button("🚪", use_container_width=True, help=t("Çıkış yap", "Log out")):
             for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
                 st.session_state.pop(k, None)
             st.rerun()
     else:
-        if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True):
+        if st.button("🔐", use_container_width=True, help=t("Giriş", "Login")):
             st.session_state["sayfa"] = "giris"
             st.rerun()
 
@@ -2009,6 +2093,110 @@ def render_hakkinda_icerik():
     </div>
     """, unsafe_allow_html=True)
 
+
+def _profil_kart(deger, etiket, renk="#58a6ff"):
+    return (f'<div class="stat-kart" style="border-radius:14px;">'
+            f'<div class="sayi" style="color:{renk};font-size:1.25rem;">{deger}</div>'
+            f'<div class="etiket">{etiket}</div></div>')
+
+
+def render_profil():
+    """Profilim sayfası: üyelik + giriş bilgileri + favoriler + etiketler + veri + iletişim."""
+    st.markdown(f"## 👤 {t('Profilim', 'My Profile')}")
+    if not st.session_state.get("kulup_giris"):
+        st.info(t("Profilini görüntülemek için soldaki menüden 🔐 Giriş yap.",
+                  "Log in via 🔐 in the left sidebar to view your profile."))
+        return
+
+    ku    = st.session_state.get("kulup_kullanici", "")
+    ad    = st.session_state.get("kulup_ad", ku)
+    rol   = st.session_state.get("kulup_rol", "kulup")
+    pro   = st.session_state.get("kulup_pro", False)
+    takim = st.session_state.get("kulup_takim", "")
+    tier  = "Premium" if rol == "admin" else ("Pro" if pro else "Basic")
+    tier_renk = {"Premium": "#e040fb", "Pro": "#00c853", "Basic": "#58a6ff"}.get(tier, "#58a6ff")
+
+    # ── Üyelik Bilgileri ──
+    st.markdown(f"#### 🪪 {t('Üyelik Bilgileri', 'Membership')}")
+    c = st.columns(4)
+    for kol, (v, l, r) in zip(c, [
+        (ad or "—",        t("Ad", "Name"),       "#58a6ff"),
+        (ku or "—",        t("Kullanıcı", "Username"), "#58a6ff"),
+        (takim or "—",     t("Takım", "Team"),     "#00c853"),
+        (tier,             t("Üyelik", "Tier"),    tier_renk),
+    ]):
+        kol.markdown(_profil_kart(v, l, r), unsafe_allow_html=True)
+
+    # ── Giriş Bilgileri ──
+    from datetime import datetime, date
+    log = giris_log_oku(ku)
+    def _gunsay(s):
+        try: return (date.today() - datetime.strptime(str(s)[:10], "%Y-%m-%d").date()).days
+        except Exception: return None
+    ilk    = log.get("ilk_giris", "")
+    son     = log.get("son_giris", "")
+    sayi    = log.get("giris_sayisi", "")
+    hatali  = log.get("son_hatali_giris", "")
+    aktif_g = _gunsay(ilk)
+
+    st.markdown(f"#### 🔑 {t('Giriş Bilgileri', 'Login Info')}")
+    c = st.columns(4)
+    for kol, (v, l, r) in zip(c, [
+        (f"{aktif_g} {t('gün','d')}" if aktif_g is not None else "—", t("Kaç gündür aktif", "Active for"), "#00c853"),
+        (son or "—",                                                   t("Son giriş", "Last login"),       "#58a6ff"),
+        (str(sayi) if str(sayi) != "" else "—",                        t("Toplam giriş", "Total logins"),  "#58a6ff"),
+        (hatali or "—",                                                t("Son hatalı giriş", "Last failed"), "#ff6b6b"),
+    ]):
+        kol.markdown(_profil_kart(v, l, r), unsafe_allow_html=True)
+    if not log:
+        st.caption(t("ℹ️ Giriş geçmişi canlı sitede kaydedilir (ilk girişinden itibaren). Lokal testte görünmez.",
+                     "ℹ️ Login history is recorded on the live site (from your first login). Not shown in local test."))
+
+    # ── Favori Listem ──
+    fav = shortlist_kullanici(ku)
+    st.markdown(f"#### ⭐ {t('Favori Listem', 'My Favorites')} ({len(fav)})")
+    if fav:
+        fcols = st.columns(3)
+        for i, isim in enumerate(sorted(fav)):
+            if fcols[i % 3].button(f"👤 {isim}", key=f"pf_fav_{i}", use_container_width=True):
+                st.query_params["oyuncu"] = isim
+                st.rerun()
+    else:
+        st.caption(t("Henüz favori eklemedin. Scouting'te ☆ ile ekleyebilirsin.",
+                     "No favorites yet. Add players with ☆ in Scouting."))
+
+    # ── Çektiğim Scouting Raporları (etiketlenen oyuncular) ──
+    etk = etiket_kullanici(ku)
+    etk_dolu = {k: v for k, v in etk.items() if v and v != "—"}
+    st.markdown(f"#### 🗂️ {t('Çektiğim Scouting Raporları', 'My Scouting Reports')} ({len(etk_dolu)})")
+    if etk_dolu:
+        for isim, e in etk_dolu.items():
+            st.markdown(f"- {etiket_badge_goster(e)} &nbsp; **{isim}**", unsafe_allow_html=True)
+    else:
+        st.caption(t("Üzerinde çalıştığın (etiketlediğin) oyuncular burada listelenir.",
+                     "Players you've worked on (tagged) are listed here."))
+
+    # ── Verilerim (CSV dışa aktarma) ──
+    st.markdown(f"#### 💾 {t('Eski Verilerim', 'My Data')}")
+    veri_rows = ([{"tip": "favori", "oyuncu": x, "etiket": ""} for x in fav]
+                 + [{"tip": "etiket", "oyuncu": k, "etiket": v} for k, v in etk_dolu.items()])
+    if veri_rows:
+        csv = pd.DataFrame(veri_rows).to_csv(index=False, encoding="utf-8-sig").encode("utf-8-sig")
+        st.download_button(t("⬇️ Verilerimi indir (CSV)", "⬇️ Download my data (CSV)"),
+                           csv, f"{ku}_verilerim.csv", use_container_width=False)
+    else:
+        st.caption(t("Dışa aktarılacak veri yok.", "No data to export yet."))
+
+    # ── İletişim ──
+    st.markdown("---")
+    if st.button(t("📬 İletişim / Destek", "📬 Contact / Support"), type="primary"):
+        st.session_state["sayfa"] = "iletisim"
+        st.rerun()
+
+
+if st.session_state["sayfa"] == "profil":
+    render_profil()
+    st.stop()
 
 if st.session_state["sayfa"] == "hakkinda":
     render_hakkinda_icerik()
