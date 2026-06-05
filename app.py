@@ -1881,7 +1881,7 @@ if "sayfa" not in st.session_state:
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
-bas_sol, nav1, nav2, nav3, nav4, nav5, nav_dil = st.columns([3, 1, 1, 1, 1, 1, 0.8])
+bas_sol, nav1, nav3, nav4, nav5, nav_dil = st.columns([3, 1, 1, 1, 1, 0.8])
 
 with bas_sol:
     st.markdown(f"""
@@ -1899,11 +1899,6 @@ with nav1:
             if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
-        st.rerun()
-with nav2:
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button(t("ℹ️ Hakkında", "ℹ️ About"), use_container_width=True):
-        st.session_state["sayfa"] = "hakkinda"
         st.rerun()
 with nav3:
     st.markdown("<br>", unsafe_allow_html=True)
@@ -1962,7 +1957,8 @@ if url_oyuncu:
     render_odakli_profil(url_oyuncu)
     st.stop()
 
-if st.session_state["sayfa"] == "hakkinda":
+def render_hakkinda_icerik():
+    """Hakkında metnini render eder (Hakkında sayfası + GİRİŞ sekmesi ortak kullanır)."""
     st.markdown(f"""
     <div style='max-width:760px;margin:0 auto;padding:10px 0 40px;'>
 
@@ -2008,6 +2004,10 @@ if st.session_state["sayfa"] == "hakkinda":
     </p>
     </div>
     """, unsafe_allow_html=True)
+
+
+if st.session_state["sayfa"] == "hakkinda":
+    render_hakkinda_icerik()
     st.stop()
 
 # ─── İLETİŞİM SAYFASI ─────────────────────────────────────────────────────────
@@ -2477,19 +2477,87 @@ if st.session_state.get("sayfa") == "scouting":
         """, unsafe_allow_html=True)
     st.stop()
 
-# ─── ÖZET KARTLAR ─────────────────────────────────────────────────────────────
-if not df_tam.empty:
-    k1, k2, k3 = st.columns(3)
-    en_golcu = df_tam.loc[df_tam["Gol"].idxmax(), "Oyuncu"]
-    for kol, sayi, etiket in [
-        (k1, len(df_tam),              t("Oyuncu", "Players")),
-        (k2, df_tam["Takım"].nunique(), t("Takım", "Teams")),
-        (k3, int(df_tam["Gol"].sum()),  t("Toplam Gol", "Total Goals")),
-    ]:
-        kol.markdown(
-            f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
-            f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
+# ─── GENEL ÖZET (GİRİŞ ekranı için) ───────────────────────────────────────────
+def genel_ozet_hesapla() -> dict:
+    """GİRİŞ karşılama ekranı için kısa sayısal özet üretir (df_tam + yardımcı kaynaklar)."""
+    if df_tam.empty:
+        return {}
+    uyr = df_tam["Uyruk"] if "Uyruk" in df_tam.columns else pd.Series([""] * len(df_tam))
+    yerli   = int((uyr == "Turkey").sum())
+    yabanci = int(((uyr != "Turkey") & (uyr.fillna("") != "")).sum())
+    yas = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
+    # Scouting sayısı: önce GSheets, yoksa yerel SD profilleri
+    try:
+        _sc = scouting_gsheet_yukle()
+        scouting_n = len(_sc) if _sc is not None and not _sc.empty else len(scouting_sd_yukle())
+    except Exception:
+        try: scouting_n = len(scouting_sd_yukle())
+        except Exception: scouting_n = 0
+    try: mac_n = len(mac_sonuclari_yukle())
+    except Exception: mac_n = 0
+    return {
+        "oyuncu":   len(df_tam),
+        "takim":    int(df_tam["Takım"].nunique()),
+        "scouting": scouting_n,
+        "mac":      mac_n,
+        "gol":      int(df_tam["Gol"].sum()),
+        "yerli":    yerli,
+        "yabanci":  yabanci,
+        "ort_yas":  round(float(yas.mean()), 1) if not yas.empty else 0,
+        "u23":      int((yas < 23).sum()) if not yas.empty else 0,
+    }
 
+
+def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
+    return (f'<div class="stat-kart" style="border-radius:14px;">'
+            f'<div class="sayi" style="color:{renk}">{deger}</div>'
+            f'<div class="etiket">{etiket}</div>'
+            + (f'<div style="font-size:10px;color:#6e7681;margin-top:3px;">{alt}</div>' if alt else "")
+            + '</div>')
+
+
+def render_giris_ekrani():
+    """GİRİŞ sekmesi: kısa sayısal özet + Hakkında içeriği."""
+    o = genel_ozet_hesapla()
+    ad = st.session_state.get("kulup_ad", "")
+    selam = f"{t('Hoş geldin','Welcome')}{(' ' + ad) if ad else ''} 👋"
+    st.markdown(f"### {selam}")
+    st.caption(t("Türkiye Kadınlar Süper Ligi · 2025-2026 Sezonu · 30 hafta verisi",
+                 "Turkish Women's Super League · 2025-2026 Season · 30 weeks of data"))
+
+    if o:
+        st.markdown(
+            f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
+            f"font-weight:700;margin:10px 0 10px;'>📊 {t('Kısa Sayısal Özet','Quick Summary')}</div>",
+            unsafe_allow_html=True)
+        satir1 = [
+            (o["oyuncu"], t("Toplam Oyuncu","Total Players"),
+             f"{o['yerli']} {t('yerli','dom.')} · {o['yabanci']} {t('yabancı','for.')}", "#00c853"),
+            (o["takim"], t("Toplam Takım","Total Teams"), t("Süper Lig","Super League"), "#58a6ff"),
+            (o["scouting"], t("Scouting Raporu","Scouting Reports"), t("uluslararası havuz","intl. pool"), "#f0c040"),
+            (o["mac"], t("Toplam Maç","Total Matches"), t("sezon geneli","full season"), "#58a6ff"),
+        ]
+        satir2 = [
+            (o["gol"], t("Toplam Gol","Total Goals"), t("tüm lig","whole league"), "#e040fb"),
+            (o["yerli"], t("Yerli Oyuncu","Domestic Players"),
+             (f"%{round(o['yerli']/o['oyuncu']*100)} " + t("yerli oran","domestic")) if o["oyuncu"] else "", "#00c853"),
+            (o["ort_yas"], t("Ortalama Yaş","Average Age"), t("lig geneli","league-wide"), "#58a6ff"),
+            (o["u23"], t("U-23 Yetenek","U-23 Talents"), t("geleceğin yıldızları","future stars"), "#f0c040"),
+        ]
+        for satir in (satir1, satir2):
+            cols = st.columns(4)
+            for kol, (d, e, a, r) in zip(cols, satir):
+                kol.markdown(_ozet_kart(d, e, a, r), unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
+
+    st.markdown(
+        f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
+        f"font-weight:700;margin:6px 0 4px;'>ℹ️ {t('Hakkında','About')}</div>",
+        unsafe_allow_html=True)
+    render_hakkinda_icerik()
+
+
+# ─── DANIŞMANLIK BANNER ÖNCESİ BOŞLUK ──────────────────────────────────────────
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── DANIŞMANLIK TALEP BANNER (ana sayfada görünür) ───────────────────────────
@@ -2513,7 +2581,7 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
 _giris_var = st.session_state.get("kulup_giris", False)
-_sekmeler = []
+_sekmeler = [t("🏠 Giriş", "🏠 Home")]
 if _giris_var:
     _sekmeler.append(t("🏟️ Benim Kadrom", "🏟️ My Squad"))
 _sekmeler += [
@@ -2535,6 +2603,8 @@ _is_admin = st.session_state.get("kulup_kullanici") == "admin"
 _tabs = st.tabs(_sekmeler)
 _ti = 0
 
+tab_giris = _tabs[_ti]; _ti += 1
+
 if _giris_var:
     tab_benim = _tabs[_ti]; _ti += 1
 else:
@@ -2552,6 +2622,12 @@ tab7       = _tabs[_ti]; _ti += 1
 tab9       = _tabs[_ti]; _ti += 1
 tab10      = _tabs[_ti]; _ti += 1
 tab11      = _tabs[_ti]; _ti += 1
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 0 — GİRİŞ (karşılama: kısa sayısal özet + Hakkında)
+# ══════════════════════════════════════════════════════════════════════════════
+with tab_giris:
+    render_giris_ekrani()
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 1 — OYUNCU LİSTESİ
