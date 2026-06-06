@@ -2743,10 +2743,16 @@ def render_paketler():
         f"font-weight:700;margin:6px 0 12px;'>💎 {t('Üyelik Paketleri','Membership Plans')}</div>",
         unsafe_allow_html=True)
 
-    basic = [
+    free_pkg = [
         (t("Oyuncu listesi & temel istatistikler","Player list & basic stats"), True),
         (t("Lig tablosu · Takımlar · Kaleciler","Standings · Teams · Goalkeepers"), True),
         (t("Yaş analizi","Age analysis"), True),
+        (t("İletişim & talep gönderme","Contact & request"), False),
+        (t("PRO veri araçları","PRO data tools"), False),
+        (t("Scouting havuzu","Scouting pool"), False),
+    ]
+    basic = [
+        (t("Free'nin tüm özellikleri","Everything in Free"), True),
         (t("İletişim & talep gönderme","Contact & request"), True),
         (t("PRO veri araçları","PRO data tools"), False),
         (t("Scouting havuzu","Scouting pool"), False),
@@ -2768,14 +2774,17 @@ def render_paketler():
         (t("Öncelikli destek","Priority support"), True),
     ]
 
-    c1, c2, c3 = st.columns(3, gap="medium")
+    c1, c2, c3, c4 = st.columns(4, gap="small")
     with c1:
-        st.markdown(_paket_kart_html("🔹", "Basic", "#58a6ff",
-            t("Ücretsiz","Free"), t("temel erişim","basic access"), basic), unsafe_allow_html=True)
+        st.markdown(_paket_kart_html("🆓", "Free", "#58a6ff",
+            t("Ücretsiz","Free"), t("temel erişim","basic access"), free_pkg), unsafe_allow_html=True)
     with c2:
+        st.markdown(_paket_kart_html("🔹", "Basic", "#29b6f6",
+            "999 TL", t("aylık · KDV dahil","monthly · VAT incl."), basic), unsafe_allow_html=True)
+    with c3:
         st.markdown(_paket_kart_html("⚡", "Pro", "#00c853",
             "4.999 TL", t("aylık · KDV dahil","monthly · VAT incl."), pro, populer=True), unsafe_allow_html=True)
-    with c3:
+    with c4:
         st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
             "9.999 TL", t("aylık · KDV dahil","monthly · VAT incl."), premium), unsafe_allow_html=True)
 
