@@ -1125,6 +1125,108 @@ def tum_hocalar() -> list:
     return sorted(hocalar)
 
 
+# Zayıf takımlar — bu takımlara atılan goller farklı renkte gösterilir
+_ZAYIF_TAKIMLAR = {
+    "SERCAN İNŞAAT GAZİANTEP ALG SPOR",
+    "GAZİANTEP ALG SPOR KULÜBÜ",
+    "ALG SPOR",
+    "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "1207 ANTALYASPOR KADIN FUTBOL KULÜBÜ",
+    "ÇEKMEKÖY BİLGİDOĞA",
+    "ŞİLE BİLGİDOĞA",
+    "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
+    "FATİH VATAN SPOR",
+}
+
+
+def _gol_rakip_dagil(detay: dict) -> dict:
+    """
+    Oyuncunun mac_gecmisi + mac_sonuclari kullanarak hangi takıma
+    kaç gol attığını döndürür: {rakip_adi: gol_sayisi}
+
+    Transfer oyuncular için: o haftada oyuncunun takım(lar)ından hangisi
+    yeterli gol attıysa (oyuncu_gol <= takim_gol) o maç seçilir.
+    """
+    maclar = mac_sonuclari_yukle()
+    # hafta → liste[{ev, dep, ev_gol, dep_gol}]
+    hafta_maclar: dict = {}
+    for m in maclar:
+        hafta_maclar.setdefault(m["hafta"], []).append(m)
+
+    # Oyuncunun tüm takımları (transfer dahil)
+    takimlar = {d["takim"].upper() for d in detay.get("takim_detay", [])}
+    if not takimlar:
+        takimlar = {detay.get("takim", "").upper()}
+
+    rakip_goller: dict = {}
+    for m in detay.get("mac_gecmisi", []):
+        oyuncu_gol = m.get("gol", 0)
+        if oyuncu_gol == 0:
+            continue
+        hafta = m["hafta"]
+        for mac in hafta_maclar.get(hafta, []):
+            ev  = mac["ev"].upper()
+            dep = mac["dep"].upper()
+            if ev in takimlar and mac["ev_gol"] >= oyuncu_gol:
+                rakip = mac["dep"]
+            elif dep in takimlar and mac["dep_gol"] >= oyuncu_gol:
+                rakip = mac["ev"]
+            else:
+                continue
+            rakip_goller[rakip] = rakip_goller.get(rakip, 0) + oyuncu_gol
+            break   # bu hafta için eşleşme bulundu
+    return dict(sorted(rakip_goller.items(), key=lambda x: -x[1]))
+
+
+def _gol_rakip_grafik(detay: dict, toplam_gol: int):
+    """Rakip bazlı gol dağılımı yatay bar chart. Zayıf takımlar turuncu."""
+    dagil = _gol_rakip_dagil(detay)
+    if not dagil:
+        return
+    rakipler = list(dagil.keys())
+    goller   = list(dagil.values())
+    renkler  = [
+        "#ff8f00" if r.upper() in _ZAYIF_TAKIMLAR else "#2979ff"
+        for r in rakipler
+    ]
+    # Kısa takım adı (ilk 3 kelime / 30 karakter)
+    kisalt = lambda s: " ".join(s.split()[:3])[:30]
+    etiketler = [kisalt(r) for r in rakipler]
+
+    zayif_toplam = sum(g for r, g in dagil.items() if r.upper() in _ZAYIF_TAKIMLAR)
+    guclu_toplam = toplam_gol - zayif_toplam
+
+    st.markdown(
+        f"##### ⚽ {t('Gollerin Rakip Dağılımı', 'Goals by Opponent')}"
+    )
+    if zayif_toplam > 0:
+        st.caption(
+            t(
+                f"🟠 Zayıf takımlara: **{zayif_toplam}** gol · "
+                f"🔵 Diğer rakiplere: **{guclu_toplam}** gol",
+                f"🟠 vs. weak opponents: **{zayif_toplam}** goals · "
+                f"🔵 vs. others: **{guclu_toplam}** goals",
+            )
+        )
+
+    fig = go.Figure(go.Bar(
+        x=goller, y=etiketler, orientation="h",
+        marker_color=renkler,
+        text=goller, textposition="outside",
+        hovertemplate="%{y}<br>%{x} " + t("gol", "goals") + "<extra></extra>",
+    ))
+    fig.update_layout(
+        height=max(180, len(rakipler) * 38),
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#cbd5e1", size=11),
+        margin=dict(l=10, r=40, t=10, b=10),
+        xaxis=dict(title=t("Gol", "Goals"), gridcolor="#1e293b", dtick=1),
+        yaxis=dict(autorange="reversed", tickfont=dict(size=10)),
+        showlegend=False,
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+
 def max_seri(dizi):
     """Ardışık 1'lerin en uzun serisini döndürür."""
     maks = suan = 0
@@ -1874,6 +1976,10 @@ def render_ana_lig_profil(secili):
             s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
             s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
             s3.metric(f"🛡️ {t('En Uzun Temiz Seri', 'Longest Clean Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
+
+        # ── Gol rakip dağılımı ───────────────────────────────────────────────
+        if gol > 0:
+            _gol_rakip_grafik(detay, gol)
 
         # ── Transfer kırılımı ─────────────────────────────────────────────────
         if transfer:
