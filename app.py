@@ -1177,8 +1177,13 @@ def _kariyer_trend_figuru(sezonlar):
     fig = go.Figure()
     fig.add_trace(go.Bar(x=sz, y=gol, name=t("Gol", "Goals"), marker_color="#22c55e"))
     fig.add_trace(go.Bar(x=sz, y=asist, name=t("Asist", "Assists"), marker_color="#3b82f6"))
-    fig.add_trace(go.Scatter(x=sz, y=dk, name=t("Dakika", "Minutes"), yaxis="y2",
-                             mode="lines+markers", line=dict(color="#f59e0b", width=3)))
+    # Dakika verisi varsa (>0) çizgi göster; yoksa ekseni yine de koy ama gizli tut
+    dk_var = any(d > 0 for d in dk)
+    if dk_var:
+        fig.add_trace(go.Scatter(x=sz, y=[d if d > 0 else None for d in dk],
+                                 name=t("Dakika", "Minutes"), yaxis="y2",
+                                 mode="lines+markers", line=dict(color="#f59e0b", width=3),
+                                 connectgaps=False))
     fig.update_layout(
         barmode="group", height=300,
         paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
@@ -1186,7 +1191,8 @@ def _kariyer_trend_figuru(sezonlar):
         margin=dict(l=10, r=10, t=28, b=10),
         legend=dict(orientation="h", y=1.18, x=0),
         yaxis=dict(title=t("Gol / Asist", "Goals / Assists"), gridcolor="#1e293b"),
-        yaxis2=dict(title=t("Dakika", "Minutes"), overlaying="y", side="right", showgrid=False),
+        yaxis2=dict(title=t("Dakika", "Minutes"), overlaying="y", side="right",
+                    showgrid=False, visible=dk_var),
         xaxis=dict(gridcolor="#1e293b"),
     )
     return fig
@@ -1340,7 +1346,15 @@ def radar_goster(isim, kaynak):
                 (t("Dakika/Maç","Minutes/Match"), "dk_mac"), (t("Deneyim","Experience"), "mac")]
     r, theta = [], []
     for ad, fe in eksenler:
-        vals = [o[fe] for o in grup]
+        # dk_mac için: sadece veri olan (>0) oyuncuları kullan; veri yoksa 0 percentile
+        if fe == "dk_mac":
+            vals = [o[fe] for o in grup if o[fe] > 0]
+            if not vals or q[fe] == 0:
+                r.append(0)
+                theta.append(ad)
+                continue
+        else:
+            vals = [o[fe] for o in grup]
         rank = sum(1 for v in vals if v <= q[fe])
         r.append(round(rank / len(vals) * 100) if vals else 0)
         theta.append(ad)

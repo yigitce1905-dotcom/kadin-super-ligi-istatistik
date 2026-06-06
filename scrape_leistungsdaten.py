@@ -149,11 +149,32 @@ def milli_mi(lig: str) -> bool:
     return False
 
 
+def _dakika_idx_bul(tablo) -> int | None:
+    """
+    Header row'dan 'minutes / minuten / spielminuten / min.' iceren
+    th'nin indeksini dondurur. Bulunamazsa None.
+    """
+    MIN_ANAHTAR = ("min.", "minuten", "spielminuten", "minutes", "spielzeit", "dakika")
+    header_tr = tablo.find("tr")
+    if not header_tr:
+        return None
+    ths = header_tr.select("th")
+    for i, th in enumerate(ths):
+        h = th.get_text(strip=True).lower()
+        if any(k in h for k in MIN_ANAHTAR):
+            return i
+    return None
+
+
 def ozet_tabloyu_parse(soup: BeautifulSoup, sezon: str, kulup: str, ulke: str = "") -> list[dict]:
     """
     'Competition / Matches / ...' baslikli ozet tabloyu parse et.
     Her satir bir lig/kupa = bir kayit.
     Milli takim turnuvalarinda kulup yerine oyuncunun ulkesi yazilir.
+
+    Dakika sutunu: once header'dan otomatik tespit edilir; bulunamazsa
+    son iki kolona fallback yapilir ve akliselimlik kontrolu uygulanir
+    (mac * 10 alti degerler sifira dusurulur).
     """
     kayitlar = []
     for tablo in soup.select("table"):
@@ -162,6 +183,9 @@ def ozet_tabloyu_parse(soup: BeautifulSoup, sezon: str, kulup: str, ulke: str = 
             continue
         if "matches" not in basliklar and "spiele" not in basliklar and "oys." not in basliklar:
             continue
+
+        # Header'dan dakika sutunu indeksini bul (daha guvenilir)
+        min_idx = _dakika_idx_bul(tablo)
 
         for tr in tablo.select("tr"):
             td_list = tr.select("td")
@@ -181,23 +205,29 @@ def ozet_tabloyu_parse(soup: BeautifulSoup, sezon: str, kulup: str, ulke: str = 
             if re.fullmatch(r"[\d\s]+", lig_adi):
                 continue
 
-            # Sayisal degerler: td[2]=mac, td[3]=gol, td[5]=asist, td[6]=sari, td[-1]=dakika
-            # Son iki td genellikle formatlı + ham dakika
-            # td[12] ham dakika (en sagliklisi)
             def td_val(idx):
                 if idx < len(td_list):
                     return int_cevir(td_list[idx].get_text(strip=True))
                 return 0
 
-            mac    = td_val(2)
-            gol    = td_val(3)
-            # td[4] oz gol - atliyoruz
-            asist  = td_val(5)
-            sari   = td_val(6)
-            # td[11] formatli dakika (1.963), td[12] ham (1963) - ham tercih
-            dakika = td_val(12) if len(td_list) > 12 else td_val(11)
-            if dakika == 0:
-                dakika = td_val(11)
+            mac   = td_val(2)
+            gol   = td_val(3)
+            asist = td_val(5)
+            sari  = td_val(6)
+
+            # Dakika: once header tespitine gore, sonra fallback
+            if min_idx is not None and min_idx < len(td_list):
+                dakika = int_cevir(td_list[min_idx].get_text(strip=True))
+            else:
+                # Eski fallback: son iki kolona bak (td[-1] ham, td[-2] formatli)
+                n = len(td_list)
+                dakika = int_cevir(td_list[n - 1].get_text(strip=True))
+                if dakika == 0 and n >= 2:
+                    dakika = int_cevir(td_list[n - 2].get_text(strip=True))
+
+            # Akliselimlik kontrolu: mac basina ortalama < 10 dk => veri yok (0)
+            if mac > 0 and dakika > 0 and dakika / mac < 10:
+                dakika = 0
 
             if mac == 0:
                 continue
