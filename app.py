@@ -2708,6 +2708,84 @@ def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
             + '</div>')
 
 
+def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=False):
+    """Tek üyelik paketi kartı (HTML)."""
+    glow = f"box-shadow:0 0 0 2px {renk}, 0 8px 28px {renk}55;" if populer else f"border:1px solid {renk}44;"
+    rozet = (f"<div style='position:absolute;top:-11px;left:50%;transform:translateX(-50%);"
+             f"background:{renk};color:#06210f;font-size:10px;font-weight:800;letter-spacing:1px;"
+             f"border-radius:20px;padding:3px 14px;white-space:nowrap;'>★ {t('EN POPÜLER','MOST POPULAR')}</div>") if populer else ""
+    satirlar = ""
+    for metin, var in ozellikler:
+        if var:
+            satirlar += (f"<div style='font-size:12.5px;color:#c9d1d9;padding:5px 0;border-bottom:1px solid #1a2027;'>"
+                         f"<span style='color:{renk};font-weight:700;'>✓</span> &nbsp;{metin}</div>")
+        else:
+            satirlar += (f"<div style='font-size:12.5px;color:#5b6470;padding:5px 0;border-bottom:1px solid #1a2027;'>"
+                         f"<span style='color:#475569;'>✕</span> &nbsp;{metin}</div>")
+    return (
+        f"<div style='position:relative;background:linear-gradient(160deg,#161b22,#0f141c);"
+        f"border-radius:16px;padding:24px 20px 18px;{glow}height:100%;'>"
+        f"{rozet}"
+        f"<div style='text-align:center;margin-bottom:6px;'>"
+        f"<div style='font-size:30px;'>{ikon}</div>"
+        f"<div style='font-size:1.25rem;font-weight:800;color:{renk};margin-top:2px;'>{isim}</div></div>"
+        f"<div style='text-align:center;margin:8px 0 16px;'>"
+        f"<div style='font-size:1.9rem;font-weight:900;color:#fff;line-height:1;'>{fiyat}</div>"
+        f"<div style='font-size:11px;color:#8b949e;margin-top:3px;'>{fiyat_alt}</div></div>"
+        f"{satirlar}</div>"
+    )
+
+
+def render_paketler():
+    """Basic / Pro / Premium üyelik paketleri karşılaştırma görseli."""
+    st.markdown(
+        f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
+        f"font-weight:700;margin:6px 0 12px;'>💎 {t('Üyelik Paketleri','Membership Plans')}</div>",
+        unsafe_allow_html=True)
+
+    basic = [
+        (t("Oyuncu listesi & temel istatistikler","Player list & basic stats"), True),
+        (t("Lig tablosu · Takımlar · Kaleciler","Standings · Teams · Goalkeepers"), True),
+        (t("Yaş analizi","Age analysis"), True),
+        (t("İletişim & talep gönderme","Contact & request"), True),
+        (t("PRO veri araçları","PRO data tools"), False),
+        (t("Scouting havuzu","Scouting pool"), False),
+    ]
+    pro = [
+        (t("Basic'in tüm özellikleri","Everything in Basic"), True),
+        (t("Detaylı oyuncu profili","Detailed player profile"), True),
+        (t("Transfer Öner (AI rapor)","Transfer Suggest (AI report)"), True),
+        (t("Karşılaştırma (4 oyuncu)","Comparison (4 players)"), True),
+        (t("Gelişmiş arama · En İyiler","Advanced search · Top performers"), True),
+        (t("Favori listesi","Favorites list"), True),
+        (t("Scouting havuzu","Scouting pool"), False),
+    ]
+    premium = [
+        (t("Pro'nun tüm özellikleri","Everything in Pro"), True),
+        (t("Uluslararası scouting havuzu","International scouting pool"), True),
+        (t("Scouting raporları & etiketleme","Scouting reports & tagging"), True),
+        (t("Kadro planlama danışmanlığı","Squad planning consultancy"), True),
+        (t("Öncelikli destek","Priority support"), True),
+    ]
+
+    c1, c2, c3 = st.columns(3, gap="medium")
+    with c1:
+        st.markdown(_paket_kart_html("🔹", "Basic", "#58a6ff",
+            t("Ücretsiz","Free"), t("temel erişim","basic access"), basic), unsafe_allow_html=True)
+    with c2:
+        st.markdown(_paket_kart_html("⚡", "Pro", "#00c853",
+            "4.999 TL", t("aylık · KDV dahil","monthly · VAT incl."), pro, populer=True), unsafe_allow_html=True)
+    with c3:
+        st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
+            "9.999 TL", t("aylık · KDV dahil","monthly · VAT incl."), premium), unsafe_allow_html=True)
+
+    _pk_not = t("Kurumsal / kulüp teklifleri için 📬 İletişim sayfasından bize ulaşın.",
+                "For corporate / club offers, reach us via the 📬 Contact page.")
+    st.markdown(
+        f"<div style='text-align:center;color:#6e7681;font-size:11px;margin-top:12px;'>{_pk_not}</div>",
+        unsafe_allow_html=True)
+
+
 def render_giris_ekrani():
     """GİRİŞ sekmesi: kısa sayısal özet + Hakkında içeriği."""
     o = genel_ozet_hesapla()
@@ -2741,6 +2819,10 @@ def render_giris_ekrani():
             for kol, (d, e, a, r) in zip(cols, satir):
                 kol.markdown(_ozet_kart(d, e, a, r), unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
+
+    # Üyelik paketleri
+    render_paketler()
+    st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown(
         f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
