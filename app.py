@@ -2574,7 +2574,7 @@ if st.session_state.get("sayfa") == "scouting":
             sadece_sl   = (_sc_tab_sel == t("Shortlist", "Shortlist"))
 
             # ── Scout Pro: İki sütun düzeni (sidebar + ana alan) ─────────────
-            sc_sb, sc_main_col = st.columns([1, 3.6], gap="medium")
+            sc_sb, sc_main_col = st.columns([1, 4.6], gap="medium")
 
             # ── Sol Kenar: Filtreler ──────────────────────────────────────────
             with sc_sb:
@@ -2681,17 +2681,20 @@ if st.session_state.get("sayfa") == "scouting":
                         unsafe_allow_html=True)
 
                     # ── Native tıklanabilir tablo (st.dataframe + satır seçimi) ──
-                    st.caption(t("👇 Profili görmek için bir oyuncunun satırına tıkla.",
-                                 "👇 Click a player's row to see the profile."))
+                    _sec_uyari = t("👉 Soldaki kutucuğa tıkla → profil açılır",
+                                   "👉 Click the checkbox on the left → profile opens")
+                    st.markdown(
+                        f"<div style='background:#7c3aed;color:#fff;border-radius:8px;"
+                        f"padding:7px 14px;font-size:0.80rem;font-weight:700;"
+                        f"margin-bottom:6px;display:inline-block;'>"
+                        f"{_sec_uyari}</div>",
+                        unsafe_allow_html=True)
 
-                    _H_STAR = "⭐"
                     _H_NAME = t("Oyuncu", "Player")
                     _H_CTRY = t("Ülke", "Country")
                     _H_POS  = t("Mevki", "Pos")
-                    _H_CLUB = t("Son Kulüp", "Last Club")
                     _H_AGE  = t("Yaş", "Age")
                     _H_CON  = t("Sözleşme", "Contract")
-                    _H_FOOT = t("Ayak", "Foot")
                     _H_MIN  = t("Dk", "Min")
 
                     _rows_tbl  = []
@@ -2703,7 +2706,6 @@ if st.session_state.get("sayfa") == "scouting":
                         sd       = sd_data.get(tam_isim, {})
                         yas      = sd.get("Age", "")
                         mevki_sd = sd.get("Position", "")
-                        ayak_v   = sd.get("Foot", "")
                         sozlesme = sd.get("Contract until", "")
 
                         _tr_mevki = _SD_MEVKI_NORM.get(mevki_sd, mevki_normalize(mevki_sd))
@@ -2713,27 +2715,20 @@ if st.session_state.get("sayfa") == "scouting":
                         _sez_list = [s for s in _kariyer.get("sezonlar", [])
                                      if not s.get("milli")]
                         _son      = _sez_list[0] if _sez_list else {}
-                        _ss_kulup = _son.get("kulup", "") or ""
-                        _ss_sezon = _son.get("sezon", "")
-                        if _ss_kulup and _ss_sezon:
-                            _ss_kulup = f"{_ss_kulup} · {_ss_sezon}"
 
                         try:    _yas_i = int(yas)
                         except: _yas_i = None
 
+                        _ad_goster = ("⭐ " + tam_isim) if tam_isim in _sl_liste else tam_isim
+
                         _isim_sira.append(tam_isim)
                         _rows_tbl.append({
-                            _H_STAR: "⭐" if tam_isim in _sl_liste else "",
-                            _H_NAME: tam_isim,
+                            _H_NAME: _ad_goster,
                             _H_CTRY: ulke_goster(vatandas) if vatandas else "",
                             _H_POS:  _mevki_g or "",
-                            _H_CLUB: _ss_kulup,
                             _H_AGE:  _yas_i,
                             _H_CON:  sozlesme or "",
-                            _H_FOOT: ayak_v or "",
-                            "M":     _son.get("mac", 0) or None,
                             "G":     _son.get("gol", 0) or None,
-                            "A":     _son.get("asist", 0) or None,
                             _H_MIN:  _son.get("dakika", 0) or None,
                         })
 
@@ -2741,18 +2736,20 @@ if st.session_state.get("sayfa") == "scouting":
 
                     _evt = st.dataframe(
                         _tablo_df, hide_index=True, use_container_width=True,
-                        height=min(430, 56 + 35 * len(_tablo_df)),
+                        height=min(560, 44 + 35 * len(_tablo_df)),
                         on_select="rerun", selection_mode="single-row",
                         key="sc_tablo",
                         column_config={
-                            _H_STAR: st.column_config.TextColumn(_H_STAR, width="small"),
-                            _H_NAME: st.column_config.TextColumn(_H_NAME, width="medium"),
-                            _H_AGE:  st.column_config.NumberColumn(_H_AGE, format="%d"),
+                            _H_NAME: st.column_config.TextColumn(_H_NAME, width="large"),
+                            _H_CTRY: st.column_config.TextColumn(_H_CTRY, width="small"),
+                            _H_POS:  st.column_config.TextColumn(_H_POS, width="medium"),
+                            _H_AGE:  st.column_config.NumberColumn(_H_AGE, format="%d",
+                                                                  width="small"),
                             _H_CON:  st.column_config.TextColumn(_H_CON, width="small"),
-                            "M":     st.column_config.NumberColumn("M", format="%d"),
-                            "G":     st.column_config.NumberColumn("G", format="%d"),
-                            "A":     st.column_config.NumberColumn("A", format="%d"),
-                            _H_MIN:  st.column_config.NumberColumn(_H_MIN, format="%d"),
+                            "G":     st.column_config.NumberColumn("G", format="%d",
+                                                                  width="small"),
+                            _H_MIN:  st.column_config.NumberColumn(_H_MIN, format="%d",
+                                                                  width="small"),
                         },
                     )
 
