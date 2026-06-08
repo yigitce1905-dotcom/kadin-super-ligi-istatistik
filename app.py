@@ -2073,7 +2073,8 @@ if "sayfa" not in st.session_state:
     st.session_state["sayfa"] = "ana"
 # Karşılama ekranı: ana içeriğe geçmeden önce herkese gösterilir (giriş gerekmez)
 if "girildi" not in st.session_state:
-    st.session_state["girildi"] = False
+    # Doğrudan oyuncu profil linki (?oyuncu=...) varsa karşılama ekranını atla
+    st.session_state["girildi"] = bool(url_oyuncu)
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
