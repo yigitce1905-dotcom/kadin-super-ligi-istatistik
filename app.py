@@ -2693,6 +2693,7 @@ if st.session_state.get("sayfa") == "scouting":
                     _H_NAME = t("Oyuncu", "Player")
                     _H_CTRY = t("Ülke", "Country")
                     _H_POS  = t("Mevki", "Pos")
+                    _H_CLUB = t("Son Kulüp", "Last Club")
                     _H_AGE  = t("Yaş", "Age")
                     _H_CON  = t("Sözleşme", "Contract")
                     _H_MIN  = t("Dk", "Min")
@@ -2715,6 +2716,7 @@ if st.session_state.get("sayfa") == "scouting":
                         _sez_list = [s for s in _kariyer.get("sezonlar", [])
                                      if not s.get("milli")]
                         _son      = _sez_list[0] if _sez_list else {}
+                        _ss_kulup = _son.get("kulup", "") or ""
 
                         try:    _yas_i = int(yas)
                         except: _yas_i = None
@@ -2726,6 +2728,7 @@ if st.session_state.get("sayfa") == "scouting":
                             _H_NAME: _ad_goster,
                             _H_CTRY: ulke_goster(vatandas) if vatandas else "",
                             _H_POS:  _mevki_g or "",
+                            _H_CLUB: _ss_kulup,
                             _H_AGE:  _yas_i,
                             _H_CON:  sozlesme or "",
                             "G":     _son.get("gol", 0) or None,
@@ -2740,9 +2743,10 @@ if st.session_state.get("sayfa") == "scouting":
                         on_select="rerun", selection_mode="single-row",
                         key="sc_tablo",
                         column_config={
-                            _H_NAME: st.column_config.TextColumn(_H_NAME, width="large"),
+                            _H_NAME: st.column_config.TextColumn(_H_NAME, width="medium"),
                             _H_CTRY: st.column_config.TextColumn(_H_CTRY, width="small"),
-                            _H_POS:  st.column_config.TextColumn(_H_POS, width="medium"),
+                            _H_POS:  st.column_config.TextColumn(_H_POS, width="small"),
+                            _H_CLUB: st.column_config.TextColumn(_H_CLUB, width="medium"),
                             _H_AGE:  st.column_config.NumberColumn(_H_AGE, format="%d",
                                                                   width="small"),
                             _H_CON:  st.column_config.TextColumn(_H_CON, width="small"),
