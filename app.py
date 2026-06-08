@@ -2680,179 +2680,120 @@ if st.session_state.get("sayfa") == "scouting":
                         f"</span></div>",
                         unsafe_allow_html=True)
 
-                    # ── HTML Oyuncu Tablosu ───────────────────────────────────
-                    _tablo_satirlar = []
+                    # ── Native tıklanabilir tablo (st.dataframe + satır seçimi) ──
+                    st.caption(t("👇 Profili görmek için bir oyuncunun satırına tıkla.",
+                                 "👇 Click a player's row to see the profile."))
+
+                    _H_STAR = "⭐"
+                    _H_NAME = t("Oyuncu", "Player")
+                    _H_CTRY = t("Ülke", "Country")
+                    _H_POS  = t("Mevki", "Pos")
+                    _H_CLUB = t("Son Kulüp", "Last Club")
+                    _H_AGE  = t("Yaş", "Age")
+                    _H_CON  = t("Sözleşme", "Contract")
+                    _H_FOOT = t("Ayak", "Foot")
+                    _H_MIN  = t("Dk", "Min")
+
+                    _rows_tbl  = []
+                    _isim_sira = []
                     for _, row in filtered.iterrows():
                         tam_isim = str(row.get(isim_col, ""))
-                        vatandas = str(row.get(vat_col, "")) if vat_col else "—"
+                        vatandas = str(row.get(vat_col, "")) if vat_col else ""
 
                         sd       = sd_data.get(tam_isim, {})
-                        yas      = sd.get("Age", "?")
+                        yas      = sd.get("Age", "")
                         mevki_sd = sd.get("Position", "")
-                        ayak_v   = sd.get("Foot", "—")
-                        sozlesme = sd.get("Contract until", "—")
+                        ayak_v   = sd.get("Foot", "")
+                        sozlesme = sd.get("Contract until", "")
 
-                        # Mevki kısaltması
                         _tr_mevki = _SD_MEVKI_NORM.get(mevki_sd, mevki_normalize(mevki_sd))
                         _mevki_g  = mevki_goster(_tr_mevki) if _tr_mevki else mevki_sd
-                        _mevki_g  = (_mevki_g[:16] if _mevki_g else "—")
 
-                        # En son kulüp sezonu (milli takım olmayan)
                         _kariyer  = leistung_data.get(tam_isim, {})
                         _sez_list = [s for s in _kariyer.get("sezonlar", [])
                                      if not s.get("milli")]
                         _son      = _sez_list[0] if _sez_list else {}
-                        _ss_kulup = (_son.get("kulup", "—") or "—")[:20]
-                        _ss_sezon = _son.get("sezon", "—")
-                        _ss_mac   = _son.get("mac", 0) or "—"
-                        _ss_gol   = _son.get("gol", 0)
-                        _ss_asist = _son.get("asist", 0)
-                        _ss_dk    = _son.get("dakika", 0)
-                        _ss_dk_s  = str(_ss_dk) if _ss_dk else "—"
+                        _ss_kulup = _son.get("kulup", "") or ""
+                        _ss_sezon = _son.get("sezon", "")
+                        if _ss_kulup and _ss_sezon:
+                            _ss_kulup = f"{_ss_kulup} · {_ss_sezon}"
 
-                        # Sözleşme rengi (yıla göre)
-                        _soz_renk = "#34d399"
-                        if sozlesme and sozlesme != "—":
-                            for _tok in sozlesme.split():
-                                if len(_tok) == 4 and _tok.isdigit():
-                                    _yr = int(_tok)
-                                    if _yr <= 2025:   _soz_renk = "#f87171"
-                                    elif _yr <= 2026: _soz_renk = "#fbbf24"
-                                    break
-                        else:
-                            _soz_renk = "#6b7280"
+                        try:    _yas_i = int(yas)
+                        except: _yas_i = None
 
-                        # Shortlist yıldızı
-                        _is_sl_r  = tam_isim in _sl_liste
-                        _star_col = "#fbbf24" if _is_sl_r else "#334155"
-                        _star_chr = "★" if _is_sl_r else "☆"
+                        _isim_sira.append(tam_isim)
+                        _rows_tbl.append({
+                            _H_STAR: "⭐" if tam_isim in _sl_liste else "",
+                            _H_NAME: tam_isim,
+                            _H_CTRY: ulke_goster(vatandas) if vatandas else "",
+                            _H_POS:  _mevki_g or "",
+                            _H_CLUB: _ss_kulup,
+                            _H_AGE:  _yas_i,
+                            _H_CON:  sozlesme or "",
+                            _H_FOOT: ayak_v or "",
+                            "M":     _son.get("mac", 0) or None,
+                            "G":     _son.get("gol", 0) or None,
+                            "A":     _son.get("asist", 0) or None,
+                            _H_MIN:  _son.get("dakika", 0) or None,
+                        })
 
-                        # Danışman renkli noktası
-                        _dty_r = detay_data.get(tam_isim, {})
-                        _mrd_r = _dty_r.get("mr_danis", "")
-                        _mrc_r = _MR_DANIS_RENK.get(_mrd_r, "")
-                        _dot   = (f"<span style='display:inline-block;width:6px;height:6px;"
-                                  f"border-radius:50%;background:{_mrc_r};"
-                                  f"margin-right:5px;vertical-align:middle;'></span>"
-                                  ) if _mrc_r else ""
+                    _tablo_df = pd.DataFrame(_rows_tbl)
 
-                        _ulke_s  = ulke_goster(vatandas) if vatandas and vatandas != "—" else "—"
-                        _sdlink  = (f'<a href="{sd.get("profil_url","")}" target="_blank" '
-                                    f'style="color:#60a5fa;font-size:0.64rem;'
-                                    f'text-decoration:none;margin-left:4px;">↗</a>'
-                                    ) if sd.get("profil_url") else ""
-
-                        _tablo_satirlar.append(
-                            f"<tr style='border-bottom:1px solid #1a1a28;'>"
-                            f"<td style='padding:9px 10px;white-space:nowrap;'>"
-                            f"  {_dot}"
-                            f"<span style='font-weight:600;color:#e2e8f0;"
-                            f"font-size:0.80rem;'>{tam_isim}</span>"
-                            f"{_sdlink}"
-                            f"  <div style='font-size:0.64rem;color:#64748b;margin-top:1px;'>"
-                            f"{_ulke_s}</div></td>"
-                            f"<td style='padding:9px 8px;'>"
-                            f"  <span style='background:#1e1e30;color:#a78bfa;"
-                            f"border:1px solid #3730a3;border-radius:4px;"
-                            f"padding:2px 6px;font-size:0.64rem;font-family:monospace;"
-                            f"white-space:nowrap;'>{_mevki_g}</span></td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;color:#94a3b8;'>"
-                            f"  {_ss_kulup}"
-                            f"  <div style='font-size:0.62rem;color:#475569;'>{_ss_sezon}</div>"
-                            f"</td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;color:#cbd5e1;"
-                            f"font-family:monospace;'>{yas}</td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;font-family:monospace;"
-                            f"color:{_soz_renk};white-space:nowrap;'>{sozlesme}</td>"
-                            f"<td style='padding:9px 8px;font-size:0.73rem;color:#94a3b8;"
-                            f"font-family:monospace;'>{ayak_v}</td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;color:#94a3b8;"
-                            f"font-family:monospace;text-align:center;'>{_ss_mac}</td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;"
-                            f"color:#4ade80;font-family:monospace;text-align:center;"
-                            f"font-weight:{'700' if _ss_gol else '400'};'>"
-                            f"{_ss_gol if _ss_gol else '—'}</td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;color:#60a5fa;"
-                            f"font-family:monospace;text-align:center;'>"
-                            f"{_ss_asist if _ss_asist else '—'}</td>"
-                            f"<td style='padding:9px 8px;font-size:0.75rem;color:#f59e0b;"
-                            f"font-family:monospace;text-align:center;'>{_ss_dk_s}</td>"
-                            f"<td style='padding:9px 8px;color:{_star_col};"
-                            f"font-size:0.88rem;text-align:center;'>{_star_chr}</td>"
-                            f"</tr>"
-                        )
-
-                    _th_style = ("text-align:left;padding:10px 8px;font-size:0.62rem;"
-                                 "font-weight:700;text-transform:uppercase;"
-                                 "letter-spacing:0.08em;white-space:nowrap;")
-                    _thead = (
-                        f"<thead><tr style='border-bottom:2px solid #2a2a38;background:#111118;'>"
-                        f"<th style='{_th_style}color:#7c3aed;padding-left:10px;'>"
-                        f"{t('Oyuncu','Player')}</th>"
-                        f"<th style='{_th_style}color:#475569;'>{t('Mevki','Pos')}</th>"
-                        f"<th style='{_th_style}color:#475569;'>{t('Son Kulüp','Last Club')}</th>"
-                        f"<th style='{_th_style}color:#475569;'>{t('Yaş','Age')}</th>"
-                        f"<th style='{_th_style}color:#475569;'>{t('Sözleşme','Contract')}</th>"
-                        f"<th style='{_th_style}color:#475569;'>{t('Ayak','Foot')}</th>"
-                        f"<th style='{_th_style}color:#475569;text-align:center;'>M</th>"
-                        f"<th style='{_th_style}color:#4ade80;text-align:center;'>G</th>"
-                        f"<th style='{_th_style}color:#60a5fa;text-align:center;'>A</th>"
-                        f"<th style='{_th_style}color:#f59e0b;text-align:center;'>"
-                        f"{t('Dk','Min')}</th>"
-                        f"<th style='{_th_style}color:#475569;text-align:center;'>SL</th>"
-                        f"</tr></thead>"
+                    _evt = st.dataframe(
+                        _tablo_df, hide_index=True, use_container_width=True,
+                        height=min(430, 56 + 35 * len(_tablo_df)),
+                        on_select="rerun", selection_mode="single-row",
+                        key="sc_tablo",
+                        column_config={
+                            _H_STAR: st.column_config.TextColumn(_H_STAR, width="small"),
+                            _H_NAME: st.column_config.TextColumn(_H_NAME, width="medium"),
+                            _H_AGE:  st.column_config.NumberColumn(_H_AGE, format="%d"),
+                            _H_CON:  st.column_config.TextColumn(_H_CON, width="small"),
+                            "M":     st.column_config.NumberColumn("M", format="%d"),
+                            "G":     st.column_config.NumberColumn("G", format="%d"),
+                            "A":     st.column_config.NumberColumn("A", format="%d"),
+                            _H_MIN:  st.column_config.NumberColumn(_H_MIN, format="%d"),
+                        },
                     )
-                    st.markdown(
-                        f'<div style="overflow-x:auto;border:1px solid #2a2a38;'
-                        f'border-radius:10px;background:#0d0d18;">'
-                        f'<table style="width:100%;border-collapse:collapse;">'
-                        f'{_thead}'
-                        f'<tbody>{"".join(_tablo_satirlar)}</tbody>'
-                        f'</table></div>',
-                        unsafe_allow_html=True)
 
-                    # ── Oyuncu Profili (aynı sayfada, navigasyonsuz) ──────────
-                    st.markdown(
-                        f"<div style='margin-top:22px;font-size:0.68rem;font-weight:700;"
-                        f"color:#7c3aed;text-transform:uppercase;letter-spacing:0.09em;"
-                        f"margin-bottom:6px;'>"
-                        f"📋 {t('Oyuncu Profili', 'Player Profile')}</div>",
-                        unsafe_allow_html=True)
+                    # Seçili satır → oyuncu (varsa)
+                    _sel_idx = []
+                    try:
+                        _sel_idx = _evt.selection.rows
+                    except Exception:
+                        _sel_idx = []
+                    _secili = _isim_sira[_sel_idx[0]] if _sel_idx else None
 
-                    _secim_listesi = filtered[isim_col].tolist()
-
-                    _sp1, _sp2 = st.columns([3, 1])
-                    with _sp1:
-                        _secili = st.selectbox(
-                            t("👤 Oyuncu seç — profili hemen altta açılır",
-                              "👤 Select player — profile opens below"),
-                            _secim_listesi, key="sc_secim")
-                    with _sp2:
-                        st.markdown("<div style='height:28px'></div>",
-                                    unsafe_allow_html=True)
+                    # ── Seçilen oyuncunun profili (aynı sayfada, navigasyonsuz) ──
+                    if not _secili:
+                        st.info(t("ℹ️ Yukarıdaki tablodan bir oyuncuya tıklayınca "
+                                  "tam profili (kariyer, radar, benzer oyuncular) "
+                                  "burada açılır.",
+                                  "ℹ️ Click a player in the table above to open the "
+                                  "full profile (career, radar, similar players) here."))
+                    else:
+                        # Üst aksiyon çubuğu: Shortlist + Etiket
                         _is_sl_s = _secili in _sl_liste
-                        _fav_lbl = (t("⭐ Shortlist'te", "⭐ In Shortlist") if _is_sl_s
-                                    else t("☆ Shortlist'e Ekle", "☆ Add to Shortlist"))
-                        if st.button(_fav_lbl, key="sc_sl_btn",
-                                     use_container_width=True):
-                            shortlist_toggle(_sl_kullanici, _secili)
-                            st.rerun()
-
-                    if _secili:
-                        # Etiket satırı
-                        _etk_s = _etiket_liste.get(_secili, "—")
+                        _etk_s   = _etiket_liste.get(_secili, "—")
                         _ETIKET_EN = {"—": "—", "🔴 Öncelik": "🔴 Priority",
                                       "👀 İzle": "👀 Watch",
                                       "💰 Pahalı": "💰 Expensive",
                                       "✅ Görüşüldü": "✅ Contacted"}
-                        _et1, _et2 = st.columns([1, 3])
-                        with _et1:
+                        _ab1, _ab2 = st.columns([1, 1])
+                        with _ab1:
+                            _fav_lbl = (t("⭐ Shortlist'te", "⭐ In Shortlist") if _is_sl_s
+                                        else t("☆ Shortlist'e Ekle", "☆ Add to Shortlist"))
+                            if st.button(_fav_lbl, key="sc_sl_btn",
+                                         use_container_width=True):
+                                shortlist_toggle(_sl_kullanici, _secili)
+                                st.rerun()
+                        with _ab2:
                             _yeni_etk = st.selectbox(
                                 t("🏷️ Etiket", "🏷️ Tag"), _ETIKETLER,
                                 index=(_ETIKETLER.index(_etk_s)
                                        if _etk_s in _ETIKETLER else 0),
                                 format_func=lambda x: _ETIKET_EN.get(x, x) if EN else x,
-                                key="sc_etk_sel")
+                                key="sc_etk_sel", label_visibility="collapsed")
                             if _yeni_etk != _etk_s:
                                 etiket_ayarla(_sl_kullanici, _secili, _yeni_etk)
                                 st.rerun()
