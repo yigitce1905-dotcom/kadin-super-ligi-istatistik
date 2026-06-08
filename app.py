@@ -2742,19 +2742,12 @@ if st.session_state.get("sayfa") == "scouting":
                                     f'text-decoration:none;margin-left:4px;">↗</a>'
                                     ) if sd.get("profil_url") else ""
 
-                        # Profil linki — oyuncu adına tıklayınca ?oyuncu=... ile açılır
-                        from urllib.parse import quote as _uq
-                        _isim_enc = _uq(tam_isim, safe="")
-
                         _tablo_satirlar.append(
                             f"<tr style='border-bottom:1px solid #1a1a28;'>"
                             f"<td style='padding:9px 10px;white-space:nowrap;'>"
                             f"  {_dot}"
-                            f"<a href='?oyuncu={_isim_enc}' "
-                            f"style='font-weight:600;color:#e2e8f0;font-size:0.80rem;"
-                            f"text-decoration:none;' "
-                            f"onmouseover=\"this.style.color='#a78bfa'\" "
-                            f"onmouseout=\"this.style.color='#e2e8f0'\">{tam_isim}</a>"
+                            f"<span style='font-weight:600;color:#e2e8f0;"
+                            f"font-size:0.80rem;'>{tam_isim}</span>"
                             f"{_sdlink}"
                             f"  <div style='font-size:0.64rem;color:#64748b;margin-top:1px;'>"
                             f"{_ulke_s}</div></td>"
@@ -2827,10 +2820,18 @@ if st.session_state.get("sayfa") == "scouting":
                         unsafe_allow_html=True)
 
                     _secim_listesi = filtered[isim_col].tolist()
+
+                    # on_change: oyuncu değiştiğinde Streamlit internal rerun ile profil aç
+                    # (session korunur → giriş gerektirmez)
+                    def _profil_git():
+                        p = st.session_state.get("sc_secim")
+                        if p:
+                            st.query_params["oyuncu"] = p
+
                     _secili = st.selectbox(
-                        t("Oyuncu seç", "Select player"),
+                        t("👤 Seçin → Profil Açılır", "👤 Select → Opens Profile"),
                         _secim_listesi, key="sc_secim",
-                        label_visibility="collapsed")
+                        on_change=_profil_git)
 
                     if _secili:
                         _sd_s    = sd_data.get(_secili, {})
