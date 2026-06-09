@@ -973,6 +973,19 @@ _MEVKI_DETAY = {
     "Forvet":    ["Santrafor", "İkinci Santrafor", "Sol Kanat Forvet", "Sağ Kanat Forvet", "Forvet"],
 }
 
+# Detaylı mevki → geniş grup (Kaleci/Defans/Orta Saha/Forvet) ters haritası.
+# mevki_normalize çoğu oyuncuya detaylı pozisyon verdiği için, geniş kategoriyle
+# doğrudan "==" karşılaştırması çoğu oyuncuyu dışarıda bırakıyordu.
+_MEVKI_GRUP_MAP = {}
+for _g, _ds in _MEVKI_DETAY.items():
+    _MEVKI_GRUP_MAP[_g] = _g
+    for _d in _ds:
+        _MEVKI_GRUP_MAP[_d] = _g
+
+def mevki_grup(m: str) -> str:
+    """Detaylı veya geniş mevki adını 4 ana gruptan birine indirger."""
+    return _MEVKI_GRUP_MAP.get(m, "Bilinmiyor")
+
 # Mevki adı TR→EN gösterim haritası (iç değer TR kalır, sadece görünüm çevrilir)
 _MEVKI_EN = {
     "Kaleci": "Goalkeeper", "Defans": "Defense", "Orta Saha": "Midfield",
@@ -3263,7 +3276,12 @@ with tab2:
         giris_gerekli_ekrani()
     else:
         oyuncu_listesi = sorted(df_tam["Oyuncu"].tolist())
-        varsayilan_idx = oyuncu_listesi.index(url_oyuncu) if url_oyuncu in oyuncu_listesi else 0
+        # Varsayılan: URL'den gelen oyuncu > Ebru Topçu > listedeki ilk
+        if url_oyuncu in oyuncu_listesi:
+            varsayilan_idx = oyuncu_listesi.index(url_oyuncu)
+        else:
+            _ebru = next((o for o in oyuncu_listesi if "EBRU TOP" in o.upper()), None)
+            varsayilan_idx = oyuncu_listesi.index(_ebru) if _ebru else 0
         secili = st.selectbox(t("Oyuncu seç", "Select Player"), oyuncu_listesi, index=varsayilan_idx, key="profil_sec")
         render_ana_lig_profil(secili)
 
@@ -3509,9 +3527,11 @@ with tab4:
         st.markdown("---")
         st.markdown(f"##### ⚡ {t('Dakika-Gol Verimliliği', 'Minutes-Goals Efficiency')}")
         fig_s = go.Figure()
+        _df_t_grup = (df_t["Mevki"].map(mevki_grup) if "Mevki" in df_t.columns
+                      else pd.Series("Bilinmiyor", index=df_t.index))
         for mevki, renk in [("Kaleci","#00c853"),("Defans","#2979ff"),
                               ("Orta Saha","#ff6d00"),("Forvet","#e040fb"),("Bilinmiyor","#555")]:
-            alt = df_t[df_t.get("Mevki","") == mevki] if "Mevki" in df_t.columns else df_t
+            alt = df_t[_df_t_grup == mevki]
             if alt.empty: continue
             fig_s.add_trace(go.Scatter(
                 x=alt["Dakika"], y=alt["Gol"],
@@ -3607,12 +3627,10 @@ with tab6:
         fig_lig = go.Figure()
         MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
                       "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555555"}
+        _df_tam_grup = (df_tam["Mevki"].map(mevki_grup) if "Mevki" in df_tam.columns
+                        else pd.Series("Bilinmiyor", index=df_tam.index))
         for mevki, renk in MEVKI_RENK.items():
-            alt = df_tam[df_tam.get("Mevki", pd.Series(dtype=str)) == mevki] if "Mevki" in df_tam.columns else pd.DataFrame()
-            if "Mevki" in df_tam.columns:
-                alt = df_tam[df_tam["Mevki"] == mevki]
-            else:
-                alt = pd.DataFrame()
+            alt = df_tam[_df_tam_grup == mevki] if "Mevki" in df_tam.columns else pd.DataFrame()
             if alt.empty: continue
             fig_lig.add_trace(go.Scatter(
                 x=alt["Dakika"], y=alt["Gol"],
@@ -3901,9 +3919,14 @@ with tab7:
                 if mevki != onceki_grp:
                     st.markdown(f"**{GRUP_IKON.get(mevki,'')} {mevki}**")
                     onceki_grp = mevki
-                havuz = (df_tam[df_tam["Mevki"] == mevki]["Oyuncu"].tolist()
-                         if "Mevki" in df_tam.columns else df_tam["Oyuncu"].tolist())
-                secenekler = ["—"] + [o for o in sorted(havuz) if o not in zaten_sec]
+                if "Mevki" in df_tam.columns:
+                    _grup_ser   = df_tam["Mevki"].map(mevki_grup)
+                    _eslesen    = sorted(df_tam[_grup_ser == mevki]["Oyuncu"].tolist())
+                    _bilinmeyen = sorted(df_tam[_grup_ser == "Bilinmiyor"]["Oyuncu"].tolist())
+                    havuz = _eslesen + _bilinmeyen
+                else:
+                    havuz = sorted(df_tam["Oyuncu"].tolist())
+                secenekler = ["—"] + [o for o in havuz if o not in zaten_sec]
                 secim = st.selectbox(etiket, secenekler, key=f"ff_{etiket}",
                                      label_visibility="collapsed")
                 secimler[etiket] = secim
@@ -4114,7 +4137,8 @@ with tab7:
 
             st.markdown("<br>", unsafe_allow_html=True)
             goster = df_kadro[["Oyuncu","Takım","Mevki","Gol","Maç","Gol/Maç","Dakika","Sarı"]].copy()
-            goster["_s"] = goster["Mevki"].map({"Kaleci":0,"Defans":1,"Orta Saha":2,"Forvet":3,"Bilinmiyor":4})
+            _grup_sira = {"Kaleci":0,"Defans":1,"Orta Saha":2,"Forvet":3,"Bilinmiyor":4}
+            goster["_s"] = goster["Mevki"].map(lambda m: _grup_sira.get(mevki_grup(m), 4))
             goster = goster.sort_values("_s").drop(columns="_s").reset_index(drop=True)
             goster.index += 1
             st.dataframe(goster, use_container_width=True,
