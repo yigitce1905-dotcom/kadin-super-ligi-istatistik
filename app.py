@@ -1812,37 +1812,51 @@ _SCOTR_POT = {
     "⬇":  ("⬇",  "#f87171", "Düşüşte",          "Declining"),
 }
 
+# 10 kademeli skala: EE(1) → A+(10). FF = 0 dolu kutucuk.
+_SCOTR_SIRA = ["EE", "DE", "DD", "CD", "CC", "BC", "BB", "AB", "AA", "A+"]
+
+def _scotr_segman(nt: str) -> int:
+    """Notu 0-10 arası dolu kutucuk sayısına çevirir (FF/boş → 0)."""
+    nt = (nt or "").strip().upper()
+    if nt in _SCOTR_SIRA:
+        return _SCOTR_SIRA.index(nt) + 1
+    # Ters yazım (ör. 'DC' → 'CD') veya bilinmeyen: puana göre yaklaşık
+    p = _scotr_puan(nt)
+    return max(0, min(10, round(p * 2 - 1))) if p > 0 else 0
+
 def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
-    """Tek nitelik grubu panelinin HTML'i (ad + bar + not çipi satırları)."""
+    """Tek nitelik grubu paneli — kompakt: ad + 10 kutucuklu segment çizgisi."""
     m_puan = _scotr_puan(makro_not)
     m_renk = _scotr_renk(m_puan)
     makro_html = (f"<span style='background:{m_renk}22;color:{m_renk};"
-                  f"border:1px solid {m_renk};border-radius:6px;padding:1px 9px;"
-                  f"font-size:0.72rem;font-weight:800;'>{makro_not}</span>") if makro_not else ""
+                  f"border:1px solid {m_renk};border-radius:5px;padding:0 7px;"
+                  f"font-size:0.64rem;font-weight:800;'>{makro_not}</span>") if makro_not else ""
     satirlar = ""
     for ad, nt in nitelikler.items():
-        p    = _scotr_puan(nt)
-        renk = _scotr_renk(p)
-        w    = max(4, round(p / 5 * 100))
+        dolu = _scotr_segman(nt)
+        renk = _scotr_renk(_scotr_puan(nt))
+        kutular = ""
+        for i in range(10):
+            kc = renk if i < dolu else "#1a2035"
+            kutular += (f"<span style='width:5px;height:9px;background:{kc};"
+                        f"border-radius:1px;'></span>")
         satirlar += (
-            f"<div style='display:flex;align-items:center;gap:8px;margin:5px 0;'>"
-            f"<span style='flex:0 0 124px;font-size:0.72rem;color:#aab4c4;"
+            f"<div style='display:flex;align-items:center;gap:6px;margin:3px 0;' "
+            f"title='{ad}: {nt}'>"
+            f"<span style='flex:1;min-width:0;font-size:0.63rem;color:#aab4c4;"
             f"white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>{ad}</span>"
-            f"<span style='flex:1;height:7px;background:#1a2035;border-radius:4px;"
-            f"overflow:hidden;'><span style='display:block;height:100%;width:{w}%;"
-            f"background:linear-gradient(90deg,{renk}88,{renk});border-radius:4px;'>"
-            f"</span></span>"
-            f"<span style='flex:0 0 30px;text-align:center;font-size:0.68rem;"
+            f"<span style='display:inline-flex;gap:1.5px;flex:0 0 auto;'>{kutular}</span>"
+            f"<span style='flex:0 0 20px;text-align:right;font-size:0.58rem;"
             f"font-weight:800;color:{renk};font-family:monospace;'>{nt}</span>"
             f"</div>"
         )
     return (
-        f"<div style='background:#11162a;border:1px solid #232b47;border-radius:12px;"
-        f"padding:14px 16px;'>"
+        f"<div style='background:#11162a;border:1px solid #232b47;border-radius:10px;"
+        f"padding:10px 12px;height:100%;'>"
         f"<div style='display:flex;justify-content:space-between;align-items:center;"
-        f"margin-bottom:9px;'>"
-        f"<span style='font-size:0.78rem;font-weight:800;color:#e2e8f0;"
-        f"letter-spacing:0.05em;'>{ikon} {baslik}</span>{makro_html}</div>"
+        f"margin-bottom:7px;'>"
+        f"<span style='font-size:0.68rem;font-weight:800;color:#e2e8f0;"
+        f"letter-spacing:0.04em;white-space:nowrap;'>{ikon} {baslik}</span>{makro_html}</div>"
         f"{satirlar}</div>"
     )
 
@@ -1908,7 +1922,7 @@ def render_scout_raporu(isim: str):
                   "Detailed attribute assessment for this player is not yet complete."))
         return
 
-    # ── 4 nitelik paneli (2x2 grid) ─────────────────────────────────────
+    # ── 4 nitelik paneli (yan yana, kompakt) ────────────────────────────
     makro = rapor.get("makro", {})
     paneller = [
         (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("T.MAKRO", "")),
@@ -1916,12 +1930,11 @@ def render_scout_raporu(isim: str):
         (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("F.MAKRO", "")),
         (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("Ş.MAKRO", "")),
     ]
-    c1, c2 = st.columns(2, gap="small")
-    for kol, (baslik, ikon, nit, mk) in zip([c1, c2, c1, c2], paneller):
+    kolonlar = st.columns(4, gap="small")
+    for kol, (baslik, ikon, nit, mk) in zip(kolonlar, paneller):
         if nit:
             kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
                          unsafe_allow_html=True)
-            kol.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
 
     # ── Oyun tarzı çipleri ──────────────────────────────────────────────
     tarz = rapor.get("tarz", [])
