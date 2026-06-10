@@ -1,0 +1,2322 @@
+{
+  "AHLAM HATAB": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "07.03.2004",
+    "bolge": "MF",
+    "mevki1": "CMF",
+    "mevki2": "AMF",
+    "rol": "Oyun Kurucu os",
+    "yas": "22",
+    "uyruk": "Ürdün",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "DD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "FF",
+      "Duran Top": "CD",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "CD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "CD"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "DD",
+      "Karar Alma": "CD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "CD",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "CD",
+      "Dayanıklılık": "DE",
+      "Denge": "DD",
+      "Güç": "EE",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DD",
+      "Zindelik": "DD",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "DE",
+      "Sadakat": "FF",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DE",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DE"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DE"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DE"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬌",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "AYŞENUR ARIK": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "22.06.1997",
+    "bolge": "MF",
+    "mevki1": "AMF",
+    "mevki2": "",
+    "rol": "İleri Dönük os",
+    "yas": "28",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "DE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "CD",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "CD"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "DD",
+      "Karar Alma": "DE",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "CD",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "DE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DD",
+      "Denge": "DE",
+      "Güç": "DE",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DE",
+      "Zindelik": "DD",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "EE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "CD",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "DE",
+      "Sadakat": "DE",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "CD",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "EE"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "EE"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "EE"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬋",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "BAHAR GÜVENÇ MAVİ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "15.01.1997",
+    "bolge": "DF",
+    "mevki1": "RCB",
+    "mevki2": "LCB",
+    "rol": "Oyun Kurucu sv",
+    "yas": "29",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "CD",
+      "Top Kapma": "DD",
+      "Uzun Taç": "DD",
+      "Duran Top": "DD",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "CD",
+      "Karar Alma": "DD",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "CC",
+      "Önsezi": "DD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "EE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DD",
+      "Denge": "CD",
+      "Güç": "DE",
+      "Sürat": "DD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DE",
+      "Zindelik": "EE",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "CC",
+      "Profesyonellik": "CD",
+      "Sadakat": "BC",
+      "Baskıya Dayanıklılık": "CD",
+      "Uyumluluk": "DE",
+      "Süreklilik": "CD",
+      "Çalışkanlık": "CC"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "CD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "CC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "CC"
+      }
+    ],
+    "nihai": "CC",
+    "potansiyel": "⬋",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "BEYZA EMİNE SARUHAN": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "30.05.2000",
+    "bolge": "MF",
+    "mevki1": "AMF",
+    "mevki2": "CMF",
+    "rol": "Savaşçı os",
+    "yas": "26",
+    "uyruk": "Türkiye&Belçika",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "DD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "FF",
+      "Duran Top": "FF",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "DE",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "EE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "CD",
+      "Cesaret": "DE",
+      "Karar Alma": "DD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "DD",
+      "Önsezi": "CD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DD",
+      "Görüş": "DE"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DE",
+      "Denge": "DE",
+      "Güç": "DD",
+      "Sürat": "DE",
+      "Hızlanma": "DE",
+      "Koordinasyon": "DE",
+      "Zindelik": "DE",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "CD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DD",
+      "Çalışkanlık": "DE"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BB"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "CD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BB"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬋",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "BÜŞRA BERFİN EREN": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "02.02.2002",
+    "bolge": "DF",
+    "mevki1": "RCB",
+    "mevki2": "MCB",
+    "rol": "Pozisyoncu sv",
+    "yas": "24",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "EE",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "DE",
+      "Top Kapma": "DD",
+      "Uzun Taç": "EE",
+      "Duran Top": "FF",
+      "İlk Kontrol": "DE",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "EE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "EE",
+      "Uzaktan Şut": "EE"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "DD",
+      "Karar Alma": "DD",
+      "Kararlılık": "DE",
+      "Konsantrasyon": "EE",
+      "Liderlik": "DE",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "EE",
+      "Takım Oyunu": "EE",
+      "Topsuz Alan": "EE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DE",
+      "Denge": "EE",
+      "Güç": "EE",
+      "Sürat": "DD",
+      "Hızlanma": "CD",
+      "Koordinasyon": "EE",
+      "Zindelik": "DD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "EE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "BC",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "DD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "BB"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BC"
+      }
+    ],
+    "nihai": "CC",
+    "potansiyel": "⬌",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "ELİF AYTEKİN": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "28.07.2004",
+    "bolge": "MF",
+    "mevki1": "CMF",
+    "mevki2": "",
+    "rol": "Oyun Kurucu os",
+    "yas": "21",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "EE",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "DE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "DE",
+      "Duran Top": "DE",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "DE",
+      "Orta Yapma": "EE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "DD",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "DE",
+      "Önsezi": "DE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "DE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DE",
+      "Denge": "DE",
+      "Güç": "EE",
+      "Sürat": "DD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DE",
+      "Zindelik": "DE",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "CC",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "DD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "CD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DE"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DE"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DE"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬈",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "ELLEN COLEMAN": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "11.12.1995",
+    "bolge": "DF",
+    "mevki1": "LFB",
+    "mevki2": "RFB",
+    "rol": "Hücumcu bk",
+    "yas": "30",
+    "uyruk": "Gana",
+    "beceri": {
+      "Bitiricilik": "EE",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "DD",
+      "Top Kapma": "DD",
+      "Uzun Taç": "DD",
+      "Duran Top": "EE",
+      "İlk Kontrol": "DE",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "DE",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "EE",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "CD",
+      "Görüş": "DE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "CD",
+      "Denge": "DE",
+      "Güç": "DE",
+      "Sürat": "DD",
+      "Hızlanma": "CD",
+      "Koordinasyon": "EE",
+      "Zindelik": "DD",
+      "Zıplama": "DE",
+      "Zayıf Ayak": "BB"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "DE",
+      "Sadakat": "FF",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "CD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DE"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BC"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬇︎",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "EZGİ ADA ÇINAR": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "15.08.2004",
+    "bolge": "MF",
+    "mevki1": "CMF",
+    "mevki2": "DMF",
+    "rol": "Savaşçı os",
+    "yas": "21",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "EE",
+      "Top Tekniği": "EE",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "DE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "EE",
+      "İlk Kontrol": "DE",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "EE",
+      "Kısa Pas": "DE",
+      "Uzun Pas": "EE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "EE",
+      "Cesaret": "EE",
+      "Karar Alma": "DE",
+      "Kararlılık": "DE",
+      "Konsantrasyon": "EE",
+      "Liderlik": "EE",
+      "Önsezi": "EE",
+      "Konumlanma": "EE",
+      "Soğukkanlılık": "EE",
+      "Takım Oyunu": "EE",
+      "Topsuz Alan": "EE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "EE",
+      "Denge": "DE",
+      "Güç": "EE",
+      "Sürat": "DE",
+      "Hızlanma": "DE",
+      "Koordinasyon": "EE",
+      "Zindelik": "EE",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "EE",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "EE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "EE",
+      "Çalışkanlık": "DE"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "EE",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BC"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬌",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "EZGİ KILIÇ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "14.06.2006",
+    "bolge": "DF",
+    "mevki1": "",
+    "mevki2": "",
+    "rol": "",
+    "yas": "19",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "FF",
+      "Top Tekniği": "FF",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "FF",
+      "Top Kapma": "FF",
+      "Uzun Taç": "FF",
+      "Duran Top": "FF",
+      "İlk Kontrol": "FF",
+      "Kafa Vuruşu": "FF",
+      "Orta Yapma": "FF",
+      "Kısa Pas": "FF",
+      "Uzun Pas": "FF",
+      "Top Sürme": "FF",
+      "Uzaktan Şut": "FF"
+    },
+    "beseri": {
+      "Agresiflik": "FF",
+      "Cesaret": "FF",
+      "Karar Alma": "FF",
+      "Kararlılık": "FF",
+      "Konsantrasyon": "FF",
+      "Liderlik": "FF",
+      "Önsezi": "FF",
+      "Konumlanma": "FF",
+      "Soğukkanlılık": "FF",
+      "Takım Oyunu": "FF",
+      "Topsuz Alan": "FF",
+      "Görüş": "FF"
+    },
+    "fiziki": {
+      "Çeviklik": "FF",
+      "Dayanıklılık": "FF",
+      "Denge": "FF",
+      "Güç": "FF",
+      "Sürat": "FF",
+      "Hızlanma": "FF",
+      "Koordinasyon": "FF",
+      "Zindelik": "FF",
+      "Zıplama": "FF",
+      "Zayıf Ayak": "FF"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "FF",
+      "Sportmenlik": "FF",
+      "Profesyonellik": "FF",
+      "Sadakat": "FF",
+      "Baskıya Dayanıklılık": "FF",
+      "Uyumluluk": "FF",
+      "Süreklilik": "FF",
+      "Çalışkanlık": "FF"
+    },
+    "makro": {
+      "T.MAKRO": "FF",
+      "B.MAKRO": "FF",
+      "F.MAKRO": "FF",
+      "Ş.MAKRO": "FF"
+    },
+    "tarz": [
+      {
+        "ozellik": "Kanattan Bindirme Yapar / Kanat Ortalarında Başarılıdır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "İç Koridoru Kullanır / Kısa Ortalarda Başarılıdır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Merkezden Bindirme Yapar / Cepheden Gelen Şutlarda Etkilidir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Hücum Koşuları Yapar / Savunma Arkası Koşusu Yapan Rakibin Alanını Daraltmak İçin Kaleden Çıkar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Fırsat Buldukça Hücuma Katılır / Maçın Son Dakikalarında Kalesinden Uzakta Oyanabilir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Fırsat Buldukça Savunmaya Katılır / Baskı Anlarında Yerden Kalkma Süresi Uzar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Sık Sık Ara/Kilit Pas Dener",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kaleyi Uzaktan Yoklar / Degajmanı Taca Doğru Kullanır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Şut Çekmek Yerine Pas Dener / Uzun Degajman Yerine Pas Vermeyi Dener (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Sert Şutlar/Ortalar Dener / Daha Şiddetli Degajlar Yapar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Başarılıı Plase Şut/Orta Dener / Daha Yumuşak ve Yüksek Degaj Dener (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kaleciyi Geçmeyi Sever / Kaleyi Terk Ederek Oynar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Ceza Sahasında Oyalanmaz / Yumrukla Uzaklaştırır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Rakip Oyunculara Sataşmaz",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Temaslı Markaj Yapar / Duran Top Organizasyonlarında Kalabalık Ceza Sahasında Agresifleşir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Alanına Hakimdir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Hakemlere İtiraz Etmez",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kaleye Sırtı Dönük Oynayabilir / Kale Çizgisi Dışında da Pozisyon Alabilir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Topu Almak İçin Gerilere Kadar Gelir / Oyuna Katılımı Yüksek Seviyededir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Aşırtma/Akıllı Vuruşlar Yapar",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Yerden Uzak Köşeye Vuruş Yapar / Taç Çizgilerine Doğru Oyunu Genişletir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Maçın Temposuna Yön Verir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Yüksek Tempolu Oynar",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Hızını Sahaya Yansıtır / Reflekslerini Sahaya Yansıtır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Zayıf Ayağını Kullanabilir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Duran Toplarda Topun Başına Geçer",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kayarak Top Çalar / Penaltılarda Oyalanır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Ayakta Mücadele Eder / Kale Köşelerine Yanaşarak Oynar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Tribüne Oynar, Abartılı Sevinir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Zor Paslara Yetişme Gayretindedir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Karta Meyilli Hamle Yapmaz",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Topla Oyalanmayı Sevmez",
+        "derece": "FF"
+      }
+    ],
+    "nihai": "FF",
+    "potansiyel": "",
+    "scout_notu": "",
+    "degerlendirildi": false
+  },
+  "FATMA KILINÇ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "23.03.2007",
+    "bolge": "MF",
+    "mevki1": "RWB",
+    "mevki2": "RFB",
+    "rol": "Kanat bk",
+    "yas": "19",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DE",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "DE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "FF",
+      "İlk Kontrol": "DE",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "EE"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "CD",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "EE",
+      "Soğukkanlılık": "EE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DD",
+      "Görüş": "DE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DD",
+      "Denge": "DE",
+      "Güç": "EE",
+      "Sürat": "CD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DE",
+      "Zindelik": "CD",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "EE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "DE",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "EE",
+      "Uyumluluk": "DE",
+      "Süreklilik": "EE",
+      "Çalışkanlık": "CD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BB"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "CC"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BB"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬈",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "HÜMEYRA ŞANVER": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "14.12.2004",
+    "bolge": "DF",
+    "mevki1": "RFB",
+    "mevki2": "",
+    "rol": "Modern bk",
+    "yas": "21",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DE",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "CD",
+      "Top Kapma": "DD",
+      "Uzun Taç": "DD",
+      "Duran Top": "DD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "CD",
+      "Cesaret": "CD",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "DE",
+      "Önsezi": "DD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DE",
+      "Görüş": "DE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DD",
+      "Denge": "DD",
+      "Güç": "DD",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "CD",
+      "Zindelik": "DE",
+      "Zıplama": "DE",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "DD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "DD",
+      "Süreklilik": "CD",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "CD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BC"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬌",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "KARİNA SOCARRAS VİLLALONGA": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "28.11.1993",
+    "bolge": "FW",
+    "mevki1": "CFW",
+    "mevki2": "2ST",
+    "rol": "Fırsatçı st",
+    "yas": "32",
+    "uyruk": "Porto Riko",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "DE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "DE",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "CD",
+      "Cesaret": "DD",
+      "Karar Alma": "DE",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "DD",
+      "Önsezi": "DE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "CD",
+      "Topsuz Alan": "DE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DE",
+      "Denge": "CD",
+      "Güç": "CD",
+      "Sürat": "DD",
+      "Hızlanma": "DE",
+      "Koordinasyon": "DD",
+      "Zindelik": "DE",
+      "Zıplama": "CD",
+      "Zayıf Ayak": "CD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "CD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "CD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬇︎",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "KERİME KAYMAZ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "05.06.2007",
+    "bolge": "MF",
+    "mevki1": "CMF",
+    "mevki2": "AMF",
+    "rol": "Oyun kurucu os",
+    "yas": "19",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DE",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "DE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "DD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "CC",
+      "Cesaret": "CD",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "EE",
+      "Önsezi": "DD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "EE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "EE",
+      "Denge": "DE",
+      "Güç": "DE",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DD",
+      "Zindelik": "EE",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "EE",
+      "Sadakat": "EE",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "EE",
+      "Süreklilik": "EE",
+      "Çalışkanlık": "EE"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "EE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "CD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "CD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬋",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "LINA FERNANDE MARTINEZ ALVAREZ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "25.08.1993",
+    "bolge": "MF",
+    "mevki1": "DMF",
+    "mevki2": "RCB",
+    "rol": "Dinamo os",
+    "yas": "32",
+    "uyruk": "Kolombiya",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "DD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "DE",
+      "Duran Top": "CD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "DE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "CD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "CD",
+      "Cesaret": "DE",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "CD",
+      "Önsezi": "DE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "CD",
+      "Topsuz Alan": "EE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "EE",
+      "Dayanıklılık": "DE",
+      "Denge": "DD",
+      "Güç": "DD",
+      "Sürat": "EE",
+      "Hızlanma": "DE",
+      "Koordinasyon": "CD",
+      "Zindelik": "EE",
+      "Zıplama": "DE",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "DD",
+      "Sadakat": "CD",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "CD",
+      "Süreklilik": "EE",
+      "Çalışkanlık": "DE"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬇︎",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "MARY ABOSEDE SALAMI": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "16.06.2003",
+    "bolge": "MF",
+    "mevki1": "RWB",
+    "mevki2": "LWB",
+    "rol": "Çalışkan bk",
+    "yas": "22",
+    "uyruk": "Nijerya",
+    "beceri": {
+      "Bitiricilik": "EE",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "EE",
+      "Markaj": "DD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "CD",
+      "Duran Top": "DE",
+      "İlk Kontrol": "EE",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "EE"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "CC",
+      "Karar Alma": "DE",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "EE",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "CD",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "CC",
+      "Dayanıklılık": "CC",
+      "Denge": "DE",
+      "Güç": "EE",
+      "Sürat": "BC",
+      "Hızlanma": "CC",
+      "Koordinasyon": "DE",
+      "Zindelik": "CC",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "CD",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "DE",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "CD",
+      "Uyumluluk": "CD",
+      "Süreklilik": "DD",
+      "Çalışkanlık": "CC"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "CD",
+      "Ş.MAKRO": "CD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬈",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "NAIMA LAMARI": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "22.09.1997",
+    "bolge": "FW",
+    "mevki1": "2ST",
+    "mevki2": "AMF",
+    "rol": "Gölge st",
+    "yas": "28",
+    "uyruk": "Cezayir",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DE",
+      "Markaj": "EE",
+      "Top Kapma": "EE",
+      "Uzun Taç": "EE",
+      "Duran Top": "DD",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "CD",
+      "Karar Alma": "DE",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "DD",
+      "Önsezi": "DD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "DE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "CD",
+      "Dayanıklılık": "DD",
+      "Denge": "DE",
+      "Güç": "EE",
+      "Sürat": "CD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "CD",
+      "Zindelik": "DD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "DD",
+      "Sadakat": "FF",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "CD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BB"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BB"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬌",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "NOELA PATRICK LUHALA": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "25.12.2005",
+    "bolge": "DF",
+    "mevki1": "RCB",
+    "mevki2": "MCB",
+    "rol": "Çakılı sv",
+    "yas": "20",
+    "uyruk": "Tanzanya",
+    "beceri": {
+      "Bitiricilik": "EE",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "EE",
+      "Markaj": "DD",
+      "Top Kapma": "CD",
+      "Uzun Taç": "DD",
+      "Duran Top": "EE",
+      "İlk Kontrol": "DE",
+      "Kafa Vuruşu": "CD",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "EE"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "CD",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "EE",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "DE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "CD",
+      "Denge": "DE",
+      "Güç": "DE",
+      "Sürat": "DD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "EE",
+      "Zindelik": "CC",
+      "Zıplama": "DE",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "CC",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "DE",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "CD",
+      "Çalışkanlık": "CD"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "CD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⇧",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "OUAFAA HAMRI": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "15.06.2006",
+    "bolge": "MF",
+    "mevki1": "LWB",
+    "mevki2": "LWF",
+    "rol": "Oyun Kurucu bk",
+    "yas": "19",
+    "uyruk": "Fas",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "DE",
+      "Top Kapma": "EE",
+      "Uzun Taç": "DD",
+      "Duran Top": "CD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "CD",
+      "Kısa Pas": "CD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "DE",
+      "Karar Alma": "CD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DD",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DE",
+      "Denge": "DD",
+      "Güç": "DE",
+      "Sürat": "EE",
+      "Hızlanma": "DE",
+      "Koordinasyon": "CD",
+      "Zindelik": "DE",
+      "Zıplama": "DE",
+      "Zayıf Ayak": "EE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "DD",
+      "Sadakat": "CD",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "CD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DE"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DE",
+      "Ş.MAKRO": "DE"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "BB"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬈",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "OUASSİLA ALOUACHE": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "11.07.2000",
+    "bolge": "MF",
+    "mevki1": "AMF",
+    "mevki2": "2ST",
+    "rol": "Gölge st",
+    "yas": "25",
+    "uyruk": "Cezayir",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "EE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "DE",
+      "Duran Top": "DD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "CD"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "DE",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "DE",
+      "Önsezi": "DD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DD",
+      "Denge": "DD",
+      "Güç": "DE",
+      "Sürat": "CD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DD",
+      "Zindelik": "DD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "BC"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "DD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "DD",
+      "Süreklilik": "CD",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "CD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "BC"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬈",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "SARAH YASONGAMO MAKANDA": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "15.08.1998",
+    "bolge": "MF",
+    "mevki1": "DMF",
+    "mevki2": "CFW",
+    "rol": "Oyun Kurucu os",
+    "yas": "27",
+    "uyruk": "Kongo DC",
+    "beceri": {
+      "Bitiricilik": "DE",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "DE",
+      "Markaj": "CD",
+      "Top Kapma": "DD",
+      "Uzun Taç": "DD",
+      "Duran Top": "DE",
+      "İlk Kontrol": "DE",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "EE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "CD",
+      "Karar Alma": "DE",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "DE",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "EE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "DE",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "CD",
+      "Dayanıklılık": "CD",
+      "Denge": "EE",
+      "Güç": "DE",
+      "Sürat": "DD",
+      "Hızlanma": "CD",
+      "Koordinasyon": "DE",
+      "Zindelik": "CC",
+      "Zıplama": "CD",
+      "Zayıf Ayak": "CD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DD",
+      "Sportmenlik": "CD",
+      "Profesyonellik": "DE",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DD",
+      "Çalışkanlık": "CC"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DD",
+      "F.MAKRO": "CD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "CC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DE"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "CC"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬇︎",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "SELİN SİVRİKAYA": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "01.01.1997",
+    "bolge": "MF",
+    "mevki1": "LWB",
+    "mevki2": "LCB",
+    "rol": "Versatile",
+    "yas": "29",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "CD",
+      "Top Kapma": "DD",
+      "Uzun Taç": "DE",
+      "Duran Top": "DD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "CC",
+      "Cesaret": "DD",
+      "Karar Alma": "DE",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "CD",
+      "Liderlik": "CD",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "CD",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "CD",
+      "Dayanıklılık": "DD",
+      "Denge": "DD",
+      "Güç": "DD",
+      "Sürat": "DD",
+      "Hızlanma": "DE",
+      "Koordinasyon": "DD",
+      "Zindelik": "CD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "EE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "EE",
+      "Sadakat": "CC",
+      "Baskıya Dayanıklılık": "CC",
+      "Uyumluluk": "DE",
+      "Süreklilik": "DD",
+      "Çalışkanlık": "CD"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "CD",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "DE"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "BC"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "DE"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬇︎",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "SKAISTE PETRAUSKAITE": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "14.01.2004",
+    "bolge": "FW",
+    "mevki1": "CFW",
+    "mevki2": "",
+    "rol": "Hedef st",
+    "yas": "22",
+    "uyruk": "Litvanya",
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "EE",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "DE",
+      "Top Kapma": "EE",
+      "Uzun Taç": "EE",
+      "Duran Top": "EE",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "CD",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DE",
+      "Uzun Pas": "EE",
+      "Top Sürme": "EE",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "EE",
+      "Karar Alma": "DE",
+      "Kararlılık": "EE",
+      "Konsantrasyon": "DE",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "EE",
+      "Görüş": "DE"
+    },
+    "fiziki": {
+      "Çeviklik": "EE",
+      "Dayanıklılık": "DD",
+      "Denge": "DD",
+      "Güç": "CD",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DD",
+      "Zindelik": "DD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DE"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "DE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "CD",
+      "Sadakat": "DD",
+      "Baskıya Dayanıklılık": "DD",
+      "Uyumluluk": "DE",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CD",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "CC"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "CD"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "CC"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬌",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "ŞEFİKA ÖZ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "04.02.2007",
+    "bolge": "MF",
+    "mevki1": "LWB",
+    "mevki2": "LWF",
+    "rol": "Çalışkan bk",
+    "yas": "19",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "DE",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "DD",
+      "Top Kapma": "EE",
+      "Uzun Taç": "DD",
+      "Duran Top": "CD",
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "DE",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DD",
+      "Top Sürme": "DD",
+      "Uzaktan Şut": "DE"
+    },
+    "beseri": {
+      "Agresiflik": "DE",
+      "Cesaret": "DD",
+      "Karar Alma": "DE",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "EE",
+      "Görüş": "DE"
+    },
+    "fiziki": {
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DD",
+      "Denge": "DE",
+      "Güç": "EE",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DD",
+      "Zindelik": "DD",
+      "Zıplama": "DE",
+      "Zayıf Ayak": "CC"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "FF",
+      "Sportmenlik": "FF",
+      "Profesyonellik": "DE",
+      "Sadakat": "FF",
+      "Baskıya Dayanıklılık": "EE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DD"
+    },
+    "makro": {
+      "T.MAKRO": "CC",
+      "B.MAKRO": "DE",
+      "F.MAKRO": "DD",
+      "Ş.MAKRO": "DD"
+    },
+    "tarz": [
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "CD"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "DE"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "CD"
+      }
+    ],
+    "nihai": "CD",
+    "potansiyel": "⬈",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
+  "YAĞMUR BEREN GÖNÜLLÜ": {
+    "takim": "1207 ANTALYASPOR",
+    "dogum": "17.06.2009",
+    "bolge": "DF",
+    "mevki1": "RFB",
+    "mevki2": "",
+    "rol": "",
+    "yas": "16",
+    "uyruk": "Türkiye",
+    "beceri": {
+      "Bitiricilik": "FF",
+      "Top Tekniği": "FF",
+      "Penaltı Vuruşu": "FF",
+      "Markaj": "FF",
+      "Top Kapma": "FF",
+      "Uzun Taç": "FF",
+      "Duran Top": "FF",
+      "İlk Kontrol": "FF",
+      "Kafa Vuruşu": "FF",
+      "Orta Yapma": "FF",
+      "Kısa Pas": "FF",
+      "Uzun Pas": "FF",
+      "Top Sürme": "FF",
+      "Uzaktan Şut": "FF"
+    },
+    "beseri": {
+      "Agresiflik": "FF",
+      "Cesaret": "FF",
+      "Karar Alma": "FF",
+      "Kararlılık": "FF",
+      "Konsantrasyon": "FF",
+      "Liderlik": "FF",
+      "Önsezi": "FF",
+      "Konumlanma": "FF",
+      "Soğukkanlılık": "FF",
+      "Takım Oyunu": "FF",
+      "Topsuz Alan": "FF",
+      "Görüş": "FF"
+    },
+    "fiziki": {
+      "Çeviklik": "FF",
+      "Dayanıklılık": "FF",
+      "Denge": "FF",
+      "Güç": "FF",
+      "Sürat": "FF",
+      "Hızlanma": "FF",
+      "Koordinasyon": "FF",
+      "Zindelik": "FF",
+      "Zıplama": "FF",
+      "Zayıf Ayak": "FF"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "FF",
+      "Sportmenlik": "FF",
+      "Profesyonellik": "FF",
+      "Sadakat": "FF",
+      "Baskıya Dayanıklılık": "FF",
+      "Uyumluluk": "FF",
+      "Süreklilik": "FF",
+      "Çalışkanlık": "FF"
+    },
+    "makro": {
+      "T.MAKRO": "FF",
+      "B.MAKRO": "FF",
+      "F.MAKRO": "FF",
+      "Ş.MAKRO": "FF"
+    },
+    "tarz": [
+      {
+        "ozellik": "Kanattan Bindirme Yapar / Kanat Ortalarında Başarılıdır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "İç Koridoru Kullanır / Kısa Ortalarda Başarılıdır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Merkezden Bindirme Yapar / Cepheden Gelen Şutlarda Etkilidir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Hücum Koşuları Yapar / Savunma Arkası Koşusu Yapan Rakibin Alanını Daraltmak İçin Kaleden Çıkar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Fırsat Buldukça Hücuma Katılır / Maçın Son Dakikalarında Kalesinden Uzakta Oyanabilir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Fırsat Buldukça Savunmaya Katılır / Baskı Anlarında Yerden Kalkma Süresi Uzar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Sık Sık Ara/Kilit Pas Dener",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kaleyi Uzaktan Yoklar / Degajmanı Taca Doğru Kullanır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Şut Çekmek Yerine Pas Dener / Uzun Degajman Yerine Pas Vermeyi Dener (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Sert Şutlar/Ortalar Dener / Daha Şiddetli Degajlar Yapar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Başarılıı Plase Şut/Orta Dener / Daha Yumuşak ve Yüksek Degaj Dener (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kaleciyi Geçmeyi Sever / Kaleyi Terk Ederek Oynar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Ceza Sahasında Oyalanmaz / Yumrukla Uzaklaştırır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Rakip Oyunculara Sataşmaz",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Temaslı Markaj Yapar / Duran Top Organizasyonlarında Kalabalık Ceza Sahasında Agresifleşir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Alanına Hakimdir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Hakemlere İtiraz Etmez",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kaleye Sırtı Dönük Oynayabilir / Kale Çizgisi Dışında da Pozisyon Alabilir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Topu Almak İçin Gerilere Kadar Gelir / Oyuna Katılımı Yüksek Seviyededir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Bireysel Oynamayı Sever",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Aşırtma/Akıllı Vuruşlar Yapar",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Yerden Uzak Köşeye Vuruş Yapar / Taç Çizgilerine Doğru Oyunu Genişletir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Maçın Temposuna Yön Verir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Şov Oyunu Sergiler",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Yüksek Tempolu Oynar",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Hızını Sahaya Yansıtır / Reflekslerini Sahaya Yansıtır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Tekniği İle Top Saklamayı Sever / Çizgi Boyunca Aktiftir (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Zayıf Ayağını Kullanabilir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Duran Toplarda Topun Başına Geçer",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Kayarak Top Çalar / Penaltılarda Oyalanır (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Ayakta Mücadele Eder / Kale Köşelerine Yanaşarak Oynar (Kaleci)",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Tribüne Oynar, Abartılı Sevinir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Zor Paslara Yetişme Gayretindedir",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Karta Meyilli Hamle Yapmaz",
+        "derece": "FF"
+      },
+      {
+        "ozellik": "Topla Oyalanmayı Sevmez",
+        "derece": "FF"
+      }
+    ],
+    "nihai": "FF",
+    "potansiyel": "",
+    "scout_notu": "",
+    "degerlendirildi": false
+  }
+}

@@ -495,6 +495,16 @@ def scouting_leistung_yukle() -> dict:
         return json.load(f)
 
 @st.cache_data(ttl=3600)
+def scotr_yukle() -> dict:
+    """Sco Tr scout raporları (1207 Antalyaspor — nitelik notları, rol, tarz)."""
+    yol = pathlib.Path(__file__).parent / "scotr_raporlar.json"
+    if not yol.exists():
+        return {}
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@st.cache_data(ttl=3600)
 def scouting_detay_yukle() -> dict:
     """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
     yol = pathlib.Path(__file__).parent / "scouting_detay.json"
@@ -1775,6 +1785,172 @@ def render_odakli_profil(isim):
     st.warning(t(f"Oyuncu bulunamadı: {isim}", f"Player not found: {isim}"))
 
 
+# ─── SCO TR SCOUT RAPORU (1207 Antalyaspor — FM tarzı nitelik paneli) ─────────
+_SCOTR_HARF = {"A": 5, "B": 4, "C": 3, "D": 2, "E": 1, "F": 0}
+
+def _scotr_puan(nt: str) -> float:
+    """'CD' → 2.5 (harf çifti ortalaması, A=5 … F=0)."""
+    if not nt:
+        return 0.0
+    vals = [_SCOTR_HARF.get(c, 0) for c in nt.strip().upper() if c in _SCOTR_HARF]
+    return sum(vals) / len(vals) if vals else 0.0
+
+def _scotr_renk(puan: float) -> str:
+    if puan >= 4.5: return "#10b981"   # A   — zümrüt
+    if puan >= 3.5: return "#4ade80"   # B   — yeşil
+    if puan >= 2.75: return "#fbbf24"  # C   — amber
+    if puan >= 1.75: return "#fb923c"  # D   — turuncu
+    if puan >= 0.75: return "#f87171"  # E   — kırmızı
+    return "#6b7280"                   # F   — gri (veri yok)
+
+_SCOTR_POT = {
+    "⇧":  ("⇧",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
+    "⬈":  ("⬈",  "#4ade80", "Yükselişte",       "Rising"),
+    "⬌":  ("⬌",  "#fbbf24", "Stabil",           "Stable"),
+    "⬋":  ("⬋",  "#fb923c", "Hafif Düşüş",      "Slight Decline"),
+    "⬇︎": ("⬇",  "#f87171", "Düşüşte",          "Declining"),
+    "⬇":  ("⬇",  "#f87171", "Düşüşte",          "Declining"),
+}
+
+def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
+    """Tek nitelik grubu panelinin HTML'i (ad + bar + not çipi satırları)."""
+    m_puan = _scotr_puan(makro_not)
+    m_renk = _scotr_renk(m_puan)
+    makro_html = (f"<span style='background:{m_renk}22;color:{m_renk};"
+                  f"border:1px solid {m_renk};border-radius:6px;padding:1px 9px;"
+                  f"font-size:0.72rem;font-weight:800;'>{makro_not}</span>") if makro_not else ""
+    satirlar = ""
+    for ad, nt in nitelikler.items():
+        p    = _scotr_puan(nt)
+        renk = _scotr_renk(p)
+        w    = max(4, round(p / 5 * 100))
+        satirlar += (
+            f"<div style='display:flex;align-items:center;gap:8px;margin:5px 0;'>"
+            f"<span style='flex:0 0 124px;font-size:0.72rem;color:#aab4c4;"
+            f"white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>{ad}</span>"
+            f"<span style='flex:1;height:7px;background:#1a2035;border-radius:4px;"
+            f"overflow:hidden;'><span style='display:block;height:100%;width:{w}%;"
+            f"background:linear-gradient(90deg,{renk}88,{renk});border-radius:4px;'>"
+            f"</span></span>"
+            f"<span style='flex:0 0 30px;text-align:center;font-size:0.68rem;"
+            f"font-weight:800;color:{renk};font-family:monospace;'>{nt}</span>"
+            f"</div>"
+        )
+    return (
+        f"<div style='background:#11162a;border:1px solid #232b47;border-radius:12px;"
+        f"padding:14px 16px;'>"
+        f"<div style='display:flex;justify-content:space-between;align-items:center;"
+        f"margin-bottom:9px;'>"
+        f"<span style='font-size:0.78rem;font-weight:800;color:#e2e8f0;"
+        f"letter-spacing:0.05em;'>{ikon} {baslik}</span>{makro_html}</div>"
+        f"{satirlar}</div>"
+    )
+
+def render_scout_raporu(isim: str):
+    """Sco Tr scout raporunu (varsa) FM tarzı görsel panelle çizer."""
+    rapor = scotr_yukle().get(isim)
+    if not rapor:
+        return
+
+    st.markdown("---")
+
+    # ── Başlık bandı: rol + nihai + potansiyel ──────────────────────────
+    nihai   = rapor.get("nihai", "")
+    n_puan  = _scotr_puan(nihai)
+    n_renk  = _scotr_renk(n_puan)
+    pot     = (rapor.get("potansiyel") or "").strip()
+    pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
+    for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
+        if pot == anahtar or pot.startswith(anahtar[0]):
+            pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
+            break
+
+    mevki_kod = " / ".join(x for x in [rapor.get("mevki1"), rapor.get("mevki2")] if x)
+    alt_satir = " · ".join(x for x in [
+        rapor.get("rol", ""), mevki_kod, rapor.get("bolge", ""),
+        rapor.get("uyruk", "")] if x)
+
+    nihai_rozet = (
+        f"<div style='text-align:center;'>"
+        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {n_renk};"
+        f"display:flex;align-items:center;justify-content:center;font-size:1.05rem;"
+        f"font-weight:900;color:{n_renk};background:{n_renk}15;font-family:monospace;'>"
+        f"{nihai or '—'}</div>"
+        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+        f"{t('NİHAİ','RATING')}</div></div>"
+    )
+    pot_rozet = (
+        f"<div style='text-align:center;'>"
+        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {pot_renk};"
+        f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
+        f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
+        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+        f"{t('POTANSİYEL','POTENTIAL')}</div></div>"
+    ) if pot_ok else ""
+
+    st.markdown(f"""
+<div style="background:linear-gradient(135deg,#151a33,#1d1438);border:1px solid #3b2d6e;
+     border-radius:14px;padding:18px 22px;margin-bottom:12px;">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:0.66rem;font-weight:800;color:#a78bfa;letter-spacing:0.18em;
+           margin-bottom:5px;">🔬 {t("SCOUT RAPORU","SCOUT REPORT")} · SCO TR</div>
+      <div style="font-size:1.05rem;font-weight:800;color:#f1f5f9;">{isim}</div>
+      <div style="font-size:0.76rem;color:#8899bb;margin-top:3px;">{alt_satir}</div>
+      {f'<div style="font-size:0.70rem;color:{pot_renk};margin-top:5px;font-weight:700;">{pot_ok} {t(pot_tr, pot_en)}</div>' if pot_ok else ''}
+    </div>
+    <div style="display:flex;gap:14px;">{nihai_rozet}{pot_rozet}</div>
+  </div>
+</div>""", unsafe_allow_html=True)
+
+    if not rapor.get("degerlendirildi"):
+        st.info(t("Bu oyuncu için detaylı nitelik değerlendirmesi henüz tamamlanmadı.",
+                  "Detailed attribute assessment for this player is not yet complete."))
+        return
+
+    # ── 4 nitelik paneli (2x2 grid) ─────────────────────────────────────
+    makro = rapor.get("makro", {})
+    paneller = [
+        (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("T.MAKRO", "")),
+        (t("BEŞERİ", "MENTAL"),    "🧠", rapor.get("beseri", {}), makro.get("B.MAKRO", "")),
+        (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("F.MAKRO", "")),
+        (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("Ş.MAKRO", "")),
+    ]
+    c1, c2 = st.columns(2, gap="small")
+    for kol, (baslik, ikon, nit, mk) in zip([c1, c2, c1, c2], paneller):
+        if nit:
+            kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
+                         unsafe_allow_html=True)
+            kol.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+
+    # ── Oyun tarzı çipleri ──────────────────────────────────────────────
+    tarz = rapor.get("tarz", [])
+    if tarz:
+        cipler = ""
+        for tz in tarz:
+            oz, dr = tz.get("ozellik", ""), tz.get("derece", "")
+            d_renk = _scotr_renk(_scotr_puan(dr))
+            cipler += (
+                f"<span style='display:inline-block;background:#1e1b38;"
+                f"border:1px solid #4c3d8f;color:#c4b5fd;border-radius:99px;"
+                f"padding:4px 12px;margin:3px 4px 3px 0;font-size:0.70rem;'>"
+                f"{oz} <b style='color:{d_renk};font-family:monospace;'>{dr}</b></span>"
+            )
+        st.markdown(
+            f"<div style='margin-top:6px;'>"
+            f"<div style='font-size:0.70rem;font-weight:800;color:#a78bfa;"
+            f"letter-spacing:0.12em;margin-bottom:6px;'>🎭 {t('OYUN TARZI','PLAY STYLE')}</div>"
+            f"{cipler}</div>", unsafe_allow_html=True)
+
+    if rapor.get("scout_notu"):
+        st.markdown(
+            f"<div style='margin-top:10px;font-size:0.78rem;color:#94a3b8;"
+            f"font-style:italic;border-left:3px solid #7c3aed;padding-left:10px;'>"
+            f"📝 {rapor['scout_notu']}</div>", unsafe_allow_html=True)
+
+    st.caption("📡 Mr Daniş · Sco Tr")
+
+
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
 def render_ana_lig_profil(secili):
     if secili and secili in oyuncu_detay:
@@ -2008,6 +2184,9 @@ def render_ana_lig_profil(secili):
                   </span>
                 </div>"""
             st.markdown(satirlar, unsafe_allow_html=True)
+
+        # ── Sco Tr Scout Raporu (1207 Antalyaspor — varsa) ────────────────────
+        render_scout_raporu(secili)
 
         # ── Oyuncu Kartı ─────────────────────────────────────────────────────
         st.markdown("---")
