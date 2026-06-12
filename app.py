@@ -38,24 +38,46 @@ EN = st.session_state.get("dil") == "EN"
 
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
 
 /* ── Genel ── */
-.stApp { background-color:#0f1117; color:#e0e0e0; }
+.stApp { background-color:#0f1117; color:#e0e0e0;
+    font-family:'Inter',-apple-system,'Segoe UI',sans-serif; }
+.stApp h1, .stApp h2, .stApp h3 {
+    font-family:'Sora','Inter',sans-serif; letter-spacing:-0.02em; }
+.stApp h4, .stApp h5 { font-family:'Inter',sans-serif; font-weight:700; }
+.main hr { border-color:#1d2336; }
 
-/* ── Başlık ── */
+/* ── Başlık / Hero ── */
 .baslik-kutu {
-    background:linear-gradient(135deg,#1a1f36 0%,#0d3b2e 100%);
-    border-left:5px solid #00c853; border-radius:12px;
-    padding:22px 30px; margin-bottom:22px;
+    position:relative; overflow:hidden;
+    background:linear-gradient(120deg,#131a2e 0%,#190f2e 60%,#260e30 100%);
+    border:1px solid #2c2350; border-radius:10px;
+    padding:22px 30px 20px; margin-bottom:22px;
 }
-.baslik-kutu h1 { color:#fff; font-size:1.8rem; margin:0 0 5px 0; }
-.baslik-kutu p  { color:#a0aab4; margin:0; font-size:0.9rem; }
+.baslik-kutu::before { content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg,#00c853 0%,#a855f7 45%,#ec4899 100%); }
+.baslik-kutu .ust-bant { font-size:0.64rem; font-weight:800; letter-spacing:0.22em;
+    color:#c084fc; text-transform:uppercase; margin-bottom:7px; }
+.baslik-kutu h1 { color:#fff; font-size:1.62rem; font-weight:800; margin:0 0 6px 0; }
+.baslik-kutu h1 .vurgu {
+    background:linear-gradient(90deg,#a855f7,#ec4899);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+.baslik-kutu p  { color:#9aa6ba; margin:0; font-size:0.86rem; line-height:1.55; }
+.hero-chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:13px; }
+.hero-chip { font-size:0.66rem; font-weight:700; letter-spacing:0.06em;
+    color:#cbd5e1; background:#ffffff0a; border:1px solid #ffffff1c;
+    border-radius:4px; padding:4px 11px; white-space:nowrap; }
+.hero-chip b { color:#4ade80; font-family:'Sora',monospace; }
 
 /* ── Özet kartlar ── */
-.stat-kart { background:#1a1f36; border-radius:10px; padding:14px 18px;
+.stat-kart { background:linear-gradient(180deg,#171c30,#131726);
+    border:1px solid #222842; border-radius:8px; padding:14px 18px;
     text-align:center; border-top:3px solid #00c853; margin-bottom:6px; }
-.stat-kart .sayi   { font-size:1.9rem; font-weight:700; color:#00c853; }
-.stat-kart .etiket { font-size:0.75rem; color:#8899aa; margin-top:3px; }
+.stat-kart .sayi   { font-size:1.9rem; font-weight:800; color:#00c853;
+    font-family:'Sora',sans-serif; }
+.stat-kart .etiket { font-size:0.68rem; color:#8899aa; margin-top:3px;
+    text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
 
 /* ── Profil kartı ── */
 .profil-kart { background:#1a1f36; border-radius:14px; padding:22px 26px;
@@ -152,6 +174,80 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     .profil-stat-item .deger { font-size:1rem; }
     [data-testid="stTabs"] button { font-size:0.68rem !important; padding:5px 6px !important; }
 }
+
+/* ══════════════════════════════════════════════════
+   STREAMLIT BİLEŞEN KESKİNLEŞTİRME (chrome)
+══════════════════════════════════════════════════ */
+
+/* Sekmeler: kompakt, uppercase, gradient aktif çizgi */
+[data-testid="stTabs"] [data-baseweb="tab-list"] {
+    gap:2px; border-bottom:1px solid #232838; }
+[data-testid="stTabs"] button[data-baseweb="tab"] {
+    font-size:0.72rem; font-weight:700; letter-spacing:0.04em;
+    color:#8090a4; padding:9px 13px; }
+[data-testid="stTabs"] button[data-baseweb="tab"]:hover { color:#d8b4fe; }
+[data-testid="stTabs"] button[data-baseweb="tab"][aria-selected="true"] { color:#ffffff; }
+[data-testid="stTabs"] [data-baseweb="tab-highlight"] {
+    background:linear-gradient(90deg,#a855f7,#ec4899) !important; height:3px !important; }
+[data-testid="stTabs"] [data-baseweb="tab-border"] { background:#232838; }
+
+/* Butonlar */
+[data-testid="stButton"] button, [data-testid="stFormSubmitButton"] button {
+    border-radius:6px; font-weight:600; font-size:0.84rem;
+    border:1px solid #2a3146; transition:border-color .15s, color .15s; }
+[data-testid="stButton"] button:hover, [data-testid="stFormSubmitButton"] button:hover {
+    border-color:#a855f7; color:#e9d5ff; }
+[data-testid="stButton"] button[kind="primary"],
+[data-testid="stFormSubmitButton"] button[kind="primary"] {
+    background:linear-gradient(135deg,#7c3aed,#db2777); border:none; color:#fff; }
+[data-testid="stButton"] button[kind="primary"]:hover {
+    background:linear-gradient(135deg,#8b5cf6,#ec4899); color:#fff; }
+
+/* Girdi alanları */
+[data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea,
+[data-testid="stNumberInput"] input {
+    border-radius:6px; font-size:0.86rem; }
+[data-testid="stTextInput"] input:focus, [data-testid="stTextArea"] textarea:focus {
+    border-color:#a855f7; box-shadow:0 0 0 1px #a855f766; }
+[data-testid="stSelectbox"] > div > div { border-radius:6px; }
+
+/* Etiketler */
+[data-testid="stWidgetLabel"] p { font-size:0.74rem; font-weight:600;
+    color:#9aa6ba; letter-spacing:0.02em; }
+
+/* Expander */
+[data-testid="stExpander"] {
+    border:1px solid #232838; border-radius:8px; background:#12151f; }
+[data-testid="stExpander"] summary { font-size:0.84rem; font-weight:600; }
+[data-testid="stExpander"] summary:hover { color:#d8b4fe; }
+
+/* Dataframe */
+[data-testid="stDataFrame"] {
+    border:1px solid #232838; border-radius:8px; overflow:hidden; }
+
+/* Metric kartları */
+[data-testid="stMetric"] {
+    background:linear-gradient(180deg,#151a2c,#121624);
+    border:1px solid #232838; border-left:3px solid #a855f7;
+    border-radius:8px; padding:12px 16px; }
+[data-testid="stMetric"] label { font-size:0.7rem !important;
+    text-transform:uppercase; letter-spacing:0.07em; color:#8899aa !important; }
+[data-testid="stMetricValue"] { font-family:'Sora',sans-serif; }
+
+/* Bilgi/uyarı kutuları */
+[data-testid="stAlert"] { border-radius:8px; border:1px solid #232838; }
+
+/* Radio (sekme görünümü) */
+[data-testid="stRadio"] label p { font-size:0.82rem; }
+
+/* Kaydırma çubuğu */
+::-webkit-scrollbar { width:9px; height:9px; }
+::-webkit-scrollbar-track { background:#0f1117; }
+::-webkit-scrollbar-thumb { background:#2a3146; border-radius:5px; }
+::-webkit-scrollbar-thumb:hover { background:#7c3aed; }
+
+/* Caption */
+[data-testid="stCaptionContainer"] { color:#5b667a; }
 
 </style>""", unsafe_allow_html=True)
 
@@ -2291,12 +2387,23 @@ _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
 bas_sol, nav_profil, nav_veri, nav_scout, nav_iletisim, nav_giris, nav_dil = st.columns([2.3, 1, 1.15, 1.4, 1.2, 0.85, 0.6])
 
 with bas_sol:
+    _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
+    _hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
+    _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
     st.markdown(f"""
     <div class="baslik-kutu">
-      <h1>{t("⚽ Kadın Futbolu Veri &amp; Scouting Platformu",
-              "⚽ Women's Football Data &amp; Scouting Platform")}</h1>
+      <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
+      <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
+             'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
       <p>{t("Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
             "Turkish Women's Super League stats · international player pool · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
+      <div class="hero-chips">
+        <span class="hero-chip">{t("SEZON","SEASON")} <b>2025-26</b></span>
+        <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
+        <span class="hero-chip"><b>{_hero_oyuncu}</b> {t("OYUNCU","PLAYERS")}</span>
+        <span class="hero-chip"><b>{_hero_gol}</b> {t("GOL","GOALS")}</span>
+        <span class="hero-chip">🔬 <b>350+</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
+      </div>
     </div>""", unsafe_allow_html=True)
 
 with nav_profil:
@@ -5446,5 +5553,12 @@ with tab_transfer:
 
 # ─── ALTBİLGİ ────────────────────────────────────────────────────────────────
 st.markdown(
-    f'<div class="altbilgi">{t("Veri kaynağı: TFF — tff.org | 2025-2026 Kadınlar Süper Ligi","Data source: TFF — tff.org | 2025-2026 Women\'s Super League")}</div>',
+    f'<div class="altbilgi">'
+    f'<span style="background:linear-gradient(90deg,#a855f7,#ec4899);'
+    f'-webkit-background-clip:text;background-clip:text;color:transparent;'
+    f'font-weight:800;letter-spacing:0.12em;">'
+    f'{t("KADIN FUTBOLU PLATFORMU","WOMEN\'S FOOTBALL PLATFORM")}</span><br>'
+    f'{t("Veri kaynağı: TFF — tff.org &amp; SoccerDonna | 2025-2026 Kadınlar Süper Ligi",
+         "Data sources: TFF — tff.org &amp; SoccerDonna | 2025-2026 Women\'s Super League")}'
+    f'</div>',
     unsafe_allow_html=True)
