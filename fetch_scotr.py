@@ -1,7 +1,10 @@
 """
 'Scouting is life' Google Sheet --> 'Sco Tr' sekmesi (gid=864990475)
-1207 Antalyaspor oyunculari icin Mr Danis scout raporu tablosunu ceker,
-temiz JSON'a donusturur: scotr_raporlar.json
+Tum lig scout raporu tablosunu ceker, temiz JSON'a donusturur:
+scotr_raporlar.json
+
+Parse INDEX BAZLIDIR: kolon adlari tekrarlansa bile kayma olmaz.
+Grup sinirlari header satirindaki sabit kolonlardan dinamik bulunur.
 
 Kullanim:  python fetch_scotr.py
 """
@@ -16,17 +19,7 @@ GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID       = "864990475"
 CIKTI     = Path(__file__).parent / "scotr_raporlar.json"
 
-# Kolon gruplari (2. satirdaki basliklara gore, sirasiyla)
-BECERI = ["Bitiricilik", "Top Tekniği", "Penaltı Vuruşu", "Markaj", "Top Kapma",
-          "Uzun Taç", "Duran Top", "İlk Kontrol", "Kafa Vuruşu", "Orta Yapma",
-          "Kısa Pas", "Uzun Pas", "Top Sürme", "Uzaktan Şut"]
-BESERI = ["Agresiflik", "Cesaret", "Karar Alma", "Kararlılık", "Konsantrasyon",
-          "Liderlik", "Önsezi", "Konumlanma", "Soğukkanlılık", "Takım Oyunu",
-          "Topsuz Alan", "Görüş"]
-FIZIKI = ["Çeviklik", "Dayanıklılık", "Denge", "Güç", "Sürat", "Hızlanma",
-          "Koordinasyon", "Zindelik", "Zıplama", "Zayıf Ayak"]
-SAHSI  = ["Sakatlanma Direnci", "Sportmenlik", "Profesyonellik", "Sadakat",
-          "Baskıya Dayanıklılık", "Uyumluluk", "Süreklilik", "Çalışkanlık"]
+GECERLI_NOTLAR = {"AA", "AB", "BB", "BC", "CC", "CD", "DD", "DE", "EE", "FF", "A+"}
 
 
 def cek() -> str:
@@ -39,67 +32,94 @@ def cek() -> str:
 
 def parse(metin: str) -> dict:
     rows = list(csv.reader(io.StringIO(metin)))
-    headers = rows[1]  # 2. satir = kolon adlari
+    hdr  = rows[1]  # 2. satir = kolon adlari
+
+    def idx(ad: str) -> int:
+        return hdr.index(ad)
+
+    # Grup sinirlari (dinamik; kolon eklense de calisir)
+    i_beceri0 = idx("Bitiricilik")
+    i_beceri9 = idx("BECERİ NOT")
+    i_beseri0 = i_beceri9 + 1
+    i_beseri9 = idx("BEŞERİ NOT")
+    i_fiziki0 = i_beseri9 + 1
+    i_fiziki9 = idx("FİZİKİ NOT")
+    i_sahsi0  = i_fiziki9 + 1
+    i_sahsi9  = idx("ŞAHSİ NOT")
+    i_tarz0   = i_sahsi9 + 1
+    i_nihai   = idx("NİHAİ")
+    i_ivme    = idx("İVME")
+    i_not     = idx("Scout Notları")
+
+    def hucre(r, i):
+        return r[i].strip() if i < len(r) else ""
+
+    def nitelikler(r, i0, i9):
+        out = {}
+        for i in range(i0, i9):
+            v = hucre(r, i)
+            if v in GECERLI_NOTLAR:
+                out[hdr[i]] = v
+        return out
+
     veriler = {}
-
-    for row in rows[2:]:
-        if not row or not row[0].strip():
+    for r in rows[2:]:
+        if not r or not hucre(r, 0):
             continue
-        kayit = dict(zip(headers, row))
-        isim = kayit.get("Oyuncu Adı", "").strip()
-        if not isim:
-            continue
+        isim = hucre(r, 0)
 
-        def notu(k):
-            v = (kayit.get(k) or "").strip()
-            return v if v and v != "-" else ""
+        beceri = nitelikler(r, i_beceri0, i_beceri9)
+        beseri = nitelikler(r, i_beseri0, i_beseri9)
+        fiziki = nitelikler(r, i_fiziki0, i_fiziki9)
+        sahsi  = nitelikler(r, i_sahsi0,  i_sahsi9)
 
-        def grup(kolonlar):
-            return {k: notu(k) for k in kolonlar if notu(k)}
+        # Degerlendirilmis = FF disinda en az bir nitelik notu var
+        tum = (list(beceri.values()) + list(beseri.values())
+               + list(fiziki.values()) + list(sahsi.values()))
+        degerlendirildi = any(n != "FF" for n in tum)
 
-        # TARZ: BECERI/BESERI/... disindaki, bos olmayan, MAKRO/NIHAI olmayan kolonlar
-        bilinen = set(["Oyuncu Adı", "Takım", "Doğum Yılı", "Bölge", "Mevki1",
-                       "Mevki2", "Rol", "Yaş", "Uyruk", "NİHAİ", "POTANSİYEL",
-                       "Scout Notları"]) | set(BECERI) | set(BESERI) | set(FIZIKI) | set(SAHSI)
+        # Tarz: '✘' = ozellik yok; isaretli (✘ disi dolu) olanlar listelenir
         tarz = []
-        makrolar = {}
-        for k in headers:
-            if not k or k in bilinen:
-                continue
-            v = notu(k)
-            if not v:
-                continue
-            if k.endswith("MAKRO"):
-                # Ayni "T.MAKRO" adi iki kez geciyor (beceri + tarz sonu);
-                # dict'e ilk deger yazilir, sonraki tarz toplami olarak ezilmez
-                makrolar.setdefault(k, v)
-            else:
-                tarz.append({"ozellik": k, "derece": v})
+        for i in range(i_tarz0, i_nihai):
+            v = hucre(r, i)
+            if v and v != "✘":
+                tarz.append(hdr[i])
 
-        # Tum notlar FF ise -> henuz degerlendirilmemis oyuncu
-        tum_notlar = list(grup(BECERI).values()) + list(grup(BESERI).values())
-        degerlendirildi = any(n != "FF" for n in tum_notlar) if tum_notlar else False
-
-        veriler[isim] = {
-            "takim":      kayit.get("Takım", "").strip(),
-            "dogum":      kayit.get("Doğum Yılı", "").strip(),
-            "bolge":      kayit.get("Bölge", "").strip(),
-            "mevki1":     notu("Mevki1"),
-            "mevki2":     notu("Mevki2"),
-            "rol":        notu("Rol"),
-            "yas":        kayit.get("Yaş", "").strip(),
-            "uyruk":      kayit.get("Uyruk", "").strip(),
-            "beceri":     grup(BECERI),
-            "beseri":     grup(BESERI),
-            "fiziki":     grup(FIZIKI),
-            "sahsi":      grup(SAHSI),
-            "makro":      makrolar,
+        nihai = hucre(r, i_nihai)
+        ivme  = hucre(r, i_ivme)
+        kayit = {
+            "takim":      hucre(r, 1),
+            "dogum":      hucre(r, 2),
+            "bolge":      hucre(r, 3),
+            "mevki1":     hucre(r, 4).replace("-", ""),
+            "mevki2":     hucre(r, 5).replace("-", ""),
+            "rol":        hucre(r, 6).replace("-", ""),
+            "yas":        hucre(r, 7),
+            "uyruk":      hucre(r, 8),
+            "beceri":     beceri,
+            "beseri":     beseri,
+            "fiziki":     fiziki,
+            "sahsi":      sahsi,
+            "makro": {
+                "beceri": hucre(r, i_beceri9) if hucre(r, i_beceri9) in GECERLI_NOTLAR else "",
+                "beseri": hucre(r, i_beseri9) if hucre(r, i_beseri9) in GECERLI_NOTLAR else "",
+                "fiziki": hucre(r, i_fiziki9) if hucre(r, i_fiziki9) in GECERLI_NOTLAR else "",
+                "sahsi":  hucre(r, i_sahsi9)  if hucre(r, i_sahsi9)  in GECERLI_NOTLAR else "",
+            },
             "tarz":       tarz,
-            "nihai":      notu("NİHAİ"),
-            "potansiyel": notu("POTANSİYEL"),
-            "scout_notu": notu("Scout Notları"),
+            "nihai":      nihai if nihai in GECERLI_NOTLAR else "",
+            "ivme":       ivme if ivme not in ("", "-") else "",
+            "scout_notu": hucre(r, i_not),
             "degerlendirildi": degerlendirildi,
         }
+
+        # Cift kayit (transfer): degerlendirilmis olan kazanir
+        if isim in veriler:
+            eski = veriler[isim]
+            if eski["degerlendirildi"] and not degerlendirildi:
+                continue
+        veriler[isim] = kayit
+
     return veriler
 
 

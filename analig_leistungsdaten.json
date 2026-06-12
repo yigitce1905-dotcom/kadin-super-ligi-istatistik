@@ -5844,8 +5844,306 @@
     "guncelleme": "2026-06-04"
   },
   "ANA INES COSTA MENDES DIAS": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-04"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "ABB Fomget",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 22,
+        "gol": 4,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 794,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "ABB Fomget",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 268,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "ABB Fomget",
+        "lig": "UEFA Women’s Europa Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 154,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Tigres UANL",
+        "lig": "Liga MX Apertura",
+        "mac": 11,
+        "gol": 3,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 546,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Tigres UANL",
+        "lig": "Liga MX Clausura",
+        "mac": 17,
+        "gol": 3,
+        "asist": 2,
+        "sari": 2,
+        "dakika": 1056,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Tigres UANL",
+        "lig": "Liguilla Apertura",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 380,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Tigres UANL",
+        "lig": "Liguilla Clausura",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 140,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Tigres UANL",
+        "lig": "CONCACAF W Champions Cup",
+        "mac": 5,
+        "gol": 4,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 283,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Portugal",
+        "lig": "UEFA Women’s Nations League A",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 92,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Portland Thorns",
+        "lig": "NWSL",
+        "mac": 10,
+        "gol": 1,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 237,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Portland Thorns",
+        "lig": "NWSL x Liga MX Femenil Summer Cup",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 149,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Portugal",
+        "lig": "UEFA Women’s Euro qualification League B",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 37,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Portugal",
+        "lig": "UEFA Women’s Nations League A",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 92,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Portugal",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 42,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 21,
+        "gol": 17,
+        "asist": 2,
+        "sari": 4,
+        "dakika": 1423,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Superliga Championship Round",
+        "mac": 4,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 187,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Russian Women’s Cup",
+        "mac": 4,
+        "gol": 2,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 257,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Zenit",
+        "lig": "Supercup Liga",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 82,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Portugal",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 24,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 17,
+        "gol": 11,
+        "asist": 3,
+        "sari": 4,
+        "dakika": 1402,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Zenit",
+        "lig": "Superliga Championship Round",
+        "mac": 6,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 438,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Zenit",
+        "lig": "Russian Women’s Cup",
+        "mac": 4,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 212,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Zenit",
+        "lig": "Superliga",
+        "mac": 22,
+        "gol": 6,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1437,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Zenit",
+        "lig": "1a Divisao - Sul",
+        "mac": 9,
+        "gol": 6,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 791,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Zenit",
+        "lig": "Russian Women’s Cup",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 228,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Portugal",
+        "lig": "Euro Qualification Playoffs",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "15/16",
+        "kulup": "Portugal",
+        "lig": "U19 EM Qualifikation",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 14,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-06-12"
   },
   "KEVSER KARTAL": {
     "sezonlar": [

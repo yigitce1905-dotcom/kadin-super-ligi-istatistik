@@ -1765,6 +1765,9 @@ def render_scouting_detay(tam_isim):
 def render_odakli_profil(isim):
     if st.button(t("← Listeye Dön", "← Back to List"), key="odakli_geri"):
         st.query_params.clear()
+        # Ana akışa dönünce ilk sekme (Benim Kadrom) yerine
+        # Oyuncu Listesi sekmesi seçilsin diye işaret bırak
+        st.session_state["_don_sekme"] = "liste"
         st.rerun()
     st.markdown("---")
     # Ana lig oyuncusu mu?
@@ -1804,6 +1807,8 @@ def _scotr_renk(puan: float) -> str:
     return "#6b7280"                   # F   — gri (veri yok)
 
 _SCOTR_POT = {
+    "⬆︎": ("⬆",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
+    "⬆":  ("⬆",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
     "⇧":  ("⇧",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
     "⬈":  ("⬈",  "#4ade80", "Yükselişte",       "Rising"),
     "⬌":  ("⬌",  "#fbbf24", "Stabil",           "Stable"),
@@ -1868,14 +1873,14 @@ def render_scout_raporu(isim: str):
 
     st.markdown("---")
 
-    # ── Başlık bandı: rol + nihai + potansiyel ──────────────────────────
+    # ── Başlık bandı: rol + nihai + ivme ────────────────────────────────
     nihai   = rapor.get("nihai", "")
     n_puan  = _scotr_puan(nihai)
     n_renk  = _scotr_renk(n_puan)
-    pot     = (rapor.get("potansiyel") or "").strip()
+    pot     = (rapor.get("ivme") or rapor.get("potansiyel") or "").strip()
     pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
     for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
-        if pot == anahtar or pot.startswith(anahtar[0]):
+        if pot == anahtar or (pot and pot.startswith(anahtar[0])):
             pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
             break
 
@@ -1899,7 +1904,7 @@ def render_scout_raporu(isim: str):
         f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
         f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
         f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
-        f"{t('POTANSİYEL','POTENTIAL')}</div></div>"
+        f"{t('İVME','MOMENTUM')}</div></div>"
     ) if pot_ok else ""
 
     st.markdown(f"""
@@ -1925,10 +1930,10 @@ def render_scout_raporu(isim: str):
     # ── 4 nitelik paneli (yan yana, kompakt) ────────────────────────────
     makro = rapor.get("makro", {})
     paneller = [
-        (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("T.MAKRO", "")),
-        (t("BEŞERİ", "MENTAL"),    "🧠", rapor.get("beseri", {}), makro.get("B.MAKRO", "")),
-        (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("F.MAKRO", "")),
-        (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("Ş.MAKRO", "")),
+        (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")),
+        (t("BEŞERİ", "MENTAL"),    "🧠", rapor.get("beseri", {}), makro.get("beseri", "")),
+        (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("fiziki", "")),
+        (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
     ]
     kolonlar = st.columns(4, gap="small")
     for kol, (baslik, ikon, nit, mk) in zip(kolonlar, paneller):
@@ -1936,18 +1941,18 @@ def render_scout_raporu(isim: str):
             kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
                          unsafe_allow_html=True)
 
-    # ── Oyun tarzı çipleri ──────────────────────────────────────────────
+    # ── Oyun tarzı çipleri (yalnızca işaretli özellikler) ───────────────
     tarz = rapor.get("tarz", [])
     if tarz:
         cipler = ""
-        for tz in tarz:
-            oz, dr = tz.get("ozellik", ""), tz.get("derece", "")
-            d_renk = _scotr_renk(_scotr_puan(dr))
+        for oz in tarz:
+            if isinstance(oz, dict):  # eski format uyumluluğu
+                oz = oz.get("ozellik", "")
             cipler += (
                 f"<span style='display:inline-block;background:#1e1b38;"
                 f"border:1px solid #4c3d8f;color:#c4b5fd;border-radius:99px;"
                 f"padding:4px 12px;margin:3px 4px 3px 0;font-size:0.70rem;'>"
-                f"{oz} <b style='color:{d_renk};font-family:monospace;'>{dr}</b></span>"
+                f"{oz}</span>"
             )
         st.markdown(
             f"<div style='margin-top:6px;'>"
@@ -3275,6 +3280,24 @@ _sekmeler += [
 _is_admin = st.session_state.get("kulup_kullanici") == "admin"
 
 _tabs = st.tabs(_sekmeler)
+
+# "Listeye Dön" sonrası: ilk sekme (Benim Kadrom) yerine Oyuncu Listesi'ni seç.
+# st.tabs programatik seçim sunmadığından sekme butonuna JS ile tıklanır.
+if st.session_state.pop("_don_sekme", None) == "liste":
+    import streamlit.components.v1 as _components
+    _hedef = t("Oyuncu Listesi", "Player List")
+    _components.html(f"""<script>
+      const hedef = {_hedef!r};
+      let deneme = 0;
+      const zamanlayici = setInterval(() => {{
+        const sekmeler = window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
+        for (const s of sekmeler) {{
+          if (s.innerText.includes(hedef)) {{ s.click(); clearInterval(zamanlayici); return; }}
+        }}
+        if (++deneme > 20) clearInterval(zamanlayici);
+      }}, 100);
+    </script>""", height=0)
+
 _ti = 0
 
 if _giris_var:
