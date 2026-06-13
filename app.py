@@ -2003,20 +2003,30 @@ def render_scout_raporu(isim: str):
         f"{t('İVME','MOMENTUM')}</div></div>"
     ) if pot_ok else ""
 
-    st.markdown(f"""
-<div style="background:linear-gradient(135deg,#151a33,#1d1438);border:1px solid #3b2d6e;
-     border-radius:14px;padding:18px 22px;margin-bottom:12px;">
-  <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;">
-    <div>
-      <div style="font-size:0.66rem;font-weight:800;color:#a78bfa;letter-spacing:0.18em;
-           margin-bottom:5px;">🔬 {t("SCOUT RAPORU","SCOUT REPORT")} · SCO TR</div>
-      <div style="font-size:1.05rem;font-weight:800;color:#f1f5f9;">{isim}</div>
-      <div style="font-size:0.76rem;color:#8899bb;margin-top:3px;">{alt_satir}</div>
-      {f'<div style="font-size:0.70rem;color:{pot_renk};margin-top:5px;font-weight:700;">{pot_ok} {t(pot_tr, pot_en)}</div>' if pot_ok else ''}
-    </div>
-    <div style="display:flex;gap:14px;">{nihai_rozet}{pot_rozet}</div>
-  </div>
-</div>""", unsafe_allow_html=True)
+    pot_satir = (
+        f"<div style='font-size:0.70rem;color:{pot_renk};margin-top:5px;"
+        f"font-weight:700;'>{pot_ok} {t(pot_tr, pot_en)}</div>"
+    ) if pot_ok else ""
+
+    # Tek parça (girintisiz, boş satırsız) — Streamlit markdown'ın HTML bloğunu
+    # boşluk satırında kesip ham metne çevirmesini önler.
+    st.markdown(
+        f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
+        f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 22px;"
+        f"margin-bottom:12px;'>"
+        f"<div style='display:flex;justify-content:space-between;align-items:center;"
+        f"gap:14px;flex-wrap:wrap;'>"
+        f"<div>"
+        f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
+        f"letter-spacing:0.18em;margin-bottom:5px;'>🔬 "
+        f"{t('SCOUT RAPORU','SCOUT REPORT')} · SCO TR</div>"
+        f"<div style='font-size:1.05rem;font-weight:800;color:#f1f5f9;'>{isim}</div>"
+        f"<div style='font-size:0.76rem;color:#8899bb;margin-top:3px;'>{alt_satir}</div>"
+        f"{pot_satir}"
+        f"</div>"
+        f"<div style='display:flex;gap:14px;'>{nihai_rozet}{pot_rozet}</div>"
+        f"</div></div>",
+        unsafe_allow_html=True)
 
     if not rapor.get("degerlendirildi"):
         st.info(t("Bu oyuncu için detaylı nitelik değerlendirmesi henüz tamamlanmadı.",
