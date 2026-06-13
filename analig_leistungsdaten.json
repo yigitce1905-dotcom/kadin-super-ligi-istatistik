@@ -41936,5 +41936,76 @@
       }
     ],
     "guncelleme": "2026-06-13"
+  },
+  "ELENA GRACINDA SANTOS": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Fenerbahçe",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 12,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 490,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Beylerbeyispor",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 19,
+        "gol": 10,
+        "asist": 1,
+        "sari": 8,
+        "dakika": 1577,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Beylerbeyispor",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 25,
+        "gol": 9,
+        "asist": 0,
+        "sari": 8,
+        "dakika": 2060,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Galatasaray",
+        "lig": "Kadınlar Süper Ligi - Group B",
+        "mac": 17,
+        "gol": 7,
+        "asist": 2,
+        "sari": 5,
+        "dakika": 895,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Galatasaray",
+        "lig": "Kadınlar Süper Ligi - Final Stages",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 185,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Galatasaray",
+        "lig": "Kadınlar Süper Ligi - Group B",
+        "mac": 8,
+        "gol": 3,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 675,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   }
 }
