@@ -775,21 +775,20 @@
     "es_skoru": 0.769
   },
   "RAFAELA SUDRE DOS SANTOS": {
-    "profil_url": "https://www.soccerdonna.de/en/celeste-dos-santos/profil/spieler_72191.html",
-    "Date of birth": "04.11.2003",
-    "Place of birth": "Florencio Varela",
-    "Age": "22",
-    "Name in native country": "Celeste Luján Dos Santos",
-    "Height": "1,55",
-    "Nationality": "Argentina",
-    "Position": "Defence",
-    "Foot": "left",
-    "Outfitter": "adidas",
+    "profil_url": "https://www.soccerdonna.de/en/rafa-sudre/profil/spieler_51334.html",
+    "Date of birth": "09.12.1993",
+    "Place of birth": "São Paulo",
+    "Age": "32",
+    "Name in native country": "Rafaela Sudré Dos Santos",
+    "Height": "1,54",
+    "Nationality": "Brazil",
+    "Position": "Midfield - Midfield, left",
+    "Foot": "both",
     "Market value": "unknown",
-    "Contract until": "31.12.2026",
-    "Debut (Club)": "13.10.2022",
-    "sd_isim": "Celeste Dos Santos",
-    "es_skoru": 0.714
+    "Contract until": "30.06.2026",
+    "Debut (Club)": "08.09.2024",
+    "sd_isim": "Rafa Sudré",
+    "es_skoru": 1.0
   },
   "NEHİR ZEYTÜNLÜ": {
     "profil_url": "https://www.soccerdonna.de/en/nehir-zeytuenlue/profil/spieler_66582.html",
@@ -2820,19 +2819,20 @@
     "es_skoru": 1.0
   },
   "MARTA ALEXANDRA COX VILLARREAL": {
-    "profil_url": "https://www.soccerdonna.de/en/natalia-villarreal/profil/spieler_23066.html",
-    "Date of birth": "19.03.1998",
-    "Place of birth": "Nuevo León",
+    "profil_url": "https://www.soccerdonna.de/en/marta-cox/profil/spieler_38532.html",
+    "Date of birth": "20.07.1997",
+    "Place of birth": "Ciudad de Panamá",
     "Age": "28",
-    "Name in native country": "Natalia Villarreal Pardo",
-    "Height": "1,57",
-    "Nationality": "Mexico",
-    "Position": "Midfield",
+    "Name in native country": "Marta Alexandra Cox Villarreal",
+    "Height": "1,64",
+    "Nationality": "Panama",
+    "Position": "Striker - Midfield, left",
+    "Foot": "right",
     "Market value": "unknown",
-    "Contract until": "?",
-    "Debut (Club)": "14.07.2025",
-    "sd_isim": "Natalia Villarreal",
-    "es_skoru": 0.625
+    "Contract until": "31.05.2026",
+    "Debut (Club)": "26.01.2025",
+    "sd_isim": "Marta Cox",
+    "es_skoru": 1.0
   },
   "OUASSİLA ALOUACHE": {
     "profil_url": "https://www.soccerdonna.de/en/ouassila-alouache/profil/spieler_65215.html",
@@ -4547,13 +4547,18 @@
     "es_skoru": 1.0
   },
   "LIVIA LOPES DOS SANTOS": {
-    "profil_url": "https://www.soccerdonna.de/en/emilie-dos-santos/profil/spieler_25719.html",
-    "Date of birth": "28.02.1981",
-    "Age": "45",
-    "Nationality": "France",
-    "Position": "Midfield",
-    "sd_isim": "Emilie Dos Santos",
-    "es_skoru": 0.718
+    "profil_url": "https://www.soccerdonna.de/en/livia-lopes/profil/spieler_116032.html",
+    "Date of birth": "20.06.2001",
+    "Age": "24",
+    "Name in native country": "Livia Lopes dos Santos",
+    "Height": "1,65",
+    "Nationality": "Brazil",
+    "Position": "Midfield - Central Midfield",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Contract until": "?",
+    "sd_isim": "Livia Lopes",
+    "es_skoru": 1.0
   },
   "ZEYNEP GÜL KESKİN": {
     "profil_url": "https://www.soccerdonna.de/en/zeynep-keskin/profil/spieler_115932.html",
@@ -4668,14 +4673,20 @@
     "es_skoru": 1.0
   },
   "TANIA RITA PONTES MATUES": {
-    "profil_url": "https://www.soccerdonna.de/en/tania-antunes-fernandes/profil/spieler_91773.html",
-    "Date of birth": "26.12.2003",
-    "Age": "22",
-    "Nationality": "Germany",
-    "Position": "Midfield - Attacking Midfield",
+    "profil_url": "https://www.soccerdonna.de/en/tania-mateus/profil/spieler_43246.html",
+    "Date of birth": "06.08.1998",
+    "Place of birth": "Funchal",
+    "Age": "27",
+    "Name in native country": "Tânia Rita Pontes Mateus",
+    "Height": "1,66",
+    "Nationality": "Portugal",
+    "Position": "Striker - Left Wing",
+    "Foot": "right",
     "Market value": "unknown",
-    "sd_isim": "Tania Antunes Fernandes",
-    "es_skoru": 0.638
+    "Contract until": "30.06.2026",
+    "Debut (Club)": "08.02.2026",
+    "sd_isim": "Tânia Mateus",
+    "es_skoru": 1.0
   },
   "GÜL BEYZA AKPINAR": {
     "profil_url": "https://www.soccerdonna.de/en/beyza-akpinar/profil/spieler_104621.html",
@@ -5795,15 +5806,15 @@
     "es_skoru": 1.0
   },
   "GAMZE AĞIRMAN": {
-    "profil_url": "https://www.soccerdonna.de/en/leyla-agirman/profil/spieler_17605.html",
-    "Date of birth": "29.10.1990",
-    "Age": "35",
-    "Nationality": "Germany",
+    "profil_url": "https://www.soccerdonna.de/en/gamze-agirman/profil/spieler_119543.html",
+    "Date of birth": "06.03.2009",
+    "Age": "17",
+    "Nationality": "Turkey",
     "Position": "Midfield",
     "Market value": "unknown",
-    "Contract until": "?",
-    "sd_isim": "Leyla Agirman",
-    "es_skoru": 0.692
+    "Debut (Club)": "21.05.2026",
+    "sd_isim": "Gamze Ağirman",
+    "es_skoru": 1.0
   },
   "ZEYNEP AKDENİZ": {
     "profil_url": "https://www.soccerdonna.de/en/zeynep-akdeniz/profil/spieler_56515.html",
@@ -5821,13 +5832,14 @@
     "es_skoru": 1.0
   },
   "GÖKCE ALMILA ÖZCAN": {
-    "profil_url": "https://www.soccerdonna.de/en/nazmiye-oezcan/profil/spieler_34017.html",
-    "Date of birth": "02.01.2000",
-    "Age": "26",
-    "Nationality": "Liechtenstein",
-    "Position": "Defence",
+    "profil_url": "https://www.soccerdonna.de/en/goekce-almila-oezcan/profil/spieler_119544.html",
+    "Date of birth": "06.07.2007",
+    "Age": "18",
+    "Nationality": "Turkey",
+    "Position": "Midfield",
     "Market value": "unknown",
-    "sd_isim": "Nazmiye Özcan",
-    "es_skoru": 0.581
+    "Debut (Club)": "24.05.2026",
+    "sd_isim": "Gökce Almila Özcan",
+    "es_skoru": 1.0
   }
 }

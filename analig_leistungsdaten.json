@@ -8447,51 +8447,161 @@
   "RAFAELA SUDRE DOS SANTOS": {
     "sezonlar": [
       {
-        "sezon": "22/23",
-        "kulup": "CA Boca Juniors",
-        "lig": "Copa Libertadores",
+        "sezon": "25/26",
+        "kulup": "ABB Fomget",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 22,
+        "gol": 2,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1847,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "ABB Fomget",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 360,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "ABB Fomget",
+        "lig": "UEFA Women’s Europa Cup",
         "mac": 2,
         "gol": 0,
         "asist": 0,
+        "sari": 0,
+        "dakika": 129,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "ABB Fomget",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 22,
+        "gol": 2,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1730,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SCU Torreense",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 22,
+        "gol": 4,
+        "asist": 2,
+        "sari": 2,
+        "dakika": 1915,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SCU Torreense",
+        "lig": "Taca da Portugal Feminina",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SCU Torreense",
+        "lig": "Taça da Liga Feminina",
+        "mac": 2,
+        "gol": 1,
+        "asist": 1,
         "sari": 1,
-        "dakika": 161,
+        "dakika": 180,
         "milli": false
       },
       {
         "sezon": "22/23",
-        "kulup": "Argentina",
-        "lig": "Freundschaftsspiele",
+        "kulup": "SCU Torreense",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 19,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 1557,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "SCU Torreense",
+        "lig": "Taca da Portugal Feminina",
         "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
-        "dakika": 44,
-        "milli": true
+        "dakika": 90,
+        "milli": false
       },
       {
         "sezon": "21/22",
-        "kulup": "CA Boca Juniors",
-        "lig": "Copa Libertadores",
+        "kulup": "Amora",
+        "lig": "Manutenção",
+        "mac": 14,
+        "gol": 3,
+        "asist": 3,
+        "sari": 2,
+        "dakika": 1197,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Amora",
+        "lig": "1a Divisao - Sul",
+        "mac": 7,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 426,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Amora",
+        "lig": "Taca da Portugal Feminina",
+        "mac": 4,
+        "gol": 2,
+        "asist": 2,
+        "sari": 1,
+        "dakika": 360,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Valadares Gaia",
+        "lig": "1a Divisao - Norte",
+        "mac": 9,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 685,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Valadares Gaia",
+        "lig": "Manutenção - Zona Norte",
         "mac": 6,
         "gol": 0,
         "asist": 0,
         "sari": 0,
-        "dakika": 486,
-        "milli": false
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "CA Boca Juniors",
-        "lig": "CONMEBOL Sub20 Femenina",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 353,
+        "dakika": 341,
         "milli": false
       }
     ],
-    "guncelleme": "2026-06-04"
+    "guncelleme": "2026-06-13"
   },
   "NEHİR ZEYTÜNLÜ": {
     "sezonlar": [
@@ -26799,369 +26909,281 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "Guadalajara",
-        "lig": "Liga MX Apertura",
-        "mac": 14,
-        "gol": 0,
+        "kulup": "Fenerbahçe",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 12,
+        "gol": 7,
         "asist": 0,
-        "sari": 2,
-        "dakika": 1048,
+        "sari": 1,
+        "dakika": 808,
         "milli": false
       },
       {
         "sezon": "25/26",
-        "kulup": "Guadalajara",
-        "lig": "Liga MX Clausura",
-        "mac": 13,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 900,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Guadalajara",
-        "lig": "Liguilla Apertura",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 334,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Guadalajara",
-        "lig": "Liguilla Clausura",
+        "kulup": "Panama",
+        "lig": "Freundschaftsspiele",
         "mac": 2,
         "gol": 0,
         "asist": 1,
-        "sari": 0,
-        "dakika": 165,
+        "sari": 1,
+        "dakika": 179,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Club Tijuana",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 12,
+        "gol": 6,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 755,
         "milli": false
       },
       {
         "sezon": "24/25",
-        "kulup": "Tigres UANL",
+        "kulup": "Club Tijuana",
         "lig": "Liga MX Apertura",
-        "mac": 10,
+        "mac": 15,
         "gol": 0,
         "asist": 1,
-        "sari": 0,
-        "dakika": 699,
+        "sari": 3,
+        "dakika": 745,
         "milli": false
       },
       {
-        "sezon": "24/25",
-        "kulup": "Tigres UANL",
+        "sezon": "23/24",
+        "kulup": "Club Tijuana",
+        "lig": "Liga MX Apertura",
+        "mac": 12,
+        "gol": 5,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 913,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Club Tijuana",
         "lig": "Liga MX Clausura",
-        "mac": 9,
+        "mac": 13,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 902,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Club Tijuana",
+        "lig": "Liguilla Apertura",
+        "mac": 2,
         "gol": 0,
         "asist": 0,
         "sari": 1,
-        "dakika": 311,
+        "dakika": 126,
         "milli": false
       },
       {
-        "sezon": "24/25",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Apertura",
+        "sezon": "23/24",
+        "kulup": "Club Tijuana",
+        "lig": "NWSL x Liga MX Femenil Summer Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 107,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Club Tijuana",
+        "lig": "CONCACAF W Gold Cup",
         "mac": 3,
         "gol": 0,
         "asist": 0,
-        "sari": 0,
-        "dakika": 61,
+        "sari": 2,
+        "dakika": 268,
         "milli": false
       },
       {
-        "sezon": "24/25",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Clausura",
+        "sezon": "23/24",
+        "kulup": "Panama",
+        "lig": "Freundschaftsspiele",
         "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
-        "dakika": 1,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Tigres UANL",
-        "lig": "CONCACAF W Champions Cup",
-        "mac": 5,
-        "gol": 0,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 276,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Apertura",
-        "mac": 12,
-        "gol": 0,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 911,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Clausura",
-        "mac": 16,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 1260,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Apertura",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 93,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Clausura",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 343,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Tigres UANL",
-        "lig": "Campeón de Campeones",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 170,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Tigres UANL",
-        "lig": "NWSL x Liga MX Femenil Summer Cup",
-        "mac": 3,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 245,
-        "milli": false
+        "dakika": 90,
+        "milli": true
       },
       {
         "sezon": "22/23",
-        "kulup": "Tigres UANL",
+        "kulup": "CF Pachuca",
         "lig": "Liga MX Apertura",
         "mac": 15,
-        "gol": 0,
+        "gol": 2,
         "asist": 0,
-        "sari": 0,
-        "dakika": 1000,
+        "sari": 4,
+        "dakika": 1008,
         "milli": false
       },
       {
         "sezon": "22/23",
-        "kulup": "Tigres UANL",
+        "kulup": "CF Pachuca",
         "lig": "Liga MX Clausura",
-        "mac": 12,
-        "gol": 0,
+        "mac": 13,
+        "gol": 2,
         "asist": 0,
-        "sari": 0,
-        "dakika": 670,
+        "sari": 3,
+        "dakika": 870,
         "milli": false
       },
       {
         "sezon": "22/23",
-        "kulup": "Tigres UANL",
+        "kulup": "CF Pachuca",
         "lig": "Liguilla Apertura",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 171,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "CF Pachuca",
+        "lig": "Liguilla Clausura",
         "mac": 6,
         "gol": 0,
         "asist": 0,
+        "sari": 5,
+        "dakika": 520,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Panama",
+        "lig": "World Cup",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
         "sari": 0,
-        "dakika": 416,
-        "milli": false
+        "dakika": 258,
+        "milli": true
       },
       {
         "sezon": "22/23",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Clausura",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 324,
-        "milli": false
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Tigres UANL",
-        "lig": "Campeón de Campeones",
+        "kulup": "CF Pachuca",
+        "lig": "WC Inter-confederation Playoffs",
         "mac": 2,
-        "gol": 0,
-        "asist": 0,
+        "gol": 1,
+        "asist": 1,
         "sari": 1,
         "dakika": 180,
         "milli": false
       },
       {
-        "sezon": "21/22",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Apertura",
-        "mac": 10,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 774,
-        "milli": false
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Clausura",
-        "mac": 13,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 733,
-        "milli": false
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Apertura",
-        "mac": 6,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 449,
-        "milli": false
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Clausura",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 337,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Apertura",
-        "mac": 16,
-        "gol": 1,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 1368,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Clausura",
-        "mac": 22,
-        "gol": 0,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 1843,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Apertura",
-        "mac": 6,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 525,
-        "milli": false
-      },
-      {
-        "sezon": "19/20",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Apertura",
-        "mac": 9,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 370,
-        "milli": false
-      },
-      {
-        "sezon": "19/20",
-        "kulup": "Tigres UANL",
-        "lig": "Liga MX Clausura",
-        "mac": 8,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 702,
-        "milli": false
-      },
-      {
-        "sezon": "19/20",
-        "kulup": "Tigres UANL",
-        "lig": "Liguilla Apertura",
+        "sezon": "22/23",
+        "kulup": "Panama",
+        "lig": "Freundschaftsspiele",
         "mac": 3,
         "gol": 0,
-        "asist": 0,
+        "asist": 1,
         "sari": 0,
-        "dakika": 43,
-        "milli": false
-      },
-      {
-        "sezon": "17/18",
-        "kulup": "Mexico",
-        "lig": "CONCACAF U20 Championship",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 103,
+        "dakika": 239,
         "milli": true
       },
       {
-        "sezon": "15/16",
-        "kulup": "Mexico",
-        "lig": "U20 Weltmeisterschaft",
+        "sezon": "21/22",
+        "kulup": "Club León",
+        "lig": "Liga MX Apertura",
+        "mac": 13,
+        "gol": 2,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 909,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Club León",
+        "lig": "Liga MX Clausura",
+        "mac": 8,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 546,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Club León",
+        "lig": "CONCACAF W Championship",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 243,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Club León",
+        "lig": "CONCACAF W Championship Qualifiers",
+        "mac": 2,
+        "gol": 2,
+        "asist": 3,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Panama",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 2,
+        "asist": 2,
+        "sari": 1,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Panama",
+        "lig": "Freundschaftsspiele",
         "mac": 1,
         "gol": 0,
         "asist": 0,
-        "sari": 0,
-        "dakika": 1,
+        "sari": 1,
+        "dakika": 90,
         "milli": true
       },
       {
-        "sezon": "13/14",
-        "kulup": "Mexico",
-        "lig": "U17 Weltmeisterschaft",
+        "sezon": "19/20",
+        "kulup": "Panama",
+        "lig": "Olympia QF CONCACAF",
+        "mac": 3,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "17/18",
+        "kulup": "Panama",
+        "lig": "WC Inter-confederation Playoffs",
         "mac": 2,
         "gol": 0,
         "asist": 0,
         "sari": 0,
-        "dakika": 24,
-        "milli": true
+        "dakika": 145,
+        "milli": false
       }
     ],
-    "guncelleme": "2026-06-04"
+    "guncelleme": "2026-06-13"
   },
   "OUASSİLA ALOUACHE": {
     "sezonlar": [
@@ -37545,8 +37567,20 @@
     "guncelleme": "2026-06-04"
   },
   "LIVIA LOPES DOS SANTOS": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-04"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Bilgidoga",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 221,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "ZEYNEP GÜL KESKİN": {
     "sezonlar": [
@@ -38178,8 +38212,240 @@
     "guncelleme": "2026-06-04"
   },
   "TANIA RITA PONTES MATUES": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-04"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Rio Ave",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 608,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Rio Ave",
+        "lig": "Campeonato Nacional Feminino Play-offs",
+        "mac": 2,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 175,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Rio Ave",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 5,
+        "gol": 1,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 257,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Damaiense",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 18,
+        "gol": 4,
+        "asist": 4,
+        "sari": 1,
+        "dakika": 1413,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Damaiense",
+        "lig": "Taca da Portugal Feminina",
+        "mac": 3,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 255,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Damaiense",
+        "lig": "Taça da Liga Feminina",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 225,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Damaiense",
+        "lig": "Supertaça Feminina",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 120,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Marítimo",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 21,
+        "gol": 1,
+        "asist": 5,
+        "sari": 0,
+        "dakika": 1456,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Marítimo",
+        "lig": "Taca da Portugal Feminina",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Marítimo",
+        "lig": "Taça da Liga Feminina",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 135,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Marítimo",
+        "lig": "Play-off Manutenção",
+        "mac": 2,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Marítimo",
+        "lig": "Campeão",
+        "mac": 14,
+        "gol": 4,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 1213,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Marítimo",
+        "lig": "1a Divisao - Sul",
+        "mac": 7,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 570,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Marítimo",
+        "lig": "Taca da Portugal Feminina",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 175,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Marítimo",
+        "lig": "Taça da Liga Feminina",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Portugal",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 11,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Marítimo",
+        "lig": "1a Divisao - Sul",
+        "mac": 9,
+        "gol": 2,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 800,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Marítimo",
+        "lig": "Campeão",
+        "mac": 13,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 1004,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Marítimo",
+        "lig": "Taça da Liga Feminina",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 120,
+        "milli": false
+      },
+      {
+        "sezon": "19/20",
+        "kulup": "Marítimo",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 14,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 1241,
+        "milli": false
+      },
+      {
+        "sezon": "15/16",
+        "kulup": "Portugal",
+        "lig": "U19 EM Qualifikation",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 50,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "GÜL BEYZA AKPINAR": {
     "sezonlar": [
@@ -41582,18 +41848,18 @@
   "GAMZE AĞIRMAN": {
     "sezonlar": [
       {
-        "sezon": "12/13",
-        "kulup": "Saarwellingen",
-        "lig": "Regionalliga Südwest",
-        "mac": 2,
+        "sezon": "25/26",
+        "kulup": "Sanayispor",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
-        "dakika": 50,
+        "dakika": 12,
         "milli": false
       }
     ],
-    "guncelleme": "2026-06-04"
+    "guncelleme": "2026-06-13"
   },
   "ZEYNEP AKDENİZ": {
     "sezonlar": [
@@ -41656,7 +41922,19 @@
     "guncelleme": "2026-06-04"
   },
   "GÖKCE ALMILA ÖZCAN": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-04"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Bilgidoga",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 21,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   }
 }
