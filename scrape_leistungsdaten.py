@@ -252,6 +252,63 @@ def ozet_tabloyu_parse(soup: BeautifulSoup, sezon: str, kulup: str, ulke: str = 
     return kayitlar
 
 
+def alt_ozet_parse(soup: BeautifulSoup, ulke: str = "") -> list[dict]:
+    """
+    Alternatif duzen: 'Season | Club / Competition | Matches ...' baslikli,
+    tum sezonlari TEK tabloda birlestiren gorunum (sinirli verili oyuncularda).
+    Kulup + lig adi tek hucrede birlesik gelir (td[2]); ayristirilamadigi
+    icin kombine metin kulup/lig olarak saklanir.
+    """
+    kayitlar = []
+    for tablo in soup.select("table"):
+        basliklar = [th.get_text(strip=True).lower() for th in tablo.select("th")]
+        if "season" not in basliklar:
+            continue
+        if not any("competition" in b or "wettbewerb" in b for b in basliklar):
+            continue
+
+        for tr in tablo.select("tr"):
+            td_list = tr.select("td")
+            if len(td_list) < 4:
+                continue
+            sezon_ham = td_list[0].get_text(strip=True)
+            if not sezon_ham or sezon_ham.lower().startswith(("total", "thereof", "gesamt")):
+                continue
+            komb = td_list[2].get_text(" ", strip=True)
+            if not komb:
+                continue
+
+            mac = int_cevir(td_list[3].get_text(strip=True))
+            if mac == 0:
+                continue
+
+            def gv(i):
+                return int_cevir(td_list[i].get_text(strip=True)) if i < len(td_list) else 0
+            gol, asist, sari = gv(4), gv(5), gv(6)
+
+            # Sezon etiketi: "2024/2025" -> "24/25", "2024" -> "2024"
+            m = re.match(r"(\d{4})/(\d{4})", sezon_ham)
+            sezon = f"{m.group(1)[2:]}/{m.group(2)[2:]}" if m else sezon_ham
+
+            is_milli = milli_mi(komb) or bool(
+                ulke and komb.lower().startswith(ulke.lower().split()[0][:5]))
+            kayitlar.append({
+                "sezon":  sezon,
+                "kulup":  (ulke or "Milli Takım") if is_milli else komb,
+                "lig":    komb,
+                "mac":    mac,
+                "gol":    gol,
+                "asist":  asist,
+                "sari":   sari,
+                "dakika": 0,
+                "milli":  is_milli,
+            })
+        if kayitlar:
+            break
+
+    return kayitlar
+
+
 def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
     sid, slug = spieler_id_ve_slug(profil_url)
     if not sid or not slug:
@@ -283,6 +340,8 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
         # Dropdown yok — sadece varsayilan sayfa
         tum_kayitlar.extend(
             ozet_tabloyu_parse(soup, mevcut_sezon or "?", kulup0, ulke))
+        if not tum_kayitlar:
+            tum_kayitlar = alt_ozet_parse(soup, ulke)
         return tum_kayitlar
 
     # Tum yillari sirayla cek. En guncel yil (idx 0) = varsayilan sayfa,
@@ -301,6 +360,11 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
         except Exception as e:
             print(f"  [HATA] {etiket}: {e}")
         time.sleep(BEKLEME)
+
+    # Standart parser hic kayit bulamadiysa alternatif duzeni dene
+    # ('Season | Club / Competition' birlesik tablo — sinirli verili oyuncular)
+    if not tum_kayitlar:
+        tum_kayitlar = alt_ozet_parse(soup, ulke)
 
     return tum_kayitlar
 

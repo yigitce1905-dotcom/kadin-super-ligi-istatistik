@@ -18087,8 +18087,141 @@
     "guncelleme": "2026-06-03"
   },
   "Marina Marti": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-03"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Valencia FCF",
+        "lig": "Primera Federación",
+        "mac": 22,
+        "gol": 3,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 1400,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Valencia FCF",
+        "lig": "Playoff de ascenso a Primera División",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 229,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Valencia FCF",
+        "lig": "Copa de la Reina",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 77,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Valencia FCF",
+        "lig": "Primera División Femenina",
+        "mac": 30,
+        "gol": 6,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 2040,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Valencia FCF",
+        "lig": "Primera División Femenina",
+        "mac": 26,
+        "gol": 2,
+        "asist": 3,
+        "sari": 1,
+        "dakika": 1166,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Valencia FCF",
+        "lig": "Copa de la Reina",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Alhama CF",
+        "lig": "Primera División Femenina",
+        "mac": 30,
+        "gol": 8,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 2529,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Alhama CF",
+        "lig": "Copa de la Reina",
+        "mac": 5,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 332,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Alhama CF",
+        "lig": "Segunda División Grupo Sur",
+        "mac": 23,
+        "gol": 13,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1830,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Alhama CF",
+        "lig": "Copa de la Reina",
+        "mac": 3,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 223,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Alhama CF",
+        "lig": "Segunda División Grupo Sur C",
+        "mac": 8,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 662,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Alhama CF",
+        "lig": "Segunda División Grupo Sur B",
+        "mac": 16,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1132,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "Carol Lara": {
     "sezonlar": [
@@ -36302,8 +36435,20 @@
     "guncelleme": "2026-06-04"
   },
   "Jolie Louis": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-04"
+    "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Trinidad and TobagoUnited States",
+        "lig": "Trinidad & Tobago CONCACAF W Championship",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "Joseph Shwendwsky": {
     "sezonlar": [
@@ -36925,8 +37070,20 @@
     "guncelleme": "2026-06-06"
   },
   "Taina Gondim": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-06"
+    "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "SC Internacional Brasileirão Feminino",
+        "lig": "SC Internacional Brasileirão Feminino",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "Lauren Brzykcy": {
     "sezonlar": [
@@ -37055,8 +37212,20 @@
     "guncelleme": "2026-06-06"
   },
   "Olivia Sekany": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-06"
+    "sezonlar": [
+      {
+        "sezon": "24/25",
+        "kulup": "Brisbane Roar A-League Women",
+        "lig": "Brisbane Roar A-League Women",
+        "mac": 17,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "Emily Alvarado": {
     "sezonlar": [
@@ -43004,8 +43173,163 @@
     "guncelleme": "2026-06-06"
   },
   "Kaylan Williams": {
-    "sezonlar": [],
-    "guncelleme": "2026-06-06"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Saint-Étienne",
+        "lig": "Première Ligue",
+        "mac": 11,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 328,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Dynamo Moskau",
+        "lig": "Superliga",
+        "mac": 20,
+        "gol": 6,
+        "asist": 0,
+        "sari": 4,
+        "dakika": 903,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Dynamo Moskau",
+        "lig": "Russian Women’s Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Dynamo Moskau",
+        "lig": "Superliga",
+        "mac": 23,
+        "gol": 7,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 1966,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Dynamo Moskau",
+        "lig": "Russian Women’s Cup",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Dynamo Moskau",
+        "lig": "Superliga",
+        "mac": 20,
+        "gol": 9,
+        "asist": 6,
+        "sari": 3,
+        "dakika": 1755,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Dynamo Moskau",
+        "lig": "Superliga Championship Round",
+        "mac": 5,
+        "gol": 2,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 406,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Lok. Moskau",
+        "lig": "Superliga",
+        "mac": 10,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 735,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Lok. Moskau",
+        "lig": "Superliga Championship Round",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 13,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Lok. Moskau",
+        "lig": "Russian Women’s Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Lok. Moskau",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 19,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Lok. Moskau",
+        "lig": "Superliga",
+        "mac": 18,
+        "gol": 2,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 592,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Lok. Moskau",
+        "lig": "Russian Women’s Cup",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 68,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Lok. Moskau",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 89,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-13"
   },
   "Ekaterina Miklashevich": {
     "sezonlar": [
