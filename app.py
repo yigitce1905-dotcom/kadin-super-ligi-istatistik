@@ -3958,12 +3958,20 @@ def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
             + '</div>')
 
 
-def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=False, deneme=False):
+def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=False,
+                     deneme=False, eski_fiyat="", indirim=""):
     """Tek üyelik paketi kartı (HTML)."""
     glow = f"box-shadow:0 0 0 2px {renk}, 0 8px 28px {renk}55;" if populer else f"border:1px solid {renk}44;"
     rozet = (f"<div style='position:absolute;top:-11px;left:50%;transform:translateX(-50%);"
              f"background:{renk};color:#06210f;font-size:10px;font-weight:800;letter-spacing:1px;"
              f"border-radius:20px;padding:3px 14px;white-space:nowrap;'>★ {t('EN POPÜLER','MOST POPULAR')}</div>") if populer else ""
+    # İndirim rozeti (sağ üst köşe)
+    indirim_rozet = (f"<div style='position:absolute;top:10px;right:10px;background:#ef4444;"
+                     f"color:#fff;font-size:10px;font-weight:800;border-radius:6px;"
+                     f"padding:2px 8px;'>{indirim}</div>") if indirim else ""
+    # Üstü çizili eski fiyat
+    eski_html = (f"<div style='font-size:0.95rem;color:#6e7681;text-decoration:line-through;"
+                 f"line-height:1;margin-bottom:2px;'>{eski_fiyat}</div>") if eski_fiyat else ""
     deneme_rozet = (f"<div style='margin-top:8px;background:#e040fb1a;border:1px solid #e040fb66;"
                     f"color:#e9d5ff;border-radius:6px;padding:4px 0;font-size:10.5px;font-weight:800;"
                     f"letter-spacing:0.5px;'>🎁 {t('2 GÜN ÜCRETSİZ DENE','2-DAY FREE TRIAL')}</div>") if deneme else ""
@@ -3978,11 +3986,12 @@ def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=Fal
     return (
         f"<div style='position:relative;background:linear-gradient(160deg,#161b22,#0f141c);"
         f"border-radius:16px;padding:24px 20px 18px;{glow}height:100%;'>"
-        f"{rozet}"
+        f"{rozet}{indirim_rozet}"
         f"<div style='text-align:center;margin-bottom:6px;'>"
         f"<div style='font-size:30px;'>{ikon}</div>"
         f"<div style='font-size:1.25rem;font-weight:800;color:{renk};margin-top:2px;'>{isim}</div></div>"
         f"<div style='text-align:center;margin:8px 0 16px;'>"
+        f"{eski_html}"
         f"<div style='font-size:1.9rem;font-weight:900;color:#fff;line-height:1;'>{fiyat}</div>"
         f"<div style='font-size:11px;color:#8b949e;margin-top:3px;'>{fiyat_alt}</div>"
         f"{deneme_rozet}</div>"
@@ -4033,20 +4042,38 @@ def render_paketler():
         st.markdown(_paket_kart_html("🆓", "Free", "#58a6ff",
             t("Ücretsiz","Free"), t("temel erişim","basic access"), free_pkg), unsafe_allow_html=True)
     _yillik = t("yıllık · KDV dahil", "yearly · VAT incl.")
+    _ind = t("%50", "-50%")
     with c2:
         st.markdown(_paket_kart_html("🔹", "Basic", "#29b6f6",
-            "499 €", _yillik, basic, deneme=True), unsafe_allow_html=True)
+            "499 €", _yillik, basic, deneme=True, eski_fiyat="999 €", indirim=_ind), unsafe_allow_html=True)
     with c3:
         st.markdown(_paket_kart_html("⚡", "Pro", "#00c853",
-            "999 €", _yillik, pro, populer=True, deneme=True), unsafe_allow_html=True)
+            "999 €", _yillik, pro, populer=True, deneme=True, eski_fiyat="1.999 €", indirim=_ind), unsafe_allow_html=True)
     with c4:
         st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
-            "1.999 €", _yillik, premium, deneme=True), unsafe_allow_html=True)
+            "1.999 €", _yillik, premium, deneme=True, eski_fiyat="2.999 €",
+            indirim=t("%33","-33%")), unsafe_allow_html=True)
 
-    # Ücretsiz deneme talep CTA'sı
+    # Lansman indirimi şeridi
+    st.markdown(
+        f"<div style='text-align:center;margin-top:10px;'>"
+        f"<span style='background:#ef444422;border:1px solid #ef4444;color:#fca5a5;"
+        f"border-radius:99px;padding:4px 16px;font-size:0.78rem;font-weight:700;'>"
+        f"🔥 {t('LANSMAN İNDİRİMİ — sınırlı süre','LAUNCH DISCOUNT — limited time')}</span></div>",
+        unsafe_allow_html=True)
+
+    # Ücretsiz deneme talep CTA'sı — belirgin kutu (giriş gerekmez)
     _dnc = st.columns([1, 2, 1])[1]
     with _dnc:
-        st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+        st.markdown(
+            f"<div style='background:linear-gradient(135deg,#1a0f2e,#2a1145);"
+            f"border:1px solid #e040fb;border-radius:12px;padding:14px 18px 6px;"
+            f"text-align:center;margin-top:16px;'>"
+            f"<div style='color:#e9d5ff;font-size:0.9rem;font-weight:700;'>"
+            f"🎁 {t('Önce denemek ister misin?','Want to try first?')}</div>"
+            f"<div style='color:#a78bfa;font-size:0.78rem;margin-top:2px;'>"
+            f"{t('2 gün boyunca Premium — kart bilgisi yok, taahhüt yok.','2 days of Premium — no card, no commitment.')}</div>"
+            f"</div>", unsafe_allow_html=True)
         if st.button(t("🎁 2 Günlük Ücretsiz Deneme Talep Et", "🎁 Request a 2-Day Free Trial"),
                      use_container_width=True, type="primary", key="deneme_talep_cta"):
             st.session_state["sayfa"]      = "talep"
