@@ -3426,20 +3426,25 @@ if st.session_state["sayfa"] == "talep":
 
     # Talep formu
     st.markdown(t("##### 📨 Detaylı Talep", "##### 📨 Detailed Request"))
+    _DENEME_TIP = "🎁 2 günlük ücretsiz deneme"
     _tip_opts = [
+        _DENEME_TIP,
         "Belirli bir oyuncu için detaylı rapor",
         "Belirli bir mevkiye oyuncu önerisi",
         "Birkaç oyuncu arasında tercih / kıyas",
         "Takımı baştan kurma danışmanlığı",
     ]
     _tip_en = dict(zip(_tip_opts, [
+        "🎁 2-day free trial",
         "Detailed report on a specific player",
         "Player suggestion for a position",
         "Choice / comparison among a few players",
         "Full squad building consultancy",
     ]))
+    # Paket sayfasındaki "Deneme Talep Et" butonu deneme tipini ön-seçer
+    _tip_idx = 0 if st.session_state.pop("talep_tip_on", None) == "deneme" else 1
     with st.form("talep_form", clear_on_submit=False):
-        tip = st.selectbox(t("Talep türü", "Request type"), _tip_opts,
+        tip = st.selectbox(t("Talep türü", "Request type"), _tip_opts, index=_tip_idx,
                            format_func=lambda x: _tip_en[x] if EN else x)
         detay = st.text_area(
             t("Detay / açıklama *", "Details / description *"), height=120,
@@ -3452,13 +3457,17 @@ if st.session_state["sayfa"] == "talep":
         gonder = st.form_submit_button(t("📨 Talebi Gönder", "📨 Send Request"),
                                        use_container_width=True, type="primary")
     if gonder:
-        if not (isim.strip() and email.strip() and detay.strip()):
+        _deneme_talebi = (tip == _DENEME_TIP)
+        _detay_son = detay.strip() or (t("2 günlük ücretsiz Premium deneme talebi.",
+                                         "Request for a 2-day free Premium trial.") if _deneme_talebi else "")
+        # Deneme talebinde Detay zorunlu değil
+        if not (isim.strip() and email.strip() and (_detay_son if not _deneme_talebi else True)):
             st.error(t("Lütfen Ad Soyad, E-posta ve Detay alanlarını doldurun.",
                        "Please fill in Full Name, E-mail and Details."))
         else:
             with st.spinner(t("Talebiniz gönderiliyor...", "Sending your request...")):
                 _k, _m = talep_gonder(tip, isim.strip(), kulup.strip(),
-                                      email.strip(), detay.strip(), oneri=_oneri_metni)
+                                      email.strip(), _detay_son, oneri=_oneri_metni)
             if _k or _m:
                 st.success(t("✅ Talebiniz alındı! En kısa sürede iletişime geçeceğiz.",
                              "✅ Your request has been received! We'll get back to you shortly."))
@@ -3873,12 +3882,15 @@ def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
             + '</div>')
 
 
-def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=False):
+def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=False, deneme=False):
     """Tek üyelik paketi kartı (HTML)."""
     glow = f"box-shadow:0 0 0 2px {renk}, 0 8px 28px {renk}55;" if populer else f"border:1px solid {renk}44;"
     rozet = (f"<div style='position:absolute;top:-11px;left:50%;transform:translateX(-50%);"
              f"background:{renk};color:#06210f;font-size:10px;font-weight:800;letter-spacing:1px;"
              f"border-radius:20px;padding:3px 14px;white-space:nowrap;'>★ {t('EN POPÜLER','MOST POPULAR')}</div>") if populer else ""
+    deneme_rozet = (f"<div style='margin-top:8px;background:#e040fb1a;border:1px solid #e040fb66;"
+                    f"color:#e9d5ff;border-radius:6px;padding:4px 0;font-size:10.5px;font-weight:800;"
+                    f"letter-spacing:0.5px;'>🎁 {t('2 GÜN ÜCRETSİZ DENE','2-DAY FREE TRIAL')}</div>") if deneme else ""
     satirlar = ""
     for metin, var in ozellikler:
         if var:
@@ -3896,7 +3908,8 @@ def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=Fal
         f"<div style='font-size:1.25rem;font-weight:800;color:{renk};margin-top:2px;'>{isim}</div></div>"
         f"<div style='text-align:center;margin:8px 0 16px;'>"
         f"<div style='font-size:1.9rem;font-weight:900;color:#fff;line-height:1;'>{fiyat}</div>"
-        f"<div style='font-size:11px;color:#8b949e;margin-top:3px;'>{fiyat_alt}</div></div>"
+        f"<div style='font-size:11px;color:#8b949e;margin-top:3px;'>{fiyat_alt}</div>"
+        f"{deneme_rozet}</div>"
         f"{satirlar}</div>"
     )
 
@@ -3946,16 +3959,27 @@ def render_paketler():
     _yillik = t("yıllık · KDV dahil", "yearly · VAT incl.")
     with c2:
         st.markdown(_paket_kart_html("🔹", "Basic", "#29b6f6",
-            "499 €", _yillik, basic), unsafe_allow_html=True)
+            "499 €", _yillik, basic, deneme=True), unsafe_allow_html=True)
     with c3:
         st.markdown(_paket_kart_html("⚡", "Pro", "#00c853",
-            "999 €", _yillik, pro, populer=True), unsafe_allow_html=True)
+            "999 €", _yillik, pro, populer=True, deneme=True), unsafe_allow_html=True)
     with c4:
         st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
-            "1.999 €", _yillik, premium), unsafe_allow_html=True)
+            "1.999 €", _yillik, premium, deneme=True), unsafe_allow_html=True)
 
-    _pk_not = t("Kurumsal / kulüp teklifleri için 📬 İletişim sayfasından bize ulaşın.",
-                "For corporate / club offers, reach us via the 📬 Contact page.")
+    # Ücretsiz deneme talep CTA'sı
+    _dnc = st.columns([1, 2, 1])[1]
+    with _dnc:
+        st.markdown("<div style='height:14px'></div>", unsafe_allow_html=True)
+        if st.button(t("🎁 2 Günlük Ücretsiz Deneme Talep Et", "🎁 Request a 2-Day Free Trial"),
+                     use_container_width=True, type="primary", key="deneme_talep_cta"):
+            st.session_state["sayfa"]      = "talep"
+            st.session_state["talep_tip_on"] = "deneme"
+            st.session_state["girildi"]    = True
+            st.rerun()
+
+    _pk_not = t("Deneme talebini değerlendirip kademeni elle aktifleştiririz. Kurumsal teklifler için 📬 İletişim.",
+                "We review your trial request and activate your tier manually. For corporate offers see 📬 Contact.")
     st.markdown(
         f"<div style='text-align:center;color:#6e7681;font-size:11px;margin-top:12px;'>{_pk_not}</div>",
         unsafe_allow_html=True)
