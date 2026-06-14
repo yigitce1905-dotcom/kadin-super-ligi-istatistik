@@ -405,31 +405,37 @@ def _oturum_session_doldur(kullanici: str, bilgi: dict):
     st.session_state["kulup_pro"]       = bilgi.get("pro", False)
 
 def _oturum_kaydet(kullanici: str):
-    """Başarılı girişten sonra cookie'ye imzalı token yazar."""
-    ctrl = _cookie_ctrl()
-    if ctrl is not None:
-        try:
-            ctrl.set(_COOKIE_AD, _oturum_token_uret(kullanici),
-                     max_age=_OTURUM_GUN * 86400)
-        except Exception:
-            pass
+    """Cookie yazımını bir sonraki run'a erteler (rerun yazmayı kesmesin diye)."""
+    st.session_state["_ck_islem"] = ("set", _oturum_token_uret(kullanici))
 
 def _oturum_cikis():
-    """Çıkışta cookie'yi siler."""
-    ctrl = _cookie_ctrl()
-    if ctrl is not None:
-        try:
-            ctrl.remove(_COOKIE_AD)
-        except Exception:
-            pass
+    """Cookie silmeyi bir sonraki run'a erteler."""
+    st.session_state["_ck_islem"] = ("sil",)
 
 def _oturum_geri_yukle():
-    """Sayfa yenilendiğinde cookie geçerliyse oturumu otomatik geri yükler."""
-    if st.session_state.get("kulup_giris"):
-        return
+    """Her run başında: bekleyen cookie işlemini uygula, yoksa oturumu geri yükle."""
     ctrl = _cookie_ctrl()
     if ctrl is None:
         return
+
+    # 1) Bekleyen yazma/silme (login/logout sonrası) — bu run'da uygula,
+    #    arkasından rerun YOK ki bileşen cookie'yi yazabilsin.
+    islem = st.session_state.pop("_ck_islem", None)
+    if islem:
+        try:
+            if islem[0] == "set":
+                ctrl.set(_COOKIE_AD, islem[1], max_age=_OTURUM_GUN * 86400)
+            else:
+                ctrl.remove(_COOKIE_AD)
+        except Exception:
+            pass
+        return
+
+    # 2) Zaten girişliyse dokunma
+    if st.session_state.get("kulup_giris"):
+        return
+
+    # 3) Geçerli cookie varsa oturumu geri yükle
     try:
         token = ctrl.get(_COOKIE_AD)
     except Exception:
@@ -507,6 +513,21 @@ def giris_gerekli_ekrani():
     )
 
 
+def _giris_yap(ku: str, si: str) -> bool:
+    """Ortak giriş mantığı: doğrula → session + cookie. Başarılıysa True."""
+    sonuc = giris_dogrula(ku.strip(), si.strip())
+    if sonuc:
+        giris_logla(ku.strip(), basarili=True)
+        _oturum_session_doldur(ku.strip(), sonuc)
+        st.session_state["girildi"]  = True
+        st.session_state["login_ac"] = False
+        _oturum_kaydet(ku.strip())   # cookie'ye yaz (kalıcı giriş)
+        return True
+    if ku.strip():
+        giris_logla(ku.strip(), basarili=False)
+    return False
+
+
 def giris_formu():
     """Sidebar'da giriş formu gösterir."""
     if st.session_state.get("kulup_giris"):
@@ -516,17 +537,40 @@ def giris_formu():
             ku = st.text_input(t("Kullanıcı adı", "Username"), placeholder="fenerbahce")
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
             if st.form_submit_button(t("Giriş Yap", "Log In"), use_container_width=True):
-                sonuc = giris_dogrula(ku.strip(), si.strip())
-                if sonuc:
-                    giris_logla(ku.strip(), basarili=True)
-                    _oturum_session_doldur(ku.strip(), sonuc)
-                    st.session_state["girildi"] = True  # giriş yapınca doğrudan içeriğe
-                    _oturum_kaydet(ku.strip())           # cookie'ye yaz (kalıcı giriş)
+                if _giris_yap(ku, si):
                     st.rerun()
                 else:
-                    if ku.strip():
-                        giris_logla(ku.strip(), basarili=False)
                     st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
+
+
+def giris_formu_ana():
+    """Ana alanda (ortada) giriş kartı — sağ üst '🔐 Giriş' butonuyla açılır."""
+    if st.session_state.get("kulup_giris") or not st.session_state.get("login_ac"):
+        return
+    _orta = st.columns([1, 1.4, 1])[1]
+    with _orta:
+        st.markdown(
+            f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
+            f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 20px 6px;"
+            f"margin:6px 0 14px;'>"
+            f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
+            f"letter-spacing:0.18em;'>🔐 {t('KULÜP GİRİŞİ','CLUB LOGIN')}</div></div>",
+            unsafe_allow_html=True)
+        with st.form("giris_form_ana", clear_on_submit=True):
+            ku = st.text_input(t("Kullanıcı adı", "Username"), placeholder="fenerbahce")
+            si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
+            _b1, _b2 = st.columns(2)
+            _gir = _b1.form_submit_button(t("Giriş Yap", "Log In"),
+                                          use_container_width=True, type="primary")
+            _ipt = _b2.form_submit_button(t("İptal", "Cancel"), use_container_width=True)
+        if _gir:
+            if _giris_yap(ku, si):
+                st.rerun()
+            else:
+                st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
+        if _ipt:
+            st.session_state["login_ac"] = False
+            st.rerun()
 
 
 def pro_kontrol() -> bool:
@@ -2839,7 +2883,7 @@ with nav_giris:
     else:
         if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True,
                      type="primary", help=t("Giriş yap", "Log in")):
-            st.session_state["sayfa"] = "giris"
+            st.session_state["login_ac"] = True
             st.rerun()
 
 with nav_dil:
@@ -2850,6 +2894,9 @@ with nav_dil:
 
 # Giriş formu sidebar'da her zaman
 giris_formu()
+
+# Sağ üst "🔐 Giriş" butonuna basılınca ana alanda açılan giriş kartı
+giris_formu_ana()
 
 # PRO / üye rozeti sidebar'da göster
 if st.session_state.get("kulup_giris"):
