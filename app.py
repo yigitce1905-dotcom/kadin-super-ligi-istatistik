@@ -623,6 +623,59 @@ def pro_kontrol() -> bool:
     return tier_yeterli("pro")
 
 
+# ─── Deneme modu: kısıtlı vitrin (TR'de 5, Scouting'de 5 oyuncu açık) ──────────
+DENEME_TR_OYUNCULAR = {
+    "MERYEM SEVENT", "JUANITA AGUADZE", "ARMISA KUÇ",
+    "MILICA MIJATOVIC", "FLORENTİNA KOLGECİ",
+}
+DENEME_SCOUT_OYUNCULAR = {
+    "Ana Barjaktarovic", "Tessa Zimmermann", "Natalia Wrobel",
+    "Ajsa Kalac", "Tanja Malesija",
+}
+
+def deneme_modunda() -> bool:
+    """Erişim aktif denemeden geliyorsa True (gerçek ödeyen/admin değil)."""
+    if not st.session_state.get("kulup_giris"):
+        return False
+    if (st.session_state.get("kulup_rol") == "admin"
+            or st.session_state.get("kulup_kullanici") == "admin"):
+        return False
+    dn = aktif_deneme(st.session_state.get("kulup_kullanici", ""))
+    if not dn:
+        return False
+    base   = st.session_state.get("kulup_tier", "basic")
+    d_tier = (dn.get("tier") or "premium").lower()
+    return _TIER_RANK.get(d_tier, 0) > _TIER_RANK.get(base, 0)
+
+def deneme_kilit(ozellik: str, kaynak: str = "tr"):
+    """Deneme kapsamı dışındaki içerik için kilit ekranı + üyelik yönlendirmesi."""
+    if kaynak == "scout":
+        acik   = len(DENEME_SCOUT_OYUNCULAR)
+        toplam = len(scouting_sd_yukle())
+        nereden = t("Scouting havuzu", "the scouting pool")
+    else:
+        acik   = len(DENEME_TR_OYUNCULAR)
+        toplam = len(df_tam) if not df_tam.empty else 0
+        nereden = t("TR veride", "TR data")
+    st.markdown(
+        f"<div style='max-width:560px;margin:40px auto;text-align:center;"
+        f"background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
+        f"border-radius:16px;padding:36px 32px;'>"
+        f"<div style='font-size:2.6rem;'>🎁</div>"
+        f"<h2 style='color:#f1f5f9;margin:8px 0 10px;'>{t('Deneme Modu','Trial Mode')}</h2>"
+        f"<p style='color:#cbd5e1;font-size:0.95rem;line-height:1.7;margin:0 0 14px;'>"
+        f"<b style='color:#e040fb;'>{ozellik}</b> "
+        f"{t('denemede sınırlıdır; tam katalogla üyelikte açılır.','is limited in trial; it unlocks with full membership.')}</p>"
+        f"<div style='background:#0f0a1e;border:1px solid #3b2d6e;border-radius:10px;"
+        f"padding:14px 18px;margin-bottom:14px;'>"
+        f"<span style='color:#94a3b8;font-size:0.9rem;'>{t('Toplam','Total')} "
+        f"<b style='color:#fff;'>{toplam}</b> {nereden} {t('oyuncu','players')} · "
+        f"{t('denemede','trial')}: <b style='color:#e040fb;'>{acik}</b> {t('örnek açık','samples open')}</span></div>"
+        f"<p style='color:#6b7a99;font-size:0.82rem;margin:0;'>"
+        f"{t('Tam erişim için 📬 İletişim / üyelik.','For full access see 📬 Contact / membership.')}</p>"
+        f"</div>", unsafe_allow_html=True)
+
+
 _PRO_OZELLIKLER = [
     ("🗄️", t("Tüm Oyuncu Veri Tabanına Erişim", "Access to the Full Player Database"),          t("Süper Lig'deki her oyuncunun tam istatistik geçmişi", "Complete stats history of every player in the Super League")),
     ("📊", t("Sıralanabilir Gelişmiş İstatistikler", "Sortable Advanced Statistics"),      t("Maç, gol, dakika, kart — tüm metrikler anlık sıralama", "Matches, goals, minutes, cards — all metrics instantly sortable")),
@@ -2055,6 +2108,10 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
 
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
+    # Deneme modunda yalnızca vitrin oyuncuları açık
+    if deneme_modunda() and tam_isim not in DENEME_SCOUT_OYUNCULAR:
+        deneme_kilit(t("Bu oyuncunun scout profili", "This player's scout profile"), "scout")
+        return
     sd_data = scouting_sd_yukle()
     leistung_data = scouting_leistung_yukle()
     detay_data = scouting_detay_yukle()
@@ -2647,6 +2704,10 @@ def render_scout_kadro_raporu(isim: str):
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
 def render_ana_lig_profil(secili):
+    # Deneme modunda yalnızca vitrin oyuncuları açık
+    if deneme_modunda() and secili not in DENEME_TR_OYUNCULAR:
+        deneme_kilit(t("Bu oyuncunun detaylı profili", "This player's detailed profile"), "tr")
+        return
     if secili and secili in oyuncu_detay:
         row    = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
         detay  = oyuncu_detay[secili]
@@ -3659,6 +3720,21 @@ if st.session_state.get("sayfa") == "scouting":
                 if sadece_sl:
                     filtered = filtered[filtered[isim_col].isin(_sl_liste)]
 
+                # Deneme modu: yalnızca vitrin oyuncuları göster (isimce de gizli)
+                _deneme_scout = deneme_modunda()
+                if _deneme_scout:
+                    _toplam_havuz = len(sc_df)
+                    filtered = filtered[filtered[isim_col].isin(DENEME_SCOUT_OYUNCULAR)]
+                    st.markdown(
+                        f"<div style='background:#e040fb1a;border:1px solid #e040fb;"
+                        f"border-radius:10px;padding:10px 16px;margin-bottom:10px;"
+                        f"color:#e9d5ff;font-size:0.84rem;'>"
+                        f"🎁 <b>{t('Deneme modu','Trial mode')}</b> — "
+                        f"{t('havuzdan','from a pool of')} <b>{_toplam_havuz}</b> "
+                        f"{t('oyuncudan','players')} <b>{len(filtered)}</b> "
+                        f"{t('örnek gösteriliyor. Tam havuz Premium üyelikte açılır.','samples shown. Full pool unlocks with Premium.')}"
+                        f"</div>", unsafe_allow_html=True)
+
                 if sadece_sl and len(filtered) >= 2:
                     with st.expander(
                             t("⚖️ Shortlist Karşılaştırma", "⚖️ Shortlist Comparison"),
@@ -4303,14 +4379,27 @@ with tab2:
     if not st.session_state.get("kulup_giris"):
         giris_gerekli_ekrani()
     else:
-        oyuncu_listesi = sorted(df_tam["Oyuncu"].tolist())
+        _tum_liste = sorted(df_tam["Oyuncu"].tolist())
+        if deneme_modunda():
+            # Deneme: yalnızca vitrin oyuncuları seçilebilir (toplam sayı bilinir)
+            oyuncu_listesi = [o for o in _tum_liste if o in DENEME_TR_OYUNCULAR]
+            st.markdown(
+                f"<div style='background:#e040fb1a;border:1px solid #e040fb;border-radius:10px;"
+                f"padding:9px 15px;margin-bottom:8px;color:#e9d5ff;font-size:0.84rem;'>"
+                f"🎁 <b>{t('Deneme modu','Trial mode')}</b> — "
+                f"{t('toplam','of')} <b>{len(_tum_liste)}</b> {t('oyuncudan','players')}, "
+                f"<b>{len(oyuncu_listesi)}</b> {t('örnek profil açık. Tam erişim üyelikte.','sample profiles open. Full access with membership.')}"
+                f"</div>", unsafe_allow_html=True)
+        else:
+            oyuncu_listesi = _tum_liste
         # Varsayılan: URL'den gelen oyuncu > Ebru Topçu > listedeki ilk
         if url_oyuncu in oyuncu_listesi:
             varsayilan_idx = oyuncu_listesi.index(url_oyuncu)
         else:
             _ebru = next((o for o in oyuncu_listesi if "EBRU TOP" in o.upper()), None)
             varsayilan_idx = oyuncu_listesi.index(_ebru) if _ebru else 0
-        secili = st.selectbox(t("Oyuncu seç", "Select Player"), oyuncu_listesi, index=varsayilan_idx, key="profil_sec")
+        secili = st.selectbox(t("Oyuncu seç", "Select Player"), oyuncu_listesi,
+                              index=varsayilan_idx if oyuncu_listesi else 0, key="profil_sec")
         render_ana_lig_profil(secili)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -4320,11 +4409,22 @@ with tab3:
     st.markdown(f"### ⚡ {t('Oyuncu Karşılaştırması', 'Player Comparison')}")
     st.caption(t("2 ile 4 oyuncu arasında seçim yapabilirsiniz.", "You can select between 2 and 4 players."))
 
-    oyuncu_listesi2 = sorted(df_tam["Oyuncu"].tolist())
-
-    VARSAYILAN_OYUNCULAR = [
-        "EBRU TOPÇU", "ECE TÜRKOĞLU", "DONJETA HALILAJ", "MILICA MIJATOVIC"
-    ]
+    _tum_liste2 = sorted(df_tam["Oyuncu"].tolist())
+    if deneme_modunda():
+        oyuncu_listesi2 = [o for o in _tum_liste2 if o in DENEME_TR_OYUNCULAR]
+        VARSAYILAN_OYUNCULAR = oyuncu_listesi2[:4]
+        st.markdown(
+            f"<div style='background:#e040fb1a;border:1px solid #e040fb;border-radius:10px;"
+            f"padding:9px 15px;margin-bottom:8px;color:#e9d5ff;font-size:0.84rem;'>"
+            f"🎁 <b>{t('Deneme modu','Trial mode')}</b> — "
+            f"{t('yalnızca','only the')} <b>{len(oyuncu_listesi2)}</b> "
+            f"{t('örnek oyuncu karşılaştırılabilir (toplam','sample players are comparable (total')} "
+            f"{len(_tum_liste2)}).</div>", unsafe_allow_html=True)
+    else:
+        oyuncu_listesi2 = _tum_liste2
+        VARSAYILAN_OYUNCULAR = [
+            "EBRU TOPÇU", "ECE TÜRKOĞLU", "DONJETA HALILAJ", "MILICA MIJATOVIC"
+        ]
     # Listede bulunanları filtrele, eksikse ilk N oyuncuyla tamamla
     varsayilan = [o for o in VARSAYILAN_OYUNCULAR if o in oyuncu_listesi2]
     if len(varsayilan) < 2:
@@ -4647,6 +4747,8 @@ with tab6:
     st.markdown(f"### 🌟 {t('2025-2026 Sezonu En İyileri', '2025-2026 Season Top Performers')}")
     if df_tam.empty:
         st.info(t("Veri yok.", "No data."))
+    elif deneme_modunda():
+        deneme_kilit(t("🌟 En İyiler", "🌟 Top Performers"), "tr")
     else:
         # ── Lig Geneli Verimlilik Scatter ──────────────────────────────
         st.markdown(f"#### ⚡ {t('Tüm Ligde Dakika-Gol Verimliliği', 'Minutes-Goals Efficiency Across the League')}")
@@ -5494,6 +5596,8 @@ with tab9:
         giris_gerekli_ekrani()
     elif not pro_kontrol():
         pro_paywall_goster(t("🔍 Gelişmiş Arama", "🔍 Advanced Search"))
+    elif deneme_modunda():
+        deneme_kilit(t("🔍 Gelişmiş Arama", "🔍 Advanced Search"), "tr")
     else:
         st.markdown(f"##### 🔍 {t('Gelişmiş Oyuncu Arama', 'Advanced Player Search')}")
         st.caption(t("Uyruk, mevki, yaş ve maç sayısına göre filtrele",
@@ -6055,6 +6159,8 @@ with tab_transfer:
         giris_gerekli_ekrani()
     elif not pro_kontrol():
         pro_paywall_goster(t("Transfer Öner", "Transfer Suggest"))
+    elif deneme_modunda():
+        deneme_kilit(t("🔄 Transfer Öner", "🔄 Transfer Suggest"), "tr")
     else:
         st.markdown(f"##### 🔄 {t('Transfer Öner', 'Transfer Suggest')}")
         st.caption(t("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi",
