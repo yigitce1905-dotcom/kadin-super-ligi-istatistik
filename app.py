@@ -342,6 +342,108 @@ def giris_dogrula(kullanici: str, sifre: str) -> dict | None:
         pass
     return None
 
+
+# ─── KALICI OTURUM (cookie ile — sayfa yenilense de giriş korunur) ────────────
+import hmac as _hmac, hashlib as _hashlib, time as _time, base64 as _b64
+
+_COOKIE_AD   = "wscope_oturum"
+_OTURUM_GUN  = 30  # cookie geçerlilik süresi (gün)
+
+def _oturum_secret() -> bytes:
+    """İmzalama anahtarı (Secrets'tan; yoksa credential hash'lerinden türetilir)."""
+    try:
+        s = st.secrets.get("auth_secret", "")
+        if s:
+            return str(s).encode()
+    except Exception:
+        pass
+    creds = kulup_credentials_yukle()
+    tohum = "".join(sorted(v.get("hash", "") for v in creds.values()))
+    return _hashlib.sha256(("wscope|" + tohum).encode()).digest()
+
+def _oturum_token_uret(kullanici: str) -> str:
+    son = int(_time.time()) + _OTURUM_GUN * 86400
+    govde = f"{kullanici}|{son}"
+    imza = _hmac.new(_oturum_secret(), govde.encode(), _hashlib.sha256).hexdigest()[:24]
+    return _b64.urlsafe_b64encode(f"{govde}|{imza}".encode()).decode()
+
+def _oturum_token_coz(token: str):
+    """Token geçerliyse kullanıcı adını döndürür, değilse None."""
+    try:
+        ham = _b64.urlsafe_b64decode(token.encode()).decode()
+        kullanici, son, imza = ham.rsplit("|", 2)
+        if int(son) < _time.time():
+            return None  # süresi dolmuş
+        beklenen = _hmac.new(_oturum_secret(), f"{kullanici}|{son}".encode(),
+                             _hashlib.sha256).hexdigest()[:24]
+        if _hmac.compare_digest(imza, beklenen):
+            return kullanici
+    except Exception:
+        pass
+    return None
+
+# Run başına tek instance (modül her rerun'da yeniden çalıştığından sıfırlanır;
+# session_state'te saklamak bileşeni eskitir → cookie senkronu bozulur).
+_CK_CACHE = {}
+
+def _cookie_ctrl():
+    """CookieController — her run'da bir kez oluşturulur (bileşen yeniden render edilir)."""
+    if "ck" not in _CK_CACHE:
+        try:
+            from streamlit_cookies_controller import CookieController
+            _CK_CACHE["ck"] = CookieController()
+        except Exception:
+            _CK_CACHE["ck"] = None
+    return _CK_CACHE["ck"]
+
+def _oturum_session_doldur(kullanici: str, bilgi: dict):
+    st.session_state["kulup_giris"]     = True
+    st.session_state["kulup_kullanici"] = kullanici
+    st.session_state["kulup_takim"]     = bilgi.get("takim", "")
+    st.session_state["kulup_ad"]        = bilgi.get("ad", kullanici)
+    st.session_state["kulup_rol"]       = bilgi.get("rol", "kulup")
+    st.session_state["kulup_pro"]       = bilgi.get("pro", False)
+
+def _oturum_kaydet(kullanici: str):
+    """Başarılı girişten sonra cookie'ye imzalı token yazar."""
+    ctrl = _cookie_ctrl()
+    if ctrl is not None:
+        try:
+            ctrl.set(_COOKIE_AD, _oturum_token_uret(kullanici),
+                     max_age=_OTURUM_GUN * 86400)
+        except Exception:
+            pass
+
+def _oturum_cikis():
+    """Çıkışta cookie'yi siler."""
+    ctrl = _cookie_ctrl()
+    if ctrl is not None:
+        try:
+            ctrl.remove(_COOKIE_AD)
+        except Exception:
+            pass
+
+def _oturum_geri_yukle():
+    """Sayfa yenilendiğinde cookie geçerliyse oturumu otomatik geri yükler."""
+    if st.session_state.get("kulup_giris"):
+        return
+    ctrl = _cookie_ctrl()
+    if ctrl is None:
+        return
+    try:
+        token = ctrl.get(_COOKIE_AD)
+    except Exception:
+        token = None
+    if not token:
+        return
+    kullanici = _oturum_token_coz(token)
+    if not kullanici:
+        return
+    bilgi = kulup_credentials_yukle().get(kullanici)
+    if bilgi:
+        _oturum_session_doldur(kullanici, bilgi)
+        st.session_state["girildi"] = True
+
 def giris_gerekli_ekrani():
     """Giriş gerektiren sekmelerde gösterilen yönlendirme + PRO tanıtım ekranı."""
     st.markdown("<br>", unsafe_allow_html=True)
@@ -417,13 +519,9 @@ def giris_formu():
                 sonuc = giris_dogrula(ku.strip(), si.strip())
                 if sonuc:
                     giris_logla(ku.strip(), basarili=True)
-                    st.session_state["kulup_giris"]    = True
-                    st.session_state["kulup_kullanici"] = ku.strip()
-                    st.session_state["kulup_takim"]    = sonuc["takim"]
-                    st.session_state["kulup_ad"]       = sonuc["ad"]
-                    st.session_state["kulup_rol"]      = sonuc.get("rol", "kulup")
-                    st.session_state["kulup_pro"]      = sonuc.get("pro", False)
-                    st.session_state["girildi"]        = True  # giriş yapınca doğrudan içeriğe
+                    _oturum_session_doldur(ku.strip(), sonuc)
+                    st.session_state["girildi"] = True  # giriş yapınca doğrudan içeriğe
+                    _oturum_kaydet(ku.strip())           # cookie'ye yaz (kalıcı giriş)
                     st.rerun()
                 else:
                     if ku.strip():
@@ -2660,14 +2758,18 @@ url_oyuncu = params.get("oyuncu", "")
 # ─── SAYFA DURUMU ─────────────────────────────────────────────────────────────
 if "sayfa" not in st.session_state:
     st.session_state["sayfa"] = "ana"
+
+# Kalıcı oturum: cookie geçerliyse sayfa yenilense de girişi geri yükle
+_oturum_geri_yukle()
+
 # Karşılama ekranı: ana içeriğe geçmeden önce herkese gösterilir (giriş gerekmez)
 if "girildi" not in st.session_state:
-    # Doğrudan oyuncu profil linki (?oyuncu=...) varsa karşılama ekranını atla
-    st.session_state["girildi"] = bool(url_oyuncu)
+    # Doğrudan oyuncu profil linki (?oyuncu=...) veya geçerli oturum varsa karşılamayı atla
+    st.session_state["girildi"] = bool(url_oyuncu) or st.session_state.get("kulup_giris", False)
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
-bas_sol, nav_profil, nav_veri, nav_scout, nav_iletisim, nav_giris, nav_dil = st.columns([2.3, 1, 1.15, 1.4, 1.2, 0.85, 0.6])
+bas_sol, nav_profil, nav_veri, nav_scout, nav_iletisim, nav_giris, nav_dil = st.columns([2.3, 1, 1.15, 1.4, 1.2, 1.05, 0.6])
 
 with bas_sol:
     _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
@@ -2726,12 +2828,17 @@ with nav_iletisim:
 with nav_giris:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.session_state.get("kulup_giris"):
-        if st.button("🚪", use_container_width=True, help=t("Çıkış yap", "Log out")):
+        _ad_kisa = (st.session_state.get("kulup_ad") or "").split()[0][:10]
+        if st.button(t("🚪 Çıkış", "🚪 Logout"), use_container_width=True,
+                     help=t(f"{_ad_kisa} · Çıkış yap", f"{_ad_kisa} · Log out")):
             for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
                 st.session_state.pop(k, None)
+            _oturum_cikis()      # cookie temizle
+            st.session_state["sayfa"] = "ana"
             st.rerun()
     else:
-        if st.button("🔐", use_container_width=True, help=t("Giriş", "Login")):
+        if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True,
+                     type="primary", help=t("Giriş yap", "Log in")):
             st.session_state["sayfa"] = "giris"
             st.rerun()
 
