@@ -601,6 +601,16 @@ def scotr_yukle() -> dict:
 
 
 @st.cache_data(ttl=3600)
+def scout_kadro_yukle() -> dict:
+    """Zengin scout kadro raporları (Kulüp/Lig/Sözleşme + Yetenek Kümesi + tarz ✔)."""
+    yol = pathlib.Path(__file__).parent / "scout_kadro_raporlar.json"
+    if not yol.exists():
+        return {}
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@st.cache_data(ttl=3600)
 def scouting_detay_yukle() -> dict:
     """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
     yol = pathlib.Path(__file__).parent / "scouting_detay.json"
@@ -1853,6 +1863,9 @@ def render_scouting_detay(tam_isim):
     else:
         st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
 
+    # Zengin scout raporu (varsa — nitelik panelleri + PDF indir)
+    render_scout_kadro_raporu(tam_isim)
+
     st.markdown("---")
     benzer_oyuncular_goster(tam_isim, "scouting")
 
@@ -2073,6 +2086,266 @@ def render_scout_raporu(isim: str):
             f"📝 {rapor['scout_notu']}</div>", unsafe_allow_html=True)
 
     st.caption("📡 Mr Daniş · Sco Tr")
+
+
+# ─── ZENGİN SCOUT KADRO RAPORU (scouting tarafı + PDF) ───────────────────────
+def _tarz_temiz(oz: str) -> str:
+    """Tarz etiketini saha oyuncusu için sadeleştirir ('A / B (Kaleci)' → 'A')."""
+    return oz.split(" / ")[0].strip()
+
+_YETENEK_RENK = {
+    "Elit": "#10b981", "Yetenekli": "#4ade80", "Potansiyelli": "#fbbf24",
+    "Gelişime Açık": "#fb923c", "Sınırlı": "#f87171",
+}
+
+def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
+    """Scout raporunu tek sayfalık PDF olarak üretir (DejaVu — Türkçe destekli)."""
+    from fpdf import FPDF
+    _f = pathlib.Path(__file__).parent / "fonts"
+
+    pdf = FPDF(orientation="P", unit="mm", format="A4")
+    pdf.set_auto_page_break(True, margin=14)
+    pdf.add_font("DV", "", str(_f / "DejaVuSans.ttf"))
+    pdf.add_font("DV", "B", str(_f / "DejaVuSans-Bold.ttf"))
+    pdf.add_page()
+    W = 210 - 24  # içerik genişliği (12mm kenar)
+
+    MOR = (124, 58, 237); KOYU = (30, 27, 56); GRI = (110, 120, 140)
+    BG = (17, 22, 42)
+
+    def harf_puan(nt):
+        h = {"A":5,"B":4,"C":3,"D":2,"E":1,"F":0}
+        v = [h.get(c,0) for c in (nt or "").upper() if c in h]
+        return sum(v)/len(v) if v else 0
+    def renk(nt):
+        p = harf_puan(nt)
+        if p>=4.5: return (16,185,129)
+        if p>=3.5: return (74,222,128)
+        if p>=2.75: return (245,158,11)
+        if p>=1.75: return (251,146,60)
+        if p>=0.75: return (248,113,113)
+        return (130,130,130)
+
+    # ── Başlık bandı ──
+    pdf.set_fill_color(*MOR); pdf.rect(0, 0, 210, 30, "F")
+    pdf.set_xy(12, 6); pdf.set_text_color(255,255,255); pdf.set_font("DV","B",17)
+    pdf.cell(0, 8, isim, ln=1)
+    pdf.set_x(12); pdf.set_font("DV","",9)
+    mevki = " / ".join(rapor.get("mevki", []))
+    alt = " · ".join(x for x in [rapor.get("rol",""), mevki, rapor.get("kulup","")] if x)
+    pdf.cell(0, 6, alt, ln=1)
+    pdf.set_xy(150, 7); pdf.set_font("DV","",7)
+    pdf.cell(48, 4, "SCOUT RAPORU", ln=2, align="R")
+    pdf.set_font("DV","B",9); pdf.cell(48, 5, "Mr Daniş · W-Scope", align="R")
+
+    pdf.set_y(36); pdf.set_text_color(40,40,40)
+
+    # ── Künye satırı ──
+    pdf.set_font("DV","",9)
+    kunye = [
+        ("Uyruk", rapor.get("vatandaslik","—")),
+        ("Doğum", f"{rapor.get('dogum','—')} ({rapor.get('yas','?')})"),
+        ("Boy/Ayak", f"{rapor.get('boy','—')} · {rapor.get('ayak','—')}"),
+        ("Lig", rapor.get("lig","—")),
+        ("Sözleşme", rapor.get("sozlesme","—")),
+    ]
+    for et, dg in kunye:
+        pdf.set_text_color(*GRI); pdf.set_font("DV","",7.5)
+        pdf.cell(W/5, 4, et.upper(), align="C")
+    pdf.ln(4)
+    for et, dg in kunye:
+        pdf.set_text_color(30,30,30); pdf.set_font("DV","B",8.5)
+        pdf.cell(W/5, 5, str(dg)[:22], align="C")
+    pdf.ln(9)
+
+    # ── NİHAİ / İVME / Yetenek / İktisadi / TR ──
+    ozet = [
+        ("NİHAİ", rapor.get("nihai") or "—", renk(rapor.get("nihai",""))),
+        ("İVME", rapor.get("ivme") or "—", (124,58,237)),
+        ("YETENEK", rapor.get("yetenek_kumesi") or "—", (124,58,237)),
+        ("İKTİSADİ", rapor.get("iktisadi_durum") or "—", (110,120,140)),
+        ("TR GÖRÜŞÜ", rapor.get("tr_gorusu") or "—", (110,120,140)),
+    ]
+    y_box = pdf.get_y(); bw = W/5
+    for k, (et, dg, rk) in enumerate(ozet):
+        x = 12 + k*bw
+        pdf.set_fill_color(245,243,252); pdf.set_draw_color(220,214,235)
+        pdf.rect(x, y_box, bw-2.5, 14, "DF")
+        pdf.set_xy(x, y_box+2); pdf.set_text_color(*GRI); pdf.set_font("DV","",6)
+        pdf.cell(bw-2.5, 3, et, align="C")
+        dgs = str(dg)
+        pdf.set_xy(x, y_box+6.5); pdf.set_text_color(*rk)
+        pdf.set_font("DV","B", 10 if len(dgs) <= 8 else (8 if len(dgs) <= 12 else 6.5))
+        pdf.cell(bw-2.5, 5, dgs[:18], align="C")
+    pdf.set_y(y_box + 19)
+
+    # ── Nitelik panelleri (2 kolon × 2 satır) ──
+    kol_w = W/2 - 2
+    SEG = {"EE":1,"DE":2,"DD":3,"CD":4,"CC":5,"BC":6,"BB":7,"AB":8,"AA":9,"A+":10}
+
+    def panel_ciz(x, y, gbas, nit, mk):
+        pdf.set_xy(x, y); pdf.set_text_color(*MOR); pdf.set_font("DV","B",8.5)
+        pdf.cell(kol_w-12, 5, gbas)
+        if mk:
+            pdf.set_text_color(*renk(mk)); pdf.cell(12, 5, mk, align="R")
+        yy = y + 6
+        for ad, nt in nit.items():
+            pdf.set_xy(x, yy); pdf.set_text_color(70,80,95); pdf.set_font("DV","",7)
+            pdf.cell(kol_w*0.52, 3.6, ad[:22])
+            seg = SEG.get(nt, 0); bx = x + kol_w*0.55
+            for i in range(10):
+                pdf.set_fill_color(*(renk(nt) if i < seg else (225,228,235)))
+                pdf.rect(bx + i*2.3, yy+0.6, 1.9, 2.6, "F")
+            pdf.set_xy(x + kol_w - 8, yy); pdf.set_text_color(*renk(nt)); pdf.set_font("DV","B",6.5)
+            pdf.cell(8, 3.6, nt, align="R")
+            yy += 4.2
+        return yy
+
+    g = lambda k: (rapor.get(k, {}), rapor.get("makro", {}).get(k, ""))
+    y_row = pdf.get_y()
+    e1 = panel_ciz(12,        y_row, "BECERİ", *g("beceri"))
+    e2 = panel_ciz(12+kol_w+4, y_row, "BEŞERİ", *g("beseri"))
+    y_row = max(e1, e2) + 4
+    e3 = panel_ciz(12,        y_row, "FİZİKİ", *g("fiziki"))
+    e4 = panel_ciz(12+kol_w+4, y_row, "ŞAHSİ",  *g("sahsi"))
+    pdf.set_y(max(e3, e4) + 4)
+
+    # ── Oyun tarzı ──
+    tarz = [_tarz_temiz(o) for o in rapor.get("tarz", [])]
+    if tarz:
+        pdf.set_text_color(*MOR); pdf.set_font("DV","B",8.5); pdf.set_x(12)
+        pdf.cell(0, 6, "OYUN TARZI", ln=1)
+        pdf.set_text_color(60,60,70); pdf.set_font("DV","",7.5); pdf.set_x(12)
+        pdf.multi_cell(W, 4.2, "  •  ".join(tarz))
+        pdf.ln(1)
+
+    # ── Scout notu ──
+    if rapor.get("scout_notu"):
+        pdf.set_text_color(*MOR); pdf.set_font("DV","B",8.5); pdf.set_x(12)
+        pdf.cell(0, 6, "SCOUT DEĞERLENDİRMESİ", ln=1)
+        pdf.set_text_color(50,55,65); pdf.set_font("DV","",8); pdf.set_x(12)
+        pdf.multi_cell(W, 4.6, rapor["scout_notu"])
+
+    out = pdf.output()
+    return bytes(out)
+
+
+def render_scout_kadro_raporu(isim: str):
+    """Zengin scout kadro raporunu (scouting tarafı) görsel panelle çizer + PDF."""
+    rapor = scout_kadro_yukle().get(isim)
+    if not rapor:
+        return
+
+    st.markdown("---")
+
+    # Başlık bandı
+    nihai = rapor.get("nihai",""); n_renk = _scotr_renk(_scotr_puan(nihai))
+    pot = (rapor.get("ivme") or "").strip()
+    pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
+    for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
+        if pot == anahtar or (pot and pot.startswith(anahtar[0])):
+            pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
+            break
+    mevki_kod = " / ".join(rapor.get("mevki", []))
+    alt_satir = " · ".join(x for x in [rapor.get("rol",""), mevki_kod,
+                f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
+                rapor.get("vatandaslik","")] if x)
+    kulup_satir = " · ".join(x for x in [rapor.get("kulup",""), rapor.get("lig",""),
+                  (f"🗓 {rapor.get('sozlesme')}" if rapor.get("sozlesme") else "")] if x)
+
+    nihai_rozet = (
+        f"<div style='text-align:center;'>"
+        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {n_renk};"
+        f"display:flex;align-items:center;justify-content:center;font-size:1.05rem;"
+        f"font-weight:900;color:{n_renk};background:{n_renk}15;font-family:monospace;'>"
+        f"{nihai or '—'}</div>"
+        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+        f"{t('NİHAİ','RATING')}</div></div>"
+    )
+    pot_rozet = (
+        f"<div style='text-align:center;'>"
+        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {pot_renk};"
+        f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
+        f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
+        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+        f"{t('İVME','MOMENTUM')}</div></div>"
+    ) if pot_ok else ""
+
+    st.markdown(
+        f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
+        f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 22px;margin-bottom:12px;'>"
+        f"<div style='display:flex;justify-content:space-between;align-items:center;"
+        f"gap:14px;flex-wrap:wrap;'>"
+        f"<div>"
+        f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
+        f"letter-spacing:0.18em;margin-bottom:5px;'>🔬 {t('SCOUT RAPORU','SCOUT REPORT')}</div>"
+        f"<div style='font-size:1.05rem;font-weight:800;color:#f1f5f9;'>{isim}</div>"
+        f"<div style='font-size:0.76rem;color:#8899bb;margin-top:3px;'>{alt_satir}</div>"
+        f"<div style='font-size:0.72rem;color:#6b7a99;margin-top:2px;'>{kulup_satir}</div>"
+        f"</div>"
+        f"<div style='display:flex;gap:14px;'>{nihai_rozet}{pot_rozet}</div>"
+        f"</div></div>",
+        unsafe_allow_html=True)
+
+    # Etiket rozetleri: Yetenek Kümesi / İktisadi / TR Görüşü
+    rozet = []
+    if rapor.get("yetenek_kumesi"):
+        rk = _YETENEK_RENK.get(rapor["yetenek_kumesi"], "#a78bfa")
+        rozet.append((f"💎 {rapor['yetenek_kumesi']}", rk))
+    if rapor.get("iktisadi_durum"):
+        rozet.append((f"💰 {rapor['iktisadi_durum']}", "#64748b"))
+    if rapor.get("tr_gorusu"):
+        rozet.append((f"🇹🇷 {rapor['tr_gorusu']}", "#64748b"))
+    if rozet:
+        cip = "".join(
+            f"<span style='display:inline-block;background:{c}1f;border:1px solid {c}55;"
+            f"color:{c};border-radius:6px;padding:3px 11px;margin:0 6px 6px 0;"
+            f"font-size:0.74rem;font-weight:700;'>{m}</span>" for m, c in rozet)
+        st.markdown(f"<div style='margin-bottom:8px;'>{cip}</div>", unsafe_allow_html=True)
+
+    # 4 nitelik paneli (yan yana)
+    makro = rapor.get("makro", {})
+    paneller = [
+        (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")),
+        (t("BEŞERİ","MENTAL"),    "🧠", rapor.get("beseri",{}), makro.get("beseri","")),
+        (t("FİZİKİ","PHYSICAL"),  "💪", rapor.get("fiziki",{}), makro.get("fiziki","")),
+        (t("ŞAHSİ","PERSONAL"),   "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
+    ]
+    for kol, (b, ik, nit, mk) in zip(st.columns(4, gap="small"), paneller):
+        if nit:
+            kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
+
+    # Oyun tarzı (sadeleştirilmiş, ✔ işaretliler)
+    tarz = [_tarz_temiz(o) for o in rapor.get("tarz", [])]
+    if tarz:
+        cipler = "".join(
+            f"<span style='display:inline-block;background:#1e1b38;border:1px solid #4c3d8f;"
+            f"color:#c4b5fd;border-radius:99px;padding:4px 12px;margin:3px 4px 3px 0;"
+            f"font-size:0.70rem;'>{oz}</span>" for oz in tarz)
+        st.markdown(
+            f"<div style='margin-top:10px;'>"
+            f"<div style='font-size:0.70rem;font-weight:800;color:#a78bfa;"
+            f"letter-spacing:0.12em;margin-bottom:6px;'>🎭 {t('OYUN TARZI','PLAY STYLE')}</div>"
+            f"{cipler}</div>", unsafe_allow_html=True)
+
+    # Scout değerlendirmesi
+    if rapor.get("scout_notu"):
+        st.markdown(
+            f"<div style='margin-top:12px;font-size:0.82rem;color:#aab4c4;line-height:1.6;"
+            f"border-left:3px solid #7c3aed;padding:4px 0 4px 12px;'>"
+            f"📝 {rapor['scout_notu']}</div>", unsafe_allow_html=True)
+
+    # PDF indirme
+    try:
+        pdf_bytes = _scout_pdf_uret(isim, rapor)
+        st.download_button(
+            f"📄 {t('Scout Raporunu PDF indir','Download Scout Report PDF')}",
+            data=pdf_bytes, file_name=f"scout_raporu_{isim.replace(' ','_')}.pdf",
+            mime="application/pdf", use_container_width=True)
+    except Exception as e:
+        st.caption(f"⚠️ PDF oluşturulamadı: {e}")
+
+    st.caption("📡 Mr Daniş · W-Scope Scouting")
 
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
