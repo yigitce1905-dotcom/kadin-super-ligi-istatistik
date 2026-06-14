@@ -404,7 +404,8 @@ def _oturum_session_doldur(kullanici: str, bilgi: dict):
     st.session_state["kulup_takim"]     = bilgi.get("takim", "")
     st.session_state["kulup_ad"]        = bilgi.get("ad", kullanici)
     st.session_state["kulup_rol"]       = bilgi.get("rol", "kulup")
-    st.session_state["kulup_pro"]       = bilgi.get("pro", False)
+    st.session_state["kulup_tier"]      = _tier_coz(bilgi)
+    st.session_state["kulup_pro"]       = tier_yeterli("pro")  # geriye uyumluluk
 
 def _oturum_kaydet(kullanici: str):
     """Cookie yazımını bir sonraki run'a erteler (rerun yazmayı kesmesin diye)."""
@@ -576,14 +577,43 @@ def giris_formu_ana():
             st.rerun()
 
 
+# ─── ÜYELİK KADEMELERİ (free < basic < pro < premium < admin) ─────────────────
+_TIER_RANK = {"free": 0, "basic": 1, "pro": 2, "premium": 3, "admin": 99}
+
+# Kademe görünüm bilgisi: etiket, renk, ikon (sidebar rozeti + her yerde)
+_TIER_GORUNUM = {
+    "free":    ("Ücretsiz", "#8899aa", "🔓"),
+    "basic":   ("Basic",    "#29b6f6", "🔹"),
+    "pro":     ("Pro",      "#00c853", "⚡"),
+    "premium": ("Premium",  "#e040fb", "👑"),
+    "admin":   ("Admin",    "#f59e0b", "🛡️"),
+}
+
+def _tier_coz(bilgi: dict) -> str:
+    """Credential kaydından kademeyi belirler (geriye uyumlu: pro/rol'den türetir)."""
+    if bilgi.get("rol") == "admin":
+        return "admin"
+    t_ = (bilgi.get("tier") or "").lower()
+    if t_ in _TIER_RANK:
+        return t_
+    return "pro" if bilgi.get("pro") else "basic"  # eski kayıtlar için
+
+def kullanici_tier() -> str:
+    """Aktif kullanıcının kademesi ('free' = giriş yok)."""
+    if not st.session_state.get("kulup_giris"):
+        return "free"
+    if (st.session_state.get("kulup_rol") == "admin"
+            or st.session_state.get("kulup_kullanici") == "admin"):
+        return "admin"
+    return st.session_state.get("kulup_tier", "basic")
+
+def tier_yeterli(gereken: str) -> bool:
+    """Aktif kademe, istenen kademeye eşit/üstün mü?"""
+    return _TIER_RANK.get(kullanici_tier(), 0) >= _TIER_RANK.get(gereken, 99)
+
 def pro_kontrol() -> bool:
-    """Oturum açmış kullanıcının PRO yetkisi var mı?
-    Admin her zaman PRO sayılır; diğerleri kulup_pro flag'ine göre."""
-    if st.session_state.get("kulup_rol") == "admin":
-        return True
-    if st.session_state.get("kulup_kullanici") == "admin":
-        return True
-    return st.session_state.get("kulup_pro", False)
+    """Geriye uyumlu: Pro veya üstü mü? (admin dahil)"""
+    return tier_yeterli("pro")
 
 
 _PRO_OZELLIKLER = [
@@ -2041,10 +2071,9 @@ def render_odakli_profil(isim):
             return
         render_ana_lig_profil(isim)
         return
-    # Scouting oyuncusu mu?
+    # Scouting oyuncusu mu? (Premium kademe gerekir)
     if isim in scouting_sd_yukle():
-        _admin = st.session_state.get("kulup_kullanici") == "admin"
-        if not (_admin or pro_kontrol()):
+        if not tier_yeterli("premium"):
             pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"),
                                tier="premium")
             return
@@ -2865,7 +2894,7 @@ with nav_veri:
         if _dil_koru:
             st.query_params["dil"] = _dil_koru   # dil tercihini koru
         for k in list(st.session_state.keys()):
-            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil","girildi"):
+            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro","dil","girildi"):
                 del st.session_state[k]
         st.session_state["sayfa"] = "ana"
         st.session_state["girildi"] = True
@@ -2892,7 +2921,7 @@ with nav_giris:
         _ad_kisa = (st.session_state.get("kulup_ad") or "").split()[0][:10]
         if st.button(t("🚪 Çıkış", "🚪 Logout"), use_container_width=True,
                      help=t(f"{_ad_kisa} · Çıkış yap", f"{_ad_kisa} · Log out")):
-            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro"]:
+            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
                 st.session_state.pop(k, None)
             _oturum_cikis()      # cookie temizle
             st.session_state["sayfa"] = "ana"
@@ -2917,17 +2946,15 @@ giris_formu()
 # Sağ üst "🔐 Giriş" butonuna basılınca ana alanda açılan giriş kartı
 giris_formu_ana()
 
-# PRO / üye rozeti sidebar'da göster
+# Üyelik kademe rozeti sidebar'da göster
 if st.session_state.get("kulup_giris"):
-    _is_pro = st.session_state.get("kulup_pro", False)
-    _badge_bg  = "#0d3b2e" if _is_pro else "#1a1f36"
-    _badge_bdr = "#00c853" if _is_pro else "#445566"
-    _badge_lbl = t("⚡ PRO Üye", "⚡ PRO Member") if _is_pro else t("🔓 Üye", "🔓 Member")
-    _badge_clr = "#00c853"  if _is_pro else "#8899aa"
+    _tier  = kullanici_tier()
+    _t_ad, _t_renk, _t_ikon = _TIER_GORUNUM.get(_tier, _TIER_GORUNUM["basic"])
     st.sidebar.markdown(
-        f"<div style='background:{_badge_bg};border:1px solid {_badge_bdr};"
+        f"<div style='background:{_t_renk}1a;border:1px solid {_t_renk};"
         f"border-radius:8px;padding:8px 14px;text-align:center;margin-top:4px;'>"
-        f"<span style='color:{_badge_clr};font-size:0.8rem;font-weight:700;'>{_badge_lbl}</span>"
+        f"<span style='color:{_t_renk};font-size:0.8rem;font-weight:700;'>"
+        f"{_t_ikon} {_t_ad} {t('Üye','Member') if _tier!='admin' else ''}</span>"
         f"</div>",
         unsafe_allow_html=True,
     )
@@ -3005,10 +3032,9 @@ def render_profil():
     ku    = st.session_state.get("kulup_kullanici", "")
     ad    = st.session_state.get("kulup_ad", ku)
     rol   = st.session_state.get("kulup_rol", "kulup")
-    pro   = st.session_state.get("kulup_pro", False)
     takim = st.session_state.get("kulup_takim", "")
-    tier  = "Premium" if rol == "admin" else ("Pro" if pro else "Basic")
-    tier_renk = {"Premium": "#e040fb", "Pro": "#00c853", "Basic": "#58a6ff"}.get(tier, "#58a6ff")
+    _t_ad, tier_renk, _t_ik = _TIER_GORUNUM.get(kullanici_tier(), _TIER_GORUNUM["basic"])
+    tier  = _t_ad
 
     # ── Üyelik Bilgileri ──
     st.markdown(f"#### 🪪 {t('Üyelik Bilgileri', 'Membership')}")
@@ -3271,9 +3297,9 @@ if st.session_state["sayfa"] == "talep":
                  f"Requests are sent directly to {TALEP_EMAIL}."))
     st.stop()
 
-# ─── SCOUTİNG SAYFASI ────────────────────────────────────────────────────────
+# ─── SCOUTİNG SAYFASI (Premium kademe) ───────────────────────────────────────
 if st.session_state.get("sayfa") == "scouting":
-    if _nav_is_admin:
+    if tier_yeterli("premium"):
         st.markdown(f"""
         <div style='margin-bottom:4px;'>
           <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 {t("Scouting Havuzu","Scouting Pool")}</h2>
