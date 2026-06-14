@@ -2537,7 +2537,7 @@ def render_ana_lig_profil(secili):
                 ))
                 fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
                     font=dict(color="#e0e0e0"), height=260,
-                    xaxis=dict(title="Dakika Aralığı", gridcolor="#2d3561"),
+                    xaxis=dict(title=t("Dakika Aralığı","Minutes Range"), gridcolor="#2d3561"),
                     yaxis=dict(title="Gol", gridcolor="#2d3561", dtick=1),
                     margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
                 st.plotly_chart(fig2, use_container_width=True)
@@ -4522,7 +4522,7 @@ with tab7:
 
             for etiket, mevki, px, py in slotlar:
                 if mevki != onceki_grp:
-                    st.markdown(f"**{GRUP_IKON.get(mevki,'')} {mevki}**")
+                    st.markdown(f"**{GRUP_IKON.get(mevki,'')} {mevki_goster(mevki)}**")
                     onceki_grp = mevki
                 if "Mevki" in df_tam.columns:
                     _grup_ser   = df_tam["Mevki"].map(mevki_grup)
@@ -4844,7 +4844,7 @@ if tab_benim:
                             "İlk11":  st.column_config.NumberColumn(t("İlk11","Started")),
                             "Gol": st.column_config.ProgressColumn(
                                 t("Gol","Goals"), min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
-                            "Gol/Maç": st.column_config.NumberColumn(format="%.2f"),
+                            "Gol/Maç": st.column_config.NumberColumn(t("Gol/Maç","G/Match"), format="%.2f"),
                             "Dakika": st.column_config.NumberColumn(t("Dakika","Minutes")),
                             "Sarı":   st.column_config.NumberColumn("🟨"),
                             "Kırmızı": st.column_config.NumberColumn("🟥"),
@@ -5030,9 +5030,9 @@ with tab_genç:
                 ))
             fig_sc.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-                xaxis=dict(title="Yaş", color="#8899aa", gridcolor="#1e2340",
+                xaxis=dict(title=t("Yaş","Age"), color="#8899aa", gridcolor="#1e2340",
                            range=[14.5, 23.5]),
-                yaxis=dict(title="Gol/Maç", color="#8899aa", gridcolor="#1e2340"),
+                yaxis=dict(title=t("Gol/Maç","Goals/Match"), color="#8899aa", gridcolor="#1e2340"),
                 legend=dict(bgcolor="#1a1f36", bordercolor="#30363d",
                             font=dict(color="#e0e0e0")),
                 margin=dict(l=10, r=10, t=10, b=10),
@@ -5056,7 +5056,7 @@ with tab_genç:
                     "Takım": st.column_config.TextColumn(t("Takım","Team")),
                     "Maç":   st.column_config.NumberColumn(t("Maç","Matches")),
                     "Gol":   st.column_config.NumberColumn(t("Gol","Goals")),
-                    "G/Maç": st.column_config.NumberColumn(format="%.2f"),
+                    "G/Maç": st.column_config.NumberColumn(t("G/Maç","G/Match"), format="%.2f"),
                     "Skor":  st.column_config.ProgressColumn(
                         t("Skor","Score"), min_value=0, max_value=250, format="%.0f"),
                 },
@@ -5239,7 +5239,7 @@ with tab10:
                 x=yas_df["yas"], nbinsx=20,
                 marker=dict(color="#00a86b", line=dict(color="#00c853", width=0.8)),
                 opacity=0.85,
-                hovertemplate="Yaş: %{x:.0f}<br>Oyuncu: %{y}<extra></extra>",
+                hovertemplate=t("Yaş","Age")+": %{x:.0f}<br>"+t("Oyuncu","Player")+": %{y}<extra></extra>",
             ))
             fig_hist.add_vline(x=avg_age, line_dash="dash", line_color="#ffab00",
                 annotation_text=f"Ort: {avg_age:.1f}",
@@ -5247,8 +5247,8 @@ with tab10:
                 annotation_font=dict(color="#ffab00", size=11))
             fig_hist.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-                xaxis=dict(title="Yaş", color="#8899aa", gridcolor="#1e2340"),
-                yaxis=dict(title="Oyuncu Sayısı", color="#8899aa", gridcolor="#1e2340"),
+                xaxis=dict(title=t("Yaş","Age"), color="#8899aa", gridcolor="#1e2340"),
+                yaxis=dict(title=t("Oyuncu Sayısı","Player Count"), color="#8899aa", gridcolor="#1e2340"),
                 bargap=0.08, margin=dict(l=10,r=10,t=10,b=10),
                 height=320, font=dict(color="#e0e0e0"),
             )
@@ -5266,7 +5266,7 @@ with tab10:
             ))
             fig_year.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-                xaxis=dict(title="Doğum Yılı", color="#8899aa", gridcolor="#1e2340", dtick=2),
+                xaxis=dict(title=t("Doğum Yılı","Birth Year"), color="#8899aa", gridcolor="#1e2340", dtick=2),
                 yaxis=dict(title="Oyuncu", color="#8899aa", gridcolor="#1e2340"),
                 bargap=0.1, margin=dict(l=10,r=10,t=10,b=10),
                 height=260, font=dict(color="#e0e0e0"),
@@ -5366,7 +5366,7 @@ with tab11:
                     "Kaleci": st.column_config.TextColumn(t("Kaleci","Goalkeeper")),
                     "Takım":  st.column_config.TextColumn(t("Takım","Team")),
                     "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
-                    "G/Maç": st.column_config.NumberColumn(format="%.2f"),
+                    "G/Maç": st.column_config.NumberColumn(t("G/Maç","G/Match"), format="%.2f"),
                     "YenilenGol": st.column_config.NumberColumn(t("Y.Gol","GA")),
                 },
             )
@@ -5384,7 +5384,7 @@ with tab11:
                 text=[f"{g:.2f}" for g in plot_df["G/Maç"]],
                 textposition="outside",
                 textfont=dict(color="#e0e0e0", size=11),
-                hovertemplate="%{y}<br>%{x:.2f} G/Maç<extra></extra>",
+                hovertemplate="%{y}<br>%{x:.2f} "+t("G/Maç","G/Match")+"<extra></extra>",
             ))
             fig.add_vline(x=1.0, line_dash="dash", line_color="#00c853",
                           annotation_text="1.0", annotation_font=dict(color="#00c853", size=10))
@@ -5392,7 +5392,7 @@ with tab11:
                           annotation_text="2.0", annotation_font=dict(color="#ffab00", size=10))
             fig.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-                xaxis=dict(title="Maç Başına Yenilen Gol", color="#8899aa",
+                xaxis=dict(title=t("Maç Başına Yenilen Gol","Goals Conceded per Match"), color="#8899aa",
                            gridcolor="#1e2340", range=[0, max(plot_df["G/Maç"]) * 1.15]),
                 yaxis=dict(color="#e0e0e0"),
                 margin=dict(l=10, r=60, t=10, b=10),
