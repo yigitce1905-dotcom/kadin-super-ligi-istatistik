@@ -2292,6 +2292,67 @@ def _scotr_segman(nt: str) -> int:
     p = _scotr_puan(nt)
     return max(0, min(10, round(p * 2 - 1))) if p > 0 else 0
 
+# ─── Scout raporu TR→EN çevirileri (sabit kümeler; scout notu/isim orijinal) ──
+_NITELIK_EN = {
+    "Bitiricilik":"Finishing","Top Tekniği":"Technique","Penaltı Vuruşu":"Penalty Taking",
+    "Markaj":"Marking","Top Kapma":"Tackling","Uzun Taç":"Long Throws","Duran Top":"Set Pieces",
+    "İlk Kontrol":"First Touch","Kafa Vuruşu":"Heading","Orta Yapma":"Crossing","Kısa Pas":"Short Passing",
+    "Uzun Pas":"Long Passing","Top Sürme":"Dribbling","Uzaktan Şut":"Long Shots",
+    "Agresiflik":"Aggression","Cesaret":"Bravery","Karar Alma":"Decisions","Kararlılık":"Determination",
+    "Konsantrasyon":"Concentration","Liderlik":"Leadership","Önsezi":"Anticipation","Konumlanma":"Positioning",
+    "Soğukkanlılık":"Composure","Takım Oyunu":"Teamwork","Topsuz Alan":"Off the Ball","Görüş":"Vision",
+    "Çeviklik":"Agility","Dayanıklılık":"Stamina","Denge":"Balance","Güç":"Strength","Sürat":"Pace",
+    "Hızlanma":"Acceleration","Koordinasyon":"Coordination","Zindelik":"Fitness","Zıplama":"Jumping",
+    "Zayıf Ayak":"Weak Foot","Sakatlanma Direnci":"Injury Resistance","Sportmenlik":"Sportsmanship",
+    "Profesyonellik":"Professionalism","Sadakat":"Loyalty","Baskıya Dayanıklılık":"Pressure Handling",
+    "Uyumluluk":"Adaptability","Süreklilik":"Consistency","Çalışkanlık":"Work Rate",
+}
+_ROL_EN = {
+    "*Mezzala":"*Mezzala","*Raumdeuter":"*Raumdeuter","*Versatile":"*Versatile","*Volante":"*Volante",
+    "Dengeli BK":"Balanced FB","Derinden Oyun Kurucu OS":"Deep-Lying Playmaker MF","Dinamo OS":"Box-to-Box MF",
+    "Hedef KT":"Target Winger","Hedef ST":"Target Man","Hücumcu BK":"Attacking FB",
+    "Hücumcu Oyun Kurucu":"Attacking Playmaker","Limitli SV":"Limited DF","Oyun Kurucu BK":"Playmaking FB",
+    "Oyun Kurucu KT":"Playmaking Winger","Oyun Kurucu SV":"Ball-Playing DF","Pozisyoncu SV":"Positional DF",
+    "Sahte #9 ST":"False 9","Savaşçı OS":"Ball-Winning MF","Savunmacı BK":"Defensive FB","Tilki ST":"Poacher",
+    "Çakılı SV":"No-Nonsense CB","Çalışkan Hücum BK":"Hard-Working Att. FB","Çalışkan ST":"Pressing Forward",
+    "Çapa OS":"Anchor MF","Çizgi KT":"Touchline Winger","İçe Kat Eden KT":"Inverted Winger",
+}
+_TARZ_EN = {
+    "Alanına Hakimdir":"Commands the area","Ayakta Mücadele Eder":"Stays on feet in duels",
+    "Aşırtma/Akıllı Vuruşlar Yapar":"Tries chips / clever finishes","Başarılıı Plase Şut/Orta Dener":"Tries placed shots / crosses",
+    "Bireysel Oynamayı Sever":"Likes to dribble / go solo","Duran Toplarda Topun Başına Geçer":"Takes set pieces",
+    "Fırsat Buldukça Hücuma Katılır":"Joins the attack when possible","Hücum Koşuları Yapar":"Makes attacking runs",
+    "Kaleye Sırtı Dönük Oynayabilir":"Can play back to goal","Kaleyi Uzaktan Yoklar":"Tries long-range shots",
+    "Kanattan Bindirme Yapar":"Overlaps on the wing","Karta Meyilli Hamle Yapmaz":"Avoids rash challenges",
+    "Merkezden Bindirme Yapar":"Bursts through the middle","Rakip Oyunculara Sataşmaz":"Doesn't provoke opponents",
+    "Sert Şutlar/Ortalar Dener":"Tries powerful shots / crosses","Sık Sık Ara/Kilit Pas Dener":"Often tries through / key passes",
+    "Tekniği İle Top Saklamayı Sever":"Shields the ball with technique","Topla Oyalanmayı Sevmez":"Doesn't dwell on the ball",
+    "Topu Almak İçin Gerilere Kadar Gelir":"Drops deep to get the ball","Tribüne Oynar, Abartılı Sevinir":"Plays to the crowd",
+    "Yerden Uzak Köşeye Vuruş Yapar":"Aims for the far corner","Zayıf Ayağını Kullanabilir":"Can use weak foot",
+    "İç Koridoru Kullanır":"Uses the inside channel",
+}
+_YETENEK_EN_DEG = {"Elit":"Elite","Yetenekli":"Talented","Potansiyelli":"High Potential",
+                   "Gelişime Açık":"Developing","Sınırlı":"Limited"}
+_IKTISADI_EN = {"Yüksek":"High","Orta":"Medium","Orta-Düşük":"Mid-Low","Düşük":"Low"}
+_TR_GORUS_EN = {"İstekli":"Willing","Nötr":"Neutral","İsteksiz":"Reluctant"}
+
+def _scout_ceviri(metin, sozluk):
+    if not EN or not metin:
+        return metin
+    return sozluk.get(metin, metin)
+
+def nitelik_goster(ad):     return _scout_ceviri(ad, _NITELIK_EN)
+def scout_rol_goster(r):    return _scout_ceviri(r, _ROL_EN)
+def tarz_goster(x):         return _scout_ceviri(_tarz_temiz(x), _TARZ_EN)
+def yetenek_kume_goster(x): return _scout_ceviri(x, _YETENEK_EN_DEG)
+def iktisadi_goster(x):     return _scout_ceviri(x, _IKTISADI_EN)
+def tr_gorus_goster(x):
+    if not EN or not x:
+        return x
+    base = x.replace(" (Şartlar?)", "").strip()
+    return _TR_GORUS_EN.get(base, base) + (" (terms?)" if "(Şartlar?)" in x else "")
+
+
 def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
     """Tek nitelik grubu paneli — kompakt: ad + 10 kutucuklu segment çizgisi."""
     m_puan = _scotr_puan(makro_not)
@@ -2301,6 +2362,7 @@ def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
                   f"font-size:0.64rem;font-weight:800;'>{makro_not}</span>") if makro_not else ""
     satirlar = ""
     for ad, nt in nitelikler.items():
+        ad_g = nitelik_goster(ad)
         dolu = _scotr_segman(nt)
         renk = _scotr_renk(_scotr_puan(nt))
         kutular = ""
@@ -2310,9 +2372,9 @@ def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
                         f"border-radius:1px;'></span>")
         satirlar += (
             f"<div style='display:flex;align-items:center;gap:6px;margin:3px 0;' "
-            f"title='{ad}: {nt}'>"
+            f"title='{ad_g}: {nt}'>"
             f"<span style='flex:1;min-width:0;font-size:0.63rem;color:#aab4c4;"
-            f"white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>{ad}</span>"
+            f"white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>{ad_g}</span>"
             f"<span style='display:inline-flex;gap:1.5px;flex:0 0 auto;'>{kutular}</span>"
             f"<span style='flex:0 0 20px;text-align:right;font-size:0.58rem;"
             f"font-weight:800;color:{renk};font-family:monospace;'>{nt}</span>"
@@ -2349,7 +2411,7 @@ def render_scout_raporu(isim: str):
 
     mevki_kod = " / ".join(x for x in [rapor.get("mevki1"), rapor.get("mevki2")] if x)
     alt_satir = " · ".join(x for x in [
-        rapor.get("rol", ""), mevki_kod, rapor.get("bolge", ""),
+        scout_rol_goster(rapor.get("rol", "")), mevki_kod, rapor.get("bolge", ""),
         rapor.get("uyruk", "")] if x)
 
     nihai_rozet = (
@@ -2425,7 +2487,7 @@ def render_scout_raporu(isim: str):
                 f"<span style='display:inline-block;background:#1e1b38;"
                 f"border:1px solid #4c3d8f;color:#c4b5fd;border-radius:99px;"
                 f"padding:4px 12px;margin:3px 4px 3px 0;font-size:0.70rem;'>"
-                f"{oz}</span>"
+                f"{tarz_goster(oz)}</span>"
             )
         st.markdown(
             f"<div style='margin-top:6px;'>"
@@ -2486,10 +2548,10 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
     pdf.cell(0, 8, isim, ln=1)
     pdf.set_x(12); pdf.set_font("DV","",9)
     mevki = " / ".join(rapor.get("mevki", []))
-    alt = " · ".join(x for x in [rapor.get("rol",""), mevki, rapor.get("kulup","")] if x)
+    alt = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki, rapor.get("kulup","")] if x)
     pdf.cell(0, 6, alt, ln=1)
     pdf.set_xy(150, 7); pdf.set_font("DV","",7)
-    pdf.cell(48, 4, "SCOUT RAPORU", ln=2, align="R")
+    pdf.cell(48, 4, t("SCOUT RAPORU","SCOUT REPORT"), ln=2, align="R")
     pdf.set_font("DV","B",9); pdf.cell(48, 5, "Mr Daniş · W-Scope", align="R")
 
     pdf.set_y(36); pdf.set_text_color(40,40,40)
@@ -2497,11 +2559,11 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
     # ── Künye satırı ──
     pdf.set_font("DV","",9)
     kunye = [
-        ("Uyruk", rapor.get("vatandaslik","—")),
-        ("Doğum", f"{rapor.get('dogum','—')} ({rapor.get('yas','?')})"),
-        ("Boy/Ayak", f"{rapor.get('boy','—')} · {rapor.get('ayak','—')}"),
-        ("Lig", rapor.get("lig","—")),
-        ("Sözleşme", rapor.get("sozlesme","—")),
+        (t("Uyruk","Nationality"), rapor.get("vatandaslik","—")),
+        (t("Doğum","Born"), f"{rapor.get('dogum','—')} ({rapor.get('yas','?')})"),
+        (t("Boy/Ayak","Height/Foot"), f"{rapor.get('boy','—')} · {rapor.get('ayak','—')}"),
+        (t("Lig","League"), rapor.get("lig","—")),
+        (t("Sözleşme","Contract"), rapor.get("sozlesme","—")),
     ]
     for et, dg in kunye:
         pdf.set_text_color(*GRI); pdf.set_font("DV","",7.5)
@@ -2514,11 +2576,11 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
 
     # ── NİHAİ / İVME / Yetenek / İktisadi / TR ──
     ozet = [
-        ("NİHAİ", rapor.get("nihai") or "—", renk(rapor.get("nihai",""))),
-        ("İVME", rapor.get("ivme") or "—", (124,58,237)),
-        ("YETENEK", rapor.get("yetenek_kumesi") or "—", (124,58,237)),
-        ("İKTİSADİ", rapor.get("iktisadi_durum") or "—", (110,120,140)),
-        ("TR GÖRÜŞÜ", rapor.get("tr_gorusu") or "—", (110,120,140)),
+        (t("NİHAİ","RATING"), rapor.get("nihai") or "—", renk(rapor.get("nihai",""))),
+        (t("İVME","MOMENTUM"), rapor.get("ivme") or "—", (124,58,237)),
+        (t("YETENEK","TALENT"), yetenek_kume_goster(rapor.get("yetenek_kumesi")) or "—", (124,58,237)),
+        (t("İKTİSADİ","ECONOMY"), iktisadi_goster(rapor.get("iktisadi_durum")) or "—", (110,120,140)),
+        (t("TR GÖRÜŞÜ","TR VIEW"), tr_gorus_goster(rapor.get("tr_gorusu")) or "—", (110,120,140)),
     ]
     y_box = pdf.get_y(); bw = W/5
     for k, (et, dg, rk) in enumerate(ozet):
@@ -2545,7 +2607,7 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
         yy = y + 6
         for ad, nt in nit.items():
             pdf.set_xy(x, yy); pdf.set_text_color(70,80,95); pdf.set_font("DV","",7)
-            pdf.cell(kol_w*0.52, 3.6, ad[:22])
+            pdf.cell(kol_w*0.52, 3.6, nitelik_goster(ad)[:22])
             seg = SEG.get(nt, 0); bx = x + kol_w*0.55
             for i in range(10):
                 pdf.set_fill_color(*(renk(nt) if i < seg else (225,228,235)))
@@ -2557,18 +2619,18 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
 
     g = lambda k: (rapor.get(k, {}), rapor.get("makro", {}).get(k, ""))
     y_row = pdf.get_y()
-    e1 = panel_ciz(12,        y_row, "BECERİ", *g("beceri"))
-    e2 = panel_ciz(12+kol_w+4, y_row, "BEŞERİ", *g("beseri"))
+    e1 = panel_ciz(12,        y_row, t("BECERİ","TECHNICAL"), *g("beceri"))
+    e2 = panel_ciz(12+kol_w+4, y_row, t("BEŞERİ","MENTAL"), *g("beseri"))
     y_row = max(e1, e2) + 4
-    e3 = panel_ciz(12,        y_row, "FİZİKİ", *g("fiziki"))
-    e4 = panel_ciz(12+kol_w+4, y_row, "ŞAHSİ",  *g("sahsi"))
+    e3 = panel_ciz(12,        y_row, t("FİZİKİ","PHYSICAL"), *g("fiziki"))
+    e4 = panel_ciz(12+kol_w+4, y_row, t("ŞAHSİ","PERSONAL"),  *g("sahsi"))
     pdf.set_y(max(e3, e4) + 4)
 
     # ── Oyun tarzı ──
-    tarz = [_tarz_temiz(o) for o in rapor.get("tarz", [])]
+    tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
     if tarz:
         pdf.set_text_color(*MOR); pdf.set_font("DV","B",8.5); pdf.set_x(12)
-        pdf.cell(0, 6, "OYUN TARZI", ln=1)
+        pdf.cell(0, 6, t("OYUN TARZI","PLAY STYLE"), ln=1)
         pdf.set_text_color(60,60,70); pdf.set_font("DV","",7.5); pdf.set_x(12)
         pdf.multi_cell(W, 4.2, "  •  ".join(tarz))
         pdf.ln(1)
@@ -2576,7 +2638,7 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
     # ── Scout notu ──
     if rapor.get("scout_notu"):
         pdf.set_text_color(*MOR); pdf.set_font("DV","B",8.5); pdf.set_x(12)
-        pdf.cell(0, 6, "SCOUT DEĞERLENDİRMESİ", ln=1)
+        pdf.cell(0, 6, t("SCOUT DEĞERLENDİRMESİ","SCOUT ASSESSMENT"), ln=1)
         pdf.set_text_color(50,55,65); pdf.set_font("DV","",8); pdf.set_x(12)
         pdf.multi_cell(W, 4.6, rapor["scout_notu"])
 
@@ -2601,7 +2663,7 @@ def render_scout_kadro_raporu(isim: str):
             pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
             break
     mevki_kod = " / ".join(rapor.get("mevki", []))
-    alt_satir = " · ".join(x for x in [rapor.get("rol",""), mevki_kod,
+    alt_satir = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki_kod,
                 f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
                 rapor.get("vatandaslik","")] if x)
     kulup_satir = " · ".join(x for x in [rapor.get("kulup",""), rapor.get("lig",""),
@@ -2645,11 +2707,11 @@ def render_scout_kadro_raporu(isim: str):
     rozet = []
     if rapor.get("yetenek_kumesi"):
         rk = _YETENEK_RENK.get(rapor["yetenek_kumesi"], "#a78bfa")
-        rozet.append((f"💎 {rapor['yetenek_kumesi']}", rk))
+        rozet.append((f"💎 {yetenek_kume_goster(rapor['yetenek_kumesi'])}", rk))
     if rapor.get("iktisadi_durum"):
-        rozet.append((f"💰 {rapor['iktisadi_durum']}", "#64748b"))
+        rozet.append((f"💰 {iktisadi_goster(rapor['iktisadi_durum'])}", "#64748b"))
     if rapor.get("tr_gorusu"):
-        rozet.append((f"🇹🇷 {rapor['tr_gorusu']}", "#64748b"))
+        rozet.append((f"🇹🇷 {tr_gorus_goster(rapor['tr_gorusu'])}", "#64748b"))
     if rozet:
         cip = "".join(
             f"<span style='display:inline-block;background:{c}1f;border:1px solid {c}55;"
@@ -2670,7 +2732,7 @@ def render_scout_kadro_raporu(isim: str):
             kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
 
     # Oyun tarzı (sadeleştirilmiş, ✔ işaretliler)
-    tarz = [_tarz_temiz(o) for o in rapor.get("tarz", [])]
+    tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
     if tarz:
         cipler = "".join(
             f"<span style='display:inline-block;background:#1e1b38;border:1px solid #4c3d8f;"
