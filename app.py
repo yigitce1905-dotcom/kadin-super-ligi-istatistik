@@ -599,13 +599,20 @@ def _tier_coz(bilgi: dict) -> str:
     return "pro" if bilgi.get("pro") else "basic"  # eski kayıtlar için
 
 def kullanici_tier() -> str:
-    """Aktif kullanıcının kademesi ('free' = giriş yok)."""
+    """Aktif kullanıcının kademesi ('free' = giriş yok). Aktif deneme varsa onu da hesaba katar."""
     if not st.session_state.get("kulup_giris"):
         return "free"
     if (st.session_state.get("kulup_rol") == "admin"
             or st.session_state.get("kulup_kullanici") == "admin"):
         return "admin"
-    return st.session_state.get("kulup_tier", "basic")
+    base = st.session_state.get("kulup_tier", "basic")
+    # Aktif deneme daha yüksek bir kademe veriyorsa onu kullan
+    dn = aktif_deneme(st.session_state.get("kulup_kullanici", ""))
+    if dn:
+        d_tier = (dn.get("tier") or "premium").lower()
+        if _TIER_RANK.get(d_tier, 0) > _TIER_RANK.get(base, 0):
+            return d_tier
+    return base
 
 def tier_yeterli(gereken: str) -> bool:
     """Aktif kademe, istenen kademeye eşit/üstün mü?"""
@@ -892,6 +899,111 @@ def shortlist_toggle(kullanici: str, oyuncu: str):
     else:
         lst.append(oyuncu)
     shortlist_kaydet(data)
+
+
+# ─── Üyelik Denemeleri (admin elle verir · GSheet kalıcı · yerel JSON fallback) ─
+# Yapı: [{kullanici, tier, baslangic, bitis (ISO), veren}]  — "Denemeler" sayfası
+_DENEME_YOL = pathlib.Path(__file__).parent / "denemeler.json"
+
+def _deneme_ws():
+    """'Denemeler' worksheet'ini döndürür (yoksa oluşturur). Hata → None."""
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Denemeler")
+        except Exception:
+            ws = sh.add_worksheet(title="Denemeler", rows=1000, cols=5)
+            ws.update([["kullanici", "tier", "baslangic", "bitis", "veren"]])
+            return ws
+    except Exception:
+        return None
+
+@st.cache_data(ttl=120)
+def denemeler_yukle() -> list:
+    ws = _deneme_ws()
+    if ws is not None:
+        try:
+            return [dict(r) for r in ws.get_all_records()]
+        except Exception:
+            pass
+    if not _DENEME_YOL.exists():
+        return []
+    import json
+    try:
+        with open(_DENEME_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+def _denemeler_kaydet(kayitlar: list):
+    ws = _deneme_ws()
+    if ws is not None:
+        try:
+            rows = [["kullanici", "tier", "baslangic", "bitis", "veren"]]
+            for d in kayitlar:
+                rows.append([d.get("kullanici",""), d.get("tier",""),
+                             d.get("baslangic",""), d.get("bitis",""), d.get("veren","")])
+            ws.clear(); ws.update(rows)
+            denemeler_yukle.clear()
+            return
+        except Exception:
+            pass
+    import json
+    with open(_DENEME_YOL, "w", encoding="utf-8") as f:
+        json.dump(kayitlar, f, ensure_ascii=False, indent=2)
+    denemeler_yukle.clear()
+
+def _deneme_ts(iso: str) -> float:
+    import datetime as _dt
+    try:
+        return _dt.datetime.fromisoformat(str(iso)).timestamp()
+    except Exception:
+        return 0.0
+
+def aktif_deneme(kullanici: str):
+    """Kullanıcının süresi dolmamış denemesini (en geç bitenini) döndürür, yoksa None."""
+    kullanici = (kullanici or "").strip()
+    if not kullanici:
+        return None
+    import time as _t
+    simdi = _t.time()
+    en_iyi = None
+    for d in denemeler_yukle():
+        if str(d.get("kullanici","")).strip() != kullanici:
+            continue
+        try:
+            bitis = _deneme_ts(d.get("bitis",""))
+        except Exception:
+            continue
+        if bitis > simdi and (en_iyi is None or bitis > en_iyi[0]):
+            en_iyi = (bitis, d)
+    return en_iyi[1] if en_iyi else None
+
+def deneme_ver(kullanici: str, tier: str = "premium", gun: int = 2, veren: str = "admin"):
+    import datetime as _dt
+    bas = _dt.datetime.now()
+    bit = bas + _dt.timedelta(days=gun)
+    kayitlar = [d for d in denemeler_yukle()
+                if str(d.get("kullanici","")).strip() != kullanici.strip()]  # eskiyi değiştir
+    kayitlar.append({
+        "kullanici": kullanici.strip(), "tier": tier,
+        "baslangic": bas.isoformat(timespec="minutes"),
+        "bitis":     bit.isoformat(timespec="minutes"), "veren": veren,
+    })
+    _denemeler_kaydet(kayitlar)
+
+def deneme_iptal(kullanici: str):
+    kayitlar = [d for d in denemeler_yukle()
+                if str(d.get("kullanici","")).strip() != kullanici.strip()]
+    _denemeler_kaydet(kayitlar)
 
 
 # ─── Giriş Kaydı (Profilim için: ilk/son giriş, sayı, hatalı giriş) ────────────
@@ -2950,12 +3062,15 @@ giris_formu_ana()
 if st.session_state.get("kulup_giris"):
     _tier  = kullanici_tier()
     _t_ad, _t_renk, _t_ikon = _TIER_GORUNUM.get(_tier, _TIER_GORUNUM["basic"])
+    _dn_aktif = aktif_deneme(st.session_state.get("kulup_kullanici","")) if _tier != "admin" else None
+    _deneme_etk = (f"<div style='font-size:0.62rem;color:#e9d5ff;margin-top:2px;'>"
+                   f"🎁 {t('DENEME','TRIAL')}</div>") if _dn_aktif else ""
     st.sidebar.markdown(
         f"<div style='background:{_t_renk}1a;border:1px solid {_t_renk};"
         f"border-radius:8px;padding:8px 14px;text-align:center;margin-top:4px;'>"
         f"<span style='color:{_t_renk};font-size:0.8rem;font-weight:700;'>"
         f"{_t_ikon} {_t_ad} {t('Üye','Member') if _tier!='admin' else ''}</span>"
-        f"</div>",
+        f"{_deneme_etk}</div>",
         unsafe_allow_html=True,
     )
 
@@ -3046,6 +3161,64 @@ def render_profil():
         (tier,             t("Üyelik", "Tier"),    tier_renk),
     ]):
         kol.markdown(_profil_kart(v, l, r), unsafe_allow_html=True)
+
+    # ── Aktif deneme bildirimi (kullanıcının kendisi) ──
+    _kendi_dn = aktif_deneme(ku)
+    if _kendi_dn:
+        import time as _t
+        _kalan = _deneme_ts(_kendi_dn.get("bitis","")) - _t.time()
+        _saat = max(0, int(_kalan // 3600)); _dk = max(0, int((_kalan % 3600) // 60))
+        _d_ad = _TIER_GORUNUM.get((_kendi_dn.get("tier") or "premium").lower(), _TIER_GORUNUM["premium"])[0]
+        st.markdown(
+            f"<div style='background:#e040fb1a;border:1px solid #e040fb;border-radius:10px;"
+            f"padding:10px 16px;margin-top:6px;color:#e9d5ff;font-size:0.86rem;font-weight:600;'>"
+            f"🎁 {t(f'{_d_ad} deneme aktif', f'{_d_ad} trial active')} · "
+            f"<b>{_saat}s {_dk}dk</b> {t('kaldı','left')}</div>",
+            unsafe_allow_html=True)
+
+    # ── Admin: Deneme Yönetimi ──
+    if ku == "admin":
+        with st.expander(f"🎁 {t('Deneme Yönetimi (Admin)','Trial Management (Admin)')}", expanded=False):
+            _creds = kulup_credentials_yukle()
+            _kuluplar = [k for k in _creds if _creds[k].get("rol") != "admin"]
+            _dv1, _dv2, _dv3, _dv4 = st.columns([2, 1.2, 1, 1])
+            with _dv1:
+                _dn_kul = st.selectbox(t("Kulüp","Club"), _kuluplar,
+                    format_func=lambda k: _creds[k].get("ad", k), key="dn_kul")
+            with _dv2:
+                _dn_tier = st.selectbox(t("Kademe","Tier"), ["premium","pro"],
+                    format_func=lambda x: _TIER_GORUNUM[x][0], key="dn_tier")
+            with _dv3:
+                _dn_gun = st.number_input(t("Gün","Days"), 1, 30, 2, key="dn_gun")
+            with _dv4:
+                st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
+                if st.button(t("🎁 Ver","🎁 Grant"), use_container_width=True, type="primary", key="dn_ver"):
+                    deneme_ver(_dn_kul, _dn_tier, int(_dn_gun), "admin")
+                    st.success(t(f"{_creds[_dn_kul].get('ad',_dn_kul)} için {int(_dn_gun)} günlük {_TIER_GORUNUM[_dn_tier][0]} denemesi verildi.",
+                                 f"Granted {int(_dn_gun)}-day {_TIER_GORUNUM[_dn_tier][0]} trial to {_creds[_dn_kul].get('ad',_dn_kul)}."))
+                    st.rerun()
+            # Aktif denemeler listesi
+            import time as _t
+            _aktifler = [d for d in denemeler_yukle()
+                         if _deneme_ts(d.get("bitis","")) > _t.time()]
+            if _aktifler:
+                st.markdown(f"**{t('Aktif Denemeler','Active Trials')} ({len(_aktifler)})**")
+                for _d in _aktifler:
+                    _kalan = _deneme_ts(_d.get("bitis","")) - _t.time()
+                    _sa = max(0, int(_kalan // 3600))
+                    _kc1, _kc2 = st.columns([4, 1])
+                    _kc1.markdown(
+                        f"<div style='font-size:0.82rem;color:#cbd5e1;padding:4px 0;'>"
+                        f"🎁 <b>{_creds.get(_d.get('kullanici',''),{}).get('ad', _d.get('kullanici',''))}</b> · "
+                        f"{_TIER_GORUNUM.get((_d.get('tier') or 'premium').lower(),('?',))[0]} · "
+                        f"{_sa}s {t('kaldı','left')} <span style='color:#64748b;'>"
+                        f"({_d.get('bitis','')})</span></div>", unsafe_allow_html=True)
+                    if _kc2.button(t("İptal","Cancel"), key=f"dn_ipt_{_d.get('kullanici','')}",
+                                   use_container_width=True):
+                        deneme_iptal(_d.get("kullanici",""))
+                        st.rerun()
+            else:
+                st.caption(t("Aktif deneme yok.","No active trials."))
 
     # ── Giriş Bilgileri ──
     from datetime import datetime, date
