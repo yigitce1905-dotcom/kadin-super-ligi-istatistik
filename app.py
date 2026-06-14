@@ -27,8 +27,10 @@ st.set_page_config(
 )
 
 # ─── Dil (TR varsayılan / EN hedefli sayfalar) ───
+# Tercih URL'de (?dil=EN) saklanır → sayfa yenilense de korunur.
 if "dil" not in st.session_state:
-    st.session_state["dil"] = "TR"
+    _qp_dil = st.query_params.get("dil", "")
+    st.session_state["dil"] = _qp_dil if _qp_dil in ("TR", "EN") else "TR"
 
 def t(tr, en):
     """Dile göre metin döndürür (EN seçiliyse İngilizce, değilse Türkçe)."""
@@ -548,13 +550,14 @@ def giris_formu_ana():
     if st.session_state.get("kulup_giris") or not st.session_state.get("login_ac"):
         return
     _orta = st.columns([1, 1.4, 1])[1]
+    _giris_baslik = t("KULÜP · SCOUT · MENAJER GİRİŞİ", "CLUB · SCOUT · MANAGER LOGIN")
     with _orta:
         st.markdown(
             f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
             f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 20px 6px;"
             f"margin:6px 0 14px;'>"
             f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
-            f"letter-spacing:0.18em;'>🔐 {t('KULÜP GİRİŞİ','CLUB LOGIN')}</div></div>",
+            f"letter-spacing:0.16em;'>🔐 {_giris_baslik}</div></div>",
             unsafe_allow_html=True)
         with st.form("giris_form_ana", clear_on_submit=True):
             ku = st.text_input(t("Kullanıcı adı", "Username"), placeholder="fenerbahce")
@@ -2015,7 +2018,10 @@ def render_scouting_detay(tam_isim):
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
     if st.button(t("← Listeye Dön", "← Back to List"), key="odakli_geri"):
+        _dil_koru = st.query_params.get("dil", "")
         st.query_params.clear()
+        if _dil_koru:
+            st.query_params["dil"] = _dil_koru   # dil tercihini koru
         # Ana akışa dönünce ilk sekme (Benim Kadrom) yerine
         # Oyuncu Listesi sekmesi seçilsin diye işaret bırak
         st.session_state["_don_sekme"] = "liste"
@@ -2846,7 +2852,10 @@ with nav_profil:
 with nav_veri:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button(t("📊 TR Veri (Pro)", "📊 TR Data (Pro)"), use_container_width=True):
+        _dil_koru = st.query_params.get("dil", "")
         st.query_params.clear()
+        if _dil_koru:
+            st.query_params["dil"] = _dil_koru   # dil tercihini koru
         for k in list(st.session_state.keys()):
             if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_pro","dil","girildi"):
                 del st.session_state[k]
@@ -2889,7 +2898,9 @@ with nav_giris:
 with nav_dil:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button("🌐 EN" if not EN else "🌐 TR", use_container_width=True, help="Language / Dil"):
-        st.session_state["dil"] = "EN" if not EN else "TR"
+        _yeni_dil = "EN" if not EN else "TR"
+        st.session_state["dil"] = _yeni_dil
+        st.query_params["dil"] = _yeni_dil   # URL'de sakla → yenilemede korunur
         st.rerun()
 
 # Giriş formu sidebar'da her zaman
@@ -3089,8 +3100,23 @@ if st.session_state["sayfa"] == "iletisim":
     <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #00c853;margin-top:16px;'>
       <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>{t("📧 E-posta", "📧 E-mail")}</div>
       <div style='color:#fff;font-size:15px;font-weight:600;'>mehmetbarandanis@gmail.com</div>
-      <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>{t("🐦 Sosyal Medya", "🐦 Social Media")}</div>
-      <div style='color:#fff;font-size:15px;'>{t("Yakında aktif olacak", "Coming soon")}</div>
+      <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>{t("🌐 Sosyal Medya", "🌐 Social Media")}</div>
+      <div style='display:flex;gap:10px;flex-wrap:wrap;'>
+        <a href='https://www.instagram.com/mehmetbarandanis/' target='_blank'
+           style='display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+           background:#0f1117;border:1px solid #2a3146;border-radius:8px;
+           padding:8px 14px;color:#e9d5ff;font-size:14px;font-weight:600;
+           transition:border-color .15s;'>
+          📸 Instagram <span style='color:#8899aa;font-weight:400;'>@mehmetbarandanis</span>
+        </a>
+        <a href='https://x.com/yiitche' target='_blank'
+           style='display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+           background:#0f1117;border:1px solid #2a3146;border-radius:8px;
+           padding:8px 14px;color:#e2e8f0;font-size:14px;font-weight:600;
+           transition:border-color .15s;'>
+          𝕏 <span style='color:#8899aa;font-weight:400;'>@yiitche</span>
+        </a>
+      </div>
     </div>
     <p style='color:#505870;font-size:12px;margin-top:28px;'>
     {t("Veri hatası veya eksik oyuncu bildirimleri için lütfen oyuncu adı ve doğru bilgiyi içeren bir mesaj gönderin. En kısa sürede güncelliyoruz.",
