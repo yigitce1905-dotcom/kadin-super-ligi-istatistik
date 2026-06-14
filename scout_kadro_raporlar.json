@@ -1,4 +1,43 @@
 {
+  "Natalia Wrobel": {
+    "tam_isim": "Natalia Wróbel",
+    "vatandaslik": "Polonya",
+    "milli_takim": "Polonya",
+    "dogum": "09.08.2003",
+    "yas": "22",
+    "boy": "1,75",
+    "ayak": "Sağ",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Orta Saha",
+    "mevki": [
+      "AMF",
+      "2ST"
+    ],
+    "rol": "*Raumdeuter",
+    "kulup": "Glasgow City",
+    "lig": "İskoçya 1",
+    "sozlesme": "30.06.2026",
+    "beceri": {
+      "Bitiricilik": "CD"
+    },
+    "beseri": {},
+    "fiziki": {},
+    "sahsi": {},
+    "makro": {
+      "beceri": "",
+      "beseri": "",
+      "fiziki": "",
+      "sahsi": ""
+    },
+    "tarz": [],
+    "nihai": "",
+    "ivme": "",
+    "yetenek_kumesi": "",
+    "iktisadi_durum": "",
+    "tr_gorusu": "",
+    "scout_notu": "",
+    "degerlendirildi": true
+  },
   "Tessa Zimmermann": {
     "tam_isim": "Tessa Zimmermann",
     "vatandaslik": "Almanya",
@@ -126,8 +165,8 @@
       "Top Tekniği": "CC",
       "Penaltı Vuruşu": "BC",
       "Markaj": "DE",
-      "Top Kapma": "DD",
-      "Uzun Taç": "DD",
+      "Top Kapma": "EE",
+      "Uzun Taç": "DE",
       "Duran Top": "CC",
       "İlk Kontrol": "BC",
       "Kafa Vuruşu": "CC",
@@ -174,7 +213,7 @@
       "Çalışkanlık": "DE"
     },
     "makro": {
-      "beceri": "CC",
+      "beceri": "CD",
       "beseri": "CD",
       "fiziki": "DD",
       "sahsi": "DD"

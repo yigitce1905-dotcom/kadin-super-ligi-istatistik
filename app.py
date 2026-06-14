@@ -4408,17 +4408,29 @@ with tab2:
     else:
         _tum_liste = sorted(df_tam["Oyuncu"].tolist())
         if deneme_modunda():
-            # Deneme: yalnızca vitrin oyuncuları seçilebilir (toplam sayı bilinir)
+            # Deneme: yalnızca vitrin oyuncuları — belirgin biçimde öne çıkar
             oyuncu_listesi = [o for o in _tum_liste if o in DENEME_TR_OYUNCULAR]
             st.markdown(
-                f"<div style='background:#e040fb1a;border:1px solid #e040fb;border-radius:10px;"
-                f"padding:9px 15px;margin-bottom:8px;color:#e9d5ff;font-size:0.84rem;'>"
-                f"🎁 <b>{t('Deneme modu','Trial mode')}</b> — "
-                f"{t('toplam','of')} <b>{len(_tum_liste)}</b> {t('oyuncudan','players')}, "
-                f"<b>{len(oyuncu_listesi)}</b> {t('örnek profil açık. Tam erişim üyelikte.','sample profiles open. Full access with membership.')}"
-                f"</div>", unsafe_allow_html=True)
+                f"<div style='background:linear-gradient(135deg,#1a0f2e,#2a1145);"
+                f"border:1px solid #e040fb;border-radius:12px;padding:13px 18px 6px;margin-bottom:8px;'>"
+                f"<div style='color:#e9d5ff;font-size:0.9rem;font-weight:700;'>"
+                f"🎁 {t('Denemende açık örnek oyuncular','Sample players open in your trial')}</div>"
+                f"<div style='color:#a78bfa;font-size:0.78rem;margin-top:2px;'>"
+                f"{t('Toplam','Total')} <b>{len(_tum_liste)}</b> {t('TR oyuncusundan','TR players —')} "
+                f"<b style='color:#e040fb;'>{len(oyuncu_listesi)}</b> {t('örnek tam açık. Birine tıkla 👇','samples fully open. Tap one 👇')}"
+                f"</div></div>", unsafe_allow_html=True)
+            # Vitrin oyuncu butonları (tıkla → profil seçilir)
+            _vbtn = st.columns(len(oyuncu_listesi)) if oyuncu_listesi else []
+            for _bc, _oy in zip(_vbtn, oyuncu_listesi):
+                _kisa = " ".join(_oy.title().split()[:2])
+                if _bc.button(f"⭐ {_kisa}", key=f"vitrin_tr_{_oy}", use_container_width=True):
+                    st.session_state["profil_sec"] = _oy
+                    st.rerun()
         else:
             oyuncu_listesi = _tum_liste
+        # Seçili oyuncu artık listede yoksa (deneme<->tam geçişi) sıfırla
+        if st.session_state.get("profil_sec") not in oyuncu_listesi:
+            st.session_state.pop("profil_sec", None)
         # Varsayılan: URL'den gelen oyuncu > Ebru Topçu > listedeki ilk
         if url_oyuncu in oyuncu_listesi:
             varsayilan_idx = oyuncu_listesi.index(url_oyuncu)
