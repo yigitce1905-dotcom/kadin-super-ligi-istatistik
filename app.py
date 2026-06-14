@@ -504,7 +504,7 @@ def giris_gerekli_ekrani():
               <div style='color:#00c853;font-size:0.75rem;font-weight:700;
                    letter-spacing:2px;text-transform:uppercase;'>{t("PRO Paket", "PRO Package")}</div>
               <div style='color:#fff;font-size:2rem;font-weight:900;line-height:1.1;'>
-                4.999 <span style='font-size:1rem;color:#8899aa;'>{t("TL/ay", "TL/mo")}</span>
+                999 <span style='font-size:1rem;color:#8899aa;'>{t("€/yıl", "€/yr")}</span>
               </div>
             </span>
           </div>
@@ -600,10 +600,17 @@ _PRO_OZELLIKLER = [
 ]
 
 
-def pro_paywall_goster(ozellik_adi: str = None):
-    """PRO üyelik satın alma sayfasını gösterir."""
+# Üyelik kademeleri (paywall görselleri için): ikon, etiket, renk, yıllık fiyat
+_TIER_BILGI = {
+    "pro":     ("⚡", "PRO",     "#00c853", "999 €"),
+    "premium": ("👑", "PREMIUM", "#e040fb", "1.999 €"),
+}
+
+def pro_paywall_goster(ozellik_adi: str = None, tier: str = "pro"):
+    """Üyelik (Pro/Premium) satın alma sayfasını gösterir."""
     if ozellik_adi is None:
         ozellik_adi = t("Bu özellik", "This feature")
+    _ti_ikon, _ti_etiket, _ti_renk, _ti_fiyat = _TIER_BILGI.get(tier, _TIER_BILGI["pro"])
     st.markdown("<br>", unsafe_allow_html=True)
 
     ozellik_satiri = "".join(
@@ -625,7 +632,7 @@ def pro_paywall_goster(ozellik_adi: str = None):
                padding:16px 22px;display:flex;align-items:center;gap:14px;margin-bottom:28px;'>
             <span style='font-size:1.6rem;'>🔒</span>
             <div>
-              <div style='color:#f0c040;font-weight:700;font-size:0.95rem;'>{ozellik_adi} {t("PRO üyelik gerektirir", "requires PRO membership")}</div>
+              <div style='color:#f0c040;font-weight:700;font-size:0.95rem;'>{ozellik_adi} {t(f"{_ti_etiket} üyelik gerektirir", f"requires {_ti_etiket} membership")}</div>
               <div style='color:#8899aa;font-size:0.8rem;margin-top:3px;'>
                 {t("Aşağıdaki paketi aktifleştirerek tüm özelliklere anında erişebilirsiniz.", "Activate the package below to instantly access all features.")}
               </div>
@@ -634,18 +641,18 @@ def pro_paywall_goster(ozellik_adi: str = None):
 
           <!-- Fiyat kartı -->
           <div style='background:linear-gradient(135deg,#0d2b1e 0%,#1a1f36 100%);
-               border:2px solid #00c853;border-radius:16px;padding:28px 32px;margin-bottom:28px;
+               border:2px solid {_ti_renk};border-radius:16px;padding:28px 32px;margin-bottom:28px;
                text-align:center;'>
-            <div style='font-size:0.8rem;color:#00c853;letter-spacing:2px;font-weight:700;
-                 text-transform:uppercase;margin-bottom:8px;'>⚡ {t("PRO Paket", "PRO Package")}</div>
+            <div style='font-size:0.8rem;color:{_ti_renk};letter-spacing:2px;font-weight:700;
+                 text-transform:uppercase;margin-bottom:8px;'>{_ti_ikon} {_ti_etiket} {t("Paket", "Package")}</div>
             <div style='font-size:2.8rem;font-weight:900;color:#fff;line-height:1;'>
-              4.999 <span style='font-size:1.4rem;color:#8899aa;'>TL</span>
+              {_ti_fiyat}
             </div>
-            <div style='color:#8899aa;font-size:0.82rem;margin-top:4px;'>{t("aylık · KDV dahil", "monthly · VAT included")}</div>
+            <div style='color:#8899aa;font-size:0.82rem;margin-top:4px;'>{t("yıllık · KDV dahil", "yearly · VAT included")}</div>
             <div style='margin-top:18px;'>
-              <span style='background:#00c853;color:#000;font-weight:700;font-size:0.85rem;
+              <span style='background:{_ti_renk};color:#000;font-weight:700;font-size:0.85rem;
                    border-radius:8px;padding:10px 28px;display:inline-block;'>
-                {t("Satın Al — Hemen Başla", "Buy Now — Get Started")}
+                {t("📬 İletişime Geç", "📬 Get in Touch")}
               </span>
             </div>
             <div style='color:#505870;font-size:0.75rem;margin-top:10px;'>
@@ -656,7 +663,7 @@ def pro_paywall_goster(ozellik_adi: str = None):
           <!-- Özellik listesi -->
           <div style='background:#12161f;border-radius:12px;padding:20px 24px;'>
             <div style='color:#fff;font-weight:700;font-size:0.9rem;margin-bottom:4px;'>
-              {t("PRO pakete dahil olanlar:", "Included in the PRO package:")}
+              {t(f"{_ti_etiket} pakete dahil olanlar:", f"Included in the {_ti_etiket} package:")}
             </div>
             {ozellik_satiri}
           </div>
@@ -664,8 +671,8 @@ def pro_paywall_goster(ozellik_adi: str = None):
           <!-- Alt not -->
           <div style='text-align:center;margin-top:20px;color:#505870;font-size:0.78rem;'>
             {t("Kurumsal teklif veya demo için", "For a corporate offer or demo, write to")}
-            <a href='mailto:info@heroyun.com' style='color:#00c853;text-decoration:none;'>
-              info@heroyun.com
+            <a href='mailto:mehmetbarandanis@gmail.com' style='color:#00c853;text-decoration:none;'>
+              mehmetbarandanis@gmail.com
             </a>{t(" adresine yazın.", ".")}
           </div>
 
@@ -2038,7 +2045,8 @@ def render_odakli_profil(isim):
     if isim in scouting_sd_yukle():
         _admin = st.session_state.get("kulup_kullanici") == "admin"
         if not (_admin or pro_kontrol()):
-            pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"))
+            pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"),
+                               tier="premium")
             return
         render_scouting_detay(isim)
         return
@@ -3132,10 +3140,14 @@ if st.session_state["sayfa"] == "talep":
     st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:16px;
         padding:24px 30px;border-left:5px solid #00c853;margin-bottom:22px;'>
+      <div style='display:inline-block;background:#29b6f622;border:1px solid #29b6f6;
+           color:#29b6f6;border-radius:6px;padding:2px 10px;font-size:0.66rem;
+           font-weight:800;letter-spacing:0.1em;margin-bottom:8px;'>
+        🔹 {t("BASIC ÜYELİK KAPSAMINDA","INCLUDED IN BASIC")}</div>
       <h1 style='font-size:1.5rem;margin:0 0 6px;color:#fff;'>{t("⚽ Kadronu birlikte kuralım", "⚽ Let's build your squad together")}</h1>
       <p style='color:#a7f3d0;font-size:0.95rem;line-height:1.6;margin:0;'>
-      {t("Doğru oyuncu, doğru veriyle bulunur. Scouting ve kadro planlamada veri + saha gözü birleşiyor — kulübüne özel danışmanlık.",
-         "The right player is found with the right data. Data and on-field insight combine in scouting and squad planning — consultancy tailored to your club.")}</p>
+      {t("Talep gönderme ve danışmanlık Basic üyeliğe dahildir. Scouting ve kadro planlamada veri + saha gözü birleşiyor — kulübüne özel danışmanlık.",
+         "Sending requests and consultancy are included in Basic. Data and on-field insight combine in scouting and squad planning — consultancy tailored to your club.")}</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -3589,28 +3601,35 @@ if st.session_state.get("sayfa") == "scouting":
     else:
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
-             background:linear-gradient(135deg,#0f172a,#1e293b);
-             border:1px solid #f59e0b;border-radius:16px;padding:48px 36px;">
-          <div style="font-size:3rem;margin-bottom:16px;">🔎</div>
+             background:linear-gradient(135deg,#1a0f2e,#1e1338);
+             border:1px solid #e040fb55;border-radius:16px;padding:48px 36px;">
+          <div style="font-size:3rem;margin-bottom:16px;">👑</div>
           <h2 style="color:#f1f5f9;margin-bottom:12px;">{t("Scouting Havuzu","Scouting Pool")}</h2>
-          <p style="color:#94a3b8;font-size:0.95rem;line-height:1.7;margin-bottom:24px;">
-            {t("Yabancı ve yerli oyuncu kurasyonu, 2026-27 kadro planlama önerileri ve detaylı oyuncu profilleri",
-               "Curation of foreign and domestic players, 2026-27 squad planning suggestions and detailed player profiles")}
-            <b style="color:#f59e0b;">{t("PRO üyelik","PRO membership")}</b> {t("gerektirir.","required.")}
+          <p style="color:#94a3b8;font-size:0.95rem;line-height:1.7;margin-bottom:20px;">
+            {t("Uluslararası oyuncu kurasyonu, 2026-27 kadro planlama önerileri ve detaylı scout raporları",
+               "International player curation, 2026-27 squad planning suggestions and detailed scout reports")}
+            <b style="color:#e040fb;">{t("Premium üyelik","Premium membership")}</b> {t("gerektirir.","required.")}
           </p>
-          <div style="background:#1e293b;border:1px solid #334155;border-radius:10px;
-               padding:20px;margin-bottom:28px;text-align:left;">
-            <p style="color:#cbd5e1;font-size:0.85rem;margin:0 0 10px;font-weight:600;">{t("PRO ile neler var?","What's in PRO?")}</p>
-            <p style="color:#64748b;font-size:0.82rem;line-height:1.8;margin:0;">
-              🌍 {t("Türkiye dışı oyuncu havuzu","International player pool")}<br>
-              🎯 {t("Mevki bazlı scouting profilleri","Position-based scouting profiles")}<br>
-              📊 {t("Detaylı oyuncu değerlendirmeleri","Detailed player assessments")}<br>
-              📋 {t("Kadro planlama önerileri","Squad planning suggestions")}<br>
-              🤝 {t("Doğrudan danışmanlık erişimi","Direct consultancy access")}
+          <div style="background:linear-gradient(135deg,#2a1145,#1a1f36);
+               border:2px solid #e040fb;border-radius:14px;padding:18px;margin-bottom:24px;">
+            <div style="color:#e040fb;font-size:0.72rem;letter-spacing:2px;font-weight:800;
+                 text-transform:uppercase;">👑 {t("Premium Paket","Premium Package")}</div>
+            <div style="color:#fff;font-size:2.2rem;font-weight:900;line-height:1.1;margin-top:4px;">1.999 €</div>
+            <div style="color:#8899aa;font-size:0.78rem;">{t("yıllık · KDV dahil","yearly · VAT incl.")}</div>
+          </div>
+          <div style="background:#1e1338;border:1px solid #3b2d6e;border-radius:10px;
+               padding:20px;margin-bottom:24px;text-align:left;">
+            <p style="color:#cbd5e1;font-size:0.85rem;margin:0 0 10px;font-weight:600;">{t("Premium ile neler var?","What's in Premium?")}</p>
+            <p style="color:#94a3b8;font-size:0.82rem;line-height:1.8;margin:0;">
+              🌍 {t("Uluslararası oyuncu havuzu","International player pool")}<br>
+              🎯 {t("Mevki bazlı scout profilleri","Position-based scout profiles")}<br>
+              📊 {t("Detaylı oyuncu değerlendirmeleri + PDF rapor","Detailed assessments + PDF reports")}<br>
+              📋 {t("Kadro planlama danışmanlığı","Squad planning consultancy")}<br>
+              🤝 {t("Öncelikli destek","Priority support")}
             </p>
           </div>
-          <p style="color:#475569;font-size:0.80rem;">
-            {t("PRO üyelik için 📬 İletişim sayfasından bize ulaşın.","For PRO membership, reach us via the 📬 Contact page.")}
+          <p style="color:#6b7a99;font-size:0.80rem;">
+            {t("Premium üyelik için 📬 İletişim sayfasından bize ulaşın.","For Premium membership, reach us via the 📬 Contact page.")}
           </p>
         </div>
         """, unsafe_allow_html=True)
@@ -3725,15 +3744,16 @@ def render_paketler():
     with c1:
         st.markdown(_paket_kart_html("🆓", "Free", "#58a6ff",
             t("Ücretsiz","Free"), t("temel erişim","basic access"), free_pkg), unsafe_allow_html=True)
+    _yillik = t("yıllık · KDV dahil", "yearly · VAT incl.")
     with c2:
         st.markdown(_paket_kart_html("🔹", "Basic", "#29b6f6",
-            "999 TL", t("aylık · KDV dahil","monthly · VAT incl."), basic), unsafe_allow_html=True)
+            "499 €", _yillik, basic), unsafe_allow_html=True)
     with c3:
         st.markdown(_paket_kart_html("⚡", "Pro", "#00c853",
-            "4.999 TL", t("aylık · KDV dahil","monthly · VAT incl."), pro, populer=True), unsafe_allow_html=True)
+            "999 €", _yillik, pro, populer=True), unsafe_allow_html=True)
     with c4:
         st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
-            "9.999 TL", t("aylık · KDV dahil","monthly · VAT incl."), premium), unsafe_allow_html=True)
+            "1.999 €", _yillik, premium), unsafe_allow_html=True)
 
     _pk_not = t("Kurumsal / kulüp teklifleri için 📬 İletişim sayfasından bize ulaşın.",
                 "For corporate / club offers, reach us via the 📬 Contact page.")
