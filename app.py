@@ -1475,6 +1475,18 @@ def mevki_grup(m: str) -> str:
     """Detaylı veya geniş mevki adını 4 ana gruptan birine indirger."""
     return _MEVKI_GRUP_MAP.get(m, "Bilinmiyor")
 
+# Mevki → renk (detaylı pozisyonlar da grup üzerinden renklenir; gri kalmaz)
+_MEVKI_GRUP_RENK = {
+    "Kaleci":    "#fbbf24",   # amber
+    "Defans":    "#2979ff",   # mavi
+    "Orta Saha": "#ff6d00",   # turuncu
+    "Forvet":    "#e040fb",   # macenta
+    "Bilinmiyor":"#8899aa",   # gri (gerçekten bilinmeyen)
+}
+def mevki_renk(m: str) -> str:
+    """Herhangi bir mevki adını (detaylı/geniş) ana grup rengine eşler."""
+    return _MEVKI_GRUP_RENK.get(mevki_grup(m), "#8899aa")
+
 # Mevki adı TR→EN gösterim haritası (iç değer TR kalır, sadece görünüm çevrilir)
 _MEVKI_EN = {
     "Kaleci": "Goalkeeper", "Defans": "Defense", "Orta Saha": "Midfield",
@@ -4800,7 +4812,7 @@ with tab4:
                 fig_mevki = go.Figure(go.Pie(
                     labels=[mevki_goster(m) for m in mevki_sayilari.index],
                     values=mevki_sayilari.values,
-                    marker_colors=[MEVKI_RENK.get(m,"#555") for m in mevki_sayilari.index],
+                    marker_colors=[mevki_renk(m) for m in mevki_sayilari.index],
                     textinfo="label+value",
                     hole=0.4,
                 ))
@@ -5561,7 +5573,7 @@ if tab_benim:
                                 "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
                     fig_pie = go.Figure(go.Pie(
                         labels=[mevki_goster(m) for m in mev_dag["Mevki"]], values=mev_dag["Sayı"],
-                        marker_colors=[renk_map.get(m,"#8899aa") for m in mev_dag["Mevki"]],
+                        marker_colors=[mevki_renk(m) for m in mev_dag["Mevki"]],
                         hole=0.45, textinfo="label+value",
                         textfont=dict(color="#fff", size=12),
                     ))
@@ -5690,14 +5702,17 @@ with tab_genç:
             cols = st.columns(min(5, len(top5)))
             for idx, (_, r) in enumerate(top5.iterrows()):
                 with cols[idx]:
+                    _mrk = mevki_renk(r['Mevki'])
                     st.markdown(
                         f"<div style='background:#1a1f36;border-radius:10px;padding:12px;"
-                        f"text-align:center;border-top:3px solid #00c853;'>"
+                        f"text-align:center;border-top:3px solid {_mrk};'>"
                         f"<div style='font-size:11px;font-weight:700;color:#fff;"
                         f"margin-bottom:4px;'>{r['Oyuncu'].split()[0]}<br>"
                         f"<span style='font-size:10px;'>{r['Oyuncu'].split()[-1]}</span></div>"
                         f"<div style='font-size:20px;font-weight:800;color:#00c853;'>{r['Yaş']:.0f}</div>"
-                        f"<div style='font-size:9px;color:#8899aa;'>{mevki_goster(r['Mevki'])}</div>"
+                        f"<div style='display:inline-block;font-size:9px;font-weight:700;"
+                        f"color:{_mrk};background:{_mrk}22;border:1px solid {_mrk}55;"
+                        f"border-radius:5px;padding:1px 7px;margin-top:2px;'>{mevki_goster(r['Mevki'])}</div>"
                         f"<div style='font-size:16px;font-weight:700;color:#fff;margin-top:6px;'>{r['Gol']}</div>"
                         f"<div style='font-size:9px;color:#8899aa;'>{t('gol','goals')} · {r['Maç']} {t('maç','matches')}</div>"
                         f"</div>", unsafe_allow_html=True)
@@ -5709,8 +5724,6 @@ with tab_genç:
 
         with col_scatter:
             st.markdown(f"**📊 {t('Yaş — Gol/Maç Dağılımı', 'Age — Goals/Match Distribution')}**")
-            renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
-                        "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
             fig_sc = go.Figure()
             for mev, grp in filtered.groupby("Mevki"):
                 fig_sc.add_trace(go.Scatter(
@@ -5718,7 +5731,7 @@ with tab_genç:
                     mode="markers+text",
                     name=mevki_goster(mev),
                     marker=dict(size=grp["Maç"].clip(8,30)/1.5,
-                                color=renk_map.get(mev,"#8899aa"),
+                                color=mevki_renk(mev),
                                 opacity=0.85,
                                 line=dict(color="#0f1117", width=1)),
                     text=grp["Oyuncu"].str.split().str[0],
@@ -6011,7 +6024,7 @@ with tab10:
                          .sort_values("Ort. Yaş", ascending=False))
             fig_pos = go.Figure(go.Bar(
                 x=mevki_yas["Ort. Yaş"], y=[mevki_goster(m) for m in mevki_yas["Mevki"]], orientation="h",
-                marker=dict(color="#00a86b"),
+                marker=dict(color=[mevki_renk(m) for m in mevki_yas["Mevki"]]),
                 text=mevki_yas["Ort. Yaş"], textposition="outside",
                 textfont=dict(color="#e0e0e0", size=12),
                 hovertemplate="%{y}: %{x:.1f} " + t("yaş","yrs") + "<extra></extra>",
