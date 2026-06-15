@@ -219,6 +219,50 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     background:linear-gradient(90deg,#a855f7,#ec4899) !important; height:3px !important; }
 [data-testid="stTabs"] [data-baseweb="tab-border"] { background:#232838; }
 
+/* ══════════════════════════════════════════════════
+   SOL NAVİGASYON — SİTE AĞACI
+   (native sekme barı gizli; tüm gezinme sol panelde)
+══════════════════════════════════════════════════ */
+/* Native sekme barını gizle — yine de JS ile tıklanabilir kalsın */
+[data-testid="stTabs"] [data-baseweb="tab-list"] {
+    height:0 !important; min-height:0 !important; overflow:hidden !important;
+    opacity:0 !important; pointer-events:none !important;
+    margin:0 !important; padding:0 !important; border:none !important; }
+[data-testid="stTabs"] [data-baseweb="tab-highlight"],
+[data-testid="stTabs"] [data-baseweb="tab-border"] { display:none !important; }
+
+/* Sol panel kabı */
+section[data-testid="stSidebar"] { background-color:#0c1020 !important;
+    border-right:1px solid #232a40; }
+section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:0.2rem; }
+
+/* Marka */
+.nav-marka { font-family:'Sora',sans-serif; font-weight:800; font-size:1.18rem;
+    color:#fff; padding:2px 4px 0; letter-spacing:-0.01em; }
+.nav-marka span { color:#a855f7; }
+.nav-marka-alt { color:#566179; font-size:0.62rem; padding:0 4px 8px;
+    border-bottom:1px solid #1c2238; margin-bottom:2px; }
+
+/* Grup başlığı — keskin alt çizgi */
+.nav-grup { font-size:0.6rem; font-weight:800; letter-spacing:0.16em;
+    color:#6b7494; text-transform:uppercase; margin:15px 4px 7px;
+    padding-bottom:5px; border-bottom:1px solid #222a42; }
+
+/* Nav butonları — sol hizalı, düz, net */
+section[data-testid="stSidebar"] [data-testid="stButton"] button {
+    text-align:left; justify-content:flex-start; width:100%;
+    font-size:0.82rem; font-weight:600; line-height:1.2;
+    padding:7px 12px; border-radius:6px;
+    background:transparent; border:1px solid transparent; color:#aeb8cc; }
+section[data-testid="stSidebar"] [data-testid="stButton"] button:hover {
+    background:#161c30; border-color:#283050; color:#fff; }
+/* Aktif öğe — düz koyu-mor dolgu + keskin sol aksan çizgisi */
+section[data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"] {
+    background:#1b1540 !important; border:1px solid #4c3a8f !important;
+    border-left:3px solid #a855f7 !important; color:#fff !important; }
+section[data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]:hover {
+    background:#231a52 !important; }
+
 /* Butonlar */
 [data-testid="stButton"] button, [data-testid="stFormSubmitButton"] button {
     border-radius:6px; font-weight:600; font-size:0.84rem;
@@ -2359,9 +2403,8 @@ def render_odakli_profil(isim):
         st.query_params.clear()
         if _dil_koru:
             st.query_params["dil"] = _dil_koru   # dil tercihini koru
-        # Ana akışa dönünce ilk sekme (Benim Kadrom) yerine
-        # Oyuncu Listesi sekmesi seçilsin diye işaret bırak
-        st.session_state["_don_sekme"] = "liste"
+        # Ana akışa dönünce sol menüde Oyuncu Listesi sekmesi seçili gelsin
+        st.session_state["tr_sekme"] = t("📋 Oyuncu Listesi", "📋 Player List")
         st.rerun()
     st.markdown("---")
     # Ana lig oyuncusu mu?
@@ -3247,58 +3290,109 @@ def _tr_veri_git():
     st.session_state["girildi"] = True
     st.rerun()
 
-# ─── ÜST MENÜ ÇUBUĞU (kompakt; açılır menü) ───────────────────────────────────
-_nav_marka, _nav_bosluk, _nav_menu, _nav_giris, _nav_dil = st.columns([2.2, 3.4, 1.5, 1.2, 0.7])
-with _nav_marka:
+# ─── SOL NAVİGASYON — SİTE AĞACI (üst menü + sekmeler tek dikey panelde) ──────
+def _tr_sekme_etiketleri(giris: bool) -> list:
+    """TR Veri sekme etiketleri — st.tabs ile birebir aynı sırada (login-gated)."""
+    ust = []
+    if giris:
+        ust = [t("🏟️ Benim Kadrom", "🏟️ My Squad"),
+               t("📝 Internal Scout", "📝 Internal Scout")]
+    return ust + [
+        t("📋 Oyuncu Listesi", "📋 Player List"),
+        t("🔄 Transfer Öner", "🔄 Transfer Suggest"),
+        t("🌱 Genç Yetenekler", "🌱 Young Talents"),
+        t("👤 Oyuncu Profili", "👤 Player Profile"),
+        t("⚡ Karşılaştırma", "⚡ Comparison"),
+        t("🏟️ Takımlar", "🏟️ Teams"),
+        t("🏆 Lig Tablosu", "🏆 League Table"),
+        t("🌟 En İyiler", "🌟 Top Performers"),
+        t("⚽ Fantasy Kadro", "⚽ Fantasy Squad"),
+        t("🔍 Gelişmiş Arama", "🔍 Advanced Search"),
+        t("🎂 Yaş Analizi", "🎂 Age Analysis"),
+        t("🧤 Kaleciler", "🧤 Goalkeepers"),
+    ]
+
+_aktif_sayfa   = st.session_state.get("sayfa", "ana")
+_nav_giris_var = st.session_state.get("kulup_giris", False)
+
+with st.sidebar:
+    # ── Marka ──
+    _marka_alt = t("Kadın futbolu platformu", "Women's football platform")
     st.markdown(
-        f"<div style='padding-top:8px;font-family:Sora,sans-serif;font-weight:800;"
-        f"font-size:1.05rem;color:#fff;white-space:nowrap;'>"
-        f"W-<span style='color:#a855f7;'>Scope</span> "
-        f"<span style='font-size:0.6rem;color:#64748b;font-weight:600;'>⚽</span></div>",
+        f"<div class='nav-marka'>W-<span>Scope</span> "
+        f"<span style='font-size:0.62rem;color:#64748b;font-weight:600;'>⚽</span></div>"
+        f"<div class='nav-marka-alt'>{_marka_alt}</div>",
         unsafe_allow_html=True)
-with _nav_menu:
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
-    _aktif_sayfa = st.session_state.get("sayfa", "ana")
-    with st.popover(t("☰ Menü", "☰ Menu"), use_container_width=True):
-        if st.button(t("📊 TR Veri (Pro)", "📊 TR Data (Pro)"),
-                     use_container_width=True, key="m_veri"):
-            _tr_veri_git()
-        if st.button(t("🔎 Scouting (Premium)", "🔎 Scouting (Premium)"),
-                     use_container_width=True, key="m_scout",
-                     type="primary" if _aktif_sayfa == "scouting" else "secondary"):
-            _nav_git("scouting")
-        if st.button(t("👤 Profilim", "👤 My Profile"),
-                     use_container_width=True, key="m_profil",
-                     type="primary" if _aktif_sayfa == "profil" else "secondary"):
-            _nav_git("profil")
-        if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"),
-                     use_container_width=True, key="m_talep"):
-            _nav_git("talep")
-        if st.button(t("📬 İletişim (Basic)", "📬 Contact (Basic)"),
-                     use_container_width=True, key="m_iletisim"):
-            _nav_git("iletisim")
-with _nav_giris:
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
-    if st.session_state.get("kulup_giris"):
-        _ad_kisa = (st.session_state.get("kulup_ad") or "").split()[0][:10]
-        if st.button(t("🚪 Çıkış", "🚪 Logout"), use_container_width=True,
-                     help=t(f"{_ad_kisa} · Çıkış yap", f"{_ad_kisa} · Log out")):
-            for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
-                st.session_state.pop(k, None)
-            _oturum_cikis()
-            _nav_git("ana")
-    else:
-        if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True,
-                     type="primary", help=t("Giriş yap", "Log in")):
-            st.session_state["login_ac"] = True
+
+    # ── Üyelik rozeti ──
+    if _nav_giris_var:
+        _tier = kullanici_tier()
+        _t_ad, _t_renk, _t_ikon = _TIER_GORUNUM.get(_tier, _TIER_GORUNUM["basic"])
+        _dn = aktif_deneme(st.session_state.get("kulup_kullanici", "")) if _tier != "admin" else None
+        _uye_kelime = "" if _tier == "admin" else t("Üye", "Member")
+        _deneme_kel = t("DENEME", "TRIAL")
+        _dn_etk = (f"<span style='font-size:0.58rem;color:#e9d5ff;margin-left:5px;'>🎁 {_deneme_kel}</span>") if _dn else ""
+        st.markdown(
+            f"<div style='background:{_t_renk}1a;border:1px solid {_t_renk};"
+            f"border-radius:7px;padding:6px 10px;text-align:center;margin:8px 2px 2px;'>"
+            f"<span style='color:{_t_renk};font-size:0.72rem;font-weight:700;'>"
+            f"{_t_ikon} {_t_ad} {_uye_kelime}</span>{_dn_etk}</div>",
+            unsafe_allow_html=True)
+
+    # ── PLATFORM grubu ──
+    st.markdown(f"<div class='nav-grup'>{t('PLATFORM', 'PLATFORM')}</div>", unsafe_allow_html=True)
+    if st.button(t("📊 TR Veri", "📊 TR Data"), key="nav_veri", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "ana" else "secondary"):
+        _tr_veri_git()
+    if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "scouting" else "secondary"):
+        _nav_git("scouting")
+    if st.button(t("👤 Profilim", "👤 My Profile"), key="nav_profil", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "profil" else "secondary"):
+        _nav_git("profil")
+    if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), key="nav_talep", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "talep" else "secondary"):
+        _nav_git("talep")
+    if st.button(t("📬 İletişim", "📬 Contact"), key="nav_iletisim", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
+        _nav_git("iletisim")
+
+    # ── TR VERİ SEKMELERİ grubu (yalnızca TR Veri sayfasında) ──
+    if _aktif_sayfa == "ana":
+        st.markdown(f"<div class='nav-grup'>{t('TR VERİ SEKMELERİ', 'TR DATA TABS')}</div>",
+                    unsafe_allow_html=True)
+        _sk_etiketler = _tr_sekme_etiketleri(_nav_giris_var)
+        _aktif_sekme = st.session_state.get("tr_sekme")
+        if _aktif_sekme not in _sk_etiketler:
+            _aktif_sekme = _sk_etiketler[0]
+            st.session_state["tr_sekme"] = _aktif_sekme
+        for _i, _et in enumerate(_sk_etiketler):
+            if st.button(_et, key=f"navsek_{_i}", use_container_width=True,
+                         type="primary" if _et == _aktif_sekme else "secondary"):
+                st.session_state["tr_sekme"] = _et
+                st.rerun()
+
+    # ── Footer: Dil + Giriş/Çıkış ──
+    st.markdown("<div style='border-top:1px solid #222a42;margin:12px 2px 8px;'></div>",
+                unsafe_allow_html=True)
+    _fc1, _fc2 = st.columns(2)
+    with _fc1:
+        if st.button("🌐 EN" if not EN else "🌐 TR", key="nav_dil", use_container_width=True):
+            _yeni_dil = "EN" if not EN else "TR"
+            st.session_state["dil"] = _yeni_dil
+            st.query_params["dil"] = _yeni_dil
             st.rerun()
-with _nav_dil:
-    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
-    if st.button("🌐 EN" if not EN else "🌐 TR", use_container_width=True, help="Language / Dil"):
-        _yeni_dil = "EN" if not EN else "TR"
-        st.session_state["dil"] = _yeni_dil
-        st.query_params["dil"] = _yeni_dil
-        st.rerun()
+    with _fc2:
+        if _nav_giris_var:
+            if st.button(t("🚪 Çıkış", "🚪 Logout"), key="nav_cikis", use_container_width=True):
+                for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
+                    st.session_state.pop(k, None)
+                _oturum_cikis()
+                _nav_git("ana")
+        else:
+            if st.button(t("🔐 Giriş", "🔐 Login"), key="nav_login", use_container_width=True, type="primary"):
+                st.session_state["login_ac"] = True
+                st.rerun()
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
@@ -3320,27 +3414,9 @@ st.markdown(f"""
   </div>
 </div>""", unsafe_allow_html=True)
 
-# Giriş formu sidebar'da her zaman
-giris_formu()
-
-# Sağ üst "🔐 Giriş" butonuna basılınca ana alanda açılan giriş kartı
+# "🔐 Giriş" butonuna basılınca ana alanda açılan giriş kartı
+# (üyelik rozeti + giriş/çıkış artık sol navigasyon panelinde)
 giris_formu_ana()
-
-# Üyelik kademe rozeti sidebar'da göster
-if st.session_state.get("kulup_giris"):
-    _tier  = kullanici_tier()
-    _t_ad, _t_renk, _t_ikon = _TIER_GORUNUM.get(_tier, _TIER_GORUNUM["basic"])
-    _dn_aktif = aktif_deneme(st.session_state.get("kulup_kullanici","")) if _tier != "admin" else None
-    _deneme_etk = (f"<div style='font-size:0.62rem;color:#e9d5ff;margin-top:2px;'>"
-                   f"🎁 {t('DENEME','TRIAL')}</div>") if _dn_aktif else ""
-    st.sidebar.markdown(
-        f"<div style='background:{_t_renk}1a;border:1px solid {_t_renk};"
-        f"border-radius:8px;padding:8px 14px;text-align:center;margin-top:4px;'>"
-        f"<span style='color:{_t_renk};font-size:0.8rem;font-weight:700;'>"
-        f"{_t_ikon} {_t_ad} {t('Üye','Member') if _tier!='admin' else ''}</span>"
-        f"{_deneme_etk}</div>",
-        unsafe_allow_html=True,
-    )
 
 
 # ─── Oyuncu profili MODALI (alta kaydırmak yerine üstte açılır) ───────────────
@@ -4418,26 +4494,12 @@ with _bc2:
 st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER ─────────────────────────────────────────────────────────────────
+# Sekme etiketleri sol navigasyondaki _tr_sekme_etiketleri ile birebir aynı.
+# Native sekme barı CSS ile gizli; aktif sekme sol panelden seçilir ve aşağıda
+# JS ile (gizli ama tıklanabilir) ilgili sekmeye geçiş yapılır.
 _giris_var = st.session_state.get("kulup_giris", False)
-_sekmeler = []
-if _giris_var:
-    _sekmeler.append(t("🏟️ Benim Kadrom", "🏟️ My Squad"))
-    _sekmeler.append(t("📝 Internal Scout", "📝 Internal Scout"))
-_sekmeler += [
-    t("📋 Oyuncu Listesi", "📋 Player List"),
-    t("🔄 Transfer Öner", "🔄 Transfer Suggest"),
-    t("🌱 Genç Yetenekler", "🌱 Young Talents"),
-    t("👤 Oyuncu Profili", "👤 Player Profile"),
-    t("⚡ Karşılaştırma", "⚡ Comparison"),
-    t("🏟️ Takımlar", "🏟️ Teams"),
-    t("🏆 Lig Tablosu", "🏆 League Table"),
-    t("🌟 En İyiler", "🌟 Top Performers"),
-    t("⚽ Fantasy Kadro", "⚽ Fantasy Squad"),
-    t("🔍 Gelişmiş Arama", "🔍 Advanced Search"),
-    t("🎂 Yaş Analizi", "🎂 Age Analysis"),
-    t("🧤 Kaleciler", "🧤 Goalkeepers"),
-]
-_is_admin = st.session_state.get("kulup_kullanici") == "admin"
+_sekmeler  = _tr_sekme_etiketleri(_giris_var)
+_is_admin  = st.session_state.get("kulup_kullanici") == "admin"
 
 _tabs = st.tabs(_sekmeler)
 
@@ -4446,22 +4508,28 @@ _dlg = st.session_state.pop("_profil_dlg", None)
 if _dlg:
     _profil_dialog(_dlg[0], _dlg[1])
 
-# "Listeye Dön" sonrası: ilk sekme (Benim Kadrom) yerine Oyuncu Listesi'ni seç.
-# st.tabs programatik seçim sunmadığından sekme butonuna JS ile tıklanır.
-if st.session_state.pop("_don_sekme", None) == "liste":
-    import streamlit.components.v1 as _components
-    _hedef = t("Oyuncu Listesi", "Player List")
-    _components.html(f"""<script>
-      const hedef = {_hedef!r};
-      let deneme = 0;
-      const zamanlayici = setInterval(() => {{
-        const sekmeler = window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
-        for (const s of sekmeler) {{
-          if (s.innerText.includes(hedef)) {{ s.click(); clearInterval(zamanlayici); return; }}
+# Sol menüde seçili sekmeyi göster: native bar gizli olduğundan ilgili
+# (görünmez ama tıklanabilir) sekme butonuna JS ile tıklanır.
+_aktif_sekme_js = st.session_state.get("tr_sekme", _sekmeler[0])
+if _aktif_sekme_js not in _sekmeler:
+    _aktif_sekme_js = _sekmeler[0]
+import streamlit.components.v1 as _components
+_components.html(f"""<script>
+  const hedef = {_aktif_sekme_js!r}.trim();
+  let deneme = 0;
+  const zaman = setInterval(() => {{
+    const sekmeler = window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
+    if (sekmeler.length) {{
+      for (const s of sekmeler) {{
+        if (s.innerText.trim() === hedef) {{
+          if (s.getAttribute('aria-selected') !== 'true') s.click();
+          clearInterval(zaman); return;
         }}
-        if (++deneme > 20) clearInterval(zamanlayici);
-      }}, 100);
-    </script>""", height=0)
+      }}
+    }}
+    if (++deneme > 40) clearInterval(zaman);
+  }}, 70);
+</script>""", height=0)
 
 _ti = 0
 
