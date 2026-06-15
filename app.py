@@ -38,6 +38,12 @@ def t(tr, en):
 
 EN = st.session_state.get("dil") == "EN"
 
+# Profil render bağlam sayacı: aynı çalıştırmada profil birden çok kez
+# render edilirse (örn. modal + sekme) widget key'leri çakışmasın diye.
+_PROFIL_CTX = {"n": 0}
+def _pk(base: str) -> str:
+    return f"{base}__{_PROFIL_CTX['n']}"
+
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
@@ -1709,7 +1715,7 @@ def _gol_rakip_grafik(detay: dict, toplam_gol: int):
         yaxis=dict(autorange="reversed", tickfont=dict(size=10)),
         showlegend=False,
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1717"))
 
 
 def max_seri(dizi):
@@ -1807,7 +1813,7 @@ def kariyer_trend_goster(sezonlar):
         return
     rozet = _form_rozeti(sezonlar)
     st.markdown(f"#### 📈 {t('Kariyer Trendi', 'Career Trend')} &nbsp; {rozet}", unsafe_allow_html=True)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1815"))
 
 
 # ── Benzer oyuncu motoru ──
@@ -1915,7 +1921,7 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
                  "Same position · based on age, height, experience and goal/assist ratios"))
     for isim, skor, bilgi in sonuc:
         if st.button(f"%{skor}  ·  {isim}  ·  {bilgi}",
-                     key=f"benzer_{kaynak}_{isim}", use_container_width=True):
+                     key=_pk(f"benzer_{kaynak}_{isim}"), use_container_width=True):
             st.query_params["oyuncu"] = isim
             st.rerun()
 
@@ -1958,7 +1964,7 @@ def radar_goster(isim, kaynak):
     st.markdown(f"#### 🕸️ {q['kat']} {t('Profili', 'Profile')}")
     st.caption(t("Aynı mevkideki oyunculara göre yüzdelik dilim (100 = en iyi)",
                  "Percentile vs players in the same position (100 = best)"))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1966"))
 
 
 # ── Çapraz transfer hedefi (ana lig oyuncusuna benzeyen scouting adayları) ──
@@ -2000,7 +2006,7 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
                  "Closest foreign candidates to this player from the scouting pool"))
     for s, o in ad[:5]:
         if st.button(f"%{s}  ·  {o['isim']}  ·  {o['yas']:.0f} {t('yaş','yrs')} · {o['ulke']}",
-                     key=f"capraz_{o['isim']}", use_container_width=True):
+                     key=_pk(f"capraz_{o['isim']}"), use_container_width=True):
             st.query_params["oyuncu"] = o["isim"]
             st.rerun()
 
@@ -2071,7 +2077,7 @@ def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
                    angularaxis=dict(gridcolor="#334155")))
     st.caption(t("Radar: shortlist içindeki en yüksek değere göre oranlanmıştır (göreceli kıyas)",
                  "Radar: scaled to the highest value within the shortlist (relative comparison)"))
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, key=_pk("capraz_radar"))
 
 
 # ── Veri Kapsama Paneli (admin: eksik veri özeti) ──
@@ -2117,6 +2123,7 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
 
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
+    _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
     if deneme_modunda() and tam_isim not in DENEME_SCOUT_OYUNCULAR:
         deneme_kilit(t("Bu oyuncunun scout profili", "This player's scout profile"), "scout")
@@ -2775,6 +2782,7 @@ def render_scout_kadro_raporu(isim: str):
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
 def render_ana_lig_profil(secili):
+    _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
     if deneme_modunda() and secili not in DENEME_TR_OYUNCULAR:
         deneme_kilit(t("Bu oyuncunun detaylı profili", "This player's detailed profile"), "tr")
@@ -2806,7 +2814,8 @@ def render_ana_lig_profil(secili):
         # Paylaşılabilir link butonu
         share_url = f"?oyuncu={secili}"
         st.markdown(f"🔗 **{t('Paylaşılabilir link', 'Share link')}:** `{share_url}`")
-        if st.button(t("📋 Linki Kopyala (adres çubuğuna bakın)", "📋 Copy Link (check address bar)")):
+        if st.button(t("📋 Linki Kopyala (adres çubuğuna bakın)", "📋 Copy Link (check address bar)"),
+                     key=_pk("kopyala_link")):
             st.query_params["oyuncu"] = secili
 
         takim_html = (
@@ -2946,7 +2955,7 @@ def render_ana_lig_profil(secili):
                     xaxis=dict(title="Hafta", gridcolor="#2d3561"),
                     yaxis=dict(title="Dakika", gridcolor="#2d3561"),
                     margin=dict(l=40,r=10,t=10,b=40))
-                st.plotly_chart(fig, use_container_width=True)
+                st.plotly_chart(fig, use_container_width=True, key=_pk("plt_2957"))
 
         with g2:
             st.markdown(f"##### {t('Gol Zamanı Dağılımı', 'Goal Timing Distribution')}")
@@ -2969,7 +2978,7 @@ def render_ana_lig_profil(secili):
                     xaxis=dict(title=t("Dakika Aralığı","Minutes Range"), gridcolor="#2d3561"),
                     yaxis=dict(title="Gol", gridcolor="#2d3561", dtick=1),
                     margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
-                st.plotly_chart(fig2, use_container_width=True)
+                st.plotly_chart(fig2, use_container_width=True, key=_pk("plt_2980"))
             elif gol > 0:
                 st.caption(t("Gol dakikası verisi bu sezonda mevcut değil.", "Goal minute data not available for this season."))
             else:
