@@ -1085,6 +1085,98 @@ def deneme_iptal(kullanici: str):
     _denemeler_kaydet(kayitlar)
 
 
+# ─── Internal scout raporları (kişiye özel · GSheet kalıcı · yerel JSON) ──────
+# Her kullanıcı kendi maç scout raporlarını yazar ve yalnızca kendininkini görür.
+# Kayıt: {id, kullanici, tarih, ev, dep, skor, genel_not, oyuncular[], olusturma}
+_INTERNAL_YOL = pathlib.Path(__file__).parent / "internal_raporlar.json"
+
+def _internal_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("InternalRaporlar")
+        except Exception:
+            ws = sh.add_worksheet(title="InternalRaporlar", rows=2000, cols=9)
+            ws.update([["id","kullanici","tarih","ev","dep","skor","genel_not","oyuncular_json","olusturma"]])
+            return ws
+    except Exception:
+        return None
+
+@st.cache_data(ttl=60)
+def _internal_tum() -> list:
+    ws = _internal_ws()
+    if ws is not None:
+        try:
+            out = []
+            for r in ws.get_all_records():
+                d = dict(r)
+                try: d["oyuncular"] = json.loads(d.get("oyuncular_json") or "[]")
+                except Exception: d["oyuncular"] = []
+                out.append(d)
+            return out
+        except Exception:
+            pass
+    if not _INTERNAL_YOL.exists():
+        return []
+    try:
+        with open(_INTERNAL_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+def internal_yukle(kullanici: str) -> list:
+    kullanici = (kullanici or "").strip()
+    rs = [r for r in _internal_tum() if str(r.get("kullanici","")).strip() == kullanici]
+    return sorted(rs, key=lambda r: str(r.get("olusturma","")), reverse=True)
+
+def _internal_kaydet_hepsi(kayitlar: list):
+    ws = _internal_ws()
+    if ws is not None:
+        try:
+            rows = [["id","kullanici","tarih","ev","dep","skor","genel_not","oyuncular_json","olusturma"]]
+            for r in kayitlar:
+                rows.append([str(r.get("id","")), r.get("kullanici",""), r.get("tarih",""),
+                             r.get("ev",""), r.get("dep",""), r.get("skor",""),
+                             r.get("genel_not",""),
+                             json.dumps(r.get("oyuncular",[]), ensure_ascii=False),
+                             r.get("olusturma","")])
+            ws.clear(); ws.update(rows)
+            _internal_tum.clear()
+            return
+        except Exception:
+            pass
+    # Yerel JSON (oyuncular alanını koru, oyuncular_json'ı düşür)
+    import datetime as _dt
+    temiz = []
+    for r in kayitlar:
+        rr = {k: v for k, v in r.items() if k != "oyuncular_json"}
+        temiz.append(rr)
+    with open(_INTERNAL_YOL, "w", encoding="utf-8") as f:
+        json.dump(temiz, f, ensure_ascii=False, indent=2)
+    _internal_tum.clear()
+
+def internal_ekle(rapor: dict):
+    kayitlar = _internal_tum()
+    # oyuncular_json alanını kayıt listesinde tutmayalım (yalnızca oyuncular)
+    for r in kayitlar:
+        r.pop("oyuncular_json", None)
+    kayitlar.append(rapor)
+    _internal_kaydet_hepsi(kayitlar)
+
+def internal_sil(rapor_id):
+    kayitlar = [r for r in _internal_tum() if str(r.get("id","")) != str(rapor_id)]
+    for r in kayitlar:
+        r.pop("oyuncular_json", None)
+    _internal_kaydet_hepsi(kayitlar)
+
+
 # ─── Giriş Kaydı (Profilim için: ilk/son giriş, sayı, hatalı giriş) ────────────
 # GSheets "GirisLog" worksheet'i. Cloud'da kalıcı; lokalde GSheets yoksa sessizce atlanır.
 def _giris_log_ws():
@@ -4330,6 +4422,7 @@ _giris_var = st.session_state.get("kulup_giris", False)
 _sekmeler = []
 if _giris_var:
     _sekmeler.append(t("🏟️ Benim Kadrom", "🏟️ My Squad"))
+    _sekmeler.append(t("📝 Internal Scout", "📝 Internal Scout"))
 _sekmeler += [
     t("📋 Oyuncu Listesi", "📋 Player List"),
     t("🔄 Transfer Öner", "🔄 Transfer Suggest"),
@@ -4374,8 +4467,10 @@ _ti = 0
 
 if _giris_var:
     tab_benim = _tabs[_ti]; _ti += 1
+    tab_internal = _tabs[_ti]; _ti += 1
 else:
     tab_benim = None
+    tab_internal = None
 
 tab1       = _tabs[_ti]; _ti += 1
 tab_transfer = _tabs[_ti]; _ti += 1
@@ -4389,6 +4484,94 @@ tab7       = _tabs[_ti]; _ti += 1
 tab9       = _tabs[_ti]; _ti += 1
 tab10      = _tabs[_ti]; _ti += 1
 tab11      = _tabs[_ti]; _ti += 1
+
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME — INTERNAL SCOUT (kişiye özel maç raporları: SWOT + serbest not)
+# ══════════════════════════════════════════════════════════════════════════════
+if tab_internal is not None:
+    with tab_internal:
+        import datetime as _dt
+        _kull = st.session_state.get("kulup_kullanici", "")
+        st.markdown(f"### 📝 {t('Internal Scout — Maç Raporların', 'Internal Scout — Your Match Reports')}")
+        st.caption(t("İzlediğin maçlara özel SWOT + serbest not. Yalnızca sen görürsün.",
+                     "Private SWOT + free notes for matches you watched. Only you can see them."))
+
+        _int_mod = st.radio("mod", [t("➕ Yeni Rapor", "➕ New Report"),
+                                    t("📋 Raporlarım", "📋 My Reports")],
+                            horizontal=True, label_visibility="collapsed", key="int_mod")
+
+        if _int_mod == t("➕ Yeni Rapor", "➕ New Report"):
+            ic1, ic2, ic3, ic4 = st.columns([1.2, 1.4, 1.4, 0.9])
+            with ic1: _i_tarih = st.date_input(t("Maç Tarihi", "Match Date"), key="int_tarih")
+            with ic2: _i_ev    = st.text_input(t("Ev Sahibi", "Home"), key="int_ev", placeholder="Türkiye U19")
+            with ic3: _i_dep   = st.text_input(t("Deplasman", "Away"), key="int_dep", placeholder="Karadağ U19")
+            with ic4: _i_skor  = st.text_input(t("Skor", "Score"), key="int_skor", placeholder="5-0")
+            _i_genel = st.text_area(t("Genel Not / Maç Özeti", "General Note / Match Summary"),
+                                    key="int_genel", height=110,
+                                    placeholder=t("Maçın genel görünümü, taktik gözlemler…",
+                                                  "Overall view, tactical observations…"))
+            st.markdown(f"**{t('Oyuncu SWOT — alttan satır ekleyebilirsin', 'Player SWOT — add rows below')}**")
+            _bos = pd.DataFrame([{"Oyuncu": "", "Mevki": "", "Takım": "",
+                                  "S": "", "W": "", "O": "", "T": ""} for _ in range(3)])
+            _i_swot = st.data_editor(
+                _bos, num_rows="dynamic", use_container_width=True, key="int_swot",
+                column_config={
+                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu", "Player"), width="medium"),
+                    "Mevki":  st.column_config.TextColumn(t("Mevki", "Pos"), width="small"),
+                    "Takım":  st.column_config.TextColumn(t("Takım", "Team"), width="small"),
+                    "S": st.column_config.TextColumn("💪 S", help=t("Güçlü yönler", "Strengths"), width="large"),
+                    "W": st.column_config.TextColumn("⚠️ W", help=t("Zayıf yönler", "Weaknesses"), width="large"),
+                    "O": st.column_config.TextColumn("📈 O", help=t("Fırsatlar", "Opportunities"), width="large"),
+                    "T": st.column_config.TextColumn("🛑 T", help=t("Tehditler", "Threats"), width="large"),
+                })
+            if st.button(t("💾 Raporu Kaydet", "💾 Save Report"), type="primary", key="int_kaydet"):
+                if not (_i_ev.strip() or _i_dep.strip()):
+                    st.error(t("En az takım adlarını gir.", "Enter at least the team names."))
+                else:
+                    _oyuncular = [row for row in _i_swot.to_dict("records")
+                                  if str(row.get("Oyuncu", "")).strip()]
+                    internal_ekle({
+                        "id": int(_dt.datetime.now().timestamp()),
+                        "kullanici": _kull, "tarih": str(_i_tarih),
+                        "ev": _i_ev.strip(), "dep": _i_dep.strip(), "skor": _i_skor.strip(),
+                        "genel_not": _i_genel.strip(), "oyuncular": _oyuncular,
+                        "olusturma": _dt.datetime.now().isoformat(timespec="seconds"),
+                    })
+                    st.success(t(f"✅ Rapor kaydedildi — {len(_oyuncular)} oyuncu.",
+                                 f"✅ Report saved — {len(_oyuncular)} players."))
+                    st.balloons()
+
+        else:  # 📋 Raporlarım
+            _raporlar = internal_yukle(_kull)
+            if not _raporlar:
+                st.info(t("Henüz rapor yok. '➕ Yeni Rapor' ile başla.",
+                          "No reports yet. Start with '➕ New Report'."))
+            for _r in _raporlar:
+                _b = " ".join(x for x in [_r.get("ev",""), _r.get("skor",""), _r.get("dep","")] if x)
+                _b = f"⚪ {_b}  ·  {_r.get('tarih','')}" if _b else _r.get("tarih","")
+                _oys = _r.get("oyuncular", [])
+                with st.expander(f"{_b}   ({len(_oys)} {t('oyuncu','players')})"):
+                    if _r.get("genel_not"):
+                        st.markdown(
+                            f"<div style='background:#11162a;border-left:3px solid #7c3aed;"
+                            f"padding:8px 12px;border-radius:6px;font-size:0.86rem;color:#cbd5e1;"
+                            f"margin-bottom:10px;'>📝 {_r['genel_not']}</div>", unsafe_allow_html=True)
+                    for _o in _oys:
+                        _mvk = _o.get("Mevki", ""); _tkm = _o.get("Takım", "")
+                        st.markdown(
+                            f"<div style='font-weight:700;color:#e2e8f0;margin-top:6px;'>{_o.get('Oyuncu','')}"
+                            f" <span style='color:#8899aa;font-weight:400;font-size:0.78rem;'>"
+                            f"{_mvk}{' · ' + _tkm if _tkm else ''}</span></div>", unsafe_allow_html=True)
+                        for _ik, _hf, _ak, _clr in [("💪","S","S","#4ade80"),("⚠️","W","W","#fbbf24"),
+                                                    ("📈","O","O","#60a5fa"),("🛑","T","T","#f87171")]:
+                            if str(_o.get(_ak,"")).strip():
+                                st.markdown(
+                                    f"<div style='font-size:0.82rem;margin-left:10px;color:#cbd5e1;'>"
+                                    f"{_ik} <b style='color:{_clr};'>{_hf}</b>: {_o[_ak]}</div>",
+                                    unsafe_allow_html=True)
+                    if st.button(t("🗑️ Sil", "🗑️ Delete"), key=f"int_sil_{_r.get('id')}"):
+                        internal_sil(_r.get("id")); st.rerun()
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 1 — OYUNCU LİSTESİ
