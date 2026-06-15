@@ -3113,13 +3113,23 @@ with bas_sol:
       </div>
     </div>""", unsafe_allow_html=True)
 
+def _nav_git(yeni_sayfa: str):
+    """Nav geçişi: ?oyuncu profil parametresini temizle, dili koru, sayfayı değiştir.
+    (Aksi halde oyuncu profilindeyken nav'a basınca odaklı profil ekranda kalırdı.)"""
+    _dil = st.query_params.get("dil", "")
+    st.query_params.clear()
+    if _dil:
+        st.query_params["dil"] = _dil
+    st.session_state["sayfa"] = yeni_sayfa
+    st.rerun()
+
+
 with nav_profil:
     st.markdown("<br>", unsafe_allow_html=True)
     _pf_active = st.session_state.get("sayfa") == "profil"
     if st.button(t("👤 Profilim", "👤 My Profile"), use_container_width=True,
                  type="primary" if _pf_active else "secondary"):
-        st.session_state["sayfa"] = "profil"
-        st.rerun()
+        _nav_git("profil")
 
 with nav_veri:
     st.markdown("<br>", unsafe_allow_html=True)
@@ -3141,14 +3151,12 @@ with nav_scout:
     _sc_label  = (t("🔎 Scouting (Premium) ◀", "🔎 Scouting (Premium) ◀") if _sc_active
                   else t("🔎 Scouting (Premium)", "🔎 Scouting (Premium)"))
     if st.button(_sc_label, use_container_width=True, type="primary" if _sc_active else "secondary"):
-        st.session_state["sayfa"] = "ana" if _sc_active else "scouting"
-        st.rerun()
+        _nav_git("ana" if _sc_active else "scouting")
 
 with nav_iletisim:
     st.markdown("<br>", unsafe_allow_html=True)
     if st.button(t("📬 İletişim (Basic)", "📬 Contact (Basic)"), use_container_width=True):
-        st.session_state["sayfa"] = "iletisim"
-        st.rerun()
+        _nav_git("iletisim")
 
 with nav_giris:
     st.markdown("<br>", unsafe_allow_html=True)
@@ -3159,8 +3167,7 @@ with nav_giris:
             for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
                 st.session_state.pop(k, None)
             _oturum_cikis()      # cookie temizle
-            st.session_state["sayfa"] = "ana"
-            st.rerun()
+            _nav_git("ana")      # ?oyuncu temizle + ana sayfaya dön
     else:
         if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True,
                      type="primary", help=t("Giriş yap", "Log in")):
@@ -3410,16 +3417,32 @@ def render_profil():
         st.rerun()
 
 
+# ─── Tutarlı "← Ana Sayfa" geri butonu (tüm tam-sayfa görünümlerde) ───────────
+def geri_ana_butonu(key: str):
+    _gc = st.columns([1.3, 4, 1.3])
+    with _gc[0]:
+        if st.button(t("← Ana Sayfa", "← Home"), key=key, use_container_width=True):
+            _dil_koru = st.query_params.get("dil", "")
+            st.query_params.clear()
+            if _dil_koru:
+                st.query_params["dil"] = _dil_koru
+            st.session_state["sayfa"] = "ana"
+            st.rerun()
+
+
 if st.session_state["sayfa"] == "profil":
+    geri_ana_butonu("geri_profil")
     render_profil()
     st.stop()
 
 if st.session_state["sayfa"] == "hakkinda":
+    geri_ana_butonu("geri_hakkinda")
     render_hakkinda_icerik()
     st.stop()
 
 # ─── İLETİŞİM SAYFASI ─────────────────────────────────────────────────────────
 if st.session_state["sayfa"] == "iletisim":
+    geri_ana_butonu("geri_iletisim")
     st.markdown(f"""
     <div style='max-width:600px;margin:0 auto;padding:10px 0 40px;'>
     <h2 style='color:#00c853;margin-bottom:6px;'>{t("İletişim", "Contact")}</h2>
@@ -3458,6 +3481,7 @@ if st.session_state["sayfa"] == "iletisim":
 
 # ─── TALEP / DANIŞMANLIK SAYFASI ─────────────────────────────────────────────
 if st.session_state["sayfa"] == "talep":
+    geri_ana_butonu("geri_talep")
     # Hero
     st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:16px;
@@ -3604,6 +3628,7 @@ if st.session_state["sayfa"] == "talep":
 
 # ─── SCOUTİNG SAYFASI (Premium kademe) ───────────────────────────────────────
 if st.session_state.get("sayfa") == "scouting":
+    geri_ana_butonu("geri_scouting")
     if tier_yeterli("premium"):
         st.markdown(f"""
         <div style='margin-bottom:4px;'>
