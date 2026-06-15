@@ -55,7 +55,18 @@ st.markdown("""<style>
 [data-testid="stElementContainer"]:empty { display:none; }
 [data-testid="stMainBlockContainer"] { padding-top:2.2rem !important; }
 /* Geniş modal (oyuncu profili) ── içerik sığsın */
-[data-testid="stDialog"] div[role="dialog"] { width:min(960px,94vw) !important; }
+/* Oyuncu profili modalı: geniş + içten kaydırılabilir (görünür sürgü) */
+[data-testid="stDialog"] div[role="dialog"] {
+    width:min(960px,94vw) !important;
+    max-height:88vh !important;
+    overflow-y:auto !important;
+    overscroll-behavior:contain;
+}
+[data-testid="stDialog"] div[role="dialog"]::-webkit-scrollbar { width:12px; }
+[data-testid="stDialog"] div[role="dialog"]::-webkit-scrollbar-track { background:#11162a; border-radius:6px; }
+[data-testid="stDialog"] div[role="dialog"]::-webkit-scrollbar-thumb {
+    background:#7c3aed; border-radius:6px; border:2px solid #11162a; }
+[data-testid="stDialog"] div[role="dialog"]::-webkit-scrollbar-thumb:hover { background:#a855f7; }
 
 /* ── Genel ── */
 .stApp { background-color:#0f1117; color:#e0e0e0;
