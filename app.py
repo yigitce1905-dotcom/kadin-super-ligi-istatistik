@@ -3132,31 +3132,8 @@ if "girildi" not in st.session_state:
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
-bas_sol, nav_profil, nav_veri, nav_scout, nav_iletisim, nav_giris, nav_dil = st.columns([2.3, 1, 1.15, 1.4, 1.2, 1.05, 0.6])
-
-with bas_sol:
-    _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
-    _hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
-    _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
-    st.markdown(f"""
-    <div class="baslik-kutu">
-      <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
-      <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
-             'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
-      <p>{t("Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
-            "Turkish Women's Super League stats · international player pool · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
-      <div class="hero-chips">
-        <span class="hero-chip">{t("SEZON","SEASON")} <b>2025-26</b></span>
-        <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
-        <span class="hero-chip"><b>{_hero_oyuncu}</b> {t("OYUNCU","PLAYERS")}</span>
-        <span class="hero-chip"><b>{_hero_gol}</b> {t("GOL","GOALS")}</span>
-        <span class="hero-chip">🔬 <b>350+</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
-      </div>
-    </div>""", unsafe_allow_html=True)
-
 def _nav_git(yeni_sayfa: str):
-    """Nav geçişi: ?oyuncu profil parametresini temizle, dili koru, sayfayı değiştir.
-    (Aksi halde oyuncu profilindeyken nav'a basınca odaklı profil ekranda kalırdı.)"""
+    """Nav geçişi: ?oyuncu profil parametresini temizle, dili koru, sayfayı değiştir."""
     _dil = st.query_params.get("dil", "")
     st.query_params.clear()
     if _dil:
@@ -3164,64 +3141,92 @@ def _nav_git(yeni_sayfa: str):
     st.session_state["sayfa"] = yeni_sayfa
     st.rerun()
 
+def _tr_veri_git():
+    """Ana TR veri ekranına dön (oyuncu profil/geçici state temizlenir)."""
+    _dil_koru = st.query_params.get("dil", "")
+    st.query_params.clear()
+    if _dil_koru:
+        st.query_params["dil"] = _dil_koru
+    for k in list(st.session_state.keys()):
+        if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad",
+                     "kulup_rol","kulup_tier","kulup_pro","dil","girildi"):
+            del st.session_state[k]
+    st.session_state["sayfa"] = "ana"
+    st.session_state["girildi"] = True
+    st.rerun()
 
-with nav_profil:
-    st.markdown("<br>", unsafe_allow_html=True)
-    _pf_active = st.session_state.get("sayfa") == "profil"
-    if st.button(t("👤 Profilim", "👤 My Profile"), use_container_width=True,
-                 type="primary" if _pf_active else "secondary"):
-        _nav_git("profil")
-
-with nav_veri:
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button(t("📊 TR Veri (Pro)", "📊 TR Data (Pro)"), use_container_width=True):
-        _dil_koru = st.query_params.get("dil", "")
-        st.query_params.clear()
-        if _dil_koru:
-            st.query_params["dil"] = _dil_koru   # dil tercihini koru
-        for k in list(st.session_state.keys()):
-            if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro","dil","girildi"):
-                del st.session_state[k]
-        st.session_state["sayfa"] = "ana"
-        st.session_state["girildi"] = True
-        st.rerun()
-
-with nav_scout:
-    st.markdown("<br>", unsafe_allow_html=True)
-    _sc_active = st.session_state.get("sayfa") == "scouting"
-    _sc_label  = (t("🔎 Scouting (Premium) ◀", "🔎 Scouting (Premium) ◀") if _sc_active
-                  else t("🔎 Scouting (Premium)", "🔎 Scouting (Premium)"))
-    if st.button(_sc_label, use_container_width=True, type="primary" if _sc_active else "secondary"):
-        _nav_git("ana" if _sc_active else "scouting")
-
-with nav_iletisim:
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button(t("📬 İletişim (Basic)", "📬 Contact (Basic)"), use_container_width=True):
-        _nav_git("iletisim")
-
-with nav_giris:
-    st.markdown("<br>", unsafe_allow_html=True)
+# ─── ÜST MENÜ ÇUBUĞU (kompakt; açılır menü) ───────────────────────────────────
+_nav_marka, _nav_bosluk, _nav_menu, _nav_giris, _nav_dil = st.columns([2.2, 3.4, 1.5, 1.2, 0.7])
+with _nav_marka:
+    st.markdown(
+        f"<div style='padding-top:8px;font-family:Sora,sans-serif;font-weight:800;"
+        f"font-size:1.05rem;color:#fff;white-space:nowrap;'>"
+        f"W-<span style='color:#a855f7;'>Scope</span> "
+        f"<span style='font-size:0.6rem;color:#64748b;font-weight:600;'>⚽</span></div>",
+        unsafe_allow_html=True)
+with _nav_menu:
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
+    _aktif_sayfa = st.session_state.get("sayfa", "ana")
+    with st.popover(t("☰ Menü", "☰ Menu"), use_container_width=True):
+        if st.button(t("📊 TR Veri (Pro)", "📊 TR Data (Pro)"),
+                     use_container_width=True, key="m_veri"):
+            _tr_veri_git()
+        if st.button(t("🔎 Scouting (Premium)", "🔎 Scouting (Premium)"),
+                     use_container_width=True, key="m_scout",
+                     type="primary" if _aktif_sayfa == "scouting" else "secondary"):
+            _nav_git("scouting")
+        if st.button(t("👤 Profilim", "👤 My Profile"),
+                     use_container_width=True, key="m_profil",
+                     type="primary" if _aktif_sayfa == "profil" else "secondary"):
+            _nav_git("profil")
+        if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"),
+                     use_container_width=True, key="m_talep"):
+            _nav_git("talep")
+        if st.button(t("📬 İletişim (Basic)", "📬 Contact (Basic)"),
+                     use_container_width=True, key="m_iletisim"):
+            _nav_git("iletisim")
+with _nav_giris:
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     if st.session_state.get("kulup_giris"):
         _ad_kisa = (st.session_state.get("kulup_ad") or "").split()[0][:10]
         if st.button(t("🚪 Çıkış", "🚪 Logout"), use_container_width=True,
                      help=t(f"{_ad_kisa} · Çıkış yap", f"{_ad_kisa} · Log out")):
             for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
                 st.session_state.pop(k, None)
-            _oturum_cikis()      # cookie temizle
-            _nav_git("ana")      # ?oyuncu temizle + ana sayfaya dön
+            _oturum_cikis()
+            _nav_git("ana")
     else:
         if st.button(t("🔐 Giriş", "🔐 Login"), use_container_width=True,
                      type="primary", help=t("Giriş yap", "Log in")):
             st.session_state["login_ac"] = True
             st.rerun()
-
-with nav_dil:
-    st.markdown("<br>", unsafe_allow_html=True)
+with _nav_dil:
+    st.markdown("<div style='height:4px'></div>", unsafe_allow_html=True)
     if st.button("🌐 EN" if not EN else "🌐 TR", use_container_width=True, help="Language / Dil"):
         _yeni_dil = "EN" if not EN else "TR"
         st.session_state["dil"] = _yeni_dil
-        st.query_params["dil"] = _yeni_dil   # URL'de sakla → yenilemede korunur
+        st.query_params["dil"] = _yeni_dil
         st.rerun()
+
+# ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
+_hero_oyuncu = len(df_tam) if not df_tam.empty else 0
+_hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
+_hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
+st.markdown(f"""
+<div class="baslik-kutu">
+  <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
+  <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
+         'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
+  <p>{t("Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
+        "Turkish Women's Super League stats · international player pool · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
+  <div class="hero-chips">
+    <span class="hero-chip">{t("SEZON","SEASON")} <b>2025-26</b></span>
+    <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
+    <span class="hero-chip"><b>{_hero_oyuncu}</b> {t("OYUNCU","PLAYERS")}</span>
+    <span class="hero-chip"><b>{_hero_gol}</b> {t("GOL","GOALS")}</span>
+    <span class="hero-chip">🔬 <b>350+</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
+  </div>
+</div>""", unsafe_allow_html=True)
 
 # Giriş formu sidebar'da her zaman
 giris_formu()
