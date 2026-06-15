@@ -275,7 +275,8 @@
     "position": "Midfield - Right Wing"
   },
   "SLAĐANA BULATOVIĆ": {
-    "source": "manuel",
+    "born": "04.05.1994",
+    "source": "soccerdonna spieler_20184",
     "position": "Midfield - Attacking Midfield",
     "nationality": "Montenegro"
   },
@@ -337,6 +338,8 @@
     "position": "Goalkeeper"
   },
   "DAMLA BOZYEL": {
+    "born": "14.09.1998",
+    "source": "soccerdonna spieler_40697",
     "position": "Defender - Centre Back"
   },
   "NEHİR ZEYTÜNLÜ": {
@@ -628,7 +631,10 @@
     "position": "Goalkeeper"
   },
   "SEJDE ABRAHAMSSON": {
-    "position": "Defender - Right Back"
+    "born": "24.01.1998",
+    "source": "soccerdonna spieler_18312",
+    "position": "Defender - Right Back",
+    "nationality": "Turkey"
   },
   "BLERTA SMAILI": {
     "position": "Defender - Centre Back"
