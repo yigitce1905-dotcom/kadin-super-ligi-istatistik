@@ -42,6 +42,15 @@ EN = st.session_state.get("dil") == "EN"
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
 
+/* ── Boşluk/sıkışıklık: gereksiz büyük boşlukları daralt ── */
+.block-container { padding-top:2.2rem !important; padding-bottom:2rem !important;
+    max-width:1480px !important; }
+[data-testid="stVerticalBlock"] { gap:0.55rem; }
+[data-testid="stElementContainer"]:empty { display:none; }
+[data-testid="stMainBlockContainer"] { padding-top:2.2rem !important; }
+/* Geniş modal (oyuncu profili) ── içerik sığsın */
+[data-testid="stDialog"] div[role="dialog"] { width:min(960px,94vw) !important; }
+
 /* ── Genel ── */
 .stApp { background-color:#0f1117; color:#e0e0e0;
     font-family:'Inter',-apple-system,'Segoe UI',sans-serif; }
@@ -3205,6 +3214,21 @@ if st.session_state.get("kulup_giris"):
     )
 
 
+# ─── Oyuncu profili MODALI (alta kaydırmak yerine üstte açılır) ───────────────
+# Liste/filtre sayfasından ayrılmadan profil açar → geri dönünce hiçbir şey
+# sıfırlanmaz. Tanım her run'da yenilenir → başlık dile göre doğru gelir.
+def profil_ac(isim: str, kaynak: str = "tr"):
+    st.session_state["_profil_dlg"] = (isim, kaynak)
+    st.rerun()
+
+@st.dialog(t("📋 Oyuncu Profili", "📋 Player Profile"), width="large")
+def _profil_dialog(isim, kaynak):
+    if kaynak == "scout":
+        render_scouting_detay(isim)
+    else:
+        render_ana_lig_profil(isim)
+
+
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
 # ─── ODAKLI PROFİL SAYFASI (?oyuncu=X) — sekmeler yerine tek oyuncu ───────────
 if url_oyuncu:
@@ -3962,13 +3986,16 @@ if st.session_state.get("sayfa") == "scouting":
                                 etiket_ayarla(_sl_kullanici, _secili, _yeni_etk)
                                 st.rerun()
 
-                        st.markdown(
-                            "<hr style='border-color:#2a2a38;margin:10px 0 14px;'>",
-                            unsafe_allow_html=True)
-
-                        # Tam profili aynı sayfada render et (navigasyon yok →
-                        # session korunur → giriş ekranı çıkmaz)
-                        render_scouting_detay(_secili)
+                        # Tam profil ÜSTTE modal olarak açılır (liste/filtre korunur)
+                        if st.button(t("📋 Profili Aç", "📋 Open Profile"),
+                                     key="sc_profil_ac", use_container_width=True,
+                                     type="primary"):
+                            st.session_state["_scout_dlg_son"] = _secili
+                            _profil_dialog(_secili, "scout")
+                        # Satır seçimi değiştiğinde otomatik aç (tek tık hissi)
+                        elif _secili != st.session_state.get("_scout_dlg_son"):
+                            st.session_state["_scout_dlg_son"] = _secili
+                            _profil_dialog(_secili, "scout")
     else:
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
@@ -4284,6 +4311,11 @@ _is_admin = st.session_state.get("kulup_kullanici") == "admin"
 
 _tabs = st.tabs(_sekmeler)
 
+# tab1 "Tam Profili Aç" tetikleyicisi (modal ana app flow'unda açılır)
+_dlg = st.session_state.pop("_profil_dlg", None)
+if _dlg:
+    _profil_dialog(_dlg[0], _dlg[1])
+
 # "Listeye Dön" sonrası: ilk sekme (Benim Kadrom) yerine Oyuncu Listesi'ni seç.
 # st.tabs programatik seçim sunmadığından sekme butonuna JS ile tıklanır.
 if st.session_state.pop("_don_sekme", None) == "liste":
@@ -4480,9 +4512,9 @@ with tab1:
                 '</div>'
             )
             st.markdown(kart, unsafe_allow_html=True)
-            if st.button(t("👤 Tam Profili Aç", "👤 Full Profile"), key="ana_lig_profil_ac", use_container_width=True):
-                st.query_params["oyuncu"] = tikli_oyuncu
-                st.rerun()
+            if st.button(t("👤 Tam Profili Aç", "👤 Full Profile"), key="ana_lig_profil_ac",
+                         use_container_width=True, type="primary"):
+                profil_ac(tikli_oyuncu, "tr")   # üstte modal aç (liste korunur)
     st.caption(t("⚽F = Ayak golü · ⚽H = Kafa golü · ⚽P = Penaltı · ▶11 = İlk 11 · ↗Yed = Yedek giriş",
                  "⚽F = Foot goal · ⚽H = Header goal · ⚽P = Penalty · ▶11 = Started · ↗Yed = Substitute"))
 
