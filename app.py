@@ -24,6 +24,7 @@ _page_title = ("Turkish Women's Super League 2025-2026"
 st.set_page_config(
     page_title=_page_title,
     page_icon="⚽", layout="wide",
+    initial_sidebar_state="expanded",
 )
 
 # ─── Dil (TR varsayılan / EN hedefli sayfalar) ───
@@ -3357,20 +3358,29 @@ with st.sidebar:
                  type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
         _nav_git("iletisim")
 
-    # ── TR VERİ SEKMELERİ grubu (yalnızca TR Veri sayfasında) ──
-    if _aktif_sayfa == "ana":
-        st.markdown(f"<div class='nav-grup'>{t('TR VERİ SEKMELERİ', 'TR DATA TABS')}</div>",
-                    unsafe_allow_html=True)
-        _sk_etiketler = _tr_sekme_etiketleri(_nav_giris_var)
-        _aktif_sekme = st.session_state.get("tr_sekme")
-        if _aktif_sekme not in _sk_etiketler:
-            _aktif_sekme = _sk_etiketler[0]
-            st.session_state["tr_sekme"] = _aktif_sekme
-        for _i, _et in enumerate(_sk_etiketler):
-            if st.button(_et, key=f"navsek_{_i}", use_container_width=True,
-                         type="primary" if _et == _aktif_sekme else "secondary"):
-                st.session_state["tr_sekme"] = _et
-                st.rerun()
+    # ── TR VERİ SEKMELERİ grubu (tüm sayfalarda görünür) ──
+    st.markdown(f"<div class='nav-grup'>{t('TR VERİ SEKMELERİ', 'TR DATA TABS')}</div>",
+                unsafe_allow_html=True)
+    _sk_etiketler = _tr_sekme_etiketleri(_nav_giris_var)
+    _aktif_sekme = st.session_state.get("tr_sekme")
+    if _aktif_sekme not in _sk_etiketler:
+        _aktif_sekme = _sk_etiketler[0]
+        st.session_state["tr_sekme"] = _aktif_sekme
+    for _i, _et in enumerate(_sk_etiketler):
+        # Aktif vurgu yalnız TR Veri sayfasındayken; başka sayfadayken
+        # tıklanınca TR Veri'ye geçip o sekme açılır.
+        _akt = (_aktif_sayfa == "ana" and _et == _aktif_sekme)
+        if st.button(_et, key=f"navsek_{_i}", use_container_width=True,
+                     type="primary" if _akt else "secondary"):
+            st.session_state["tr_sekme"] = _et
+            if _aktif_sayfa != "ana":
+                _dil_k = st.query_params.get("dil", "")
+                st.query_params.clear()
+                if _dil_k:
+                    st.query_params["dil"] = _dil_k
+                st.session_state["sayfa"] = "ana"
+                st.session_state["girildi"] = True
+            st.rerun()
 
     # ── Footer: Dil + Giriş/Çıkış ──
     st.markdown("<div style='border-top:1px solid #222a42;margin:12px 2px 8px;'></div>",
