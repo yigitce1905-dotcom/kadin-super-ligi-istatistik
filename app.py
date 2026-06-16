@@ -394,7 +394,21 @@ def veri_yukle():
 
 @st.cache_data(ttl=1800)
 def puan_durumu_cek():
-    """TFF'den Kadınlar Süper Ligi puan durumunu çeker (table.s-table)."""
+    """Kadınlar Süper Ligi puan durumu. Sezon bittiği için yerel
+    puan_durumu.json BİRİNCİL kaynaktır (TFF SSL/erişim sorunlarında bile
+    tablo görünür); dosya yoksa TFF'den canlı çekilir."""
+    yerel = _DIZIN / "puan_durumu.json"
+    if yerel.exists():
+        try:
+            data = json.load(open(yerel, encoding="utf-8"))
+            siralar = data.get("siralar", [])
+            if siralar:
+                kolon = ["O", "G", "B", "M", "A", "Y", "AV", "P"]
+                rows = [[s.get("Takım", "")] + [str(s.get(k, "")) for k in kolon]
+                        for s in siralar]
+                return pd.DataFrame(rows, columns=[""] + kolon)
+        except Exception:
+            pass
     url = "https://www.tff.org/Default.aspx?pageID=1000&hafta=30"
     try:
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
@@ -3401,6 +3415,7 @@ def _nav_git(yeni_sayfa: str):
     if _dil:
         st.query_params["dil"] = _dil
     st.session_state["sayfa"] = yeni_sayfa
+    st.session_state["girildi"] = True   # sol panele tıklayan zaten içeri giriyor
     st.rerun()
 
 def _tr_veri_git():
@@ -3489,6 +3504,7 @@ with st.sidebar:
             if st.button(t("🔐 Giriş Yap", "🔐 Log In"), key="nav_login",
                          use_container_width=True, type="primary"):
                 st.session_state["login_ac"] = True
+                st.session_state["girildi"] = True
                 st.rerun()
     with _ac2:
         if st.button("🌐 EN" if not EN else "🌐 TR", key="nav_dil", use_container_width=True):
@@ -3532,13 +3548,13 @@ with st.sidebar:
         if st.button(_et, key=f"navsek_{_i}", use_container_width=True,
                      type="primary" if _akt else "secondary"):
             st.session_state["tr_sekme"] = _et
+            st.session_state["girildi"] = True   # sekmeye tıklayan içeri girer
             if _aktif_sayfa != "ana":
                 _dil_k = st.query_params.get("dil", "")
                 st.query_params.clear()
                 if _dil_k:
                     st.query_params["dil"] = _dil_k
                 st.session_state["sayfa"] = "ana"
-                st.session_state["girildi"] = True
             st.rerun()
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
