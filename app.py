@@ -51,14 +51,26 @@ st.markdown("""<style>
 
 /* ── Streamlit "prototip" chrome'unu gizle (profesyonel görünüm) ──
    ⋮ menü, Deploy, footer ve üst renk şeridi kaldırılır.
-   Sidebar aç/kapa kontrolü (mobil için gerekli) KORUNUR. */
+   ÖNEMLİ: Header'ı yok etmiyoruz (yalnızca şeffaf) ki sol paneli açan
+   ☰ düğmesi erişilebilir kalsın — aksi halde panel kapanınca geri açılamaz. */
+/* DİKKAT: stToolbar'ı tümden gizleme! Sol paneli açan ☰ düğmesi onun
+   İÇİNDE; gizlersen panel kapanınca geri açılamaz. Yalnızca sağdaki
+   aksiyonları (Deploy / ⋮ menü / durum) gizliyoruz. */
 #MainMenu { visibility:hidden; }
-[data-testid="stToolbar"] { display:none !important; }
+[data-testid="stToolbarActions"] { display:none !important; }
+[data-testid="stAppDeployButton"] { display:none !important; }
 [data-testid="stDecoration"] { display:none !important; }
 [data-testid="stStatusWidget"] { display:none !important; }
-header[data-testid="stHeader"] { background:transparent !important; height:0 !important; }
+header[data-testid="stHeader"] { background:transparent !important; }
 footer { visibility:hidden !important; display:none !important; }
 .viewerBadge_link__qRIco, [class*="viewerBadge"] { display:none !important; }
+/* Sol panel aç/kapa kontrolü her zaman görünür ve tıklanabilir kalsın */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="stExpandSidebarButton"],
+[data-testid="stSidebarCollapseButton"],
+[data-testid="collapsedControl"] {
+    display:flex !important; visibility:visible !important; opacity:1 !important;
+    z-index:1000 !important; }
 
 /* ── Marka kimliği (tek kaynak): Mor = marka/navigasyon · Yeşil = veri/pozitif ── */
 :root {
