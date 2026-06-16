@@ -3343,11 +3343,21 @@ _aktif_sayfa   = st.session_state.get("sayfa", "ana")
 _nav_giris_var = st.session_state.get("kulup_giris", False)
 
 with st.sidebar:
-    # ── Marka ──
+    # ── Marka (nişangâh/scope logosu + wordmark) ──
     _marka_alt = t("Kadın futbolu platformu", "Women's football platform")
+    _logo_svg = (
+        "<svg width='26' height='26' viewBox='0 0 32 32' fill='none' "
+        "style='vertical-align:-6px;margin-right:7px;flex:none;'>"
+        "<circle cx='16' cy='16' r='13' stroke='#a855f7' stroke-width='2.2'/>"
+        "<circle cx='16' cy='16' r='5.5' stroke='#c084fc' stroke-width='2'/>"
+        "<circle cx='16' cy='16' r='1.7' fill='#ec4899'/>"
+        "<line x1='16' y1='1.5' x2='16' y2='7' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
+        "<line x1='16' y1='25' x2='16' y2='30.5' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
+        "<line x1='1.5' y1='16' x2='7' y2='16' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
+        "<line x1='25' y1='16' x2='30.5' y2='16' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
+        "</svg>")
     st.markdown(
-        f"<div class='nav-marka'>W-<span>Scope</span> "
-        f"<span style='font-size:0.62rem;color:#64748b;font-weight:600;'>⚽</span></div>"
+        f"<div class='nav-marka'>{_logo_svg}W-<span>Scope</span></div>"
         f"<div class='nav-marka-alt'>{_marka_alt}</div>",
         unsafe_allow_html=True)
 
