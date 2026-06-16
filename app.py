@@ -2966,6 +2966,91 @@ def render_scout_kadro_raporu(isim: str):
 
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
+_GRUP_EN = {"Kaleci": "Goalkeepers", "Defans": "Defenders",
+            "Orta Saha": "Midfielders", "Forvet": "Forwards"}
+
+def _pct_renk(p: int) -> str:
+    """Percentile değerine göre bar rengi (üst dilim yeşil → alt dilim kırmızı)."""
+    if p >= 75: return "#1db954"
+    if p >= 50: return "#84cc16"
+    if p >= 30: return "#f59e0b"
+    return "#ef4444"
+
+def _percentil_hesapla(secili: str):
+    """Oyuncunun mevki grubu içindeki yüzdelik (percentile) sıralaması.
+    Akran havuzu: aynı geniş mevki + anlamlı süre (kademeli eşik)."""
+    if df_tam.empty or "Mevki" not in df_tam.columns:
+        return None
+    alt = df_tam[df_tam["Oyuncu"] == secili]
+    if alt.empty:
+        return None
+    grup = _MEVKI_GRUP_MAP.get(alt.iloc[0].get("Mevki", ""))
+    if not grup:
+        return None
+    d = df_tam.copy()
+    d["_g"] = d["Mevki"].map(lambda m: _MEVKI_GRUP_MAP.get(m))
+    grup_df = d[d["_g"] == grup]
+    peers = grup_df[grup_df["Dakika"] >= 450]
+    if len(peers) < 8:
+        peers = grup_df[grup_df["Dakika"] >= 180]
+    if len(peers) < 8:
+        peers = grup_df
+    if secili not in set(peers["Oyuncu"]):
+        peers = pd.concat([peers, grup_df[grup_df["Oyuncu"] == secili]])
+    peers = peers.drop_duplicates(subset=["Oyuncu"]).copy()
+    peers["Gol/90"]  = peers.apply(lambda r: r["Gol"]/r["Dakika"]*90 if r["Dakika"] > 0 else 0, axis=1)
+    peers["Sarı/90"] = peers.apply(lambda r: r["Sarı"]/r["Dakika"]*90 if r["Dakika"] > 0 else 0, axis=1)
+    peers["İlk11%"]  = peers.apply(lambda r: r["İlk11"]/r["Maç"]*100 if r["Maç"] > 0 else 0, axis=1)
+    if grup == "Kaleci":
+        setler = [("Maç",    t("Maç", "Matches"),    0, False),
+                  ("Dakika", t("Süre (dk)", "Minutes"), 0, False),
+                  ("İlk11%", t("İlk 11 %", "Start %"),  0, False)]
+    else:
+        setler = [("Gol/90", t("Gol / 90 dk", "Goals / 90"), 2, False),
+                  ("Gol",    t("Toplam Gol", "Total Goals"), 0, False),
+                  ("Dakika", t("Süre (dk)", "Minutes"),      0, False),
+                  ("İlk11%", t("İlk 11 %", "Start %"),       0, False),
+                  ("Sarı/90", t("Sarı / 90 dk", "Yellow / 90"), 2, True)]
+    out = []
+    for col, etiket, ond, ters in setler:
+        seri  = peers[col].astype(float)
+        deger = float(peers[peers["Oyuncu"] == secili][col].iloc[0])
+        pct   = round(((seri >= deger).mean() if ters else (seri <= deger).mean()) * 100)
+        if ond == 2:            ds = f"{deger:.2f}"
+        elif col == "İlk11%":   ds = f"{deger:.0f}%"
+        else:                   ds = f"{int(round(deger))}"
+        out.append((etiket, ds, int(pct)))
+    return {"grup": grup, "n": len(peers), "metrikler": out}
+
+def render_percentil_panel(secili: str):
+    """Profilde mevki-içi percentile barlarını çizer."""
+    veri = _percentil_hesapla(secili)
+    if not veri:
+        return
+    grup = veri["grup"]
+    grup_ad = grup if not EN else _GRUP_EN.get(grup, grup)
+    basl = t(f"🎯 Mevki İçi Sıralama — {grup_ad}", f"🎯 Within-Position Ranking — {grup_ad}")
+    alt  = t(f"{veri['n']} {grup_ad} oyuncu arasında yüzdelik (percentile) sıralama · 100% = en iyi",
+             f"Percentile rank among {veri['n']} {grup_ad} · 100% = best")
+    satirlar = ""
+    for etiket, ds, pct in veri["metrikler"]:
+        renk = _pct_renk(pct)
+        satirlar += (
+            "<div style='display:flex;align-items:center;gap:10px;margin:7px 0;'>"
+            f"<span style='width:118px;font-size:0.78rem;color:#aeb8cc;flex:none;'>{etiket}</span>"
+            f"<span style='width:48px;text-align:right;font-size:0.82rem;color:#e2e8f0;font-weight:700;flex:none;'>{ds}</span>"
+            "<div style='flex:1;height:9px;background:#1a1f36;border-radius:5px;overflow:hidden;'>"
+            f"<div style='width:{pct}%;height:100%;background:{renk};border-radius:5px;'></div></div>"
+            f"<span style='width:40px;text-align:right;font-size:0.8rem;font-weight:800;color:{renk};flex:none;'>{pct}%</span>"
+            "</div>")
+    st.markdown(
+        "<div style='background:#11162a;border:1px solid #232a40;border-radius:12px;"
+        "padding:14px 18px;margin:6px 0 4px;'>"
+        f"<div style='font-size:0.95rem;font-weight:700;color:#f1f5f9;'>{basl}</div>"
+        f"<div style='font-size:0.72rem;color:#64748b;margin:2px 0 10px;'>{alt}</div>"
+        f"{satirlar}</div>", unsafe_allow_html=True)
+
+
 def render_ana_lig_profil(secili):
     _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
@@ -3073,6 +3158,9 @@ def render_ana_lig_profil(secili):
             <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 {t("Kırmızı","Red")}</div></div>
           </div>
         </div>""", unsafe_allow_html=True)
+
+        # ── Mevki içi percentile sıralaması (scout sinyali) ──────────────────
+        render_percentil_panel(secili)
 
         st.markdown("<br>", unsafe_allow_html=True)
         p1, p2 = st.columns(2)
