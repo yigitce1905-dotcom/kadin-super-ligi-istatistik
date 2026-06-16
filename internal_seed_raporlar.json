@@ -1,0 +1,122 @@
+[
+  {
+    "id": 20260415,
+    "kullanici": "admin",
+    "tarih": "2026-04-15",
+    "ev": "Türkiye U19",
+    "dep": "Karadağ U19",
+    "skor": "5-0",
+    "genel_not": "15 Nisan 2026 — Türkiye U19 Kadın Millî Takımı, Karadağ U19'u 5-0 yendi. Oyuncuların performans ve taktiksel rollerine dayalı detaylı SWOT analizi. İlk 11'ler ve öne çıkan yedekler; maç içi aksiyonlar ve yaş grubu standartları dikkate alınarak değerlendirilmiştir. (Goller: 7' Lucia Özkur, 54' Yaren Ersen, 63' Ela Yetim, 71' Sude Öztaş, 84' Zeynep Bilir.)",
+    "oyuncular": [
+      {
+        "Oyuncu": "Sinem Özdemir",
+        "Mevki": "Kaleci",
+        "Takım": "Türkiye U19",
+        "S": "Maçı gol yemeden (clean sheet) tamamlaması; oyun boyunca konsantrasyonunu yüksek tutması.",
+        "W": "Karadağ'ın hücum geliştirememesi nedeniyle baskı altında ayak tekniğinin ve yan top kalitesinin yeterince test edilememesi.",
+        "O": "Üst düzey turnuva deneyimiyle A Millî Takım geniş havuzuna geçiş yapma şansı.",
+        "T": "Az pozisyon gelen maçlarda soğuma ve ani gelişen kontra ataklarda zamanlama hatası yapma riski."
+      },
+      {
+        "Oyuncu": "İlayda Tali (C)",
+        "Mevki": "Sağ Bek / Defans",
+        "Takım": "Türkiye U19",
+        "S": "Takım kaptanı olarak saha içi liderliği; geçiş savunmasında hatasız oyun ve savunma çizgisini önde kurma becerisi.",
+        "W": "Hücum bindirmelerinde (overlapping) son orta kalitesinin standart seviyede kalması.",
+        "O": "Modern kanat beki (wing-back) rolüne evrilerek hücum aksiyonlarında daha fazla kilit rol üstlenme potansiyeli.",
+        "T": "Fiziksel gücü ve atletizmi yüksek kanat oyuncularına karşı bire bir (1v1) savunmada yaşayabileceği aksamalar."
+      },
+      {
+        "Oyuncu": "Lucia Özkur",
+        "Mevki": "Stoper / Defans",
+        "Takım": "Türkiye U19",
+        "S": "Hava hakimiyeti; 7. dakikada duran toptan perdeyi açan golü atarak skorer stoper kumaşı sergilemesi; fiziksel üstünlük.",
+        "W": "Çabuk ve patlayıcı hıza sahip forvetlere karşı arkaya atılan toplarda ağır kalma riski.",
+        "O": "Duran toplarda takımın ana hücum silahlarından birine dönüşmesi; Avrupa kulüplerinin scouting listelerine girme potansiyeli.",
+        "T": "Defans hattından oyun kurarken (building from the back) yapabileceği riskli pas tercihleri."
+      },
+      {
+        "Oyuncu": "Yaren Öz",
+        "Mevki": "Stoper / Defans",
+        "Takım": "Türkiye U19",
+        "S": "Lucia ile yakaladığı tandem uyumu; pozisyon alma becerisi ve hatasız kesicilik.",
+        "W": "Topla dikine çıkışlarda (ball progression) insiyatif alma konusunda çekingen kalması.",
+        "O": "Baskı altında soğukkanlı pas dağıtım yeteneğini geliştirerek komple bir stoper profili çizme fırsatı.",
+        "T": "Takım blok halinde öndeyken arkada bırakılan geniş alanda yakalanma riski."
+      },
+      {
+        "Oyuncu": "Ecemnur Öztürk",
+        "Mevki": "Merkez Orta Saha",
+        "Takım": "Türkiye U19",
+        "S": "İkinci bölgede oyun kurulumu; dönen topları (second balls) toplama ve pas trafiğini yönlendirme becerisi.",
+        "W": "Yoğun fiziksel ikili mücadelelerde (duels) devamlılık eksikliği.",
+        "O": "Tempo belirleyici oyun kurucu (deep-lying playmaker) rolünde uzmanlaşma potansiyeli.",
+        "T": "Agresif pres yapan takımlara karşı merkezde yaşayabileceği top kayıpları."
+      },
+      {
+        "Oyuncu": "Yaren Beyazgül",
+        "Mevki": "Merkez Orta Saha",
+        "Takım": "Türkiye U19",
+        "S": "Taktiksel esneklik ve çok yönlülük; rakip pas kanallarını kapatma sezgisi.",
+        "W": "Üçüncü bölgeye (final third) yaratıcı ve dikine pas desteğinde sınırlı kalması.",
+        "O": "Çift yönlü orta saha (box-to-box) dinamizmini artırarak takımın vazgeçilmez motoru haline gelmesi.",
+        "T": "Pozisyon geçişlerinde alan paylaşımı hatası yapmaya açık olması."
+      },
+      {
+        "Oyuncu": "Miray Ayhan",
+        "Mevki": "Merkez Orta Saha",
+        "Takım": "Türkiye U19",
+        "S": "Oyunun yönünü hızlı çevirme (switching play); agresif ve doğru zamanlamalı ön alan presi.",
+        "W": "Topsuz oyunda alan takibinde zaman zaman konsantrasyon kopmaları yaşaması.",
+        "O": "Hücum organizasyonlarında kilit pas (key pass) istatistiğini yukarı çekerek asist özelliğini parlatması.",
+        "T": "Merkezdeki agresif yapısı nedeniyle erken kart görme eğilimi."
+      },
+      {
+        "Oyuncu": "Yaren Ersen",
+        "Mevki": "Kanat / Hücum",
+        "Takım": "Türkiye U19",
+        "S": "Skorer kimlik (54. dakikada skoru 2-0 yapan golü attı); çizgideki sürati ve bire birde adam eksiltme yeteneği.",
+        "W": "Son tercih hatası; pas/şut dengesinde bazen aceleci kararlar vermesi.",
+        "O": "Modern iç forvet (inside forward) rolüne adapte olarak gol sayılarını çift hanelere çıkarma şansı.",
+        "T": "Kapanan kompakt savunmalara karşı dar alanda etkinlik kaybı yaşama riski."
+      },
+      {
+        "Oyuncu": "Ela Yetim",
+        "Mevki": "Kanat / Hücum",
+        "Takım": "Türkiye U19",
+        "S": "Temiz bitiricilik (63. dakikada takımın 3. golünü kaydetti); topsuz koşularla savunma arkasına sarkma becerisi.",
+        "W": "Defansif yardıma (tracking back) ve bek takibine katılım oranının düşük olması.",
+        "O": "Fiziksel güçlenmeyle birlikte elit düzey bir kanat-forvete dönüşme potansiyeli.",
+        "T": "Fiziksel ve sert oynayan savunmacılar karşısında mental olarak oyundan erken düşme riski."
+      },
+      {
+        "Oyuncu": "Sude Öztaş",
+        "Mevki": "Forvet",
+        "Takım": "Türkiye U19",
+        "S": "Ceza sahası içi fırsatçılığı (71. dakikada golünü attı); sırtı dönük oynayabilme ve stoperleri yıpratma.",
+        "W": "Maç içi devamlılığının düşük olması; pas istasyonu olma konusunda eksikler.",
+        "O": "Safkan bir pivot santrfor/hedef adam profili geliştirerek takımı ileride tutma gücü kazanması.",
+        "T": "Fiziksel olarak yıpratıcı stoperler arasında pas bağlantısı kesildiğinde izole kalması."
+      },
+      {
+        "Oyuncu": "Selen Yarayan",
+        "Mevki": "Kanat / Forvet",
+        "Takım": "Türkiye U19",
+        "S": "Hücum hattındaki yüksek hareketlilik; savunmayı hataya zorlayan ön alan presi ve arkadaşlarına alan açması.",
+        "W": "Son vuruşlardaki netlik (precision) ve soğukkanlılık seviyesinin geliştirilmesi gerekliliği.",
+        "O": "Hücum hattının her bölgesinde (sağ/sol kanat, sahte 9) oynayabilme esnekliği.",
+        "T": "Doğrudan skora katkı veremediği seanslarda özgüven kaybı yaşaması."
+      },
+      {
+        "Oyuncu": "Zeynep Bilir",
+        "Mevki": "Hücum (Sonradan Giren)",
+        "Takım": "Türkiye U19",
+        "S": "Oyuna sonradan girip skora doğrudan etki etmesi (84. dakikada takımın 5. golünü attı); yüksek enerji düzeyi.",
+        "W": "Taktik disipline sadakat ve savunma katkısı seviyesinin sınırlı sürede ölçülememesi.",
+        "O": "Kadroda 'hamle oyuncusu' (super sub) rolünden ilk 11 oyuncusuna evrilme fırsatı.",
+        "T": "Süre alamadığı ya da az süre bulduğu dönemlerde yaşanabilecek motivasyon kırıklığı."
+      }
+    ],
+    "olusturma": "2026-04-15T12:00:00"
+  }
+]

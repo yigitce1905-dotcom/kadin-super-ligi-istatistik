@@ -1228,9 +1228,27 @@ def _internal_tum() -> list:
     except Exception:
         return []
 
+_INTERNAL_SEED_YOL = pathlib.Path(__file__).parent / "internal_seed_raporlar.json"
+
+def _internal_seed() -> list:
+    """Repoya gömülü örnek/başlangıç raporları (salt-okunur; GSheet'e yazılmaz)."""
+    if not _INTERNAL_SEED_YOL.exists():
+        return []
+    try:
+        with open(_INTERNAL_SEED_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
 def internal_yukle(kullanici: str) -> list:
     kullanici = (kullanici or "").strip()
     rs = [r for r in _internal_tum() if str(r.get("kullanici","")).strip() == kullanici]
+    # Gömülü seed raporları (aynı kullanıcı) okuma anında eklenir — yazma yoluna
+    # girmediği için silinmez, kalıcı örnek olarak durur. id çakışması engellenir.
+    mevcut = {str(r.get("id","")) for r in rs}
+    rs += [r for r in _internal_seed()
+           if str(r.get("kullanici","")).strip() == kullanici
+           and str(r.get("id","")) not in mevcut]
     return sorted(rs, key=lambda r: str(r.get("olusturma","")), reverse=True)
 
 def _internal_kaydet_hepsi(kayitlar: list):
