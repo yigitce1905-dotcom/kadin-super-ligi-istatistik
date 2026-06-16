@@ -3464,6 +3464,29 @@ with st.sidebar:
             f"{_t_ikon} {_t_ad} {_uye_kelime}</span>{_dn_etk}</div>",
             unsafe_allow_html=True)
 
+    # ── Giriş / Çıkış + Dil (en üstte, her zaman görünür) ──
+    _ac1, _ac2 = st.columns([1.5, 1])
+    with _ac1:
+        if _nav_giris_var:
+            if st.button(t("🚪 Çıkış", "🚪 Logout"), key="nav_cikis", use_container_width=True):
+                for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
+                    st.session_state.pop(k, None)
+                _oturum_cikis()
+                _nav_git("ana")
+        else:
+            if st.button(t("🔐 Giriş Yap", "🔐 Log In"), key="nav_login",
+                         use_container_width=True, type="primary"):
+                st.session_state["login_ac"] = True
+                st.rerun()
+    with _ac2:
+        if st.button("🌐 EN" if not EN else "🌐 TR", key="nav_dil", use_container_width=True):
+            _yeni_dil = "EN" if not EN else "TR"
+            st.session_state["dil"] = _yeni_dil
+            st.query_params["dil"] = _yeni_dil
+            st.rerun()
+    st.markdown("<div style='border-bottom:1px solid #1c2238;margin:8px 2px 0;'></div>",
+                unsafe_allow_html=True)
+
     # ── PLATFORM grubu ──
     st.markdown(f"<div class='nav-grup'>{t('PLATFORM', 'PLATFORM')}</div>", unsafe_allow_html=True)
     if st.button(t("📊 TR Veri", "📊 TR Data"), key="nav_veri", use_container_width=True,
@@ -3505,28 +3528,6 @@ with st.sidebar:
                 st.session_state["sayfa"] = "ana"
                 st.session_state["girildi"] = True
             st.rerun()
-
-    # ── Footer: Dil + Giriş/Çıkış ──
-    st.markdown("<div style='border-top:1px solid #222a42;margin:12px 2px 8px;'></div>",
-                unsafe_allow_html=True)
-    _fc1, _fc2 = st.columns(2)
-    with _fc1:
-        if st.button("🌐 EN" if not EN else "🌐 TR", key="nav_dil", use_container_width=True):
-            _yeni_dil = "EN" if not EN else "TR"
-            st.session_state["dil"] = _yeni_dil
-            st.query_params["dil"] = _yeni_dil
-            st.rerun()
-    with _fc2:
-        if _nav_giris_var:
-            if st.button(t("🚪 Çıkış", "🚪 Logout"), key="nav_cikis", use_container_width=True):
-                for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
-                    st.session_state.pop(k, None)
-                _oturum_cikis()
-                _nav_git("ana")
-        else:
-            if st.button(t("🔐 Giriş", "🔐 Login"), key="nav_login", use_container_width=True, type="primary"):
-                st.session_state["login_ac"] = True
-                st.rerun()
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
