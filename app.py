@@ -3095,6 +3095,106 @@ def render_percentil_panel(secili: str):
         f"{satirlar}</div>", unsafe_allow_html=True)
 
 
+def _ana_lig_pdf_uret(secili: str) -> bytes:
+    """TR lig oyuncusu için tek sayfalık markalı PDF (DejaVu — Türkçe destekli).
+    Sezon istatistikleri + mevki-içi percentile barları."""
+    from fpdf import FPDF
+    _f = pathlib.Path(__file__).parent / "fonts"
+    row = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
+    sd  = sd_profiller.get(secili, {})
+    mac = int(row.get("Maç", 0)); gol = int(row.get("Gol", 0)); dk = int(row.get("Dakika", 0))
+    ilk11 = int(row.get("İlk11", 0)); sari = int(row.get("Sarı", 0)); kir = int(row.get("Kırmızı", 0))
+    gol_f = int(row.get("GolF", 0)); gol_h = int(row.get("GolH", 0)); pen = int(row.get("GolP", 0))
+    ort = round(gol / mac, 2) if mac else 0
+    ilk11_oran = round(ilk11 / mac * 100) if mac else 0
+    yas = _MANUEL_YAS.get(secili)
+    yas_s = (f"{yas:.0f}" if isinstance(yas, (int, float)) else
+             (str(sd.get("Age", "")).split()[0] if sd.get("Age") else "—"))
+    uyruk = _MANUEL_UYRUK.get(secili) or row.get("Uyruk", "—") or "—"
+    mevki = row.get("Mevki", "—"); takim = row.get("Takım", "—")
+
+    pdf = FPDF(orientation="P", unit="mm", format="A4")
+    pdf.set_auto_page_break(True, margin=14)
+    pdf.add_font("DV", "",  str(_f / "DejaVuSans.ttf"))
+    pdf.add_font("DV", "B", str(_f / "DejaVuSans-Bold.ttf"))
+    pdf.add_page()
+    W = 210 - 24
+    MOR = (124, 58, 237); GRI = (110, 120, 140)
+
+    # Başlık bandı
+    pdf.set_fill_color(*MOR); pdf.rect(0, 0, 210, 30, "F")
+    pdf.set_xy(12, 6); pdf.set_text_color(255, 255, 255); pdf.set_font("DV", "B", 17)
+    pdf.cell(0, 8, secili, ln=1)
+    pdf.set_x(12); pdf.set_font("DV", "", 9)
+    pdf.cell(0, 6, " · ".join(x for x in [mevki, takim] if x and x != "—"), ln=1)
+    pdf.set_xy(150, 7); pdf.set_font("DV", "", 7)
+    pdf.cell(48, 4, t("OYUNCU RAPORU", "PLAYER REPORT"), ln=2, align="R")
+    pdf.set_font("DV", "B", 9); pdf.cell(48, 5, "W-Scope", align="R")
+    pdf.set_y(37)
+
+    # Künye
+    kunye = [(t("Yaş", "Age"), yas_s), (t("Uyruk", "Nation"), uyruk),
+             (t("Boy", "Height"), str(sd.get("Height", "—") or "—")),
+             (t("Ayak", "Foot"), str((sd.get("Foot", "") or "—")).capitalize()),
+             (t("Doğum", "Born"), str(sd.get("Date of birth", "—") or "—"))]
+    for et, _ in kunye:
+        pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7.5); pdf.cell(W / 5, 4, et.upper(), align="C")
+    pdf.ln(4)
+    for _, dg in kunye:
+        pdf.set_text_color(30, 30, 30); pdf.set_font("DV", "B", 8.5); pdf.cell(W / 5, 5, str(dg)[:22], align="C")
+    pdf.ln(11)
+
+    # Sezon istatistik kutuları (6'lı)
+    pdf.set_text_color(*MOR); pdf.set_font("DV", "B", 10)
+    pdf.cell(0, 6, t("2025-26 SEZON İSTATİSTİKLERİ", "2025-26 SEASON STATS"), ln=1)
+    statlar = [(t("Maç", "Matches"), str(mac)), (t("İlk 11", "Starts"), f"{ilk11} (%{ilk11_oran})"),
+               (t("Dakika", "Minutes"), str(dk)), (t("Gol", "Goals"), str(gol)),
+               (t("Gol/Maç", "G/Match"), str(ort)),
+               (t("Sarı/Kırmızı", "Yel/Red"), f"{sari} / {kir}")]
+    y_box = pdf.get_y() + 1; bw = W / 6
+    for k, (et, dg) in enumerate(statlar):
+        x = 12 + k * bw
+        pdf.set_fill_color(245, 243, 252); pdf.set_draw_color(220, 214, 235)
+        pdf.rect(x, y_box, bw - 2, 15, "DF")
+        pdf.set_xy(x, y_box + 2.5); pdf.set_text_color(*GRI); pdf.set_font("DV", "", 6)
+        pdf.cell(bw - 2, 3, et, align="C")
+        pdf.set_xy(x, y_box + 7); pdf.set_text_color(30, 30, 30)
+        pdf.set_font("DV", "B", 11 if len(dg) <= 6 else 8)
+        pdf.cell(bw - 2, 5, dg, align="C")
+    pdf.set_y(y_box + 21)
+
+    # Mevki içi percentile barları
+    veri = _percentil_hesapla(secili)
+    if veri:
+        grup_ad = veri["grup"] if not EN else _GRUP_EN.get(veri["grup"], veri["grup"])
+        pdf.set_text_color(*MOR); pdf.set_font("DV", "B", 10)
+        pdf.cell(0, 6, t(f"MEVKİ İÇİ SIRALAMA — {grup_ad}", f"WITHIN-POSITION RANKING — {grup_ad}"), ln=1)
+        pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7)
+        pdf.cell(0, 4, t(f"{veri['n']} {grup_ad} oyuncu arasında yüzdelik · 100% = en iyi",
+                         f"Percentile among {veri['n']} {grup_ad} · 100% = best"), ln=1)
+        pdf.ln(1)
+        bar_x = 74; bar_w = 198 - bar_x - 16
+        for etiket, ds, pct in veri["metrikler"]:
+            y = pdf.get_y()
+            pdf.set_xy(12, y); pdf.set_text_color(60, 70, 85); pdf.set_font("DV", "", 8)
+            pdf.cell(46, 5, etiket[:24])
+            pdf.set_text_color(30, 30, 30); pdf.set_font("DV", "B", 8); pdf.cell(14, 5, str(ds))
+            p = int(pct)
+            col = (16, 185, 129) if p >= 75 else (132, 197, 24) if p >= 50 else (245, 158, 11) if p >= 30 else (239, 68, 68)
+            pdf.set_fill_color(232, 230, 240); pdf.rect(bar_x, y + 1, bar_w, 3.4, "F")
+            pdf.set_fill_color(*col); pdf.rect(bar_x, y + 1, max(0.5, bar_w * p / 100), 3.4, "F")
+            pdf.set_xy(bar_x + bar_w + 1, y); pdf.set_text_color(*col); pdf.set_font("DV", "B", 8)
+            pdf.cell(14, 5, f"%{p}", align="R")
+            pdf.ln(6)
+
+    # Footer
+    pdf.set_y(-16); pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7)
+    pdf.cell(0, 5, "W-Scope · " + t("Kaynak: TFF & SoccerDonna · Bilgi amaçlıdır",
+                                    "Source: TFF & SoccerDonna · For information only"), align="C")
+    out = pdf.output()
+    return bytes(out)
+
+
 def render_ana_lig_profil(secili):
     _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
@@ -3205,6 +3305,16 @@ def render_ana_lig_profil(secili):
 
         # ── Mevki içi percentile sıralaması (scout sinyali) ──────────────────
         render_percentil_panel(secili)
+
+        # ── Markalı PDF rapor indir ──────────────────────────────────────────
+        try:
+            _pdf = _ana_lig_pdf_uret(secili)
+            st.download_button(
+                f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
+                data=_pdf, file_name=f"oyuncu_raporu_{secili.replace(' ', '_')}.pdf",
+                mime="application/pdf", use_container_width=True, key=_pk("pdf_indir"))
+        except Exception as _e:
+            st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
 
         st.markdown("<br>", unsafe_allow_html=True)
         p1, p2 = st.columns(2)
