@@ -60,6 +60,21 @@ header[data-testid="stHeader"] { background:transparent !important; height:0 !im
 footer { visibility:hidden !important; display:none !important; }
 .viewerBadge_link__qRIco, [class*="viewerBadge"] { display:none !important; }
 
+/* ── Marka kimliği (tek kaynak): Mor = marka/navigasyon · Yeşil = veri/pozitif ── */
+:root {
+    --marka:        #a855f7;   /* ana mor */
+    --marka-koyu:   #7c3aed;
+    --marka-acik:   #c084fc;
+    --aksan:        #ec4899;   /* pembe vurgu */
+    --veri:         #1db954;   /* yeşil — istatistik/pozitif */
+    --veri-acik:    #4ade80;
+    --zemin:        #0f1117;
+    --zemin-kart:   #1a1f36;
+    --metin:        #e2e8f0;
+    --metin-soluk:  #8899aa;
+    --cizgi:        #232a40;
+}
+
 /* ── Boşluk/sıkışıklık: gereksiz büyük boşlukları daralt ── */
 .block-container { padding-top:2.2rem !important; padding-bottom:2rem !important;
     max-width:1480px !important; }
@@ -96,7 +111,7 @@ footer { visibility:hidden !important; display:none !important; }
     padding:22px 30px 20px; margin-bottom:22px;
 }
 .baslik-kutu::before { content:''; position:absolute; top:0; left:0; right:0; height:3px;
-    background:linear-gradient(90deg,#00c853 0%,#a855f7 45%,#ec4899 100%); }
+    background:linear-gradient(90deg,#7c3aed 0%,#a855f7 50%,#ec4899 100%); }
 .baslik-kutu .ust-bant { font-size:0.64rem; font-weight:800; letter-spacing:0.22em;
     color:#c084fc; text-transform:uppercase; margin-bottom:7px; }
 .baslik-kutu h1 { color:#fff; font-size:1.62rem; font-weight:800; margin:0 0 6px 0; }
@@ -113,24 +128,24 @@ footer { visibility:hidden !important; display:none !important; }
 /* ── Özet kartlar ── */
 .stat-kart { background:linear-gradient(180deg,#171c30,#131726);
     border:1px solid #222842; border-radius:8px; padding:14px 18px;
-    text-align:center; border-top:3px solid #00c853; margin-bottom:6px; }
-.stat-kart .sayi   { font-size:1.9rem; font-weight:800; color:#00c853;
+    text-align:center; border-top:3px solid #1db954; margin-bottom:6px; }
+.stat-kart .sayi   { font-size:1.9rem; font-weight:800; color:#1db954;
     font-family:'Sora',sans-serif; }
 .stat-kart .etiket { font-size:0.68rem; color:#8899aa; margin-top:3px;
     text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
 
 /* ── Profil kartı ── */
 .profil-kart { background:#1a1f36; border-radius:14px; padding:22px 26px;
-    border-left:4px solid #00c853; }
+    border-left:4px solid #1db954; }
 .profil-kart h2 { color:#fff; margin:0 0 4px 0; font-size:1.35rem; }
 .profil-stat { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
 .profil-stat-item { background:#0f1117; border-radius:8px; padding:10px 14px;
     text-align:center; min-width:70px; flex:1 1 70px; }
-.profil-stat-item .deger { font-size:1.4rem; font-weight:700; color:#00c853; }
+.profil-stat-item .deger { font-size:1.4rem; font-weight:700; color:#1db954; }
 .profil-stat-item .ad    { font-size:0.68rem; color:#8899aa; margin-top:2px; }
 
 /* ── Diğer bileşenler ── */
-.transfer-badge { display:inline-block; background:#1a3a2a; color:#00c853;
+.transfer-badge { display:inline-block; background:#1a3a2a; color:#1db954;
     font-size:0.7rem; border-radius:6px; padding:2px 7px; margin-left:6px; }
 .takim-detay-satir { background:#0f1117; border-radius:8px; padding:9px 14px;
     margin-bottom:6px; display:flex; justify-content:space-between;
@@ -554,7 +569,7 @@ def giris_gerekli_ekrani():
         <div style='max-width:580px;margin:0 auto;'>
 
           <!-- Giriş uyarısı -->
-          <div style='background:#1a1f36;border:1px solid #00c85344;border-radius:14px;
+          <div style='background:#1a1f36;border:1px solid #1db95444;border-radius:14px;
                padding:28px;text-align:center;margin-bottom:24px;'>
             <div style='font-size:36px;margin-bottom:10px;'>🔐</div>
             <div style='font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;'>
@@ -562,7 +577,7 @@ def giris_gerekli_ekrani():
             <div style='font-size:13px;color:#8899aa;line-height:1.7;margin-bottom:16px;'>
               {t("Transfer Öner, Gelişmiş Arama ve Oyuncu Profili;", "Transfer Suggest, Advanced Search and Player Profile are")}<br>
               <b style='color:#e0e0e0;'>{t("kulüpler, menajerler ve scout profesyonellere", "exclusive content for clubs, agents and scouting professionals")}</b>{t(" özel içeriklerdir.", ".")}<br>
-              {t("Sol üstteki", "Use the")} <b style='color:#00c853;'>🔐 {t("Giriş", "Login")}</b> {t("butonunu kullanarak devam edebilirsiniz.", "button at the top left to continue.")}
+              {t("Sol üstteki", "Use the")} <b style='color:#1db954;'>🔐 {t("Giriş", "Login")}</b> {t("butonunu kullanarak devam edebilirsiniz.", "button at the top left to continue.")}
             </div>
             <div style='font-size:12px;color:#505870;'>
               {t("Hesabınız yoksa 📬 İletişim sayfasından bize ulaşın.", "If you don't have an account, reach us via the 📬 Contact page.")}
@@ -572,7 +587,7 @@ def giris_gerekli_ekrani():
           <!-- PRO özellik listesi -->
           <div style='background:#12161f;border-radius:12px;padding:20px 24px;
                border:1px solid #1e2340;'>
-            <div style='color:#00c853;font-weight:700;font-size:0.88rem;
+            <div style='color:#1db954;font-weight:700;font-size:0.88rem;
                  letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;'>
               ⚡ {t("PRO Pakete Dahil Olanlar", "Included in the PRO Package")}
             </div>
@@ -582,9 +597,9 @@ def giris_gerekli_ekrani():
           <!-- Fiyat -->
           <div style='text-align:center;margin-top:20px;'>
             <span style='background:linear-gradient(135deg,#0d2b1e,#1a1f36);
-                 border:2px solid #00c853;border-radius:12px;padding:14px 32px;
+                 border:2px solid #1db954;border-radius:12px;padding:14px 32px;
                  display:inline-block;'>
-              <div style='color:#00c853;font-size:0.75rem;font-weight:700;
+              <div style='color:#1db954;font-size:0.75rem;font-weight:700;
                    letter-spacing:2px;text-transform:uppercase;'>{t("PRO Paket", "PRO Package")}</div>
               <div style='color:#fff;font-size:2rem;font-weight:900;line-height:1.1;'>
                 999 <span style='font-size:1rem;color:#8899aa;'>{t("€/yıl", "€/yr")}</span>
@@ -666,7 +681,7 @@ _TIER_RANK = {"free": 0, "basic": 1, "pro": 2, "premium": 3, "admin": 99}
 _TIER_GORUNUM = {
     "free":    ("Ücretsiz", "#8899aa", "🔓"),
     "basic":   ("Basic",    "#29b6f6", "🔹"),
-    "pro":     ("Pro",      "#00c853", "⚡"),
+    "pro":     ("Pro",      "#1db954", "⚡"),
     "premium": ("Premium",  "#e040fb", "👑"),
     "admin":   ("Admin",    "#f59e0b", "🛡️"),
 }
@@ -774,7 +789,7 @@ _PRO_OZELLIKLER = [
 
 # Üyelik kademeleri (paywall görselleri için): ikon, etiket, renk, yıllık fiyat
 _TIER_BILGI = {
-    "pro":     ("⚡", "PRO",     "#00c853", "999 €"),
+    "pro":     ("⚡", "PRO",     "#1db954", "999 €"),
     "premium": ("👑", "PREMIUM", "#e040fb", "1.999 €"),
 }
 
@@ -843,7 +858,7 @@ def pro_paywall_goster(ozellik_adi: str = None, tier: str = "pro"):
           <!-- Alt not -->
           <div style='text-align:center;margin-top:20px;color:#505870;font-size:0.78rem;'>
             {t("Kurumsal teklif veya demo için", "For a corporate offer or demo, write to")}
-            <a href='mailto:mehmetbarandanis@gmail.com' style='color:#00c853;text-decoration:none;'>
+            <a href='mailto:mehmetbarandanis@gmail.com' style='color:#1db954;text-decoration:none;'>
               mehmetbarandanis@gmail.com
             </a>{t(" adresine yazın.", ".")}
           </div>
@@ -2992,7 +3007,7 @@ def render_ana_lig_profil(secili):
             f'<span style="color:#a0aab4">{row["TümTakımlar"]}</span>'
             f'<span class="transfer-badge">🔄 Transfer</span>'
             if transfer else
-            f'<span style="color:#00c853">{row["Takım"]}</span>'
+            f'<span style="color:#1db954">{row["Takım"]}</span>'
         )
 
         # SoccerDonna profil verisi
@@ -3031,7 +3046,7 @@ def render_ana_lig_profil(secili):
         if sd_mevki:
             mevki_html = (
                 f'<div style="margin:6px 0 12px 0">'
-                f'<span style="background:#0d3b2e;color:#00c853;border-radius:6px;'
+                f'<span style="background:#0d3b2e;color:#1db954;border-radius:6px;'
                 f'padding:4px 12px;font-size:0.82rem;font-weight:600">'
                 f'{mevki_ikon} {sd_mevki}</span></div>'
             )
@@ -3116,7 +3131,7 @@ def render_ana_lig_profil(secili):
                     hovertemplate="Hafta %{x}<br>%{y}dk<extra></extra>"))
                 fig.add_trace(go.Scatter(x=haftalar, y=[g*18 for g in goller],
                     name="Gol", mode="markers",
-                    marker=dict(color="#00c853", size=11, symbol="star"),
+                    marker=dict(color="#1db954", size=11, symbol="star"),
                     hovertemplate="Hafta %{x}<br>Gol:%{customdata}<extra></extra>",
                     customdata=goller))
                 fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
@@ -3201,16 +3216,16 @@ def render_ana_lig_profil(secili):
              background:linear-gradient(145deg,#1a1f36,#0d3b2e);
              border-radius:18px;padding:26px 28px;text-align:center;
              box-shadow:0 8px 32px rgba(0,0,0,0.6);
-             border:1px solid #00c85344;">
-          <div style="font-size:0.68rem;letter-spacing:3px;color:#00c853aa;margin-bottom:4px">
+             border:1px solid #1db95444;">
+          <div style="font-size:0.68rem;letter-spacing:3px;color:#1db954aa;margin-bottom:4px">
             {t("KADIN FUTBOL · 2025-2026","WOMEN'S FOOTBALL · 2025-2026")}
           </div>
           <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
           <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{row['Takım'][:35]}</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
-            <div style="background:rgba(0,200,83,0.08);border:1px solid #00c85333;
+            <div style="background:rgba(0,200,83,0.08);border:1px solid #1db95433;
                  border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#00c853">{gol}</div>
+              <div style="font-size:1.5rem;font-weight:800;color:#1db954">{gol}</div>
               <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("GOL","GOALS")}</div>
             </div>
             <div style="background:rgba(41,121,255,0.08);border:1px solid #2979ff33;
@@ -3466,13 +3481,13 @@ def render_hakkinda_icerik():
     st.markdown(f"""
     <div style='max-width:760px;margin:0 auto;padding:10px 0 40px;'>
 
-    <h2 style='color:#00c853;margin-bottom:6px;'>{t("Biz Kimiz?", "Who Are We?")}</h2>
+    <h2 style='color:#1db954;margin-bottom:6px;'>{t("Biz Kimiz?", "Who Are We?")}</h2>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
     {t("Türkiye'de kadın futbol liglerini takip eden bir grup futbol delisiyiz. Yıllardır tribünlerde, ekranların başında ve saha kenarlarında bu ligin büyümesine tanıklık ettik. Ama bir şeyin hep eksik kaldığını fark ettik: <b style='color:#fff;'>veri.</b>",
        "We are a group of football fanatics following women's football leagues in Türkiye. For years we've witnessed this league grow from the stands, the screens and the touchlines. But we noticed one thing was always missing: <b style='color:#fff;'>data.</b>")}
     </p>
 
-    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>{t("Neden Bu Siteyi Kurduk?", "Why Did We Build This?")}</h2>
+    <h2 style='color:#1db954;margin-top:32px;margin-bottom:6px;'>{t("Neden Bu Siteyi Kurduk?", "Why Did We Build This?")}</h2>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
     {t("Bir oyuncuyu bir maçta izlemek, o oyuncu hakkında tam bir fikir vermez. Gözlem yanılabilir — kötü bir gün, yorgunluk, takımın taktik yapısı ya da sadece o günkü rakip; bunların hepsi algıyı bozar. Kulüplerin çoğu hâlâ transferlerde \"rakibe karşı oynadığı o maçtaki izlenim\" ya da duyuma dayalı kararlar alıyor.",
        "Watching a player in a single match doesn't give a full picture. Observation can mislead — a bad day, fatigue, the team's tactical setup or just that day's opponent all distort perception. Most clubs still make transfer decisions based on \"the impression from that one match against us\" or on hearsay.")}
@@ -3482,7 +3497,7 @@ def render_hakkinda_icerik():
        "Against this, we try to develop <b style='color:#fff;'>measurement and evaluation methods</b>. We aim to back undervalued or rising players with data and make their real contribution to the league visible. So that teams can build better squads based on <b style='color:#fff;'>concrete stats accumulated across the season</b> — not just observation from matches against them or word of mouth.")}
     </p>
 
-    <h2 style='color:#00c853;margin-top:32px;margin-bottom:6px;'>{t("Bu Sitede Ne Var?", "What's on This Site?")}</h2>
+    <h2 style='color:#1db954;margin-top:32px;margin-bottom:6px;'>{t("Bu Sitede Ne Var?", "What's on This Site?")}</h2>
     <div style='color:#c9d1d9;font-size:14px;line-height:2;'>
     {t('''📋 <b style='color:#fff;'>Oyuncu Listesi</b> — Ligdeki tüm oyuncuların sezon istatistikleri<br>
     👤 <b style='color:#fff;'>Oyuncu Profili</b> — Her oyuncu için detaylı performans kartı, kariyer ve benzerlik<br>
@@ -3537,7 +3552,7 @@ def render_profil():
     for kol, (v, l, r) in zip(c, [
         (ad or "—",        t("Ad", "Name"),       "#58a6ff"),
         (ku or "—",        t("Kullanıcı", "Username"), "#58a6ff"),
-        (takim or "—",     t("Takım", "Team"),     "#00c853"),
+        (takim or "—",     t("Takım", "Team"),     "#1db954"),
         (tier,             t("Üyelik", "Tier"),    tier_renk),
     ]):
         kol.markdown(_profil_kart(v, l, r), unsafe_allow_html=True)
@@ -3615,7 +3630,7 @@ def render_profil():
     st.markdown(f"#### 🔑 {t('Giriş Bilgileri', 'Login Info')}")
     c = st.columns(4)
     for kol, (v, l, r) in zip(c, [
-        (f"{aktif_g} {t('gün','d')}" if aktif_g is not None else "—", t("Kaç gündür aktif", "Active for"), "#00c853"),
+        (f"{aktif_g} {t('gün','d')}" if aktif_g is not None else "—", t("Kaç gündür aktif", "Active for"), "#1db954"),
         (son or "—",                                                   t("Son giriş", "Last login"),       "#58a6ff"),
         (str(sayi) if str(sayi) != "" else "—",                        t("Toplam giriş", "Total logins"),  "#58a6ff"),
         (hatali or "—",                                                t("Son hatalı giriş", "Last failed"), "#ff6b6b"),
@@ -3695,12 +3710,12 @@ if st.session_state["sayfa"] == "iletisim":
     geri_ana_butonu("geri_iletisim")
     st.markdown(f"""
     <div style='max-width:600px;margin:0 auto;padding:10px 0 40px;'>
-    <h2 style='color:#00c853;margin-bottom:6px;'>{t("İletişim", "Contact")}</h2>
+    <h2 style='color:#1db954;margin-bottom:6px;'>{t("İletişim", "Contact")}</h2>
     <p style='color:#c9d1d9;font-size:15px;line-height:1.8;'>
     {t("Öneri, hata bildirimi veya iş birliği için bize ulaşabilirsiniz.",
        "Reach us for suggestions, bug reports or collaboration.")}
     </p>
-    <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #00c853;margin-top:16px;'>
+    <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #1db954;margin-top:16px;'>
       <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>{t("📧 E-posta", "📧 E-mail")}</div>
       <div style='color:#fff;font-size:15px;font-weight:600;'>mehmetbarandanis@gmail.com</div>
       <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>{t("🌐 Sosyal Medya", "🌐 Social Media")}</div>
@@ -3735,7 +3750,7 @@ if st.session_state["sayfa"] == "talep":
     # Hero
     st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:16px;
-        padding:24px 30px;border-left:5px solid #00c853;margin-bottom:22px;'>
+        padding:24px 30px;border-left:5px solid #1db954;margin-bottom:22px;'>
       <div style='display:inline-block;background:#29b6f622;border:1px solid #29b6f6;
            color:#29b6f6;border-radius:6px;padding:2px 10px;font-size:0.66rem;
            font-weight:800;letter-spacing:0.1em;margin-bottom:8px;'>
@@ -4342,7 +4357,7 @@ def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=Fal
 def render_paketler():
     """Basic / Pro / Premium üyelik paketleri karşılaştırma görseli."""
     st.markdown(
-        f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
+        f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1db954;"
         f"font-weight:700;margin:6px 0 12px;'>💎 {t('Üyelik Paketleri','Membership Plans')}</div>",
         unsafe_allow_html=True)
 
@@ -4387,7 +4402,7 @@ def render_paketler():
         st.markdown(_paket_kart_html("🔹", "Basic", "#29b6f6",
             "499 €", _yillik, basic, deneme=True, eski_fiyat="999 €", indirim=_ind), unsafe_allow_html=True)
     with c3:
-        st.markdown(_paket_kart_html("⚡", "Pro", "#00c853",
+        st.markdown(_paket_kart_html("⚡", "Pro", "#1db954",
             "999 €", _yillik, pro, populer=True, deneme=True, eski_fiyat="1.999 €", indirim=_ind), unsafe_allow_html=True)
     with c4:
         st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
@@ -4439,12 +4454,12 @@ def render_giris_ekrani():
 
     if o:
         st.markdown(
-            f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
+            f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1db954;"
             f"font-weight:700;margin:10px 0 10px;'>📊 {t('Kısa Sayısal Özet','Quick Summary')}</div>",
             unsafe_allow_html=True)
         satir1 = [
             (o["oyuncu"], t("Toplam Oyuncu","Total Players"),
-             f"{o['yerli']} {t('yerli','dom.')} · {o['yabanci']} {t('yabancı','for.')}", "#00c853"),
+             f"{o['yerli']} {t('yerli','dom.')} · {o['yabanci']} {t('yabancı','for.')}", "#1db954"),
             (o["takim"], t("Toplam Takım","Total Teams"), t("Süper Lig","Super League"), "#58a6ff"),
             (o["scouting"], t("Scouting Raporu","Scouting Reports"), t("uluslararası havuz","intl. pool"), "#f0c040"),
             (o["mac"], t("Toplam Maç","Total Matches"), t("sezon geneli","full season"), "#58a6ff"),
@@ -4452,7 +4467,7 @@ def render_giris_ekrani():
         satir2 = [
             (o["gol"], t("Toplam Gol","Total Goals"), t("tüm lig","whole league"), "#e040fb"),
             (o["yerli"], t("Yerli Oyuncu","Domestic Players"),
-             (f"%{round(o['yerli']/o['oyuncu']*100)} " + t("yerli oran","domestic")) if o["oyuncu"] else "", "#00c853"),
+             (f"%{round(o['yerli']/o['oyuncu']*100)} " + t("yerli oran","domestic")) if o["oyuncu"] else "", "#1db954"),
             (o["ort_yas"], t("Ortalama Yaş","Average Age"), t("lig geneli","league-wide"), "#58a6ff"),
             (o["u23"], t("U-23 Yetenek","U-23 Talents"), t("geleceğin yıldızları","future stars"), "#f0c040"),
         ]
@@ -4467,7 +4482,7 @@ def render_giris_ekrani():
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown(
-        f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#00c853;"
+        f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1db954;"
         f"font-weight:700;margin:6px 0 4px;'>ℹ️ {t('Hakkında','About')}</div>",
         unsafe_allow_html=True)
     render_hakkinda_icerik()
@@ -4500,7 +4515,7 @@ _bc1, _bc2 = st.columns([3, 1])
 with _bc1:
     st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:12px;
-        padding:13px 20px;border-left:4px solid #00c853;'>
+        padding:13px 20px;border-left:4px solid #1db954;'>
       <div style='color:#fff;font-size:1.05rem;font-weight:700;'>{t("📩 Kadronu birlikte kuralım", "📩 Let's build your squad together")}</div>
       <div style='color:#a7f3d0;font-size:0.85rem;margin-top:2px;'>
       {t("Oyuncu raporu · mevki önerisi · oyuncu kıyası · tam kadro danışmanlığı — talebini ilet.",
@@ -4798,7 +4813,7 @@ with tab1:
                                       f'<div style="font-size:1.3rem;font-weight:800;color:{clr}">{int(p[sutun])}</div>'
                                       f'<div style="font-size:0.6rem;color:#8899aa">{etk}</div></div>')
                 _mvk_g = mevki_goster(_mvk) if _mvk else ""
-                _transfer_b = (f' <span style="background:#1a3a2a;color:#00c853;border-radius:4px;'
+                _transfer_b = (f' <span style="background:#1a3a2a;color:#1db954;border-radius:4px;'
                                f'padding:1px 6px;font-size:0.66rem">🔄 Transfer</span>') if transfer else ""
 
                 st.markdown(
@@ -4900,7 +4915,7 @@ with tab3:
         key="karsilastirma_sec",
     )
 
-    RENKLER = ["#00c853", "#2979ff", "#ff6d00", "#e040fb"]
+    RENKLER = ["#1db954", "#2979ff", "#ff6d00", "#e040fb"]
 
     if len(secili_oyuncular) < 2:
         st.info(t("En az 2 oyuncu seçin.", "Select at least 2 players."))
@@ -5079,7 +5094,7 @@ with tab4:
             st.markdown(f"##### 📊 {t('Mevki Dağılımı', 'Position Distribution')}")
             if "Mevki" in df_t.columns:
                 mevki_sayilari = df_t["Mevki"].value_counts()
-                MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
+                MEVKI_RENK = {"Kaleci":"#1db954","Defans":"#2979ff",
                               "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555"}
                 fig_mevki = go.Figure(go.Pie(
                     labels=[mevki_goster(m) for m in mevki_sayilari.index],
@@ -5119,7 +5134,7 @@ with tab4:
         fig_s = go.Figure()
         _df_t_grup = (df_t["Mevki"].map(mevki_grup) if "Mevki" in df_t.columns
                       else pd.Series("Bilinmiyor", index=df_t.index))
-        for mevki, renk in [("Kaleci","#00c853"),("Defans","#2979ff"),
+        for mevki, renk in [("Kaleci","#1db954"),("Defans","#2979ff"),
                               ("Orta Saha","#ff6d00"),("Forvet","#e040fb"),("Bilinmiyor","#555")]:
             alt = df_t[_df_t_grup == mevki]
             if alt.empty: continue
@@ -5217,7 +5232,7 @@ with tab6:
         st.caption(t("Sağ üst = hem çok oynadı hem çok gol attı. Her renk bir mevki.",
                      "Top right = played a lot and scored a lot. Each color represents a position."))
         fig_lig = go.Figure()
-        MEVKI_RENK = {"Kaleci":"#00c853","Defans":"#2979ff",
+        MEVKI_RENK = {"Kaleci":"#1db954","Defans":"#2979ff",
                       "Orta Saha":"#ff6d00","Forvet":"#e040fb","Bilinmiyor":"#555555"}
         _df_tam_grup = (df_tam["Mevki"].map(mevki_grup) if "Mevki" in df_tam.columns
                         else pd.Series("Bilinmiyor", index=df_tam.index))
@@ -5271,7 +5286,7 @@ with tab6:
                 uyruk_gol = df_tam[df_tam["Uyruk"]!=""].groupby("Uyruk")["Gol"].sum().sort_values(ascending=False).head(15)
                 fig_ug = go.Figure(go.Bar(
                     x=uyruk_gol.values, y=uyruk_gol.index,
-                    orientation="h", marker_color="#00c853",
+                    orientation="h", marker_color="#1db954",
                     text=uyruk_gol.values, textposition="outside",
                 ))
                 fig_ug.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
@@ -5294,7 +5309,7 @@ with tab6:
                     f'margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">'
                     f'<span style="font-size:1.1rem">{rozetler[i]} {row["Oyuncu"]}'
                     f'<span style="color:#8899aa;font-size:0.78rem;margin-left:8px">{row["Takım"][:25]}</span></span>'
-                    f'<span style="color:#00c853;font-weight:600">{degerler}</span></div>',
+                    f'<span style="color:#1db954;font-weight:600">{degerler}</span></div>',
                     unsafe_allow_html=True
                 )
 
@@ -5403,10 +5418,10 @@ with tab6:
                     r = df_t.iloc[0]
                     st.markdown(
                         f'<div style="background:#1a1f36;border-radius:8px;padding:10px;'
-                        f'margin-bottom:8px;border-top:2px solid #00c853">'
+                        f'margin-bottom:8px;border-top:2px solid #1db954">'
                         f'<div style="color:#8899aa;font-size:0.68rem">{takim[:30]}</div>'
                         f'<div style="font-weight:600;font-size:0.9rem;margin:3px 0">{r["Oyuncu"]}</div>'
-                        f'<div style="color:#00c853;font-size:0.82rem">⚽ {int(r["Gol"])} {t("gol","goals")}</div>'
+                        f'<div style="color:#1db954;font-size:0.82rem">⚽ {int(r["Gol"])} {t("gol","goals")}</div>'
                         f'</div>',
                         unsafe_allow_html=True
                     )
@@ -5775,7 +5790,7 @@ if tab_benim:
                              .sort_values(ascending=False).reset_index())
                 fig_admin = go.Figure(go.Bar(
                     x=takim_gol["Gol"], y=takim_gol["Takım"], orientation="h",
-                    marker=dict(color="#00c853"),
+                    marker=dict(color="#1db954"),
                     text=takim_gol["Gol"], textposition="outside",
                     textfont=dict(color="#e0e0e0"),
                 ))
@@ -5841,7 +5856,7 @@ if tab_benim:
                     st.markdown(f"**📊 {t('Mevki Dağılımı', 'Position Distribution')}**")
                     mev_dag = kadro["Mevki"].value_counts().reset_index()
                     mev_dag.columns = ["Mevki","Sayı"]
-                    renk_map = {"Kaleci":"#2979ff","Defans":"#00c853",
+                    renk_map = {"Kaleci":"#2979ff","Defans":"#1db954",
                                 "Orta Saha":"#ffab00","Forvet":"#ff6b6b","Bilinmiyor":"#8899aa"}
                     fig_pie = go.Figure(go.Pie(
                         labels=[mevki_goster(m) for m in mev_dag["Mevki"]], values=mev_dag["Sayı"],
@@ -5861,7 +5876,7 @@ if tab_benim:
                     uyr_dag.columns = ["Uyruk","Sayı"]
                     fig_uyr = go.Figure(go.Bar(
                         x=uyr_dag["Sayı"], y=uyr_dag["Uyruk"], orientation="h",
-                        marker=dict(color="#00c853"),
+                        marker=dict(color="#1db954"),
                         text=uyr_dag["Sayı"], textposition="outside",
                         textfont=dict(color="#e0e0e0", size=11),
                     ))
@@ -5964,7 +5979,7 @@ with tab_genç:
             filtered = filtered[filtered["Uyruk"] != "Turkey"]
 
         st.markdown(
-            f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0 16px;'>"
+            f"<div style='color:#1db954;font-size:13px;font-weight:700;margin:8px 0 16px;'>"
             f"🎯 {len(filtered)} {t('genç oyuncu','young players')}</div>", unsafe_allow_html=True)
 
         # ── En İlginç 5 ───────────────────────────────────────────────
@@ -5981,7 +5996,7 @@ with tab_genç:
                         f"<div style='font-size:11px;font-weight:700;color:#fff;"
                         f"margin-bottom:4px;'>{r['Oyuncu'].split()[0]}<br>"
                         f"<span style='font-size:10px;'>{r['Oyuncu'].split()[-1]}</span></div>"
-                        f"<div style='font-size:20px;font-weight:800;color:#00c853;'>{r['Yaş']:.0f}</div>"
+                        f"<div style='font-size:20px;font-weight:800;color:#1db954;'>{r['Yaş']:.0f}</div>"
                         f"<div style='display:inline-block;font-size:9px;font-weight:700;"
                         f"color:{_mrk};background:{_mrk}22;border:1px solid {_mrk}55;"
                         f"border-radius:5px;padding:1px 7px;margin-top:2px;'>{mevki_goster(r['Mevki'])}</div>"
@@ -6127,7 +6142,7 @@ with tab9:
             filtered = filtered.sort_values(sc, ascending=sa).reset_index(drop=True)
 
             st.markdown(
-                f"<div style='color:#00c853;font-size:13px;font-weight:700;margin:8px 0;'>"
+                f"<div style='color:#1db954;font-size:13px;font-weight:700;margin:8px 0;'>"
                 f"🎯 {len(filtered)} {t('oyuncu bulundu','players found')}</div>", unsafe_allow_html=True)
 
             if filtered.empty:
@@ -6227,7 +6242,7 @@ with tab10:
             st.markdown(f"**📊 {t('Yaş Dağılımı', 'Age Distribution')}**")
             fig_hist = go.Figure(go.Histogram(
                 x=yas_df["yas"], nbinsx=20,
-                marker=dict(color="#00a86b", line=dict(color="#00c853", width=0.8)),
+                marker=dict(color="#00a86b", line=dict(color="#1db954", width=0.8)),
                 opacity=0.85,
                 hovertemplate=t("Yaş","Age")+": %{x:.0f}<br>"+t("Oyuncu","Player")+": %{y}<extra></extra>",
             ))
@@ -6251,7 +6266,7 @@ with tab10:
             fig_year = go.Figure(go.Bar(
                 x=by_year["dogum_yili"], y=by_year["sayi"],
                 marker=dict(color=by_year["sayi"],
-                            colorscale=[[0,"#0d3b2e"],[1,"#00c853"]], showscale=False),
+                            colorscale=[[0,"#0d3b2e"],[1,"#1db954"]], showscale=False),
                 hovertemplate="%{x}: %{y} oyuncu<extra></extra>",
             ))
             fig_year.update_layout(
@@ -6283,7 +6298,7 @@ with tab10:
                 g = takim_yas.iloc[0]; y = takim_yas.iloc[-1]
                 st.markdown(
                     f"<div style='font-size:12px;color:#8899aa;margin-top:8px;'>"
-                    f"🟢 {t('En genç','Youngest')}: <b style='color:#00c853'>{g['Takım']}</b> ({g['Ort']} {t('yaş','yrs')})<br>"
+                    f"🟢 {t('En genç','Youngest')}: <b style='color:#1db954'>{g['Takım']}</b> ({g['Ort']} {t('yaş','yrs')})<br>"
                     f"🔴 {t('En yaşlı','Oldest')}: <b style='color:#ff6b6b'>{y['Takım']}</b> ({y['Ort']} {t('yaş','yrs')})</div>",
                     unsafe_allow_html=True)
 
@@ -6364,7 +6379,7 @@ with tab11:
         with col_grafik:
             st.markdown(f"**📊 {t('Maç Başına Yenilen Gol (≥5 maç)', 'Goals Conceded per Match (≥5 matches)')}**")
             plot_df = aktif.sort_values("G/Maç")
-            renkler = ["#00c853" if g <= 1.0 else "#ffab00" if g <= 2.0 else "#ff6b6b"
+            renkler = ["#1db954" if g <= 1.0 else "#ffab00" if g <= 2.0 else "#ff6b6b"
                        for g in plot_df["G/Maç"]]
             fig = go.Figure(go.Bar(
                 x=plot_df["G/Maç"],
@@ -6376,8 +6391,8 @@ with tab11:
                 textfont=dict(color="#e0e0e0", size=11),
                 hovertemplate="%{y}<br>%{x:.2f} "+t("G/Maç","G/Match")+"<extra></extra>",
             ))
-            fig.add_vline(x=1.0, line_dash="dash", line_color="#00c853",
-                          annotation_text="1.0", annotation_font=dict(color="#00c853", size=10))
+            fig.add_vline(x=1.0, line_dash="dash", line_color="#1db954",
+                          annotation_text="1.0", annotation_font=dict(color="#1db954", size=10))
             fig.add_vline(x=2.0, line_dash="dash", line_color="#ffab00",
                           annotation_text="2.0", annotation_font=dict(color="#ffab00", size=10))
             fig.update_layout(
@@ -6681,7 +6696,7 @@ with tab_transfer:
             butce       = st.session_state.get("tr_butce", "")
             butce_label = st.session_state.get("tr_butce_label", butce)
             st.markdown(f"### {t('Adım 2 / 3','Step 2 / 3')} &nbsp; 📋 {t('Mevki ve tercih','Position and preference')}")
-            st.markdown(f"<div style='color:#8899aa;font-size:13px;'>{t('Bütçe','Budget')}: <b style='color:#00c853'>{butce_label}</b></div>", unsafe_allow_html=True)
+            st.markdown(f"<div style='color:#8899aa;font-size:13px;'>{t('Bütçe','Budget')}: <b style='color:#1db954'>{butce_label}</b></div>", unsafe_allow_html=True)
             st.markdown("<br>", unsafe_allow_html=True)
 
             col_m, col_t = st.columns(2)
@@ -6744,7 +6759,7 @@ with tab_transfer:
                     kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
 
                 st.markdown(
-                    f"<div style='color:#00c853;font-weight:700;font-size:16px;margin-bottom:20px;'>"
+                    f"<div style='color:#1db954;font-weight:700;font-size:16px;margin-bottom:20px;'>"
                     f"🏆 {t('Önerilen 3 Oyuncu','3 Recommended Players')}</div>",
                     unsafe_allow_html=True)
 
@@ -6762,7 +6777,7 @@ with tab_transfer:
                         gol   = r.get("YenilenGol", "—")
                         takim = r.get("Takım", "—")
                         s2    = "Y.Gol"
-                        renk  = "#00c853" if isinstance(gol, (int,float)) and gol <= 1.0 else \
+                        renk  = "#1db954" if isinstance(gol, (int,float)) and gol <= 1.0 else \
                                 "#ffab00" if isinstance(gol, (int,float)) and gol <= 2.0 else "#ff6b6b"
                     else:
                         o     = oyuncu_detay.get(isim, {})
@@ -6770,7 +6785,7 @@ with tab_transfer:
                         gol   = o.get("gol_sayisi", "—")
                         takim = o.get("takim", "—")
                         s2    = "Gol"
-                        renk  = "#00c853"
+                        renk  = "#1db954"
 
                     istatlar = [(mac, t("Maç","Matches")), (gol, s2), (yas_v, t("Yaş","Age")), (boy_v, t("Boy","Height")), (nat_v, t("Uyruk","Nation"))]
                     stat_html = "".join(
@@ -6792,9 +6807,9 @@ with tab_transfer:
 
                 st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown(
-                    "<div style='background:#1a1f36;border:1px solid #00c853;border-radius:10px;"
+                    "<div style='background:#1a1f36;border:1px solid #1db954;border-radius:10px;"
                     "padding:18px;'>"
-                    f"<div style='color:#00c853;font-weight:700;font-size:15px;margin-bottom:6px;'>"
+                    f"<div style='color:#1db954;font-weight:700;font-size:15px;margin-bottom:6px;'>"
                     f"📄 {t('Transfer Raporu','Transfer Report')}</div>"
                     f"<div style='color:#8899aa;font-size:12px;'>"
                     f"{t('Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.','Generate an AI-powered detailed analysis report for these three players.')}</div>"
@@ -6810,7 +6825,7 @@ with tab_transfer:
                 if st.session_state.get("tr_rapor"):
                     st.markdown(
                         f"<div style='background:#1a1f36;border-radius:10px;padding:20px;"
-                        f"border-left:4px solid #00c853;margin-top:12px;'>"
+                        f"border-left:4px solid #1db954;margin-top:12px;'>"
                         f"<div style='color:#fff;font-size:13px;line-height:1.7;white-space:pre-wrap;'>"
                         f"{st.session_state['tr_rapor']}</div></div>",
                         unsafe_allow_html=True)
