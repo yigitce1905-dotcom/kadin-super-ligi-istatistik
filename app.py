@@ -49,6 +49,17 @@ def _pk(base: str) -> str:
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
 
+/* ── Streamlit "prototip" chrome'unu gizle (profesyonel görünüm) ──
+   ⋮ menü, Deploy, footer ve üst renk şeridi kaldırılır.
+   Sidebar aç/kapa kontrolü (mobil için gerekli) KORUNUR. */
+#MainMenu { visibility:hidden; }
+[data-testid="stToolbar"] { display:none !important; }
+[data-testid="stDecoration"] { display:none !important; }
+[data-testid="stStatusWidget"] { display:none !important; }
+header[data-testid="stHeader"] { background:transparent !important; height:0 !important; }
+footer { visibility:hidden !important; display:none !important; }
+.viewerBadge_link__qRIco, [class*="viewerBadge"] { display:none !important; }
+
 /* ── Boşluk/sıkışıklık: gereksiz büyük boşlukları daralt ── */
 .block-container { padding-top:2.2rem !important; padding-bottom:2rem !important;
     max-width:1480px !important; }
