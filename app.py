@@ -3231,12 +3231,36 @@ def render_ana_lig_profil(secili):
         if pen:   gol_detay_parcalar.append(f"{pen}P")
         gol_detay = f" ({' · '.join(gol_detay_parcalar)})" if gol_detay_parcalar else ""
 
-        # Paylaşılabilir link butonu
-        share_url = f"?oyuncu={secili}"
-        st.markdown(f"🔗 **{t('Paylaşılabilir link', 'Share link')}:** `{share_url}`")
-        if st.button(t("📋 Linki Kopyala (adres çubuğuna bakın)", "📋 Copy Link (check address bar)"),
-                     key=_pk("kopyala_link")):
-            st.query_params["oyuncu"] = secili
+        # Paylaşılabilir link — gerçek tam URL'yi panoya kopyalar (clipboard + fallback)
+        import streamlit.components.v1 as _comp
+        import json as _json_lnk
+        _isim_js = _json_lnk.dumps(secili)
+        _lbl_kop = t("Kopyala", "Copy"); _lbl_ok = t("Kopyalandı ✓", "Copied ✓")
+        _lbl_bas = t("🔗 Paylaşılabilir link", "🔗 Share link")
+        _kopya_html = (
+            '<div style="font-family:Inter,sans-serif;">'
+            '<div style="font-size:12px;color:#9aa6ba;font-weight:700;margin-bottom:5px;">' + _lbl_bas + '</div>'
+            '<div style="display:flex;gap:6px;">'
+            '<input id="lnk" readonly style="flex:1;min-width:0;background:#0f1117;color:#cbd5e1;'
+            'border:1px solid #2a3146;border-radius:6px;padding:7px 10px;font-size:12px;"/>'
+            '<button id="cpy" style="background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;'
+            'border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:700;'
+            'cursor:pointer;white-space:nowrap;">📋 ' + _lbl_kop + '</button></div></div>'
+            '<script>'
+            'var loc=window.parent.location;'
+            'var url=loc.origin+loc.pathname+"?oyuncu="+encodeURIComponent(' + _isim_js + ');'
+            'var inp=document.getElementById("lnk");inp.value=url;'
+            'var btn=document.getElementById("cpy");'
+            'btn.onclick=function(){inp.focus();inp.select();inp.setSelectionRange(0,99999);'
+            'var ok=function(){btn.textContent="' + _lbl_ok + '";'
+            'setTimeout(function(){btn.textContent="📋 ' + _lbl_kop + '";},1800);};'
+            'if(navigator.clipboard&&window.isSecureContext){'
+            'navigator.clipboard.writeText(url).then(ok).catch(function(){'
+            'try{document.execCommand("copy");}catch(e){}ok();});}'
+            'else{try{document.execCommand("copy");}catch(e){}ok();}};'
+            '</script>'
+        )
+        _comp.html(_kopya_html, height=74)
 
         takim_html = (
             f'<span style="color:#a0aab4">{row["TümTakımlar"]}</span>'
@@ -5091,9 +5115,16 @@ with tab1:
 
                 st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
                 if _giris_var2:
-                    if st.button(t("📋 Tam Profili Gör", "📋 View Full Profile"),
-                                 key="ana_lig_profil_ac", use_container_width=True, type="primary"):
-                        profil_ac(tikli_oyuncu, "tr")   # üstte modal (liste korunur)
+                    import urllib.parse as _urlp
+                    _tp_href = "?oyuncu=" + _urlp.quote(tikli_oyuncu)
+                    st.markdown(
+                        f'<a href="{_tp_href}" target="_blank" rel="noopener" '
+                        f'style="display:block;text-align:center;text-decoration:none;'
+                        f'background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;'
+                        f'border-radius:6px;padding:9px 0;font-weight:700;font-size:0.86rem;'
+                        f'border:1px solid #8b5cf6;">'
+                        f'📋 {t("Tam Profili Gör", "View Full Profile")} ↗</a>',
+                        unsafe_allow_html=True)
                 else:
                     st.caption(t("🔒 Kariyer · radar · scout raporu içeren tam profil üye girişiyle açılır.",
                                  "🔒 Full profile (career · radar · scout report) opens with login."))
