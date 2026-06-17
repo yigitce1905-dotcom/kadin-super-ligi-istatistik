@@ -3683,6 +3683,9 @@ with st.sidebar:
     if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", use_container_width=True,
                  type="primary" if _aktif_sayfa == "scouting" else "secondary"):
         _nav_git("scouting")
+    if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "altlig" else "secondary"):
+        _nav_git("altlig")
     if st.button(t("👤 Profilim", "👤 My Profile"), key="nav_profil", use_container_width=True,
                  type="primary" if _aktif_sayfa == "profil" else "secondary"):
         _nav_git("profil")
@@ -4176,6 +4179,139 @@ if st.session_state["sayfa"] == "talep":
                              "Request could not be saved right now. Please reach us via the e-mail on the Contact page."))
     st.caption(t(f"Talepler doğrudan {TALEP_EMAIL} adresine iletilir.",
                  f"Requests are sent directly to {TALEP_EMAIL}."))
+    st.stop()
+
+# ─── ALT LİGLER SAYFASI (Süper Lig verisinden TAMAMEN izole) ─────────────────
+_ALTLIG_DOSYALAR = {"Kadınlar 1. Ligi": "altlig_1lig.json"}  # Faz 2: "Kadınlar 2. Ligi"
+
+@st.cache_data(ttl=600)
+def altlig_yukle(dosya: str):
+    yol = _DIZIN / dosya
+    if not yol.exists():
+        return None
+    try:
+        with open(yol, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return None
+
+def _altlig_puan_df(puan):
+    df = pd.DataFrame(puan)
+    if df.empty:
+        return df
+    kolon = ["sira", "takim", "O", "G", "B", "M", "A", "Y", "AV", "P"]
+    df = df[[c for c in kolon if c in df.columns]]
+    return df.rename(columns={"sira": "#", "takim": t("Takım", "Team")})
+
+def render_altlig():
+    st.markdown(f"## 🥈 {t('Alt Ligler', 'Lower Leagues')}")
+    st.caption(t("TFF Kadınlar 1. Lig · gruplar, puan durumu ve oyuncu istatistikleri — Süper Lig verisinden tamamen ayrı.",
+                 "TFF Women's 1st League · groups, standings & player stats — fully separate from the Super League."))
+    _ligler = list(_ALTLIG_DOSYALAR.keys())
+    _lig = (st.selectbox(t("Lig", "League"), _ligler, key="altlig_lig")
+            if len(_ligler) > 1 else _ligler[0])
+    data = altlig_yukle(_ALTLIG_DOSYALAR[_lig])
+    if not data:
+        st.info(t("Veri henüz hazır değil — yakında eklenecek.", "Data not ready yet — coming soon."))
+        return
+
+    gruplar = data.get("gruplar", {})
+    grup_adlar = list(gruplar.keys())
+    secenekler = [t(f"{g} Grubu", f"Group {g}") for g in grup_adlar]
+    _pf_lbl = t("🏅 Playoff", "🏅 Playoff")
+    if data.get("playoff"):
+        secenekler.append(_pf_lbl)
+    secim = st.radio("g", secenekler, horizontal=True,
+                     label_visibility="collapsed", key="altlig_grup")
+
+    # Playoff görünümü
+    if secim == _pf_lbl:
+        st.markdown(f"#### 🏅 {t('Playoff Maçları', 'Playoff Matches')}")
+        for m in data["playoff"]:
+            st.markdown(
+                f"<div style='background:#11162a;border:1px solid #232a40;border-radius:8px;"
+                f"padding:10px 14px;margin-bottom:6px;color:#e2e8f0;'>"
+                f"⚪ {m.get('ev','')} <span style='color:#64748b;'>vs</span> {m.get('dep','')}</div>",
+                unsafe_allow_html=True)
+        return
+
+    g = grup_adlar[secenekler.index(secim)]
+    _ad = _lig.replace("Kadınlar ", "").upper()
+    _grp_lbl = t(f"{g} GRUBU", f"GROUP {g}")
+    st.markdown(
+        f"<div style='display:inline-block;background:#1b1540;border:1px solid #4c3a8f;"
+        f"border-left:3px solid #a855f7;border-radius:6px;padding:4px 12px;margin:4px 0 10px;"
+        f"font-weight:700;color:#e9d5ff;font-size:0.8rem;letter-spacing:0.04em;'>"
+        f"{_ad} · {_grp_lbl}</div>", unsafe_allow_html=True)
+
+    puan_df = _altlig_puan_df(gruplar[g].get("puan_durumu", []))
+    if not puan_df.empty:
+        st.markdown(f"##### 🏆 {t('Puan Durumu', 'Standings')}")
+        st.dataframe(puan_df, use_container_width=True, hide_index=True,
+                     height=min(40 + len(puan_df) * 35, 360))
+
+    oyuncular = [o for o in data.get("oyuncular", []) if o.get("grup") == g]
+    st.markdown(f"##### 👤 {t('Oyuncular', 'Players')} ({len(oyuncular)})")
+    if not oyuncular:
+        st.caption(t("Bu grup için oyuncu verisi yok.", "No player data for this group."))
+        return
+    odf = pd.DataFrame([{
+        "Oyuncu": o["oyuncu"], "Takım": o["takim"], "Maç": o["mac_sayisi"],
+        "Gol": o["gol_sayisi"], "G/Maç": o["gol_ort"], "Dakika": o["toplam_dakika"],
+        "Sarı": o["sari_kart"], "Kırmızı": o["kirmizi_kart"],
+    } for o in oyuncular]).sort_values(["Gol", "Maç"], ascending=False).reset_index(drop=True)
+
+    col_l, col_r = st.columns([5, 4], gap="medium")
+    with col_l:
+        secim_df = st.dataframe(
+            odf, use_container_width=True, hide_index=True, height=520,
+            on_select="rerun", selection_mode="single-row", key="altlig_oyuncu_liste",
+            column_config={
+                "Oyuncu":  st.column_config.TextColumn(t("Oyuncu", "Player"), width="medium"),
+                "Takım":   st.column_config.TextColumn(t("Takım", "Team"), width="small"),
+                "Maç":     st.column_config.NumberColumn(t("Maç", "M"), format="%d", width="small"),
+                "Gol":     st.column_config.NumberColumn(t("Gol", "G"), format="%d", width="small"),
+                "G/Maç":   st.column_config.NumberColumn("G/M", format="%.2f", width="small"),
+                "Dakika":  st.column_config.NumberColumn(t("Dk", "Min"), format="%d", width="small"),
+                "Sarı":    st.column_config.NumberColumn("🟨", format="%d", width="small"),
+                "Kırmızı": st.column_config.NumberColumn("🟥", format="%d", width="small"),
+            })
+    with col_r:
+        _sel = secim_df.selection.rows if hasattr(secim_df, "selection") else []
+        if not _sel:
+            st.markdown(
+                f"<div style='color:#64748b;padding:34px 10px;text-align:center;font-size:0.9rem;'>"
+                f"👈 {t('Bir oyuncuya tıkla — detayları burada açılır', 'Click a player — details open here')}</div>",
+                unsafe_allow_html=True)
+        else:
+            r = odf.iloc[_sel[0]]
+            o = next((x for x in oyuncular if x["oyuncu"] == r["Oyuncu"] and x["takim"] == r["Takım"]), None)
+            if o:
+                gf, gh, gp = o.get("gol_ayak", 0), o.get("gol_kafa", 0), o.get("penalti_gol", 0)
+                ilk11, yedek = o.get("ilk11_mac", 0), o.get("yedek_mac", 0)
+                _kut = "".join(
+                    f"<div style='flex:1;min-width:58px;background:#11162a;border-radius:6px;padding:8px;text-align:center;'>"
+                    f"<div style='font-size:1.05rem;font-weight:800;color:#1db954;'>{v}</div>"
+                    f"<div style='font-size:0.58rem;color:#64748b;'>{lbl}</div></div>"
+                    for v, lbl in [(o['mac_sayisi'], t('MAÇ', 'M')), (o['gol_sayisi'], t('GOL', 'G')),
+                                   (o['toplam_dakika'], t('DAKİKA', 'MIN')), (f"{ilk11}/{yedek}", t('İLK11/YDK', 'ST/SUB'))])
+                st.markdown(
+                    f"<div style='background:#0e1326;border:1px solid #232a40;border-top:3px solid #a855f7;"
+                    f"border-radius:10px;padding:14px 16px;'>"
+                    f"<div style='font-size:1.05rem;font-weight:800;color:#fff;'>{o['oyuncu']}</div>"
+                    f"<div style='color:#8899aa;font-size:0.8rem;margin:3px 0 10px;'>🏟 {o['tum_takimlar']}</div>"
+                    f"<div style='display:flex;gap:8px;flex-wrap:wrap;'>{_kut}</div>"
+                    f"<div style='margin-top:10px;font-size:0.76rem;color:#9aa6ba;'>"
+                    f"⚽ {t('Gol kırılımı', 'Goal breakdown')}: {gf} {t('ayak', 'foot')} · {gh} {t('kafa', 'head')} · "
+                    f"{gp} {t('penaltı', 'pen')} · 🟨 {o['sari_kart']} · 🟥 {o['kirmizi_kart']}</div></div>",
+                    unsafe_allow_html=True)
+    st.caption(t("⚠️ Alt lig verisi TFF maç detaylarından derlenir; eksik olabilir. Süper Lig oyuncularıyla karışmaz.",
+                 "⚠️ Lower-league data compiled from TFF match details; may be incomplete. Never mixed with Super League players."))
+
+
+if st.session_state.get("sayfa") == "altlig":
+    geri_ana_butonu("geri_altlig")
+    render_altlig()
     st.stop()
 
 # ─── SCOUTİNG SAYFASI (Premium kademe) ───────────────────────────────────────
