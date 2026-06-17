@@ -139,12 +139,18 @@ footer { visibility:hidden !important; display:none !important; }
 
 /* ── Özet kartlar ── */
 .stat-kart { background:linear-gradient(180deg,#171c30,#131726);
-    border:1px solid #222842; border-radius:8px; padding:14px 18px;
-    text-align:center; border-top:3px solid #1db954; margin-bottom:6px; }
-.stat-kart .sayi   { font-size:1.9rem; font-weight:800; color:#1db954;
-    font-family:'Sora',sans-serif; }
-.stat-kart .etiket { font-size:0.68rem; color:#8899aa; margin-top:3px;
-    text-transform:uppercase; letter-spacing:0.08em; font-weight:600; }
+    border:1px solid #222842; border-radius:8px; padding:14px 10px;
+    text-align:center; border-top:3px solid #1db954; margin-bottom:6px;
+    /* Satır içi kartlar eşit yükseklik + içerik dikey ortalı */
+    min-height:92px; height:100%;
+    display:flex; flex-direction:column; justify-content:center; }
+.stat-kart .sayi   { font-size:1.6rem; font-weight:800; color:#1db954;
+    font-family:'Sora',sans-serif; line-height:1.12; white-space:nowrap; }
+.stat-kart .etiket { font-size:0.66rem; color:#8899aa; margin-top:4px;
+    text-transform:uppercase; letter-spacing:0.06em; font-weight:600; line-height:1.25; }
+/* Stat kartları içeren sütun satırlarını eşit yükseklikte ger */
+[data-testid="stHorizontalBlock"]:has(.stat-kart) { align-items:stretch; }
+[data-testid="stHorizontalBlock"]:has(.stat-kart) [data-testid="stColumn"] > div { height:100%; }
 
 /* ── Profil kartı ── */
 .profil-kart { background:#1a1f36; border-radius:14px; padding:22px 26px;
@@ -193,7 +199,7 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     .baslik-kutu p  { font-size:0.8rem; }
 
     /* Özet kartlar 2'li grid */
-    .stat-kart { padding:10px 12px; margin-bottom:4px; }
+    .stat-kart { padding:10px 12px; margin-bottom:4px; min-height:72px; }
     .stat-kart .sayi   { font-size:1.5rem; }
     .stat-kart .etiket { font-size:0.68rem; }
 
@@ -5355,12 +5361,13 @@ with tab4:
                     labels=[mevki_goster(m) for m in mevki_sayilari.index],
                     values=mevki_sayilari.values,
                     marker_colors=[mevki_renk(m) for m in mevki_sayilari.index],
-                    textinfo="label+value",
+                    textinfo="label+value", textposition="outside",
+                    automargin=True, insidetextorientation="horizontal",
                     hole=0.4,
                 ))
                 fig_mevki.update_layout(
-                    paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
-                    height=200, margin=dict(l=0,r=0,t=10,b=0),
+                    paper_bgcolor="#0f1117", font=dict(color="#e0e0e0", size=11),
+                    height=240, margin=dict(l=30,r=30,t=24,b=24),
                     showlegend=False)
                 st.plotly_chart(fig_mevki, use_container_width=True)
 
@@ -6116,12 +6123,13 @@ if tab_benim:
                     fig_pie = go.Figure(go.Pie(
                         labels=[mevki_goster(m) for m in mev_dag["Mevki"]], values=mev_dag["Sayı"],
                         marker_colors=[mevki_renk(m) for m in mev_dag["Mevki"]],
-                        hole=0.45, textinfo="label+value",
-                        textfont=dict(color="#fff", size=12),
+                        hole=0.45, textinfo="label+value", textposition="outside",
+                        automargin=True, insidetextorientation="horizontal",
+                        textfont=dict(color="#e0e0e0", size=11),
                     ))
                     fig_pie.update_layout(
-                        paper_bgcolor="#0f1117", font=dict(color="#e0e0e0"),
-                        margin=dict(l=10,r=10,t=10,b=10), height=220,
+                        paper_bgcolor="#0f1117", font=dict(color="#e0e0e0", size=11),
+                        margin=dict(l=30,r=30,t=24,b=24), height=240,
                         showlegend=False,
                     )
                     st.plotly_chart(fig_pie, use_container_width=True)
@@ -6601,11 +6609,13 @@ with tab11:
             en_iyi = aktif.loc[aktif["G/Maç"].idxmin()]
             en_kotu = aktif.loc[aktif["G/Maç"].idxmax()]
             k1, k2, k3, k4 = st.columns(4)
+            _ei_ad = en_iyi['Kaleci'].split()[0].title()
+            _ek_ad = en_kotu['Kaleci'].split()[0].title()
             for kol, sayi, etiket in [
                 (k1, len(aktif), t("Aktif Kaleci","Active GKs")),
                 (k2, int(kal_df["YenilenGol"].sum()), t("Toplam Gol","Total Goals")),
-                (k3, f"{en_iyi['G/Maç']} — {en_iyi['Kaleci'].split()[0]}", t("En Az Yiyen","Fewest Conceded")),
-                (k4, f"{en_kotu['G/Maç']} — {en_kotu['Kaleci'].split()[0]}", t("En Çok Yiyen","Most Conceded")),
+                (k3, en_iyi['G/Maç'], t("En Az Yiyen","Fewest Conceded") + " · " + _ei_ad),
+                (k4, en_kotu['G/Maç'], t("En Çok Yiyen","Most Conceded") + " · " + _ek_ad),
             ]:
                 kol.markdown(
                     f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
