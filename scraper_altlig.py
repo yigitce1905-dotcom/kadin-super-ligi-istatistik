@@ -67,6 +67,63 @@ def gruplari_bul(page_id):
     return gruplar
 
 
+def gol_kralicesi_cek(page_id):
+    """Lig ana sayfasındaki RESMİ gol kraliçesi tablosu (kisiID + isim + takım + gol).
+    TFF'nin otorite kaynağı; gol sayıları buna göre uzlaştırılır."""
+    soup = fetch(f"{BASE}default.aspx?pageID={page_id}")
+    tbl = None
+    for t in soup.find_all("table"):
+        # kisiID linkleri + sondaki gol sayısı olan en uygun tablo
+        if t.find("a", href=re.compile(r"kisiID=", re.I)) and re.search(r"\bGol\b", t.get_text(), re.I) is not None:
+            tbl = t
+            break
+    if tbl is None:  # fallback: kisiID linkli en çok satırlı tablo
+        c = [t for t in soup.find_all("table") if t.find("a", href=re.compile(r"kisiID=", re.I))]
+        tbl = max(c, key=lambda t: len(t.find_all("tr"))) if c else None
+    out = {}
+    if tbl is None:
+        return out
+    for tr in tbl.find_all("tr"):
+        a = tr.find("a", href=re.compile(r"kisiID=", re.I))
+        if not a:
+            continue
+        m = re.search(r"kisiID=(\d+)", a["href"], re.I)
+        if not m:
+            continue
+        isim = a.get_text(" ", strip=True)
+        nums = [x.get_text(strip=True) for x in tr.find_all("td") if x.get_text(strip=True).isdigit()]
+        if not nums:
+            continue
+        takim = re.sub(r"\d+\s*$", "", tr.get_text(" ", strip=True).replace(isim, "", 1)).strip()
+        out[m.group(1)] = {"isim": isim, "takim": takim, "gol": int(nums[-1])}
+    return out
+
+
+def _mac_golculer(soup, ev, dep):
+    """Maç detayından skor + golcü listesi (playoff gösterimi için)."""
+    res = {"ev_gol": 0, "dep_gol": 0, "golculer": []}
+    sira = 0
+    cur = ev
+    for tbl in soup.find_all("table"):
+        bs = tbl.select(".MacDetayMiniBaslik")
+        if len(bs) != 1:
+            continue
+        ad = bs[0].get_text(strip=True)
+        if ad == "İlk 11":
+            cur = ev if sira == 0 else dep
+            sira += 1
+        elif ad == "Goller":
+            for a in tbl.select('a[href*="pageId=30"]'):
+                metin = a.get_text(strip=True)
+                if cur == ev:
+                    res["ev_gol"] += 1
+                else:
+                    res["dep_gol"] += 1
+                res["golculer"].append({"oyuncu": re.sub(r",.*$", "", metin).strip(),
+                                        "takim": cur, "detay": metin})
+    return res
+
+
 def puan_durumu_cek(page_id, grup_id):
     soup = fetch(f"{BASE}default.aspx?pageID={page_id}&grupID={grup_id}")
     st = soup.find("table", class_="s-table")
@@ -128,30 +185,46 @@ def main():
             continue   # bu lige ait olmayan (sayfa chrome'undan gelen) maç — atla
         ge, gd = takim_grup.get(ev.upper()), takim_grup.get(dep.upper())
         if ge != gd:
-            playoff.append({"ev": ev, "dep": dep, "macId": mid})
+            _pd = _mac_golculer(soup, ev, dep)
+            playoff.append({"ev": ev, "dep": dep, "macId": mid,
+                            "ev_gol": _pd["ev_gol"], "dep_gol": _pd["dep_gol"],
+                            "golculer": _pd["golculer"]})
         islenen += 1
         print(f"  [{islenen}] {ev[:24]} vs {dep[:24]}")
         scraper.mac_detayi_isle(None, {"url": url, "ev": ev, "dep": dep}, oyuncu_dict, islenen)
         time.sleep(0.8)
 
+    # RESMİ gol kraliçesi tablosu (otorite) — gol sayıları buna göre uzlaştırılır
+    resmi = gol_kralicesi_cek(page_id)
+    print(f"Resmi gol kraliçesi: {len(resmi)} oyuncu")
+
     # Oyuncu listesi (scraper.veriyi_kaydet transform'u + grup/lig etiketi)
     oyuncular = []
-    for v in oyuncu_dict.values():
+    duzeltilen = 0
+    for kid, v in oyuncu_dict.items():
         mac = v["mac"]
         ts = v.get("takim_stats", {})
         birincil = max(ts, key=lambda t: ts[t]["mac"]) if ts else v.get("_takim_set", "")
         takim_listesi = sorted(ts.items(), key=lambda x: -x[1]["mac"])
         grup = takim_grup.get(birincil.upper(), "")
+        # Gol sayısını resmi tabloyla uzlaştır (kisiID ile — playoff/own-goal sapması düzelir)
+        gol_hesap = v["gol"]
+        gol_resmi = resmi.get(kid, {}).get("gol")
+        gol_final = gol_resmi if gol_resmi is not None else 0
+        if gol_final != gol_hesap:
+            duzeltilen += 1
         oyuncular.append({
+            "kisi_id": kid,
             "oyuncu": v["isim"], "takim": birincil,
             "tum_takimlar": " / ".join(t for t, _ in takim_listesi),
             "transfer": len(takim_listesi) > 1,
             "grup": grup, "lig": cfg["ad"],
             "mac_sayisi": mac, "ilk11_mac": v.get("ilk11_mac", 0),
-            "yedek_mac": v.get("yedek_mac", 0), "gol_sayisi": v["gol"],
+            "yedek_mac": v.get("yedek_mac", 0), "gol_sayisi": gol_final,
+            "gol_hesaplanan": gol_hesap,   # maç-detaylarından (playoff dahil) — referans
             "gol_ayak": v.get("gol_ayak", 0), "gol_kafa": v.get("gol_kafa", 0),
             "penalti_gol": v.get("penalti_gol", 0),
-            "gol_ort": round(v["gol"] / mac, 2) if mac else 0,
+            "gol_ort": round(gol_final / mac, 2) if mac else 0,
             "sari_kart": v["sari"], "kirmizi_kart": v["kirmizi"],
             "toplam_dakika": v["dakika"],
             "takim_detay": [{"takim": t, "mac": s["mac"], "gol": s["gol"],
@@ -161,12 +234,19 @@ def main():
         })
     oyuncular.sort(key=lambda x: (-x["mac_sayisi"], -x["gol_sayisi"]))
 
+    # Resmi gol kraliçesi tablosu (sıralı liste — sayfada gösterilir)
+    gol_kralicesi = sorted(
+        [{"oyuncu": r["isim"], "takim": r["takim"], "gol": r["gol"], "kisi_id": kid}
+         for kid, r in resmi.items()], key=lambda x: -x["gol"])
+
     out = {"lig": cfg["ad"], "guncelleme": date.today().isoformat(),
-           "gruplar": gruplar_out, "playoff": playoff, "oyuncular": oyuncular}
+           "gruplar": gruplar_out, "playoff": playoff,
+           "gol_kralicesi": gol_kralicesi, "oyuncular": oyuncular}
     with open(cfg["cikti"], "w", encoding="utf-8") as f:
         json.dump(out, f, ensure_ascii=False, indent=2)
     print(f"\n[OK] {cfg['cikti']} — {len(oyuncular)} oyuncu, {islenen} maç, "
-          f"{len(playoff)} playoff")
+          f"{len(playoff)} playoff, {len(gol_kralicesi)} resmi golcü, "
+          f"{duzeltilen} gol düzeltildi")
 
 
 if __name__ == "__main__":
