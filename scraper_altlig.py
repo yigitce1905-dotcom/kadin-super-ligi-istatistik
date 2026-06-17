@@ -244,10 +244,13 @@ def main():
         })
     oyuncular.sort(key=lambda x: (-x["mac_sayisi"], -x["gol_sayisi"]))
 
-    # Resmi gol kraliçesi tablosu (sıralı liste — sayfada gösterilir)
+    # Resmi gol kraliçesi tablosu (sıralı). Takım = oyuncunun BİZİM verimizde
+    # (maçları oynadığı) takımı — TFF'nin yazdığı güncel/transfer kulübü değil.
+    _kid_takim = {o["kisi_id"]: o["takim"] for o in oyuncular if o.get("takim")}
     gol_kralicesi = sorted(
-        [{"oyuncu": r["isim"], "takim": r["takim"], "gol": r["gol"], "kisi_id": kid}
-         for kid, r in resmi.items()], key=lambda x: -x["gol"])
+        [{"oyuncu": r["isim"], "takim": _kid_takim.get(kid, r["takim"]),
+          "gol": r["gol"], "kisi_id": kid} for kid, r in resmi.items()],
+        key=lambda x: -x["gol"])
 
     out = {"lig": cfg["ad"], "guncelleme": date.today().isoformat(),
            "gruplar": gruplar_out, "playoff": playoff,

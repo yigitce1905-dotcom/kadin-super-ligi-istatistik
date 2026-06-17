@@ -4182,7 +4182,8 @@ if st.session_state["sayfa"] == "talep":
     st.stop()
 
 # ─── ALT LİGLER SAYFASI (Süper Lig verisinden TAMAMEN izole) ─────────────────
-_ALTLIG_DOSYALAR = {"Kadınlar 1. Ligi": "altlig_1lig.json"}  # Faz 2: "Kadınlar 2. Ligi"
+_ALTLIG_DOSYALAR = {"Kadınlar 1. Ligi": "altlig_1lig.json",
+                    "Kadınlar 2. Ligi": "altlig_2lig.json"}
 
 @st.cache_data(ttl=600)
 def altlig_yukle(dosya: str):
@@ -4205,8 +4206,8 @@ def _altlig_puan_df(puan):
 
 def render_altlig():
     st.markdown(f"## 🥈 {t('Alt Ligler', 'Lower Leagues')}")
-    st.caption(t("TFF Kadınlar 1. Lig · gruplar, puan durumu ve oyuncu istatistikleri — Süper Lig verisinden tamamen ayrı.",
-                 "TFF Women's 1st League · groups, standings & player stats — fully separate from the Super League."))
+    st.caption(t("TFF Kadınlar alt ligleri · gruplar, puan durumu ve oyuncu istatistikleri — Süper Lig verisinden tamamen ayrı.",
+                 "TFF Women's lower leagues · groups, standings & player stats — fully separate from the Super League."))
     _ligler = list(_ALTLIG_DOSYALAR.keys())
     _lig = (st.selectbox(t("Lig", "League"), _ligler, key="altlig_lig")
             if len(_ligler) > 1 else _ligler[0])
