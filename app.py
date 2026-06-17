@@ -4219,11 +4219,8 @@ def render_altlig():
     grup_adlar = list(gruplar.keys())
     secenekler = [t(f"{g} Grubu", f"Group {g}") for g in grup_adlar]
     _kr_lbl = t("👑 Gol Kraliçesi", "👑 Top Scorers")
-    _pf_lbl = t("🏅 Playoff", "🏅 Playoff")
     if data.get("gol_kralicesi"):
         secenekler.append(_kr_lbl)
-    if data.get("playoff"):
-        secenekler.append(_pf_lbl)
     secim = st.radio("g", secenekler, horizontal=True,
                      label_visibility="collapsed", key="altlig_grup")
 
@@ -4236,28 +4233,8 @@ def render_altlig():
                              for i, r in enumerate(kr)])
         st.dataframe(krdf, use_container_width=True, hide_index=True,
                      height=min(45 + len(krdf) * 35, 640))
-        st.caption(t(f"Toplam {len(kr)} golcü · kaynak: tff.org (resmi). Oyuncu gol sayıları bu tabloyla uzlaştırılmıştır.",
-                     f"{len(kr)} scorers · source: tff.org (official). Player goal counts are reconciled with this table."))
-        return
-
-    # Playoff görünümü (skor + golcüler)
-    if secim == _pf_lbl:
-        st.markdown(f"#### 🏅 {t('Playoff Maçları', 'Playoff Matches')}")
-        for m in data["playoff"]:
-            _eg, _dg = m.get("ev_gol"), m.get("dep_gol")
-            _skor = (f"<b style='color:#fff;'>{_eg}</b> <span style='color:#64748b;'>-</span> "
-                     f"<b style='color:#fff;'>{_dg}</b>") if _eg is not None else \
-                    "<span style='color:#64748b;'>vs</span>"
-            _gc = ""
-            for gol in m.get("golculer", []):
-                _gc += (f"<div style='font-size:0.76rem;color:#9aa6ba;margin-left:6px;'>"
-                        f"⚽ {gol.get('detay', gol.get('oyuncu',''))} "
-                        f"<span style='color:#64748b;'>· {gol.get('takim','')}</span></div>")
-            st.markdown(
-                f"<div style='background:#11162a;border:1px solid #232a40;border-radius:8px;"
-                f"padding:11px 15px;margin-bottom:8px;'>"
-                f"<div style='color:#e2e8f0;font-weight:600;'>{m.get('ev','')} {_skor} {m.get('dep','')}</div>"
-                f"{_gc}</div>", unsafe_allow_html=True)
+        st.caption(t(f"Toplam {len(kr)} golcü · kaynak: tff.org (resmi normal sezon). Oyuncu gol sayıları bu tabloyla + playoff golleriyle uzlaştırılmıştır.",
+                     f"{len(kr)} scorers · source: tff.org (official regular season). Player goals reconciled with this table + playoff goals."))
         return
 
     g = grup_adlar[secenekler.index(secim)]
@@ -4314,6 +4291,8 @@ def render_altlig():
             if o:
                 gf, gh, gp = o.get("gol_ayak", 0), o.get("gol_kafa", 0), o.get("penalti_gol", 0)
                 ilk11, yedek = o.get("ilk11_mac", 0), o.get("yedek_mac", 0)
+                _pl = o.get("playoff_gol", 0)
+                _pl_not = (f" · 🏅 {_pl} {t('playoff golü','playoff goal' + ('s' if _pl != 1 else ''))}") if _pl else ""
                 _kut = "".join(
                     f"<div style='flex:1;min-width:58px;background:#11162a;border-radius:6px;padding:8px;text-align:center;'>"
                     f"<div style='font-size:1.05rem;font-weight:800;color:#1db954;'>{v}</div>"
@@ -4328,7 +4307,7 @@ def render_altlig():
                     f"<div style='display:flex;gap:8px;flex-wrap:wrap;'>{_kut}</div>"
                     f"<div style='margin-top:10px;font-size:0.76rem;color:#9aa6ba;'>"
                     f"⚽ {t('Gol kırılımı', 'Goal breakdown')}: {gf} {t('ayak', 'foot')} · {gh} {t('kafa', 'head')} · "
-                    f"{gp} {t('penaltı', 'pen')} · 🟨 {o['sari_kart']} · 🟥 {o['kirmizi_kart']}</div></div>",
+                    f"{gp} {t('penaltı', 'pen')}{_pl_not} · 🟨 {o['sari_kart']} · 🟥 {o['kirmizi_kart']}</div></div>",
                     unsafe_allow_html=True)
     st.caption(t("⚠️ Alt lig verisi TFF maç detaylarından derlenir; eksik olabilir. Süper Lig oyuncularıyla karışmaz.",
                  "⚠️ Lower-league data compiled from TFF match details; may be incomplete. Never mixed with Super League players."))

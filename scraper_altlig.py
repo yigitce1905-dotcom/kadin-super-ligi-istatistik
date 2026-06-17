@@ -115,12 +115,16 @@ def _mac_golculer(soup, ev, dep):
         elif ad == "Goller":
             for a in tbl.select('a[href*="pageId=30"]'):
                 metin = a.get_text(strip=True)
+                kidm = re.search(r"kisiId=(\d+)", a["href"], re.I)
+                kid = kidm.group(1) if kidm else ""
                 if cur == ev:
                     res["ev_gol"] += 1
                 else:
                     res["dep_gol"] += 1
+                owngoal = bool(re.search(r"\(KKG\)|\(OG\)", metin, re.I))
                 res["golculer"].append({"oyuncu": re.sub(r",.*$", "", metin).strip(),
-                                        "takim": cur, "detay": metin})
+                                        "takim": cur, "detay": metin,
+                                        "kid": kid, "og": owngoal})
     return res
 
 
@@ -171,6 +175,7 @@ def main():
 
     oyuncu_dict = {}
     playoff = []
+    playoff_gol = {}   # kisiID -> playoff golü (own-goal hariç)
     islenen = 0
     for i, mid in enumerate(sorted(all_macids), 1):
         url = f"{BASE}Default.aspx?pageID=29&macId={mid}"
@@ -189,6 +194,9 @@ def main():
             playoff.append({"ev": ev, "dep": dep, "macId": mid,
                             "ev_gol": _pd["ev_gol"], "dep_gol": _pd["dep_gol"],
                             "golculer": _pd["golculer"]})
+            for gc in _pd["golculer"]:
+                if gc.get("kid") and not gc.get("og"):
+                    playoff_gol[gc["kid"]] = playoff_gol.get(gc["kid"], 0) + 1
         islenen += 1
         print(f"  [{islenen}] {ev[:24]} vs {dep[:24]}")
         scraper.mac_detayi_isle(None, {"url": url, "ev": ev, "dep": dep}, oyuncu_dict, islenen)
@@ -207,10 +215,12 @@ def main():
         birincil = max(ts, key=lambda t: ts[t]["mac"]) if ts else v.get("_takim_set", "")
         takim_listesi = sorted(ts.items(), key=lambda x: -x[1]["mac"])
         grup = takim_grup.get(birincil.upper(), "")
-        # Gol sayısını resmi tabloyla uzlaştır (kisiID ile — playoff/own-goal sapması düzelir)
+        # Gol sayısı = RESMİ normal sezon (kisiID ile, otorite) + PLAYOFF golü.
+        # Resmi tablo playoff'u saymaz; oyuncunun kendi verisinde playoff golü de yer alsın.
         gol_hesap = v["gol"]
-        gol_resmi = resmi.get(kid, {}).get("gol")
-        gol_final = gol_resmi if gol_resmi is not None else 0
+        gol_normal = resmi.get(kid, {}).get("gol", 0)
+        gol_pl = playoff_gol.get(kid, 0)
+        gol_final = gol_normal + gol_pl
         if gol_final != gol_hesap:
             duzeltilen += 1
         oyuncular.append({
@@ -221,7 +231,7 @@ def main():
             "grup": grup, "lig": cfg["ad"],
             "mac_sayisi": mac, "ilk11_mac": v.get("ilk11_mac", 0),
             "yedek_mac": v.get("yedek_mac", 0), "gol_sayisi": gol_final,
-            "gol_hesaplanan": gol_hesap,   # maç-detaylarından (playoff dahil) — referans
+            "gol_normal": gol_normal, "playoff_gol": gol_pl,   # ayrışım (detay gösterimi)
             "gol_ayak": v.get("gol_ayak", 0), "gol_kafa": v.get("gol_kafa", 0),
             "penalti_gol": v.get("penalti_gol", 0),
             "gol_ort": round(gol_final / mac, 2) if mac else 0,
