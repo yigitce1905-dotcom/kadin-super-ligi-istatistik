@@ -5073,75 +5073,43 @@ with _bc2:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# ─── SEKMELER ─────────────────────────────────────────────────────────────────
-# Sekme etiketleri sol navigasyondaki _tr_sekme_etiketleri ile birebir aynı.
-# Native sekme barı CSS ile gizli; aktif sekme sol panelden seçilir ve aşağıda
-# JS ile (gizli ama tıklanabilir) ilgili sekmeye geçiş yapılır.
+# ─── SEKMELER (KOŞULLU RENDER — perf) ─────────────────────────────────────────
+# st.tabs yerine: SADECE sol menüden seçili sekmenin kodu çalışır (14 sekme
+# yerine 1 → her etkileşim ~14 kat daha hafif). Native sekme barı + JS hilesi
+# kaldırıldı. Sekme değişkenleri artık BOOLEAN (aktif mi); "with tabX:" → "if tabX:".
 _giris_var = st.session_state.get("kulup_giris", False)
 _sekmeler  = _tr_sekme_etiketleri(_giris_var)
 _is_admin  = st.session_state.get("kulup_kullanici") == "admin"
+_aktif = st.session_state.get("tr_sekme", _sekmeler[0])
+if _aktif not in _sekmeler:
+    _aktif = _sekmeler[0]
+    st.session_state["tr_sekme"] = _aktif
 
-_tabs = st.tabs(_sekmeler)
-
-# tab1 "Tam Profili Aç" tetikleyicisi (modal ana app flow'unda açılır)
+# "Tam Profili Aç" modal tetikleyicisi
 _dlg = st.session_state.pop("_profil_dlg", None)
 if _dlg:
     _profil_dialog(_dlg[0], _dlg[1])
 
-# Sol menüde seçili sekmeyi göster: native bar gizli olduğundan ilgili
-# (görünmez ama tıklanabilir) sekme butonuna JS ile tıklanır.
-# PERF: yalnızca seçili sekme DEĞİŞTİĞİNDE enjekte et (her rerun'da iframe
-# yaratmak yavaşlatıyordu). baseweb sekme durumu rerun'lar arası korunur.
-_aktif_sekme_js = st.session_state.get("tr_sekme", _sekmeler[0])
-if _aktif_sekme_js not in _sekmeler:
-    _aktif_sekme_js = _sekmeler[0]
-if st.session_state.get("_tr_sekme_uygulanan") != _aktif_sekme_js:
-    st.session_state["_tr_sekme_uygulanan"] = _aktif_sekme_js
-    import streamlit.components.v1 as _components
-    _components.html(f"""<script>
-      const hedef = {_aktif_sekme_js!r}.trim();
-      let deneme = 0;
-      const zaman = setInterval(() => {{
-        const sekmeler = window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
-        if (sekmeler.length) {{
-          for (const s of sekmeler) {{
-            if (s.innerText.trim() === hedef) {{
-              if (s.getAttribute('aria-selected') !== 'true') s.click();
-              clearInterval(zaman); return;
-            }}
-          }}
-        }}
-        if (++deneme > 40) clearInterval(zaman);
-      }}, 70);
-    </script>""", height=0)
-
-_ti = 0
-
-if _giris_var:
-    tab_benim = _tabs[_ti]; _ti += 1
-    tab_internal = _tabs[_ti]; _ti += 1
-else:
-    tab_benim = None
-    tab_internal = None
-
-tab1       = _tabs[_ti]; _ti += 1
-tab_transfer = _tabs[_ti]; _ti += 1
-tab_genç   = _tabs[_ti]; _ti += 1
-tab2       = _tabs[_ti]; _ti += 1
-tab3       = _tabs[_ti]; _ti += 1
-tab4       = _tabs[_ti]; _ti += 1
-tab5       = _tabs[_ti]; _ti += 1
-tab6       = _tabs[_ti]; _ti += 1
-tab7       = _tabs[_ti]; _ti += 1
-tab9       = _tabs[_ti]; _ti += 1
-tab10      = _tabs[_ti]; _ti += 1
-tab11      = _tabs[_ti]; _ti += 1
+tab_benim    = _giris_var and _aktif == t("🏟️ Benim Kadrom", "🏟️ My Squad")
+tab_internal = _giris_var and _aktif == t("📝 Internal Scout", "📝 Internal Scout")
+tab1         = _aktif == t("📋 Oyuncu Listesi", "📋 Player List")
+tab_transfer = _aktif == t("🔄 Transfer Öner", "🔄 Transfer Suggest")
+tab_genç     = _aktif == t("🌱 Genç Yetenekler", "🌱 Young Talents")
+tab2         = _aktif == t("👤 Oyuncu Profili", "👤 Player Profile")
+tab3         = _aktif == t("⚡ Karşılaştırma", "⚡ Comparison")
+tab4         = _aktif == t("🏟️ Takımlar", "🏟️ Teams")
+tab5         = _aktif == t("🏆 Lig Tablosu", "🏆 League Table")
+tab6         = _aktif == t("🌟 En İyiler", "🌟 Top Performers")
+tab7         = _aktif == t("⚽ Fantasy Kadro", "⚽ Fantasy Squad")
+tab9         = _aktif == t("🔍 Gelişmiş Arama", "🔍 Advanced Search")
+tab10        = _aktif == t("🎂 Yaş Analizi", "🎂 Age Analysis")
+tab11        = _aktif == t("🧤 Kaleciler", "🧤 Goalkeepers")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME — INTERNAL SCOUT (kişiye özel maç raporları: SWOT + serbest not)
 # ══════════════════════════════════════════════════════════════════════════════
-if tab_internal is not None:
-    with tab_internal:
+if tab_internal:
+    if True:
         import datetime as _dt
         _kull = st.session_state.get("kulup_kullanici", "")
         st.markdown(f"### 📝 {t('Internal Scout — Maç Raporların', 'Internal Scout — Your Match Reports')}")
@@ -5228,7 +5196,7 @@ if tab_internal is not None:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 1 — OYUNCU LİSTESİ
 # ══════════════════════════════════════════════════════════════════════════════
-with tab1:
+if tab1:
     if df_tam.empty:
         st.info(t("Veri yok.", "No data."))
 
@@ -5395,7 +5363,7 @@ with tab1:
 # ==============================================================================
 # SEKME 2 - OYUNCU PROFILI
 # ==============================================================================
-with tab2:
+if tab2:
     if not st.session_state.get("kulup_giris"):
         giris_gerekli_ekrani()
     else:
@@ -5437,7 +5405,7 @@ with tab2:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 3 — KARŞILAŞTIRMA (2-4 oyuncu)
 # ══════════════════════════════════════════════════════════════════════════════
-with tab3:
+if tab3:
     st.markdown(f"### ⚡ {t('Oyuncu Karşılaştırması', 'Player Comparison')}")
     st.caption(t("2 ile 4 oyuncu arasında seçim yapabilirsiniz.", "You can select between 2 and 4 players."))
 
@@ -5598,7 +5566,7 @@ with tab3:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 4 — TAKIMLAR
 # ══════════════════════════════════════════════════════════════════════════════
-with tab4:
+if tab4:
     st.markdown(f"### 🏟️ {t('Takım Analizi', 'Team Analysis')}")
 
     if not df_tam.empty:
@@ -5714,7 +5682,7 @@ with tab4:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 5 — LİG TABLOSU
 # ══════════════════════════════════════════════════════════════════════════════
-with tab5:
+if tab5:
     st.markdown(f"### {t('Puan Durumu', 'League Standings')}")
 
     # Oyuncu verisinden takım istatistikleri hesapla
@@ -5776,7 +5744,7 @@ with tab5:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 6 — EN İYİLER
 # ══════════════════════════════════════════════════════════════════════════════
-with tab6:
+if tab6:
     st.markdown(f"### 🌟 {t('2025-2026 Sezonu En İyileri', '2025-2026 Season Top Performers')}")
     if df_tam.empty:
         st.info(t("Veri yok.", "No data."))
@@ -5985,7 +5953,7 @@ with tab6:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 7 — FANTASY KADRO
 # ══════════════════════════════════════════════════════════════════════════════
-with tab7:
+if tab7:
     st.markdown(f"### ⚽ {t('Fantasy Kadro Kur', 'Build Fantasy Squad')}")
     st.caption(t("Dizilişini seç, oyuncuları ata — saha gerçek zamanlı güncellenir.",
                  "Choose your formation, assign players — the pitch updates in real time."))
@@ -6321,7 +6289,7 @@ with tab7:
 # SEKME — BENİM KADROM (sadece giriş yapanlara)
 # ══════════════════════════════════════════════════════════════════════════════
 if tab_benim:
-    with tab_benim:
+    if True:
         kulup_takim = st.session_state.get("kulup_takim","")
         kulup_ad    = st.session_state.get("kulup_ad","")
         _rol        = st.session_state.get("kulup_kullanici","")
@@ -6467,7 +6435,7 @@ if tab_benim:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME — GENÇ YETENEKLER
 # ══════════════════════════════════════════════════════════════════════════════
-with tab_genç:
+if tab_genç:
     st.markdown(f"##### 🌱 {t('Genç Yetenekler', 'Young Talents')}")
     st.caption(t("23 yaş altı · En az 8 maç · Erken Olgunluk Skoru'na göre sıralı",
                  "Under 23 · At least 8 matches · Sorted by Early Maturity Score"))
@@ -6626,7 +6594,7 @@ with tab_genç:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 9 — GELİŞMİŞ OYUNCU ARAMA
 # ══════════════════════════════════════════════════════════════════════════════
-with tab9:
+if tab9:
     if not st.session_state.get("kulup_giris"):
         giris_gerekli_ekrani()
     elif not pro_kontrol():
@@ -6767,7 +6735,7 @@ with tab9:
         df["takim"] = df["isim"].map(takim_map).fillna("Bilinmiyor")
         return df
 
-with tab10:
+if tab10:
     st.markdown(f"##### 🎂 {t('Yaş Analizi', 'Age Analysis')}")
     st.caption(t("SoccerDonna verisi", "SoccerDonna data"))
 
@@ -6886,7 +6854,7 @@ with tab10:
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 11 — KALECİLER
 # ══════════════════════════════════════════════════════════════════════════════
-with tab11:
+if tab11:
     st.markdown(f"##### 🧤 {t('Kaleci İstatistikleri', 'Goalkeeper Statistics')}")
     st.caption(t("Yenilen gol ve maç başına yenilen gol — en az 5 maç oynayanlar",
                  "Goals conceded and goals conceded per match — min. 5 matches played"))
@@ -7191,7 +7159,7 @@ _TRANSFER_DB = {
     ("Santrafor", "Dusuk",  "Farketmez"):  ["ELIZABETH OWUSUAA", "NGO MBELECK GENEVIEVE EDITH", "ZEYNEP GAMZE KOÇER"],
 }
 
-with tab_transfer:
+if tab_transfer:
     if not st.session_state.get("kulup_giris"):
         giris_gerekli_ekrani()
     elif not pro_kontrol():
