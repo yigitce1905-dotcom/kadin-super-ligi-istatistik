@@ -666,7 +666,8 @@ def giris_formu():
         return
     with st.sidebar.expander(t("🔐 Giriş", "🔐 Login"), expanded=False):
         with st.form("giris_form", clear_on_submit=True):
-            ku = st.text_input(t("Kullanıcı adı", "Username"), placeholder="fenerbahce")
+            ku = st.text_input(t("Kullanıcı adı", "Username"),
+                               placeholder=t("kullanıcı adı", "username"))
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
             if st.form_submit_button(t("Giriş Yap", "Log In"), use_container_width=True):
                 if _giris_yap(ku, si):
@@ -690,7 +691,8 @@ def giris_formu_ana():
             f"letter-spacing:0.16em;'>🔐 {_giris_baslik}</div></div>",
             unsafe_allow_html=True)
         with st.form("giris_form_ana", clear_on_submit=True):
-            ku = st.text_input(t("Kullanıcı adı", "Username"), placeholder="fenerbahce")
+            ku = st.text_input(t("Kullanıcı adı", "Username"),
+                               placeholder=t("kullanıcı adı", "username"))
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
             _b1, _b2 = st.columns(2)
             _gir = _b1.form_submit_button(t("Giriş Yap", "Log In"),
