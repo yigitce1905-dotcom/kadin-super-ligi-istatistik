@@ -3103,9 +3103,11 @@ def render_percentil_panel(secili: str):
         f"{satirlar}</div>", unsafe_allow_html=True)
 
 
-def _ana_lig_pdf_uret(secili: str) -> bytes:
+@st.cache_data(show_spinner=False, max_entries=64)
+def _ana_lig_pdf_uret(secili: str, _en: bool = False) -> bytes:
     """TR lig oyuncusu için tek sayfalık markalı PDF (DejaVu — Türkçe destekli).
-    Sezon istatistikleri + mevki-içi percentile barları."""
+    Sezon istatistikleri + mevki-içi percentile barları.
+    PERF: cache'li — aynı oyuncu için her rerun'da yeniden üretilmez."""
     from fpdf import FPDF
     _f = pathlib.Path(__file__).parent / "fonts"
     row = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
@@ -3340,7 +3342,7 @@ def render_ana_lig_profil(secili):
 
         # ── Markalı PDF rapor indir ──────────────────────────────────────────
         try:
-            _pdf = _ana_lig_pdf_uret(secili)
+            _pdf = _ana_lig_pdf_uret(secili, EN)
             st.download_button(
                 f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
                 data=_pdf, file_name=f"oyuncu_raporu_{secili.replace(' ', '_')}.pdf",
@@ -5088,26 +5090,30 @@ if _dlg:
 
 # Sol menüde seçili sekmeyi göster: native bar gizli olduğundan ilgili
 # (görünmez ama tıklanabilir) sekme butonuna JS ile tıklanır.
+# PERF: yalnızca seçili sekme DEĞİŞTİĞİNDE enjekte et (her rerun'da iframe
+# yaratmak yavaşlatıyordu). baseweb sekme durumu rerun'lar arası korunur.
 _aktif_sekme_js = st.session_state.get("tr_sekme", _sekmeler[0])
 if _aktif_sekme_js not in _sekmeler:
     _aktif_sekme_js = _sekmeler[0]
-import streamlit.components.v1 as _components
-_components.html(f"""<script>
-  const hedef = {_aktif_sekme_js!r}.trim();
-  let deneme = 0;
-  const zaman = setInterval(() => {{
-    const sekmeler = window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
-    if (sekmeler.length) {{
-      for (const s of sekmeler) {{
-        if (s.innerText.trim() === hedef) {{
-          if (s.getAttribute('aria-selected') !== 'true') s.click();
-          clearInterval(zaman); return;
+if st.session_state.get("_tr_sekme_uygulanan") != _aktif_sekme_js:
+    st.session_state["_tr_sekme_uygulanan"] = _aktif_sekme_js
+    import streamlit.components.v1 as _components
+    _components.html(f"""<script>
+      const hedef = {_aktif_sekme_js!r}.trim();
+      let deneme = 0;
+      const zaman = setInterval(() => {{
+        const sekmeler = window.parent.document.querySelectorAll('button[data-baseweb="tab"]');
+        if (sekmeler.length) {{
+          for (const s of sekmeler) {{
+            if (s.innerText.trim() === hedef) {{
+              if (s.getAttribute('aria-selected') !== 'true') s.click();
+              clearInterval(zaman); return;
+            }}
+          }}
         }}
-      }}
-    }}
-    if (++deneme > 40) clearInterval(zaman);
-  }}, 70);
-</script>""", height=0)
+        if (++deneme > 40) clearInterval(zaman);
+      }}, 70);
+    </script>""", height=0)
 
 _ti = 0
 
