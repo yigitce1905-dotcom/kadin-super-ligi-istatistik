@@ -4522,8 +4522,7 @@ if st.session_state.get("sayfa") == "altyas":
 
 
 # ─── SAYGI KUŞAĞI (görsel + saygı metni — içerik JSON'dan) ───────────────────
-@st.cache_data(ttl=300)
-def saygi_yukle():
+def saygi_yukle():  # minik dosya — cache yok ki güncelleme anında yansısın
     yol = _DIZIN / "saygi_kusagi.json"
     if not yol.exists():
         return []
