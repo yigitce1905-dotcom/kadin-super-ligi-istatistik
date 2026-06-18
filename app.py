@@ -4559,7 +4559,8 @@ def render_saygi():
             else:
                 _hedef = st.container()
             with _hedef:
-                st.markdown(f"### {e.get('baslik', '')}")
+                st.markdown(f"<div style='font-size:1.12rem;font-weight:800;color:#f1f5f9;"
+                            f"margin:2px 0 2px;'>{e.get('baslik', '')}</div>", unsafe_allow_html=True)
                 if e.get("alt_baslik"):
                     st.markdown(f"<div style='color:#a855f7;font-weight:600;font-size:0.85rem;"
                                 f"margin:-6px 0 8px;'>{e['alt_baslik']}</div>", unsafe_allow_html=True)

@@ -4,5 +4,17 @@
     "alt_baslik": "",
     "gorsel": "assets/saygi/mustafa_met.jpg",
     "metin": ""
+  },
+  {
+    "baslik": "Ölümsüzdür",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/olumsuzdur.jpg",
+    "metin": ""
+  },
+  {
+    "baslik": "Anne gibi Anne",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/anne_gibi_anne.jpg",
+    "metin": ""
   }
 ]
