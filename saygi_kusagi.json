@@ -16,5 +16,29 @@
     "alt_baslik": "",
     "gorsel": "assets/saygi/anne_gibi_anne.jpg",
     "metin": ""
+  },
+  {
+    "baslik": "Kdz. Ereğli > La Masia. İtirazı olan?",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/kdz_eregli.jpg",
+    "metin": ""
+  },
+  {
+    "baslik": "Taraftar gibi Taraftar",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/taraftar.jpg",
+    "metin": ""
+  },
+  {
+    "baslik": "Komando oyuna böyle girer",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/komando.jpg",
+    "metin": ""
+  },
+  {
+    "baslik": "Sinyor",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/sinyor.jpg",
+    "metin": ""
   }
 ]
