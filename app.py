@@ -4209,6 +4209,66 @@ def _altlig_puan_df(puan):
     df = df[[c for c in kolon if c in df.columns]]
     return df.rename(columns={"sira": "#", "takim": t("Takım", "Team")})
 
+
+# ─── Alt lig/yaş ortak görünümleri (TR Veri'deki gibi, istatistik tabanlı) ───
+def _altlig_en_iyiler(oyuncular):
+    """En İyiler — birden çok lider tablosu (golcü, dakika, gol/90, ilk11)."""
+    if not oyuncular:
+        st.caption(t("Veri yok.", "No data."))
+        return
+    df = pd.DataFrame(oyuncular)
+    df["g90"] = df.apply(lambda r: round(r["gol_sayisi"] / r["toplam_dakika"] * 90, 2)
+                         if r.get("toplam_dakika", 0) > 0 else 0.0, axis=1)
+    st.markdown(f"#### 🌟 {t('En İyiler', 'Top Performers')}")
+    kategoriler = [
+        ("⚽ " + t("En Golcü", "Top Scorers"),      "gol_sayisi",    lambda v: f"{int(v)}",  0),
+        ("⏱️ " + t("En Çok Oynayan", "Most Minutes"), "toplam_dakika", lambda v: f"{int(v)}'", 0),
+        ("🎯 " + t("Gol / 90 dk", "Goals / 90"),     "g90",           lambda v: f"{v:.2f}",   450),
+        ("▶️ " + t("En Çok İlk 11", "Most Starts"),   "ilk11_mac",     lambda v: f"{int(v)}",  0),
+    ]
+    cols = st.columns(2)
+    for i, (baslik, kol, fmt, mindk) in enumerate(kategoriler):
+        d = df[df["toplam_dakika"] >= mindk] if mindk else df
+        top = d.sort_values(kol, ascending=False).head(8)
+        satir = ""
+        for j, (_, r) in enumerate(top.iterrows(), 1):
+            satir += (
+                "<div style='display:flex;justify-content:space-between;gap:8px;"
+                "padding:4px 0;border-bottom:1px solid #1a1f36;font-size:0.8rem;'>"
+                f"<span style='color:#cbd5e1;'><b style='color:#64748b;'>{j}.</b> {r['oyuncu']} "
+                f"<span style='color:#64748b;font-size:0.72rem;'>{str(r['takim'])[:16]}</span></span>"
+                f"<b style='color:#1db954;white-space:nowrap;'>{fmt(r[kol])}</b></div>")
+        cols[i % 2].markdown(
+            "<div style='background:#0e1326;border:1px solid #232a40;border-top:3px solid #a855f7;"
+            "border-radius:10px;padding:12px 14px;margin-bottom:12px;'>"
+            f"<div style='font-weight:700;color:#f1f5f9;margin-bottom:6px;'>{baslik}</div>{satir}</div>",
+            unsafe_allow_html=True)
+    st.caption(t("Gol/90: en az 450 dk oynayanlar arasında.", "Goals/90: among players with ≥450 min."))
+
+
+def _altlig_takim_analizi(oyuncular):
+    """Takım Analizi — takım bazında kadro/gol/en golcü/kart agregasyonu."""
+    if not oyuncular:
+        st.caption(t("Veri yok.", "No data."))
+        return
+    df = pd.DataFrame(oyuncular)
+    st.markdown(f"#### 🏟️ {t('Takım Analizi', 'Team Analysis')}")
+    agg = df.groupby("takim").agg(kadro=("oyuncu", "count"), gol=("gol_sayisi", "sum"),
+                                  sari=("sari_kart", "sum"), kirmizi=("kirmizi_kart", "sum")).reset_index()
+    eng = df.loc[df.groupby("takim")["gol_sayisi"].idxmax(), ["takim", "oyuncu", "gol_sayisi"]]
+    eng_map = {r["takim"]: f"{r['oyuncu']} ({int(r['gol_sayisi'])})" for _, r in eng.iterrows()}
+    grup_map = dict(zip(df["takim"], df["grup"]))
+    agg["en_golcu"] = agg["takim"].map(eng_map)
+    agg["grup"] = agg["takim"].map(grup_map)
+    agg = agg.sort_values("gol", ascending=False)
+    show = agg[["takim", "grup", "kadro", "gol", "en_golcu", "sari", "kirmizi"]].rename(columns={
+        "takim": t("Takım", "Team"), "grup": t("Grup", "Grp"), "kadro": t("Kadro", "Squad"),
+        "gol": t("Toplam Gol", "Goals"), "en_golcu": t("En Golcü", "Top Scorer"),
+        "sari": "🟨", "kirmizi": "🟥"})
+    st.dataframe(show, use_container_width=True, hide_index=True, height=min(45 + len(show) * 35, 600))
+    st.caption(t(f"{len(show)} takım · toplam gola göre sıralı.", f"{len(show)} teams · sorted by total goals."))
+
+
 def render_altlig():
     st.markdown(f"## 🥈 {t('Alt Ligler', 'Lower Leagues')}")
     st.caption(t("TFF Kadınlar alt ligleri · gruplar, puan durumu ve oyuncu istatistikleri — Süper Lig verisinden tamamen ayrı.",
@@ -4224,11 +4284,24 @@ def render_altlig():
     gruplar = data.get("gruplar", {})
     grup_adlar = list(gruplar.keys())
     secenekler = [t(f"{g} Grubu", f"Group {g}") for g in grup_adlar]
+    _ei_lbl = t("🌟 En İyiler", "🌟 Top Performers")
+    _ta_lbl = t("🏟️ Takımlar", "🏟️ Teams")
     _kr_lbl = t("👑 Gol Kraliçesi", "👑 Top Scorers")
+    _oyuncular = data.get("oyuncular", [])
+    if _oyuncular:
+        secenekler += [_ei_lbl, _ta_lbl]
     if data.get("gol_kralicesi"):
         secenekler.append(_kr_lbl)
     secim = st.radio("g", secenekler, horizontal=True,
                      label_visibility="collapsed", key="altlig_grup")
+
+    # Lig geneli görünümler (gruptan bağımsız)
+    if secim == _ei_lbl:
+        _altlig_en_iyiler(_oyuncular)
+        return
+    if secim == _ta_lbl:
+        _altlig_takim_analizi(_oyuncular)
+        return
 
     # Gol Kraliçesi (resmi TFF tablosu)
     if secim == _kr_lbl:
@@ -4343,8 +4416,17 @@ def render_altyas():
 
     _kr_lbl = t("👑 Gol Kraliçesi", "👑 Top Scorers")
     _oy_lbl = t("👤 Oyuncular", "👤 Players")
-    secenekler = [_oy_lbl] + ([_kr_lbl] if data.get("gol_kralicesi") else [])
+    _ei_lbl = t("🌟 En İyiler", "🌟 Top Performers")
+    _ta_lbl = t("🏟️ Takımlar", "🏟️ Teams")
+    secenekler = [_oy_lbl, _ei_lbl, _ta_lbl] + ([_kr_lbl] if data.get("gol_kralicesi") else [])
     secim = st.radio("ay", secenekler, horizontal=True, label_visibility="collapsed", key="altyas_mod")
+
+    if secim == _ei_lbl:
+        _altlig_en_iyiler(data.get("oyuncular", []))
+        return
+    if secim == _ta_lbl:
+        _altlig_takim_analizi(data.get("oyuncular", []))
+        return
 
     if secim == _kr_lbl:
         st.markdown(f"#### 👑 {t('Gol Kraliçesi (Resmi TFF Top-10)', 'Top Scorers (Official TFF Top-10)')}")
