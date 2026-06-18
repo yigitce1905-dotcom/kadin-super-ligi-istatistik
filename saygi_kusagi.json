@@ -1,8 +1,8 @@
 [
   {
-    "baslik": "Örnek Giriş — Saygı Kuşağı",
-    "alt_baslik": "buraya kısa ünvan / açıklama (opsiyonel)",
-    "gorsel": "",
-    "metin": "Bu bölüm, kadın futboluna emek verenlere ve saygıyı hak edenlere ayrılmıştır. Görseller ve metinler eklendikçe burada yer alacak.<br><br>Format örneği: her giriş <b>başlık</b>, opsiyonel <b>alt başlık</b>, <b>görsel</b> (URL ya da assets/saygi/dosya.jpg) ve <b>metin</b> içerir. Bu örnek giriş, gerçek içerik geldiğinde değiştirilecek."
+    "baslik": "Mustafa Met > Pulitzer :(",
+    "alt_baslik": "",
+    "gorsel": "assets/saygi/mustafa_met.jpg",
+    "metin": ""
   }
 ]

@@ -4545,6 +4545,9 @@ def render_saygi():
     for e in girisler:
         with st.container(border=True):
             _g = e.get("gorsel", "")
+            if _g and not _g.lower().startswith("http"):
+                _yerel = _DIZIN / _g
+                _g = str(_yerel) if _yerel.exists() else ""
             if _g:
                 c1, c2 = st.columns([1, 3], gap="medium")
                 with c1:
