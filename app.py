@@ -2,6 +2,7 @@
 Türkiye Kadınlar Süper Ligi 2025-2026 — Streamlit Web Arayüzü
 """
 import json, os, pathlib, requests
+from urllib.parse import quote as _urlquote
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
@@ -2477,13 +2478,22 @@ def render_scouting_detay(tam_isim):
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
-    if st.button(t("← Listeye Dön", "← Back to List"), key="odakli_geri"):
+    # Kaynak: scouting oyuncusu mu (ana lig kadrosunda değil ama SD havuzunda var)?
+    _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (isim in scouting_sd_yukle())
+    _geri_lbl = (t("← Scouting'e Dön", "← Back to Scouting") if _scout_oyuncu
+                 else t("← Listeye Dön", "← Back to List"))
+    if st.button(_geri_lbl, key="odakli_geri"):
         _dil_koru = st.query_params.get("dil", "")
         st.query_params.clear()
         if _dil_koru:
             st.query_params["dil"] = _dil_koru   # dil tercihini koru
-        # Ana akışa dönünce sol menüde Oyuncu Listesi sekmesi seçili gelsin
-        st.session_state["tr_sekme"] = t("📋 Oyuncu Listesi", "📋 Player List")
+        st.session_state["girildi"] = True       # karşılama ekranını atla
+        if _scout_oyuncu:
+            st.session_state["sayfa"] = "scouting"
+        else:
+            st.session_state["sayfa"] = "ana"
+            # Ana akışa dönünce sol menüde Oyuncu Listesi sekmesi seçili gelsin
+            st.session_state["tr_sekme"] = t("📋 Oyuncu Listesi", "📋 Player List")
         st.rerun()
     st.markdown("---")
     # Ana lig oyuncusu mu?
@@ -4919,16 +4929,21 @@ if st.session_state.get("sayfa") == "scouting":
                                 etiket_ayarla(_sl_kullanici, _secili, _yeni_etk)
                                 st.rerun()
 
-                        # Tam profil ÜSTTE modal olarak açılır (liste/filtre korunur)
-                        if st.button(t("📋 Profili Aç", "📋 Open Profile"),
-                                     key="sc_profil_ac", use_container_width=True,
-                                     type="primary"):
-                            st.session_state["_scout_dlg_son"] = _secili
-                            _profil_dialog(_secili, "scout")
-                        # Satır seçimi değiştiğinde otomatik aç (tek tık hissi)
-                        elif _secili != st.session_state.get("_scout_dlg_son"):
-                            st.session_state["_scout_dlg_son"] = _secili
-                            _profil_dialog(_secili, "scout")
+                        # Tam profil YENİ SEKMEDE açılır (kalıcı cookie girişi premium'u
+                        # korur → yeni sekmede kilit yok). Geri dönüş: profil sayfasındaki
+                        # "← Scouting'e Dön" ya da sekmeyi kapatmak; liste/filtre bu sekmede durur.
+                        _dil_q = st.session_state.get("dil", "TR")
+                        _profil_url = f"?oyuncu={_urlquote(_secili)}&dil={_dil_q}"
+                        st.markdown(
+                            f'<a href="{_profil_url}" target="_blank" '
+                            f'style="display:block;width:100%;box-sizing:border-box;'
+                            f'text-align:center;background:#7c3aed;color:#fff;'
+                            f'font-weight:700;padding:9px 0;border-radius:8px;'
+                            f'text-decoration:none;font-size:0.92rem;margin-top:2px;">'
+                            f'📋 {t("Profili Aç (yeni sekme)","Open Profile (new tab)")} ↗</a>',
+                            unsafe_allow_html=True)
+                        st.caption(t("↗ Yeni sekmede açılır — bu sekmede liste ve filtreler korunur.",
+                                     "↗ Opens in a new tab — your list and filters stay here."))
     else:
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
