@@ -2920,6 +2920,7 @@ def render_scout_kadro_raporu(isim: str):
                 f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
                 rapor.get("vatandaslik","")] if x)
     kulup_satir = " · ".join(x for x in [rapor.get("kulup",""), rapor.get("lig",""),
+                  (f"💰 {rapor.get('deger')}" if rapor.get("deger") else ""),
                   (f"🗓 {rapor.get('sozlesme')}" if rapor.get("sozlesme") else "")] if x)
 
     nihai_rozet = (
@@ -4590,7 +4591,13 @@ if st.session_state.get("sayfa") == "scouting":
         </div>
         """, unsafe_allow_html=True)
 
-        sc_df = scouting_gsheet_yukle()
+        # Roster kaynağı: Sco 🌍 sekmesi (scout_kadro_raporlar.json — commit'li snapshot).
+        # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
+        _kadro_roster = scout_kadro_yukle()
+        sc_df = pd.DataFrame(
+            [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", "")}
+             for _isim, _v in _kadro_roster.items()]
+        )
         sd_data = scouting_sd_yukle()
         leistung_data = scouting_leistung_yukle()
         detay_data = scouting_detay_yukle()
@@ -4968,10 +4975,9 @@ def genel_ozet_hesapla() -> dict:
     yerli   = int((uyr == "Turkey").sum())
     yabanci = int(((uyr != "Turkey") & (uyr.fillna("") != "")).sum())
     yas = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
-    # Scouting sayısı: önce GSheets, yoksa yerel SD profilleri
+    # Scouting sayısı: Sco 🌍 havuzu (scout_kadro), yoksa yerel SD profilleri
     try:
-        _sc = scouting_gsheet_yukle()
-        scouting_n = len(_sc) if _sc is not None and not _sc.empty else len(scouting_sd_yukle())
+        scouting_n = len(scout_kadro_yukle()) or len(scouting_sd_yukle())
     except Exception:
         try: scouting_n = len(scouting_sd_yukle())
         except Exception: scouting_n = 0

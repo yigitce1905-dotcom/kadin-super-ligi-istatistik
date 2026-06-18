@@ -1,11 +1,14 @@
 """
-'Scouting is life' Google Sheet --> zengin scout kadro sekmesi (gid=1707810792)
-Tüm scout raporu tablosunu çeker -> scout_kadro_raporlar.json
+'Scouting is life' Google Sheet --> 'Sco 🌍' sekmesi (gid=1707810792)
+Tüm scout kadro tablosunu çeker -> scout_kadro_raporlar.json
 
-Bu sekme Sco Tr'den daha zengin: Kulüp/Lig/Sözleşme, Boy/Ayak/Vücut Tipi,
-Yetenek Kümesi/İktisadi Durum/TR Görüşü ve TARZ'da gerçek ✔︎ işaretleri.
+Bu dosya artık Scouting sayfasının HEM roster (oyuncu listesi) HEM zengin
+rapor kaynağıdır. Tüm oyuncular alınır (değerlendirilmemiş olanlar dahil);
+boş/yanlış (126) yaş alanları SoccerDonna profilinden (scouting_sd_profiller.json)
+backfill edilir.
 
-Parse INDEX BAZLIDIR. Kullanım:  python fetch_scout_kadro.py
+Sütun düzeni dinamik: grup sınırları header satırındaki başlık adlarından
+bulunur (kolon eklense de kaymaz). Kullanım:  python fetch_scout_kadro.py
 """
 import csv, io, json
 from pathlib import Path
@@ -14,8 +17,8 @@ import requests
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID       = "1707810792"
 CIKTI     = Path(__file__).parent / "scout_kadro_raporlar.json"
+SD_YOL    = Path(__file__).parent / "scouting_sd_profiller.json"
 GECERLI_NOTLAR = {"AA","AB","BB","BC","CC","CD","DD","DE","EE","FF","A+"}
-ISARETLI = {"✔", "✔︎", "✓", "x", "X", "✗"}  # ✘ = yok; geri kalan dolu = var
 
 
 def cek() -> str:
@@ -25,26 +28,60 @@ def cek() -> str:
     return r.content.decode("utf-8")
 
 
+def _yas_hesapla(dogum: str):
+    """'30.10.2007' -> yaş (int). Geçersizse None."""
+    import datetime
+    for sep in (".", "/", "-"):
+        if sep in dogum:
+            parca = dogum.split(sep)
+            if len(parca) == 3:
+                try:
+                    g, a, y = (int(x) for x in parca)
+                    if y < 100:
+                        y += 2000 if y < 30 else 1900
+                    bugun = datetime.date.today()
+                    yas = bugun.year - y - ((bugun.month, bugun.day) < (a, g))
+                    if 5 <= yas <= 60:
+                        return yas
+                except Exception:
+                    return None
+    return None
+
+
 def parse(metin: str) -> dict:
     rows = list(csv.reader(io.StringIO(metin)))
     hdr  = rows[1]
 
-    def idx(ad): return hdr.index(ad)
-    i_beceri0, i_beceri9 = idx("Bitiricilik"), idx("BECERİ NOT")
-    i_beseri0, i_beseri9 = i_beceri9 + 1, idx("BEŞERİ NOT")
-    i_fiziki0, i_fiziki9 = i_beseri9 + 1, idx("FİZİKİ NOT")
-    i_sahsi0,  i_sahsi9  = i_fiziki9 + 1, idx("ŞAHSİ NOT")
-    i_tarz0  = i_sahsi9 + 1
-    i_nihai  = idx("NİHAİ")
+    def idx(ad):
+        return hdr.index(ad)
 
-    def h(r, i): return r[i].strip() if i < len(r) else ""
+    def idx_baslar(*adaylar):
+        """Başlığı verilen ön-eklerden biriyle başlayan ilk kolon indexi."""
+        for i, h in enumerate(hdr):
+            for a in adaylar:
+                if h.strip().startswith(a):
+                    return i
+        raise ValueError(f"Kolon bulunamadı: {adaylar}")
+
+    # Nitelik grup sınırları (makro NOT başlıkları 'BECERİ N' biçiminde)
+    i_beceri0 = idx("Bitiricilik")
+    i_beceri9 = idx_baslar("BECERİ")
+    i_beseri0, i_beseri9 = i_beceri9 + 1, idx_baslar("BEŞERİ")
+    i_fiziki0, i_fiziki9 = i_beseri9 + 1, idx_baslar("FİZİKİ")
+    i_sahsi0,  i_sahsi9  = i_fiziki9 + 1, idx_baslar("ŞAHSİ")
+    i_tarz0  = i_sahsi9 + 1
+    i_nihai  = idx_baslar("NİHAİ")
+    i_ivme   = idx_baslar("İVME")
+
+    def h(r, i):
+        return r[i].strip() if i < len(r) else ""
 
     def nitelik(r, i0, i9):
         return {hdr[i]: h(r, i) for i in range(i0, i9) if h(r, i) in GECERLI_NOTLAR}
 
     veriler = {}
     for r in rows[2:]:
-        if not r or not h(r, 3):
+        if not r or not h(r, 3):           # 3 = Oyuncu Adı (eşleşme anahtarı)
             continue
         isim = h(r, 3)
 
@@ -52,36 +89,49 @@ def parse(metin: str) -> dict:
         beseri = nitelik(r, i_beseri0, i_beseri9)
         fiziki = nitelik(r, i_fiziki0, i_fiziki9)
         sahsi  = nitelik(r, i_sahsi0,  i_sahsi9)
-        tum = list(beceri.values()) + list(beseri.values()) + list(fiziki.values()) + list(sahsi.values())
-        degerlendirildi = any(n != "FF" for n in tum) and bool(tum)
-
-        # Sadece tam veri girilmiş oyuncuları al
-        if not degerlendirildi:
-            continue
+        tum = (list(beceri.values()) + list(beseri.values())
+               + list(fiziki.values()) + list(sahsi.values()))
+        degerlendirildi = bool(tum) and any(n != "FF" for n in tum)
 
         tarz = []
         for i in range(i_tarz0, i_nihai):
             v = h(r, i)
-            if v and v != "✘":          # ✘ = özellik yok
+            if v and v != "✘":             # ✘ = özellik yok; ✔/✔︎ = var
                 tarz.append(hdr[i])
 
-        mevki = [h(r, j).replace("-", "") for j in (13, 14, 15) if h(r, j) and h(r, j) != "-"]
+        mevki = [h(r, j).replace("-", "") for j in (13, 14, 15)
+                 if h(r, j) and h(r, j) != "-"]
 
-        veriler[isim] = {
-            "tam_isim":   h(r, 4),
+        dogum = h(r, 7)
+        yas_h = h(r, 8)
+        # Sheet yaşı sadece geçerliyse al (126 = boş DT formülü → atılır)
+        try:
+            yas = int(yas_h)
+            if not (5 <= yas <= 60):
+                yas = ""
+        except ValueError:
+            yas = ""
+        if yas == "" and dogum:
+            y2 = _yas_hesapla(dogum)
+            if y2:
+                yas = y2
+
+        kayit = {
+            "tam_isim":    h(r, 4),
             "vatandaslik": h(r, 5),
             "milli_takim": h(r, 6),
-            "dogum":      h(r, 7),
-            "yas":        h(r, 8),
-            "boy":        h(r, 9),
-            "ayak":       h(r, 10),
-            "vucut_tipi": h(r, 11),
-            "bolge":      h(r, 12),
-            "mevki":      mevki,
-            "rol":        h(r, 16),
-            "kulup":      h(r, 17),
-            "lig":        h(r, 18),
-            "sozlesme":   h(r, 19),
+            "dogum":       dogum,
+            "yas":         yas,
+            "boy":         h(r, 9),
+            "ayak":        h(r, 10),
+            "vucut_tipi":  h(r, 11),
+            "bolge":       h(r, 12),
+            "mevki":       mevki,
+            "rol":         h(r, 16),
+            "kulup":       h(r, 17),
+            "lig":         h(r, 18),
+            "deger":       h(r, 19),
+            "sozlesme":    h(r, 20),
             "beceri": beceri, "beseri": beseri, "fiziki": fiziki, "sahsi": sahsi,
             "makro": {
                 "beceri": h(r, i_beceri9) if h(r, i_beceri9) in GECERLI_NOTLAR else "",
@@ -91,23 +141,60 @@ def parse(metin: str) -> dict:
             },
             "tarz":       tarz,
             "nihai":      h(r, i_nihai) if h(r, i_nihai) in GECERLI_NOTLAR else "",
-            "ivme":       h(r, idx("İVME")) if h(r, idx("İVME")) not in ("", "-") else "",
+            "ivme":       h(r, i_ivme) if h(r, i_ivme) not in ("", "-") else "",
             "yetenek_kumesi": h(r, idx("Yetenek Kümesi")),
             "iktisadi_durum": h(r, idx("İktisadi Durum")),
             "tr_gorusu":  h(r, idx("TR Görüşü")),
             "scout_notu": h(r, idx("Scout Notları")),
-            "degerlendirildi": True,
+            "degerlendirildi": degerlendirildi,
         }
+
+        # Çift kayıt (transfer/duplike): değerlendirilmiş olan kazanır
+        if isim in veriler and veriler[isim]["degerlendirildi"] and not degerlendirildi:
+            continue
+        veriler[isim] = kayit
+
     return veriler
+
+
+def yas_backfill(veriler: dict) -> int:
+    """Yaşı/doğumu boş olanları SoccerDonna profilinden tamamla."""
+    if not SD_YOL.exists():
+        return 0
+    sd = json.load(open(SD_YOL, encoding="utf-8"))
+    n = 0
+    for isim, k in veriler.items():
+        if k.get("yas"):
+            continue
+        p = sd.get(isim)
+        if not isinstance(p, dict):
+            continue
+        dob = p.get("Date of birth", "")
+        if not k.get("dogum") and dob:
+            k["dogum"] = dob
+        # SD 'Age' alanı "18" veya "18 years" olabilir
+        y = _yas_hesapla(k.get("dogum", "")) if k.get("dogum") else None
+        if not y:
+            import re
+            m = re.search(r"\d{1,2}", str(p.get("Age", "")))
+            if m:
+                yy = int(m.group())
+                y = yy if 5 <= yy <= 60 else None
+        if y:
+            k["yas"] = y
+            n += 1
+    return n
 
 
 def main():
     veriler = parse(cek())
+    bf = yas_backfill(veriler)
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(veriler, f, ensure_ascii=False, indent=2)
-    print(f"{len(veriler)} oyuncu -> {CIKTI.name}")
-    for k in veriler:
-        print(f"  • {k}")
+    n_ok = sum(1 for v in veriler.values() if v["degerlendirildi"])
+    n_yas = sum(1 for v in veriler.values() if v.get("yas"))
+    print(f"{len(veriler)} oyuncu ({n_ok} değerlendirilmiş) -> {CIKTI.name}")
+    print(f"Yaş dolu: {n_yas}/{len(veriler)} (SD backfill: {bf})")
 
 
 if __name__ == "__main__":
