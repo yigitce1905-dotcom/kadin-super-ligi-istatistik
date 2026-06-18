@@ -6694,46 +6694,46 @@ if tab9:
                     })
 
 
-    # ══════════════════════════════════════════════════════════════════════════════
-    # SEKME 10 — YAŞ ANALİZİ
-    # ══════════════════════════════════════════════════════════════════════════════
-    def _yas_df():
-        """soccerdonna_profiller.json'dan yaş verisi üretir."""
-        rows = []
-        # Manuel override'ları ekle
-        for isim, age_num in _MANUEL_YAS.items():
-            rows.append({
-                "isim": isim,
-                "born_dt": pd.NaT,
-                "yas": age_num,
-                "dogum_yili": None,
-            })
-        already = {r["isim"] for r in rows}
+# ══════════════════════════════════════════════════════════════════════════════
+# SEKME 10 — YAŞ ANALİZİ
+# ══════════════════════════════════════════════════════════════════════════════
+def _yas_df():
+    """soccerdonna_profiller.json'dan yaş verisi üretir."""
+    rows = []
+    # Manuel override'ları ekle
+    for isim, age_num in _MANUEL_YAS.items():
+        rows.append({
+            "isim": isim,
+            "born_dt": pd.NaT,
+            "yas": age_num,
+            "dogum_yili": None,
+        })
+    already = {r["isim"] for r in rows}
 
-        for isim, profil in sd_profiller.items():
-            if isim in already:
-                continue
-            dob = profil.get("Date of birth", "")
-            age_str = profil.get("Age", "")
-            try:
-                born_dt = pd.to_datetime(dob, dayfirst=True, errors="coerce")
-                age_num = float(str(age_str).split()[0]) if age_str else None
-            except Exception:
-                born_dt, age_num = pd.NaT, None
-            # Mantıksız yaş değerlerini filtrele (15-40 dışı)
-            if age_num is not None and not (15 <= age_num <= 40):
-                continue
-            rows.append({
-                "isim": isim,
-                "born_dt": born_dt,
-                "yas": age_num,
-                "dogum_yili": born_dt.year if not pd.isna(born_dt) else None,
-            })
-        df = pd.DataFrame(rows).dropna(subset=["yas"])
-        # oyuncular.json'daki takım bilgisini birleştir
-        takim_map = dict(zip(df_tam["Oyuncu"], df_tam["Takım"])) if not df_tam.empty else {}
-        df["takim"] = df["isim"].map(takim_map).fillna("Bilinmiyor")
-        return df
+    for isim, profil in sd_profiller.items():
+        if isim in already:
+            continue
+        dob = profil.get("Date of birth", "")
+        age_str = profil.get("Age", "")
+        try:
+            born_dt = pd.to_datetime(dob, dayfirst=True, errors="coerce")
+            age_num = float(str(age_str).split()[0]) if age_str else None
+        except Exception:
+            born_dt, age_num = pd.NaT, None
+        # Mantıksız yaş değerlerini filtrele (15-40 dışı)
+        if age_num is not None and not (15 <= age_num <= 40):
+            continue
+        rows.append({
+            "isim": isim,
+            "born_dt": born_dt,
+            "yas": age_num,
+            "dogum_yili": born_dt.year if not pd.isna(born_dt) else None,
+        })
+    df = pd.DataFrame(rows).dropna(subset=["yas"])
+    # oyuncular.json'daki takım bilgisini birleştir
+    takim_map = dict(zip(df_tam["Oyuncu"], df_tam["Takım"])) if not df_tam.empty else {}
+    df["takim"] = df["isim"].map(takim_map).fillna("Bilinmiyor")
+    return df
 
 if tab10:
     st.markdown(f"##### 🎂 {t('Yaş Analizi', 'Age Analysis')}")
