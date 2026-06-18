@@ -4725,6 +4725,14 @@ if st.session_state.get("sayfa") == "scouting":
                     format_func=mevki_goster, key="sc_detay",
                     disabled=(sc_kategori == _sc_tumu))
 
+                # Rol filtresi (scout_kadro verisi — ~267 oyuncuda dolu)
+                _rol_opts = sorted({_v.get("rol", "") for _v in _kadro_roster.values()
+                                    if _v.get("rol")})
+                sc_rol = st.selectbox(
+                    f"🎭 {t('Rol', 'Role')}", [_sc_tumu] + _rol_opts,
+                    format_func=lambda x: x if x == _sc_tumu else scout_rol_goster(x),
+                    key="sc_rol")
+
                 yil_range = st.slider(
                     f"📅 {t('Doğum Yılı', 'Birth Year')}",
                     yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
@@ -4770,6 +4778,10 @@ if st.session_state.get("sayfa") == "scouting":
                         filtered[isim_col].str.contains(isim_q.strip(), case=False, na=False)]
                 if vat_col and vat_sec != _sc_tumu:
                     filtered = filtered[filtered[vat_col] == vat_sec]
+                if sc_rol != _sc_tumu:
+                    _rol_isimler = {_i for _i, _v in _kadro_roster.items()
+                                    if _v.get("rol") == sc_rol}
+                    filtered = filtered[filtered[isim_col].isin(_rol_isimler)]
                 filtered = filtered[filtered[isim_col].apply(sd_filtre)]
                 if sadece_sl:
                     filtered = filtered[filtered[isim_col].isin(_sl_liste)]
