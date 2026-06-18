@@ -178,6 +178,22 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 .altbilgi { text-align:center; color:#505870; font-size:0.76rem;
     margin-top:36px; padding-top:14px; border-top:1px solid #1e2340; }
 
+/* ── Scouting odaklı profil: büyük isim + gruplu bilgi kutuları ── */
+.sc-isim { font-size:2.1rem; font-weight:800; color:#f5f8ff; line-height:1.08;
+    letter-spacing:-0.015em; }
+.sc-mevki { color:#93c5fd; font-size:0.96rem; margin:7px 0 2px; font-weight:600; }
+.bilgi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:12px; margin:18px 0 22px; }
+.bilgi-kutu { background:linear-gradient(180deg,#101829,#0d1320);
+    border:1px solid #243149; border-radius:13px; padding:15px 17px; }
+.bk-baslik { font-size:0.64rem; font-weight:800; letter-spacing:0.13em;
+    text-transform:uppercase; color:#60a5fa; margin-bottom:11px;
+    padding-bottom:8px; border-bottom:1px solid #1c2740; }
+.bk-satir { display:flex; justify-content:space-between; gap:12px;
+    font-size:0.87rem; padding:5px 0; }
+.bk-satir > span { color:#7c8aa3; white-space:nowrap; }
+.bk-satir > b { color:#e8eef7; font-weight:600; text-align:right; }
+
 /* ══════════════════════════════════════════════════
    MOBİL RESPONSIVE  (≤ 768px)
 ══════════════════════════════════════════════════ */
@@ -1841,6 +1857,16 @@ def _ilk_uyruk(nat_str: str) -> str:
     return spaced.split()[0]
 
 
+def _uyruk_goster(nat_str: str) -> str:
+    """Çift vatandaşlık gösterimi: 'DenmarkFaroe Island' → 'Denmark / Faroe Island'.
+    SD profilinde iki uyruk ayraçsız bitişik geliyor; küçük→büyük sınırına ' / ' koyar.
+    (Ülke adlarındaki boşluk/tire sınır oluşturmaz → tek uyruk bozulmaz.)"""
+    s = (nat_str or "").strip()
+    if not s:
+        return ""
+    return _re.sub(r"(?<=[a-z])(?=[A-Z])", " / ", s)
+
+
 @st.cache_data
 def df_zenginlestir(df: "pd.DataFrame", file_hash: str = "", _v: str = "v2") -> "pd.DataFrame":
     """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler. file_hash + _v cache bozucu."""
@@ -2415,22 +2441,45 @@ def render_scouting_detay(tam_isim):
     sd_badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.78rem;'
                 f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
 
+    # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım)
+    _kadro  = scout_kadro_yukle().get(tam_isim, {})
+    _deger  = _kadro.get("deger", "")
+    _milli  = _kadro.get("milli_takim", "")
+    _yas_g  = f"{yas}" if str(yas) not in ("", "?", "—") else ""
+
+    # Büyük isim başlığı (hero yerine; sağda SD linki, ileride foto için yer)
     st.markdown(f"""
-<div style="border:1px solid #3b82f6;border-radius:14px;padding:22px 26px;margin-bottom:18px;
-    background:linear-gradient(135deg,#0f172a,#1e293b);">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-    <div style="font-size:1.5rem;font-weight:800;color:#f1f5f9;">{tam_isim}</div>
-    <div>{sd_badge}</div>
-  </div>
-  <div style="color:#94a3b8;font-size:0.95rem;margin:6px 0 12px;">📌 {mevki}</div>
-  <hr style="border-color:#334155;">
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px 18px;font-size:0.9rem;color:#cbd5e1;margin-top:10px;">
-    <span>🌍 {ulke_goster(vatandas)}</span>
-    <span>📅 {dob} ({yas} {t("yaş","yrs")})</span>
-    <span>📏 {boy} · {ayak} {t("ayak","foot")}</span>
-    <span>📄 {t("Sözleşme","Contract")}: {sozlesme}</span>
-  </div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;
+     gap:16px;flex-wrap:wrap;margin:2px 0 4px;">
+  <div class="sc-isim">{tam_isim}</div>
+  <div style="padding-top:8px;">{sd_badge}</div>
 </div>""", unsafe_allow_html=True)
+
+    # Gruplu bilgi kutuları (Kişisel · Futbolcu · Diğer) — yan yana, mobilde dikey
+    def _bk(baslik, satirlar):
+        ic = "".join(
+            f"<div class='bk-satir'><span>{_e}</span><b>{_v}</b></div>"
+            for _e, _v in satirlar if str(_v).strip() not in ("", "—", "None"))
+        return (f"<div class='bilgi-kutu'><div class='bk-baslik'>{baslik}</div>{ic}</div>"
+                if ic else "")
+    _kutu_kisisel = _bk(f"👤 {t('Kişisel','Personal')}", [
+        (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
+        (f"📅 {t('Doğum','Born')}", dob),
+        (f"🎂 {t('Yaş','Age')}", _yas_g),
+    ])
+    _kutu_futbolcu = _bk(f"⚽ {t('Futbolcu','Player')}", [
+        (f"📌 {t('Mevki','Position')}", mevki),
+        (f"📏 {t('Boy','Height')}", boy),
+        (f"🦶 {t('Ayak','Foot')}", ayak),
+    ])
+    _kutu_diger = _bk(f"📋 {t('Diğer','Other')}", [
+        (f"📄 {t('Sözleşme','Contract')}", sozlesme),
+        (f"💰 {t('Piyasa Değeri','Market Value')}", _deger),
+        (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli)),
+    ])
+    st.markdown(
+        f"<div class='bilgi-grid'>{_kutu_kisisel}{_kutu_futbolcu}{_kutu_diger}</div>",
+        unsafe_allow_html=True)
 
     # Mr Daniş scouting değerlendirmesi (detay verisi varsa)
     _dty = detay_data.get(tam_isim, {})
@@ -2462,14 +2511,19 @@ def render_scouting_detay(tam_isim):
 
     _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
     if _sezonlar:
-        kariyer_trend_goster(_sezonlar)
-        radar_goster(tam_isim, "scouting")
+        # Trend (sezon bazlı) + Radar (mevki içi yüzdelik) yan yana — mobilde dikey yığılır
+        _ct1, _ct2 = st.columns([1.3, 1], gap="medium")
+        with _ct1:
+            kariyer_trend_goster(_sezonlar)
+        with _ct2:
+            radar_goster(tam_isim, "scouting")
         st.markdown(f"#### ⚽ {t('Tüm Kariyer Performansı', 'Full Career Performance')}")
         _satir_html = ""
         for _s in _sezonlar:
             _milli = _s.get("milli")
             _stil  = "color:#7c8aa0;" if _milli else "color:#cbd5e1;"
-            _kulup_cell = _s.get("kulup", "")
+            _kulup_cell = (_uyruk_goster(_s.get("kulup", "")) if _milli
+                           else _s.get("kulup", ""))
             if _milli:
                 _kulup_cell += f"<span style='color:#f59e0b;font-size:0.6rem;margin-left:4px;'>{t('MİLLİ','NT')}</span>"
             _satir_html += (
@@ -2515,7 +2569,7 @@ def render_odakli_profil(isim):
     _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (isim in scouting_sd_yukle())
     _geri_lbl = (t("← Scouting'e Dön", "← Back to Scouting") if _scout_oyuncu
                  else t("← Listeye Dön", "← Back to List"))
-    if st.button(_geri_lbl, key="odakli_geri"):
+    if st.button(_geri_lbl, key="odakli_geri", type="primary"):
         _dil_koru = st.query_params.get("dil", "")
         st.query_params.clear()
         if _dil_koru:
@@ -3778,7 +3832,11 @@ _hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
 _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
 try:    _hero_scout = len(scout_kadro_yukle())
 except Exception: _hero_scout = 0
-st.markdown(f"""
+# Hero yalnız ANA EKRANDA gösterilir; iç sayfalar (scouting/profil/alt ligler vb.)
+# kalabalık olmasın diye atlanır (kullanıcı geri bildirimi).
+_ana_ekran = (not url_oyuncu) and st.session_state.get("sayfa", "ana") == "ana"
+if _ana_ekran:
+  st.markdown(f"""
 <div class="baslik-kutu">
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
   <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
