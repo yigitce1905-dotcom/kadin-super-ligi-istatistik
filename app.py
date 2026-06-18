@@ -204,6 +204,21 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     .stat-kart .sayi   { font-size:1.5rem; }
     .stat-kart .etiket { font-size:0.68rem; }
 
+    /* Stat kartı satırlarını DİKEY yığma — mobilde 2'li grid (az kaydırma).
+       Global sütun-yığma kuralını yalnız bu bloklar için ezer (:has). */
+    [data-testid="stHorizontalBlock"]:has(.stat-kart) {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+    }
+    [data-testid="stHorizontalBlock"]:has(.stat-kart) > [data-testid="stColumn"],
+    [data-testid="stHorizontalBlock"]:has(.stat-kart) > [data-testid="column"] {
+        width: calc(50% - 3px) !important;
+        flex: 0 0 calc(50% - 3px) !important;
+        min-width: calc(50% - 3px) !important;
+        margin-bottom: 0 !important;
+    }
+
     /* Profil kartı */
     .profil-kart { padding:14px 16px; }
     .profil-kart h2 { font-size:1.1rem; }
