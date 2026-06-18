@@ -194,10 +194,14 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
         min-width: 100% !important;
     }
 
-    /* Başlık küçült */
-    .baslik-kutu { padding:14px 16px; margin-bottom:14px; }
-    .baslik-kutu h1 { font-size:1.2rem; }
-    .baslik-kutu p  { font-size:0.8rem; }
+    /* Hero/başlık kompakt: uzun açıklama mobilde gizli (yer kazandırır,
+       içerik daha yukarıda başlar — özellikle iç sayfalarda). Chip'ler kalır. */
+    .baslik-kutu { padding:13px 15px; margin-bottom:12px; }
+    .baslik-kutu h1 { font-size:1.18rem; }
+    .baslik-kutu p  { display:none; }
+    .baslik-kutu .ust-bant { font-size:0.58rem; margin-bottom:5px; }
+    .hero-chips { margin-top:10px; gap:6px; }
+    .hero-chip { font-size:0.6rem; padding:3px 8px; }
 
     /* Özet kartlar 2'li grid */
     .stat-kart { padding:10px 12px; margin-bottom:4px; min-height:72px; }
@@ -240,9 +244,23 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     /* Sekme etiketleri küçük */
     [data-testid="stTabs"] button { font-size:0.75rem !important; padding:6px 8px !important; }
 
-    /* Nav / aksiyon butonları mobilde kompakt */
-    [data-testid="stButton"] button {
-        font-size:0.8rem !important; padding:6px 8px !important; min-height:0 !important;
+    /* Dokunma hedefleri — parmakla rahat tıklama (min ~44px).
+       (Eskiden min-height:0 idi → dokunması zordu.) */
+    [data-testid="stButton"] button,
+    [data-testid="stFormSubmitButton"] button,
+    [data-testid="stDownloadButton"] button {
+        font-size:0.88rem !important; padding:10px 14px !important;
+        min-height:44px !important;
+    }
+    /* Sol nav: biraz daha kompakt ama yine de rahat tıklanır (~40px) */
+    section[data-testid="stSidebar"] [data-testid="stButton"] button {
+        min-height:40px !important; padding:8px 12px !important;
+        font-size:0.9rem !important;
+    }
+    /* Form girişleri (selectbox/slider/input) dokunma yüksekliği */
+    [data-baseweb="select"] > div,
+    .stTextInput input, .stNumberInput input {
+        min-height:42px !important;
     }
     /* Banner + buton dikey yığılınca aralık */
     [data-testid="stHorizontalBlock"] [data-testid="column"] { margin-bottom:6px; }
@@ -3758,6 +3776,8 @@ with st.sidebar:
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
 _hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
 _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
+try:    _hero_scout = len(scout_kadro_yukle())
+except Exception: _hero_scout = 0
 st.markdown(f"""
 <div class="baslik-kutu">
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
@@ -3770,7 +3790,7 @@ st.markdown(f"""
     <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
     <span class="hero-chip"><b>{_hero_oyuncu}</b> {t("OYUNCU","PLAYERS")}</span>
     <span class="hero-chip"><b>{_hero_gol}</b> {t("GOL","GOALS")}</span>
-    <span class="hero-chip">🔬 <b>350+</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
+    <span class="hero-chip">🔬 <b>{_hero_scout}</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
   </div>
 </div>""", unsafe_allow_html=True)
 
