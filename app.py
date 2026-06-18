@@ -3700,6 +3700,9 @@ with st.sidebar:
     if st.button(t("📬 İletişim", "📬 Contact"), key="nav_iletisim", use_container_width=True,
                  type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
         _nav_git("iletisim")
+    if st.button(t("🎗️ Saygı Kuşağı", "🎗️ Hall of Respect"), key="nav_saygi", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "saygi" else "secondary"):
+        _nav_git("saygi")
 
     # ── TR VERİ SEKMELERİ grubu (tüm sayfalarda görünür) ──
     st.markdown(f"<div class='nav-grup'>{t('TR VERİ SEKMELERİ', 'TR DATA TABS')}</div>",
@@ -4515,6 +4518,59 @@ def render_altyas():
 if st.session_state.get("sayfa") == "altyas":
     geri_ana_butonu("geri_altyas")
     render_altyas()
+    st.stop()
+
+
+# ─── SAYGI KUŞAĞI (görsel + saygı metni — içerik JSON'dan) ───────────────────
+@st.cache_data(ttl=300)
+def saygi_yukle():
+    yol = _DIZIN / "saygi_kusagi.json"
+    if not yol.exists():
+        return []
+    try:
+        with open(yol, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+def render_saygi():
+    st.markdown(f"## 🎗️ {t('Saygı Kuşağı', 'Hall of Respect')}")
+    st.caption(t("Kadın futboluna emek verenlere, hak edenlere saygı.",
+                 "A tribute to those who give to — and earn respect in — women's football."))
+    girisler = saygi_yukle()
+    if not girisler:
+        st.info(t("İçerik yakında eklenecek — görseller ve metinler hazırlanıyor.",
+                  "Content coming soon — images and texts are being prepared."))
+        return
+    for e in girisler:
+        with st.container(border=True):
+            _g = e.get("gorsel", "")
+            if _g:
+                c1, c2 = st.columns([1, 3], gap="medium")
+                with c1:
+                    try:
+                        st.image(_g, use_container_width=True)
+                    except Exception:
+                        st.caption("🖼️")
+                _hedef = c2
+            else:
+                _hedef = st.container()
+            with _hedef:
+                st.markdown(f"### {e.get('baslik', '')}")
+                if e.get("alt_baslik"):
+                    st.markdown(f"<div style='color:#a855f7;font-weight:600;font-size:0.85rem;"
+                                f"margin:-6px 0 8px;'>{e['alt_baslik']}</div>", unsafe_allow_html=True)
+                if e.get("metin"):
+                    st.markdown(
+                        f"<div style='color:#cbd5e1;font-size:0.92rem;line-height:1.7;'>{e['metin']}</div>",
+                        unsafe_allow_html=True)
+    st.caption(t("📨 Saygı Kuşağı'na öneri için İletişim'den ulaşabilirsiniz.",
+                 "📨 Suggest an entry via the Contact page."))
+
+
+if st.session_state.get("sayfa") == "saygi":
+    geri_ana_butonu("geri_saygi")
+    render_saygi()
     st.stop()
 
 # ─── SCOUTİNG SAYFASI (Premium kademe) ───────────────────────────────────────
