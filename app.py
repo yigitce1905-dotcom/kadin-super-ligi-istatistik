@@ -2735,17 +2735,16 @@ def render_scouting_detay(tam_isim):
 
     # Büyük isim başlığı + gruplu bilgi kutuları (ana lig ile ORTAK bileşen)
     _profil_baslik(tam_isim, sd_url)
-    # Tek tıkla shortlist'e al/çıkar (profili açınca anında) — deneme modunda gizli
-    if not deneme_modunda():
-        _sl_kul = st.session_state.get("kulup_kullanici", "admin")
-        _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
-        if st.button(
-                ("⭐ " + t("Shortlist'te ✓ (çıkarmak için tıkla)", "In Shortlist ✓ (click to remove)"))
-                if _in_sl else ("☆ " + t("Shortlist'e Ekle", "Add to Shortlist")),
-                key=_pk(f"sc_sl_top_{tam_isim}"), use_container_width=True,
-                type="secondary" if _in_sl else "primary"):
-            shortlist_toggle(_sl_kul, tam_isim)
-            st.rerun()
+    # Tek tıkla shortlist'e al/çıkar (profili açınca anında, ismin hemen altında)
+    _sl_kul = st.session_state.get("kulup_kullanici", "admin")
+    _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
+    if st.button(
+            ("⭐ " + t("Shortlist'te ✓ (çıkarmak için tıkla)", "In Shortlist ✓ (click to remove)"))
+            if _in_sl else ("☆ " + t("Shortlist'e Ekle", "Add to Shortlist")),
+            key=_pk(f"sc_sl_top_{tam_isim}"), use_container_width=True,
+            type="secondary" if _in_sl else "primary"):
+        shortlist_toggle(_sl_kul, tam_isim)
+        st.rerun()
     _profil_kutulari([
         (f"👤 {t('Kişisel','Personal')}", [
             (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
