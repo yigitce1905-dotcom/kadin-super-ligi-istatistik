@@ -67823,5 +67823,196 @@
       }
     ],
     "guncelleme": "2026-06-18"
+  },
+  "Zeliya Sengul": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Türkei U19",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 35,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "TurkeySwitzerland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 105,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "TurkeySwitzerland",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 191,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "TurkeySwitzerland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-06-19"
+  },
+  "Selen Yarayan": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "TurkeyGermany",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "TurkeyGermany",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 120,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Türkei U17",
+        "lig": "2. Bundesliga",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 21,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Türkei U17",
+        "lig": "DFB-Pokal der B-Juniorinnen",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 186,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "TurkeyGermany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 364,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Freiburg U17",
+        "lig": "B-Juniorinnen-Bundesliga Süd",
+        "mac": 13,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 959,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "TurkeyGermany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 65,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "TurkeyGermany",
+        "lig": "U17 EM Qualifikation Liga B",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Freiburg U17",
+        "lig": "B-Juniorinnen-Bundesliga Süd",
+        "mac": 11,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 618,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "TurkeyGermany",
+        "lig": "UEFA Development Tournament",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-06-19"
+  },
+  "Sevda Balta": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Eintracht U17",
+        "lig": "DFB-Pokal der B-Juniorinnen",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 11,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Nürnberg U17",
+        "lig": "DFB-Pokal der B-Juniorinnen",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 43,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-06-19"
   }
 }
