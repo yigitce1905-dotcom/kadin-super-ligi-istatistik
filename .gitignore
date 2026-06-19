@@ -17,3 +17,6 @@ supheli_eslesmeler.xlsx
 ~$*.xlsx
 denemeler.json
 internal_raporlar.json
+
+# Yerel yedekler
+*.bak.json
