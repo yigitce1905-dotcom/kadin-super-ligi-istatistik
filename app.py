@@ -2735,6 +2735,17 @@ def render_scouting_detay(tam_isim):
 
     # Büyük isim başlığı + gruplu bilgi kutuları (ana lig ile ORTAK bileşen)
     _profil_baslik(tam_isim, sd_url)
+    # Tek tıkla shortlist'e al/çıkar (profili açınca anında) — deneme modunda gizli
+    if not deneme_modunda():
+        _sl_kul = st.session_state.get("kulup_kullanici", "admin")
+        _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
+        if st.button(
+                ("⭐ " + t("Shortlist'te ✓ (çıkarmak için tıkla)", "In Shortlist ✓ (click to remove)"))
+                if _in_sl else ("☆ " + t("Shortlist'e Ekle", "Add to Shortlist")),
+                key=_pk(f"sc_sl_top_{tam_isim}"), use_container_width=True,
+                type="secondary" if _in_sl else "primary"):
+            shortlist_toggle(_sl_kul, tam_isim)
+            st.rerun()
     _profil_kutulari([
         (f"👤 {t('Kişisel','Personal')}", [
             (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
@@ -4028,12 +4039,6 @@ with st.sidebar:
     if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", use_container_width=True,
                  type="primary" if _aktif_sayfa == "scouting" else "secondary"):
         _nav_git("scouting")
-    if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", use_container_width=True,
-                 type="primary" if _aktif_sayfa == "altlig" else "secondary"):
-        _nav_git("altlig")
-    if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", use_container_width=True,
-                 type="primary" if _aktif_sayfa == "altyas" else "secondary"):
-        _nav_git("altyas")
     if st.button(t("👤 Profilim", "👤 My Profile"), key="nav_profil", use_container_width=True,
                  type="primary" if _aktif_sayfa == "profil" else "secondary"):
         _nav_git("profil")
@@ -4070,6 +4075,16 @@ with st.sidebar:
                     st.query_params["dil"] = _dil_k
                 st.session_state["sayfa"] = "ana"
             st.rerun()
+
+    # ── Alt kategoriler (TR Veri'nin altında, ücretsiz) ──
+    st.markdown(f"<div class='nav-grup'>{t('ALT KATEGORİLER', 'LOWER CATEGORIES')}</div>",
+                unsafe_allow_html=True)
+    if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "altlig" else "secondary"):
+        _nav_git("altlig")
+    if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", use_container_width=True,
+                 type="primary" if _aktif_sayfa == "altyas" else "secondary"):
+        _nav_git("altyas")
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
@@ -4634,28 +4649,30 @@ def render_altlig():
         return
 
     gruplar = data.get("gruplar", {})
-    grup_adlar = list(gruplar.keys())
-    secenekler = [t(f"{g} Grubu", f"Group {g}") for g in grup_adlar]
+    _oyuncular = data.get("oyuncular", [])
+    _ad = _lig.replace("Kadınlar ", "").upper()
+    _oy_lbl = t("👤 Oyuncular", "👤 Players")
+    _pd_lbl = t("🏆 Puan Durumu", "🏆 Standings")
     _ei_lbl = t("🌟 En İyiler", "🌟 Top Performers")
     _ta_lbl = t("🏟️ Takımlar", "🏟️ Teams")
     _kr_lbl = t("👑 Gol Kraliçesi", "👑 Top Scorers")
-    _oyuncular = data.get("oyuncular", [])
+    secenekler = []
     if _oyuncular:
-        secenekler += [_ei_lbl, _ta_lbl]
+        secenekler += [_oy_lbl, _ei_lbl, _ta_lbl]
+    if gruplar:
+        secenekler.append(_pd_lbl)
     if data.get("gol_kralicesi"):
         secenekler.append(_kr_lbl)
     secim = st.radio("g", secenekler, horizontal=True,
-                     label_visibility="collapsed", key="altlig_grup")
+                     label_visibility="collapsed", key="altlig_gorunum")
 
-    # Lig geneli görünümler (gruptan bağımsız)
+    # Lig geneli görünümler
     if secim == _ei_lbl:
         _altlig_en_iyiler(_oyuncular)
         return
     if secim == _ta_lbl:
         _altlig_takim_analizi(_oyuncular)
         return
-
-    # Gol Kraliçesi (resmi TFF tablosu)
     if secim == _kr_lbl:
         st.markdown(f"#### 👑 {t('Gol Kraliçesi — Resmi TFF Tablosu', 'Top Scorers — Official TFF')}")
         kr = data["gol_kralicesi"]
@@ -4668,25 +4685,33 @@ def render_altlig():
                      f"{len(kr)} scorers · source: tff.org (official regular season). Player goals reconciled with this table + playoff goals."))
         return
 
-    g = grup_adlar[secenekler.index(secim)]
-    _ad = _lig.replace("Kadınlar ", "").upper()
-    _grp_lbl = t(f"{g} GRUBU", f"GROUP {g}")
+    # Puan Durumu — gruplar yapısal olarak ayrı oynar; her grubun tablosu alt alta.
+    if secim == _pd_lbl:
+        st.markdown(f"#### 🏆 {t('Puan Durumu', 'Standings')}")
+        for g in gruplar:
+            puan_df = _altlig_puan_df(gruplar[g].get("puan_durumu", []))
+            if not puan_df.empty:
+                st.markdown(f"##### {_ad} · {t(f'{g} Grubu', f'Group {g}')}")
+                st.dataframe(puan_df, use_container_width=True, hide_index=True,
+                             height=min(40 + len(puan_df) * 35, 360))
+        return
+
+    # 👤 Oyuncular — TÜM oyuncular (A/B grup ayrımı YOK), arama + profil (detay kartı)
     st.markdown(
         f"<div style='display:inline-block;background:#1b1540;border:1px solid #4c3a8f;"
         f"border-left:3px solid #a855f7;border-radius:6px;padding:4px 12px;margin:4px 0 10px;"
         f"font-weight:700;color:#e9d5ff;font-size:0.8rem;letter-spacing:0.04em;'>"
-        f"{_ad} · {_grp_lbl}</div>", unsafe_allow_html=True)
-
-    puan_df = _altlig_puan_df(gruplar[g].get("puan_durumu", []))
-    if not puan_df.empty:
-        st.markdown(f"##### 🏆 {t('Puan Durumu', 'Standings')}")
-        st.dataframe(puan_df, use_container_width=True, hide_index=True,
-                     height=min(40 + len(puan_df) * 35, 360))
-
-    oyuncular = [o for o in data.get("oyuncular", []) if o.get("grup") == g]
+        f"{_ad} · {t('TÜM OYUNCULAR','ALL PLAYERS')}</div>", unsafe_allow_html=True)
+    _ara = st.text_input(f"🔎 {t('Oyuncu / takım ara', 'Search player / team')}",
+                         key="altlig_ara", placeholder=t("İsim veya takım…", "Name or team…"))
+    oyuncular = list(_oyuncular)
+    if _ara.strip():
+        _q = _ara.strip().lower()
+        oyuncular = [o for o in oyuncular
+                     if _q in o.get("oyuncu","").lower() or _q in o.get("tum_takimlar","").lower()]
     st.markdown(f"##### 👤 {t('Oyuncular', 'Players')} ({len(oyuncular)})")
     if not oyuncular:
-        st.caption(t("Bu grup için oyuncu verisi yok.", "No player data for this group."))
+        st.caption(t("Eşleşen oyuncu yok.", "No matching players."))
         return
     odf = pd.DataFrame([{
         "Oyuncu": o["oyuncu"], "Takım": o["takim"], "Maç": o["mac_sayisi"],
@@ -5912,17 +5937,20 @@ if tab2:
                     st.rerun()
         else:
             oyuncu_listesi = _tum_liste
-        # Seçili oyuncu artık listede yoksa (deneme<->tam geçişi) sıfırla
+        # Varsayılan oyuncu: URL'den gelen > Ebru Topçu > listedeki ilk.
+        # NOT: selectbox key="profil_sec" olduğundan, session'da geçerli bir değer
+        # YOKSA varsayılanı açıkça session'a yazıyoruz (yoksa Streamlit alfabetik/
+        # rastgele ilk oyuncuyu — örn. Jelena — sabitliyordu).
         if st.session_state.get("profil_sec") not in oyuncu_listesi:
-            st.session_state.pop("profil_sec", None)
-        # Varsayılan: URL'den gelen oyuncu > Ebru Topçu > listedeki ilk
-        if url_oyuncu in oyuncu_listesi:
-            varsayilan_idx = oyuncu_listesi.index(url_oyuncu)
-        else:
-            _ebru = next((o for o in oyuncu_listesi if "EBRU TOP" in o.upper()), None)
-            varsayilan_idx = oyuncu_listesi.index(_ebru) if _ebru else 0
+            if url_oyuncu in oyuncu_listesi:
+                _def = url_oyuncu
+            else:
+                _def = next((o for o in oyuncu_listesi if "EBRU TOP" in o.upper()), None)
+                _def = _def or (oyuncu_listesi[0] if oyuncu_listesi else None)
+            if _def:
+                st.session_state["profil_sec"] = _def
         secili = st.selectbox(t("Oyuncu seç", "Select Player"), oyuncu_listesi,
-                              index=varsayilan_idx if oyuncu_listesi else 0, key="profil_sec")
+                              key="profil_sec")
         render_ana_lig_profil(secili)
 
 # ══════════════════════════════════════════════════════════════════════════════
