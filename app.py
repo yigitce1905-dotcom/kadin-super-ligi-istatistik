@@ -194,6 +194,31 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 .bk-satir > span { color:#7c8aa3; white-space:nowrap; }
 .bk-satir > b { color:#e8eef7; font-weight:600; text-align:right; }
 
+/* ── Scouting listesi: W-Scope tarzı keskin/profesyonel tablo ── */
+.ws-wrap { background:#0d0d16; border:1px solid #2a2a38; border-radius:12px;
+    overflow:auto; max-height:640px; }
+.ws-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+.ws-table thead th { position:sticky; top:0; z-index:2; background:#0d0d16;
+    text-align:left; padding:10px 12px; font-size:0.6rem; font-weight:700;
+    text-transform:uppercase; letter-spacing:0.13em; color:#71717a;
+    border-bottom:1px solid #2a2a38; white-space:nowrap; }
+.ws-table th.num, .ws-table td.num { text-align:right; }
+.ws-table tbody tr { border-bottom:1px solid #1a1a28; transition:background .12s; }
+.ws-table tbody tr:hover { background:#13131f; }
+.ws-table td { padding:9px 12px; color:#d4d4d8; white-space:nowrap; vertical-align:middle; }
+.ws-ava { width:28px; height:28px; border-radius:50%; background:#221f33;
+    color:#a78bfa; display:inline-flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:0.78rem; flex-shrink:0; }
+.ws-name { color:#f4f4f5; font-weight:600; text-decoration:none; }
+.ws-name:hover { color:#c4b5fd; }
+.ws-sub { color:#71717a; font-size:0.64rem; margin-top:1px; }
+.ws-pos { background:#2a2a38; color:#d4d4d8; padding:2px 7px; border-radius:5px;
+    font-size:0.64rem; font-family:'Sora',monospace; font-weight:700; }
+.ws-mono { font-family:'Sora',monospace; }
+.ws-ring { width:30px; height:30px; border-radius:50%; border:2px solid;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:0.6rem; font-weight:800; font-family:'Sora',monospace; }
+
 /* ══════════════════════════════════════════════════
    MOBİL RESPONSIVE  (≤ 768px)
 ══════════════════════════════════════════════════ */
@@ -4926,140 +4951,117 @@ if st.session_state.get("sayfa") == "scouting":
                         f"</span></div>",
                         unsafe_allow_html=True)
 
-                    # ── Native tıklanabilir tablo (st.dataframe + satır seçimi) ──
-                    _sec_uyari = t("👉 Soldaki kutucuğa tıkla → profil açılır",
-                                   "👉 Click the checkbox on the left → profile opens")
-                    st.markdown(
-                        f"<div style='background:#7c3aed;color:#fff;border-radius:8px;"
-                        f"padding:7px 14px;font-size:0.80rem;font-weight:700;"
-                        f"margin-bottom:6px;display:inline-block;'>"
-                        f"{_sec_uyari}</div>",
-                        unsafe_allow_html=True)
+                    # ── W-Scope tarzı profesyonel tablo (isme tıkla → profil yeni sekme) ──
+                    st.caption(t("👉 Bir isme tıkla → profil yeni sekmede açılır",
+                                 "👉 Click a name → profile opens in a new tab"))
+                    _dil_q = st.session_state.get("dil", "TR")
+                    import datetime as _dt
 
-                    _H_NAME = t("Oyuncu", "Player")
-                    _H_CTRY = t("Ülke", "Country")
-                    _H_POS  = t("Mevki", "Pos")
-                    _H_CLUB = t("Son Kulüp", "Last Club")
-                    _H_AGE  = t("Yaş", "Age")
-                    _H_CON  = t("Sözleşme", "Contract")
-                    _H_MIN  = t("Dk", "Min")
+                    def _kontrat_renk(_sz):
+                        try:
+                            _g, _a, _y = (int(x) for x in _sz.split(".")[:3])
+                            _ay = (_dt.date(_y, _a, _g) - _dt.date.today()).days / 30.0
+                            return "#f87171" if _ay < 6 else "#fbbf24" if _ay < 12 else "#34d399"
+                        except Exception:
+                            return "#a1a1aa"
 
-                    _rows_tbl  = []
-                    _isim_sira = []
+                    def _esc(s):
+                        return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+                    _isim_sira, _sat = [], ""
                     for _, row in filtered.iterrows():
                         tam_isim = str(row.get(isim_col, ""))
                         vatandas = str(row.get(vat_col, "")) if vat_col else ""
-
-                        sd       = sd_data.get(tam_isim, {})
-                        yas      = sd.get("Age", "")
-                        mevki_sd = sd.get("Position", "")
-                        sozlesme = sd.get("Contract until", "")
-
-                        _tr_mevki = _SD_MEVKI_NORM.get(mevki_sd, mevki_normalize(mevki_sd))
-                        _mevki_g  = mevki_goster(_tr_mevki) if _tr_mevki else mevki_sd
-
-                        _kariyer  = leistung_data.get(tam_isim, {})
-                        _sez_list = [s for s in _kariyer.get("sezonlar", [])
-                                     if not s.get("milli")]
-                        _son      = _sez_list[0] if _sez_list else {}
-                        _ss_kulup = _son.get("kulup", "") or ""
-
-                        try:    _yas_i = int(yas)
-                        except: _yas_i = None
-
-                        _ad_goster = ("⭐ " + tam_isim) if tam_isim in _sl_liste else tam_isim
-
                         _isim_sira.append(tam_isim)
-                        _rows_tbl.append({
-                            _H_NAME: _ad_goster,
-                            _H_CTRY: ulke_goster(vatandas) if vatandas else "",
-                            _H_POS:  _mevki_g or "",
-                            _H_CLUB: _ss_kulup,
-                            _H_AGE:  _yas_i,
-                            _H_CON:  sozlesme or "",
-                            "G":     _son.get("gol", 0) or None,
-                            _H_MIN:  _son.get("dakika", 0) or None,
-                        })
+                        sd  = sd_data.get(tam_isim, {})
+                        _kd = _kadro_roster.get(tam_isim, {})
+                        _yas = _kd.get("yas") or sd.get("Age", "") or ""
+                        _poz = (_kd.get("mevki") or [""])[0]
+                        if not _poz:
+                            _trm = _SD_MEVKI_NORM.get(sd.get("Position", ""), "")
+                            _poz = mevki_goster(_trm) if _trm else ""
+                        _kl = _kd.get("kulup", "") or ""
+                        _lg = _kd.get("lig", "") or ""
+                        _sezk = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
+                                 if not s.get("milli")]
+                        if not _kl and _sezk:
+                            _kl = _sezk[0].get("kulup", "")
+                        _sz = _kd.get("sozlesme", "") or sd.get("Contract until", "") or ""
+                        _dg = _kd.get("deger", "") or ""
+                        _mac = sum(s.get("mac", 0) for s in _sezk)
+                        _gol = sum(s.get("gol", 0) for s in _sezk)
+                        _ast = sum(s.get("asist", 0) for s in _sezk)
+                        _nh  = _kd.get("nihai", "")
+                        if _nh:
+                            _rc = _scotr_renk(_scotr_puan(_nh))
+                            _skor = f"<span class='ws-ring' style='border-color:{_rc};color:{_rc};'>{_nh}</span>"
+                        else:
+                            _skor = "<span style='color:#52525b;'>—</span>"
+                        _poz_html = f"<span class='ws-pos'>{_esc(_poz)}</span>" if _poz else ""
+                        _yildiz = "<span style='color:#fbbf24;'>★</span> " if tam_isim in _sl_liste else ""
+                        _bayrak = _esc(ulke_goster(_uyruk_goster(vatandas))) if vatandas else ""
+                        _href = f"?oyuncu={_urlquote(tam_isim)}&dil={_dil_q}"
+                        _harf = (tam_isim[:1] or "?").upper()
+                        _sat += (
+                            "<tr>"
+                            "<td><div style='display:flex;align-items:center;gap:10px;'>"
+                            f"<span class='ws-ava'>{_esc(_harf)}</span><div>"
+                            f"<a class='ws-name' href='{_href}' target='_blank'>{_yildiz}{_esc(tam_isim)}</a>"
+                            f"<div class='ws-sub'>{_bayrak}</div></div></div></td>"
+                            f"<td>{_poz_html}</td>"
+                            f"<td>{_esc(_kl)}<div class='ws-sub'>{_esc(_lg)}</div></td>"
+                            f"<td class='num ws-mono'>{_yas or '—'}</td>"
+                            f"<td class='ws-mono' style='color:{_kontrat_renk(_sz)};'>{_esc(_sz) or '—'}</td>"
+                            f"<td class='ws-mono'>{_esc(_dg) or '—'}</td>"
+                            f"<td class='num ws-mono'>{_mac or '—'}</td>"
+                            f"<td class='num ws-mono'>{_gol or '—'}</td>"
+                            f"<td class='num ws-mono'>{_ast or '—'}</td>"
+                            f"<td>{_skor}</td></tr>"
+                        )
 
-                    _tablo_df = pd.DataFrame(_rows_tbl)
-
-                    _evt = st.dataframe(
-                        _tablo_df, hide_index=True, use_container_width=True,
-                        height=min(560, 44 + 35 * len(_tablo_df)),
-                        on_select="rerun", selection_mode="single-row",
-                        key="sc_tablo",
-                        column_config={
-                            _H_NAME: st.column_config.TextColumn(_H_NAME, width="medium"),
-                            _H_CTRY: st.column_config.TextColumn(_H_CTRY, width="small"),
-                            _H_POS:  st.column_config.TextColumn(_H_POS, width="small"),
-                            _H_CLUB: st.column_config.TextColumn(_H_CLUB, width="medium"),
-                            _H_AGE:  st.column_config.NumberColumn(_H_AGE, format="%d",
-                                                                  width="small"),
-                            _H_CON:  st.column_config.TextColumn(_H_CON, width="small"),
-                            "G":     st.column_config.NumberColumn("G", format="%d",
-                                                                  width="small"),
-                            _H_MIN:  st.column_config.NumberColumn(_H_MIN, format="%d",
-                                                                  width="small"),
-                        },
+                    _thead = (
+                        "<tr>"
+                        f"<th>{t('Oyuncu','Player')}</th><th>{t('Pozisyon','Position')}</th>"
+                        f"<th>{t('Kulüp / Lig','Club / League')}</th><th class='num'>{t('Yaş','Age')}</th>"
+                        f"<th>{t('Kontrat','Contract')}</th><th>{t('Değer','Value')}</th>"
+                        f"<th class='num'>{t('Maç','M')}</th><th class='num'>{t('Gol','G')}</th>"
+                        f"<th class='num'>{t('Asist','A')}</th><th>{t('Skor','Score')}</th></tr>"
                     )
+                    st.markdown(
+                        f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
+                        f"<tbody>{_sat}</tbody></table></div>",
+                        unsafe_allow_html=True)
 
-                    # Seçili satır → oyuncu (varsa)
-                    _sel_idx = []
-                    try:
-                        _sel_idx = _evt.selection.rows
-                    except Exception:
-                        _sel_idx = []
-                    _secili = _isim_sira[_sel_idx[0]] if _sel_idx else None
-
-                    # ── Seçilen oyuncunun profili (aynı sayfada, navigasyonsuz) ──
-                    if not _secili:
-                        st.info(t("ℹ️ Yukarıdaki tablodan bir oyuncuya tıklayınca "
-                                  "tam profili (kariyer, radar, benzer oyuncular) "
-                                  "burada açılır.",
-                                  "ℹ️ Click a player in the table above to open the "
-                                  "full profile (career, radar, similar players) here."))
-                    else:
-                        # Üst aksiyon çubuğu: Shortlist + Etiket
+                    # ── Shortlist / Etiket işlemleri (tablo yerine oyuncu seç) ──
+                    _ETIKET_EN = {"—": "—", "🔴 Öncelik": "🔴 Priority", "👀 İzle": "👀 Watch",
+                                  "💰 Pahalı": "💰 Expensive", "✅ Görüşüldü": "✅ Contacted"}
+                    st.markdown(
+                        f"<div style='margin-top:14px;font-size:0.66rem;font-weight:800;"
+                        f"color:#71717a;text-transform:uppercase;letter-spacing:0.12em;'>"
+                        f"⭐ {t('Shortlist / Etiket','Shortlist / Tag')}</div>",
+                        unsafe_allow_html=True)
+                    _as1, _as2, _as3 = st.columns([2, 1, 1])
+                    with _as1:
+                        _secili = st.selectbox(
+                            t("Oyuncu seç", "Select player"), ["—"] + _isim_sira,
+                            key="sc_islem_sec", label_visibility="collapsed")
+                    _secili = _secili if _secili and _secili != "—" else None
+                    if _secili:
                         _is_sl_s = _secili in _sl_liste
                         _etk_s   = _etiket_liste.get(_secili, "—")
-                        _ETIKET_EN = {"—": "—", "🔴 Öncelik": "🔴 Priority",
-                                      "👀 İzle": "👀 Watch",
-                                      "💰 Pahalı": "💰 Expensive",
-                                      "✅ Görüşüldü": "✅ Contacted"}
-                        _ab1, _ab2 = st.columns([1, 1])
-                        with _ab1:
+                        with _as2:
                             _fav_lbl = (t("⭐ Shortlist'te", "⭐ In Shortlist") if _is_sl_s
-                                        else t("☆ Shortlist'e Ekle", "☆ Add to Shortlist"))
-                            if st.button(_fav_lbl, key="sc_sl_btn",
-                                         use_container_width=True):
-                                shortlist_toggle(_sl_kullanici, _secili)
-                                st.rerun()
-                        with _ab2:
+                                        else t("☆ Ekle", "☆ Add"))
+                            if st.button(_fav_lbl, key="sc_sl_btn", use_container_width=True):
+                                shortlist_toggle(_sl_kullanici, _secili); st.rerun()
+                        with _as3:
                             _yeni_etk = st.selectbox(
                                 t("🏷️ Etiket", "🏷️ Tag"), _ETIKETLER,
-                                index=(_ETIKETLER.index(_etk_s)
-                                       if _etk_s in _ETIKETLER else 0),
+                                index=(_ETIKETLER.index(_etk_s) if _etk_s in _ETIKETLER else 0),
                                 format_func=lambda x: _ETIKET_EN.get(x, x) if EN else x,
                                 key="sc_etk_sel", label_visibility="collapsed")
                             if _yeni_etk != _etk_s:
-                                etiket_ayarla(_sl_kullanici, _secili, _yeni_etk)
-                                st.rerun()
-
-                        # Tam profil YENİ SEKMEDE açılır (kalıcı cookie girişi premium'u
-                        # korur → yeni sekmede kilit yok). Geri dönüş: profil sayfasındaki
-                        # "← Scouting'e Dön" ya da sekmeyi kapatmak; liste/filtre bu sekmede durur.
-                        _dil_q = st.session_state.get("dil", "TR")
-                        _profil_url = f"?oyuncu={_urlquote(_secili)}&dil={_dil_q}"
-                        st.markdown(
-                            f'<a href="{_profil_url}" target="_blank" '
-                            f'style="display:block;width:100%;box-sizing:border-box;'
-                            f'text-align:center;background:#7c3aed;color:#fff;'
-                            f'font-weight:700;padding:9px 0;border-radius:8px;'
-                            f'text-decoration:none;font-size:0.92rem;margin-top:2px;">'
-                            f'📋 {t("Profili Aç (yeni sekme)","Open Profile (new tab)")} ↗</a>',
-                            unsafe_allow_html=True)
-                        st.caption(t("↗ Yeni sekmede açılır — bu sekmede liste ve filtreler korunur.",
-                                     "↗ Opens in a new tab — your list and filters stay here."))
+                                etiket_ayarla(_sl_kullanici, _secili, _yeni_etk); st.rerun()
     else:
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
