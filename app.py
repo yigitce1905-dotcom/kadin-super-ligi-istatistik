@@ -2444,6 +2444,86 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
                      "All players have complete position, birth date and career data ✅"))
 
 
+# ── ORTAK PROFİL BİLEŞENLERİ (scouting + ana lig aynı görünsün diye) ──────────
+def _profil_baslik(isim, sd_url=""):
+    """Büyük isim başlığı + sağda SoccerDonna linki."""
+    _badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.78rem;'
+              f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
+    st.markdown(
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;'
+        'gap:16px;flex-wrap:wrap;margin:2px 0 4px;">'
+        f'<div class="sc-isim">{isim}</div>'
+        f'<div style="padding-top:8px;">{_badge}</div></div>',
+        unsafe_allow_html=True)
+
+
+def _profil_kutulari(gruplar):
+    """Gruplu bilgi kutuları (Kişisel · Futbolcu · Diğer …) yan yana, mobilde dikey.
+    gruplar: [(başlık, [(etiket, değer), …]), …]. Boş değer/kutu gizlenir."""
+    def _bk(baslik, satirlar):
+        ic = "".join(
+            f"<div class='bk-satir'><span>{_e}</span><b>{_v}</b></div>"
+            for _e, _v in satirlar if str(_v).strip() not in ("", "—", "None"))
+        return (f"<div class='bilgi-kutu'><div class='bk-baslik'>{baslik}</div>{ic}</div>"
+                if ic else "")
+    _html = "".join(_bk(b, s) for b, s in gruplar)
+    st.markdown(f"<div class='bilgi-grid'>{_html}</div>", unsafe_allow_html=True)
+
+
+def _kariyer_kulup_milli(isim, sezonlar, kaynak, milli_ad="", guncelleme=""):
+    """Trend + Radar yan yana + Kulüp/Milli ayrı tablolar (iki profilde ortak)."""
+    if not sezonlar:
+        return
+    _ct1, _ct2 = st.columns([1.3, 1], gap="medium")
+    with _ct1:
+        kariyer_trend_goster(sezonlar)
+    with _ct2:
+        radar_goster(isim, kaynak)
+    _kulup_sez = [s for s in sezonlar if not s.get("milli")]
+    _milli_sez = [s for s in sezonlar if s.get("milli")]
+    if not milli_ad and _milli_sez:
+        milli_ad = _ilk_uyruk(_milli_sez[0].get("kulup", ""))
+
+    def _tbl(baslik, rows, takim_basligi, takim_deger):
+        if not rows:
+            return
+        _sh = ""
+        for _s in rows:
+            _sh += (
+                f"<tr style='color:#cbd5e1;'>"
+                f"<td style='padding:4px 8px;'>{_s.get('sezon','')}</td>"
+                f"<td style='padding:4px 8px;font-weight:600;'>{takim_deger(_s)}</td>"
+                f"<td style='padding:4px 8px;'>{_s.get('lig','')}</td>"
+                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('mac',0)}</td>"
+                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('gol',0)}</td>"
+                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('asist',0)}</td>"
+                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('sari',0)}</td>"
+                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('dakika',0)}</td></tr>")
+        st.markdown(f"##### {baslik}")
+        st.markdown(
+            '<table style="width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:6px;">'
+            '<thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">'
+            f'<th style="text-align:left;padding:6px 8px;">{t("Sezon","Season")}</th>'
+            f'<th style="text-align:left;padding:6px 8px;">{takim_basligi}</th>'
+            f'<th style="text-align:left;padding:6px 8px;">{t("Lig","League")}</th>'
+            f'<th style="text-align:right;padding:6px 8px;">{t("M","M")}</th>'
+            f'<th style="text-align:right;padding:6px 8px;">{t("G","G")}</th>'
+            f'<th style="text-align:right;padding:6px 8px;">{t("A","A")}</th>'
+            '<th style="text-align:right;padding:6px 8px;">🟨</th>'
+            f'<th style="text-align:right;padding:6px 8px;">{t("Dk","Min")}</th>'
+            f'</tr></thead><tbody>{_sh}</tbody></table>',
+            unsafe_allow_html=True)
+
+    st.markdown(f"#### ⚽ {t('Kariyer Performansı', 'Career Performance')}")
+    _tbl(f"🏟️ {t('Kulüp Kariyeri','Club Career')}", _kulup_sez,
+         t("Kulüp", "Club"), lambda s: s.get("kulup", ""))
+    _tbl(f"🏳️ {t('Milli Takım','National Team')}" + (f" — {milli_ad}" if milli_ad else ""),
+         _milli_sez, t("Takım", "Team"),
+         lambda s: milli_ad or _uyruk_goster(s.get("kulup", "")))
+    if guncelleme:
+        st.caption(f"📡 SoccerDonna · {guncelleme}")
+
+
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
 def render_scouting_detay(tam_isim):
     _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
@@ -2472,39 +2552,22 @@ def render_scouting_detay(tam_isim):
     _milli  = _kadro.get("milli_takim", "")
     _yas_g  = f"{yas}" if str(yas) not in ("", "?", "—") else ""
 
-    # Büyük isim başlığı (hero yerine; sağda SD linki, ileride foto için yer)
-    st.markdown(f"""
-<div style="display:flex;justify-content:space-between;align-items:flex-start;
-     gap:16px;flex-wrap:wrap;margin:2px 0 4px;">
-  <div class="sc-isim">{tam_isim}</div>
-  <div style="padding-top:8px;">{sd_badge}</div>
-</div>""", unsafe_allow_html=True)
-
-    # Gruplu bilgi kutuları (Kişisel · Futbolcu · Diğer) — yan yana, mobilde dikey
-    def _bk(baslik, satirlar):
-        ic = "".join(
-            f"<div class='bk-satir'><span>{_e}</span><b>{_v}</b></div>"
-            for _e, _v in satirlar if str(_v).strip() not in ("", "—", "None"))
-        return (f"<div class='bilgi-kutu'><div class='bk-baslik'>{baslik}</div>{ic}</div>"
-                if ic else "")
-    _kutu_kisisel = _bk(f"👤 {t('Kişisel','Personal')}", [
-        (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
-        (f"📅 {t('Doğum','Born')}", dob),
-        (f"🎂 {t('Yaş','Age')}", _yas_g),
+    # Büyük isim başlığı + gruplu bilgi kutuları (ana lig ile ORTAK bileşen)
+    _profil_baslik(tam_isim, sd_url)
+    _profil_kutulari([
+        (f"👤 {t('Kişisel','Personal')}", [
+            (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
+            (f"📅 {t('Doğum','Born')}", dob),
+            (f"🎂 {t('Yaş','Age')}", _yas_g)]),
+        (f"⚽ {t('Futbolcu','Player')}", [
+            (f"📌 {t('Mevki','Position')}", mevki),
+            (f"📏 {t('Boy','Height')}", boy),
+            (f"🦶 {t('Ayak','Foot')}", ayak)]),
+        (f"📋 {t('Diğer','Other')}", [
+            (f"📄 {t('Sözleşme','Contract')}", sozlesme),
+            (f"💰 {t('Piyasa Değeri','Market Value')}", _deger),
+            (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli))]),
     ])
-    _kutu_futbolcu = _bk(f"⚽ {t('Futbolcu','Player')}", [
-        (f"📌 {t('Mevki','Position')}", mevki),
-        (f"📏 {t('Boy','Height')}", boy),
-        (f"🦶 {t('Ayak','Foot')}", ayak),
-    ])
-    _kutu_diger = _bk(f"📋 {t('Diğer','Other')}", [
-        (f"📄 {t('Sözleşme','Contract')}", sozlesme),
-        (f"💰 {t('Piyasa Değeri','Market Value')}", _deger),
-        (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli)),
-    ])
-    st.markdown(
-        f"<div class='bilgi-grid'>{_kutu_kisisel}{_kutu_futbolcu}{_kutu_diger}</div>",
-        unsafe_allow_html=True)
 
     # Mr Daniş scouting değerlendirmesi (detay verisi varsa)
     _dty = detay_data.get(tam_isim, {})
@@ -2536,59 +2599,9 @@ def render_scouting_detay(tam_isim):
 
     _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
     if _sezonlar:
-        # Trend (sezon bazlı) + Radar (mevki içi yüzdelik) yan yana — mobilde dikey yığılır
-        _ct1, _ct2 = st.columns([1.3, 1], gap="medium")
-        with _ct1:
-            kariyer_trend_goster(_sezonlar)
-        with _ct2:
-            radar_goster(tam_isim, "scouting")
-        # Kariyer KULÜP ve MİLLİ olarak iki ayrı tabloya bölünür (okunaklılık).
-        _kulup_sez = [s for s in _sezonlar if not s.get("milli")]
-        _milli_sez = [s for s in _sezonlar if s.get("milli")]
-        # Milli satırlarda çift uyruk yerine oyuncunun SEÇTİĞİ milli takım adı yazılır.
         _milli_ad = ulke_goster((_kadro.get("milli_takim") or "").strip())
-        if not _milli_ad and _milli_sez:
-            _milli_ad = _ilk_uyruk(_milli_sez[0].get("kulup", ""))
-
-        def _kariyer_tablo(baslik, rows, takim_basligi, takim_deger):
-            if not rows:
-                return
-            _sh = ""
-            for _s in rows:
-                _sh += (
-                    f"<tr style='color:#cbd5e1;'>"
-                    f"<td style='padding:4px 8px;'>{_s.get('sezon','')}</td>"
-                    f"<td style='padding:4px 8px;font-weight:600;'>{takim_deger(_s)}</td>"
-                    f"<td style='padding:4px 8px;'>{_s.get('lig','')}</td>"
-                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('mac',0)}</td>"
-                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('gol',0)}</td>"
-                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('asist',0)}</td>"
-                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('sari',0)}</td>"
-                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('dakika',0)}</td></tr>")
-            st.markdown(f"##### {baslik}")
-            st.markdown(f"""
-<table style="width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:6px;">
-  <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
-    <th style="text-align:left;padding:6px 8px;">{t("Sezon","Season")}</th>
-    <th style="text-align:left;padding:6px 8px;">{takim_basligi}</th>
-    <th style="text-align:left;padding:6px 8px;">{t("Lig","League")}</th>
-    <th style="text-align:right;padding:6px 8px;">{t("M","M")}</th>
-    <th style="text-align:right;padding:6px 8px;">{t("G","G")}</th>
-    <th style="text-align:right;padding:6px 8px;">{t("A","A")}</th>
-    <th style="text-align:right;padding:6px 8px;">🟨</th>
-    <th style="text-align:right;padding:6px 8px;">{t("Dk","Min")}</th>
-  </tr></thead><tbody>{_sh}</tbody>
-</table>""", unsafe_allow_html=True)
-
-        st.markdown(f"#### ⚽ {t('Kariyer Performansı', 'Career Performance')}")
-        _kariyer_tablo(f"🏟️ {t('Kulüp Kariyeri','Club Career')}", _kulup_sez,
-                       t("Kulüp", "Club"), lambda s: s.get("kulup", ""))
-        _kariyer_tablo(f"🏳️ {t('Milli Takım','National Team')}"
-                       + (f" — {_milli_ad}" if _milli_ad else ""), _milli_sez,
-                       t("Takım", "Team"), lambda s: _milli_ad or _uyruk_goster(s.get("kulup", "")))
-        _g = leistung_data.get(tam_isim, {}).get("guncelleme", "")
-        if _g:
-            st.caption(f"📡 SoccerDonna · {_g}")
+        _kariyer_kulup_milli(tam_isim, _sezonlar, "scouting", _milli_ad,
+                             leistung_data.get(tam_isim, {}).get("guncelleme", ""))
     else:
         st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
 
@@ -3448,12 +3461,27 @@ def render_ana_lig_profil(secili):
                 f'{mevki_ikon} {sd_mevki}</span></div>'
             )
 
+        # Başlık + gruplu bilgi kutuları (Scouting profili ile ORTAK görünüm)
+        _profil_baslik(secili, sd.get("profil_url", ""))
+        _mv = sd.get("Market value", "")
+        _profil_kutulari([
+            (f"👤 {t('Kişisel','Personal')}", [
+                (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(sd.get("Nationality","")))),
+                (f"📅 {t('Doğum','Born')}", sd.get("Date of birth","")),
+                (f"🎂 {t('Yaş','Age')}", (_yas_hesapla(sd.get("Date of birth","")) or sd.get("Age","")))]),
+            (f"⚽ {t('Futbolcu','Player')}", [
+                (f"📌 {t('Mevki','Position')}", sd.get("Position","")),
+                (f"📏 {t('Boy','Height')}", sd.get("Height","")),
+                (f"🦶 {t('Ayak','Foot')}", (sd.get("Foot","") or "").capitalize())]),
+            (f"📋 {t('Diğer','Other')}", [
+                (f"🏟️ {t('Takım','Club')}", (row["TümTakımlar"] if transfer else row["Takım"])),
+                (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
+                (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth",""))]),
+        ])
+        # Sezon istatistikleri
+        st.markdown(f"#### 📊 {t('Sezon İstatistikleri','Season Stats')}")
         st.markdown(f"""
-        <div class="profil-kart">
-          <h2>{secili}</h2>
-          {mevki_html}
-          <div style="margin-bottom:6px">🏟 {takim_html}</div>
-          {sd_bilgi_html}
+        <div class="profil-kart" style="padding:14px 16px;">
           <div class="profil-stat">
             <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
             <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
@@ -3670,12 +3698,12 @@ def render_ana_lig_profil(secili):
         </div>
         """, unsafe_allow_html=True)
 
-        # Ana lig kariyer trendi (analig_leistungsdaten.json hazır olunca)
-        _al_sezon = analig_leistung_yukle().get(secili, {}).get("sezonlar", [])
+        # Ana lig kariyer (Scouting ile ORTAK: Trend+Radar yan yana + Kulüp/Milli)
+        _al = analig_leistung_yukle().get(secili, {})
+        _al_sezon = _al.get("sezonlar", [])
         if _al_sezon:
             st.markdown("---")
-            kariyer_trend_goster(_al_sezon)
-            radar_goster(secili, "analig")
+            _kariyer_kulup_milli(secili, _al_sezon, "analig", "", _al.get("guncelleme", ""))
 
         # Benzer oyuncular (ana lig havuzu)
         st.markdown("---")
