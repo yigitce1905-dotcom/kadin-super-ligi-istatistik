@@ -5586,85 +5586,116 @@ if tab1:
     liste_df = df[["Oyuncu", "Takım (Gösterim)"]].reset_index(drop=True)
     liste_df["Yaş"] = [(_yas_int(df.iloc[i]) if "Yaş" in df.columns else None) for i in range(len(df))]
 
-    col_liste, col_detay = st.columns([5, 4], gap="medium")
-    with col_liste:
-        secim = st.dataframe(
-            liste_df, use_container_width=True, height=560,
-            on_select="rerun", selection_mode="single-row", key="ol_liste",
-            column_config={
-                "Oyuncu":           st.column_config.TextColumn(t("Oyuncu","Player"), width="large"),
-                "Takım (Gösterim)": st.column_config.TextColumn(t("Takım","Team"), width="medium"),
-                "Yaş":              st.column_config.NumberColumn(t("Yaş","Age"), format="%d", width="small"),
-            })
+    if _giris_var2:
+        # Girişli: Scouting ile AYNI W-Scope tablosu — isme tıkla → tam profil yeni sekme
+        st.caption(t("👉 Bir isme tıkla → tam profil yeni sekmede açılır",
+                     "👉 Click a name → full profile opens in a new tab"))
+        _dil_q = st.session_state.get("dil", "TR")
+        _sat = ""
+        for _i in range(len(df)):
+            _r = df.iloc[_i]
+            _ad = str(_r["Oyuncu"])
+            _sdp = sd_profiller.get(_ad, {})
+            _nat = ulke_goster(_uyruk_goster(_sdp.get("Nationality", ""))) if _sdp.get("Nationality") else ""
+            _mvk = _r.get("Mevki", "") or ""
+            _mvk_g = mevki_goster(_mvk) if _mvk else ""
+            _poz = f"<span class='ws-pos'>{_mvk_g}</span>" if _mvk_g else ""
+            _tk = str(_r.get("Takım (Gösterim)", "") or "")
+            try:
+                _ya = int(_r["Yaş"]) if str(_r.get("Yaş", "")).strip() not in ("", "nan") else ""
+            except Exception:
+                _ya = ""
+            _mac = int(_r.get("Maç", 0) or 0); _gol = int(_r.get("Gol", 0) or 0); _dk = int(_r.get("Dakika", 0) or 0)
+            _gm = round(_gol / _mac, 2) if _mac else 0
+            _href = f"?oyuncu={_urlquote(_ad)}&dil={_dil_q}"
+            _harf = (_ad[:1] or "?").upper()
+            _sat += (
+                "<tr><td><div style='display:flex;align-items:center;gap:10px;'>"
+                f"<span class='ws-ava'>{_harf}</span><div>"
+                f"<a class='ws-name' href='{_href}' target='_blank'>{_ad}</a>"
+                f"<div class='ws-sub'>{_nat}</div></div></div></td>"
+                f"<td>{_poz}</td><td>{_tk}</td>"
+                f"<td class='num ws-mono'>{_ya or '—'}</td>"
+                f"<td class='num ws-mono'>{_mac or '—'}</td>"
+                f"<td class='num ws-mono'>{_gol or '—'}</td>"
+                f"<td class='num ws-mono'>{_gm or '—'}</td>"
+                f"<td class='num ws-mono'>{_dk or '—'}</td></tr>"
+            )
+        _thead = ("<tr>"
+                  f"<th>{t('Oyuncu','Player')}</th><th>{t('Pozisyon','Position')}</th>"
+                  f"<th>{t('Takım','Team')}</th><th class='num'>{t('Yaş','Age')}</th>"
+                  f"<th class='num'>{t('Maç','M')}</th><th class='num'>{t('Gol','G')}</th>"
+                  f"<th class='num'>{t('Gol/Maç','G/M')}</th><th class='num'>{t('Dk','Min')}</th></tr>")
+        st.markdown(
+            f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
+            f"<tbody>{_sat}</tbody></table></div>", unsafe_allow_html=True)
+    else:
+        # Girişsiz: kısa liste + ücretsiz önizleme kartı (freemium teaser korunur)
+        col_liste, col_detay = st.columns([5, 4], gap="medium")
+        with col_liste:
+            secim = st.dataframe(
+                liste_df, use_container_width=True, height=560,
+                on_select="rerun", selection_mode="single-row", key="ol_liste",
+                column_config={
+                    "Oyuncu":           st.column_config.TextColumn(t("Oyuncu","Player"), width="large"),
+                    "Takım (Gösterim)": st.column_config.TextColumn(t("Takım","Team"), width="medium"),
+                    "Yaş":              st.column_config.NumberColumn(t("Yaş","Age"), format="%d", width="small"),
+                })
 
-    with col_detay:
-        secili_satirlar = secim.selection.rows if secim and secim.selection else []
-        if not secili_satirlar:
-            st.markdown(
-                f"<div style='background:#11162a;border:1px dashed #2d3561;border-radius:12px;"
-                f"padding:40px 24px;text-align:center;color:#64748b;'>"
-                f"👈 {t('Listeden bir oyuncuya tıkla','Click a player in the list')}<br>"
-                f"<span style='font-size:0.82rem;'>{t('ücretsiz bilgileri burada görünür','free info appears here')}</span>"
-                f"</div>", unsafe_allow_html=True)
-        else:
-            tikli_oyuncu = liste_df.iloc[secili_satirlar[0]]["Oyuncu"]
-            st.session_state["profil_sec"] = tikli_oyuncu
-            p_row = df_tam[df_tam["Oyuncu"] == tikli_oyuncu]
-            if not p_row.empty:
-                p   = p_row.iloc[0]
-                sd  = sd_profiller.get(tikli_oyuncu, {})
-                _mvk = p.get("Mevki", "")
-                _mrk = mevki_renk(_mvk)
-                transfer  = bool(p.get("Transfer", False))
-                takim_txt = (p["TümTakımlar"] if transfer else p["Takım"])
-
-                CHIP = ("background:#0f1117;border:1px solid #2d3561;border-radius:6px;"
-                        "padding:3px 9px;font-size:0.74rem;color:#c0ccd8;display:inline-block;margin:0 5px 5px 0")
-                chips = []
-                if sd.get("Date of birth"): chips.append(f'<span style="{CHIP}">🎂 {sd["Date of birth"]}</span>')
-                if sd.get("Nationality"):   chips.append(f'<span style="{CHIP}">🏳️ {ulke_goster(sd["Nationality"])}</span>')
-                if sd.get("Height"):        chips.append(f'<span style="{CHIP}">📏 {sd["Height"]} m</span>')
-                if sd.get("Foot"):          chips.append(f'<span style="{CHIP}">👟 {sd["Foot"].capitalize()}</span>')
-                chip_html = "".join(chips)
-
-                STAT = ("background:#0f1117;border-radius:8px;padding:8px 0;text-align:center;flex:1")
-                stat_html = ""
-                for sutun, etk, clr in [("Gol",t("GOL","GOALS"),"#4ade80"),
-                                        ("Maç",t("MAÇ","MATCH"),"#60a5fa"),
-                                        ("Dakika",t("DK","MIN"),"#f59e0b")]:
-                    if sutun in p:
-                        stat_html += (f'<div style="{STAT}">'
-                                      f'<div style="font-size:1.3rem;font-weight:800;color:{clr}">{int(p[sutun])}</div>'
-                                      f'<div style="font-size:0.6rem;color:#8899aa">{etk}</div></div>')
-                _mvk_g = mevki_goster(_mvk) if _mvk else ""
-                _transfer_b = (f' <span style="background:#1a3a2a;color:#1db954;border-radius:4px;'
-                               f'padding:1px 6px;font-size:0.66rem">🔄 Transfer</span>') if transfer else ""
-
+        with col_detay:
+            secili_satirlar = secim.selection.rows if secim and secim.selection else []
+            if not secili_satirlar:
                 st.markdown(
-                    f'<div style="background:linear-gradient(160deg,#171c30,#12151f);'
-                    f'border:1px solid #232842;border-top:3px solid {_mrk};border-radius:12px;padding:16px 18px;">'
-                    f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{tikli_oyuncu}</div>'
-                    f'<div style="margin:5px 0 10px;">'
-                    f'<span style="color:{_mrk};font-weight:700;background:{_mrk}22;border:1px solid {_mrk}55;'
-                    f'border-radius:5px;padding:1px 8px;font-size:0.74rem;">{_mvk_g or "—"}</span>'
-                    f'<span style="color:#8899aa;font-size:0.8rem;"> · 🏟 {takim_txt}{_transfer_b}</span></div>'
-                    f'<div style="margin-bottom:10px;">{chip_html}</div>'
-                    f'<div style="display:flex;gap:8px;">{stat_html}</div>'
-                    f'</div>', unsafe_allow_html=True)
+                    f"<div style='background:#11162a;border:1px dashed #2d3561;border-radius:12px;"
+                    f"padding:40px 24px;text-align:center;color:#64748b;'>"
+                    f"👈 {t('Listeden bir oyuncuya tıkla','Click a player in the list')}<br>"
+                    f"<span style='font-size:0.82rem;'>{t('ücretsiz bilgileri burada görünür','free info appears here')}</span>"
+                    f"</div>", unsafe_allow_html=True)
+            else:
+                tikli_oyuncu = liste_df.iloc[secili_satirlar[0]]["Oyuncu"]
+                st.session_state["profil_sec"] = tikli_oyuncu
+                p_row = df_tam[df_tam["Oyuncu"] == tikli_oyuncu]
+                if not p_row.empty:
+                    p   = p_row.iloc[0]
+                    sd  = sd_profiller.get(tikli_oyuncu, {})
+                    _mvk = p.get("Mevki", "")
+                    _mrk = mevki_renk(_mvk)
+                    transfer  = bool(p.get("Transfer", False))
+                    takim_txt = (p["TümTakımlar"] if transfer else p["Takım"])
 
-                st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-                if _giris_var2:
-                    import urllib.parse as _urlp
-                    _tp_href = "?oyuncu=" + _urlp.quote(tikli_oyuncu)
+                    CHIP = ("background:#0f1117;border:1px solid #2d3561;border-radius:6px;"
+                            "padding:3px 9px;font-size:0.74rem;color:#c0ccd8;display:inline-block;margin:0 5px 5px 0")
+                    chips = []
+                    if sd.get("Date of birth"): chips.append(f'<span style="{CHIP}">🎂 {sd["Date of birth"]}</span>')
+                    if sd.get("Nationality"):   chips.append(f'<span style="{CHIP}">🏳️ {ulke_goster(sd["Nationality"])}</span>')
+                    if sd.get("Height"):        chips.append(f'<span style="{CHIP}">📏 {sd["Height"]} m</span>')
+                    if sd.get("Foot"):          chips.append(f'<span style="{CHIP}">👟 {sd["Foot"].capitalize()}</span>')
+                    chip_html = "".join(chips)
+
+                    STAT = ("background:#0f1117;border-radius:8px;padding:8px 0;text-align:center;flex:1")
+                    stat_html = ""
+                    for sutun, etk, clr in [("Gol",t("GOL","GOALS"),"#4ade80"),
+                                            ("Maç",t("MAÇ","MATCH"),"#60a5fa"),
+                                            ("Dakika",t("DK","MIN"),"#f59e0b")]:
+                        if sutun in p:
+                            stat_html += (f'<div style="{STAT}">'
+                                          f'<div style="font-size:1.3rem;font-weight:800;color:{clr}">{int(p[sutun])}</div>'
+                                          f'<div style="font-size:0.6rem;color:#8899aa">{etk}</div></div>')
+                    _mvk_g = mevki_goster(_mvk) if _mvk else ""
+                    _transfer_b = (f' <span style="background:#1a3a2a;color:#1db954;border-radius:4px;'
+                                   f'padding:1px 6px;font-size:0.66rem">🔄 Transfer</span>') if transfer else ""
+
                     st.markdown(
-                        f'<a href="{_tp_href}" target="_blank" rel="noopener" '
-                        f'style="display:block;text-align:center;text-decoration:none;'
-                        f'background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;'
-                        f'border-radius:6px;padding:9px 0;font-weight:700;font-size:0.86rem;'
-                        f'border:1px solid #8b5cf6;">'
-                        f'📋 {t("Tam Profili Gör", "View Full Profile")} ↗</a>',
-                        unsafe_allow_html=True)
-                else:
+                        f'<div style="background:linear-gradient(160deg,#171c30,#12151f);'
+                        f'border:1px solid #232842;border-top:3px solid {_mrk};border-radius:12px;padding:16px 18px;">'
+                        f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{tikli_oyuncu}</div>'
+                        f'<div style="margin:5px 0 10px;">'
+                        f'<span style="color:{_mrk};font-weight:700;background:{_mrk}22;border:1px solid {_mrk}55;'
+                        f'border-radius:5px;padding:1px 8px;font-size:0.74rem;">{_mvk_g or "—"}</span>'
+                        f'<span style="color:#8899aa;font-size:0.8rem;"> · 🏟 {takim_txt}{_transfer_b}</span></div>'
+                        f'<div style="margin-bottom:10px;">{chip_html}</div>'
+                        f'<div style="display:flex;gap:8px;">{stat_html}</div>'
+                        f'</div>', unsafe_allow_html=True)
                     st.caption(t("🔒 Kariyer · radar · scout raporu içeren tam profil üye girişiyle açılır.",
                                  "🔒 Full profile (career · radar · scout report) opens with login."))
 
