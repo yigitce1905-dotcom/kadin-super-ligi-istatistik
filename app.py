@@ -2517,39 +2517,50 @@ def render_scouting_detay(tam_isim):
             kariyer_trend_goster(_sezonlar)
         with _ct2:
             radar_goster(tam_isim, "scouting")
-        st.markdown(f"#### ⚽ {t('Tüm Kariyer Performansı', 'Full Career Performance')}")
-        _satir_html = ""
-        for _s in _sezonlar:
-            _milli = _s.get("milli")
-            _stil  = "color:#7c8aa0;" if _milli else "color:#cbd5e1;"
-            _kulup_cell = (_uyruk_goster(_s.get("kulup", "")) if _milli
-                           else _s.get("kulup", ""))
-            if _milli:
-                _kulup_cell += f"<span style='color:#f59e0b;font-size:0.6rem;margin-left:4px;'>{t('MİLLİ','NT')}</span>"
-            _satir_html += (
-                f"<tr style='{_stil}'>"
-                f"<td style='padding:4px 8px;'>{_s.get('sezon','')}</td>"
-                f"<td style='padding:4px 8px;font-weight:600;'>{_kulup_cell}</td>"
-                f"<td style='padding:4px 8px;'>{_s.get('lig','')}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('mac',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('gol',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('asist',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('sari',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('dakika',0)}</td></tr>"
-            )
-        st.markdown(f"""
-<table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+        # Kariyer KULÜP ve MİLLİ olarak iki ayrı tabloya bölünür (okunaklılık).
+        _kulup_sez = [s for s in _sezonlar if not s.get("milli")]
+        _milli_sez = [s for s in _sezonlar if s.get("milli")]
+        # Milli satırlarda çift uyruk yerine oyuncunun SEÇTİĞİ milli takım adı yazılır.
+        _milli_ad = ulke_goster((_kadro.get("milli_takim") or "").strip())
+        if not _milli_ad and _milli_sez:
+            _milli_ad = _ilk_uyruk(_milli_sez[0].get("kulup", ""))
+
+        def _kariyer_tablo(baslik, rows, takim_basligi, takim_deger):
+            if not rows:
+                return
+            _sh = ""
+            for _s in rows:
+                _sh += (
+                    f"<tr style='color:#cbd5e1;'>"
+                    f"<td style='padding:4px 8px;'>{_s.get('sezon','')}</td>"
+                    f"<td style='padding:4px 8px;font-weight:600;'>{takim_deger(_s)}</td>"
+                    f"<td style='padding:4px 8px;'>{_s.get('lig','')}</td>"
+                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('mac',0)}</td>"
+                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('gol',0)}</td>"
+                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('asist',0)}</td>"
+                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('sari',0)}</td>"
+                    f"<td style='padding:4px 8px;text-align:right;'>{_s.get('dakika',0)}</td></tr>")
+            st.markdown(f"##### {baslik}")
+            st.markdown(f"""
+<table style="width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:6px;">
   <thead><tr style="color:#94a3b8;border-bottom:1px solid #334155;">
     <th style="text-align:left;padding:6px 8px;">{t("Sezon","Season")}</th>
-    <th style="text-align:left;padding:6px 8px;">{t("Kulüp","Club")}</th>
+    <th style="text-align:left;padding:6px 8px;">{takim_basligi}</th>
     <th style="text-align:left;padding:6px 8px;">{t("Lig","League")}</th>
     <th style="text-align:right;padding:6px 8px;">{t("M","M")}</th>
     <th style="text-align:right;padding:6px 8px;">{t("G","G")}</th>
     <th style="text-align:right;padding:6px 8px;">{t("A","A")}</th>
     <th style="text-align:right;padding:6px 8px;">🟨</th>
     <th style="text-align:right;padding:6px 8px;">{t("Dk","Min")}</th>
-  </tr></thead><tbody>{_satir_html}</tbody>
+  </tr></thead><tbody>{_sh}</tbody>
 </table>""", unsafe_allow_html=True)
+
+        st.markdown(f"#### ⚽ {t('Kariyer Performansı', 'Career Performance')}")
+        _kariyer_tablo(f"🏟️ {t('Kulüp Kariyeri','Club Career')}", _kulup_sez,
+                       t("Kulüp", "Club"), lambda s: s.get("kulup", ""))
+        _kariyer_tablo(f"🏳️ {t('Milli Takım','National Team')}"
+                       + (f" — {_milli_ad}" if _milli_ad else ""), _milli_sez,
+                       t("Takım", "Team"), lambda s: _milli_ad or _uyruk_goster(s.get("kulup", "")))
         _g = leistung_data.get(tam_isim, {}).get("guncelleme", "")
         if _g:
             st.caption(f"📡 SoccerDonna · {_g}")
