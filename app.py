@@ -1524,6 +1524,98 @@ def etiket_ayarla(kullanici: str, oyuncu: str, etiket: str):
     etiket_kaydet(data)
 
 
+# ─── Scout Notu / Takip (durum · öncelik · not) — shortlist kartları için ──────
+# Yapı: {kullanici: {oyuncu: {"durum","oncelik","not","tarih"}}}
+# GSheets "ScoutNotu" (kullanici|oyuncu|durum|oncelik|not|tarih) + yerel json fallback.
+_SCOUTNOT_YOL = pathlib.Path(__file__).parent / "scoutnot.json"
+DURUM_OPSIYON   = ["—", "👀 İzleniyor", "📞 İlgileniyor", "💬 Müzakere",
+                   "🤝 Anlaşıldı", "⏳ Beklemede", "❌ Vazgeçildi"]
+ONCELIK_OPSIYON = ["—", "🔴 Yüksek", "🟡 Orta", "🟢 Düşük"]
+_DURUM_EN   = {"—": "—", "👀 İzleniyor": "👀 Watching", "📞 İlgileniyor": "📞 Interested",
+               "💬 Müzakere": "💬 Negotiating", "🤝 Anlaşıldı": "🤝 Agreed",
+               "⏳ Beklemede": "⏳ On Hold", "❌ Vazgeçildi": "❌ Dropped"}
+_ONCELIK_EN = {"—": "—", "🔴 Yüksek": "🔴 High", "🟡 Orta": "🟡 Medium", "🟢 Düşük": "🟢 Low"}
+_DURUM_RENK = {"👀 İzleniyor": "#60a5fa", "📞 İlgileniyor": "#22d3ee", "💬 Müzakere": "#fbbf24",
+               "🤝 Anlaşıldı": "#34d399", "⏳ Beklemede": "#94a3b8", "❌ Vazgeçildi": "#f87171"}
+
+def _scoutnot_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("ScoutNotu")
+        except Exception:
+            ws = sh.add_worksheet(title="ScoutNotu", rows=2000, cols=6)
+            ws.update([["kullanici", "oyuncu", "durum", "oncelik", "not", "tarih"]])
+            return ws
+    except Exception:
+        return None
+
+def scoutnot_yukle() -> dict:
+    ws = _scoutnot_ws()
+    if ws is not None:
+        try:
+            d = {}
+            for r in ws.get_all_records():
+                k = str(r.get("kullanici", "")).strip()
+                o = str(r.get("oyuncu", "")).strip()
+                if k and o:
+                    d.setdefault(k, {})[o] = {
+                        "durum":   str(r.get("durum", "")).strip(),
+                        "oncelik": str(r.get("oncelik", "")).strip(),
+                        "not":     str(r.get("not", "")).strip(),
+                        "tarih":   str(r.get("tarih", "")).strip()}
+            return d
+        except Exception:
+            pass
+    if not _SCOUTNOT_YOL.exists():
+        return {}
+    import json
+    try:
+        with open(_SCOUTNOT_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def scoutnot_kaydet(data: dict):
+    ws = _scoutnot_ws()
+    if ws is not None:
+        try:
+            rows = [["kullanici", "oyuncu", "durum", "oncelik", "not", "tarih"]]
+            for k, om in data.items():
+                for o, v in om.items():
+                    rows.append([k, o, v.get("durum",""), v.get("oncelik",""),
+                                 v.get("not",""), v.get("tarih","")])
+            ws.clear(); ws.update(rows)
+            return
+        except Exception:
+            pass
+    import json
+    with open(_SCOUTNOT_YOL, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def scoutnot_kullanici(kullanici: str) -> dict:
+    return scoutnot_yukle().get(kullanici, {})
+
+def scoutnot_ayarla(kullanici: str, oyuncu: str, durum: str, oncelik: str, notu: str):
+    from datetime import date as _d
+    data = scoutnot_yukle()
+    om = data.setdefault(kullanici, {})
+    if (durum and durum != "—") or (oncelik and oncelik != "—") or (notu or "").strip():
+        om[oyuncu] = {"durum": durum if durum != "—" else "",
+                      "oncelik": oncelik if oncelik != "—" else "",
+                      "not": (notu or "").strip(), "tarih": _d.today().isoformat()}
+    else:
+        om.pop(oyuncu, None)
+    scoutnot_kaydet(data)
+
+
 # ─── Danışmanlık Talepleri ─────────────────────────────────────────────
 # Talepler Google Sheets "Talepler" sayfasına yazılır + e-posta gönderilir.
 # E-posta için secrets["smtp"] = {email, password (Gmail app password)} gerekir;
@@ -2360,7 +2452,7 @@ def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
         f"<tr>"
         f"<td style='padding:5px 8px;font-weight:600;color:#f1f5f9'>{v['isim']}</td>"
         f"<td style='padding:5px 8px'>{v['sd'].get('Position','—')}</td>"
-        f"<td style='padding:5px 8px'>{v['sd'].get('Nationality','—')}</td>"
+        f"<td style='padding:5px 8px'>{ulke_goster(_uyruk_goster(v['sd'].get('Nationality',''))) or '—'}</td>"
         f"<td style='padding:5px 8px'>{v['sd'].get('Age','?')}</td>"
         f"<td style='padding:5px 8px;text-align:right'>{v['mac']}</td>"
         f"<td style='padding:5px 8px;text-align:right'>{v['gol']}</td>"
@@ -2522,6 +2614,95 @@ def _kariyer_kulup_milli(isim, sezonlar, kaynak, milli_ad="", guncelleme=""):
          lambda s: milli_ad or _uyruk_goster(s.get("kulup", "")))
     if guncelleme:
         st.caption(f"📡 SoccerDonna · {guncelleme}")
+
+
+def _kontrat_renk_g(sz):
+    """'DD.MM.YYYY' → kalan aya göre renk (kırmızı<6ay / amber<12ay / yeşil)."""
+    import datetime as _dt
+    try:
+        _g, _a, _y = (int(x) for x in str(sz).split(".")[:3])
+        _ay = (_dt.date(_y, _a, _g) - _dt.date.today()).days / 30.0
+        return "#f87171" if _ay < 6 else "#fbbf24" if _ay < 12 else "#34d399"
+    except Exception:
+        return "#cbd5e1"
+
+
+def render_shortlist_kartlari(isimler, kullanici):
+    """Shortlist oyuncularını W-Scope 'Favoriler' tarzı kartlarla göster + scout notu /
+    durum / öncelik düzenleme (yorumlama + işlem)."""
+    if not isimler:
+        st.info(t("Shortlist'in boş. Oyuncu tablosundan aşağıdaki ⭐ ile ekleyebilirsin.",
+                  "Your shortlist is empty. Add players with ⭐ below the table."))
+        return
+    sd_data = scouting_sd_yukle()
+    _notlar = scoutnot_kullanici(kullanici)
+    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 10px;'>"
+                f"⭐ {len(isimler)} {t('oyuncu takipte','players tracked')}</div>",
+                unsafe_allow_html=True)
+
+    def _kutu(lbl, val, clr="#e8eef7"):
+        return (f"<div style='flex:1;background:#0f1626;border:1px solid #233149;border-radius:8px;"
+                f"padding:8px 6px;text-align:center;'>"
+                f"<div style='font-size:0.56rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;'>{lbl}</div>"
+                f"<div style='font-size:0.95rem;font-weight:800;color:{clr};margin-top:2px;'>{val}</div></div>")
+
+    for isim in isimler:
+        _kd = scout_kadro_yukle().get(isim, {})
+        sd  = sd_data.get(isim, {})
+        _yas = _kd.get("yas") or sd.get("Age", "") or "—"
+        _pos = (_kd.get("mevki") or [""])[0] or "—"
+        _kl  = _kd.get("kulup", "") or ""
+        _lg  = _kd.get("lig", "") or ""
+        _dg  = _kd.get("deger", "") or "—"
+        _sz  = _kd.get("sozlesme", "") or sd.get("Contract until", "") or "—"
+        _nh  = _kd.get("nihai", "")
+        _uy  = ulke_goster(_uyruk_goster(sd.get("Nationality", "") or _kd.get("vatandaslik", "")))
+        _m   = _notlar.get(isim, {})
+        _durum, _oncelik, _notu, _tarih = (_m.get("durum",""), _m.get("oncelik",""),
+                                           _m.get("not",""), _m.get("tarih",""))
+        _skor = (f"<span class='ws-ring' style='border-color:{_scotr_renk(_scotr_puan(_nh))};"
+                 f"color:{_scotr_renk(_scotr_puan(_nh))};'>{_nh}</span>") if _nh else ""
+        _dr = _DURUM_RENK.get(_durum, "#475569")
+        _durum_b = (f"<span style='background:{_dr}22;border:1px solid {_dr};color:{_dr};"
+                    f"border-radius:6px;padding:2px 9px;font-size:0.68rem;font-weight:700;'>"
+                    f"{_DURUM_EN.get(_durum,_durum) if EN else _durum}</span>") if _durum else ""
+        _onc_b = (f"<span style='color:#94a3b8;font-size:0.72rem;'>"
+                  f"{_ONCELIK_EN.get(_oncelik,_oncelik) if EN else _oncelik}</span>") if _oncelik else ""
+        _statlar = (_kutu(t("YAŞ","AGE"), _yas) + _kutu("POS", _pos) +
+                    _kutu(t("DEĞER","VALUE"), _dg) + _kutu(t("KONTR.","CONTR."), _sz, _kontrat_renk_g(_sz)))
+        _not_html = (f"<div style='margin-top:11px;border-left:3px solid #7c3aed;padding:2px 0 2px 11px;"
+                     f"color:#aab4c4;font-size:0.84rem;line-height:1.55;'>📝 {_notu}</div>") if _notu else ""
+        _alt = " · ".join(x for x in [_onc_b, _tarih] if x)
+        st.markdown(
+            f"<div style='background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;padding:14px 16px;margin-bottom:10px;'>"
+            f"<div style='display:flex;align-items:center;gap:12px;'>"
+            f"<span class='ws-ava' style='width:38px;height:38px;font-size:1rem;'>{(isim[:1] or '?').upper()}</span>"
+            f"<div style='flex:1;min-width:0;'><div style='font-size:1.05rem;font-weight:800;color:#f4f4f5;'>{isim}</div>"
+            f"<div class='ws-sub' style='font-size:0.72rem;'>{' · '.join(x for x in [_uy,_kl,_lg] if x)}</div></div>"
+            f"<div style='display:flex;align-items:center;gap:10px;'>{_durum_b}{_skor}</div></div>"
+            f"<div style='display:flex;gap:6px;margin-top:12px;'>{_statlar}</div>"
+            f"{_not_html}"
+            + (f"<div style='margin-top:7px;font-size:0.66rem;color:#52525b;'>{_alt}</div>" if _alt else "")
+            + "</div>", unsafe_allow_html=True)
+        with st.expander(f"✏️ {t('Durum · Öncelik · Not','Status · Priority · Note')} — {isim}"):
+            _e1, _e2 = st.columns(2)
+            with _e1:
+                _yd = st.selectbox(t("Durum","Status"), DURUM_OPSIYON,
+                    index=DURUM_OPSIYON.index(_durum) if _durum in DURUM_OPSIYON else 0,
+                    format_func=lambda x: _DURUM_EN.get(x,x) if EN else x, key=_pk(f"sl_d_{isim}"))
+            with _e2:
+                _yo = st.selectbox(t("Öncelik","Priority"), ONCELIK_OPSIYON,
+                    index=ONCELIK_OPSIYON.index(_oncelik) if _oncelik in ONCELIK_OPSIYON else 0,
+                    format_func=lambda x: _ONCELIK_EN.get(x,x) if EN else x, key=_pk(f"sl_o_{isim}"))
+            _yn = st.text_area(t("Scout Notu","Scout Note"), value=_notu,
+                               key=_pk(f"sl_n_{isim}"), height=80)
+            _b1, _b2 = st.columns(2)
+            with _b1:
+                if st.button(f"💾 {t('Kaydet','Save')}", key=_pk(f"sl_sv_{isim}"), use_container_width=True):
+                    scoutnot_ayarla(kullanici, isim, _yd, _yo, _yn); st.rerun()
+            with _b2:
+                if st.button(f"★ {t('Shortlist’ten Çıkar','Remove')}", key=_pk(f"sl_rm_{isim}"), use_container_width=True):
+                    shortlist_toggle(kullanici, isim); st.rerun()
 
 
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
@@ -4965,7 +5146,10 @@ if st.session_state.get("sayfa") == "scouting":
                         shortlist_karsilastirma_goster(
                             filtered[isim_col].tolist(), sd_data, leistung_data)
 
-                if filtered.empty:
+                if sadece_sl:
+                    # Shortlist sekmesi: W-Scope 'Favoriler' tarzı kartlar + scout notu/durum
+                    render_shortlist_kartlari(_sl_liste, _sl_kullanici)
+                elif filtered.empty:
                     st.info(t("Filtrelerle eşleşen oyuncu yok.",
                               "No players match the filters."))
                 else:
