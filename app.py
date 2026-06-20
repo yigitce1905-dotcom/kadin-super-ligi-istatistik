@@ -1015,6 +1015,20 @@ def _hafta_yenilen(takim: str, hafta) -> "int | None":
     return _yenilen_gol_map().get((hafta, (takim or "").upper()))
 
 @st.cache_data(ttl=3600)
+def _rakip_map() -> dict:
+    """{(hafta, TAKIM_UPPER): rakip_takim_tam_adi}"""
+    m = {}
+    for x in mac_sonuclari_yukle():
+        h = x.get("hafta")
+        ev, dep = (x.get("ev") or ""), (x.get("dep") or "")
+        if ev:  m[(h, ev.upper())] = dep
+        if dep: m[(h, dep.upper())] = ev
+    return m
+
+def _hafta_rakip(takim: str, hafta) -> str:
+    return _rakip_map().get((hafta, (takim or "").upper()), "")
+
+@st.cache_data(ttl=3600)
 def _son_lig_haftasi() -> int:
     return max((x.get("hafta", 0) for x in mac_sonuclari_yukle()), default=0)
 
@@ -2186,6 +2200,28 @@ def _gol_rakip_grafik(detay: dict, toplam_gol: int):
         showlegend=False,
     )
     st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1717"))
+
+
+def _clean_sheet_grafik(rakip_dagil: dict, toplam: int):
+    """Gol yenmeyen (clean sheet) maçların rakip bazlı dağılımı — yatay bar (yeşil)."""
+    if not rakip_dagil:
+        return
+    items = sorted(rakip_dagil.items(), key=lambda x: x[1])   # plotly yatay: küçük altta
+    rakipler = [k for k, _ in items]
+    sayilar  = [v for _, v in items]
+    st.markdown(f"##### 🧤 {t('Gol Yenmeyen Maçlar — Rakip', 'Clean Sheets — by Opponent')}")
+    st.caption(t(f"🧤 Oynadığı maçlarda toplam {toplam} kez gol yenmedi (skor: 0)",
+                 f"🧤 {toplam} clean sheets in matches played (conceded: 0)"))
+    fig = go.Figure(go.Bar(
+        x=sayilar, y=rakipler, orientation="h",
+        marker_color="#22c55e", text=sayilar, textposition="outside",
+        hovertemplate="%{y}<br>%{x} clean sheet<extra></extra>"))
+    fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+        font=dict(color="#e0e0e0"), height=max(190, 46 + len(rakipler) * 34),
+        xaxis=dict(title=t("Gol Yenmeyen Maç", "Clean Sheets"), gridcolor="#2d3561", dtick=1),
+        yaxis=dict(gridcolor="rgba(0,0,0,0)"),
+        margin=dict(l=10, r=34, t=8, b=36), showlegend=False)
+    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_cs"))
 
 
 def max_seri(dizi):
@@ -3890,26 +3926,46 @@ def render_ana_lig_profil(secili):
             else:
                 st.caption(t("Bu oyuncu gol atmadı.", "This player has not scored."))
 
+        # ── Gol Yenmeme (clean sheet) verisi: oynadığı haftalarda takım gol yedi mi? ──
+        _cs_flags, _cs_rakip = [], {}
+        for _m in gecmis_tam:                       # hafta artan sırada
+            if _m.get("dakika", 0) > 0:
+                _yen = _hafta_yenilen(row["Takım"], _m["hafta"])
+                if _yen is None:
+                    continue
+                _cs_flags.append(1 if _yen == 0 else 0)
+                if _yen == 0:
+                    _rk = _takim_kisa(_hafta_rakip(row["Takım"], _m["hafta"]) or "—")
+                    _cs_rakip[_rk] = _cs_rakip.get(_rk, 0) + 1
+        en_uzun_cs = max_seri(_cs_flags)
+        toplam_cs  = sum(_cs_flags)
+
         # ── Seriler ──────────────────────────────────────────────────────────
         if gecmis_tam:
             st.markdown(f"##### 🔥 {t('Seri Rekorları', 'Streak Records')}")
-            # En uzun ardışık maç serisi
             en_uzun_mac = max_seri([1 for _ in gecmis_tam])
-            # En uzun gol serisi (ardışık maçlarda gol)
             gol_var = [1 if m["gol"]>0 else 0 for m in gecmis_tam]
             en_uzun_gol = max_seri(gol_var)
-            # En uzun kart almama serisi
             temiz = [1 if m["sari"]==0 and m["kirmizi"]==0 else 0 for m in gecmis_tam]
             en_uzun_temiz = max_seri(temiz)
 
-            s1,s2,s3 = st.columns(3)
+            s1,s2,s3,s4 = st.columns(4)
             s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
             s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
-            s3.metric(f"🛡️ {t('En Uzun Temiz Seri', 'Longest Clean Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
+            s3.metric(f"🧤 {t('En Uzun Gol Yenmeyen Seri', 'Longest Clean-Sheet Streak')}", f"{en_uzun_cs} {t('maç','matches')}")
+            s4.metric(f"🟨 {t('En Uzun Kartsız Seri', 'Longest Card-Free Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
 
-        # ── Gol rakip dağılımı ───────────────────────────────────────────────
-        if gol > 0:
+        # ── Rakip dağılımları: Yenen goller (sol) · Gol yenmeyen maçlar (sağ) ──
+        _has_gol = gol > 0 and bool(_gol_rakip_dagil(detay))
+        _has_cs  = bool(_cs_rakip)
+        if _has_gol and _has_cs:
+            _rd1, _rd2 = st.columns(2, gap="medium")
+            with _rd1: _gol_rakip_grafik(detay, gol)
+            with _rd2: _clean_sheet_grafik(_cs_rakip, toplam_cs)
+        elif _has_gol:
             _gol_rakip_grafik(detay, gol)
+        elif _has_cs:
+            _clean_sheet_grafik(_cs_rakip, toplam_cs)
 
         # ── Transfer kırılımı ─────────────────────────────────────────────────
         if transfer:
