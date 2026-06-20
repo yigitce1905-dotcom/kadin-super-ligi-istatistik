@@ -998,6 +998,27 @@ def mac_sonuclari_yukle() -> list:
     return []
 
 
+@st.cache_data(ttl=3600)
+def _yenilen_gol_map() -> dict:
+    """{(hafta, TAKIM_UPPER): o hafta yenilen gol} — clean sheet hesabı için."""
+    m = {}
+    for x in mac_sonuclari_yukle():
+        h = x.get("hafta")
+        ev, dep = (x.get("ev") or ""), (x.get("dep") or "")
+        eg, dg = x.get("ev_gol", 0), x.get("dep_gol", 0)
+        if ev:  m[(h, ev.upper())] = dg   # ev takımının yediği = deplasman golü
+        if dep: m[(h, dep.upper())] = eg
+    return m
+
+def _hafta_yenilen(takim: str, hafta) -> "int | None":
+    """O hafta takımın yediği gol (clean sheet için); maç bulunamazsa None."""
+    return _yenilen_gol_map().get((hafta, (takim or "").upper()))
+
+@st.cache_data(ttl=3600)
+def _son_lig_haftasi() -> int:
+    return max((x.get("hafta", 0) for x in mac_sonuclari_yukle()), default=0)
+
+
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 
 @st.cache_data(ttl=300)
@@ -3706,27 +3727,48 @@ def render_ana_lig_profil(secili):
         st.markdown("<br>", unsafe_allow_html=True)
         p1, p2 = st.columns(2)
 
-        # ── Son 5 maç formu ──────────────────────────────────────────────────
+        # ── Son 5 maç formu (her maçta Süre · Gol · CleanSheet · Kart) ────────
         with p1:
             st.markdown(f"##### {t('Son 5 Maç Formu', 'Last 5 Matches Form')}")
-            gecmis = sorted(detay.get("mac_gecmisi",[]), key=lambda x: x["hafta"], reverse=True)[:5]
-            if gecmis:
-                chipler = ""
-                for m in gecmis:
-                    if m["gol"] > 0:
-                        renk, etiket = "#1b5e20", f"⚽ {m['gol']} Gol ({m['hafta']}.H)"
-                    elif m["kirmizi"] > 0:
-                        renk, etiket = "#b71c1c", f"🟥 ({m['hafta']}.H)"
-                    elif m["sari"] > 0:
-                        renk, etiket = "#f57f17", f"🟨 ({m['hafta']}.H)"
-                    elif m["dakika"] >= 70:
-                        renk, etiket = "#0d3b2e", f"✅ {m['dakika']}dk ({m['hafta']}.H)"
-                    else:
-                        renk, etiket = "#1a1f36", f"↗ {m['dakika']}dk ({m['hafta']}.H)"
-                    chipler += f'<span class="form-chip" style="background:{renk}">{etiket}</span>'
-                st.markdown(f'<div class="form-kutu">{chipler}</div>', unsafe_allow_html=True)
-            else:
+            st.caption(t("Her maç: Süre · Gol · Clean Sheet · Kart (oynamadıysa 0′)",
+                         "Each match: Minutes · Goals · Clean Sheet · Cards (0′ if didn't play)"))
+            _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
+            _son_h = _son_lig_haftasi() or (max(_mg) if _mg else 0)
+            _haftalar = [h for h in range(max(1, _son_h - 4), _son_h + 1)]
+            if not _haftalar:
                 st.caption(t("Maç verisi yok.", "No match data."))
+            else:
+                _kartlar = ""
+                for _h in _haftalar:
+                    m = _mg.get(_h, {})
+                    _dk = int(m.get("dakika", 0) or 0)
+                    _gl = int(m.get("gol", 0) or 0)
+                    _sa = int(m.get("sari", 0) or 0)
+                    _kr = int(m.get("kirmizi", 0) or 0)
+                    _sure_renk = "#4ade80" if _dk > 0 else "#475569"
+                    # Clean sheet: oyuncunun (güncel) takımı o hafta gol yedi mi?
+                    _yen = _hafta_yenilen(row["Takım"], _h)
+                    if _yen is None:
+                        _cs = "<span style='color:#475569;'>🛡️ —</span>"
+                    elif _yen == 0:
+                        _cs = "<span style='color:#34d399;'>🛡️ ✓</span>"
+                    else:
+                        _cs = f"<span style='color:#fb7185;'>🥅 {_yen}</span>"
+                    _gl_html = (f"<span style='color:#86efac;'>⚽ {_gl}</span>" if _gl
+                                else "<span style='color:#64748b;'>⚽ 0</span>")
+                    _kart_html = (f"🟨{_sa}" + (f" 🟥{_kr}" if _kr else ""))
+                    _kart_renk = "#fbbf24" if (_sa or _kr) else "#64748b"
+                    _kartlar += (
+                        "<div style='flex:1;min-width:90px;background:#0f1117;border:1px solid #232842;"
+                        "border-radius:9px;padding:8px 6px;text-align:center;'>"
+                        f"<div style='font-size:0.6rem;color:#64748b;font-weight:700;letter-spacing:0.03em;'>{_h}. {t('Hafta','Wk')}</div>"
+                        f"<div style='font-size:1.05rem;font-weight:800;color:{_sure_renk};line-height:1.2;'>{_dk}′</div>"
+                        f"<div style='font-size:0.7rem;margin-top:4px;'>{_gl_html}</div>"
+                        f"<div style='font-size:0.7rem;margin-top:2px;'>{_cs}</div>"
+                        f"<div style='font-size:0.7rem;margin-top:2px;color:{_kart_renk};'>{_kart_html}</div>"
+                        "</div>")
+                st.markdown(f"<div style='display:flex;gap:6px;flex-wrap:wrap;'>{_kartlar}</div>",
+                            unsafe_allow_html=True)
 
         # ── Lig sıralamaları ─────────────────────────────────────────────────
         with p2:
