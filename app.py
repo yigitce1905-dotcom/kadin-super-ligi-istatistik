@@ -2670,18 +2670,42 @@ def _kariyer_kulup_milli(isim, sezonlar, kaynak, milli_ad="", guncelleme=""):
     def _tbl(baslik, rows, takim_basligi, takim_deger):
         if not rows:
             return
-        _sh = ""
+        import collections as _col
+        # Sezona göre grupla (ilk görülme sırası korunur)
+        _gr = _col.OrderedDict()
         for _s in rows:
+            _gr.setdefault(_s.get("sezon", ""), []).append(_s)
+        _sh = ""
+        for _sez, _grp in _gr.items():
+            _tm = sum(x.get("mac", 0) for x in _grp);   _tg = sum(x.get("gol", 0) for x in _grp)
+            _ta = sum(x.get("asist", 0) for x in _grp); _ts = sum(x.get("sari", 0) for x in _grp)
+            _td = sum(x.get("dakika", 0) for x in _grp)
+            _coklu = len(_grp) > 1
+            _ana = max(_grp, key=lambda x: x.get("mac", 0))
+            _yari = f"{len(_grp)} {t('yarışma','comp.')}" if _coklu else _grp[0].get("lig", "")
+            # TOPLAM satırı — BEYAZ, kalın
             _sh += (
-                f"<tr style='color:#cbd5e1;'>"
-                f"<td style='padding:4px 8px;'>{_s.get('sezon','')}</td>"
-                f"<td style='padding:4px 8px;font-weight:600;'>{takim_deger(_s)}</td>"
-                f"<td style='padding:4px 8px;'>{_s.get('lig','')}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('mac',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('gol',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('asist',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('sari',0)}</td>"
-                f"<td style='padding:4px 8px;text-align:right;'>{_s.get('dakika',0)}</td></tr>")
+                "<tr style='color:#f8fafc;font-weight:700;border-top:1px solid #2c3550;'>"
+                f"<td style='padding:6px 8px;'>{_sez}</td>"
+                f"<td style='padding:6px 8px;'>{takim_deger(_ana)}</td>"
+                f"<td style='padding:6px 8px;color:#93a4bd;font-weight:600;font-size:0.76rem;'>{_yari}</td>"
+                f"<td style='padding:6px 8px;text-align:right;'>{_tm}</td>"
+                f"<td style='padding:6px 8px;text-align:right;'>{_tg}</td>"
+                f"<td style='padding:6px 8px;text-align:right;'>{_ta}</td>"
+                f"<td style='padding:6px 8px;text-align:right;'>{_ts}</td>"
+                f"<td style='padding:6px 8px;text-align:right;'>{_td}</td></tr>")
+            # Kırılım satırları — GRİ (yalnız çoklu yarışmada)
+            if _coklu:
+                for x in _grp:
+                    _sh += (
+                        "<tr style='color:#64748b;font-size:0.79rem;'>"
+                        "<td style='padding:2px 8px;'></td><td style='padding:2px 8px;'></td>"
+                        f"<td style='padding:2px 8px 2px 18px;'>↳ {x.get('lig','')}</td>"
+                        f"<td style='padding:2px 8px;text-align:right;'>{x.get('mac',0)}</td>"
+                        f"<td style='padding:2px 8px;text-align:right;'>{x.get('gol',0)}</td>"
+                        f"<td style='padding:2px 8px;text-align:right;'>{x.get('asist',0)}</td>"
+                        f"<td style='padding:2px 8px;text-align:right;'>{x.get('sari',0)}</td>"
+                        f"<td style='padding:2px 8px;text-align:right;'>{x.get('dakika',0)}</td></tr>")
         st.markdown(f"##### {baslik}")
         st.markdown(
             '<table style="width:100%;border-collapse:collapse;font-size:0.82rem;margin-bottom:6px;">'
