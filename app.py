@@ -1029,6 +1029,23 @@ def _hafta_rakip(takim: str, hafta) -> str:
     return _rakip_map().get((hafta, (takim or "").upper()), "")
 
 @st.cache_data(ttl=3600)
+def _hukmen_takimlar() -> set:
+    """Lige katılmayan/çekilen takımlar — TÜM maçları hükmen (0-3) olanlar.
+    Bunlara atılan gol / bunlara karşı clean sheet GERÇEK DEĞİL → atıflarda dışlanır."""
+    skor = {}  # TAKIM_UPPER -> [(attigi, yedigi), ...]
+    for x in mac_sonuclari_yukle():
+        ev, dep = (x.get("ev") or "").upper(), (x.get("dep") or "").upper()
+        eg, dg = x.get("ev_gol", 0), x.get("dep_gol", 0)
+        if ev:  skor.setdefault(ev, []).append((eg, dg))
+        if dep: skor.setdefault(dep, []).append((dg, eg))
+    cekilen = set()
+    for tk, mlar in skor.items():
+        # Her maçta 0 atıp tam 3 yediyse (klasik TFF hükmen) → çekilmiş kabul
+        if len(mlar) >= 3 and all(a == 0 and y == 3 for a, y in mlar):
+            cekilen.add(tk)
+    return cekilen
+
+@st.cache_data(ttl=3600)
 def _son_lig_haftasi() -> int:
     return max((x.get("hafta", 0) for x in mac_sonuclari_yukle()), default=0)
 
@@ -2135,6 +2152,7 @@ def _gol_rakip_dagil(detay: dict) -> dict:
     if not takimlar:
         takimlar = {detay.get("takim", "").upper()}
 
+    _hukmen = _hukmen_takimlar()
     rakip_goller: dict = {}
     for m in detay.get("mac_gecmisi", []):
         oyuncu_gol = m.get("gol", 0)
@@ -2150,6 +2168,9 @@ def _gol_rakip_dagil(detay: dict) -> dict:
                 rakip = mac["ev"]
             else:
                 continue
+            # Çekilen/hükmen takıma (gerçek maç oynanmadı) gol ATFEDİLMEZ
+            if rakip.upper() in _hukmen:
+                break
             rakip_goller[rakip] = rakip_goller.get(rakip, 0) + oyuncu_gol
             break   # bu hafta için eşleşme bulundu
     return dict(sorted(rakip_goller.items(), key=lambda x: -x[1]))
@@ -4066,14 +4087,19 @@ def render_ana_lig_profil(secili):
 
         # ── Gol Yenmeme (clean sheet) verisi: oynadığı haftalarda takım gol yedi mi? ──
         _cs_flags, _cs_rakip = [], {}
+        _hukmen_set = _hukmen_takimlar()
         for _m in gecmis_tam:                       # hafta artan sırada
             if _m.get("dakika", 0) > 0:
+                _rk_tam = _hafta_rakip(row["Takım"], _m["hafta"])
+                # Çekilen/hükmen takıma karşı maç gerçek değil → clean sheet sayma
+                if _rk_tam and _rk_tam.upper() in _hukmen_set:
+                    continue
                 _yen = _hafta_yenilen(row["Takım"], _m["hafta"])
                 if _yen is None:
                     continue
                 _cs_flags.append(1 if _yen == 0 else 0)
                 if _yen == 0:
-                    _rk = _takim_kisa(_hafta_rakip(row["Takım"], _m["hafta"]) or "—")
+                    _rk = _takim_kisa(_rk_tam or "—")
                     _cs_rakip[_rk] = _cs_rakip.get(_rk, 0) + 1
         en_uzun_cs = max_seri(_cs_flags)
         toplam_cs  = sum(_cs_flags)
