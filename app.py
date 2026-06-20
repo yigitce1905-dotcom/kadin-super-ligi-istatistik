@@ -3836,20 +3836,31 @@ def render_ana_lig_profil(secili):
                 dakikalar = [m["dakika"] for m in gecmis_tam]
                 goller    = [m["gol"]    for m in gecmis_tam]
                 fig = go.Figure()
-                fig.add_trace(go.Bar(x=haftalar, y=dakikalar, name="Dakika",
-                    marker_color="#2979ff", opacity=0.75,
-                    hovertemplate="Hafta %{x}<br>%{y}dk<extra></extra>"))
-                fig.add_trace(go.Scatter(x=haftalar, y=[g*18 for g in goller],
-                    name="Gol", mode="markers",
-                    marker=dict(color="#1db954", size=11, symbol="star"),
-                    hovertemplate="Hafta %{x}<br>Gol:%{customdata}<extra></extra>",
-                    customdata=goller))
+                fig.add_trace(go.Bar(x=haftalar, y=dakikalar, name=t("Dakika", "Minutes"),
+                    marker_color="#2979ff", opacity=0.70,
+                    hovertemplate=f"{t('Hafta','Week')} %{{x}}<br>%{{y}} {t('dk','min')}<extra></extra>"))
+                # Goller: İKİNCİL eksende (gerçek sayı 0,1,2,3…) yıldız + üstünde RAKAM —
+                # böylece kaç gol atıldığı net görünür. Sadece gol olan haftalarda işaret.
+                _gh = [h for h, g in zip(haftalar, goller) if g > 0]
+                _gg = [g for g in goller if g > 0]
+                if _gh:
+                    fig.add_trace(go.Scatter(x=_gh, y=_gg, name=t("Gol", "Goals"),
+                        mode="markers+text", yaxis="y2",
+                        marker=dict(color="#22c55e", size=18, symbol="star",
+                                    line=dict(color="#0a3d1f", width=1)),
+                        text=[str(g) for g in _gg], textposition="top center",
+                        textfont=dict(color="#4ade80", size=13, family="Sora"),
+                        hovertemplate=f"{t('Hafta','Week')} %{{x}}<br>%{{y}} {t('gol','goals')}<extra></extra>"))
+                _gmax = max(goller) if goller else 0
                 fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
                     font=dict(color="#e0e0e0"), height=260,
-                    legend=dict(orientation="h", y=1.1),
-                    xaxis=dict(title="Hafta", gridcolor="#2d3561"),
-                    yaxis=dict(title="Dakika", gridcolor="#2d3561"),
-                    margin=dict(l=40,r=10,t=10,b=40))
+                    legend=dict(orientation="h", y=1.15),
+                    xaxis=dict(title=t("Hafta", "Week"), gridcolor="#2d3561"),
+                    yaxis=dict(title=t("Dakika", "Minutes"), gridcolor="#2d3561"),
+                    yaxis2=dict(title=t("Gol", "Goals"), overlaying="y", side="right",
+                                range=[0, max(_gmax, 1) + 0.6], dtick=1, showgrid=False,
+                                tickfont=dict(color="#4ade80"), title_font=dict(color="#4ade80")),
+                    margin=dict(l=40, r=40, t=24, b=40))
                 st.plotly_chart(fig, use_container_width=True, key=_pk("plt_2957"))
 
         with g2:
