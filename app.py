@@ -998,6 +998,14 @@ def mac_sonuclari_yukle() -> list:
     return []
 
 
+def _kanon(ad: str) -> str:
+    """Takım adını eşleştirme için KANONİK anahtara indirger.
+    mac_sonuclari (uzun/sponsorlu adlar) ile oyuncular.json (kısa adlar) ve sezon
+    içinde değişen sponsor adları (ör. ALG'nin 4 varyantı) aynı anahtara gelsin diye.
+    _takim_kisa kullanır → Çekmeköy/Şile gibi ayrı takımlar ayrı kalır."""
+    return _takim_kisa(ad or "").upper()
+
+
 @st.cache_data(ttl=3600)
 def _yenilen_gol_map() -> dict:
     """{(hafta, TAKIM_UPPER): o hafta yenilen gol} — clean sheet hesabı için."""
@@ -1006,13 +1014,13 @@ def _yenilen_gol_map() -> dict:
         h = x.get("hafta")
         ev, dep = (x.get("ev") or ""), (x.get("dep") or "")
         eg, dg = x.get("ev_gol", 0), x.get("dep_gol", 0)
-        if ev:  m[(h, ev.upper())] = dg   # ev takımının yediği = deplasman golü
-        if dep: m[(h, dep.upper())] = eg
+        if ev:  m[(h, _kanon(ev))] = dg   # ev takımının yediği = deplasman golü
+        if dep: m[(h, _kanon(dep))] = eg
     return m
 
 def _hafta_yenilen(takim: str, hafta) -> "int | None":
     """O hafta takımın yediği gol (clean sheet için); maç bulunamazsa None."""
-    return _yenilen_gol_map().get((hafta, (takim or "").upper()))
+    return _yenilen_gol_map().get((hafta, _kanon(takim)))
 
 @st.cache_data(ttl=3600)
 def _rakip_map() -> dict:
@@ -1021,12 +1029,52 @@ def _rakip_map() -> dict:
     for x in mac_sonuclari_yukle():
         h = x.get("hafta")
         ev, dep = (x.get("ev") or ""), (x.get("dep") or "")
-        if ev:  m[(h, ev.upper())] = dep
-        if dep: m[(h, dep.upper())] = ev
+        if ev:  m[(h, _kanon(ev))] = dep
+        if dep: m[(h, _kanon(dep))] = ev
     return m
 
 def _hafta_rakip(takim: str, hafta) -> str:
-    return _rakip_map().get((hafta, (takim or "").upper()), "")
+    return _rakip_map().get((hafta, _kanon(takim)), "")
+
+
+def _oyuncu_hafta_takim(detay: dict) -> dict:
+    """{hafta: TAKIM_TAM_ADI} — oyuncunun o hafta hangi kulüpte olduğunu döndürür.
+
+    Sezon-ortası transferlerde (gol/clean-sheet rakip atfının doğru olması için)
+    KRİTİK: rakibi oyuncunun *birincil* takımının değil, o maçta gerçekten
+    oynadığı kulübün fikstüründen bulmamız gerekir. tum_takimlar ("İlk / Son")
+    kronolojik sırasını + takim_detay maç sayılarını kullanıp mac_gecmisi'ni
+    (haftaya göre artan) ardışık bloklara dilimleriz; her giriş tek bir kulübe ait.
+    Belirsizlik/uyumsuzlukta birincil takıma güvenli düşüş yapar.
+    """
+    mg = sorted(detay.get("mac_gecmisi", []), key=lambda m: m.get("hafta", 0))
+    td = detay.get("takim_detay", []) or []
+    birincil = detay.get("takim", "") or (td[0]["takim"] if td else "")
+    # Yeni scrape'ler maç anında kulübü saklar → join'siz kesin sonuç.
+    if mg and all(m.get("takim") for m in mg):
+        return {m["hafta"]: m["takim"] for m in mg}
+    if len(td) <= 1:
+        return {m["hafta"]: birincil for m in mg}
+
+    cnt = {d["takim"]: int(d.get("mac", 0) or 0) for d in td}
+    order_raw = [s.strip() for s in (detay.get("tum_takimlar") or "").split("/") if s.strip()]
+    seq, secili = [], set()
+    for nm in order_raw:
+        key = nm if nm in cnt else next((k for k in cnt if k[:12] == nm[:12]), None)
+        if key and key not in secili:
+            seq.append((key, cnt[key])); secili.add(key)
+    # tum_takimlar eksik/uyumsuzsa takim_detay sırasına düş
+    if sum(c for _, c in seq) != len(mg):
+        seq = [(d["takim"], int(d.get("mac", 0) or 0)) for d in td]
+    if sum(c for _, c in seq) != len(mg):
+        return {m["hafta"]: birincil for m in mg}   # güvenli değil
+
+    out, i = {}, 0
+    for tk, c in seq:
+        for m in mg[i:i + c]:
+            out[m["hafta"]] = tk
+        i += c
+    return out
 
 @st.cache_data(ttl=3600)
 def _forfeit_hafta_takim() -> set:
@@ -1034,13 +1082,13 @@ def _forfeit_hafta_takim() -> set:
     Tespit: bir takımın SONDAKİ ardışık 0-3 mağlubiyet serisi ≥3 → çekilme tail'i
     (ALG gibi sezon-ortası çekilme dahil; Beylerbeyi/Bornova gibi hiç katılmama da).
     Bu haftalarda gerçek maç oynanmadığı için gol/clean-sheet atfında dışlanır."""
-    by_team = {}  # TAKIM_UPPER -> [(hafta, attigi, yedigi)]
+    by_team = {}  # KANON -> [(hafta, attigi, yedigi)]
     for x in mac_sonuclari_yukle():
-        ev, dep = (x.get("ev") or "").upper(), (x.get("dep") or "").upper()
+        ev, dep = _kanon(x.get("ev") or ""), _kanon(x.get("dep") or "")
         eg, dg, h = x.get("ev_gol", 0), x.get("dep_gol", 0), x.get("hafta", 0)
         if ev:  by_team.setdefault(ev, []).append((h, eg, dg))
         if dep: by_team.setdefault(dep, []).append((h, dg, eg))
-    cekilen = set()  # (hafta, ÇEKİLEN_TAKIM)
+    cekilen = set()  # (hafta, ÇEKİLEN_TAKIM_KANON)
     for tk, ml in by_team.items():
         ml.sort(key=lambda r: r[0])
         tail = 0
@@ -1055,7 +1103,7 @@ def _forfeit_hafta_takim() -> set:
     # Forfeit maçın HER İKİ takımını işaretle (ikisi de o hafta gerçek maç oynamadı)
     out = set()
     for x in mac_sonuclari_yukle():
-        ev, dep, h = (x.get("ev") or "").upper(), (x.get("dep") or "").upper(), x.get("hafta", 0)
+        ev, dep, h = _kanon(x.get("ev") or ""), _kanon(x.get("dep") or ""), x.get("hafta", 0)
         if (h, ev) in cekilen or (h, dep) in cekilen:
             out.add((h, ev)); out.add((h, dep))
     return out
@@ -2049,6 +2097,8 @@ _TAKIM_KISA_MAP = [
     ("YÜKSEKOVA", "Yüksekovaspor"), ("HAKKARİGÜCÜ", "Hakkarigücü"), ("HAKKARIGÜCÜ", "Hakkarigücü"),
     ("ÜNYE", "Ünye"), ("GİRESUN", "Giresun Sanayi"), ("GIRESUN", "Giresun Sanayi"),
     ("FATİH VATAN", "Fatih Vatan"), ("FATIH VATAN", "Fatih Vatan"),
+    # Çekmeköy ile Şile İKİ AYRI takım — ikisi de "BİLGİDOĞA" içerir, Çekmeköy ÖNCE gelmeli
+    ("ÇEKMEKÖY", "Çekmeköy Bilgidoğa"), ("CEKMEKÖY", "Çekmeköy Bilgidoğa"),
     ("BİLGİDOĞA", "Şile Bilgidoğa"), ("BILGIDOĞA", "Şile Bilgidoğa"),
     ("1207", "1207 Antalya"), ("BEYLERBEYİ", "Beylerbeyi"), ("BEYLERBEYI", "Beylerbeyi"),
     ("BORNOVA", "Bornova Hitab"), ("ALG", "ALG"),
@@ -2153,20 +2203,11 @@ def _gol_rakip_dagil(detay: dict) -> dict:
     Oyuncunun mac_gecmisi + mac_sonuclari kullanarak hangi takıma
     kaç gol attığını döndürür: {rakip_adi: gol_sayisi}
 
-    Transfer oyuncular için: o haftada oyuncunun takım(lar)ından hangisi
-    yeterli gol attıysa (oyuncu_gol <= takim_gol) o maç seçilir.
+    Rakip, oyuncunun o hafta GERÇEKTEN oynadığı kulübün (transferse eski/yeni)
+    fikstüründen bulunur (bkz. _oyuncu_hafta_takim). Hükmen/çekilme haftalarında
+    gerçek maç oynanmadığından gol atfedilmez.
     """
-    maclar = mac_sonuclari_yukle()
-    # hafta → liste[{ev, dep, ev_gol, dep_gol}]
-    hafta_maclar: dict = {}
-    for m in maclar:
-        hafta_maclar.setdefault(m["hafta"], []).append(m)
-
-    # Oyuncunun tüm takımları (transfer dahil)
-    takimlar = {d["takim"].upper() for d in detay.get("takim_detay", [])}
-    if not takimlar:
-        takimlar = {detay.get("takim", "").upper()}
-
+    hafta_takim = _oyuncu_hafta_takim(detay)
     _ff = _forfeit_hafta_takim()
     rakip_goller: dict = {}
     for m in detay.get("mac_gecmisi", []):
@@ -2174,20 +2215,19 @@ def _gol_rakip_dagil(detay: dict) -> dict:
         if oyuncu_gol == 0:
             continue
         hafta = m["hafta"]
-        for mac in hafta_maclar.get(hafta, []):
-            ev  = mac["ev"].upper()
-            dep = mac["dep"].upper()
-            if ev in takimlar and mac["ev_gol"] >= oyuncu_gol:
-                rakip = mac["dep"]
-            elif dep in takimlar and mac["dep_gol"] >= oyuncu_gol:
-                rakip = mac["ev"]
-            else:
+        # Maç anında saklanan gerçek rakip varsa onu kullan (en güvenilir)
+        rakip = m.get("rakip")
+        if not rakip:
+            tk = (hafta_takim.get(hafta) or detay.get("takim", "") or "")
+            if not tk:
                 continue
             # Hükmen/çekilme maçı (gerçek maç oynanmadı) → gol ATFEDİLMEZ
-            if (hafta, ev) in _ff or (hafta, dep) in _ff:
-                break
-            rakip_goller[rakip] = rakip_goller.get(rakip, 0) + oyuncu_gol
-            break   # bu hafta için eşleşme bulundu
+            if (hafta, _kanon(tk)) in _ff:
+                continue
+            rakip = _hafta_rakip(tk, hafta)
+        if not rakip:
+            continue
+        rakip_goller[rakip] = rakip_goller.get(rakip, 0) + oyuncu_gol
     return dict(sorted(rakip_goller.items(), key=lambda x: -x[1]))
 
 
@@ -3982,6 +4022,7 @@ def render_ana_lig_profil(secili):
             st.caption(t("Her maç: Süre · Gol · Clean Sheet · Kart (oynamadıysa 0′)",
                          "Each match: Minutes · Goals · Clean Sheet · Cards (0′ if didn't play)"))
             _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
+            _htk = _oyuncu_hafta_takim(detay)   # transfer: o hafta hangi kulüpte
             _son_h = _son_lig_haftasi() or (max(_mg) if _mg else 0)
             _haftalar = [h for h in range(max(1, _son_h - 4), _son_h + 1)]
             if not _haftalar:
@@ -3995,8 +4036,8 @@ def render_ana_lig_profil(secili):
                     _sa = int(m.get("sari", 0) or 0)
                     _kr = int(m.get("kirmizi", 0) or 0)
                     _sure_renk = "#4ade80" if _dk > 0 else "#475569"
-                    # Clean sheet: oyuncunun (güncel) takımı o hafta gol yedi mi?
-                    _yen = _hafta_yenilen(row["Takım"], _h)
+                    # Clean sheet: oyuncunun O HAFTAKİ takımı (transferse doğru kulüp) gol yedi mi?
+                    _yen = _hafta_yenilen(_htk.get(_h) or row["Takım"], _h)
                     if _yen is None:
                         _cs = "<span style='color:#475569;'>🛡️ —</span>"
                     elif _yen == 0:
@@ -4103,14 +4144,15 @@ def render_ana_lig_profil(secili):
         # ── Gol Yenmeme (clean sheet) verisi: oynadığı haftalarda takım gol yedi mi? ──
         _cs_flags, _cs_rakip = [], {}
         _ff_set = _forfeit_hafta_takim()
-        _tk_up = (row["Takım"] or "").upper()
+        _htk_cs = _oyuncu_hafta_takim(detay)        # transfer: o hafta hangi kulüpte
         for _m in gecmis_tam:                       # hafta artan sırada
             if _m.get("dakika", 0) > 0:
+                _tk_h = _htk_cs.get(_m["hafta"]) or row["Takım"]
                 # Hükmen/çekilme haftası → gerçek maç yok, clean sheet sayma
-                if (_m["hafta"], _tk_up) in _ff_set:
+                if (_m["hafta"], _kanon(_tk_h)) in _ff_set:
                     continue
-                _rk_tam = _hafta_rakip(row["Takım"], _m["hafta"])
-                _yen = _hafta_yenilen(row["Takım"], _m["hafta"])
+                _rk_tam = _hafta_rakip(_tk_h, _m["hafta"])
+                _yen = _hafta_yenilen(_tk_h, _m["hafta"])
                 if _yen is None:
                     continue
                 _cs_flags.append(1 if _yen == 0 else 0)

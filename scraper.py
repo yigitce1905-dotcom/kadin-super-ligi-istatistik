@@ -214,9 +214,22 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
         else:
             oyuncu_dict[kid]["yedek_mac"] = oyuncu_dict[kid].get("yedek_mac", 0) + 1
 
+        # O maçta oyuncunun kulübü ve GERÇEK rakibi (telafi/hükmen kaymalarına
+        # karşı: rakibi hafta→puan-durumu join'iyle SONRADAN kurmak yerine maç
+        # anında saklarız — sezon-ortası transferlerde doğru atıf için kritik).
+        _oy_takim = kisi_takim.get(kid, "")
+        if _oy_takim and ev_takim and _oy_takim == ev_takim:
+            _rakip = dep_takim
+        elif _oy_takim and dep_takim and _oy_takim == dep_takim:
+            _rakip = ev_takim
+        else:
+            _rakip = dep_takim if _oy_takim == ev_takim else ev_takim
+
         # Maç geçmişi kaydı
         giris = {
             "hafta":       hafta_no,
+            "takim":       _oy_takim,
+            "rakip":       _rakip,
             "ilk11":       kid in set(ilk11_kids),
             "dakika":      dk,
             "gol":         mac_gol.get(kid, 0),
