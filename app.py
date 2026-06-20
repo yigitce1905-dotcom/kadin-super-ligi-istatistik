@@ -2152,9 +2152,7 @@ def _gol_rakip_grafik(detay: dict, toplam_gol: int):
         "#ff8f00" if r.upper() in _ZAYIF_TAKIMLAR else "#2979ff"
         for r in rakipler
     ]
-    # Kısa takım adı (ilk 3 kelime / 30 karakter)
-    kisalt = lambda s: " ".join(s.split()[:3])[:30]
-    etiketler = [kisalt(r) for r in rakipler]
+    etiketler = [_takim_kisa(r) for r in rakipler]
 
     zayif_toplam = sum(g for r, g in dagil.items() if r.upper() in _ZAYIF_TAKIMLAR)
     guclu_toplam = toplam_gol - zayif_toplam
@@ -3726,11 +3724,11 @@ def render_ana_lig_profil(secili):
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
                 (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth",""))]),
         ])
-        # Sezon istatistikleri
-        st.markdown(f"#### 📊 {t('Sezon İstatistikleri','Season Stats')}")
-        st.markdown(f"""
+        # Sezon İstatistikleri + Mevki İçi Sıralama (percentile) — YAN YANA (kompakt)
+        _stat_html = f"""
         <div class="profil-kart" style="padding:14px 16px;">
-          <div class="profil-stat">
+          <div style="font-size:0.95rem;font-weight:700;color:#f1f5f9;">📊 {t('Sezon İstatistikleri','Season Stats')}</div>
+          <div class="profil-stat" style="margin-top:8px;">
             <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
             <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
             <div class="profil-stat-item"><div class="deger">{yedek}</div><div class="ad">↗ {t("Yedek","Sub")}</div></div>
@@ -3745,10 +3743,15 @@ def render_ana_lig_profil(secili):
             <div class="profil-stat-item"><div class="deger" style="color:#f5c518">{sari}</div><div class="ad">🟨 {t("Sarı","Yellow")}</div></div>
             <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 {t("Kırmızı","Red")}</div></div>
           </div>
-        </div>""", unsafe_allow_html=True)
-
-        # ── Mevki içi percentile sıralaması (scout sinyali) ──────────────────
-        render_percentil_panel(secili)
+        </div>"""
+        if _percentil_hesapla(secili):
+            _c1, _c2 = st.columns(2, gap="medium")
+            with _c1:
+                st.markdown(_stat_html, unsafe_allow_html=True)
+            with _c2:
+                render_percentil_panel(secili)
+        else:
+            st.markdown(_stat_html, unsafe_allow_html=True)
 
         # ── Markalı PDF rapor indir ──────────────────────────────────────────
         try:
