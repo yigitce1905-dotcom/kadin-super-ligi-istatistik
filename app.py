@@ -1995,6 +1995,42 @@ def _ilk_uyruk(nat_str: str) -> str:
     return spaced.split()[0]
 
 
+# ── Takım adı kısaltma (uzun resmi TFF adları → kısa görünüm) ──────────────────
+# Alt-dize eşleşmesi (büyük harf). İç eşleştirme/filtre TAM isimle kalır; bu yalnız GÖSTERİM.
+_TAKIM_KISA_MAP = [
+    ("BEŞİKTAŞ", "Beşiktaş"), ("GALATASARAY", "Galatasaray"), ("FENERBAHÇE", "Fenerbahçe"),
+    ("TRABZONSPOR", "Trabzonspor"), ("FOMGET", "FOMGET"), ("AMED", "Amed"),
+    ("YÜKSEKOVA", "Yüksekovaspor"), ("HAKKARİGÜCÜ", "Hakkarigücü"), ("HAKKARIGÜCÜ", "Hakkarigücü"),
+    ("ÜNYE", "Ünye"), ("GİRESUN", "Giresun Sanayi"), ("GIRESUN", "Giresun Sanayi"),
+    ("FATİH VATAN", "Fatih Vatan"), ("FATIH VATAN", "Fatih Vatan"),
+    ("BİLGİDOĞA", "Şile Bilgidoğa"), ("BILGIDOĞA", "Şile Bilgidoğa"),
+    ("1207", "1207 Antalya"), ("BEYLERBEYİ", "Beylerbeyi"), ("BEYLERBEYI", "Beylerbeyi"),
+    ("BORNOVA", "Bornova Hitab"), ("ALG", "ALG"),
+]
+_TAKIM_BOILERPLATE = [
+    " SPORTİF YATIRIM HİZMETLERİ A.Ş", " SPORTİF FAALİYETLER", " KADIN FUTBOL SPOR KULÜBÜ",
+    " KADIN FUTBOL KULÜBÜ", " KADIN FUTBOL TAKIMI", " KADIN SPOR KULÜBÜ",
+    " GENÇLİK VE SPOR KULÜBÜ", " GENÇLİK VE SPOR", " FUTBOL KULÜBÜ", " SPOR KULÜBÜ",
+    " KULÜBÜ", " A.Ş.", " A.Ş",
+]
+
+def _takim_kisa(ad: str) -> str:
+    """Uzun TFF takım adını kısa görünüme indirger. 'A / B' (transfer) için her parçayı ayrı kısaltır."""
+    if not ad:
+        return ad
+    if "/" in ad:
+        return " / ".join(_takim_kisa(p.strip()) for p in ad.split("/"))
+    up = ad.upper()
+    for sub, kisa in _TAKIM_KISA_MAP:
+        if sub in up:
+            return kisa
+    # Bilinmeyen (alt lig vb.): boilerplate ekleri at, sadeleştir
+    s = ad
+    for k in _TAKIM_BOILERPLATE:
+        s = s.replace(k, "").replace(k.title(), "")
+    return " ".join(s.split()).strip(" -·") or ad
+
+
 def _uyruk_goster(nat_str: str) -> str:
     """Çift vatandaşlık gösterimi: 'DenmarkFaroe Island' → 'Denmark / Faroe Island'.
     SD profilinde iki uyruk ayraçsız bitişik geliyor; küçük→büyük sınırına ' / ' koyar.
@@ -3686,7 +3722,7 @@ def render_ana_lig_profil(secili):
                 (f"📏 {t('Boy','Height')}", sd.get("Height","")),
                 (f"🦶 {t('Ayak','Foot')}", (sd.get("Foot","") or "").capitalize())]),
             (f"📋 {t('Diğer','Other')}", [
-                (f"🏟️ {t('Takım','Club')}", (row["TümTakımlar"] if transfer else row["Takım"])),
+                (f"🏟️ {t('Takım','Club')}", _takim_kisa(row["TümTakımlar"] if transfer else row["Takım"])),
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
                 (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth",""))]),
         ])
@@ -3868,7 +3904,7 @@ def render_ana_lig_profil(secili):
             for d in detay.get("takim_detay", []):
                 satirlar += f"""
                 <div class="takim-detay-satir">
-                  <span class="td-adi">🏟 {d['takim']}</span>
+                  <span class="td-adi">🏟 {_takim_kisa(d['takim'])}</span>
                   <span class="td-stats">
                     {d['mac']} {t('maç','matches')} · {d['gol']} {t('gol','goals')} · {d['dakika']} {t('dk','min')} ·
                     🟨{d['sari']} 🟥{d['kirmizi']}
@@ -3892,7 +3928,7 @@ def render_ana_lig_profil(secili):
             {t("KADIN FUTBOL · 2025-2026","WOMEN'S FOOTBALL · 2025-2026")}
           </div>
           <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
-          <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{row['Takım'][:35]}</div>
+          <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{_takim_kisa(row['Takım'])}</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
             <div style="background:rgba(0,200,83,0.08);border:1px solid #1db95433;
                  border-radius:8px;padding:10px 6px">
@@ -4754,11 +4790,12 @@ def render_altlig():
     if not oyuncular:
         st.caption(t("Eşleşen oyuncu yok.", "No matching players."))
         return
+    _oy_sirali = sorted(oyuncular, key=lambda x: (-x.get("gol_sayisi", 0), -x.get("mac_sayisi", 0)))
     odf = pd.DataFrame([{
-        "Oyuncu": o["oyuncu"], "Takım": o["takim"], "Maç": o["mac_sayisi"],
+        "Oyuncu": o["oyuncu"], "Takım": _takim_kisa(o["takim"]), "Maç": o["mac_sayisi"],
         "Gol": o["gol_sayisi"], "G/Maç": o["gol_ort"], "Dakika": o["toplam_dakika"],
         "Sarı": o["sari_kart"], "Kırmızı": o["kirmizi_kart"],
-    } for o in oyuncular]).sort_values(["Gol", "Maç"], ascending=False).reset_index(drop=True)
+    } for o in _oy_sirali])
 
     col_l, col_r = st.columns([5, 4], gap="medium")
     with col_l:
@@ -4783,8 +4820,7 @@ def render_altlig():
                 f"👈 {t('Bir oyuncuya tıkla — detayları burada açılır', 'Click a player — details open here')}</div>",
                 unsafe_allow_html=True)
         else:
-            r = odf.iloc[_sel[0]]
-            o = next((x for x in oyuncular if x["oyuncu"] == r["Oyuncu"] and x["takim"] == r["Takım"]), None)
+            o = _oy_sirali[_sel[0]] if _sel[0] < len(_oy_sirali) else None
             if o:
                 gf, gh, gp = o.get("gol_ayak", 0), o.get("gol_kafa", 0), o.get("penalti_gol", 0)
                 ilk11, yedek = o.get("ilk11_mac", 0), o.get("yedek_mac", 0)
@@ -4800,7 +4836,7 @@ def render_altlig():
                     f"<div style='background:#0e1326;border:1px solid #232a40;border-top:3px solid #a855f7;"
                     f"border-radius:10px;padding:14px 16px;'>"
                     f"<div style='font-size:1.05rem;font-weight:800;color:#fff;'>{o['oyuncu']}</div>"
-                    f"<div style='color:#8899aa;font-size:0.8rem;margin:3px 0 10px;'>🏟 {o['tum_takimlar']}</div>"
+                    f"<div style='color:#8899aa;font-size:0.8rem;margin:3px 0 10px;'>🏟 {_takim_kisa(o['tum_takimlar'])}</div>"
                     f"<div style='display:flex;gap:8px;flex-wrap:wrap;'>{_kut}</div>"
                     f"<div style='margin-top:10px;font-size:0.76rem;color:#9aa6ba;'>"
                     f"⚽ {t('Gol kırılımı', 'Goal breakdown')}: {gf} {t('ayak', 'foot')} · {gh} {t('kafa', 'head')} · "
@@ -5772,7 +5808,8 @@ if tab1:
             index=secenekler.index(url_oyuncu) if url_oyuncu in secenekler else 0)
     with f2:
         takimlar = [_TUM_TAKIM] + sorted(df_tam["Takım"].dropna().unique().tolist())
-        secili_takim = st.selectbox(t("Takım", "Team"), takimlar)
+        secili_takim = st.selectbox(t("Takım", "Team"), takimlar,
+                                    format_func=lambda x: x if x == _TUM_TAKIM else _takim_kisa(x))
     with f3:
         secili_kategori = st.selectbox(t("Mevki", "Position"), [_TUM_MEVKI] + list(_MEVKI_DETAY.keys()),
             format_func=mevki_goster, key="ol_kategori")
@@ -5808,7 +5845,7 @@ if tab1:
 
     df = df.copy()
     df["Takım (Gösterim)"] = df.apply(
-        lambda r: r["TümTakımlar"] if r["Transfer"] else r["Takım"], axis=1)
+        lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]), axis=1)
 
     # Ücretsiz (girişsiz) kullanıcıda liste kısa; girişli kullanıcıda tam
     _giris_var2 = st.session_state.get("kulup_giris", False)
@@ -5911,7 +5948,7 @@ if tab1:
                     _mvk = p.get("Mevki", "")
                     _mrk = mevki_renk(_mvk)
                     transfer  = bool(p.get("Transfer", False))
-                    takim_txt = (p["TümTakımlar"] if transfer else p["Takım"])
+                    takim_txt = _takim_kisa(p["TümTakımlar"] if transfer else p["Takım"])
 
                     CHIP = ("background:#0f1117;border:1px solid #2d3561;border-radius:6px;"
                             "padding:3px 9px;font-size:0.74rem;color:#c0ccd8;display:inline-block;margin:0 5px 5px 0")
@@ -6163,7 +6200,8 @@ if tab4:
 
     if not df_tam.empty:
         takim_listesi_tam = sorted(df_tam["Takım"].dropna().unique().tolist())
-        secili_t = st.selectbox(t("Takım seç", "Select Team"), takim_listesi_tam, key="takim_sayfasi")
+        secili_t = st.selectbox(t("Takım seç", "Select Team"), takim_listesi_tam,
+                                key="takim_sayfasi", format_func=_takim_kisa)
         df_t = df_tam[df_tam["Takım"] == secili_t].copy()
 
         st.markdown("---")
@@ -6289,6 +6327,7 @@ if tab5:
 
         # Kolon adları iç-anahtar olarak TR kalır; görünen etiketler column_config'te çevrilir
         takim_ozet.columns = ["Takım","Oyuncu Sayısı","Toplam Gol","Toplam Dakika","Sarı Kart","Kırmızı Kart"]
+        takim_ozet["Takım"] = takim_ozet["Takım"].map(_takim_kisa)
         takim_ozet.index = range(1, len(takim_ozet)+1)
 
         st.markdown(f"#### {t('Takım Bazlı Sezon İstatistikleri', 'Season Stats by Team')}")
@@ -6312,6 +6351,9 @@ if tab5:
             df_puan = puan_durumu_cek()
 
         if not df_puan.empty:
+            df_puan = df_puan.copy()
+            if "" in df_puan.columns:
+                df_puan[""] = df_puan[""].map(_takim_kisa)
             # Sütun adlarını düzelt — O G B M A Y AV P
             sutun_aciklama = {
                 "O": t("O — Oynadı","P — Played"), "G": t("G — Galibiyet","W — Won"), "B": t("B — Beraberlik","D — Draw"),
@@ -6424,7 +6466,7 @@ if tab6:
                     f'<div style="background:#1a1f36;border-radius:8px;padding:10px 14px;'
                     f'margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">'
                     f'<span style="font-size:1.1rem">{rozetler[i]} {row["Oyuncu"]}'
-                    f'<span style="color:#8899aa;font-size:0.78rem;margin-left:8px">{row["Takım"][:25]}</span></span>'
+                    f'<span style="color:#8899aa;font-size:0.78rem;margin-left:8px">{_takim_kisa(row["Takım"])}</span></span>'
                     f'<span style="color:#1db954;font-weight:600">{degerler}</span></div>',
                     unsafe_allow_html=True
                 )
@@ -6492,7 +6534,7 @@ if tab6:
                 if gol_seri >= 2:
                     seri_data.append({
                         "Oyuncu": o["oyuncu"],
-                        "Takım":  o["takim"],
+                        "Takım":  _takim_kisa(o["takim"]),
                         "Gol Serisi": gol_seri,
                         "Toplam Gol": o["gol_sayisi"],
                     })
@@ -6512,7 +6554,7 @@ if tab6:
                 if en_uzun >= 5:
                     temiz_seri_data.append({
                         "Oyuncu": o["oyuncu"],
-                        "Takım":  o["takim"],
+                        "Takım":  _takim_kisa(o["takim"]),
                         "Temiz Seri": en_uzun,
                         "Toplam Maç": o["mac_sayisi"],
                     })
@@ -7061,7 +7103,7 @@ if tab_genç:
             skor = round((mac/30*40) + (gpm*10*40) + (dk_mac/90*20), 1)
 
             rows.append({
-                "Oyuncu": isim, "Takım": o["takim"], "Yaş": yas,
+                "Oyuncu": isim, "Takım": _takim_kisa(o["takim"]), "Yaş": yas,
                 "Mevki": mevki, "Maç": mac, "Gol": gol,
                 "G/Maç": gpm, "Dk/Maç": int(dk_mac),
                 "Uyruk": nat, "Skor": skor,
