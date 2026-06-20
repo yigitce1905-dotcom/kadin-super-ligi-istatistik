@@ -1029,21 +1029,36 @@ def _hafta_rakip(takim: str, hafta) -> str:
     return _rakip_map().get((hafta, (takim or "").upper()), "")
 
 @st.cache_data(ttl=3600)
-def _hukmen_takimlar() -> set:
-    """Lige katılmayan/çekilen takımlar — TÜM maçları hükmen (0-3) olanlar.
-    Bunlara atılan gol / bunlara karşı clean sheet GERÇEK DEĞİL → atıflarda dışlanır."""
-    skor = {}  # TAKIM_UPPER -> [(attigi, yedigi), ...]
+def _forfeit_hafta_takim() -> set:
+    """Hükmen (çekilme) maçlarının (hafta, TAKIM_UPPER) kümesi — HER İKİ takım için.
+    Tespit: bir takımın SONDAKİ ardışık 0-3 mağlubiyet serisi ≥3 → çekilme tail'i
+    (ALG gibi sezon-ortası çekilme dahil; Beylerbeyi/Bornova gibi hiç katılmama da).
+    Bu haftalarda gerçek maç oynanmadığı için gol/clean-sheet atfında dışlanır."""
+    by_team = {}  # TAKIM_UPPER -> [(hafta, attigi, yedigi)]
     for x in mac_sonuclari_yukle():
         ev, dep = (x.get("ev") or "").upper(), (x.get("dep") or "").upper()
-        eg, dg = x.get("ev_gol", 0), x.get("dep_gol", 0)
-        if ev:  skor.setdefault(ev, []).append((eg, dg))
-        if dep: skor.setdefault(dep, []).append((dg, eg))
-    cekilen = set()
-    for tk, mlar in skor.items():
-        # Her maçta 0 atıp tam 3 yediyse (klasik TFF hükmen) → çekilmiş kabul
-        if len(mlar) >= 3 and all(a == 0 and y == 3 for a, y in mlar):
-            cekilen.add(tk)
-    return cekilen
+        eg, dg, h = x.get("ev_gol", 0), x.get("dep_gol", 0), x.get("hafta", 0)
+        if ev:  by_team.setdefault(ev, []).append((h, eg, dg))
+        if dep: by_team.setdefault(dep, []).append((h, dg, eg))
+    cekilen = set()  # (hafta, ÇEKİLEN_TAKIM)
+    for tk, ml in by_team.items():
+        ml.sort(key=lambda r: r[0])
+        tail = 0
+        for h, a, y in reversed(ml):
+            if a == 0 and y == 3:
+                tail += 1
+            else:
+                break
+        if tail >= 3:
+            for h, a, y in ml[-tail:]:
+                cekilen.add((h, tk))
+    # Forfeit maçın HER İKİ takımını işaretle (ikisi de o hafta gerçek maç oynamadı)
+    out = set()
+    for x in mac_sonuclari_yukle():
+        ev, dep, h = (x.get("ev") or "").upper(), (x.get("dep") or "").upper(), x.get("hafta", 0)
+        if (h, ev) in cekilen or (h, dep) in cekilen:
+            out.add((h, ev)); out.add((h, dep))
+    return out
 
 @st.cache_data(ttl=3600)
 def _son_lig_haftasi() -> int:
@@ -2152,7 +2167,7 @@ def _gol_rakip_dagil(detay: dict) -> dict:
     if not takimlar:
         takimlar = {detay.get("takim", "").upper()}
 
-    _hukmen = _hukmen_takimlar()
+    _ff = _forfeit_hafta_takim()
     rakip_goller: dict = {}
     for m in detay.get("mac_gecmisi", []):
         oyuncu_gol = m.get("gol", 0)
@@ -2168,8 +2183,8 @@ def _gol_rakip_dagil(detay: dict) -> dict:
                 rakip = mac["ev"]
             else:
                 continue
-            # Çekilen/hükmen takıma (gerçek maç oynanmadı) gol ATFEDİLMEZ
-            if rakip.upper() in _hukmen:
+            # Hükmen/çekilme maçı (gerçek maç oynanmadı) → gol ATFEDİLMEZ
+            if (hafta, ev) in _ff or (hafta, dep) in _ff:
                 break
             rakip_goller[rakip] = rakip_goller.get(rakip, 0) + oyuncu_gol
             break   # bu hafta için eşleşme bulundu
@@ -4087,13 +4102,14 @@ def render_ana_lig_profil(secili):
 
         # ── Gol Yenmeme (clean sheet) verisi: oynadığı haftalarda takım gol yedi mi? ──
         _cs_flags, _cs_rakip = [], {}
-        _hukmen_set = _hukmen_takimlar()
+        _ff_set = _forfeit_hafta_takim()
+        _tk_up = (row["Takım"] or "").upper()
         for _m in gecmis_tam:                       # hafta artan sırada
             if _m.get("dakika", 0) > 0:
-                _rk_tam = _hafta_rakip(row["Takım"], _m["hafta"])
-                # Çekilen/hükmen takıma karşı maç gerçek değil → clean sheet sayma
-                if _rk_tam and _rk_tam.upper() in _hukmen_set:
+                # Hükmen/çekilme haftası → gerçek maç yok, clean sheet sayma
+                if (_m["hafta"], _tk_up) in _ff_set:
                     continue
+                _rk_tam = _hafta_rakip(row["Takım"], _m["hafta"])
                 _yen = _hafta_yenilen(row["Takım"], _m["hafta"])
                 if _yen is None:
                     continue
