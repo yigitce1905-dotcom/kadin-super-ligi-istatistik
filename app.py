@@ -2355,15 +2355,24 @@ def _poz_kategori(poz):
     return "?"
 
 
+def _deger_num(s) -> int:
+    """'€80.000' → 80000 (Avrupa biçimi: noktalar binlik). Sayı yoksa 0."""
+    d = _re.sub(r"[^\d]", "", str(s or ""))
+    return int(d) if d else 0
+
+
 @st.cache_data(ttl=3600)
 def _benzer_havuz(kaynak):
-    """kaynak: 'analig' | 'scouting' → feature listesi (pozisyon, yaş, fizik, kariyer)."""
+    """kaynak: 'analig' | 'scouting' → feature listesi (pozisyon, yaş, fizik, kariyer +
+    scouting'de scout_kadro: mevki kodu, rol, piyasa değeri)."""
     if kaynak == "analig":
         profiller = sd_profiller
         leistung  = analig_leistung_yukle()
+        kadro     = {}
     else:
         profiller = scouting_sd_yukle()
         leistung  = scouting_leistung_yukle()
+        kadro     = scout_kadro_yukle()
     havuz = []
     for isim, p in profiller.items():
         if not isinstance(p, dict) or p.get("bulunamadi"):
@@ -2372,6 +2381,7 @@ def _benzer_havuz(kaynak):
         mac = sum(s.get("mac", 0) for s in sez)
         if mac < 5:
             continue
+        _kd = kadro.get(isim, {})
         havuz.append({
             "isim":      isim,
             "kat":       _poz_kategori(p.get("Position", "")),
@@ -2384,6 +2394,10 @@ def _benzer_havuz(kaynak):
             "gol_mac":   sum(s.get("gol", 0) for s in sez) / mac,
             "asist_mac": sum(s.get("asist", 0) for s in sez) / mac,
             "dk_mac":    sum(s.get("dakika", 0) for s in sez) / mac,
+            # scout_kadro zenginleştirmesi (scouting; analig'de boş)
+            "mevki_kod": ((_kd.get("mevki") or [""])[0] or "").upper(),
+            "rol":       _kd.get("rol", ""),
+            "deger":     _deger_num(_kd.get("deger", "")),
         })
     return havuz
 
@@ -2395,9 +2409,12 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
         return []
     grup  = [o for o in havuz if o["kat"] == q["kat"]]
     feats = ["yas", "boy", "mac", "gol_mac", "asist_mac", "dk_mac"]
+    # Piyasa değeri verisi varsa benzer bütçe de bir sinyal (scouting)
+    if any((o.get("deger") or 0) > 0 for o in grup):
+        feats = feats + ["deger"]
     rng = {}
     for fe in feats:
-        vals = [o[fe] for o in grup if o[fe] > 0]
+        vals = [(o.get(fe) or 0) for o in grup if (o.get(fe) or 0) > 0]
         rng[fe] = (min(vals), max(vals)) if len(vals) >= 2 else None
 
     def skor(o):
@@ -2408,14 +2425,27 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
             lo, hi = rng[fe]
             if hi == lo:
                 continue
-            fark += ((q[fe] - lo) / (hi - lo) - (o[fe] - lo) / (hi - lo)) ** 2
+            fark += (((q.get(fe) or 0) - lo) / (hi - lo) - ((o.get(fe) or 0) - lo) / (hi - lo)) ** 2
             n += 1
-        return round((1 - (fark / n) ** 0.5) * 100, 1) if n else 0.0
+        base = (1 - (fark / n) ** 0.5) * 100 if n else 0.0
+        # Kategorik yakınlık: aynı detay mevki kodu + aynı rol (scout_kadro)
+        bonus = 0
+        if q.get("mevki_kod") and q["mevki_kod"] == o.get("mevki_kod"):
+            bonus += 10
+        if q.get("rol") and q["rol"] == o.get("rol"):
+            bonus += 8
+        return round(min(99.5, base + bonus), 1)
 
     adaylar = sorted(((skor(o), o) for o in grup if o["isim"] != hedef_isim),
                      reverse=True, key=lambda x: x[0])
-    return [(o["isim"], s, f"{o['yas']:.0f} {t('yaş','yrs')} · {o['mac']} {t('maç','matches')} · {o['ulke']}")
-            for s, o in adaylar[:k]]
+
+    def _lbl(o):
+        parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
+                f"{o['mac']} {t('maç','matches')}",
+                o.get("mevki_kod", ""), o.get("ulke", "")]
+        return " · ".join(x for x in parc if x)
+
+    return [(o["isim"], s, _lbl(o)) for s, o in adaylar[:k]]
 
 
 def benzer_oyuncular_goster(hedef_isim, kaynak):
