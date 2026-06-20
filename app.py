@@ -2628,6 +2628,61 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
 
 
 # ── ORTAK PROFİL BİLEŞENLERİ (scouting + ana lig aynı görünsün diye) ──────────
+# ── Mevki haritası: mini futbol sahası (Transfermarkt tarzı) ──────────────────
+# Dikey saha (GK altta, ST üstte) viewBox 0 0 100 132.
+_SAHA_KONUM = {
+    "GK": (50, 120),
+    "LB": (17, 101), "RB": (83, 101), "CB": (50, 104), "LCB": (37, 104), "RCB": (63, 104),
+    "LWB": (14, 89), "RWB": (86, 89),
+    "DM": (50, 87), "DMF": (50, 87),
+    "LM": (18, 69), "RM": (82, 69), "CM": (50, 69),
+    "LMF": (18, 69), "RMF": (82, 69), "CMF": (50, 69),
+    "AM": (50, 52), "AMF": (50, 52),
+    "LW": (19, 40), "RW": (81, 40), "LWF": (19, 40), "RWF": (81, 40),
+    "SS": (50, 35), "2ST": (50, 35),
+    "ST": (50, 18), "CF": (50, 18),
+}
+# Normalize TR mevki → standart kod (ana lig için)
+_MEVKI_SAHA_KOD = {
+    "Kaleci": "GK", "Sağ Bek": "RB", "Sol Bek": "LB", "Stoper": "CB", "Defans": "CB",
+    "Savunmacı Orta Saha": "DM", "Merkez Orta Saha": "CM", "Orta Saha": "CM",
+    "Hücumcu Orta Saha": "AM", "Sol Kanat": "LW", "Sağ Kanat": "RW",
+    "Sol Kanat Forvet": "LW", "Sağ Kanat Forvet": "RW",
+    "Santrafor": "ST", "İkinci Santrafor": "SS", "Forvet": "ST",
+}
+
+def _pozisyon_saha(kodlar) -> str:
+    """Verilen mevki kodları için mini saha SVG'si (ilk kod = birincil, parlak)."""
+    seen = []
+    for k in (kodlar or []):
+        k = (k or "").upper().strip()
+        if k in _SAHA_KONUM and k not in seen:
+            seen.append(k)
+    if not seen:
+        return ""
+    nokta = ""
+    for i, k in enumerate(seen):
+        x, y = _SAHA_KONUM[k]
+        if i == 0:
+            fill, r, tcol = "#22c55e", 9, "#06281a"
+        else:
+            fill, r, tcol = "#15803d", 8, "#bbf7d0"
+        nokta += (f"<circle cx='{x}' cy='{y}' r='{r}' fill='{fill}' stroke='#0a3d1f' stroke-width='0.8'/>"
+                  f"<text x='{x}' y='{y+2.3}' text-anchor='middle' font-size='6.2' font-weight='800' "
+                  f"fill='{tcol}' font-family='Sora,monospace'>{k}</text>")
+    return (
+        "<svg viewBox='0 0 100 132' width='100%' style='max-width:188px;display:block;margin:0 auto;'>"
+        "<rect x='2' y='2' width='96' height='128' rx='5' fill='#0e2117' stroke='#2f6b4a' stroke-width='1'/>"
+        "<line x1='2' y1='66' x2='98' y2='66' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<circle cx='50' cy='66' r='11' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<circle cx='50' cy='66' r='1.2' fill='#2f6b4a'/>"
+        "<rect x='28' y='2' width='44' height='15' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<rect x='40' y='2' width='20' height='6' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<rect x='28' y='115' width='44' height='15' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<rect x='40' y='124' width='20' height='6' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        f"{nokta}</svg>")
+
+
 def _profil_baslik(isim, sd_url=""):
     """Büyük isim başlığı + sağda SoccerDonna linki."""
     _badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.78rem;'
@@ -2860,7 +2915,14 @@ def render_scouting_detay(tam_isim):
             type="secondary" if _in_sl else "primary"):
         shortlist_toggle(_sl_kul, tam_isim)
         st.rerun()
-    _profil_kutulari([
+    # Mevki kodları: scout_kadro mevki[] (DMF/CMF…) ya da SD mevkisinden türet
+    _saha_kod = list(_kadro.get("mevki") or [])
+    if not _saha_kod:
+        _trm = mevki_normalize(mevki) if mevki else ""
+        if _trm in _MEVKI_SAHA_KOD:
+            _saha_kod = [_MEVKI_SAHA_KOD[_trm]]
+    _saha_svg = _pozisyon_saha(_saha_kod)
+    _kutu_grp = [
         (f"👤 {t('Kişisel','Personal')}", [
             (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
             (f"📅 {t('Doğum','Born')}", dob),
@@ -2873,7 +2935,17 @@ def render_scouting_detay(tam_isim):
             (f"📄 {t('Sözleşme','Contract')}", sozlesme),
             (f"💰 {t('Piyasa Değeri','Market Value')}", _deger),
             (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli))]),
-    ])
+    ]
+    if _saha_svg:
+        _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
+        with _bk_col: _profil_kutulari(_kutu_grp)
+        with _sh_col:
+            st.markdown(f"<div style='text-align:center;font-size:0.6rem;color:#64748b;"
+                        f"text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;'>"
+                        f"📍 {t('Mevki Haritası','Position Map')}</div>{_saha_svg}",
+                        unsafe_allow_html=True)
+    else:
+        _profil_kutulari(_kutu_grp)
 
     # Mr Daniş scouting değerlendirmesi (detay verisi varsa)
     _dty = detay_data.get(tam_isim, {})
@@ -3770,7 +3842,7 @@ def render_ana_lig_profil(secili):
         # Başlık + gruplu bilgi kutuları (Scouting profili ile ORTAK görünüm)
         _profil_baslik(secili, sd.get("profil_url", ""))
         _mv = sd.get("Market value", "")
-        _profil_kutulari([
+        _kutu_grp = [
             (f"👤 {t('Kişisel','Personal')}", [
                 (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(sd.get("Nationality","")))),
                 (f"📅 {t('Doğum','Born')}", sd.get("Date of birth","")),
@@ -3783,7 +3855,19 @@ def render_ana_lig_profil(secili):
                 (f"🏟️ {t('Takım','Club')}", _takim_kisa(row["TümTakımlar"] if transfer else row["Takım"])),
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
                 (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth",""))]),
-        ])
+        ]
+        _ana_kod = _MEVKI_SAHA_KOD.get(row.get("Mevki", ""))
+        _saha_svg = _pozisyon_saha([_ana_kod] if _ana_kod else [])
+        if _saha_svg:
+            _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
+            with _bk_col: _profil_kutulari(_kutu_grp)
+            with _sh_col:
+                st.markdown(f"<div style='text-align:center;font-size:0.6rem;color:#64748b;"
+                            f"text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;'>"
+                            f"📍 {t('Mevki Haritası','Position Map')}</div>{_saha_svg}",
+                            unsafe_allow_html=True)
+        else:
+            _profil_kutulari(_kutu_grp)
         # Sezon İstatistikleri + Mevki İçi Sıralama (percentile) — YAN YANA (kompakt)
         _stat_html = f"""
         <div class="profil-kart" style="padding:14px 16px;">
