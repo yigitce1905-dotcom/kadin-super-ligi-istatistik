@@ -2579,6 +2579,29 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     return [(o["isim"], s, _lbl(o)) for s, o in adaylar[:k]]
 
 
+def _benzer_kutu_grid(items):
+    """items: [(isim, skor, bilgi), …] → yan yana KUTU grid (5'li, mobilde sarar).
+    Benzer Oyuncular + Benzer Transfer Hedefleri ortak kullanır."""
+    _dil_q = st.session_state.get("dil", "TR")
+    def _renk(s):
+        return ("#34d399" if s >= 90 else "#facc15" if s >= 80
+                else "#fb923c" if s >= 70 else "#a78bfa")
+    def _esc(x):
+        return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    kutular = ""
+    for isim, skor, bilgi in items:
+        href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
+        kutular += (
+            f"<a href='{href}' style='text-decoration:none;flex:1 1 0;min-width:124px;'>"
+            f"<div class='benzer-kutu'>"
+            f"<div class='bk-skor' style='color:{_renk(skor)};'>%{skor}</div>"
+            f"<div class='bk-ad'>{_esc(isim)}</div>"
+            f"<div class='bk-alt'>{_esc(bilgi)}</div>"
+            f"</div></a>"
+        )
+    st.markdown(f"<div class='benzer-grid'>{kutular}</div>", unsafe_allow_html=True)
+
+
 def benzer_oyuncular_goster(hedef_isim, kaynak):
     sonuc = _benzer_oyuncular(hedef_isim, kaynak)
     if not sonuc:
@@ -2586,24 +2609,7 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
     st.markdown(f"#### 🔎 {t('Benzer Oyuncular', 'Similar Players')}")
     st.caption(t("Aynı mevki · yaş, boy, deneyim ve gol/asist oranlarına göre",
                  "Same position · based on age, height, experience and goal/assist ratios"))
-    _dil_q = st.session_state.get("dil", "TR")
-    def _bk_renk(s):
-        return ("#34d399" if s >= 90 else "#facc15" if s >= 80
-                else "#fb923c" if s >= 70 else "#a78bfa")
-    def _bk_esc(x):
-        return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    _kutular = ""
-    for isim, skor, bilgi in sonuc:
-        _href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
-        _kutular += (
-            f"<a href='{_href}' style='text-decoration:none;flex:1 1 0;min-width:124px;'>"
-            f"<div class='benzer-kutu'>"
-            f"<div class='bk-skor' style='color:{_bk_renk(skor)};'>%{skor}</div>"
-            f"<div class='bk-ad'>{_bk_esc(isim)}</div>"
-            f"<div class='bk-alt'>{_bk_esc(bilgi)}</div>"
-            f"</div></a>"
-        )
-    st.markdown(f"<div class='benzer-grid'>{_kutular}</div>", unsafe_allow_html=True)
+    _benzer_kutu_grid(sonuc)
 
 
 # ── Radar grafiği (mevki içi yüzdelik profil) ──
@@ -2684,11 +2690,13 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
     st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri', 'Similar Transfer Targets')}")
     st.caption(t("Scouting havuzundan bu oyuncuya en yakın yabancı adaylar",
                  "Closest foreign candidates to this player from the scouting pool"))
-    for s, o in ad[:5]:
-        if st.button(f"%{s}  ·  {o['isim']}  ·  {o['yas']:.0f} {t('yaş','yrs')} · {o['ulke']}",
-                     key=_pk(f"capraz_{o['isim']}"), use_container_width=True):
-            st.query_params["oyuncu"] = o["isim"]
-            st.rerun()
+    def _lbl(o):
+        parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
+                (f"{o['mac']} {t('maç','matches')}" if o.get("mac") else ""),
+                o.get("mevki_kod", ""),
+                ulke_goster(_uyruk_goster(o.get("ulke", "")))]
+        return " · ".join(x for x in parc if x)
+    _benzer_kutu_grid([(o["isim"], s, _lbl(o)) for s, o in ad[:5]])
 
 
 # ── Shortlist Karşılaştırma (favori oyuncuları yan yana kıyasla) ──
