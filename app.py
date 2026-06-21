@@ -488,6 +488,17 @@ section[data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]
 
 </style>""", unsafe_allow_html=True)
 
+# Sol menü aç/kapa oklarının (<< / >>) yanına dile göre etiket ("Gizle" / "Menü")
+st.markdown(f"""<style>
+[data-testid="stSidebarCollapseButton"] button::after {{
+    content:"{t('Gizle','Hide')}"; font-family:'Sora',sans-serif; font-size:0.72rem;
+    font-weight:700; letter-spacing:0.02em; margin-left:5px; color:#c084fc; }}
+[data-testid="stExpandSidebarButton"]::after {{
+    content:"{t('Menü','Menu')}"; font-family:'Sora',sans-serif; font-size:0.72rem;
+    font-weight:700; letter-spacing:0.02em; margin-left:5px; color:#c084fc; }}
+[data-testid="stExpandSidebarButton"] {{ width:auto !important; padding:4px 10px !important; }}
+</style>""", unsafe_allow_html=True)
+
 # ─── VERİ ────────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=600)
 def veri_yukle():
