@@ -19,6 +19,21 @@ except ImportError:
     _GROQ_OK = False
 from bs4 import BeautifulSoup
 
+# ── Render secret bootstrap (st.secrets ilk okunmadan ÖNCE) ────────────────────
+# Render "Secret File" adında '/' kabul etmiyor → dosya düz 'secrets.toml' olarak
+# /etc/secrets/ altına (veya app köküne) konur. Streamlit ise .streamlit/secrets.toml
+# bekler. Burada doğru yere kopyalarız. Lokal/Streamlit Cloud'da kaynak yoktur → no-op.
+import shutil as _shutil
+for _sec_src in ("/etc/secrets/secrets.toml", "secrets.toml"):
+    _sec_dst = pathlib.Path(".streamlit/secrets.toml")
+    if os.path.exists(_sec_src) and not _sec_dst.exists():
+        _sec_dst.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            _shutil.copy(_sec_src, _sec_dst)
+        except Exception:
+            pass
+        break
+
 _page_title = ("Turkish Women's Super League 2025-2026"
                if st.session_state.get("dil") == "EN"
                else "Türkiye Kadınlar Süper Ligi 2025-2026")
