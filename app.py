@@ -2134,7 +2134,16 @@ _ULKE_EN = {
     "Kongo": "Congo", "Burkina Faso": "Burkina Faso", "Mali": "Mali", "Togo": "Togo",
     "Japonya": "Japan", "Çin": "China", "Güney Kore": "South Korea", "Avustralya": "Australia",
     "Yeni Zelanda": "New Zealand", "Hindistan": "India", "Tayland": "Thailand", "İran": "Iran",
-    "Türkiye": "Türkiye",
+    "Türkiye": "Turkey",
+    # Eksik ülkeler (scout taramasından)
+    "Beyaz Rusya": "Belarus", "Bosna Hersek": "Bosnia-Herzegovina",
+    "Rusya Federasyonu": "Russia", "Lüksemburg": "Luxembourg", "Irak": "Iraq",
+    "Porto Riko": "Puerto Rico", "Dominik Cumhuriyeti": "Dominican Republic",
+    "Kongo Demokratik Cumhuriyeti": "DR Congo", "Trinidad ve Tobago": "Trinidad and Tobago",
+    "Tanzanya": "Tanzania", "Lübnan": "Lebanon", "Suudi Arabistan": "Saudi Arabia",
+    "Yeşil Burun": "Cape Verde", "Ekvator Ginesi": "Equatorial Guinea",
+    # Yazım hatası savunmaları (sheet'te düzeltilene kadar doğru göster)
+    "Marocco": "Morocco", "Tunusia": "Tunisia", "Türkiey": "Turkey",
 }
 
 def danis_goster(m):
@@ -2147,17 +2156,27 @@ def bolge_goster(m):
     return _BOLGE_EN.get(m, m) if EN else m
 def etiket_badge_goster(m):
     return _ETIKET_BADGE_EN.get(m, m) if EN else m
+# EN→TR ters harita (ilk eşleşme kazanır → typo/ikincil adlar ezmez)
+_ULKE_TR = {}
+for _tr_ad, _en_ad in _ULKE_EN.items():
+    _ULKE_TR.setdefault(_en_ad, _tr_ad)
+
 def ulke_goster(m):
-    return _ULKE_EN.get((m or "").strip(), m) if EN else m
+    """Ülke adını aktif dile çevirir (çift yönlü). EN: TR→EN, TR: EN→TR.
+    Kaynaklar karışık (sheet Türkçe, SoccerDonna İngilizce) → iki yönde de tutarlı."""
+    m = (m or "").strip()
+    return _ULKE_EN.get(m, m) if EN else _ULKE_TR.get(m, m)
 
 def _ilk_uyruk(nat_str: str) -> str:
-    """'TurkeyGermany' → 'Turkey', 'France' → 'France'"""
+    """'TurkeyGermany' → 'Turkey', 'United StatesEthiopia' → 'United States', 'France' → 'France'.
+    SD uyruk sırasında İLK ülke = milli takım (scouting ground-truth'ta 83/83 doğrulandı).
+    Çok-kelimeli ülke adlarını (United States, South Korea…) bozmamak için ülke
+    SINIRINDA (küçük→büyük) ayırır, kelime kelime değil."""
     nat_str = (nat_str or "").strip()
     if not nat_str:
         return ""
-    # CamelCase geçişine boşluk ekle, ilk kelimeyi al
-    spaced = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_str)
-    return spaced.split()[0]
+    # Yalnız ülke sınırına (örn. 'States|Ethiopia') ayır; iç boşluklar korunur
+    return _re.sub(r"(?<=[a-z])(?=[A-Z])", "|", nat_str).split("|")[0].strip()
 
 
 # ── Takım adı kısaltma (uzun resmi TFF adları → kısa görünüm) ──────────────────
@@ -4368,7 +4387,9 @@ def render_ana_lig_profil(secili):
         _al_sezon = _al.get("sezonlar", [])
         if _al_sezon:
             st.markdown("---")
-            _kariyer_kulup_milli(secili, _al_sezon, "analig", "", _al.get("guncelleme", ""))
+            # Milli takım: SD uyruk sırasında İLK ülke (= NT; çift-uyruklularda doğru takım)
+            _al_milli = ulke_goster(_ilk_uyruk(sd_profiller.get(secili, {}).get("Nationality", "")))
+            _kariyer_kulup_milli(secili, _al_sezon, "analig", _al_milli, _al.get("guncelleme", ""))
 
         # Benzer oyuncular (ana lig havuzu)
         st.markdown("---")
