@@ -219,6 +219,17 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     display:inline-flex; align-items:center; justify-content:center;
     font-size:0.6rem; font-weight:800; font-family:'Sora',monospace; }
 
+/* Benzer Oyuncular — yan yana kutular (5'li grid, mobilde otomatik sarar) */
+.benzer-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.benzer-kutu { background:#0d0d16; border:1px solid #2a2a38; border-radius:11px;
+    padding:11px 8px; text-align:center; height:100%;
+    transition:border-color .14s, transform .14s, background .14s; }
+.benzer-kutu:hover { border-color:#6366f1; background:#13131f; transform:translateY(-2px); }
+.benzer-kutu .bk-skor { font-size:1.12rem; font-weight:800; font-family:'Sora',monospace; line-height:1; }
+.benzer-kutu .bk-ad   { font-size:0.82rem; font-weight:700; color:#f4f4f5; margin:5px 0 4px;
+    line-height:1.2; }
+.benzer-kutu .bk-alt  { font-size:0.64rem; color:#8b93a7; line-height:1.35; }
+
 /* ══════════════════════════════════════════════════
    MOBİL RESPONSIVE  (≤ 768px)
 ══════════════════════════════════════════════════ */
@@ -2036,6 +2047,15 @@ def mevki_goster(m):
         return m
     return _MEVKI_EN.get(m, m)
 
+
+def mevki_disp(raw: str) -> str:
+    """Ham SD pozisyonunu ('Midfield - Defensive Midfield') temiz, DİLE UYGUN ada çevirir.
+    TR'de Türkçe ('Savunmacı Orta Saha'), EN'de 'Defensive Midfield'. Eşlenemezse ham bırakır."""
+    if not raw or raw == "—":
+        return raw or ""
+    norm = mevki_normalize(raw)
+    return mevki_goster(norm) if norm != "Bilinmiyor" else raw
+
 # Transfer Öner birleşik mevki etiketleri (_TRANSFER_DB anahtarları) + tercih TR→EN
 _TR_MEVKI_EN = {
     "Kaleci": "Goalkeeper",
@@ -2552,7 +2572,8 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
                 f"{o['mac']} {t('maç','matches')}",
-                o.get("mevki_kod", ""), o.get("ulke", "")]
+                o.get("mevki_kod", ""),
+                ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # 'TurkeyGermany' → 'Turkey / Germany'
         return " · ".join(x for x in parc if x)
 
     return [(o["isim"], s, _lbl(o)) for s, o in adaylar[:k]]
@@ -2565,11 +2586,24 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
     st.markdown(f"#### 🔎 {t('Benzer Oyuncular', 'Similar Players')}")
     st.caption(t("Aynı mevki · yaş, boy, deneyim ve gol/asist oranlarına göre",
                  "Same position · based on age, height, experience and goal/assist ratios"))
+    _dil_q = st.session_state.get("dil", "TR")
+    def _bk_renk(s):
+        return ("#34d399" if s >= 90 else "#facc15" if s >= 80
+                else "#fb923c" if s >= 70 else "#a78bfa")
+    def _bk_esc(x):
+        return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+    _kutular = ""
     for isim, skor, bilgi in sonuc:
-        if st.button(f"%{skor}  ·  {isim}  ·  {bilgi}",
-                     key=_pk(f"benzer_{kaynak}_{isim}"), use_container_width=True):
-            st.query_params["oyuncu"] = isim
-            st.rerun()
+        _href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
+        _kutular += (
+            f"<a href='{_href}' style='text-decoration:none;flex:1 1 0;min-width:124px;'>"
+            f"<div class='benzer-kutu'>"
+            f"<div class='bk-skor' style='color:{_bk_renk(skor)};'>%{skor}</div>"
+            f"<div class='bk-ad'>{_bk_esc(isim)}</div>"
+            f"<div class='bk-alt'>{_bk_esc(bilgi)}</div>"
+            f"</div></a>"
+        )
+    st.markdown(f"<div class='benzer-grid'>{_kutular}</div>", unsafe_allow_html=True)
 
 
 # ── Radar grafiği (mevki içi yüzdelik profil) ──
@@ -3068,7 +3102,7 @@ def render_scouting_detay(tam_isim):
             (f"📅 {t('Doğum','Born')}", dob),
             (f"🎂 {t('Yaş','Age')}", _yas_g)]),
         (f"⚽ {t('Futbolcu','Player')}", [
-            (f"📌 {t('Mevki','Position')}", mevki),
+            (f"📌 {t('Mevki','Position')}", mevki_disp(mevki)),
             (f"📏 {t('Boy','Height')}", boy),
             (f"🦶 {t('Ayak','Foot')}", ayak)]),
         (f"📋 {t('Diğer','Other')}", [
@@ -3988,7 +4022,7 @@ def render_ana_lig_profil(secili):
                 (f"📅 {t('Doğum','Born')}", sd.get("Date of birth","")),
                 (f"🎂 {t('Yaş','Age')}", (_yas_hesapla(sd.get("Date of birth","")) or sd.get("Age","")))]),
             (f"⚽ {t('Futbolcu','Player')}", [
-                (f"📌 {t('Mevki','Position')}", sd.get("Position","")),
+                (f"📌 {t('Mevki','Position')}", mevki_disp(sd.get("Position",""))),
                 (f"📏 {t('Boy','Height')}", sd.get("Height","")),
                 (f"🦶 {t('Ayak','Foot')}", (sd.get("Foot","") or "").capitalize())]),
             (f"📋 {t('Diğer','Other')}", [
