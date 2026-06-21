@@ -3036,7 +3036,22 @@
     "sd_isim": "Joy Bokiri",
     "es_skoru": 0.645
   },
-  "AYŞE ŞEVVAL AY": {},
+  "AYŞE ŞEVVAL AY": {
+    "profil_url": "https://www.soccerdonna.de/en/ayse-sevval-ay/profil/spieler_40664.html",
+    "Date of birth": "06.01.1999",
+    "Place of birth": "Istanbul",
+    "Age": "27",
+    "Name in native country": "Ayşe Şevval Ay",
+    "Height": "1,63",
+    "Nationality": "Turkey",
+    "Position": "Midfield - Central Midfield",
+    "Foot": "both",
+    "Market value": "unknown",
+    "Contract until": "30.06.2026",
+    "Debut (Club)": "18.01.2026",
+    "sd_isim": "Ayşe Şevval Ay",
+    "es_skoru": 1.0
+  },
   "ZEYNEP ÜLKÜ KAHYA": {
     "profil_url": "https://www.soccerdonna.de/en/uelkue-kahya/profil/spieler_56518.html",
     "Date of birth": "27.01.2004",
@@ -3291,7 +3306,22 @@
     "sd_isim": "Suliyat Hassan",
     "es_skoru": 0.8
   },
-  "VICTORIA THALITA ALVRANGA DIAS": {},
+  "VICTORIA THALITA ALVRANGA DIAS": {
+    "profil_url": "https://www.soccerdonna.de/en/vic/profil/spieler_71282.html",
+    "Date of birth": "03.04.2000",
+    "Place of birth": "Avaré",
+    "Age": "26",
+    "Name in native country": "Victória Thalita Alvarenga Dias",
+    "Height": "1,55",
+    "Nationality": "Brazil",
+    "Position": "Striker - Centre Forward",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Contract until": "30.06.2026",
+    "Debut (Club)": "01.02.2026",
+    "sd_isim": "Victoria",
+    "es_skoru": 1.0
+  },
   "LALIA DALI USAGE STORTI": {
     "profil_url": "https://www.soccerdonna.de/en/lalia-storti/profil/spieler_5824.html",
     "Date of birth": "14.05.1993",
@@ -3667,8 +3697,20 @@
     "es_skoru": 1.0
   },
   "EMİNE ECEM ESEN": {
+    "profil_url": "https://www.soccerdonna.de/en/ecem-esen/profil/spieler_15626.html",
+    "Date of birth": "03.05.1994",
+    "Place of birth": "Istanbul",
+    "Age": "32",
+    "Name in native country": "Emine Ecem Esen",
+    "Height": "1,69",
+    "Nationality": "Turkey",
+    "Position": "Midfield - Central Midfield",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Contract until": "31.05.2026",
+    "Debut (Club)": "15.10.2025",
     "sd_isim": "Ecem Esen",
-    "es_skoru": 0.75
+    "es_skoru": 1.0
   },
   "EBRU ŞAHİN": {
     "profil_url": "https://www.soccerdonna.de/en/ebru-sahin/profil/spieler_41723.html",
