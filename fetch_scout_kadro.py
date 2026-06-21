@@ -102,9 +102,16 @@ def parse(metin: str) -> dict:
         return {hdr[i]: h(r, i) for i in range(i0, i9) if h(r, i) in GECERLI_NOTLAR}
 
     veriler = {}
+    _bos_ardisik = 0
     for r in rows[2:]:
         if not r or not h(r, c_isim):      # Oyuncu Adı (eşleşme anahtarı)
+            _bos_ardisik += 1
+            # Ana liste ile ALTTAKİ ayrı bölüm (Afrika milli takım kadroları vb.) arasında
+            # ~200 satırlık boşluk var. Büyük boşluk = ikinci blok başladı → DUR.
+            if veriler and _bos_ardisik >= 20:
+                break
             continue
+        _bos_ardisik = 0
         isim = h(r, c_isim)
 
         beceri = nitelik(r, i_beceri0, i_beceri9)
