@@ -1,0 +1,20 @@
+# Render Blueprint — Kadın Futbolu Scouting (Streamlit)
+# Deploy: render.com → New → Blueprint → bu repoyu seç.
+# NOT: Secret'lar repoya KONMAZ. Render panelinde "Secret File" olarak eklenir:
+#   Path: .streamlit/secrets.toml
+#   İçerik: Streamlit Cloud → app → Settings → Secrets'tan birebir kopyala
+#   (gcp_service_account, clubs, auth_secret, smtp, GROQ_API_KEY ...).
+services:
+  - type: web
+    name: womenfootball-scouting
+    runtime: python
+    plan: free            # uyur (ilk açılış ~40 sn). Hep-açık için: starter ($7/ay)
+    region: frankfurt      # Türkiye'ye en yakın bölge
+    branch: main
+    buildCommand: "pip install -r requirements.txt"
+    # Streamlit'i Render portuna bağla + custom domain için CORS/XSRF kapalı
+    # (Cloudflare/Render önünde WebSocket'in çalışması için gerekli).
+    startCommand: "streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --server.enableCORS false --server.enableXsrfProtection false"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.10"
