@@ -34,12 +34,10 @@ for _sec_src in ("/etc/secrets/secrets.toml", "secrets.toml"):
             pass
         break
 
-_page_title = ("Turkish Women's Super League 2025-2026"
-               if st.session_state.get("dil") == "EN"
-               else "Türkiye Kadınlar Süper Ligi 2025-2026")
+_page_title = "Women Football Scouting"   # marka adı (tarayıcı sekmesi)
 st.set_page_config(
     page_title=_page_title,
-    page_icon="⚽", layout="wide",
+    page_icon="🎯", layout="wide",        # nişangâh teması (scope logosu)
     initial_sidebar_state="expanded",
 )
 
@@ -1906,13 +1904,7 @@ _MEVKI_ACIKLAMA = {
 def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
     """Her kaleci için yenilen gol ve maç başına yenilen gol hesaplar."""
     oyuncu_listesi = ham_liste
-    maclar = mac_sonuclari_yukle()
-
-    # hafta + takım → yenilen gol lookup
-    lookup = {}
-    for m in maclar:
-        lookup[(m["hafta"], m["ev"])]  = m["dep_gol"]
-        lookup[(m["hafta"], m["dep"])] = m["ev_gol"]
+    _ff = _forfeit_hafta_takim()
 
     rows = []
     for o in oyuncu_listesi:
@@ -1927,26 +1919,19 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
             import ast
             mac_gecmisi = ast.literal_eval(mac_gecmisi)
 
-        # Takım adından eşleştirme için anahtar kelimeler üret
-        # Genel kelimeleri (SPOR, KADIN, FUTBOL vs.) dışla
-        _genel = {"SPOR","KADIN","FUTBOL","TAKIMI","KULÜBÜ","A.Ş","ASK","SK","FK","SPORK"}
-        takim_kelimeler = [w for w in takim.split() if len(w) > 4 and w not in _genel]
-
+        # Transfer olan kaleci için: her maçta GERÇEKTEN oynadığı kulübün yediği gol
+        # (birincil takım değil). _oyuncu_hafta_takim + _kanon + hükmen-atlama.
+        _htk = _oyuncu_hafta_takim(o)
         yenilen = 0
         mac_say = 0
         for m in mac_gecmisi:
             if m.get("dakika", 0) < 45:
                 continue
             hafta = m.get("hafta")
-            gol = None
-            for (h, t), g in lookup.items():
-                if h != hafta:
-                    continue
-                # Tam eşleşme veya takım adından en az 1 anahtar kelime eşleşmesi
-                if t == takim or takim in t or t in takim or \
-                   any(kw in t for kw in takim_kelimeler):
-                    gol = g
-                    break
+            tk = _htk.get(hafta) or takim
+            if (hafta, _kanon(tk)) in _ff:   # hükmen/çekilme → gerçek maç yok
+                continue
+            gol = _hafta_yenilen(tk, hafta)
             if gol is not None:
                 yenilen += gol
                 mac_say += 1
@@ -3537,7 +3522,7 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
     pdf.cell(0, 6, alt, ln=1)
     pdf.set_xy(150, 7); pdf.set_font("DV","",7)
     pdf.cell(48, 4, t("SCOUT RAPORU","SCOUT REPORT"), ln=2, align="R")
-    pdf.set_font("DV","B",9); pdf.cell(48, 5, "Mr Daniş · W-Scope", align="R")
+    pdf.set_font("DV","B",9); pdf.cell(48, 5, "Mr Daniş · WFS", align="R")
 
     pdf.set_y(36); pdf.set_text_color(40,40,40)
 
@@ -3747,7 +3732,7 @@ def render_scout_kadro_raporu(isim: str):
     except Exception as e:
         st.caption(f"⚠️ PDF oluşturulamadı: {e}")
 
-    st.caption("📡 Mr Daniş · W-Scope Scouting")
+    st.caption("📡 Mr Daniş · Women Football Scouting")
 
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
@@ -3872,7 +3857,7 @@ def _ana_lig_pdf_uret(secili: str, _en: bool = False) -> bytes:
     pdf.cell(0, 6, " · ".join(x for x in [mevki, takim] if x and x != "—"), ln=1)
     pdf.set_xy(150, 7); pdf.set_font("DV", "", 7)
     pdf.cell(48, 4, t("OYUNCU RAPORU", "PLAYER REPORT"), ln=2, align="R")
-    pdf.set_font("DV", "B", 9); pdf.cell(48, 5, "W-Scope", align="R")
+    pdf.set_font("DV", "B", 9); pdf.cell(48, 5, "WFS", align="R")
     pdf.set_y(37)
 
     # Künye
@@ -3932,7 +3917,7 @@ def _ana_lig_pdf_uret(secili: str, _en: bool = False) -> bytes:
 
     # Footer
     pdf.set_y(-16); pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7)
-    pdf.cell(0, 5, "W-Scope · " + t("Kaynak: TFF & SoccerDonna · Bilgi amaçlıdır",
+    pdf.cell(0, 5, "Women Football Scouting · " + t("Kaynak: TFF & SoccerDonna · Bilgi amaçlıdır",
                                     "Source: TFF & SoccerDonna · For information only"), align="C")
     out = pdf.output()
     return bytes(out)
@@ -4122,6 +4107,7 @@ def render_ana_lig_profil(secili):
             st.markdown(f"##### {t('Son 5 Maç Formu', 'Last 5 Matches Form')}")
             _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
             _htk = _oyuncu_hafta_takim(detay)   # transfer: o hafta hangi kulüpte
+            _son_kulup = _htk[max(_htk)] if _htk else row["Takım"]  # sezon-sonu = son kulüp
             _son_h = _son_lig_haftasi() or (max(_mg) if _mg else 0)
             _haftalar = [h for h in range(max(1, _son_h - 4), _son_h + 1)]
             if not _haftalar:
@@ -4136,7 +4122,7 @@ def render_ana_lig_profil(secili):
                     _kr = int(m.get("kirmizi", 0) or 0)
                     _sure_renk = "#4ade80" if _dk > 0 else "#475569"
                     # Clean sheet: oyuncunun O HAFTAKİ takımı (transferse doğru kulüp) gol yedi mi?
-                    _yen = _hafta_yenilen(_htk.get(_h) or row["Takım"], _h)
+                    _yen = _hafta_yenilen(_htk.get(_h) or _son_kulup, _h)
                     if _yen is None:
                         _cs = "<span style='color:#475569;'>🛡️ —</span>"
                     elif _yen == 0:
@@ -4446,7 +4432,7 @@ _nav_giris_var = st.session_state.get("kulup_giris", False)
 
 with st.sidebar:
     # ── Marka (nişangâh/scope logosu + wordmark) ──
-    _marka_alt = t("Kadın futbolu platformu", "Women's football platform")
+    _marka_alt = "Women Football Scouting"
     _logo_svg = (
         "<svg width='26' height='26' viewBox='0 0 32 32' fill='none' "
         "style='vertical-align:-6px;margin-right:7px;flex:none;'>"
@@ -4459,7 +4445,7 @@ with st.sidebar:
         "<line x1='25' y1='16' x2='30.5' y2='16' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
         "</svg>")
     st.markdown(
-        f"<div class='nav-marka'>{_logo_svg}W-<span>Scope</span></div>"
+        f"<div class='nav-marka'>{_logo_svg}W<span>FS</span></div>"
         f"<div class='nav-marka-alt'>{_marka_alt}</div>",
         unsafe_allow_html=True)
 
