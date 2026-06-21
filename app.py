@@ -4015,7 +4015,6 @@ def render_ana_lig_profil(secili):
           <div class="profil-stat" style="margin-top:8px;">
             <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
             <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{yedek}</div><div class="ad">↗ {t("Yedek","Sub")}</div></div>
             <div class="profil-stat-item"><div class="deger">{ilk11_oran}%</div><div class="ad">Starter %</div></div>
             <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">{t("Top. Dakika","Tot. Minutes")}</div></div>
             <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">{t("Dk/Maç","Min/Match")}</div></div>
@@ -4053,8 +4052,6 @@ def render_ana_lig_profil(secili):
         # ── Son 5 maç formu (her maçta Süre · Gol · CleanSheet · Kart) ────────
         with p1:
             st.markdown(f"##### {t('Son 5 Maç Formu', 'Last 5 Matches Form')}")
-            st.caption(t("Her maç: Süre · Gol · Clean Sheet · Kart (oynamadıysa 0′)",
-                         "Each match: Minutes · Goals · Clean Sheet · Cards (0′ if didn't play)"))
             _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
             _htk = _oyuncu_hafta_takim(detay)   # transfer: o hafta hangi kulüpte
             _son_h = _son_lig_haftasi() or (max(_mg) if _mg else 0)
@@ -4093,6 +4090,9 @@ def render_ana_lig_profil(secili):
                         "</div>")
                 st.markdown(f"<div style='display:flex;gap:6px;flex-wrap:wrap;'>{_kartlar}</div>",
                             unsafe_allow_html=True)
+                # Açıklama metni kutuların ALTINA (kutular Lig Sıralaması ile aynı hizada başlasın)
+                st.caption(t("Her maç: Süre · Gol · Clean Sheet · Kart (oynamadıysa 0′)",
+                             "Each match: Minutes · Goals · Clean Sheet · Cards (0′ if didn't play)"))
 
         # ── Lig sıralamaları ─────────────────────────────────────────────────
         with p2:
