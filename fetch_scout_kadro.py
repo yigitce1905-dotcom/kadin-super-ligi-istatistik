@@ -73,6 +73,26 @@ def parse(metin: str) -> dict:
     i_nihai  = idx_baslar("NİHAİ")
     i_ivme   = idx_baslar("İVME")
 
+    # ── Sabit alan kolonları BAŞLIK ADINA göre (kolon kaymalarına dayanıklı) ──
+    # Not: 2024→ sheet'te kolonlar 2 sola kaydı (Oyuncu Adı 3→1). Sabit indeks
+    # yerine başlık adıyla bulmak, ileride yine kayarsa kırılmayı önler.
+    c_isim   = idx_baslar("Oyuncu Adı")
+    c_tam    = idx_baslar("Tam İsim")
+    c_vat    = idx_baslar("Vatandaşlık")        # "Vatandaşlık (Millî)" — "2." ile başlamaz
+    c_mil    = idx_baslar("2. Vatandaşlık")     # app'te milli_takim alanı (eski kolon eşdeğeri)
+    c_dog    = idx_baslar("Doğum")
+    c_yas    = idx_baslar("Yaş")
+    c_boy    = idx_baslar("Boy")
+    c_ayak   = idx_baslar("Ayak")
+    c_vucut  = idx_baslar("Vücut")
+    c_bolge  = idx_baslar("Bölge")
+    c_mevki  = [idx_baslar("Mevki 1"), idx_baslar("Mevki 2"), idx_baslar("Mevki 3")]
+    c_rol    = idx_baslar("Rol")
+    c_kulup  = idx_baslar("Kulüp")
+    c_lig    = idx_baslar("Lig")
+    c_deger  = idx_baslar("Değer")
+    c_sozl   = idx_baslar("Sözleşme")
+
     def h(r, i):
         return r[i].strip() if i < len(r) else ""
 
@@ -81,9 +101,9 @@ def parse(metin: str) -> dict:
 
     veriler = {}
     for r in rows[2:]:
-        if not r or not h(r, 3):           # 3 = Oyuncu Adı (eşleşme anahtarı)
+        if not r or not h(r, c_isim):      # Oyuncu Adı (eşleşme anahtarı)
             continue
-        isim = h(r, 3)
+        isim = h(r, c_isim)
 
         beceri = nitelik(r, i_beceri0, i_beceri9)
         beseri = nitelik(r, i_beseri0, i_beseri9)
@@ -99,11 +119,11 @@ def parse(metin: str) -> dict:
             if v and v != "✘":             # ✘ = özellik yok; ✔/✔︎ = var
                 tarz.append(hdr[i])
 
-        mevki = [h(r, j).replace("-", "") for j in (13, 14, 15)
+        mevki = [h(r, j).replace("-", "") for j in c_mevki
                  if h(r, j) and h(r, j) != "-"]
 
-        dogum = h(r, 7)
-        yas_h = h(r, 8)
+        dogum = h(r, c_dog)
+        yas_h = h(r, c_yas)
         # Sheet yaşı sadece geçerliyse al (126 = boş DT formülü → atılır)
         try:
             yas = int(yas_h)
@@ -117,21 +137,21 @@ def parse(metin: str) -> dict:
                 yas = y2
 
         kayit = {
-            "tam_isim":    h(r, 4),
-            "vatandaslik": h(r, 5),
-            "milli_takim": h(r, 6),
+            "tam_isim":    h(r, c_tam),
+            "vatandaslik": h(r, c_vat),
+            "milli_takim": h(r, c_mil),
             "dogum":       dogum,
             "yas":         yas,
-            "boy":         h(r, 9),
-            "ayak":        h(r, 10),
-            "vucut_tipi":  h(r, 11),
-            "bolge":       h(r, 12),
+            "boy":         h(r, c_boy),
+            "ayak":        h(r, c_ayak),
+            "vucut_tipi":  h(r, c_vucut),
+            "bolge":       h(r, c_bolge),
             "mevki":       mevki,
-            "rol":         h(r, 16),
-            "kulup":       h(r, 17),
-            "lig":         h(r, 18),
-            "deger":       h(r, 19),
-            "sozlesme":    h(r, 20),
+            "rol":         h(r, c_rol),
+            "kulup":       h(r, c_kulup),
+            "lig":         h(r, c_lig),
+            "deger":       h(r, c_deger),
+            "sozlesme":    h(r, c_sozl),
             "beceri": beceri, "beseri": beseri, "fiziki": fiziki, "sahsi": sahsi,
             "makro": {
                 "beceri": h(r, i_beceri9) if h(r, i_beceri9) in GECERLI_NOTLAR else "",
