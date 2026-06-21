@@ -3,8 +3,9 @@ TFF Kadınlar Süper Ligi 2025-2026 — Web Scraper
 Oyuncu: maç geçmişi, gol, penaltı, sarı/kırmızı kart, dakika, ilk11/yedek
 """
 
-import time, json, csv, re, requests
+import time, json, csv, re, requests, urllib3
 from bs4 import BeautifulSoup
+urllib3.disable_warnings()  # tff.org SSL zinciri bazı ortamlarda doğrulanamıyor → verify=False
 
 # ─── AYARLAR ────────────────────────────────────────────────────────────────
 TOPLAM_HAFTA  = 30
@@ -21,7 +22,7 @@ HEADERS       = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleW
 def fetch(session, url, yeniden=3):
     for deneme in range(yeniden):
         try:
-            r = session.get(url, headers=HEADERS, timeout=20)
+            r = session.get(url, headers=HEADERS, timeout=20, verify=False)
             r.raise_for_status()
             return BeautifulSoup(r.content, "lxml")
         except Exception as e:
