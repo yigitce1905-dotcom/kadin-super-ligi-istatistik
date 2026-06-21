@@ -311,6 +311,40 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 
     /* Plotly grafik yüksekliği azalt */
     .js-plotly-plot { max-height:300px; }
+
+    /* ── Liste tablosu (.ws-table) → mobilde KART düzeni ───────────────────
+       8-10 sütun 375px'e sığmıyordu (yatay taşma; sadece isim + yarım pozisyon
+       görünüyordu). Her satır kompakt bir karta döner: üstte isim+uyruk, altta
+       etiketli stat'lar (data-label ::before ile). Masaüstü tablo aynen kalır. */
+    .ws-wrap {
+        overflow-x: visible !important; max-height: none !important;
+        background: transparent !important; border: none !important; padding: 0 !important;
+    }
+    .ws-table, .ws-table tbody, .ws-table tr, .ws-table td { display: block; width: 100%; }
+    .ws-table thead { display: none; }
+    .ws-table tbody tr {
+        display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px;
+        background: #0d0d16; border: 1px solid #2a2a38; border-radius: 12px;
+        padding: 12px 14px; margin-bottom: 10px;
+    }
+    .ws-table tbody tr:hover { background: #0d0d16; }
+    .ws-table tbody td {
+        display: inline-flex; align-items: center; gap: 5px;
+        width: auto; padding: 0; border: none; white-space: nowrap;
+        font-size: 0.8rem;
+    }
+    /* İsim hücresi tam genişlik üst satır + ayraç çizgi */
+    .ws-table tbody td:first-child {
+        flex: 1 1 100%; padding-bottom: 9px; margin-bottom: 3px;
+        border-bottom: 1px solid #1c1c2a; white-space: normal;
+    }
+    .ws-table tbody td:first-child .ws-name { font-size: 0.95rem; }
+    /* Etiketli stat hücreleri: küçük gri başlık + değer */
+    .ws-table tbody td[data-label]::before {
+        content: attr(data-label); color: #6b7280;
+        font-size: 0.6rem; font-weight: 800; text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
 }
 
 /* ═══════════════════════════════════════
@@ -5614,15 +5648,15 @@ if st.session_state.get("sayfa") == "scouting":
                             f"<span class='ws-ava'>{_esc(_harf)}</span><div>"
                             f"<a class='ws-name' href='{_href}' target='_blank'>{_yildiz}{_esc(tam_isim)}</a>"
                             f"<div class='ws-sub'>{_bayrak}</div></div></div></td>"
-                            f"<td>{_poz_html}</td>"
-                            f"<td>{_esc(_kl)}<div class='ws-sub'>{_esc(_lg)}</div></td>"
-                            f"<td class='num ws-mono'>{_yas or '—'}</td>"
-                            f"<td class='ws-mono' style='color:{_kontrat_renk(_sz)};'>{_esc(_sz) or '—'}</td>"
-                            f"<td class='ws-mono'>{_esc(_dg) or '—'}</td>"
-                            f"<td class='num ws-mono'>{_mac or '—'}</td>"
-                            f"<td class='num ws-mono'>{_gol or '—'}</td>"
-                            f"<td class='num ws-mono'>{_ast or '—'}</td>"
-                            f"<td>{_skor}</td></tr>"
+                            f"<td data-label='{t('Pozisyon','Pos')}'>{_poz_html}</td>"
+                            f"<td data-label='{t('Kulüp','Club')}'>{_esc(_kl)}<div class='ws-sub'>{_esc(_lg)}</div></td>"
+                            f"<td class='num ws-mono' data-label='{t('Yaş','Age')}'>{_yas or '—'}</td>"
+                            f"<td class='ws-mono' data-label='{t('Kontrat','Contract')}' style='color:{_kontrat_renk(_sz)};'>{_esc(_sz) or '—'}</td>"
+                            f"<td class='ws-mono' data-label='{t('Değer','Value')}'>{_esc(_dg) or '—'}</td>"
+                            f"<td class='num ws-mono' data-label='{t('Maç','M')}'>{_mac or '—'}</td>"
+                            f"<td class='num ws-mono' data-label='{t('Gol','G')}'>{_gol or '—'}</td>"
+                            f"<td class='num ws-mono' data-label='{t('Asist','A')}'>{_ast or '—'}</td>"
+                            f"<td data-label='{t('Skor','Score')}'>{_skor}</td></tr>"
                         )
 
                     _thead = (
@@ -6193,12 +6227,13 @@ if tab1:
                 f"<span class='ws-ava'>{_harf}</span><div>"
                 f"<a class='ws-name' href='{_href}' target='_blank'>{_ad}</a>"
                 f"<div class='ws-sub'>{_nat}</div></div></div></td>"
-                f"<td>{_poz}</td><td>{_tk}</td>"
-                f"<td class='num ws-mono'>{_ya or '—'}</td>"
-                f"<td class='num ws-mono'>{_mac or '—'}</td>"
-                f"<td class='num ws-mono'>{_gol or '—'}</td>"
-                f"<td class='num ws-mono'>{_gm or '—'}</td>"
-                f"<td class='num ws-mono'>{_dk or '—'}</td></tr>"
+                f"<td data-label='{t('Pozisyon','Pos')}'>{_poz}</td>"
+                f"<td data-label='{t('Takım','Team')}'>{_tk}</td>"
+                f"<td class='num ws-mono' data-label='{t('Yaş','Age')}'>{_ya or '—'}</td>"
+                f"<td class='num ws-mono' data-label='{t('Maç','M')}'>{_mac or '—'}</td>"
+                f"<td class='num ws-mono' data-label='{t('Gol','G')}'>{_gol or '—'}</td>"
+                f"<td class='num ws-mono' data-label='{t('Gol/Maç','G/M')}'>{_gm or '—'}</td>"
+                f"<td class='num ws-mono' data-label='{t('Dk','Min')}'>{_dk or '—'}</td></tr>"
             )
         _thead = ("<tr>"
                   f"<th>{t('Oyuncu','Player')}</th><th>{t('Pozisyon','Position')}</th>"
