@@ -242,6 +242,12 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 .benzer-kutu .bk-ad   { font-size:0.82rem; font-weight:700; color:#f4f4f5; margin:5px 0 4px;
     line-height:1.2; }
 .benzer-kutu .bk-alt  { font-size:0.64rem; color:#8b93a7; line-height:1.35; }
+/* Öne çıkan (ilk) öneri — büyük kart */
+.benzer-buyuk { padding:16px 14px;
+    background:linear-gradient(135deg,#15101f,#0d0d16); border-color:#3a3358; }
+.benzer-buyuk .bk-skor { font-size:1.75rem; }
+.benzer-buyuk .bk-ad   { font-size:1.08rem; margin:7px 0 5px; }
+.benzer-buyuk .bk-alt  { font-size:0.72rem; }
 
 /* ══════════════════════════════════════════════════
    MOBİL RESPONSIVE  (≤ 768px)
@@ -2523,12 +2529,14 @@ def _benzer_havuz(kaynak):
         if mac < 5:
             continue
         _kd = kadro.get(isim, {})
+        _kl = _kd.get("kulup", "") or (sez[0].get("kulup", "") if sez else "")
         havuz.append({
             "isim":      isim,
             "kat":       _poz_kategori(p.get("Position", "")),
             "yas":       _yas_hesapla(p.get("Date of birth", "")),
             "boy":       _boy_cm(p.get("Height", "")),
             "ulke":      p.get("Nationality", ""),
+            "kulup":     _kl,
             "mac":       mac,
             "gol":       sum(s.get("gol", 0) for s in sez),
             "asist":     sum(s.get("asist", 0) for s in sez),
@@ -2582,35 +2590,41 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
 
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
-                f"{o['mac']} {t('maç','matches')}",
-                o.get("mevki_kod", ""),
-                ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # 'TurkeyGermany' → 'Turkey / Germany'
+                _takim_kisa(o.get("kulup", "")),
+                ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # yaş · takım · memleket
         return " · ".join(x for x in parc if x)
 
     return [(o["isim"], s, _lbl(o)) for s, o in adaylar[:k]]
 
 
 def _benzer_kutu_grid(items):
-    """items: [(isim, skor, bilgi), …] → yan yana KUTU grid (5'li, mobilde sarar).
-    Benzer Oyuncular + Benzer Transfer Hedefleri ortak kullanır."""
+    """items: [(isim, skor, bilgi), …] → İLK öneri büyük (öne çıkan) kart, kalan 4'ü
+    2x2 grid (mobilde) / yan yana (masaüstü). Benzer Oyuncular + Transfer Hedefleri ortak."""
+    if not items:
+        return
     _dil_q = st.session_state.get("dil", "TR")
     def _renk(s):
         return ("#34d399" if s >= 90 else "#facc15" if s >= 80
                 else "#fb923c" if s >= 70 else "#a78bfa")
     def _esc(x):
         return str(x).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
-    kutular = ""
-    for isim, skor, bilgi in items:
+    def _kart(isim, skor, bilgi, buyuk=False):
         href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
-        kutular += (
-            f"<a href='{href}' style='text-decoration:none;flex:1 1 0;min-width:124px;'>"
-            f"<div class='benzer-kutu'>"
+        wrap = "display:block;" if buyuk else "flex:1 1 0;min-width:140px;"
+        kls  = "benzer-kutu benzer-buyuk" if buyuk else "benzer-kutu"
+        return (
+            f"<a href='{href}' style='text-decoration:none;{wrap}'>"
+            f"<div class='{kls}'>"
             f"<div class='bk-skor' style='color:{_renk(skor)};'>%{skor}</div>"
             f"<div class='bk-ad'>{_esc(isim)}</div>"
             f"<div class='bk-alt'>{_esc(bilgi)}</div>"
             f"</div></a>"
         )
-    st.markdown(f"<div class='benzer-grid'>{kutular}</div>", unsafe_allow_html=True)
+    html = _kart(*items[0], buyuk=True)
+    if items[1:]:
+        kalan = "".join(_kart(*it) for it in items[1:])
+        html += f"<div class='benzer-grid' style='margin-top:8px;'>{kalan}</div>"
+    st.markdown(html, unsafe_allow_html=True)
 
 
 def benzer_oyuncular_goster(hedef_isim, kaynak):
@@ -2703,9 +2717,8 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
                  "Closest foreign candidates to this player from the scouting pool"))
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
-                (f"{o['mac']} {t('maç','matches')}" if o.get("mac") else ""),
-                o.get("mevki_kod", ""),
-                ulke_goster(_uyruk_goster(o.get("ulke", "")))]
+                _takim_kisa(o.get("kulup", "")),
+                ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # yaş · takım · memleket
         return " · ".join(x for x in parc if x)
     _benzer_kutu_grid([(o["isim"], s, _lbl(o)) for s, o in ad[:5]])
 
