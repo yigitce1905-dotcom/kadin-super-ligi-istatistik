@@ -4495,10 +4495,16 @@ _hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
 _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
 try:    _hero_scout = len(scout_kadro_yukle())
 except Exception: _hero_scout = 0
-# Hero yalnız ANA EKRANDA gösterilir; iç sayfalar (scouting/profil/alt ligler vb.)
-# kalabalık olmasın diye atlanır (kullanıcı geri bildirimi).
+# Hero + danışmanlık bandı YALNIZ ana ekranın İLK sekmesinde (Oyuncu Listesi)
+# gösterilir; diğer TR Veri alt sekmelerinde (Profil, Karşılaştırma vb.) üstte yer
+# kaplamasın diye gizlenir (kullanıcı geri bildirimi: "sadece ilk sekmede göster").
 _ana_ekran = (not url_oyuncu) and st.session_state.get("sayfa", "ana") == "ana"
-if _ana_ekran:
+_tr_sekmeler_h = _tr_sekme_etiketleri(st.session_state.get("kulup_giris", False))
+_ilk_tr_sekme  = _tr_sekmeler_h[0] if _tr_sekmeler_h else None
+_tr_sekme_sec  = st.session_state.get("tr_sekme", _ilk_tr_sekme)
+_ilk_sekmede   = (_tr_sekme_sec == _ilk_tr_sekme) or (_tr_sekme_sec not in _tr_sekmeler_h)
+_ust_blok_goster = _ana_ekran and _ilk_sekmede
+if _ust_blok_goster:
   st.markdown(f"""
 <div class="baslik-kutu">
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
@@ -5971,13 +5977,12 @@ if not st.session_state.get("girildi", False):
     st.stop()
 
 
-# ─── DANIŞMANLIK BANNER ÖNCESİ BOŞLUK ──────────────────────────────────────────
-st.markdown("<br>", unsafe_allow_html=True)
-
-# ─── DANIŞMANLIK TALEP BANNER (ana sayfada görünür) ───────────────────────────
-_bc1, _bc2 = st.columns([3, 1])
-with _bc1:
-    st.markdown(f"""
+# ─── DANIŞMANLIK TALEP BANNER — yalnız ilk sekmede (Oyuncu Listesi) ───────────
+if _ust_blok_goster:
+    st.markdown("<br>", unsafe_allow_html=True)
+    _bc1, _bc2 = st.columns([3, 1])
+    with _bc1:
+        st.markdown(f"""
     <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:12px;
         padding:13px 20px;border-left:4px solid #1db954;'>
       <div style='color:#fff;font-size:1.05rem;font-weight:700;'>{t("📩 Kadronu birlikte kuralım", "📩 Let's build your squad together")}</div>
@@ -5985,13 +5990,12 @@ with _bc1:
       {t("Oyuncu raporu · mevki önerisi · oyuncu kıyası · tam kadro danışmanlığı — talebini ilet.",
          "Player report · position suggestion · player comparison · full squad consultancy — send your request.")}</div>
     </div>""", unsafe_allow_html=True)
-with _bc2:
-    st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
-    if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), use_container_width=True, type="primary"):
-        st.session_state["sayfa"] = "talep"
-        st.rerun()
-
-st.markdown("<br>", unsafe_allow_html=True)
+    with _bc2:
+        st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
+        if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), use_container_width=True, type="primary"):
+            st.session_state["sayfa"] = "talep"
+            st.rerun()
+    st.markdown("<br>", unsafe_allow_html=True)
 
 # ─── SEKMELER (KOŞULLU RENDER — perf) ─────────────────────────────────────────
 # st.tabs yerine: SADECE sol menüden seçili sekmenin kodu çalışır (14 sekme
