@@ -79,7 +79,9 @@ def parse(metin: str) -> dict:
     c_isim   = idx_baslar("Oyuncu Adı")
     c_tam    = idx_baslar("Tam İsim")
     c_vat    = idx_baslar("Vatandaşlık")        # "Vatandaşlık (Millî)" — "2." ile başlamaz
-    c_mil    = idx_baslar("2. Vatandaşlık")     # app'te milli_takim alanı (eski kolon eşdeğeri)
+    c_mil    = idx_baslar("2. Vatandaşlık")     # = 2. pasaport. DİKKAT: bu MİLLİ TAKIM DEĞİL!
+    # (app milli takımı 'vatandaslik' = "Vatandaşlık (Millî)" alanından alır. milli_takim
+    #  adı tarihsel/yanıltıcı; aslında ikinci vatandaşlık. NT için kullanma.)
     c_dog    = idx_baslar("Doğum")
     c_yas    = idx_baslar("Yaş")
     c_boy    = idx_baslar("Boy")

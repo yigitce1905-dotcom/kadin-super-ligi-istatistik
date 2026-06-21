@@ -3106,7 +3106,10 @@ def render_scouting_detay(tam_isim):
     # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım)
     _kadro  = scout_kadro_yukle().get(tam_isim, {})
     _deger  = _kadro.get("deger", "")
-    _milli  = _kadro.get("milli_takim", "")
+    # Milli takım = "Vatandaşlık (Millî)" (vatandaslik). NOT: milli_takim alanı aslında
+    # "2. Vatandaşlık" (ikinci pasaport) → milli takım için YANLIŞ (örn. Miray Cin Türkiye
+    # oynar ama 2. vatandaşlığı Almanya). Çift uyruklularda doğru NT = Millî vatandaşlık.
+    _milli  = _kadro.get("vatandaslik", "") or _ilk_uyruk(vatandas)
     _yas_g  = f"{yas}" if str(yas) not in ("", "?", "—") else ""
 
     # Büyük isim başlığı + gruplu bilgi kutuları (ana lig ile ORTAK bileşen)
@@ -3165,7 +3168,7 @@ def render_scouting_detay(tam_isim):
                          (f"🧬 {t('Vücut Tipi','Body Type')}", vucut_goster(_dty.get("vucut_tipi", ""))),
                          (f"🗺️ {t('Bölge','Region')}", bolge_goster(_dty.get("bolge", ""))),
                          (f"📍 {t('Mevki Kodları','Position Codes')}", _mevk),
-                         (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_dty.get("milli_takim", "")))]:
+                         (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli))]:
             if _vl:
                 _satirlar += (f"<div><div style='color:#64748b;font-size:0.74rem;'>{_et}</div>"
                               f"<div style='color:#f1f5f9;font-weight:600;'>{_vl}</div></div>")
@@ -3183,7 +3186,7 @@ def render_scouting_detay(tam_isim):
 
     _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
     if _sezonlar:
-        _milli_ad = ulke_goster((_kadro.get("milli_takim") or "").strip())
+        _milli_ad = ulke_goster((_kadro.get("vatandaslik") or _ilk_uyruk(vatandas) or "").strip())
         _kariyer_kulup_milli(tam_isim, _sezonlar, "scouting", _milli_ad,
                              leistung_data.get(tam_isim, {}).get("guncelleme", ""))
     else:
