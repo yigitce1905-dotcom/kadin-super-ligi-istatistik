@@ -5084,13 +5084,19 @@ def _altlig_en_iyiler(oyuncular):
         st.caption(t("Veri yok.", "No data."))
         return
     df = pd.DataFrame(oyuncular)
-    df["g90"] = df.apply(lambda r: round(r["gol_sayisi"] / r["toplam_dakika"] * 90, 2)
-                         if r.get("toplam_dakika", 0) > 0 else 0.0, axis=1)
+    # Lig maç süresini VERİDEN otomatik tespit et (tam oynayanların dk/maç maksimumu):
+    # U17≈90, U15=70, U13=60 → Gol/süre metriği o lige göre doğru olur.
+    _dm = [o["toplam_dakika"] / o["mac_sayisi"]
+           for o in oyuncular if o.get("mac_sayisi", 0) >= 3 and o.get("toplam_dakika", 0) > 0]
+    mac_sure = min(90, int(round(max(_dm)))) if _dm else 90
+    _mindk = 5 * mac_sure   # ~5 maç eşiği (gürültüyü ele)
+    df["grate"] = df.apply(lambda r: round(r["gol_sayisi"] / r["toplam_dakika"] * mac_sure, 2)
+                           if r.get("toplam_dakika", 0) > 0 else 0.0, axis=1)
     st.markdown(f"#### 🌟 {t('En İyiler', 'Top Performers')}")
     kategoriler = [
         ("⚽ " + t("En Golcü", "Top Scorers"),      "gol_sayisi",    lambda v: f"{int(v)}",  0),
         ("⏱️ " + t("En Çok Oynayan", "Most Minutes"), "toplam_dakika", lambda v: f"{int(v)}'", 0),
-        ("🎯 " + t("Gol / 90 dk", "Goals / 90"),     "g90",           lambda v: f"{v:.2f}",   450),
+        (f"🎯 {t('Gol', 'Goals')} / {mac_sure} {t('dk','min')}", "grate", lambda v: f"{v:.2f}", _mindk),
         ("▶️ " + t("En Çok İlk 11", "Most Starts"),   "ilk11_mac",     lambda v: f"{int(v)}",  0),
     ]
     cols = st.columns(2)
@@ -5110,7 +5116,8 @@ def _altlig_en_iyiler(oyuncular):
             "border-radius:10px;padding:12px 14px;margin-bottom:12px;'>"
             f"<div style='font-weight:700;color:#f1f5f9;margin-bottom:6px;'>{baslik}</div>{satir}</div>",
             unsafe_allow_html=True)
-    st.caption(t("Gol/90: en az 450 dk oynayanlar arasında.", "Goals/90: among players with ≥450 min."))
+    st.caption(t(f"Gol/{mac_sure}: en az {_mindk} dk ({mac_sure} dk'lık lig) oynayanlar arasında.",
+                 f"Goals/{mac_sure}: among players with ≥{_mindk} min (this league plays {mac_sure}-min matches)."))
 
 
 def _altlig_takim_analizi(oyuncular):
@@ -5310,10 +5317,14 @@ def render_altyas():
         return
 
     if secim == _kr_lbl:
-        st.markdown(f"#### 👑 {t('Gol Kraliçesi (Resmi TFF Top-10)', 'Top Scorers (Official TFF Top-10)')}")
+        _kr_baslik = (t("Gol Kraliçesi (Resmi TFF Top-10)", "Top Scorers (Official TFF Top-10)")
+                      if "U17" in _lig else t("Gol Kraliçesi (İlk 10)", "Top Scorers (Top 10)"))
+        st.markdown(f"#### 👑 {_kr_baslik}")
         kr = data["gol_kralicesi"]
+        # U17: {oyuncu,takim,gol}; U15/U13: tam oyuncu dict ({...,gol_sayisi}) → ikisini de destekle
         krdf = pd.DataFrame([{"#": i + 1, t("Oyuncu", "Player"): r["oyuncu"],
-                              t("Takım", "Team"): r.get("takim", ""), t("Gol", "Goals"): r["gol"]}
+                              t("Takım", "Team"): r.get("takim", ""),
+                              t("Gol", "Goals"): r.get("gol", r.get("gol_sayisi", 0))}
                              for i, r in enumerate(kr)])
         st.dataframe(krdf, use_container_width=True, hide_index=True,
                      height=min(45 + len(krdf) * 35, 480))
