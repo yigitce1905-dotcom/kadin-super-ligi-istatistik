@@ -11,10 +11,8 @@ try:
     _BCRYPT_OK = True
 except ImportError:
     _BCRYPT_OK = False
-# groq (AI rapor) yalnız kullanıldığında yüklenir (cold start'tan ~0.3s düşer)
-import importlib.util as _ilu
-_GROQ_OK = _ilu.find_spec("groq") is not None
 # NOT: plotly.express ve bs4 app'te kullanılmıyordu — kaldırıldı (cold start ~0.3s).
+# NOT: groq (AI transfer raporu) verimli değildi — tamamen kaldırıldı.
 
 # ── Render secret bootstrap (st.secrets ilk okunmadan ÖNCE) ────────────────────
 # Render "Secret File" adında '/' kabul etmiyor → dosya düz 'secrets.toml' olarak
@@ -5786,37 +5784,8 @@ if st.session_state.get("sayfa") == "scouting":
                         f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
                         f"<tbody>{_sat}</tbody></table></div>",
                         unsafe_allow_html=True)
-
-                    # ── Shortlist / Etiket işlemleri (tablo yerine oyuncu seç) ──
-                    _ETIKET_EN = {"—": "—", "🔴 Öncelik": "🔴 Priority", "👀 İzle": "👀 Watch",
-                                  "💰 Pahalı": "💰 Expensive", "✅ Görüşüldü": "✅ Contacted"}
-                    st.markdown(
-                        f"<div style='margin-top:14px;font-size:0.66rem;font-weight:800;"
-                        f"color:#71717a;text-transform:uppercase;letter-spacing:0.12em;'>"
-                        f"⭐ {t('Shortlist / Etiket','Shortlist / Tag')}</div>",
-                        unsafe_allow_html=True)
-                    _as1, _as2, _as3 = st.columns([2, 1, 1])
-                    with _as1:
-                        _secili = st.selectbox(
-                            t("Oyuncu seç", "Select player"), ["—"] + _isim_sira,
-                            key="sc_islem_sec", label_visibility="collapsed")
-                    _secili = _secili if _secili and _secili != "—" else None
-                    if _secili:
-                        _is_sl_s = _secili in _sl_liste
-                        _etk_s   = _etiket_liste.get(_secili, "—")
-                        with _as2:
-                            _fav_lbl = (t("⭐ Shortlist'te", "⭐ In Shortlist") if _is_sl_s
-                                        else t("☆ Ekle", "☆ Add"))
-                            if st.button(_fav_lbl, key="sc_sl_btn", use_container_width=True):
-                                shortlist_toggle(_sl_kullanici, _secili); st.rerun()
-                        with _as3:
-                            _yeni_etk = st.selectbox(
-                                t("🏷️ Etiket", "🏷️ Tag"), _ETIKETLER,
-                                index=(_ETIKETLER.index(_etk_s) if _etk_s in _ETIKETLER else 0),
-                                format_func=lambda x: _ETIKET_EN.get(x, x) if EN else x,
-                                key="sc_etk_sel", label_visibility="collapsed")
-                            if _yeni_etk != _etk_s:
-                                etiket_ayarla(_sl_kullanici, _secili, _yeni_etk); st.rerun()
+                    # (Liste-sayfası Shortlist/Etiket bloğu kaldırıldı — oyuncu profilindeki
+                    #  "⭐ Shortliste ekle" yeterli ve daha kullanışlı.)
     else:
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
@@ -5957,7 +5926,7 @@ def render_paketler():
     pro = [
         (t("Basic'in tüm özellikleri","Everything in Basic"), True),
         (t("Detaylı oyuncu profili","Detailed player profile"), True),
-        (t("Transfer Öner (AI rapor)","Transfer Suggest (AI report)"), True),
+        (t("Transfer Öner","Transfer Suggest"), True),
         (t("Karşılaştırma (4 oyuncu)","Comparison (4 players)"), True),
         (t("Gelişmiş arama · En İyiler","Advanced search · Top performers"), True),
         (t("Favori listesi","Favorites list"), True),
@@ -8023,101 +7992,6 @@ if tab11:
 # ══════════════════════════════════════════════════════════════════════════════
 
 # Öneri veri tabanı: (mevki, bütçe, tercih) → [oyuncu adları]
-def _groq_client():
-    """Groq istemcisi oluşturur. Hem lokal .env hem Streamlit secrets destekler."""
-    key = None
-    env_yol = _DIZIN / ".env"
-    if env_yol.exists():
-        for line in env_yol.read_text(encoding="utf-8").strip().splitlines():
-            if line.startswith("GROQ_API_KEY="):
-                key = line.split("=", 1)[1].strip()
-                break
-    if not key:
-        key = st.secrets.get("GROQ_API_KEY", "") if hasattr(st, "secrets") else ""
-    if not key or not _GROQ_OK:
-        return None
-    from groq import Groq as _Groq   # lazy: yalnız AI rapor istenince yüklenir
-    return _Groq(api_key=key)
-
-
-def transfer_raporu_uret(oneriler: list, mevki: str, butce_label: str, tercih: str) -> str:
-    """Verilen öneri listesi için Groq ile transfer raporu üretir."""
-    client = _groq_client()
-    if not client:
-        return "⚠️ Rapor üretilemedi: API bağlantısı kurulamadı."
-
-    # Kaleci mi değil mi — veri kaynağını buna göre seç
-    if mevki == "Kaleci":
-        kal_df   = kaleci_istatistikleri_hesapla()
-        kal_dict = {r["Kaleci"]: r for _, r in kal_df.iterrows()}
-        alan_df_dict = {}
-    else:
-        kal_dict = {}
-        _alan_df, _ = veri_yukle()
-        alan_df_dict = {r["Oyuncu"]: r for _, r in _alan_df.iterrows()} if not _alan_df.empty else {}
-
-    oyuncu_verileri = []
-    for isim in oneriler:
-        profil = sd_profiller.get(isim, {})
-        yas    = _MANUEL_YAS.get(isim)
-        if not yas:
-            try: yas = int(float(str(profil.get("Age","0")).split()[0]))
-            except: yas = "?"
-        nat = _MANUEL_UYRUK.get(isim) or profil.get("Nationality","")
-        nat = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat).split()[0] if nat else "—"
-
-        if mevki == "Kaleci":
-            r = kal_dict.get(isim, {})
-            oyuncu_verileri.append(
-                f"- {isim} | Takım: {r.get('Takım','—')} | "
-                f"{r.get('Maç','—')} maç, {r.get('YenilenGol','—')} yenilen gol, "
-                f"{r.get('G/Maç','—')} G/Maç | Yaş: {yas} | Uyruk: {nat}"
-            )
-        else:
-            r = alan_df_dict.get(isim, {})
-            oyuncu_verileri.append(
-                f"- {isim} | Takım: {r.get('Takım','—')} | "
-                f"{r.get('Maç','—')} maç, {r.get('Gol','—')} gol, "
-                f"{r.get('Gol/Maç','—')} Gol/Maç | Dakika: {r.get('Dakika','—')} | "
-                f"Yaş: {yas} | Uyruk: {nat}"
-            )
-
-    veri_str = "\n".join(oyuncu_verileri)
-
-    prompt = f"""Sen Türkiye Kadın Futbol Süper Ligi uzmanı bir futbol transfer danışmanısın.
-Bütçe: {butce_label} | Mevki: {mevki} | Tercih: {tercih}
-
-ÖNERILEN OYUNCULAR VE İSTATİSTİKLERİ (2025-26 sezonu):
-{veri_str}
-
-Bu üç oyuncu için kısa ve profesyonel bir transfer raporu yaz:
-
-1. Her oyuncu için ayrı paragraf: performans değerlendirmesi (istatistiklere dayan), \
-transferilebilirlik (mevcut takımındaki konumu), risk faktörü.
-2. Sonda 2 cümlelik genel tavsiye: bu üçten hangisi en öncelikli seçenek ve neden?
-
-Kurallar:
-- Sadece Türkçe yaz
-- Oyuncu isimlerini değiştirme
-- Takım büyüklüğünden bahsederken "küçük takım" yerine "orta ölçekli takım" kullan
-- Veri odaklı ol, klişeden kaçın
-- Maksimum 300 kelime"""
-
-    try:
-        r = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[
-                {"role": "system", "content": "Sen bir futbol transfer danışmanısın. Sadece Türkçe yaz. İstatistikleri kullan. Küçük takım yerine orta ölçekli takım de."},
-                {"role": "user", "content": prompt},
-            ],
-            max_tokens=800,
-            temperature=0.3,
-        )
-        return r.choices[0].message.content
-    except Exception as e:
-        return f"⚠️ Rapor üretilemedi: {e}"
-
-
 _TRANSFER_DB = {
     ("Kaleci", "Yuksek", "Yerli"):      ["SELDA AKGÖZ", "GAMZE NUR YAMAN", "GÖKNUR GÜLERYÜZ"],
     ("Kaleci", "Yuksek", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOE", "ROBERTA APRILE"],
@@ -8412,34 +8286,9 @@ if tab_transfer:
                         f"</div>",
                         unsafe_allow_html=True)
 
-                st.markdown("<br>", unsafe_allow_html=True)
-                st.markdown(
-                    "<div style='background:#1a1f36;border:1px solid #1db954;border-radius:10px;"
-                    "padding:18px;'>"
-                    f"<div style='color:#1db954;font-weight:700;font-size:15px;margin-bottom:6px;'>"
-                    f"📄 {t('Transfer Raporu','Transfer Report')}</div>"
-                    f"<div style='color:#8899aa;font-size:12px;'>"
-                    f"{t('Bu üç oyuncu için yapay zeka destekli detaylı analiz raporu üretin.','Generate an AI-powered detailed analysis report for these three players.')}</div>"
-                    "</div>",
-                    unsafe_allow_html=True)
-
-                st.markdown("<br>", unsafe_allow_html=True)
-                if st.button(t("📄 Raporu Oluştur","📄 Generate Report"), type="primary", use_container_width=False):
-                    with st.spinner(t("Rapor hazırlanıyor…","Generating report…")):
-                        rapor = transfer_raporu_uret(oneriler, mevki_sec, butce_label, tercih)
-                    st.session_state["tr_rapor"] = rapor
-
-                if st.session_state.get("tr_rapor"):
-                    st.markdown(
-                        f"<div style='background:#1a1f36;border-radius:10px;padding:20px;"
-                        f"border-left:4px solid #1db954;margin-top:12px;'>"
-                        f"<div style='color:#fff;font-size:13px;line-height:1.7;white-space:pre-wrap;'>"
-                        f"{st.session_state['tr_rapor']}</div></div>",
-                        unsafe_allow_html=True)
-
             st.markdown("<br>", unsafe_allow_html=True)
             if st.button(t("🔄 Yeniden Başla","🔄 Start Over"), use_container_width=False):
-                for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih","tr_rapor"]:
+                for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih"]:
                     st.session_state.pop(k, None)
                 st.rerun()
 
