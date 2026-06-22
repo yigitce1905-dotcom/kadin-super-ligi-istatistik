@@ -628,9 +628,104 @@ def kulup_credentials_yukle() -> dict:
     except Exception:
         return {}
 
+
+# ─── ÜYE SİSTEMİ (self-servis kayıt → GSheets "Uyeler") ───────────────────────
+def _uyeler_ws():
+    """GSheets 'Uyeler' worksheet'i (yoksa oluşturur). Lokalde GSheets yoksa None."""
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Uyeler")
+        except Exception:
+            ws = sh.add_worksheet(title="Uyeler", rows=5000, cols=9)
+            ws.update([["kullanici", "hash", "ad", "kulup", "rol", "tier",
+                        "kayit_tarihi", "bitis_tarihi", "durum"]])
+            return ws
+    except Exception:
+        return None
+
+
+@st.cache_data(ttl=300, show_spinner=False)
+def uyeler_yukle() -> dict:
+    """Kayıtlı üyeler → {kullanici(lower): {hash, ad, takim, rol, tier, bitis_tarihi, durum}}.
+    5 dk cache → her rerun GSheets okumaz (oturum geri-yükleme sıcak yol). Kayıt/değişiklik
+    sonrası uyeler_yukle.clear() ile tazelenir. Düz dict döner (serileştirme güvenli)."""
+    ws = _uyeler_ws()
+    if ws is None:
+        return {}
+    try:
+        out = {}
+        for r in ws.get_all_records():
+            ku = str(r.get("kullanici", "")).strip().lower()
+            if ku and r.get("hash"):
+                out[ku] = {
+                    "hash": str(r.get("hash", "")),
+                    "ad": str(r.get("ad", "") or ku),
+                    "takim": str(r.get("kulup", "") or ""),
+                    "rol": str(r.get("rol", "") or "kulup"),
+                    "tier": (str(r.get("tier", "") or "free").lower()),
+                    "bitis_tarihi": str(r.get("bitis_tarihi", "") or ""),
+                    "durum": str(r.get("durum", "") or "aktif"),
+                }
+        return out
+    except Exception:
+        return {}
+
+
+def tum_giris_kayitlari() -> dict:
+    """Üyeler (GSheets, cache'li) + kulüpler (secrets) birleşik. Anahtarlar lowercase;
+    kulüp/admin kayıtları çakışmada önceliklidir."""
+    kayit = dict(uyeler_yukle())
+    for k, v in kulup_credentials_yukle().items():
+        kayit[str(k).strip().lower()] = v
+    return kayit
+
+
+def _eposta_gecerli(e: str) -> bool:
+    return bool(_re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", (e or "").strip()))
+
+
+def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
+    """Yeni üye kaydı (free tier). Döner: (basarili: bool, mesaj_tr, mesaj_en)."""
+    kullanici = (kullanici or "").strip().lower()
+    ad = (ad or "").strip()
+    if not _eposta_gecerli(kullanici):
+        return (False, "Geçerli bir e-posta adresi gir.", "Enter a valid email address.")
+    if not ad:
+        return (False, "İsim / kurum adı gir.", "Enter your name / organization.")
+    if len(sifre or "") < 8:
+        return (False, "Şifre en az 8 karakter olmalı.", "Password must be at least 8 characters.")
+    if kullanici in {str(k).strip().lower() for k in kulup_credentials_yukle()}:
+        return (False, "Bu kullanıcı adı zaten kullanımda.", "This username is already in use.")
+    if kullanici in uyeler_yukle():
+        return (False, "Bu e-posta zaten kayıtlı. Giriş yapmayı dene.", "This email is already registered. Try logging in.")
+    if not _BCRYPT_OK:
+        return (False, "Sunucu hatası (şifreleme).", "Server error (hashing).")
+    ws = _uyeler_ws()
+    if ws is None:
+        return (False, "Kayıt servisi şu an kullanılamıyor, sonra tekrar dene.", "Registration service is unavailable, try again later.")
+    try:
+        from datetime import datetime
+        h = _bcrypt.hashpw(sifre.encode(), _bcrypt.gensalt()).decode()
+        ws.append_row([kullanici, h, ad, (kulup or "").strip(), "kulup", "free",
+                       datetime.now().strftime("%Y-%m-%d %H:%M"), "", "aktif"])
+        uyeler_yukle.clear()   # cache tazele → hemen giriş yapabilsin
+        return (True, "Kayıt başarılı! Aşağıdan e-posta ve şifrenle giriş yapabilirsin.",
+                "Registered! You can now log in with your email and password.")
+    except Exception:
+        return (False, "Kayıt sırasında bir hata oluştu.", "An error occurred during registration.")
+
+
 def giris_dogrula(kullanici: str, sifre: str) -> dict | None:
-    creds = kulup_credentials_yukle()
-    bilgi = creds.get(kullanici)
+    creds = tum_giris_kayitlari()
+    bilgi = creds.get((kullanici or "").strip().lower())
     if not bilgi:
         return None
     try:
@@ -762,7 +857,8 @@ def _oturum_geri_yukle():
     kullanici = _oturum_token_coz(token)
     if not kullanici:
         return
-    bilgi = kulup_credentials_yukle().get(kullanici)
+    # Kulüp (secrets, hızlı) + üye (GSheets, 5dk cache) birleşik — cache hit'te hot path ucuz
+    bilgi = tum_giris_kayitlari().get((kullanici or "").strip().lower())
     if bilgi:
         _oturum_session_doldur(kullanici, bilgi)
         st.session_state["girildi"] = True
@@ -831,17 +927,19 @@ def giris_gerekli_ekrani():
 
 
 def _giris_yap(ku: str, si: str) -> bool:
-    """Ortak giriş mantığı: doğrula → session + cookie. Başarılıysa True."""
-    sonuc = giris_dogrula(ku.strip(), si.strip())
+    """Ortak giriş mantığı: doğrula → session + cookie. Başarılıysa True.
+    Kullanıcı adı küçük harfe normalize edilir (kulüp + üye anahtarları lowercase)."""
+    ku_n = (ku or "").strip().lower()
+    sonuc = giris_dogrula(ku_n, si.strip())
     if sonuc:
-        giris_logla(ku.strip(), basarili=True)
-        _oturum_session_doldur(ku.strip(), sonuc)
+        giris_logla(ku_n, basarili=True)
+        _oturum_session_doldur(ku_n, sonuc)
         st.session_state["girildi"]  = True
         st.session_state["login_ac"] = False
-        _oturum_kaydet(ku.strip())   # cookie'ye yaz (kalıcı giriş)
+        _oturum_kaydet(ku_n)   # cookie'ye yaz (kalıcı giriş)
         return True
-    if ku.strip():
-        giris_logla(ku.strip(), basarili=False)
+    if ku_n:
+        giris_logla(ku_n, basarili=False)
     return False
 
 
@@ -861,27 +959,64 @@ def giris_formu():
                     st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
 
 
+def _kayit_formu():
+    """Self-servis üye kaydı (free tier). Başarılı kayıtta otomatik giriş yapar."""
+    st.caption(t("Ücretsiz hesap oluştur — saniyeler içinde. İstediğin zaman yükseltebilirsin.",
+                 "Create a free account in seconds. Upgrade anytime."))
+    with st.form("kayit_form_ana", clear_on_submit=False):
+        _ad = st.text_input(t("İsim / Kurum", "Name / Organization"),
+                            placeholder=t("Adınız veya kulüp / kurum adı", "Your name or club / org"))
+        _ep = st.text_input(t("E-posta", "Email"), placeholder="ornek@eposta.com")
+        _s1 = st.text_input(t("Şifre (en az 8 karakter)", "Password (min 8 chars)"),
+                            type="password", placeholder="••••••••")
+        _s2 = st.text_input(t("Şifre (tekrar)", "Password (again)"),
+                            type="password", placeholder="••••••••")
+        _b1, _b2 = st.columns(2)
+        _kyt = _b1.form_submit_button(t("Kayıt Ol", "Sign Up"), width="stretch", type="primary")
+        _ipt = _b2.form_submit_button(t("İptal", "Cancel"), width="stretch")
+    if _kyt:
+        if (_s1 or "") != (_s2 or ""):
+            st.error(t("Şifreler uyuşmuyor.", "Passwords do not match."))
+        else:
+            with st.spinner(t("Hesap oluşturuluyor…", "Creating account…")):
+                _ok, _m_tr, _m_en = uye_kaydet(_ep, _s1, _ad)
+            if _ok:
+                st.success(t(_m_tr, _m_en))
+                if _giris_yap(_ep, _s1):   # otomatik giriş → kesintisiz
+                    st.rerun()
+            else:
+                st.error(t(_m_tr, _m_en))
+    if _ipt:
+        st.session_state["login_ac"] = False
+        st.rerun()
+
+
 def giris_formu_ana():
-    """Ana alanda (ortada) giriş kartı — sağ üst '🔐 Giriş' butonuyla açılır."""
+    """Ana alanda (ortada) giriş + kayıt kartı — sağ üst '🔐 Giriş' butonuyla açılır."""
     if st.session_state.get("kulup_giris") or not st.session_state.get("login_ac"):
         return
     _orta = st.columns([1, 1.4, 1])[1]
-    _giris_baslik = t("KULÜP · SCOUT · MENAJER GİRİŞİ", "CLUB · SCOUT · MANAGER LOGIN")
+    _GIR = t("Giriş Yap", "Log In")
+    _KYT = t("Kayıt Ol", "Sign Up")
     with _orta:
         st.markdown(
             f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
             f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 20px 6px;"
             f"margin:6px 0 14px;'>"
             f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
-            f"letter-spacing:0.16em;'>🔐 {_giris_baslik}</div></div>",
+            f"letter-spacing:0.16em;'>🔐 {t('KULÜP · SCOUT · MENAJER', 'CLUB · SCOUT · MANAGER')}</div></div>",
             unsafe_allow_html=True)
+        _mod = st.radio(t("Mod", "Mode"), [_GIR, _KYT], horizontal=True,
+                        key="giris_mod_sec", label_visibility="collapsed")
+        if _mod == _KYT:
+            _kayit_formu()
+            return
         with st.form("giris_form_ana", clear_on_submit=True):
-            ku = st.text_input(t("Kullanıcı adı", "Username"),
-                               placeholder=t("kullanıcı adı", "username"))
+            ku = st.text_input(t("Kullanıcı adı / E-posta", "Username / Email"),
+                               placeholder=t("kullanıcı adı veya e-posta", "username or email"))
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
             _b1, _b2 = st.columns(2)
-            _gir = _b1.form_submit_button(t("Giriş Yap", "Log In"),
-                                          width="stretch", type="primary")
+            _gir = _b1.form_submit_button(_GIR, width="stretch", type="primary")
             _ipt = _b2.form_submit_button(t("İptal", "Cancel"), width="stretch")
         if _gir:
             if _giris_yap(ku, si):
