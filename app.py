@@ -1082,11 +1082,17 @@ def giris_formu_ana():
     _KYT = t("Kayıt Ol", "Sign Up")
     with _orta:
         st.markdown(
-            f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
-            f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 20px 6px;"
-            f"margin:6px 0 14px;'>"
-            f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
-            f"letter-spacing:0.16em;'>🔐 {t('KULÜP · SCOUT · MENAJER', 'CLUB · SCOUT · MANAGER')}</div></div>",
+            f"<div style=\"background:linear-gradient(120deg,#0a0e1bee 0%,#1a1438ee 55%,#2a1145cc 100%),"
+            f"url('app/static/hero.jpg') center 28%/cover no-repeat;"
+            f"border:1px solid #3b2d6e;border-radius:14px;padding:22px 24px;"
+            f"margin:6px 0 14px;overflow:hidden;\">"
+            f"<div style='font-size:0.62rem;font-weight:800;color:#c4b5fd;letter-spacing:0.18em;'>"
+            f"🔐 {t('KULÜP · SCOUT · MENAJER', 'CLUB · SCOUT · MANAGER')}</div>"
+            f"<div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;"
+            f"margin-top:5px;line-height:1.1;'>{t('Hesabına Eriş', 'Access Your Account')}</div>"
+            f"<div style='color:#aebbd0;font-size:0.8rem;margin-top:3px;'>"
+            f"{t('Ücretsiz kayıt ol veya giriş yap — kulüpler ve profesyoneller için.', 'Sign up free or log in — for clubs and professionals.')}</div>"
+            f"</div>",
             unsafe_allow_html=True)
         _mod = st.radio(t("Mod", "Mode"), [_GIR, _KYT], horizontal=True,
                         key="giris_mod_sec", label_visibility="collapsed")
