@@ -185,12 +185,15 @@ footer { visibility:hidden !important; display:none !important; }
     max-width:580px; line-height:1.5; }
 
 /* ── Özet kartlar ── */
-.stat-kart { background:linear-gradient(180deg,#171c30,#131726);
-    border:1px solid #222842; border-radius:8px; padding:14px 10px;
-    text-align:center; border-top:3px solid #1db954; margin-bottom:6px;
+.stat-kart { background:linear-gradient(180deg,#1a2038,#12162a);
+    border:1px solid #232a45; border-radius:14px; padding:15px 12px;
+    text-align:center; margin-bottom:6px;
     /* Satır içi kartlar eşit yükseklik + içerik dikey ortalı */
     min-height:92px; height:100%;
-    display:flex; flex-direction:column; justify-content:center; }
+    display:flex; flex-direction:column; justify-content:center;
+    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
+.stat-kart:hover { transform:translateY(-2px); border-color:#33406a;
+    box-shadow:0 10px 26px -14px #000000aa; }
 .stat-kart .sayi   { font-size:1.6rem; font-weight:800; color:#1db954;
     font-family:'Sora',sans-serif; line-height:1.12; white-space:nowrap; }
 .stat-kart .etiket { font-size:0.66rem; color:#8899aa; margin-top:4px;
@@ -6447,7 +6450,7 @@ def genel_ozet_hesapla() -> dict:
 
 
 def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
-    return (f'<div class="stat-kart" style="border-radius:14px;">'
+    return (f'<div class="stat-kart" style="border-radius:14px;border-top:2px solid {renk};">'
             f'<div class="sayi" style="color:{renk}">{deger}</div>'
             f'<div class="etiket">{etiket}</div>'
             + (f'<div style="font-size:10px;color:#6e7681;margin-top:3px;">{alt}</div>' if alt else "")
