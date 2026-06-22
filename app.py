@@ -194,6 +194,9 @@ footer { visibility:hidden !important; display:none !important; }
     transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease; }
 .stat-kart:hover { transform:translateY(-2px); border-color:#33406a;
     box-shadow:0 10px 26px -14px #000000aa; }
+/* ── Üyelik paket kartları ── */
+.paket-kart { transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
+.paket-kart:hover { transform:translateY(-3px); box-shadow:0 18px 42px -18px #000000c0; }
 .stat-kart .sayi   { font-size:1.6rem; font-weight:800; color:#1db954;
     font-family:'Sora',sans-serif; line-height:1.12; white-space:nowrap; }
 .stat-kart .etiket { font-size:0.66rem; color:#8899aa; margin-top:4px;
@@ -6493,15 +6496,15 @@ def _paket_kart_html(ikon, isim, renk, fiyat, fiyat_alt, ozellikler, populer=Fal
             satirlar += (f"<div style='font-size:12.5px;color:#5b6470;padding:5px 0;border-bottom:1px solid #1a2027;'>"
                          f"<span style='color:#475569;'>✕</span> &nbsp;{metin}</div>")
     return (
-        f"<div style='position:relative;background:linear-gradient(160deg,#161b22,#0f141c);"
-        f"border-radius:16px;padding:24px 20px 18px;{glow}height:100%;'>"
+        f"<div class='paket-kart' style='position:relative;background:linear-gradient(160deg,#1a2030,#0f141c);"
+        f"border:1px solid #232a45;border-radius:16px;padding:24px 20px 18px;{glow}height:100%;'>"
         f"{rozet}{indirim_rozet}"
         f"<div style='text-align:center;margin-bottom:6px;'>"
         f"<div style='font-size:30px;'>{ikon}</div>"
         f"<div style='font-size:1.25rem;font-weight:800;color:{renk};margin-top:2px;'>{isim}</div></div>"
         f"<div style='text-align:center;margin:8px 0 16px;'>"
         f"{eski_html}"
-        f"<div style='font-size:1.9rem;font-weight:900;color:#fff;line-height:1;'>{fiyat}</div>"
+        f"<div style='font-size:2rem;font-weight:900;color:#fff;line-height:1;font-family:Sora,sans-serif;'>{fiyat}</div>"
         f"<div style='font-size:11px;color:#8b949e;margin-top:3px;'>{fiyat_alt}</div>"
         f"{deneme_rozet}</div>"
         f"{satirlar}</div>"
