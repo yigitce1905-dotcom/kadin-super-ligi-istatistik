@@ -355,7 +355,8 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     .ws-table tbody tr:hover { background: #0d0d16; }
     .ws-table tbody td {
         display: inline-flex; align-items: center; gap: 5px;
-        width: auto; padding: 0; border: none; white-space: nowrap;
+        width: auto; max-width: 100%; min-width: 0;
+        padding: 0; border: none; white-space: normal;   /* uzun değerler (takım adı) sarsın → taşma yok */
         font-size: 0.8rem;
     }
     /* İsim hücresi tam genişlik üst satır + ayraç çizgi */
@@ -2006,6 +2007,66 @@ def mevki_normalize(pozisyon: str) -> str:
 
 
 import re as _re
+import html as _html
+
+
+def df_tablo(df, basliklar=None, formatlar=None, height=None):
+    """DataFrame'i ws-table HTML olarak render eder: masaüstünde tablo, mobilde
+    (≤768px) mevcut .ws-table CSS'i sayesinde OTOMATİK kart düzeni (yatay kaydırma yok).
+    st.dataframe'in canvas tablosu mobilde sığmıyordu; bu HTML tablo data-label ile
+    her hücreyi etiketleyip kart görünümüne dönüşür.
+
+    basliklar: {iç_kolon: görünen_başlık}  (yoksa kolon adı; EN çevirisi için kullan)
+    formatlar: {iç_kolon: callable(v)->str} (yoksa otomatik: float→%g, int→tam sayı)
+    İlk kolon kart başlığı (ws-name) olur; sayısal kolonlar sağa yaslı (ws-mono).
+    NOT: yalnız GÖRÜNTÜ tabloları için — satır-seçimli (on_select) tablolar st.dataframe kalmalı.
+    """
+    basliklar = basliklar or {}
+    formatlar = formatlar or {}
+    cols = list(df.columns)
+    num = {c for c in cols if pd.api.types.is_numeric_dtype(df[c])}
+
+    def esc(x):
+        return _html.escape(str(x))
+
+    def fmt(c, v):
+        if c in formatlar:
+            try:
+                return esc(formatlar[c](v))
+            except Exception:
+                return esc(v)
+        try:
+            if pd.isna(v):
+                return "—"
+        except (TypeError, ValueError):
+            pass
+        if isinstance(v, float):
+            return esc(f"{v:g}")
+        return esc(v)
+
+    def th(c):
+        return f"<th class='num'>{esc(basliklar.get(c, c))}</th>" if c in num \
+            else f"<th>{esc(basliklar.get(c, c))}</th>"
+    thead = "<tr>" + "".join(th(c) for c in cols) + "</tr>"
+
+    satirlar = []
+    for _, r in df.iterrows():
+        hucreler = []
+        for i, c in enumerate(cols):
+            val = fmt(c, r[c])
+            if i == 0:
+                hucreler.append(f"<td><span class='ws-name'>{val}</span></td>")
+            else:
+                cls = "num ws-mono" if c in num else ""
+                hucreler.append(f"<td class='{cls}' data-label='{esc(basliklar.get(c, c))}'>{val}</td>")
+        satirlar.append("<tr>" + "".join(hucreler) + "</tr>")
+
+    stil = f" style='max-height:{height}px;'" if height else ""
+    st.markdown(
+        f"<div class='ws-wrap'{stil}><table class='ws-table'>"
+        f"<thead>{thead}</thead><tbody>{''.join(satirlar)}</tbody></table></div>",
+        unsafe_allow_html=True)
+
 
 # Mevki kategorileri — geniş → detay (global, her yerde kullanılır)
 _MEVKI_DETAY = {
@@ -7623,20 +7684,14 @@ if tab_genç:
             if EN:
                 goster["Mevki"] = goster["Mevki"].map(mevki_goster)
             goster.index = range(1, len(goster)+1)
-            st.dataframe(
-                goster, width="stretch", height=420,
-                column_config={
-                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
-                    "Yaş":   st.column_config.NumberColumn(t("Yaş","Age"), format="%.0f"),
-                    "Mevki": st.column_config.TextColumn(t("Mevki","Position")),
-                    "Takım": st.column_config.TextColumn(t("Takım","Team")),
-                    "Maç":   st.column_config.NumberColumn(t("Maç","Matches")),
-                    "Gol":   st.column_config.NumberColumn(t("Gol","Goals")),
-                    "G/Maç": st.column_config.NumberColumn(t("G/Maç","G/Match"), format="%.2f"),
-                    "Skor":  st.column_config.ProgressColumn(
-                        t("Skor","Score"), min_value=0, max_value=250, format="%.0f"),
-                },
-            )
+            df_tablo(
+                goster,
+                basliklar={"Oyuncu": t("Oyuncu","Player"), "Yaş": t("Yaş","Age"),
+                           "Mevki": t("Mevki","Position"), "Takım": t("Takım","Team"),
+                           "Maç": t("Maç","Matches"), "Gol": t("Gol","Goals"),
+                           "G/Maç": t("G/Maç","G/Match"), "Skor": t("Skor","Score")},
+                formatlar={"Yaş": lambda v: f"{v:.0f}", "G/Maç": lambda v: f"{v:.2f}",
+                           "Skor": lambda v: f"{v:.0f}"})
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -7726,20 +7781,13 @@ if tab9:
                 _goster_df = filtered[show].copy()
                 if EN and "Mevki" in _goster_df.columns:
                     _goster_df["Mevki"] = _goster_df["Mevki"].map(mevki_goster)
-                st.dataframe(_goster_df, hide_index=True, width="stretch",
-                    height=min(600, 45 + len(filtered) * 35),
-                    column_config={
-                        "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
-                        "Takım":  st.column_config.TextColumn(t("Takım","Team")),
-                        "Mevki":  st.column_config.TextColumn(t("Mevki","Position")),
-                        "Uyruk":  st.column_config.TextColumn(t("Uyruk","Nationality")),
-                        "Yaş":    st.column_config.NumberColumn(t("Yaş","Age"), format="%.0f"),
-                        "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
-                        "İlk11":  st.column_config.NumberColumn(t("İlk11","Started")),
-                        "Gol":    st.column_config.NumberColumn(t("Gol","Goals")),
-                        "Dakika": st.column_config.NumberColumn(t("Dakika","Minutes")),
-                        "Sarı":   st.column_config.NumberColumn("🟨"),
-                    })
+                df_tablo(_goster_df,
+                    basliklar={"Oyuncu": t("Oyuncu","Player"), "Takım": t("Takım","Team"),
+                               "Mevki": t("Mevki","Position"), "Uyruk": t("Uyruk","Nationality"),
+                               "Yaş": t("Yaş","Age"), "Maç": t("Maç","Matches"),
+                               "İlk11": t("İlk11","Started"), "Gol": t("Gol","Goals"),
+                               "Dakika": t("Dakika","Minutes"), "Sarı": "🟨"},
+                    formatlar={"Yaş": lambda v: f"{v:.0f}"})
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -7859,14 +7907,11 @@ if tab10:
                          .reset_index()
                          .rename(columns={"takim":"Takım","mean":"Ort","min":"Min","max":"Max","count":"Oyuncu"})
                          .sort_values("Ort"))
-            st.dataframe(takim_yas, hide_index=True, width="stretch", height=400,
-                column_config={
-                    "Takım":  st.column_config.TextColumn(t("Takım","Team")),
-                    "Ort": st.column_config.NumberColumn(t("Ort","Avg"), format="%.1f"),
-                    "Min": st.column_config.NumberColumn(format="%.0f"),
-                    "Max": st.column_config.NumberColumn(format="%.0f"),
-                    "Oyuncu": st.column_config.NumberColumn(t("Oyuncu","Players")),
-                })
+            df_tablo(takim_yas,
+                basliklar={"Takım": t("Takım","Team"), "Ort": t("Ort","Avg"),
+                           "Min": "Min", "Max": "Max", "Oyuncu": t("Oyuncu","Players")},
+                formatlar={"Ort": lambda v: f"{v:.1f}", "Min": lambda v: f"{v:.0f}",
+                           "Max": lambda v: f"{v:.0f}"})
             if not takim_yas.empty:
                 g = takim_yas.iloc[0]; y = takim_yas.iloc[-1]
                 st.markdown(
@@ -7938,18 +7983,12 @@ if tab11:
             st.markdown(f"**📋 {t('Tüm Kaleciler', 'All Goalkeepers')}**")
             goster = kal_df[kal_df["Maç"] > 0].copy()
             goster.index = range(1, len(goster) + 1)
-            st.dataframe(
+            df_tablo(
                 goster,
-                width="stretch",
-                height=520,
-                column_config={
-                    "Kaleci": st.column_config.TextColumn(t("Kaleci","Goalkeeper")),
-                    "Takım":  st.column_config.TextColumn(t("Takım","Team")),
-                    "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
-                    "G/Maç": st.column_config.NumberColumn(t("G/Maç","G/Match"), format="%.2f"),
-                    "YenilenGol": st.column_config.NumberColumn(t("Y.Gol","GA")),
-                },
-            )
+                basliklar={"Kaleci": t("Kaleci","Goalkeeper"), "Takım": t("Takım","Team"),
+                           "Maç": t("Maç","Matches"), "YenilenGol": t("Y.Gol","GA"),
+                           "G/Maç": t("G/Maç","G/Match")},
+                formatlar={"G/Maç": lambda v: f"{v:.2f}"})
 
         with col_grafik:
             st.markdown(f"**📊 {t('Maç Başına Yenilen Gol (≥5 maç)', 'Goals Conceded per Match (≥5 matches)')}**")
