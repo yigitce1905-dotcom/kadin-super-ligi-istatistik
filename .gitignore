@@ -21,3 +21,7 @@ internal_raporlar.json
 # Yerel yedekler
 *.bak.json
 scoutnot.json
+
+# Güvenlik: kimlik bilgileri ve secret'lar repoya GİRMEZ
+club_credentials.json
+_render_secrets/
