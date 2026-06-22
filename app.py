@@ -5276,7 +5276,11 @@ if st.session_state.get("sayfa") == "altlig":
 
 
 # ─── ALT YAŞLAR (gelişim ligleri — toplu liste, puan durumu YOK) ─────────────
-_ALTYAS_DOSYALAR = {"U17 Kızlar": "altlig_u17.json"}  # sonra: U15 / U13 (farklı kaynak)
+_ALTYAS_DOSYALAR = {  # kategori → veri dosyası (sırayla sekme/seçici olur)
+    "U17 Kızlar": "altlig_u17.json",   # kaynak: TFF U17 Gelişim Ligi
+    "U15 Kızlar": "altlig_u15.json",   # kaynak: tffistanbul.org (İstanbul U15 Genç Kızlar A/B/C)
+    # "U13 Kızlar": "altlig_u13.json", # sonra
+}
 
 def render_altyas():
     st.markdown(f"## 🌱 {t('Alt Yaşlar', 'Youth Leagues')}")
@@ -5313,8 +5317,11 @@ def render_altyas():
                              for i, r in enumerate(kr)])
         st.dataframe(krdf, use_container_width=True, hide_index=True,
                      height=min(45 + len(krdf) * 35, 480))
-        st.caption(t("TFF U17 gelişim ligi yalnızca top-10 golcüyü yayınlıyor.",
-                     "TFF U17 development league publishes only the top-10 scorers."))
+        if "U17" in _lig:
+            st.caption(t("TFF U17 gelişim ligi yalnızca top-10 golcüyü yayınlıyor.",
+                         "TFF U17 development league publishes only the top-10 scorers."))
+        else:
+            st.caption(t("Lig genelinde ilk 10 golcü.", "Top 10 scorers across the league."))
         return
 
     oyuncular = data.get("oyuncular", [])
