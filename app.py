@@ -5131,6 +5131,9 @@ def _altlig_puan_df(puan):
         return df
     kolon = ["sira", "takim", "O", "G", "B", "M", "A", "Y", "AV", "P"]
     df = df[[c for c in kolon if c in df.columns]]
+    if "sira" in df.columns and "takim" in df.columns:   # sırayı takım adına göm → kart başlığı temiz
+        df["takim"] = df["sira"].astype(str) + ". " + df["takim"].astype(str)
+        df = df.drop(columns="sira")
     return df.rename(columns={"sira": "#", "takim": t("Takım", "Team")})
 
 
@@ -5196,7 +5199,7 @@ def _altlig_takim_analizi(oyuncular):
         "takim": t("Takım", "Team"), "grup": t("Grup", "Grp"), "kadro": t("Kadro", "Squad"),
         "gol": t("Toplam Gol", "Goals"), "en_golcu": t("En Golcü", "Top Scorer"),
         "sari": "🟨", "kirmizi": "🟥"})
-    st.dataframe(show, width="stretch", hide_index=True, height=min(45 + len(show) * 35, 600))
+    df_tablo(show)
     st.caption(t(f"{len(show)} takım · toplam gola göre sıralı.", f"{len(show)} teams · sorted by total goals."))
 
 
@@ -5240,11 +5243,10 @@ def render_altlig():
     if secim == _kr_lbl:
         st.markdown(f"#### 👑 {t('Gol Kraliçesi — Resmi TFF Tablosu', 'Top Scorers — Official TFF')}")
         kr = data["gol_kralicesi"]
-        krdf = pd.DataFrame([{"#": i + 1, t("Oyuncu", "Player"): r["oyuncu"],
+        krdf = pd.DataFrame([{t("Oyuncu", "Player"): f"{i + 1}. {r['oyuncu']}",
                               t("Takım", "Team"): r["takim"], t("Gol", "Goals"): r["gol"]}
                              for i, r in enumerate(kr)])
-        st.dataframe(krdf, width="stretch", hide_index=True,
-                     height=min(45 + len(krdf) * 35, 640))
+        df_tablo(krdf)
         st.caption(t(f"Toplam {len(kr)} golcü · kaynak: tff.org (resmi normal sezon). Oyuncu gol sayıları bu tabloyla + playoff golleriyle uzlaştırılmıştır.",
                      f"{len(kr)} scorers · source: tff.org (official regular season). Player goals reconciled with this table + playoff goals."))
         return
@@ -5256,8 +5258,7 @@ def render_altlig():
             puan_df = _altlig_puan_df(gruplar[g].get("puan_durumu", []))
             if not puan_df.empty:
                 st.markdown(f"##### {_ad} · {t(f'{g} Grubu', f'Group {g}')}")
-                st.dataframe(puan_df, width="stretch", hide_index=True,
-                             height=min(40 + len(puan_df) * 35, 360))
+                df_tablo(puan_df)
         return
 
     # 👤 Oyuncular — TÜM oyuncular (A/B grup ayrımı YOK), arama + profil (detay kartı)
@@ -5381,12 +5382,11 @@ def render_altyas():
         st.markdown(f"#### 👑 {_kr_baslik}")
         kr = data["gol_kralicesi"]
         # U17: {oyuncu,takim,gol}; U15/U13: tam oyuncu dict ({...,gol_sayisi}) → ikisini de destekle
-        krdf = pd.DataFrame([{"#": i + 1, t("Oyuncu", "Player"): r["oyuncu"],
+        krdf = pd.DataFrame([{t("Oyuncu", "Player"): f"{i + 1}. {r['oyuncu']}",
                               t("Takım", "Team"): r.get("takim", ""),
                               t("Gol", "Goals"): r.get("gol", r.get("gol_sayisi", 0))}
                              for i, r in enumerate(kr)])
-        st.dataframe(krdf, width="stretch", hide_index=True,
-                     height=min(45 + len(krdf) * 35, 480))
+        df_tablo(krdf)
         if "U17" in _lig:
             st.caption(t("TFF U17 gelişim ligi yalnızca top-10 golcüyü yayınlıyor.",
                          "TFF U17 development league publishes only the top-10 scorers."))
@@ -6702,15 +6702,9 @@ if tab4:
             if EN:
                 kadro["Mevki"] = kadro["Mevki"].map(mevki_goster)
             kadro.index += 1
-            st.dataframe(kadro, width="stretch", height=400,
-                column_config={
-                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player"), width="medium"),
-                    "Mevki":  st.column_config.TextColumn(t("Mevki","Position"),  width="small"),
-                    "Maç":    st.column_config.NumberColumn(t("Maç","Matches"),   format="%d"),
-                    "Gol":    st.column_config.NumberColumn(t("Gol","Goals"),   format="%d"),
-                    "Dakika": st.column_config.NumberColumn(t("Dk","Min"),    format="%d"),
-                    "Sarı":   st.column_config.NumberColumn("🟨",    format="%d"),
-                })
+            df_tablo(kadro, basliklar={"Oyuncu": t("Oyuncu","Player"), "Mevki": t("Mevki","Position"),
+                                       "Maç": t("Maç","Matches"), "Gol": t("Gol","Goals"),
+                                       "Dakika": t("Dk","Min"), "Sarı": "🟨"})
 
         # ── Mevki dağılımı + uyruk ─────────────────────────────────────
         with sag:
@@ -6801,17 +6795,10 @@ if tab5:
         takim_ozet.index = range(1, len(takim_ozet)+1)
 
         st.markdown(f"#### {t('Takım Bazlı Sezon İstatistikleri', 'Season Stats by Team')}")
-        st.dataframe(takim_ozet, width="stretch", height=520,
-            column_config={
-                "Takım":          st.column_config.TextColumn(t("Takım","Team"), width="large"),
-                "Oyuncu Sayısı":  st.column_config.NumberColumn(t("Kadro","Squad")),
-                "Toplam Gol":     st.column_config.ProgressColumn(t("Toplam Gol","Total Goals"),
-                    min_value=0, max_value=int(takim_ozet["Toplam Gol"].max()), format="%d"),
-                "Toplam Dakika":  st.column_config.NumberColumn(t("Toplam Dk","Total Min")),
-                "Sarı Kart":      st.column_config.NumberColumn("🟨"),
-                "Kırmızı Kart":   st.column_config.NumberColumn("🟥"),
-            }
-        )
+        df_tablo(takim_ozet, basliklar={"Takım": t("Takım","Team"), "Oyuncu Sayısı": t("Kadro","Squad"),
+                                        "Toplam Gol": t("Toplam Gol","Total Goals"),
+                                        "Toplam Dakika": t("Toplam Dk","Total Min"),
+                                        "Sarı Kart": "🟨", "Kırmızı Kart": "🟥"})
 
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -6831,15 +6818,7 @@ if tab5:
                 "AV": t("AV — Averaj","GD — Goal Diff"), "P": t("P — Puan","Pts — Points"),
             }
             df_puan.index = range(1, len(df_puan) + 1)
-            st.dataframe(
-                df_puan,
-                width="stretch",
-                height=600,
-                column_config={
-                    col: st.column_config.TextColumn(sutun_aciklama.get(col, col))
-                    for col in df_puan.columns
-                },
-            )
+            df_tablo(df_puan, basliklar={col: sutun_aciklama.get(col, col) for col in df_puan.columns})
             st.caption(t("Kaynak: TFF — tff.org | O=Oynadı · G=Galibiyet · B=Beraberlik · M=Mağlubiyet · A=Atılan · Y=Yenilen · AV=Averaj · P=Puan",
                          "Source: TFF — tff.org | P=Played · W=Won · D=Draw · L=Lost · GF=Goals For · GA=Goals Ag. · GD=Goal Diff · Pts=Points"))
         else:
@@ -7381,14 +7360,11 @@ if tab7:
             goster["_s"] = goster["Mevki"].map(lambda m: _grup_sira.get(mevki_grup(m), 4))
             goster = goster.sort_values("_s").drop(columns="_s").reset_index(drop=True)
             goster.index += 1
-            st.dataframe(goster, width="stretch",
-                column_config={
-                    "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player"), width="medium"),
-                    "Takım":  st.column_config.TextColumn(t("Takım","Team"),  width="medium"),
-                    "Gol":    st.column_config.ProgressColumn(t("Gol","Goals"),
-                        min_value=0, max_value=int(df_tam["Gol"].max()), format="%d"),
-                    "Gol/Maç": st.column_config.NumberColumn("G/M", format="%.2f"),
-                })
+            df_tablo(goster, basliklar={"Oyuncu": t("Oyuncu","Player"), "Takım": t("Takım","Team"),
+                                        "Mevki": t("Mevki","Position"), "Gol": t("Gol","Goals"),
+                                        "Maç": t("Maç","Matches"), "Gol/Maç": "G/M",
+                                        "Dakika": t("Dk","Min"), "Sarı": "🟨"},
+                     formatlar={"Gol/Maç": lambda v: f"{v:.2f}"})
         else:
             st.info(t("Soldan oyuncu seçmeye başla — saha canlı güncellenecek.",
                       "Start picking players on the left — the pitch updates live."))
@@ -7471,19 +7447,11 @@ if tab_benim:
                     if EN:
                         goster["Mevki"] = goster["Mevki"].map(mevki_goster)
                     goster.index += 1
-                    st.dataframe(goster, width="stretch", height=460,
-                        column_config={
-                            "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
-                            "Mevki":  st.column_config.TextColumn(t("Mevki","Position")),
-                            "Maç":    st.column_config.NumberColumn(t("Maç","Matches")),
-                            "İlk11":  st.column_config.NumberColumn(t("İlk11","Started")),
-                            "Gol": st.column_config.ProgressColumn(
-                                t("Gol","Goals"), min_value=0, max_value=int(kadro["Gol"].max()+1), format="%d"),
-                            "Gol/Maç": st.column_config.NumberColumn(t("Gol/Maç","G/Match"), format="%.2f"),
-                            "Dakika": st.column_config.NumberColumn(t("Dakika","Minutes")),
-                            "Sarı":   st.column_config.NumberColumn("🟨"),
-                            "Kırmızı": st.column_config.NumberColumn("🟥"),
-                        })
+                    df_tablo(goster, basliklar={"Oyuncu": t("Oyuncu","Player"), "Mevki": t("Mevki","Position"),
+                                                "Maç": t("Maç","Matches"), "İlk11": t("İlk11","Started"),
+                                                "Gol": t("Gol","Goals"), "Gol/Maç": t("Gol/Maç","G/Match"),
+                                                "Dakika": t("Dakika","Minutes"), "Sarı": "🟨", "Kırmızı": "🟥"},
+                             formatlar={"Gol/Maç": lambda v: f"{v:.2f}"})
 
                 with col_g:
                     st.markdown(f"**📊 {t('Mevki Dağılımı', 'Position Distribution')}**")
