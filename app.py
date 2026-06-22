@@ -606,21 +606,25 @@ oyuncu_detay = {o["oyuncu"]: o for o in ham_liste} if ham_liste else {}
 _DIZIN = pathlib.Path(__file__).parent  # app.py'nin bulunduğu klasör
 
 # ─── GİRİŞ SİSTEMİ ───────────────────────────────────────────────────────────
-@st.cache_data
 def kulup_credentials_yukle() -> dict:
+    """Kulüp giriş bilgileri → DÜZ dict. Önce dosya (repo/Render Secret File),
+    yoksa st.secrets['clubs'] fallback'i.
+    NOT: @st.cache_data KASITLI kaldırıldı — st.secrets nesnelerini önbelleğe alırken
+    serileştirme (pickle) hatası prod'da çökmeye yol açabiliyordu. Fonksiyon zaten ucuz.
+    st.secrets'tan gelen iç nesneler düz dict'e çevrilir (AttrDict serileştirme sorunu olmasın)."""
     # 1) Dosya (repo veya Render Secret File → bootstrap kökü doldurur)
     yol = _DIZIN / "club_credentials.json"
     if yol.exists():
         try:
-            with open(yol, encoding="utf-8") as f:
-                data = json.load(f)
+            data = json.loads(yol.read_text(encoding="utf-8"))
             if isinstance(data, dict) and data:
                 return data
         except Exception:
             pass   # bozuk/yanlış içerik (örn. yol yapıştırılmış) → secrets fallback'e düş, ÇÖKME
-    # 2) Streamlit Secrets fallback ([clubs])
+    # 2) Streamlit Secrets fallback ([clubs]) — düz dict'e DEEP-convert
     try:
-        return dict(st.secrets.get("clubs", {}))
+        clubs = dict(st.secrets.get("clubs", {}))
+        return {k: dict(v) for k, v in clubs.items()}
     except Exception:
         return {}
 
