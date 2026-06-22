@@ -29,6 +29,17 @@ for _sec_src in ("/etc/secrets/secrets.toml", "secrets.toml"):
             pass
         break
 
+# club_credentials.json: Render "Secret File" olarak yüklenir (/etc/secrets/'a düşer),
+# buradan uygulama köküne kopyalanır → kod onu olağan yolla (dosyadan) okur. Repoda DEĞİL.
+# Lokalde dosya zaten kökte → kaynak yok, no-op (mevcut dosya korunur).
+_cc_src = "/etc/secrets/club_credentials.json"
+_cc_dst = pathlib.Path("club_credentials.json")
+if os.path.exists(_cc_src) and not _cc_dst.exists():
+    try:
+        _shutil.copy(_cc_src, _cc_dst)
+    except Exception:
+        pass
+
 _page_title = "Women Football Scouting"   # marka adı (tarayıcı sekmesi)
 st.set_page_config(
     page_title=_page_title,
