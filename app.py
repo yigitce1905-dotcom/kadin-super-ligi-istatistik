@@ -2521,6 +2521,16 @@ def _takim_kisa(ad: str) -> str:
     return " ".join(s.split()).strip(" -·") or ad
 
 
+def _kanon_takim_sayisi(takim_serisi) -> int:
+    """Süper Lig benzersiz KULÜP sayısı (özet/headline için). İsim varyantları _takim_kisa ile
+    birleşir (ör. 'ALG SPOR' / 'GAZİANTEP ALG SPOR' / 'SERCAN İNŞAAT GAZİANTEP ALG SPOR' → tek 'ALG').
+    Ayrıca Çekmeköy/Şile Bilgidoğa AYNI kulüptür (kulüp taşındı) → tek sayılır.
+    NOT: global _takim_kisa bu ikisini bilinçli AYRI tutar (transfer atfı/clean-sheet için);
+    burada yalnız özet sayım amacıyla birleştirilir → 17 isim varyantı → 14 kulüp."""
+    kanon = takim_serisi.dropna().map(_takim_kisa).replace({"Çekmeköy Bilgidoğa": "Şile Bilgidoğa"})
+    return int(kanon.nunique())
+
+
 def _uyruk_goster(nat_str: str) -> str:
     """Çift vatandaşlık gösterimi: 'DenmarkFaroe Island' → 'Denmark / Faroe Island'.
     SD profilinde iki uyruk ayraçsız bitişik geliyor; küçük→büyük sınırına ' / ' koyar.
@@ -4887,7 +4897,7 @@ with st.sidebar:
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
-_hero_takim  = df_tam["Takım"].nunique() if not df_tam.empty else 0
+_hero_takim  = _kanon_takim_sayisi(df_tam["Takım"]) if not df_tam.empty else 0
 _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
 try:    _hero_scout = len(scout_kadro_yukle())
 except Exception: _hero_scout = 0
@@ -6438,7 +6448,7 @@ def genel_ozet_hesapla() -> dict:
     except Exception: mac_n = 0
     return {
         "oyuncu":   len(df_tam),
-        "takim":    int(df_tam["Takım"].nunique()),
+        "takim":    _kanon_takim_sayisi(df_tam["Takım"]),
         "scouting": scouting_n,
         "mac":      mac_n,
         "gol":      int(df_tam["Gol"].sum()),
