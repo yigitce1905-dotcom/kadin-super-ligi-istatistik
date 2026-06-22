@@ -608,11 +608,17 @@ _DIZIN = pathlib.Path(__file__).parent  # app.py'nin bulunduğu klasör
 # ─── GİRİŞ SİSTEMİ ───────────────────────────────────────────────────────────
 @st.cache_data
 def kulup_credentials_yukle() -> dict:
+    # 1) Dosya (repo veya Render Secret File → bootstrap kökü doldurur)
     yol = _DIZIN / "club_credentials.json"
     if yol.exists():
-        with open(yol, encoding="utf-8") as f:
-            return json.load(f)
-    # Streamlit Secrets fallback
+        try:
+            with open(yol, encoding="utf-8") as f:
+                data = json.load(f)
+            if isinstance(data, dict) and data:
+                return data
+        except Exception:
+            pass   # bozuk/yanlış içerik (örn. yol yapıştırılmış) → secrets fallback'e düş, ÇÖKME
+    # 2) Streamlit Secrets fallback ([clubs])
     try:
         return dict(st.secrets.get("clubs", {}))
     except Exception:
