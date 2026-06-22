@@ -1208,23 +1208,45 @@ def deneme_kilit(ozellik: str, kaynak: str = "tr"):
         acik   = len(DENEME_TR_OYUNCULAR)
         toplam = len(df_tam) if not df_tam.empty else 0
         nereden = t("TR veride", "TR data")
+    # Kilit karti (futbol fotografli) — diger donusum ekranlariyla tutarli
     st.markdown(
-        f"<div style='max-width:560px;margin:40px auto;text-align:center;"
-        f"background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
-        f"border-radius:16px;padding:36px 32px;'>"
-        f"<div style='font-size:2.6rem;'>🎁</div>"
-        f"<h2 style='color:#f1f5f9;margin:8px 0 10px;'>{t('Sınırlı Önizleme','Limited Preview')}</h2>"
-        f"<p style='color:#cbd5e1;font-size:0.95rem;line-height:1.7;margin:0 0 14px;'>"
-        f"<b style='color:#e040fb;'>{ozellik}</b> "
-        f"{t('bu kademede sınırlıdır; üyelikle tam katalog açılır.','is limited on your plan; full catalog unlocks with membership.')}</p>"
-        f"<div style='background:#0f0a1e;border:1px solid #3b2d6e;border-radius:10px;"
-        f"padding:14px 18px;margin-bottom:14px;'>"
-        f"<span style='color:#94a3b8;font-size:0.9rem;'>{t('Toplam','Total')} "
-        f"<b style='color:#fff;'>{toplam}</b> {nereden} {t('oyuncu','players')} · "
-        f"{t('açık','open')}: <b style='color:#e040fb;'>{acik}</b> {t('örnek','samples')}</span></div>"
-        f"<p style='color:#6b7a99;font-size:0.82rem;margin:0;'>"
-        f"{t('Tam erişim için 📬 İletişim / üyelik.','For full access see 📬 Contact / membership.')}</p>"
-        f"</div>", unsafe_allow_html=True)
+        f"""
+        <div style='max-width:560px;margin:24px auto 14px;'>
+          <div style="background:linear-gradient(180deg,#0a0e1bcc 0%,#150b28e8 60%,#12101ffa 100%),
+               url('app/static/b1.jpg') center 28%/cover no-repeat;
+               border:1px solid #e040fb55;border-radius:16px;padding:32px 30px;text-align:center;overflow:hidden;">
+            <div style='font-size:2.4rem;'>🔒</div>
+            <div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;margin:6px 0 8px;'>
+              {t('Sınırlı Önizleme','Limited Preview')}</div>
+            <p style='color:#c7d2e6;font-size:0.92rem;line-height:1.6;margin:0 0 12px;'>
+              <b style='color:#e9d5ff;'>{ozellik}</b> {t('tam katalogu üyelikle açılır.','full catalog unlocks with membership.')}</p>
+            <div style='display:inline-block;background:#0f0a1ecc;border:1px solid #3b2d6e;border-radius:10px;padding:8px 16px;'>
+              <span style='color:#aebbd0;font-size:0.85rem;'>{t('Toplam','Total')} <b style='color:#fff;'>{toplam}</b> {nereden} · {t('açık','open')} <b style='color:#e040fb;'>{acik}</b> {t('örnek','samples')}</span>
+            </div>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    # Inline CTA: girişliyse Yükselt, değilse Giriş/Kayıt
+    _dc = st.columns([1, 1.4, 1])[1]
+    with _dc:
+        if st.session_state.get("kulup_giris"):
+            if st.button(t("💳 Üyeliği Yükselt", "💳 Upgrade Membership"), width="stretch",
+                         type="primary", key=f"dk_yukselt_{kaynak}"):
+                st.session_state["yukselt_plan"] = "premium" if kaynak == "scout" else "pro"
+                st.session_state["sayfa"] = "yukselt"; st.session_state["girildi"] = True
+                st.rerun()
+        else:
+            _dk1, _dk2 = st.columns(2)
+            if _dk1.button(t("🔐 Giriş Yap", "🔐 Log In"), width="stretch", type="primary", key=f"dk_giris_{kaynak}"):
+                st.session_state["login_ac"] = True; st.rerun()
+            if _dk2.button(t("✍️ Ücretsiz Kayıt", "✍️ Sign Up Free"), width="stretch", key=f"dk_kayit_{kaynak}"):
+                if not st.session_state.get("login_ac"):
+                    st.session_state["giris_mod_sec"] = t("Kayıt Ol", "Sign Up")
+                st.session_state["login_ac"] = True; st.rerun()
+        _whatsapp_butonu(t("Merhaba, üyelik hakkında bilgi almak istiyorum.", "Hi, I'd like info about membership."),
+                         "WhatsApp'tan sor", "Ask on WhatsApp")
 
 
 _PRO_OZELLIKLER = [
