@@ -6917,8 +6917,9 @@ if tab6:
         r1c1, r1c2, r1c3 = st.columns(3)
 
         with r1c1:
+            # Yalnız golü olanlar — gol kraliçesinde 0-gollü asla çıkmasın (garantili)
             en_iyi_kart(t("Gol Kraliçesi","Top Scorer"),
-                df_tam.nlargest(5,"Gol")[["Oyuncu","Takım","Gol","GolF","GolH","GolP"]],
+                df_tam[df_tam["Gol"] > 0].nlargest(5,"Gol")[["Oyuncu","Takım","Gol","GolF","GolH","GolP"]],
                 ["Gol"], "⚽")
 
         with r1c2:
@@ -7010,11 +7011,15 @@ if tab6:
         st.markdown("<br>")
         st.markdown(f"#### 🏟️ {t('Her Takımın Gol Kraliçesi', 'Top Scorer per Team')}")
         takimlar_s = sorted(df_tam["Takım"].dropna().unique())
-        cols = st.columns(min(4, len(takimlar_s)))
-        for idx, takim in enumerate(takimlar_s):
+        # Golü olan takımlar (hiç gol atmayan takımda 0-gollü "kraliçe" çıkmasın)
+        _golcu_takimlar = [tk for tk in takimlar_s
+                           if not df_tam[df_tam["Takım"] == tk].empty
+                           and int(df_tam[df_tam["Takım"] == tk]["Gol"].max()) > 0]
+        cols = st.columns(min(4, len(_golcu_takimlar))) if _golcu_takimlar else [st]
+        for idx, takim in enumerate(_golcu_takimlar):
             with cols[idx % 4]:
                 df_t = df_tam[df_tam["Takım"]==takim].nlargest(1,"Gol")
-                if not df_t.empty:
+                if not df_t.empty and int(df_t.iloc[0]["Gol"]) > 0:
                     r = df_t.iloc[0]
                     st.markdown(
                         f'<div style="background:#1a1f36;border-radius:8px;padding:10px;'
