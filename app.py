@@ -5294,7 +5294,9 @@ def render_altyas():
     st.caption(t("Gelişim ligleri · toplu oyuncu listesi ve istatistikleri — üst seviye verisinden tamamen ayrı.",
                  "Development leagues · consolidated player list & stats — fully separate from senior data."))
     _ligler = list(_ALTYAS_DOSYALAR.keys())
-    _lig = (st.selectbox(t("Kategori", "Category"), _ligler, key="altyas_lig")
+    # Kategori seçimi GÖRÜNÜR kutucuklarla (yatay radio) — kullanıcı U13/U15'in
+    # varlığını dropdown'a tıklamadan görsün.
+    _lig = (st.radio(t("Kategori", "Category"), _ligler, horizontal=True, key="altyas_lig")
             if len(_ligler) > 1 else _ligler[0])
     data = altlig_yukle(_ALTYAS_DOSYALAR[_lig])
     if not data:
