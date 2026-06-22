@@ -945,27 +945,44 @@ def giris_gerekli_ekrani():
         for ikon, baslik, aciklama in _PRO_OZELLIKLER
     )
 
+    # ── Kilit kartı (futbol fotoğraflı) ──
     st.markdown(
         f"""
-        <div style='max-width:580px;margin:0 auto;'>
-
-          <!-- Giriş uyarısı -->
-          <div style='background:#1a1f36;border:1px solid #1db95444;border-radius:14px;
-               padding:28px;text-align:center;margin-bottom:24px;'>
-            <div style='font-size:36px;margin-bottom:10px;'>🔐</div>
-            <div style='font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;'>
-              {t("Bu özellik giriş gerektiriyor", "This feature requires login")}</div>
-            <div style='font-size:13px;color:#8899aa;line-height:1.7;margin-bottom:16px;'>
-              {t("Transfer Öner, Gelişmiş Arama ve Oyuncu Profili;", "Transfer Suggest, Advanced Search and Player Profile are")}<br>
-              <b style='color:#e0e0e0;'>{t("kulüpler, menajerler ve scout profesyonellere", "exclusive content for clubs, agents and scouting professionals")}</b>{t(" özel içeriklerdir.", ".")}<br>
-              {t("Sol üstteki", "Use the")} <b style='color:#1db954;'>🔐 {t("Giriş", "Login")}</b> {t("butonunu kullanarak devam edebilirsiniz.", "button at the top left to continue.")}
-            </div>
-            <div style='font-size:12px;color:#505870;'>
-              {t("Hesabınız yoksa 📬 İletişim sayfasından bize ulaşın.", "If you don't have an account, reach us via the 📬 Contact page.")}
+        <div style='max-width:580px;margin:0 auto 14px;'>
+          <div style="background:linear-gradient(180deg,#0a0e1bcc 0%,#10152be8 60%,#12161ffa 100%),
+               url('app/static/b2.jpg') center 24%/cover no-repeat;
+               border:1px solid #1db95455;border-radius:14px;
+               padding:30px 28px 26px;text-align:center;overflow:hidden;">
+            <div style='font-size:38px;margin-bottom:8px;'>🔐</div>
+            <div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px;'>
+              {t("Bu özellik üyelere özel", "This feature is members-only")}</div>
+            <div style='font-size:13px;color:#aebbd0;line-height:1.7;'>
+              {t("Detaylı Oyuncu Profili, Transfer Öner ve Gelişmiş Arama;", "Detailed Player Profile, Transfer Suggest and Advanced Search are")}
+              <b style='color:#e8eef7;'>{t("kulüpler, menajerler ve scoutlara özeldir.", "exclusive to clubs, agents and scouts.")}</b>
             </div>
           </div>
-
-          <!-- PRO özellik listesi -->
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    # ── CTA: kilit mesajının HEMEN altında (sol menüyü aramaya gerek yok) ──
+    _cta = st.columns([1, 1.4, 1])[1]
+    with _cta:
+        _g1, _g2 = st.columns(2)
+        if _g1.button(t("🔐 Giriş Yap", "🔐 Log In"), width="stretch", type="primary", key="gge_giris"):
+            st.session_state["login_ac"] = True
+            st.rerun()
+        if _g2.button(t("✍️ Ücretsiz Kayıt Ol", "✍️ Sign Up Free"), width="stretch", key="gge_kayit"):
+            if not st.session_state.get("login_ac"):   # kart henüz açılmadıysa radio'yu Kayıt'a kur (güvenli)
+                st.session_state["giris_mod_sec"] = t("Kayıt Ol", "Sign Up")
+            st.session_state["login_ac"] = True
+            st.rerun()
+        st.caption(t("Ücretsiz hesapla başla · istediğin zaman yükselt",
+                     "Start free · upgrade anytime"))
+    # ── PRO özellik listesi + fiyat ──
+    st.markdown(
+        f"""
+        <div style='max-width:580px;margin:18px auto 0;'>
           <div style='background:#12161f;border-radius:12px;padding:20px 24px;
                border:1px solid #1e2340;'>
             <div style='color:#1db954;font-weight:700;font-size:0.88rem;
@@ -974,20 +991,17 @@ def giris_gerekli_ekrani():
             </div>
             {ozellik_satiri}
           </div>
-
-          <!-- Fiyat -->
           <div style='text-align:center;margin-top:20px;'>
             <span style='background:linear-gradient(135deg,#0d2b1e,#1a1f36);
                  border:2px solid #1db954;border-radius:12px;padding:14px 32px;
                  display:inline-block;'>
               <div style='color:#1db954;font-size:0.75rem;font-weight:700;
                    letter-spacing:2px;text-transform:uppercase;'>{t("PRO Paket", "PRO Package")}</div>
-              <div style='color:#fff;font-size:2rem;font-weight:900;line-height:1.1;'>
+              <div style='color:#fff;font-size:2rem;font-weight:900;line-height:1.1;font-family:Sora,sans-serif;'>
                 999 <span style='font-size:1rem;color:#8899aa;'>{t("€/yıl", "€/yr")}</span>
               </div>
             </span>
           </div>
-
         </div>
         """,
         unsafe_allow_html=True,
