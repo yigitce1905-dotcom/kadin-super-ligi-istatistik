@@ -1255,59 +1255,54 @@ def pro_paywall_goster(ozellik_adi: str = None, tier: str = "pro"):
         for ikon, baslik, aciklama in _PRO_OZELLIKLER
     )
 
+    # ── Kilit kartı (futbol fotoğraflı) ──
     st.markdown(
         f"""
-        <div style='max-width:640px;margin:0 auto;'>
-
-          <!-- Kilitli uyarısı -->
-          <div style='background:#1a1f36;border:1px solid #f0a50044;border-radius:12px;
-               padding:16px 22px;display:flex;align-items:center;gap:14px;margin-bottom:28px;'>
-            <span style='font-size:1.6rem;'>🔒</span>
-            <div>
-              <div style='color:#f0c040;font-weight:700;font-size:0.95rem;'>{ozellik_adi} {t(f"{_ti_etiket} üyelik gerektirir", f"requires {_ti_etiket} membership")}</div>
-              <div style='color:#8899aa;font-size:0.8rem;margin-top:3px;'>
-                {t("Aşağıdaki paketi aktifleştirerek tüm özelliklere anında erişebilirsiniz.", "Activate the package below to instantly access all features.")}
-              </div>
-            </div>
+        <div style='max-width:640px;margin:0 auto 14px;'>
+          <div style="background:linear-gradient(180deg,#0a0e1bcc 0%,#10152be8 60%,#12161ffa 100%),
+               url('app/static/b1.jpg') center 28%/cover no-repeat;
+               border:1px solid {_ti_renk}66;border-radius:14px;padding:28px 26px;text-align:center;overflow:hidden;">
+            <div style='font-size:34px;margin-bottom:6px;'>🔒</div>
+            <div style='font-family:Oswald,Sora,sans-serif;font-size:1.45rem;font-weight:700;color:#fff;'>
+              {ozellik_adi}</div>
+            <div style='color:#aebbd0;font-size:0.88rem;margin-top:6px;'>
+              {t(f"{_ti_etiket} üyelikle açılır — ödeme onayından sonra saniyeler içinde aktive.", f"Unlocks with {_ti_etiket} membership — activated in seconds after payment.")}</div>
           </div>
-
-          <!-- Fiyat kartı -->
-          <div style='background:linear-gradient(135deg,#0d2b1e 0%,#1a1f36 100%);
-               border:2px solid {_ti_renk};border-radius:16px;padding:28px 32px;margin-bottom:28px;
-               text-align:center;'>
-            <div style='font-size:0.8rem;color:{_ti_renk};letter-spacing:2px;font-weight:700;
-                 text-transform:uppercase;margin-bottom:8px;'>{_ti_ikon} {_ti_etiket} {t("Paket", "Package")}</div>
-            <div style='font-size:2.8rem;font-weight:900;color:#fff;line-height:1;'>
-              {_ti_fiyat}
-            </div>
-            <div style='color:#8899aa;font-size:0.82rem;margin-top:4px;'>{t("yıllık · KDV dahil", "yearly · VAT included")}</div>
-            <div style='margin-top:18px;'>
-              <span style='background:{_ti_renk};color:#000;font-weight:700;font-size:0.85rem;
-                   border-radius:8px;padding:10px 28px;display:inline-block;'>
-                {t("📬 İletişime Geç", "📬 Get in Touch")}
-              </span>
-            </div>
-            <div style='color:#505870;font-size:0.75rem;margin-top:10px;'>
-              {t("İptal prosedürü yok · İstediğin an durdur", "No cancellation hassle · Stop anytime")}
-            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    # ── CTA: Yükselt → ödeme sayfası + WhatsApp ──
+    _pc = st.columns([1, 1.5, 1])[1]
+    with _pc:
+        if st.button(t(f"💳 {_ti_etiket} Üyeliğe Yükselt", f"💳 Upgrade to {_ti_etiket}"),
+                     width="stretch", type="primary", key=f"pw_yukselt_{tier}"):
+            st.session_state["yukselt_plan"] = tier
+            st.session_state["sayfa"] = "yukselt"
+            st.session_state["girildi"] = True
+            st.rerun()
+        _whatsapp_butonu(t(f"Merhaba, {_ti_etiket} üyeliği almak istiyorum.", f"Hi, I'd like the {_ti_etiket} membership."),
+                         "WhatsApp'tan sor", "Ask on WhatsApp")
+    # ── Fiyat + özellik listesi ──
+    st.markdown(
+        f"""
+        <div style='max-width:640px;margin:16px auto 0;'>
+          <div style='background:linear-gradient(135deg,#0d2b1e,#1a1f36);border:2px solid {_ti_renk};
+               border-radius:16px;padding:22px 28px;margin-bottom:22px;text-align:center;'>
+            <div style='font-size:0.78rem;color:{_ti_renk};letter-spacing:2px;font-weight:700;
+                 text-transform:uppercase;'>{_ti_ikon} {_ti_etiket} {t("Paket", "Package")}</div>
+            <div style='font-size:2.4rem;font-weight:900;color:#fff;line-height:1;font-family:Sora,sans-serif;'>{_ti_fiyat}</div>
+            <div style='color:#8899aa;font-size:0.8rem;margin-top:4px;'>{t("yıllık · KDV dahil", "yearly · VAT included")}</div>
           </div>
-
-          <!-- Özellik listesi -->
-          <div style='background:#12161f;border-radius:12px;padding:20px 24px;'>
-            <div style='color:#fff;font-weight:700;font-size:0.9rem;margin-bottom:4px;'>
-              {t(f"{_ti_etiket} pakete dahil olanlar:", f"Included in the {_ti_etiket} package:")}
-            </div>
+          <div style='background:#12161f;border:1px solid #1e2340;border-radius:12px;padding:20px 24px;'>
+            <div style='color:#fff;font-weight:700;font-size:0.9rem;margin-bottom:6px;'>
+              {t(f"{_ti_etiket} pakete dahil olanlar:", f"Included in {_ti_etiket}:")}</div>
             {ozellik_satiri}
           </div>
-
-          <!-- Alt not -->
-          <div style='text-align:center;margin-top:20px;color:#505870;font-size:0.78rem;'>
+          <div style='text-align:center;margin-top:18px;color:#505870;font-size:0.78rem;'>
             {t("Kurumsal teklif veya demo için", "For a corporate offer or demo, write to")}
-            <a href='mailto:mehmetbarandanis@gmail.com' style='color:#1db954;text-decoration:none;'>
-              mehmetbarandanis@gmail.com
-            </a>{t(" adresine yazın.", ".")}
+            <a href='mailto:mehmetbarandanis@gmail.com' style='color:#1db954;text-decoration:none;'>mehmetbarandanis@gmail.com</a>
           </div>
-
         </div>
         """,
         unsafe_allow_html=True,
