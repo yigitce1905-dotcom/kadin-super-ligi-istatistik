@@ -6836,24 +6836,30 @@ if tab1:
     df["Takım (Gösterim)"] = df.apply(
         lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]), axis=1)
 
-    # Ücretsiz (girişsiz) kullanıcıda liste kısa; girişli kullanıcıda tam
+    # Free kademe (girişsiz VEYA ücretsiz üye) kısa liste; Basic+ (kulüp/ödeyen üye/admin) tam liste.
+    # NOT: Eskiden "giriş var mı" idi → self-servis free üyeler tam listeyi görüyordu (bug). Artık tier kapısı.
+    _tam_yetki  = tier_yeterli("basic")
     _giris_var2 = st.session_state.get("kulup_giris", False)
     _toplam_oy  = len(df)
-    if not _giris_var2:
+    if not _tam_yetki:
         df = df.head(40)
 
     bas, ind = st.columns([3, 1])
     with bas:
-        if _giris_var2 or _toplam_oy <= len(df):
+        if _tam_yetki or _toplam_oy <= len(df):
             st.markdown(f"#### {len(df)} {t('oyuncu', 'players')}")
         else:
             st.markdown(f"#### {len(df)} / {_toplam_oy} {t('oyuncu', 'players')}")
     with ind:
         csv_b = df.to_csv(index=False, encoding="utf-8-sig").encode("utf-8-sig")
         st.download_button("⬇️ CSV", csv_b, "oyuncular.csv", width="stretch")
-    if not _giris_var2 and _toplam_oy > len(df):
-        st.caption(t(f"İlk {len(df)} oyuncu gösteriliyor — tüm {_toplam_oy} oyuncu için 🔐 üye girişi.",
-                     f"Showing first {len(df)} — log in to see all {_toplam_oy} players."))
+    if not _tam_yetki and _toplam_oy > len(df):
+        if _giris_var2:   # giriş yapmış ama free kademe → yükseltmeye yönlendir
+            st.caption(t(f"İlk {len(df)} oyuncu gösteriliyor — tüm {_toplam_oy} oyuncu + tıklanabilir detaylı profiller için 💎 üyeliğini yükselt.",
+                         f"Showing first {len(df)} — upgrade your membership for all {_toplam_oy} players + clickable detailed profiles."))
+        else:
+            st.caption(t(f"İlk {len(df)} oyuncu gösteriliyor — tümü için 🔐 giriş yap / kayıt ol.",
+                         f"Showing first {len(df)} — log in / sign up to see all {_toplam_oy}."))
 
     # ── Dar liste (Ad · Takım · Yaş) + sağda ücretsiz bilgi paneli ──
     def _yas_int(r):
@@ -6862,8 +6868,8 @@ if tab1:
     liste_df = df[["Oyuncu", "Takım (Gösterim)"]].reset_index(drop=True)
     liste_df["Yaş"] = [(_yas_int(df.iloc[i]) if "Yaş" in df.columns else None) for i in range(len(df))]
 
-    if _giris_var2:
-        # Girişli: Scouting ile AYNI W-Scope tablosu — isme tıkla → tam profil yeni sekme
+    if _tam_yetki:
+        # Basic+ (kulüp/ödeyen üye/admin): Scouting ile AYNI W-Scope tablosu — isme tıkla → tam profil
         st.caption(t("👉 Bir isme tıkla → tam profil yeni sekmede açılır",
                      "👉 Click a name → full profile opens in a new tab"))
         _dil_q = st.session_state.get("dil", "TR")
