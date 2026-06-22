@@ -814,7 +814,7 @@ def giris_formu():
             ku = st.text_input(t("Kullanıcı adı", "Username"),
                                placeholder=t("kullanıcı adı", "username"))
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
-            if st.form_submit_button(t("Giriş Yap", "Log In"), use_container_width=True):
+            if st.form_submit_button(t("Giriş Yap", "Log In"), width="stretch"):
                 if _giris_yap(ku, si):
                     st.rerun()
                 else:
@@ -841,8 +841,8 @@ def giris_formu_ana():
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
             _b1, _b2 = st.columns(2)
             _gir = _b1.form_submit_button(t("Giriş Yap", "Log In"),
-                                          use_container_width=True, type="primary")
-            _ipt = _b2.form_submit_button(t("İptal", "Cancel"), use_container_width=True)
+                                          width="stretch", type="primary")
+            _ipt = _b2.form_submit_button(t("İptal", "Cancel"), width="stretch")
         if _gir:
             if _giris_yap(ku, si):
                 st.rerun()
@@ -2360,7 +2360,7 @@ def _gol_rakip_grafik(detay: dict, toplam_gol: int):
         yaxis=dict(autorange="reversed", tickfont=dict(size=10)),
         showlegend=False,
     )
-    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1717"))
+    st.plotly_chart(fig, width="stretch", key=_pk("plt_1717"))
 
 
 def _clean_sheet_grafik(rakip_dagil: dict, toplam: int):
@@ -2382,7 +2382,7 @@ def _clean_sheet_grafik(rakip_dagil: dict, toplam: int):
         xaxis=dict(title=t("Gol Yenmeyen Maç", "Clean Sheets"), gridcolor="#2d3561", dtick=1),
         yaxis=dict(gridcolor="rgba(0,0,0,0)"),
         margin=dict(l=10, r=34, t=8, b=36), showlegend=False)
-    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_cs"))
+    st.plotly_chart(fig, width="stretch", key=_pk("plt_cs"))
 
 
 def max_seri(dizi):
@@ -2480,7 +2480,7 @@ def kariyer_trend_goster(sezonlar):
         return
     rozet = _form_rozeti(sezonlar)
     st.markdown(f"#### 📈 {t('Kariyer Trendi', 'Career Trend')} &nbsp; {rozet}", unsafe_allow_html=True)
-    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1815"))
+    st.plotly_chart(fig, width="stretch", key=_pk("plt_1815"))
 
 
 # ── Benzer oyuncu motoru ──
@@ -2689,7 +2689,7 @@ def radar_goster(isim, kaynak):
     st.markdown(f"#### 🕸️ {q['kat']} {t('Profili', 'Profile')}")
     st.caption(t("Aynı mevkideki oyunculara göre yüzdelik dilim (100 = en iyi)",
                  "Percentile vs players in the same position (100 = best)"))
-    st.plotly_chart(fig, use_container_width=True, key=_pk("plt_1966"))
+    st.plotly_chart(fig, width="stretch", key=_pk("plt_1966"))
 
 
 # ── Çapraz transfer hedefi (ana lig oyuncusuna benzeyen scouting adayları) ──
@@ -2803,7 +2803,7 @@ def shortlist_karsilastirma_goster(isimler, sd_data, leistung_data):
                    angularaxis=dict(gridcolor="#334155")))
     st.caption(t("Radar: shortlist içindeki en yüksek değere göre oranlanmıştır (göreceli kıyas)",
                  "Radar: scaled to the highest value within the shortlist (relative comparison)"))
-    st.plotly_chart(fig, use_container_width=True, key=_pk("capraz_radar"))
+    st.plotly_chart(fig, width="stretch", key=_pk("capraz_radar"))
 
 
 # ── Veri Kapsama Paneli (admin: eksik veri özeti) ──
@@ -3088,10 +3088,10 @@ def render_shortlist_kartlari(isimler, kullanici):
                                key=_pk(f"sl_n_{isim}"), height=80)
             _b1, _b2 = st.columns(2)
             with _b1:
-                if st.button(f"💾 {t('Kaydet','Save')}", key=_pk(f"sl_sv_{isim}"), use_container_width=True):
+                if st.button(f"💾 {t('Kaydet','Save')}", key=_pk(f"sl_sv_{isim}"), width="stretch"):
                     scoutnot_ayarla(kullanici, isim, _yd, _yo, _yn); st.rerun()
             with _b2:
-                if st.button(f"★ {t('Shortlist’ten Çıkar','Remove')}", key=_pk(f"sl_rm_{isim}"), use_container_width=True):
+                if st.button(f"★ {t('Shortlist’ten Çıkar','Remove')}", key=_pk(f"sl_rm_{isim}"), width="stretch"):
                     shortlist_toggle(kullanici, isim); st.rerun()
 
 
@@ -3134,7 +3134,7 @@ def render_scouting_detay(tam_isim):
     if st.button(
             ("⭐ " + t("Shortlist'te ✓ (çıkarmak için tıkla)", "In Shortlist ✓ (click to remove)"))
             if _in_sl else ("☆ " + t("Shortlist'e Ekle", "Add to Shortlist")),
-            key=_pk(f"sc_sl_top_{tam_isim}"), use_container_width=True,
+            key=_pk(f"sc_sl_top_{tam_isim}"), width="stretch",
             type="secondary" if _in_sl else "primary"):
         shortlist_toggle(_sl_kul, tam_isim)
         st.rerun()
@@ -3759,7 +3759,7 @@ def render_scout_kadro_raporu(isim: str):
         st.download_button(
             f"📄 {t('Scout Raporunu PDF indir','Download Scout Report PDF')}",
             data=pdf_bytes, file_name=f"scout_raporu_{isim.replace(' ','_')}.pdf",
-            mime="application/pdf", use_container_width=True)
+            mime="application/pdf", width="stretch")
     except Exception as e:
         st.caption(f"⚠️ PDF oluşturulamadı: {e}")
 
@@ -4126,7 +4126,7 @@ def render_ana_lig_profil(secili):
             st.download_button(
                 f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
                 data=_pdf, file_name=f"oyuncu_raporu_{secili.replace(' ', '_')}.pdf",
-                mime="application/pdf", use_container_width=True, key=_pk("pdf_indir"))
+                mime="application/pdf", width="stretch", key=_pk("pdf_indir"))
         except Exception as _e:
             st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
 
@@ -4231,7 +4231,7 @@ def render_ana_lig_profil(secili):
                                 range=[0, max(_gmax, 1) + 0.6], dtick=1, showgrid=False,
                                 tickfont=dict(color="#4ade80"), title_font=dict(color="#4ade80")),
                     margin=dict(l=40, r=40, t=24, b=40))
-                st.plotly_chart(fig, use_container_width=True, key=_pk("plt_2957"))
+                st.plotly_chart(fig, width="stretch", key=_pk("plt_2957"))
 
         with g2:
             st.markdown(f"##### {t('Gol Zamanı Dağılımı', 'Goal Timing Distribution')}")
@@ -4254,7 +4254,7 @@ def render_ana_lig_profil(secili):
                     xaxis=dict(title=t("Dakika Aralığı","Minutes Range"), gridcolor="#2d3561"),
                     yaxis=dict(title="Gol", gridcolor="#2d3561", dtick=1),
                     margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
-                st.plotly_chart(fig2, use_container_width=True, key=_pk("plt_2980"))
+                st.plotly_chart(fig2, width="stretch", key=_pk("plt_2980"))
             elif gol > 0:
                 st.caption(t("Gol dakikası verisi bu sezonda mevcut değil.", "Goal minute data not available for this season."))
             else:
@@ -4501,19 +4501,19 @@ with st.sidebar:
     _ac1, _ac2 = st.columns([1.5, 1])
     with _ac1:
         if _nav_giris_var:
-            if st.button(t("🚪 Çıkış", "🚪 Logout"), key="nav_cikis", use_container_width=True):
+            if st.button(t("🚪 Çıkış", "🚪 Logout"), key="nav_cikis", width="stretch"):
                 for k in ["kulup_giris","kulup_kullanici","kulup_takim","kulup_ad","kulup_rol","kulup_tier","kulup_pro"]:
                     st.session_state.pop(k, None)
                 _oturum_cikis()
                 _nav_git("ana")
         else:
             if st.button(t("🔐 Giriş Yap", "🔐 Log In"), key="nav_login",
-                         use_container_width=True, type="primary"):
+                         width="stretch", type="primary"):
                 st.session_state["login_ac"] = True
                 st.session_state["girildi"] = True
                 st.rerun()
     with _ac2:
-        if st.button("🌐 EN" if not EN else "🌐 TR", key="nav_dil", use_container_width=True):
+        if st.button("🌐 EN" if not EN else "🌐 TR", key="nav_dil", width="stretch"):
             _yeni_dil = "EN" if not EN else "TR"
             st.session_state["dil"] = _yeni_dil
             st.query_params["dil"] = _yeni_dil
@@ -4523,22 +4523,22 @@ with st.sidebar:
 
     # ── PLATFORM grubu ──
     st.markdown(f"<div class='nav-grup'>{t('PLATFORM', 'PLATFORM')}</div>", unsafe_allow_html=True)
-    if st.button(t("📊 TR Veri", "📊 TR Data"), key="nav_veri", use_container_width=True,
+    if st.button(t("📊 TR Veri", "📊 TR Data"), key="nav_veri", width="stretch",
                  type="primary" if _aktif_sayfa == "ana" else "secondary"):
         _tr_veri_git()
-    if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", use_container_width=True,
+    if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", width="stretch",
                  type="primary" if _aktif_sayfa == "scouting" else "secondary"):
         _nav_git("scouting")
-    if st.button(t("👤 Profilim", "👤 My Profile"), key="nav_profil", use_container_width=True,
+    if st.button(t("👤 Profilim", "👤 My Profile"), key="nav_profil", width="stretch",
                  type="primary" if _aktif_sayfa == "profil" else "secondary"):
         _nav_git("profil")
-    if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), key="nav_talep", use_container_width=True,
+    if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), key="nav_talep", width="stretch",
                  type="primary" if _aktif_sayfa == "talep" else "secondary"):
         _nav_git("talep")
-    if st.button(t("📬 İletişim", "📬 Contact"), key="nav_iletisim", use_container_width=True,
+    if st.button(t("📬 İletişim", "📬 Contact"), key="nav_iletisim", width="stretch",
                  type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
         _nav_git("iletisim")
-    if st.button(t("🎗️ Saygı Kuşağı", "🎗️ Hall of Respect"), key="nav_saygi", use_container_width=True,
+    if st.button(t("🎗️ Saygı Kuşağı", "🎗️ Hall of Respect"), key="nav_saygi", width="stretch",
                  type="primary" if _aktif_sayfa == "saygi" else "secondary"):
         _nav_git("saygi")
 
@@ -4554,7 +4554,7 @@ with st.sidebar:
         # Aktif vurgu yalnız TR Veri sayfasındayken; başka sayfadayken
         # tıklanınca TR Veri'ye geçip o sekme açılır.
         _akt = (_aktif_sayfa == "ana" and _et == _aktif_sekme)
-        if st.button(_et, key=f"navsek_{_i}", use_container_width=True,
+        if st.button(_et, key=f"navsek_{_i}", width="stretch",
                      type="primary" if _akt else "secondary"):
             st.session_state["tr_sekme"] = _et
             st.session_state["girildi"] = True   # sekmeye tıklayan içeri girer
@@ -4569,10 +4569,10 @@ with st.sidebar:
     # ── Alt kategoriler (TR Veri'nin altında, ücretsiz) ──
     st.markdown(f"<div class='nav-grup'>{t('ALT KATEGORİLER', 'LOWER CATEGORIES')}</div>",
                 unsafe_allow_html=True)
-    if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", use_container_width=True,
+    if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", width="stretch",
                  type="primary" if _aktif_sayfa == "altlig" else "secondary"):
         _nav_git("altlig")
-    if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", use_container_width=True,
+    if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", width="stretch",
                  type="primary" if _aktif_sayfa == "altyas" else "secondary"):
         _nav_git("altyas")
 
@@ -4745,7 +4745,7 @@ def render_profil():
                 _dn_gun = st.number_input(t("Gün","Days"), 1, 30, 2, key="dn_gun")
             with _dv4:
                 st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-                if st.button(t("🎁 Ver","🎁 Grant"), use_container_width=True, type="primary", key="dn_ver"):
+                if st.button(t("🎁 Ver","🎁 Grant"), width="stretch", type="primary", key="dn_ver"):
                     deneme_ver(_dn_kul, _dn_tier, int(_dn_gun), "admin")
                     st.success(t(f"{_creds[_dn_kul].get('ad',_dn_kul)} için {int(_dn_gun)} günlük {_TIER_GORUNUM[_dn_tier][0]} denemesi verildi.",
                                  f"Granted {int(_dn_gun)}-day {_TIER_GORUNUM[_dn_tier][0]} trial to {_creds[_dn_kul].get('ad',_dn_kul)}."))
@@ -4767,7 +4767,7 @@ def render_profil():
                         f"{_sa}s {t('kaldı','left')} <span style='color:#64748b;'>"
                         f"({_d.get('bitis','')})</span></div>", unsafe_allow_html=True)
                     if _kc2.button(t("İptal","Cancel"), key=f"dn_ipt_{_d.get('kullanici','')}",
-                                   use_container_width=True):
+                                   width="stretch"):
                         deneme_iptal(_d.get("kullanici",""))
                         st.rerun()
             else:
@@ -4804,7 +4804,7 @@ def render_profil():
     if fav:
         fcols = st.columns(3)
         for i, isim in enumerate(sorted(fav)):
-            if fcols[i % 3].button(f"👤 {isim}", key=f"pf_fav_{i}", use_container_width=True):
+            if fcols[i % 3].button(f"👤 {isim}", key=f"pf_fav_{i}", width="stretch"):
                 st.query_params["oyuncu"] = isim
                 st.rerun()
     else:
@@ -4829,7 +4829,7 @@ def render_profil():
     if veri_rows:
         csv = pd.DataFrame(veri_rows).to_csv(index=False, encoding="utf-8-sig").encode("utf-8-sig")
         st.download_button(t("⬇️ Verilerimi indir (CSV)", "⬇️ Download my data (CSV)"),
-                           csv, f"{ku}_verilerim.csv", use_container_width=False)
+                           csv, f"{ku}_verilerim.csv", width="content")
     else:
         st.caption(t("Dışa aktarılacak veri yok.", "No data to export yet."))
 
@@ -4844,7 +4844,7 @@ def render_profil():
 def geri_ana_butonu(key: str):
     _gc = st.columns([1.3, 4, 1.3])
     with _gc[0]:
-        if st.button(t("← Ana Sayfa", "← Home"), key=key, use_container_width=True):
+        if st.button(t("← Ana Sayfa", "← Home"), key=key, width="stretch"):
             _dil_koru = st.query_params.get("dil", "")
             st.query_params.clear()
             if _dil_koru:
@@ -5025,7 +5025,7 @@ if st.session_state["sayfa"] == "talep":
         kulup = _c2.text_input(t("Kulüp", "Club"))
         email = st.text_input(t("E-posta / İletişim bilgisi *", "E-mail / Contact info *"))
         gonder = st.form_submit_button(t("📨 Talebi Gönder", "📨 Send Request"),
-                                       use_container_width=True, type="primary")
+                                       width="stretch", type="primary")
     if gonder:
         _deneme_talebi = (tip == _DENEME_TIP)
         _detay_son = detay.strip() or (t("2 günlük ücretsiz Premium deneme talebi.",
@@ -5135,7 +5135,7 @@ def _altlig_takim_analizi(oyuncular):
         "takim": t("Takım", "Team"), "grup": t("Grup", "Grp"), "kadro": t("Kadro", "Squad"),
         "gol": t("Toplam Gol", "Goals"), "en_golcu": t("En Golcü", "Top Scorer"),
         "sari": "🟨", "kirmizi": "🟥"})
-    st.dataframe(show, use_container_width=True, hide_index=True, height=min(45 + len(show) * 35, 600))
+    st.dataframe(show, width="stretch", hide_index=True, height=min(45 + len(show) * 35, 600))
     st.caption(t(f"{len(show)} takım · toplam gola göre sıralı.", f"{len(show)} teams · sorted by total goals."))
 
 
@@ -5182,7 +5182,7 @@ def render_altlig():
         krdf = pd.DataFrame([{"#": i + 1, t("Oyuncu", "Player"): r["oyuncu"],
                               t("Takım", "Team"): r["takim"], t("Gol", "Goals"): r["gol"]}
                              for i, r in enumerate(kr)])
-        st.dataframe(krdf, use_container_width=True, hide_index=True,
+        st.dataframe(krdf, width="stretch", hide_index=True,
                      height=min(45 + len(krdf) * 35, 640))
         st.caption(t(f"Toplam {len(kr)} golcü · kaynak: tff.org (resmi normal sezon). Oyuncu gol sayıları bu tabloyla + playoff golleriyle uzlaştırılmıştır.",
                      f"{len(kr)} scorers · source: tff.org (official regular season). Player goals reconciled with this table + playoff goals."))
@@ -5195,7 +5195,7 @@ def render_altlig():
             puan_df = _altlig_puan_df(gruplar[g].get("puan_durumu", []))
             if not puan_df.empty:
                 st.markdown(f"##### {_ad} · {t(f'{g} Grubu', f'Group {g}')}")
-                st.dataframe(puan_df, use_container_width=True, hide_index=True,
+                st.dataframe(puan_df, width="stretch", hide_index=True,
                              height=min(40 + len(puan_df) * 35, 360))
         return
 
@@ -5226,7 +5226,7 @@ def render_altlig():
     col_l, col_r = st.columns([5, 4], gap="medium")
     with col_l:
         secim_df = st.dataframe(
-            odf, use_container_width=True, hide_index=True, height=520,
+            odf, width="stretch", hide_index=True, height=520,
             on_select="rerun", selection_mode="single-row", key="altlig_oyuncu_liste",
             column_config={
                 "Oyuncu":  st.column_config.TextColumn(t("Oyuncu", "Player"), width="medium"),
@@ -5324,7 +5324,7 @@ def render_altyas():
                               t("Takım", "Team"): r.get("takim", ""),
                               t("Gol", "Goals"): r.get("gol", r.get("gol_sayisi", 0))}
                              for i, r in enumerate(kr)])
-        st.dataframe(krdf, use_container_width=True, hide_index=True,
+        st.dataframe(krdf, width="stretch", hide_index=True,
                      height=min(45 + len(krdf) * 35, 480))
         if "U17" in _lig:
             st.caption(t("TFF U17 gelişim ligi yalnızca top-10 golcüyü yayınlıyor.",
@@ -5358,7 +5358,7 @@ def render_altyas():
     col_l, col_r = st.columns([5, 4], gap="medium")
     with col_l:
         _secdf = st.dataframe(
-            odf, use_container_width=True, hide_index=True, height=540,
+            odf, width="stretch", hide_index=True, height=540,
             on_select="rerun", selection_mode="single-row", key="altyas_liste",
             column_config={
                 "Oyuncu":  st.column_config.TextColumn(t("Oyuncu", "Player"), width="medium"),
@@ -5441,7 +5441,7 @@ def render_saygi():
                 c1, c2 = st.columns([1, 3], gap="medium")
                 with c1:
                     try:
-                        st.image(_g, use_container_width=True)
+                        st.image(_g, width="stretch")
                     except Exception:
                         st.caption("🖼️")
                 _hedef = c2
@@ -5563,7 +5563,7 @@ if st.session_state.get("sayfa") == "scouting":
 
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
             _TAB_OPTS   = [t("Tüm Oyuncular", "All Players"), t("Shortlist", "Shortlist")]
-            _sc_tab_sel = st.radio("", _TAB_OPTS, horizontal=True,
+            _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
                                    key="sc_tab_radio", label_visibility="collapsed")
             sadece_sl   = (_sc_tab_sel == t("Shortlist", "Shortlist"))
 
@@ -5978,7 +5978,7 @@ def render_paketler():
             f"{t('2 gün boyunca Premium — kart bilgisi yok, taahhüt yok.','2 days of Premium — no card, no commitment.')}</div>"
             f"</div>", unsafe_allow_html=True)
         if st.button(t("🎁 2 Günlük Ücretsiz Deneme Talep Et", "🎁 Request a 2-Day Free Trial"),
-                     use_container_width=True, type="primary", key="deneme_talep_cta"):
+                     width="stretch", type="primary", key="deneme_talep_cta"):
             st.session_state["sayfa"]      = "talep"
             st.session_state["talep_tip_on"] = "deneme"
             st.session_state["girildi"]    = True
@@ -6041,7 +6041,7 @@ if not st.session_state.get("girildi", False):
     _kc = st.columns([1, 2, 1])[1]
     with _kc:
         if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
-                     type="primary", use_container_width=True, key="karsilama_gec_ust"):
+                     type="primary", width="stretch", key="karsilama_gec_ust"):
             st.session_state["girildi"] = True
             st.rerun()
     render_giris_ekrani()
@@ -6049,7 +6049,7 @@ if not st.session_state.get("girildi", False):
     _kc2 = st.columns([1, 2, 1])[1]
     with _kc2:
         if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
-                     type="primary", use_container_width=True, key="karsilama_gec_alt"):
+                     type="primary", width="stretch", key="karsilama_gec_alt"):
             st.session_state["girildi"] = True
             st.rerun()
     st.stop()
@@ -6070,7 +6070,7 @@ if _ust_blok_goster:
     </div>""", unsafe_allow_html=True)
     with _bc2:
         st.markdown("<div style='height:16px'></div>", unsafe_allow_html=True)
-        if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), use_container_width=True, type="primary"):
+        if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), width="stretch", type="primary"):
             st.session_state["sayfa"] = "talep"
             st.rerun()
     st.markdown("<br>", unsafe_allow_html=True)
@@ -6136,7 +6136,7 @@ if tab_internal:
             _bos = pd.DataFrame([{"Oyuncu": "", "Mevki": "", "Takım": "",
                                   "S": "", "W": "", "O": "", "T": ""} for _ in range(3)])
             _i_swot = st.data_editor(
-                _bos, num_rows="dynamic", use_container_width=True, key="int_swot",
+                _bos, num_rows="dynamic", width="stretch", key="int_swot",
                 column_config={
                     "Oyuncu": st.column_config.TextColumn(t("Oyuncu", "Player"), width="medium"),
                     "Mevki":  st.column_config.TextColumn(t("Mevki", "Pos"), width="small"),
@@ -6269,7 +6269,7 @@ if tab1:
             st.markdown(f"#### {len(df)} / {_toplam_oy} {t('oyuncu', 'players')}")
     with ind:
         csv_b = df.to_csv(index=False, encoding="utf-8-sig").encode("utf-8-sig")
-        st.download_button("⬇️ CSV", csv_b, "oyuncular.csv", use_container_width=True)
+        st.download_button("⬇️ CSV", csv_b, "oyuncular.csv", width="stretch")
     if not _giris_var2 and _toplam_oy > len(df):
         st.caption(t(f"İlk {len(df)} oyuncu gösteriliyor — tüm {_toplam_oy} oyuncu için 🔐 üye girişi.",
                      f"Showing first {len(df)} — log in to see all {_toplam_oy} players."))
@@ -6330,7 +6330,7 @@ if tab1:
         col_liste, col_detay = st.columns([5, 4], gap="medium")
         with col_liste:
             secim = st.dataframe(
-                liste_df, use_container_width=True, height=560,
+                liste_df, width="stretch", height=560,
                 on_select="rerun", selection_mode="single-row", key="ol_liste",
                 column_config={
                     "Oyuncu":           st.column_config.TextColumn(t("Oyuncu","Player"), width="large"),
@@ -6419,7 +6419,7 @@ if tab2:
             _vbtn = st.columns(len(oyuncu_listesi)) if oyuncu_listesi else []
             for _bc, _oy in zip(_vbtn, oyuncu_listesi):
                 _kisa = " ".join(_oy.title().split()[:2])
-                if _bc.button(f"⭐ {_kisa}", key=f"vitrin_tr_{_oy}", use_container_width=True):
+                if _bc.button(f"⭐ {_kisa}", key=f"vitrin_tr_{_oy}", width="stretch"):
                     st.session_state["profil_sec"] = _oy
                     st.rerun()
         else:
@@ -6531,7 +6531,7 @@ if tab3:
             legend=dict(orientation="h", y=-0.12, font=dict(size=12)),
             height=480, margin=dict(l=70, r=70, t=30, b=60),
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
         st.caption(t("Disiplin = 100 − (sarı kart oranı) · Starter % = ilk 11 oranı · Tüm değerler lig içinde normalize edilmiştir (100 = en iyi).",
                      "Discipline = 100 − (yellow card rate) · Starter % = starting 11 rate · All values normalized within the league (100 = best)."))
 
@@ -6593,7 +6593,7 @@ if tab3:
 
         st.dataframe(
             df_karsilastirma,
-            use_container_width=True,
+            width="stretch",
             height=430,
             column_config={
                 col: st.column_config.TextColumn(col, width="medium")
@@ -6641,7 +6641,7 @@ if tab4:
             if EN:
                 kadro["Mevki"] = kadro["Mevki"].map(mevki_goster)
             kadro.index += 1
-            st.dataframe(kadro, use_container_width=True, height=400,
+            st.dataframe(kadro, width="stretch", height=400,
                 column_config={
                     "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player"), width="medium"),
                     "Mevki":  st.column_config.TextColumn(t("Mevki","Position"),  width="small"),
@@ -6670,7 +6670,7 @@ if tab4:
                     paper_bgcolor="#0f1117", font=dict(color="#e0e0e0", size=11),
                     height=240, margin=dict(l=30,r=30,t=24,b=24),
                     showlegend=False)
-                st.plotly_chart(fig_mevki, use_container_width=True)
+                st.plotly_chart(fig_mevki, width="stretch")
 
             st.markdown(f"##### 🌍 {t('Uyruk Dağılımı', 'Nationality Distribution')}")
             if "Uyruk" in df_t.columns:
@@ -6689,7 +6689,7 @@ if tab4:
                     xaxis=dict(gridcolor="#2d3561"),
                     yaxis=dict(gridcolor="#2d3561"),
                     margin=dict(l=10,r=30,t=10,b=10))
-                st.plotly_chart(fig_uyruk, use_container_width=True)
+                st.plotly_chart(fig_uyruk, width="stretch")
 
         # ── Scatter: verimlilik ────────────────────────────────────────
         st.markdown("---")
@@ -6716,7 +6716,7 @@ if tab4:
             yaxis=dict(title="Toplam Gol", gridcolor="#2d3561"),
             legend=dict(orientation="h", y=1.1),
             margin=dict(l=40,r=20,t=40,b=40))
-        st.plotly_chart(fig_s, use_container_width=True)
+        st.plotly_chart(fig_s, width="stretch")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SEKME 5 — LİG TABLOSU
@@ -6740,7 +6740,7 @@ if tab5:
         takim_ozet.index = range(1, len(takim_ozet)+1)
 
         st.markdown(f"#### {t('Takım Bazlı Sezon İstatistikleri', 'Season Stats by Team')}")
-        st.dataframe(takim_ozet, use_container_width=True, height=520,
+        st.dataframe(takim_ozet, width="stretch", height=520,
             column_config={
                 "Takım":          st.column_config.TextColumn(t("Takım","Team"), width="large"),
                 "Oyuncu Sayısı":  st.column_config.NumberColumn(t("Kadro","Squad")),
@@ -6772,7 +6772,7 @@ if tab5:
             df_puan.index = range(1, len(df_puan) + 1)
             st.dataframe(
                 df_puan,
-                use_container_width=True,
+                width="stretch",
                 height=600,
                 column_config={
                     col: st.column_config.TextColumn(sutun_aciklama.get(col, col))
@@ -6828,7 +6828,7 @@ if tab6:
             yaxis=dict(title="Toplam Gol",    gridcolor="#2d3561"),
             legend=dict(orientation="h", y=1.08),
             margin=dict(l=40,r=20,t=40,b=40))
-        st.plotly_chart(fig_lig, use_container_width=True)
+        st.plotly_chart(fig_lig, width="stretch")
 
         # ── Uyruk Analizi ─────────────────────────────────────────────
         st.markdown("---")
@@ -6847,7 +6847,7 @@ if tab6:
                     font=dict(color="#e0e0e0"), height=400,
                     xaxis=dict(gridcolor="#2d3561"), yaxis=dict(gridcolor="#2d3561"),
                     margin=dict(l=10,r=40,t=10,b=10))
-                st.plotly_chart(fig_u, use_container_width=True)
+                st.plotly_chart(fig_u, width="stretch")
             with ub:
                 st.markdown(f"**{t('Gol sayısına göre', 'By number of goals')}**")
                 uyruk_gol = df_tam[df_tam["Uyruk"]!=""].groupby("Uyruk")["Gol"].sum().sort_values(ascending=False).head(15)
@@ -6860,7 +6860,7 @@ if tab6:
                     font=dict(color="#e0e0e0"), height=400,
                     xaxis=dict(gridcolor="#2d3561"), yaxis=dict(gridcolor="#2d3561"),
                     margin=dict(l=10,r=40,t=10,b=10))
-                st.plotly_chart(fig_ug, use_container_width=True)
+                st.plotly_chart(fig_ug, width="stretch")
 
         st.markdown("---")
         # Yardımcı: top-N kart
@@ -7293,7 +7293,7 @@ if tab7:
                             bgcolor="rgba(0,0,0,0.4)"),
                 hoverlabel=dict(bgcolor="#1a1f36", font_color="white"),
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
         # ── İstatistikler ──────────────────────────────────────────────
         secili_isimler = [v for v in secimler.values() if v != "—"]
@@ -7320,7 +7320,7 @@ if tab7:
             goster["_s"] = goster["Mevki"].map(lambda m: _grup_sira.get(mevki_grup(m), 4))
             goster = goster.sort_values("_s").drop(columns="_s").reset_index(drop=True)
             goster.index += 1
-            st.dataframe(goster, use_container_width=True,
+            st.dataframe(goster, width="stretch",
                 column_config={
                     "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player"), width="medium"),
                     "Takım":  st.column_config.TextColumn(t("Takım","Team"),  width="medium"),
@@ -7373,7 +7373,7 @@ if tab_benim:
                     margin=dict(l=10,r=40,t=5,b=5), height=420,
                     font=dict(color="#e0e0e0"),
                 )
-                st.plotly_chart(fig_admin, use_container_width=True)
+                st.plotly_chart(fig_admin, width="stretch")
 
         else:
             # ── KULÜP GÖRÜNÜMÜ ────────────────────────────────────────
@@ -7410,7 +7410,7 @@ if tab_benim:
                     if EN:
                         goster["Mevki"] = goster["Mevki"].map(mevki_goster)
                     goster.index += 1
-                    st.dataframe(goster, use_container_width=True, height=460,
+                    st.dataframe(goster, width="stretch", height=460,
                         column_config={
                             "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
                             "Mevki":  st.column_config.TextColumn(t("Mevki","Position")),
@@ -7442,7 +7442,7 @@ if tab_benim:
                         margin=dict(l=30,r=30,t=24,b=24), height=240,
                         showlegend=False,
                     )
-                    st.plotly_chart(fig_pie, use_container_width=True)
+                    st.plotly_chart(fig_pie, width="stretch")
 
                     st.markdown(f"**🌍 {t('Uyruk Dağılımı', 'Nationality Distribution')}**")
                     uyr_dag = kadro["Uyruk"].value_counts().head(8).reset_index()
@@ -7460,7 +7460,7 @@ if tab_benim:
                         margin=dict(l=5,r=30,t=5,b=5), height=240,
                         font=dict(color="#e0e0e0"),
                     )
-                    st.plotly_chart(fig_uyr, use_container_width=True)
+                    st.plotly_chart(fig_uyr, width="stretch")
 
                 st.markdown("---")
                 st.markdown(f"**📊 {t('Takım vs Lig Ortalaması', 'Team vs League Average')}**")
@@ -7614,7 +7614,7 @@ if tab_genç:
                 margin=dict(l=10, r=10, t=10, b=10),
                 height=420, font=dict(color="#e0e0e0"),
             )
-            st.plotly_chart(fig_sc, use_container_width=True)
+            st.plotly_chart(fig_sc, width="stretch")
             st.caption(t("💡 Nokta büyüklüğü = oynanan maç sayısı", "💡 Dot size = number of matches played"))
 
         with col_tablo:
@@ -7624,7 +7624,7 @@ if tab_genç:
                 goster["Mevki"] = goster["Mevki"].map(mevki_goster)
             goster.index = range(1, len(goster)+1)
             st.dataframe(
-                goster, use_container_width=True, height=420,
+                goster, width="stretch", height=420,
                 column_config={
                     "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
                     "Yaş":   st.column_config.NumberColumn(t("Yaş","Age"), format="%.0f"),
@@ -7726,7 +7726,7 @@ if tab9:
                 _goster_df = filtered[show].copy()
                 if EN and "Mevki" in _goster_df.columns:
                     _goster_df["Mevki"] = _goster_df["Mevki"].map(mevki_goster)
-                st.dataframe(_goster_df, hide_index=True, use_container_width=True,
+                st.dataframe(_goster_df, hide_index=True, width="stretch",
                     height=min(600, 45 + len(filtered) * 35),
                     column_config={
                         "Oyuncu": st.column_config.TextColumn(t("Oyuncu","Player")),
@@ -7830,7 +7830,7 @@ if tab10:
                 bargap=0.08, margin=dict(l=10,r=10,t=10,b=10),
                 height=320, font=dict(color="#e0e0e0"),
             )
-            st.plotly_chart(fig_hist, use_container_width=True)
+            st.plotly_chart(fig_hist, width="stretch")
 
             st.markdown(f"**📅 {t('Doğum Yılı Dağılımı', 'Birth Year Distribution')}**")
             by_year = (yas_df.dropna(subset=["dogum_yili"])
@@ -7849,7 +7849,7 @@ if tab10:
                 bargap=0.1, margin=dict(l=10,r=10,t=10,b=10),
                 height=260, font=dict(color="#e0e0e0"),
             )
-            st.plotly_chart(fig_year, use_container_width=True)
+            st.plotly_chart(fig_year, width="stretch")
 
         with col_takim:
             st.markdown(f"**🏟 {t('Takım Yaş Ortalamaları', 'Team Age Averages')}**")
@@ -7859,7 +7859,7 @@ if tab10:
                          .reset_index()
                          .rename(columns={"takim":"Takım","mean":"Ort","min":"Min","max":"Max","count":"Oyuncu"})
                          .sort_values("Ort"))
-            st.dataframe(takim_yas, hide_index=True, use_container_width=True, height=400,
+            st.dataframe(takim_yas, hide_index=True, width="stretch", height=400,
                 column_config={
                     "Takım":  st.column_config.TextColumn(t("Takım","Team")),
                     "Ort": st.column_config.NumberColumn(t("Ort","Avg"), format="%.1f"),
@@ -7896,7 +7896,7 @@ if tab10:
                 margin=dict(l=10,r=50,t=5,b=5), height=180,
                 font=dict(color="#e0e0e0"),
             )
-            st.plotly_chart(fig_pos, use_container_width=True)
+            st.plotly_chart(fig_pos, width="stretch")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -7940,7 +7940,7 @@ if tab11:
             goster.index = range(1, len(goster) + 1)
             st.dataframe(
                 goster,
-                use_container_width=True,
+                width="stretch",
                 height=520,
                 column_config={
                     "Kaleci": st.column_config.TextColumn(t("Kaleci","Goalkeeper")),
@@ -7978,7 +7978,7 @@ if tab11:
                 margin=dict(l=10, r=60, t=10, b=10),
                 height=500, font=dict(color="#e0e0e0"),
             )
-            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig, width="stretch")
 
             # Renk açıklaması
             st.markdown(
@@ -8144,7 +8144,7 @@ if tab_transfer:
             st.markdown("<br>", unsafe_allow_html=True)
             col_b = st.columns([1, 2, 1])[1]
             with col_b:
-                if st.button(t("🚀 Başla","🚀 Start"), use_container_width=True, type="primary"):
+                if st.button(t("🚀 Başla","🚀 Start"), width="stretch", type="primary"):
                     st.session_state["tr_adim"] = 1
                     st.rerun()
 
@@ -8154,19 +8154,19 @@ if tab_transfer:
             st.markdown("<br>", unsafe_allow_html=True)
             c1, c2, c3 = st.columns(3)
             with c1:
-                if st.button(t("💎 Yüksek\n\nBüyük kulüp transferi","💎 High\n\nBig club transfer"), use_container_width=True):
+                if st.button(t("💎 Yüksek\n\nBüyük kulüp transferi","💎 High\n\nBig club transfer"), width="stretch"):
                     st.session_state["tr_butce"]      = "Yuksek"
                     st.session_state["tr_butce_label"] = t("Yüksek 💎","High 💎")
                     st.session_state["tr_adim"]        = 2
                     st.rerun()
             with c2:
-                if st.button(t("🔵 Orta\n\nOrta ölçekli transfer","🔵 Medium\n\nMid-range transfer"), use_container_width=True):
+                if st.button(t("🔵 Orta\n\nOrta ölçekli transfer","🔵 Medium\n\nMid-range transfer"), width="stretch"):
                     st.session_state["tr_butce"]      = "Orta"
                     st.session_state["tr_butce_label"] = t("Orta 🔵","Medium 🔵")
                     st.session_state["tr_adim"]        = 2
                     st.rerun()
             with c3:
-                if st.button(t("🟡 Düşük\n\nBütçe dostu transfer","🟡 Low\n\nBudget-friendly transfer"), use_container_width=True):
+                if st.button(t("🟡 Düşük\n\nBütçe dostu transfer","🟡 Low\n\nBudget-friendly transfer"), width="stretch"):
                     st.session_state["tr_butce"]      = "Dusuk"
                     st.session_state["tr_butce_label"] = t("Düşük 🟡","Low 🟡")
                     st.session_state["tr_adim"]        = 2
@@ -8189,25 +8189,25 @@ if tab_transfer:
                                     "Savunmacı Orta Saha", "Merkez Orta Saha", "Hücumcu Orta Saha",
                                     "Sol Kanat", "Sağ Kanat", "Santrafor",
                                 ]
-                mevki_sec = st.radio("", mevki_secenekler, key="tr_mevki_radio",
+                mevki_sec = st.radio(t("Mevki", "Position"), mevki_secenekler, key="tr_mevki_radio",
                                      format_func=lambda x: _TR_MEVKI_EN.get(x, x) if EN else x,
                                      label_visibility="collapsed")
 
             with col_t:
                 st.markdown(f"**{t('Oyuncu tercihiniz?','Player preference?')}**")
                 _tr_tercih_opts = ["Farketmez", "Yerli", "Yabancı"]
-                tercih = st.radio("", _tr_tercih_opts, key="tr_tercih_radio",
+                tercih = st.radio(t("Tercih", "Preference"), _tr_tercih_opts, key="tr_tercih_radio",
                     format_func=lambda x: _TR_TERCIH_EN[x] if EN else x,
                     label_visibility="collapsed")
 
             st.markdown("<br>", unsafe_allow_html=True)
             col_geri, col_ileri = st.columns([1, 3])
             with col_geri:
-                if st.button(t("← Geri","← Back"), use_container_width=True):
+                if st.button(t("← Geri","← Back"), width="stretch"):
                     st.session_state["tr_adim"] = 1
                     st.rerun()
             with col_ileri:
-                if st.button(t("Önerileri Gör →","See Suggestions →"), use_container_width=True, type="primary"):
+                if st.button(t("Önerileri Gör →","See Suggestions →"), width="stretch", type="primary"):
                     st.session_state["tr_mevki"]  = mevki_sec
                     st.session_state["tr_tercih"] = tercih
                     st.session_state["tr_adim"]   = 3
@@ -8287,7 +8287,7 @@ if tab_transfer:
                         unsafe_allow_html=True)
 
             st.markdown("<br>", unsafe_allow_html=True)
-            if st.button(t("🔄 Yeniden Başla","🔄 Start Over"), use_container_width=False):
+            if st.button(t("🔄 Yeniden Başla","🔄 Start Over"), width="content"):
                 for k in ["tr_adim","tr_butce","tr_butce_label","tr_mevki","tr_tercih"]:
                     st.session_state.pop(k, None)
                 st.rerun()
