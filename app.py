@@ -4882,12 +4882,12 @@ if st.session_state["sayfa"] == "iletisim":
       <div style='color:#fff;font-size:15px;font-weight:600;'>mehmetbarandanis@gmail.com</div>
       <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>{t("🌐 Sosyal Medya", "🌐 Social Media")}</div>
       <div style='display:flex;gap:10px;flex-wrap:wrap;'>
-        <a href='https://www.instagram.com/mehmetbarandanis/' target='_blank'
+        <a href='https://www.instagram.com/celebiyigit/' target='_blank'
            style='display:inline-flex;align-items:center;gap:7px;text-decoration:none;
            background:#0f1117;border:1px solid #2a3146;border-radius:8px;
            padding:8px 14px;color:#e9d5ff;font-size:14px;font-weight:600;
            transition:border-color .15s;'>
-          📸 Instagram <span style='color:#8899aa;font-weight:400;'>@mehmetbarandanis</span>
+          📸 Instagram <span style='color:#8899aa;font-weight:400;'>@celebiyigit</span>
         </a>
         <a href='https://x.com/yiitche' target='_blank'
            style='display:inline-flex;align-items:center;gap:7px;text-decoration:none;
