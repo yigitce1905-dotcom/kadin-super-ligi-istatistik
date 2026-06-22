@@ -18,6 +18,7 @@ H        = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit
 BASE     = "https://tffistanbul.org"
 LIG_BASE = BASE + "/puantaj-ve-fikstur/2025-2026/u15-genc-kizlar/29/307"
 GRUPLAR  = {"A": 6032, "B": 6033, "C": 6038}
+MAC_SURE = 70   # U15 Genç Kızlar: 2×35 = 70 dk (olaylar 70'te bitiyor, üstü yok)
 SES = requests.Session(); SES.verify = False
 
 
@@ -86,11 +87,28 @@ def mac_detay(url):
             mid = re.search(r"/futbolcu/[^/]+/(\d+)", a["href"])
             kid = mid.group(1) if mid else a.get_text(strip=True)
             info = tr.select_one(".lineup__info")
-            cls = " ".join(" ".join(i.get("class", [])) for i in info.select("i")) if info else ""
+            iconlar = info.select("i") if info else []
+            cls = " ".join(" ".join(i.get("class", [])) for i in iconlar)
+
+            def _dk(sinif):  # ikonun title'ındaki dakika (icon-in / icon-out)
+                for i in iconlar:
+                    if sinif in i.get("class", []):
+                        m = re.search(r"(\d+)", i.get("title", ""))
+                        return int(m.group(1)) if m else None
+                return None
+
+            gir, cik = _dk("icon-in"), _dk("icon-out")
             ilk11 = "İlk 11" in bolum
+            if ilk11:                                   # ilk 11: çıktıysa o dk, yoksa tam maç
+                oynadi, dakika = True, (cik if cik is not None else MAC_SURE)
+            elif gir is not None:                       # yedek girdi: (çıkış|maç sonu) − giriş
+                oynadi, dakika = True, (cik if cik is not None else MAC_SURE) - gir
+            else:                                       # kadroda ama oynamadı
+                oynadi, dakika = False, 0
+            dakika = max(0, min(MAC_SURE, dakika))
             cikti.append({
                 "kisi_id": kid, "oyuncu": a.get_text(strip=True), "takim": takim,
-                "ilk11": ilk11, "oynadi": ilk11 or ("icon-in" in cls),
+                "ilk11": ilk11, "oynadi": oynadi, "dakika": dakika,
                 "gol": cls.count("icon-soccer-ball"),
                 "sari": cls.count("icon-yellow-card"), "kirmizi": cls.count("icon-red-card"),
             })
@@ -98,8 +116,8 @@ def mac_detay(url):
 
 
 def main():
-    oy = defaultdict(lambda: {"oyuncu": "", "takimlar": [], "grup": None,
-                              "mac": 0, "ilk11": 0, "yedek": 0, "gol": 0, "sari": 0, "kirmizi": 0})
+    oy = defaultdict(lambda: {"oyuncu": "", "takimlar": [], "grup": None, "mac": 0,
+                              "ilk11": 0, "yedek": 0, "gol": 0, "sari": 0, "kirmizi": 0, "dakika": 0})
     toplam_mac = 0
     for gad, gid in GRUPLAR.items():
         maclar = grup_maclari(gid)
@@ -114,6 +132,7 @@ def main():
                 if k["oynadi"]:
                     r["mac"] += 1
                     r["ilk11" if k["ilk11"] else "yedek"] += 1
+                    r["dakika"] += k["dakika"]
                 r["gol"] += k["gol"]; r["sari"] += k["sari"]; r["kirmizi"] += k["kirmizi"]
             toplam_mac += 1
             time.sleep(0.25)
@@ -130,7 +149,7 @@ def main():
             "mac_sayisi": r["mac"], "ilk11_mac": r["ilk11"], "yedek_mac": r["yedek"],
             "gol_sayisi": r["gol"], "gol_ayak": r["gol"], "gol_kafa": 0, "penalti_gol": 0,
             "gol_ort": round(r["gol"] / r["mac"], 2) if r["mac"] else 0.0,
-            "sari_kart": r["sari"], "kirmizi_kart": r["kirmizi"], "toplam_dakika": 0,
+            "sari_kart": r["sari"], "kirmizi_kart": r["kirmizi"], "toplam_dakika": r["dakika"],
         })
     oyuncular.sort(key=lambda x: (-x["mac_sayisi"], -x["gol_sayisi"]))
     golcu = sorted([o for o in oyuncular if o["gol_sayisi"] > 0],
