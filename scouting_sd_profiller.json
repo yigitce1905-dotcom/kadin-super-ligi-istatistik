@@ -6006,10 +6006,6 @@
     "profil_url": "https://www.soccerdonna.de/en/rebecka-blomqvist/profil/spieler_27808.html",
     "vatandaslik": "İsveç"
   },
-  "Lorall Romain": {
-    "vatandaslik": "ABD",
-    "bulunamadi": true
-  },
   "Suwaibatu Mohammed": {
     "Photo: unknown": "Date of birth:29.09.1999Age:26Nationality:GhanaPosition:StrikerMarket value:unknown",
     "Date of birth": "29.09.1999",
@@ -6945,8 +6941,20 @@
     "vatandaslik": "Fransa"
   },
   "A. Le Moguédec": {
-    "vatandaslik": "Fransa",
-    "bulunamadi": true
+    "profil_url": "https://www.soccerdonna.de/en/anale-le-moguedec/profil/spieler_60148.html",
+    "Date of birth": "06.12.2001",
+    "Place of birth": "Vannes",
+    "Age": "24",
+    "Height": "1,64",
+    "Nationality": "France",
+    "Position": "Midfield - Attacking Midfield",
+    "Foot": "right",
+    "Market value": "200.000 €",
+    "Contract until": "30.06.2028",
+    "Debut (Club)": "06.09.2025",
+    "sd_isim": "A. Le Moguédec",
+    "es_skoru": 1.0,
+    "vatandaslik": "Fransa"
   },
   "O. Jean-François": {
     "profil_url": "https://www.soccerdonna.de/en/oriane-jean-francois/profil/spieler_39684.html",
@@ -7658,8 +7666,21 @@
     "vatandaslik": "Kanada"
   },
   "Sabrina D'Angelo": {
-    "vatandaslik": "Kanada",
-    "bulunamadi": true
+    "profil_url": "https://www.soccerdonna.de/en/sabrina-dangelo/profil/spieler_17039.html",
+    "Date of birth": "11.05.1993",
+    "Place of birth": "Welland, Ontario",
+    "Age": "33",
+    "Name in native country": "Sabrina Victoria D’Angelo",
+    "Height": "1,71",
+    "Nationality": "Canada",
+    "Position": "Goalkeeper",
+    "Foot": "left",
+    "Market value": "45.000 €",
+    "Contract until": "30.06.2026",
+    "Debut (Club)": "20.09.2024",
+    "sd_isim": "Sabrina Victoria D’Angelo",
+    "es_skoru": 1.0,
+    "vatandaslik": "Kanada"
   },
   "Lysianne Proulx": {
     "Photo: unknown": "Date of birth:17.04.1999Place of birth:Longueuil, QuebecAge:27Name in native country:Lysianne ProulxHeight:1,70Nationality:CanadaPosition:GoalkeeperMarket value:30.000 €Contract until:30.06.2027Debut (Club):26.04.2026",
@@ -14182,8 +14203,19 @@
     "vatandaslik": "Güney Kore"
   },
   "Mun Eun-ju": {
-    "vatandaslik": "Güney Kore",
-    "bulunamadi": true
+    "profil_url": "https://www.soccerdonna.de/en/eun-joo-mun/profil/spieler_59779.html",
+    "Date of birth": "01.09.2000",
+    "Age": "25",
+    "Name in native country": "문은주",
+    "Height": "1,70",
+    "Nationality": "Korea, South",
+    "Position": "Striker - Centre Forward",
+    "Foot": "both",
+    "Market value": "unknown",
+    "Debut (Club)": "02.04.2022",
+    "sd_isim": "문은주",
+    "es_skoru": 1.0,
+    "vatandaslik": "Güney Kore"
   },
   "Jeon Yu-gyeong": {
     "profil_url": "https://www.soccerdonna.de/en/yu-gyeong-jeon/profil/spieler_75592.html",
@@ -14232,8 +14264,20 @@
     "vatandaslik": "Güney Kore"
   },
   "Zhu Yu": {
-    "vatandaslik": "Çin",
-    "bulunamadi": true
+    "profil_url": "https://www.soccerdonna.de/en/yu-zhu/profil/spieler_44140.html",
+    "Date of birth": "23.07.1997",
+    "Place of birth": "Benxi",
+    "Age": "28",
+    "Name in native country": "朱钰",
+    "Height": "1,84",
+    "Nationality": "China",
+    "Position": "Goalkeeper",
+    "Market value": "unknown",
+    "Contract until": "?",
+    "Debut (Club)": "07.04.2022",
+    "sd_isim": "朱钰",
+    "es_skoru": 1.0,
+    "vatandaslik": "Çin"
   },
   "Xu Huan": {
     "Photo: unknown": "Date of birth:08.08.2002Place of birth:Xuzhou, JiangsuAge:23Name in native country:黄晓旭Nationality:ChinaPosition:DefenceMarket value:unknownContract until:?Debut (Club):10.01.2026",
@@ -14470,8 +14514,22 @@
     "vatandaslik": "Çin"
   },
   "Yang Lina": {
-    "vatandaslik": "Çin",
-    "bulunamadi": true
+    "profil_url": "https://www.soccerdonna.de/en/lina-yang/profil/spieler_59390.html",
+    "Date of birth": "13.04.1994",
+    "Place of birth": "Huzhou, Zhejiang",
+    "Age": "32",
+    "Name in native country": "杨莉娜",
+    "Height": "1,73",
+    "Nationality": "China",
+    "Position": "Midfield - Central Midfield",
+    "Foot": "right",
+    "Outfitter": "Nike",
+    "Market value": "25.000 €",
+    "Contract until": "30.06.2026",
+    "Debut (Club)": "20.02.2026",
+    "sd_isim": "杨莉娜",
+    "es_skoru": 1.0,
+    "vatandaslik": "Çin"
   },
   "Yao Lingwei": {
     "profil_url": "https://www.soccerdonna.de/en/lingwei-yao/profil/spieler_25214.html",
@@ -14604,8 +14662,19 @@
     "vatandaslik": "Çin"
   },
   "Shao Ziqin": {
-    "vatandaslik": "Çin",
-    "bulunamadi": true
+    "profil_url": "https://www.soccerdonna.de/en/ziqin-shao/profil/spieler_71242.html",
+    "Date of birth": "24.02.2003",
+    "Age": "23",
+    "Name in native country": "邵子钦",
+    "Height": "1,79",
+    "Nationality": "China",
+    "Position": "Striker - Centre Forward",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Debut (Club)": "07.04.2022",
+    "sd_isim": "邵子钦",
+    "es_skoru": 1.0,
+    "vatandaslik": "Çin"
   },
   "Yuan Cong": {
     "profil_url": "https://www.soccerdonna.de/en/cong-yuan/profil/spieler_59626.html",
