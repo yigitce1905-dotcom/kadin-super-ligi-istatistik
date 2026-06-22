@@ -8,6 +8,13 @@ font = "sans serif"
 
 [client]
 showErrorDetails = "none"
+toolbarMode = "minimal"
 
 [server]
 enableStaticServing = true
+# Prod (Render): dosya-izleyici thread'i kapalı → CPU tasarrufu (hot-reload gerekmez)
+fileWatcherType = "none"
+
+[runner]
+# Hızlı tıklamada önceki rerun iptal edilip yenisi başlar → daha akıcı tepki
+fastReruns = true

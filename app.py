@@ -5,19 +5,16 @@ import json, os, pathlib, requests
 from urllib.parse import quote as _urlquote
 import pandas as pd
 import plotly.graph_objects as go
-import plotly.express as px
 import streamlit as st
 try:
     import bcrypt as _bcrypt
     _BCRYPT_OK = True
 except ImportError:
     _BCRYPT_OK = False
-try:
-    from groq import Groq as _Groq
-    _GROQ_OK = True
-except ImportError:
-    _GROQ_OK = False
-from bs4 import BeautifulSoup
+# groq (AI rapor) yalnız kullanıldığında yüklenir (cold start'tan ~0.3s düşer)
+import importlib.util as _ilu
+_GROQ_OK = _ilu.find_spec("groq") is not None
+# NOT: plotly.express ve bs4 app'te kullanılmıyordu — kaldırıldı (cold start ~0.3s).
 
 # ── Render secret bootstrap (st.secrets ilk okunmadan ÖNCE) ────────────────────
 # Render "Secret File" adında '/' kabul etmiyor → dosya düz 'secrets.toml' olarak
@@ -3519,6 +3516,7 @@ _YETENEK_RENK = {
     "Gelişime Açık": "#fb923c", "Sınırlı": "#f87171",
 }
 
+@st.cache_data(show_spinner=False, max_entries=64)
 def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
     """Scout raporunu tek sayfalık PDF olarak üretir (DejaVu — Türkçe destekli)."""
     from fpdf import FPDF
@@ -8038,6 +8036,7 @@ def _groq_client():
         key = st.secrets.get("GROQ_API_KEY", "") if hasattr(st, "secrets") else ""
     if not key or not _GROQ_OK:
         return None
+    from groq import Groq as _Groq   # lazy: yalnız AI rapor istenince yüklenir
     return _Groq(api_key=key)
 
 
