@@ -138,23 +138,33 @@ footer { visibility:hidden !important; display:none !important; }
 /* ── Başlık / Hero ── */
 .baslik-kutu {
     position:relative; overflow:hidden;
-    background:linear-gradient(120deg,#131a2e 0%,#190f2e 60%,#260e30 100%);
-    border:1px solid #2c2350; border-radius:10px;
-    padding:22px 30px 20px; margin-bottom:22px;
+    background:
+       radial-gradient(120% 150% at 88% -25%, #7c3aed44 0%, transparent 52%),
+       radial-gradient(100% 130% at -5% 120%, #1db95420 0%, transparent 48%),
+       linear-gradient(120deg,#0b0f1e 0%,#140c26 55%,#1d0d29 100%);
+    border:1px solid #2c2350; border-radius:16px;
+    padding:30px 34px 26px; margin-bottom:24px;
+    box-shadow:0 14px 44px -14px #00000088, inset 0 1px 0 #ffffff12;
 }
 .baslik-kutu::before { content:''; position:absolute; top:0; left:0; right:0; height:3px;
-    background:linear-gradient(90deg,#7c3aed 0%,#a855f7 50%,#ec4899 100%); }
-.baslik-kutu .ust-bant { font-size:0.64rem; font-weight:800; letter-spacing:0.22em;
-    color:#c084fc; text-transform:uppercase; margin-bottom:7px; }
-.baslik-kutu h1 { color:#fff; font-size:1.62rem; font-weight:800; margin:0 0 6px 0; }
+    background:linear-gradient(90deg,#7c3aed 0%,#a855f7 42%,#ec4899 76%,#f59e0b 100%); }
+/* dekoratif futbol sahası motifi (sağda, hafif) */
+.baslik-kutu .pitch { position:absolute; right:-30px; top:50%; transform:translateY(-50%);
+    width:330px; height:230px; opacity:0.16; pointer-events:none; }
+.baslik-kutu .pitch svg { width:100%; height:100%; display:block; }
+.baslik-kutu .ust-bant { position:relative; font-size:0.66rem; font-weight:800; letter-spacing:0.26em;
+    color:#c084fc; text-transform:uppercase; margin-bottom:11px; }
+.baslik-kutu h1 { position:relative; color:#fff; font-size:2.15rem; font-weight:900; margin:0 0 9px 0;
+    letter-spacing:-0.02em; line-height:1.07; }
 .baslik-kutu h1 .vurgu {
-    background:linear-gradient(90deg,#a855f7,#ec4899);
+    background:linear-gradient(90deg,#c084fc,#ec4899);
     -webkit-background-clip:text; background-clip:text; color:transparent; }
-.baslik-kutu p  { color:#9aa6ba; margin:0; font-size:0.86rem; line-height:1.55; }
-.hero-chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:13px; }
-.hero-chip { font-size:0.66rem; font-weight:700; letter-spacing:0.06em;
-    color:#cbd5e1; background:#ffffff0a; border:1px solid #ffffff1c;
-    border-radius:4px; padding:4px 11px; white-space:nowrap; }
+.baslik-kutu p  { position:relative; color:#9fb0c6; margin:0; font-size:0.92rem; line-height:1.6;
+    max-width:660px; }
+.hero-chips { position:relative; display:flex; gap:9px; flex-wrap:wrap; margin-top:17px; }
+.hero-chip { font-size:0.7rem; font-weight:700; letter-spacing:0.05em;
+    color:#e2e8f0; background:#ffffff10; border:1px solid #ffffff24;
+    border-radius:8px; padding:6px 13px; white-space:nowrap; }
 .hero-chip b { color:#4ade80; font-family:'Sora',monospace; }
 
 /* ── Özet kartlar ── */
@@ -4873,6 +4883,13 @@ _ust_blok_goster = _ana_ekran and _ilk_sekmede
 if _ust_blok_goster:
   st.markdown(f"""
 <div class="baslik-kutu">
+  <div class="pitch"><svg viewBox="0 0 330 230" fill="none" stroke="#c084fc" stroke-width="2">
+    <rect x="3" y="3" width="324" height="224" rx="8"/>
+    <line x1="165" y1="3" x2="165" y2="227"/>
+    <circle cx="165" cy="115" r="44"/><circle cx="165" cy="115" r="3.5" fill="#c084fc" stroke="none"/>
+    <rect x="3" y="62" width="58" height="106"/><rect x="3" y="88" width="24" height="54"/>
+    <rect x="269" y="62" width="58" height="106"/><rect x="303" y="88" width="24" height="54"/>
+  </svg></div>
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
   <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
          'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
@@ -6586,19 +6603,20 @@ def render_giris_ekrani():
             f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1db954;"
             f"font-weight:700;margin:10px 0 10px;'>📊 {t('Kısa Sayısal Özet','Quick Summary')}</div>",
             unsafe_allow_html=True)
+        # Disiplinli palet: veri=yeşil (#1db954), platform/scouting=mor vurgu (#a855f7).
         satir1 = [
             (o["oyuncu"], t("Toplam Oyuncu","Total Players"),
              f"{o['yerli']} {t('yerli','dom.')} · {o['yabanci']} {t('yabancı','for.')}", "#1db954"),
-            (o["takim"], t("Toplam Takım","Total Teams"), t("Süper Lig","Super League"), "#58a6ff"),
-            (o["scouting"], t("Scouting Raporu","Scouting Reports"), t("uluslararası havuz","intl. pool"), "#f0c040"),
-            (o["mac"], t("Toplam Maç","Total Matches"), t("sezon geneli","full season"), "#58a6ff"),
+            (o["takim"], t("Toplam Takım","Total Teams"), t("Süper Lig","Super League"), "#1db954"),
+            (o["scouting"], t("Scouting Raporu","Scouting Reports"), t("uluslararası havuz","intl. pool"), "#a855f7"),
+            (o["mac"], t("Toplam Maç","Total Matches"), t("sezon geneli","full season"), "#1db954"),
         ]
         satir2 = [
-            (o["gol"], t("Toplam Gol","Total Goals"), t("tüm lig","whole league"), "#e040fb"),
+            (o["gol"], t("Toplam Gol","Total Goals"), t("tüm lig","whole league"), "#1db954"),
             (o["yerli"], t("Yerli Oyuncu","Domestic Players"),
              (f"%{round(o['yerli']/o['oyuncu']*100)} " + t("yerli oran","domestic")) if o["oyuncu"] else "", "#1db954"),
-            (o["ort_yas"], t("Ortalama Yaş","Average Age"), t("lig geneli","league-wide"), "#58a6ff"),
-            (o["u23"], t("U-23 Yetenek","U-23 Talents"), t("geleceğin yıldızları","future stars"), "#f0c040"),
+            (o["ort_yas"], t("Ortalama Yaş","Average Age"), t("lig geneli","league-wide"), "#1db954"),
+            (o["u23"], t("U-23 Yetenek","U-23 Talents"), t("geleceğin yıldızları","future stars"), "#a855f7"),
         ]
         for satir in (satir1, satir2):
             cols = st.columns(4)
