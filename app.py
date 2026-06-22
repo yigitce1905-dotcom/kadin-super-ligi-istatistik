@@ -5279,7 +5279,7 @@ if st.session_state.get("sayfa") == "altlig":
 _ALTYAS_DOSYALAR = {  # kategori → veri dosyası (sırayla sekme/seçici olur)
     "U17 Kızlar": "altlig_u17.json",   # kaynak: TFF U17 Gelişim Ligi
     "U15 Kızlar": "altlig_u15.json",   # kaynak: tffistanbul.org (İstanbul U15 Genç Kızlar A/B/C)
-    # "U13 Kızlar": "altlig_u13.json", # sonra
+    "U13 Kızlar": "altlig_u13.json",   # kaynak: tffistanbul.org (İstanbul U13 Minik Kızlar 1/2/3)
 }
 
 def render_altyas():
