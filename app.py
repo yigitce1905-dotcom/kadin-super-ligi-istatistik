@@ -5240,8 +5240,11 @@ def _odeme_bilgi() -> dict:
         d = dict(st.secrets.get("odeme", {}))
     except Exception:
         d = {}
+    # WhatsApp numarası herkese gösterilen iletişim bilgisi (gizli değil; e-posta/Instagram gibi
+    # zaten koddadır) → varsayılan koda gömülü, secrets [odeme] whatsapp ile override edilebilir.
     return {"iban": d.get("iban", ""), "hesap_adi": d.get("hesap_adi", ""),
-            "banka": d.get("banka", ""), "whatsapp": str(d.get("whatsapp", "")),
+            "banka": d.get("banka", ""),
+            "whatsapp": str(d.get("whatsapp", "") or "905309546646"),
             "aktif": bool(d.get("iban"))}
 
 
