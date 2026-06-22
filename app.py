@@ -139,19 +139,14 @@ footer { visibility:hidden !important; display:none !important; }
 .baslik-kutu {
     position:relative; overflow:hidden;
     background:
-       radial-gradient(120% 150% at 88% -25%, #7c3aed44 0%, transparent 52%),
-       radial-gradient(100% 130% at -5% 120%, #1db95420 0%, transparent 48%),
-       linear-gradient(120deg,#0b0f1e 0%,#140c26 55%,#1d0d29 100%);
+       linear-gradient(100deg, #0a0e1bf7 0%, #0b0f1eee 40%, #140c26c2 66%, #1d0d2982 100%),
+       url('app/static/hero.jpg') center 28%/cover no-repeat;
     border:1px solid #2c2350; border-radius:16px;
     padding:30px 34px 26px; margin-bottom:24px;
     box-shadow:0 14px 44px -14px #00000088, inset 0 1px 0 #ffffff12;
 }
 .baslik-kutu::before { content:''; position:absolute; top:0; left:0; right:0; height:3px;
     background:linear-gradient(90deg,#7c3aed 0%,#a855f7 42%,#ec4899 76%,#f59e0b 100%); }
-/* dekoratif futbol sahası motifi (sağda, hafif) */
-.baslik-kutu .pitch { position:absolute; right:-30px; top:50%; transform:translateY(-50%);
-    width:330px; height:230px; opacity:0.16; pointer-events:none; }
-.baslik-kutu .pitch svg { width:100%; height:100%; display:block; }
 .baslik-kutu .ust-bant { position:relative; font-size:0.66rem; font-weight:800; letter-spacing:0.26em;
     color:#c084fc; text-transform:uppercase; margin-bottom:11px; }
 .baslik-kutu h1 { position:relative; color:#fff; font-size:2.15rem; font-weight:900; margin:0 0 9px 0;
@@ -4883,13 +4878,6 @@ _ust_blok_goster = _ana_ekran and _ilk_sekmede
 if _ust_blok_goster:
   st.markdown(f"""
 <div class="baslik-kutu">
-  <div class="pitch"><svg viewBox="0 0 330 230" fill="none" stroke="#c084fc" stroke-width="2">
-    <rect x="3" y="3" width="324" height="224" rx="8"/>
-    <line x1="165" y1="3" x2="165" y2="227"/>
-    <circle cx="165" cy="115" r="44"/><circle cx="165" cy="115" r="3.5" fill="#c084fc" stroke="none"/>
-    <rect x="3" y="62" width="58" height="106"/><rect x="3" y="88" width="24" height="54"/>
-    <rect x="269" y="62" width="58" height="106"/><rect x="303" y="88" width="24" height="54"/>
-  </svg></div>
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
   <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
          'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
