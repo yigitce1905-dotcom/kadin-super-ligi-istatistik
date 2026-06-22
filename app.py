@@ -59,6 +59,18 @@ def t(tr, en):
 
 EN = st.session_state.get("dil") == "EN"
 
+
+def _sayfa_banner(img: str, baslik: str, alt: str = ""):
+    """Alt sayfa için fotoğraflı banner başlık (static/<img> + koyu overlay). Görsel
+    Streamlit statik servisle (app/static/) verilir → rerun'da yeniden gönderilmez."""
+    st.markdown(
+        f"<div class='sayfa-banner' style=\"background:"
+        f"linear-gradient(95deg,#0a0e1bf2 0%,#0b0f1edd 42%,#140c2699 72%,#1d0d2955 100%),"
+        f"url('app/static/{img}') center 32%/cover no-repeat;\">"
+        f"<div class='sb-baslik'>{baslik}</div>"
+        + (f"<div class='sb-alt'>{alt}</div>" if alt else "")
+        + "</div>", unsafe_allow_html=True)
+
 # Profil render bağlam sayacı: aynı çalıştırmada profil birden çok kez
 # render edilirse (örn. modal + sekme) widget key'leri çakışmasın diye.
 _PROFIL_CTX = {"n": 0}
@@ -67,7 +79,7 @@ def _pk(base: str) -> str:
 
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=Oswald:wght@500;600;700&display=swap');
 
 /* ── Streamlit "prototip" chrome'unu gizle (profesyonel görünüm) ──
    ⋮ menü, Deploy, footer ve üst renk şeridi kaldırılır.
@@ -131,7 +143,7 @@ footer { visibility:hidden !important; display:none !important; }
 .stApp { background-color:#0f1117; color:#e0e0e0;
     font-family:'Inter',-apple-system,'Segoe UI',sans-serif; }
 .stApp h1, .stApp h2, .stApp h3 {
-    font-family:'Sora','Inter',sans-serif; letter-spacing:-0.02em; }
+    font-family:'Oswald','Sora','Inter',sans-serif; letter-spacing:0.005em; font-weight:700; }
 .stApp h4, .stApp h5 { font-family:'Inter',sans-serif; font-weight:700; }
 .main hr { border-color:#1d2336; }
 
@@ -149,8 +161,8 @@ footer { visibility:hidden !important; display:none !important; }
     background:linear-gradient(90deg,#7c3aed 0%,#a855f7 42%,#ec4899 76%,#f59e0b 100%); }
 .baslik-kutu .ust-bant { position:relative; font-size:0.66rem; font-weight:800; letter-spacing:0.26em;
     color:#c084fc; text-transform:uppercase; margin-bottom:11px; }
-.baslik-kutu h1 { position:relative; color:#fff; font-size:2.15rem; font-weight:900; margin:0 0 9px 0;
-    letter-spacing:-0.02em; line-height:1.07; }
+.baslik-kutu h1 { position:relative; color:#fff; font-size:2.4rem; font-weight:700; margin:0 0 9px 0;
+    letter-spacing:0.01em; line-height:1.06; }
 .baslik-kutu h1 .vurgu {
     background:linear-gradient(90deg,#c084fc,#ec4899);
     -webkit-background-clip:text; background-clip:text; color:transparent; }
@@ -161,6 +173,16 @@ footer { visibility:hidden !important; display:none !important; }
     color:#e2e8f0; background:#ffffff10; border:1px solid #ffffff24;
     border-radius:8px; padding:6px 13px; white-space:nowrap; }
 .hero-chip b { color:#4ade80; font-family:'Sora',monospace; }
+/* ── Alt sayfa banner'ı (fotoğraflı başlık) ── */
+.sayfa-banner { position:relative; border:1px solid #2c2350; border-radius:14px;
+    padding:24px 28px; margin:2px 0 18px; overflow:hidden;
+    box-shadow:0 10px 36px -16px #000000aa; }
+.sayfa-banner::before { content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg,#7c3aed,#a855f7 45%,#ec4899 80%,#f59e0b); }
+.sayfa-banner .sb-baslik { position:relative; font-family:'Oswald','Sora',sans-serif; color:#fff;
+    font-size:1.7rem; font-weight:700; letter-spacing:0.01em; line-height:1.12; }
+.sayfa-banner .sb-alt { position:relative; color:#aebbd0; font-size:0.9rem; margin-top:6px;
+    max-width:580px; line-height:1.5; }
 
 /* ── Özet kartlar ── */
 .stat-kart { background:linear-gradient(180deg,#171c30,#131726);
@@ -5483,8 +5505,9 @@ if st.session_state["sayfa"] == "talep":
     geri_ana_butonu("geri_talep")
     # Hero
     st.markdown(f"""
-    <div style='background:linear-gradient(135deg,#0f3d2e,#1a5c43);border-radius:16px;
-        padding:24px 30px;border-left:5px solid #1db954;margin-bottom:22px;'>
+    <div style="background:linear-gradient(100deg,#08160ff5 0%,#0f3d2ee0 44%,#1a5c4399 100%),
+        url('app/static/b1.jpg') center 30%/cover no-repeat;border-radius:16px;
+        padding:24px 30px;border-left:5px solid #1db954;margin-bottom:22px;overflow:hidden;">
       <div style='display:inline-block;background:#29b6f622;border:1px solid #29b6f6;
            color:#29b6f6;border-radius:6px;padding:2px 10px;font-size:0.66rem;
            font-weight:800;letter-spacing:0.1em;margin-bottom:8px;'>
@@ -6046,15 +6069,9 @@ if st.session_state.get("sayfa") == "saygi":
 if st.session_state.get("sayfa") == "scouting":
     geri_ana_butonu("geri_scouting")
     if tier_yeterli("premium"):
-        st.markdown(f"""
-        <div style='margin-bottom:4px;'>
-          <h2 style='color:#f1f5f9;margin-bottom:4px;'>🔎 {t("Scouting Havuzu","Scouting Pool")}</h2>
-          <p style='color:#64748b;font-size:0.85rem;'>
-            {t("Yabancı oyuncu kurasyonu · 2026-27 kadro planlama · SoccerDonna verileri ile zenginleştirilmiş",
-               "Foreign player curation · 2026-27 squad planning · enriched with SoccerDonna data")}
-          </p>
-        </div>
-        """, unsafe_allow_html=True)
+        _sayfa_banner("b2.jpg", f"🔎 {t('Scouting Havuzu','Scouting Pool')}",
+            t("Yabancı oyuncu kurasyonu · 2026-27 kadro planlama · SoccerDonna verileri ile zenginleştirilmiş",
+              "Foreign player curation · 2026-27 squad planning · enriched with SoccerDonna data"))
 
         # Roster kaynağı: Sco 🌍 sekmesi (scout_kadro_raporlar.json — commit'li snapshot).
         # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
