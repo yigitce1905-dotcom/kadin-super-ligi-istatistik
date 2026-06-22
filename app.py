@@ -231,8 +231,8 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     margin-top:36px; padding-top:14px; border-top:1px solid #1e2340; }
 
 /* ── Scouting odaklı profil: büyük isim + gruplu bilgi kutuları ── */
-.sc-isim { font-size:2.1rem; font-weight:800; color:#f5f8ff; line-height:1.08;
-    letter-spacing:-0.015em; }
+.sc-isim { font-family:'Oswald','Sora',sans-serif; font-size:2.3rem; font-weight:700;
+    color:#f5f8ff; line-height:1.06; letter-spacing:0.01em; }
 .sc-mevki { color:#93c5fd; font-size:0.96rem; margin:7px 0 2px; font-weight:600; }
 .bilgi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
     gap:12px; margin:18px 0 22px; }
@@ -6983,10 +6983,11 @@ if tab1:
             secili_satirlar = secim.selection.rows if secim and secim.selection else []
             if not secili_satirlar:
                 st.markdown(
-                    f"<div style='background:#11162a;border:1px dashed #2d3561;border-radius:12px;"
-                    f"padding:40px 24px;text-align:center;color:#64748b;'>"
-                    f"👈 {t('Listeden bir oyuncuya tıkla','Click a player in the list')}<br>"
-                    f"<span style='font-size:0.82rem;'>{t('ücretsiz bilgileri burada görünür','free info appears here')}</span>"
+                    f"<div style='background:linear-gradient(180deg,#12182e,#0e1322);border:1px dashed #2d3561;"
+                    f"border-radius:14px;padding:46px 24px;text-align:center;color:#7b86a0;'>"
+                    f"<div style='font-size:2.2rem;margin-bottom:8px;opacity:0.65;'>⚽</div>"
+                    f"<div style='font-weight:600;color:#aebbd0;font-size:0.95rem;'>{t('Listeden bir oyuncuya tıkla','Click a player in the list')}</div>"
+                    f"<div style='font-size:0.82rem;margin-top:4px;'>{t('ücretsiz bilgileri burada görünür','free info appears here')}</div>"
                     f"</div>", unsafe_allow_html=True)
             else:
                 tikli_oyuncu = liste_df.iloc[secili_satirlar[0]]["Oyuncu"]
