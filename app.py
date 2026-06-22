@@ -197,6 +197,9 @@ footer { visibility:hidden !important; display:none !important; }
 /* ── Üyelik paket kartları ── */
 .paket-kart { transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease; }
 .paket-kart:hover { transform:translateY(-3px); box-shadow:0 18px 42px -18px #000000c0; }
+/* ── Hizmet (danışmanlık) kartları ── */
+.hizmet-kart { transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease; }
+.hizmet-kart:hover { transform:translateY(-3px); box-shadow:0 14px 34px -16px #000000b0; border-color:#33406a !important; }
 .stat-kart .sayi   { font-size:1.6rem; font-weight:800; color:#1db954;
     font-family:'Sora',sans-serif; line-height:1.12; white-space:nowrap; }
 .stat-kart .etiket { font-size:0.66rem; color:#8899aa; margin-top:4px;
@@ -5570,12 +5573,13 @@ if st.session_state["sayfa"] == "talep":
     for _i, (_ik, _ad, _et, _ac) in enumerate(_paketler):
         with _pc[_i % 2]:
             st.markdown(f"""
-            <div style='border:1px solid #334155;border-radius:12px;padding:16px;
-                background:linear-gradient(135deg,#0f172a,#1a1f36);margin-bottom:14px;min-height:150px;'>
-              <div style='font-size:1.5rem;'>{_ik}</div>
-              <div style='font-size:1.0rem;font-weight:700;color:#f1f5f9;margin:4px 0 2px;'>{_ad}</div>
-              <div style='color:#64748b;font-size:0.7rem;margin-bottom:8px;'>{_et}</div>
-              <div style='color:#94a3b8;font-size:0.82rem;line-height:1.55;'>{_ac}</div>
+            <div class='hizmet-kart' style='border:1px solid #232a45;border-top:2px solid #1db954;
+                border-radius:14px;padding:18px;background:linear-gradient(160deg,#141a2e,#0f1322);
+                margin-bottom:14px;min-height:158px;'>
+              <div style='font-size:1.6rem;'>{_ik}</div>
+              <div style='font-family:Oswald,Sora,sans-serif;font-size:1.1rem;font-weight:700;color:#f1f5f9;margin:6px 0 2px;'>{_ad}</div>
+              <div style='color:#1db954;font-size:0.64rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:9px;'>{_et}</div>
+              <div style='color:#9fb0c6;font-size:0.84rem;line-height:1.55;'>{_ac}</div>
             </div>""", unsafe_allow_html=True)
 
     # Akıllı ön-öneri
