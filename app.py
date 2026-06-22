@@ -1157,15 +1157,15 @@ def deneme_kilit(ozellik: str, kaynak: str = "tr"):
         f"background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
         f"border-radius:16px;padding:36px 32px;'>"
         f"<div style='font-size:2.6rem;'>🎁</div>"
-        f"<h2 style='color:#f1f5f9;margin:8px 0 10px;'>{t('Deneme Modu','Trial Mode')}</h2>"
+        f"<h2 style='color:#f1f5f9;margin:8px 0 10px;'>{t('Sınırlı Önizleme','Limited Preview')}</h2>"
         f"<p style='color:#cbd5e1;font-size:0.95rem;line-height:1.7;margin:0 0 14px;'>"
         f"<b style='color:#e040fb;'>{ozellik}</b> "
-        f"{t('denemede sınırlıdır; tam katalogla üyelikte açılır.','is limited in trial; it unlocks with full membership.')}</p>"
+        f"{t('bu kademede sınırlıdır; üyelikle tam katalog açılır.','is limited on your plan; full catalog unlocks with membership.')}</p>"
         f"<div style='background:#0f0a1e;border:1px solid #3b2d6e;border-radius:10px;"
         f"padding:14px 18px;margin-bottom:14px;'>"
         f"<span style='color:#94a3b8;font-size:0.9rem;'>{t('Toplam','Total')} "
         f"<b style='color:#fff;'>{toplam}</b> {nereden} {t('oyuncu','players')} · "
-        f"{t('denemede','trial')}: <b style='color:#e040fb;'>{acik}</b> {t('örnek açık','samples open')}</span></div>"
+        f"{t('açık','open')}: <b style='color:#e040fb;'>{acik}</b> {t('örnek','samples')}</span></div>"
         f"<p style='color:#6b7a99;font-size:0.82rem;margin:0;'>"
         f"{t('Tam erişim için 📬 İletişim / üyelik.','For full access see 📬 Contact / membership.')}</p>"
         f"</div>", unsafe_allow_html=True)
@@ -6990,14 +6990,14 @@ if tab2:
         giris_gerekli_ekrani()
     else:
         _tum_liste = sorted(df_tam["Oyuncu"].tolist())
-        if deneme_modunda():
-            # Deneme: yalnızca vitrin oyuncuları — belirgin biçimde öne çıkar
+        if deneme_modunda() or not tier_yeterli("basic"):
+            # Free kademe / deneme: yalnızca vitrin oyuncuları (tam detaylı profil = basic+)
             oyuncu_listesi = [o for o in _tum_liste if o in DENEME_TR_OYUNCULAR]
             st.markdown(
                 f"<div style='background:linear-gradient(135deg,#1a0f2e,#2a1145);"
                 f"border:1px solid #e040fb;border-radius:12px;padding:13px 18px 6px;margin-bottom:8px;'>"
                 f"<div style='color:#e9d5ff;font-size:0.9rem;font-weight:700;'>"
-                f"🎁 {t('Denemende açık örnek oyuncular','Sample players open in your trial')}</div>"
+                f"🎁 {t('Açık örnek oyuncular','Sample players unlocked')}</div>"
                 f"<div style='color:#a78bfa;font-size:0.78rem;margin-top:2px;'>"
                 f"{t('Toplam','Total')} <b>{len(_tum_liste)}</b> {t('TR oyuncusundan','TR players —')} "
                 f"<b style='color:#e040fb;'>{len(oyuncu_listesi)}</b> {t('örnek tam açık. Birine tıkla 👇','samples fully open. Tap one 👇')}"
@@ -7035,13 +7035,13 @@ if tab3:
     st.caption(t("2 ile 4 oyuncu arasında seçim yapabilirsiniz.", "You can select between 2 and 4 players."))
 
     _tum_liste2 = sorted(df_tam["Oyuncu"].tolist())
-    if deneme_modunda():
+    if deneme_modunda() or not tier_yeterli("basic"):
         oyuncu_listesi2 = [o for o in _tum_liste2 if o in DENEME_TR_OYUNCULAR]
         VARSAYILAN_OYUNCULAR = oyuncu_listesi2[:4]
         st.markdown(
             f"<div style='background:#e040fb1a;border:1px solid #e040fb;border-radius:10px;"
             f"padding:9px 15px;margin-bottom:8px;color:#e9d5ff;font-size:0.84rem;'>"
-            f"🎁 <b>{t('Deneme modu','Trial mode')}</b> — "
+            f"🎁 <b>{t('Önizleme','Preview')}</b> — "
             f"{t('yalnızca','only the')} <b>{len(oyuncu_listesi2)}</b> "
             f"{t('örnek oyuncu karşılaştırılabilir (toplam','sample players are comparable (total')} "
             f"{len(_tum_liste2)}).</div>", unsafe_allow_html=True)
@@ -7357,7 +7357,7 @@ if tab6:
     st.markdown(f"### 🌟 {t('2025-2026 Sezonu En İyileri', '2025-2026 Season Top Performers')}")
     if df_tam.empty:
         st.info(t("Veri yok.", "No data."))
-    elif deneme_modunda():
+    elif deneme_modunda() or not tier_yeterli("basic"):
         deneme_kilit(t("🌟 En İyiler", "🌟 Top Performers"), "tr")
     else:
         # ── Lig Geneli Verimlilik Scatter ──────────────────────────────
