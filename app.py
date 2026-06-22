@@ -5112,6 +5112,43 @@ def render_profil():
                                "kademe": t("Kademe","Tier"), "bitis": t("Bitiş","Ends"),
                                "durum": t("Durum","Status")})
 
+        # ── Admin: Ödeme Bildirimleri (havale yapanlar → tek tık onay) ──
+        with st.expander(f"💸 {t('Ödeme Bildirimleri (Admin)','Payment Notifications (Admin)')}", expanded=False):
+            _odm = odemeler_yukle()
+            _bekleyen = [o for o in _odm if str(o.get("durum", "")).lower() == "beklemede"]
+            _o1, _o2 = st.columns([3, 1])
+            _o1.caption(t(f"{len(_bekleyen)} bekleyen · {len(_odm)} toplam bildirim.",
+                          f"{len(_bekleyen)} pending · {len(_odm)} total."))
+            if _o2.button(t("🔄 Yenile", "🔄 Refresh"), key="odm_yenile", width="stretch"):
+                odemeler_yukle.clear(); st.rerun()
+            if not _bekleyen:
+                st.caption(t("Bekleyen ödeme bildirimi yok.", "No pending payment notifications."))
+            for _o in _bekleyen:
+                _oku = str(_o.get("kullanici", "")); _opl = str(_o.get("plan", "")); _otr = str(_o.get("tarih", ""))
+                _pad = _PLAN_FIYAT.get(_opl, (_opl, ""))[0]
+                _r1, _r2, _r3 = st.columns([3, 1, 1])
+                _r1.markdown(
+                    f"<div style='font-size:0.85rem;color:#cbd5e1;padding:6px 0;'>"
+                    f"💸 <b>{_oku}</b> → {_pad} · {_o.get('tutar','')} "
+                    f"<span style='color:#64748b;'>({_otr})</span>"
+                    + (f"<br><span style='color:#8899aa;font-size:0.78rem;'>📝 {_o.get('not','')}</span>"
+                       if _o.get("not") else "") + "</div>", unsafe_allow_html=True)
+                if _r2.button(t("✅ Onayla", "✅ Approve"), key=f"odm_ok_{_oku}_{_otr}",
+                              type="primary", width="stretch"):
+                    from datetime import date, timedelta
+                    _bt = (date.today() + timedelta(days=365)).isoformat()
+                    if uye_guncelle(_oku, tier=_opl, bitis_tarihi=_bt):
+                        odeme_durum_guncelle(_oku, _opl, _otr, "onaylandi")
+                        st.success(t(f"{_oku} → {_pad} (1 yıl) aktive edildi.",
+                                     f"{_oku} → {_pad} (1 yr) activated."))
+                    else:
+                        st.error(t("Üye bulunamadı (kayıtlı mı?) — manuel kontrol et.",
+                                   "Member not found (registered?) — check manually."))
+                    st.rerun()
+                if _r3.button(t("✖ Reddet", "✖ Reject"), key=f"odm_no_{_oku}_{_otr}", width="stretch"):
+                    odeme_durum_guncelle(_oku, _opl, _otr, "reddedildi")
+                    st.rerun()
+
     # ── Giriş Bilgileri ──
     from datetime import datetime, date
     log = giris_log_oku(ku)
@@ -5191,6 +5228,164 @@ def geri_ana_butonu(key: str):
             st.session_state["sayfa"] = "ana"
             st.rerun()
 
+
+# ─── ÖDEME / YÜKSELTME (manuel havale akışı) ──────────────────────────────────
+# Havale bilgileri secrets.toml > [odeme]'den okunur (IBAN repoda DEĞİL). Yoksa placeholder.
+_PLAN_FIYAT = {"basic": ("Basic", "499 €"), "pro": ("Pro", "999 €"), "premium": ("Premium", "1.999 €")}
+
+
+def _odeme_bilgi() -> dict:
+    """Havale bilgileri (secrets [odeme]). Yapılandırılmadıysa aktif=False."""
+    try:
+        d = dict(st.secrets.get("odeme", {}))
+    except Exception:
+        d = {}
+    return {"iban": d.get("iban", ""), "hesap_adi": d.get("hesap_adi", ""),
+            "banka": d.get("banka", ""), "aktif": bool(d.get("iban"))}
+
+
+def _odemeler_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds); sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Odemeler")
+        except Exception:
+            ws = sh.add_worksheet(title="Odemeler", rows=5000, cols=6)
+            ws.update([["kullanici", "plan", "tutar", "tarih", "durum", "not"]])
+            return ws
+    except Exception:
+        return None
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def odemeler_yukle() -> list:
+    """Ödeme bildirimleri (admin için). 2 dk cache; bildirim/onay sonrası .clear()."""
+    ws = _odemeler_ws()
+    if ws is None:
+        return []
+    try:
+        return [dict(r) for r in ws.get_all_records()]
+    except Exception:
+        return []
+
+
+def odeme_bildir(kullanici: str, plan: str, not_: str = "") -> bool:
+    ws = _odemeler_ws()
+    if ws is None:
+        return False
+    try:
+        from datetime import datetime
+        _ad, fiyat = _PLAN_FIYAT.get(plan, (plan, ""))
+        ws.append_row([(kullanici or "").strip().lower(), plan, fiyat,
+                        datetime.now().strftime("%Y-%m-%d %H:%M"), "beklemede", (not_ or "").strip()])
+        odemeler_yukle.clear()
+        return True
+    except Exception:
+        return False
+
+
+def odeme_durum_guncelle(kullanici: str, plan: str, tarih: str, durum: str) -> bool:
+    """Bir ödeme bildirimini (kullanici+plan+tarih) bulup durum kolonunu günceller."""
+    ws = _odemeler_ws()
+    if ws is None:
+        return False
+    try:
+        ku = (kullanici or "").strip().lower()
+        for i, r in enumerate(ws.get_all_records(), start=2):
+            if (str(r.get("kullanici", "")).strip().lower() == ku
+                    and str(r.get("plan", "")) == plan and str(r.get("tarih", "")) == tarih):
+                ws.update_cell(i, 5, durum)   # durum = E kolonu
+                odemeler_yukle.clear()
+                return True
+    except Exception:
+        pass
+    return False
+
+
+def render_yukselt():
+    """Üyelik yükseltme (manuel havale) sayfası — plan + havale bilgileri + 'ödedim' bildirimi."""
+    _PLANLAR = ["basic", "pro", "premium"]
+    _plan = st.session_state.get("yukselt_plan", "pro")
+    if _plan not in _PLANLAR:
+        _plan = "pro"
+    _ad, _fiyat = _PLAN_FIYAT[_plan]
+    st.markdown(f"## 💳 {t('Üyelik Yükselt', 'Upgrade Membership')}")
+
+    _sec = st.radio(t("Plan seç", "Choose plan"), _PLANLAR,
+                    index=_PLANLAR.index(_plan), horizontal=True,
+                    format_func=lambda p: f"{_PLAN_FIYAT[p][0]} · {_PLAN_FIYAT[p][1]}",
+                    key="yukselt_plan_sec")
+    if _sec != _plan:
+        st.session_state["yukselt_plan"] = _sec
+        st.rerun()
+    _ad, _fiyat = _PLAN_FIYAT[_sec]
+
+    st.markdown(
+        f"<div style='background:linear-gradient(135deg,#0d2b1e,#1a1f36);border:2px solid #1db954;"
+        f"border-radius:14px;padding:18px 22px;margin:6px 0 14px;'>"
+        f"<div style='color:#1db954;font-weight:800;font-size:0.8rem;letter-spacing:1px;'>"
+        f"{_ad.upper()} {t('PAKET','PLAN')}</div>"
+        f"<div style='color:#fff;font-size:2rem;font-weight:900;'>{_fiyat}"
+        f"<span style='font-size:1rem;color:#8899aa;'> / {t('yıl','yr')}</span></div></div>",
+        unsafe_allow_html=True)
+
+    _ku = st.session_state.get("kulup_kullanici", "")
+    _ob = _odeme_bilgi()
+
+    # Havale bilgileri
+    st.markdown(f"#### 🏦 {t('Havale / EFT Bilgileri', 'Bank Transfer Details')}")
+    if _ob["aktif"]:
+        _aciklama = _ku or t("e-posta adresin", "your email")
+        st.markdown(
+            f"<div style='background:#0e1326;border:1px solid #232a40;border-radius:10px;padding:14px 18px;'>"
+            f"<div style='color:#cbd5e1;font-size:0.9rem;line-height:1.9;'>"
+            f"<b>{t('Hesap adı','Account name')}:</b> {_ob['hesap_adi']}<br>"
+            f"<b>{t('Banka','Bank')}:</b> {_ob['banka']}<br>"
+            f"<b>IBAN:</b> <code style='color:#1db954;'>{_ob['iban']}</code><br>"
+            f"<b>{t('Tutar','Amount')}:</b> {_fiyat}<br>"
+            f"<b>{t('Açıklama','Reference')}:</b> <code>{_aciklama}</code> "
+            f"<span style='color:#8899aa;font-size:0.78rem;'>"
+            f"({t('mutlaka yaz — ödemeni eşleştirmek için','required — to match your payment')})</span>"
+            f"</div></div>", unsafe_allow_html=True)
+    else:
+        st.info(t("Havale bilgileri yakında eklenecek. Şimdilik 📬 İletişim'den ulaşabilir ya da "
+                  "aşağıdan ilgini bildirebilirsin; sana ödeme bilgilerini ulaştıralım.",
+                  "Bank details coming soon. For now use 📬 Contact, or register your interest below "
+                  "and we'll send you payment details."))
+
+    # Ödedim bildirimi (giriş gerekli)
+    st.markdown(f"#### ✅ {t('Ödemeni Bildir', 'Report Your Payment')}")
+    if not st.session_state.get("kulup_giris"):
+        st.warning(t("Ödemeni bildirmek için önce giriş yap veya kayıt ol (sağ üst 🔐).",
+                     "Log in or sign up to report your payment (🔐 top right)."))
+        return
+    with st.form("odeme_bildir_form", clear_on_submit=True):
+        _not = st.text_input(t("Not / referans (opsiyonel)", "Note / reference (optional)"),
+                             placeholder=t("ör. havale referans no, gönderen ad", "e.g. transfer ref, sender name"))
+        _gonder = st.form_submit_button(
+            t("✅ Havale/EFT yaptım — bildir", "✅ I made the transfer — notify"),
+            type="primary", width="stretch")
+    if _gonder:
+        if odeme_bildir(_ku, _sec, _not):
+            st.success(t("Bildirimin alındı! Ödemeni kontrol edip kademeni en kısa sürede aktive edeceğiz. "
+                         "Aktifleşince Profilim'de görürsün.",
+                         "Got it! We'll verify your payment and activate your tier shortly. "
+                         "You'll see it in My Profile."))
+            st.balloons()
+        else:
+            st.error(t("Bildirim kaydedilemedi, lütfen sonra tekrar dene ya da 📬 İletişim.",
+                       "Could not save the notification, please try again later or 📬 Contact."))
+
+
+if st.session_state["sayfa"] == "yukselt":
+    geri_ana_butonu("geri_yukselt")
+    render_yukselt()
+    st.stop()
 
 if st.session_state["sayfa"] == "profil":
     geri_ana_butonu("geri_profil")
@@ -6279,6 +6474,13 @@ def render_paketler():
         (t("Öncelikli destek","Priority support"), True),
     ]
 
+    def _al_butonu(plan, key):
+        if st.button(t("Bu planı al", "Get this plan"), key=key, width="stretch"):
+            st.session_state["yukselt_plan"] = plan
+            st.session_state["sayfa"] = "yukselt"
+            st.session_state["girildi"] = True
+            st.rerun()
+
     c1, c2, c3, c4 = st.columns(4, gap="small")
     with c1:
         st.markdown(_paket_kart_html("🆓", "Free", "#58a6ff",
@@ -6288,13 +6490,16 @@ def render_paketler():
     with c2:
         st.markdown(_paket_kart_html("🔹", "Basic", "#29b6f6",
             "499 €", _yillik, basic, deneme=True, eski_fiyat="999 €", indirim=_ind), unsafe_allow_html=True)
+        _al_butonu("basic", "al_basic")
     with c3:
         st.markdown(_paket_kart_html("⚡", "Pro", "#1db954",
             "999 €", _yillik, pro, populer=True, deneme=True, eski_fiyat="1.999 €", indirim=_ind), unsafe_allow_html=True)
+        _al_butonu("pro", "al_pro")
     with c4:
         st.markdown(_paket_kart_html("👑", "Premium", "#e040fb",
             "1.999 €", _yillik, premium, deneme=True, eski_fiyat="2.999 €",
             indirim=t("%33","-33%")), unsafe_allow_html=True)
+        _al_butonu("premium", "al_premium")
 
     # Lansman indirimi şeridi
     st.markdown(
