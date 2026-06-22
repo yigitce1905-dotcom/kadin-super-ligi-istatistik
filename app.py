@@ -5235,13 +5235,37 @@ _PLAN_FIYAT = {"basic": ("Basic", "499 €"), "pro": ("Pro", "999 €"), "premiu
 
 
 def _odeme_bilgi() -> dict:
-    """Havale bilgileri (secrets [odeme]). Yapılandırılmadıysa aktif=False."""
+    """Havale + WhatsApp bilgileri (secrets [odeme]). Yapılandırılmadıysa boş/aktif=False."""
     try:
         d = dict(st.secrets.get("odeme", {}))
     except Exception:
         d = {}
     return {"iban": d.get("iban", ""), "hesap_adi": d.get("hesap_adi", ""),
-            "banka": d.get("banka", ""), "aktif": bool(d.get("iban"))}
+            "banka": d.get("banka", ""), "whatsapp": str(d.get("whatsapp", "")),
+            "aktif": bool(d.get("iban"))}
+
+
+def _whatsapp_link(mesaj: str = "") -> str:
+    """secrets [odeme] whatsapp numarası varsa önceden-dolu mesajlı wa.me linki, yoksa ''.
+    Numara uluslararası, sadece rakam (ör. 905321234567)."""
+    no = "".join(ch for ch in _odeme_bilgi().get("whatsapp", "") if ch.isdigit())
+    if not no:
+        return ""
+    from urllib.parse import quote
+    return f"https://wa.me/{no}" + (f"?text={quote(mesaj)}" if mesaj else "")
+
+
+def _whatsapp_butonu(mesaj: str = "", etiket_tr: str = "WhatsApp'tan yaz",
+                     etiket_en: str = "Message us on WhatsApp"):
+    """Yeşil WhatsApp butonu (yeni sekmede wa.me). Numara yoksa hiçbir şey çizmez."""
+    _wa = _whatsapp_link(mesaj)
+    if not _wa:
+        return
+    st.markdown(
+        f"<a href='{_wa}' target='_blank' style='display:flex;align-items:center;"
+        f"justify-content:center;gap:8px;background:#25D366;color:#0b141a;font-weight:800;"
+        f"padding:12px 16px;border-radius:10px;text-decoration:none;margin:8px 0;"
+        f"font-size:0.95rem;'>💬 {t(etiket_tr, etiket_en)}</a>", unsafe_allow_html=True)
 
 
 def _odemeler_ws():
@@ -5336,6 +5360,11 @@ def render_yukselt():
 
     _ku = st.session_state.get("kulup_kullanici", "")
     _ob = _odeme_bilgi()
+
+    # WhatsApp ile hızlı iletişim (numara secrets'ta tanımlıysa) — plan + e-posta önceden dolu
+    _wa_mesaj = t(f"Merhaba, {_ad} ({_fiyat}) üyeliği almak istiyorum.",
+                  f"Hi, I'd like to get the {_ad} ({_fiyat}) membership.") + (f" {t('E-posta','Email')}: {_ku}" if _ku else "")
+    _whatsapp_butonu(_wa_mesaj, "WhatsApp'tan yaz / ödeme bilgisi al", "Message us on WhatsApp")
 
     # Havale bilgileri
     st.markdown(f"#### 🏦 {t('Havale / EFT Bilgileri', 'Bank Transfer Details')}")
@@ -5434,6 +5463,11 @@ if st.session_state["sayfa"] == "iletisim":
     </p>
     </div>
     """, unsafe_allow_html=True)
+    _wa_orta = st.columns([1, 2, 1])[1]
+    with _wa_orta:
+        _whatsapp_butonu(t("Merhaba, Women Football Scouting hakkında bilgi almak istiyorum.",
+                           "Hi, I'd like to get info about Women Football Scouting."),
+                         "WhatsApp'tan yaz", "Message us on WhatsApp")
     st.stop()
 
 # ─── TALEP / DANIŞMANLIK SAYFASI ─────────────────────────────────────────────
