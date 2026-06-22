@@ -723,6 +723,41 @@ def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
         return (False, "Kayıt sırasında bir hata oluştu.", "An error occurred during registration.")
 
 
+def _uye_satir_bul(ws, kullanici: str):
+    """kullanici'nin GSheets satır numarasını döndürür (başlık=1, veri 2'den başlar)."""
+    kullanici = (kullanici or "").strip().lower()
+    try:
+        for i, r in enumerate(ws.get_all_records(), start=2):
+            if str(r.get("kullanici", "")).strip().lower() == kullanici:
+                return i
+    except Exception:
+        pass
+    return None
+
+
+def uye_guncelle(kullanici: str, tier: str = None, bitis_tarihi: str = None,
+                 durum: str = None) -> bool:
+    """Bir üyenin tier / bitiş tarihi / durum alanlarını günceller (admin). GSheets 'Uyeler'.
+    Kolonlar: kullanici(A) hash(B) ad(C) kulup(D) rol(E) tier(F) kayit(G) bitis(H) durum(I)."""
+    ws = _uyeler_ws()
+    if ws is None:
+        return False
+    idx = _uye_satir_bul(ws, kullanici)
+    if not idx:
+        return False
+    try:
+        if tier is not None:
+            ws.update_cell(idx, 6, tier)
+        if bitis_tarihi is not None:
+            ws.update_cell(idx, 8, bitis_tarihi)
+        if durum is not None:
+            ws.update_cell(idx, 9, durum)
+        uyeler_yukle.clear()   # cache tazele
+        return True
+    except Exception:
+        return False
+
+
 def giris_dogrula(kullanici: str, sifre: str) -> dict | None:
     creds = tum_giris_kayitlari()
     bilgi = creds.get((kullanici or "").strip().lower())
@@ -1041,9 +1076,18 @@ _TIER_GORUNUM = {
 }
 
 def _tier_coz(bilgi: dict) -> str:
-    """Credential kaydından kademeyi belirler (geriye uyumlu: pro/rol'den türetir)."""
+    """Credential/üye kaydından EFEKTİF kademeyi belirler.
+    Üyelik bitiş tarihi (bitis_tarihi) geçmişse otomatik 'free'ye düşer."""
     if bilgi.get("rol") == "admin":
         return "admin"
+    bt = (bilgi.get("bitis_tarihi") or "").strip()
+    if bt:
+        try:
+            from datetime import date
+            if date.fromisoformat(bt[:10]) < date.today():
+                return "free"   # abonelik süresi dolmuş
+        except Exception:
+            pass
     t_ = (bilgi.get("tier") or "").lower()
     if t_ in _TIER_RANK:
         return t_
@@ -5007,6 +5051,66 @@ def render_profil():
                         st.rerun()
             else:
                 st.caption(t("Aktif deneme yok.","No active trials."))
+
+        # ── Admin: Üye Yönetimi (kayıtlı üyeleri kademe/süre yönet) ──
+        with st.expander(f"👥 {t('Üye Yönetimi (Admin)','Member Management (Admin)')}", expanded=False):
+            _uyeler = uyeler_yukle()
+            _uy1, _uy2 = st.columns([3, 1])
+            _uy1.caption(t(f"{len(_uyeler)} kayıtlı üye · havale ile ödeyeni seç → kademe + süre ver.",
+                           f"{len(_uyeler)} registered members · pick a payer → grant tier + duration."))
+            if _uy2.button(t("🔄 Yenile", "🔄 Refresh"), key="uye_yenile", width="stretch"):
+                uyeler_yukle.clear(); st.rerun()
+            if not _uyeler:
+                st.caption(t("Henüz kayıtlı üye yok.", "No registered members yet."))
+            else:
+                _TIERS = ["free", "basic", "pro", "premium"]
+                # süre seçenekleri: (anahtar, etiket_tr, etiket_en, gün)
+                _SURE = [("1ay","1 ay","1 month",30), ("3ay","3 ay","3 months",90),
+                         ("6ay","6 ay","6 months",180), ("1yil","1 yıl","1 year",365),
+                         ("suresiz","Süresiz","Unlimited",0)]
+                _epostalar = sorted(_uyeler.keys())
+                _c1, _c2, _c3 = st.columns([2.4, 1.3, 1.3])
+                with _c1:
+                    _sec = st.selectbox(t("Üye", "Member"), _epostalar,
+                        format_func=lambda e: f"{_uyeler[e].get('ad', e)} · {e}", key="uye_sec")
+                _mevcut_tier = (_uyeler[_sec].get("tier") or "free").lower()
+                with _c2:
+                    _tier_sec = st.selectbox(t("Kademe", "Tier"), _TIERS,
+                        index=_TIERS.index(_mevcut_tier) if _mevcut_tier in _TIERS else 0,
+                        format_func=lambda x: _TIER_GORUNUM[x][0], key="uye_tier")
+                with _c3:
+                    _sure_sec = st.selectbox(t("Süre", "Duration"), _SURE,
+                        format_func=lambda s: s[1] if not EN else s[2], key="uye_sure")
+                _cur_bt = _uyeler[_sec].get("bitis_tarihi", "")
+                st.caption(t(f"Şu an: {_TIER_GORUNUM.get(_mevcut_tier,('?',))[0]}"
+                             + (f" · bitiş {_cur_bt}" if _cur_bt else " · süresiz/yok"),
+                             f"Now: {_TIER_GORUNUM.get(_mevcut_tier,('?',))[0]}"
+                             + (f" · ends {_cur_bt}" if _cur_bt else " · none")))
+                if st.button(t("💾 Güncelle", "💾 Update"), type="primary", key="uye_guncelle_btn"):
+                    from datetime import date, timedelta
+                    _gun = _sure_sec[3]
+                    _bt = "" if (_gun == 0 or _tier_sec == "free") \
+                        else (date.today() + timedelta(days=_gun)).isoformat()
+                    if uye_guncelle(_sec, tier=_tier_sec, bitis_tarihi=_bt):
+                        st.success(t(f"{_uyeler[_sec].get('ad', _sec)} → {_TIER_GORUNUM[_tier_sec][0]}"
+                                     + (f" ({_bt} tarihine kadar)" if _bt else ""),
+                                     f"{_uyeler[_sec].get('ad', _sec)} → {_TIER_GORUNUM[_tier_sec][0]}"
+                                     + (f" (until {_bt})" if _bt else "")))
+                        st.rerun()
+                    else:
+                        st.error(t("Güncellenemedi (GSheets erişimi?).", "Update failed (GSheets access?)."))
+                # Üye listesi tablosu (mobil-dostu kart)
+                _satirlar = [{
+                    "ad": _uyeler[e].get("ad", e), "eposta": e,
+                    "kulup": _uyeler[e].get("takim", ""),
+                    "kademe": _TIER_GORUNUM.get((_uyeler[e].get("tier") or "free").lower(), ("?",))[0],
+                    "bitis": _uyeler[e].get("bitis_tarihi", "") or "—",
+                    "durum": _uyeler[e].get("durum", "aktif"),
+                } for e in _epostalar]
+                df_tablo(pd.DataFrame(_satirlar),
+                    basliklar={"ad": t("Ad","Name"), "eposta": "E-posta", "kulup": t("Kulüp","Club"),
+                               "kademe": t("Kademe","Tier"), "bitis": t("Bitiş","Ends"),
+                               "durum": t("Durum","Status")})
 
     # ── Giriş Bilgileri ──
     from datetime import datetime, date
