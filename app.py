@@ -627,16 +627,34 @@ _COOKIE_AD   = "wscope_oturum"
 _OTURUM_GUN  = 30  # cookie geçerlilik süresi (gün)
 
 def _oturum_secret() -> bytes:
-    """İmzalama anahtarı (Secrets'tan; yoksa credential hash'lerinden türetilir)."""
+    """Çerez imzalama anahtarı.
+    Öncelik: Render/Streamlit secrets['auth_secret'] (deploy'lar arası KALICI — önerilir).
+    Yoksa: repoya GİRMEYEN yerel rastgele dosyadan (_auth_secret_local) üretilir/okunur.
+
+    GÜVENLİK: Eskiden public credential hash'lerinden türetiliyordu; repo herkese açık
+    olduğu için saldırgan bu anahtarı yeniden hesaplayıp 'admin' çerezi forge edebiliyordu.
+    Artık anahtar repo'dan türetilebilir DEĞİL → forge yolu kapalı."""
     try:
         s = st.secrets.get("auth_secret", "")
         if s:
             return str(s).encode()
     except Exception:
         pass
-    creds = kulup_credentials_yukle()
-    tohum = "".join(sorted(v.get("hash", "") for v in creds.values()))
-    return _hashlib.sha256(("wscope|" + tohum).encode()).digest()
+    # Yerel rastgele secret (gitignore'lu, repo'da yok → forge edilemez).
+    # NOT: Render diski deploy'lar arası kalıcı değil → auth_secret yoksa her deploy'da
+    # mevcut oturumlar bir kez düşer (güvenli varsayılan). Kalıcılık için auth_secret ekle.
+    import secrets as _secmod
+    yol = _DIZIN / "_auth_secret_local"
+    try:
+        if yol.exists():
+            data = yol.read_bytes()
+            if len(data) >= 16:
+                return data
+        tok = _secmod.token_bytes(32)
+        yol.write_bytes(tok)
+        return tok
+    except Exception:
+        return _secmod.token_bytes(32)   # yazılamayan (read-only) FS: süreç-içi rastgele
 
 def _oturum_token_uret(kullanici: str) -> str:
     son = int(_time.time()) + _OTURUM_GUN * 86400

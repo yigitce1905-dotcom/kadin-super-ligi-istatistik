@@ -25,3 +25,4 @@ scoutnot.json
 # Güvenlik: kimlik bilgileri ve secret'lar repoya GİRMEZ
 club_credentials.json
 _render_secrets/
+_auth_secret_local
