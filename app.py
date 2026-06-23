@@ -8153,12 +8153,19 @@ if tab_benim:
             st.markdown(f"##### 🏟️ {kulup_ad} — {t('Kadro Paneli', 'Squad Panel')}")
             st.caption(f"2025-26 {t('sezonu','season')} · {kulup_takim}")
 
+            _tk_kelime = (kulup_takim or "").split()
             kadro = df_tam[df_tam["Takım"].str.contains(
-                kulup_takim.split()[0], case=False, na=False
-            )].copy() if not df_tam.empty else pd.DataFrame()
+                _tk_kelime[0], case=False, na=False
+            )].copy() if (not df_tam.empty and _tk_kelime) else pd.DataFrame()
 
             if kadro.empty:
-                st.warning(t("Kadro verisi bulunamadı.", "Squad data not found."))
+                if not _tk_kelime:   # üye (kulüp değil) → tanımlı takım yok
+                    st.info(t("Bu panel kulüp hesapları içindir — hesabında tanımlı takım yok. "
+                              "Üyeliğin tüm veri ve scouting araçlarına erişim verir.",
+                              "This panel is for club accounts — no team is set on your account. "
+                              "Your membership gives access to all data and scouting tools."))
+                else:
+                    st.warning(t("Kadro verisi bulunamadı.", "Squad data not found."))
             else:
                 k1,k2,k3,k4,k5 = st.columns(5)
                 en_golcu = kadro.loc[kadro["Gol"].idxmax(),"Oyuncu"] if kadro["Gol"].max()>0 else "—"
