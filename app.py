@@ -4134,6 +4134,20 @@ def render_scout_kadro_raporu(isim: str):
     except Exception as e:
         st.caption(f"⚠️ PDF oluşturulamadı: {e}")
 
+    # Paylaşılabilir PUBLIC rapor linki (kulübe gönder — giriş gerektirmez)
+    _purl = f"https://womenfootballscouting.com/?paylas={_urlquote(isim)}"
+    with st.expander(f"🔗 {t('Paylaşılabilir Rapor Linki','Shareable Report Link')}"):
+        st.caption(t("Bu linki kulübe gönder — alıcı GİRİŞ YAPMADAN markalı raporu görür (yalnız bu oyuncu).",
+                     "Send this link to a club — they see the branded report WITHOUT login (this player only)."))
+        st.code(_purl, language=None)
+        _wa = "https://wa.me/?text=" + _urlquote(
+            t(f"{isim} — scout raporu: ", f"{isim} — scout report: ") + _purl)
+        st.markdown(
+            f"<a href='{_wa}' target='_blank' style='display:inline-flex;align-items:center;gap:7px;"
+            f"background:#25D366;color:#0b141a;font-weight:700;padding:8px 16px;border-radius:8px;"
+            f"text-decoration:none;font-size:0.85rem;'>💬 {t('WhatsApp ile paylaş','Share on WhatsApp')}</a>",
+            unsafe_allow_html=True)
+
     st.caption("📡 Mr Daniş · Women Football Scouting")
 
 
@@ -4961,7 +4975,7 @@ _tr_sekmeler_h = _tr_sekme_etiketleri(st.session_state.get("kulup_giris", False)
 _ilk_tr_sekme  = _tr_sekmeler_h[0] if _tr_sekmeler_h else None
 _tr_sekme_sec  = st.session_state.get("tr_sekme", _ilk_tr_sekme)
 _ilk_sekmede   = (_tr_sekme_sec == _ilk_tr_sekme) or (_tr_sekme_sec not in _tr_sekmeler_h)
-_ust_blok_goster = _ana_ekran and _ilk_sekmede
+_ust_blok_goster = _ana_ekran and _ilk_sekmede and not params.get("paylas", "").strip()
 if _ust_blok_goster:
   st.markdown(f"""
 <div class="baslik-kutu">
@@ -4999,7 +5013,113 @@ def _profil_dialog(isim, kaynak):
         render_ana_lig_profil(isim)
 
 
+def render_paylasim_raporu(isim: str):
+    """PUBLIC (giriş gerektirmez) tek-oyuncu paylaşılabilir scout raporu (?paylas=X).
+    Kulübe link gönderilir; alıcı giriş yapmadan markalı raporu görür. Tek oyuncu →
+    tüm havuz açılmaz. Altta 'üye ol' CTA'sı (dönüşüm)."""
+    isim = (isim or "").strip()
+    # Temiz public sayfa: sol nav + chrome gizle, dar kolon
+    st.markdown(
+        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ".block-container{max-width:820px!important;padding-top:1rem!important;}</style>",
+        unsafe_allow_html=True)
+    kadro = scout_kadro_yukle().get(isim, {})
+    sd    = scouting_sd_yukle().get(isim) or sd_profiller.get(isim) or {}
+    leist = (scouting_leistung_yukle().get(isim) or {}).get("sezonlar", [])
+    if not (kadro or sd):
+        st.markdown(f"<div style='text-align:center;padding:70px 20px;color:#8899aa;'>"
+                    f"⚠️ {t('Rapor bulunamadı.','Report not found.')}</div>", unsafe_allow_html=True)
+        st.stop()
+
+    _mv = kadro.get("mevki", "")
+    mevki = " · ".join(_mv) if isinstance(_mv, list) else str(_mv or "")
+    rol   = kadro.get("rol", "") or ""
+    yas   = kadro.get("yas", "") or str(sd.get("Age", "") or "").split()[0] if (kadro.get("yas") or sd.get("Age")) else "—"
+    boy   = kadro.get("boy", "") or sd.get("Height", "") or "—"
+    ayak  = kadro.get("ayak", "") or sd.get("Foot", "") or "—"
+    try:    uyruk = ulke_goster(kadro.get("vatandaslik", "")) or sd.get("Nationality", "") or "—"
+    except Exception: uyruk = kadro.get("vatandaslik", "") or "—"
+    try:    milli = ulke_goster(kadro.get("milli_takim", "")) if kadro.get("milli_takim") else ""
+    except Exception: milli = kadro.get("milli_takim", "")
+    kulup = _takim_kisa(kadro.get("kulup", "") or "") or "—"
+    lig   = kadro.get("lig", "") or "—"
+    deger = kadro.get("deger", "") or sd.get("Market value", "") or "—"
+    sozl  = kadro.get("sozlesme", "") or sd.get("Contract until", "") or "—"
+    nihai = (kadro.get("nihai", "") or "").strip()
+    tarz  = kadro.get("tarz", "") or ""
+    notu  = kadro.get("scout_notu", "") or kadro.get("tr_gorusu", "") or ""
+    kmac = kgol = kasist = 0
+    for s in leist:
+        if not s.get("milli"):
+            kmac += int(s.get("mac", 0) or 0); kgol += int(s.get("gol", 0) or 0); kasist += int(s.get("asist", 0) or 0)
+    try:    _ngr = _scotr_renk(nihai) if nihai else "#1db954"
+    except Exception: _ngr = "#1db954"
+
+    def _e(x): return _html.escape(str(x))
+    _grade = (f"<div style='flex:none;text-align:center;'>"
+              f"<div style='width:74px;height:74px;border-radius:50%;border:3px solid {_ngr};"
+              f"display:flex;align-items:center;justify-content:center;font-family:Sora,monospace;"
+              f"font-size:1.5rem;font-weight:900;color:{_ngr};'>{_e(nihai)}</div>"
+              f"<div style='font-size:0.58rem;color:#8899aa;letter-spacing:0.1em;margin-top:4px;'>NİHAİ</div></div>") if nihai else ""
+    _bilgiler = [(t("Yaş","Age"), yas), (t("Uyruk","Nat."), uyruk), (t("Milli Tk.","NT"), milli or "—"),
+                 (t("Kulüp","Club"), kulup), (t("Lig","League"), lig), (t("Boy","Height"), boy),
+                 (t("Ayak","Foot"), ayak), (t("Değer","Value"), deger), (t("Sözleşme","Contract"), sozl)]
+    _bg = "".join(
+        f"<div style='background:#0e1326;border:1px solid #232a40;border-radius:9px;padding:9px 11px;'>"
+        f"<div style='font-size:0.58rem;color:#8899aa;text-transform:uppercase;letter-spacing:0.06em;'>{_e(l)}</div>"
+        f"<div style='font-size:0.9rem;color:#e8eef7;font-weight:600;margin-top:2px;'>{_e(v)}</div></div>"
+        for l, v in _bilgiler)
+    _kariyer = (f"<div style='display:flex;gap:10px;margin-top:14px;'>" + "".join(
+        f"<div style='flex:1;background:#0e1326;border:1px solid #232a40;border-radius:10px;padding:12px;text-align:center;'>"
+        f"<div style='font-family:Sora,monospace;font-size:1.5rem;font-weight:800;color:#1db954;'>{val}</div>"
+        f"<div style='font-size:0.62rem;color:#8899aa;text-transform:uppercase;letter-spacing:0.05em;'>{lbl}</div></div>"
+        for val, lbl in [(kmac, t("Maç","Matches")), (kgol, t("Gol","Goals")), (kasist, t("Asist","Assists"))])
+        + "</div>") if (kmac or kgol or kasist) else ""
+    _notu_html = (f"<div style='background:#0e1326;border-left:3px solid #a855f7;border-radius:8px;"
+                  f"padding:12px 16px;margin-top:14px;color:#cbd5e1;font-size:0.88rem;line-height:1.6;'>"
+                  f"📋 {_e(notu)}</div>") if notu else ""
+
+    st.markdown(
+        f"""
+        <div style="background:linear-gradient(120deg,#0a0e1bf2 0%,#140c26ea 55%,#1d0d29c0 100%),
+             url('app/static/b2.jpg') center 25%/cover no-repeat;border:1px solid #2c2350;
+             border-radius:16px;padding:26px 30px;overflow:hidden;box-shadow:0 14px 44px -14px #000000aa;">
+          <div style='font-size:0.6rem;font-weight:800;color:#c084fc;letter-spacing:0.22em;'>
+            🎯 WOMEN FOOTBALL SCOUTING · {t('SCOUT RAPORU','SCOUT REPORT')}</div>
+          <div style='display:flex;align-items:center;gap:18px;margin-top:10px;flex-wrap:wrap;'>
+            <div style='flex:1;min-width:200px;'>
+              <div style='font-family:Oswald,Sora,sans-serif;font-size:2.1rem;font-weight:700;color:#fff;line-height:1.05;'>{_e(isim)}</div>
+              <div style='color:#9fb0c6;font-size:0.92rem;margin-top:3px;'>{_e(mevki)}{(' · ' + _e(rol)) if rol else ''}</div>
+            </div>
+            {_grade}
+          </div>
+        </div>
+        <div style='display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:14px;'>{_bg}</div>
+        {(f"<div style='color:#aebbd0;font-size:0.86rem;margin-top:12px;'>🎬 <b style='color:#e0e0e0;'>{t('Oyun Tarzı','Play Style')}:</b> {_e(tarz)}</div>") if tarz else ""}
+        {_kariyer}
+        {_notu_html}
+        <div style='margin-top:22px;padding:18px;background:linear-gradient(135deg,#151a33,#1d1438);
+             border:1px solid #3b2d6e;border-radius:14px;text-align:center;'>
+          <div style='font-family:Oswald,Sora,sans-serif;font-size:1.15rem;font-weight:700;color:#fff;'>
+            {t('Tüm scouting havuzu için','For the full scouting pool')}</div>
+          <div style='color:#a78bfa;font-size:0.85rem;margin:4px 0 12px;'>
+            {t('780+ oyuncu · kariyer & benzerlik analizi · kadro danışmanlığı','780+ players · career & similarity analysis · squad consultancy')}</div>
+          <a href='/' style='display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);
+             color:#fff;font-weight:700;text-decoration:none;border-radius:9px;padding:10px 26px;'>
+            🚀 {t('Üye Ol / Giriş','Join / Log In')}</a>
+        </div>
+        <div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>
+          womenfootballscouting.com · {t('Veri: TFF & SoccerDonna','Data: TFF & SoccerDonna')}</div>
+        """,
+        unsafe_allow_html=True)
+    st.stop()
+
+
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
+# ─── PAYLAŞIM RAPORU (?paylas=X) — public, giriş gerektirmez ──────────────────
+if params.get("paylas", "").strip():
+    render_paylasim_raporu(params.get("paylas", ""))
+
 # ─── ODAKLI PROFİL SAYFASI (?oyuncu=X) — sekmeler yerine tek oyuncu ───────────
 if url_oyuncu:
     render_odakli_profil(url_oyuncu)
