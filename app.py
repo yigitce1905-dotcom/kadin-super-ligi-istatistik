@@ -5162,6 +5162,21 @@ if params.get("paylas", "").strip():
 
 # ─── ODAKLI PROFİL SAYFASI (?oyuncu=X) — sekmeler yerine tek oyuncu ───────────
 if url_oyuncu:
+    # Yeni sekmede çerez/oturum geri yüklenirken İLK run'da kullanıcı "giriş yapmamış"
+    # görünür → gate (paywall) bir an flaş eder. Çereze bir rerun şansı vermek için ilk
+    # run'da "Yükleniyor" göster + dur (cookie controller mount olunca rerun tetikler).
+    # _ck_grace_oyuncu tek seferlik → sonsuz döngü yok; cookie yoksa (None) atlanır.
+    if (_cookie_ctrl() is not None and not st.session_state.get("kulup_giris")
+            and not st.session_state.get("_ck_grace_oyuncu")):
+        st.session_state["_ck_grace_oyuncu"] = True
+        st.markdown(
+            "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']"
+            "{display:none!important;}</style>"
+            "<div style='text-align:center;padding:100px 20px;color:#8899aa;'>"
+            "<div style='font-size:1.8rem;'>⏳</div>"
+            f"<div style='margin-top:10px;font-size:0.95rem;'>{t('Profil yükleniyor…','Loading profile…')}</div></div>",
+            unsafe_allow_html=True)
+        st.stop()
     render_odakli_profil(url_oyuncu)
     st.stop()
 
