@@ -71,6 +71,46 @@ def _sayfa_banner(img: str, baslik: str, alt: str = ""):
         + (f"<div class='sb-alt'>{alt}</div>" if alt else "")
         + "</div>", unsafe_allow_html=True)
 
+
+# ─── WhatsApp / ödeme iletişim helper'ları (ERKEN tanımlı — pro_paywall_goster/
+#     deneme_kilit bunları çağırır; ?oyuncu= route'u paywall'ı bunlardan ÖNCE
+#     render ederse NameError olmasın diye dosyanın başında) ───────────────────
+def _odeme_bilgi() -> dict:
+    """Havale + WhatsApp bilgileri (secrets [odeme]). Yapılandırılmadıysa boş/aktif=False."""
+    try:
+        d = dict(st.secrets.get("odeme", {}))
+    except Exception:
+        d = {}
+    # WhatsApp numarası herkese gösterilen iletişim bilgisi (gizli değil; e-posta/Instagram gibi
+    # zaten koddadır) → varsayılan koda gömülü, secrets [odeme] whatsapp ile override edilebilir.
+    return {"iban": d.get("iban", ""), "hesap_adi": d.get("hesap_adi", ""),
+            "banka": d.get("banka", ""),
+            "whatsapp": str(d.get("whatsapp", "") or "905309546646"),
+            "aktif": bool(d.get("iban"))}
+
+
+def _whatsapp_link(mesaj: str = "") -> str:
+    """secrets [odeme] whatsapp numarası varsa önceden-dolu mesajlı wa.me linki, yoksa ''."""
+    no = "".join(ch for ch in _odeme_bilgi().get("whatsapp", "") if ch.isdigit())
+    if not no:
+        return ""
+    from urllib.parse import quote
+    return f"https://wa.me/{no}" + (f"?text={quote(mesaj)}" if mesaj else "")
+
+
+def _whatsapp_butonu(mesaj: str = "", etiket_tr: str = "WhatsApp'tan yaz",
+                     etiket_en: str = "Message us on WhatsApp"):
+    """Yeşil WhatsApp butonu (yeni sekmede wa.me). Numara yoksa hiçbir şey çizmez."""
+    _wa = _whatsapp_link(mesaj)
+    if not _wa:
+        return
+    st.markdown(
+        f"<a href='{_wa}' target='_blank' style='display:flex;align-items:center;"
+        f"justify-content:center;gap:8px;background:#25D366;color:#0b141a;font-weight:800;"
+        f"padding:12px 16px;border-radius:10px;text-decoration:none;margin:8px 0;"
+        f"font-size:0.95rem;'>💬 {t(etiket_tr, etiket_en)}</a>", unsafe_allow_html=True)
+
+
 # Profil render bağlam sayacı: aynı çalıştırmada profil birden çok kez
 # render edilirse (örn. modal + sekme) widget key'leri çakışmasın diye.
 _PROFIL_CTX = {"n": 0}
@@ -5444,43 +5484,6 @@ def geri_ana_butonu(key: str):
 # ─── ÖDEME / YÜKSELTME (manuel havale akışı) ──────────────────────────────────
 # Havale bilgileri secrets.toml > [odeme]'den okunur (IBAN repoda DEĞİL). Yoksa placeholder.
 _PLAN_FIYAT = {"basic": ("Basic", "499 €"), "pro": ("Pro", "999 €"), "premium": ("Premium", "1.999 €")}
-
-
-def _odeme_bilgi() -> dict:
-    """Havale + WhatsApp bilgileri (secrets [odeme]). Yapılandırılmadıysa boş/aktif=False."""
-    try:
-        d = dict(st.secrets.get("odeme", {}))
-    except Exception:
-        d = {}
-    # WhatsApp numarası herkese gösterilen iletişim bilgisi (gizli değil; e-posta/Instagram gibi
-    # zaten koddadır) → varsayılan koda gömülü, secrets [odeme] whatsapp ile override edilebilir.
-    return {"iban": d.get("iban", ""), "hesap_adi": d.get("hesap_adi", ""),
-            "banka": d.get("banka", ""),
-            "whatsapp": str(d.get("whatsapp", "") or "905309546646"),
-            "aktif": bool(d.get("iban"))}
-
-
-def _whatsapp_link(mesaj: str = "") -> str:
-    """secrets [odeme] whatsapp numarası varsa önceden-dolu mesajlı wa.me linki, yoksa ''.
-    Numara uluslararası, sadece rakam (ör. 905321234567)."""
-    no = "".join(ch for ch in _odeme_bilgi().get("whatsapp", "") if ch.isdigit())
-    if not no:
-        return ""
-    from urllib.parse import quote
-    return f"https://wa.me/{no}" + (f"?text={quote(mesaj)}" if mesaj else "")
-
-
-def _whatsapp_butonu(mesaj: str = "", etiket_tr: str = "WhatsApp'tan yaz",
-                     etiket_en: str = "Message us on WhatsApp"):
-    """Yeşil WhatsApp butonu (yeni sekmede wa.me). Numara yoksa hiçbir şey çizmez."""
-    _wa = _whatsapp_link(mesaj)
-    if not _wa:
-        return
-    st.markdown(
-        f"<a href='{_wa}' target='_blank' style='display:flex;align-items:center;"
-        f"justify-content:center;gap:8px;background:#25D366;color:#0b141a;font-weight:800;"
-        f"padding:12px 16px;border-radius:10px;text-decoration:none;margin:8px 0;"
-        f"font-size:0.95rem;'>💬 {t(etiket_tr, etiket_en)}</a>", unsafe_allow_html=True)
 
 
 def _odemeler_ws():
