@@ -1583,6 +1583,7 @@ def _shortlist_ws():
     except Exception:
         return None
 
+@st.cache_data(ttl=120, show_spinner=False)
 def shortlist_yukle() -> dict:
     ws = _shortlist_ws()
     if ws is not None:
@@ -1616,6 +1617,7 @@ def shortlist_kaydet(data: dict):
                     rows.append([k, o])
             ws.clear()
             ws.update(rows)
+            shortlist_yukle.clear()   # cache tazele → toggle anında yansır
             return
         except Exception:
             pass
@@ -1623,6 +1625,7 @@ def shortlist_kaydet(data: dict):
     import json
     with open(_SHORTLIST_YOL, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    shortlist_yukle.clear()
 
 def shortlist_kullanici(kullanici: str) -> list:
     return shortlist_yukle().get(kullanici, [])
@@ -1947,6 +1950,7 @@ def _etiket_ws():
     except Exception:
         return None
 
+@st.cache_data(ttl=120, show_spinner=False)
 def etiket_yukle() -> dict:
     ws = _etiket_ws()
     if ws is not None:
@@ -1981,12 +1985,14 @@ def etiket_kaydet(data: dict):
                         rows.append([k, o, e])
             ws.clear()
             ws.update(rows)
+            etiket_yukle.clear()
             return
         except Exception:
             pass
     import json
     with open(_ETIKET_YOL, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    etiket_yukle.clear()
 
 def etiket_kullanici(kullanici: str) -> dict:
     return etiket_yukle().get(kullanici, {})
@@ -2034,6 +2040,7 @@ def _scoutnot_ws():
     except Exception:
         return None
 
+@st.cache_data(ttl=120, show_spinner=False)
 def scoutnot_yukle() -> dict:
     ws = _scoutnot_ws()
     if ws is not None:
@@ -2070,12 +2077,14 @@ def scoutnot_kaydet(data: dict):
                     rows.append([k, o, v.get("durum",""), v.get("oncelik",""),
                                  v.get("not",""), v.get("tarih","")])
             ws.clear(); ws.update(rows)
+            scoutnot_yukle.clear()
             return
         except Exception:
             pass
     import json
     with open(_SCOUTNOT_YOL, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+    scoutnot_yukle.clear()
 
 def scoutnot_kullanici(kullanici: str) -> dict:
     return scoutnot_yukle().get(kullanici, {})
