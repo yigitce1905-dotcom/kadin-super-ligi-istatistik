@@ -6419,6 +6419,35 @@ if st.session_state.get("sayfa") == "scouting":
                     format_func=lambda x: (
                         (_sc_ayak_en.get(x, x) if x != _sc_tumu else _sc_tumu) if EN else x))
 
+                # ── 📡 Transfer Radar: sözleşme bitiş yakınlığı ──────────────────
+                # Sözleşmesi yakında biten = düşük bonservis / bedava fırsat.
+                _transfer_etiket = {
+                    _sc_tumu: t("Fark etmez", "Any"),
+                    "exp6":  t("🔴 ≤ 6 ay (bedavaya çok yakın)", "🔴 ≤ 6 mo (near free)"),
+                    "exp12": t("🟡 ≤ 12 ay", "🟡 ≤ 12 mo"),
+                    "exp18": t("🟢 ≤ 18 ay", "🟢 ≤ 18 mo"),
+                }
+                transfer_sec = st.selectbox(
+                    f"📡 {t('Transfer Radar', 'Transfer Radar')}",
+                    [_sc_tumu, "exp6", "exp12", "exp18"],
+                    format_func=lambda x: _transfer_etiket.get(x, x), key="sc_transfer",
+                    help=t("Sözleşmesi bitmeye yakın oyuncular — düşük bonservis veya bedava transfer fırsatları.",
+                           "Players whose contracts end soon — low-fee or free transfer opportunities."))
+
+                # ── 🇹🇷 TR Görüşü: oyuncunun Türkiye'ye gelme isteği ─────────────
+                _TR_SIRA = ["Çok İstekli", "İstekli (Şartlar?)", "İstekli",
+                            "Nötr (Şartlar?)", "İsteksiz (Şartlar?)", "İsteksiz", "Çok İsteksiz"]
+                _mevcut_tr = {(_v.get("tr_gorusu") or "").strip()
+                              for _v in _kadro_roster.values() if (_v.get("tr_gorusu") or "").strip()}
+                _tr_opts = ([x for x in _TR_SIRA if x in _mevcut_tr]
+                            + sorted(_mevcut_tr - set(_TR_SIRA)))
+                tr_sec = st.selectbox(
+                    f"🇹🇷 {t('TR Görüşü', 'TR Stance')}", [_sc_tumu] + _tr_opts,
+                    format_func=lambda x: x if x == _sc_tumu else tr_gorus_goster(x),
+                    key="sc_trgorus",
+                    help=t("Oyuncunun Türkiye'ye gelme isteği (scout görüşü).",
+                           "Player's willingness to move to Turkey (scout assessment)."))
+
                 st.markdown("<hr style='border-color:#2a2a38;margin:12px 0;'>",
                             unsafe_allow_html=True)
 
@@ -6458,6 +6487,43 @@ if st.session_state.get("sayfa") == "scouting":
                     _rol_isimler = {_i for _i, _v in _kadro_roster.items()
                                     if _v.get("rol") == sc_rol}
                     filtered = filtered[filtered[isim_col].isin(_rol_isimler)]
+                if transfer_sec != _sc_tumu:
+                    import datetime as _dtt, re as _ret
+                    _esik = {"exp6": 6, "exp12": 12, "exp18": 18}[transfer_sec]
+
+                    def _sozlesme_ay_kalan(_nm):
+                        """Sözleşme bitişine kalan ay (negatif=bitmiş). Bilinmiyorsa None."""
+                        _rec = _kadro_roster.get(_nm, {})
+                        _s = (_rec.get("sozlesme") or "").strip()
+                        if not _s:
+                            _s = (sd_data.get(_nm, {}).get("Contract until") or "").strip()
+                        if not _s or _s in ("—", "-"):
+                            return None
+                        _m = _ret.search(r"(\d{1,2})[.\-/](\d{1,2})[.\-/]((?:19|20)\d{2})", _s)
+                        if _m:
+                            try:
+                                _d = _dtt.date(int(_m.group(3)), int(_m.group(2)), int(_m.group(1)))
+                                return (_d - _dtt.date.today()).days / 30.0
+                            except Exception:
+                                pass
+                        _my = _ret.search(r"(19|20)\d{2}", _s)
+                        if _my:
+                            try:
+                                return (_dtt.date(int(_my.group()), 6, 30) - _dtt.date.today()).days / 30.0
+                            except Exception:
+                                pass
+                        return None
+
+                    _radar = set()
+                    for _nm in filtered[isim_col]:
+                        _ak = _sozlesme_ay_kalan(_nm)
+                        if _ak is not None and _ak <= _esik:
+                            _radar.add(_nm)
+                    filtered = filtered[filtered[isim_col].isin(_radar)]
+                if tr_sec != _sc_tumu:
+                    _tr_isimler = {_i for _i, _v in _kadro_roster.items()
+                                   if (_v.get("tr_gorusu") or "").strip() == tr_sec}
+                    filtered = filtered[filtered[isim_col].isin(_tr_isimler)]
                 filtered = filtered[filtered[isim_col].apply(sd_filtre)]
                 if sadece_sl:
                     filtered = filtered[filtered[isim_col].isin(_sl_liste)]
