@@ -5127,8 +5127,13 @@ def render_paylasim_raporu(isim: str):
         <div style="background:linear-gradient(120deg,#0a0e1bf2 0%,#140c26ea 55%,#1d0d29c0 100%),
              url('app/static/b2.jpg') center 25%/cover no-repeat;border:1px solid #2c2350;
              border-radius:16px;padding:26px 30px;overflow:hidden;box-shadow:0 14px 44px -14px #000000aa;">
-          <div style='font-size:0.6rem;font-weight:800;color:#c084fc;letter-spacing:0.22em;'>
-            🎯 WOMEN'S FOOTBALL SCOUTING · {t('SCOUT RAPORU','SCOUT REPORT')}</div>
+          <div style='display:flex;align-items:center;gap:13px;'>
+            <img src='app/static/logo.png' alt="Women's Football Scouting"
+                 style='height:46px;width:auto;filter:drop-shadow(0 3px 12px rgba(168,85,247,0.55));'/>
+            <div style='font-size:0.62rem;font-weight:800;color:#c084fc;letter-spacing:0.22em;
+                 padding-left:13px;border-left:1px solid #ffffff22;'>
+              {t('SCOUT RAPORU','SCOUT REPORT')}</div>
+          </div>
           <div style='display:flex;align-items:center;gap:18px;margin-top:10px;flex-wrap:wrap;'>
             <div style='flex:1;min-width:200px;'>
               <div style='font-family:Oswald,Sora,sans-serif;font-size:2.1rem;font-weight:700;color:#fff;line-height:1.05;'>{_e(isim)}</div>
