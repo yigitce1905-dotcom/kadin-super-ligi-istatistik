@@ -2155,6 +2155,214 @@ def scoutnot_ayarla(kullanici: str, oyuncu: str, durum: str, oncelik: str, notu:
     scoutnot_kaydet(data)
 
 
+# ─── Öneri Merkezi (Sportif Direktör · oyuncu öneri/takip panosu) ────────────
+# Menajer/scout'tan gelen oyuncu önerilerini sportif direktör sisteme ekler ve
+# durum + öncelik + not ile takip eder. GSheets "Oneriler" (kalıcı), erişilemezse
+# yerel JSON. Her kullanıcı (kulüp) yalnız kendi önerilerini görür; admin tümünü.
+_ONERI_YOL = pathlib.Path(__file__).parent / "oneriler.json"
+_ONERI_DURUMLAR = ["📥 Yeni Öneri", "📞 İletişimde", "👀 İlgileniyor", "💬 Müzakere",
+                   "⏳ Beklemede", "🤝 Anlaşıldı", "❌ Vazgeçildi"]
+_ONERI_DURUM_RENK = {"📥 Yeni Öneri": "#a78bfa", "📞 İletişimde": "#60a5fa",
+                     "👀 İlgileniyor": "#22d3ee", "💬 Müzakere": "#fbbf24",
+                     "⏳ Beklemede": "#94a3b8", "🤝 Anlaşıldı": "#34d399",
+                     "❌ Vazgeçildi": "#f87171"}
+_ONERI_ONCELIK = ["🔴 Yüksek", "🟡 Orta", "🟢 Düşük"]
+_ONERI_KOLON = ["id", "sahip", "tarih", "oyuncu", "kulup", "oneren",
+                "durum", "oncelik", "not", "sd_url"]
+
+def _oneriler_ws():
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("Oneriler")
+        except Exception:
+            ws = sh.add_worksheet(title="Oneriler", rows=3000, cols=len(_ONERI_KOLON))
+            ws.update([_ONERI_KOLON])
+            return ws
+    except Exception:
+        return None
+
+@st.cache_data(ttl=60, show_spinner=False)
+def oneriler_yukle() -> list:
+    ws = _oneriler_ws()
+    if ws is not None:
+        try:
+            return [{k: str(r.get(k, "")).strip() for k in _ONERI_KOLON}
+                    for r in ws.get_all_records() if str(r.get("id", "")).strip()]
+        except Exception:
+            pass
+    if not _ONERI_YOL.exists():
+        return []
+    import json
+    try:
+        with open(_ONERI_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+def oneriler_kaydet(liste: list):
+    ws = _oneriler_ws()
+    if ws is not None:
+        try:
+            rows = [_ONERI_KOLON] + [[o.get(k, "") for k in _ONERI_KOLON] for o in liste]
+            ws.clear(); ws.update(rows)
+            oneriler_yukle.clear()
+            return
+        except Exception:
+            pass
+    import json
+    with open(_ONERI_YOL, "w", encoding="utf-8") as f:
+        json.dump(liste, f, ensure_ascii=False, indent=2)
+    oneriler_yukle.clear()
+
+def oneri_ekle(sahip, oyuncu, kulup, oneren, oncelik, notu, sd_url=""):
+    import uuid
+    from datetime import date as _d
+    liste = list(oneriler_yukle())
+    liste.append({"id": uuid.uuid4().hex[:8], "sahip": sahip,
+                  "tarih": _d.today().isoformat(), "oyuncu": oyuncu, "kulup": kulup,
+                  "oneren": oneren, "durum": _ONERI_DURUMLAR[0],
+                  "oncelik": oncelik or _ONERI_ONCELIK[1], "not": notu, "sd_url": sd_url})
+    oneriler_kaydet(liste)
+
+def oneri_guncelle(oid, **alanlar):
+    liste = oneriler_yukle()
+    for o in liste:
+        if o.get("id") == oid:
+            o.update(alanlar)
+    oneriler_kaydet(liste)
+
+def oneri_sil(oid):
+    oneriler_kaydet([o for o in oneriler_yukle() if o.get("id") != oid])
+
+def _sd_url_isim(url: str) -> str:
+    """SoccerDonna URL slug'ından oyuncu adını çıkarır (canlı çekim yok)."""
+    import re
+    url = (url or "").split("?")[0]
+    for kal in (r"/(?:player|spieler)/(?:\d+/)?([A-Za-z][A-Za-z0-9\-]+)",
+                r"/([A-Za-z][A-Za-z]+-[A-Za-z][A-Za-z\-]+)/"):
+        m = re.search(kal, url)
+        if m:
+            slug = m.group(1).replace("-", " ").strip()
+            if slug and not slug.replace(" ", "").isdigit() and "profil" not in slug.lower():
+                return " ".join(w.capitalize() for w in slug.split())
+    return ""
+
+@st.dialog("➕ Oyuncu Öner")
+def _oneri_ekle_dialog(sahip: str):
+    _mod0 = st.session_state.get("_oneri_dialog_mod", "url")
+    _opts = [t("🔗 SoccerDonna URL", "🔗 SoccerDonna URL"), t("✏️ Elle Ekle", "✏️ Manual")]
+    mod = st.radio("yontem", _opts, index=(0 if _mod0 == "url" else 1),
+                   horizontal=True, label_visibility="collapsed", key="_oneri_mod")
+    url = oyuncu = kulup = ""
+    if mod == _opts[0]:
+        url = st.text_input(t("SoccerDonna Linki", "SoccerDonna Link"),
+                            placeholder="https://www.soccerdonna.de/en/player/...", key="_oneri_url")
+        st.caption(t("URL'den oyuncu adı otomatik çıkarılır. (İstersen 'Elle Ekle' ile tam gir.)",
+                     "Player name is auto-extracted from the URL. (Use 'Manual' for full control.)"))
+    else:
+        oyuncu = st.text_input(t("Oyuncu Adı", "Player Name"), key="_oneri_oyuncu")
+        kulup = st.text_input(t("Kulüp", "Club"), key="_oneri_kulup")
+    oneren = st.text_input(t("Öneren Scout / Menajer", "Recommended by (Scout / Agent)"), key="_oneri_oneren")
+    oncelik = st.radio(t("Öncelik", "Priority"), _ONERI_ONCELIK, index=1,
+                       horizontal=True, key="_oneri_oncelik")
+    notu = st.text_area(t("Not", "Note"), placeholder=t("Scout gözlemi veya not…", "Scout observation or note…"),
+                        key="_oneri_not")
+    c1, c2 = st.columns(2)
+    if c1.button(t("İptal", "Cancel"), use_container_width=True, key="_oneri_iptal"):
+        st.rerun()
+    if c2.button(t("Ekle", "Add"), type="primary", use_container_width=True, key="_oneri_ekle_btn"):
+        if mod == _opts[0]:
+            if not (url or "").strip():
+                st.warning(t("Lütfen SoccerDonna linki gir.", "Please enter a SoccerDonna link.")); st.stop()
+            oyuncu = _sd_url_isim(url) or t("SoccerDonna Oyuncusu", "SoccerDonna Player")
+        if not (oyuncu or "").strip():
+            st.warning(t("Lütfen oyuncu adı gir.", "Please enter a player name.")); st.stop()
+        oneri_ekle(sahip, oyuncu.strip(), kulup.strip(), oneren.strip(),
+                   oncelik, notu.strip(), (url or "").strip())
+        st.rerun()
+
+def render_oneri_merkezi(sahip: str):
+    # Çok kiracılı: her kulüp YALNIZ kendi önerilerini görür; admin tümünü.
+    # Giriş yoksa "admin" sezgisine düşmesin diye sahip'i güvenli anahtara sabitle.
+    _is_admin = (st.session_state.get("kulup_rol") == "admin"
+                 or st.session_state.get("kulup_kullanici") == "admin")
+    _kul = st.session_state.get("kulup_kullanici", "")
+    sahip = _kul if _kul else "_anon"
+    tum = oneriler_yukle()
+    benim = tum if _is_admin else [o for o in tum if o.get("sahip", "") == sahip]
+    # Başlık + ekleme butonları
+    bsol, bsag1, bsag2 = st.columns([3.4, 1.5, 1.4])
+    with bsol:
+        st.markdown(
+            f"<div style='padding:4px 0 2px;'>"
+            f"<div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;'>"
+            f"📥 {t('Öneri Merkezi','Recommendation Center')}</div>"
+            f"<div style='color:#8899aa;font-size:0.82rem;margin-top:2px;'>"
+            f"<b style='color:#a78bfa;'>{len(benim)}</b> {t('oyuncu takip ediliyor','players tracked')}</div></div>",
+            unsafe_allow_html=True)
+    if bsag1.button(t("🔗 SoccerDonna URL ile Ekle", "🔗 Add via SoccerDonna URL"),
+                    use_container_width=True, key="_oneri_btn_url"):
+        st.session_state["_oneri_dialog_mod"] = "url"; _oneri_ekle_dialog(sahip)
+    if bsag2.button(t("➕ Elle Oyuncu Ekle", "➕ Add Player Manually"), type="primary",
+                    use_container_width=True, key="_oneri_btn_manuel"):
+        st.session_state["_oneri_dialog_mod"] = "manuel"; _oneri_ekle_dialog(sahip)
+
+    if not benim:
+        st.info(t("Henüz öneri yok. Yukarıdaki butonlarla menajerden/scout'tan gelen oyuncuları ekle.",
+                  "No recommendations yet. Use the buttons above to add players proposed by agents/scouts."))
+        return
+
+    # Tablo başlığı
+    _orn = {"🔴 Yüksek": 0, "🟡 Orta": 1, "🟢 Düşük": 2}
+    benim = sorted(benim, key=lambda o: (_orn.get(o.get("oncelik", ""), 3), o.get("tarih", "")), reverse=False)
+    _ORAN = [2.5, 1.9, 1.9, 1.4, 3.2, 1.0, 0.5]
+    hb = st.columns(_ORAN)
+    for col, lbl in zip(hb, [t("OYUNCU", "PLAYER"), t("ÖNEREN", "BY"), t("DURUM", "STATUS"),
+                             t("ÖNCELİK", "PRIORITY"), t("NOT", "NOTE"), t("TARİH", "DATE"), ""]):
+        col.markdown(f"<div style='font-size:0.62rem;font-weight:800;color:#64748b;"
+                     f"letter-spacing:0.08em;padding-bottom:2px;'>{lbl}</div>", unsafe_allow_html=True)
+    st.markdown("<hr style='border-color:#2a2a38;margin:2px 0 8px;'>", unsafe_allow_html=True)
+
+    for o in benim:
+        oid = o.get("id", "")
+        rc = st.columns(_ORAN, vertical_alignment="center")
+        _link = (f"<a href='{o['sd_url']}' target='_blank' style='color:#a78bfa;font-size:0.66rem;"
+                 f"text-decoration:none;'>🔗 SoccerDonna</a>") if o.get("sd_url") else ""
+        _alt = o.get("kulup", "") or _link
+        rc[0].markdown(
+            f"<div style='font-weight:700;color:#e8eef7;font-size:0.92rem;'>{o.get('oyuncu','')}</div>"
+            f"<div style='color:#7a8699;font-size:0.72rem;'>{_alt}</div>", unsafe_allow_html=True)
+        rc[1].markdown(f"<div style='color:#cbd5e1;font-size:0.84rem;padding-top:4px;'>"
+                       f"{o.get('oneren','—') or '—'}</div>", unsafe_allow_html=True)
+        # Durum (değiştirilebilir)
+        _d_idx = _ONERI_DURUMLAR.index(o["durum"]) if o.get("durum") in _ONERI_DURUMLAR else 0
+        yeni_d = rc[2].selectbox("durum", _ONERI_DURUMLAR, index=_d_idx,
+                                 label_visibility="collapsed", key=f"_od_{oid}")
+        if yeni_d != o.get("durum"):
+            oneri_guncelle(oid, durum=yeni_d); st.rerun()
+        # Öncelik (değiştirilebilir)
+        _o_idx = _ONERI_ONCELIK.index(o["oncelik"]) if o.get("oncelik") in _ONERI_ONCELIK else 1
+        yeni_o = rc[3].selectbox("oncelik", _ONERI_ONCELIK, index=_o_idx,
+                                 label_visibility="collapsed", key=f"_oo_{oid}")
+        if yeni_o != o.get("oncelik"):
+            oneri_guncelle(oid, oncelik=yeni_o); st.rerun()
+        rc[4].markdown(f"<div style='color:#aab4c4;font-size:0.80rem;line-height:1.45;'>"
+                       f"{o.get('not','') or '—'}</div>", unsafe_allow_html=True)
+        rc[5].markdown(f"<div style='color:#6b7689;font-size:0.74rem;padding-top:4px;'>"
+                       f"{o.get('tarih','')}</div>", unsafe_allow_html=True)
+        if rc[6].button("🗑", key=f"_osil_{oid}", help=t("Sil", "Delete")):
+            oneri_sil(oid); st.rerun()
+        st.markdown("<hr style='border-color:#20242f;margin:6px 0;'>", unsafe_allow_html=True)
+
+
 # ─── Danışmanlık Talepleri ─────────────────────────────────────────────
 # Talepler Google Sheets "Talepler" sayfasına yazılır + e-posta gönderilir.
 # E-posta için secrets["smtp"] = {email, password (Gmail app password)} gerekir;
@@ -6367,10 +6575,18 @@ if st.session_state.get("sayfa") == "scouting":
 </div>""", unsafe_allow_html=True)
 
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
-            _TAB_OPTS   = [t("Tüm Oyuncular", "All Players"), t("Shortlist", "Shortlist")]
+            _ONERI_TAB  = t("📥 Öneri Merkezi", "📥 Recommendations")
+            _TAB_OPTS   = [t("Tüm Oyuncular", "All Players"), t("Shortlist", "Shortlist"), _ONERI_TAB]
             _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
                                    key="sc_tab_radio", label_visibility="collapsed")
             sadece_sl   = (_sc_tab_sel == t("Shortlist", "Shortlist"))
+
+            # ── Öneri Merkezi sekmesi: tam genişlik panosu + erken çıkış ──────
+            # (Scouting sayfası zaten aşağıda st.stop() ile bitiyor; burada da
+            #  render edip durmak filtre/tablo bloğunu temiz şekilde atlar.)
+            if _sc_tab_sel == _ONERI_TAB:
+                render_oneri_merkezi(_sl_kullanici)
+                st.stop()
 
             # ── Scout Pro: İki sütun düzeni (sidebar + ana alan) ─────────────
             sc_sb, sc_main_col = st.columns([1, 4.6], gap="medium")
