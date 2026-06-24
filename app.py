@@ -2168,7 +2168,7 @@ _ONERI_DURUM_RENK = {"📥 Yeni Öneri": "#a78bfa", "📞 İletişimde": "#60a5f
                      "❌ Vazgeçildi": "#f87171"}
 _ONERI_ONCELIK = ["🔴 Yüksek", "🟡 Orta", "🟢 Düşük"]
 _ONERI_KOLON = ["id", "sahip", "tarih", "oyuncu", "kulup", "oneren",
-                "durum", "oncelik", "not", "sd_url"]
+                "durum", "oncelik", "not", "sd_url", "rapor_talep"]
 
 def _oneriler_ws():
     try:
@@ -2241,6 +2241,23 @@ def oneri_guncelle(oid, **alanlar):
 
 def oneri_sil(oid):
     oneriler_kaydet([o for o in oneriler_yukle() if o.get("id") != oid])
+
+def oneri_rapor_talep_et(o: dict):
+    """Bir öneri için scout raporu talebi gönderir (Talepler sheet + e-posta),
+    sonra öneriyi 'rapor istendi' diye işaretler. (kayit_ok, mail_ok) döndürür."""
+    from datetime import date as _d
+    detay = (f"Öneri Merkezi'nden scout raporu talebi.\n"
+             f"Oyuncu: {o.get('oyuncu', '')}\n"
+             f"Kulüp: {o.get('kulup') or '—'}\n"
+             f"Öneren: {o.get('oneren') or '—'}\n"
+             f"Öncelik: {o.get('oncelik', '')}\n"
+             f"Durum: {o.get('durum', '')}\n"
+             f"Not: {o.get('not') or '—'}\n"
+             f"SoccerDonna: {o.get('sd_url') or '—'}")
+    k_ok, m_ok = talep_gonder("Scout Raporu", o.get("oyuncu", ""),
+                              o.get("kulup", ""), o.get("sahip", ""), detay)
+    oneri_guncelle(o.get("id"), rapor_talep=_d.today().isoformat())
+    return k_ok, m_ok
 
 def _sd_url_isim(url: str) -> str:
     """SoccerDonna URL slug'ından oyuncu adını çıkarır (canlı çekim yok)."""
@@ -2323,10 +2340,11 @@ def render_oneri_merkezi(sahip: str):
     # Tablo başlığı
     _orn = {"🔴 Yüksek": 0, "🟡 Orta": 1, "🟢 Düşük": 2}
     benim = sorted(benim, key=lambda o: (_orn.get(o.get("oncelik", ""), 3), o.get("tarih", "")), reverse=False)
-    _ORAN = [2.5, 1.9, 1.9, 1.4, 3.2, 1.0, 0.5]
+    _ORAN = [2.3, 1.55, 1.75, 1.25, 2.5, 0.9, 1.4, 0.45]
     hb = st.columns(_ORAN)
     for col, lbl in zip(hb, [t("OYUNCU", "PLAYER"), t("ÖNEREN", "BY"), t("DURUM", "STATUS"),
-                             t("ÖNCELİK", "PRIORITY"), t("NOT", "NOTE"), t("TARİH", "DATE"), ""]):
+                             t("ÖNCELİK", "PRIORITY"), t("NOT", "NOTE"), t("TARİH", "DATE"),
+                             t("RAPOR", "REPORT"), ""]):
         col.markdown(f"<div style='font-size:0.62rem;font-weight:800;color:#64748b;"
                      f"letter-spacing:0.08em;padding-bottom:2px;'>{lbl}</div>", unsafe_allow_html=True)
     st.markdown("<hr style='border-color:#2a2a38;margin:2px 0 8px;'>", unsafe_allow_html=True)
@@ -2358,7 +2376,24 @@ def render_oneri_merkezi(sahip: str):
                        f"{o.get('not','') or '—'}</div>", unsafe_allow_html=True)
         rc[5].markdown(f"<div style='color:#6b7689;font-size:0.74rem;padding-top:4px;'>"
                        f"{o.get('tarih','')}</div>", unsafe_allow_html=True)
-        if rc[6].button("🗑", key=f"_osil_{oid}", help=t("Sil", "Delete")):
+        # Scout raporu talebi
+        if o.get("rapor_talep"):
+            rc[6].markdown(
+                f"<div style='color:#34d399;font-size:0.70rem;line-height:1.2;padding-top:3px;'>"
+                f"✓ {t('İstendi', 'Requested')}<br>"
+                f"<span style='color:#6b7689;font-size:0.64rem;'>{o['rapor_talep']}</span></div>",
+                unsafe_allow_html=True)
+        elif rc[6].button(t("📄 Rapor İste", "📄 Request"), key=f"_orap_{oid}",
+                          use_container_width=True,
+                          help=t("Bu oyuncu için scout raporu talep et",
+                                 "Request a scout report for this player")):
+            _k, _m = oneri_rapor_talep_et(o)
+            st.toast(t("📄 Scout raporu talebi gönderildi.", "📄 Scout report request sent.")
+                     if (_k or _m) else
+                     t("Talep kaydedildi (e-posta gitmedi).", "Request saved (email not sent)."),
+                     icon="📄" if (_k or _m) else "⚠️")
+            st.rerun()
+        if rc[7].button("🗑", key=f"_osil_{oid}", help=t("Sil", "Delete")):
             oneri_sil(oid); st.rerun()
         st.markdown("<hr style='border-color:#20242f;margin:6px 0;'>", unsafe_allow_html=True)
 
