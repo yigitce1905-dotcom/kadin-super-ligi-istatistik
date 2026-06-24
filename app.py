@@ -40,7 +40,7 @@ if os.path.exists(_cc_src) and not _cc_dst.exists():
     except Exception:
         pass
 
-_page_title = "Women Football Scouting"   # marka adı (tarayıcı sekmesi)
+_page_title = "Women's Football Scouting"   # marka adı (tarayıcı sekmesi)
 st.set_page_config(
     page_title=_page_title,
     page_icon="🎯", layout="wide",        # nişangâh teması (scope logosu)
@@ -4188,7 +4188,7 @@ def render_scout_kadro_raporu(isim: str):
             f"text-decoration:none;font-size:0.85rem;'>💬 {t('WhatsApp ile paylaş','Share on WhatsApp')}</a>",
             unsafe_allow_html=True)
 
-    st.caption("📡 Mr Daniş · Women Football Scouting")
+    st.caption("📡 Mr Daniş · Women's Football Scouting")
 
 
 # -- Ana lig oyuncu profili: tab2 ve odakli profil sayfasi kullanir --
@@ -4373,7 +4373,7 @@ def _ana_lig_pdf_uret(secili: str, _en: bool = False) -> bytes:
 
     # Footer
     pdf.set_y(-16); pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7)
-    pdf.cell(0, 5, "Women Football Scouting · " + t("Kaynak: TFF & SoccerDonna · Bilgi amaçlıdır",
+    pdf.cell(0, 5, "Women's Football Scouting · " + t("Kaynak: TFF & SoccerDonna · Bilgi amaçlıdır",
                                     "Source: TFF & SoccerDonna · For information only"), align="C")
     out = pdf.output()
     return bytes(out)
@@ -4890,7 +4890,7 @@ _nav_giris_var = st.session_state.get("kulup_giris", False)
 
 with st.sidebar:
     # ── Marka (nişangâh/scope logosu + wordmark) ──
-    _marka_alt = "Women Football Scouting"
+    _marka_alt = "Women's Football Scouting"
     _logo_svg = (
         "<svg width='26' height='26' viewBox='0 0 32 32' fill='none' "
         "style='vertical-align:-6px;margin-right:7px;flex:none;'>"
@@ -5125,7 +5125,7 @@ def render_paylasim_raporu(isim: str):
              url('app/static/b2.jpg') center 25%/cover no-repeat;border:1px solid #2c2350;
              border-radius:16px;padding:26px 30px;overflow:hidden;box-shadow:0 14px 44px -14px #000000aa;">
           <div style='font-size:0.6rem;font-weight:800;color:#c084fc;letter-spacing:0.22em;'>
-            🎯 WOMEN FOOTBALL SCOUTING · {t('SCOUT RAPORU','SCOUT REPORT')}</div>
+            🎯 WOMEN'S FOOTBALL SCOUTING · {t('SCOUT RAPORU','SCOUT REPORT')}</div>
           <div style='display:flex;align-items:center;gap:18px;margin-top:10px;flex-wrap:wrap;'>
             <div style='flex:1;min-width:200px;'>
               <div style='font-family:Oswald,Sora,sans-serif;font-size:2.1rem;font-weight:700;color:#fff;line-height:1.05;'>{_e(isim)}</div>
@@ -5698,8 +5698,8 @@ if st.session_state["sayfa"] == "iletisim":
     """, unsafe_allow_html=True)
     _wa_orta = st.columns([1, 2, 1])[1]
     with _wa_orta:
-        _whatsapp_butonu(t("Merhaba, Women Football Scouting hakkında bilgi almak istiyorum.",
-                           "Hi, I'd like to get info about Women Football Scouting."),
+        _whatsapp_butonu(t("Merhaba, Women's Football Scouting hakkında bilgi almak istiyorum.",
+                           "Hi, I'd like to get info about Women's Football Scouting."),
                          "WhatsApp'tan yaz", "Message us on WhatsApp")
     st.stop()
 
