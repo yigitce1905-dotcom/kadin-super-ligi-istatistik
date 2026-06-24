@@ -41,9 +41,11 @@ if os.path.exists(_cc_src) and not _cc_dst.exists():
         pass
 
 _page_title = "Women's Football Scouting"   # marka adı (tarayıcı sekmesi)
+from pathlib import Path as _Path
+_favicon = _Path(__file__).parent / "static" / "logo_kare.png"
 st.set_page_config(
     page_title=_page_title,
-    page_icon="🎯", layout="wide",        # nişangâh teması (scope logosu)
+    page_icon=(str(_favicon) if _favicon.exists() else "🎯"), layout="wide",
     initial_sidebar_state="expanded",
 )
 
@@ -509,6 +511,17 @@ section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:0.2rem; }
 .nav-marka span { color:#a855f7; }
 .nav-marka-alt { color:#566179; font-size:0.62rem; padding:0 4px 8px;
     border-bottom:1px solid #1c2238; margin-bottom:2px; }
+/* Marka logosu (görsel) */
+.nav-marka-logo { padding:6px 4px 14px; margin-bottom:4px; text-align:center;
+    border-bottom:1px solid #1c2238; }
+.nav-marka-logo img { width:100%; max-width:205px; height:auto; display:inline-block;
+    filter:drop-shadow(0 4px 16px rgba(168,85,247,0.40));
+    transition:transform .28s ease, filter .28s ease; }
+.nav-marka-logo img:hover { transform:translateY(-1px) scale(1.025);
+    filter:drop-shadow(0 7px 22px rgba(236,72,153,0.55)); }
+@keyframes marka-belir { from{opacity:0; transform:translateY(-6px) scale(.96);}
+    to{opacity:1; transform:none;} }
+.nav-marka-logo img { animation:marka-belir .55s cubic-bezier(.2,.8,.2,1) both; }
 
 /* Grup başlığı — keskin alt çizgi */
 .nav-grup { font-size:0.6rem; font-weight:800; letter-spacing:0.16em;
@@ -4889,22 +4902,12 @@ _aktif_sayfa   = st.session_state.get("sayfa", "ana")
 _nav_giris_var = st.session_state.get("kulup_giris", False)
 
 with st.sidebar:
-    # ── Marka (nişangâh/scope logosu + wordmark) ──
-    _marka_alt = "Women's Football Scouting"
-    _logo_svg = (
-        "<svg width='26' height='26' viewBox='0 0 32 32' fill='none' "
-        "style='vertical-align:-6px;margin-right:7px;flex:none;'>"
-        "<circle cx='16' cy='16' r='13' stroke='#a855f7' stroke-width='2.2'/>"
-        "<circle cx='16' cy='16' r='5.5' stroke='#c084fc' stroke-width='2'/>"
-        "<circle cx='16' cy='16' r='1.7' fill='#ec4899'/>"
-        "<line x1='16' y1='1.5' x2='16' y2='7' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
-        "<line x1='16' y1='25' x2='16' y2='30.5' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
-        "<line x1='1.5' y1='16' x2='7' y2='16' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
-        "<line x1='25' y1='16' x2='30.5' y2='16' stroke='#a855f7' stroke-width='2.2' stroke-linecap='round'/>"
-        "</svg>")
+    # ── Marka (logo görseli — static/logo.png, şeffaf arka plan) ──
     st.markdown(
-        f"<div class='nav-marka'>{_logo_svg}W<span>FS</span></div>"
-        f"<div class='nav-marka-alt'>{_marka_alt}</div>",
+        "<div class='nav-marka-logo'>"
+        "<img src='app/static/logo.png' alt=\"Women's Football Scouting\" "
+        "title=\"Women's Football Scouting\"/>"
+        "</div>",
         unsafe_allow_html=True)
 
     # ── Üyelik rozeti ──
