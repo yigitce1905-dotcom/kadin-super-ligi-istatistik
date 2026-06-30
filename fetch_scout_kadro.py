@@ -72,12 +72,15 @@ def parse(metin: str) -> dict:
     i_tarz0  = i_sahsi9 + 1
     i_nihai  = idx_baslar("NİHAİ")
     i_ivme   = idx_baslar("İVME")
+    # KALECİ YETKİNLİKLERİ grubu (sadece kaleciler için dolu) — 14 nitelik + "KALECİ Not"
+    i_kaleci0 = idx_baslar("Elle Kontrol")
+    i_kaleci9 = idx_baslar("KALECİ")
 
     # ── Sabit alan kolonları BAŞLIK ADINA göre (kolon kaymalarına dayanıklı) ──
     # Not: 2024→ sheet'te kolonlar 2 sola kaydı (Oyuncu Adı 3→1). Sabit indeks
     # yerine başlık adıyla bulmak, ileride yine kayarsa kırılmayı önler.
-    c_isim   = idx_baslar("Oyuncu Adı")
-    c_tam    = idx_baslar("Tam İsim")
+    c_isim   = idx_baslar("İsim - Soyisim", "Oyuncu Adı")      # eşleşme anahtarı (kısa ad)
+    c_tam    = idx_baslar("Sporcunun Tam İsmi", "Tam İsim")
     c_vat    = idx_baslar("Vatandaşlık")        # "Vatandaşlık (Millî)" — "2." ile başlamaz
     c_mil    = idx_baslar("2. Vatandaşlık")     # = 2. pasaport. DİKKAT: bu MİLLİ TAKIM DEĞİL!
     # (app milli takımı 'vatandaslik' = "Vatandaşlık (Millî)" alanından alır. milli_takim
@@ -118,8 +121,11 @@ def parse(metin: str) -> dict:
         beseri = nitelik(r, i_beseri0, i_beseri9)
         fiziki = nitelik(r, i_fiziki0, i_fiziki9)
         sahsi  = nitelik(r, i_sahsi0,  i_sahsi9)
+        # Kaleci yetkinlikleri SADECE mevkii GK olanlar için (saha oyuncularında FF dolu → atla)
+        _kaleci_mi = any(h(r, j).strip().upper() == "GK" for j in c_mevki)
+        kaleci = nitelik(r, i_kaleci0, i_kaleci9) if _kaleci_mi else {}
         tum = (list(beceri.values()) + list(beseri.values())
-               + list(fiziki.values()) + list(sahsi.values()))
+               + list(fiziki.values()) + list(sahsi.values()) + list(kaleci.values()))
         degerlendirildi = bool(tum) and any(n != "FF" for n in tum)
 
         tarz = []
@@ -162,11 +168,13 @@ def parse(metin: str) -> dict:
             "deger":       h(r, c_deger),
             "sozlesme":    h(r, c_sozl),
             "beceri": beceri, "beseri": beseri, "fiziki": fiziki, "sahsi": sahsi,
+            "kaleci": kaleci,
             "makro": {
                 "beceri": h(r, i_beceri9) if h(r, i_beceri9) in GECERLI_NOTLAR else "",
                 "beseri": h(r, i_beseri9) if h(r, i_beseri9) in GECERLI_NOTLAR else "",
                 "fiziki": h(r, i_fiziki9) if h(r, i_fiziki9) in GECERLI_NOTLAR else "",
                 "sahsi":  h(r, i_sahsi9)  if h(r, i_sahsi9)  in GECERLI_NOTLAR else "",
+                "kaleci": h(r, i_kaleci9) if (_kaleci_mi and h(r, i_kaleci9) in GECERLI_NOTLAR) else "",
             },
             "tarz":       tarz,
             "nihai":      h(r, i_nihai) if h(r, i_nihai) in GECERLI_NOTLAR else "",

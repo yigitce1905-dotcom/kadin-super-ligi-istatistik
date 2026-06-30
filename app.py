@@ -4137,7 +4137,10 @@ def render_scout_raporu(isim: str):
         (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("fiziki", "")),
         (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
     ]
-    kolonlar = st.columns(4, gap="small")
+    if rapor.get("kaleci"):   # KALECİ YETKİNLİKLERİ — yalnızca kaleciler
+        paneller.append((t("KALECİ", "GOALKEEPING"), "🧤",
+                         rapor.get("kaleci", {}), makro.get("kaleci", "")))
+    kolonlar = st.columns(len(paneller), gap="small")
     for kol, (baslik, ikon, nit, mk) in zip(kolonlar, paneller):
         if nit:
             kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
@@ -4396,7 +4399,10 @@ def render_scout_kadro_raporu(isim: str):
         (t("FİZİKİ","PHYSICAL"),  "💪", rapor.get("fiziki",{}), makro.get("fiziki","")),
         (t("ŞAHSİ","PERSONAL"),   "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
     ]
-    for kol, (b, ik, nit, mk) in zip(st.columns(4, gap="small"), paneller):
+    if rapor.get("kaleci"):   # KALECİ YETKİNLİKLERİ — yalnızca kaleciler
+        paneller.append((t("KALECİ","GOALKEEPING"), "🧤",
+                         rapor.get("kaleci",{}), makro.get("kaleci","")))
+    for kol, (b, ik, nit, mk) in zip(st.columns(len(paneller), gap="small"), paneller):
         if nit:
             kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
 
