@@ -12723,13 +12723,17 @@
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AB",
+      "Penaltı Vuruşu": "BB",
       "Markaj": "CD",
       "Top Kapma": "BC",
+      "Uzun Taç": "CC",
+      "Duran Top": "BB",
       "İlk Kontrol": "AB",
       "Kafa Vuruşu": "BC",
       "Orta Yapma": "BB",
       "Kısa Pas": "AB",
-      "Top Sürme": "AB"
+      "Top Sürme": "AB",
+      "Uzaktan Şut": "BC"
     },
     "beseri": {
       "Agresiflik": "CC",
@@ -12753,7 +12757,8 @@
       "Sürat": "AB",
       "Hızlanma": "AB",
       "Zindelik": "BB",
-      "Zıplama": "BB"
+      "Zıplama": "BB",
+      "Zayıf Ayak": "DD"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -12762,7 +12767,8 @@
       "Sadakat": "BB",
       "Baskıya Dayanıklılık": "BB",
       "Uyumluluk": "AA",
-      "Süreklilik": "AB"
+      "Süreklilik": "AB",
+      "Çalışkanlık": "BB"
     },
     "kaleci": {},
     "makro": {
