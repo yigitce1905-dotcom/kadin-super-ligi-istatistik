@@ -4042,10 +4042,18 @@ def tr_gorus_goster(x):
 
 @st.cache_data(ttl=604800, show_spinner=False)
 def _tr_en_ceviri(metin: str) -> str:
-    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata → orijinal TR."""
+    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata → orijinal TR.
+    Kadın futbolu: Google TR cinsiyetsiz 'o'yu 'he' çevirdiği için eril zamirler dişile çekilir."""
     try:
+        import re
         from deep_translator import GoogleTranslator
-        return GoogleTranslator(source="tr", target="en").translate(metin) or metin
+        cev = GoogleTranslator(source="tr", target="en").translate(metin) or metin
+        for pat, rep in ((r"\bhimself\b", "herself"), (r"\bHimself\b", "Herself"),
+                         (r"\bhe\b", "she"), (r"\bHe\b", "She"),
+                         (r"\bhim\b", "her"), (r"\bHim\b", "Her"),
+                         (r"\bhis\b", "her"), (r"\bHis\b", "Her")):
+            cev = re.sub(pat, rep, cev)
+        return cev
     except Exception:
         return metin
 
