@@ -4131,13 +4131,16 @@ def render_scout_raporu(isim: str):
 
     # ── 4 nitelik paneli (yan yana, kompakt) ────────────────────────────
     makro = rapor.get("makro", {})
-    paneller = [
-        (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")),
+    _gk = bool(rapor.get("kaleci"))   # kaleci ise saha (BECERİ) paneli gizlenir — Baran isteği
+    paneller = []
+    if not _gk:
+        paneller.append((t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")))
+    paneller += [
         (t("BEŞERİ", "MENTAL"),    "🧠", rapor.get("beseri", {}), makro.get("beseri", "")),
         (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("fiziki", "")),
         (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
     ]
-    if rapor.get("kaleci"):   # KALECİ YETKİNLİKLERİ — yalnızca kaleciler
+    if _gk:
         paneller.append((t("KALECİ", "GOALKEEPING"), "🧤",
                          rapor.get("kaleci", {}), makro.get("kaleci", "")))
     kolonlar = st.columns(len(paneller), gap="small")
@@ -4393,13 +4396,16 @@ def render_scout_kadro_raporu(isim: str):
 
     # 4 nitelik paneli (yan yana)
     makro = rapor.get("makro", {})
-    paneller = [
-        (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")),
+    _gk = bool(rapor.get("kaleci"))   # kaleci ise saha (BECERİ) paneli gizlenir — Baran isteği
+    paneller = []
+    if not _gk:
+        paneller.append((t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")))
+    paneller += [
         (t("BEŞERİ","MENTAL"),    "🧠", rapor.get("beseri",{}), makro.get("beseri","")),
         (t("FİZİKİ","PHYSICAL"),  "💪", rapor.get("fiziki",{}), makro.get("fiziki","")),
         (t("ŞAHSİ","PERSONAL"),   "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
     ]
-    if rapor.get("kaleci"):   # KALECİ YETKİNLİKLERİ — yalnızca kaleciler
+    if _gk:
         paneller.append((t("KALECİ","GOALKEEPING"), "🧤",
                          rapor.get("kaleci",{}), makro.get("kaleci","")))
     for kol, (b, ik, nit, mk) in zip(st.columns(len(paneller), gap="small"), paneller):
