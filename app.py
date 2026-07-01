@@ -3985,18 +3985,38 @@ _ROL_EN = {
     "Çapa OS":"Anchor MF","Çizgi KT":"Touchline Winger","İçe Kat Eden KT":"Inverted Winger",
 }
 _TARZ_EN = {
-    "Alanına Hakimdir":"Commands the area","Ayakta Mücadele Eder":"Stays on feet in duels",
-    "Aşırtma/Akıllı Vuruşlar Yapar":"Tries chips / clever finishes","Başarılıı Plase Şut/Orta Dener":"Tries placed shots / crosses",
-    "Bireysel Oynamayı Sever":"Likes to dribble / go solo","Duran Toplarda Topun Başına Geçer":"Takes set pieces",
-    "Fırsat Buldukça Hücuma Katılır":"Joins the attack when possible","Hücum Koşuları Yapar":"Makes attacking runs",
-    "Kaleye Sırtı Dönük Oynayabilir":"Can play back to goal","Kaleyi Uzaktan Yoklar":"Tries long-range shots",
-    "Kanattan Bindirme Yapar":"Overlaps on the wing","Karta Meyilli Hamle Yapmaz":"Avoids rash challenges",
-    "Merkezden Bindirme Yapar":"Bursts through the middle","Rakip Oyunculara Sataşmaz":"Doesn't provoke opponents",
-    "Sert Şutlar/Ortalar Dener":"Tries powerful shots / crosses","Sık Sık Ara/Kilit Pas Dener":"Often tries through / key passes",
-    "Tekniği İle Top Saklamayı Sever":"Shields the ball with technique","Topla Oyalanmayı Sevmez":"Doesn't dwell on the ball",
-    "Topu Almak İçin Gerilere Kadar Gelir":"Drops deep to get the ball","Tribüne Oynar, Abartılı Sevinir":"Plays to the crowd",
-    "Yerden Uzak Köşeye Vuruş Yapar":"Aims for the far corner","Zayıf Ayağını Kullanabilir":"Can use weak foot",
-    "İç Koridoru Kullanır":"Uses the inside channel",
+    "Alanına Hakim Bir Liderdir":"A commanding leader in her area",
+    "Başarılıı Plase veya Kavisli Şut/Orta Dener":"Tries placed or curled shots/crosses",
+    "Duran Toplarda Topun Başına Geçer":"Takes set pieces",
+    "Eliyle Uzun Paslar Çıkartabilir":"Distributes long by hand",
+    "Fırsat Buldukça Hücuma Katılır":"Joins the attack when possible",
+    "Fırsat Buldukça Savunmaya Katılır":"Tracks back to defend when possible",
+    "Gerektiğinde Sorumluluk Alarak Bireysel Oynar":"Takes it on herself when needed",
+    "Hakemlere İtiraz Etmeyi Sever":"Tends to argue with referees",
+    "Hızını Sahaya Yansıtır":"Uses her pace on the pitch",
+    "Kaleye Sırtı Dönük Oynayabilir - İstasyon Olabilir":"Can play back to goal / hold up",
+    "Kaleyi Uzaktan Yoklar":"Tries long-range shots",
+    "Kanattan Bindirme Yapar":"Overlaps down the wing",
+    "Karta Meyilli Hamleler Yapabilir":"Prone to bookable challenges",
+    "Kayarak Top Çalar":"Wins the ball with slide tackles",
+    "Kol Boyu Sayesinde Yan Toplarda Etkili Olur":"Strong on crosses thanks to her reach",
+    "Maçın Temposuna Yön Verir":"Dictates the tempo of the game",
+    "Oyuna Katılımı Yüksektir":"Highly involved in build-up",
+    "Penaltı Canavarıdır":"A penalty specialist",
+    "Rakip Oyunculara Sataşır":"Provokes opponents",
+    "Sert Şutlar/Ortalar Yapabilir":"Hits powerful shots/crosses",
+    "Sık Sık Ara/Kilit Pas Dener":"Often tries through/key passes",
+    "Tekniği İle Rakipten Sıyrılabilir":"Beats opponents with technique",
+    "Temaslı-Agresif Markaj Yapar":"Marks tight and aggressively",
+    "Topla Oyalanmayı Sever":"Likes to dwell on the ball",
+    "Topu Almak İçin Gerilere Kadar Gelir":"Drops deep to get the ball",
+    "Tribüne Oynar, Abartılı Sevinir":"Plays to the crowd",
+    "Uzun Degajmanlar Yapabilir":"Can make long clearances",
+    "Yüksek Tempolu Oynar":"Plays at a high tempo",
+    "Zayıf Ayağını Kullanabilir":"Can use her weak foot",
+    "Çizgide, Alanda, Alan Dışında Oynayabilir; Komple Kalecidir":"Complete keeper: line, box & sweeping",
+    "Şov Oyunu Sergiler":"Plays with flair",
+    "Şut Çekmek Yerine Pas Vermeyi Tercih Eder":"Prefers passing over shooting",
 }
 _YETENEK_EN_DEG = {"Elit":"Elite","Yetenekli":"Talented","Potansiyelli":"High Potential",
                    "Gelişime Açık":"Developing","Sınırlı":"Limited"}
@@ -4018,6 +4038,23 @@ def tr_gorus_goster(x):
         return x
     base = x.replace(" (Şartlar?)", "").strip()
     return _TR_GORUS_EN.get(base, base) + (" (terms?)" if "(Şartlar?)" in x else "")
+
+
+@st.cache_data(ttl=604800, show_spinner=False)
+def _tr_en_ceviri(metin: str) -> str:
+    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata → orijinal TR."""
+    try:
+        from deep_translator import GoogleTranslator
+        return GoogleTranslator(source="tr", target="en").translate(metin) or metin
+    except Exception:
+        return metin
+
+def scout_notu_goster(metin) -> str:
+    """EN modda scout notunu (serbest metin) İngilizceye çevirir; TR modda aynen döner."""
+    metin = (metin or "").strip()
+    if not metin or not EN:
+        return metin
+    return _tr_en_ceviri(metin)
 
 
 def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
@@ -4172,7 +4209,7 @@ def render_scout_raporu(isim: str):
         st.markdown(
             f"<div style='margin-top:10px;font-size:0.78rem;color:#94a3b8;"
             f"font-style:italic;border-left:3px solid #7c3aed;padding-left:10px;'>"
-            f"📝 {rapor['scout_notu']}</div>", unsafe_allow_html=True)
+            f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
 
     st.caption("📡 Mr Daniş · Sco Tr")
 
@@ -4314,7 +4351,7 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
         pdf.set_text_color(*MOR); pdf.set_font("DV","B",8.5); pdf.set_x(12)
         pdf.cell(0, 6, t("SCOUT DEĞERLENDİRMESİ","SCOUT ASSESSMENT"), ln=1)
         pdf.set_text_color(50,55,65); pdf.set_font("DV","",8); pdf.set_x(12)
-        pdf.multi_cell(W, 4.6, rapor["scout_notu"])
+        pdf.multi_cell(W, 4.6, scout_notu_goster(rapor["scout_notu"]))
 
     out = pdf.output()
     return bytes(out)
@@ -4430,7 +4467,7 @@ def render_scout_kadro_raporu(isim: str):
         st.markdown(
             f"<div style='margin-top:12px;font-size:0.82rem;color:#aab4c4;line-height:1.6;"
             f"border-left:3px solid #7c3aed;padding:4px 0 4px 12px;'>"
-            f"📝 {rapor['scout_notu']}</div>", unsafe_allow_html=True)
+            f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
 
     # PDF indirme
     try:
@@ -5345,7 +5382,7 @@ def render_paylasim_raporu(isim: str):
     sozl  = kadro.get("sozlesme", "") or sd.get("Contract until", "") or "—"
     nihai = (kadro.get("nihai", "") or "").strip()
     tarz  = kadro.get("tarz", "") or ""
-    notu  = kadro.get("scout_notu", "") or kadro.get("tr_gorusu", "") or ""
+    notu  = scout_notu_goster(kadro.get("scout_notu", "")) or tr_gorus_goster(kadro.get("tr_gorusu", "")) or ""
     kmac = kgol = kasist = 0
     for s in leist:
         if not s.get("milli"):
