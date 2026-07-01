@@ -5595,7 +5595,8 @@ def render_profil():
             else:
                 _TIERS = ["free", "basic", "pro", "premium"]
                 # süre seçenekleri: (anahtar, etiket_tr, etiket_en, gün)
-                _SURE = [("1ay","1 ay","1 month",30), ("3ay","3 ay","3 months",90),
+                _SURE = [("1hafta","1 hafta","1 week",7),
+                         ("1ay","1 ay","1 month",30), ("3ay","3 ay","3 months",90),
                          ("6ay","6 ay","6 months",180), ("1yil","1 yıl","1 year",365),
                          ("suresiz","Süresiz","Unlimited",0)]
                 _epostalar = sorted(_uyeler.keys())
