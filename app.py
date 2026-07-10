@@ -423,8 +423,8 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
     /* Genel padding azalt */
     .block-container { padding:1rem 0.75rem !important; }
 
-    /* Plotly grafik yüksekliği azalt */
-    .js-plotly-plot { max-height:300px; }
+    /* NOT: .js-plotly-plot'a max-height VERME — CSS grafikleri yeniden
+       boyutlandırmaz, alttan KIRPAR (fantasy sahası yarım görünüyordu). */
 
     /* ── Liste tablosu (.ws-table) → mobilde KART düzeni ───────────────────
        8-10 sütun 375px'e sığmıyordu (yatay taşma; sadece isim + yarım pozisyon
@@ -8462,15 +8462,27 @@ if tab7:
                 height=600,
                 margin=dict(l=0, r=0, t=10, b=10),
                 xaxis=dict(range=XR, showgrid=False, zeroline=False,
-                           showticklabels=False, fixedrange=True),
+                           showticklabels=False, fixedrange=True,
+                           constrain="domain"),
                 yaxis=dict(range=YR, showgrid=False, zeroline=False,
                            showticklabels=False, fixedrange=True,
-                           scaleanchor="x", scaleratio=1),
+                           scaleanchor="x", scaleratio=1,
+                           constrain="domain"),
                 legend=dict(orientation="h", y=-0.02, font=dict(color="#e0e0e0"),
                             bgcolor="rgba(0,0,0,0.4)"),
                 hoverlabel=dict(bgcolor="#1a1f36", font_color="white"),
             )
-            st.plotly_chart(fig, width="stretch")
+            st.plotly_chart(fig, width="stretch", config={
+                "displaylogo": False,
+                "toImageButtonOptions": {
+                    "format": "png",
+                    "filename": "fantasy_kadro",
+                    # 76x121 birim saha oranında sabit tuval; scale=3 ile ~2280x3630 px
+                    "width": 760,
+                    "height": 1210,
+                    "scale": 3,
+                },
+            })
 
         # ── İstatistikler ──────────────────────────────────────────────
         secili_isimler = [v for v in secimler.values() if v != "—"]
