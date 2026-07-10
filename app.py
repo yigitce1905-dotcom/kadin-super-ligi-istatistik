@@ -5743,6 +5743,11 @@ def render_paylasim_raporu(isim: str):
           <a href='/' style='display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);
              color:#fff;font-weight:700;text-decoration:none;border-radius:9px;padding:10px 26px;'>
             🚀 {t('Üye Ol / Giriş','Join / Log In')}</a>
+          <div style='margin-top:10px;'>
+            <a href='mailto:womensfootballscouting@gmail.com'
+               style='color:#a78bfa;font-size:0.8rem;text-decoration:none;'>
+              📧 womensfootballscouting@gmail.com</a>
+          </div>
         </div>
         <div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>
           womenfootballscouting.com · {t('Veri: TFF & SoccerDonna','Data: TFF & SoccerDonna')}</div>
@@ -6268,7 +6273,15 @@ if st.session_state["sayfa"] == "iletisim":
     </p>
     <div style='background:#1a1f36;border-radius:12px;padding:24px;border-left:4px solid #1db954;margin-top:16px;'>
       <div style='color:#8899aa;font-size:13px;margin-bottom:8px;'>{t("📧 E-posta", "📧 E-mail")}</div>
-      <div style='color:#fff;font-size:15px;font-weight:600;'>mehmetbarandanis@gmail.com</div>
+      <div style='color:#fff;font-size:15px;font-weight:600;'>
+        <a href='mailto:womensfootballscouting@gmail.com'
+           style='color:#fff;text-decoration:none;'>womensfootballscouting@gmail.com</a>
+      </div>
+      <div style='color:#8899aa;font-size:12px;margin-top:4px;'>
+        {t("Scouting & danışmanlık:", "Scouting & consultancy:")}
+        <a href='mailto:mehmetbarandanis@gmail.com'
+           style='color:#a78bfa;text-decoration:none;'>mehmetbarandanis@gmail.com</a>
+      </div>
       <div style='color:#8899aa;font-size:13px;margin-top:20px;margin-bottom:8px;'>{t("🌐 Sosyal Medya", "🌐 Social Media")}</div>
       <div style='display:flex;gap:10px;flex-wrap:wrap;'>
         <a href='https://www.instagram.com/celebiyigit/' target='_blank'
@@ -7302,7 +7315,9 @@ if st.session_state.get("sayfa") == "scouting":
                🧤 Phallon Tullis-Joyce · Man Utd</a>
           </div>
           <p style="color:#6b7a99;font-size:0.80rem;">
-            {t("Premium üyelik için 📬 İletişim sayfasından bize ulaşın.","For Premium membership, reach us via the 📬 Contact page.")}
+            {t("Premium üyelik için 📬 İletişim sayfasından bize ulaşın.","For Premium membership, reach us via the 📬 Contact page.")}<br>
+            <a href="mailto:womensfootballscouting@gmail.com"
+               style="color:#a78bfa;text-decoration:none;">📧 womensfootballscouting@gmail.com</a>
           </p>
         </div>
         """, unsafe_allow_html=True)
@@ -9773,6 +9788,8 @@ st.markdown(
     f'font-weight:800;letter-spacing:0.12em;">'
     f'{t("KADIN FUTBOLU PLATFORMU","WOMEN\'S FOOTBALL PLATFORM")}</span><br>'
     f'{t("Veri kaynağı: TFF — tff.org &amp; SoccerDonna | 2025-2026 Kadınlar Süper Ligi",
-         "Data sources: TFF — tff.org &amp; SoccerDonna | 2025-2026 Women\'s Super League")}'
+         "Data sources: TFF — tff.org &amp; SoccerDonna | 2025-2026 Women\'s Super League")}<br>'
+    f'<a href="mailto:womensfootballscouting@gmail.com" '
+    f'style="color:#8b93ab;text-decoration:none;">📧 womensfootballscouting@gmail.com</a>'
     f'</div>',
     unsafe_allow_html=True)

@@ -31,13 +31,26 @@ def cek() -> str:
 
 
 def parse(metin: str) -> dict:
+    """2026-07: Baran Sco Tr sekmesini Sco 🌍 düzenine geçirdi (isim 1. kolon,
+    'BECERİ Not' başlıkları, +KALECİ bloğu). Başlık adları büyük/küçük harf
+    duyarsız aranır; çıktı şeması (site uyumu için) DEĞİŞMEDİ + kaleci eklendi."""
     rows = list(csv.reader(io.StringIO(metin)))
-    hdr  = rows[1]  # 2. satir = kolon adlari
+    hdr  = [h.strip() for h in rows[1]]  # 2. satir = kolon adlari
+    HU   = [h.upper() for h in hdr]
 
-    def idx(ad: str) -> int:
-        return hdr.index(ad)
+    def idx(*adlar) -> int:
+        for ad in adlar:                       # önce tam eşleşme
+            au = ad.upper()
+            if au in HU:
+                return HU.index(au)
+        for ad in adlar:                       # sonra 'başlar' eşleşmesi
+            au = ad.upper()
+            for j, h in enumerate(HU):
+                if h.startswith(au):
+                    return j
+        raise ValueError(f"Kolon bulunamadı: {adlar}")
 
-    # Grup sinirlari (dinamik; kolon eklense de calisir)
+    i_isim    = idx("İsim - Soyisim", "Oyuncu Adı")
     i_beceri0 = idx("Bitiricilik")
     i_beceri9 = idx("BECERİ NOT")
     i_beseri0 = i_beceri9 + 1
@@ -50,9 +63,22 @@ def parse(metin: str) -> dict:
     i_nihai   = idx("NİHAİ")
     i_ivme    = idx("İVME")
     i_not     = idx("Scout Notları")
+    # KALECİ bloğu (yeni) — yoksa None
+    try:
+        i_kaleci0 = idx("Elle Kontrol")
+        i_kaleci9 = idx("KALECİ NOT")
+    except ValueError:
+        i_kaleci0 = i_kaleci9 = None
+    i_bolge  = idx("Bölge")
+    c_mevki  = [j for j, h in enumerate(hdr) if h.startswith("Mevki")]
+    i_kulup  = idx("Kulüp")
+    i_dogum  = idx("Doğum Tarihi")
+    i_yas    = idx("Yaş")
+    i_uyruk  = idx("Vatandaşlık")
+    i_rol    = idx("Rol")
 
     def hucre(r, i):
-        return r[i].strip() if i < len(r) else ""
+        return r[i].strip() if (i is not None and i < len(r)) else ""
 
     def nitelikler(r, i0, i9):
         out = {}
@@ -64,18 +90,24 @@ def parse(metin: str) -> dict:
 
     veriler = {}
     for r in rows[2:]:
-        if not r or not hucre(r, 0):
+        isim = hucre(r, i_isim)
+        if not isim:
             continue
-        isim = hucre(r, 0)
 
         beceri = nitelikler(r, i_beceri0, i_beceri9)
         beseri = nitelikler(r, i_beseri0, i_beseri9)
         fiziki = nitelikler(r, i_fiziki0, i_fiziki9)
         sahsi  = nitelikler(r, i_sahsi0,  i_sahsi9)
 
+        # Kaleci bloğu SADECE kalecilere (diğerlerinde FF ile dolu geliyor)
+        _gk = (hucre(r, i_bolge) == "Kaleci"
+               or any(hucre(r, j).upper() == "GK" for j in c_mevki))
+        kaleci = (nitelikler(r, i_kaleci0, i_kaleci9)
+                  if (_gk and i_kaleci0 is not None) else {})
+
         # Degerlendirilmis = FF disinda en az bir nitelik notu var
         tum = (list(beceri.values()) + list(beseri.values())
-               + list(fiziki.values()) + list(sahsi.values()))
+               + list(fiziki.values()) + list(sahsi.values()) + list(kaleci.values()))
         degerlendirildi = any(n != "FF" for n in tum)
 
         # Tarz: '✘' = ozellik yok; isaretli (✘ disi dolu) olanlar listelenir
@@ -88,23 +120,25 @@ def parse(metin: str) -> dict:
         nihai = hucre(r, i_nihai)
         ivme  = hucre(r, i_ivme)
         kayit = {
-            "takim":      hucre(r, 1),
-            "dogum":      hucre(r, 2),
-            "bolge":      hucre(r, 3),
-            "mevki1":     hucre(r, 4).replace("-", ""),
-            "mevki2":     hucre(r, 5).replace("-", ""),
-            "rol":        hucre(r, 6).replace("-", ""),
-            "yas":        hucre(r, 7),
-            "uyruk":      hucre(r, 8),
+            "takim":      hucre(r, i_kulup),
+            "dogum":      hucre(r, i_dogum),
+            "bolge":      hucre(r, i_bolge),
+            "mevki1":     hucre(r, c_mevki[0]).replace("-", "") if c_mevki else "",
+            "mevki2":     hucre(r, c_mevki[1]).replace("-", "") if len(c_mevki) > 1 else "",
+            "rol":        hucre(r, i_rol).replace("-", ""),
+            "yas":        hucre(r, i_yas),
+            "uyruk":      hucre(r, i_uyruk),
             "beceri":     beceri,
             "beseri":     beseri,
             "fiziki":     fiziki,
             "sahsi":      sahsi,
+            "kaleci":     kaleci,
             "makro": {
                 "beceri": hucre(r, i_beceri9) if hucre(r, i_beceri9) in GECERLI_NOTLAR else "",
                 "beseri": hucre(r, i_beseri9) if hucre(r, i_beseri9) in GECERLI_NOTLAR else "",
                 "fiziki": hucre(r, i_fiziki9) if hucre(r, i_fiziki9) in GECERLI_NOTLAR else "",
                 "sahsi":  hucre(r, i_sahsi9)  if hucre(r, i_sahsi9)  in GECERLI_NOTLAR else "",
+                "kaleci": hucre(r, i_kaleci9) if (_gk and hucre(r, i_kaleci9) in GECERLI_NOTLAR) else "",
             },
             "tarz":       tarz,
             "nihai":      nihai if nihai in GECERLI_NOTLAR else "",
