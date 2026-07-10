@@ -1,6 +1,11 @@
 """
 Türkiye Kadınlar Süper Ligi 2025-2026 — Streamlit Web Arayüzü
 """
+# Sessiz segfault (exit 139) teşhisi: native çökmede Python yığınını stderr'e
+# döker → Render Logs'ta hangi satırda öldüğü görünür. Maliyeti sıfır.
+import faulthandler as _fh
+_fh.enable(all_threads=True)
+
 import json, os, pathlib, requests
 from urllib.parse import quote as _urlquote
 import pandas as pd
