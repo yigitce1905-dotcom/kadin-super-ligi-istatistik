@@ -3960,6 +3960,100 @@ def _scotr_segman(nt: str) -> int:
     p = _scotr_puan(nt)
     return max(0, min(10, round(p * 2 - 1))) if p > 0 else 0
 
+
+# ─── NİTELİK İKİZLERİ (Moneyball) — 47 boyutlu nitelik vektörü benzerliği ────
+@st.cache_data(show_spinner=False, ttl=3600)
+def _nitelik_vektorleri():
+    """Değerlendirilmiş oyuncuların nitelik vektörleri. Saha ve kaleci ayrı uzay.
+    Değerler havuz ortalamasından sapma (merkezlenmiş) → kosinüs profil ŞEKLİNİ ölçer."""
+    d = scout_kadro_yukle()
+    ham_saha, ham_gk = {}, {}
+    for isim, r in d.items():
+        if not r.get("degerlendirildi"):
+            continue
+        if r.get("kaleci"):
+            v = {f"K:{a}": _scotr_segman(nt) for a, nt in r["kaleci"].items() if nt}
+            for g in ("beseri", "fiziki"):
+                v.update({f"{g}:{a}": _scotr_segman(nt)
+                          for a, nt in (r.get(g) or {}).items() if nt})
+            if len(v) >= 12:
+                ham_gk[isim] = v
+        else:
+            v = {}
+            for g in ("beceri", "beseri", "fiziki", "sahsi"):
+                v.update({f"{g}:{a}": _scotr_segman(nt)
+                          for a, nt in (r.get(g) or {}).items() if nt})
+            if len(v) >= 20:
+                ham_saha[isim] = v
+
+    def merkezle(ham):
+        # nitelik başına havuz ortalaması
+        toplam, sayi = {}, {}
+        for v in ham.values():
+            for k, x in v.items():
+                toplam[k] = toplam.get(k, 0) + x
+                sayi[k] = sayi.get(k, 0) + 1
+        ort = {k: toplam[k] / sayi[k] for k in toplam}
+        return {i: {k: x - ort[k] for k, x in v.items()} for i, v in ham.items()}
+
+    return merkezle(ham_saha), merkezle(ham_gk)
+
+
+def _nitelik_ikizleri(isim: str, n: int = 5):
+    """Hedefe nitelik profili en çok benzeyen n oyuncu: [(isim, %benzerlik), ...]"""
+    import math
+    saha, gk = _nitelik_vektorleri()
+    havuz = gk if isim in gk else saha
+    q = havuz.get(isim)
+    if not q:
+        return []
+    skorlar = []
+    for aday, v in havuz.items():
+        if aday == isim:
+            continue
+        ortak = set(q) & set(v)
+        if len(ortak) < 12:
+            continue
+        dot = sum(q[k] * v[k] for k in ortak)
+        na = math.sqrt(sum(q[k] ** 2 for k in ortak))
+        nb = math.sqrt(sum(v[k] ** 2 for k in ortak))
+        if na and nb:
+            skorlar.append((aday, dot / (na * nb)))
+    skorlar.sort(key=lambda x: -x[1])
+    return [(a, round(s * 100)) for a, s in skorlar[:n] if s > 0]
+
+
+def nitelik_ikizleri_goster(isim: str):
+    """Scout raporunun altına 'Nitelik İkizleri' kartlarını çizer."""
+    ikizler = _nitelik_ikizleri(isim)
+    if not ikizler:
+        return
+    d = scout_kadro_yukle()
+    st.markdown(f"##### 🧬 {t('Nitelik İkizleri', 'Attribute Twins')}")
+    st.caption(t("47 boyutlu nitelik profiline göre en benzer oyuncular — 'benzer ama daha uygun' adaylar",
+                 "Most similar players by 47-dimension attribute profile — 'similar but more affordable' candidates"))
+    kartlar = []
+    for aday, benzerlik in ikizler:
+        r = d.get(aday, {})
+        nihai = r.get("nihai", "")
+        n_renk = _scotr_renk(_scotr_puan(nihai)) if nihai else "#6b7280"
+        satir2 = " · ".join(x for x in [
+            str(r.get("yas", "") or ""), r.get("kulup", ""),
+            (f"💰{r.get('deger')}" if r.get("deger") else "")] if x)
+        kartlar.append(
+            f"<div style='flex:1 1 150px;min-width:150px;background:#12172b;border:1px solid #262c45;"
+            f"border-radius:12px;padding:10px 12px;'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:center;gap:6px;'>"
+            f"<span style='font-weight:700;font-size:0.82rem;color:#e2e8f0;'>{aday}</span>"
+            f"<span style='color:{n_renk};font-weight:800;font-family:monospace;font-size:0.8rem;'>{nihai}</span></div>"
+            f"<div style='font-size:0.68rem;color:#94a3b8;margin-top:3px;'>{satir2 or '&nbsp;'}</div>"
+            f"<div style='margin-top:6px;background:#1e2540;border-radius:6px;height:6px;overflow:hidden;'>"
+            f"<div style='width:{benzerlik}%;height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);'></div></div>"
+            f"<div style='font-size:0.66rem;color:#a78bfa;margin-top:3px;font-weight:700;'>%{benzerlik} {t('benzer','similar')}</div>"
+            f"</div>")
+    st.markdown("<div style='display:flex;gap:10px;flex-wrap:wrap;'>" + "".join(kartlar) + "</div>",
+                unsafe_allow_html=True)
+
 # ─── Scout raporu TR→EN çevirileri (sabit kümeler; scout notu/isim orijinal) ──
 _NITELIK_EN = {
     "Bitiricilik":"Finishing","Top Tekniği":"Technique","Penaltı Vuruşu":"Penalty Taking",
@@ -4227,6 +4321,9 @@ def render_scout_raporu(isim: str):
             f"font-style:italic;border-left:3px solid #7c3aed;padding-left:10px;'>"
             f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
 
+    st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
+    nitelik_ikizleri_goster(isim)
+
     st.caption("📡 Mr Daniş · Sco Tr")
 
 
@@ -4490,6 +4587,10 @@ def render_scout_kadro_raporu(isim: str):
             f"<div style='margin-top:12px;font-size:0.82rem;color:#aab4c4;line-height:1.6;"
             f"border-left:3px solid #7c3aed;padding:4px 0 4px 12px;'>"
             f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
+
+    # Nitelik İkizleri (Moneyball — benzer profil, farklı fiyat)
+    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+    nitelik_ikizleri_goster(isim)
 
     # PDF indirme
     try:
@@ -5404,6 +5505,8 @@ def render_paylasim_raporu(isim: str):
     sozl  = kadro.get("sozlesme", "") or sd.get("Contract until", "") or "—"
     nihai = (kadro.get("nihai", "") or "").strip()
     tarz  = kadro.get("tarz", "") or ""
+    if isinstance(tarz, list):
+        tarz = "  •  ".join(tarz_goster(x) for x in tarz if x)
     notu  = scout_notu_goster(kadro.get("scout_notu", "")) or tr_gorus_goster(kadro.get("tr_gorusu", "")) or ""
     kmac = kgol = kasist = 0
     for s in leist:
@@ -7009,6 +7112,23 @@ if st.session_state.get("sayfa") == "scouting":
               📋 {t("Kadro planlama danışmanlığı","Squad planning consultancy")}<br>
               🤝 {t("Öncelikli destek","Priority support")}
             </p>
+          </div>
+          <div style="background:#0f1a12;border:1px solid #39FF1444;border-radius:10px;
+               padding:16px;margin-bottom:24px;">
+            <p style="color:#39FF14;font-size:0.72rem;letter-spacing:2px;font-weight:800;
+               text-transform:uppercase;margin:0 0 10px;">🎁 {t("ÜCRETSİZ ÖRNEK RAPORLAR","FREE SAMPLE REPORTS")}</p>
+            <p style="color:#94a3b8;font-size:0.78rem;margin:0 0 12px;">
+              {t("Ne aldığını gör — iki tam scout raporu giriş gerektirmeden açık:",
+                 "See what you get — two full scout reports, no login needed:")}
+            </p>
+            <a href="/?paylas=Naomi%20Girma" target="_self" style="display:inline-block;margin:3px;
+               background:#1e2540;border:1px solid #7c3aed;border-radius:8px;padding:8px 14px;
+               color:#e2e8f0;font-size:0.8rem;font-weight:700;text-decoration:none;">
+               🛡️ Naomi Girma · Chelsea</a>
+            <a href="/?paylas=Phallon%20Tullis-Joyce" target="_self" style="display:inline-block;margin:3px;
+               background:#1e2540;border:1px solid #7c3aed;border-radius:8px;padding:8px 14px;
+               color:#e2e8f0;font-size:0.8rem;font-weight:700;text-decoration:none;">
+               🧤 Phallon Tullis-Joyce · Man Utd</a>
           </div>
           <p style="color:#6b7a99;font-size:0.80rem;">
             {t("Premium üyelik için 📬 İletişim sayfasından bize ulaşın.","For Premium membership, reach us via the 📬 Contact page.")}
