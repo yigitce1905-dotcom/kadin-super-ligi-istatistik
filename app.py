@@ -4090,6 +4090,78 @@ def _nitelik_ikizleri(isim: str, n: int = 5):
     return [(a, round(s * 100)) for a, s in skorlar[:n] if s > 0]
 
 
+# ─── ROL UYGUNLUĞU — Baran'ın rol atamalarından öğrenilen prototiplere benzerlik ──
+@st.cache_data(show_spinner=False, ttl=3600)
+def _rol_merkezleri():
+    """Her rolün nitelik prototipi: o role atanmış oyuncuların merkezlenmiş
+    vektör ortalaması (≥4 oyuncusu olan roller). {(rol, gk_mi): merkez_vektör}"""
+    d = scout_kadro_yukle()
+    saha, gk = _nitelik_vektorleri()
+    gruplar = {}
+    for isim, r in d.items():
+        rol = (r.get("rol") or "").strip()
+        if not rol:
+            continue
+        if isim in gk:
+            gruplar.setdefault((rol, True), []).append(gk[isim])
+        elif isim in saha:
+            gruplar.setdefault((rol, False), []).append(saha[isim])
+    merkez = {}
+    for anahtar, vecs in gruplar.items():
+        if len(vecs) < 4:
+            continue
+        sayac, toplam = {}, {}
+        for v in vecs:
+            for k, x in v.items():
+                toplam[k] = toplam.get(k, 0) + x
+                sayac[k] = sayac.get(k, 0) + 1
+        # yalnız oyuncuların yarısından fazlasında bulunan nitelikler
+        merkez[anahtar] = {k: toplam[k] / sayac[k]
+                           for k in toplam if sayac[k] >= len(vecs) / 2}
+    return merkez
+
+
+def _rol_uygunluk(isim: str, n: int = 3):
+    """Oyuncunun profiline en uygun n rol: [(rol, %uygunluk), ...]"""
+    import math
+    saha, gk = _nitelik_vektorleri()
+    gk_mi = isim in gk
+    v = (gk if gk_mi else saha).get(isim)
+    if not v:
+        return []
+    out = []
+    for (rol, rg), c in _rol_merkezleri().items():
+        if rg != gk_mi:
+            continue
+        ortak = set(v) & set(c)
+        if len(ortak) < 12:
+            continue
+        dot = sum(v[k] * c[k] for k in ortak)
+        na = math.sqrt(sum(v[k] ** 2 for k in ortak))
+        nb = math.sqrt(sum(c[k] ** 2 for k in ortak))
+        if na and nb:
+            out.append((rol, dot / (na * nb)))
+    out.sort(key=lambda x: -x[1])
+    return [(r, round(s * 100)) for r, s in out[:n] if s >= 0.25]
+
+
+def rol_uygunluk_goster(isim: str):
+    """Rapora 'bu profil şu rollere uyar' çipleri basar."""
+    uygun = _rol_uygunluk(isim)
+    if not uygun:
+        return
+    cipler = "".join(
+        f"<span style='display:inline-block;margin:3px 4px 3px 0;padding:5px 12px;"
+        f"background:#141a30;border:1px solid #7c3aed66;border-radius:999px;"
+        f"font-size:0.74rem;color:#cbd5e1;'>"
+        f"{scout_rol_goster(rol)} <b style='color:#a78bfa;'>%{s}</b></span>"
+        for rol, s in uygun)
+    st.markdown(
+        f"<div style='margin-top:8px;'><span style='font-size:0.70rem;font-weight:800;"
+        f"color:#a78bfa;letter-spacing:0.1em;'>🎯 {t('ROL UYGUNLUĞU','ROLE FIT')}</span><br>{cipler}</div>",
+        unsafe_allow_html=True)
+
+
 def nitelik_ikizleri_goster(isim: str):
     """Scout raporunun altına 'Nitelik İkizleri' kartlarını çizer."""
     ikizler = _nitelik_ikizleri(isim)
@@ -4660,6 +4732,7 @@ def render_scout_kadro_raporu(isim: str):
     col_radar, col_ikiz = st.columns([4, 6], gap="medium")
     with col_radar:
         nitelik_radari_goster(isim)
+        rol_uygunluk_goster(isim)
     with col_ikiz:
         nitelik_ikizleri_goster(isim)
 
