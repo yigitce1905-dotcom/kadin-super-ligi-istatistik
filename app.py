@@ -5711,6 +5711,24 @@ def render_paylasim_raporu(isim: str):
         """,
         unsafe_allow_html=True)
 
+    # Nitelik panelleri (2×2) — paylaşılan rapor TAM rapor olsun (Baran geri bildirimi:
+    # "beşeri/fiziki bizde hep var ama göstermiyorduk")
+    _mk = kadro.get("makro", {})
+    _pgk = bool(kadro.get("kaleci"))
+    _sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", kadro.get("kaleci", {}), _mk.get("kaleci", ""))
+                if _pgk else
+                (t("BECERİ", "TECHNICAL"), "⚽", kadro.get("beceri", {}), _mk.get("beceri", "")))
+    _izgara = [
+        [_sol_ust,
+         (t("BEŞERİ", "MENTAL"),   "🧠", kadro.get("beseri", {}), _mk.get("beseri", ""))],
+        [(t("ŞAHSİ",  "PERSONAL"), "🎖️", kadro.get("sahsi", {}),  _mk.get("sahsi", "")),
+         (t("FİZİKİ", "PHYSICAL"), "💪", kadro.get("fiziki", {}), _mk.get("fiziki", ""))],
+    ]
+    for _satir in _izgara:
+        for _kol, (_b, _ik, _nit, _m) in zip(st.columns(2, gap="small"), _satir):
+            if _nit:
+                _kol.markdown(_scotr_nitelik_paneli(_b, _ik, _nit, _m), unsafe_allow_html=True)
+
     # Nitelik radarı — vitrin: ürünün veri derinliğini girişsiz göster
     nitelik_radari_goster(isim)
 
