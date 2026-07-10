@@ -2895,9 +2895,14 @@ def _uyruk_goster(nat_str: str) -> str:
 
 
 @st.cache_data
-def df_zenginlestir(df: "pd.DataFrame", file_hash: str = "", _v: str = "v2") -> "pd.DataFrame":
-    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler. file_hash + _v cache bozucu."""
-    df = df.copy()
+def df_zenginlestir(_df: "pd.DataFrame", file_hash: str = "", _v: str = "v3") -> "pd.DataFrame":
+    """df_tam'a Mevki, Uyruk, Boy ve Yaş sütunlarını ekler. file_hash + _v cache bozucu.
+
+    NOT: parametre adı _df — Streamlit '_' ile başlayan argümanı HASH'LEMEZ.
+    DataFrame hash'i pandas→pyarrow yolunda eşzamanlı istekte SEGFAULT (exit 139)
+    üretiyordu (Render'da 10.07.2026 çökmeleri; faulthandler iziyle kanıtlı).
+    Cache anahtarı file_hash+_v'den gelir; veri zaten deploy'la değişir."""
+    df = _df.copy()
     df["Mevki"] = df["Oyuncu"].map(
         lambda o: mevki_normalize(
             _MANUEL_MEVKI.get(o) or sd_profiller.get(o, {}).get("Position", "")
