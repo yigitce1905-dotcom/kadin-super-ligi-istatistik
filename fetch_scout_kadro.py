@@ -186,9 +186,19 @@ def parse(metin: str) -> dict:
             "degerlendirildi": degerlendirildi,
         }
 
-        # Çift kayıt (transfer/duplike): değerlendirilmiş olan kazanır
-        if isim in veriler and veriler[isim]["degerlendirildi"] and not degerlendirildi:
-            continue
+        # Çift kayıt (transfer/duplike): değerlendirilmiş olan kazanır;
+        # ikisi de aynı statüdeyse KÜNYE ALANI DAHA DOLU olan kazanır
+        # (ham Afrika bloğundaki boş kopyanın dolu kaydı ezmesini önler)
+        if isim in veriler:
+            eski = veriler[isim]
+            if eski["degerlendirildi"] and not degerlendirildi:
+                continue
+            if eski["degerlendirildi"] == degerlendirildi:
+                def _doluluk(k):
+                    return sum(1 for f in ("kulup", "lig", "dogum", "boy", "deger", "sozlesme")
+                               if (k.get(f) or "").strip())
+                if _doluluk(kayit) < _doluluk(eski):
+                    continue
         veriler[isim] = kayit
 
     return veriler
