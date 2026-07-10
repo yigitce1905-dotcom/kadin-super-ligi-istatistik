@@ -3929,12 +3929,13 @@ def _scotr_puan(nt: str) -> float:
     return sum(vals) / len(vals) if vals else 0.0
 
 def _scotr_renk(puan: float) -> str:
-    if puan >= 4.5: return "#10b981"   # A   — zümrüt
-    if puan >= 3.5: return "#4ade80"   # B   — yeşil
-    if puan >= 2.75: return "#fbbf24"  # C   — amber
-    if puan >= 1.75: return "#fb923c"  # D   — turuncu
-    if puan >= 0.75: return "#f87171"  # E   — kırmızı
-    return "#6b7280"                   # F   — gri (veri yok)
+    # Neon skala — Baran isteği (puan: harf ort., AA/A+=5.0 AB=4.5 BB=4.0 ... EE=1.0)
+    if puan >= 4.75: return "#1F51FF"  # AA-A+ — neon mavi
+    if puan >= 3.75: return "#39FF14"  # BB-AB — neon yeşil
+    if puan >= 2.75: return "#FFF01F"  # CC-BC — neon sarı
+    if puan >= 1.75: return "#FF5F1F"  # DD-CD — neon turuncu
+    if puan >= 0.5:  return "#FF3131"  # EE-DE — neon kırmızı
+    return "#6b7280"                   # FF/boş — gri (veri yok)
 
 _SCOTR_POT = {
     "⬆︎": ("⬆",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
@@ -3973,6 +3974,14 @@ _NITELIK_EN = {
     "Zayıf Ayak":"Weak Foot","Sakatlanma Direnci":"Injury Resistance","Sportmenlik":"Sportsmanship",
     "Profesyonellik":"Professionalism","Sadakat":"Loyalty","Baskıya Dayanıklılık":"Pressure Handling",
     "Uyumluluk":"Adaptability","Süreklilik":"Consistency","Çalışkanlık":"Work Rate",
+    # Kaleci nitelikleri
+    "Elle Kontrol - Sahiplenme":"Handling","Ayakla Kontrol - İlk Temas":"First Touch (Feet)",
+    "Alan Hakimiyeti":"Command of Area","Çizgi Hakimiyeti":"Shot Stopping",
+    "Hava Hakimiyeti":"Aerial Command","Yan Top Hakimiyeti":"Cross Claiming",
+    "Elle Oyun Kurma":"Throwing","Ayak ile Oyun Kurma - Kısa":"Short Distribution",
+    "Degaj ile Oyun Kurma - Uzun":"Long Distribution","Kaleden Ani Çıkış":"Rushing Out",
+    "Yumruklama Kabiliyeti":"Punching","İletişim":"Communication",
+    "Kaleci Dışı Meziyetler":"Outfield Ability",
 }
 _ROL_EN = {
     "*Mezzala":"*Mezzala","*Raumdeuter":"*Raumdeuter","*Versatile":"*Versatile","*Volante":"*Volante",
@@ -4174,25 +4183,24 @@ def render_scout_raporu(isim: str):
                   "Detailed attribute assessment for this player is not yet complete."))
         return
 
-    # ── 4 nitelik paneli (yan yana, kompakt) ────────────────────────────
+    # ── Nitelik panelleri: 2×2 köşe düzeni — Baran isteği ───────────────
+    # Üst: BECERİ (kaleciyse KALECİLİK) | BEŞERİ — Alt: ŞAHSİ | FİZİKİ
     makro = rapor.get("makro", {})
-    _gk = bool(rapor.get("kaleci"))   # kaleci ise saha (BECERİ) paneli gizlenir — Baran isteği
-    paneller = []
-    if not _gk:
-        paneller.append((t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")))
-    paneller += [
-        (t("BEŞERİ", "MENTAL"),    "🧠", rapor.get("beseri", {}), makro.get("beseri", "")),
-        (t("FİZİKİ", "PHYSICAL"),  "💪", rapor.get("fiziki", {}), makro.get("fiziki", "")),
-        (t("ŞAHSİ",  "PERSONAL"),  "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
+    _gk = bool(rapor.get("kaleci"))
+    sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", rapor.get("kaleci", {}), makro.get("kaleci", ""))
+               if _gk else
+               (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")))
+    izgara = [
+        [sol_ust,
+         (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", ""))],
+        [(t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
+         (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", ""))],
     ]
-    if _gk:
-        paneller.append((t("KALECİ", "GOALKEEPING"), "🧤",
-                         rapor.get("kaleci", {}), makro.get("kaleci", "")))
-    kolonlar = st.columns(len(paneller), gap="small")
-    for kol, (baslik, ikon, nit, mk) in zip(kolonlar, paneller):
-        if nit:
-            kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
-                         unsafe_allow_html=True)
+    for satir in izgara:
+        for kol, (baslik, ikon, nit, mk) in zip(st.columns(2, gap="small"), satir):
+            if nit:
+                kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
+                             unsafe_allow_html=True)
 
     # ── Oyun tarzı çipleri (yalnızca işaretli özellikler) ───────────────
     tarz = rapor.get("tarz", [])
@@ -4253,12 +4261,13 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
         v = [h.get(c,0) for c in (nt or "").upper() if c in h]
         return sum(v)/len(v) if v else 0
     def renk(nt):
+        # Neon skala — Baran isteği (sarı/yeşil beyaz zeminde okunur tonda)
         p = harf_puan(nt)
-        if p>=4.5: return (16,185,129)
-        if p>=3.5: return (74,222,128)
-        if p>=2.75: return (245,158,11)
-        if p>=1.75: return (251,146,60)
-        if p>=0.75: return (248,113,113)
+        if p>=4.75: return (31,81,255)    # AA-A+ — neon mavi
+        if p>=3.75: return (46,200,14)    # BB-AB — neon yeşil
+        if p>=2.75: return (222,190,0)    # CC-BC — neon sarı
+        if p>=1.75: return (255,95,31)    # DD-CD — neon turuncu
+        if p>=0.5:  return (255,49,49)    # EE-DE — neon kırmızı
         return (130,130,130)
 
     # ── Başlık bandı ──
@@ -4326,7 +4335,7 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
         yy = y + 6
         for ad, nt in nit.items():
             pdf.set_xy(x, yy); pdf.set_text_color(70,80,95); pdf.set_font("DV","",7)
-            pdf.cell(kol_w*0.52, 3.6, nitelik_goster(ad)[:22])
+            pdf.cell(kol_w*0.52, 3.6, nitelik_goster(ad)[:28])
             seg = SEG.get(nt, 0); bx = x + kol_w*0.55
             for i in range(10):
                 pdf.set_fill_color(*(renk(nt) if i < seg else (225,228,235)))
@@ -4337,12 +4346,17 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
         return yy
 
     g = lambda k: (rapor.get(k, {}), rapor.get("makro", {}).get(k, ""))
+    # 2×2 köşe düzeni: BECERİ(veya kaleciyse KALECİLİK) | BEŞERİ  /  ŞAHSİ | FİZİKİ
+    _gk = bool(rapor.get("kaleci"))
     y_row = pdf.get_y()
-    e1 = panel_ciz(12,        y_row, t("BECERİ","TECHNICAL"), *g("beceri"))
+    if _gk:
+        e1 = panel_ciz(12,    y_row, t("KALECİLİK","GOALKEEPING"), *g("kaleci"))
+    else:
+        e1 = panel_ciz(12,    y_row, t("BECERİ","TECHNICAL"), *g("beceri"))
     e2 = panel_ciz(12+kol_w+4, y_row, t("BEŞERİ","MENTAL"), *g("beseri"))
     y_row = max(e1, e2) + 4
-    e3 = panel_ciz(12,        y_row, t("FİZİKİ","PHYSICAL"), *g("fiziki"))
-    e4 = panel_ciz(12+kol_w+4, y_row, t("ŞAHSİ","PERSONAL"),  *g("sahsi"))
+    e3 = panel_ciz(12,        y_row, t("ŞAHSİ","PERSONAL"),  *g("sahsi"))
+    e4 = panel_ciz(12+kol_w+4, y_row, t("FİZİKİ","PHYSICAL"), *g("fiziki"))
     pdf.set_y(max(e3, e4) + 4)
 
     # ── Oyun tarzı ──
@@ -4439,23 +4453,23 @@ def render_scout_kadro_raporu(isim: str):
             f"font-size:0.74rem;font-weight:700;'>{m}</span>" for m, c in rozet)
         st.markdown(f"<div style='margin-bottom:8px;'>{cip}</div>", unsafe_allow_html=True)
 
-    # 4 nitelik paneli (yan yana)
+    # Nitelik panelleri: 2×2 köşe düzeni — Baran isteği
+    # Üst: BECERİ (kaleciyse KALECİLİK) | BEŞERİ — Alt: ŞAHSİ | FİZİKİ
     makro = rapor.get("makro", {})
-    _gk = bool(rapor.get("kaleci"))   # kaleci ise saha (BECERİ) paneli gizlenir — Baran isteği
-    paneller = []
-    if not _gk:
-        paneller.append((t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")))
-    paneller += [
-        (t("BEŞERİ","MENTAL"),    "🧠", rapor.get("beseri",{}), makro.get("beseri","")),
-        (t("FİZİKİ","PHYSICAL"),  "💪", rapor.get("fiziki",{}), makro.get("fiziki","")),
-        (t("ŞAHSİ","PERSONAL"),   "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
+    _gk = bool(rapor.get("kaleci"))
+    sol_ust = ((t("KALECİLİK","GOALKEEPING"), "🧤", rapor.get("kaleci",{}), makro.get("kaleci",""))
+               if _gk else
+               (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")))
+    izgara = [
+        [sol_ust,
+         (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri",""))],
+        [(t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
+         (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki",""))],
     ]
-    if _gk:
-        paneller.append((t("KALECİ","GOALKEEPING"), "🧤",
-                         rapor.get("kaleci",{}), makro.get("kaleci","")))
-    for kol, (b, ik, nit, mk) in zip(st.columns(len(paneller), gap="small"), paneller):
-        if nit:
-            kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
+    for satir in izgara:
+        for kol, (b, ik, nit, mk) in zip(st.columns(2, gap="small"), satir):
+            if nit:
+                kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
 
     # Oyun tarzı (sadeleştirilmiş, ✔ işaretliler)
     tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
