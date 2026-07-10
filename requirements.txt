@@ -2,7 +2,10 @@ selenium>=4.18.0
 beautifulsoup4>=4.12.0
 requests>=2.31.0
 streamlit==1.57.0
-pandas>=2.2.0
+# pandas 3.x'in Arrow-string motoru Streamlit thread'lerinde SEGFAULT (exit 139)
+# üretiyor (10.07.2026, faulthandler kanıtı: string_arrow._from_sequence ve
+# Series.map'te iki ayrı çökme). 2.x'e sabit — 3.x'e geçiş bilinçli test ister.
+pandas>=2.2.0,<3.0
 lxml>=5.2.0
 plotly>=5.20.0
 bcrypt>=4.0.0
