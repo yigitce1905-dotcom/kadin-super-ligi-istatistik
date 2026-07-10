@@ -3963,9 +3963,9 @@ def _scotr_segman(nt: str) -> int:
 
 # ─── NİTELİK İKİZLERİ (Moneyball) — 47 boyutlu nitelik vektörü benzerliği ────
 @st.cache_data(show_spinner=False, ttl=3600)
-def _nitelik_vektorleri():
-    """Değerlendirilmiş oyuncuların nitelik vektörleri. Saha ve kaleci ayrı uzay.
-    Değerler havuz ortalamasından sapma (merkezlenmiş) → kosinüs profil ŞEKLİNİ ölçer."""
+def _nitelik_ham():
+    """Değerlendirilmiş oyuncuların HAM nitelik vektörleri (0-10 segman).
+    Saha ve kaleci ayrı uzay. Anahtar biçimi: 'grup:Nitelik Adı'."""
     d = scout_kadro_yukle()
     ham_saha, ham_gk = {}, {}
     for isim, r in d.items():
@@ -3985,9 +3985,15 @@ def _nitelik_vektorleri():
                           for a, nt in (r.get(g) or {}).items() if nt})
             if len(v) >= 20:
                 ham_saha[isim] = v
+    return ham_saha, ham_gk
+
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def _nitelik_vektorleri():
+    """Havuz ortalamasından sapmaya merkezlenmiş vektörler → kosinüs profil ŞEKLİNİ ölçer."""
+    ham_saha, ham_gk = _nitelik_ham()
 
     def merkezle(ham):
-        # nitelik başına havuz ortalaması
         toplam, sayi = {}, {}
         for v in ham.values():
             for k, x in v.items():
@@ -3997,6 +4003,67 @@ def _nitelik_vektorleri():
         return {i: {k: x - ort[k] for k, x in v.items()} for i, v in ham.items()}
 
     return merkezle(ham_saha), merkezle(ham_gk)
+
+
+# ─── NİTELİK RADARI — havuz yüzdelik profili (6 eksen) ───────────────────────
+_RADAR_SAHA = [
+    ("Hücum", "Attacking",     ["beceri:Bitiricilik","beceri:Uzaktan Şut","beceri:Kafa Vuruşu","beceri:Top Sürme"]),
+    ("Yaratıcılık", "Creativity", ["beceri:Kısa Pas","beceri:Orta Yapma","beceri:Duran Top","beseri:Görüş"]),
+    ("Savunma", "Defending",   ["beceri:Markaj","beceri:Top Kapma","beseri:Önsezi","beseri:Konumlanma"]),
+    ("Fiziksel", "Physical",   ["fiziki:Sürat","fiziki:Hızlanma","fiziki:Güç","fiziki:Dayanıklılık","fiziki:Zıplama"]),
+    ("Mental", "Mental",       ["beseri:Karar Alma","beseri:Soğukkanlılık","beseri:Konsantrasyon","beseri:Kararlılık"]),
+    ("Karakter", "Character",  ["sahsi:Çalışkanlık","sahsi:Profesyonellik","sahsi:Süreklilik","sahsi:Baskıya Dayanıklılık"]),
+]
+_RADAR_GK = [
+    ("Kurtarış", "Shot Stopping", ["K:Çizgi Hakimiyeti","K:Elle Kontrol - Sahiplenme"]),
+    ("Hava/Alan", "Aerial/Area",  ["K:Hava Hakimiyeti","K:Yan Top Hakimiyeti","K:Alan Hakimiyeti"]),
+    ("Ayakla Oyun", "Distribution (Feet)", ["K:Ayak ile Oyun Kurma - Kısa","K:Degaj ile Oyun Kurma - Uzun","K:Ayakla Kontrol - İlk Temas"]),
+    ("Elle Oyun", "Distribution (Hands)",  ["K:Elle Oyun Kurma","K:Yumruklama Kabiliyeti"]),
+    ("Liderlik", "Leadership",   ["K:İletişim","beseri:Liderlik","beseri:Soğukkanlılık"]),
+    ("Atletizm", "Athleticism",  ["fiziki:Çeviklik","fiziki:Zıplama","fiziki:Sürat","fiziki:Güç"]),
+]
+
+def nitelik_radari_goster(isim: str):
+    """Oyuncunun 6 eksenli nitelik yüzdelik radarını çizer (havuz içi sıralama)."""
+    ham_saha, ham_gk = _nitelik_ham()
+    if isim in ham_gk:
+        havuz, eksenler = ham_gk, _RADAR_GK
+    elif isim in ham_saha:
+        havuz, eksenler = ham_saha, _RADAR_SAHA
+    else:
+        return
+    q = havuz[isim]
+
+    def eksen_deger(v, attrs):
+        vals = [v[a] for a in attrs if a in v]
+        return sum(vals) / len(vals) if len(vals) >= 2 else None
+
+    r, theta = [], []
+    for tr_ad, en_ad, attrs in eksenler:
+        qd = eksen_deger(q, attrs)
+        if qd is None:
+            continue
+        dagilim = [x for x in (eksen_deger(v, attrs) for v in havuz.values()) if x is not None]
+        pct = round(sum(1 for x in dagilim if x <= qd) / len(dagilim) * 100) if dagilim else 0
+        r.append(pct)
+        theta.append(t(tr_ad, en_ad))
+    if len(r) < 4:
+        return
+    st.markdown(f"##### 📡 {t('Nitelik Radarı', 'Attribute Radar')}")
+    fig = go.Figure(go.Scatterpolar(
+        r=r + [r[0]], theta=theta + [theta[0]], fill="toself",
+        line=dict(color="#a78bfa", width=2), fillcolor="rgba(124,58,237,0.32)",
+        hovertemplate="%{theta}: %{r}. yüzdelik<extra></extra>"))
+    fig.update_layout(
+        height=300, paper_bgcolor="rgba(0,0,0,0)",
+        polar=dict(bgcolor="rgba(255,255,255,0.02)",
+                   radialaxis=dict(range=[0, 100], showticklabels=False, gridcolor="#2a3050"),
+                   angularaxis=dict(gridcolor="#2a3050")),
+        font=dict(color="#cbd5e1", size=11),
+        margin=dict(l=55, r=55, t=25, b=25), showlegend=False)
+    st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
+    st.caption(t("Havuz içi yüzdelik: 100 = bu eksende havuzun zirvesi",
+                 "Pool percentile: 100 = top of the pool on this axis"))
 
 
 def _nitelik_ikizleri(isim: str, n: int = 5):
@@ -4588,9 +4655,13 @@ def render_scout_kadro_raporu(isim: str):
             f"border-left:3px solid #7c3aed;padding:4px 0 4px 12px;'>"
             f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
 
-    # Nitelik İkizleri (Moneyball — benzer profil, farklı fiyat)
+    # Nitelik Radarı + İkizleri (Moneyball — benzer profil, farklı fiyat)
     st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
-    nitelik_ikizleri_goster(isim)
+    col_radar, col_ikiz = st.columns([4, 6], gap="medium")
+    with col_radar:
+        nitelik_radari_goster(isim)
+    with col_ikiz:
+        nitelik_ikizleri_goster(isim)
 
     # PDF indirme
     try:
@@ -5563,7 +5634,15 @@ def render_paylasim_raporu(isim: str):
         {(f"<div style='color:#aebbd0;font-size:0.86rem;margin-top:12px;'>🎬 <b style='color:#e0e0e0;'>{t('Oyun Tarzı','Play Style')}:</b> {_e(tarz)}</div>") if tarz else ""}
         {_kariyer}
         {_notu_html}
-        <div style='margin-top:22px;padding:18px;background:linear-gradient(135deg,#151a33,#1d1438);
+        """,
+        unsafe_allow_html=True)
+
+    # Nitelik radarı — vitrin: ürünün veri derinliğini girişsiz göster
+    nitelik_radari_goster(isim)
+
+    st.markdown(
+        f"""
+        <div style='margin-top:10px;padding:18px;background:linear-gradient(135deg,#151a33,#1d1438);
              border:1px solid #3b2d6e;border-radius:14px;text-align:center;'>
           <div style='font-family:Oswald,Sora,sans-serif;font-size:1.15rem;font-weight:700;color:#fff;'>
             {t('Tüm scouting havuzu için','For the full scouting pool')}</div>
