@@ -2927,6 +2927,7 @@ if not df_tam.empty:
 _coaches_yol = _DIZIN / "coaches.json"
 coaches_data = json.load(open(_coaches_yol, encoding="utf-8")) if _coaches_yol.exists() else {}
 
+@st.cache_data(show_spinner=False)
 def tum_hocalar() -> list:
     """Sezondaki tüm hocaların listesi (tekrarsız, sıralı)."""
     hocalar = set()
