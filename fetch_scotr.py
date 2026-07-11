@@ -138,6 +138,7 @@ def parse(metin: str) -> dict:
             "uyruk":      hucre(r, i_uyruk),
             # ── Scouting entegrasyonu için zengin künye (yeni şema kolonları) ──
             "tam_isim":   _ops("Sporcunun Tam İsmi", "Tam İsim"),
+            "milli_takim": _ops("2. Vatandaşlık"),   # dünya parser konvansiyonu (2. pasaport)
             "boy":        _ops("Boy"),
             "ayak":       _ops("Ayak"),
             "lig":        _ops("Lig"),

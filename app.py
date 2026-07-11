@@ -1590,6 +1590,19 @@ def scouting_leistung_yukle() -> dict:
         return json.load(f)
 
 @st.cache_data(ttl=3600)
+
+@st.cache_data(show_spinner=False)
+def birlesik_sd_yukle() -> dict:
+    """SD profilleri: scouting havuzu + TR ligi (soccerdonna_profiller.json).
+    TR oyuncuların kariyer/künye verisi TR-Veri tarafında zaten mevcut — köprü."""
+    return {**sd_profiller_yukle(), **scouting_sd_yukle()}
+
+
+@st.cache_data(show_spinner=False)
+def birlesik_leistung_yukle() -> dict:
+    """Kariyer (sezon) verileri: scouting + TR ligi (analig_leistungsdaten.json)."""
+    return {**analig_leistung_yukle(), **scouting_leistung_yukle()}
+
 def scotr_yukle() -> dict:
     """Sco Tr scout raporları (1207 Antalyaspor — nitelik notları, rol, tarz)."""
     yol = pathlib.Path(__file__).parent / "scotr_raporlar.json"
@@ -1624,7 +1637,7 @@ def scotr_kadro_yukle() -> dict:
         out[isim] = {
             "tam_isim":   r.get("tam_isim") or isim,
             "vatandaslik": r.get("uyruk", ""),
-            "milli_takim": "",
+            "milli_takim": r.get("milli_takim", ""),
             "dogum":      r.get("dogum", ""),
             "yas":        r.get("yas", ""),
             "boy":        r.get("boy", ""),
@@ -3280,8 +3293,8 @@ def _benzer_havuz(kaynak):
         leistung  = analig_leistung_yukle()
         kadro     = {}
     else:
-        profiller = scouting_sd_yukle()
-        leistung  = scouting_leistung_yukle()
+        profiller = birlesik_sd_yukle()
+        leistung  = birlesik_leistung_yukle()
         kadro     = birlesik_scout_yukle()
     havuz = []
     for isim, p in profiller.items():
@@ -3773,7 +3786,7 @@ def render_shortlist_kartlari(isimler, kullanici):
         st.info(t("Shortlist'in boş. Oyuncu tablosundan aşağıdaki ⭐ ile ekleyebilirsin.",
                   "Your shortlist is empty. Add players with ⭐ below the table."))
         return
-    sd_data = scouting_sd_yukle()
+    sd_data = birlesik_sd_yukle()
     _notlar = scoutnot_kullanici(kullanici)
     st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 10px;'>"
                 f"⭐ {len(isimler)} {t('oyuncu takipte','players tracked')}</div>",
@@ -3851,8 +3864,8 @@ def render_scouting_detay(tam_isim):
     if deneme_modunda() and tam_isim not in DENEME_SCOUT_OYUNCULAR:
         deneme_kilit(t("Bu oyuncunun scout profili", "This player's scout profile"), "scout")
         return
-    sd_data = scouting_sd_yukle()
-    leistung_data = scouting_leistung_yukle()
+    sd_data = birlesik_sd_yukle()
+    leistung_data = birlesik_leistung_yukle()
     detay_data = scouting_detay_yukle()
     sd = sd_data.get(tam_isim, {})
     dob      = sd.get("Date of birth", "—")
@@ -5910,8 +5923,8 @@ def render_paylasim_raporu(isim: str):
         ".block-container{max-width:820px!important;padding-top:1rem!important;}</style>",
         unsafe_allow_html=True)
     kadro = birlesik_scout_yukle().get(isim, {})
-    sd    = scouting_sd_yukle().get(isim) or sd_profiller.get(isim) or {}
-    leist = (scouting_leistung_yukle().get(isim) or {}).get("sezonlar", [])
+    sd    = birlesik_sd_yukle().get(isim) or {}
+    leist = (birlesik_leistung_yukle().get(isim) or {}).get("sezonlar", [])
     if not (kadro or sd):
         st.markdown(f"<div style='text-align:center;padding:70px 20px;color:#8899aa;'>"
                     f"⚠️ {t('Rapor bulunamadı.','Report not found.')}</div>", unsafe_allow_html=True)
@@ -7177,8 +7190,8 @@ if st.session_state.get("sayfa") == "scouting":
             [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", "")}
              for _isim, _v in _kadro_roster.items()]
         )
-        sd_data = scouting_sd_yukle()
-        leistung_data = scouting_leistung_yukle()
+        sd_data = birlesik_sd_yukle()
+        leistung_data = birlesik_leistung_yukle()
         detay_data = scouting_detay_yukle()
         _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
