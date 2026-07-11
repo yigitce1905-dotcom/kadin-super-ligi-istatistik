@@ -1630,16 +1630,23 @@ def scotr_kadro_yukle() -> dict:
     scouting havuzunda da görünsün (Baran isteği, 11.07.2026). Dosyalar ayrı kalır;
     birleştirme okuma anında olur. Sadece DEĞERLENDİRİLMİŞ kayıtlar alınır."""
     out = {}
+    _sd = sd_profiller_yukle()   # TR SD profilleri — yaş/doğum onarımı için
     for isim, r in scotr_yukle().items():
         if not r.get("degerlendirildi"):
             continue
         mevki = [m for m in (r.get("mevki1"), r.get("mevki2")) if m]
+        # Sheet'te doğum boşsa Yaş formülü 126 üretiyor (2026-1900) → SD'den onar
+        _p = _sd.get(isim, {})
+        _yr = str(r.get("yas", "")).strip()
+        if not (_yr.isdigit() and 13 < int(_yr) < 50):
+            _yr = str(_p.get("Age", "") or "").split()[0] if _p.get("Age") else ""
+        _dg = r.get("dogum", "") or _p.get("Date of birth", "")
         out[isim] = {
             "tam_isim":   r.get("tam_isim") or isim,
             "vatandaslik": r.get("uyruk", ""),
             "milli_takim": r.get("milli_takim", ""),
-            "dogum":      r.get("dogum", ""),
-            "yas":        r.get("yas", ""),
+            "dogum":      _dg,
+            "yas":        _yr,
             "boy":        r.get("boy", ""),
             "ayak":       r.get("ayak", ""),
             "vucut_tipi": "",
