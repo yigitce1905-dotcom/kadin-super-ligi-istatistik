@@ -128,6 +128,10 @@ def _pk(base: str) -> str:
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=Oswald:wght@500;600;700&display=swap');
 
+/* ── MARKA TİPOGRAFİSİ: gövde Inter · başlıklar Sora (logo diliyle uyumlu) ── */
+html, body { font-family:'Inter','Segoe UI',sans-serif; }
+h1, h2, h3, h4, h5, h6 { font-family:'Sora','Inter',sans-serif !important; }
+
 /* ── Streamlit "prototip" chrome'unu gizle (profesyonel görünüm) ──
    ⋮ menü, Deploy, footer ve üst renk şeridi kaldırılır.
    ÖNEMLİ: Header'ı yok etmiyoruz (yalnızca şeffaf) ki sol paneli açan
@@ -5522,8 +5526,7 @@ def render_ana_lig_profil(secili):
         p1, p2 = st.columns(2)
 
         # ── Son 5 maç formu (her maçta Süre · Gol · CleanSheet · Kart) ────────
-        with p1:
-            st.markdown(f"##### {t('Son 5 Maç Formu', 'Last 5 Matches Form')}")
+        with p1, st.expander(t('Son 5 Maç Formu', 'Last 5 Matches Form'), expanded=False):
             _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
             _htk = _oyuncu_hafta_takim(detay)   # transfer: o hafta hangi kulüpte
             _son_kulup = _htk[max(_htk)] if _htk else row["Takım"]  # sezon-sonu = son kulüp
@@ -5532,6 +5535,18 @@ def render_ana_lig_profil(secili):
             if not _haftalar:
                 st.caption(t("Maç verisi yok.", "No match data."))
             else:
+                # Baran: ikonlar her kutuda tekrar etmesin — SOLDA tek lejant sütunu,
+                # kutularda yalnız DEĞERLER (satırlar sabit yükseklikte, üst üste binme yok)
+                _SATIR_H = 22
+                _lejant = (
+                    "<div style='flex:none;width:34px;display:flex;flex-direction:column;"
+                    "align-items:center;padding:8px 0;'>"
+                    "<div style='height:16px;'></div>"
+                    + "".join(
+                        f"<div style='height:{_SATIR_H}px;display:flex;align-items:center;"
+                        f"font-size:0.8rem;'>{ik}</div>"
+                        for ik in ("⏱️", "⚽", "🛡️", "🟨"))
+                    + "</div>")
                 _kartlar = ""
                 for _h in _haftalar:
                     m = _mg.get(_h, {})
@@ -5543,33 +5558,36 @@ def render_ana_lig_profil(secili):
                     # Clean sheet: oyuncunun O HAFTAKİ takımı (transferse doğru kulüp) gol yedi mi?
                     _yen = _hafta_yenilen(_htk.get(_h) or _son_kulup, _h)
                     if _yen is None:
-                        _cs = "<span style='color:#475569;'>🛡️ —</span>"
+                        _cs_v, _cs_renk = "—", "#475569"
                     elif _yen == 0:
-                        _cs = "<span style='color:#34d399;'>🛡️ ✓</span>"
+                        _cs_v, _cs_renk = "✓", "#34d399"
                     else:
-                        _cs = f"<span style='color:#fb7185;'>🥅 {_yen}</span>"
-                    _gl_html = (f"<span style='color:#86efac;'>⚽ {_gl}</span>" if _gl
-                                else "<span style='color:#64748b;'>⚽ 0</span>")
-                    _kart_html = (f"🟨{_sa}" + (f" 🟥{_kr}" if _kr else ""))
+                        _cs_v, _cs_renk = str(_yen), "#fb7185"
+                    _gl_renk = "#86efac" if _gl else "#64748b"
+                    _kart_v = f"{_sa}" + (f" +🟥{_kr}" if _kr else "")
                     _kart_renk = "#fbbf24" if (_sa or _kr) else "#64748b"
+
+                    def _hucre(v, c, b=700):
+                        return (f"<div style='height:{_SATIR_H}px;display:flex;align-items:center;"
+                                f"justify-content:center;font-size:0.82rem;font-weight:{b};color:{c};'>{v}</div>")
+
                     _kartlar += (
-                        "<div style='flex:1;min-width:90px;background:#0f1117;border:1px solid #232842;"
-                        "border-radius:9px;padding:8px 6px;text-align:center;'>"
-                        f"<div style='font-size:0.6rem;color:#64748b;font-weight:700;letter-spacing:0.03em;'>{_h}. {t('Hafta','Wk')}</div>"
-                        f"<div style='font-size:1.05rem;font-weight:800;color:{_sure_renk};line-height:1.2;'>{_dk}′</div>"
-                        f"<div style='font-size:0.7rem;margin-top:4px;'>{_gl_html}</div>"
-                        f"<div style='font-size:0.7rem;margin-top:2px;'>{_cs}</div>"
-                        f"<div style='font-size:0.7rem;margin-top:2px;color:{_kart_renk};'>{_kart_html}</div>"
-                        "</div>")
-                st.markdown(f"<div style='display:flex;gap:6px;flex-wrap:wrap;'>{_kartlar}</div>",
+                        "<div style='flex:1;min-width:60px;background:#0f1117;border:1px solid #232842;"
+                        "border-radius:9px;padding:8px 4px;'>"
+                        f"<div style='height:16px;font-size:0.6rem;color:#64748b;font-weight:700;"
+                        f"text-align:center;letter-spacing:0.03em;'>{_h}. {t('Hafta','Wk')}</div>"
+                        + _hucre(f"{_dk}′", _sure_renk, 800)
+                        + _hucre(_gl, _gl_renk)
+                        + _hucre(_cs_v, _cs_renk)
+                        + _hucre(_kart_v, _kart_renk)
+                        + "</div>")
+                st.markdown(f"<div style='display:flex;gap:6px;align-items:stretch;'>{_lejant}{_kartlar}</div>",
                             unsafe_allow_html=True)
-                # Açıklama metni kutuların ALTINA (kutular Lig Sıralaması ile aynı hizada başlasın)
-                st.caption(t("Her maç: Süre · Gol · Clean Sheet · Kart (oynamadıysa 0′)",
-                             "Each match: Minutes · Goals · Clean Sheet · Cards (0′ if didn't play)"))
+                st.caption(t("⏱ Süre · ⚽ Gol · 🛡 Clean Sheet · 🟨 Kart (oynamadıysa 0′)",
+                             "⏱ Minutes · ⚽ Goals · 🛡 Clean Sheet · 🟨 Cards (0′ if didn't play)"))
 
         # ── Lig sıralamaları ─────────────────────────────────────────────────
-        with p2:
-            st.markdown(f"##### {t('Lig Sıralaması', 'League Ranking')}")
+        with p2, st.expander(t('Lig Sıralaması', 'League Ranking'), expanded=False):
             r1, r2 = st.columns(2)
             for kol, metrik, etiket in [
                 (r1, "Gol",    t("Gol","Goals")),
@@ -5579,7 +5597,15 @@ def render_ana_lig_profil(secili):
                 s_df.index += 1
                 idx = s_df[s_df["Oyuncu"] == secili].index
                 sira = int(idx[0]) if len(idx) else "—"
-                kol.metric(etiket, f"{sira}. / {len(df_tam)}")
+                # Baran: 50pt dev rakam alan kaplıyor — vurgu ~20pt yeter
+                kol.markdown(
+                    "<div style='background:#11162a;border:1px solid #232a40;border-radius:10px;"
+                    "padding:10px 14px;'>"
+                    f"<div style='font-size:0.68rem;color:#8b95a9;letter-spacing:0.08em;"
+                    f"text-transform:uppercase;'>{etiket}</div>"
+                    f"<div style='font-size:1.25rem;font-weight:800;color:#f1f5f9;margin-top:2px;'>"
+                    f"{sira}. <span style='font-size:0.85rem;color:#64748b;font-weight:600;'>/ {len(df_tam)}</span></div>"
+                    "</div>", unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
 
@@ -5587,8 +5613,7 @@ def render_ana_lig_profil(secili):
         gecmis_tam = sorted(detay.get("mac_gecmisi",[]), key=lambda x: x["hafta"])
 
         g1, g2 = st.columns(2)
-        with g1:
-            st.markdown(f"##### {t('Haftalık Performans', 'Weekly Performance')}")
+        with g1, st.expander(t('Haftalık Performans', 'Weekly Performance'), expanded=False):
             if gecmis_tam:
                 haftalar  = [m["hafta"]  for m in gecmis_tam]
                 dakikalar = [m["dakika"] for m in gecmis_tam]
@@ -5621,8 +5646,7 @@ def render_ana_lig_profil(secili):
                     margin=dict(l=40, r=40, t=24, b=40))
                 st.plotly_chart(fig, width="stretch", key=_pk("plt_2957"))
 
-        with g2:
-            st.markdown(f"##### {t('Gol Zamanı Dağılımı', 'Goal Timing Distribution')}")
+        with g2, st.expander(t('Gol Zamanı Dağılımı', 'Goal Timing Distribution'), expanded=False):
             tum_dakikalar = []
             for m in gecmis_tam:
                 tum_dakikalar.extend(m.get("gol_dakikalari", []))
@@ -5671,18 +5695,18 @@ def render_ana_lig_profil(secili):
 
         # ── Seriler ──────────────────────────────────────────────────────────
         if gecmis_tam:
-            st.markdown(f"##### 🔥 {t('Seri Rekorları', 'Streak Records')}")
-            en_uzun_mac = max_seri([1 for _ in gecmis_tam])
-            gol_var = [1 if m["gol"]>0 else 0 for m in gecmis_tam]
-            en_uzun_gol = max_seri(gol_var)
-            temiz = [1 if m["sari"]==0 and m["kirmizi"]==0 else 0 for m in gecmis_tam]
-            en_uzun_temiz = max_seri(temiz)
+            with st.expander(t('Seri Rekorları', 'Streak Records'), expanded=False):
+                en_uzun_mac = max_seri([1 for _ in gecmis_tam])
+                gol_var = [1 if m["gol"]>0 else 0 for m in gecmis_tam]
+                en_uzun_gol = max_seri(gol_var)
+                temiz = [1 if m["sari"]==0 and m["kirmizi"]==0 else 0 for m in gecmis_tam]
+                en_uzun_temiz = max_seri(temiz)
 
-            s1,s2,s3,s4 = st.columns(4)
-            s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
-            s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
-            s3.metric(f"🧤 {t('En Uzun Gol Yenmeyen Seri', 'Longest Clean-Sheet Streak')}", f"{en_uzun_cs} {t('maç','matches')}")
-            s4.metric(f"🟨 {t('En Uzun Kartsız Seri', 'Longest Card-Free Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
+                s1,s2,s3,s4 = st.columns(4)
+                s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
+                s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
+                s3.metric(f"🧤 {t('En Uzun Gol Yenmeyen Seri', 'Longest Clean-Sheet Streak')}", f"{en_uzun_cs} {t('maç','matches')}")
+                s4.metric(f"🟨 {t('En Uzun Kartsız Seri', 'Longest Card-Free Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
 
         # ── Rakip dağılımları: Yenen goller (sol) · Gol yenmeyen maçlar (sağ) ──
         _has_gol = gol > 0 and bool(_gol_rakip_dagil(detay))
@@ -5855,8 +5879,9 @@ with st.sidebar:
     # ── Marka (logo görseli — static/logo.png, şeffaf arka plan) ──
     st.markdown(
         "<div class='nav-marka-logo'>"
+        "<a href='/' target='_self'>"
         "<img src='app/static/logo.png' alt=\"Women's Football Scouting\" "
-        "title=\"Women's Football Scouting\"/>"
+        "title=\"Women's Football Scouting — Ana Sayfa\"/></a>"
         "</div>",
         unsafe_allow_html=True)
 
