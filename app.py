@@ -4258,14 +4258,26 @@ def akilli_arama(q: str, n: int = 15):
             ozet.append("📍 " + "/".join(sorted(kodlar)))
             break
     yas_min = yas_max = None
-    m = _re.search(r"\bu(\d{2})\b", s)
+    _YEK = r"[a-zçğıiöşü]*"          # 'yaş' ekleri: yaşında/yaşından/yaşını...
+    m = _re.search(r"\bu[- ]?(\d{2})\b", s)                       # u23 / u-19
     if m: yas_max = int(m.group(1))
-    m = _re.search(r"(\d{2})\s*yaş\s*alt", s)
-    if m: yas_max = int(m.group(1))
-    m = _re.search(r"(\d{2})\s*[-–]\s*(\d{2})\s*yaş", s)
+    m = _re.search(r"(\d{2})\s*(?:[-–]|ile)\s*(\d{2})\s*ya[şs]", s)   # 20-26 yaş / 20 ile 26 yaş
     if m: yas_min, yas_max = int(m.group(1)), int(m.group(2))
-    if "genç" in s and not yas_max: yas_max = 23
-    if ("tecrübeli" in s or "deneyimli" in s) and not yas_min: yas_min = 28
+    m = _re.search(rf"(\d{{2}})\s*ya[şs]{_YEK}\s*(?:alt|küçük|kucuk|geçmemiş|gecmemis)", s)
+    if m: yas_max = int(m.group(1))                               # 23 yaş altı / yaşından küçük
+    m = _re.search(rf"(\d{{2}})\s*ya[şs]{_YEK}\s*(?:üst|ust|üzeri|uzeri|büyük|buyuk)", s)
+    if m: yas_min = int(m.group(1))                               # 28 yaş üstü / yaşından büyük
+    m = _re.search(r"(?:en fazla|max|maks\w*)\s*(\d{2})\s*ya[şs]", s)
+    if m: yas_max = int(m.group(1))                               # en fazla 25 yaş / max 25 yaş
+    m = _re.search(r"(?:en az|min\w*)\s*(\d{2})\s*ya[şs]", s)
+    if m: yas_min = int(m.group(1))                               # en az 20 yaş
+    if yas_min is None and yas_max is None:
+        m = _re.search(r"(\d{2})\s*ya[şs][ıi]nda", s)             # 24 yaşında (tam yaş)
+        if m: yas_min = yas_max = int(m.group(1))
+        m = _re.search(r"\b(1[6-9]|[23]\d|4[0-5])\s*alt[ıi]\b", s)  # '25 altı' (yaşsız kısayol)
+        if m and "bin" not in s: yas_max = int(m.group(1))
+    if ("genç" in s or "genc " in s) and not yas_max: yas_max = 23
+    if ("tecrübeli" in s or "tecrubeli" in s or "deneyimli" in s) and not yas_min: yas_min = 28
     if yas_max: ozet.append(f"🎂 ≤{yas_max}")
     if yas_min: ozet.append(f"🎂 ≥{yas_min}")
     ayak = ("Sol" if "sol ayak" in s else
