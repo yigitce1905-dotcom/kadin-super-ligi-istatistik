@@ -119,6 +119,14 @@ def parse(metin: str) -> dict:
 
         nihai = hucre(r, i_nihai)
         ivme  = hucre(r, i_ivme)
+
+        def _ops(*adlar):
+            """İsteğe bağlı kolon (yeni şemada var, yoksa boş döner)."""
+            try:
+                return hucre(r, idx(*adlar))
+            except ValueError:
+                return ""
+
         kayit = {
             "takim":      hucre(r, i_kulup),
             "dogum":      hucre(r, i_dogum),
@@ -128,6 +136,16 @@ def parse(metin: str) -> dict:
             "rol":        hucre(r, i_rol).replace("-", ""),
             "yas":        hucre(r, i_yas),
             "uyruk":      hucre(r, i_uyruk),
+            # ── Scouting entegrasyonu için zengin künye (yeni şema kolonları) ──
+            "tam_isim":   _ops("Sporcunun Tam İsmi", "Tam İsim"),
+            "boy":        _ops("Boy"),
+            "ayak":       _ops("Ayak"),
+            "lig":        _ops("Lig"),
+            "deger":      _ops("Değeri", "Değer"),
+            "sozlesme":   _ops("Sözleşme"),
+            "yetenek_kumesi":  _ops("Yetenek Kümesi"),
+            "iktisadi_durum":  _ops("İktisadi Durum"),
+            "yurtdisi_gorusu": _ops("Yurtdışı Görüşü"),
             "beceri":     beceri,
             "beseri":     beseri,
             "fiziki":     fiziki,

@@ -1610,6 +1610,61 @@ def scout_kadro_yukle() -> dict:
 
 
 @st.cache_data(ttl=3600)
+
+@st.cache_data(show_spinner=False)
+def scotr_kadro_yukle() -> dict:
+    """Sco TR raporlarını scouting (Sco 🌍) şemasına çevirir — TR ligi oyuncuları
+    scouting havuzunda da görünsün (Baran isteği, 11.07.2026). Dosyalar ayrı kalır;
+    birleştirme okuma anında olur. Sadece DEĞERLENDİRİLMİŞ kayıtlar alınır."""
+    out = {}
+    for isim, r in scotr_yukle().items():
+        if not r.get("degerlendirildi"):
+            continue
+        mevki = [m for m in (r.get("mevki1"), r.get("mevki2")) if m]
+        out[isim] = {
+            "tam_isim":   r.get("tam_isim") or isim,
+            "vatandaslik": r.get("uyruk", ""),
+            "milli_takim": "",
+            "dogum":      r.get("dogum", ""),
+            "yas":        r.get("yas", ""),
+            "boy":        r.get("boy", ""),
+            "ayak":       r.get("ayak", ""),
+            "vucut_tipi": "",
+            "bolge":      r.get("bolge", ""),
+            "mevki":      mevki,
+            "rol":        r.get("rol", ""),
+            "kulup":      r.get("takim", ""),
+            "lig":        r.get("lig", "") or "Türkiye",
+            "deger":      r.get("deger", ""),
+            "sozlesme":   r.get("sozlesme", ""),
+            "beceri":     r.get("beceri", {}),
+            "beseri":     r.get("beseri", {}),
+            "fiziki":     r.get("fiziki", {}),
+            "sahsi":      r.get("sahsi", {}),
+            "kaleci":     r.get("kaleci", {}),
+            "makro":      r.get("makro", {}),
+            "tarz":       r.get("tarz", []),
+            "nihai":      r.get("nihai", ""),
+            "ivme":       r.get("ivme", ""),
+            "yetenek_kumesi": r.get("yetenek_kumesi", ""),
+            "iktisadi_durum": r.get("iktisadi_durum", ""),
+            "tr_gorusu":  "",
+            "yurtdisi_gorusu": r.get("yurtdisi_gorusu", ""),
+            "scout_notu": r.get("scout_notu", ""),
+            "degerlendirildi": True,
+            "havuz": "tr",    # 🇹🇷 rozeti + YURTDIŞI etiketi için işaret
+        }
+    return out
+
+
+@st.cache_data(show_spinner=False)
+def birlesik_scout_yukle() -> dict:
+    """Scouting havuzu = Sco 🌍 (uluslararası) + Sco TR (Türkiye ligleri).
+    İsim çakışırsa Sco 🌍 kazanır (SD entegrasyonu onda)."""
+    tr = scotr_kadro_yukle()
+    dunya = scout_kadro_yukle()
+    return {**tr, **dunya}
+
 def scouting_detay_yukle() -> dict:
     """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
     yol = pathlib.Path(__file__).parent / "scouting_detay.json"
@@ -3227,7 +3282,7 @@ def _benzer_havuz(kaynak):
     else:
         profiller = scouting_sd_yukle()
         leistung  = scouting_leistung_yukle()
-        kadro     = scout_kadro_yukle()
+        kadro     = birlesik_scout_yukle()
     havuz = []
     for isim, p in profiller.items():
         if not isinstance(p, dict) or p.get("bulunamadi"):
@@ -3731,7 +3786,7 @@ def render_shortlist_kartlari(isimler, kullanici):
                 f"<div style='font-size:0.95rem;font-weight:800;color:{clr};margin-top:2px;'>{val}</div></div>")
 
     for isim in isimler:
-        _kd = scout_kadro_yukle().get(isim, {})
+        _kd = birlesik_scout_yukle().get(isim, {})
         sd  = sd_data.get(isim, {})
         _yas = _kd.get("yas") or sd.get("Age", "") or "—"
         _pos = (_kd.get("mevki") or [""])[0] or "—"
@@ -3812,7 +3867,7 @@ def render_scouting_detay(tam_isim):
                 f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
 
     # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım)
-    _kadro  = scout_kadro_yukle().get(tam_isim, {})
+    _kadro  = birlesik_scout_yukle().get(tam_isim, {})
     _deger  = _kadro.get("deger", "")
     # Milli takım = "Vatandaşlık (Millî)" (vatandaslik). NOT: milli_takim alanı aslında
     # "2. Vatandaşlık" (ikinci pasaport) → milli takım için YANLIŞ (örn. Miray Cin Türkiye
@@ -3910,7 +3965,8 @@ def render_scouting_detay(tam_isim):
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
     # Kaynak: scouting oyuncusu mu (ana lig kadrosunda değil ama SD havuzunda var)?
-    _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (isim in scouting_sd_yukle())
+    _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (
+        isim in scouting_sd_yukle() or isim in birlesik_scout_yukle())
     _geri_lbl = (t("← Scouting'e Dön", "← Back to Scouting") if _scout_oyuncu
                  else t("← Listeye Dön", "← Back to List"))
     if st.button(_geri_lbl, key="odakli_geri", type="primary"):
@@ -3993,7 +4049,7 @@ def _scotr_segman(nt: str) -> int:
 def _nitelik_ham():
     """Değerlendirilmiş oyuncuların HAM nitelik vektörleri (0-10 segman).
     Saha ve kaleci ayrı uzay. Anahtar biçimi: 'grup:Nitelik Adı'."""
-    d = scout_kadro_yukle()
+    d = birlesik_scout_yukle()
     ham_saha, ham_gk = {}, {}
     for isim, r in d.items():
         if not r.get("degerlendirildi"):
@@ -4122,7 +4178,7 @@ def _nitelik_ikizleri(isim: str, n: int = 5):
 def _rol_merkezleri():
     """Her rolün nitelik prototipi: o role atanmış oyuncuların merkezlenmiş
     vektör ortalaması (≥4 oyuncusu olan roller). {(rol, gk_mi): merkez_vektör}"""
-    d = scout_kadro_yukle()
+    d = birlesik_scout_yukle()
     saha, gk = _nitelik_vektorleri()
     gruplar = {}
     for isim, r in d.items():
@@ -4247,7 +4303,7 @@ def akilli_arama(q: str, n: int = 15):
     Dönen: (kriter_ozeti, sonuçlar) — hiç kriter çözülemezse (None, None)."""
     import re as _re
     s = " " + (q or "").casefold().replace("i̇", "i") + " "
-    d = scout_kadro_yukle()
+    d = birlesik_scout_yukle()
     ham_saha, ham_gk = _nitelik_ham()
 
     ozet = []
@@ -4362,7 +4418,7 @@ def nitelik_ikizleri_goster(isim: str):
     ikizler = _nitelik_ikizleri(isim)
     if not ikizler:
         return
-    d = scout_kadro_yukle()
+    d = birlesik_scout_yukle()
     st.markdown(f"##### 🧬 {t('Nitelik İkizleri', 'Attribute Twins')}")
     st.caption(t("47 boyutlu nitelik profiline göre en benzer oyuncular — 'benzer ama daha uygun' adaylar",
                  "Most similar players by 47-dimension attribute profile — 'similar but more affordable' candidates"))
@@ -4768,7 +4824,9 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
         (t("İVME","MOMENTUM"), rapor.get("ivme") or "—", (124,58,237)),
         (t("YETENEK","TALENT"), yetenek_kume_goster(rapor.get("yetenek_kumesi")) or "—", (124,58,237)),
         (t("İKTİSADİ","ECONOMY"), iktisadi_goster(rapor.get("iktisadi_durum")) or "—", (110,120,140)),
-        (t("TR GÖRÜŞÜ","TR VIEW"), tr_gorus_goster(rapor.get("tr_gorusu")) or "—", (110,120,140)),
+        ((t("YURTDIŞI","ABROAD"), tr_gorus_goster(rapor.get("yurtdisi_gorusu")) or "—", (110,120,140))
+         if rapor.get("havuz") == "tr" else
+         (t("TR GÖRÜŞÜ","TR VIEW"), tr_gorus_goster(rapor.get("tr_gorusu")) or "—", (110,120,140))),
     ]
     y_box = pdf.get_y(); bw = W/5
     for k, (et, dg, rk) in enumerate(ozet):
@@ -4841,7 +4899,7 @@ def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
 
 def render_scout_kadro_raporu(isim: str):
     """Zengin scout kadro raporunu (scouting tarafı) görsel panelle çizer + PDF."""
-    rapor = scout_kadro_yukle().get(isim)
+    rapor = birlesik_scout_yukle().get(isim)
     if not rapor:
         return
 
@@ -4906,6 +4964,8 @@ def render_scout_kadro_raporu(isim: str):
         rozet.append((f"💰 {iktisadi_goster(rapor['iktisadi_durum'])}", "#64748b"))
     if rapor.get("tr_gorusu"):
         rozet.append((f"🇹🇷 {tr_gorus_goster(rapor['tr_gorusu'])}", "#64748b"))
+    if rapor.get("yurtdisi_gorusu"):
+        rozet.append((f"✈️ {t('Yurtdışı','Abroad')}: {tr_gorus_goster(rapor['yurtdisi_gorusu'])}", "#64748b"))
     if rozet:
         cip = "".join(
             f"<span style='display:inline-block;background:{c}1f;border:1px solid {c}55;"
@@ -5791,7 +5851,7 @@ with st.sidebar:
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
 _hero_takim  = _kanon_takim_sayisi(df_tam["Takım"]) if not df_tam.empty else 0
 _hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
-try:    _hero_scout = len(scout_kadro_yukle())
+try:    _hero_scout = len(birlesik_scout_yukle())
 except Exception: _hero_scout = 0
 # Hero + danışmanlık bandı YALNIZ ana ekranın İLK sekmesinde (Oyuncu Listesi)
 # gösterilir; diğer TR Veri alt sekmelerinde (Profil, Karşılaştırma vb.) üstte yer
@@ -5849,7 +5909,7 @@ def render_paylasim_raporu(isim: str):
         "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
         ".block-container{max-width:820px!important;padding-top:1rem!important;}</style>",
         unsafe_allow_html=True)
-    kadro = scout_kadro_yukle().get(isim, {})
+    kadro = birlesik_scout_yukle().get(isim, {})
     sd    = scouting_sd_yukle().get(isim) or sd_profiller.get(isim) or {}
     leist = (scouting_leistung_yukle().get(isim) or {}).get("sezonlar", [])
     if not (kadro or sd):
@@ -5962,7 +6022,7 @@ def render_paylasim_raporu(isim: str):
           <div style='font-family:Oswald,Sora,sans-serif;font-size:1.15rem;font-weight:700;color:#fff;'>
             {t('Tüm scouting havuzu için','For the full scouting pool')}</div>
           <div style='color:#a78bfa;font-size:0.85rem;margin:4px 0 12px;'>
-            {t('780+ oyuncu · kariyer & benzerlik analizi · kadro danışmanlığı','780+ players · career & similarity analysis · squad consultancy')}</div>
+            {t('950+ oyuncu · kariyer & benzerlik analizi · kadro danışmanlığı','950+ players · career & similarity analysis · squad consultancy')}</div>
           <a href='/' style='display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);
              color:#fff;font-weight:700;text-decoration:none;border-radius:9px;padding:10px 26px;'>
             🚀 {t('Üye Ol / Giriş','Join / Log In')}</a>
@@ -7112,7 +7172,7 @@ if st.session_state.get("sayfa") == "scouting":
 
         # Roster kaynağı: Sco 🌍 sekmesi (scout_kadro_raporlar.json — commit'li snapshot).
         # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
-        _kadro_roster = scout_kadro_yukle()
+        _kadro_roster = birlesik_scout_yukle()
         sc_df = pd.DataFrame(
             [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", "")}
              for _isim, _v in _kadro_roster.items()]
@@ -7507,6 +7567,8 @@ if st.session_state.get("sayfa") == "scouting":
                             _skor = "<span style='color:#52525b;'>—</span>"
                         _poz_html = f"<span class='ws-pos'>{_esc(_poz)}</span>" if _poz else ""
                         _yildiz = "<span style='color:#fbbf24;'>★</span> " if tam_isim in _sl_liste else ""
+                        if _kd.get("havuz") == "tr":
+                            _yildiz += "<span title='Türkiye Ligleri'>🇹🇷</span> "
                         _bayrak = _esc(ulke_goster(_uyruk_goster(vatandas))) if vatandas else ""
                         _href = f"?oyuncu={_urlquote(tam_isim)}&dil={_dil_q}"
                         _harf = (tam_isim[:1] or "?").upper()
@@ -7608,7 +7670,7 @@ def genel_ozet_hesapla() -> dict:
     yas = df_tam["Yaş"].dropna() if "Yaş" in df_tam.columns else pd.Series(dtype=float)
     # Scouting sayısı: Sco 🌍 havuzu (scout_kadro), yoksa yerel SD profilleri
     try:
-        scouting_n = len(scout_kadro_yukle()) or len(scouting_sd_yukle())
+        scouting_n = len(birlesik_scout_yukle()) or len(scouting_sd_yukle())
     except Exception:
         try: scouting_n = len(scouting_sd_yukle())
         except Exception: scouting_n = 0
