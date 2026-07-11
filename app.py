@@ -4189,6 +4189,153 @@ def rol_uygunluk_goster(isim: str):
         unsafe_allow_html=True)
 
 
+# ─── AKILLI ARAMA — serbest metin → filtre (kural tabanlı, API'siz, ms hızında) ─
+_AA_MEVKI = [
+    (("kaleci", "kalecisi", " gk "), {"GK"}),
+    (("stoper",), {"LCB", "RCB", "MCB"}),
+    (("sol bek",), {"LFB", "LWB"}),
+    (("sağ bek", "sag bek"), {"RFB", "RWB"}),
+    (("bek",), {"LFB", "RFB", "LWB", "RWB"}),
+    (("6 numara", "ön libero", "defansif orta"), {"DMF"}),
+    (("10 numara", "ofansif orta"), {"AMF"}),
+    (("orta saha", "merkez orta"), {"CMF", "DMF", "AMF"}),
+    (("sol kanat",), {"LWF"}),
+    (("sağ kanat", "sag kanat"), {"RWF"}),
+    (("kanat",), {"LWF", "RWF"}),
+    (("santrafor", "forvet", "striker"), {"CFW", "2ST"}),
+]
+_AA_NITELIK = [
+    (("hava topu", "hava hakimiyeti", "kafa vuruşu", "kafası"), ["beceri:Kafa Vuruşu", "K:Hava Hakimiyeti"]),
+    (("top kapma",), ["beceri:Top Kapma"]),
+    (("duran top", "frikik"), ["beceri:Duran Top"]),
+    (("uzaktan şut", "şut gücü", "şutu"), ["beceri:Uzaktan Şut"]),
+    (("refleks", "kurtarış"), ["K:Çizgi Hakimiyeti"]),
+    (("ayağı iyi", "ayak işi", "ayakla oyun"), ["K:Ayak ile Oyun Kurma - Kısa", "beceri:Top Tekniği"]),
+    (("hızlı", "sürat", "süratli"), ["fiziki:Sürat", "fiziki:Hızlanma"]),
+    (("paslı", "pasör", "pas kalitesi"), ["beceri:Kısa Pas"]),
+    (("bitirici", "golcü", "gol yeteneği"), ["beceri:Bitiricilik"]),
+    (("teknik", "çalım", "dripling"), ["beceri:Top Tekniği", "beceri:Top Sürme"]),
+    (("fizikli", "kuvvetli", "gücü yüksek"), ["fiziki:Güç"]),
+    (("dayanıklı", "motoru"), ["fiziki:Dayanıklılık"]),
+    (("lider",), ["beseri:Liderlik"]),
+    (("agresif", "sert oyun"), ["beseri:Agresiflik"]),
+    (("markaj",), ["beceri:Markaj"]),
+    (("vizyon", "oyun görüşü", "oyun kurucu"), ["beseri:Görüş", "beceri:Kısa Pas"]),
+    (("soğukkanlı",), ["beseri:Soğukkanlılık"]),
+    (("çalışkan", "presli", "pres gücü"), ["sahsi:Çalışkanlık"]),
+]
+
+def _aa_deger_eur(v):
+    """'€35.000' / '50k' → int € (yoksa None)."""
+    import re as _re
+    v = str(v or "").replace("€", "").strip().lower()
+    if not v:
+        return None
+    m = _re.match(r"([\d.,]+)\s*(k|bin|m)?", v)
+    if not m:
+        return None
+    try:
+        n = float(m.group(1).replace(".", "").replace(",", "."))
+    except ValueError:
+        return None
+    b = m.group(2)
+    return int(n * 1000) if b in ("k", "bin") else int(n * 1000000) if b == "m" else int(n)
+
+
+def akilli_arama(q: str, n: int = 15):
+    """Serbest metni ayrıştırıp havuzda arar.
+    Dönen: (kriter_ozeti, sonuçlar) — hiç kriter çözülemezse (None, None)."""
+    import re as _re
+    s = " " + (q or "").casefold().replace("i̇", "i") + " "
+    d = scout_kadro_yukle()
+    ham_saha, ham_gk = _nitelik_ham()
+
+    ozet = []
+    mevki_sec = None
+    for kelimeler, kodlar in _AA_MEVKI:
+        if any(k in s for k in kelimeler):
+            mevki_sec = kodlar
+            ozet.append("📍 " + "/".join(sorted(kodlar)))
+            break
+    yas_min = yas_max = None
+    m = _re.search(r"\bu(\d{2})\b", s)
+    if m: yas_max = int(m.group(1))
+    m = _re.search(r"(\d{2})\s*yaş\s*alt", s)
+    if m: yas_max = int(m.group(1))
+    m = _re.search(r"(\d{2})\s*[-–]\s*(\d{2})\s*yaş", s)
+    if m: yas_min, yas_max = int(m.group(1)), int(m.group(2))
+    if "genç" in s and not yas_max: yas_max = 23
+    if ("tecrübeli" in s or "deneyimli" in s) and not yas_min: yas_min = 28
+    if yas_max: ozet.append(f"🎂 ≤{yas_max}")
+    if yas_min: ozet.append(f"🎂 ≥{yas_min}")
+    ayak = ("Sol" if "sol ayak" in s else
+            "Sağ" if ("sağ ayak" in s or "sag ayak" in s) else None)
+    if ayak: ozet.append(f"🦶 {ayak}")
+    butce = None
+    m = _re.search(r"(?:max|maks|en fazla|altı|alti)?\s*€?\s*(\d+)\s*(k|bin)\b", s)
+    if m: butce = int(m.group(1)) * 1000
+    if butce: ozet.append("💰 ≤€" + f"{butce:,}".replace(",", "."))
+    serbest = any(k in s for k in ("serbest", "bedava", "bonservissiz"))
+    if serbest: ozet.append("🆓 Serbest")
+    kelepir = any(k in s for k in ("kelepir", "ucuz", "fırsat", "f/p"))
+    if kelepir: ozet.append("💎 F/P sıralı")
+    istekli = "istekli" in s
+    if istekli: ozet.append("🇹🇷 TR'ye istekli")
+    nit_krit = []
+    for kelimeler, attrs in _AA_NITELIK:
+        if any(k in s for k in kelimeler):
+            nit_krit.append(attrs)
+            ozet.append("⭐ " + attrs[0].split(":", 1)[1])
+    if not ozet:
+        return None, None
+
+    sonuc = []
+    for isim, r in d.items():
+        if not r.get("degerlendirildi"):
+            continue
+        mev = set(r.get("mevki") or [])
+        if mevki_sec and not (mev & mevki_sec):
+            continue
+        yas = r.get("yas")
+        try:
+            yas = int(yas)
+        except (TypeError, ValueError):
+            yas = None
+        if yas_max and (yas is None or yas > yas_max): continue
+        if yas_min and (yas is None or yas < yas_min): continue
+        if ayak and (r.get("ayak") or "") not in (ayak, "Çift"): continue
+        if serbest and (r.get("kulup") or "").strip().lower() != "serbest": continue
+        deger_eur = _aa_deger_eur(r.get("deger"))
+        if butce and (deger_eur is None or deger_eur > butce): continue
+        if istekli and "istekli" not in (r.get("tr_gorusu") or "").lower(): continue
+
+        v = ham_gk.get(isim) or ham_saha.get(isim) or {}
+        cipler, puanlar = [], []
+        for attrs in nit_krit:
+            adaylar = [(a, v[a]) for a in attrs if a in v]
+            if not adaylar:
+                puanlar.append(0)
+                continue
+            a, val = max(adaylar, key=lambda x: x[1])
+            puanlar.append(val)
+            nt = _SCOTR_SIRA[val - 1] if 1 <= val <= 10 else "?"
+            cipler.append((nitelik_goster(a.split(":", 1)[1]), nt))
+        skor = (sum(puanlar) / len(puanlar)) if puanlar else _scotr_puan(r.get("nihai", "")) * 2
+        if nit_krit and skor < 5:      # ort. CC altı = istenen niteliği taşımıyor
+            continue
+        if kelepir:
+            if not deger_eur:
+                continue
+            sira = skor / max(deger_eur, 5000) * 100000
+        else:
+            sira = skor
+        sonuc.append({"isim": isim, "yas": yas, "mevki": "/".join(r.get("mevki") or []),
+                      "kulup": r.get("kulup", ""), "deger": r.get("deger", ""),
+                      "nihai": r.get("nihai", ""), "cipler": cipler, "sira": sira})
+    sonuc.sort(key=lambda x: -x["sira"])
+    return ozet, sonuc[:n]
+
+
 def nitelik_ikizleri_goster(isim: str):
     """Scout raporunun altına 'Nitelik İkizleri' kartlarını çizer."""
     ikizler = _nitelik_ikizleri(isim)
@@ -7007,6 +7154,56 @@ if st.session_state.get("sayfa") == "scouting":
             if _sc_tab_sel == _ONERI_TAB:
                 render_oneri_merkezi(_sl_kullanici)
                 st.stop()
+
+            # ── 🤖 Akıllı Arama (kural tabanlı; API'siz, milisaniyelik) ───────
+            with st.expander(f"🤖 {t('Akıllı Arama — serbest metinle oyuncu bul','Smart Search — find players in plain words')}"):
+                st.caption(t("Örnek: «sol ayaklı u23 stoper hava topu güçlü» · «serbest kelepir kanat» · "
+                             "«refleksleri iyi genç kaleci» · «vizyonu iyi orta saha 20-26 yaş max 100k»",
+                             "Try (Turkish keywords): «sol ayaklı u23 stoper hava topu güçlü» · «serbest kelepir kanat»"))
+                _aa_q = st.text_input("aa", key="aa_q", label_visibility="collapsed",
+                                      placeholder=t("ne aradığını yaz…", "describe who you need…"))
+                if _aa_q and len(_aa_q.strip()) >= 3:
+                    import html as _aa_html
+                    _dil_q = st.session_state.get("dil", "TR")
+                    _esc = lambda x: _aa_html.escape(str(x))
+                    _aa_ozet, _aa_son = akilli_arama(_aa_q)
+                    if _aa_ozet is None:
+                        st.info(t("Kriter çözemedim — mevki/yaş/ayak/bütçe/nitelik kelimeleri kullan (örneklere bak).",
+                                  "Couldn't parse — use position/age/foot/budget/attribute words (see examples)."))
+                    else:
+                        st.markdown("<div style='margin:2px 0 8px;'>" + " ".join(
+                            f"<span style='background:#1e2540;border:1px solid #7c3aed55;border-radius:99px;"
+                            f"padding:3px 10px;font-size:0.72rem;color:#cbd5e1;margin-right:4px;'>{_k}</span>"
+                            for _k in _aa_ozet) + "</div>", unsafe_allow_html=True)
+                        if not _aa_son:
+                            st.warning(t("Bu kriterlerin hepsini karşılayan oyuncu yok — birini gevşetmeyi dene.",
+                                         "No player matches all criteria — try relaxing one."))
+                        else:
+                            _sat_aa = ""
+                            for _r in _aa_son:
+                                _nr = _scotr_renk(_scotr_puan(_r["nihai"])) if _r["nihai"] else "#6b7280"
+                                _cips = " ".join(
+                                    f"<span style='background:#0f1a12;border:1px solid #39FF1433;border-radius:6px;"
+                                    f"padding:1px 7px;font-size:0.68rem;color:#a3e635;'>{_a} <b>{_n}</b></span>"
+                                    for _a, _n in _r["cipler"])
+                                _href = f"?oyuncu={_urlquote(_r['isim'])}&dil={_dil_q}"
+                                _sat_aa += (
+                                    f"<tr>"
+                                    f"<td style='padding:7px 8px;'><a href='{_href}' target='_blank' "
+                                    f"style='color:#e2e8f0;font-weight:700;text-decoration:none;'>{_esc(_r['isim'])}</a>"
+                                    f"<div style='font-size:0.7rem;color:#64748b;'>{_esc(_r['mevki'])} · {_r['yas'] or '—'}</div></td>"
+                                    f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_esc(str(_r['kulup'])[:24])}</td>"
+                                    f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_esc(_r['deger'] or '—')}</td>"
+                                    f"<td style='padding:7px 8px;text-align:center;'><span style='color:{_nr};"
+                                    f"font-weight:800;font-family:monospace;'>{_r['nihai'] or '—'}</span></td>"
+                                    f"<td style='padding:7px 8px;'>{_cips}</td></tr>")
+                            st.markdown(
+                                "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;'>"
+                                f"<thead><tr style='color:#7c3aed;font-size:0.68rem;letter-spacing:0.08em;text-align:left;'>"
+                                f"<th style='padding:4px 8px;'>{t('OYUNCU','PLAYER')}</th><th style='padding:4px 8px;'>{t('KULÜP','CLUB')}</th>"
+                                f"<th style='padding:4px 8px;'>{t('DEĞER','VALUE')}</th><th style='padding:4px 8px;'>{t('NİHAİ','RATING')}</th>"
+                                f"<th style='padding:4px 8px;'>{t('EŞLEŞEN NİTELİKLER','MATCHED ATTRIBUTES')}</th></tr></thead>"
+                                f"<tbody>{_sat_aa}</tbody></table></div>", unsafe_allow_html=True)
 
             # ── Scout Pro: İki sütun düzeni (sidebar + ana alan) ─────────────
             sc_sb, sc_main_col = st.columns([1, 4.6], gap="medium")
