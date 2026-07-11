@@ -3494,9 +3494,9 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
     sonuc = _benzer_oyuncular(hedef_isim, kaynak)
     if not sonuc:
         return
-    st.markdown(f"#### 🔎 {t('Benzer Oyuncular', 'Similar Players')}")
-    st.caption(t("Aynı mevki grubunda yaş, boy, deneyim ve gol/asist profili en yakın 3 oyuncu — "
-                 "yüzde, bu profillerin yakınlık derecesidir",
+    st.markdown(f"#### 🔎 {t('Benzer Oyuncular — Türkiye Ligi', 'Similar Players — Turkish League')}")
+    st.caption(t("Türkiye liginden, aynı mevki grubunda yaş, boy, deneyim ve gol/asist profili "
+                 "en yakın 3 oyuncu — yüzde, profillerin yakınlık derecesidir",
                  "3 closest players in the same position group by age, height, experience and "
                  "goal/assist profile — the percentage is profile closeness"))
     _benzer_kutu_grid(sonuc[:3])
@@ -3586,9 +3586,9 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
     ad = [(s, o) for s, o in ad if _bnorm(o["isim"]) != _bnorm(hedef_isim)]
     if not ad:
         return
-    st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri', 'Similar Transfer Targets')}")
-    st.caption(t("Scouting havuzundan bu oyuncuya profili en yakın 3 aday",
-                 "3 closest scouting-pool candidates to this player's profile"))
+    st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri — Dünya Geneli', 'Similar Transfer Targets — Worldwide')}")
+    st.caption(t("Dünya genelindeki scouting havuzumuzdan bu oyuncuya profili en yakın 3 aday",
+                 "3 closest candidates to this player from our worldwide scouting pool"))
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
                 _takim_kisa(o.get("kulup", "")),
