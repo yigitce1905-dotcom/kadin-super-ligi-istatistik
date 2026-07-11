@@ -49,7 +49,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "DD",
@@ -149,7 +149,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "CD",
@@ -247,7 +247,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DD",
       "Denge": "CC",
       "Güç": "CC",
@@ -348,7 +348,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DD",
       "Denge": "CD",
       "Güç": "CD",
@@ -450,7 +450,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DE",
       "Denge": "CC",
       "Güç": "DD",
@@ -542,7 +542,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "DD",
@@ -630,7 +630,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "DE",
       "Güç": "DE",
@@ -727,7 +727,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "CD",
@@ -819,7 +819,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "DD",
       "Güç": "DD",
@@ -915,7 +915,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DE",
       "Denge": "DE",
       "Güç": "DE",
@@ -1018,7 +1018,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DE",
       "Denge": "DD",
       "Güç": "CD",
@@ -1114,7 +1114,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "DD",
       "Denge": "CC",
       "Güç": "CD",
@@ -1207,7 +1207,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CC",
       "Denge": "DD",
       "Güç": "EE",
@@ -1303,7 +1303,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DD",
       "Denge": "DE",
       "Güç": "DE",
@@ -1390,7 +1390,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DD",
       "Denge": "DD",
       "Güç": "DD",
@@ -1480,7 +1480,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "CD",
@@ -1579,7 +1579,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "DE",
       "Denge": "DE",
       "Güç": "EE",
@@ -1685,7 +1685,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CC",
       "Denge": "DD",
       "Güç": "CD",
@@ -1779,7 +1779,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DD",
       "Denge": "DD",
       "Güç": "DD",
@@ -1870,7 +1870,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "DE",
@@ -1969,7 +1969,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CC",
@@ -2063,7 +2063,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DD",
       "Denge": "CD",
       "Güç": "CD",
@@ -2160,7 +2160,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "DD",
       "Denge": "DE",
       "Güç": "EE",
@@ -2255,7 +2255,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "DE",
       "Güç": "EE",
@@ -2349,7 +2349,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DE",
       "Denge": "DE",
       "Güç": "EE",
@@ -2444,7 +2444,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DE",
       "Denge": "DD",
       "Güç": "DD",
@@ -2537,7 +2537,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DD",
       "Denge": "CD",
       "Güç": "DD",
@@ -2630,7 +2630,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DE",
+      "Çeviklik": "DE",
       "Dayanıklılık": "DD",
       "Denge": "DD",
       "Güç": "DD",
@@ -2721,7 +2721,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CD",
       "Denge": "DD",
       "Güç": "DE",
@@ -2813,7 +2813,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "DD",
       "Denge": "DE",
       "Güç": "EE",
@@ -2906,7 +2906,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "CC",
@@ -3012,7 +3012,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CD",
       "Denge": "AB",
       "Güç": "AB",
@@ -3118,7 +3118,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "DD",
       "Denge": "BB",
       "Güç": "BC",
@@ -3224,7 +3224,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "BC",
@@ -3326,7 +3326,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "A+",
       "Denge": "A+",
       "Güç": "BB",
@@ -3418,7 +3418,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AB",
@@ -3515,7 +3515,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "BC",
@@ -3610,7 +3610,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BB",
@@ -3706,7 +3706,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "CC",
@@ -3802,7 +3802,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "AB",
@@ -3895,7 +3895,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BC",
@@ -3990,7 +3990,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "AB",
@@ -4085,7 +4085,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "A+",
       "Güç": "A+",
@@ -4185,7 +4185,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -4284,7 +4284,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -4379,7 +4379,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -4475,7 +4475,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -4571,7 +4571,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -4668,7 +4668,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -4764,7 +4764,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -4860,7 +4860,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BB",
@@ -4959,7 +4959,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "BB",
@@ -5058,7 +5058,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -5155,7 +5155,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "AA",
@@ -5260,7 +5260,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CC",
@@ -5356,7 +5356,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "AB",
@@ -5449,7 +5449,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -5542,7 +5542,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -5636,7 +5636,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -5727,7 +5727,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AA",
@@ -5834,7 +5834,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AB",
@@ -5940,7 +5940,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -6044,7 +6044,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "A+",
       "Güç": "A+",
@@ -6143,7 +6143,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -6274,7 +6274,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AA",
@@ -6371,7 +6371,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "AA",
@@ -6498,7 +6498,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -6592,7 +6592,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BC",
@@ -6687,7 +6687,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "AB",
@@ -6784,7 +6784,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -6876,7 +6876,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -6966,7 +6966,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -7057,7 +7057,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AA",
@@ -7150,7 +7150,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "BC",
@@ -7244,7 +7244,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "BC",
@@ -7339,7 +7339,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AA",
@@ -7434,7 +7434,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -7527,7 +7527,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "AB",
@@ -7618,7 +7618,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CD",
@@ -7715,7 +7715,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -7807,7 +7807,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "DD",
       "Denge": "DD",
       "Güç": "DD",
@@ -7911,7 +7911,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "DE",
       "Denge": "CD",
       "Güç": "DD",
@@ -8016,7 +8016,7 @@
       "Görüş": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CD",
       "Denge": "DD",
       "Güç": "CC",
@@ -8106,7 +8106,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -8451,7 +8451,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "BC",
@@ -8547,7 +8547,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "BC",
@@ -8756,7 +8756,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "CC",
@@ -8893,7 +8893,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CC",
       "Denge": "DD",
       "Güç": "BC",
@@ -9217,7 +9217,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -9314,7 +9314,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "CC",
       "Güç": "BC",
@@ -9411,7 +9411,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -9610,7 +9610,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "CD",
@@ -10865,7 +10865,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CD",
@@ -10983,7 +10983,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CD",
@@ -11062,7 +11062,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "CD",
@@ -11141,7 +11141,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "BC",
@@ -11300,7 +11300,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "DD",
       "Güç": "DD",
@@ -11911,7 +11911,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -12031,7 +12031,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -12150,7 +12150,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CC",
@@ -12269,7 +12269,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -12347,7 +12347,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BB",
@@ -12427,7 +12427,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BB",
@@ -12558,7 +12558,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -12961,7 +12961,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CD",
       "Denge": "DD",
       "Güç": "DE",
@@ -13252,7 +13252,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BC",
@@ -13411,7 +13411,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "BB",
@@ -13687,7 +13687,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "DE",
@@ -13892,7 +13892,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AB",
@@ -14034,7 +14034,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -14233,7 +14233,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "DE",
@@ -14311,7 +14311,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "BC",
@@ -14671,7 +14671,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BC",
@@ -14750,7 +14750,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BB",
@@ -15234,7 +15234,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "EE",
@@ -15518,7 +15518,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CD",
@@ -15717,7 +15717,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -16159,7 +16159,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -16279,7 +16279,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "BC",
@@ -16398,7 +16398,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "CD",
@@ -16476,7 +16476,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CC",
@@ -16676,7 +16676,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CD",
@@ -16876,7 +16876,7 @@
       "Topsuz Alan": "EE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "EE",
       "Denge": "EE",
       "Güç": "FF",
@@ -17010,7 +17010,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -17144,7 +17144,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "BB",
@@ -18111,7 +18111,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "CC",
@@ -18513,7 +18513,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "CC",
@@ -18590,7 +18590,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -18710,7 +18710,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "AB",
       "Güç": "DE",
@@ -18911,7 +18911,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CC",
@@ -19548,7 +19548,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "DD",
       "Denge": "CC",
       "Güç": "EE",
@@ -19625,7 +19625,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BB",
@@ -19986,7 +19986,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AA",
@@ -20093,7 +20093,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AB",
@@ -20197,7 +20197,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "AB",
@@ -20302,7 +20302,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -20395,7 +20395,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AB",
@@ -20489,7 +20489,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -20579,7 +20579,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -20675,7 +20675,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -20768,7 +20768,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BB",
@@ -20864,7 +20864,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "AA",
@@ -20958,7 +20958,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -21050,7 +21050,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -21146,7 +21146,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "A+",
       "Denge": "AA",
       "Güç": "A+",
@@ -21242,7 +21242,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -21336,7 +21336,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -21434,7 +21434,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -21529,7 +21529,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "BC",
@@ -21627,7 +21627,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -21722,7 +21722,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -21818,7 +21818,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "AB",
@@ -21911,7 +21911,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -22006,7 +22006,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -22102,7 +22102,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -22198,7 +22198,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "BC",
@@ -22296,7 +22296,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AB",
@@ -22401,7 +22401,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AB",
@@ -22509,7 +22509,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "AB",
@@ -22615,7 +22615,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -22711,7 +22711,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -22805,7 +22805,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "CC",
@@ -22899,7 +22899,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -22990,7 +22990,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AA",
@@ -23086,7 +23086,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AB",
@@ -23180,7 +23180,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "AA",
@@ -23273,7 +23273,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "DD",
@@ -23368,7 +23368,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -23460,7 +23460,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "A+",
       "Denge": "AA",
       "Güç": "A+",
@@ -23556,7 +23556,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -23651,7 +23651,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "BC",
@@ -23749,7 +23749,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "BC",
@@ -23847,7 +23847,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AA",
@@ -23944,7 +23944,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -24036,7 +24036,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AA",
@@ -24131,7 +24131,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -24226,7 +24226,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AA",
@@ -24323,7 +24323,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "BC",
@@ -24419,7 +24419,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -24514,7 +24514,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -24609,7 +24609,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -24707,7 +24707,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -24803,7 +24803,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AA",
@@ -24905,7 +24905,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AB",
@@ -25007,7 +25007,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "AB",
@@ -25109,7 +25109,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AA",
@@ -25196,7 +25196,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -25283,7 +25283,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BB",
@@ -25371,7 +25371,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CD",
@@ -25461,7 +25461,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -25548,7 +25548,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -25635,7 +25635,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AB",
@@ -25722,7 +25722,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -25809,7 +25809,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CD",
@@ -25896,7 +25896,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -25983,7 +25983,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "AA",
@@ -26070,7 +26070,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "A+",
       "Güç": "A+",
@@ -26157,7 +26157,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -26244,7 +26244,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -26331,7 +26331,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AA",
@@ -26418,7 +26418,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -26505,7 +26505,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -26592,7 +26592,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -26679,7 +26679,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AA",
@@ -26787,7 +26787,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "AA",
       "Güç": "AB",
@@ -26889,7 +26889,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -26993,7 +26993,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -27089,7 +27089,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "BC",
@@ -27185,7 +27185,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -27277,7 +27277,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BC",
@@ -27372,7 +27372,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BB",
@@ -27467,7 +27467,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AA",
@@ -27566,7 +27566,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -27660,7 +27660,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -27752,7 +27752,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CD",
@@ -27851,7 +27851,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BC",
@@ -27946,7 +27946,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -28044,7 +28044,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -28140,7 +28140,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -28235,7 +28235,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "A+",
       "Güç": "A+",
@@ -28333,7 +28333,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "A+",
@@ -28428,7 +28428,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AA",
@@ -28523,7 +28523,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "BC",
@@ -28627,7 +28627,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "AB",
@@ -28729,7 +28729,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "CD",
@@ -28834,7 +28834,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "CC",
@@ -28936,7 +28936,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "BC",
       "Güç": "AB",
@@ -29038,7 +29038,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "AB",
@@ -29140,7 +29140,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BC",
       "Güç": "CC",
@@ -29241,7 +29241,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "CD",
@@ -29339,7 +29339,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "AB",
@@ -29441,7 +29441,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "BC",
@@ -29541,7 +29541,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "CD",
@@ -29643,7 +29643,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -29745,7 +29745,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -29847,7 +29847,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "AB",
       "Güç": "CC",
@@ -29950,7 +29950,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BB",
@@ -30046,7 +30046,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -30145,7 +30145,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -30246,7 +30246,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "BB",
@@ -30339,7 +30339,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AB",
@@ -30439,7 +30439,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "AB",
@@ -30538,7 +30538,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "CC",
@@ -30640,7 +30640,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -30739,7 +30739,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "CD",
@@ -30842,7 +30842,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "AB",
@@ -30943,7 +30943,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "AB",
@@ -31045,7 +31045,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CC",
@@ -31148,7 +31148,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "AB",
       "Güç": "BB",
@@ -31243,7 +31243,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "AB",
@@ -31342,7 +31342,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "CD",
@@ -31429,7 +31429,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AA",
       "Denge": "CC",
       "Güç": "CD",
@@ -31534,7 +31534,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "BC",
@@ -31639,7 +31639,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "AB",
@@ -31744,7 +31744,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "AA",
@@ -31842,7 +31842,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "AB",
@@ -31942,7 +31942,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AA",
       "Denge": "CC",
       "Güç": "BB",
@@ -32040,7 +32040,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "AA",
@@ -32143,7 +32143,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "AB",
@@ -32242,7 +32242,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "AA",
@@ -32343,7 +32343,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AA",
+      "Çeviklik": "AA",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "BB",
@@ -32445,7 +32445,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "AA",
@@ -32548,7 +32548,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "AA",
@@ -32648,7 +32648,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "AA",
@@ -32751,7 +32751,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -32858,7 +32858,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "CD",
@@ -32953,7 +32953,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -33050,7 +33050,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -33153,7 +33153,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "BB",
       "Güç": "CD",
@@ -33255,7 +33255,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "BC",
@@ -33353,7 +33353,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "CC",
@@ -33453,7 +33453,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "BC",
@@ -33554,7 +33554,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -33652,7 +33652,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AB",
@@ -33753,7 +33753,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "BB",
@@ -33854,7 +33854,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "AA",
@@ -33953,7 +33953,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "AA",
@@ -34049,7 +34049,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "A+",
+      "Çeviklik": "A+",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "AB",
@@ -34154,7 +34154,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CC",
@@ -34260,7 +34260,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CD",
@@ -34365,7 +34365,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -34467,7 +34467,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BC",
@@ -34569,7 +34569,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "BC",
@@ -34671,7 +34671,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "BB",
@@ -34772,7 +34772,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "CC",
       "Güç": "BC",
@@ -34874,7 +34874,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "AB",
@@ -34978,7 +34978,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "CD",
@@ -35077,7 +35077,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CC",
@@ -35176,7 +35176,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "AB",
@@ -35276,7 +35276,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -35377,7 +35377,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "AB",
@@ -35481,7 +35481,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "AB",
@@ -35585,7 +35585,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -35685,7 +35685,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CC",
       "Denge": "AB",
       "Güç": "AB",
@@ -35785,7 +35785,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "BB",
@@ -35887,7 +35887,7 @@
       "Görüş": "A+"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CD",
@@ -35991,7 +35991,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BB",
@@ -36088,7 +36088,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "BC",
@@ -36189,7 +36189,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BC",
@@ -36286,7 +36286,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "CD",
@@ -36385,7 +36385,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BB",
@@ -36482,7 +36482,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "BC",
@@ -36578,7 +36578,7 @@
       "Görüş": "AA"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "CD",
@@ -36676,7 +36676,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "CD",
@@ -36780,7 +36780,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "A+",
       "Denge": "BC",
       "Güç": "AB",
@@ -36886,7 +36886,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "BC",
       "Güç": "AB",
@@ -36991,7 +36991,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "CC",
@@ -37093,7 +37093,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "CC",
@@ -37197,7 +37197,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "CD",
@@ -37298,7 +37298,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "BB",
       "Güç": "BC",
@@ -37398,7 +37398,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AA",
       "Denge": "BC",
       "Güç": "CD",
@@ -37498,7 +37498,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "A+",
       "Denge": "AB",
       "Güç": "BC",
@@ -37601,7 +37601,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "A+",
       "Denge": "CC",
       "Güç": "CD",
@@ -37695,7 +37695,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "AB",
       "Güç": "CC",
@@ -37796,7 +37796,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "A+",
       "Denge": "CC",
       "Güç": "CD",
@@ -37898,7 +37898,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BC",
       "Güç": "CC",
@@ -38004,7 +38004,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "A+",
       "Denge": "CC",
       "Güç": "CD",
@@ -38104,7 +38104,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AB",
       "Güç": "CD",
@@ -38209,7 +38209,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AA",
       "Denge": "BC",
       "Güç": "CD",
@@ -38309,7 +38309,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "AB",
@@ -38406,7 +38406,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "A+",
       "Denge": "CD",
       "Güç": "CC",
@@ -38508,7 +38508,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AA",
       "Denge": "BC",
       "Güç": "BB",
@@ -38610,7 +38610,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "A+",
       "Denge": "BB",
       "Güç": "CD",
@@ -38711,7 +38711,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "CC",
       "Güç": "BB",
@@ -38810,7 +38810,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "A+",
       "Denge": "CC",
       "Güç": "CD",
@@ -38910,7 +38910,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "CC",
       "Güç": "BB",
@@ -39009,7 +39009,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "A+",
       "Denge": "BB",
       "Güç": "AB",
@@ -39107,7 +39107,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "BC",
@@ -39202,7 +39202,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BB",
@@ -39348,7 +39348,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -39425,7 +39425,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -39541,7 +39541,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BB",
@@ -39618,7 +39618,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "DD",
@@ -39695,7 +39695,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -39811,7 +39811,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CC",
@@ -39888,7 +39888,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -39965,7 +39965,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "DD",
       "Güç": "DD",
@@ -40042,7 +40042,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "BB",
@@ -40158,7 +40158,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -40275,7 +40275,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -40352,7 +40352,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -40429,7 +40429,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -40506,7 +40506,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "AB",
       "Güç": "BC",
@@ -40583,7 +40583,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "BB",
@@ -40660,7 +40660,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "BC",
@@ -40737,7 +40737,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -40815,7 +40815,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -40908,7 +40908,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -41162,7 +41162,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -41239,7 +41239,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "CC",
       "Güç": "BC",
@@ -41316,7 +41316,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -41393,7 +41393,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -41470,7 +41470,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CD",
@@ -41547,7 +41547,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CD",
@@ -41741,7 +41741,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BB",
@@ -41857,7 +41857,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BB",
@@ -41934,7 +41934,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "CC",
       "Güç": "BC",
@@ -42011,7 +42011,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BC",
@@ -42088,7 +42088,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "BC",
@@ -42204,7 +42204,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "AB",
@@ -42281,7 +42281,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "AB",
@@ -42358,7 +42358,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BB",
@@ -42435,7 +42435,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BB",
@@ -42551,7 +42551,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CC",
@@ -42667,7 +42667,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CC",
       "Denge": "AB",
       "Güç": "AB",
@@ -42784,7 +42784,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -42984,7 +42984,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "CC",
@@ -43061,7 +43061,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CC",
@@ -43138,7 +43138,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -43215,7 +43215,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "BC",
       "Güç": "CC",
@@ -43331,7 +43331,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "DD",
@@ -43408,7 +43408,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "DD",
@@ -43485,7 +43485,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -43562,7 +43562,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -43678,7 +43678,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "CC",
@@ -43755,7 +43755,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "CD",
@@ -43832,7 +43832,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "DD",
@@ -43909,7 +43909,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CD",
@@ -43986,7 +43986,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CD",
@@ -44063,7 +44063,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CC",
@@ -44140,7 +44140,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CC",
@@ -44217,7 +44217,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CC",
@@ -44294,7 +44294,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CD",
@@ -44371,7 +44371,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -44448,7 +44448,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -44525,7 +44525,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -44602,7 +44602,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "AB",
       "Güç": "CC",
@@ -44679,7 +44679,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CD",
@@ -44756,7 +44756,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CC",
@@ -45112,7 +45112,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "BB",
@@ -45189,7 +45189,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "CD",
       "Güç": "AB",
@@ -45266,7 +45266,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "BC",
@@ -45382,7 +45382,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CC",
@@ -45576,7 +45576,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "BC",
@@ -45653,7 +45653,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "DD",
@@ -46043,7 +46043,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CC",
@@ -46120,7 +46120,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "CD",
@@ -46237,7 +46237,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "CC",
@@ -46330,7 +46330,7 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "BC",
@@ -46488,7 +46488,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BC",
@@ -46565,7 +46565,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BB",
@@ -46642,7 +46642,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CD",
@@ -46719,7 +46719,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -46796,7 +46796,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BC",
@@ -46873,7 +46873,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CC",
@@ -46950,7 +46950,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "AB",
       "Denge": "CC",
       "Güç": "DD",
@@ -47066,7 +47066,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CD",
@@ -47143,7 +47143,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CC",
@@ -47220,7 +47220,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "DD",
@@ -47336,7 +47336,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "BC",
@@ -47413,7 +47413,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -47490,7 +47490,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "CC",
@@ -47567,7 +47567,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BC",
@@ -47683,7 +47683,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "DD",
@@ -47760,7 +47760,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "A+",
@@ -47837,7 +47837,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "BB",
       "Güç": "BB",
@@ -47914,7 +47914,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CC",
@@ -47991,7 +47991,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -48068,7 +48068,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "CC",
@@ -48145,7 +48145,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "CC",
@@ -48384,7 +48384,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "AB",
@@ -48734,7 +48734,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "CC",
@@ -48811,7 +48811,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "BB",
       "Denge": "DD",
       "Güç": "BB",
@@ -48888,7 +48888,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -49199,7 +49199,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "DD",
@@ -49276,7 +49276,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CD",
@@ -49393,7 +49393,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "DE",
       "Denge": "CC",
       "Güç": "BC",
@@ -49486,7 +49486,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "DD",
       "Denge": "CD",
       "Güç": "CC",
@@ -49632,7 +49632,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BB",
@@ -49710,7 +49710,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -49787,7 +49787,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "AB",
       "Denge": "CC",
       "Güç": "BC",
@@ -49864,7 +49864,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -49941,7 +49941,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CD",
       "Güç": "BC",
@@ -50019,7 +50019,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "CC",
@@ -50096,7 +50096,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CD",
       "Denge": "DE",
       "Güç": "FF",
@@ -50253,7 +50253,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "BC",
       "Güç": "CC",
@@ -50330,7 +50330,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BB",
@@ -50408,7 +50408,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CD",
@@ -50485,7 +50485,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "CD",
@@ -50563,7 +50563,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "DD",
       "Denge": "CD",
       "Güç": "CC",
@@ -50679,7 +50679,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BB",
@@ -50796,7 +50796,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BC",
@@ -50874,7 +50874,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CC",
@@ -50952,7 +50952,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BC",
       "Güç": "BC",
@@ -51030,7 +51030,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "BB",
       "Güç": "BB",
@@ -51108,7 +51108,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -51186,7 +51186,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CC",
@@ -51263,7 +51263,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "BC",
@@ -51620,7 +51620,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "CC",
@@ -51970,7 +51970,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CC",
@@ -52242,7 +52242,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BB",
       "Güç": "CC",
@@ -52319,7 +52319,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "CD",
@@ -52513,7 +52513,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "CD",
@@ -52792,7 +52792,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "CC",
@@ -52910,7 +52910,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "CC",
@@ -53188,7 +53188,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "DD",
       "Güç": "EE",
@@ -53307,7 +53307,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "CD",
@@ -53385,7 +53385,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "AB",
+      "Çeviklik": "AB",
       "Dayanıklılık": "CD",
       "Denge": "BC",
       "Güç": "DD",
@@ -53503,7 +53503,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BC",
@@ -53781,7 +53781,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "DD",
       "Denge": "BB",
       "Güç": "CC",
@@ -54057,7 +54057,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "CD",
       "Denge": "CC",
       "Güç": "CC",
@@ -54207,7 +54207,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CD",
       "Denge": "CD",
       "Güç": "BC",
@@ -54300,7 +54300,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
       "Denge": "BB",
       "Güç": "BB",
@@ -54378,7 +54378,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BB",
@@ -54455,7 +54455,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CC",
@@ -54532,7 +54532,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "DD",
@@ -54609,7 +54609,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "BC",
@@ -54766,7 +54766,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "CD",
@@ -54884,7 +54884,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "DD",
       "Güç": "FF",
@@ -54962,7 +54962,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CD",
@@ -55040,7 +55040,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -55118,7 +55118,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "DD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "BC",
@@ -55196,7 +55196,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "BC",
       "Denge": "BC",
       "Güç": "BC",
@@ -55314,7 +55314,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BC",
       "Denge": "CC",
       "Güç": "CC",
@@ -55392,7 +55392,7 @@
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "CC",
       "Güç": "CD",
@@ -55589,7 +55589,7 @@
       "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CD",
       "Güç": "CC",
@@ -55668,7 +55668,7 @@
       "Görüş": "AB"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AA",
       "Denge": "AA",
       "Güç": "AB",
@@ -55763,7 +55763,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "BB",
       "Denge": "BB",
       "Güç": "BB",
@@ -55854,7 +55854,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "BC",
       "Güç": "BB",
@@ -55946,7 +55946,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "DD",
       "Denge": "AB",
       "Güç": "AB",
@@ -56051,7 +56051,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "CC",
       "Denge": "CC",
       "Güç": "BC",
@@ -56157,7 +56157,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "DE",
       "Denge": "CD",
       "Güç": "CC",
@@ -56261,7 +56261,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BB",
+      "Çeviklik": "BB",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "BB",
@@ -56366,7 +56366,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "DD",
       "Denge": "BC",
       "Güç": "BB",
@@ -56472,7 +56472,7 @@
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "CC",
+      "Çeviklik": "CC",
       "Dayanıklılık": "DD",
       "Denge": "AB",
       "Güç": "BB",
@@ -56578,7 +56578,7 @@
       "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "BB",
       "Güç": "CC",
@@ -56687,7 +56687,7 @@
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik/Refleks": "BC",
+      "Çeviklik": "BC",
       "Dayanıklılık": "AB",
       "Denge": "BC",
       "Güç": "BB",
