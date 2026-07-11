@@ -4191,38 +4191,38 @@ def rol_uygunluk_goster(isim: str):
 
 # ─── AKILLI ARAMA — serbest metin → filtre (kural tabanlı, API'siz, ms hızında) ─
 _AA_MEVKI = [
-    (("kaleci", "kalecisi", " gk "), {"GK"}),
-    (("stoper",), {"LCB", "RCB", "MCB"}),
-    (("sol bek",), {"LFB", "LWB"}),
-    (("sağ bek", "sag bek"), {"RFB", "RWB"}),
-    (("bek",), {"LFB", "RFB", "LWB", "RWB"}),
-    (("6 numara", "ön libero", "defansif orta"), {"DMF"}),
-    (("10 numara", "ofansif orta"), {"AMF"}),
-    (("orta saha", "merkez orta"), {"CMF", "DMF", "AMF"}),
-    (("sol kanat",), {"LWF"}),
-    (("sağ kanat", "sag kanat"), {"RWF"}),
-    (("kanat",), {"LWF", "RWF"}),
-    (("santrafor", "forvet", "striker"), {"CFW", "2ST"}),
+    (("kaleci", "kalecisi", " gk ", "goalkeeper", "keeper"), {"GK"}),
+    (("stoper", "centre back", "center back", "central defender", " cb "), {"LCB", "RCB", "MCB"}),
+    (("sol bek", "left back", "left-back", " lb "), {"LFB", "LWB"}),
+    (("sağ bek", "sag bek", "right back", "right-back", " rb "), {"RFB", "RWB"}),
+    (("bek", "full back", "fullback", "full-back"), {"LFB", "RFB", "LWB", "RWB"}),
+    (("6 numara", "ön libero", "defansif orta", "defensive mid", "holding mid", " dm "), {"DMF"}),
+    (("10 numara", "ofansif orta", "attacking mid", " am ", "number 10"), {"AMF"}),
+    (("orta saha", "merkez orta", "midfielder", "central mid", " cm "), {"CMF", "DMF", "AMF"}),
+    (("sol kanat", "left wing"), {"LWF"}),
+    (("sağ kanat", "sag kanat", "right wing"), {"RWF"}),
+    (("kanat", "winger", "wide player"), {"LWF", "RWF"}),
+    (("santrafor", "forvet", "striker", "forward", "centre forward", "center forward", " cf ", " st "), {"CFW", "2ST"}),
 ]
 _AA_NITELIK = [
-    (("hava topu", "hava hakimiyeti", "kafa vuruşu", "kafası"), ["beceri:Kafa Vuruşu", "K:Hava Hakimiyeti"]),
-    (("top kapma",), ["beceri:Top Kapma"]),
-    (("duran top", "frikik"), ["beceri:Duran Top"]),
-    (("uzaktan şut", "şut gücü", "şutu"), ["beceri:Uzaktan Şut"]),
-    (("refleks", "kurtarış"), ["K:Çizgi Hakimiyeti"]),
-    (("ayağı iyi", "ayak işi", "ayakla oyun"), ["K:Ayak ile Oyun Kurma - Kısa", "beceri:Top Tekniği"]),
-    (("hızlı", "sürat", "süratli"), ["fiziki:Sürat", "fiziki:Hızlanma"]),
-    (("paslı", "pasör", "pas kalitesi"), ["beceri:Kısa Pas"]),
-    (("bitirici", "golcü", "gol yeteneği"), ["beceri:Bitiricilik"]),
-    (("teknik", "çalım", "dripling"), ["beceri:Top Tekniği", "beceri:Top Sürme"]),
-    (("fizikli", "kuvvetli", "gücü yüksek"), ["fiziki:Güç"]),
-    (("dayanıklı", "motoru"), ["fiziki:Dayanıklılık"]),
-    (("lider",), ["beseri:Liderlik"]),
-    (("agresif", "sert oyun"), ["beseri:Agresiflik"]),
-    (("markaj",), ["beceri:Markaj"]),
-    (("vizyon", "oyun görüşü", "oyun kurucu"), ["beseri:Görüş", "beceri:Kısa Pas"]),
-    (("soğukkanlı",), ["beseri:Soğukkanlılık"]),
-    (("çalışkan", "presli", "pres gücü"), ["sahsi:Çalışkanlık"]),
+    (("hava topu", "hava hakimiyeti", "kafa vuruşu", "kafası", "aerial", "heading", "in the air"), ["beceri:Kafa Vuruşu", "K:Hava Hakimiyeti"]),
+    (("top kapma", "tackl"), ["beceri:Top Kapma"]),
+    (("duran top", "frikik", "set piece", "free kick"), ["beceri:Duran Top"]),
+    (("uzaktan şut", "şut gücü", "şutu", "long shot", "long range"), ["beceri:Uzaktan Şut"]),
+    (("refleks", "kurtarış", "reflex", "shot stopp", "shot-stopp"), ["K:Çizgi Hakimiyeti"]),
+    (("ayağı iyi", "ayak işi", "ayakla oyun", "good with feet", "distribution"), ["K:Ayak ile Oyun Kurma - Kısa", "beceri:Top Tekniği"]),
+    (("hızlı", "sürat", "süratli", "fast", "quick", "pacey", "pacy", "rapid", "speedy"), ["fiziki:Sürat", "fiziki:Hızlanma"]),
+    (("paslı", "pasör", "pas kalitesi", "passing", "passer"), ["beceri:Kısa Pas"]),
+    (("bitirici", "golcü", "gol yeteneği", "finisher", "finishing", "clinical", "goalscorer", "goal scorer", "scorer"), ["beceri:Bitiricilik"]),
+    (("teknik", "çalım", "dripling", "technical", "dribbl", "skilful", "skillful"), ["beceri:Top Tekniği", "beceri:Top Sürme"]),
+    (("fizikli", "kuvvetli", "gücü yüksek", "strong", "strength", "physical"), ["fiziki:Güç"]),
+    (("dayanıklı", "motoru", "stamina", "engine", "endurance"), ["fiziki:Dayanıklılık"]),
+    (("lider", "leader", "captain"), ["beseri:Liderlik"]),
+    (("agresif", "sert oyun", "aggressive"), ["beseri:Agresiflik"]),
+    (("markaj", "marking"), ["beceri:Markaj"]),
+    (("vizyon", "oyun görüşü", "oyun kurucu", "vision", "creative", "playmak"), ["beseri:Görüş", "beceri:Kısa Pas"]),
+    (("soğukkanlı", "composed", "composure", "calm"), ["beseri:Soğukkanlılık"]),
+    (("çalışkan", "presli", "pres gücü", "work rate", "hardworking", "hard-working", "pressing"), ["sahsi:Çalışkanlık"]),
 ]
 
 def _aa_deger_eur(v):
@@ -4276,22 +4276,31 @@ def akilli_arama(q: str, n: int = 15):
         if m: yas_min = yas_max = int(m.group(1))
         m = _re.search(r"\b(1[6-9]|[23]\d|4[0-5])\s*alt[ıi]\b", s)  # '25 altı' (yaşsız kısayol)
         if m and "bin" not in s: yas_max = int(m.group(1))
-    if ("genç" in s or "genc " in s) and not yas_max: yas_max = 23
-    if ("tecrübeli" in s or "tecrubeli" in s or "deneyimli" in s) and not yas_min: yas_min = 28
+    m = _re.search(r"under\s*(\d{2})", s)                          # under 23
+    if m: yas_max = int(m.group(1))
+    m = _re.search(r"over\s*(\d{2})\b(?!\s*k)", s)                 # over 28 ('over 50k' değil)
+    if m: yas_min = int(m.group(1))
+    m = _re.search(r"between\s*(\d{2})\s*and\s*(\d{2})", s)       # between 20 and 26
+    if m: yas_min, yas_max = int(m.group(1)), int(m.group(2))
+    if yas_min is None and yas_max is None:
+        m = _re.search(r"(?:aged?\s*(\d{2})\b|(\d{2})\s*years?\s*old)", s)
+        if m: yas_min = yas_max = int(m.group(1) or m.group(2))     # aged 24 / 24 years old
+    if ("genç" in s or "genc " in s or "young" in s) and not yas_max: yas_max = 23
+    if ("tecrübeli" in s or "tecrubeli" in s or "deneyimli" in s or "experienced" in s) and not yas_min: yas_min = 28
     if yas_max: ozet.append(f"🎂 ≤{yas_max}")
     if yas_min: ozet.append(f"🎂 ≥{yas_min}")
-    ayak = ("Sol" if "sol ayak" in s else
-            "Sağ" if ("sağ ayak" in s or "sag ayak" in s) else None)
+    ayak = ("Sol" if ("sol ayak" in s or "left foot" in s or "left-foot" in s) else
+            "Sağ" if ("sağ ayak" in s or "sag ayak" in s or "right foot" in s or "right-foot" in s) else None)
     if ayak: ozet.append(f"🦶 {ayak}")
     butce = None
     m = _re.search(r"(?:max|maks|en fazla|altı|alti)?\s*€?\s*(\d+)\s*(k|bin)\b", s)
     if m: butce = int(m.group(1)) * 1000
     if butce: ozet.append("💰 ≤€" + f"{butce:,}".replace(",", "."))
-    serbest = any(k in s for k in ("serbest", "bedava", "bonservissiz"))
+    serbest = any(k in s for k in ("serbest", "bedava", "bonservissiz", "free agent", "free transfer"))
     if serbest: ozet.append("🆓 Serbest")
-    kelepir = any(k in s for k in ("kelepir", "ucuz", "fırsat", "f/p"))
+    kelepir = any(k in s for k in ("kelepir", "ucuz", "fırsat", "f/p", "bargain", "cheap", "value for money", "undervalued"))
     if kelepir: ozet.append("💎 F/P sıralı")
-    istekli = "istekli" in s
+    istekli = "istekli" in s or "willing" in s
     if istekli: ozet.append("🇹🇷 TR'ye istekli")
     nit_krit = []
     for kelimeler, attrs in _AA_NITELIK:
@@ -7171,7 +7180,8 @@ if st.session_state.get("sayfa") == "scouting":
             with st.expander(f"🤖 {t('Akıllı Arama — serbest metinle oyuncu bul','Smart Search — find players in plain words')}"):
                 st.caption(t("Örnek: «sol ayaklı u23 stoper hava topu güçlü» · «serbest kelepir kanat» · "
                              "«refleksleri iyi genç kaleci» · «vizyonu iyi orta saha 20-26 yaş max 100k»",
-                             "Try (Turkish keywords): «sol ayaklı u23 stoper hava topu güçlü» · «serbest kelepir kanat»"))
+                             "Try: «left-footed u23 centre back good in the air» · «free agent bargain winger» · "
+                             "«young keeper with reflexes» · «creative midfielder between 20 and 26 max 100k»"))
                 _aa_q = st.text_input("aa", key="aa_q", label_visibility="collapsed",
                                       placeholder=t("ne aradığını yaz…", "describe who you need…"))
                 if _aa_q and len(_aa_q.strip()) >= 3:
