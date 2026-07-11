@@ -4478,6 +4478,20 @@ def tr_gorus_goster(x):
 
 
 @st.cache_data(ttl=604800, show_spinner=False)
+def _not_dili(metin: str) -> str:
+    """Kaba dil algılama: notlar excel'de bazen TR bazen EN yazılıyor (Baran).
+    TR'ye özgü harf varsa kesin TR; yoksa yaygın kelime sayımıyla karar."""
+    m = " " + (metin or "").casefold() + " "
+    if any(c in m for c in "çğışöü"):
+        return "tr"
+    tr_p = sum(1 for k in (" ve ", " bir ", " ama ", " gibi ", " kadar ", " oyuncu", " takim")
+               if k in m)
+    en_p = sum(1 for k in (" the ", " and ", " with ", " she ", " her ", " is ", " has ",
+                           " very ", " player", " team ", " a ", " of ") if k in m)
+    return "tr" if tr_p > en_p else "en"
+
+
+@st.cache_data(show_spinner=False, max_entries=1024)
 def _tr_en_ceviri(metin: str) -> str:
     """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata → orijinal TR.
     Kadın futbolu: Google TR cinsiyetsiz 'o'yu 'he' çevirdiği için eril zamirler dişile çekilir."""
@@ -4494,12 +4508,27 @@ def _tr_en_ceviri(metin: str) -> str:
     except Exception:
         return metin
 
-def scout_notu_goster(metin) -> str:
-    """EN modda scout notunu (serbest metin) İngilizceye çevirir; TR modda aynen döner."""
-    metin = (metin or "").strip()
-    if not metin or not EN:
+
+@st.cache_data(show_spinner=False, max_entries=1024)
+def _en_tr_ceviri(metin: str) -> str:
+    """Serbest EN metni TR'ye çevirir. Hata → orijinal EN."""
+    try:
+        from deep_translator import GoogleTranslator
+        return GoogleTranslator(source="en", target="tr").translate(metin) or metin
+    except Exception:
         return metin
-    return _tr_en_ceviri(metin)
+
+
+def scout_notu_goster(metin) -> str:
+    """Scout notunu arayüz diline getirir. Not excel'de TR de yazılmış olabilir EN de —
+    dili algılar, gerekirse çevirir: TR modda hep Türkçe, EN modda hep İngilizce."""
+    metin = (metin or "").strip()
+    if not metin:
+        return metin
+    dil = _not_dili(metin)
+    if EN:
+        return metin if dil == "en" else _tr_en_ceviri(metin)
+    return metin if dil == "tr" else _en_tr_ceviri(metin)
 
 
 def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
