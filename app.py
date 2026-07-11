@@ -1686,6 +1686,24 @@ def birlesik_scout_yukle() -> dict:
         out.setdefault(k, v)                  # çakışmada Dünya kaydı korunur
     return out
 
+
+@st.cache_data(show_spinner=False)
+def _scout_norm_harita() -> dict:
+    """Diakritiksiz-küçük isim → gerçek anahtar (KARLİCİC ↔ KARLIČIĆ eşleşsin)."""
+    import unicodedata as _ud
+    def _n(s):
+        s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+        return " ".join(s.casefold().split())
+    return {_n(k): k for k in birlesik_scout_yukle()}
+
+
+def _scout_norm_bul(isim: str):
+    """İsmi normalize ederek scout kaydını bulur (birebir eşleşme yoksa)."""
+    import unicodedata as _ud
+    s = _ud.normalize("NFKD", str(isim)).encode("ascii", "ignore").decode()
+    anahtar = _scout_norm_harita().get(" ".join(s.casefold().split()))
+    return birlesik_scout_yukle().get(anahtar) if anahtar else None
+
 def scouting_detay_yukle() -> dict:
     """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
     yol = pathlib.Path(__file__).parent / "scouting_detay.json"
@@ -2910,6 +2928,56 @@ _ULKE_TR = {}
 for _tr_ad, _en_ad in _ULKE_EN.items():
     _ULKE_TR.setdefault(_en_ad, _tr_ad)
 
+# ── Ülke bayrakları (TR+EN ad → ISO2; iki yazım da aynı bayrağa) ─────────────
+_ULKE_ISO = {
+ "ABD":"US","USA":"US","United States":"US","Türkiye":"TR","Turkey":"TR",
+ "Almanya":"DE","Germany":"DE","Fransa":"FR","France":"FR","İtalya":"IT","Italy":"IT",
+ "İspanya":"ES","Spain":"ES","İngiltere":"GB","England":"GB","İskoçya":"GB","Scottland":"GB",
+ "Hollanda":"NL","Netherlands":"NL","Belçika":"BE","Belgium":"BE","Portekiz":"PT","Portugal":"PT",
+ "İsveç":"SE","Sweden":"SE","Norveç":"NO","Norway":"NO","Danimarka":"DK","Denmark":"DK",
+ "Finlandiya":"FI","Finland":"FI","İzlanda":"IS","Iceland":"IS","İsviçre":"CH","Switzerland":"CH",
+ "Avusturya":"AT","Austria":"AT","Polonya":"PL","Poland":"PL","Çekya":"CZ","Czech Republic":"CZ",
+ "Czezchia":"CZ","Macaristan":"HU","Hungary":"HU","Romanya":"RO","Romania":"RO",
+ "Bulgaristan":"BG","Bulgaria":"BG","Yunanistan":"GR","Greece":"GR","Hırvatistan":"HR","Croatia":"HR",
+ "Sırbistan":"RS","Serbia":"RS","Karadağ":"ME","Montenegro":"ME","Bosna Hersek":"BA",
+ "Bosnia-Herzegovina":"BA","Slovenya":"SI","Slovenia":"SI","Arnavutluk":"AL","Albania":"AL",
+ "Kosova":"XK","Kosovo":"XK","Litvanya":"LT","Lithuania":"LT","Letonya":"LV","Latvia":"LV",
+ "Ukrayna":"UA","Ukraine":"UA","Rusya":"RU","Russia":"RU","Rusya Federasyonu":"RU",
+ "Beyaz Rusya":"BY","Belarus":"BY","Moldova":"MD","Gürcistan":"GE","Georgia":"GE",
+ "Azerbaycan":"AZ","Azerbaijan":"AZ","Kazakistan":"KZ","Kazakhstan":"KZ","Malta":"MT",
+ "Lüksemburg":"LU","Luxembourg":"LU","İrlanda":"IE","Ireland":"IE",
+ "Kanada":"CA","Canada":"CA","Meksika":"MX","Mexico":"MX","Brezilya":"BR","Brazil":"BR",
+ "Arjantin":"AR","Argentina":"AR","Kolombiya":"CO","Colombia":"CO","Venezuela":"VE",
+ "Uruguay":"UY","Paraguay":"PY","Bolivya":"BO","Bolivia":"BO","Chile":"CL","Peru":"PE",
+ "Kosta Rika":"CR","Costa Rica":"CR","Panama":"PA","Jamaika":"JM","Jamaica":"JM","Haiti":"HT",
+ "Porto Riko":"PR","Puerto Rico":"PR","Dominik Cumhuriyeti":"DO","Dominican Republic":"DO",
+ "El Salvador":"SV","Trinidad ve Tobago":"TT","Trinidad and Tobago":"TT","Bermuda":"BM",
+ "Japonya":"JP","Japan":"JP","Çin":"CN","China":"CN","Güney Kore":"KR","Korea, South":"KR",
+ "Kore DHC":"KP","Korea, North":"KP","Vietnam":"VN","Iran":"IR","Irak":"IQ","Iraq":"IQ",
+ "Suriye":"SY","Syria":"SY","Pakistan":"PK","Avustralya":"AU","Australia":"AU",
+ "Yeni Zelanda":"NZ","New Zealand":"NZ",
+ "Fas":"MA","Morocco":"MA","Cezayir":"DZ","Algeria":"DZ","Tunus":"TN","Tunisia":"TN",
+ "Nijerya":"NG","Nigeria":"NG","Gana":"GH","Ghana":"GH","Kamerun":"CM","Cameroon":"CM",
+ "Fildişi Sahili":"CI","Fildişi Sahilleri":"CI","Cote d'Ivoire":"CI","Benin":"BJ",
+ "Burkina Faso":"BF","Gabon":"GA","Kenya":"KE","Uganda":"UG","Tanzanya":"TZ","Tanzania":"TZ",
+ "Rwanda":"RW","Zambia":"ZM","Güney Afrika":"ZA","South Africa":"ZA",
+ "Kongo DC":"CD","Kongo Demokratik Cumhuriyeti":"CD","Congo DR":"CD",
+}
+
+def _iso_bayrak(iso):
+    return "".join(chr(0x1F1E6 + ord(c) - 65) for c in iso) if len(iso) == 2 and iso != "XK" else ("🏳️" if iso == "XK" else "")
+
+def bayrakli_ulke(m):
+    """'Montenegro' → '🇲🇪 Karadağ' (aktif dile çevrilmiş + bayrak)."""
+    m = (m or "").strip()
+    if not m:
+        return ""
+    ana = m.split("&")[0].strip()          # 'Türkiye&Almanya' → 'Türkiye'
+    iso = _ULKE_ISO.get(ana, "")
+    ad = ulke_goster(ana if iso else m)
+    return f"{_iso_bayrak(iso)} {ad}".strip() if iso else ad
+
+
 def ulke_goster(m):
     """Ülke adını aktif dile çevirir (çift yönlü). EN: TR→EN, TR: EN→TR.
     Kaynaklar karışık (sheet Türkçe, SoccerDonna İngilizce) → iki yönde de tutarlı."""
@@ -3262,9 +3330,15 @@ def _yas_hesapla(dob):
         return 0.0
     g, a, y = map(int, m.groups())
     try:
-        return round((date.today() - date(y, a, g)).days / 365.25, 1)
+        # Baran kuralı: doğum ayına gelene kadar alt yaş, doğum AYINDA üst yaş
+        # (23.8 gibi ondalık saçma görünüyordu)
+        t_ = date.today()
+        yas = t_.year - y - ((t_.month, t_.day) < (a, g))
+        if t_.month == a and t_.day < g:
+            yas += 1
+        return yas
     except Exception:
-        return 0.0
+        return 0
 
 
 def _boy_cm(boy):
@@ -5138,13 +5212,19 @@ def render_percentil_panel(secili: str):
     satirlar = ""
     for etiket, ds, pct in veri["metrikler"]:
         renk = _pct_renk(pct)
+        # Baran isteği: küsuratlı bar yerine kutulu gösterim — 20 kutu, her kutu %5
+        pct5 = max(0, min(100, int(round(pct / 5.0) * 5)))
+        dolu = pct5 // 5
+        kutular = "".join(
+            f"<span style='width:8px;height:11px;border-radius:2px;flex:none;"
+            f"background:{renk if i < dolu else '#1a1f36'};'></span>"
+            for i in range(20))
         satirlar += (
             "<div style='display:flex;align-items:center;gap:10px;margin:7px 0;'>"
             f"<span style='width:118px;font-size:0.78rem;color:#aeb8cc;flex:none;'>{etiket}</span>"
             f"<span style='width:48px;text-align:right;font-size:0.82rem;color:#e2e8f0;font-weight:700;flex:none;'>{ds}</span>"
-            "<div style='flex:1;height:9px;background:#1a1f36;border-radius:5px;overflow:hidden;'>"
-            f"<div style='width:{pct}%;height:100%;background:{renk};border-radius:5px;'></div></div>"
-            f"<span style='width:40px;text-align:right;font-size:0.8rem;font-weight:800;color:{renk};flex:none;'>{pct}%</span>"
+            f"<div style='flex:1;display:flex;gap:2px;align-items:center;'>{kutular}</div>"
+            f"<span style='width:40px;text-align:right;font-size:0.8rem;font-weight:800;color:{renk};flex:none;'>{pct5}%</span>"
             "</div>")
     st.markdown(
         "<div style='background:#11162a;border:1px solid #232a40;border-radius:12px;"
@@ -5368,22 +5448,28 @@ def render_ana_lig_profil(secili):
         # Başlık + gruplu bilgi kutuları (Scouting profili ile ORTAK görünüm)
         _profil_baslik(secili, sd.get("profil_url", ""))
         _mv = sd.get("Market value", "")
+        # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
+        # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
+        _sc_kayit = birlesik_scout_yukle().get(secili) or _scout_norm_bul(secili) or {}
+        _sc_mevki = list(_sc_kayit.get("mevki") or [])
+        _mevki_deger = " / ".join(_sc_mevki) if _sc_mevki else mevki_disp(sd.get("Position",""))
         _kutu_grp = [
             (f"👤 {t('Kişisel','Personal')}", [
-                (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(sd.get("Nationality","")))),
+                (f"🌍 {t('Uyruk','Nationality')}", bayrakli_ulke(_uyruk_goster(sd.get("Nationality","")))),
                 (f"📅 {t('Doğum','Born')}", sd.get("Date of birth","")),
                 (f"🎂 {t('Yaş','Age')}", (_yas_hesapla(sd.get("Date of birth","")) or sd.get("Age","")))]),
             (f"⚽ {t('Futbolcu','Player')}", [
-                (f"📌 {t('Mevki','Position')}", mevki_disp(sd.get("Position",""))),
+                (f"📌 {t('Mevki','Position')}", _mevki_deger),
                 (f"📏 {t('Boy','Height')}", sd.get("Height","")),
                 (f"🦶 {t('Ayak','Foot')}", (sd.get("Foot","") or "").capitalize())]),
             (f"📋 {t('Diğer','Other')}", [
                 (f"🏟️ {t('Takım','Club')}", _takim_kisa(row["TümTakımlar"] if transfer else row["Takım"])),
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
-                (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth",""))]),
+                (f"📍 {t('Doğum Yeri','Birthplace')}",
+                 bayrakli_ulke(_uyruk_goster(sd.get("Nationality",""))) or sd.get("Place of birth",""))]),
         ]
         _ana_kod = _MEVKI_SAHA_KOD.get(row.get("Mevki", ""))
-        _saha_svg = _pozisyon_saha([_ana_kod] if _ana_kod else [])
+        _saha_svg = _pozisyon_saha(_sc_mevki or ([_ana_kod] if _ana_kod else []))
         if _saha_svg:
             _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
             with _bk_col: _profil_kutulari(_kutu_grp)
