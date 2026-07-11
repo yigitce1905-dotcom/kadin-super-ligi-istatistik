@@ -619,10 +619,26 @@ st.markdown(f"""<style>
 [data-testid="stExpandSidebarButton"] {{ width:auto !important; padding:4px 10px !important; }}
 </style>""", unsafe_allow_html=True)
 
+# ─── SEZON ALTYAPISI ─────────────────────────────────────────────────────────
+# TR lig verisi (istatistik/puan/maç/hoca/alt lig) SEZONLUKTUR: veri/<sezon>/
+# klasöründe dondurulur. Scout havuzu vb. YAŞAYAN veriler kökte kalır (sezonsuz).
+# Yeni sezon açılışı: SEZONLAR başına yeni sezon ekle + veri/<yeni>/ klasörünü
+# doldur + KÖKTEKİ eski sezon kopyalarını sil (fallback bayat veri göstermesin).
+# Sezon seçici UI, SEZONLAR ≥ 2 olunca eklenecek (şimdilik görünmez altyapı).
+SEZON_AKTIF = "2025-26"
+SEZONLAR = ["2025-26"]
+
+def sezon_dosya(ad: str, sezon: str = "") -> pathlib.Path:
+    """Sezonluk veri dosyası yolu: veri/<sezon>/<ad> varsa o, yoksa kök (geriye uyum)."""
+    s = sezon or SEZON_AKTIF
+    p = pathlib.Path(__file__).parent / "veri" / s / ad
+    return p if p.exists() else pathlib.Path(__file__).parent / ad
+
+
 # ─── VERİ ────────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=600)
 def veri_yukle():
-    yol = pathlib.Path(__file__).parent / "oyuncular.json"
+    yol = sezon_dosya("oyuncular.json")
     if not yol.exists():
         st.warning(t("oyuncular.json bulunamadı.", "oyuncular.json not found."))
         return pd.DataFrame(), []
@@ -654,7 +670,7 @@ def puan_durumu_cek():
     """Kadınlar Süper Ligi puan durumu. Sezon bittiği için yerel
     puan_durumu.json BİRİNCİL kaynaktır (TFF SSL/erişim sorunlarında bile
     tablo görünür); dosya yoksa TFF'den canlı çekilir."""
-    yerel = _DIZIN / "puan_durumu.json"
+    yerel = sezon_dosya("puan_durumu.json")
     if yerel.exists():
         try:
             data = json.load(open(yerel, encoding="utf-8"))
@@ -1411,7 +1427,7 @@ sd_profiller = sd_profiller_yukle()
 
 @st.cache_data(ttl=86400)
 def mac_sonuclari_yukle() -> list:
-    yol = _DIZIN / "mac_sonuclari.json"
+    yol = sezon_dosya("mac_sonuclari.json")
     if yol.exists():
         with open(yol, encoding="utf-8") as f:
             return json.load(f)
@@ -2934,7 +2950,7 @@ if not df_tam.empty:
 
 
 # coaches.json — cache yok, her başlatmada taze okunur
-_coaches_yol = _DIZIN / "coaches.json"
+_coaches_yol = sezon_dosya("coaches.json")
 coaches_data = json.load(open(_coaches_yol, encoding="utf-8")) if _coaches_yol.exists() else {}
 
 @st.cache_data(show_spinner=False)
@@ -6478,7 +6494,7 @@ _ALTLIG_DOSYALAR = {"Kadınlar 1. Ligi": "altlig_1lig.json",
 
 @st.cache_data(ttl=600)
 def altlig_yukle(dosya: str):
-    yol = _DIZIN / dosya
+    yol = sezon_dosya(dosya)
     if not yol.exists():
         return None
     try:
