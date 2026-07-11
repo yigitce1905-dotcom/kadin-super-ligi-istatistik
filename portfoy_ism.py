@@ -35,6 +35,16 @@ KADRO = [
 ]
 YEDEK = ["Ajsa Kalac", "Ceylin Erata", "Fatma Sakar", "Natalia Wrobel"]
 
+# Elle doğrulanmış highlight videoları (oEmbed teyitli). Bu listede olmayan
+# oyuncunun Video linki YouTube aramasına gider. Yeni link: isim -> watch URL.
+VIDEO_OZEL = {
+    "Tanja Malesija":   "https://www.youtube.com/watch?v=xcnlaBSvE0U",
+    "Sumaya Komuntale": "https://www.youtube.com/watch?v=jZrWPtQ7mes",
+    "Meryem Cal":       "https://www.youtube.com/watch?v=t3ipOG4dtCg",
+    "Aude Gbedjissi":   "https://www.youtube.com/watch?v=kxAw0NevflY",
+    "Kader Hancar":     "https://www.youtube.com/watch?v=N6JZzG15pG8",
+}
+
 d = json.load(open(KOK / "scout_kadro_raporlar.json", encoding="utf-8"))
 
 def bilgi_cumlesi(r):
@@ -153,7 +163,7 @@ for isim in hepsi:
         while metin and pdf.get_string_width(metin) > w - 2.5:
             metin = metin[:-2].rstrip() + "…" if len(metin) > 3 else metin[:-1]
         pdf.cell(w, 11, metin, border="B")
-    yt = ("https://www.youtube.com/results?search_query="
+    yt = VIDEO_OZEL.get(isim) or ("https://www.youtube.com/results?search_query="
           + quote(f"{isim} football highlights"))
     pdf.set_font("DV", "B", 7.4); pdf.set_text_color(200, 30, 30)
     pdf.cell(KOL[-2][1], 11, "Video →", border="B", link=yt)
