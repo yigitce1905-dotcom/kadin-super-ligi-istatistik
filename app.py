@@ -1674,9 +1674,10 @@ def scotr_kadro_yukle() -> dict:
 def birlesik_scout_yukle() -> dict:
     """Scouting havuzu = Sco 🌍 (uluslararası) + Sco TR (Türkiye ligleri).
     İsim çakışırsa Sco 🌍 kazanır (SD entegrasyonu onda)."""
-    tr = scotr_kadro_yukle()
-    dunya = scout_kadro_yukle()
-    return {**tr, **dunya}
+    out = dict(scout_kadro_yukle())          # uluslararası havuz önce (mevcut sıra)
+    for k, v in scotr_kadro_yukle().items():  # TR oyuncular listenin SONUNA
+        out.setdefault(k, v)                  # çakışmada Dünya kaydı korunur
+    return out
 
 def scouting_detay_yukle() -> dict:
     """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
@@ -7593,7 +7594,7 @@ if st.session_state.get("sayfa") == "scouting":
                             f"<div class='ws-sub'>{_bayrak}</div></div></div></td>"
                             f"<td data-label='{t('Pozisyon','Pos')}'>{_poz_html}</td>"
                             f"<td data-label='{t('Kulüp','Club')}'>{_esc(_kl)}<div class='ws-sub'>{_esc(_lg)}</div></td>"
-                            f"<td class='num ws-mono' data-label='{t('Yaş','Age')}'>{_yas or '—'}</td>"
+                            f"<td class='num ws-mono' data-label='{t('Yaş','Age')}'>{_esc(_yas) if str(_yas).strip().isdigit() and 13 < int(str(_yas)) < 50 else '—'}</td>"
                             f"<td class='ws-mono' data-label='{t('Kontrat','Contract')}' style='color:{_kontrat_renk(_sz)};'>{_esc(_sz) or '—'}</td>"
                             f"<td class='ws-mono' data-label='{t('Değer','Value')}'>{_esc(_dg) or '—'}</td>"
                             f"<td class='num ws-mono' data-label='{t('Maç','M')}'>{_mac or '—'}</td>"
@@ -7601,6 +7602,8 @@ if st.session_state.get("sayfa") == "scouting":
                             f"<td class='num ws-mono' data-label='{t('Asist','A')}'>{_ast or '—'}</td>"
                             f"<td data-label='{t('Skor','Score')}'>{_skor}</td></tr>"
                         )
+                    # zırh: markdown'ı bölebilecek satır sonu/kontrol karakterlerini süz
+                    _sat = "".join(c for c in _sat if ord(c) >= 32)
 
                     _thead = (
                         "<tr>"
