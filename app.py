@@ -273,8 +273,9 @@ footer { visibility:hidden !important; display:none !important; }
 .transfer-badge { display:inline-block; background:#1a3a2a; color:#1db954;
     font-size:0.7rem; border-radius:6px; padding:2px 7px; margin-left:6px; }
 .takim-detay-satir { background:#0f1117; border-radius:8px; padding:9px 14px;
-    margin-bottom:6px; display:flex; justify-content:space-between;
-    align-items:center; flex-wrap:wrap; gap:6px; }
+    margin-bottom:6px; display:flex; justify-content:flex-start;
+    align-items:center; flex-wrap:wrap; gap:16px; max-width:640px; }
+.takim-detay-satir .td-adi { min-width:130px; }
 .takim-detay-satir .td-adi   { color:#e0e0e0; font-weight:500; }
 .takim-detay-satir .td-stats { color:#8899aa; font-size:0.82rem; }
 .form-kutu { display:flex; gap:5px; flex-wrap:wrap; margin-top:8px; }
@@ -3180,10 +3181,10 @@ def _gol_rakip_grafik(detay: dict, toplam_gol: int):
     if zayif_toplam > 0:
         st.caption(
             t(
-                f"🟠 Zayıf takımlara: **{zayif_toplam}** gol · "
-                f"🔵 Diğer rakiplere: **{guclu_toplam}** gol",
-                f"🟠 vs. weak opponents: **{zayif_toplam}** goals · "
-                f"🔵 vs. others: **{guclu_toplam}** goals",
+                f"🟠 Ligin alt sırasındaki takımlara: **{zayif_toplam}** gol · "
+                f"🔵 Üst sıradaki rakiplere: **{guclu_toplam}** gol",
+                f"🟠 vs. bottom-of-table sides: **{zayif_toplam}** goals · "
+                f"🔵 vs. higher-ranked opponents: **{guclu_toplam}** goals",
             )
         )
 
@@ -3287,7 +3288,7 @@ def _kariyer_trend_figuru(sezonlar):
                                  mode="lines+markers", line=dict(color="#f59e0b", width=3),
                                  connectgaps=False))
     fig.update_layout(
-        barmode="group", height=300,
+        barmode="group", height=320,
         paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
         font=dict(color="#cbd5e1", size=12),
         margin=dict(l=10, r=10, t=28, b=10),
@@ -3477,7 +3478,7 @@ def _benzer_kutu_grid(items):
         return (
             f"<a href='{href}' style='text-decoration:none;{wrap}'>"
             f"<div class='{kls}'>"
-            f"<div class='bk-skor' style='color:{_renk(skor)};'>%{skor}</div>"
+            f"<div class='bk-skor' style='color:{_renk(skor)};'>%{int(round(skor / 5.0) * 5)}</div>"
             f"<div class='bk-ad'>{_esc(isim)}</div>"
             f"<div class='bk-alt'>{_esc(bilgi)}</div>"
             f"</div></a>"
@@ -3494,9 +3495,11 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
     if not sonuc:
         return
     st.markdown(f"#### 🔎 {t('Benzer Oyuncular', 'Similar Players')}")
-    st.caption(t("Aynı mevki · yaş, boy, deneyim ve gol/asist oranlarına göre",
-                 "Same position · based on age, height, experience and goal/assist ratios"))
-    _benzer_kutu_grid(sonuc)
+    st.caption(t("Aynı mevki grubunda yaş, boy, deneyim ve gol/asist profili en yakın 3 oyuncu — "
+                 "yüzde, bu profillerin yakınlık derecesidir",
+                 "3 closest players in the same position group by age, height, experience and "
+                 "goal/assist profile — the percentage is profile closeness"))
+    _benzer_kutu_grid(sonuc[:3])
 
 
 # ── Radar grafiği (mevki içi yüzdelik profil) ──
@@ -3529,7 +3532,7 @@ def radar_goster(isim, kaynak):
         line=dict(color="#6366f1"), fillcolor="rgba(99,102,241,0.30)"))
     fig.update_layout(
         height=320, paper_bgcolor="rgba(0,0,0,0)",
-        font=dict(color="#cbd5e1", size=11), margin=dict(l=50, r=50, t=30, b=30),
+        font=dict(color="#cbd5e1", size=11), margin=dict(l=50, r=50, t=28, b=10),
         polar=dict(bgcolor="rgba(0,0,0,0)",
                    radialaxis=dict(range=[0, 100], gridcolor="#1e293b", tickfont=dict(size=9)),
                    angularaxis=dict(gridcolor="#334155")),
@@ -3574,15 +3577,24 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
                 reverse=True, key=lambda x: x[0])
     if not ad:
         return
+    # TR entegrasyonu sonrası oyuncunun scouting kopyası kendine %100 benziyordu —
+    # diakritik-toleranslı isim karşılaştırmasıyla kendisi elenir
+    import unicodedata as _ud
+    def _bnorm(s):
+        s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+        return " ".join(s.casefold().split())
+    ad = [(s, o) for s, o in ad if _bnorm(o["isim"]) != _bnorm(hedef_isim)]
+    if not ad:
+        return
     st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri', 'Similar Transfer Targets')}")
-    st.caption(t("Scouting havuzundan bu oyuncuya en yakın yabancı adaylar",
-                 "Closest foreign candidates to this player from the scouting pool"))
+    st.caption(t("Scouting havuzundan bu oyuncuya profili en yakın 3 aday",
+                 "3 closest scouting-pool candidates to this player's profile"))
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
                 _takim_kisa(o.get("kulup", "")),
                 ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # yaş · takım · memleket
         return " · ".join(x for x in parc if x)
-    _benzer_kutu_grid([(o["isim"], s, _lbl(o)) for s, o in ad[:5]])
+    _benzer_kutu_grid([(o["isim"], s, _lbl(o)) for s, o in ad[:3]])
 
 
 # ── Shortlist Karşılaştırma (favori oyuncuları yan yana kıyasla) ──
