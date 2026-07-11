@@ -23,14 +23,15 @@ BEYAZ = (255, 255, 255)
 GRI   = (120, 133, 151)
 
 # ── Kadro: (isim, saha_etiketi, x%, y%) — 4-2-3-1, y: 0 üst(kale) ──
+# y: 0 üst (rakip kalesi/hücum) — 100 alt (bizim kale). Kaleci ALTTA.
 KADRO = [
-    ("Angelina Portnova", "KL",  50,  8),
-    ("Miray Ayhan",       "SĞB", 84, 26), ("Aude Bizet",     "STP", 63, 24),
-    ("Tanja Malesija",    "STP", 37, 24), ("Sumaya Komuntale","SLB", 16, 26),
-    ("Meryem Cal",        "DOS", 37, 41.5), ("Sibel Koksal",   "DOS", 63, 41.5),
-    ("Aude Gbedjissi",    "SĞK", 84, 63), ("Miray Cin",      "OOS", 50, 60),
-    ("Ana Barjaktarovic", "SLK", 16, 63),
-    ("Kader Hancar",      "ST",  50, 80),
+    ("Kader Hancar",      "ST",  50, 17),
+    ("Ana Barjaktarovic", "SLK", 16, 34), ("Miray Cin",      "OOS", 50, 33.5),
+    ("Aude Gbedjissi",    "SĞK", 84, 34),
+    ("Meryem Cal",        "DOS", 37, 55), ("Sibel Koksal",   "DOS", 63, 55),
+    ("Sumaya Komuntale",  "SLB", 16, 72), ("Tanja Malesija", "STP", 37, 74),
+    ("Aude Bizet",        "STP", 63, 74), ("Miray Ayhan",    "SĞB", 84, 72),
+    ("Angelina Portnova", "KL",  50, 86.5),
 ]
 YEDEK = ["Ajsa Kalac", "Ceylin Erata", "Fatma Sakar", "Natalia Wrobel"]
 
@@ -124,9 +125,9 @@ if logo.exists():
 pdf.set_xy(120, 9); pdf.set_font("DV", "B", 12); pdf.set_text_color(*BEYAZ)
 pdf.cell(76, 8, "OYUNCU LİSTESİ", align="R")
 
-hepsi = [k[0] for k in KADRO] + YEDEK
-KOL = [("İSİM", 34), ("MEVKİ", 20), ("KULÜP", 30), ("DOĞUM", 13),
-       ("UYRUK", 22), ("BİLGİ", 55), ("RAPOR", 12)]
+hepsi = [k[0] for k in reversed(KADRO)] + YEDEK  # tablo: kaleciden hücuma
+KOL = [("İSİM", 33), ("MEVKİ", 19), ("KULÜP", 27), ("DOĞUM", 13),
+       ("UYRUK", 19), ("BİLGİ", 49), ("VİDEO", 13), ("RAPOR", 13)]
 y = 34
 pdf.set_xy(7, y); pdf.set_font("DV", "B", 7.5); pdf.set_text_color(60, 70, 85)
 for ad, w in KOL:
@@ -152,13 +153,17 @@ for isim in hepsi:
         while metin and pdf.get_string_width(metin) > w - 2.5:
             metin = metin[:-2].rstrip() + "…" if len(metin) > 3 else metin[:-1]
         pdf.cell(w, 11, metin, border="B")
-    pdf.set_font("DV", "B", 7.4); pdf.set_text_color(90, 140, 0)
+    yt = ("https://www.youtube.com/results?search_query="
+          + quote(f"{isim} football highlights"))
+    pdf.set_font("DV", "B", 7.4); pdf.set_text_color(200, 30, 30)
+    pdf.cell(KOL[-2][1], 11, "Video →", border="B", link=yt)
+    pdf.set_text_color(90, 140, 0)
     pdf.cell(KOL[-1][1], 11, "Rapor →", border="B", link=url, ln=1)
 
 pdf.set_y(-38)
 pdf.set_fill_color(*KOYU); pdf.rect(0, 297 - 30, 210, 30, "F")
 pdf.set_xy(14, 297 - 24); pdf.set_font("DV", "B", 9.5); pdf.set_text_color(*LIME)
-pdf.cell(0, 6, "Her oyuncunun detaylı scout raporu için tablodaki 'Rapor' linkine tıklayın.", ln=1)
+pdf.cell(0, 6, "'Video' → YouTube highlights · 'Rapor' → detaylı scout raporu (tıklanabilir)", ln=1)
 pdf.set_x(14); pdf.set_font("DV", "", 8.5); pdf.set_text_color(*BEYAZ)
 pdf.cell(0, 5, "Yiğit Çelebi · IDEAL Sports Management · +90 506 578 46 43 · womenfootballscouting.com", ln=1)
 
