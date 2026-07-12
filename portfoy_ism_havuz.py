@@ -21,7 +21,7 @@ BEYAZ = (240, 244, 252); GRI = (120, 133, 151); CIZGI = (38, 44, 69)
 KIRMIZI = (220, 60, 60); YESIL = (90, 150, 20)
 
 ISO = {"USA":"US","Japan":"JP","Canada":"CA","Philippines":"PH","Morocco":"MA",
-       "Slovakia":"SK","Croatia":"HR","Bosnia":"BA"}
+       "Slovakia":"SK","Croatia":"HR","Bosnia":"BA","Kenya":"KE"}
 def bayrak(iso):
     return "".join(chr(0x1F1E6 + ord(c) - 65) for c in iso) if len(iso) == 2 else ""
 
@@ -49,7 +49,7 @@ OYUNCULAR = [
   "Hızlı stoper, 1v1 savunmada güçlü","https://youtu.be/_UfG-N5eyEQ"),
  ("Asha Nikole Zuniga","CB","DEF","USA","2001-09-05",175,"Right","Serbest (son: HK, İzlanda)",
   "Güçlü hava hakimiyeti, oyunu iyi okur","https://www.youtube.com/watch?v=szf2QXYuRT0"),
- ("Enez Mango","LB","DEF","","",0,"","",
+ ("Enez Mango","LB","DEF","Kenya","",0,"","",
   "Sol bek — 2025/26 sezon highlights","https://youtu.be/WYqBwmWzl4I"),
  ("Melisa Hasanbegovic","RCB / LCB","DEF","Bosnia","",0,"","Al-Ula FC",
   "Merkez defans — gol, savunma & oyun kurma","https://youtu.be/PbqsUg-L_ms"),
@@ -64,7 +64,7 @@ OYUNCULAR = [
   "Yüksek teknik merkez orta, dar alanda tempo belirler","https://www.youtube.com/watch?v=lREW6pHKTwo"),
  ("Adaira Nakano","AM / W","OS","Canada","2003-09-22",157,"Right","Southern Miss (NCAA)",
   "Yaratıcı oyun kurucu, üstün vizyon","https://www.hudl.com/video/3/20075233/674df9d7a523797f61bb591d"),
- ("Vina Crnoja","W / CM","OS","","",0,"","",
+ ("Vina Crnoja","W / CM","OS","Bosnia","",0,"","",
   "Kanat / merkez orta — 2025/26 sezon highlights","https://youtu.be/xpLCmtB0Ebw"),
  # ── HÜCUM ──
  ("Hailey Russell","ST","FW","USA","2001-12-08",157,"Right","Serbest",
@@ -80,7 +80,7 @@ OYUNCULAR = [
  ("Camille Sahirul","W / ST","FW","Philippines","2001-01-23",168,"Right","Eastern Suburbs (Avustralya)",
   "Dinamik kanat, hız + Filipinler A Milli oyuncusu","https://www.youtube.com/watch?v=js_eB9qgdb8"),
  ("Chaymaa Mourtaji","ST","FW","Morocco","1995-12-08",0,"","Sporting Club Casablanca",
-  "Baskı yapan golcü, keskin pozisyon alma","https://www.youtube.com/results?search_query=Chaymaa+Mourtaji+football"),
+  "Baskı yapan golcü, keskin pozisyon alma","https://youtu.be/vGNyKuLJrYM"),
  ("Nikola Rybanska","ST","FW","Slovakia","",0,"","",
   "Golcü — 2025/26 highlights (Slovak Milli)","https://youtu.be/ACA2GLmZfSE"),
 ]
@@ -89,6 +89,19 @@ OYUNCULAR = [
 _scout = json.load(open(KOK / "scout_kadro_raporlar.json", encoding="utf-8"))
 def _norm(s): return re.sub(r"\s+"," ",re.sub(r"[^a-z ]"," ",unicodedata.normalize("NFKD",str(s)).encode("ascii","ignore").decode().lower())).strip()
 _site_isim = {_norm(k): k for k in _scout}
+
+# SoccerDonna güncel yaş+kulüp (11 oyuncu; kalanlar CV verisiyle kalır)
+try:
+    SD_GUNCEL = json.load(open(KOK / "_sd_havuz_sonuc.json", encoding="utf-8"))
+except Exception:
+    SD_GUNCEL = {}
+
+def efektif(o):
+    """SD'de bulunduysa güncel yaş+kulüp, yoksa CV verisi. -> (yas_str, kulup)"""
+    isim, dob, kulup = o[0], o[4], o[7]
+    sd = SD_GUNCEL.get(isim) or {}
+    yas_str = str(sd["yas"]) if sd.get("yas") else (str(yas(dob)) if yas(dob) != "—" else "")
+    return yas_str, (sd.get("kulup") or kulup)
 
 GRUPLAR = [("KL","KALECİLER","GOALKEEPERS"), ("DEF","DEFANS","DEFENDERS"),
            ("OS","ORTA SAHA","MIDFIELDERS"), ("FW","HÜCUM","FORWARDS")]
@@ -116,7 +129,7 @@ pdf.cell(0, 5, "IDEAL Sports Management portföyündeki transfere açık uluslar
 
 # özet kutuları
 _say = {g: sum(1 for o in OYUNCULAR if o[2] == g) for g, _, _ in GRUPLAR}
-_serbest = sum(1 for o in OYUNCULAR if "serbest" in o[7].lower())
+_serbest = sum(1 for o in OYUNCULAR if "serbest" in efektif(o)[1].lower())
 _ozet = [(str(len(OYUNCULAR)), "OYUNCU"), (str(_serbest), "SERBEST"),
          (f"{_say['KL']}", "KALECİ"), (f"{_say['DEF']}", "DEFANS"),
          (f"{_say['OS']}", "ORTA SAHA"), (f"{_say['FW']}", "HÜCUM")]
@@ -158,6 +171,7 @@ def yeni_sayfa(baslik):
 
 def kart(o, x, y):
     isim, mevki, grup, uyruk, dob, boy, ayak, kulup, notu, video = o
+    _yas_str, kulup = efektif(o)
     pdf.set_fill_color(*PANEL); pdf.set_draw_color(*CIZGI); pdf.set_line_width(0.3)
     pdf.rect(x, y, CW, CH, "DF")
     pdf.set_fill_color(*LIME); pdf.rect(x, y, 1.4, CH, "F")          # sol şerit
@@ -167,9 +181,8 @@ def kart(o, x, y):
     pdf.set_xy(x + CW - 26, y + 3.2); pdf.set_font("DV", "B", 7); pdf.set_text_color(*LIME)
     pdf.cell(22, 5.5, mevki, align="R")
     # meta (bayrak font'ta yok → ülke adı yeterli)
-    _y = yas(dob)
     meta = "  ·  ".join(x2 for x2 in [
-        (f"{_y} yaş" if _y != "—" else ""), uyruk,
+        (f"{_yas_str} yaş" if _yas_str else ""), uyruk,
         (f"{boy} cm" if boy else ""), ayak] if x2)
     pdf.set_xy(x + 5, y + 10.5); pdf.set_font("DV", "", 7); pdf.set_text_color(170, 182, 200)
     pdf.cell(CW - 8, 4, meta[:60])
