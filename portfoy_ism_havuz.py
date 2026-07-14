@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 """IDEAL Sports Management — MEVCUT OYUNCU HAVUZU (başvuru/aday katalogu) PDF'i.
 
-Türkiye Portföyü'nden farkı: bunlar ajansa gelen/önerilen, SİTEDE OLMAYAN
-uluslararası adaylar (çoğu serbest). Diziliş yerine mevki-grupları kart ızgarası;
-her oyuncuda direkt highlight video linki (+ sitede olan için scout raporu).
+Türkiye Portföyü'nden farkı: bunlar ajansa gelen/önerilen, uluslararası
+adaylar. Diziliş yerine mevki-grupları kart ızgarası; her oyuncuda direkt
+highlight video linki (+ sitede olan varsa scout raporu linki).
 
 Kadro güncelleme: OYUNCULAR listesini düzenle → python portfoy_ism_havuz.py
 Çıktı: Desktop\\ISM_Oyuncu_Havuzu_2026.pdf
 """
 import json, pathlib, sys, unicodedata, re
 from urllib.parse import quote
-from datetime import date
 
 sys.stdout.reconfigure(encoding="utf-8")
 KOK = pathlib.Path(__file__).parent
@@ -20,88 +19,48 @@ LIME  = (181, 229, 0); KOYU = (11, 15, 20); PANEL = (18, 22, 34)
 BEYAZ = (240, 244, 252); GRI = (120, 133, 151); CIZGI = (38, 44, 69)
 KIRMIZI = (220, 60, 60); YESIL = (90, 150, 20)
 
-ISO = {"USA":"US","Japan":"JP","Canada":"CA","Philippines":"PH","Morocco":"MA",
-       "Slovakia":"SK","Croatia":"HR","Bosnia":"BA","Kenya":"KE"}
-def bayrak(iso):
-    return "".join(chr(0x1F1E6 + ord(c) - 65) for c in iso) if len(iso) == 2 else ""
-
-def yas(iso_dob):
-    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", iso_dob or "")
-    if not m:
-        return "—"
-    y, a, g = map(int, m.groups())
-    t = date(2026, 7, 12)
-    return t.year - y - ((t.month, t.day) < (a, g))
-
-# (isim, mevki, grup, uyruk, dob_iso, boy_cm, ayak, kulup, not, video)
+# (isim, mevki, grup, uyruk, "yaş (doğum yılı)", boy_cm, ayak, kulüp, not, video)
 OYUNCULAR = [
  # ── KALECİ ──
- ("Ashley Orkus","GK","KL","USA","1998-10-09",180,"Right","Tampa Bay Sun (USL S)",
-  "Güçlü iletişim + güvenilir kurtarışlar; 1.80m fiziki üstünlük","https://www.youtube.com/watch?v=roub7T62jRU"),
- ("Briana Lee O'Dell","GK","KL","USA","2001-11-27",173,"Right","Serbest (son: Vllaznia, Arnavutluk)",
-  "Fiziksel varlık, güvenilir çizgi kalecisi","https://www.youtube.com/watch?v=dAghe0EO_ZE"),
+ ("Ashley Orkus","KL","KL","ABD","28 (1998)",180,"Sağ","Fram (İzlanda 1. Lig)",
+  "ABD U15–U18 milli; profesyonel seviyede düzenli maç deneyimi (son: Tampa Bay Sun, USL S)",
+  "https://www.youtube.com/watch?v=hnzyTjfz1zY"),
+ ("Chloé Lachance-Soulard","KL","KL","Kanada","25 (2001)",170,"Sağ","Ottawa Rapids (NSL, antrenman kalecisi)",
+  "Carleton Üniv. Takım MVP'si (2022); 2x OUA East All-Star (2022, 2025)",
+  "https://www.youtube.com/watch?v=F0cRZCQpyg0"),
+ ("Sydney Bellamy","KL","KL","ABD / Jamaika","23 (2003)",175,"Sağ","Serbest (son: Nhrhides Fthias, Yunanistan)",
+  "Jamaika A Milli (2 maç); 2x Yılın Kalecisi + 2x First Team All-Conference (2023, 2024)",
+  "https://www.youtube.com/watch?v=CAY0ngFXzAE"),
  # ── DEFANS ──
- ("Jodi Smith","LCB / LB","DEF","USA","2003-01-17",170,"Left","Roses FC (NSL)",
-  "Çok hızlı, sol ayaklı; LCB/LB/LW oynayabilir","https://www.youtube.com/watch?v=nPqFpcyg2-8"),
- ("Hannah Marie Russell","CB / CM","DEF","USA","2001-12-08",168,"Right","WFC Lanchkhuti (Gürcistan)",
-  "Oyun kuran stoper, orta sahada da görev alır","https://youtu.be/J9-K-TRxCj8"),
- ("Myla Schneider","CB / FB","DEF","Canada","2003-10-23",165,"Right","Calgary Foothills",
-  "Hızlı stoper, 1v1 savunmada güçlü","https://youtu.be/_UfG-N5eyEQ"),
- ("Asha Nikole Zuniga","CB","DEF","USA","2001-09-05",175,"Right","Serbest (son: HK, İzlanda)",
-  "Güçlü hava hakimiyeti, oyunu iyi okur","https://www.youtube.com/watch?v=szf2QXYuRT0"),
- ("Enez Mango","LB","DEF","Kenya","",0,"","",
-  "Sol bek — 2025/26 sezon highlights","https://youtu.be/WYqBwmWzl4I"),
- ("Melisa Hasanbegovic","RCB / LCB","DEF","Bosnia","",0,"","Al-Ula FC",
-  "Merkez defans — gol, savunma & oyun kurma","https://youtu.be/PbqsUg-L_ms"),
+ ("Angel Fowler","STP","DEF","İngiltere","24 (2002)",175,"Sağ","Carolina Ascent (USL W)",
+  "2025 sezonu Yılın Oyuncusu; Brighton Akademi + AFC Wimbledon A Takım geçmişi",
+  "https://www.youtube.com/watch?v=r6Kqyzsj9ls"),
+ ("Emma Schneider","SĞB / KNT","DEF","Kanada / Trinidad-Tobago","24 (2002)",175,"Sağ","Serbest (son: Rio Tinto, Portekiz)",
+  "Trinidad-Tobago A Milli; UMaine Yılın Defans Oyuncusu (2024) ve takım kaptanı",
+  "https://youtu.be/pG7WMo1ZF8A"),
+ ("Myla Schneider","STP / DOS","DEF","Kanada / Trinidad-Tobago","23 (2003)",165,"Sağ","Serbest (son: Rio Tinto, Portekiz)",
+  "Trinidad-Tobago A Milli; 2x All-Conference First Team, şampiyonluk MVP'si",
+  "https://youtu.be/gY2iuPN8tuw"),
+ ("Enez Mango","SLB","DEF","Kenya","33",0,"","Farul Constanța (Romanya)",
+  "Sol bek — 2025/26 sezon highlights",
+  "https://youtu.be/WYqBwmWzl4I"),
  # ── ORTA SAHA ──
- ("Riko Yasuzawa","AM (L)","OS","Japan","2000-07-26",160,"Left","Serbest",
-  "Sol ayaklı ofansif orta saha; kaliteli orta ve ara pas, şut gücü","https://www.youtube.com/watch?v=CqVOxjhDm5U"),
- ("Morgan Janice Burnap","FB / W / CM","OS","USA","2003-01-09",170,"Ambidextrous","Sligo Rovers (İrlanda)",
-  "Teknik 1v1 oyuncu, yorulmaz motor, çok yönlü","https://www.youtube.com/watch?v=pMjQZNOhtMQ"),
- ("Claudia Muessig","CM","OS","USA","2002-07-15",163,"Both","Kalamazoo United FC",
-  "Çift ayak güçlü orta saha, NCAA D1 All-Conference","https://www.youtube.com/watch?v=L6VGRERDVYw"),
- ("Brina Micheels","CM","OS","USA","2002-08-16",170,"Ambidextrous","Serbest",
-  "Yüksek teknik merkez orta saha, dar alanda tempo belirler","https://www.youtube.com/watch?v=lREW6pHKTwo"),
- ("Adaira Nakano","AM / W","OS","Canada","2003-09-22",157,"Right","Southern Miss (NCAA)",
-  "Yaratıcı oyun kurucu, üstün vizyon","https://www.hudl.com/video/3/20075233/674df9d7a523797f61bb591d"),
- ("Vina Crnoja","W / CM","OS","Bosnia","",0,"","",
-  "Kanat / merkez orta saha — 2025/26 sezon highlights","https://youtu.be/xpLCmtB0Ebw"),
+ ("Chinatsu Kaio","OOS / KNT","OS","Japonya","23 (2003)",152,"Sağ","Adelaide University SC (Avustralya)",
+  "Japonya U17 Milli; CUSA şampiyonu ve CUSA En İyi 11",
+  "https://www.youtube.com/watch?v=eB2IV6ubMsY"),
  # ── HÜCUM ──
- ("Hailey Russell","ST","FW","USA","2001-12-08",157,"Right","Serbest",
-  "Golcü — 23 maçta 27 gol, MFPA En İyi 11 adayı","https://www.youtube.com/watch?v=gBZtVFFeV9Q"),
- ("Abbie Burgess","W / F","FW","USA","2003-05-01",173,"Right","Serbest",
-  "Hızlı, çok yönlü forvet; iki ayağıyla şut","https://youtu.be/Eqc9UTmal3o"),
- ("Gracie Dunaway","W / F","FW","USA","2003-02-21",163,"Right","Lonestar (USL W)",
-  "Patlayıcı hız, atletik kanat/forvet","https://youtu.be/hrzYaJG13AU"),
- ("Maddie Eastus","ST / M","FW","USA","2003-04-30",168,"Right","Serbest",
-  "Agresif, teknik, bitirici; geniş vizyon","https://youtu.be/cupFHfHo6Vg"),
- ("Lexi Fraley","F / W / AM","FW","USA","2003-01-04",157,"Ambidextrous","Purdue (NCAA)",
-  "Çok yönlü forvet, güçlü top taşıma + patlayıcı hız","https://www.youtube.com/watch?v=H1Dyp6D94Ho"),
- ("Camille Sahirul","W / ST","FW","Philippines","2001-01-23",168,"Right","Eastern Suburbs (Avustralya)",
-  "Dinamik kanat, hız + Filipinler A Milli oyuncusu","https://www.youtube.com/watch?v=js_eB9qgdb8"),
- ("Chaymaa Mourtaji","ST","FW","Morocco","1995-12-08",0,"","Sporting Club Casablanca",
-  "Baskı yapan golcü, keskin pozisyon alma","https://youtu.be/vGNyKuLJrYM"),
- ("Nikola Rybanska","ST","FW","Slovakia","",0,"","",
-  "Golcü — 2025/26 highlights (Slovak Milli)","https://youtu.be/ACA2GLmZfSE"),
+ ("Enzi Starks Broussard","KNT","FW","ABD","25 (2001)",170,"Sağ","Serbest (son: Dallas Trinity FC, USL Super League)",
+  "ABD U17 Milli; 2x Yılın Ofansif Oyuncusu (US Development Academy)",
+  "https://www.youtube.com/watch?v=DBkKjJxH1ik"),
+ ("Nikola Rybanska","ST","FW","Slovakya","31 (1995)",0,"","OFI Kreta (Yunanistan)",
+  "Golcü — 2025/26 sezon highlights (Slovak Milli geçmişi)",
+  "https://youtu.be/ACA2GLmZfSE"),
 ]
 
-# sitede rapor linki olanlar
+# sitede rapor linki olanlar (varsa karta ★ Scout Raporu eklenir)
 _scout = json.load(open(KOK / "scout_kadro_raporlar.json", encoding="utf-8"))
 def _norm(s): return re.sub(r"\s+"," ",re.sub(r"[^a-z ]"," ",unicodedata.normalize("NFKD",str(s)).encode("ascii","ignore").decode().lower())).strip()
 _site_isim = {_norm(k): k for k in _scout}
-
-# SoccerDonna güncel yaş+kulüp (11 oyuncu; kalanlar CV verisiyle kalır)
-try:
-    SD_GUNCEL = json.load(open(KOK / "_sd_havuz_sonuc.json", encoding="utf-8"))
-except Exception:
-    SD_GUNCEL = {}
-
-def efektif(o):
-    """SD'de bulunduysa güncel yaş+kulüp, yoksa CV verisi. -> (yas_str, kulup)"""
-    isim, dob, kulup = o[0], o[4], o[7]
-    sd = SD_GUNCEL.get(isim) or {}
-    yas_str = str(sd["yas"]) if sd.get("yas") else (str(yas(dob)) if yas(dob) != "—" else "")
-    return yas_str, (sd.get("kulup") or kulup)
 
 GRUPLAR = [("KL","KALECİLER","GOALKEEPERS"), ("DEF","DEFANS","DEFENDERS"),
            ("OS","ORTA SAHA","MIDFIELDERS"), ("FW","HÜCUM","FORWARDS")]
@@ -129,17 +88,17 @@ pdf.cell(0, 5, "IDEAL Sports Management portföyündeki transfere açık uluslar
 
 # özet kutuları
 _say = {g: sum(1 for o in OYUNCULAR if o[2] == g) for g, _, _ in GRUPLAR}
-_serbest = sum(1 for o in OYUNCULAR if "serbest" in efektif(o)[1].lower())
+_serbest = sum(1 for o in OYUNCULAR if "serbest" in o[7].lower())
 _ozet = [(str(len(OYUNCULAR)), "OYUNCU"), (str(_serbest), "SERBEST"),
          (f"{_say['KL']}", "KALECİ"), (f"{_say['DEF']}", "DEFANS"),
          (f"{_say['OS']}", "ORTA SAHA"), (f"{_say['FW']}", "HÜCUM")]
 ox, oy = 14, 62; bw = 30
-for i, (deg, et) in enumerate(_ozet):
+for i, (deger, et) in enumerate(_ozet):
     x = ox + (i % 3) * (bw + 4); y = oy + (i // 3) * 26
     pdf.set_fill_color(*PANEL); pdf.set_draw_color(*CIZGI)
     pdf.rect(x, y, bw, 22, "DF")
     pdf.set_xy(x, y + 3); pdf.set_text_color(*LIME); pdf.set_font("DV", "B", 15)
-    pdf.cell(bw, 7, deg, align="C")
+    pdf.cell(bw, 7, deger, align="C")
     pdf.set_xy(x, y + 13); pdf.set_text_color(*GRI); pdf.set_font("DV", "", 6.5)
     pdf.cell(bw, 4, et, align="C")
 
@@ -157,35 +116,34 @@ pdf.cell(0, 5, "+90 506 578 46 43 · womenfootballscouting.com", ln=1)
 # ════════ KART IZGARASI ════════
 CW, CH, GX, GY = 92, 40, 8, 6           # kart genişlik/yükseklik, boşluklar
 X0, Y0 = 9, 16
-sut, sat = 2, 6                          # 2 sütun × 6 satır = 12 kart/sayfa
-i_slot = 0
+sut = 2
 
 def yeni_sayfa(baslik):
-    global i_slot
     pdf.add_page(); zemin()
     pdf.set_fill_color(*KOYU); pdf.rect(0, 0, 210, 13, "F")
     if logo.exists(): pdf.image(str(logo), x=9, y=3.5, w=34)
     pdf.set_xy(120, 4); pdf.set_font("DV", "B", 11); pdf.set_text_color(*BEYAZ)
     pdf.cell(81, 6, baslik, align="R")
-    i_slot = 0
 
 def kart(o, x, y):
-    isim, mevki, grup, uyruk, dob, boy, ayak, kulup, notu, video = o
-    _yas_str, kulup = efektif(o)
+    isim, mevki, grup, uyruk, yas_str, boy, ayak, kulup, notu, video = o
     pdf.set_fill_color(*PANEL); pdf.set_draw_color(*CIZGI); pdf.set_line_width(0.3)
     pdf.rect(x, y, CW, CH, "DF")
     pdf.set_fill_color(*LIME); pdf.rect(x, y, 1.4, CH, "F")          # sol şerit
     # isim + mevki rozeti
     pdf.set_xy(x + 5, y + 3.5); pdf.set_font("DV", "B", 10); pdf.set_text_color(*BEYAZ)
     pdf.cell(CW - 30, 5, isim[:26])
-    pdf.set_xy(x + CW - 26, y + 3.2); pdf.set_font("DV", "B", 7); pdf.set_text_color(*LIME)
-    pdf.cell(22, 5.5, mevki, align="R")
-    # meta (bayrak font'ta yok → ülke adı yeterli)
-    meta = "  ·  ".join(x2 for x2 in [
-        (f"{_yas_str} yaş" if _yas_str else ""), uyruk,
-        (f"{boy} cm" if boy else ""), ayak] if x2)
+    pdf.set_xy(x + CW - 30, y + 3.2); pdf.set_font("DV", "B", 7); pdf.set_text_color(*LIME)
+    pdf.cell(26, 5.5, mevki, align="R")
+    # meta satırı
+    yas_gorunum = (yas_str.replace(" (", " yaş (", 1) if "(" in yas_str
+                   else (f"{yas_str} yaş" if yas_str else ""))
+    meta = " · ".join(x2 for x2 in [
+        yas_gorunum, uyruk, (f"{boy} cm" if boy else ""), ayak] if x2)
     pdf.set_xy(x + 5, y + 10.5); pdf.set_font("DV", "", 7); pdf.set_text_color(170, 182, 200)
-    pdf.cell(CW - 8, 4, meta[:60])
+    while meta and pdf.get_string_width(meta) > CW - 10:
+        meta = meta[:-2].rstrip()
+    pdf.cell(CW - 8, 4, meta)
     # kulüp
     pdf.set_xy(x + 5, y + 15.5); pdf.set_font("DV", "B", 7.5); pdf.set_text_color(150, 200, 90)
     pdf.cell(CW - 8, 4, (kulup or "—")[:54])
@@ -217,7 +175,7 @@ for g, tr, en in GRUPLAR:
     if not grup_oyun:
         continue
     # başlık + en az bir kart satırı sığmıyorsa yeni sayfa
-    if yy + 8 + CH > ALT:
+    if yy + 9 + CH > ALT:
         yeni_sayfa("OYUNCU HAVUZU · PLAYER POOL (devam)")
         yy = Y0
     grup_basligi(tr, en, yy); yy += 9
