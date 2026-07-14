@@ -137,20 +137,6 @@ pdf.multi_cell(150, 5.4,
     "highlight videosu yer alır. İlgilendiğiniz oyuncular için detaylı scout "
     "raporu, referans ve görüşme organizasyonu hızlıca sağlanır.")
 
-# içindekiler
-pdf.set_xy(14, 152); pdf.set_font("DV", "B", 10); pdf.set_text_color(*METIN)
-pdf.cell(0, 7, "İÇİNDEKİLER", ln=1)
-for i, (g, tr, en) in enumerate(GRUPLAR):
-    y = 162 + i * 12
-    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR)
-    pdf.rect(14, y, 120, 9.6, "DF")
-    pdf.set_fill_color(*LIME); pdf.rect(14, y, 1.8, 9.6, "F")
-    pdf.set_xy(19, y + 2.3); pdf.set_font("DV", "B", 9); pdf.set_text_color(*METIN)
-    pdf.cell(58, 5, tr)
-    pdf.set_font("DV", "", 8); pdf.set_text_color(*GRIM)
-    pdf.cell(34, 5, f"{_say[g]} oyuncu")
-    pdf.cell(21, 5, f"Sayfa {i + 2}", align="R")
-
 # imza
 imza_blogu(14, 246)
 
