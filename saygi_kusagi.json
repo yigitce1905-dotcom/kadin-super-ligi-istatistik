@@ -15,7 +15,8 @@
     "baslik": "Anne gibi Anne",
     "alt_baslik": "",
     "gorsel": "assets/saygi/anne_gibi_anne.jpg",
-    "metin": ""
+    "metin": "",
+    "admin": true
   },
   {
     "baslik": "Kdz. Ereğli > La Masia. İtirazı olan?",
@@ -33,31 +34,36 @@
     "baslik": "Komando oyuna böyle girer",
     "alt_baslik": "",
     "gorsel": "assets/saygi/komando.jpg",
-    "metin": ""
+    "metin": "",
+    "admin": true
   },
   {
     "baslik": "Sinyor",
     "alt_baslik": "",
     "gorsel": "assets/saygi/sinyor.jpg",
-    "metin": ""
+    "metin": "",
+    "admin": true
   },
   {
     "baslik": "Vur Koş #masterclass",
     "alt_baslik": "",
     "gorsel": "assets/saygi/vur_kos.jpg",
-    "metin": ""
+    "metin": "",
+    "admin": true
   },
   {
     "baslik": "Kaplanfito Instagramı fethetmedi mi?",
     "alt_baslik": "",
     "gorsel": "assets/saygi/kaplanfito.jpg",
-    "metin": ""
+    "metin": "",
+    "admin": true
   },
   {
     "baslik": "Futbol 101",
     "alt_baslik": "",
     "gorsel": "assets/saygi/futbol101.jpg",
-    "metin": ""
+    "metin": "",
+    "admin": true
   },
   {
     "baslik": "Bio dediğin",

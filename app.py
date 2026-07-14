@@ -7262,6 +7262,9 @@ def render_saygi():
     st.caption(t("Kadın futboluna emek verenlere, hak edenlere saygı.",
                  "A tribute to those who give to — and earn respect in — women's football."))
     girisler = saygi_yukle()
+    # "admin": true işaretli girişler (görsel dahil) yalnızca admin girişinde görünür
+    if kullanici_tier() != "admin":
+        girisler = [e for e in girisler if not e.get("admin")]
     if not girisler:
         st.info(t("İçerik yakında eklenecek — görseller ve metinler hazırlanıyor.",
                   "Content coming soon — images and texts are being prepared."))
