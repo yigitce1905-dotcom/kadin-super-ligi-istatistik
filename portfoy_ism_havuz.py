@@ -22,38 +22,38 @@ KIRMIZI = (220, 60, 60); YESIL = (90, 150, 20)
 # (isim, mevki, grup, uyruk, "yaş (doğum yılı)", boy_cm, ayak, kulüp, not, video)
 OYUNCULAR = [
  # ── KALECİ ──
- ("Ashley Orkus","KL","KL","ABD","28 (1998)",180,"Sağ","Fram (İzlanda 1. Lig)",
+ ("Ashley Orkus","KL","KL","ABD","27 (1998)",180,"Sağ","Fram (İzlanda Top Division) — Eylül ortası itibarıyla serbest",
   "ABD U15–U18 milli; profesyonel seviyede düzenli maç deneyimi (son: Tampa Bay Sun, USL S)",
   "https://www.youtube.com/watch?v=hnzyTjfz1zY"),
- ("Chloé Lachance-Soulard","KL","KL","Kanada","25 (2001)",170,"Sağ","Ottawa Rapids (NSL, antrenman kalecisi)",
+ ("Chloé Lachance-Soulard","KL","KL","Kanada","25 (2001)",170,"Sağ","Ottawa Rapids (NSL) — profesyonel lig bünyesinde",
   "Carleton Üniv. Takım MVP'si (2022); 2x OUA East All-Star (2022, 2025)",
   "https://www.youtube.com/watch?v=F0cRZCQpyg0"),
- ("Sydney Bellamy","KL","KL","ABD / Jamaika","23 (2003)",175,"Sağ","Serbest (son: Nhrhides Fthias, Yunanistan)",
+ ("Sydney Bellamy","KL","KL","ABD / Jamaika","23 (2003)",175,"Sağ","Son kulüp: Nhrhides Fthias (Yunanistan)",
   "Jamaika A Milli (2 maç); 2x Yılın Kalecisi + 2x First Team All-Conference (2023, 2024)",
   "https://www.youtube.com/watch?v=CAY0ngFXzAE"),
  # ── DEFANS ──
  ("Angel Fowler","STP","DEF","İngiltere","24 (2002)",175,"Sağ","Carolina Ascent (USL W)",
   "2025 sezonu Yılın Oyuncusu; Brighton Akademi + AFC Wimbledon A Takım geçmişi",
   "https://www.youtube.com/watch?v=r6Kqyzsj9ls"),
- ("Emma Schneider","SĞB / KNT","DEF","Kanada / Trinidad-Tobago","24 (2002)",175,"Sağ","Serbest (son: Rio Tinto, Portekiz)",
+ ("Emma Schneider","SĞB / KNT","DEF","Kanada / Trinidad-Tobago","24 (2002)",175,"Sağ","Son kulüp: Rio Tinto (Portekiz)",
   "Trinidad-Tobago A Milli; UMaine Yılın Defans Oyuncusu (2024) ve takım kaptanı",
   "https://youtu.be/pG7WMo1ZF8A"),
- ("Myla Schneider","STP / DOS","DEF","Kanada / Trinidad-Tobago","23 (2003)",165,"Sağ","Serbest (son: Rio Tinto, Portekiz)",
+ ("Myla Schneider","STP / DOS","DEF","Kanada / Trinidad-Tobago","23 (2003)",165,"Sağ","Son kulüp: Rio Tinto (Portekiz)",
   "Trinidad-Tobago A Milli; 2x All-Conference First Team, şampiyonluk MVP'si",
   "https://youtu.be/gY2iuPN8tuw"),
  ("Enez Mango","SLB","DEF","Kenya","33",0,"","Farul Constanța (Romanya)",
-  "Sol bek — 2025/26 sezon highlights",
+  "Takım kaptanı karakterinde, tecrübeli ve lider sol bek — 2025/26 sezon highlights",
   "https://youtu.be/WYqBwmWzl4I"),
  # ── ORTA SAHA ──
  ("Chinatsu Kaio","OOS / KNT","OS","Japonya","23 (2003)",152,"Sağ","Adelaide University SC (Avustralya)",
   "Japonya U17 Milli; CUSA şampiyonu ve CUSA En İyi 11",
   "https://www.youtube.com/watch?v=eB2IV6ubMsY"),
  # ── HÜCUM ──
- ("Enzi Starks Broussard","KNT","FW","ABD","25 (2001)",170,"Sağ","Serbest (son: Dallas Trinity FC, USL Super League)",
+ ("Enzi Starks Broussard","KNT","FW","ABD","25 (2001)",170,"Sağ","Son kulüp: Dallas Trinity FC (USL Super League)",
   "ABD U17 Milli; 2x Yılın Ofansif Oyuncusu (US Development Academy)",
   "https://www.youtube.com/watch?v=DBkKjJxH1ik"),
  ("Nikola Rybanska","ST","FW","Slovakya","31 (1995)",0,"","OFI Kreta (Yunanistan)",
-  "Golcü — 2025/26 sezon highlights (Slovak Milli geçmişi)",
+  "Slovakya Milli Takımı as forveti · Golcü — Hedef Santrafor",
   "https://youtu.be/ACA2GLmZfSE"),
 ]
 
@@ -84,12 +84,12 @@ pdf.cell(0, 11, "OYUNCU HAVUZU", ln=1)
 pdf.set_x(14); pdf.set_font("DV", "", 11); pdf.set_text_color(*LIME)
 pdf.cell(0, 6, "MEVCUT ADAYLAR · KADIN FUTBOLU · YAZ 2026", ln=1)
 pdf.set_x(14); pdf.set_font("DV", "", 8.5); pdf.set_text_color(*GRI)
-pdf.cell(0, 5, "IDEAL Sports Management portföyündeki transfere açık uluslararası oyuncular", ln=1)
+pdf.cell(0, 5, "Tamamı transfere açık, temsil ettiğimiz uluslararası oyuncular", ln=1)
 
 # özet kutuları
 _say = {g: sum(1 for o in OYUNCULAR if o[2] == g) for g, _, _ in GRUPLAR}
-_serbest = sum(1 for o in OYUNCULAR if "serbest" in o[7].lower())
-_ozet = [(str(len(OYUNCULAR)), "OYUNCU"), (str(_serbest), "SERBEST"),
+_ulkeler = {p.strip() for o in OYUNCULAR for p in o[3].split("/")}
+_ozet = [(str(len(OYUNCULAR)), "OYUNCU"), (str(len(_ulkeler)), "FARKLI ÜLKE"),
          (f"{_say['KL']}", "KALECİ"), (f"{_say['DEF']}", "DEFANS"),
          (f"{_say['OS']}", "ORTA SAHA"), (f"{_say['FW']}", "HÜCUM")]
 ox, oy = 14, 62; bw = 30
@@ -144,9 +144,12 @@ def kart(o, x, y):
     while meta and pdf.get_string_width(meta) > CW - 10:
         meta = meta[:-2].rstrip()
     pdf.cell(CW - 8, 4, meta)
-    # kulüp
-    pdf.set_xy(x + 5, y + 15.5); pdf.set_font("DV", "B", 7.5); pdf.set_text_color(150, 200, 90)
-    pdf.cell(CW - 8, 4, (kulup or "—")[:54])
+    # kulüp (uzun satırda punto küçülür, metin kesilmez)
+    pdf.set_font("DV", "B", 7.5)
+    while pdf.get_string_width(kulup or "—") > CW - 10 and pdf.font_size_pt > 6.2:
+        pdf.set_font_size(pdf.font_size_pt - 0.2)
+    pdf.set_xy(x + 5, y + 15.5); pdf.set_text_color(150, 200, 90)
+    pdf.cell(CW - 8, 4, kulup or "—")
     # not
     pdf.set_xy(x + 5, y + 20.3); pdf.set_font("DV", "", 6.8); pdf.set_text_color(150, 160, 176)
     pdf.multi_cell(CW - 9, 3.5, notu[:118])
