@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-"""IDEAL Sports Management — MEVCUT OYUNCU HAVUZU (başvuru/aday katalogu) PDF'i.
+"""IDEAL Sports Management — MEVCUT OYUNCU HAVUZU (aday katalogu) PDF'i.
 
-Türkiye Portföyü'nden farkı: bunlar ajansa gelen/önerilen, uluslararası
-adaylar. Diziliş yerine mevki-grupları kart ızgarası; her oyuncuda direkt
-highlight video linki (+ sitede olan varsa scout raporu linki).
+Tasarım: AÇIK KREM zemin (sunum dosyası kriterleri) + ISM lime aksan.
+Kurgu: Kapak (özet + içindekiler + imza) → her mevki bölgesi için AYRI sayfa,
+tam genişlik zengin oyuncu kartları (künye + öne çıkanlar + video butonu).
 
 Kadro güncelleme: OYUNCULAR listesini düzenle → python portfoy_ism_havuz.py
 Çıktı: Desktop\\ISM_Oyuncu_Havuzu_2026.pdf
@@ -14,22 +14,27 @@ from urllib.parse import quote
 sys.stdout.reconfigure(encoding="utf-8")
 KOK = pathlib.Path(__file__).parent
 
-# ── Marka ──
-LIME  = (181, 229, 0); KOYU = (11, 15, 20); PANEL = (18, 22, 34)
-BEYAZ = (240, 244, 252); GRI = (120, 133, 151); CIZGI = (38, 44, 69)
-KIRMIZI = (220, 60, 60); YESIL = (90, 150, 20)
+# ── Palet: krem bazlı + ISM kimliği ──
+KREM  = (250, 248, 242)     # sayfa zemini
+KART  = (255, 255, 255)     # kart zemini
+KENAR = (228, 224, 214)     # kart kenarı
+METIN = (26, 32, 44)        # ana metin (antrasit)
+GRIM  = (122, 130, 142)     # ikincil metin
+LIME  = (181, 229, 0)       # ISM lime (dolgu/rozet)
+OLIV  = (106, 140, 0)       # lime'ın okunur koyusu (açık zeminde metin)
+KOYU  = (11, 15, 20)        # marka bandı
 
 # (isim, mevki, grup, uyruk, "yaş (doğum yılı)", boy_cm, ayak, kulüp, not, video)
 OYUNCULAR = [
  # ── KALECİ ──
  ("Ashley Orkus","KL","KL","ABD","27 (1998)",180,"Sağ","Fram (İzlanda Top Division) — Eylül ortası itibarıyla serbest",
-  "ABD U15–U18 milli; profesyonel seviyede düzenli maç deneyimi (son: Tampa Bay Sun, USL S)",
+  "ABD U15–U18 milli; Profesyonel seviyede düzenli maç deneyimi (son: Tampa Bay Sun, USL S)",
   "https://www.youtube.com/watch?v=hnzyTjfz1zY"),
  ("Chloé Lachance-Soulard","KL","KL","Kanada","25 (2001)",170,"Sağ","Ottawa Rapids (NSL) — profesyonel lig bünyesinde",
   "Carleton Üniv. Takım MVP'si (2022); 2x OUA East All-Star (2022, 2025)",
   "https://www.youtube.com/watch?v=F0cRZCQpyg0"),
  ("Sydney Bellamy","KL","KL","ABD / Jamaika","23 (2003)",175,"Sağ","Son kulüp: Nhrhides Fthias (Yunanistan)",
-  "Jamaika A Milli (2 maç); 2x Yılın Kalecisi + 2x First Team All-Conference (2023, 2024)",
+  "Jamaika A Milli (2 maç); 2x Yılın Kalecisi (2023, 2024); 2x First Team All-Conference",
   "https://www.youtube.com/watch?v=CAY0ngFXzAE"),
  # ── DEFANS ──
  ("Angel Fowler","STP","DEF","İngiltere","24 (2002)",175,"Sağ","Carolina Ascent (USL W)",
@@ -39,10 +44,10 @@ OYUNCULAR = [
   "Trinidad-Tobago A Milli; UMaine Yılın Defans Oyuncusu (2024) ve takım kaptanı",
   "https://youtu.be/pG7WMo1ZF8A"),
  ("Myla Schneider","STP / DOS","DEF","Kanada / Trinidad-Tobago","23 (2003)",165,"Sağ","Son kulüp: Rio Tinto (Portekiz)",
-  "Trinidad-Tobago A Milli; 2x All-Conference First Team, şampiyonluk MVP'si",
+  "Trinidad-Tobago A Milli; 2x All-Conference First Team; Şampiyonluk MVP'si",
   "https://youtu.be/gY2iuPN8tuw"),
  ("Enez Mango","SLB","DEF","Kenya","33",0,"","Farul Constanța (Romanya)",
-  "Takım kaptanı karakterinde, tecrübeli ve lider sol bek — 2025/26 sezon highlights",
+  "Takım kaptanı karakterinde, tecrübeli ve lider sol bek; 2025/26 sezon highlights",
   "https://youtu.be/WYqBwmWzl4I"),
  # ── ORTA SAHA ──
  ("Chinatsu Kaio","OOS / KNT","OS","Japonya","23 (2003)",152,"Sağ","Adelaide University SC (Avustralya)",
@@ -53,7 +58,7 @@ OYUNCULAR = [
   "ABD U17 Milli; 2x Yılın Ofansif Oyuncusu (US Development Academy)",
   "https://www.youtube.com/watch?v=DBkKjJxH1ik"),
  ("Nikola Rybanska","ST","FW","Slovakya","31 (1995)",0,"","OFI Kreta (Yunanistan)",
-  "Slovakya Milli Takımı as forveti · Golcü — Hedef Santrafor",
+  "Slovakya Milli Takımı as forveti; Golcü — Hedef Santrafor",
   "https://youtu.be/ACA2GLmZfSE"),
 ]
 
@@ -71,126 +76,165 @@ pdf = FPDF(orientation="P", unit="mm", format="A4")
 pdf.set_auto_page_break(False)
 pdf.add_font("DV", "", str(_f / "DejaVuSans.ttf"))
 pdf.add_font("DV", "B", str(_f / "DejaVuSans-Bold.ttf"))
+pdf.add_font("IMZA", "", r"C:\Windows\Fonts\segoesc.ttf")
 logo = KOK / "static" / "ism_logo_beyaz.png"
 
 def zemin():
-    pdf.set_fill_color(*KOYU); pdf.rect(0, 0, 210, 297, "F")
+    pdf.set_fill_color(*KREM); pdf.rect(0, 0, 210, 297, "F")
+
+def marka_bandi(h=13, baslik=""):
+    """Üst koyu bant: beyaz logo + sağda sayfa başlığı."""
+    pdf.set_fill_color(*KOYU); pdf.rect(0, 0, 210, h, "F")
+    if logo.exists(): pdf.image(str(logo), x=10, y=h/2 - 3.2, w=32)
+    if baslik:
+        pdf.set_xy(100, h/2 - 3); pdf.set_font("DV", "B", 10.5)
+        pdf.set_text_color(255, 255, 255)
+        pdf.cell(100, 6, baslik, align="R")
+
+def imza_blogu(x, y):
+    pdf.set_xy(x, y); pdf.set_font("IMZA", "", 17); pdf.set_text_color(*METIN)
+    pdf.cell(80, 9, "Yiğit Çelebi", ln=1)
+    pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+    pdf.line(x + 1, y + 11, x + 62, y + 11)
+    pdf.set_xy(x + 1, y + 12); pdf.set_font("DV", "B", 8.5); pdf.set_text_color(*METIN)
+    pdf.cell(90, 5, "Yiğit Çelebi · IDEAL Sports Management", ln=1)
+    pdf.set_x(x + 1); pdf.set_font("DV", "", 7.8); pdf.set_text_color(*GRIM)
+    pdf.cell(90, 4.5, "+90 506 578 46 43 · womenfootballscouting.com", ln=1)
 
 # ════════ KAPAK ════════
 pdf.add_page(); zemin()
-if logo.exists(): pdf.image(str(logo), x=14, y=16, w=60)
-pdf.set_xy(14, 34); pdf.set_font("DV", "B", 24); pdf.set_text_color(*BEYAZ)
+marka_bandi(h=34)
+pdf.set_xy(14, 46); pdf.set_font("DV", "B", 25); pdf.set_text_color(*METIN)
 pdf.cell(0, 11, "OYUNCU HAVUZU", ln=1)
-pdf.set_x(14); pdf.set_font("DV", "", 11); pdf.set_text_color(*LIME)
+pdf.set_x(14); pdf.set_font("DV", "B", 10.5); pdf.set_text_color(*OLIV)
 pdf.cell(0, 6, "MEVCUT ADAYLAR · KADIN FUTBOLU · YAZ 2026", ln=1)
-pdf.set_x(14); pdf.set_font("DV", "", 8.5); pdf.set_text_color(*GRI)
-pdf.cell(0, 5, "Tamamı transfere açık, temsil ettiğimiz uluslararası oyuncular", ln=1)
+pdf.set_x(14); pdf.set_font("DV", "", 9); pdf.set_text_color(*GRIM)
+pdf.cell(0, 6, "Tamamı transfere açık, temsil ettiğimiz uluslararası oyuncular", ln=1)
 
-# özet kutuları
+# özet kutuları (beyaz kart + lime üst şerit)
 _say = {g: sum(1 for o in OYUNCULAR if o[2] == g) for g, _, _ in GRUPLAR}
 _ulkeler = {p.strip() for o in OYUNCULAR for p in o[3].split("/")}
 _ozet = [(str(len(OYUNCULAR)), "OYUNCU"), (str(len(_ulkeler)), "FARKLI ÜLKE"),
          (f"{_say['KL']}", "KALECİ"), (f"{_say['DEF']}", "DEFANS"),
          (f"{_say['OS']}", "ORTA SAHA"), (f"{_say['FW']}", "HÜCUM")]
-ox, oy = 14, 62; bw = 30
+ox, oy = 14, 76; bw, bh = 29, 24
 for i, (deger, et) in enumerate(_ozet):
-    x = ox + (i % 3) * (bw + 4); y = oy + (i // 3) * 26
-    pdf.set_fill_color(*PANEL); pdf.set_draw_color(*CIZGI)
-    pdf.rect(x, y, bw, 22, "DF")
-    pdf.set_xy(x, y + 3); pdf.set_text_color(*LIME); pdf.set_font("DV", "B", 15)
+    x = ox + i * (bw + 3.6)
+    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+    pdf.rect(x, oy, bw, bh, "DF")
+    pdf.set_fill_color(*LIME); pdf.rect(x, oy, bw, 1.6, "F")
+    pdf.set_xy(x, oy + 5); pdf.set_text_color(*METIN); pdf.set_font("DV", "B", 15)
     pdf.cell(bw, 7, deger, align="C")
-    pdf.set_xy(x, y + 13); pdf.set_text_color(*GRI); pdf.set_font("DV", "", 6.5)
+    pdf.set_xy(x, oy + 15); pdf.set_text_color(*GRIM); pdf.set_font("DV", "", 6.4)
     pdf.cell(bw, 4, et, align="C")
 
-pdf.set_xy(14, 122); pdf.set_font("DV", "", 8.5); pdf.set_text_color(200, 208, 220)
-pdf.multi_cell(126, 5,
-    "Her oyuncunun kartında güncel kulübü, künyesi ve DOĞRUDAN highlight video "
-    "linki yer alır. İlgilendiğiniz oyuncular için detaylı görüşme ve scout "
-    "raporu talep edebilirsiniz.")
+# tanıtım paragrafı
+pdf.set_xy(14, 112); pdf.set_font("DV", "", 9.2); pdf.set_text_color(60, 68, 82)
+pdf.multi_cell(150, 5.4,
+    "Bu dosyada, kulübünüzün kadro planlamasına doğrudan katkı sunabilecek "
+    "uluslararası oyuncularımız mevki bölgelerine göre sunulmuştur. Her oyuncu "
+    "kartında güncel kulüp, künye, öne çıkan başarılar ve tek tıkla izlenebilen "
+    "highlight videosu yer alır. İlgilendiğiniz oyuncular için detaylı scout "
+    "raporu, referans ve görüşme organizasyonu hızlıca sağlanır.")
 
-pdf.set_xy(14, 268); pdf.set_font("DV", "B", 10); pdf.set_text_color(*BEYAZ)
-pdf.cell(0, 6, "Yiğit Çelebi · IDEAL Sports Management", ln=1)
-pdf.set_x(14); pdf.set_font("DV", "", 8.5); pdf.set_text_color(*GRI)
-pdf.cell(0, 5, "+90 506 578 46 43 · womenfootballscouting.com", ln=1)
+# içindekiler
+pdf.set_xy(14, 152); pdf.set_font("DV", "B", 10); pdf.set_text_color(*METIN)
+pdf.cell(0, 7, "İÇİNDEKİLER", ln=1)
+for i, (g, tr, en) in enumerate(GRUPLAR):
+    y = 162 + i * 12
+    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR)
+    pdf.rect(14, y, 120, 9.6, "DF")
+    pdf.set_fill_color(*LIME); pdf.rect(14, y, 1.8, 9.6, "F")
+    pdf.set_xy(19, y + 2.3); pdf.set_font("DV", "B", 9); pdf.set_text_color(*METIN)
+    pdf.cell(58, 5, tr)
+    pdf.set_font("DV", "", 8); pdf.set_text_color(*GRIM)
+    pdf.cell(34, 5, f"{_say[g]} oyuncu")
+    pdf.cell(21, 5, f"Sayfa {i + 2}", align="R")
 
-# ════════ KART IZGARASI ════════
-CW, CH, GX, GY = 92, 40, 8, 6           # kart genişlik/yükseklik, boşluklar
-X0, Y0 = 9, 16
-sut = 2
+# imza
+imza_blogu(14, 246)
 
-def yeni_sayfa(baslik):
-    pdf.add_page(); zemin()
-    pdf.set_fill_color(*KOYU); pdf.rect(0, 0, 210, 13, "F")
-    if logo.exists(): pdf.image(str(logo), x=9, y=3.5, w=34)
-    pdf.set_xy(120, 4); pdf.set_font("DV", "B", 11); pdf.set_text_color(*BEYAZ)
-    pdf.cell(81, 6, baslik, align="R")
+# ════════ BÖLGE SAYFALARI — her grup ayrı sayfa, tam genişlik kartlar ════════
+CW, CH = 182, 47
+X0 = 14
 
-def kart(o, x, y):
+def kart(o, y):
     isim, mevki, grup, uyruk, yas_str, boy, ayak, kulup, notu, video = o
-    pdf.set_fill_color(*PANEL); pdf.set_draw_color(*CIZGI); pdf.set_line_width(0.3)
-    pdf.rect(x, y, CW, CH, "DF")
-    pdf.set_fill_color(*LIME); pdf.rect(x, y, 1.4, CH, "F")          # sol şerit
-    # isim + mevki rozeti
-    pdf.set_xy(x + 5, y + 3.5); pdf.set_font("DV", "B", 10); pdf.set_text_color(*BEYAZ)
-    pdf.cell(CW - 30, 5, isim[:26])
-    pdf.set_xy(x + CW - 30, y + 3.2); pdf.set_font("DV", "B", 7); pdf.set_text_color(*LIME)
-    pdf.cell(26, 5.5, mevki, align="R")
+    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+    pdf.rect(X0, y, CW, CH, "DF")
+    pdf.set_fill_color(*LIME); pdf.rect(X0, y, 2, CH, "F")           # sol şerit
+    # isim
+    pdf.set_xy(X0 + 7, y + 5); pdf.set_font("DV", "B", 12.5); pdf.set_text_color(*METIN)
+    pdf.cell(120, 6, isim)
+    # mevki rozeti (koyu çip + lime yazı)
+    pdf.set_font("DV", "B", 8)
+    cw_ = pdf.get_string_width(mevki) + 8
+    pdf.set_fill_color(*KOYU); pdf.rect(X0 + CW - 6 - cw_, y + 4.6, cw_, 7, "F")
+    pdf.set_xy(X0 + CW - 6 - cw_, y + 5.1); pdf.set_text_color(*LIME)
+    pdf.cell(cw_, 6, mevki, align="C")
     # meta satırı
     yas_gorunum = (yas_str.replace(" (", " yaş (", 1) if "(" in yas_str
                    else (f"{yas_str} yaş" if yas_str else ""))
-    meta = " · ".join(x2 for x2 in [
-        yas_gorunum, uyruk, (f"{boy} cm" if boy else ""), ayak] if x2)
-    pdf.set_xy(x + 5, y + 10.5); pdf.set_font("DV", "", 7); pdf.set_text_color(170, 182, 200)
-    while meta and pdf.get_string_width(meta) > CW - 10:
-        meta = meta[:-2].rstrip()
-    pdf.cell(CW - 8, 4, meta)
-    # kulüp (uzun satırda punto küçülür, metin kesilmez)
-    pdf.set_font("DV", "B", 7.5)
-    while pdf.get_string_width(kulup or "—") > CW - 10 and pdf.font_size_pt > 6.2:
+    meta = "  ·  ".join(x2 for x2 in [
+        yas_gorunum, uyruk, (f"{boy} cm" if boy else ""),
+        (f"{ayak} ayak" if ayak else "")] if x2)
+    pdf.set_xy(X0 + 7, y + 13); pdf.set_font("DV", "", 8.4); pdf.set_text_color(*GRIM)
+    pdf.cell(CW - 14, 5, meta)
+    # kulüp
+    pdf.set_font("DV", "B", 9)
+    while pdf.get_string_width(kulup or "—") > CW - 16 and pdf.font_size_pt > 7:
         pdf.set_font_size(pdf.font_size_pt - 0.2)
-    pdf.set_xy(x + 5, y + 15.5); pdf.set_text_color(150, 200, 90)
-    pdf.cell(CW - 8, 4, kulup or "—")
-    # not
-    pdf.set_xy(x + 5, y + 20.3); pdf.set_font("DV", "", 6.8); pdf.set_text_color(150, 160, 176)
-    pdf.multi_cell(CW - 9, 3.5, notu[:118])
-    # alt: video (+ sitede olan için rapor)
+    pdf.set_xy(X0 + 7, y + 19.5); pdf.set_text_color(*OLIV)
+    pdf.cell(CW - 14, 5, kulup or "—")
+    # öne çıkanlar (nottan madde işaretli)
+    maddeler = [m.strip(" .") for m in re.split(r"[;]|\s·\s", notu) if m.strip()][:3]
+    yy = y + 26.5
+    pdf.set_font("DV", "", 8.2)
+    for m in maddeler:
+        pdf.set_xy(X0 + 7, yy); pdf.set_text_color(*OLIV)
+        pdf.cell(4, 4.6, "•")
+        pdf.set_text_color(60, 68, 82)
+        pdf.cell(CW - 20, 4.6, m[:100])
+        yy += 4.8
+    # video butonu (lime hap + koyu yazı) — sağ alt
+    bw_ = 42
+    pdf.set_fill_color(*LIME)
+    pdf.rect(X0 + CW - 6 - bw_, y + CH - 10.5, bw_, 7, "F")
+    pdf.set_xy(X0 + CW - 6 - bw_, y + CH - 10); pdf.set_font("DV", "B", 8)
+    pdf.set_text_color(*KOYU)
+    pdf.cell(bw_, 6, "▶  HIGHLIGHTS İZLE", align="C", link=video)
     site_key = _site_isim.get(_norm(isim))
-    pdf.set_xy(x + 5, y + CH - 6.5); pdf.set_font("DV", "B", 7.6); pdf.set_text_color(*KIRMIZI)
-    pdf.cell(26, 5, "▶ HIGHLIGHTS", link=video)
     if site_key:
-        pdf.set_xy(x + 34, y + CH - 6.5); pdf.set_text_color(*YESIL)
-        pdf.cell(34, 5, "★ Scout Raporu",
+        pdf.set_xy(X0 + CW - 6 - bw_ - 46, y + CH - 10); pdf.set_font("DV", "B", 8)
+        pdf.set_text_color(*OLIV)
+        pdf.cell(42, 6, "★ Scout Raporu", align="R",
                  link=f"https://womenfootballscouting.com/?paylas={quote(site_key)}")
 
-def grup_basligi(tr, en, y):
-    pdf.set_fill_color(*LIME); pdf.rect(X0, y, 3, 6.5, "F")
-    pdf.set_xy(X0 + 6, y + 0.5); pdf.set_font("DV", "B", 11); pdf.set_text_color(*BEYAZ)
-    pdf.cell(120, 5.5, tr)
-    pdf.set_font("DV", "", 8); pdf.set_text_color(*GRI)
-    pdf.cell(60, 5.5, "· " + en)
-
-# ── Sürekli akış: mevki grupları başlıklı, 2 sütun, sığmazsa yeni sayfa ──
-ALT = 288
-yeni_sayfa("OYUNCU HAVUZU · PLAYER POOL")
-yy = Y0
-for g, tr, en in GRUPLAR:
+for si, (g, tr, en) in enumerate(GRUPLAR):
     grup_oyun = [o for o in OYUNCULAR if o[2] == g]
     if not grup_oyun:
         continue
-    # başlık + en az bir kart satırı sığmıyorsa yeni sayfa
-    if yy + 9 + CH > ALT:
-        yeni_sayfa("OYUNCU HAVUZU · PLAYER POOL (devam)")
-        yy = Y0
-    grup_basligi(tr, en, yy); yy += 9
-    for k in range(0, len(grup_oyun), sut):
-        if yy + CH > ALT:
-            yeni_sayfa("OYUNCU HAVUZU · PLAYER POOL (devam)")
-            yy = Y0
-        for c, o in enumerate(grup_oyun[k:k + sut]):
-            kart(o, X0 + c * (CW + GX), yy)
-        yy += CH + GY
-    yy += 3   # gruplar arası nefes
+    pdf.add_page(); zemin()
+    marka_bandi(h=13, baslik="OYUNCU HAVUZU · YAZ 2026")
+    # bölge başlığı
+    pdf.set_fill_color(*LIME); pdf.rect(X0, 20, 3.2, 8, "F")
+    pdf.set_xy(X0 + 7, 20.6); pdf.set_font("DV", "B", 15); pdf.set_text_color(*METIN)
+    pdf.cell(90, 7, tr)
+    pdf.set_font("DV", "", 9.5); pdf.set_text_color(*GRIM)
+    pdf.cell(40, 7, "· " + en)
+    pdf.set_xy(X0, 20.6); pdf.set_font("DV", "", 9); pdf.set_text_color(*GRIM)
+    pdf.cell(CW, 7, f"{len(grup_oyun)} oyuncu", align="R")
+    # kartlar
+    y = 34
+    for o in grup_oyun:
+        kart(o, y)
+        y += CH + 6
+    # sayfa altı: küçük iletişim şeridi + sayfa no
+    pdf.set_y(-16); pdf.set_font("DV", "", 7.6); pdf.set_text_color(*GRIM)
+    pdf.set_x(X0)
+    pdf.cell(CW / 2, 5, "Yiğit Çelebi · IDEAL Sports Management · +90 506 578 46 43")
+    pdf.cell(CW / 2, 5, f"{si + 2} / {len(GRUPLAR) + 1}", align="R")
 
 cikti = pathlib.Path.home() / "Desktop" / "ISM_Oyuncu_Havuzu_2026.pdf"
 pdf.output(str(cikti))
-print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu")
+print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu · {1 + sum(1 for g,_,_ in GRUPLAR if _say[g])} sayfa")
