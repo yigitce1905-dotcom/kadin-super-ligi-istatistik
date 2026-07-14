@@ -4807,24 +4807,22 @@ def render_scout_raporu(isim: str):
                   "Detailed attribute assessment for this player is not yet complete."))
         return
 
-    # ── Nitelik panelleri: 2×2 köşe düzeni — Baran isteği ───────────────
-    # Üst: BECERİ (kaleciyse KALECİLİK) | BEŞERİ — Alt: ŞAHSİ | FİZİKİ
+    # ── Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği ──
     makro = rapor.get("makro", {})
     _gk = bool(rapor.get("kaleci"))
     sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", rapor.get("kaleci", {}), makro.get("kaleci", ""))
                if _gk else
                (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")))
-    izgara = [
-        [sol_ust,
-         (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", ""))],
-        [(t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
-         (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", ""))],
+    siralama = [
+        sol_ust,
+        (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", "")),
+        (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", "")),
+        (t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
     ]
-    for satir in izgara:
-        for kol, (baslik, ikon, nit, mk) in zip(st.columns(2, gap="small"), satir):
-            if nit:
-                kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
-                             unsafe_allow_html=True)
+    for kol, (baslik, ikon, nit, mk) in zip(st.columns(4, gap="small"), siralama):
+        if nit:
+            kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
+                         unsafe_allow_html=True)
 
     # ── Oyun tarzı çipleri (yalnızca işaretli özellikler) ───────────────
     tarz = rapor.get("tarz", [])
@@ -5084,23 +5082,21 @@ def render_scout_kadro_raporu(isim: str):
             f"font-size:0.74rem;font-weight:700;'>{m}</span>" for m, c in rozet)
         st.markdown(f"<div style='margin-bottom:8px;'>{cip}</div>", unsafe_allow_html=True)
 
-    # Nitelik panelleri: 2×2 köşe düzeni — Baran isteği
-    # Üst: BECERİ (kaleciyse KALECİLİK) | BEŞERİ — Alt: ŞAHSİ | FİZİKİ
+    # Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği
     makro = rapor.get("makro", {})
     _gk = bool(rapor.get("kaleci"))
     sol_ust = ((t("KALECİLİK","GOALKEEPING"), "🧤", rapor.get("kaleci",{}), makro.get("kaleci",""))
                if _gk else
                (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")))
-    izgara = [
-        [sol_ust,
-         (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri",""))],
-        [(t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
-         (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki",""))],
+    siralama = [
+        sol_ust,
+        (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri","")),
+        (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki","")),
+        (t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
     ]
-    for satir in izgara:
-        for kol, (b, ik, nit, mk) in zip(st.columns(2, gap="small"), satir):
-            if nit:
-                kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
+    for kol, (b, ik, nit, mk) in zip(st.columns(4, gap="small"), siralama):
+        if nit:
+            kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
 
     # Oyun tarzı (sadeleştirilmiş, ✔ işaretliler)
     tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
@@ -6138,23 +6134,22 @@ def render_paylasim_raporu(isim: str):
         """,
         unsafe_allow_html=True)
 
-    # Nitelik panelleri (2×2) — paylaşılan rapor TAM rapor olsun (Baran geri bildirimi:
-    # "beşeri/fiziki bizde hep var ama göstermiyorduk")
+    # Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — paylaşılan rapor
+    # TAM rapor olsun (Baran: "beşeri/fiziki bizde hep var ama göstermiyorduk")
     _mk = kadro.get("makro", {})
     _pgk = bool(kadro.get("kaleci"))
     _sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", kadro.get("kaleci", {}), _mk.get("kaleci", ""))
                 if _pgk else
                 (t("BECERİ", "TECHNICAL"), "⚽", kadro.get("beceri", {}), _mk.get("beceri", "")))
-    _izgara = [
-        [_sol_ust,
-         (t("BEŞERİ", "MENTAL"),   "🧠", kadro.get("beseri", {}), _mk.get("beseri", ""))],
-        [(t("ŞAHSİ",  "PERSONAL"), "🎖️", kadro.get("sahsi", {}),  _mk.get("sahsi", "")),
-         (t("FİZİKİ", "PHYSICAL"), "💪", kadro.get("fiziki", {}), _mk.get("fiziki", ""))],
+    _siralama = [
+        _sol_ust,
+        (t("BEŞERİ", "MENTAL"),   "🧠", kadro.get("beseri", {}), _mk.get("beseri", "")),
+        (t("FİZİKİ", "PHYSICAL"), "💪", kadro.get("fiziki", {}), _mk.get("fiziki", "")),
+        (t("ŞAHSİ",  "PERSONAL"), "🎖️", kadro.get("sahsi", {}),  _mk.get("sahsi", "")),
     ]
-    for _satir in _izgara:
-        for _kol, (_b, _ik, _nit, _m) in zip(st.columns(2, gap="small"), _satir):
-            if _nit:
-                _kol.markdown(_scotr_nitelik_paneli(_b, _ik, _nit, _m), unsafe_allow_html=True)
+    for _kol, (_b, _ik, _nit, _m) in zip(st.columns(4, gap="small"), _siralama):
+        if _nit:
+            _kol.markdown(_scotr_nitelik_paneli(_b, _ik, _nit, _m), unsafe_allow_html=True)
 
     # Nitelik radarı — vitrin: ürünün veri derinliğini girişsiz göster
     nitelik_radari_goster(isim)
