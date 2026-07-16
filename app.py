@@ -4866,7 +4866,7 @@ _YETENEK_RENK = {
 }
 
 @st.cache_data(show_spinner=False, max_entries=64)
-def _scout_pdf_uret(isim: str, rapor: dict) -> bytes:
+def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
     """Scout raporunu tek sayfalık PDF olarak üretir (DejaVu — Türkçe destekli)."""
     from fpdf import FPDF
     _f = pathlib.Path(__file__).parent / "fonts"
@@ -5129,10 +5129,11 @@ def render_scout_kadro_raporu(isim: str):
 
     # PDF indirme
     try:
-        pdf_bytes = _scout_pdf_uret(isim, rapor)
+        pdf_bytes = _scout_pdf_uret(isim, rapor, EN)
         st.download_button(
             f"📄 {t('Scout Raporunu PDF indir','Download Scout Report PDF')}",
-            data=pdf_bytes, file_name=f"scout_raporu_{isim.replace(' ','_')}.pdf",
+            data=pdf_bytes,
+            file_name=f"{t('scout_raporu','scout_report')}_{isim.replace(' ','_')}.pdf",
             mime="application/pdf", width="stretch")
     except Exception as e:
         st.caption(f"⚠️ PDF oluşturulamadı: {e}")
@@ -5247,10 +5248,11 @@ def render_percentil_panel(secili: str):
 
 
 @st.cache_data(show_spinner=False, max_entries=64)
-def _ana_lig_pdf_uret(secili: str, _en: bool = False) -> bytes:
+def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     """TR lig oyuncusu için tek sayfalık markalı PDF (DejaVu — Türkçe destekli).
     Sezon istatistikleri + mevki-içi percentile barları.
-    PERF: cache'li — aynı oyuncu için her rerun'da yeniden üretilmez."""
+    PERF: cache'li — 'en' parametresi cache anahtarının parçası (dil başına ayrı
+    PDF); '_en' adıyla kullanılırsa Streamlit hash'lemez ve TR kopya kilitlenir."""
     from fpdf import FPDF
     _f = pathlib.Path(__file__).parent / "fonts"
     row = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
@@ -5523,9 +5525,10 @@ def render_ana_lig_profil(secili):
         # ── Markalı PDF rapor indir ──────────────────────────────────────────
         try:
             _pdf = _ana_lig_pdf_uret(secili, EN)
+            _dosya = f"{t('oyuncu_raporu','player_report')}_{secili.replace(' ', '_')}.pdf"
             st.download_button(
                 f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
-                data=_pdf, file_name=f"oyuncu_raporu_{secili.replace(' ', '_')}.pdf",
+                data=_pdf, file_name=_dosya,
                 mime="application/pdf", width="stretch", key=_pk("pdf_indir"))
         except Exception as _e:
             st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
