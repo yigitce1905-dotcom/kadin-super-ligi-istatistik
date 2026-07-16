@@ -179,6 +179,12 @@ def ozet_tabloyu_parse(soup: BeautifulSoup, sezon: str, kulup: str, ulke: str = 
     kayitlar = []
     for tablo in soup.select("table"):
         basliklar = [th.get_text(strip=True).lower() for th in tablo.select("th")]
+        if not basliklar:
+            # Yeni profillerde baslik satiri th degil td ile geliyor (or. Orkus):
+            # ilk tr'nin hucrelerini baslik say (satir dongusunde mac=0 ile elenir)
+            ilk_tr = tablo.find("tr")
+            if ilk_tr:
+                basliklar = [td.get_text(strip=True).lower() for td in ilk_tr.select("td")]
         if "competition" not in basliklar and "wettbewerb" not in basliklar:
             continue
         if "matches" not in basliklar and "spiele" not in basliklar and "oys." not in basliklar:
