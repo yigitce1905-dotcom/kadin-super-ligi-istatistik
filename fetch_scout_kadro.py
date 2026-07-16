@@ -233,15 +233,38 @@ def yas_backfill(veriler: dict) -> int:
     return n
 
 
+def kulup_guncelle(veriler: dict) -> int:
+    """Sitede görünen takım SoccerDonna'dan gelsin: SD profilindeki
+    `guncel_kulup` (kulup_guncelle_sd.py yazar) sheet kulübünü EZER.
+    SD bilmiyorsa (alan yok/boş) sheet kulübü kalır; sheet değeri
+    `kulup_sheet` alanında saklanır."""
+    if not SD_YOL.exists():
+        return 0
+    sd = json.load(open(SD_YOL, encoding="utf-8"))
+    n = 0
+    for isim, k in veriler.items():
+        p = sd.get(isim)
+        if not isinstance(p, dict):
+            continue
+        g = (p.get("guncel_kulup") or "").strip()
+        if g and g != k.get("kulup"):
+            k["kulup_sheet"] = k.get("kulup", "")
+            k["kulup"] = g
+            n += 1
+    return n
+
+
 def main():
     veriler = parse(cek())
     bf = yas_backfill(veriler)
+    kg = kulup_guncelle(veriler)
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(veriler, f, ensure_ascii=False, indent=2)
     n_ok = sum(1 for v in veriler.values() if v["degerlendirildi"])
     n_yas = sum(1 for v in veriler.values() if v.get("yas"))
     print(f"{len(veriler)} oyuncu ({n_ok} değerlendirilmiş) -> {CIKTI.name}")
     print(f"Yaş dolu: {n_yas}/{len(veriler)} (SD backfill: {bf})")
+    print(f"Kulüp SD'den güncellendi: {kg}")
 
 
 if __name__ == "__main__":

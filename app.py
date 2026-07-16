@@ -1658,7 +1658,9 @@ def scotr_kadro_yukle() -> dict:
             "bolge":      r.get("bolge", ""),
             "mevki":      mevki,
             "rol":        r.get("rol", ""),
-            "kulup":      r.get("takim", ""),
+            # TR kulübü sheet'ten (Baran TR transferlerini anlık işler);
+            # sheet boşsa SD'nin güncel kulübü (kulup_guncelle_sd.py)
+            "kulup":      r.get("takim", "") or _p.get("guncel_kulup", ""),
             "lig":        r.get("lig", "") or "Türkiye",
             "deger":      r.get("deger", ""),
             "sozlesme":   r.get("sozlesme", ""),
@@ -5127,16 +5129,23 @@ def render_scout_kadro_raporu(isim: str):
     with col_ikiz:
         nitelik_ikizleri_goster(isim)
 
-    # PDF indirme
-    try:
-        pdf_bytes = _scout_pdf_uret(isim, rapor, EN)
-        st.download_button(
-            f"📄 {t('Scout Raporunu PDF indir','Download Scout Report PDF')}",
-            data=pdf_bytes,
-            file_name=f"{t('scout_raporu','scout_report')}_{isim.replace(' ','_')}.pdf",
-            mime="application/pdf", width="stretch")
-    except Exception as e:
-        st.caption(f"⚠️ PDF oluşturulamadı: {e}")
+    # PDF indirme — TALEP üzerine üretilir (profil açılışını 2-3 sn hızlandırır)
+    _pdfk = f"scout_pdf_iste_{isim}"
+    if not st.session_state.get(_pdfk):
+        if st.button(f"📄 {t('Scout Raporu PDF hazırla','Prepare Scout Report PDF')}",
+                     key=f"scout_pdf_btn_{isim}", width="stretch"):
+            st.session_state[_pdfk] = True
+            st.rerun()
+    else:
+        try:
+            pdf_bytes = _scout_pdf_uret(isim, rapor, EN)
+            st.download_button(
+                f"📄 {t('Scout Raporunu PDF indir','Download Scout Report PDF')}",
+                data=pdf_bytes,
+                file_name=f"{t('scout_raporu','scout_report')}_{isim.replace(' ','_')}.pdf",
+                mime="application/pdf", width="stretch")
+        except Exception as e:
+            st.caption(f"⚠️ PDF oluşturulamadı: {e}")
 
     # Paylaşılabilir PUBLIC rapor linki (kulübe gönder — giriş gerektirmez)
     _purl = f"https://womenfootballscouting.com/?paylas={_urlquote(isim)}"
@@ -5522,16 +5531,23 @@ def render_ana_lig_profil(secili):
         else:
             st.markdown(_stat_html, unsafe_allow_html=True)
 
-        # ── Markalı PDF rapor indir ──────────────────────────────────────────
-        try:
-            _pdf = _ana_lig_pdf_uret(secili, EN)
-            _dosya = f"{t('oyuncu_raporu','player_report')}_{secili.replace(' ', '_')}.pdf"
-            st.download_button(
-                f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
-                data=_pdf, file_name=_dosya,
-                mime="application/pdf", width="stretch", key=_pk("pdf_indir"))
-        except Exception as _e:
-            st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
+        # ── Markalı PDF rapor indir (TALEP üzerine üretilir) ─────────────────
+        _pdfk = f"lig_pdf_iste_{secili}"
+        if not st.session_state.get(_pdfk):
+            if st.button(f"📄 {t('Oyuncu Raporu PDF hazırla', 'Prepare Player Report PDF')}",
+                         width="stretch", key=_pk("pdf_hazirla")):
+                st.session_state[_pdfk] = True
+                st.rerun()
+        else:
+            try:
+                _pdf = _ana_lig_pdf_uret(secili, EN)
+                _dosya = f"{t('oyuncu_raporu','player_report')}_{secili.replace(' ', '_')}.pdf"
+                st.download_button(
+                    f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
+                    data=_pdf, file_name=_dosya,
+                    mime="application/pdf", width="stretch", key=_pk("pdf_indir"))
+            except Exception as _e:
+                st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
 
         st.markdown("<br>", unsafe_allow_html=True)
         p1, p2 = st.columns(2)

@@ -24,7 +24,7 @@
       "Penaltı Vuruşu": "DD",
       "Markaj": "DD",
       "Top Kapma": "DE",
-      "Uzun Taç": "FF",
+      "Uzun Taç": "EE",
       "Duran Top": "CD",
       "İlk Kontrol": "CC",
       "Kafa Vuruşu": "EE",
@@ -64,7 +64,7 @@
       "Sakatlanma Direnci": "DD",
       "Sportmenlik": "DD",
       "Profesyonellik": "DE",
-      "Sadakat": "FF",
+      "Sadakat": "DD",
       "Baskıya Dayanıklılık": "DE",
       "Uyumluluk": "DE",
       "Süreklilik": "DE",
@@ -72,10 +72,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -158,13 +158,13 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "CD",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬊",
     "scout_notu": "",
     "degerlendirildi": true
@@ -245,7 +245,7 @@
       "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [],
@@ -279,8 +279,8 @@
       "Penaltı Vuruşu": "DD",
       "Markaj": "DD",
       "Top Kapma": "DE",
-      "Uzun Taç": "FF",
-      "Duran Top": "FF",
+      "Uzun Taç": "EE",
+      "Duran Top": "EE",
       "İlk Kontrol": "DD",
       "Kafa Vuruşu": "DE",
       "Orta Yapma": "DE",
@@ -329,8 +329,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -361,11 +361,11 @@
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "FF",
+      "Penaltı Vuruşu": "EE",
       "Markaj": "DE",
       "Top Kapma": "DD",
       "Uzun Taç": "EE",
-      "Duran Top": "FF",
+      "Duran Top": "EE",
       "İlk Kontrol": "DE",
       "Kafa Vuruşu": "DD",
       "Orta Yapma": "EE",
@@ -415,11 +415,11 @@
       "beceri": "DE",
       "beseri": "DE",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -446,7 +446,7 @@
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "FF",
+      "Penaltı Vuruşu": "EE",
       "Markaj": "DE",
       "Top Kapma": "DE",
       "Uzun Taç": "DE",
@@ -498,13 +498,13 @@
     "kaleci": {},
     "makro": {
       "beceri": "DE",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -531,7 +531,7 @@
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "FF",
+      "Penaltı Vuruşu": "DD",
       "Markaj": "DD",
       "Top Kapma": "DD",
       "Uzun Taç": "DD",
@@ -574,7 +574,7 @@
       "Sakatlanma Direnci": "DD",
       "Sportmenlik": "CD",
       "Profesyonellik": "DE",
-      "Sadakat": "FF",
+      "Sadakat": "DD",
       "Baskıya Dayanıklılık": "DE",
       "Uyumluluk": "DD",
       "Süreklilik": "DE",
@@ -583,13 +583,13 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DE",
-      "fiziki": "DD",
-      "sahsi": "DE",
+      "beseri": "DD",
+      "fiziki": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬊",
     "scout_notu": "",
     "degerlendirildi": true
@@ -616,9 +616,9 @@
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
-      "Penaltı Vuruşu": "FF",
+      "Penaltı Vuruşu": "EE",
       "Markaj": "DE",
-      "Top Kapma": "DE",
+      "Top Kapma": "EE",
       "Uzun Taç": "EE",
       "Duran Top": "EE",
       "İlk Kontrol": "DE",
@@ -626,8 +626,8 @@
       "Orta Yapma": "EE",
       "Kısa Pas": "DE",
       "Uzun Pas": "EE",
-      "Top Sürme": "DE",
-      "Uzaktan Şut": "DE"
+      "Top Sürme": "EE",
+      "Uzaktan Şut": "EE"
     },
     "beseri": {
       "Agresiflik": "EE",
@@ -667,14 +667,14 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "EE",
-      "beseri": "EE",
+      "beceri": "DE",
+      "beseri": "DE",
       "fiziki": "DE",
       "sahsi": "DE",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "EE",
+    "nihai": "DE",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -752,10 +752,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "FF",
-      "beseri": "FF",
-      "fiziki": "FF",
-      "sahsi": "FF",
+      "beceri": "",
+      "beseri": "",
+      "fiziki": "",
+      "sahsi": "",
       "kaleci": ""
     },
     "tarz": [],
@@ -786,11 +786,11 @@
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
-      "Penaltı Vuruşu": "FF",
+      "Penaltı Vuruşu": "EE",
       "Markaj": "DE",
       "Top Kapma": "DE",
       "Uzun Taç": "EE",
-      "Duran Top": "FF",
+      "Duran Top": "EE",
       "İlk Kontrol": "DE",
       "Kafa Vuruşu": "EE",
       "Orta Yapma": "DD",
@@ -840,11 +840,11 @@
       "beceri": "DE",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬈",
     "scout_notu": "",
     "degerlendirildi": true
@@ -922,14 +922,14 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DD",
+    "nihai": "CD",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1009,8 +1009,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -1093,13 +1093,13 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "EE",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "DE",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1177,14 +1177,14 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DD",
+    "nihai": "CD",
     "ivme": "⬇︎",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1339,7 +1339,7 @@
       "Sakatlanma Direnci": "DD",
       "Sportmenlik": "DE",
       "Profesyonellik": "DD",
-      "Sadakat": "FF",
+      "Sadakat": "CD",
       "Baskıya Dayanıklılık": "DD",
       "Uyumluluk": "CD",
       "Süreklilik": "DE",
@@ -1350,7 +1350,7 @@
       "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -1433,7 +1433,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DE",
+      "beseri": "DD",
       "fiziki": "DD",
       "sahsi": "CD",
       "kaleci": ""
@@ -1519,12 +1519,12 @@
     "makro": {
       "beceri": "CD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬈",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1604,7 +1604,7 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
+      "fiziki": "CD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -1690,11 +1690,11 @@
       "beceri": "DD",
       "beseri": "DD",
       "fiziki": "CD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DD",
+    "nihai": "CD",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1772,14 +1772,14 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "DD",
+      "fiziki": "CD",
       "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DD",
+    "nihai": "CD",
     "ivme": "⬊",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1864,7 +1864,7 @@
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "DE",
+    "nihai": "DD",
     "ivme": "⬌",
     "scout_notu": "",
     "degerlendirildi": true
@@ -1891,7 +1891,7 @@
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
-      "Penaltı Vuruşu": "FF",
+      "Penaltı Vuruşu": "EE",
       "Markaj": "DD",
       "Top Kapma": "EE",
       "Uzun Taç": "DD",
@@ -1943,9 +1943,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DE",
+      "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "",
       "kaleci": ""
     },
     "tarz": [],
@@ -2027,10 +2027,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "FF",
-      "beseri": "FF",
-      "fiziki": "FF",
-      "sahsi": "FF",
+      "beceri": "",
+      "beseri": "",
+      "fiziki": "",
+      "sahsi": "",
       "kaleci": ""
     },
     "tarz": [],
@@ -2115,7 +2115,7 @@
       "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2199,8 +2199,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2282,10 +2282,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "DE",
+      "beceri": "DD",
+      "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2369,8 +2369,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2452,10 +2452,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "DE",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "beceri": "DD",
+      "beseri": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2539,8 +2539,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2622,9 +2622,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "DD",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -2708,9 +2708,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DE",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2794,8 +2794,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2878,9 +2878,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "CD",
-      "sahsi": "DD",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -2962,10 +2962,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "beceri": "DD",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3047,10 +3047,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
+      "beceri": "CD",
+      "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3133,9 +3133,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3217,9 +3217,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DE",
+      "fiziki": "DD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -3304,8 +3304,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3387,10 +3387,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3473,9 +3473,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3558,9 +3558,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3642,10 +3642,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3727,10 +3727,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -3897,10 +3897,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
-      "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CC",
+      "beceri": "BC",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -3984,7 +3984,7 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CC",
-      "fiziki": "CD",
+      "fiziki": "CC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -4071,8 +4071,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -4155,9 +4155,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "CD",
-      "fiziki": "DD",
-      "sahsi": "CC",
+      "beseri": "CC",
+      "fiziki": "CD",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -4239,9 +4239,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
+      "fiziki": "CD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -4327,7 +4327,7 @@
       "beceri": "CC",
       "beseri": "DD",
       "fiziki": "CD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -4412,7 +4412,7 @@
       "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -4494,10 +4494,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [],
@@ -4579,10 +4579,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -4666,8 +4666,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [],
@@ -4751,7 +4751,7 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CC",
-      "fiziki": "DD",
+      "fiziki": "CD",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -4934,8 +4934,8 @@
       "Kalecilik Dışı Meziyetler": "DE"
     },
     "makro": {
-      "beceri": "FF",
-      "beseri": "CD",
+      "beceri": "",
+      "beseri": "CC",
       "fiziki": "DD",
       "sahsi": "CC",
       "kaleci": "CC"
@@ -5023,8 +5023,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "BC",
-      "fiziki": "DE",
-      "sahsi": "DD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -5108,10 +5108,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "DD",
       "fiziki": "CC",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -5194,8 +5194,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "DD",
+      "beseri": "CD",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -5278,7 +5278,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
       "fiziki": "DD",
       "sahsi": "DD",
@@ -5364,8 +5364,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "CD",
-      "fiziki": "DD",
+      "beseri": "CC",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -5451,7 +5451,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CC",
+      "beseri": "BC",
       "fiziki": "CD",
       "sahsi": "BC",
       "kaleci": ""
@@ -5538,7 +5538,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CD",
+      "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "BC",
       "kaleci": ""
@@ -5624,8 +5624,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -5707,9 +5707,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CD",
-      "fiziki": "CC",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -5795,7 +5795,7 @@
       "beceri": "CC",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -5881,7 +5881,7 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
+      "fiziki": "CD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -5966,8 +5966,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [],
@@ -6049,10 +6049,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
-      "beseri": "DE",
-      "fiziki": "DD",
-      "sahsi": "DE",
+      "beceri": "BC",
+      "beseri": "DD",
+      "fiziki": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -6140,10 +6140,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "DE",
-      "fiziki": "DD",
-      "sahsi": "DE",
+      "beceri": "DD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -6230,10 +6230,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "EE",
-      "sahsi": "DE",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -6497,9 +6497,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "DD",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -6586,9 +6586,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CC",
-      "fiziki": "CD",
+      "fiziki": "CC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -6691,11 +6691,11 @@
       "Kalecilik Dışı Meziyetler": "EE"
     },
     "makro": {
-      "beceri": "FF",
-      "beseri": "DE",
+      "beceri": "",
+      "beseri": "DD",
       "fiziki": "CD",
-      "sahsi": "DD",
-      "kaleci": "DD"
+      "sahsi": "CD",
+      "kaleci": "CD"
     },
     "tarz": [
       "Kol Boyu Sayesinde Yan Toplarda Etkili Olur"
@@ -6778,10 +6778,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "DD",
-      "fiziki": "DE",
-      "sahsi": "DD",
+      "beceri": "CC",
+      "beseri": "CD",
+      "fiziki": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -6869,9 +6869,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "DD",
+      "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -6960,7 +6960,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
+      "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CC",
       "sahsi": "CD",
@@ -7065,11 +7065,11 @@
       "Kalecilik Dışı Meziyetler": "DD"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CC",
-      "kaleci": "CC"
+      "sahsi": "BC",
+      "kaleci": "BC"
     },
     "tarz": [
       "Eliyle Uzun Paslar Çıkartabilir",
@@ -7154,10 +7154,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -7244,8 +7244,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "CD",
+      "beceri": "CD",
+      "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "CC",
       "kaleci": ""
@@ -7333,10 +7333,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
+      "beceri": "CD",
+      "beseri": "CD",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -7424,10 +7424,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "CD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "beceri": "CD",
+      "beseri": "CC",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -7514,10 +7514,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CC",
       "fiziki": "BC",
-      "sahsi": "BC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -7606,9 +7606,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "DD",
-      "fiziki": "DD",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -7709,11 +7709,11 @@
       "Kalecilik Dışı Meziyetler": "DD"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "DD",
       "fiziki": "CD",
       "sahsi": "CD",
-      "kaleci": "CD"
+      "kaleci": "CC"
     },
     "tarz": [
       "Uzun Degajmanlar Yapabilir"
@@ -7796,9 +7796,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CC",
+      "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -8076,7 +8076,7 @@
       "beceri": "CC",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -8169,7 +8169,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CC",
+      "beseri": "BC",
       "fiziki": "CC",
       "sahsi": "BC",
       "kaleci": ""
@@ -8359,7 +8359,7 @@
       "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -8536,7 +8536,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CC",
+      "beseri": "BC",
       "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
@@ -8626,10 +8626,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -8718,9 +8718,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -8822,10 +8822,10 @@
       "Kalecilik Dışı Meziyetler": "EE"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": "DD"
     },
     "tarz": [],
@@ -8997,10 +8997,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "DD",
+      "beceri": "CC",
+      "beseri": "CD",
       "fiziki": "DD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -9084,10 +9084,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "DE",
+      "beceri": "DD",
+      "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -10377,45 +10377,45 @@
     "yurtdisi_gorusu": "",
     "beceri": {
       "Bitiricilik": "BC",
-      "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "DD",
-      "Markaj": "CD",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "BC",
+      "Markaj": "DD",
       "Top Kapma": "DE",
-      "Uzun Taç": "DD",
+      "Uzun Taç": "EE",
       "Duran Top": "CD",
-      "İlk Kontrol": "DE",
-      "Kafa Vuruşu": "DE",
-      "Orta Yapma": "DE",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "BB",
+      "Orta Yapma": "DD",
       "Kısa Pas": "CD",
-      "Uzun Pas": "DD",
-      "Top Sürme": "BC",
-      "Uzaktan Şut": "CD"
+      "Uzun Pas": "DE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "DE"
     },
     "beseri": {
       "Agresiflik": "DD",
       "Cesaret": "DD",
-      "Karar Alma": "DE",
-      "Kararlılık": "CD",
-      "Konsantrasyon": "DD",
-      "Liderlik": "CD",
+      "Karar Alma": "DD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "CC",
       "Önsezi": "CD",
-      "Konumlanma": "DD",
-      "Soğukkanlılık": "BC",
+      "Konumlanma": "BC",
+      "Soğukkanlılık": "CC",
       "Takım Oyunu": "CD",
-      "Topsuz Alan": "BB",
+      "Topsuz Alan": "CC",
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "BC",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DD",
       "Denge": "CC",
-      "Güç": "DD",
-      "Sürat": "BB",
-      "Hızlanma": "CC",
-      "Koordinasyon": "BC",
-      "Zindelik": "BB",
+      "Güç": "BB",
+      "Sürat": "CD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "CC",
+      "Zindelik": "DD",
       "Zıplama": "BC",
-      "Zayıf Ayak": "BB"
+      "Zayıf Ayak": "BC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -10429,10 +10429,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -10456,51 +10456,51 @@
     "ayak": "Sağ",
     "lig": "Türkiye 1",
     "deger": "€10.000",
-    "sozlesme": "30.06.2030",
+    "sozlesme": "30.06.2028",
     "yetenek_kumesi": "",
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CD",
-      "Top Tekniği": "CD",
-      "Penaltı Vuruşu": "DD",
-      "Markaj": "CD",
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DE",
+      "Markaj": "CC",
       "Top Kapma": "DD",
       "Uzun Taç": "CD",
       "Duran Top": "DE",
-      "İlk Kontrol": "DE",
+      "İlk Kontrol": "CC",
       "Kafa Vuruşu": "DE",
-      "Orta Yapma": "CD",
-      "Kısa Pas": "DE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "CD",
       "Uzun Pas": "DE",
       "Top Sürme": "CC",
-      "Uzaktan Şut": "DD"
+      "Uzaktan Şut": "CD"
     },
     "beseri": {
-      "Agresiflik": "CD",
-      "Cesaret": "DE",
+      "Agresiflik": "AB",
+      "Cesaret": "BB",
       "Karar Alma": "DD",
-      "Kararlılık": "DE",
-      "Konsantrasyon": "DE",
-      "Liderlik": "DD",
+      "Kararlılık": "AB",
+      "Konsantrasyon": "BC",
+      "Liderlik": "BC",
       "Önsezi": "CD",
-      "Konumlanma": "CD",
-      "Soğukkanlılık": "CC",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DD",
       "Takım Oyunu": "DD",
-      "Topsuz Alan": "CC",
-      "Görüş": "CD"
+      "Topsuz Alan": "BC",
+      "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "CC",
-      "Dayanıklılık": "DD",
-      "Denge": "BB",
+      "Çeviklik": "BB",
+      "Dayanıklılık": "AB",
+      "Denge": "BC",
       "Güç": "CD",
-      "Sürat": "BC",
-      "Hızlanma": "BC",
-      "Koordinasyon": "BC",
+      "Sürat": "BB",
+      "Hızlanma": "BB",
+      "Koordinasyon": "CC",
       "Zindelik": "BC",
       "Zıplama": "CC",
-      "Zayıf Ayak": "BB"
+      "Zayıf Ayak": "CC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -10514,10 +10514,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CC",
+      "fiziki": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -10546,46 +10546,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "DD",
+      "Bitiricilik": "CD",
       "Top Tekniği": "CC",
-      "Penaltı Vuruşu": "DE",
-      "Markaj": "CD",
-      "Top Kapma": "DD",
-      "Uzun Taç": "DE",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "DD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
       "Duran Top": "CD",
-      "İlk Kontrol": "BC",
-      "Kafa Vuruşu": "DD",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "EE",
       "Orta Yapma": "CD",
-      "Kısa Pas": "BB",
-      "Uzun Pas": "BC",
-      "Top Sürme": "DE",
-      "Uzaktan Şut": "DD"
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CD",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "DE"
     },
     "beseri": {
-      "Agresiflik": "CC",
-      "Cesaret": "BC",
-      "Karar Alma": "BB",
-      "Kararlılık": "BC",
-      "Konsantrasyon": "BC",
-      "Liderlik": "BC",
-      "Önsezi": "BB",
-      "Konumlanma": "BC",
-      "Soğukkanlılık": "BC",
+      "Agresiflik": "DE",
+      "Cesaret": "DD",
+      "Karar Alma": "CC",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
+      "Liderlik": "DE",
+      "Önsezi": "DD",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "CD",
       "Takım Oyunu": "CC",
-      "Topsuz Alan": "CD",
-      "Görüş": "BB"
+      "Topsuz Alan": "DE",
+      "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik": "DE",
-      "Dayanıklılık": "CC",
+      "Çeviklik": "CD",
+      "Dayanıklılık": "CD",
       "Denge": "DE",
-      "Güç": "CD",
+      "Güç": "DE",
       "Sürat": "DD",
       "Hızlanma": "CD",
-      "Koordinasyon": "BC",
-      "Zindelik": "DD",
-      "Zıplama": "CD",
-      "Zayıf Ayak": "DE"
+      "Koordinasyon": "CD",
+      "Zindelik": "CD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DD"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -10599,10 +10599,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -10631,44 +10631,44 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "DE",
-      "Top Tekniği": "BB",
-      "Penaltı Vuruşu": "DD",
-      "Markaj": "DD",
+      "Bitiricilik": "CD",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "BC",
+      "Markaj": "CC",
       "Top Kapma": "CD",
-      "Uzun Taç": "DE",
-      "Duran Top": "DD",
+      "Uzun Taç": "EE",
+      "Duran Top": "CD",
       "İlk Kontrol": "CC",
-      "Kafa Vuruşu": "DE",
-      "Orta Yapma": "DD",
-      "Kısa Pas": "BC",
-      "Uzun Pas": "BC",
-      "Top Sürme": "DE",
+      "Kafa Vuruşu": "CD",
+      "Orta Yapma": "CC",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CC",
+      "Top Sürme": "CC",
       "Uzaktan Şut": "CD"
     },
     "beseri": {
       "Agresiflik": "CC",
       "Cesaret": "BC",
-      "Karar Alma": "BC",
+      "Karar Alma": "CC",
       "Kararlılık": "CC",
       "Konsantrasyon": "CC",
-      "Liderlik": "BB",
-      "Önsezi": "CC",
-      "Konumlanma": "BB",
-      "Soğukkanlılık": "BC",
-      "Takım Oyunu": "BC",
-      "Topsuz Alan": "CD",
-      "Görüş": "BC"
+      "Liderlik": "CD",
+      "Önsezi": "CD",
+      "Konumlanma": "CD",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "CD",
+      "Topsuz Alan": "CC",
+      "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik": "CD",
-      "Dayanıklılık": "CC",
-      "Denge": "CD",
-      "Güç": "DD",
-      "Sürat": "DD",
-      "Hızlanma": "DE",
-      "Koordinasyon": "BB",
-      "Zindelik": "CD",
+      "Çeviklik": "BC",
+      "Dayanıklılık": "BC",
+      "Denge": "DD",
+      "Güç": "CD",
+      "Sürat": "CC",
+      "Hızlanma": "CC",
+      "Koordinasyon": "CD",
+      "Zindelik": "BB",
       "Zıplama": "DE",
       "Zayıf Ayak": "DD"
     },
@@ -10684,10 +10684,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -10716,46 +10716,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "BB",
-      "Top Tekniği": "CD",
-      "Penaltı Vuruşu": "DE",
-      "Markaj": "DD",
-      "Top Kapma": "DD",
-      "Uzun Taç": "CD",
-      "Duran Top": "DE",
-      "İlk Kontrol": "DD",
-      "Kafa Vuruşu": "DE",
-      "Orta Yapma": "CD",
-      "Kısa Pas": "DE",
-      "Uzun Pas": "DE",
+      "Bitiricilik": "CC",
+      "Top Tekniği": "CC",
+      "Penaltı Vuruşu": "BC",
+      "Markaj": "CC",
+      "Top Kapma": "CD",
+      "Uzun Taç": "DE",
+      "Duran Top": "DD",
+      "İlk Kontrol": "BC",
+      "Kafa Vuruşu": "BC",
+      "Orta Yapma": "CC",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CD",
       "Top Sürme": "BC",
-      "Uzaktan Şut": "DD"
+      "Uzaktan Şut": "CD"
     },
     "beseri": {
       "Agresiflik": "DD",
-      "Cesaret": "CD",
-      "Karar Alma": "DD",
-      "Kararlılık": "CD",
+      "Cesaret": "BC",
+      "Karar Alma": "CC",
+      "Kararlılık": "CC",
       "Konsantrasyon": "CD",
-      "Liderlik": "DD",
-      "Önsezi": "DE",
-      "Konumlanma": "CD",
-      "Soğukkanlılık": "BB",
+      "Liderlik": "DE",
+      "Önsezi": "CC",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "CD",
       "Takım Oyunu": "DD",
       "Topsuz Alan": "BC",
       "Görüş": "DD"
     },
     "fiziki": {
-      "Çeviklik": "BB",
-      "Dayanıklılık": "DE",
+      "Çeviklik": "CC",
+      "Dayanıklılık": "BB",
       "Denge": "BB",
-      "Güç": "CD",
+      "Güç": "CC",
       "Sürat": "BC",
-      "Hızlanma": "BC",
+      "Hızlanma": "BB",
       "Koordinasyon": "BB",
       "Zindelik": "BC",
-      "Zıplama": "CC",
-      "Zayıf Ayak": "CC"
+      "Zıplama": "CD",
+      "Zayıf Ayak": "BC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BC",
@@ -10769,10 +10769,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "BB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -10801,46 +10801,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CC",
+      "Bitiricilik": "DE",
       "Top Tekniği": "DD",
-      "Penaltı Vuruşu": "DE",
-      "Markaj": "CD",
-      "Top Kapma": "CD",
-      "Uzun Taç": "DD",
+      "Penaltı Vuruşu": "EE",
+      "Markaj": "EE",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
       "Duran Top": "DE",
-      "İlk Kontrol": "CD",
-      "Kafa Vuruşu": "DD",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "EE",
       "Orta Yapma": "CD",
-      "Kısa Pas": "DD",
+      "Kısa Pas": "CD",
       "Uzun Pas": "DE",
-      "Top Sürme": "BC",
+      "Top Sürme": "BB",
       "Uzaktan Şut": "DD"
     },
     "beseri": {
-      "Agresiflik": "DD",
-      "Cesaret": "DE",
+      "Agresiflik": "CD",
+      "Cesaret": "CC",
       "Karar Alma": "CD",
-      "Kararlılık": "DD",
+      "Kararlılık": "CC",
       "Konsantrasyon": "CD",
-      "Liderlik": "CD",
-      "Önsezi": "CD",
-      "Konumlanma": "DD",
-      "Soğukkanlılık": "CC",
+      "Liderlik": "EE",
+      "Önsezi": "BB",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "DD",
       "Takım Oyunu": "DE",
-      "Topsuz Alan": "BC",
-      "Görüş": "DD"
+      "Topsuz Alan": "AB",
+      "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "BB",
-      "Dayanıklılık": "CD",
-      "Denge": "BC",
-      "Güç": "DD",
+      "Çeviklik": "AA",
+      "Dayanıklılık": "BB",
+      "Denge": "DD",
+      "Güç": "EE",
       "Sürat": "BB",
-      "Hızlanma": "BB",
-      "Koordinasyon": "BB",
-      "Zindelik": "CC",
-      "Zıplama": "BC",
-      "Zayıf Ayak": "BB"
+      "Hızlanma": "AA",
+      "Koordinasyon": "CD",
+      "Zindelik": "BC",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DE"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -10854,10 +10854,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "DD",
+      "beseri": "CD",
+      "fiziki": "BC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -10886,45 +10886,45 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CD",
-      "Top Tekniği": "EE",
-      "Penaltı Vuruşu": "CC",
-      "Markaj": "BC",
-      "Top Kapma": "CC",
-      "Uzun Taç": "DD",
-      "Duran Top": "CC",
-      "İlk Kontrol": "CD",
-      "Kafa Vuruşu": "BC",
-      "Orta Yapma": "CD",
-      "Kısa Pas": "DD",
-      "Uzun Pas": "CD",
-      "Top Sürme": "CC",
-      "Uzaktan Şut": "DD"
+      "Bitiricilik": "DD",
+      "Top Tekniği": "BC",
+      "Penaltı Vuruşu": "DE",
+      "Markaj": "CC",
+      "Top Kapma": "BC",
+      "Uzun Taç": "DE",
+      "Duran Top": "CD",
+      "İlk Kontrol": "BC",
+      "Kafa Vuruşu": "CC",
+      "Orta Yapma": "CC",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CC",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "CC"
     },
     "beseri": {
-      "Agresiflik": "BB",
-      "Cesaret": "BC",
+      "Agresiflik": "BC",
+      "Cesaret": "CC",
       "Karar Alma": "CD",
       "Kararlılık": "DD",
-      "Konsantrasyon": "DE",
-      "Liderlik": "CD",
-      "Önsezi": "CD",
+      "Konsantrasyon": "DD",
+      "Liderlik": "CC",
+      "Önsezi": "BC",
       "Konumlanma": "CC",
-      "Soğukkanlılık": "DE",
-      "Takım Oyunu": "DE",
-      "Topsuz Alan": "DD",
-      "Görüş": "DE"
+      "Soğukkanlılık": "BC",
+      "Takım Oyunu": "CC",
+      "Topsuz Alan": "CD",
+      "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik": "DE",
-      "Dayanıklılık": "DE",
+      "Çeviklik": "CD",
+      "Dayanıklılık": "DD",
       "Denge": "CD",
-      "Güç": "BB",
+      "Güç": "CD",
       "Sürat": "CD",
-      "Hızlanma": "DE",
-      "Koordinasyon": "DD",
-      "Zindelik": "DE",
-      "Zıplama": "BC",
+      "Hızlanma": "DD",
+      "Koordinasyon": "BC",
+      "Zindelik": "DD",
+      "Zıplama": "CD",
       "Zayıf Ayak": "DE"
     },
     "sahsi": {
@@ -10939,10 +10939,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "CD",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -10971,17 +10971,17 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "BC",
-      "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "CD",
+      "Bitiricilik": "CC",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "CC",
       "Markaj": "DE",
-      "Top Kapma": "DD",
+      "Top Kapma": "DE",
       "Uzun Taç": "DD",
       "Duran Top": "DD",
-      "İlk Kontrol": "CD",
-      "Kafa Vuruşu": "CD",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "DE",
       "Orta Yapma": "CD",
-      "Kısa Pas": "DD",
+      "Kısa Pas": "CC",
       "Uzun Pas": "CD",
       "Top Sürme": "BC",
       "Uzaktan Şut": "DD"
@@ -10990,27 +10990,27 @@
       "Agresiflik": "DE",
       "Cesaret": "DD",
       "Karar Alma": "DD",
-      "Kararlılık": "DE",
-      "Konsantrasyon": "DD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "CC",
       "Liderlik": "DE",
-      "Önsezi": "DD",
-      "Konumlanma": "DE",
+      "Önsezi": "CC",
+      "Konumlanma": "CD",
       "Soğukkanlılık": "BC",
       "Takım Oyunu": "DD",
       "Topsuz Alan": "BC",
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik": "BC",
-      "Dayanıklılık": "DD",
-      "Denge": "BC",
+      "Çeviklik": "CC",
+      "Dayanıklılık": "CC",
+      "Denge": "CD",
       "Güç": "DE",
       "Sürat": "BC",
-      "Hızlanma": "CC",
+      "Hızlanma": "BC",
       "Koordinasyon": "BC",
       "Zindelik": "BC",
-      "Zıplama": "BC",
-      "Zayıf Ayak": "BC"
+      "Zıplama": "CD",
+      "Zayıf Ayak": "CC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -11024,10 +11024,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -11056,44 +11056,44 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "DE",
+      "Bitiricilik": "DD",
       "Top Tekniği": "DD",
-      "Penaltı Vuruşu": "EE",
+      "Penaltı Vuruşu": "DE",
       "Markaj": "BB",
-      "Top Kapma": "CC",
-      "Uzun Taç": "DE",
-      "Duran Top": "DE",
-      "İlk Kontrol": "DD",
+      "Top Kapma": "AB",
+      "Uzun Taç": "DD",
+      "Duran Top": "EE",
+      "İlk Kontrol": "CD",
       "Kafa Vuruşu": "BB",
       "Orta Yapma": "DE",
       "Kısa Pas": "CC",
-      "Uzun Pas": "CD",
+      "Uzun Pas": "CC",
       "Top Sürme": "CD",
       "Uzaktan Şut": "DE"
     },
     "beseri": {
       "Agresiflik": "BC",
-      "Cesaret": "CC",
+      "Cesaret": "BC",
       "Karar Alma": "DD",
-      "Kararlılık": "DE",
-      "Konsantrasyon": "CD",
-      "Liderlik": "DD",
-      "Önsezi": "DD",
+      "Kararlılık": "CC",
+      "Konsantrasyon": "CC",
+      "Liderlik": "BC",
+      "Önsezi": "CC",
       "Konumlanma": "BB",
-      "Soğukkanlılık": "DE",
-      "Takım Oyunu": "DD",
+      "Soğukkanlılık": "CD",
+      "Takım Oyunu": "CD",
       "Topsuz Alan": "DE",
       "Görüş": "CD"
     },
     "fiziki": {
       "Çeviklik": "CD",
       "Dayanıklılık": "DD",
-      "Denge": "DE",
-      "Güç": "BC",
+      "Denge": "CD",
+      "Güç": "CC",
       "Sürat": "DE",
       "Hızlanma": "CD",
-      "Koordinasyon": "DD",
-      "Zindelik": "CD",
+      "Koordinasyon": "CD",
+      "Zindelik": "BC",
       "Zıplama": "CC",
       "Zayıf Ayak": "CD"
     },
@@ -11109,10 +11109,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11158,29 +11158,29 @@
     },
     "beseri": {
       "Agresiflik": "CC",
-      "Cesaret": "CD",
-      "Karar Alma": "CD",
+      "Cesaret": "BC",
+      "Karar Alma": "CC",
       "Kararlılık": "CC",
-      "Konsantrasyon": "DD",
-      "Liderlik": "DE",
+      "Konsantrasyon": "BC",
+      "Liderlik": "CC",
       "Önsezi": "CD",
-      "Konumlanma": "DD",
-      "Soğukkanlılık": "CC",
+      "Konumlanma": "CC",
+      "Soğukkanlılık": "BC",
       "Takım Oyunu": "BC",
       "Topsuz Alan": "BB",
-      "Görüş": "DD"
+      "Görüş": "CD"
     },
     "fiziki": {
       "Çeviklik": "CC",
-      "Dayanıklılık": "CD",
-      "Denge": "DD",
+      "Dayanıklılık": "CC",
+      "Denge": "BC",
       "Güç": "CD",
-      "Sürat": "CD",
+      "Sürat": "CC",
       "Hızlanma": "CC",
       "Koordinasyon": "BB",
-      "Zindelik": "CD",
-      "Zıplama": "CD",
-      "Zayıf Ayak": "CC"
+      "Zindelik": "CC",
+      "Zıplama": "CC",
+      "Zayıf Ayak": "BC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -11195,9 +11195,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11227,44 +11227,44 @@
     "yurtdisi_gorusu": "",
     "beceri": {
       "Bitiricilik": "BC",
-      "Top Tekniği": "CD",
-      "Penaltı Vuruşu": "DD",
+      "Top Tekniği": "BC",
+      "Penaltı Vuruşu": "CC",
       "Markaj": "DE",
-      "Top Kapma": "CD",
-      "Uzun Taç": "DE",
-      "Duran Top": "DE",
-      "İlk Kontrol": "DD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "CD",
+      "İlk Kontrol": "CC",
       "Kafa Vuruşu": "DD",
-      "Orta Yapma": "DE",
-      "Kısa Pas": "CD",
-      "Uzun Pas": "DD",
+      "Orta Yapma": "CC",
+      "Kısa Pas": "BC",
+      "Uzun Pas": "CC",
       "Top Sürme": "CC",
       "Uzaktan Şut": "CD"
     },
     "beseri": {
-      "Agresiflik": "CD",
-      "Cesaret": "DE",
-      "Karar Alma": "DE",
+      "Agresiflik": "BC",
+      "Cesaret": "CD",
+      "Karar Alma": "DD",
       "Kararlılık": "CD",
-      "Konsantrasyon": "DE",
+      "Konsantrasyon": "DD",
       "Liderlik": "DD",
-      "Önsezi": "CD",
+      "Önsezi": "DD",
       "Konumlanma": "CD",
-      "Soğukkanlılık": "CC",
-      "Takım Oyunu": "DE",
+      "Soğukkanlılık": "BC",
+      "Takım Oyunu": "CC",
       "Topsuz Alan": "CC",
-      "Görüş": "DD"
+      "Görüş": "CC"
     },
     "fiziki": {
-      "Çeviklik": "CC",
-      "Dayanıklılık": "DD",
-      "Denge": "BC",
+      "Çeviklik": "CD",
+      "Dayanıklılık": "CC",
+      "Denge": "CC",
       "Güç": "DD",
-      "Sürat": "BC",
-      "Hızlanma": "BC",
-      "Koordinasyon": "BC",
-      "Zindelik": "BB",
-      "Zıplama": "BB",
+      "Sürat": "CC",
+      "Hızlanma": "CC",
+      "Koordinasyon": "BB",
+      "Zindelik": "CC",
+      "Zıplama": "DD",
       "Zayıf Ayak": "BB"
     },
     "sahsi": {
@@ -11279,10 +11279,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11312,45 +11312,45 @@
     "yurtdisi_gorusu": "",
     "beceri": {
       "Bitiricilik": "DE",
-      "Top Tekniği": "EE",
+      "Top Tekniği": "DE",
       "Penaltı Vuruşu": "EE",
-      "Markaj": "BB",
-      "Top Kapma": "CC",
-      "Uzun Taç": "DE",
-      "Duran Top": "DE",
-      "İlk Kontrol": "EE",
-      "Kafa Vuruşu": "BB",
-      "Orta Yapma": "EE",
-      "Kısa Pas": "CD",
-      "Uzun Pas": "EE",
-      "Top Sürme": "DD",
-      "Uzaktan Şut": "CD"
+      "Markaj": "CC",
+      "Top Kapma": "CD",
+      "Uzun Taç": "CD",
+      "Duran Top": "EE",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "BC",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "DD"
     },
     "beseri": {
-      "Agresiflik": "CC",
-      "Cesaret": "BC",
+      "Agresiflik": "CD",
+      "Cesaret": "CC",
       "Karar Alma": "DD",
       "Kararlılık": "DD",
-      "Konsantrasyon": "DE",
+      "Konsantrasyon": "DD",
       "Liderlik": "DD",
-      "Önsezi": "DD",
-      "Konumlanma": "BB",
-      "Soğukkanlılık": "CD",
-      "Takım Oyunu": "DE",
+      "Önsezi": "CC",
+      "Konumlanma": "CD",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "DD",
       "Topsuz Alan": "DD",
-      "Görüş": "CD"
+      "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "CD",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CD",
-      "Denge": "CD",
-      "Güç": "CC",
+      "Denge": "CC",
+      "Güç": "BB",
       "Sürat": "DD",
       "Hızlanma": "DE",
-      "Koordinasyon": "DE",
+      "Koordinasyon": "CD",
       "Zindelik": "CD",
       "Zıplama": "BC",
-      "Zayıf Ayak": "DD"
+      "Zayıf Ayak": "CC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -11364,10 +11364,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11396,46 +11396,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "DD",
-      "Top Tekniği": "CC",
-      "Penaltı Vuruşu": "CD",
-      "Markaj": "DE",
+      "Bitiricilik": "BB",
+      "Top Tekniği": "BC",
+      "Penaltı Vuruşu": "AB",
+      "Markaj": "CD",
       "Top Kapma": "DE",
-      "Uzun Taç": "DD",
-      "Duran Top": "CD",
-      "İlk Kontrol": "BC",
+      "Uzun Taç": "EE",
+      "Duran Top": "BC",
+      "İlk Kontrol": "AB",
       "Kafa Vuruşu": "DE",
-      "Orta Yapma": "DD",
-      "Kısa Pas": "CC",
+      "Orta Yapma": "CC",
+      "Kısa Pas": "BB",
       "Uzun Pas": "BB",
-      "Top Sürme": "DD",
-      "Uzaktan Şut": "DE"
+      "Top Sürme": "BC",
+      "Uzaktan Şut": "CC"
     },
     "beseri": {
-      "Agresiflik": "BC",
-      "Cesaret": "BB",
+      "Agresiflik": "CC",
+      "Cesaret": "BC",
       "Karar Alma": "BC",
       "Kararlılık": "CC",
-      "Konsantrasyon": "BC",
+      "Konsantrasyon": "DD",
       "Liderlik": "BC",
-      "Önsezi": "BB",
+      "Önsezi": "DD",
       "Konumlanma": "CC",
       "Soğukkanlılık": "BB",
-      "Takım Oyunu": "CC",
+      "Takım Oyunu": "BB",
       "Topsuz Alan": "DD",
       "Görüş": "BB"
     },
     "fiziki": {
       "Çeviklik": "CD",
-      "Dayanıklılık": "CC",
-      "Denge": "DD",
-      "Güç": "DE",
+      "Dayanıklılık": "DD",
+      "Denge": "CD",
+      "Güç": "CD",
       "Sürat": "DE",
       "Hızlanma": "CD",
-      "Koordinasyon": "BB",
+      "Koordinasyon": "AB",
       "Zindelik": "DE",
-      "Zıplama": "DD",
-      "Zayıf Ayak": "DD"
+      "Zıplama": "DE",
+      "Zayıf Ayak": "CC"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -11449,10 +11449,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "BC",
+      "beseri": "BC",
+      "fiziki": "CD",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -11481,46 +11481,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CC",
-      "Top Tekniği": "CD",
-      "Penaltı Vuruşu": "DE",
-      "Markaj": "DE",
-      "Top Kapma": "DE",
-      "Uzun Taç": "DE",
-      "Duran Top": "DD",
-      "İlk Kontrol": "DE",
-      "Kafa Vuruşu": "CD",
-      "Orta Yapma": "CD",
-      "Kısa Pas": "DE",
-      "Uzun Pas": "DE",
-      "Top Sürme": "CC",
-      "Uzaktan Şut": "DD"
+      "Bitiricilik": "CD",
+      "Top Tekniği": "BC",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "DD",
+      "Top Kapma": "CD",
+      "Uzun Taç": "CC",
+      "Duran Top": "BC",
+      "İlk Kontrol": "BC",
+      "Kafa Vuruşu": "CC",
+      "Orta Yapma": "CC",
+      "Kısa Pas": "BC",
+      "Uzun Pas": "CC",
+      "Top Sürme": "BC",
+      "Uzaktan Şut": "BC"
     },
     "beseri": {
       "Agresiflik": "DD",
       "Cesaret": "DE",
-      "Karar Alma": "DE",
-      "Kararlılık": "CD",
+      "Karar Alma": "CD",
+      "Kararlılık": "DE",
       "Konsantrasyon": "CD",
-      "Liderlik": "DD",
-      "Önsezi": "DE",
-      "Konumlanma": "DD",
-      "Soğukkanlılık": "BB",
-      "Takım Oyunu": "DD",
-      "Topsuz Alan": "BC",
-      "Görüş": "CD"
+      "Liderlik": "DE",
+      "Önsezi": "DD",
+      "Konumlanma": "CD",
+      "Soğukkanlılık": "CC",
+      "Takım Oyunu": "CC",
+      "Topsuz Alan": "CD",
+      "Görüş": "BC"
     },
     "fiziki": {
-      "Çeviklik": "BB",
+      "Çeviklik": "DD",
       "Dayanıklılık": "CD",
-      "Denge": "BC",
-      "Güç": "CD",
+      "Denge": "CC",
+      "Güç": "DE",
       "Sürat": "CC",
-      "Hızlanma": "BC",
-      "Koordinasyon": "BB",
+      "Hızlanma": "CD",
+      "Koordinasyon": "BC",
       "Zindelik": "CC",
-      "Zıplama": "BB",
-      "Zayıf Ayak": "BC"
+      "Zıplama": "DE",
+      "Zayıf Ayak": "EE"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -11534,10 +11534,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "BC",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11566,46 +11566,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CD",
-      "Top Tekniği": "BB",
-      "Penaltı Vuruşu": "DE",
-      "Markaj": "DE",
-      "Top Kapma": "DD",
-      "Uzun Taç": "DE",
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CC",
+      "Penaltı Vuruşu": "CC",
+      "Markaj": "DD",
+      "Top Kapma": "CD",
+      "Uzun Taç": "CD",
       "Duran Top": "DD",
-      "İlk Kontrol": "BB",
-      "Kafa Vuruşu": "DD",
-      "Orta Yapma": "DE",
-      "Kısa Pas": "BC",
-      "Uzun Pas": "BB",
-      "Top Sürme": "DD",
-      "Uzaktan Şut": "DD"
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CC",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "DE"
     },
     "beseri": {
-      "Agresiflik": "CC",
-      "Cesaret": "BC",
+      "Agresiflik": "DE",
+      "Cesaret": "DE",
       "Karar Alma": "CC",
-      "Kararlılık": "BC",
-      "Konsantrasyon": "BC",
-      "Liderlik": "BB",
-      "Önsezi": "BB",
-      "Konumlanma": "BC",
-      "Soğukkanlılık": "CC",
-      "Takım Oyunu": "BB",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "CD",
+      "Liderlik": "EE",
+      "Önsezi": "DE",
+      "Konumlanma": "CD",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "CC",
       "Topsuz Alan": "CD",
-      "Görüş": "CC"
+      "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik": "DD",
+      "Çeviklik": "CD",
       "Dayanıklılık": "CC",
-      "Denge": "DD",
-      "Güç": "DD",
-      "Sürat": "DE",
-      "Hızlanma": "DE",
-      "Koordinasyon": "BC",
-      "Zindelik": "DE",
-      "Zıplama": "DE",
-      "Zayıf Ayak": "CD"
+      "Denge": "DE",
+      "Güç": "DE",
+      "Sürat": "DD",
+      "Hızlanma": "DD",
+      "Koordinasyon": "CC",
+      "Zindelik": "DD",
+      "Zıplama": "DD",
+      "Zayıf Ayak": "DE"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -11619,10 +11619,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -11651,46 +11651,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CC",
-      "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "DE",
-      "Markaj": "DD",
-      "Top Kapma": "DD",
-      "Uzun Taç": "CD",
-      "Duran Top": "DD",
+      "Bitiricilik": "BC",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "CD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "CC",
+      "Duran Top": "DE",
       "İlk Kontrol": "CD",
-      "Kafa Vuruşu": "DD",
-      "Orta Yapma": "DE",
+      "Kafa Vuruşu": "BC",
+      "Orta Yapma": "CD",
       "Kısa Pas": "CD",
-      "Uzun Pas": "DD",
-      "Top Sürme": "BC",
-      "Uzaktan Şut": "CD"
+      "Uzun Pas": "DE",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "DD"
     },
     "beseri": {
-      "Agresiflik": "CD",
+      "Agresiflik": "DD",
       "Cesaret": "CD",
       "Karar Alma": "DE",
-      "Kararlılık": "CD",
-      "Konsantrasyon": "CD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "DE",
       "Liderlik": "DE",
       "Önsezi": "DD",
       "Konumlanma": "DD",
-      "Soğukkanlılık": "CC",
-      "Takım Oyunu": "CD",
-      "Topsuz Alan": "BB",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DE",
+      "Topsuz Alan": "BC",
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "BB",
-      "Dayanıklılık": "DE",
-      "Denge": "BB",
-      "Güç": "DE",
+      "Çeviklik": "CC",
+      "Dayanıklılık": "DD",
+      "Denge": "CC",
+      "Güç": "CC",
       "Sürat": "CC",
-      "Hızlanma": "BB",
-      "Koordinasyon": "CC",
-      "Zindelik": "BC",
-      "Zıplama": "CC",
-      "Zayıf Ayak": "BC"
+      "Hızlanma": "BC",
+      "Koordinasyon": "DD",
+      "Zindelik": "DD",
+      "Zıplama": "CD",
+      "Zayıf Ayak": "CD"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BC",
@@ -11704,10 +11704,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "DD",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11736,16 +11736,16 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CD",
-      "Top Tekniği": "BB",
-      "Penaltı Vuruşu": "CD",
+      "Bitiricilik": "CC",
+      "Top Tekniği": "BC",
+      "Penaltı Vuruşu": "CC",
       "Markaj": "CD",
       "Top Kapma": "DD",
-      "Uzun Taç": "DD",
-      "Duran Top": "DD",
-      "İlk Kontrol": "BC",
-      "Kafa Vuruşu": "DE",
-      "Orta Yapma": "CD",
+      "Uzun Taç": "DE",
+      "Duran Top": "CD",
+      "İlk Kontrol": "BB",
+      "Kafa Vuruşu": "CD",
+      "Orta Yapma": "CC",
       "Kısa Pas": "BB",
       "Uzun Pas": "CC",
       "Top Sürme": "CD",
@@ -11753,29 +11753,29 @@
     },
     "beseri": {
       "Agresiflik": "CC",
-      "Cesaret": "BB",
-      "Karar Alma": "BC",
-      "Kararlılık": "BC",
-      "Konsantrasyon": "CC",
+      "Cesaret": "DD",
+      "Karar Alma": "DD",
+      "Kararlılık": "CD",
+      "Konsantrasyon": "CD",
       "Liderlik": "CC",
-      "Önsezi": "CC",
+      "Önsezi": "DD",
       "Konumlanma": "CC",
-      "Soğukkanlılık": "BB",
+      "Soğukkanlılık": "CC",
       "Takım Oyunu": "BC",
       "Topsuz Alan": "DE",
       "Görüş": "BB"
     },
     "fiziki": {
-      "Çeviklik": "DD",
-      "Dayanıklılık": "CC",
+      "Çeviklik": "CD",
+      "Dayanıklılık": "DD",
       "Denge": "CD",
       "Güç": "DD",
-      "Sürat": "DE",
+      "Sürat": "DD",
       "Hızlanma": "DD",
-      "Koordinasyon": "BB",
+      "Koordinasyon": "BC",
       "Zindelik": "DD",
-      "Zıplama": "CD",
-      "Zayıf Ayak": "CD"
+      "Zıplama": "DE",
+      "Zayıf Ayak": "BB"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -11789,10 +11789,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "CD",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -11821,46 +11821,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "DE",
-      "Top Tekniği": "BB",
-      "Penaltı Vuruşu": "CD",
-      "Markaj": "DE",
+      "Bitiricilik": "CD",
+      "Top Tekniği": "CC",
+      "Penaltı Vuruşu": "CC",
+      "Markaj": "CC",
       "Top Kapma": "CD",
-      "Uzun Taç": "DE",
-      "Duran Top": "DD",
+      "Uzun Taç": "CD",
+      "Duran Top": "CD",
       "İlk Kontrol": "BB",
-      "Kafa Vuruşu": "CD",
-      "Orta Yapma": "DE",
-      "Kısa Pas": "BB",
+      "Kafa Vuruşu": "CC",
+      "Orta Yapma": "CD",
+      "Kısa Pas": "CC",
       "Uzun Pas": "CC",
-      "Top Sürme": "DE",
-      "Uzaktan Şut": "DD"
+      "Top Sürme": "BC",
+      "Uzaktan Şut": "CC"
     },
     "beseri": {
-      "Agresiflik": "CC",
-      "Cesaret": "CC",
-      "Karar Alma": "CC",
-      "Kararlılık": "BB",
+      "Agresiflik": "BC",
+      "Cesaret": "BC",
+      "Karar Alma": "CD",
+      "Kararlılık": "BC",
       "Konsantrasyon": "BC",
-      "Liderlik": "BB",
-      "Önsezi": "BC",
-      "Konumlanma": "CC",
-      "Soğukkanlılık": "BC",
-      "Takım Oyunu": "BC",
-      "Topsuz Alan": "CD",
-      "Görüş": "BC"
+      "Liderlik": "DD",
+      "Önsezi": "CD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "CD",
+      "Topsuz Alan": "CC",
+      "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik": "DD",
-      "Dayanıklılık": "CC",
+      "Çeviklik": "CD",
+      "Dayanıklılık": "BC",
       "Denge": "CD",
       "Güç": "CD",
-      "Sürat": "DE",
+      "Sürat": "CD",
       "Hızlanma": "DE",
-      "Koordinasyon": "BC",
-      "Zindelik": "DD",
+      "Koordinasyon": "CC",
+      "Zindelik": "BC",
       "Zıplama": "DD",
-      "Zayıf Ayak": "DD"
+      "Zayıf Ayak": "CD"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BC",
@@ -11874,10 +11874,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -11907,45 +11907,45 @@
     "yurtdisi_gorusu": "",
     "beceri": {
       "Bitiricilik": "DE",
-      "Top Tekniği": "BC",
+      "Top Tekniği": "CD",
       "Penaltı Vuruşu": "DE",
-      "Markaj": "DD",
-      "Top Kapma": "DE",
-      "Uzun Taç": "DE",
+      "Markaj": "BB",
+      "Top Kapma": "BC",
+      "Uzun Taç": "DD",
       "Duran Top": "DE",
-      "İlk Kontrol": "BB",
-      "Kafa Vuruşu": "DD",
-      "Orta Yapma": "DD",
-      "Kısa Pas": "BB",
-      "Uzun Pas": "BB",
-      "Top Sürme": "DD",
-      "Uzaktan Şut": "DE"
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "BC",
+      "Orta Yapma": "CD",
+      "Kısa Pas": "BC",
+      "Uzun Pas": "CC",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "CD"
     },
     "beseri": {
       "Agresiflik": "BC",
-      "Cesaret": "CC",
-      "Karar Alma": "CC",
-      "Kararlılık": "CC",
+      "Cesaret": "BC",
+      "Karar Alma": "CD",
+      "Kararlılık": "BC",
       "Konsantrasyon": "CC",
-      "Liderlik": "BC",
+      "Liderlik": "CC",
       "Önsezi": "BB",
-      "Konumlanma": "BC",
-      "Soğukkanlılık": "BC",
-      "Takım Oyunu": "BC",
+      "Konumlanma": "CC",
+      "Soğukkanlılık": "DD",
+      "Takım Oyunu": "CC",
       "Topsuz Alan": "CD",
-      "Görüş": "BB"
+      "Görüş": "CD"
     },
     "fiziki": {
       "Çeviklik": "CD",
-      "Dayanıklılık": "BB",
-      "Denge": "DD",
-      "Güç": "DD",
+      "Dayanıklılık": "BC",
+      "Denge": "BC",
+      "Güç": "AB",
       "Sürat": "CD",
-      "Hızlanma": "DD",
-      "Koordinasyon": "BC",
-      "Zindelik": "DE",
-      "Zıplama": "DE",
-      "Zayıf Ayak": "DE"
+      "Hızlanma": "CD",
+      "Koordinasyon": "CC",
+      "Zindelik": "CC",
+      "Zıplama": "CC",
+      "Zayıf Ayak": "EE"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -11959,10 +11959,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -11991,46 +11991,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "EE",
-      "Top Tekniği": "EE",
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CD",
       "Penaltı Vuruşu": "EE",
-      "Markaj": "BB",
+      "Markaj": "CC",
       "Top Kapma": "CC",
-      "Uzun Taç": "EE",
-      "Duran Top": "FF",
-      "İlk Kontrol": "EE",
-      "Kafa Vuruşu": "BC",
-      "Orta Yapma": "FF",
-      "Kısa Pas": "DE",
-      "Uzun Pas": "EE",
-      "Top Sürme": "FF",
-      "Uzaktan Şut": "EE"
+      "Uzun Taç": "CD",
+      "Duran Top": "EE",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "DD",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CD",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "DD"
     },
     "beseri": {
       "Agresiflik": "CC",
       "Cesaret": "CC",
       "Karar Alma": "CD",
-      "Kararlılık": "DE",
+      "Kararlılık": "CC",
       "Konsantrasyon": "CD",
-      "Liderlik": "DD",
-      "Önsezi": "DD",
-      "Konumlanma": "BC",
+      "Liderlik": "CD",
+      "Önsezi": "CC",
+      "Konumlanma": "CD",
       "Soğukkanlılık": "DD",
-      "Takım Oyunu": "DE",
+      "Takım Oyunu": "DD",
       "Topsuz Alan": "CD",
       "Görüş": "DE"
     },
     "fiziki": {
       "Çeviklik": "DD",
-      "Dayanıklılık": "DD",
-      "Denge": "DD",
-      "Güç": "BC",
+      "Dayanıklılık": "CC",
+      "Denge": "CD",
+      "Güç": "CD",
       "Sürat": "CD",
       "Hızlanma": "DD",
-      "Koordinasyon": "DD",
+      "Koordinasyon": "CD",
       "Zindelik": "CD",
-      "Zıplama": "BC",
-      "Zayıf Ayak": "DE"
+      "Zıplama": "CD",
+      "Zayıf Ayak": "DD"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -12044,10 +12044,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CC",
+      "fiziki": "CD",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -12076,46 +12076,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "CC",
-      "Top Tekniği": "CD",
-      "Penaltı Vuruşu": "DE",
+      "Bitiricilik": "BB",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "BC",
       "Markaj": "DE",
       "Top Kapma": "DD",
-      "Uzun Taç": "CD",
+      "Uzun Taç": "EE",
       "Duran Top": "DD",
-      "İlk Kontrol": "DE",
-      "Kafa Vuruşu": "DE",
-      "Orta Yapma": "DD",
-      "Kısa Pas": "CD",
-      "Uzun Pas": "DE",
-      "Top Sürme": "BB",
-      "Uzaktan Şut": "DD"
+      "İlk Kontrol": "CD",
+      "Kafa Vuruşu": "BB",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "BC",
+      "Uzun Pas": "DD",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "DE"
     },
     "beseri": {
       "Agresiflik": "CD",
       "Cesaret": "CD",
-      "Karar Alma": "DD",
+      "Karar Alma": "BC",
       "Kararlılık": "CD",
-      "Konsantrasyon": "DE",
-      "Liderlik": "DD",
-      "Önsezi": "DD",
-      "Konumlanma": "CD",
-      "Soğukkanlılık": "CC",
-      "Takım Oyunu": "CD",
+      "Konsantrasyon": "CC",
+      "Liderlik": "AB",
+      "Önsezi": "CD",
+      "Konumlanma": "BB",
+      "Soğukkanlılık": "BC",
+      "Takım Oyunu": "CC",
       "Topsuz Alan": "CC",
       "Görüş": "CD"
     },
     "fiziki": {
-      "Çeviklik": "BC",
-      "Dayanıklılık": "CD",
-      "Denge": "BC",
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DD",
+      "Denge": "CC",
       "Güç": "DD",
-      "Sürat": "BC",
-      "Hızlanma": "CC",
-      "Koordinasyon": "CC",
-      "Zindelik": "BC",
+      "Sürat": "DD",
+      "Hızlanma": "CD",
+      "Koordinasyon": "CD",
+      "Zindelik": "DD",
       "Zıplama": "CC",
-      "Zayıf Ayak": "BB"
+      "Zayıf Ayak": "DD"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BB",
@@ -12129,10 +12129,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "BC",
+      "fiziki": "CD",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -12161,43 +12161,43 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "FF",
-      "Top Tekniği": "EE",
-      "Penaltı Vuruşu": "FF",
+      "Bitiricilik": "EE",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "EE",
       "Markaj": "BC",
       "Top Kapma": "BC",
-      "Uzun Taç": "EE",
+      "Uzun Taç": "DE",
       "Duran Top": "EE",
-      "İlk Kontrol": "EE",
-      "Kafa Vuruşu": "BC",
-      "Orta Yapma": "FF",
-      "Kısa Pas": "DD",
-      "Uzun Pas": "FF",
-      "Top Sürme": "EE",
-      "Uzaktan Şut": "FF"
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "CC",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "CD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "EE"
     },
     "beseri": {
-      "Agresiflik": "BC",
-      "Cesaret": "BC",
+      "Agresiflik": "CC",
+      "Cesaret": "CC",
       "Karar Alma": "DD",
       "Kararlılık": "CD",
       "Konsantrasyon": "CD",
-      "Liderlik": "DD",
-      "Önsezi": "DE",
-      "Konumlanma": "CC",
-      "Soğukkanlılık": "DE",
+      "Liderlik": "BC",
+      "Önsezi": "CC",
+      "Konumlanma": "BC",
+      "Soğukkanlılık": "DD",
       "Takım Oyunu": "DD",
       "Topsuz Alan": "CD",
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "CD",
-      "Dayanıklılık": "CD",
-      "Denge": "CD",
+      "Çeviklik": "DD",
+      "Dayanıklılık": "DD",
+      "Denge": "CC",
       "Güç": "CC",
       "Sürat": "CD",
       "Hızlanma": "CD",
-      "Koordinasyon": "DD",
+      "Koordinasyon": "CD",
       "Zindelik": "DE",
       "Zıplama": "CC",
       "Zayıf Ayak": "DD"
@@ -12214,10 +12214,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CC",
+      "fiziki": "CD",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -12246,46 +12246,46 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "BB",
-      "Top Tekniği": "DE",
-      "Penaltı Vuruşu": "DD",
-      "Markaj": "DD",
-      "Top Kapma": "CD",
-      "Uzun Taç": "DE",
-      "Duran Top": "CD",
-      "İlk Kontrol": "DD",
+      "Bitiricilik": "DD",
+      "Top Tekniği": "DD",
+      "Penaltı Vuruşu": "DE",
+      "Markaj": "CD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "EE",
+      "Duran Top": "DE",
+      "İlk Kontrol": "CD",
       "Kafa Vuruşu": "DE",
-      "Orta Yapma": "DE",
+      "Orta Yapma": "CD",
       "Kısa Pas": "CD",
-      "Uzun Pas": "CD",
+      "Uzun Pas": "DE",
       "Top Sürme": "BC",
-      "Uzaktan Şut": "CD"
+      "Uzaktan Şut": "DD"
     },
     "beseri": {
       "Agresiflik": "DD",
-      "Cesaret": "DD",
-      "Karar Alma": "DD",
+      "Cesaret": "CD",
+      "Karar Alma": "CD",
       "Kararlılık": "CD",
       "Konsantrasyon": "DE",
-      "Liderlik": "DD",
-      "Önsezi": "DD",
+      "Liderlik": "DE",
+      "Önsezi": "BC",
       "Konumlanma": "CD",
-      "Soğukkanlılık": "CC",
+      "Soğukkanlılık": "CD",
       "Takım Oyunu": "DE",
       "Topsuz Alan": "BC",
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "BC",
-      "Dayanıklılık": "CD",
-      "Denge": "BB",
+      "Çeviklik": "BB",
+      "Dayanıklılık": "BC",
+      "Denge": "CC",
       "Güç": "CD",
       "Sürat": "BC",
-      "Hızlanma": "BB",
-      "Koordinasyon": "BC",
-      "Zindelik": "CC",
-      "Zıplama": "CC",
-      "Zayıf Ayak": "CC"
+      "Hızlanma": "AB",
+      "Koordinasyon": "CC",
+      "Zindelik": "BC",
+      "Zıplama": "CD",
+      "Zayıf Ayak": "DE"
     },
     "sahsi": {
       "Sakatlanma Direnci": "BC",
@@ -12299,10 +12299,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -12331,27 +12331,27 @@
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
     "beceri": {
-      "Bitiricilik": "EE",
-      "Top Tekniği": "EE",
-      "Penaltı Vuruşu": "FF",
-      "Markaj": "CC",
-      "Top Kapma": "BB",
-      "Uzun Taç": "FF",
-      "Duran Top": "FF",
-      "İlk Kontrol": "FF",
-      "Kafa Vuruşu": "CC",
-      "Orta Yapma": "FF",
-      "Kısa Pas": "DE",
-      "Uzun Pas": "EE",
-      "Top Sürme": "FF",
-      "Uzaktan Şut": "FF"
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CC",
+      "Penaltı Vuruşu": "CD",
+      "Markaj": "CD",
+      "Top Kapma": "DD",
+      "Uzun Taç": "CD",
+      "Duran Top": "CC",
+      "İlk Kontrol": "BC",
+      "Kafa Vuruşu": "DE",
+      "Orta Yapma": "CD",
+      "Kısa Pas": "BC",
+      "Uzun Pas": "CD",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "CD"
     },
     "beseri": {
-      "Agresiflik": "BB",
-      "Cesaret": "BB",
+      "Agresiflik": "DE",
+      "Cesaret": "DE",
       "Karar Alma": "DD",
-      "Kararlılık": "CD",
-      "Konsantrasyon": "CD",
+      "Kararlılık": "DD",
+      "Konsantrasyon": "CC",
       "Liderlik": "DD",
       "Önsezi": "DD",
       "Konumlanma": "BB",
@@ -12361,16 +12361,16 @@
       "Görüş": "DE"
     },
     "fiziki": {
-      "Çeviklik": "DE",
+      "Çeviklik": "DD",
       "Dayanıklılık": "DD",
-      "Denge": "DE",
-      "Güç": "BB",
-      "Sürat": "DD",
+      "Denge": "CC",
+      "Güç": "DE",
+      "Sürat": "CD",
       "Hızlanma": "DD",
-      "Koordinasyon": "DE",
+      "Koordinasyon": "BC",
       "Zindelik": "CD",
-      "Zıplama": "CC",
-      "Zayıf Ayak": "DD"
+      "Zıplama": "CD",
+      "Zayıf Ayak": "BB"
     },
     "sahsi": {
       "Sakatlanma Direnci": "CC",
@@ -12384,10 +12384,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CC",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -12469,10 +12469,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "beceri": "CD",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -12559,10 +12559,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CD",
+      "beceri": "CC",
+      "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -12652,8 +12652,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -12831,9 +12831,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
+      "beceri": "BC",
       "beseri": "BC",
-      "fiziki": "CC",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -12922,7 +12922,7 @@
     "makro": {
       "beceri": "CC",
       "beseri": "BC",
-      "fiziki": "CC",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -13015,8 +13015,8 @@
     "makro": {
       "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13105,9 +13105,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
+      "beseri": "BC",
       "fiziki": "CC",
-      "sahsi": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13194,10 +13194,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -13282,10 +13282,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13374,10 +13374,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13555,9 +13555,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
+      "beseri": "BC",
       "fiziki": "CC",
-      "sahsi": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13643,10 +13643,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13735,9 +13735,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
+      "beceri": "BC",
       "beseri": "BC",
-      "fiziki": "CC",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -13826,10 +13826,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "BC",
-      "sahsi": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -13917,10 +13917,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
       "fiziki": "BC",
-      "sahsi": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -14009,9 +14009,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
+      "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -14099,9 +14099,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -14187,10 +14187,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -14276,8 +14276,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "BC",
+      "beseri": "BC",
+      "fiziki": "BB",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -14365,7 +14365,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "BC",
       "fiziki": "BC",
       "sahsi": "BC",
@@ -14455,9 +14455,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -14632,10 +14632,10 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "CD",
+      "beseri": "CC",
       "fiziki": "DD",
       "sahsi": "CD",
-      "kaleci": "CD"
+      "kaleci": "CC"
     },
     "tarz": [],
     "nihai": "CD",
@@ -14717,10 +14717,10 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "DE",
-      "fiziki": "DE",
+      "beseri": "DD",
+      "fiziki": "DD",
       "sahsi": "CD",
-      "kaleci": "DD"
+      "kaleci": "CD"
     },
     "tarz": [
       "Kol Boyu Sayesinde Yan Toplarda Etkili Olur"
@@ -18689,8 +18689,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CC",
-      "fiziki": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -18777,9 +18777,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -18864,7 +18864,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "BC",
       "fiziki": "BC",
       "sahsi": "BC",
@@ -18953,10 +18953,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CD",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -19056,11 +19056,11 @@
       "Kalecilik Dışı Meziyetler": "EE"
     },
     "makro": {
-      "beceri": "FF",
-      "beseri": "DD",
-      "fiziki": "CD",
-      "sahsi": "CD",
-      "kaleci": "CD"
+      "beceri": "",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
+      "kaleci": "CC"
     },
     "tarz": [
       "Uzun Degajmanlar Yapabilir",
@@ -19144,10 +19144,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -19233,10 +19233,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -19326,8 +19326,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
-      "fiziki": "CC",
+      "beseri": "CC",
+      "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -19415,8 +19415,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
-      "fiziki": "CC",
+      "beseri": "CC",
+      "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -19505,8 +19505,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -19592,10 +19592,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
       "fiziki": "CC",
-      "sahsi": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -19683,10 +19683,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -19772,10 +19772,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -19860,7 +19860,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CC",
       "fiziki": "CD",
       "sahsi": "CC",
@@ -19950,9 +19950,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "CD",
+      "beseri": "CD",
+      "fiziki": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20039,8 +20039,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20129,7 +20129,7 @@
       "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20215,9 +20215,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -20302,10 +20302,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -20409,10 +20409,10 @@
       "Kalecilik Dışı Meziyetler": "DD"
     },
     "makro": {
-      "beceri": "FF",
-      "beseri": "CC",
-      "fiziki": "CC",
-      "sahsi": "CC",
+      "beceri": "",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
       "kaleci": "CC"
     },
     "tarz": [
@@ -20498,10 +20498,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20589,7 +20589,7 @@
       "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20677,7 +20677,7 @@
       "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CC",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20762,10 +20762,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "DD",
+      "beceri": "DD",
+      "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -20850,10 +20850,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -21641,10 +21641,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
+      "beceri": "DD",
       "beseri": "DD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [],
@@ -21727,9 +21727,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CC",
+      "beseri": "CC",
+      "fiziki": "CC",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -21811,7 +21811,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CC",
       "fiziki": "CD",
       "sahsi": "CC",
@@ -21898,7 +21898,7 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
+      "fiziki": "CC",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -21986,7 +21986,7 @@
     "makro": {
       "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CC",
+      "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -22074,8 +22074,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DD",
-      "fiziki": "DD",
+      "beseri": "CD",
+      "fiziki": "CD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -22163,8 +22163,8 @@
     "makro": {
       "beceri": "DE",
       "beseri": "DE",
-      "fiziki": "DD",
-      "sahsi": "DE",
+      "fiziki": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -22250,9 +22250,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "DE",
+      "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "DE",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -22338,8 +22338,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DE",
-      "beseri": "CD",
+      "beceri": "DD",
+      "beseri": "CC",
       "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
@@ -22429,8 +22429,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
-      "fiziki": "CD",
+      "beseri": "CC",
+      "fiziki": "CC",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -22518,7 +22518,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "CC",
       "beseri": "CD",
       "fiziki": "DE",
       "sahsi": "DE",
@@ -22701,9 +22701,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
+      "beseri": "CC",
       "fiziki": "CD",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -22791,7 +22791,7 @@
     "makro": {
       "beceri": "DD",
       "beseri": "CD",
-      "fiziki": "CD",
+      "fiziki": "CC",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -22892,11 +22892,11 @@
       "Kalecilik Dışı Meziyetler": "CD"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "CC",
-      "kaleci": "CC"
+      "sahsi": "BC",
+      "kaleci": "BC"
     },
     "tarz": [
       "Uzun Degajmanlar Yapabilir",
@@ -22981,10 +22981,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "CD",
       "beseri": "CD",
       "fiziki": "BC",
-      "sahsi": "DD",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -23073,10 +23073,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "EE",
-      "beseri": "EE",
+      "beceri": "DE",
+      "beseri": "DE",
       "fiziki": "DD",
-      "sahsi": "EE",
+      "sahsi": "DE",
       "kaleci": ""
     },
     "tarz": [
@@ -23162,8 +23162,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "CC",
-      "fiziki": "DD",
+      "beseri": "BC",
+      "fiziki": "CD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -23251,10 +23251,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "EE",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "EE",
+      "beceri": "DE",
+      "beseri": "DD",
+      "fiziki": "DD",
+      "sahsi": "DE",
       "kaleci": ""
     },
     "tarz": [
@@ -23503,11 +23503,11 @@
       "Kalecilik Dışı Meziyetler": "DE"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
-      "kaleci": "DE"
+      "fiziki": "DD",
+      "sahsi": "DD",
+      "kaleci": "DD"
     },
     "tarz": [],
     "nihai": "DE",
@@ -23603,10 +23603,10 @@
       "Kalecilik Dışı Meziyetler": "DE"
     },
     "makro": {
-      "beceri": "FF",
-      "beseri": "EE",
-      "fiziki": "EE",
-      "sahsi": "EE",
+      "beceri": "",
+      "beseri": "DE",
+      "fiziki": "DE",
+      "sahsi": "DE",
       "kaleci": "DE"
     },
     "tarz": [],
@@ -23703,10 +23703,10 @@
       "Kalecilik Dışı Meziyetler": "DE"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "DD",
-      "fiziki": "DD",
-      "sahsi": "DD",
+      "fiziki": "CD",
+      "sahsi": "CD",
       "kaleci": "CD"
     },
     "tarz": [],
@@ -23802,11 +23802,11 @@
       "Kalecilik Dışı Meziyetler": "DE"
     },
     "makro": {
-      "beceri": "FF",
-      "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
-      "kaleci": "DE"
+      "beceri": "",
+      "beseri": "",
+      "fiziki": "DD",
+      "sahsi": "DD",
+      "kaleci": "DD"
     },
     "tarz": [],
     "nihai": "DE",
@@ -23902,11 +23902,11 @@
       "Kalecilik Dışı Meziyetler": "EE"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "DE",
-      "fiziki": "DE",
-      "sahsi": "DE",
-      "kaleci": "DE"
+      "fiziki": "DD",
+      "sahsi": "DD",
+      "kaleci": "DD"
     },
     "tarz": [],
     "nihai": "DE",
@@ -24002,7 +24002,7 @@
       "Kalecilik Dışı Meziyetler": "DE"
     },
     "makro": {
-      "beceri": "FF",
+      "beceri": "",
       "beseri": "CD",
       "fiziki": "CD",
       "sahsi": "CD",
@@ -24060,7 +24060,7 @@
       "beseri": "",
       "fiziki": "",
       "sahsi": "",
-      "kaleci": "FF"
+      "kaleci": ""
     },
     "tarz": [],
     "nihai": "",
@@ -24112,7 +24112,7 @@
       "beseri": "",
       "fiziki": "",
       "sahsi": "",
-      "kaleci": "FF"
+      "kaleci": ""
     },
     "tarz": [],
     "nihai": "",

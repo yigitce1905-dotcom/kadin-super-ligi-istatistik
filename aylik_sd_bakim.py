@@ -37,23 +37,32 @@ def calistir(script, argv):
     runpy.run_path(str(KOK / script), run_name="__main__")
 
 
-adim("1/3 — SoccerDonna kulüp doğrulama" + (" [KURU]" if KURU else ""))
+adim("1/4 — SD profillerinden güncel kulüp tarama (guncel_kulup)")
+if not KURU:
+    calistir("kulup_guncelle_sd.py", [])
+else:
+    print("[KURU] atlandı")
+
+adim("2/4 — SoccerDonna kulüp doğrulama" + (" [KURU]" if KURU else ""))
 calistir("sd_kulup_guncelle.py", ["--kuru"] if KURU else [])
 
 if KURU:
     print("\n[KURU] Sheet yazılmadı, entegre/deploy atlandı. Log: _kulup_yazim_log.txt")
     sys.exit(0)
 
-adim("2/3 — Siteye entegre (sheet → JSON)")
+adim("3/4 — Siteye entegre (sheet → JSON)")
 calistir("entegre_islenmis.py", [])
+calistir("fetch_scout_kadro.py", [])   # yaş + SD kulüp override'ı JSON'a işlensin
 
-adim("3/3 — Commit + push (değişiklik varsa)")
-degisti = subprocess.run(["git", "diff", "--quiet", "scout_kadro_raporlar.json"],
+adim("4/4 — Commit + push (değişiklik varsa)")
+_izlenen = ["scout_kadro_raporlar.json", "scouting_sd_profiller.json",
+            "soccerdonna_profiller.json"]
+degisti = subprocess.run(["git", "diff", "--quiet", "--"] + _izlenen,
                          cwd=KOK).returncode != 0
 if not degisti:
     print("JSON değişmedi — deploy gereksiz.")
     sys.exit(0)
-for cmd in (["git", "add", "scout_kadro_raporlar.json"],
+for cmd in (["git", "add"] + _izlenen,
             ["git", "commit", "-m", "chore: aylik SD kulup senkronu (otomatik bakim)"],
             ["git", "push", "origin", "main"]):
     r = subprocess.run(cmd, cwd=KOK)
