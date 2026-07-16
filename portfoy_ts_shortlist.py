@@ -115,9 +115,8 @@ pdf.cell(0, 6, "STOPER + FORVET · KADIN FUTBOLU · YAZ 2026", ln=1)
 
 # özet kutuları
 _say = {g: len(OYUNCULAR[g]) for g, _, _ in GRUPLAR}
-_ulkeler = {p.strip() for g in OYUNCULAR for o in OYUNCULAR[g] for p in o[2].split("/")}
 _ozet = [(str(sum(_say.values())), "ADAY"), (str(_say["STP"]), "STOPER"),
-         (str(_say["FW"]), "FORVET"), (str(len(_ulkeler)), "FARKLI ÜLKE")]
+         (str(_say["FW"]), "FORVET")]
 ox, oy = 14, 72; bw, bh = 29, 24
 for i, (deger, et) in enumerate(_ozet):
     x = ox + i * (bw + 3.6)
