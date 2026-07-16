@@ -23,7 +23,7 @@ BORDO = (122, 30, 58)
 OYUNCULAR = {
 "STP": [
  ("Vyan Sampson", "STP / DOS", "Jamaika / İngiltere", "29 (1996)", "1.75", "Sağ",
-  "BONSERVİSSİZ — son: INAC Kobe Leonessa (WE League, Japonya)",
+  "Son kulüp: INAC Kobe Leonessa (WE League, Japonya)",
   "Dünya Kupası deneyimli, hava hakimiyeti güçlü, pozisyon disiplini ve top "
   "dağıtımı iyi lider stoper; İngiltere, İtalya, İskoçya ve Japonya'da oynamış, "
   "her lige uyum sağlamış profesyonel profil.",
@@ -52,7 +52,7 @@ OYUNCULAR = {
 ],
 "FW": [
  ("Chaymaa Mourtaji", "ST / 2ST", "Fas", "30 (1995)", "1.64", "Sağ",
-  "BONSERVİSSİZ — son: Sporting Club Casablanca (Fas 1. Lig)",
+  "Son kulüp: Sporting Club Casablanca (Fas 1. Lig)",
   "Rakip stopere agresif baskı yapan, önde top kazanan yorulmaz santrafor; "
   "keskin pozisyon alma ve doğal gol içgüdüsü, duran toplarda yetenekli.",
   ["Fas A Milli — 2022 Afrika Uluslar Kupası kadrosu",
@@ -63,11 +63,11 @@ OYUNCULAR = {
    ("★ Scout Raporu", "https://womenfootballscouting.com/?paylas=" + quote("Chaymaa Mourtaji"), "s")]),
 
  ("Nikola Rybanska", "ST", "Slovakya", "31 (1995)", "", "",
-  "OFI Girit (Yunanistan 1. Lig)",
+  "OFI Girit (Yunanistan Süper Ligi)",
   "Slovakya Milli Takımı'nın as forveti; ceza sahası içinde bitiriciliği "
   "güçlü, hedef adam olarak oynayabilen golcü santrafor.",
   ["Slovakya A Milli — as forvet",
-   "Yunanistan 1. Ligi'nde düzenli golcü",
+   "Yunanistan Süper Ligi'nde düzenli golcü",
    "Hedef santrafor profili — direkt oyuna uygun"],
   [("▶  HIGHLIGHTS 25/26", "https://youtu.be/ACA2GLmZfSE", "v")]),
 ],
@@ -113,17 +113,12 @@ pdf.cell(0, 11, "TRANSFER SHORTLIST", ln=1)
 pdf.set_x(14); pdf.set_font("DV", "B", 10.5); pdf.set_text_color(*OLIV)
 pdf.cell(0, 6, "STOPER + FORVET · KADIN FUTBOLU · YAZ 2026", ln=1)
 
-# Trabzonspor şeridi
-pdf.set_fill_color(*BORDO); pdf.rect(14, 66, 120, 10, "F")
-pdf.set_xy(14, 67.6); pdf.set_font("DV", "B", 9.5); pdf.set_text_color(255, 255, 255)
-pdf.cell(120, 7, "  TRABZONSPOR İÇİN HAZIRLANMIŞTIR", ln=1)
-
 # özet kutuları
 _say = {g: len(OYUNCULAR[g]) for g, _, _ in GRUPLAR}
-_serbest = sum(1 for g in OYUNCULAR for o in OYUNCULAR[g] if "BONSERVİSSİZ" in o[6])
+_ulkeler = {p.strip() for g in OYUNCULAR for o in OYUNCULAR[g] for p in o[2].split("/")}
 _ozet = [(str(sum(_say.values())), "ADAY"), (str(_say["STP"]), "STOPER"),
-         (str(_say["FW"]), "FORVET"), (str(_serbest), "BONSERVİSSİZ")]
-ox, oy = 14, 86; bw, bh = 29, 24
+         (str(_say["FW"]), "FORVET"), (str(len(_ulkeler)), "FARKLI ÜLKE")]
+ox, oy = 14, 72; bw, bh = 29, 24
 for i, (deger, et) in enumerate(_ozet):
     x = ox + i * (bw + 3.6)
     pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
@@ -134,7 +129,7 @@ for i, (deger, et) in enumerate(_ozet):
     pdf.set_xy(x, oy + 15); pdf.set_text_color(*GRIM); pdf.set_font("DV", "", 6.4)
     pdf.cell(bw, 4, et, align="C")
 
-pdf.set_xy(14, 122); pdf.set_font("DV", "", 9.2); pdf.set_text_color(60, 68, 82)
+pdf.set_xy(14, 108); pdf.set_font("DV", "", 9.2); pdf.set_text_color(60, 68, 82)
 pdf.multi_cell(150, 5.4,
     "Bu dosya, Trabzonspor Kadın Futbol Takımı'nın stoper ve forvet "
     "ihtiyacına yönelik seçilmiş adayları içerir. Her oyuncu kartında künye, "
