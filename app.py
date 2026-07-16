@@ -6161,7 +6161,7 @@ def render_paylasim_raporu(isim: str):
           <div style='font-family:Oswald,Sora,sans-serif;font-size:1.15rem;font-weight:700;color:#fff;'>
             {t('Tüm scouting havuzu için','For the full scouting pool')}</div>
           <div style='color:#a78bfa;font-size:0.85rem;margin:4px 0 12px;'>
-            {t('950+ oyuncu · kariyer & benzerlik analizi · kadro danışmanlığı','950+ players · career & similarity analysis · squad consultancy')}</div>
+            {t('1.400+ oyuncu · kariyer & benzerlik analizi · kadro danışmanlığı','1,400+ players · career & similarity analysis · squad consultancy')}</div>
           <a href='/' style='display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);
              color:#fff;font-weight:700;text-decoration:none;border-radius:9px;padding:10px 26px;'>
             🚀 {t('Üye Ol / Giriş','Join / Log In')}</a>

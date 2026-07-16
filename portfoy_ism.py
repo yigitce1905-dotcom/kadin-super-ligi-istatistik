@@ -87,7 +87,7 @@ pdf.cell(0, 10, "TÜRKİYE PORTFÖYÜ", ln=1)
 pdf.set_x(14); pdf.set_font("DV", "", 11); pdf.set_text_color(*LIME)
 pdf.cell(0, 6, "KADIN FUTBOLU · YAZ 2026 TRANSFER DÖNEMİ", ln=1)
 pdf.set_x(14); pdf.set_font("DV", "", 8.5); pdf.set_text_color(*GRI)
-pdf.cell(0, 5, "Scout altyapısı: womenfootballscouting.com — 950+ oyuncu, 47 nitelik", ln=1)
+pdf.cell(0, 5, "Scout altyapısı: womenfootballscouting.com — 1.400+ oyuncu, 47 nitelik", ln=1)
 
 # saha
 SX, SY, SW, SH = 30, 58, 150, 205
