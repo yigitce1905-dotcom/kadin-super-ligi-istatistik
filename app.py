@@ -5503,33 +5503,6 @@ def render_ana_lig_profil(secili):
                             unsafe_allow_html=True)
         else:
             _profil_kutulari(_kutu_grp)
-        # Sezon İstatistikleri + Mevki İçi Sıralama (percentile) — YAN YANA (kompakt)
-        _stat_html = f"""
-        <div class="profil-kart" style="padding:14px 16px;">
-          <div style="font-size:0.95rem;font-weight:700;color:#f1f5f9;">📊 {t('Sezon İstatistikleri','Season Stats')}</div>
-          <div class="profil-stat" style="margin-top:8px;">
-            <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{ilk11_oran}%</div><div class="ad">Starter %</div></div>
-            <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">{t("Top. Dakika","Tot. Minutes")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">{t("Dk/Maç","Min/Match")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">{t("Gol","Goals")}{gol_detay}</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol_f}</div><div class="ad">⚽ {t("Ayak (F)","Foot (F)")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{gol_h}</div><div class="ad">🆕 {t("Kafa (H)","Header (H)")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{pen}</div><div class="ad">{t("Penaltı (P)","Penalty (P)")}</div></div>
-            <div class="profil-stat-item"><div class="deger">{ort}</div><div class="ad">{t("Gol/Maç","Goals/Match")}</div></div>
-            <div class="profil-stat-item"><div class="deger" style="color:#f5c518">{sari}</div><div class="ad">🟨 {t("Sarı","Yellow")}</div></div>
-            <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 {t("Kırmızı","Red")}</div></div>
-          </div>
-        </div>"""
-        if _percentil_hesapla(secili):
-            _c1, _c2 = st.columns(2, gap="medium")
-            with _c1:
-                st.markdown(_stat_html, unsafe_allow_html=True)
-            with _c2:
-                render_percentil_panel(secili)
-        else:
-            st.markdown(_stat_html, unsafe_allow_html=True)
 
         # ── Markalı PDF rapor indir (TALEP üzerine üretilir) ─────────────────
         _pdfk = f"lig_pdf_iste_{secili}"
@@ -5549,290 +5522,376 @@ def render_ana_lig_profil(secili):
             except Exception as _e:
                 st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
 
-        st.markdown("<br>", unsafe_allow_html=True)
-        p1, p2 = st.columns(2)
+        # ── ÖZET satırı: hep görünür (Baran tasarımı) ─────────────────────────
+        _cs_ozet = None
+        if row.get("Mevki", "") == "Kaleci":
+            try:
+                _ygm2 = _yenilen_gol_map()
+                _htk2 = _oyuncu_hafta_takim(detay)
+                _cs_ozet = sum(
+                    1 for m in detay.get("mac_gecmisi", [])
+                    if m.get("dakika", 0) > 0
+                    and _ygm2.get((m["hafta"], _kanon(_htk2.get(m["hafta"], row["Takım"])))) == 0)
+            except Exception:
+                _cs_ozet = None
+        _oz3 = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet) if _cs_ozet is not None
+                else (t("Dakika", "Minutes"), dk))
+        _mevki_ana = _sc_mevki[0] if _sc_mevki else (row.get("Mevki", "") or "—")
+        _mevki_alt = " · ".join(_sc_mevki[1:]) if len(_sc_mevki) > 1 else ""
+        _alt_html = (('<span style="color:#8899aa;font-size:0.8rem;margin-left:10px;">'
+                      + t("Alternatif", "Alternate") + ": " + _mevki_alt + "</span>")
+                     if _mevki_alt else "")
+        _oc1, _oc2 = st.columns(2, gap="medium")
+        with _oc1:
+            st.markdown(
+                '<div class="profil-kart" style="padding:12px 16px;">'
+                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                'text-transform:uppercase;letter-spacing:0.08em;">' + t("2025-26 Özet", "2025-26 Summary") + '</div>'
+                '<div style="display:flex;gap:22px;margin-top:8px;">'
+                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(mac) + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
+                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(gol) + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
+                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#2979ff;">' + str(_oz3[1]) + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + str(_oz3[0]) + '</div></div>'
+                '</div></div>', unsafe_allow_html=True)
+        with _oc2:
+            st.markdown(
+                '<div class="profil-kart" style="padding:12px 16px;">'
+                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Mevki Dağılımı", "Position Breakdown") + '</div>'
+                '<div style="margin-top:8px;">'
+                '<span style="background:#0d3b2e;color:#1db954;border-radius:6px;padding:4px 12px;'
+                'font-size:0.85rem;font-weight:700;">' + str(_mevki_ana) + '</span>'
+                + _alt_html + '</div></div>', unsafe_allow_html=True)
 
-        # ── Son 5 maç formu (her maçta Süre · Gol · CleanSheet · Kart) ────────
-        with p1, st.expander(t('Son 5 Maç Formu', 'Last 5 Matches Form'), expanded=False):
-            _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
-            _htk = _oyuncu_hafta_takim(detay)   # transfer: o hafta hangi kulüpte
-            _son_kulup = _htk[max(_htk)] if _htk else row["Takım"]  # sezon-sonu = son kulüp
-            _son_h = _son_lig_haftasi() or (max(_mg) if _mg else 0)
-            _haftalar = [h for h in range(max(1, _son_h - 4), _son_h + 1)]
-            if not _haftalar:
-                st.caption(t("Maç verisi yok.", "No match data."))
+        # ── KIRMIZI ŞERİT: sabit özet ile açılır bölümlerin ayrımı ────────────
+        st.markdown("<div style='height:3px;background:linear-gradient(90deg,#e5484d,#7c1d24);"
+                    "border-radius:2px;margin:18px 0 12px;'></div>", unsafe_allow_html=True)
+
+        # ── 1) İSTATİSTİKLER ──────────────────────────────────────────────────
+        with st.expander(t("İSTATİSTİKLER", "STATISTICS"), expanded=False):
+            # Sezon İstatistikleri + Mevki İçi Sıralama (percentile) — YAN YANA (kompakt)
+            _stat_html = f"""
+            <div class="profil-kart" style="padding:14px 16px;">
+              <div style="font-size:0.95rem;font-weight:700;color:#f1f5f9;">📊 {t('Sezon İstatistikleri','Season Stats')}</div>
+              <div class="profil-stat" style="margin-top:8px;">
+                <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{ilk11_oran}%</div><div class="ad">Starter %</div></div>
+                <div class="profil-stat-item"><div class="deger">{dk}</div><div class="ad">{t("Top. Dakika","Tot. Minutes")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{int(dk_mac)}</div><div class="ad">{t("Dk/Maç","Min/Match")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{gol}</div><div class="ad">{t("Gol","Goals")}{gol_detay}</div></div>
+                <div class="profil-stat-item"><div class="deger">{gol_f}</div><div class="ad">⚽ {t("Ayak (F)","Foot (F)")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{gol_h}</div><div class="ad">🆕 {t("Kafa (H)","Header (H)")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{pen}</div><div class="ad">{t("Penaltı (P)","Penalty (P)")}</div></div>
+                <div class="profil-stat-item"><div class="deger">{ort}</div><div class="ad">{t("Gol/Maç","Goals/Match")}</div></div>
+                <div class="profil-stat-item"><div class="deger" style="color:#f5c518">{sari}</div><div class="ad">🟨 {t("Sarı","Yellow")}</div></div>
+                <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 {t("Kırmızı","Red")}</div></div>
+              </div>
+            </div>"""
+            if _percentil_hesapla(secili):
+                _c1, _c2 = st.columns(2, gap="medium")
+                with _c1:
+                    st.markdown(_stat_html, unsafe_allow_html=True)
+                with _c2:
+                    render_percentil_panel(secili)
             else:
-                # Baran: ikonlar her kutuda tekrar etmesin — SOLDA tek lejant sütunu,
-                # kutularda yalnız DEĞERLER (satırlar sabit yükseklikte, üst üste binme yok)
-                _SATIR_H = 22
-                _lejant = (
-                    "<div style='flex:none;width:34px;display:flex;flex-direction:column;"
-                    "align-items:center;padding:8px 0;'>"
-                    "<div style='height:16px;'></div>"
-                    + "".join(
-                        f"<div style='height:{_SATIR_H}px;display:flex;align-items:center;"
-                        f"font-size:0.8rem;'>{ik}</div>"
-                        for ik in ("⏱️", "⚽", "🛡️", "🟨"))
-                    + "</div>")
-                _kartlar = ""
-                for _h in _haftalar:
-                    m = _mg.get(_h, {})
-                    _dk = int(m.get("dakika", 0) or 0)
-                    _gl = int(m.get("gol", 0) or 0)
-                    _sa = int(m.get("sari", 0) or 0)
-                    _kr = int(m.get("kirmizi", 0) or 0)
-                    _sure_renk = "#4ade80" if _dk > 0 else "#475569"
-                    # Clean sheet: oyuncunun O HAFTAKİ takımı (transferse doğru kulüp) gol yedi mi?
-                    _yen = _hafta_yenilen(_htk.get(_h) or _son_kulup, _h)
-                    if _yen is None:
-                        _cs_v, _cs_renk = "—", "#475569"
-                    elif _yen == 0:
-                        _cs_v, _cs_renk = "✓", "#34d399"
-                    else:
-                        _cs_v, _cs_renk = str(_yen), "#fb7185"
-                    _gl_renk = "#86efac" if _gl else "#64748b"
-                    _kart_v = f"{_sa}" + (f" +🟥{_kr}" if _kr else "")
-                    _kart_renk = "#fbbf24" if (_sa or _kr) else "#64748b"
+                st.markdown(_stat_html, unsafe_allow_html=True)
+            p1, p2 = st.columns(2)
 
-                    def _hucre(v, c, b=700):
-                        return (f"<div style='height:{_SATIR_H}px;display:flex;align-items:center;"
-                                f"justify-content:center;font-size:0.82rem;font-weight:{b};color:{c};'>{v}</div>")
-
-                    _kartlar += (
-                        "<div style='flex:1;min-width:60px;background:#0f1117;border:1px solid #232842;"
-                        "border-radius:9px;padding:8px 4px;'>"
-                        f"<div style='height:16px;font-size:0.6rem;color:#64748b;font-weight:700;"
-                        f"text-align:center;letter-spacing:0.03em;'>{_h}. {t('Hafta','Wk')}</div>"
-                        + _hucre(f"{_dk}′", _sure_renk, 800)
-                        + _hucre(_gl, _gl_renk)
-                        + _hucre(_cs_v, _cs_renk)
-                        + _hucre(_kart_v, _kart_renk)
+            # ── Son 5 maç formu (her maçta Süre · Gol · CleanSheet · Kart) ────────
+            with p1, st.container(border=True):
+                st.markdown(f"##### {t('Son 5 Maç Formu', 'Last 5 Matches Form')}")
+                _mg = {m["hafta"]: m for m in detay.get("mac_gecmisi", [])}
+                _htk = _oyuncu_hafta_takim(detay)   # transfer: o hafta hangi kulüpte
+                _son_kulup = _htk[max(_htk)] if _htk else row["Takım"]  # sezon-sonu = son kulüp
+                _son_h = _son_lig_haftasi() or (max(_mg) if _mg else 0)
+                _haftalar = [h for h in range(max(1, _son_h - 4), _son_h + 1)]
+                if not _haftalar:
+                    st.caption(t("Maç verisi yok.", "No match data."))
+                else:
+                    # Baran: ikonlar her kutuda tekrar etmesin — SOLDA tek lejant sütunu,
+                    # kutularda yalnız DEĞERLER (satırlar sabit yükseklikte, üst üste binme yok)
+                    _SATIR_H = 22
+                    _lejant = (
+                        "<div style='flex:none;width:34px;display:flex;flex-direction:column;"
+                        "align-items:center;padding:8px 0;'>"
+                        "<div style='height:16px;'></div>"
+                        + "".join(
+                            f"<div style='height:{_SATIR_H}px;display:flex;align-items:center;"
+                            f"font-size:0.8rem;'>{ik}</div>"
+                            for ik in ("⏱️", "⚽", "🛡️", "🟨"))
                         + "</div>")
-                st.markdown(f"<div style='display:flex;gap:6px;align-items:stretch;'>{_lejant}{_kartlar}</div>",
-                            unsafe_allow_html=True)
-                st.caption(t("⏱ Süre · ⚽ Gol · 🛡 Clean Sheet · 🟨 Kart (oynamadıysa 0′)",
-                             "⏱ Minutes · ⚽ Goals · 🛡 Clean Sheet · 🟨 Cards (0′ if didn't play)"))
+                    _kartlar = ""
+                    for _h in _haftalar:
+                        m = _mg.get(_h, {})
+                        _dk = int(m.get("dakika", 0) or 0)
+                        _gl = int(m.get("gol", 0) or 0)
+                        _sa = int(m.get("sari", 0) or 0)
+                        _kr = int(m.get("kirmizi", 0) or 0)
+                        _sure_renk = "#4ade80" if _dk > 0 else "#475569"
+                        # Clean sheet: oyuncunun O HAFTAKİ takımı (transferse doğru kulüp) gol yedi mi?
+                        _yen = _hafta_yenilen(_htk.get(_h) or _son_kulup, _h)
+                        if _yen is None:
+                            _cs_v, _cs_renk = "—", "#475569"
+                        elif _yen == 0:
+                            _cs_v, _cs_renk = "✓", "#34d399"
+                        else:
+                            _cs_v, _cs_renk = str(_yen), "#fb7185"
+                        _gl_renk = "#86efac" if _gl else "#64748b"
+                        _kart_v = f"{_sa}" + (f" +🟥{_kr}" if _kr else "")
+                        _kart_renk = "#fbbf24" if (_sa or _kr) else "#64748b"
 
-        # ── Lig sıralamaları ─────────────────────────────────────────────────
-        with p2, st.expander(t('Lig Sıralaması', 'League Ranking'), expanded=False):
-            r1, r2 = st.columns(2)
-            for kol, metrik, etiket in [
-                (r1, "Gol",    t("Gol","Goals")),
-                (r2, "Dakika", t("Dakika","Minutes")),
-            ]:
-                s_df = df_tam.sort_values(metrik, ascending=False).reset_index(drop=True)
-                s_df.index += 1
-                idx = s_df[s_df["Oyuncu"] == secili].index
-                sira = int(idx[0]) if len(idx) else "—"
-                # Baran: 50pt dev rakam alan kaplıyor — vurgu ~20pt yeter
-                kol.markdown(
-                    "<div style='background:#11162a;border:1px solid #232a40;border-radius:10px;"
-                    "padding:10px 14px;'>"
-                    f"<div style='font-size:0.68rem;color:#8b95a9;letter-spacing:0.08em;"
-                    f"text-transform:uppercase;'>{etiket}</div>"
-                    f"<div style='font-size:1.25rem;font-weight:800;color:#f1f5f9;margin-top:2px;'>"
-                    f"{sira}. <span style='font-size:0.85rem;color:#64748b;font-weight:600;'>/ {len(df_tam)}</span></div>"
-                    "</div>", unsafe_allow_html=True)
+                        def _hucre(v, c, b=700):
+                            return (f"<div style='height:{_SATIR_H}px;display:flex;align-items:center;"
+                                    f"justify-content:center;font-size:0.82rem;font-weight:{b};color:{c};'>{v}</div>")
 
-        st.markdown("<br>", unsafe_allow_html=True)
+                        _kartlar += (
+                            "<div style='flex:1;min-width:60px;background:#0f1117;border:1px solid #232842;"
+                            "border-radius:9px;padding:8px 4px;'>"
+                            f"<div style='height:16px;font-size:0.6rem;color:#64748b;font-weight:700;"
+                            f"text-align:center;letter-spacing:0.03em;'>{_h}. {t('Hafta','Wk')}</div>"
+                            + _hucre(f"{_dk}′", _sure_renk, 800)
+                            + _hucre(_gl, _gl_renk)
+                            + _hucre(_cs_v, _cs_renk)
+                            + _hucre(_kart_v, _kart_renk)
+                            + "</div>")
+                    st.markdown(f"<div style='display:flex;gap:6px;align-items:stretch;'>{_lejant}{_kartlar}</div>",
+                                unsafe_allow_html=True)
+                    st.caption(t("⏱ Süre · ⚽ Gol · 🛡 Clean Sheet · 🟨 Kart (oynamadıysa 0′)",
+                                 "⏱ Minutes · ⚽ Goals · 🛡 Clean Sheet · 🟨 Cards (0′ if didn't play)"))
 
-        # ── Haftalık performans + gol zamanı ─────────────────────────────────
-        gecmis_tam = sorted(detay.get("mac_gecmisi",[]), key=lambda x: x["hafta"])
+            # ── Lig sıralamaları ─────────────────────────────────────────────────
+            with p2, st.container(border=True):
+                st.markdown(f"##### {t('Lig Sıralaması', 'League Ranking')}")
+                r1, r2 = st.columns(2)
+                for kol, metrik, etiket in [
+                    (r1, "Gol",    t("Gol","Goals")),
+                    (r2, "Dakika", t("Dakika","Minutes")),
+                ]:
+                    s_df = df_tam.sort_values(metrik, ascending=False).reset_index(drop=True)
+                    s_df.index += 1
+                    idx = s_df[s_df["Oyuncu"] == secili].index
+                    sira = int(idx[0]) if len(idx) else "—"
+                    # Baran: 50pt dev rakam alan kaplıyor — vurgu ~20pt yeter
+                    kol.markdown(
+                        "<div style='background:#11162a;border:1px solid #232a40;border-radius:10px;"
+                        "padding:10px 14px;'>"
+                        f"<div style='font-size:0.68rem;color:#8b95a9;letter-spacing:0.08em;"
+                        f"text-transform:uppercase;'>{etiket}</div>"
+                        f"<div style='font-size:1.25rem;font-weight:800;color:#f1f5f9;margin-top:2px;'>"
+                        f"{sira}. <span style='font-size:0.85rem;color:#64748b;font-weight:600;'>/ {len(df_tam)}</span></div>"
+                        "</div>", unsafe_allow_html=True)
 
-        g1, g2 = st.columns(2)
-        with g1, st.expander(t('Haftalık Performans', 'Weekly Performance'), expanded=False):
+            st.markdown("<br>", unsafe_allow_html=True)
+
+            # ── Haftalık performans + gol zamanı ─────────────────────────────────
+            gecmis_tam = sorted(detay.get("mac_gecmisi",[]), key=lambda x: x["hafta"])
+
+            g1, g2 = st.columns(2)
+            with g1, st.container(border=True):
+                st.markdown(f"##### {t('Haftalık Performans', 'Weekly Performance')}")
+                if gecmis_tam:
+                    haftalar  = [m["hafta"]  for m in gecmis_tam]
+                    dakikalar = [m["dakika"] for m in gecmis_tam]
+                    goller    = [m["gol"]    for m in gecmis_tam]
+                    fig = go.Figure()
+                    fig.add_trace(go.Bar(x=haftalar, y=dakikalar, name=t("Dakika", "Minutes"),
+                        marker_color="#2979ff", opacity=0.70,
+                        hovertemplate=f"{t('Hafta','Week')} %{{x}}<br>%{{y}} {t('dk','min')}<extra></extra>"))
+                    # Goller: İKİNCİL eksende (gerçek sayı 0,1,2,3…) yıldız + üstünde RAKAM —
+                    # böylece kaç gol atıldığı net görünür. Sadece gol olan haftalarda işaret.
+                    _gh = [h for h, g in zip(haftalar, goller) if g > 0]
+                    _gg = [g for g in goller if g > 0]
+                    if _gh:
+                        fig.add_trace(go.Scatter(x=_gh, y=_gg, name=t("Gol", "Goals"),
+                            mode="markers+text", yaxis="y2",
+                            marker=dict(color="#22c55e", size=18, symbol="star",
+                                        line=dict(color="#0a3d1f", width=1)),
+                            text=[str(g) for g in _gg], textposition="top center",
+                            textfont=dict(color="#4ade80", size=13, family="Sora"),
+                            hovertemplate=f"{t('Hafta','Week')} %{{x}}<br>%{{y}} {t('gol','goals')}<extra></extra>"))
+                    _gmax = max(goller) if goller else 0
+                    fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+                        font=dict(color="#e0e0e0"), height=260,
+                        legend=dict(orientation="h", y=1.15),
+                        xaxis=dict(title=t("Hafta", "Week"), gridcolor="#2d3561"),
+                        yaxis=dict(title=t("Dakika", "Minutes"), gridcolor="#2d3561"),
+                        yaxis2=dict(title=t("Gol", "Goals"), overlaying="y", side="right",
+                                    range=[0, max(_gmax, 1) + 0.6], dtick=1, showgrid=False,
+                                    tickfont=dict(color="#4ade80"), title_font=dict(color="#4ade80")),
+                        margin=dict(l=40, r=40, t=24, b=40))
+                    st.plotly_chart(fig, width="stretch", key=_pk("plt_2957"))
+
+            with g2, st.container(border=True):
+                st.markdown(f"##### {t('Gol Zamanı Dağılımı', 'Goal Timing Distribution')}")
+                tum_dakikalar = []
+                for m in gecmis_tam:
+                    tum_dakikalar.extend(m.get("gol_dakikalari", []))
+                if tum_dakikalar:
+                    # 15 dakikalık dilimlere böl
+                    dilimler  = ["1-15","16-30","31-45","46-60","61-75","76-90"]
+                    sinirlar  = [(1,15),(16,30),(31,45),(46,60),(61,75),(76,100)]
+                    sayilar   = [sum(1 for d in tum_dakikalar if s<=d<=e) for s,e in sinirlar]
+                    fig2 = go.Figure(go.Bar(
+                        x=dilimler, y=sayilar,
+                        marker_color=["#1565c0","#1976d2","#1e88e5","#ff8f00","#f57c00","#e65100"],
+                        text=sayilar, textposition="outside",
+                        hovertemplate="%{x}. dk — %{y} gol<extra></extra>",
+                    ))
+                    fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
+                        font=dict(color="#e0e0e0"), height=260,
+                        xaxis=dict(title=t("Dakika Aralığı","Minutes Range"), gridcolor="#2d3561"),
+                        yaxis=dict(title="Gol", gridcolor="#2d3561", dtick=1),
+                        margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
+                    st.plotly_chart(fig2, width="stretch", key=_pk("plt_2980"))
+                elif gol > 0:
+                    st.caption(t("Gol dakikası verisi bu sezonda mevcut değil.", "Goal minute data not available for this season."))
+                else:
+                    st.caption(t("Bu oyuncu gol atmadı.", "This player has not scored."))
+
+            # ── Gol Yenmeme (clean sheet) verisi: oynadığı haftalarda takım gol yedi mi? ──
+            _cs_flags, _cs_rakip = [], {}
+            _ff_set = _forfeit_hafta_takim()
+            _htk_cs = _oyuncu_hafta_takim(detay)        # transfer: o hafta hangi kulüpte
+            for _m in gecmis_tam:                       # hafta artan sırada
+                if _m.get("dakika", 0) > 0:
+                    _tk_h = _htk_cs.get(_m["hafta"]) or row["Takım"]
+                    # Hükmen/çekilme haftası → gerçek maç yok, clean sheet sayma
+                    if (_m["hafta"], _kanon(_tk_h)) in _ff_set:
+                        continue
+                    _rk_tam = _hafta_rakip(_tk_h, _m["hafta"])
+                    _yen = _hafta_yenilen(_tk_h, _m["hafta"])
+                    if _yen is None:
+                        continue
+                    _cs_flags.append(1 if _yen == 0 else 0)
+                    if _yen == 0:
+                        _rk = _takim_kisa(_rk_tam or "—")
+                        _cs_rakip[_rk] = _cs_rakip.get(_rk, 0) + 1
+            en_uzun_cs = max_seri(_cs_flags)
+            toplam_cs  = sum(_cs_flags)
+
+            # ── Seriler ──────────────────────────────────────────────────────────
             if gecmis_tam:
-                haftalar  = [m["hafta"]  for m in gecmis_tam]
-                dakikalar = [m["dakika"] for m in gecmis_tam]
-                goller    = [m["gol"]    for m in gecmis_tam]
-                fig = go.Figure()
-                fig.add_trace(go.Bar(x=haftalar, y=dakikalar, name=t("Dakika", "Minutes"),
-                    marker_color="#2979ff", opacity=0.70,
-                    hovertemplate=f"{t('Hafta','Week')} %{{x}}<br>%{{y}} {t('dk','min')}<extra></extra>"))
-                # Goller: İKİNCİL eksende (gerçek sayı 0,1,2,3…) yıldız + üstünde RAKAM —
-                # böylece kaç gol atıldığı net görünür. Sadece gol olan haftalarda işaret.
-                _gh = [h for h, g in zip(haftalar, goller) if g > 0]
-                _gg = [g for g in goller if g > 0]
-                if _gh:
-                    fig.add_trace(go.Scatter(x=_gh, y=_gg, name=t("Gol", "Goals"),
-                        mode="markers+text", yaxis="y2",
-                        marker=dict(color="#22c55e", size=18, symbol="star",
-                                    line=dict(color="#0a3d1f", width=1)),
-                        text=[str(g) for g in _gg], textposition="top center",
-                        textfont=dict(color="#4ade80", size=13, family="Sora"),
-                        hovertemplate=f"{t('Hafta','Week')} %{{x}}<br>%{{y}} {t('gol','goals')}<extra></extra>"))
-                _gmax = max(goller) if goller else 0
-                fig.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
-                    font=dict(color="#e0e0e0"), height=260,
-                    legend=dict(orientation="h", y=1.15),
-                    xaxis=dict(title=t("Hafta", "Week"), gridcolor="#2d3561"),
-                    yaxis=dict(title=t("Dakika", "Minutes"), gridcolor="#2d3561"),
-                    yaxis2=dict(title=t("Gol", "Goals"), overlaying="y", side="right",
-                                range=[0, max(_gmax, 1) + 0.6], dtick=1, showgrid=False,
-                                tickfont=dict(color="#4ade80"), title_font=dict(color="#4ade80")),
-                    margin=dict(l=40, r=40, t=24, b=40))
-                st.plotly_chart(fig, width="stretch", key=_pk("plt_2957"))
+                with st.container(border=True):
+                    st.markdown(f"##### {t('Seri Rekorları', 'Streak Records')}")
+                    en_uzun_mac = max_seri([1 for _ in gecmis_tam])
+                    gol_var = [1 if m["gol"]>0 else 0 for m in gecmis_tam]
+                    en_uzun_gol = max_seri(gol_var)
+                    temiz = [1 if m["sari"]==0 and m["kirmizi"]==0 else 0 for m in gecmis_tam]
+                    en_uzun_temiz = max_seri(temiz)
 
-        with g2, st.expander(t('Gol Zamanı Dağılımı', 'Goal Timing Distribution'), expanded=False):
-            tum_dakikalar = []
-            for m in gecmis_tam:
-                tum_dakikalar.extend(m.get("gol_dakikalari", []))
-            if tum_dakikalar:
-                # 15 dakikalık dilimlere böl
-                dilimler  = ["1-15","16-30","31-45","46-60","61-75","76-90"]
-                sinirlar  = [(1,15),(16,30),(31,45),(46,60),(61,75),(76,100)]
-                sayilar   = [sum(1 for d in tum_dakikalar if s<=d<=e) for s,e in sinirlar]
-                fig2 = go.Figure(go.Bar(
-                    x=dilimler, y=sayilar,
-                    marker_color=["#1565c0","#1976d2","#1e88e5","#ff8f00","#f57c00","#e65100"],
-                    text=sayilar, textposition="outside",
-                    hovertemplate="%{x}. dk — %{y} gol<extra></extra>",
-                ))
-                fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
-                    font=dict(color="#e0e0e0"), height=260,
-                    xaxis=dict(title=t("Dakika Aralığı","Minutes Range"), gridcolor="#2d3561"),
-                    yaxis=dict(title="Gol", gridcolor="#2d3561", dtick=1),
-                    margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
-                st.plotly_chart(fig2, width="stretch", key=_pk("plt_2980"))
-            elif gol > 0:
-                st.caption(t("Gol dakikası verisi bu sezonda mevcut değil.", "Goal minute data not available for this season."))
+                    s1,s2,s3,s4 = st.columns(4)
+                    s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
+                    s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
+                    s3.metric(f"🧤 {t('En Uzun Gol Yenmeyen Seri', 'Longest Clean-Sheet Streak')}", f"{en_uzun_cs} {t('maç','matches')}")
+                    s4.metric(f"🟨 {t('En Uzun Kartsız Seri', 'Longest Card-Free Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
+
+            # ── Rakip dağılımları: Yenen goller (sol) · Gol yenmeyen maçlar (sağ) ──
+            _has_gol = gol > 0 and bool(_gol_rakip_dagil(detay))
+            _has_cs  = bool(_cs_rakip)
+            if _has_gol and _has_cs:
+                _rd1, _rd2 = st.columns(2, gap="medium")
+                with _rd1: _gol_rakip_grafik(detay, gol)
+                with _rd2: _clean_sheet_grafik(_cs_rakip, toplam_cs)
+            elif _has_gol:
+                _gol_rakip_grafik(detay, gol)
+            elif _has_cs:
+                _clean_sheet_grafik(_cs_rakip, toplam_cs)
+
+            # ── Transfer kırılımı ─────────────────────────────────────────────────
+            if transfer:
+                st.markdown(f"##### {t('Takım Bazlı İstatistikler', 'Stats by Club')}")
+                satirlar = ""
+                for d in detay.get("takim_detay", []):
+                    satirlar += f"""
+                    <div class="takim-detay-satir">
+                      <span class="td-adi">🏟 {_takim_kisa(d['takim'])}</span>
+                      <span class="td-stats">
+                        {d['mac']} {t('maç','matches')} · {d['gol']} {t('gol','goals')} · {d['dakika']} {t('dk','min')} ·
+                        🟨{d['sari']} 🟥{d['kirmizi']}
+                      </span>
+                    </div>"""
+                st.markdown(satirlar, unsafe_allow_html=True)
+        # ── 2) KARİYER ────────────────────────────────────────────────────────
+        with st.expander(t("KARİYER", "CAREER"), expanded=False):
+            # ── Oyuncu Kartı ──
+            st.markdown(f"##### 🃏 {t('Oyuncu Kartı', 'Player Card')}")
+            st.markdown(f"""
+            <div style="max-width:320px;margin:0 auto;
+                 background:linear-gradient(145deg,#1a1f36,#0d3b2e);
+                 border-radius:18px;padding:26px 28px;text-align:center;
+                 box-shadow:0 8px 32px rgba(0,0,0,0.6);
+                 border:1px solid #1db95444;">
+              <div style="font-size:0.68rem;letter-spacing:3px;color:#1db954aa;margin-bottom:4px">
+                {t("KADIN FUTBOL · 2025-2026","WOMEN'S FOOTBALL · 2025-2026")}
+              </div>
+              <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
+              <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{_takim_kisa(row['Takım'])}</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
+                <div style="background:rgba(0,200,83,0.08);border:1px solid #1db95433;
+                     border-radius:8px;padding:10px 6px">
+                  <div style="font-size:1.5rem;font-weight:800;color:#1db954">{gol}</div>
+                  <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("GOL","GOALS")}</div>
+                </div>
+                <div style="background:rgba(41,121,255,0.08);border:1px solid #2979ff33;
+                     border-radius:8px;padding:10px 6px">
+                  <div style="font-size:1.5rem;font-weight:800;color:#2979ff">{mac}</div>
+                  <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("MAÇ","MATCHES")}</div>
+                </div>
+                <div style="background:rgba(255,109,0,0.08);border:1px solid #ff6d0033;
+                     border-radius:8px;padding:10px 6px">
+                  <div style="font-size:1.5rem;font-weight:800;color:#ff6d00">{ort}</div>
+                  <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("G/MAÇ","G/MATCH")}</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
+                     border-radius:8px;padding:10px 6px">
+                  <div style="font-size:1.5rem;font-weight:800;color:#e0e0e0">{ilk11_oran}%</div>
+                  <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">STARTER</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
+                     border-radius:8px;padding:10px 6px">
+                  <div style="font-size:1.5rem;font-weight:800;color:#e0e0e0">{int(dk_mac)}</div>
+                  <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("DK/MAÇ","MIN/MATCH")}</div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
+                     border-radius:8px;padding:10px 6px">
+                  <div style="font-size:1.5rem;font-weight:800;color:#f5c518">{sari}</div>
+                  <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">🟨 {t("KART","CARD")}</div>
+                </div>
+              </div>
+            </div>
+            <div style="text-align:center;color:#505870;font-size:0.7rem;margin-top:8px">
+              {t("Ekran görüntüsü alarak paylaşabilirsiniz","You can share by taking a screenshot")}
+            </div>
+            """, unsafe_allow_html=True)
+
+            # Ana lig kariyer (Scouting ile ORTAK: Trend+Radar yan yana + Kulüp/Milli)
+            _al = analig_leistung_yukle().get(secili, {})
+            _al_sezon = _al.get("sezonlar", [])
+            if _al_sezon:
+                # Milli takım: SD uyruk sırasında İLK ülke (= NT; çift-uyruklularda doğru takım)
+                _al_milli = ulke_goster(_ilk_uyruk(sd_profiller.get(secili, {}).get("Nationality", "")))
+                _kariyer_kulup_milli(secili, _al_sezon, "analig", _al_milli, _al.get("guncelleme", ""))
+        # ── 3) GÖZLEM ─────────────────────────────────────────────────────────
+        with st.expander(t("GÖZLEM", "OBSERVATION"), expanded=False):
+            if scotr_yukle().get(secili):
+                render_scout_raporu(secili)
             else:
-                st.caption(t("Bu oyuncu gol atmadı.", "This player has not scored."))
+                st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
+                             "No scout observation added for this player yet."))
+        # ── 4) ANALİZ ─────────────────────────────────────────────────────────
+        with st.expander(t("ANALİZ", "ANALYSIS"), expanded=False):
+            # Benzer oyuncular (ana lig havuzu)
+            benzer_oyuncular_goster(secili, "analig")
 
-        # ── Gol Yenmeme (clean sheet) verisi: oynadığı haftalarda takım gol yedi mi? ──
-        _cs_flags, _cs_rakip = [], {}
-        _ff_set = _forfeit_hafta_takim()
-        _htk_cs = _oyuncu_hafta_takim(detay)        # transfer: o hafta hangi kulüpte
-        for _m in gecmis_tam:                       # hafta artan sırada
-            if _m.get("dakika", 0) > 0:
-                _tk_h = _htk_cs.get(_m["hafta"]) or row["Takım"]
-                # Hükmen/çekilme haftası → gerçek maç yok, clean sheet sayma
-                if (_m["hafta"], _kanon(_tk_h)) in _ff_set:
-                    continue
-                _rk_tam = _hafta_rakip(_tk_h, _m["hafta"])
-                _yen = _hafta_yenilen(_tk_h, _m["hafta"])
-                if _yen is None:
-                    continue
-                _cs_flags.append(1 if _yen == 0 else 0)
-                if _yen == 0:
-                    _rk = _takim_kisa(_rk_tam or "—")
-                    _cs_rakip[_rk] = _cs_rakip.get(_rk, 0) + 1
-        en_uzun_cs = max_seri(_cs_flags)
-        toplam_cs  = sum(_cs_flags)
+            # Benzer transfer hedefleri (scouting havuzundan — çapraz)
+            capraz_transfer_goster(secili)
 
-        # ── Seriler ──────────────────────────────────────────────────────────
-        if gecmis_tam:
-            with st.expander(t('Seri Rekorları', 'Streak Records'), expanded=False):
-                en_uzun_mac = max_seri([1 for _ in gecmis_tam])
-                gol_var = [1 if m["gol"]>0 else 0 for m in gecmis_tam]
-                en_uzun_gol = max_seri(gol_var)
-                temiz = [1 if m["sari"]==0 and m["kirmizi"]==0 else 0 for m in gecmis_tam]
-                en_uzun_temiz = max_seri(temiz)
 
-                s1,s2,s3,s4 = st.columns(4)
-                s1.metric(f"🏃 {t('En Uzun Maç Serisi', 'Longest Match Streak')}", f"{en_uzun_mac} {t('maç','matches')}")
-                s2.metric(f"⚽ {t('En Uzun Gol Serisi', 'Longest Goal Streak')}", f"{en_uzun_gol} {t('maç','matches')}")
-                s3.metric(f"🧤 {t('En Uzun Gol Yenmeyen Seri', 'Longest Clean-Sheet Streak')}", f"{en_uzun_cs} {t('maç','matches')}")
-                s4.metric(f"🟨 {t('En Uzun Kartsız Seri', 'Longest Card-Free Streak')}", f"{en_uzun_temiz} {t('maç','matches')}")
 
-        # ── Rakip dağılımları: Yenen goller (sol) · Gol yenmeyen maçlar (sağ) ──
-        _has_gol = gol > 0 and bool(_gol_rakip_dagil(detay))
-        _has_cs  = bool(_cs_rakip)
-        if _has_gol and _has_cs:
-            _rd1, _rd2 = st.columns(2, gap="medium")
-            with _rd1: _gol_rakip_grafik(detay, gol)
-            with _rd2: _clean_sheet_grafik(_cs_rakip, toplam_cs)
-        elif _has_gol:
-            _gol_rakip_grafik(detay, gol)
-        elif _has_cs:
-            _clean_sheet_grafik(_cs_rakip, toplam_cs)
 
-        # ── Transfer kırılımı ─────────────────────────────────────────────────
-        if transfer:
-            st.markdown(f"##### {t('Takım Bazlı İstatistikler', 'Stats by Club')}")
-            satirlar = ""
-            for d in detay.get("takim_detay", []):
-                satirlar += f"""
-                <div class="takim-detay-satir">
-                  <span class="td-adi">🏟 {_takim_kisa(d['takim'])}</span>
-                  <span class="td-stats">
-                    {d['mac']} {t('maç','matches')} · {d['gol']} {t('gol','goals')} · {d['dakika']} {t('dk','min')} ·
-                    🟨{d['sari']} 🟥{d['kirmizi']}
-                  </span>
-                </div>"""
-            st.markdown(satirlar, unsafe_allow_html=True)
-
-        # ── Sco Tr Scout Raporu (1207 Antalyaspor — varsa) ────────────────────
-        render_scout_raporu(secili)
-
-        # ── Oyuncu Kartı ─────────────────────────────────────────────────────
-        st.markdown("---")
-        st.markdown(f"##### 🃏 {t('Oyuncu Kartı', 'Player Card')}")
-        st.markdown(f"""
-        <div style="max-width:320px;margin:0 auto;
-             background:linear-gradient(145deg,#1a1f36,#0d3b2e);
-             border-radius:18px;padding:26px 28px;text-align:center;
-             box-shadow:0 8px 32px rgba(0,0,0,0.6);
-             border:1px solid #1db95444;">
-          <div style="font-size:0.68rem;letter-spacing:3px;color:#1db954aa;margin-bottom:4px">
-            {t("KADIN FUTBOL · 2025-2026","WOMEN'S FOOTBALL · 2025-2026")}
-          </div>
-          <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
-          <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{_takim_kisa(row['Takım'])}</div>
-          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">
-            <div style="background:rgba(0,200,83,0.08);border:1px solid #1db95433;
-                 border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#1db954">{gol}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("GOL","GOALS")}</div>
-            </div>
-            <div style="background:rgba(41,121,255,0.08);border:1px solid #2979ff33;
-                 border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#2979ff">{mac}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("MAÇ","MATCHES")}</div>
-            </div>
-            <div style="background:rgba(255,109,0,0.08);border:1px solid #ff6d0033;
-                 border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#ff6d00">{ort}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("G/MAÇ","G/MATCH")}</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
-                 border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#e0e0e0">{ilk11_oran}%</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">STARTER</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
-                 border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#e0e0e0">{int(dk_mac)}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">{t("DK/MAÇ","MIN/MATCH")}</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.04);border:1px solid #ffffff11;
-                 border-radius:8px;padding:10px 6px">
-              <div style="font-size:1.5rem;font-weight:800;color:#f5c518">{sari}</div>
-              <div style="font-size:0.62rem;color:#8899aa;margin-top:2px">🟨 {t("KART","CARD")}</div>
-            </div>
-          </div>
-        </div>
-        <div style="text-align:center;color:#505870;font-size:0.7rem;margin-top:8px">
-          {t("Ekran görüntüsü alarak paylaşabilirsiniz","You can share by taking a screenshot")}
-        </div>
-        """, unsafe_allow_html=True)
-
-        # Ana lig kariyer (Scouting ile ORTAK: Trend+Radar yan yana + Kulüp/Milli)
-        _al = analig_leistung_yukle().get(secili, {})
-        _al_sezon = _al.get("sezonlar", [])
-        if _al_sezon:
-            st.markdown("---")
-            # Milli takım: SD uyruk sırasında İLK ülke (= NT; çift-uyruklularda doğru takım)
-            _al_milli = ulke_goster(_ilk_uyruk(sd_profiller.get(secili, {}).get("Nationality", "")))
-            _kariyer_kulup_milli(secili, _al_sezon, "analig", _al_milli, _al.get("guncelleme", ""))
-
-        # Benzer oyuncular (ana lig havuzu)
-        st.markdown("---")
-        benzer_oyuncular_goster(secili, "analig")
-
-        # Benzer transfer hedefleri (scouting havuzundan — çapraz)
-        st.markdown("---")
-        capraz_transfer_goster(secili)
 
 
 # ─── PAYLAŞILABILIR LİNK: URL parametresi varsa otomatik profil aç ──────────
