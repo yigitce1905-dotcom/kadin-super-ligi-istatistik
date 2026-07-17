@@ -5431,8 +5431,6 @@ def render_ana_lig_profil(secili):
             'else{try{document.execCommand("copy");}catch(e){}ok();}};'
             '</script>'
         )
-        _comp.html(_kopya_html, height=74)
-
         takim_html = (
             f'<span style="color:#a0aab4">{row["TümTakımlar"]}</span>'
             f'<span class="transfer-badge">🔄 Transfer</span>'
@@ -5481,8 +5479,12 @@ def render_ana_lig_profil(secili):
                 f'{mevki_ikon} {sd_mevki}</span></div>'
             )
 
-        # Başlık + gruplu bilgi kutuları (Scouting profili ile ORTAK görünüm)
-        _profil_baslik(secili, sd.get("profil_url", ""))
+        # Başlık + yanında paylaşılabilir link (Baran: üstteki boşluk kullanılsın)
+        _bs1, _bs2 = st.columns([1.55, 1], gap="large")
+        with _bs1:
+            _profil_baslik(secili, sd.get("profil_url", ""))
+        with _bs2:
+            _comp.html(_kopya_html, height=74)
         _mv = sd.get("Market value", "")
         # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
         # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
@@ -5517,24 +5519,6 @@ def render_ana_lig_profil(secili):
         else:
             _profil_kutulari(_kutu_grp)
 
-        # ── Markalı PDF rapor indir (TALEP üzerine üretilir) ─────────────────
-        _pdfk = f"lig_pdf_iste_{secili}"
-        if not st.session_state.get(_pdfk):
-            if st.button(f"📄 {t('Oyuncu Raporu PDF hazırla', 'Prepare Player Report PDF')}",
-                         width="stretch", key=_pk("pdf_hazirla")):
-                st.session_state[_pdfk] = True
-                st.rerun()
-        else:
-            try:
-                _pdf = _ana_lig_pdf_uret(secili, EN)
-                _dosya = f"{t('oyuncu_raporu','player_report')}_{secili.replace(' ', '_')}.pdf"
-                st.download_button(
-                    f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
-                    data=_pdf, file_name=_dosya,
-                    mime="application/pdf", width="stretch", key=_pk("pdf_indir"))
-            except Exception as _e:
-                st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
-
         # ── ÖZET satırı: hep görünür (Baran tasarımı) ─────────────────────────
         _cs_ozet = None
         if row.get("Mevki", "") == "Kaleci":
@@ -5549,11 +5533,11 @@ def render_ana_lig_profil(secili):
                 _cs_ozet = None
         _oz3 = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet) if _cs_ozet is not None
                 else (t("Dakika", "Minutes"), dk))
-        _mevki_ana = _sc_mevki[0] if _sc_mevki else (row.get("Mevki", "") or "—")
-        _mevki_alt = " · ".join(_sc_mevki[1:]) if len(_sc_mevki) > 1 else ""
-        _alt_html = (('<span style="color:#8899aa;font-size:0.8rem;margin-left:10px;">'
-                      + t("Alternatif", "Alternate") + ": " + _mevki_alt + "</span>")
-                     if _mevki_alt else "")
+        _so = scotr_yukle().get(secili) or {}
+        _so_nihai = (_so.get("nihai") or "").strip()
+        _so_ivme  = (_so.get("ivme") or "").strip() or "—"
+        _so_var   = bool(_so.get("degerlendirildi"))
+        _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
         _oc1, _oc2 = st.columns(2, gap="medium")
         with _oc1:
             st.markdown(
@@ -5572,11 +5556,37 @@ def render_ana_lig_profil(secili):
             st.markdown(
                 '<div class="profil-kart" style="padding:12px 16px;">'
                 '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Mevki Dağılımı", "Position Breakdown") + '</div>'
-                '<div style="margin-top:8px;">'
-                '<span style="background:#0d3b2e;color:#1db954;border-radius:6px;padding:4px 12px;'
-                'font-size:0.85rem;font-weight:700;">' + str(_mevki_ana) + '</span>'
-                + _alt_html + '</div></div>', unsafe_allow_html=True)
+                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
+                '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
+                '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
+                + (_so_nihai or "—") + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
+                '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
+                '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">'
+                + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
+                + '</div></div>'
+                '</div></div>', unsafe_allow_html=True)
+
+        # ── Markalı PDF rapor indir (TALEP üzerine üretilir) ─────────────────
+        _pdfk = f"lig_pdf_iste_{secili}"
+        if not st.session_state.get(_pdfk):
+            if st.button(f"📄 {t('Oyuncu Raporu PDF hazırla', 'Prepare Player Report PDF')}",
+                         width="stretch", key=_pk("pdf_hazirla")):
+                st.session_state[_pdfk] = True
+                st.rerun()
+        else:
+            try:
+                _pdf = _ana_lig_pdf_uret(secili, EN)
+                _dosya = f"{t('oyuncu_raporu','player_report')}_{secili.replace(' ', '_')}.pdf"
+                st.download_button(
+                    f"📄 {t('Oyuncu Raporunu PDF indir', 'Download Player Report PDF')}",
+                    data=_pdf, file_name=_dosya,
+                    mime="application/pdf", width="stretch", key=_pk("pdf_indir"))
+            except Exception as _e:
+                st.caption(f"⚠️ PDF oluşturulamadı: {_e}")
+
 
         # ── KIRMIZI ŞERİT: sabit özet ile açılır bölümlerin ayrımı ────────────
         st.markdown("<div style='height:3px;background:linear-gradient(90deg,#e5484d,#7c1d24);"
