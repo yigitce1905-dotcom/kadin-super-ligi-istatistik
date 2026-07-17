@@ -3381,10 +3381,14 @@ def _benzer_havuz(kaynak):
         profiller = sd_profiller
         leistung  = analig_leistung_yukle()
         kadro     = {}
+        # 'Türkiye Ligi' kartlarında kulüp = bu sezonki TR takımı (SD kariyer
+        # satırı yurtdışına transfer olanlarda yabancı kulüp gösteriyordu)
+        _tr_takim = dict(zip(df_tam["Oyuncu"], df_tam["Takım"]))
     else:
         profiller = birlesik_sd_yukle()
         leistung  = birlesik_leistung_yukle()
         kadro     = birlesik_scout_yukle()
+        _tr_takim = {}
     havuz = []
     for isim, p in profiller.items():
         if not isinstance(p, dict) or p.get("bulunamadi"):
@@ -3394,7 +3398,8 @@ def _benzer_havuz(kaynak):
         if mac < 5:
             continue
         _kd = kadro.get(isim, {})
-        _kl = _kd.get("kulup", "") or (sez[0].get("kulup", "") if sez else "")
+        _kl = (_tr_takim.get(isim) or _kd.get("kulup", "")
+               or (sez[0].get("kulup", "") if sez else ""))
         havuz.append({
             "isim":      isim,
             "kat":       _poz_kategori(p.get("Position", "")),
@@ -3402,6 +3407,7 @@ def _benzer_havuz(kaynak):
             "boy":       _boy_cm(p.get("Height", "")),
             "ulke":      p.get("Nationality", ""),
             "kulup":     _kl,
+            "havuz":     _kd.get("havuz", ""),
             "mac":       mac,
             "gol":       sum(s.get("gol", 0) for s in sez),
             "asist":     sum(s.get("asist", 0) for s in sez),
@@ -3586,6 +3592,19 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
         s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
         return " ".join(s.casefold().split())
     ad = [(s, o) for s, o in ad if _bnorm(o["isim"]) != _bnorm(hedef_isim)]
+    # Türkiye'de oynayanlar 'dünya geneli transfer hedefi' OLAMAZ (Benzer
+    # Oyuncular listesiyle mükerrerlik + GS'li oyuncuyu TR kulübüne önerme
+    # saçmalığı): TR havuz bayrağı / TR ligi kadrosunda isim / TR ligi kulübü
+    _tr_isimler  = {_bnorm(x) for x in df_tam["Oyuncu"].values}
+    _tr_takimlar = {_kanon(x) for x in df_tam["Takım"].unique() if x}
+    def _tr_mi(o):
+        if o.get("havuz") == "tr":
+            return True
+        if _bnorm(o["isim"]) in _tr_isimler:
+            return True
+        _k = o.get("kulup", "")
+        return bool(_k) and _kanon(_k) in _tr_takimlar
+    ad = [(s, o) for s, o in ad if not _tr_mi(o)]
     if not ad:
         return
     st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri — Dünya Geneli', 'Similar Transfer Targets — Worldwide')}")
