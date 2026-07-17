@@ -3422,41 +3422,41 @@ def _benzer_havuz(kaynak):
     return havuz
 
 
+def _benzer_skor_ortak(q, o):
+    """Havuzdan BAĞIMSIZ benzerlik yüzdesi: sabit ölçekli farkların RMS'i.
+    Eski yöntem havuzun min-max aralığına göre normalize ettiğinden aynı
+    oyuncu çifti TR listesinde %85, dünya listesinde %90 çıkabiliyordu
+    (Yiğit, 17.07.2026). Sabit ölçek → aynı çift her listede AYNI yüzde;
+    skor simetriktir (A→B == B→A).  0-99 aralığı; 100 yalnızca kendisi."""
+    OLCEK = {"yas": 8.0, "boy": 12.0, "mac": 120.0,
+             "gol_mac": 0.45, "asist_mac": 0.30, "dk_mac": 50.0}
+    fark, n = 0.0, 0
+    for fe, sc in OLCEK.items():
+        qv, ov = (q.get(fe) or 0), (o.get(fe) or 0)
+        if qv <= 0 or ov <= 0:
+            continue                      # iki tarafta da veri yoksa kıyaslama dışı
+        d = min(abs(qv - ov) / sc, 1.0)
+        fark += d * d
+        n += 1
+    if not n:
+        return 0.0
+    base = (1.0 - (fark / n) ** 0.5) * 100.0
+    # Kategorik yakınlık: aynı detay mevki kodu + aynı rol (scout_kadro)
+    if q.get("mevki_kod") and q["mevki_kod"] == o.get("mevki_kod"):
+        base += 10
+    if q.get("rol") and q["rol"] == o.get("rol"):
+        base += 8
+    return round(max(0.0, min(base, 99.0)), 1)
+
+
 def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     havuz = _benzer_havuz(kaynak)
     q = next((o for o in havuz if o["isim"] == hedef_isim), None)
     if not q or q["kat"] == "?":
         return []
-    grup  = [o for o in havuz if o["kat"] == q["kat"]]
-    feats = ["yas", "boy", "mac", "gol_mac", "asist_mac", "dk_mac"]
-    # Piyasa değeri verisi varsa benzer bütçe de bir sinyal (scouting)
-    if any((o.get("deger") or 0) > 0 for o in grup):
-        feats = feats + ["deger"]
-    rng = {}
-    for fe in feats:
-        vals = [(o.get(fe) or 0) for o in grup if (o.get(fe) or 0) > 0]
-        rng[fe] = (min(vals), max(vals)) if len(vals) >= 2 else None
-
-    def skor(o):
-        fark, n = 0.0, 0
-        for fe in feats:
-            if not rng[fe]:
-                continue
-            lo, hi = rng[fe]
-            if hi == lo:
-                continue
-            fark += (((q.get(fe) or 0) - lo) / (hi - lo) - ((o.get(fe) or 0) - lo) / (hi - lo)) ** 2
-            n += 1
-        base = (1 - (fark / n) ** 0.5) * 100 if n else 0.0
-        # Kategorik yakınlık: aynı detay mevki kodu + aynı rol (scout_kadro)
-        bonus = 0
-        if q.get("mevki_kod") and q["mevki_kod"] == o.get("mevki_kod"):
-            bonus += 10
-        if q.get("rol") and q["rol"] == o.get("rol"):
-            bonus += 8
-        return round(min(99.5, base + bonus), 1)
-
-    adaylar = sorted(((skor(o), o) for o in grup if o["isim"] != hedef_isim),
+    grup = [o for o in havuz if o["kat"] == q["kat"]]
+    adaylar = sorted(((_benzer_skor_ortak(q, o), o) for o in grup
+                      if o["isim"] != hedef_isim),
                      reverse=True, key=lambda x: x[0])
 
     def _lbl(o):
@@ -3552,19 +3552,6 @@ def radar_goster(isim, kaynak):
 
 
 # ── Çapraz transfer hedefi (ana lig oyuncusuna benzeyen scouting adayları) ──
-def _benzer_skor(q, o, rng, feats):
-    fark, n = 0.0, 0
-    for fe in feats:
-        if not rng[fe]:
-            continue
-        lo, hi = rng[fe]
-        if hi == lo:
-            continue
-        fark += ((q[fe] - lo) / (hi - lo) - (o[fe] - lo) / (hi - lo)) ** 2
-        n += 1
-    return round((1 - (fark / n) ** 0.5) * 100, 1) if n else 0.0
-
-
 def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scouting"):
     h = _benzer_havuz(hedef_kaynak)
     a = _benzer_havuz(aday_kaynak)
@@ -3574,14 +3561,7 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
     grup = [o for o in a if o["kat"] == q["kat"]]
     if not grup:
         return
-    feats = ["yas", "boy", "mac", "gol_mac", "asist_mac", "dk_mac"]
-    rng = {}
-    for fe in feats:
-        vals = [o[fe] for o in grup if o[fe] > 0]
-        if q[fe] > 0:
-            vals = vals + [q[fe]]
-        rng[fe] = (min(vals), max(vals)) if len(vals) >= 2 else None
-    ad = sorted(((_benzer_skor(q, o, rng, feats), o) for o in grup),
+    ad = sorted(((_benzer_skor_ortak(q, o), o) for o in grup),
                 reverse=True, key=lambda x: x[0])
     if not ad:
         return
