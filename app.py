@@ -3988,8 +3988,12 @@ def render_scouting_detay(tam_isim):
     _milli  = _kadro.get("vatandaslik", "") or _ilk_uyruk(vatandas)
     _yas_g  = f"{yas}" if str(yas) not in ("", "?", "—") else ""
 
-    # Büyük isim başlığı + gruplu bilgi kutuları (ana lig ile ORTAK bileşen)
-    _profil_baslik(tam_isim, sd_url)
+    # Büyük isim başlığı + yanında paylaşılabilir link (ana lig ile ORTAK düzen)
+    _bs1, _bs2 = st.columns([1.55, 1], gap="large")
+    with _bs1:
+        _profil_baslik(tam_isim, sd_url)
+    with _bs2:
+        _profil_link_kopyala(tam_isim)
     # Tek tıkla shortlist'e al/çıkar (profili açınca anında, ismin hemen altında)
     _sl_kul = st.session_state.get("kulup_kullanici", "admin")
     _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
@@ -4059,6 +4063,60 @@ def render_scouting_detay(tam_isim):
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
 </div>""", unsafe_allow_html=True)
+
+    # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
+    _so = birlesik_scout_yukle().get(tam_isim) or {}
+    _so_nihai = (_so.get("nihai") or "").strip()
+    _so_ivme  = (_so.get("ivme") or "").strip() or "—"
+    _so_var   = bool(_so.get("degerlendirildi"))
+    _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
+    _ls_kulup = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
+                 if not s.get("milli")]
+    _oc1, _oc2 = st.columns(2, gap="medium")
+    with _oc1:
+        if _ls_kulup:
+            _sz = _ls_kulup[0].get("sezon", "")
+            _szr = [s for s in _ls_kulup if s.get("sezon") == _sz]
+            _m = sum(int(s.get("mac") or 0) for s in _szr)
+            _g = sum(int(s.get("gol") or 0) for s in _szr)
+            st.markdown(
+                '<div class="profil-kart" style="padding:12px 16px;">'
+                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                'text-transform:uppercase;letter-spacing:0.08em;">'
+                + t("Son Sezon", "Latest Season") + " · " + _sz + '</div>'
+                '<div style="display:flex;gap:22px;margin-top:8px;">'
+                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(_m) + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
+                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(_g) + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
+                '<div><div style="font-family:Sora,sans-serif;font-size:1.05rem;font-weight:700;color:#c0ccd8;'
+                'margin-top:5px;">' + str((_szr[0].get("kulup") or ""))[:22] + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Kulüp", "Club") + '</div></div>'
+                '</div></div>', unsafe_allow_html=True)
+        else:
+            st.markdown(
+                '<div class="profil-kart" style="padding:12px 16px;">'
+                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Son Sezon", "Latest Season") + '</div>'
+                '<div style="color:#64748b;font-size:0.85rem;margin-top:10px;">'
+                + t("Sezon verisi bulunamadı", "No season data") + '</div></div>',
+                unsafe_allow_html=True)
+    with _oc2:
+        st.markdown(
+            '<div class="profil-kart" style="padding:12px 16px;">'
+            '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+            'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
+            '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
+            '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
+            + (_so_nihai or "—") + '</div>'
+            '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
+            '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
+            '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
+            '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
+            '<div style="font-size:0.62rem;color:#8899aa;">'
+            + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
+            + '</div></div>'
+            '</div></div>', unsafe_allow_html=True)
 
     # ── KIRMIZI ŞERİT + standart AÇ-KAPA bölümler (Baran tasarımı; TR profiliyle ortak) ──
     st.markdown("<div style='height:3px;background:linear-gradient(90deg,#e5484d,#7c1d24);"
@@ -5372,6 +5430,37 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     return bytes(out)
 
 
+def _profil_link_kopyala(isim):
+    """İsim yanında paylaşılabilir ?oyuncu= linki + kopyala butonu (iki profil ortak)."""
+    import streamlit.components.v1 as _comp
+    import json as _j
+    _isim_js = _j.dumps(isim)
+    _lbl_kop = t("Kopyala", "Copy"); _lbl_ok = t("Kopyalandı ✓", "Copied ✓")
+    _lbl_bas = t("🔗 Paylaşılabilir link", "🔗 Share link")
+    _comp.html(
+        '<div style="font-family:Inter,sans-serif;">'
+        '<div style="font-size:12px;color:#9aa6ba;font-weight:700;margin-bottom:5px;">' + _lbl_bas + '</div>'
+        '<div style="display:flex;gap:6px;">'
+        '<input id="lnk" readonly style="flex:1;min-width:0;background:#0f1117;color:#cbd5e1;'
+        'border:1px solid #2a3146;border-radius:6px;padding:7px 10px;font-size:12px;"/>'
+        '<button id="cpy" style="background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;'
+        'border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:700;'
+        'cursor:pointer;white-space:nowrap;">📋 ' + _lbl_kop + '</button></div></div>'
+        '<script>'
+        'var loc=window.parent.location;'
+        'var url=loc.origin+loc.pathname+"?oyuncu="+encodeURIComponent(' + _isim_js + ');'
+        'var inp=document.getElementById("lnk");inp.value=url;'
+        'var btn=document.getElementById("cpy");'
+        'btn.onclick=function(){inp.focus();inp.select();inp.setSelectionRange(0,99999);'
+        'var ok=function(){btn.textContent="' + _lbl_ok + '";'
+        'setTimeout(function(){btn.textContent="📋 ' + _lbl_kop + '";},1800);};'
+        'if(navigator.clipboard&&window.isSecureContext){'
+        'navigator.clipboard.writeText(url).then(ok).catch(function(){'
+        'try{document.execCommand("copy");}catch(e){}ok();});}'
+        'else{try{document.execCommand("copy");}catch(e){}ok();}};'
+        '</script>', height=74)
+
+
 def render_ana_lig_profil(secili):
     _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
@@ -5402,35 +5491,6 @@ def render_ana_lig_profil(secili):
         if pen:   gol_detay_parcalar.append(f"{pen}P")
         gol_detay = f" ({' · '.join(gol_detay_parcalar)})" if gol_detay_parcalar else ""
 
-        # Paylaşılabilir link — gerçek tam URL'yi panoya kopyalar (clipboard + fallback)
-        import streamlit.components.v1 as _comp
-        import json as _json_lnk
-        _isim_js = _json_lnk.dumps(secili)
-        _lbl_kop = t("Kopyala", "Copy"); _lbl_ok = t("Kopyalandı ✓", "Copied ✓")
-        _lbl_bas = t("🔗 Paylaşılabilir link", "🔗 Share link")
-        _kopya_html = (
-            '<div style="font-family:Inter,sans-serif;">'
-            '<div style="font-size:12px;color:#9aa6ba;font-weight:700;margin-bottom:5px;">' + _lbl_bas + '</div>'
-            '<div style="display:flex;gap:6px;">'
-            '<input id="lnk" readonly style="flex:1;min-width:0;background:#0f1117;color:#cbd5e1;'
-            'border:1px solid #2a3146;border-radius:6px;padding:7px 10px;font-size:12px;"/>'
-            '<button id="cpy" style="background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;'
-            'border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:700;'
-            'cursor:pointer;white-space:nowrap;">📋 ' + _lbl_kop + '</button></div></div>'
-            '<script>'
-            'var loc=window.parent.location;'
-            'var url=loc.origin+loc.pathname+"?oyuncu="+encodeURIComponent(' + _isim_js + ');'
-            'var inp=document.getElementById("lnk");inp.value=url;'
-            'var btn=document.getElementById("cpy");'
-            'btn.onclick=function(){inp.focus();inp.select();inp.setSelectionRange(0,99999);'
-            'var ok=function(){btn.textContent="' + _lbl_ok + '";'
-            'setTimeout(function(){btn.textContent="📋 ' + _lbl_kop + '";},1800);};'
-            'if(navigator.clipboard&&window.isSecureContext){'
-            'navigator.clipboard.writeText(url).then(ok).catch(function(){'
-            'try{document.execCommand("copy");}catch(e){}ok();});}'
-            'else{try{document.execCommand("copy");}catch(e){}ok();}};'
-            '</script>'
-        )
         takim_html = (
             f'<span style="color:#a0aab4">{row["TümTakımlar"]}</span>'
             f'<span class="transfer-badge">🔄 Transfer</span>'
@@ -5484,7 +5544,7 @@ def render_ana_lig_profil(secili):
         with _bs1:
             _profil_baslik(secili, sd.get("profil_url", ""))
         with _bs2:
-            _comp.html(_kopya_html, height=74)
+            _profil_link_kopyala(secili)
         _mv = sd.get("Market value", "")
         # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
         # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
