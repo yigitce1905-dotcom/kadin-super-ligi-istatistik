@@ -4060,19 +4060,31 @@ def render_scouting_detay(tam_isim):
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
 </div>""", unsafe_allow_html=True)
 
-    _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
-    if _sezonlar:
-        _milli_ad = ulke_goster((_kadro.get("vatandaslik") or _ilk_uyruk(vatandas) or "").strip())
-        _kariyer_kulup_milli(tam_isim, _sezonlar, "scouting", _milli_ad,
-                             leistung_data.get(tam_isim, {}).get("guncelleme", ""))
-    else:
-        st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
+    # ── KIRMIZI ŞERİT + standart AÇ-KAPA bölümler (Baran tasarımı; TR profiliyle ortak) ──
+    st.markdown("<div style='height:3px;background:linear-gradient(90deg,#e5484d,#7c1d24);"
+                "border-radius:2px;margin:18px 0 12px;'></div>", unsafe_allow_html=True)
 
-    # Zengin scout raporu (varsa — nitelik panelleri + PDF indir)
-    render_scout_kadro_raporu(tam_isim)
+    # ── 1) KARİYER ────────────────────────────────────────────────────────────
+    with st.expander(t("KARİYER", "CAREER"), expanded=False):
+        _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
+        if _sezonlar:
+            _milli_ad = ulke_goster((_kadro.get("vatandaslik") or _ilk_uyruk(vatandas) or "").strip())
+            _kariyer_kulup_milli(tam_isim, _sezonlar, "scouting", _milli_ad,
+                                 leistung_data.get(tam_isim, {}).get("guncelleme", ""))
+        else:
+            st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
 
-    st.markdown("---")
-    benzer_oyuncular_goster(tam_isim, "scouting")
+    # ── 2) GÖZLEM ─────────────────────────────────────────────────────────────
+    with st.expander(t("GÖZLEM", "OBSERVATION"), expanded=False):
+        if birlesik_scout_yukle().get(tam_isim):
+            render_scout_kadro_raporu(tam_isim)
+        else:
+            st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
+                         "No scout observation added for this player yet."))
+
+    # ── 3) ANALİZ ─────────────────────────────────────────────────────────────
+    with st.expander(t("ANALİZ", "ANALYSIS"), expanded=False):
+        benzer_oyuncular_goster(tam_isim, "scouting")
 
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
@@ -5149,7 +5161,8 @@ def render_scout_kadro_raporu(isim: str):
 
     # Paylaşılabilir PUBLIC rapor linki (kulübe gönder — giriş gerektirmez)
     _purl = f"https://womenfootballscouting.com/?paylas={_urlquote(isim)}"
-    with st.expander(f"🔗 {t('Paylaşılabilir Rapor Linki','Shareable Report Link')}"):
+    with st.container(border=True):
+        st.markdown(f"##### 🔗 {t('Paylaşılabilir Rapor Linki','Shareable Report Link')}")
         st.caption(t("Bu linki kulübe gönder — alıcı GİRİŞ YAPMADAN markalı raporu görür (yalnız bu oyuncu).",
                      "Send this link to a club — they see the branded report WITHOUT login (this player only)."))
         st.code(_purl, language=None)
