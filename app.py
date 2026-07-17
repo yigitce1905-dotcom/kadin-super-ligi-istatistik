@@ -8215,8 +8215,10 @@ if tab_internal:
                                     placeholder=t("Maçın genel görünümü, taktik gözlemler…",
                                                   "Overall view, tactical observations…"))
             st.markdown(f"**{t('Oyuncu SWOT — alttan satır ekleyebilirsin', 'Player SWOT — add rows below')}**")
+            # dtype=object karisikligi pyarrow convert_column'u tetikleyebiliyor
+            # (17.07.2026 segfault) - kolonlari acikca str'e sabitle
             _bos = pd.DataFrame([{"Oyuncu": "", "Mevki": "", "Takım": "",
-                                  "S": "", "W": "", "O": "", "T": ""} for _ in range(3)])
+                                  "S": "", "W": "", "O": "", "T": ""} for _ in range(3)]).astype(str)
             _i_swot = st.data_editor(
                 _bos, num_rows="dynamic", width="stretch", key="int_swot",
                 column_config={

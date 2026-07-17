@@ -6,6 +6,12 @@ streamlit==1.57.0
 # üretiyor (10.07.2026, faulthandler kanıtı: string_arrow._from_sequence ve
 # Series.map'te iki ayrı çökme). 2.x'e sabit — 3.x'e geçiş bilinçli test ister.
 pandas>=2.2.0,<3.0
+# pyarrow da ayni sebepten sabit: tavansiz birakinca Render taze build'de
+# en yeni surumu kurdu ve st.data_editor'un DataFrame->Arrow cevrimi
+# (pyarrow pandas_compat.convert_column) SEGFAULT verdi (17.07.2026,
+# faulthandler kaniti: app Internal Scout SWOT data_editor'u). 19.x hatti
+# pandas 2.2 ile uzun sure test edilmis durumda.
+pyarrow>=14,<20
 lxml>=5.2.0
 plotly>=5.20.0
 bcrypt>=4.0.0
