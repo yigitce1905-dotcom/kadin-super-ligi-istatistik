@@ -4025,9 +4025,66 @@ def render_scouting_detay(tam_isim):
             (f"💰 {t('Piyasa Değeri','Market Value')}", _deger),
             (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli))]),
     ]
+    def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
+        # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
+        _so = birlesik_scout_yukle().get(tam_isim) or {}
+        _so_nihai = (_so.get("nihai") or "").strip()
+        _so_ivme  = (_so.get("ivme") or "").strip() or "—"
+        _so_var   = bool(_so.get("degerlendirildi"))
+        _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
+        _ls_kulup = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
+                     if not s.get("milli")]
+        _oc1, _oc2 = st.columns(2, gap="medium")
+        with _oc1:
+            if _ls_kulup:
+                _sz = _ls_kulup[0].get("sezon", "")
+                _szr = [s for s in _ls_kulup if s.get("sezon") == _sz]
+                _m = sum(int(s.get("mac") or 0) for s in _szr)
+                _g = sum(int(s.get("gol") or 0) for s in _szr)
+                st.markdown(
+                    '<div class="profil-kart" style="padding:12px 16px;">'
+                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                    'text-transform:uppercase;letter-spacing:0.08em;">'
+                    + t("Son Sezon", "Latest Season") + " · " + _sz + '</div>'
+                    '<div style="display:flex;gap:22px;margin-top:8px;">'
+                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(_m) + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
+                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(_g) + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
+                    '<div><div style="font-family:Sora,sans-serif;font-size:1.05rem;font-weight:700;color:#c0ccd8;'
+                    'margin-top:5px;">' + str((_szr[0].get("kulup") or ""))[:22] + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Kulüp", "Club") + '</div></div>'
+                    '</div></div>', unsafe_allow_html=True)
+            else:
+                st.markdown(
+                    '<div class="profil-kart" style="padding:12px 16px;">'
+                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                    'text-transform:uppercase;letter-spacing:0.08em;">' + t("Son Sezon", "Latest Season") + '</div>'
+                    '<div style="color:#64748b;font-size:0.85rem;margin-top:10px;">'
+                    + t("Sezon verisi bulunamadı", "No season data") + '</div></div>',
+                    unsafe_allow_html=True)
+        with _oc2:
+            st.markdown(
+                '<div class="profil-kart" style="padding:12px 16px;">'
+                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
+                '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
+                '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
+                + (_so_nihai or "—") + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
+                '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
+                '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
+                '<div style="font-size:0.62rem;color:#8899aa;">'
+                + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
+                + '</div></div>'
+                '</div></div>', unsafe_allow_html=True)
+
     if _saha_svg:
         _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
-        with _bk_col: _profil_kutulari(_kutu_grp)
+        with _bk_col:
+            _profil_kutulari(_kutu_grp)
+            _ozet_ciz()
         with _sh_col:
             st.markdown(f"<div style='text-align:center;font-size:0.6rem;color:#64748b;"
                         f"text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;'>"
@@ -4035,6 +4092,7 @@ def render_scouting_detay(tam_isim):
                         unsafe_allow_html=True)
     else:
         _profil_kutulari(_kutu_grp)
+        _ozet_ciz()
 
     # Mr Daniş scouting değerlendirmesi (detay verisi varsa)
     _dty = detay_data.get(tam_isim, {})
@@ -4063,60 +4121,6 @@ def render_scouting_detay(tam_isim):
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
 </div>""", unsafe_allow_html=True)
-
-    # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
-    _so = birlesik_scout_yukle().get(tam_isim) or {}
-    _so_nihai = (_so.get("nihai") or "").strip()
-    _so_ivme  = (_so.get("ivme") or "").strip() or "—"
-    _so_var   = bool(_so.get("degerlendirildi"))
-    _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
-    _ls_kulup = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
-                 if not s.get("milli")]
-    _oc1, _oc2 = st.columns(2, gap="medium")
-    with _oc1:
-        if _ls_kulup:
-            _sz = _ls_kulup[0].get("sezon", "")
-            _szr = [s for s in _ls_kulup if s.get("sezon") == _sz]
-            _m = sum(int(s.get("mac") or 0) for s in _szr)
-            _g = sum(int(s.get("gol") or 0) for s in _szr)
-            st.markdown(
-                '<div class="profil-kart" style="padding:12px 16px;">'
-                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                'text-transform:uppercase;letter-spacing:0.08em;">'
-                + t("Son Sezon", "Latest Season") + " · " + _sz + '</div>'
-                '<div style="display:flex;gap:22px;margin-top:8px;">'
-                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(_m) + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
-                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(_g) + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
-                '<div><div style="font-family:Sora,sans-serif;font-size:1.05rem;font-weight:700;color:#c0ccd8;'
-                'margin-top:5px;">' + str((_szr[0].get("kulup") or ""))[:22] + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Kulüp", "Club") + '</div></div>'
-                '</div></div>', unsafe_allow_html=True)
-        else:
-            st.markdown(
-                '<div class="profil-kart" style="padding:12px 16px;">'
-                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Son Sezon", "Latest Season") + '</div>'
-                '<div style="color:#64748b;font-size:0.85rem;margin-top:10px;">'
-                + t("Sezon verisi bulunamadı", "No season data") + '</div></div>',
-                unsafe_allow_html=True)
-    with _oc2:
-        st.markdown(
-            '<div class="profil-kart" style="padding:12px 16px;">'
-            '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-            'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
-            '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
-            '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
-            + (_so_nihai or "—") + '</div>'
-            '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
-            '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
-            '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
-            '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
-            '<div style="font-size:0.62rem;color:#8899aa;">'
-            + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
-            + '</div></div>'
-            '</div></div>', unsafe_allow_html=True)
 
     # ── KIRMIZI ŞERİT + standart AÇ-KAPA bölümler (Baran tasarımı; TR profiliyle ortak) ──
     st.markdown("<div style='height:3px;background:linear-gradient(90deg,#e5484d,#7c1d24);"
@@ -5607,9 +5611,62 @@ def render_ana_lig_profil(secili):
         ]
         _ana_kod = _MEVKI_SAHA_KOD.get(row.get("Mevki", ""))
         _saha_svg = _pozisyon_saha(_sc_mevki or ([_ana_kod] if _ana_kod else []))
+        def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
+            # ── ÖZET satırı: hep görünür (Baran tasarımı) ─────────────────────────
+            _cs_ozet = None
+            if row.get("Mevki", "") == "Kaleci":
+                try:
+                    _ygm2 = _yenilen_gol_map()
+                    _htk2 = _oyuncu_hafta_takim(detay)
+                    _cs_ozet = sum(
+                        1 for m in detay.get("mac_gecmisi", [])
+                        if m.get("dakika", 0) > 0
+                        and _ygm2.get((m["hafta"], _kanon(_htk2.get(m["hafta"], row["Takım"])))) == 0)
+                except Exception:
+                    _cs_ozet = None
+            _oz3 = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet) if _cs_ozet is not None
+                    else (t("Dakika", "Minutes"), dk))
+            _so = scotr_yukle().get(secili) or {}
+            _so_nihai = (_so.get("nihai") or "").strip()
+            _so_ivme  = (_so.get("ivme") or "").strip() or "—"
+            _so_var   = bool(_so.get("degerlendirildi"))
+            _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
+            _oc1, _oc2 = st.columns(2, gap="medium")
+            with _oc1:
+                st.markdown(
+                    '<div class="profil-kart" style="padding:12px 16px;">'
+                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                    'text-transform:uppercase;letter-spacing:0.08em;">' + t("2025-26 Özet", "2025-26 Summary") + '</div>'
+                    '<div style="display:flex;gap:22px;margin-top:8px;">'
+                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(mac) + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
+                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(gol) + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
+                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#2979ff;">' + str(_oz3[1]) + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + str(_oz3[0]) + '</div></div>'
+                    '</div></div>', unsafe_allow_html=True)
+            with _oc2:
+                st.markdown(
+                    '<div class="profil-kart" style="padding:12px 16px;">'
+                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
+                    'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
+                    '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
+                    '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
+                    + (_so_nihai or "—") + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
+                    '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
+                    '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
+                    '<div style="font-size:0.62rem;color:#8899aa;">'
+                    + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
+                    + '</div></div>'
+                    '</div></div>', unsafe_allow_html=True)
+
         if _saha_svg:
             _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
-            with _bk_col: _profil_kutulari(_kutu_grp)
+            with _bk_col:
+                _profil_kutulari(_kutu_grp)
+                _ozet_ciz()
             with _sh_col:
                 st.markdown(f"<div style='text-align:center;font-size:0.6rem;color:#64748b;"
                             f"text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;'>"
@@ -5617,56 +5674,7 @@ def render_ana_lig_profil(secili):
                             unsafe_allow_html=True)
         else:
             _profil_kutulari(_kutu_grp)
-
-        # ── ÖZET satırı: hep görünür (Baran tasarımı) ─────────────────────────
-        _cs_ozet = None
-        if row.get("Mevki", "") == "Kaleci":
-            try:
-                _ygm2 = _yenilen_gol_map()
-                _htk2 = _oyuncu_hafta_takim(detay)
-                _cs_ozet = sum(
-                    1 for m in detay.get("mac_gecmisi", [])
-                    if m.get("dakika", 0) > 0
-                    and _ygm2.get((m["hafta"], _kanon(_htk2.get(m["hafta"], row["Takım"])))) == 0)
-            except Exception:
-                _cs_ozet = None
-        _oz3 = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet) if _cs_ozet is not None
-                else (t("Dakika", "Minutes"), dk))
-        _so = scotr_yukle().get(secili) or {}
-        _so_nihai = (_so.get("nihai") or "").strip()
-        _so_ivme  = (_so.get("ivme") or "").strip() or "—"
-        _so_var   = bool(_so.get("degerlendirildi"))
-        _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
-        _oc1, _oc2 = st.columns(2, gap="medium")
-        with _oc1:
-            st.markdown(
-                '<div class="profil-kart" style="padding:12px 16px;">'
-                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                'text-transform:uppercase;letter-spacing:0.08em;">' + t("2025-26 Özet", "2025-26 Summary") + '</div>'
-                '<div style="display:flex;gap:22px;margin-top:8px;">'
-                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(mac) + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
-                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(gol) + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
-                '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#2979ff;">' + str(_oz3[1]) + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + str(_oz3[0]) + '</div></div>'
-                '</div></div>', unsafe_allow_html=True)
-        with _oc2:
-            st.markdown(
-                '<div class="profil-kart" style="padding:12px 16px;">'
-                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
-                '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
-                '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
-                + (_so_nihai or "—") + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
-                '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
-                '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">'
-                + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
-                + '</div></div>'
-                '</div></div>', unsafe_allow_html=True)
+            _ozet_ciz()
 
         # ── Markalı PDF rapor indir (TALEP üzerine üretilir) ─────────────────
         _pdfk = f"lig_pdf_iste_{secili}"
