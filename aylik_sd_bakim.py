@@ -47,12 +47,17 @@ adim("2/4 — SoccerDonna kulüp doğrulama" + (" [KURU]" if KURU else ""))
 calistir("sd_kulup_guncelle.py", ["--kuru"] if KURU else [])
 
 if KURU:
+    adim("KIRIK PROFİL TARAMASI [KURU]")
+    calistir("profil_tutarlilik_tarama.py", [])
     print("\n[KURU] Sheet yazılmadı, entegre/deploy atlandı. Log: _kulup_yazim_log.txt")
     sys.exit(0)
 
 adim("3/4 — Siteye entegre (sheet → JSON)")
 calistir("entegre_islenmis.py", [])
 calistir("fetch_scout_kadro.py", [])   # yaş + SD kulüp override'ı JSON'a işlensin
+
+adim("3b/4 — KIRIK PROFİL TARAMASI (bulgu varsa Yiğit'e ilet)")
+calistir("profil_tutarlilik_tarama.py", [])
 
 adim("4/4 — Commit + push (değişiklik varsa)")
 _izlenen = ["scout_kadro_raporlar.json", "scouting_sd_profiller.json",
