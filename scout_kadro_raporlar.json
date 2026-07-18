@@ -72,8 +72,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
-      "beseri": "CC",
+      "beceri": "CD",
+      "beseri": "CD",
       "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
@@ -174,7 +174,7 @@
     "makro": {
       "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CC",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -374,7 +374,7 @@
       "beceri": "CC",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -476,7 +476,7 @@
       "beceri": "DD",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -565,7 +565,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
+      "beceri": "DE",
       "beseri": "DD",
       "fiziki": "CD",
       "sahsi": "DD",
@@ -653,10 +653,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CD",
+      "beceri": "DD",
+      "beseri": "DD",
       "fiziki": "CD",
-      "sahsi": "CC",
+      "sahsi": "CD",
       "kaleci": ""
     },
     "tarz": [
@@ -940,7 +940,7 @@
     "makro": {
       "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "CD",
+      "fiziki": "DD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -1044,7 +1044,7 @@
       "beceri": "CD",
       "beseri": "CD",
       "fiziki": "CD",
-      "sahsi": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -1233,7 +1233,7 @@
       "beceri": "CC",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "BC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -1326,8 +1326,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
+      "beceri": "DE",
+      "beseri": "DE",
       "fiziki": "DD",
       "sahsi": "DD",
       "kaleci": ""
@@ -1416,7 +1416,7 @@
       "beceri": "DE",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -1503,9 +1503,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "DD",
       "beseri": "CD",
-      "fiziki": "CC",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -1618,10 +1618,10 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "DD",
+      "beseri": "DE",
       "fiziki": "DD",
       "sahsi": "CD",
-      "kaleci": "CD"
+      "kaleci": "DD"
     },
     "tarz": [
       "Oyuna Katılımı Yüksektir"
@@ -1709,7 +1709,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CD",
+      "beseri": "DD",
       "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
@@ -1804,8 +1804,8 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -1893,7 +1893,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "DD",
       "beseri": "CD",
       "fiziki": "CD",
       "sahsi": "CC",
@@ -1993,8 +1993,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "DD",
-      "beseri": "CD",
-      "fiziki": "CC",
+      "beseri": "DD",
+      "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -2088,8 +2088,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CD",
-      "fiziki": "CD",
-      "sahsi": "CD",
+      "fiziki": "DD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -2278,8 +2278,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
-      "beseri": "CD",
+      "beceri": "DD",
+      "beseri": "DD",
       "fiziki": "CD",
       "sahsi": "CD",
       "kaleci": ""
@@ -2467,8 +2467,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "DD",
-      "beseri": "DD",
+      "beceri": "DE",
+      "beseri": "DE",
       "fiziki": "DD",
       "sahsi": "DD",
       "kaleci": ""
@@ -2562,7 +2562,7 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "CD",
+      "fiziki": "DD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -2656,7 +2656,7 @@
       "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
-      "sahsi": "CD",
+      "sahsi": "DD",
       "kaleci": ""
     },
     "tarz": [
@@ -2746,7 +2746,7 @@
     "makro": {
       "beceri": "DD",
       "beseri": "DD",
-      "fiziki": "CD",
+      "fiziki": "DD",
       "sahsi": "CD",
       "kaleci": ""
     },
@@ -2838,7 +2838,7 @@
     "makro": {
       "beceri": "DE",
       "beseri": "DD",
-      "fiziki": "CD",
+      "fiziki": "DD",
       "sahsi": "DD",
       "kaleci": ""
     },
@@ -2945,7 +2945,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BC",
       "sahsi": "AB",
       "kaleci": "BB"
@@ -3157,7 +3157,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": "BB"
@@ -3349,10 +3349,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
-      "fiziki": "AA",
-      "sahsi": "AA",
+      "fiziki": "AB",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -3634,7 +3634,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -3918,8 +3918,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BC",
-      "beseri": "BB",
+      "beceri": "CC",
+      "beseri": "BC",
       "fiziki": "AB",
       "sahsi": "BB",
       "kaleci": ""
@@ -4014,7 +4014,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BC",
       "sahsi": "AB",
       "kaleci": ""
@@ -4111,7 +4111,7 @@
       "beceri": "AB",
       "beseri": "AA",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -4208,10 +4208,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "AB",
+      "beceri": "BB",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -4402,10 +4402,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -4499,8 +4499,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AB",
-      "fiziki": "AB",
+      "beseri": "BB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -4595,7 +4595,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
@@ -4693,7 +4693,7 @@
     "makro": {
       "beceri": "BB",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -4789,7 +4789,7 @@
     "makro": {
       "beceri": "BC",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -5081,8 +5081,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
+      "beceri": "BC",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -5180,7 +5180,7 @@
     "makro": {
       "beceri": "BB",
       "beseri": "AB",
-      "fiziki": "AA",
+      "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -5285,8 +5285,8 @@
     "makro": {
       "beceri": "CC",
       "beseri": "BB",
-      "fiziki": "AB",
-      "sahsi": "AB",
+      "fiziki": "BB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -5379,9 +5379,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BC",
+      "beceri": "CC",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -5566,8 +5566,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "BB",
-      "fiziki": "AB",
+      "beseri": "BC",
+      "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -5659,10 +5659,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BC",
-      "beseri": "BB",
-      "fiziki": "AB",
-      "sahsi": "AB",
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -5873,8 +5873,8 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AA",
-      "fiziki": "AB",
+      "beseri": "AB",
+      "fiziki": "BB",
       "sahsi": "A+",
       "kaleci": "BB"
     },
@@ -5981,7 +5981,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "BC",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": "BC"
     },
     "tarz": [],
@@ -6068,9 +6068,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "AB",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -6263,9 +6263,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "AB",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -6548,7 +6548,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -6640,7 +6640,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -6826,7 +6826,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "AB",
+      "beceri": "BB",
       "beseri": "AB",
       "fiziki": "AB",
       "sahsi": "AB",
@@ -7016,9 +7016,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -7108,7 +7108,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -7289,7 +7289,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "AA",
       "sahsi": "AB",
@@ -7386,7 +7386,7 @@
       "beceri": "BC",
       "beseri": "AB",
       "fiziki": "AB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -7478,10 +7478,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
+      "beceri": "BC",
+      "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -7573,10 +7573,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CC",
+      "beceri": "CD",
       "beseri": "BC",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -7758,7 +7758,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "BB",
       "sahsi": "AA",
       "kaleci": ""
@@ -7855,9 +7855,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
-      "fiziki": "AB",
-      "sahsi": "AB",
+      "beseri": "BB",
+      "fiziki": "BB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -8069,7 +8069,7 @@
       "beseri": "CC",
       "fiziki": "CD",
       "sahsi": "BC",
-      "kaleci": "BC"
+      "kaleci": "CC"
     },
     "tarz": [
       "Çizgide, Alanda, Alan Dışında Oynayabilir; Komple Kalecidir"
@@ -8157,7 +8157,7 @@
     "makro": {
       "beceri": "DD",
       "beseri": "CD",
-      "fiziki": "CC",
+      "fiziki": "CD",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -8240,7 +8240,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "BC",
       "sahsi": "",
       "kaleci": ""
@@ -8605,7 +8605,7 @@
       "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "",
-      "kaleci": "BC"
+      "kaleci": "CC"
     },
     "tarz": [
       "Uzun Degajmanlar Yapabilir",
@@ -8703,7 +8703,7 @@
       "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "",
-      "kaleci": "BC"
+      "kaleci": "CC"
     },
     "tarz": [
       "Kol Boyu Sayesinde Yan Toplarda Etkili Olur",
@@ -8911,7 +8911,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "",
       "kaleci": "BC"
@@ -9050,10 +9050,10 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "BC",
       "sahsi": "",
-      "kaleci": "BC"
+      "kaleci": "CC"
     },
     "tarz": [
       "Penaltı Canavarıdır",
@@ -9376,7 +9376,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "",
       "kaleci": "BC"
@@ -9569,7 +9569,7 @@
       "beceri": "AB",
       "beseri": "BC",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [],
@@ -9777,7 +9777,7 @@
     "makro": {
       "beceri": "CC",
       "beseri": "CC",
-      "fiziki": "BC",
+      "fiziki": "CC",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -11149,7 +11149,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -11475,7 +11475,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
+      "beseri": "CD",
       "fiziki": "CC",
       "sahsi": "CC",
       "kaleci": ""
@@ -12197,7 +12197,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -12316,7 +12316,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -12724,7 +12724,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -13135,7 +13135,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "CD",
+      "beceri": "DD",
       "beseri": "DD",
       "fiziki": "DD",
       "sahsi": "DD",
@@ -14067,9 +14067,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -14101,7 +14101,7 @@
     "vatandaslik": "Ukrayna",
     "milli_takim": "Ukrayna",
     "dogum": "19.07.1997",
-    "yas": 28,
+    "yas": 29,
     "boy": "1,66",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Ektomorf",
@@ -15400,7 +15400,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "CC",
+      "beseri": "CD",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -15684,7 +15684,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -18720,7 +18720,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "CC",
+      "beseri": "CD",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -20178,9 +20178,9 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "A+",
-      "fiziki": "AA",
-      "sahsi": "A+",
+      "beseri": "AA",
+      "fiziki": "AB",
+      "sahsi": "AA",
       "kaleci": "AB"
     },
     "tarz": [
@@ -20285,9 +20285,9 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": "BB"
     },
     "tarz": [
@@ -20391,7 +20391,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": "BB"
     },
     "tarz": [
@@ -20481,7 +20481,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -20574,7 +20574,7 @@
       "beceri": "BB",
       "beseri": "AA",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -20666,7 +20666,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -20854,7 +20854,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -20945,7 +20945,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -21040,7 +21040,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "AB",
       "sahsi": "AB",
@@ -21135,9 +21135,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -21226,7 +21226,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "AB",
@@ -21325,7 +21325,7 @@
       "beceri": "AB",
       "beseri": "AA",
       "fiziki": "AA",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -21418,7 +21418,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "AB",
@@ -21514,7 +21514,7 @@
     "makro": {
       "beceri": "BB",
       "beseri": "AB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -21611,9 +21611,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
-      "fiziki": "AB",
-      "sahsi": "AB",
+      "beseri": "BB",
+      "fiziki": "BB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -21708,7 +21708,7 @@
       "beceri": "BB",
       "beseri": "AB",
       "fiziki": "AA",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -21804,7 +21804,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -21899,9 +21899,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -22087,10 +22087,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BC",
+      "beceri": "CC",
       "beseri": "BC",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -22184,7 +22184,7 @@
     "makro": {
       "beceri": "BB",
       "beseri": "BB",
-      "fiziki": "AA",
+      "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -22278,8 +22278,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AA",
+      "beceri": "BC",
+      "beseri": "AB",
       "fiziki": "AA",
       "sahsi": "AA",
       "kaleci": ""
@@ -22377,7 +22377,7 @@
       "beceri": "BB",
       "beseri": "AB",
       "fiziki": "AB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -22488,7 +22488,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": "BB"
@@ -22703,7 +22703,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": "BB"
     },
     "tarz": [
@@ -22890,7 +22890,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -22981,7 +22981,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "AB",
+      "beceri": "BB",
       "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
@@ -23076,7 +23076,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -23169,7 +23169,7 @@
       "beceri": "AB",
       "beseri": "AA",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -23545,9 +23545,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -23639,7 +23639,7 @@
       "beceri": "AB",
       "beseri": "AA",
       "fiziki": "AA",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -23830,7 +23830,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "AB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -23925,10 +23925,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "AB",
+      "beceri": "BB",
       "beseri": "AA",
       "fiziki": "AA",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -24024,7 +24024,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -24121,9 +24121,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -24310,7 +24310,7 @@
       "beceri": "",
       "beseri": "BC",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -24403,9 +24403,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -24596,9 +24596,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
-      "fiziki": "AB",
-      "sahsi": "AB",
+      "beseri": "BB",
+      "fiziki": "BB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -24691,7 +24691,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
       "sahsi": "AB",
       "kaleci": ""
@@ -24787,7 +24787,7 @@
     "makro": {
       "beceri": "",
       "beseri": "AB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -24885,7 +24885,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AA",
+      "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -24995,7 +24995,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "",
       "sahsi": "AA",
       "kaleci": ""
@@ -25199,9 +25199,9 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [],
@@ -25286,9 +25286,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [],
@@ -25373,7 +25373,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CC",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -25460,7 +25460,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -25727,7 +25727,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -25812,9 +25812,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [],
@@ -25899,9 +25899,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -25986,7 +25986,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "BB",
       "sahsi": "AA",
       "kaleci": ""
@@ -26074,7 +26074,7 @@
     "makro": {
       "beceri": "",
       "beseri": "AB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -26247,9 +26247,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [],
@@ -26508,7 +26508,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -26595,7 +26595,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
       "sahsi": "AA",
       "kaleci": ""
@@ -26684,7 +26684,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [],
@@ -26770,7 +26770,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AA",
+      "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -26981,7 +26981,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": "BB"
     },
     "tarz": [],
@@ -27172,7 +27172,7 @@
       "beceri": "",
       "beseri": "AA",
       "fiziki": "AB",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -27268,7 +27268,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "AB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -27362,7 +27362,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "AB",
       "sahsi": "AA",
       "kaleci": ""
@@ -27454,7 +27454,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "AA",
       "kaleci": ""
@@ -27549,7 +27549,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
@@ -27643,9 +27643,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "AB",
-      "beseri": "A+",
-      "fiziki": "AA",
+      "beceri": "BB",
+      "beseri": "AA",
+      "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -27745,7 +27745,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -27837,9 +27837,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -27929,7 +27929,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "A+",
+      "beseri": "AA",
       "fiziki": "BB",
       "sahsi": "AA",
       "kaleci": ""
@@ -28124,7 +28124,7 @@
     "makro": {
       "beceri": "",
       "beseri": "AB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -28222,7 +28222,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AA",
+      "fiziki": "AB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -28317,7 +28317,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
       "sahsi": "AA",
       "kaleci": ""
@@ -28412,9 +28412,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "AB",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
-      "sahsi": "A+",
+      "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [
@@ -28510,7 +28510,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "AA",
       "sahsi": "AA",
       "kaleci": ""
@@ -28922,7 +28922,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": "BB"
     },
@@ -29013,7 +29013,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -29112,7 +29112,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "BC",
@@ -29316,9 +29316,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
-      "fiziki": "BB",
+      "beceri": "BC",
+      "beseri": "BB",
+      "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -29515,10 +29515,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -29618,9 +29618,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AA",
+      "sahsi": "AB",
       "kaleci": ""
     },
     "tarz": [
@@ -29717,7 +29717,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "AB",
@@ -29820,7 +29820,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BC",
       "sahsi": "AB",
       "kaleci": ""
@@ -29921,8 +29921,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
+      "beceri": "BC",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -30129,7 +30129,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "BC",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -30223,9 +30223,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AA",
-      "fiziki": "BB",
-      "sahsi": "AB",
+      "beseri": "AB",
+      "fiziki": "BC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -30323,7 +30323,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -30422,10 +30422,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -30515,9 +30515,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -30618,7 +30618,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -30717,7 +30717,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -30916,7 +30916,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": ""
@@ -31020,7 +31020,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -31122,7 +31122,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -31222,7 +31222,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -31325,9 +31325,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BC",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -31420,8 +31420,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AB",
-      "fiziki": "AB",
+      "beseri": "BB",
+      "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -31518,9 +31518,9 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
-      "fiziki": "BB",
+      "beceri": "BC",
+      "beseri": "BB",
+      "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -31728,7 +31728,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": "BC"
     },
     "tarz": [
@@ -32021,7 +32021,7 @@
       "beceri": "BB",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -32520,7 +32520,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -32726,7 +32726,7 @@
     "makro": {
       "beceri": "BC",
       "beseri": "BB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -32825,7 +32825,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BC",
       "kaleci": ""
@@ -32928,7 +32928,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "BB",
       "kaleci": ""
@@ -33130,7 +33130,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -33226,8 +33226,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
+      "beceri": "BC",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -33434,7 +33434,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -33529,8 +33529,8 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
+      "beceri": "BC",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "AB",
       "kaleci": ""
@@ -33629,10 +33629,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
-      "beseri": "AB",
+      "beceri": "BC",
+      "beseri": "BB",
       "fiziki": "BC",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -34030,7 +34030,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BC",
@@ -34129,7 +34129,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "BB",
@@ -34241,9 +34241,9 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": "BC"
     },
     "tarz": [
@@ -34453,7 +34453,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "BC",
       "kaleci": "BC"
     },
@@ -34746,8 +34746,8 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
-      "fiziki": "BB",
+      "beseri": "BC",
+      "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": ""
     },
@@ -34848,9 +34848,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BB",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -35050,7 +35050,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BC",
       "sahsi": "BB",
@@ -35256,7 +35256,7 @@
       "beceri": "",
       "beseri": "AB",
       "fiziki": "BC",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -35353,7 +35353,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -35454,8 +35454,8 @@
     "makro": {
       "beceri": "BB",
       "beseri": "AB",
-      "fiziki": "BC",
-      "sahsi": "AB",
+      "fiziki": "CC",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -35553,7 +35553,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BC",
       "sahsi": "AB",
@@ -35763,7 +35763,7 @@
     "makro": {
       "beceri": "",
       "beseri": "AB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -35862,9 +35862,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -36064,7 +36064,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AA",
+      "beseri": "AB",
       "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": ""
@@ -36366,7 +36366,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "AB",
       "sahsi": "BB",
       "kaleci": ""
@@ -36463,7 +36463,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": ""
@@ -36562,7 +36562,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -36973,7 +36973,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": "BB"
     },
@@ -37079,7 +37079,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": "BC"
     },
@@ -37375,7 +37375,7 @@
     "makro": {
       "beceri": "BC",
       "beseri": "BB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "AB",
       "kaleci": ""
     },
@@ -37778,7 +37778,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -37874,7 +37874,7 @@
       "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -38075,7 +38075,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BC",
       "kaleci": ""
@@ -38180,10 +38180,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BC",
+      "beceri": "CC",
       "beseri": "BB",
       "fiziki": "AB",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": ""
     },
     "tarz": [
@@ -38386,9 +38386,9 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -38486,7 +38486,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "BC",
-      "beseri": "AB",
+      "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -38584,7 +38584,7 @@
     "makro": {
       "beceri": "",
       "beseri": "AB",
-      "fiziki": "BB",
+      "fiziki": "BC",
       "sahsi": "CC",
       "kaleci": ""
     },
@@ -38788,7 +38788,7 @@
     "makro": {
       "beceri": "",
       "beseri": "BB",
-      "fiziki": "AB",
+      "fiziki": "BB",
       "sahsi": "BC",
       "kaleci": ""
     },
@@ -38887,7 +38887,7 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BB",
+      "beceri": "BC",
       "beseri": "BB",
       "fiziki": "BB",
       "sahsi": "BC",
@@ -38989,7 +38989,7 @@
       "beceri": "BC",
       "beseri": "AB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -39086,10 +39086,10 @@
     },
     "kaleci": {},
     "makro": {
-      "beceri": "BC",
+      "beceri": "CC",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -39188,7 +39188,7 @@
       "beceri": "",
       "beseri": "BB",
       "fiziki": "BB",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [
@@ -39290,7 +39290,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": "BC"
@@ -39709,7 +39709,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -39786,7 +39786,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -40210,7 +40210,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -40520,7 +40520,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -41001,7 +41001,7 @@
       "beseri": "",
       "fiziki": "",
       "sahsi": "",
-      "kaleci": "BC"
+      "kaleci": "CC"
     },
     "tarz": [],
     "nihai": "CD",
@@ -41091,7 +41091,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": "BC"
@@ -41909,7 +41909,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -42526,7 +42526,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -42603,7 +42603,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -43306,7 +43306,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -43576,7 +43576,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -43653,7 +43653,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -44462,7 +44462,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -44770,7 +44770,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -45252,7 +45252,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "CD",
-      "beseri": "CC",
+      "beseri": "CD",
       "fiziki": "BB",
       "sahsi": "BB",
       "kaleci": ""
@@ -46304,7 +46304,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -46615,7 +46615,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "CC",
       "sahsi": "BC",
       "kaleci": "BC"
@@ -46903,7 +46903,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -47057,7 +47057,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -47211,7 +47211,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -47674,7 +47674,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -47828,7 +47828,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -48021,7 +48021,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -48175,7 +48175,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -49576,7 +49576,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -50396,7 +50396,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "CC",
+      "beseri": "CD",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -50708,7 +50708,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -51920,7 +51920,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -53210,7 +53210,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -53607,7 +53607,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -53803,7 +53803,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -54755,7 +54755,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -54832,7 +54832,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -55184,7 +55184,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -55262,7 +55262,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BB",
+      "beseri": "BC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -55418,7 +55418,7 @@
     "kaleci": {},
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "",
       "sahsi": "",
       "kaleci": ""
@@ -59867,7 +59867,7 @@
     "vatandaslik": "Uganda",
     "milli_takim": "",
     "dogum": "19.07.1995",
-    "yas": 30,
+    "yas": 31,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
@@ -61273,7 +61273,7 @@
     "vatandaslik": "Cameroon",
     "milli_takim": "",
     "dogum": "19.07.2000",
-    "yas": 25,
+    "yas": 26,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
@@ -68277,7 +68277,7 @@
       "beceri": "",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": "BC"
     },
     "tarz": [
@@ -68382,8 +68382,8 @@
       "beceri": "",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "BB",
-      "kaleci": "BB"
+      "sahsi": "BC",
+      "kaleci": "BC"
     },
     "tarz": [
       "Uzun Degajmanlar Yapabilir",
@@ -68593,7 +68593,7 @@
       "beseri": "BC",
       "fiziki": "BC",
       "sahsi": "AA",
-      "kaleci": "BB"
+      "kaleci": "BC"
     },
     "tarz": [
       "Eliyle Uzun Paslar Çıkartabilir",
@@ -68801,9 +68801,9 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "AB",
+      "sahsi": "BB",
       "kaleci": "BB"
     },
     "tarz": [
@@ -68907,7 +68907,7 @@
     },
     "makro": {
       "beceri": "",
-      "beseri": "BC",
+      "beseri": "CC",
       "fiziki": "BC",
       "sahsi": "BB",
       "kaleci": "BB"
@@ -69093,7 +69093,7 @@
       "beceri": "CD",
       "beseri": "CC",
       "fiziki": "CC",
-      "sahsi": "BB",
+      "sahsi": "BC",
       "kaleci": ""
     },
     "tarz": [],
@@ -69222,8 +69222,8 @@
     "makro": {
       "beceri": "CD",
       "beseri": "CC",
-      "fiziki": "BB",
-      "sahsi": "BC",
+      "fiziki": "BC",
+      "sahsi": "CC",
       "kaleci": ""
     },
     "tarz": [
@@ -69329,7 +69329,7 @@
       "beceri": "",
       "beseri": "CC",
       "fiziki": "CD",
-      "sahsi": "BC",
+      "sahsi": "CC",
       "kaleci": "BC"
     },
     "tarz": [
