@@ -6254,7 +6254,7 @@ with st.sidebar:
 
     # ── PLATFORM grubu ──
     st.markdown(f"<div class='nav-grup'>{t('PLATFORM', 'PLATFORM')}</div>", unsafe_allow_html=True)
-    if st.button(t("📊 TR Veri", "📊 TR Data"), key="nav_veri", width="stretch",
+    if st.button(t(f"📊 TR Veri {SEZON_AKTIF}", f"📊 TR Data {SEZON_AKTIF}"), key="nav_veri", width="stretch",
                  type="primary" if _aktif_sayfa == "ana" else "secondary"):
         _tr_veri_git()
     if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", width="stretch",
