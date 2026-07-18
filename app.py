@@ -4212,7 +4212,7 @@ def render_scouting_detay(tam_isim):
         if not _bolum_acik("gozlem"):
             _bolum_kilit("gozlem")
         elif birlesik_scout_yukle().get(tam_isim):
-            render_scout_kadro_raporu(tam_isim)
+            render_scout_kadro_raporu(tam_isim, "gozlem")
         else:
             st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
                          "No scout observation added for this player yet."))
@@ -4222,6 +4222,7 @@ def render_scouting_detay(tam_isim):
         if not _bolum_acik("analiz"):
             _bolum_kilit("analiz")
         else:
+            render_scout_kadro_raporu(tam_isim, "analiz")   # Scout raporu + Nitelik İkizleri (başta)
             benzer_oyuncular_goster(tam_isim, "scouting")
 
 
@@ -4895,10 +4896,44 @@ def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
         f"{satirlar}</div>"
     )
 
-def render_scout_raporu(isim: str):
-    """Sco Tr scout raporunu (varsa) FM tarzı görsel panelle çizer."""
+def render_scout_raporu(isim: str, bolum: str = "analiz"):
+    """Sco Tr scout raporunu (varsa) FM tarzı görsel panelle çizer.
+
+    bolum="gozlem" → yalnız Oyun Tarzı + scout notu (GÖZLEM bölümü);
+    bolum="analiz" → scout raporu kartı + nitelik panelleri + İkizler."""
     rapor = scotr_yukle().get(isim)
     if not rapor:
+        return
+
+    # ── GÖZLEM bölümü: yalnız Oyun Tarzı + scout notu ──────────────────
+    if bolum == "gozlem":
+        _yazildi = False
+        tarz = rapor.get("tarz", [])
+        if tarz:
+            cipler = ""
+            for oz in tarz:
+                if isinstance(oz, dict):  # eski format uyumluluğu
+                    oz = oz.get("ozellik", "")
+                cipler += (
+                    f"<span style='display:inline-block;background:#1e1b38;"
+                    f"border:1px solid #4c3d8f;color:#c4b5fd;border-radius:99px;"
+                    f"padding:4px 12px;margin:3px 4px 3px 0;font-size:0.70rem;'>"
+                    f"{tarz_goster(oz)}</span>"
+                )
+            st.markdown(
+                f"<div style='font-size:0.70rem;font-weight:800;color:#a78bfa;"
+                f"letter-spacing:0.12em;margin-bottom:6px;'>🎭 {t('OYUN TARZI','PLAY STYLE')}</div>"
+                f"{cipler}", unsafe_allow_html=True)
+            _yazildi = True
+        if rapor.get("scout_notu"):
+            st.markdown(
+                f"<div style='margin-top:10px;font-size:0.78rem;color:#94a3b8;"
+                f"font-style:italic;border-left:3px solid #7c3aed;padding-left:10px;'>"
+                f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
+            _yazildi = True
+        if not _yazildi:
+            st.caption(t("Bu oyuncu için oyun tarzı veya gözlem notu henüz eklenmedi.",
+                         "No play style or observation note added for this player yet."))
         return
 
     st.markdown("---")
@@ -4984,30 +5019,7 @@ def render_scout_raporu(isim: str):
             kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
                          unsafe_allow_html=True)
 
-    # ── Oyun tarzı çipleri (yalnızca işaretli özellikler) ───────────────
-    tarz = rapor.get("tarz", [])
-    if tarz:
-        cipler = ""
-        for oz in tarz:
-            if isinstance(oz, dict):  # eski format uyumluluğu
-                oz = oz.get("ozellik", "")
-            cipler += (
-                f"<span style='display:inline-block;background:#1e1b38;"
-                f"border:1px solid #4c3d8f;color:#c4b5fd;border-radius:99px;"
-                f"padding:4px 12px;margin:3px 4px 3px 0;font-size:0.70rem;'>"
-                f"{tarz_goster(oz)}</span>"
-            )
-        st.markdown(
-            f"<div style='margin-top:6px;'>"
-            f"<div style='font-size:0.70rem;font-weight:800;color:#a78bfa;"
-            f"letter-spacing:0.12em;margin-bottom:6px;'>🎭 {t('OYUN TARZI','PLAY STYLE')}</div>"
-            f"{cipler}</div>", unsafe_allow_html=True)
-
-    if rapor.get("scout_notu"):
-        st.markdown(
-            f"<div style='margin-top:10px;font-size:0.78rem;color:#94a3b8;"
-            f"font-style:italic;border-left:3px solid #7c3aed;padding-left:10px;'>"
-            f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
+    # (Oyun Tarzı + scout notu → GÖZLEM bölümüne taşındı; bolum="gozlem")
 
     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
     nitelik_ikizleri_goster(isim)
@@ -5166,10 +5178,38 @@ def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
     return bytes(out)
 
 
-def render_scout_kadro_raporu(isim: str):
-    """Zengin scout kadro raporunu (scouting tarafı) görsel panelle çizer + PDF."""
+def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
+    """Zengin scout kadro raporunu (scouting tarafı) görsel panelle çizer + PDF.
+
+    bolum="gozlem" → yalnız Oyun Tarzı + scout notu (GÖZLEM bölümü);
+    bolum="analiz" → scout raporu kartı + nitelik panelleri + İkizler + PDF."""
     rapor = birlesik_scout_yukle().get(isim)
     if not rapor:
+        return
+
+    # ── GÖZLEM bölümü: yalnız Oyun Tarzı + scout notu ──────────────────
+    if bolum == "gozlem":
+        _yazildi = False
+        tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
+        if tarz:
+            cipler = "".join(
+                f"<span style='display:inline-block;background:#1e1b38;border:1px solid #4c3d8f;"
+                f"color:#c4b5fd;border-radius:99px;padding:4px 12px;margin:3px 4px 3px 0;"
+                f"font-size:0.70rem;'>{oz}</span>" for oz in tarz)
+            st.markdown(
+                f"<div style='font-size:0.70rem;font-weight:800;color:#a78bfa;"
+                f"letter-spacing:0.12em;margin-bottom:6px;'>🎭 {t('OYUN TARZI','PLAY STYLE')}</div>"
+                f"{cipler}", unsafe_allow_html=True)
+            _yazildi = True
+        if rapor.get("scout_notu"):
+            st.markdown(
+                f"<div style='margin-top:12px;font-size:0.82rem;color:#aab4c4;line-height:1.6;"
+                f"border-left:3px solid #7c3aed;padding:4px 0 4px 12px;'>"
+                f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
+            _yazildi = True
+        if not _yazildi:
+            st.caption(t("Bu oyuncu için oyun tarzı veya gözlem notu henüz eklenmedi.",
+                         "No play style or observation note added for this player yet."))
         return
 
     st.markdown("---")
@@ -5258,25 +5298,7 @@ def render_scout_kadro_raporu(isim: str):
         if nit:
             kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
 
-    # Oyun tarzı (sadeleştirilmiş, ✔ işaretliler)
-    tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
-    if tarz:
-        cipler = "".join(
-            f"<span style='display:inline-block;background:#1e1b38;border:1px solid #4c3d8f;"
-            f"color:#c4b5fd;border-radius:99px;padding:4px 12px;margin:3px 4px 3px 0;"
-            f"font-size:0.70rem;'>{oz}</span>" for oz in tarz)
-        st.markdown(
-            f"<div style='margin-top:10px;'>"
-            f"<div style='font-size:0.70rem;font-weight:800;color:#a78bfa;"
-            f"letter-spacing:0.12em;margin-bottom:6px;'>🎭 {t('OYUN TARZI','PLAY STYLE')}</div>"
-            f"{cipler}</div>", unsafe_allow_html=True)
-
-    # Scout değerlendirmesi
-    if rapor.get("scout_notu"):
-        st.markdown(
-            f"<div style='margin-top:12px;font-size:0.82rem;color:#aab4c4;line-height:1.6;"
-            f"border-left:3px solid #7c3aed;padding:4px 0 4px 12px;'>"
-            f"📝 {scout_notu_goster(rapor['scout_notu'])}</div>", unsafe_allow_html=True)
+    # (Oyun Tarzı + scout notu → GÖZLEM bölümüne taşındı; bolum="gozlem")
 
     # Nitelik Radarı + İkizleri (Moneyball — benzer profil, farklı fiyat)
     st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
@@ -6091,7 +6113,7 @@ def render_ana_lig_profil(secili):
             if not _bolum_acik("gozlem"):
                 _bolum_kilit("gozlem")
             elif scotr_yukle().get(secili):
-                render_scout_raporu(secili)
+                render_scout_raporu(secili, "gozlem")
             else:
                 st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
                              "No scout observation added for this player yet."))
@@ -6100,6 +6122,9 @@ def render_ana_lig_profil(secili):
             if not _bolum_acik("analiz"):
                 _bolum_kilit("analiz")
             else:
+                # Scout raporu + Nitelik İkizleri (başta)
+                if scotr_yukle().get(secili):
+                    render_scout_raporu(secili, "analiz")
                 # Benzer oyuncular (ana lig havuzu)
                 benzer_oyuncular_goster(secili, "analig")
 
