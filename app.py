@@ -1597,16 +1597,35 @@ def scouting_leistung_yukle() -> dict:
 @st.cache_data(ttl=3600)
 
 @st.cache_data(show_spinner=False)
+def _sheet_alias_ekle(out: dict) -> dict:
+    """Sheet (havuz) adlarını diakritik-toleranslı takma ad olarak ekler:
+    sheet 'ANDREA STAŠKOVÁ' ↔ SD/kariyer 'ANDREA STASKOVA' — böylece sitedeki
+    her exact-anahtar araması iki yazımla da tutar (18.07.2026 Staskova vakası)."""
+    import unicodedata as _ud
+    def _n(s):
+        s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+        return " ".join(s.casefold().split())
+    nm = {}
+    for k in out:
+        nm.setdefault(_n(k), k)
+    for k in birlesik_scout_yukle():
+        if k not in out:
+            kk = nm.get(_n(k))
+            if kk:
+                out[k] = out[kk]
+    return out
+
+
 def birlesik_sd_yukle() -> dict:
     """SD profilleri: scouting havuzu + TR ligi (soccerdonna_profiller.json).
     TR oyuncuların kariyer/künye verisi TR-Veri tarafında zaten mevcut — köprü."""
-    return {**sd_profiller_yukle(), **scouting_sd_yukle()}
+    return _sheet_alias_ekle({**sd_profiller_yukle(), **scouting_sd_yukle()})
 
 
 @st.cache_data(show_spinner=False)
 def birlesik_leistung_yukle() -> dict:
     """Kariyer (sezon) verileri: scouting + TR ligi (analig_leistungsdaten.json)."""
-    return {**analig_leistung_yukle(), **scouting_leistung_yukle()}
+    return _sheet_alias_ekle({**analig_leistung_yukle(), **scouting_leistung_yukle()})
 
 def scotr_yukle() -> dict:
     """Sco Tr scout raporları (1207 Antalyaspor — nitelik notları, rol, tarz)."""
@@ -3429,9 +3448,14 @@ def _benzer_havuz(kaynak):
         kadro     = birlesik_scout_yukle()
         _tr_takim = {}
     havuz = []
+    _gorulen = set()
     for isim, p in profiller.items():
         if not isinstance(p, dict) or p.get("bulunamadi"):
             continue
+        _nk = _isim_norm(isim)
+        if _nk in _gorulen:          # alias çifti (STAŠKOVÁ/STASKOVA) — tek kayıt
+            continue
+        _gorulen.add(_nk)
         sez = [s for s in leistung.get(isim, {}).get("sezonlar", []) if not s.get("milli")]
         mac = sum(s.get("mac", 0) for s in sez)
         if mac < 5:
@@ -3490,12 +3514,13 @@ def _benzer_skor_ortak(q, o):
 
 def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     havuz = _benzer_havuz(kaynak)
-    q = next((o for o in havuz if o["isim"] == hedef_isim), None)
+    _hn = _isim_norm(hedef_isim)
+    q = next((o for o in havuz if _isim_norm(o["isim"]) == _hn), None)
     if not q or q["kat"] == "?":
         return []
     grup = [o for o in havuz if o["kat"] == q["kat"]]
     adaylar = sorted(((_benzer_skor_ortak(q, o), o) for o in grup
-                      if o["isim"] != hedef_isim),
+                      if _isim_norm(o["isim"]) != _hn),
                      reverse=True, key=lambda x: x[0])
 
     def _lbl(o):
@@ -3552,7 +3577,8 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
 # ── Radar grafiği (mevki içi yüzdelik profil) ──
 def radar_goster(isim, kaynak):
     havuz = _benzer_havuz(kaynak)
-    q = next((o for o in havuz if o["isim"] == isim), None)
+    _hn = _isim_norm(isim)
+    q = next((o for o in havuz if _isim_norm(o["isim"]) == _hn), None)
     if not q or q["kat"] == "?":
         return
     grup = [o for o in havuz if o["kat"] == q["kat"]]
@@ -3594,7 +3620,8 @@ def radar_goster(isim, kaynak):
 def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scouting"):
     h = _benzer_havuz(hedef_kaynak)
     a = _benzer_havuz(aday_kaynak)
-    q = next((o for o in h if o["isim"] == hedef_isim), None)
+    _hn = _isim_norm(hedef_isim)
+    q = next((o for o in h if _isim_norm(o["isim"]) == _hn), None)
     if not q or q["kat"] == "?":
         return
     grup = [o for o in a if o["kat"] == q["kat"]]
@@ -4072,7 +4099,8 @@ def render_scouting_detay(tam_isim):
         _so_ivme  = (_so.get("ivme") or "").strip() or "—"
         _so_var   = bool(_so.get("degerlendirildi"))
         _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
-        _ls_kulup = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
+        _lst_kayit = _sd_norm_bul(leistung_data, tam_isim)   # STAŠKOVÁ↔STASKOVA toleransı
+        _ls_kulup = [s for s in _lst_kayit.get("sezonlar", [])
                      if not s.get("milli")]
         _oc1, _oc2 = st.columns(2, gap="medium")
         with _oc1:
@@ -4171,11 +4199,11 @@ def render_scouting_detay(tam_isim):
         if not _bolum_acik("kariyer"):
             _bolum_kilit("kariyer")
         else:
-            _sezonlar = leistung_data.get(tam_isim, {}).get("sezonlar", [])
+            _sezonlar = _sd_norm_bul(leistung_data, tam_isim).get("sezonlar", [])
             if _sezonlar:
                 _milli_ad = ulke_goster((_kadro.get("vatandaslik") or _ilk_uyruk(vatandas) or "").strip())
                 _kariyer_kulup_milli(tam_isim, _sezonlar, "scouting", _milli_ad,
-                                     leistung_data.get(tam_isim, {}).get("guncelleme", ""))
+                                     _sd_norm_bul(leistung_data, tam_isim).get("guncelleme", ""))
             else:
                 st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
 
