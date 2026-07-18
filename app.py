@@ -1636,12 +1636,18 @@ def scotr_kadro_yukle() -> dict:
     birleştirme okuma anında olur. Sadece DEĞERLENDİRİLMİŞ kayıtlar alınır."""
     out = {}
     _sd = sd_profiller_yukle()   # TR SD profilleri — yaş/doğum onarımı için
+    # Diakritik toleransı: sheet STAŠKOVÁ / SD STASKOVA gibi yazım farkları
+    import unicodedata as _ud2
+    def _n2(s):
+        s = _ud2.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+        return " ".join(s.casefold().split())
+    _sdn = {_n2(k): v for k, v in _sd.items()}
     for isim, r in scotr_yukle().items():
         if not r.get("degerlendirildi"):
             continue
         mevki = [m for m in (r.get("mevki1"), r.get("mevki2")) if m]
         # Sheet'te doğum boşsa Yaş formülü 126 üretiyor (2026-1900) → SD'den onar
-        _p = _sd.get(isim, {})
+        _p = _sd.get(isim) or _sdn.get(_n2(isim), {})
         _yr = str(r.get("yas", "")).strip()
         if not (_yr.isdigit() and 13 < int(_yr) < 50):
             _yr = str(_p.get("Age", "") or "").split()[0] if _p.get("Age") else ""
@@ -1710,6 +1716,39 @@ def _scout_norm_bul(isim: str):
     s = _ud.normalize("NFKD", str(isim)).encode("ascii", "ignore").decode()
     anahtar = _scout_norm_harita().get(" ".join(s.casefold().split()))
     return birlesik_scout_yukle().get(anahtar) if anahtar else None
+
+
+def _isim_norm(s: str) -> str:
+    import unicodedata as _ud
+    s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+    return " ".join(s.casefold().split())
+
+
+@st.cache_data(show_spinner=False)
+def _profil_norm_harita() -> dict:
+    """Diakritiksiz isim → kanonik profil anahtarı. Kaynaklar arası yazım
+    farkında (Sco TR: STAŠKOVÁ, SD: STASKOVA) profil 'bulunamadı' olmasın.
+    Öncelik: TR lig kadrosu > scout havuzu > SD havuzu."""
+    m = {}
+    for k in birlesik_sd_yukle():
+        m.setdefault(_isim_norm(k), k)
+    for k in birlesik_scout_yukle():
+        m[_isim_norm(k)] = k
+    for k in df_tam["Oyuncu"].values:
+        m[_isim_norm(k)] = k
+    return m
+
+
+def _sd_norm_bul(sd_data: dict, isim: str) -> dict:
+    """SD sözlüğünde diakritik-toleranslı arama (birebir yoksa)."""
+    kayit = sd_data.get(isim)
+    if kayit:
+        return kayit
+    hedef = _isim_norm(isim)
+    for k, v in sd_data.items():
+        if _isim_norm(k) == hedef:
+            return v if isinstance(v, dict) else {}
+    return {}
 
 def scouting_detay_yukle() -> dict:
     """Mr Daniş scouting detayları (rol, değerlendirme, vücut tipi, mevki kodları)."""
@@ -3966,7 +4005,7 @@ def render_scouting_detay(tam_isim):
     sd_data = birlesik_sd_yukle()
     leistung_data = birlesik_leistung_yukle()
     detay_data = scouting_detay_yukle()
-    sd = sd_data.get(tam_isim, {})
+    sd = _sd_norm_bul(sd_data, tam_isim)
     dob      = sd.get("Date of birth", "—")
     yas      = sd.get("Age", "?")
     boy      = sd.get("Height", "—")
@@ -3978,8 +4017,8 @@ def render_scouting_detay(tam_isim):
     sd_badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.78rem;'
                 f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
 
-    # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım)
-    _kadro  = birlesik_scout_yukle().get(tam_isim, {})
+    # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım) — norm toleranslı
+    _kadro  = birlesik_scout_yukle().get(tam_isim) or _scout_norm_bul(tam_isim) or {}
     _deger  = _kadro.get("deger", "")
     # Milli takım = "Vatandaşlık (Millî)" (vatandaslik). NOT: milli_takim alanı aslında
     # "2. Vatandaşlık" (ikinci pasaport) → milli takım için YANLIŞ (örn. Miray Cin Türkiye
@@ -4158,9 +4197,15 @@ def render_scouting_detay(tam_isim):
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
+    # Gelen isim hiçbir katmanda birebir yoksa diakritik-toleranslı çözümle
+    # (STAŠKOVÁ ↔ STASKOVA gibi kaynaklar arası yazım farkları)
+    if (isim not in df_tam["Oyuncu"].values
+            and isim not in birlesik_scout_yukle()
+            and isim not in birlesik_sd_yukle()):
+        isim = _profil_norm_harita().get(_isim_norm(isim), isim)
     # Kaynak: scouting oyuncusu mu (ana lig kadrosunda değil ama SD havuzunda var)?
     _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (
-        isim in scouting_sd_yukle() or isim in birlesik_scout_yukle())
+        isim in birlesik_sd_yukle() or isim in birlesik_scout_yukle())
     _geri_lbl = (t("← Scouting'e Dön", "← Back to Scouting") if _scout_oyuncu
                  else t("← Listeye Dön", "← Back to List"))
     if st.button(_geri_lbl, key="odakli_geri", type="primary"):
@@ -4184,8 +4229,10 @@ def render_odakli_profil(isim):
             return
         render_ana_lig_profil(isim)
         return
-    # Scouting oyuncusu mu? (Premium kademe gerekir)
-    if isim in scouting_sd_yukle():
+    # Scouting oyuncusu mu? (Premium kademe gerekir) — TR havuzu dahil
+    # (Sco TR oyuncularının SD'si soccerdonna_profiller'de; eskiden yalnız
+    # dünya SD dosyasına bakıldığından profilleri 'bulunamadı' oluyordu)
+    if isim in birlesik_sd_yukle() or isim in birlesik_scout_yukle():
         if not tier_yeterli("premium"):
             pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"),
                                tier="premium")
