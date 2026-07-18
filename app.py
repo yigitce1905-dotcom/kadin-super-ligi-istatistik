@@ -3760,7 +3760,9 @@ _SAHA_KONUM = {
     "AM": (50, 52), "AMF": (50, 52),
     "LW": (19, 40), "RW": (81, 40), "LWF": (19, 40), "RWF": (81, 40),
     "SS": (50, 35), "2ST": (50, 35),
-    "ST": (50, 18), "CF": (50, 18),
+    "ST": (50, 18), "CF": (50, 18), "CFW": (50, 18),
+    # Sheet'lerin kullandığı ek kodlar (18.07.2026 tarama: 400 kayıt haritasızdı)
+    "LFB": (17, 101), "RFB": (83, 101), "MCB": (50, 104),
 }
 # Normalize TR mevki → standart kod (ana lig için)
 _MEVKI_SAHA_KOD = {
