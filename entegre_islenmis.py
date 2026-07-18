@@ -21,7 +21,7 @@ import json
 import sys
 from pathlib import Path
 
-from fetch_scout_kadro import cek, parse, yas_backfill, CIKTI
+from fetch_scout_kadro import cek, parse, yas_backfill, kulup_guncelle, CIKTI
 
 
 def main():
@@ -43,6 +43,10 @@ def main():
             atlanan.append(isim)         # yeni + ham → ATLA (Afrika bloğu)
 
     bf = yas_backfill(sonuc)
+    # SD'nin güncel kulübünü (kulup_guncelle_sd.py'nin yazdığı `guncel_kulup`)
+    # sheet kulübü üzerine yeniden uygula — yoksa sheet çekişi Serbest/transfer
+    # bilgisini eski sheet değerine geri döndürür (ağ gerektirmez; SD JSON kalıcı).
+    kg = kulup_guncelle(sonuc)
 
     print(f"Canlı sheet      : {len(canli)} oyuncu")
     print(f"Commit (önceki)  : {len(comm)} oyuncu")
@@ -50,6 +54,7 @@ def main():
     print(f"  + yeni eklenen : {len(eklenen)} (işlenmiş)")
     print(f"  ✗ atlanan (ham): {len(atlanan)} (ham Afrika bloğu — eklenmedi)")
     print(f"Yaş backfill     : {bf}")
+    print(f"SD kulüp uygulandı: {kg} (Serbest/transfer korundu)")
     print(f"SONUÇ            : {len(sonuc)} oyuncu")
     if eklenen:
         print("\nYeni eklenen işlenmiş oyuncular:")
