@@ -3112,11 +3112,18 @@ _TAKIM_BOILERPLATE = [
 ]
 
 def _takim_kisa(ad: str) -> str:
-    """Uzun TFF takım adını kısa görünüme indirger. 'A / B' (transfer) için her parçayı ayrı kısaltır."""
+    """Uzun TFF takım adını kısa görünüme indirger. 'A / B' (transfer) için her parçayı ayrı kısaltır.
+    Aynı kulübün isim varyantları (ALG'nin 3 sponsor adı, Çekmeköy→Şile taşınması) kısaltmada
+    aynılaşır → transfer gösteriminde tekilleştirilir ('ALG / ALG / ALG' → 'ALG').
+    NOT: tekilleştirme yalnız bu '/' gösterim dalında — tek-takım çağrıları (clean-sheet
+    _kanon eşleşmesi dahil) etkilenmez."""
     if not ad:
         return ad
     if "/" in ad:
-        return " / ".join(_takim_kisa(p.strip()) for p in ad.split("/"))
+        parcalar = [_takim_kisa(p.strip()) for p in ad.split("/")]
+        # Çekmeköy→Şile: aynı kulüp (taşındı) — transfer satırında güncel adla tek görünsün
+        parcalar = ["Şile Bilgidoğa" if p == "Çekmeköy Bilgidoğa" else p for p in parcalar]
+        return " / ".join(dict.fromkeys(parcalar))
     up = ad.upper()
     for sub, kisa in _TAKIM_KISA_MAP:
         if sub in up:
