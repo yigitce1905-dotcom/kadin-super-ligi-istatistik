@@ -5365,7 +5365,8 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
             st.caption(f"⚠️ PDF oluşturulamadı: {e}")
 
     # Paylaşılabilir PUBLIC rapor linki (kulübe gönder — giriş gerektirmez)
-    _purl = f"https://womenfootballscouting.com/?paylas={_urlquote(isim)}"
+    # EN moddayken üretilen link raporu İngilizce açar (dilsiz link = TR varsayılan)
+    _purl = f"https://womenfootballscouting.com/?paylas={_urlquote(isim)}" + ("&dil=EN" if EN else "")
     with st.container(border=True):
         st.markdown(f"##### 🔗 {t('Paylaşılabilir Rapor Linki','Shareable Report Link')}")
         st.caption(t("Bu linki kulübe gönder — alıcı GİRİŞ YAPMADAN markalı raporu görür (yalnız bu oyuncu).",
@@ -6522,7 +6523,7 @@ def render_paylasim_raporu(isim: str):
             {t('Tüm scouting havuzu için','For the full scouting pool')}</div>
           <div style='color:#a78bfa;font-size:0.85rem;margin:4px 0 12px;'>
             {t('1.400+ oyuncu · kariyer & benzerlik analizi · kadro danışmanlığı','1,400+ players · career & similarity analysis · squad consultancy')}</div>
-          <a href='/' style='display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);
+          <a href='/{"?dil=EN" if EN else ""}' style='display:inline-block;background:linear-gradient(135deg,#7c3aed,#db2777);
              color:#fff;font-weight:700;text-decoration:none;border-radius:9px;padding:10px 26px;'>
             🚀 {t('Üye Ol / Giriş','Join / Log In')}</a>
           <div style='margin-top:10px;'>
@@ -8145,11 +8146,11 @@ if st.session_state.get("sayfa") == "scouting":
               {t("Ne aldığını gör — iki tam scout raporu giriş gerektirmeden açık:",
                  "See what you get — two full scout reports, no login needed:")}
             </p>
-            <a href="/?paylas=Naomi%20Girma" target="_self" style="display:inline-block;margin:3px;
+            <a href="/?paylas=Naomi%20Girma&dil={st.session_state.get('dil', 'TR')}" target="_self" style="display:inline-block;margin:3px;
                background:#1e2540;border:1px solid #7c3aed;border-radius:8px;padding:8px 14px;
                color:#e2e8f0;font-size:0.8rem;font-weight:700;text-decoration:none;">
                🛡️ Naomi Girma · Chelsea</a>
-            <a href="/?paylas=Phallon%20Tullis-Joyce" target="_self" style="display:inline-block;margin:3px;
+            <a href="/?paylas=Phallon%20Tullis-Joyce&dil={st.session_state.get('dil', 'TR')}" target="_self" style="display:inline-block;margin:3px;
                background:#1e2540;border:1px solid #7c3aed;border-radius:8px;padding:8px 14px;
                color:#e2e8f0;font-size:0.8rem;font-weight:700;text-decoration:none;">
                🧤 Phallon Tullis-Joyce · Man Utd</a>
