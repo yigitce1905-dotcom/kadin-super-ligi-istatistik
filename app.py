@@ -285,21 +285,50 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 .altbilgi { text-align:center; color:#505870; font-size:0.76rem;
     margin-top:36px; padding-top:14px; border-top:1px solid #1e2340; }
 
-/* ── Scouting odaklı profil: büyük isim + gruplu bilgi kutuları ── */
-.sc-isim { font-family:'Oswald','Sora',sans-serif; font-size:2.3rem; font-weight:700;
-    color:#f5f8ff; line-height:1.06; letter-spacing:0.01em; }
+/* ══ BARAN TİPOGRAFİ STANDARDI (2026-07-19) — profil sayfası ve sonrası ══
+   İSİM      14pt · kalın · düz · BÜYÜK · mor      (.sc-isim / .tp-isim)
+   ANA BAŞLIK 12pt · kalın · düz · BÜYÜK · mor     (.tp-anabaslik / .bk-baslik / expander)
+   ANA METİN 12pt · normal · düz · Başlık Büyük · beyaz (.tp-anametin / .bk-satir b)
+   ŞEKİLLİ   14pt · kalın · düz · BÜYÜK · renk özgür (.tp-sekilli)
+   Ara Başlık 11pt · kalın · düz · BÜYÜK · mor     (.tp-arabaslik / .bk-satir span)
+   Ara Metin 10pt · normal · eğik · Başlık Büyük · gri (.tp-arametin)
+   Ara Yazı  11pt · kalın · düz · BÜYÜK · beyaz    (.tp-arayazi / butonlar)
+   Link       8pt · normal · eğik+altçizili · mor  (.tp-link)
+   NOT: Türkçe metinler Python `_buyuk()` ile büyütülür (CSS uppercase i→I bozar). */
+.tp-isim      { font-size:14pt; font-weight:700; font-style:normal;
+    text-transform:uppercase; color:#a78bfa; }
+.tp-anabaslik { font-size:12pt; font-weight:700; font-style:normal; color:#a78bfa; }
+.tp-anametin  { font-size:12pt; font-weight:400; font-style:normal;
+    text-transform:capitalize; color:#f1f5f9; }
+.tp-sekilli   { font-size:14pt; font-weight:700; font-style:normal; }
+.tp-arabaslik { font-size:11pt; font-weight:700; font-style:normal; color:#a78bfa; }
+.tp-arametin  { font-size:10pt; font-weight:400; font-style:italic; color:#94a3b8; }
+.tp-arayazi   { font-size:11pt; font-weight:700; font-style:normal; color:#f1f5f9; }
+.tp-link      { font-size:8pt; font-weight:400; font-style:italic;
+    text-decoration:underline; color:#a78bfa; }
+/* AÇ-KAPA bölüm başlıkları (İSTATİSTİKLER/KARİYER/GÖZLEM/ANALİZ…) = ANA BAŞLIK */
+div[data-testid="stExpander"] summary p { font-size:12pt !important;
+    font-weight:700 !important; color:#a78bfa !important; letter-spacing:0.04em; }
+/* Butonlar = Ara Yazı boyut/kalınlık (metin rengi buton temasından) */
+.stButton button p, .stDownloadButton button p {
+    font-size:11pt !important; font-weight:700 !important; }
+
+/* ── Scouting odaklı profil: isim + gruplu bilgi kutuları ── */
+.sc-isim { font-family:'Oswald','Sora',sans-serif; font-size:14pt; font-weight:700;
+    color:#a78bfa; line-height:1.15; letter-spacing:0.02em; text-transform:uppercase; }
 .sc-mevki { color:#93c5fd; font-size:0.96rem; margin:7px 0 2px; font-weight:600; }
 .bilgi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
     gap:12px; margin:18px 0 22px; }
 .bilgi-kutu { background:linear-gradient(180deg,#101829,#0d1320);
     border:1px solid #243149; border-radius:13px; padding:15px 17px; }
-.bk-baslik { font-size:0.64rem; font-weight:800; letter-spacing:0.13em;
-    text-transform:uppercase; color:#60a5fa; margin-bottom:11px;
+.bk-baslik { font-size:12pt; font-weight:700; letter-spacing:0.06em;
+    color:#a78bfa; margin-bottom:11px;
     padding-bottom:8px; border-bottom:1px solid #1c2740; }
 .bk-satir { display:flex; justify-content:space-between; gap:12px;
-    font-size:0.87rem; padding:5px 0; }
-.bk-satir > span { color:#7c8aa3; white-space:nowrap; }
-.bk-satir > b { color:#e8eef7; font-weight:600; text-align:right; }
+    padding:5px 0; }
+.bk-satir > span { color:#a78bfa; font-size:11pt; font-weight:700; white-space:nowrap; }
+.bk-satir > b { color:#f1f5f9; font-size:12pt; font-weight:400;
+    text-transform:capitalize; text-align:right; }
 
 /* ── Scouting listesi: W-Scope tarzı keskin/profesyonel tablo ── */
 .ws-wrap { background:#0d0d16; border:1px solid #2a2a38; border-radius:12px;
@@ -3812,10 +3841,12 @@ def _pozisyon_saha(kodlar) -> str:
     nokta = ""
     for i, k in enumerate(seen):
         x, y = _SAHA_KONUM[k]
+        # Nokta yazıları = Ara Yazı (kalın BEYAZ); birincil dolgu koyulaştırıldı
+        # ki beyaz metin okunsun (Baran tipografi standardı 2026-07-19)
         if i == 0:
-            fill, r, tcol = "#22c55e", 9, "#06281a"
+            fill, r, tcol = "#16a34a", 9, "#ffffff"
         else:
-            fill, r, tcol = "#15803d", 8, "#bbf7d0"
+            fill, r, tcol = "#15803d", 8, "#ffffff"
         nokta += (f"<circle cx='{x}' cy='{y}' r='{r}' fill='{fill}' stroke='#0a3d1f' stroke-width='0.8'/>"
                   f"<text x='{x}' y='{y+2.3}' text-anchor='middle' font-size='6.2' font-weight='800' "
                   f"fill='{tcol}' font-family='Sora,monospace'>{k}</text>")
@@ -3832,10 +3863,17 @@ def _pozisyon_saha(kodlar) -> str:
         f"{nokta}</svg>")
 
 
+def _buyuk(s: str) -> str:
+    """Dil-farkında BÜYÜK harf (Baran tipografi standardı). CSS uppercase Türkçe'de
+    i→I bozduğu için TR modunda i→İ / ı→I çevirisi Python'da yapılır; emoji korunur."""
+    s = str(s or "")
+    return s.upper() if EN else s.replace("i", "İ").replace("ı", "I").upper()
+
+
 def _profil_baslik(isim, sd_url=""):
-    """Büyük isim başlığı + sağda SoccerDonna linki."""
-    _badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.78rem;'
-              f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
+    """İsim başlığı (İSİM: 14pt mor BÜYÜK) + sağda SoccerDonna linki (Ara Başlık)."""
+    _badge = (f'<a href="{sd_url}" target="_blank" class="tp-arabaslik" '
+              f'style="text-decoration:none;color:#a78bfa;">🔗 SOCCERDONNA</a>') if sd_url else ""
     st.markdown(
         '<div style="display:flex;justify-content:space-between;align-items:flex-start;'
         'gap:16px;flex-wrap:wrap;margin:2px 0 4px;">'
@@ -3846,12 +3884,13 @@ def _profil_baslik(isim, sd_url=""):
 
 def _profil_kutulari(gruplar):
     """Gruplu bilgi kutuları (Kişisel · Futbolcu · Diğer …) yan yana, mobilde dikey.
-    gruplar: [(başlık, [(etiket, değer), …]), …]. Boş değer/kutu gizlenir."""
+    gruplar: [(başlık, [(etiket, değer), …]), …]. Boş değer/kutu gizlenir.
+    Tipografi: başlık=ANA BAŞLIK, etiket=Ara Başlık (BÜYÜK, _buyuk), değer=ANA METİN."""
     def _bk(baslik, satirlar):
         ic = "".join(
-            f"<div class='bk-satir'><span>{_e}</span><b>{_v}</b></div>"
+            f"<div class='bk-satir'><span>{_buyuk(_e)}</span><b>{_v}</b></div>"
             for _e, _v in satirlar if str(_v).strip() not in ("", "—", "None"))
-        return (f"<div class='bilgi-kutu'><div class='bk-baslik'>{baslik}</div>{ic}</div>"
+        return (f"<div class='bilgi-kutu'><div class='bk-baslik'>{_buyuk(baslik)}</div>{ic}</div>"
                 if ic else "")
     _html = "".join(_bk(b, s) for b, s in gruplar)
     st.markdown(f"<div class='bilgi-grid'>{_html}</div>", unsafe_allow_html=True)
@@ -4111,39 +4150,37 @@ def render_scouting_detay(tam_isim):
                 _g = sum(int(s.get("gol") or 0) for s in _szr)
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
-                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                    'text-transform:uppercase;letter-spacing:0.08em;">'
-                    + t("Son Sezon", "Latest Season") + " · " + _sz + '</div>'
+                    '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
+                    + _buyuk(t("Son Sezon", "Latest Season")) + " · " + _sz + '</div>'
                     '<div style="display:flex;gap:22px;margin-top:8px;">'
-                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(_m) + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
-                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(_g) + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
-                    '<div><div style="font-family:Sora,sans-serif;font-size:1.05rem;font-weight:700;color:#c0ccd8;'
-                    'margin-top:5px;">' + str((_szr[0].get("kulup") or ""))[:22] + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Kulüp", "Club") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(_m) + '</div>'
+                    '<div class="tp-arametin">' + t("Maç", "Matches") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#1db954;">' + str(_g) + '</div>'
+                    '<div class="tp-arametin">' + t("Gol", "Goals") + '</div></div>'
+                    '<div><div class="tp-anametin" style="margin-top:3px;">' + str((_szr[0].get("kulup") or ""))[:22] + '</div>'
+                    '<div class="tp-arametin">' + t("Kulüp", "Club") + '</div></div>'
                     '</div></div>', unsafe_allow_html=True)
             else:
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
-                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                    'text-transform:uppercase;letter-spacing:0.08em;">' + t("Son Sezon", "Latest Season") + '</div>'
-                    '<div style="color:#64748b;font-size:0.85rem;margin-top:10px;">'
+                    '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
+                    + _buyuk(t("Son Sezon", "Latest Season")) + '</div>'
+                    '<div class="tp-arametin" style="margin-top:10px;">'
                     + t("Sezon verisi bulunamadı", "No season data") + '</div></div>',
                     unsafe_allow_html=True)
         with _oc2:
             st.markdown(
                 '<div class="profil-kart" style="padding:12px 16px;">'
-                '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
+                '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
+                + _buyuk(t("Scout Özeti", "Scout Summary")) + '</div>'
                 '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
-                '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
+                '<div><div class="tp-sekilli" style="font-family:monospace;color:' + _so_renk + ';">'
                 + (_so_nihai or "—") + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
-                '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
-                '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
-                '<div style="font-size:0.62rem;color:#8899aa;">'
+                '<div class="tp-arametin">' + t("Nihai Not", "Rating") + '</div></div>'
+                '<div><div class="tp-sekilli" style="color:#a78bfa;">' + _so_ivme + '</div>'
+                '<div class="tp-arametin">' + t("İvme", "Momentum") + '</div></div>'
+                '<div><div class="tp-sekilli">' + ("✅" if _so_var else "❎") + '</div>'
+                '<div class="tp-arametin">'
                 + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
                 + '</div></div>'
                 '</div></div>', unsafe_allow_html=True)
@@ -4154,9 +4191,9 @@ def render_scouting_detay(tam_isim):
             _profil_kutulari(_kutu_grp)
             _ozet_ciz()
         with _sh_col:
-            st.markdown(f"<div style='text-align:center;font-size:0.6rem;color:#64748b;"
-                        f"text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;'>"
-                        f"📍 {t('Mevki Haritası','Position Map')}</div>{_saha_svg}",
+            st.markdown(f"<div class='tp-anabaslik' style='text-align:center;"
+                        f"letter-spacing:0.1em;margin-bottom:4px;'>"
+                        f"📍 {_buyuk(t('Mevki Haritası','Position Map'))}</div>{_saha_svg}",
                         unsafe_allow_html=True)
     else:
         _profil_kutulari(_kutu_grp)
@@ -5576,16 +5613,19 @@ def _profil_link_kopyala(isim):
     import streamlit.components.v1 as _comp
     import json as _j
     _isim_js = _j.dumps(isim)
-    _lbl_kop = t("Kopyala", "Copy"); _lbl_ok = t("Kopyalandı ✓", "Copied ✓")
-    _lbl_bas = t("🔗 Paylaşılabilir link", "🔗 Share link")
+    # Tipografi (Baran std): başlık=Ara Başlık (11pt mor BÜYÜK) · URL=Link yazısı
+    # (8pt eğik altçizili mor) · Kopyala=Ara Yazı (11pt kalın BÜYÜK beyaz)
+    _lbl_kop = t("KOPYALA", "COPY"); _lbl_ok = t("KOPYALANDI ✓", "COPIED ✓")
+    _lbl_bas = "🔗 " + _buyuk(t("Paylaşılabilir link", "Share link"))
     _comp.html(
         '<div style="font-family:Inter,sans-serif;">'
-        '<div style="font-size:12px;color:#9aa6ba;font-weight:700;margin-bottom:5px;">' + _lbl_bas + '</div>'
+        '<div style="font-size:11pt;color:#a78bfa;font-weight:700;margin-bottom:5px;">' + _lbl_bas + '</div>'
         '<div style="display:flex;gap:6px;">'
-        '<input id="lnk" readonly style="flex:1;min-width:0;background:#0f1117;color:#cbd5e1;'
-        'border:1px solid #2a3146;border-radius:6px;padding:7px 10px;font-size:12px;"/>'
+        '<input id="lnk" readonly style="flex:1;min-width:0;background:#0f1117;color:#a78bfa;'
+        'border:1px solid #2a3146;border-radius:6px;padding:7px 10px;font-size:8pt;'
+        'font-style:italic;text-decoration:underline;"/>'
         '<button id="cpy" style="background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;'
-        'border:none;border-radius:6px;padding:7px 16px;font-size:12px;font-weight:700;'
+        'border:none;border-radius:6px;padding:7px 16px;font-size:11pt;font-weight:700;'
         'cursor:pointer;white-space:nowrap;">📋 ' + _lbl_kop + '</button></div></div>'
         '<script>'
         'var loc=window.parent.location;'
@@ -5733,29 +5773,29 @@ def render_ana_lig_profil(secili):
             with _oc1:
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
-                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                    'text-transform:uppercase;letter-spacing:0.08em;">' + t("2025-26 Özet", "2025-26 Summary") + '</div>'
+                    '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
+                    + _buyuk(t("2025-26 Özet", "2025-26 Summary")) + '</div>'
                     '<div style="display:flex;gap:22px;margin-top:8px;">'
-                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#f1f5f9;">' + str(mac) + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Maç", "Matches") + '</div></div>'
-                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#1db954;">' + str(gol) + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Gol", "Goals") + '</div></div>'
-                    '<div><div style="font-family:Sora,sans-serif;font-size:1.35rem;font-weight:800;color:#2979ff;">' + str(_oz3[1]) + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + str(_oz3[0]) + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(mac) + '</div>'
+                    '<div class="tp-arametin">' + t("Maç", "Matches") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#1db954;">' + str(gol) + '</div>'
+                    '<div class="tp-arametin">' + t("Gol", "Goals") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#2979ff;">' + str(_oz3[1]) + '</div>'
+                    '<div class="tp-arametin">' + str(_oz3[0]) + '</div></div>'
                     '</div></div>', unsafe_allow_html=True)
             with _oc2:
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
-                    '<div style="font-size:0.68rem;font-weight:800;color:#8899aa;'
-                    'text-transform:uppercase;letter-spacing:0.08em;">' + t("Scout Özeti", "Scout Summary") + '</div>'
+                    '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
+                    + _buyuk(t("Scout Özeti", "Scout Summary")) + '</div>'
                     '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
-                    '<div><div style="font-family:monospace;font-size:1.35rem;font-weight:900;color:' + _so_renk + ';">'
+                    '<div><div class="tp-sekilli" style="font-family:monospace;color:' + _so_renk + ';">'
                     + (_so_nihai or "—") + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("Nihai Not", "Rating") + '</div></div>'
-                    '<div><div style="font-size:1.35rem;font-weight:800;color:#a78bfa;">' + _so_ivme + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">' + t("İvme", "Momentum") + '</div></div>'
-                    '<div><div style="font-size:1.35rem;">' + ("✅" if _so_var else "❎") + '</div>'
-                    '<div style="font-size:0.62rem;color:#8899aa;">'
+                    '<div class="tp-arametin">' + t("Nihai Not", "Rating") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="color:#a78bfa;">' + _so_ivme + '</div>'
+                    '<div class="tp-arametin">' + t("İvme", "Momentum") + '</div></div>'
+                    '<div><div class="tp-sekilli">' + ("✅" if _so_var else "❎") + '</div>'
+                    '<div class="tp-arametin">'
                     + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
                     + '</div></div>'
                     '</div></div>', unsafe_allow_html=True)
@@ -8029,8 +8069,8 @@ if st.session_state.get("sayfa") == "scouting":
                             _skor = "<span style='color:#52525b;'>—</span>"
                         _poz_html = f"<span class='ws-pos'>{_esc(_poz)}</span>" if _poz else ""
                         _yildiz = "<span style='color:#fbbf24;'>★</span> " if tam_isim in _sl_liste else ""
-                        if _kd.get("havuz") == "tr":
-                            _yildiz += "<span title='Türkiye Ligleri'>🇹🇷</span> "
+                        # (🇹🇷 havuz rozeti KALDIRILDI — yabancı oyuncularda uyruk bayrağı
+                        #  gibi okunuyordu; TR liginde oynadığı zaten Kulüp/Lig kolonunda)
                         _bayrak = _esc(ulke_goster(_uyruk_goster(vatandas))) if vatandas else ""
                         _href = f"?oyuncu={_urlquote(tam_isim)}&dil={_dil_q}"
                         _harf = (tam_isim[:1] or "?").upper()
