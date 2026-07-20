@@ -27,3 +27,6 @@ club_credentials.json
 _render_secrets/
 _auth_secret_local
 app_dev.py
+
+seo_site/
+.wrangler/
