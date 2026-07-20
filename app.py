@@ -6320,6 +6320,11 @@ with st.sidebar:
     if st.button(t("🎗️ Saygı Kuşağı", "🎗️ Hall of Respect"), key="nav_saygi", width="stretch",
                  type="primary" if _aktif_sayfa == "saygi" else "secondary"):
         _nav_git("saygi")
+    # Kulüp Kokpiti — YALNIZ admin (2026-27 iç kadro/kontrat aracı)
+    if st.session_state.get("kulup_giris") == "admin":
+        if st.button(t("🛰️ Kulüp Kokpiti", "🛰️ Club Cockpit"), key="nav_kokpit", width="stretch",
+                     type="primary" if _aktif_sayfa == "kokpit" else "secondary"):
+            _nav_git("kokpit")
 
     # ── TR VERİ SEKMELERİ grubu (tüm sayfalarda görünür) ──
     st.markdown(f"<div class='nav-grup'>{t('TR VERİ SEKMELERİ', 'TR DATA TABS')}</div>",
@@ -7670,6 +7675,166 @@ def render_saygi():
 if st.session_state.get("sayfa") == "saygi":
     geri_ana_butonu("geri_saygi")
     render_saygi()
+    st.stop()
+
+
+# ─── KULÜP KOKPİTİ (2026-27) — ADMIN-ÖZEL iç kadro/kontrat aracı ─────────────
+# Veri: kokpit_kadrolar.json (kokpit_sd_cek.py üretir; SD kulüp sayfalarından).
+# Erkek tarafındaki ISM kokpitinin kadın uyarlaması — eksik veri açıkça işaretlenir.
+_KOKPIT_ULKE = {  # SD bayrak alt'ları Almanca gelir → TR görünüm
+    "Türkei": "Türkiye", "Deutschland": "Almanya", "Dänemark": "Danimarka",
+    "Portugal": "Portekiz", "Moldawien": "Moldova", "Frankreich": "Fransa",
+    "Spanien": "İspanya", "Niederlande": "Hollanda", "England": "İngiltere",
+    "Brasilien": "Brezilya", "Österreich": "Avusturya", "Schweiz": "İsviçre",
+    "Polen": "Polonya", "Rumänien": "Romanya", "Griechenland": "Yunanistan",
+    "Kroatien": "Hırvatistan", "Serbien": "Sırbistan", "Ukraine": "Ukrayna",
+    "Georgien": "Gürcistan", "Aserbaidschan": "Azerbaycan", "Marokko": "Fas",
+    "Algerien": "Cezayir", "Tunesien": "Tunus", "Schweden": "İsveç",
+    "Norwegen": "Norveç", "Belgien": "Belçika", "Italien": "İtalya",
+    "Ungarn": "Macaristan", "Tschechien": "Çekya", "Slowakei": "Slovakya",
+    "Nordmazedonien": "K. Makedonya", "Japan": "Japonya", "Kolumbien": "Kolombiya",
+    "Elfenbeinküste": "Fildişi Sahili", "Südafrika": "G. Afrika", "Sambia": "Zambiya",
+    "USA": "ABD", "Kanada": "Kanada", "Nigeria": "Nijerya", "Jamaika": "Jamaika",
+}
+
+def _kokpit_ulke(s: str) -> str:
+    return " / ".join(_KOKPIT_ULKE.get(p.strip(), p.strip()) for p in (s or "").split("/") if p.strip())
+
+@st.cache_data(show_spinner=False, ttl=300)
+def kokpit_yukle() -> dict:
+    _yol = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kokpit_kadrolar.json")
+    try:
+        with open(_yol, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def render_kokpit():
+    veri = kokpit_yukle()
+    kulupler = veri.get("kulupler", {})
+    st.markdown(f"<div class='tp-isim'>🛰️ {_buyuk('Kulüp Kokpiti')} · {veri.get('sezon','2026-27')}</div>"
+                f"<div class='tp-arametin'>Admin-özel iç araç · SoccerDonna kadro anlık görüntüsü</div>",
+                unsafe_allow_html=True)
+    if not kulupler:
+        st.info("kokpit_kadrolar.json yok — `python kokpit_sd_cek.py` çalıştırın.")
+        return
+    kulup = st.radio("Kulüp", list(kulupler), horizontal=True, label_visibility="collapsed")
+    kd = kulupler[kulup]
+    kadro = kd.get("kadro", [])
+
+    # ── Üst metrik şeridi ──
+    _toplam = sum(o.get("deger_eur") or 0 for o in kadro)
+    _yaslar = [int(o["yas"]) for o in kadro if str(o.get("yas", "")).isdigit()]
+    _yab = sum(1 for o in kadro if o.get("uyruk") and "Türkei" not in o["uyruk"])
+    _sozsuz = [o for o in kadro if not o.get("sozlesme")]
+    _m = st.columns(5)
+    for kol, (deger, etiket) in zip(_m, [
+            (len(kadro), "OYUNCU"), (f"€{_toplam/1000:.0f}K" if _toplam else "—", "TOPLAM DEĞER"),
+            (f"{sum(_yaslar)/len(_yaslar):.1f}" if _yaslar else "—", "YAŞ ORT."),
+            (_yab, "YABANCI"), (len(_sozsuz), "SÖZLEŞME VERİSİ YOK")]):
+        kol.markdown(f"<div class='profil-kart' style='padding:10px 14px;text-align:center;'>"
+                     f"<div class='tp-sekilli' style='color:#1db954;'>{deger}</div>"
+                     f"<div class='tp-arametin'>{etiket}</div></div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='tp-arametin' style='margin:4px 0 10px;'>Çekiliş: {kd.get('cekilis','?')} · "
+                f"<a href='{kd.get('sd_url','')}' target='_blank' style='color:#a78bfa;'>SoccerDonna kaynağı ↗</a></div>",
+                unsafe_allow_html=True)
+
+    # ── KADRO SAHASI (mevki grubu kutuları, CSS grid saha) ──
+    st.markdown("""<style>
+.kk-saha{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:9px;
+ grid-template-areas:'. st .' 'lw on rw' 'pv bos sk' 'lb ct rb' '. gk .';
+ background:linear-gradient(180deg,#0e2117,#123020 55%,#0e2117);
+ border:1px solid #2f6b4a;border-radius:14px;padding:14px;}
+.kk-kutu{background:#0d1220f2;border:1px solid #2a3550;border-radius:10px;padding:7px 9px;min-width:0;}
+.kk-bas{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #223050;
+ padding-bottom:4px;margin-bottom:5px;}
+.kk-bas b{font-size:0.66rem;letter-spacing:0.08em;color:#7dd3fc;font-weight:800;}
+.kk-say{background:#164e63;color:#7dd3fc;border-radius:99px;padding:0 7px;font-size:0.62rem;font-weight:800;}
+.kk-oy{display:flex;justify-content:space-between;gap:6px;font-size:0.7rem;padding:1.5px 0;color:#d7dde8;}
+.kk-oy i{color:#8899aa;font-style:normal;font-size:0.64rem;white-space:nowrap;}
+@media (max-width:768px){.kk-saha{grid-template-columns:1fr;grid-template-areas:'st' 'lw' 'on' 'rw' 'pv' 'sk' 'lb' 'ct' 'rb' 'gk';}}
+</style>""", unsafe_allow_html=True)
+    _alan = {"SANTRFOR": "st", "SOL KANAT": "lw", "10": "on", "SAĞ KANAT": "rw",
+             "PIVOT": "pv", "8": "sk", "SOL BEK": "lb", "STOPER": "ct",
+             "SAĞ BEK": "rb", "KALECİ": "gk"}
+    _gruplu = {}
+    for o in kadro:
+        _gruplu.setdefault(o.get("grup", "DİĞER"), []).append(o)
+    _sh = ""
+    for grup, alan in _alan.items():
+        oyuncular = _gruplu.get(grup, [])
+        satirlar = "".join(
+            f"<div class='kk-oy'><span>{'🔴 ' if _sozlesme_gecmis(o.get('sozlesme','')) else ''}"
+            f"{_html.escape(o['isim'])}</span><i>{_html.escape(o.get('deger') or '—')}</i></div>"
+            for o in oyuncular) or "<div class='kk-oy'><span style='color:#526079;'>boş</span></div>"
+        _sh += (f"<div class='kk-kutu' style='grid-area:{alan};'>"
+                f"<div class='kk-bas'><b>{grup}</b><span class='kk-say'>{len(oyuncular)}</span></div>"
+                f"{satirlar}</div>")
+    st.markdown(f"<div class='tp-anabaslik' style='margin:6px 0;'>{_buyuk('Kadro Sahası')}</div>"
+                f"<div class='kk-saha'>{_sh}</div>", unsafe_allow_html=True)
+    if _gruplu.get("DİĞER"):
+        st.markdown("<div class='tp-arametin'>Mevkisi SD'de belirsiz: " +
+                    ", ".join(_html.escape(o["isim"]) for o in _gruplu["DİĞER"]) + "</div>",
+                    unsafe_allow_html=True)
+
+    # ── KONTRAT RADARI ──
+    st.markdown(f"<div class='tp-anabaslik' style='margin:16px 0 6px;'>{_buyuk('Kontrat Radarı')}</div>",
+                unsafe_allow_html=True)
+    _sozlu = sorted((o for o in kadro if o.get("sozlesme")),
+                    key=lambda o: _sozlesme_ts(o["sozlesme"]))
+    _kr = "".join(
+        f"<div style='display:flex;justify-content:space-between;gap:10px;padding:4px 0;"
+        f"border-bottom:1px solid #1a2138;font-size:0.8rem;'>"
+        f"<span style='color:#d7dde8;'>{_html.escape(o['isim'])} "
+        f"<i style='color:#64748b;font-style:normal;font-size:0.68rem;'>{o.get('kod','')}</i></span>"
+        f"<b style='color:{_kontrat_renk_g(o['sozlesme'])};'>{o['sozlesme']}</b></div>"
+        for o in _sozlu)
+    st.markdown(f"<div class='profil-kart' style='padding:10px 16px;'>{_kr or '—'}</div>",
+                unsafe_allow_html=True)
+    if _sozsuz:
+        st.markdown("<div class='tp-arametin' style='margin-top:4px;'>⚠️ Sözleşme verisi yok (SD profili "
+                    "havuzumuzda değil — muhtemelen yeni transfer): " +
+                    ", ".join(_html.escape(o["isim"]) for o in _sozsuz) + "</div>",
+                    unsafe_allow_html=True)
+
+    # ── EKSİK VERİ UYARISI (erkek kokpitiyle fark — dürüst sınırlar) ──
+    _fb_degersiz = not any(o.get("deger_eur") for o in kadro)
+    _eksik = [
+        "Ajans erişimi / temsilci ağı — kadın tarafında TM benzeri temsilci verisi yok.",
+        "Maaş, imza ve bonus detayları — açık kaynak yok.",
+        "Satılık / Incoming / Enquiry etiketleri ve fırsat sinyalleri — kulüp beyanı gerektirir (elle girilebilir).",
+        "Taktik kimlik / xG atlası — Wyscout benzeri veri TR kadın liginde yok.",
+        "Gelen-giden transfer hareketleri — SD transfer sayfasından ileride eklenebilir.",
+    ]
+    if _fb_degersiz:
+        _eksik.insert(0, f"{kulup} oyuncularının piyasa değerleri SoccerDonna'da henüz girilmemiş (hepsi '-').")
+    st.markdown(
+        "<div style='background:#2a2108;border:1px solid #d9b45a;border-radius:10px;"
+        "padding:12px 16px;margin-top:14px;'>"
+        "<div class='tp-arabaslik' style='color:#fbbf24;'>⚠️ BU KOKPİTTE OLMAYANLAR (VERİ SINIRI)</div>"
+        + "".join(f"<div style='color:#d9c9a0;font-size:0.78rem;margin-top:4px;'>• {m}</div>" for m in _eksik)
+        + "</div>", unsafe_allow_html=True)
+
+def _sozlesme_ts(s: str) -> float:
+    try:
+        from datetime import datetime as _dt
+        return _dt.strptime(s.strip(), "%d.%m.%Y").timestamp()
+    except Exception:
+        return 9e12
+
+def _sozlesme_gecmis(s: str) -> bool:
+    try:
+        from datetime import datetime as _dt
+        return _dt.strptime(s.strip(), "%d.%m.%Y") < _dt.now()
+    except Exception:
+        return False
+
+if st.session_state.get("sayfa") == "kokpit":
+    geri_ana_butonu("geri_kokpit")
+    if st.session_state.get("kulup_giris") == "admin":
+        render_kokpit()
+    else:
+        st.warning(t("Bu sayfa yönetici içindir.", "This page is admin-only."))
     st.stop()
 
 # ─── SCOUTİNG SAYFASI (Premium kademe) ───────────────────────────────────────
