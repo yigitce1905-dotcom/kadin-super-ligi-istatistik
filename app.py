@@ -6321,7 +6321,8 @@ with st.sidebar:
                  type="primary" if _aktif_sayfa == "saygi" else "secondary"):
         _nav_git("saygi")
     # Kulüp Kokpiti — YALNIZ admin (2026-27 iç kadro/kontrat aracı)
-    if st.session_state.get("kulup_giris") == "admin":
+    # DİKKAT: kulup_giris boolean; kullanıcı adı kulup_kullanici'da
+    if st.session_state.get("kulup_kullanici") == "admin":
         if st.button(t("🛰️ Kulüp Kokpiti", "🛰️ Club Cockpit"), key="nav_kokpit", width="stretch",
                      type="primary" if _aktif_sayfa == "kokpit" else "secondary"):
             _nav_git("kokpit")
@@ -7831,7 +7832,7 @@ def _sozlesme_gecmis(s: str) -> bool:
 
 if st.session_state.get("sayfa") == "kokpit":
     geri_ana_butonu("geri_kokpit")
-    if st.session_state.get("kulup_giris") == "admin":
+    if st.session_state.get("kulup_kullanici") == "admin":
         render_kokpit()
     else:
         st.warning(t("Bu sayfa yönetici içindir.", "This page is admin-only."))
