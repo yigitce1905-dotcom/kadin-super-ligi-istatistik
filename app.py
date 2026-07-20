@@ -7741,21 +7741,36 @@ def render_kokpit():
 
     # ── KADRO SAHASI (mevki grubu kutuları, CSS grid saha) ──
     st.markdown("""<style>
-.kk-saha{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:9px;
- grid-template-areas:'. st .' 'lw on rw' 'pv bos sk' 'lb ct rb' '. gk .';
+.kk-saha{display:grid;grid-template-columns:1.06fr 1fr 1.06fr;gap:12px 16px;
+ grid-template-areas:'. st .' 'lw on rw' 'pv . sk' 'lb ct rb' '. gk .';
+ grid-template-rows:repeat(5,minmax(128px,auto));align-items:center;
+ position:relative;min-height:760px;
  background:linear-gradient(180deg,#0e2117,#123020 55%,#0e2117);
- border:1px solid #2f6b4a;border-radius:14px;padding:14px;}
-.kk-kutu{background:#0d1220f2;border:1px solid #2a3550;border-radius:10px;padding:7px 9px;min-width:0;}
+ border:1px solid #2f6b4a;border-radius:14px;padding:22px 16px;}
+/* saha çizgileri: orta çizgi + santra + ceza sahaları */
+.kk-saha::before{content:'';position:absolute;left:3%;right:3%;top:50%;height:1px;
+ background:#2f6b4a;opacity:0.8;}
+.kk-saha::after{content:'';position:absolute;left:50%;top:50%;width:118px;height:118px;
+ border:1px solid #2f6b4a;border-radius:50%;transform:translate(-50%,-50%);opacity:0.8;}
+.kk-ceza{position:absolute;left:50%;transform:translateX(-50%);width:44%;height:62px;
+ border:1px solid #2f6b4a;opacity:0.8;pointer-events:none;}
+.kk-ceza.ust{top:0;border-top:none;}
+.kk-ceza.alt{bottom:0;border-bottom:none;}
+.kk-kutu{background:#0d1220f2;border:1px solid #2a3550;border-radius:10px;padding:7px 9px;
+ min-width:0;position:relative;z-index:2;}
 .kk-bas{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #223050;
- padding-bottom:4px;margin-bottom:5px;}
-.kk-bas b{font-size:0.66rem;letter-spacing:0.08em;color:#7dd3fc;font-weight:800;}
+ padding-bottom:4px;margin-bottom:5px;gap:6px;}
+.kk-bas b{font-size:0.64rem;letter-spacing:0.06em;color:#7dd3fc;font-weight:800;}
 .kk-say{background:#164e63;color:#7dd3fc;border-radius:99px;padding:0 7px;font-size:0.62rem;font-weight:800;}
 .kk-oy{display:flex;justify-content:space-between;gap:6px;font-size:0.7rem;padding:1.5px 0;color:#d7dde8;}
 .kk-oy i{color:#8899aa;font-style:normal;font-size:0.64rem;white-space:nowrap;}
-@media (max-width:768px){.kk-saha{grid-template-columns:1fr;grid-template-areas:'st' 'lw' 'on' 'rw' 'pv' 'sk' 'lb' 'ct' 'rb' 'gk';}}
+@media (max-width:768px){
+ .kk-saha{grid-template-columns:1fr;min-height:0;grid-template-rows:auto;
+  grid-template-areas:'st' 'lw' 'on' 'rw' 'pv' 'sk' 'lb' 'ct' 'rb' 'gk';}
+ .kk-saha::before,.kk-saha::after,.kk-ceza{display:none;}}
 </style>""", unsafe_allow_html=True)
     _alan = {"SANTRFOR": "st", "SOL KANAT": "lw", "10": "on", "SAĞ KANAT": "rw",
-             "PIVOT": "pv", "8": "sk", "SOL BEK": "lb", "STOPER": "ct",
+             "SAVUNMACI ORTA SAHA": "pv", "8": "sk", "SOL BEK": "lb", "STOPER": "ct",
              "SAĞ BEK": "rb", "KALECİ": "gk"}
     _gruplu = {}
     for o in kadro:
@@ -7771,7 +7786,8 @@ def render_kokpit():
                 f"<div class='kk-bas'><b>{grup}</b><span class='kk-say'>{len(oyuncular)}</span></div>"
                 f"{satirlar}</div>")
     st.markdown(f"<div class='tp-anabaslik' style='margin:6px 0;'>{_buyuk('Kadro Sahası')}</div>"
-                f"<div class='kk-saha'>{_sh}</div>", unsafe_allow_html=True)
+                f"<div class='kk-saha'><div class='kk-ceza ust'></div>"
+                f"<div class='kk-ceza alt'></div>{_sh}</div>", unsafe_allow_html=True)
     if _gruplu.get("DİĞER"):
         st.markdown("<div class='tp-arametin'>Mevkisi SD'de belirsiz: " +
                     ", ".join(_html.escape(o["isim"]) for o in _gruplu["DİĞER"]) + "</div>",

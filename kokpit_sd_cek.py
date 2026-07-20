@@ -42,7 +42,7 @@ KULUPLER = {
 # SD mevki kodu → saha grubu (kokpit yerleşimi)
 KOD_GRUP = {
     "TW": "KALECİ", "IV": "STOPER", "LV": "SOL BEK", "RV": "SAĞ BEK",
-    "DM": "PIVOT", "ZM": "8", "OM": "10",
+    "DM": "SAVUNMACI ORTA SAHA", "ZM": "8", "OM": "10",
     "LM": "SOL KANAT", "LA": "SOL KANAT",
     "RM": "SAĞ KANAT", "RA": "SAĞ KANAT",
     "MS": "SANTRFOR",
