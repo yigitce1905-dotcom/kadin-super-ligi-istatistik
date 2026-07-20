@@ -40,9 +40,10 @@ KULUPLER = {
 }
 
 # SD mevki kodu → saha grubu (kokpit yerleşimi)
+# Baran standardı: TÜM gruplar İSİM (numara/kod karışımı yok)
 KOD_GRUP = {
     "TW": "KALECİ", "IV": "STOPER", "LV": "SOL BEK", "RV": "SAĞ BEK",
-    "DM": "SAVUNMACI ORTA SAHA", "ZM": "8", "OM": "10",
+    "DM": "SAVUNMACI ORTA SAHA", "ZM": "MERKEZ ORTA SAHA", "OM": "HÜCUMCU ORTA SAHA",
     "LM": "SOL KANAT", "LA": "SOL KANAT",
     "RM": "SAĞ KANAT", "RA": "SAĞ KANAT",
     "MS": "SANTRFOR",
@@ -67,10 +68,32 @@ def _deger_eur(s: str):
         return int(sayi * 1_000)
     return int(sayi)
 
-def kadro_cek(url: str) -> list:
+def arma_indir(url: str, kulup_ad: str) -> str:
+    """Kulüp armasını indirir (SD: /static/bilder_sd/mediumfotos/<verein_id>.jpg).
+    static/armalar/<slug>.jpg olarak kaydeder; dosya adını döndürür ('' = yok)."""
+    m = re.search(r"verein_(\d+)", url)
+    if not m:
+        return ""
+    src = f"https://www.soccerdonna.de/static/bilder_sd/mediumfotos/{m.group(1)}.jpg"
+    slug = unicodedata.normalize("NFKD", kulup_ad).encode("ascii", "ignore").decode()
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", slug).strip("-").lower()
+    hedef = KOK / "static" / "armalar" / f"{slug}.jpg"
+    hedef.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        veri = requests.get(src, headers=H, timeout=15).content
+        if len(veri) > 500:
+            hedef.write_bytes(veri)
+            return f"armalar/{slug}.jpg"
+    except Exception:
+        pass
+    return ""
+
+
+def kadro_cek(url: str, kulup_ad: str = "") -> tuple:
     r = requests.get(url, headers=H, timeout=20)
     r.raise_for_status()
     soup = BeautifulSoup(r.text, "html.parser")
+    arma = arma_indir(url, kulup_ad) if kulup_ad else ""
     kadro, gorulen = [], set()
     for tr in soup.select("table tr"):
         a = tr.select_one("a[href*='/profil/spieler_']")
@@ -109,7 +132,7 @@ def kadro_cek(url: str) -> list:
             "profil_url": "https://www.soccerdonna.de" + a["href"]
                           if a["href"].startswith("/") else a["href"],
         })
-    return kadro
+    return kadro, arma
 
 def zenginlestir(kadro: list) -> int:
     """Elimizdeki SD profillerinden sözleşme/boy ekle (isim-norm eşleşmesi)."""
@@ -138,10 +161,11 @@ def main():
     for ad, url in KULUPLER.items():
         print(f"── {ad} çekiliyor…")
         time.sleep(0.4)
-        kadro = kadro_cek(url)
+        kadro, arma = kadro_cek(url, ad)
         z = zenginlestir(kadro)
         eski["kulupler"][ad] = {
-            "sd_url": url, "cekilis": date.today().isoformat(), "kadro": kadro}
+            "sd_url": url, "cekilis": date.today().isoformat(),
+            "arma": arma, "kadro": kadro}
         toplam = sum(o["deger_eur"] or 0 for o in kadro)
         print(f"   {len(kadro)} oyuncu · sözleşme/boy eşleşen: {z} · toplam değer ~€{toplam:,}")
     json.dump(eski, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

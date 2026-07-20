@@ -6557,6 +6557,13 @@ def render_paylasim_raporu(isim: str):
 if params.get("paylas", "").strip():
     render_paylasim_raporu(params.get("paylas", ""))
 
+# ─── KULÜP KOKPİTİ ROUTE (?kokpit=Kulüp) — arma seçici tam sayfa yükler ───────
+_qp_kokpit = params.get("kokpit", "").strip()
+if _qp_kokpit:
+    st.session_state["girildi"] = True
+    st.session_state["sayfa"] = "kokpit"
+    st.session_state["kokpit_kulup"] = _qp_kokpit
+
 # ─── ODAKLI PROFİL SAYFASI (?oyuncu=X) — sekmeler yerine tek oyuncu ───────────
 if url_oyuncu:
     # Yeni sekmede çerez/oturum geri yüklenirken İLK run'da kullanıcı "giriş yapmamış"
@@ -7710,92 +7717,226 @@ def kokpit_yukle() -> dict:
     except Exception:
         return {}
 
+# Saha yerleşimi (90° YATAY — Baran isteği: kale solda, hücum sağda)
+_KOKPIT_ALAN = {"KALECİ": "gk", "SOL BEK": "lb", "STOPER": "ct", "SAĞ BEK": "rb",
+                "SAVUNMACI ORTA SAHA": "pv", "MERKEZ ORTA SAHA": "sk",
+                "HÜCUMCU ORTA SAHA": "on", "SOL KANAT": "lw",
+                "SANTRFOR": "st", "SAĞ KANAT": "rw"}
+
+def _kokpit_dolu_renk(n: int) -> str:
+    """Kutu doluluk rengi (Baran): 0 kırmızı · 1 turuncu · 2 sarı · 3 yeşil · 4+ mavi."""
+    return {0: "#e5484d", 1: "#fb923c", 2: "#eab308", 3: "#10b981"}.get(n, "#3b82f6")
+
+def _kokpit_boy_f(o) -> float:
+    try:
+        return float(str(o.get("boy", "")).replace(",", ".").split()[0])
+    except Exception:
+        return 0.0
+
+# Scout havuzu mevki kodu → kokpit grubu (eksik mevki önerileri için)
+_SCOUT_KOD_GRUP = {"GK": "KALECİ", "LFB": "SOL BEK", "LWB": "SOL BEK",
+                   "RFB": "SAĞ BEK", "RWB": "SAĞ BEK",
+                   "MCB": "STOPER", "LCB": "STOPER", "RCB": "STOPER",
+                   "DMF": "SAVUNMACI ORTA SAHA", "CMF": "MERKEZ ORTA SAHA",
+                   "AMF": "HÜCUMCU ORTA SAHA", "LWF": "SOL KANAT", "RWF": "SAĞ KANAT",
+                   "CFW": "SANTRFOR", "CF": "SANTRFOR", "ST": "SANTRFOR", "2ST": "SANTRFOR"}
+
 def render_kokpit():
     veri = kokpit_yukle()
     kulupler = veri.get("kulupler", {})
-    st.markdown(f"<div class='tp-isim'>🛰️ {_buyuk('Kulüp Kokpiti')} · {veri.get('sezon','2026-27')}</div>"
-                f"<div class='tp-arametin'>Admin-özel iç araç · SoccerDonna kadro anlık görüntüsü</div>",
-                unsafe_allow_html=True)
     if not kulupler:
         st.info("kokpit_kadrolar.json yok — `python kokpit_sd_cek.py` çalıştırın.")
         return
-    kulup = st.radio("Kulüp", list(kulupler), horizontal=True, label_visibility="collapsed")
-    kd = kulupler[kulup]
+    secili = st.session_state.get("kokpit_kulup")
+    if secili not in kulupler:
+        secili = next(iter(kulupler))
+    kd = kulupler[secili]
     kadro = kd.get("kadro", [])
+    _dq = "EN" if EN else "TR"
 
-    # ── Üst metrik şeridi ──
-    _toplam = sum(o.get("deger_eur") or 0 for o in kadro)
-    _yaslar = [int(o["yas"]) for o in kadro if str(o.get("yas", "")).isdigit()]
-    _yab = sum(1 for o in kadro if o.get("uyruk") and "Türkei" not in o["uyruk"])
-    _m = st.columns(4)
-    for kol, (deger, etiket) in zip(_m, [
-            (len(kadro), "OYUNCU"), (f"€{_toplam/1000:.0f}K" if _toplam else "—", "TOPLAM DEĞER"),
-            (f"{sum(_yaslar)/len(_yaslar):.1f}" if _yaslar else "—", "YAŞ ORT."),
-            (_yab, "YABANCI")]):
-        kol.markdown(f"<div class='profil-kart' style='padding:10px 14px;text-align:center;'>"
-                     f"<div class='tp-sekilli' style='color:#1db954;'>{deger}</div>"
-                     f"<div class='tp-arametin'>{etiket}</div></div>", unsafe_allow_html=True)
-    st.markdown(f"<div class='tp-arametin' style='margin:4px 0 10px;'>Çekiliş: {kd.get('cekilis','?')} · "
-                f"<a href='{kd.get('sd_url','')}' target='_blank' style='color:#a78bfa;'>SoccerDonna kaynağı ↗</a></div>",
-                unsafe_allow_html=True)
+    # ── Başlık (solda) + meta yazılar (SAĞ ÜSTTE — Baran isteği) ──
+    st.markdown(
+        f"<div style='display:flex;justify-content:space-between;align-items:flex-start;"
+        f"gap:14px;flex-wrap:wrap;'>"
+        f"<div class='tp-isim'>🛰️ {_buyuk('Kulüp Kokpiti')} · {veri.get('sezon','2026-27')}</div>"
+        f"<div class='tp-arametin' style='text-align:right;'>Admin-Özel İç Araç<br>"
+        f"Çekiliş: {kd.get('cekilis','?')} · "
+        f"<a href='{kd.get('sd_url','')}' target='_blank' style='color:#a78bfa;'>SoccerDonna ↗</a></div>"
+        f"</div>", unsafe_allow_html=True)
 
-    # ── KADRO SAHASI (mevki grubu kutuları, CSS grid saha) ──
+    # ── Kulüp seçici: ORTALANMIŞ ARMALAR (seçili renkli, diğerleri siyah-beyaz) ──
     st.markdown("""<style>
-.kk-saha{display:grid;grid-template-columns:1.06fr 1fr 1.06fr;gap:12px 16px;
- grid-template-areas:'. st .' 'lw on rw' 'pv . sk' 'lb ct rb' '. gk .';
- grid-template-rows:repeat(5,minmax(128px,auto));align-items:center;
- position:relative;min-height:760px;
- background:linear-gradient(180deg,#0e2117,#123020 55%,#0e2117);
- border:1px solid #2f6b4a;border-radius:14px;padding:22px 16px;}
-/* saha çizgileri: orta çizgi + santra + ceza sahaları */
-.kk-saha::before{content:'';position:absolute;left:3%;right:3%;top:50%;height:1px;
+.kk-armalar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin:10px 0 14px;}
+.kk-arma{display:flex;flex-direction:column;align-items:center;gap:3px;width:76px;
+ text-decoration:none!important;padding:6px 2px;border-radius:10px;border:1px solid transparent;}
+.kk-arma img,.kk-arma .kk-harf{height:42px;width:42px;object-fit:contain;border-radius:8px;
+ filter:grayscale(1);opacity:0.45;transition:all .15s;background:#ffffff10;}
+.kk-arma .kk-harf{display:flex;align-items:center;justify-content:center;font-weight:800;
+ color:#cbd5e1;font-size:1.1rem;}
+.kk-arma span{font-size:0.6rem;color:#64748b;text-align:center;line-height:1.2;font-weight:600;}
+.kk-arma:hover img,.kk-arma:hover .kk-harf{filter:grayscale(0.3);opacity:0.85;}
+.kk-arma.sec{border-color:#7c3aed;background:#1e133866;}
+.kk-arma.sec img,.kk-arma.sec .kk-harf{filter:none;opacity:1;}
+.kk-arma.sec span{color:#c4b5fd;}
+/* ── Metrik kartları: üstte toplam, altta Yerli|Yabancı (Baran isteği) ── */
+.kk-mkler{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px;}
+.kk-mk{background:#101829;border:1px solid #243149;border-radius:12px;padding:10px 12px;text-align:center;}
+.kk-mk .ust{font-size:14pt;font-weight:700;color:#1db954;}
+.kk-mk .et{font-size:10pt;font-style:italic;color:#94a3b8;margin:1px 0 7px;}
+.kk-mk .alt{display:flex;gap:6px;}
+.kk-mk .alt span{flex:1;background:#0d1220;border:1px solid #1e2a44;border-radius:8px;
+ padding:4px 2px;font-size:0.72rem;color:#d7dde8;font-weight:700;}
+.kk-mk .alt i{display:block;font-style:normal;font-size:0.56rem;color:#64748b;
+ letter-spacing:0.06em;font-weight:700;}
+/* ── SAHA: YATAY (kale solda, hücum sağda) ── */
+.kk-saha{display:grid;grid-template-columns:0.9fr 1.05fr 1.05fr 1.05fr;gap:12px 14px;
+ grid-template-areas:'. lb pv lw' 'gk ct on st' '. rb sk rw';
+ grid-template-rows:repeat(3,minmax(150px,auto));align-items:center;
+ position:relative;min-height:540px;
+ background:linear-gradient(90deg,#0e2117,#123020 55%,#0e2117);
+ border:1px solid #2f6b4a;border-radius:14px;padding:18px 20px;}
+.kk-saha::before{content:'';position:absolute;top:4%;bottom:4%;left:50%;width:1px;
  background:#2f6b4a;opacity:0.8;}
-.kk-saha::after{content:'';position:absolute;left:50%;top:50%;width:118px;height:118px;
+.kk-saha::after{content:'';position:absolute;left:50%;top:50%;width:110px;height:110px;
  border:1px solid #2f6b4a;border-radius:50%;transform:translate(-50%,-50%);opacity:0.8;}
-.kk-ceza{position:absolute;left:50%;transform:translateX(-50%);width:44%;height:62px;
+.kk-ceza{position:absolute;top:50%;transform:translateY(-50%);height:46%;width:58px;
  border:1px solid #2f6b4a;opacity:0.8;pointer-events:none;}
-.kk-ceza.ust{top:0;border-top:none;}
-.kk-ceza.alt{bottom:0;border-bottom:none;}
-.kk-kutu{background:#0d1220f2;border:1px solid #2a3550;border-radius:10px;padding:7px 9px;
+.kk-ceza.sol{left:0;border-left:none;}
+.kk-ceza.sag{right:0;border-right:none;}
+.kk-kutu{background:#0d1220f2;border-radius:10px;padding:7px 9px;
  min-width:0;position:relative;z-index:2;}
-/* çift pivot (SavOS + 8) hafif merkezde dursun */
-.kk-ic-sol{justify-self:end;width:88%;transform:translateX(22px);}
-.kk-ic-sag{justify-self:start;width:88%;transform:translateX(-22px);}
-.kk-bas{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #223050;
+.kk-bas{display:flex;justify-content:space-between;align-items:center;
  padding-bottom:4px;margin-bottom:5px;gap:6px;}
-.kk-bas b{font-size:0.64rem;letter-spacing:0.06em;color:#7dd3fc;font-weight:800;}
-.kk-say{background:#164e63;color:#7dd3fc;border-radius:99px;padding:0 7px;font-size:0.62rem;font-weight:800;}
+.kk-bas b{font-size:0.6rem;letter-spacing:0.05em;font-weight:800;}
+.kk-say{border-radius:99px;padding:0 7px;font-size:0.62rem;font-weight:800;}
 .kk-oy{display:flex;justify-content:space-between;gap:6px;font-size:0.7rem;padding:1.5px 0;color:#d7dde8;}
-.kk-oy i{color:#8899aa;font-style:normal;font-size:0.64rem;white-space:nowrap;}
+.kk-oy i{color:#8899aa;font-style:normal;font-size:0.62rem;white-space:nowrap;font-family:'Sora',monospace;}
 @media (max-width:768px){
  .kk-saha{grid-template-columns:1fr;min-height:0;grid-template-rows:auto;
-  grid-template-areas:'st' 'lw' 'on' 'rw' 'pv' 'sk' 'lb' 'ct' 'rb' 'gk';}
- .kk-saha::before,.kk-saha::after,.kk-ceza{display:none;}
- .kk-ic-sol,.kk-ic-sag{justify-self:stretch;width:auto;transform:none;}}
+  grid-template-areas:'gk' 'lb' 'ct' 'rb' 'pv' 'sk' 'on' 'lw' 'st' 'rw';}
+ .kk-saha::before,.kk-saha::after,.kk-ceza{display:none;}}
 </style>""", unsafe_allow_html=True)
-    _alan = {"SANTRFOR": "st", "SOL KANAT": "lw", "10": "on", "SAĞ KANAT": "rw",
-             "SAVUNMACI ORTA SAHA": "pv", "8": "sk", "SOL BEK": "lb", "STOPER": "ct",
-             "SAĞ BEK": "rb", "KALECİ": "gk"}
+    _armalar = ""
+    for ad, v in kulupler.items():
+        _sec = " sec" if ad == secili else ""
+        if v.get("arma"):
+            _gorsel = f"<img src='app/static/{v['arma']}' alt='{_html.escape(ad)}'>"
+        else:
+            _gorsel = f"<div class='kk-harf'>{_html.escape(ad[:1])}</div>"
+        _armalar += (f"<a class='kk-arma{_sec}' href='?kokpit={_urlquote(ad)}&dil={_dq}' "
+                     f"target='_self'>{_gorsel}<span>{_html.escape(ad)}</span></a>")
+    st.markdown(f"<div class='kk-armalar'>{_armalar}</div>", unsafe_allow_html=True)
+
+    # ── Metrikler: üst toplam + alt Yerli/Yabancı kırılımı ──
+    def _yerli_mi(o):
+        return "Türkei" in (o.get("uyruk") or "")
+    _yerliler = [o for o in kadro if _yerli_mi(o)]
+    _yabancilar = [o for o in kadro if (o.get("uyruk") and not _yerli_mi(o))]
+    def _yaslar(lst):
+        return [int(o["yas"]) for o in lst if str(o.get("yas", "")).isdigit()]
+    def _yas_ort(lst):
+        y = _yaslar(lst)
+        return f"{sum(y)/len(y):.1f}" if y else "—"
+    def _deger_top(lst):
+        v = sum(o.get("deger_eur") or 0 for o in lst)
+        return f"€{v/1000:.0f}K" if v else "—"
+    def _boy_ort(lst):
+        b = [x for x in (_kokpit_boy_f(o) for o in lst) if x > 1.0]
+        return f"{sum(b)/len(b):.2f}" if b else "—"
+    def _mk(etiket, genel, y, b):
+        return (f"<div class='kk-mk'><div class='ust'>{genel}</div>"
+                f"<div class='et'>{etiket}</div><div class='alt'>"
+                f"<span><i>YERLİ</i>{y}</span><span><i>YABANCI</i>{b}</span></div></div>")
+    st.markdown("<div class='kk-mkler'>"
+                + _mk("Oyuncu", len(kadro), len(_yerliler), len(_yabancilar))
+                + _mk("Ortalama Yaş", _yas_ort(kadro), _yas_ort(_yerliler), _yas_ort(_yabancilar))
+                + _mk("Toplam Değer", _deger_top(kadro), _deger_top(_yerliler), _deger_top(_yabancilar))
+                + _mk("Ortalama Boy", _boy_ort(kadro), _boy_ort(_yerliler), _boy_ort(_yabancilar))
+                + "</div>", unsafe_allow_html=True)
+
+    # ── Saha başlığı (solda) + sıralama seçeneği (sağda) ──
+    _cb, _cs = st.columns([3, 1.2])
+    with _cb:
+        st.markdown(f"<div class='tp-anabaslik' style='margin:10px 0 4px;'>{_buyuk('Kadro Sahası')}</div>",
+                    unsafe_allow_html=True)
+    with _cs:
+        _sira = st.selectbox("Sırala", ["Değere göre", "Yaşa göre", "Boya göre", "İsme göre"],
+                             key="kokpit_sirala", label_visibility="collapsed")
+    _sira_fn = {"Değere göre": lambda o: -(o.get("deger_eur") or 0),
+                "Yaşa göre":   lambda o: int(o["yas"]) if str(o.get("yas", "")).isdigit() else 99,
+                "Boya göre":   lambda o: -_kokpit_boy_f(o),
+                "İsme göre":   lambda o: o["isim"]}[_sira]
+
     _gruplu = {}
     for o in kadro:
         _gruplu.setdefault(o.get("grup", "DİĞER"), []).append(o)
+
+    def _oy_satir(o):
+        """İsim + sağda Yaş · Değer · Boy (Baran isteği)."""
+        _dv = o.get("deger_eur")
+        parca = [str(o.get("yas") or "—"),
+                 (f"€{_dv/1000:.0f}K" if _dv else "—"),
+                 (str(o.get("boy")).replace(",", ".") if o.get("boy") else "—")]
+        return (f"<div class='kk-oy'><span>{_html.escape(o['isim'])}</span>"
+                f"<i>{' · '.join(parca)}</i></div>")
+
     _sh = ""
-    for grup, alan in _alan.items():
-        oyuncular = _gruplu.get(grup, [])
-        satirlar = "".join(
-            f"<div class='kk-oy'><span>{_html.escape(o['isim'])}</span>"
-            f"<i>{_html.escape(o.get('deger') or '—')}</i></div>"
-            for o in oyuncular) or "<div class='kk-oy'><span style='color:#526079;'>boş</span></div>"
-        # SavOS/8 çift pivotu hafif merkeze çek (kanat gibi kenara yapışmasın)
-        _ek = " kk-ic-sol" if alan == "pv" else (" kk-ic-sag" if alan == "sk" else "")
-        _sh += (f"<div class='kk-kutu{_ek}' style='grid-area:{alan};'>"
-                f"<div class='kk-bas'><b>{grup}</b><span class='kk-say'>{len(oyuncular)}</span></div>"
+    for grup, alan in _KOKPIT_ALAN.items():
+        oyuncular = sorted(_gruplu.get(grup, []), key=_sira_fn)
+        _rk = _kokpit_dolu_renk(len(oyuncular))
+        satirlar = "".join(_oy_satir(o) for o in oyuncular) \
+            or "<div class='kk-oy'><span style='color:#526079;'>boş</span></div>"
+        _sh += (f"<div class='kk-kutu' style='grid-area:{alan};border:1px solid {_rk}66;'>"
+                f"<div class='kk-bas' style='border-bottom:1px solid {_rk}44;'>"
+                f"<b style='color:{_rk};'>{grup}</b>"
+                f"<span class='kk-say' style='background:{_rk}22;color:{_rk};'>{len(oyuncular)}</span></div>"
                 f"{satirlar}</div>")
-    st.markdown(f"<div class='tp-anabaslik' style='margin:6px 0;'>{_buyuk('Kadro Sahası')}</div>"
-                f"<div class='kk-saha'><div class='kk-ceza ust'></div>"
-                f"<div class='kk-ceza alt'></div>{_sh}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div class='kk-saha'><div class='kk-ceza sol'></div>"
+                f"<div class='kk-ceza sag'></div>{_sh}</div>", unsafe_allow_html=True)
+
+    # ── EKSİK MEVKİ ANALİZİ: 0-1 oyunculu mevkiler + scout havuzu önerileri ──
+    _eksikler = [(g, len(_gruplu.get(g, []))) for g in _KOKPIT_ALAN if len(_gruplu.get(g, [])) <= 1]
+    with st.expander(f"🧩 {_buyuk('Eksik Mevki Analizi')} ({len(_eksikler)})", expanded=False):
+        if not _eksikler:
+            st.markdown("<div class='tp-arametin'>Tüm mevkilerde 2+ oyuncu var ✓</div>",
+                        unsafe_allow_html=True)
+        else:
+            _scout = scout_kadro_yukle()
+            _oneri_havuz = {}
+            for _sisim, _sr in _scout.items():
+                if not _sr.get("degerlendirildi"):
+                    continue
+                for _kod in (_sr.get("mevki") or []):
+                    _g = _SCOUT_KOD_GRUP.get(str(_kod).upper().strip())
+                    if _g:
+                        _oneri_havuz.setdefault(_g, []).append((_sisim, _sr))
+            for grup, n in _eksikler:
+                _rk = _kokpit_dolu_renk(n)
+                st.markdown(f"<div style='margin:8px 0 3px;'>"
+                            f"<b style='color:{_rk};font-size:0.86rem;'>● {grup}</b> "
+                            f"<span class='tp-arametin'>— {n} oyuncu</span></div>",
+                            unsafe_allow_html=True)
+                _adaylar = sorted(_oneri_havuz.get(grup, []),
+                                  key=lambda x: -_scotr_puan(x[1].get("nihai", "")))[:3]
+                if _adaylar:
+                    _sat = "".join(
+                        f"<div style='font-size:0.78rem;padding:2px 0 2px 14px;color:#cbd5e1;'>"
+                        f"<a href='?oyuncu={_urlquote(_ai)}&dil={_dq}' target='_blank' "
+                        f"style='color:#c4b5fd;'>{_html.escape(_ai)}</a>"
+                        f" <span style='color:#64748b;'>· {_html.escape(_takim_kisa(_ar.get('kulup','') or '—'))}</span>"
+                        f" <b style='color:{_scotr_renk(_scotr_puan(_ar.get('nihai','')))};'>"
+                        f"{_ar.get('nihai','—')}</b></div>"
+                        for _ai, _ar in _adaylar)
+                    st.markdown("<div class='tp-arametin' style='padding-left:14px;'>Scout havuzundan öneri:</div>"
+                                + _sat, unsafe_allow_html=True)
+                else:
+                    st.markdown("<div class='tp-arametin' style='padding-left:14px;'>"
+                                "Scout havuzunda bu mevkiden değerlendirilmiş aday yok.</div>",
+                                unsafe_allow_html=True)
+
     if _gruplu.get("DİĞER"):
-        st.markdown("<div class='tp-arametin'>Mevkisi SD'de belirsiz: " +
+        st.markdown("<div class='tp-arametin' style='text-align:right;margin-top:6px;'>"
+                    "Mevkisi SD'de belirsiz: " +
                     ", ".join(_html.escape(o["isim"]) for o in _gruplu["DİĞER"]) + "</div>",
                     unsafe_allow_html=True)
 
@@ -7803,6 +7944,12 @@ if st.session_state.get("sayfa") == "kokpit":
     geri_ana_butonu("geri_kokpit")
     if st.session_state.get("kulup_kullanici") == "admin":
         render_kokpit()
+    elif _cookie_ctrl() is not None and not st.session_state.get("_ck_grace_kokpit"):
+        # Arma linki tam sayfa yükler → çerez oturumu ilk run'da henüz gelmemiş olur;
+        # tek seferlik bekleme (?oyuncu grace kalıbının aynısı)
+        st.session_state["_ck_grace_kokpit"] = True
+        st.markdown("<div style='text-align:center;padding:60px;color:#8899aa;'>⏳ Yükleniyor…</div>",
+                    unsafe_allow_html=True)
     else:
         st.warning(t("Bu sayfa yönetici içindir.", "This page is admin-only."))
     st.stop()
