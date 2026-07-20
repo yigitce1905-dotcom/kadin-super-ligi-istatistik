@@ -7901,10 +7901,23 @@ def render_kokpit():
             st.markdown("<div class='tp-arametin'>Tüm mevkilerde 2+ oyuncu var ✓</div>",
                         unsafe_allow_html=True)
         else:
+            st.markdown("<div class='tp-arametin'>Gerçekçilik filtresi: nihai not BC ve altı · "
+                        "TR görüşü olumlu ya da henüz sorulmamış (elit notlular ve İsteksizler hariç — "
+                        "Türkiye'ye gelme ihtimali olmayan oyuncu önerilmez)</div>",
+                        unsafe_allow_html=True)
             _scout = scout_kadro_yukle()
+            # GERÇEKÇİLİK FİLTRESİ (Yiğit): A+/AA/AB/BB gelmez, İsteksiz gelmez.
+            # Öncelik: TR görüşü olumlu olanlar > görüşü henüz sorulmamışlar.
+            _TR_ONCELIK = {"Çok İstekli": 0, "İstekli": 1, "Nötr": 2}
             _oneri_havuz = {}
             for _sisim, _sr in _scout.items():
                 if not _sr.get("degerlendirildi"):
+                    continue
+                _p = _scotr_puan(_sr.get("nihai", ""))
+                if not (0 < _p <= 3.5):                    # BC ve altı (BC=3.5)
+                    continue
+                _gtr = (_sr.get("tr_gorusu") or "").strip()
+                if _gtr and _gtr not in _TR_ONCELIK:       # İsteksiz / Çok İsteksiz → asla
                     continue
                 for _kod in (_sr.get("mevki") or []):
                     _g = _SCOUT_KOD_GRUP.get(str(_kod).upper().strip())
@@ -7916,22 +7929,30 @@ def render_kokpit():
                             f"<b style='color:{_rk};font-size:0.86rem;'>● {grup}</b> "
                             f"<span class='tp-arametin'>— {n} oyuncu</span></div>",
                             unsafe_allow_html=True)
-                _adaylar = sorted(_oneri_havuz.get(grup, []),
-                                  key=lambda x: -_scotr_puan(x[1].get("nihai", "")))[:3]
+                _adaylar = sorted(
+                    _oneri_havuz.get(grup, []),
+                    key=lambda x: (_TR_ONCELIK.get((x[1].get("tr_gorusu") or "").strip(), 3),
+                                   -_scotr_puan(x[1].get("nihai", ""))))[:3]
                 if _adaylar:
+                    def _gtr_rozet(_ar):
+                        _g = (_ar.get("tr_gorusu") or "").strip()
+                        if _g:
+                            return (f"<span style='color:#34d399;font-size:0.68rem;'>🇹🇷 "
+                                    f"{_html.escape(tr_gorus_goster(_g))}</span>")
+                        return "<span style='color:#64748b;font-size:0.68rem;'>görüş sorulmadı</span>"
                     _sat = "".join(
                         f"<div style='font-size:0.78rem;padding:2px 0 2px 14px;color:#cbd5e1;'>"
                         f"<a href='?oyuncu={_urlquote(_ai)}&dil={_dq}' target='_blank' "
                         f"style='color:#c4b5fd;'>{_html.escape(_ai)}</a>"
                         f" <span style='color:#64748b;'>· {_html.escape(_takim_kisa(_ar.get('kulup','') or '—'))}</span>"
                         f" <b style='color:{_scotr_renk(_scotr_puan(_ar.get('nihai','')))};'>"
-                        f"{_ar.get('nihai','—')}</b></div>"
+                        f"{_ar.get('nihai','—')}</b> {_gtr_rozet(_ar)}</div>"
                         for _ai, _ar in _adaylar)
-                    st.markdown("<div class='tp-arametin' style='padding-left:14px;'>Scout havuzundan öneri:</div>"
+                    st.markdown("<div class='tp-arametin' style='padding-left:14px;'>Gerçekçi transfer adayları:</div>"
                                 + _sat, unsafe_allow_html=True)
                 else:
                     st.markdown("<div class='tp-arametin' style='padding-left:14px;'>"
-                                "Scout havuzunda bu mevkiden değerlendirilmiş aday yok.</div>",
+                                "Bu mevkiden gerçekçi (BC↓ + TR'ye olumlu/nötr) aday yok.</div>",
                                 unsafe_allow_html=True)
 
     if _gruplu.get("DİĞER"):
