@@ -8,7 +8,7 @@ sözleşme/boy ile zenginleştirir → kokpit_kadrolar.json
 Kullanım:  python kokpit_sd_cek.py
 Yeni kulüp eklemek: KULUPLER sözlüğüne (ad, url) ekle, tekrar çalıştır.
 """
-import json, re, sys, unicodedata
+import json, re, sys, time, unicodedata
 from datetime import date
 from pathlib import Path
 import requests
@@ -18,10 +18,25 @@ sys.stdout.reconfigure(encoding="utf-8")
 KOK = Path(__file__).parent
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 
-# 2026-27 sezonu — kullanıcı verdikçe eklenecek (hedef: 16 kulüp)
+# 2026-27 sezonu — 16 kulüp (ALG yok; Beylerbeyi/Bornova Süper Lig'de değil)
+# FB/GS/BJK/FOMGET yeni SD kayıtları; diğerleri eski verein ID'leriyle (SD yönlendirir)
 KULUPLER = {
-    "Fenerbahçe":  "https://www.soccerdonna.de/en/fenerbahce-sk/startseite/verein_9522.html",
-    "Galatasaray": "https://www.soccerdonna.de/en/galatasaray-sk/startseite/verein_9537.html",
+    "Fenerbahçe":     "https://www.soccerdonna.de/en/fenerbahce-sk/startseite/verein_9522.html",
+    "Galatasaray":    "https://www.soccerdonna.de/en/galatasaray-sk/startseite/verein_9537.html",
+    "Beşiktaş":       "https://www.soccerdonna.de/en/besiktas-jk/startseite/verein_6981.html",
+    "Trabzonspor":    "https://www.soccerdonna.de/en/trabzonspor/startseite/verein_792.html",
+    "FOMGET":         "https://www.soccerdonna.de/en/abb-fomget-sk/startseite/verein_7247.html",
+    "Amed":           "https://www.soccerdonna.de/en/amed-sfk/startseite/verein_7245.html",
+    "Fatih Vatan":    "https://www.soccerdonna.de/en/fatih-vatan-sk/startseite/verein_7246.html",
+    "Hakkarigücü":    "https://www.soccerdonna.de/en/hakkariguecue-sk/startseite/verein_7066.html",
+    "Ünye":           "https://www.soccerdonna.de/en/uenye-guecue-fk/startseite/verein_13095.html",
+    "Giresun Sanayi": "https://www.soccerdonna.de/en/giresun-sanayi-sk/startseite/verein_14056.html",
+    "1207 Antalya":   "https://www.soccerdonna.de/en/1207-antalyaspor/startseite/verein_7352.html",
+    "Yüksekovaspor":  "https://www.soccerdonna.de/en/yuksekova-sk/startseite/verein_15697.html",
+    "Şile Bilgidoğa": "https://www.soccerdonna.de/en/bilgi-doga-sk/startseite/verein_15914.html",
+    "Haymana":        "https://www.soccerdonna.de/en/haymanaspor/startseite/verein_16154.html",
+    "Bakırköy Yenimahalle": "https://www.soccerdonna.de/en/bakirkoy-kadin-futbol-sk/startseite/verein_14028.html",
+    "Kayserispor":    "https://www.soccerdonna.de/en/kayseri-kadin-fk/startseite/verein_7356.html",
 }
 
 # SD mevki kodu → saha grubu (kokpit yerleşimi)
@@ -122,6 +137,7 @@ def main():
     eski["sezon"] = "2026-27"
     for ad, url in KULUPLER.items():
         print(f"── {ad} çekiliyor…")
+        time.sleep(0.4)
         kadro = kadro_cek(url)
         z = zenginlestir(kadro)
         eski["kulupler"][ad] = {
