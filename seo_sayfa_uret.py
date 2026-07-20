@@ -253,6 +253,10 @@ def main():
         encoding="utf-8")
     (CIKTI / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\nSitemap: {SEO_KOK}/sitemap.xml\n", encoding="utf-8")
+    # Google Search Console sahiplik doğrulaması — HER üretimde yeniden yazılır
+    # (silinirse mülk doğrulaması düşer; kaldırma!)
+    _gdogrula = "google9196afc491851c23.html"
+    (CIKTI / _gdogrula).write_text(f"google-site-verification: {_gdogrula}", encoding="utf-8")
     print(f"[OK] {len(slugs)} oyuncu sayfası + index + sitemap → {CIKTI}")
 
 if __name__ == "__main__":
