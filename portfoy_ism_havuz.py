@@ -33,9 +33,9 @@ OYUNCULAR = [
  ("Chloé Lachance-Soulard","KL","KL","Kanada","25 (2001)",170,"Sağ","Ottawa Rapids (NSL) — profesyonel lig bünyesinde",
   "Carleton Üniv. Takım MVP'si (2022); 2x OUA East All-Star (2022, 2025)",
   "https://www.youtube.com/watch?v=F0cRZCQpyg0"),
- ("Sydney Bellamy","KL","KL","ABD / Jamaika","23 (2003)",175,"Sağ","Son kulüp: Nhrhides Fthias (Yunanistan)",
-  "Jamaika A Milli (2 maç); 2x Yılın Kalecisi (2023, 2024); 2x First Team All-Conference",
-  "https://www.youtube.com/watch?v=CAY0ngFXzAE"),
+ ("Udoka Rachael Unachukwu","KL","KL","Nijerya","20 (2005)",172,"Çift","Nasarawa Amazons (Nijerya)",
+  "WAFCON 2024 Şampiyonu (Super Falcons); 2024 Yılın Kalecisi ödülü; refleks + çift ayak dağıtım",
+  "https://youtu.be/J6bnIZ7kLjg"),
  # ── DEFANS ──
  ("Angel Fowler","STP","DEF","İngiltere","24 (2002)",175,"Sağ","Carolina Ascent (USL W)",
   "2025 sezonu Yılın Oyuncusu; Brighton Akademi + AFC Wimbledon A Takım geçmişi",
@@ -49,10 +49,34 @@ OYUNCULAR = [
  ("Enez Mango","SLB","DEF","Kenya","33",0,"","Farul Constanța (Romanya)",
   "Takım kaptanı karakterinde, tecrübeli ve lider sol bek; 2025/26 sezon highlights",
   "https://youtu.be/WYqBwmWzl4I"),
+ ("Pavlinka Nikolovska","STP / DOS","DEF","K. Makedonya","",0,"","ZFK Tiverija (K. Makedonya)",
+  "K. Makedonya A Milli; fiziksel dominant modern stoper + lider; 1v1 + uzun pas + duran toplarda hava tehdidi",
+  "https://www.youtube.com/watch?v=iykGGq4T9H8"),
+ ("Anđela Savović","SLB / SLK","DEF","Karadağ","22 (2004)",0,"Sol","Serbest — hemen müsait",
+  "Karadağ A/U19/U17 Milli; UEFA WCL eleme deneyimi; keskin savunma zamanlaması + kaliteli orta",
+  "https://www.youtube.com/watch?v=niFwBfCuoH0"),
+ ("Kolawole Racheal Opeyemi","STP","DEF","Nijerya","27 (1998)",182,"Sağ","RS Berkane (Fas)",
+  "Nijerya Federasyon Kupası altın madalya (2020); güçlü hava topu + akıllı markaj; isabetli uzun paslarla oyun kurar",
+  "https://www.youtube.com/watch?v=fk8n-1nzx1c"),
+ ("Lucky Ugberhu","DEF","DEF","Nijerya","26 (2000)",166,"Sağ","Abia Angels (Nijerya)",
+  "Nijerya Kadınlar Ligi şampiyonu (2018); hızlı ve güçlü; hava hakimiyeti, baskı altında etkili",
+  "https://youtu.be/y9elVsexHkM"),
+ ("Mache Tella Prisca","STP / DOS","DEF","Kamerun","19 (2007)",0,"Çift","Fossito Foot Académie (Kamerun)",
+  "Kamerun A Milli (18 yaşında Nijerya'ya karşı debüt); U20 kilit oyuncu; robust stoper, hava hakimiyeti",
+  "https://drive.google.com/drive/folders/1LDdPAna5acc9iombNo-thNSFdXJOWR7U?usp=drive_link"),
  # ── ORTA SAHA ──
  ("Chinatsu Kaio","OOS / KNT","OS","Japonya","23 (2003)",152,"Sağ","Adelaide University SC (Avustralya)",
   "Japonya U17 Milli; CUSA şampiyonu ve CUSA En İyi 11",
   "https://www.youtube.com/watch?v=eB2IV6ubMsY"),
+ ("Joya-Maria Azzi","DOS / BEK","OS","Lübnan","25 (2000)",0,"Sağ","Central Methodist Eagles (ABD)",
+  "Lübnan A Milli (Dünya Kupası + Olimpiyat elemeleri); WPSL All-Conference Best XI; çok yönlü, elit çalışkanlık",
+  "https://youtu.be/LAioEruBNl0"),
+ ("Aleksandra Markovska","DOS","OS","K. Makedonya","29 (1997)",0,"","ŽFK Ljuboten (K. Makedonya) — yeni sezon için serbest",
+  "K. Makedonya Milli KAPTAN; zeki, zarif No.6 anchor; elit saha görüşü + UEFA WCL deneyimi",
+  "https://www.youtube.com/watch?v=a8Q8PFDuIXE"),
+ ("Ana Paula Villela","MOS / KNT","OS","Brezilya","29 (1997)",0,"","Serbest",
+  "Deneyimli Brezilyalı; hem merkez hem kanatta; elit teknik + yaratıcı vizyon, keskin pas menzili",
+  "https://www.youtube.com/watch?v=tfrMpFBe0cU"),
  # ── HÜCUM ──
  ("Enzi Starks Broussard","KNT","FW","ABD","25 (2001)",170,"Sağ","Son kulüp: Dallas Trinity FC (USL Super League)",
   "ABD U17 Milli; 2x Yılın Ofansif Oyuncusu (US Development Academy)",
@@ -60,6 +84,21 @@ OYUNCULAR = [
  ("Nikola Rybanska","ST","FW","Slovakya","31 (1995)",0,"","OFI Kreta (Yunanistan)",
   "Slovakya Milli Takımı as forveti; Golcü — Hedef Santrafor",
   "https://youtu.be/ACA2GLmZfSE"),
+ ("Doosuur Anastasia Atume","ST","FW","Nijerya","20 (2005)",0,"Sağ","Edo Queens (Nijerya)",
+  "2025/26 NWFL gol kraliçesi (11 gol, Altın Ayakkabı); güçlü fizik + hava; baskı altında golcü",
+  "https://youtu.be/_IMZH6r7ecA"),
+ ("Ljubica Bulum","ST / KNT","FW","Hırvatistan","21 (2004)",0,"Çift","ŽNK Donat-Zadar (Hırvatistan)",
+  "Bu sezon 35 GOL — ligini domine etti; patlayıcı hızlanma + çift ayak bitiricilik; ceza sahası içgüdüsü",
+  "https://www.youtube.com/watch?v=NO-Fsck0P2U"),
+ ("Paola Blue Ellis","KNT / ST","FW","ABD / Haiti","27 (1999)",0,"Sol","Serbest — son: Finlandiya üst lig",
+  "Haiti A Milli; elit hız, sol ayak; sol kanat/ileri çok yönlü, yüksek çalışkanlık",
+  "https://www.youtube.com/watch?v=xXEOCJwz1fs"),
+ ("Moses Esther Chioma","KNT","FW","Nijerya","20 (2006)",165,"Çift","Edo Queens (Nijerya)",
+  "Nijerya U20 (Falconets); hız + bitiricilik; NWFL 2023/24 + WAFU B şampiyonu",
+  "https://youtu.be/-68PygF3owI"),
+ ("Essien Emem Peace","KNT / ST","FW","Nijerya","24 (2001)",170,"Çift","Kickstart FC (Hindistan)",
+  "Super Falcons (A Milli); NWFL + WAFU B gol kralı (6 gol); U17/U20 geçmişi, çok yönlü hücum",
+  ""),
 ]
 
 # sitede rapor linki olanlar (varsa karta ★ Scout Raporu eklenir)
@@ -182,13 +221,14 @@ def kart(o, y):
         pdf.set_text_color(60, 68, 82)
         pdf.cell(CW - 20, 4.6, m[:100])
         yy += 4.8
-    # video butonu (lime hap + koyu yazı) — sağ alt
+    # video butonu (lime hap + koyu yazı) — sağ alt (video varsa)
     bw_ = 42
-    pdf.set_fill_color(*LIME)
-    pdf.rect(X0 + CW - 6 - bw_, y + CH - 10.5, bw_, 7, "F")
-    pdf.set_xy(X0 + CW - 6 - bw_, y + CH - 10); pdf.set_font("DV", "B", 8)
-    pdf.set_text_color(*KOYU)
-    pdf.cell(bw_, 6, "▶  HIGHLIGHTS İZLE", align="C", link=video)
+    if video:
+        pdf.set_fill_color(*LIME)
+        pdf.rect(X0 + CW - 6 - bw_, y + CH - 10.5, bw_, 7, "F")
+        pdf.set_xy(X0 + CW - 6 - bw_, y + CH - 10); pdf.set_font("DV", "B", 8)
+        pdf.set_text_color(*KOYU)
+        pdf.cell(bw_, 6, "▶  HIGHLIGHTS İZLE", align="C", link=video)
     site_key = _site_isim.get(_norm(isim))
     if site_key:
         pdf.set_xy(X0 + CW - 6 - bw_ - 46, y + CH - 10); pdf.set_font("DV", "B", 8)
@@ -196,31 +236,43 @@ def kart(o, y):
         pdf.cell(42, 6, "★ Scout Raporu", align="R",
                  link=f"https://womenfootballscouting.com/?paylas={quote(site_key)}")
 
-for si, (g, tr, en) in enumerate(GRUPLAR):
-    grup_oyun = [o for o in OYUNCULAR if o[2] == g]
-    if not grup_oyun:
-        continue
+Y0, Y_MAX = 34, 278          # ilk kart y'si · sayfa alt sınırı (footer üstü)
+
+def _grup_sayfa_ac(tr, en, adet):
     pdf.add_page(); zemin()
     marka_bandi(h=13, baslik="OYUNCU HAVUZU · YAZ 2026")
-    # bölge başlığı
     pdf.set_fill_color(*LIME); pdf.rect(X0, 20, 3.2, 8, "F")
     pdf.set_xy(X0 + 7, 20.6); pdf.set_font("DV", "B", 15); pdf.set_text_color(*METIN)
     pdf.cell(90, 7, tr)
     pdf.set_font("DV", "", 9.5); pdf.set_text_color(*GRIM)
-    pdf.cell(40, 7, "· " + en)
+    pdf.cell(50, 7, "· " + en)
     pdf.set_xy(X0, 20.6); pdf.set_font("DV", "", 9); pdf.set_text_color(*GRIM)
-    pdf.cell(CW, 7, f"{len(grup_oyun)} oyuncu", align="R")
-    # kartlar
-    y = 34
-    for o in grup_oyun:
-        kart(o, y)
-        y += CH + 6
-    # sayfa altı: küçük iletişim şeridi + sayfa no
+    pdf.cell(CW, 7, f"{adet} oyuncu", align="R")
+
+def _alt_bilgi(no):
     pdf.set_y(-16); pdf.set_font("DV", "", 7.6); pdf.set_text_color(*GRIM)
     pdf.set_x(X0)
     pdf.cell(CW / 2, 5, "Yiğit Çelebi · IDEAL Sports Management · +90 506 578 46 43")
-    pdf.cell(CW / 2, 5, f"{si + 2} / {len(GRUPLAR) + 1}", align="R")
+    pdf.cell(CW / 2, 5, f"Sayfa {no}", align="R")
+
+_sayfa_no = 1                 # kapak = 1
+for g, tr, en in GRUPLAR:
+    grup_oyun = [o for o in OYUNCULAR if o[2] == g]
+    if not grup_oyun:
+        continue
+    _sayfa_no += 1
+    _grup_sayfa_ac(tr, en, len(grup_oyun))
+    y = Y0
+    for o in grup_oyun:
+        if y + CH > Y_MAX:                 # sayfa doldu → yeni sayfa (grup devam)
+            _alt_bilgi(_sayfa_no)
+            _sayfa_no += 1
+            _grup_sayfa_ac(tr + " · devam", en, len(grup_oyun))
+            y = Y0
+        kart(o, y)
+        y += CH + 6
+    _alt_bilgi(_sayfa_no)
 
 cikti = pathlib.Path.home() / "Desktop" / "ISM_Oyuncu_Havuzu_2026.pdf"
 pdf.output(str(cikti))
-print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu · {1 + sum(1 for g,_,_ in GRUPLAR if _say[g])} sayfa")
+print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu · {_sayfa_no} sayfa")
