@@ -35,6 +35,24 @@ try:
     scotr = json.load(open(KOK / "scotr_raporlar.json", encoding="utf-8"))
 except Exception:
     scotr = {}
+# Uluslararası scouting havuzu (dünya) — künye+kariyer PUBLIC, nitelik/not SIZMAZ
+scout = json.load(open(KOK / "scout_kadro_raporlar.json", encoding="utf-8"))
+sd_scout = json.load(open(KOK / "scouting_sd_profiller.json", encoding="utf-8"))
+leist_scout = json.load(open(KOK / "scouting_leistungsdaten.json", encoding="utf-8"))
+
+def _norm_ad(s: str) -> str:
+    s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode()
+    return " ".join(s.casefold().split())
+
+_sd_scout_norm = {_norm_ad(k): v for k, v in sd_scout.items()}
+_leist_scout_norm = {_norm_ad(k): v for k, v in leist_scout.items()}
+
+_SCOUT_MEVKI_TR = {"GK": "Kaleci", "LFB": "Sol Bek", "LWB": "Sol Bek",
+                   "RFB": "Sağ Bek", "RWB": "Sağ Bek", "MCB": "Stoper",
+                   "LCB": "Stoper", "RCB": "Stoper", "DMF": "Savunmacı Orta Saha",
+                   "CMF": "Merkez Orta Saha", "AMF": "Hücumcu Orta Saha",
+                   "LWF": "Sol Kanat", "RWF": "Sağ Kanat", "CFW": "Santrafor",
+                   "CF": "Santrafor", "ST": "Santrafor", "2ST": "İkinci Santrafor"}
 
 def _slug(s: str) -> str:
     s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
@@ -210,6 +228,78 @@ def oyuncu_sayfasi(o, slug):
     return _sayfa(baslik, aciklama, f"{SEO_KOK}/{slug}", govde,
                   f'<script type="application/ld+json">{jsonld}</script>')
 
+def scouting_sayfasi(isim, rec, slug):
+    """Uluslararası scouting oyuncusu — PUBLIC künye + kariyer (nitelik/not YOK)."""
+    p = _sd_scout_norm.get(_norm_ad(isim)) or {}
+    if p.get("bulunamadi"):
+        p = {}
+    takim = rec.get("kulup") or (p.get("guncel_kulup") or "").strip() or "—"
+    mevki = " / ".join(dict.fromkeys(
+        _SCOUT_MEVKI_TR.get(str(k).upper().strip(), str(k)) for k in (rec.get("mevki") or [])))
+    if not mevki:
+        mevki = _MEVKI_TR.get((p.get("Position") or "").strip(), (p.get("Position") or "").strip())
+    lig = rec.get("lig") or ""
+    kunye = [("Kulüp", takim), ("Lig", lig), ("Mevki", mevki),
+             ("Doğum", rec.get("dogum") or (p.get("Date of birth") or "").strip()),
+             ("Yaş", str(rec.get("yas") or "").strip() or str(p.get("Age") or "").split()[0] if (rec.get("yas") or p.get("Age")) else ""),
+             ("Uyruk", rec.get("vatandaslik") or (p.get("Nationality") or "").strip()),
+             ("Boy", str(rec.get("boy") or "").strip() or (p.get("Height") or "").strip()),
+             ("Ayak", str(rec.get("ayak") or "").strip() or (p.get("Foot") or "").strip().capitalize()),
+             ("Sözleşme", rec.get("sozlesme") or (p.get("Contract until") or "").strip()),
+             ("Piyasa Değeri", rec.get("deger") or "")]
+    kutular = "".join(
+        f"<div class='kutu'><div class='et'>{_e(et)}</div><div class='dg'>{_e(dg)}</div></div>"
+        for et, dg in kunye if str(dg).strip() not in ("", "—", "unknown", "?"))
+    kry = (_leist_scout_norm.get(_norm_ad(isim)) or {}).get("sezonlar", [])
+    kulup_s = [s for s in kry if not s.get("milli")][:10]
+    milli_s = [s for s in kry if s.get("milli")][:6]
+    _tm = sum(int(s.get("mac") or 0) for s in kulup_s)
+    _tg = sum(int(s.get("gol") or 0) for s in kulup_s)
+    _ta = sum(int(s.get("asist") or 0) for s in kulup_s)
+    statlar = ("".join(f"<div class='stat'><b>{v}</b><i>{e}</i></div>"
+               for v, e in [(_tm, "Maç"), (_tg, "Gol"), (_ta, "Asist")])
+               if (_tm or _tg or _ta) else "")
+    def _tbl(rows, kolon):
+        if not rows:
+            return ""
+        tr = "".join(
+            f"<tr><td>{_e(s.get('sezon',''))}</td><td>{_e(s.get('kulup',''))}</td>"
+            f"<td>{_e(s.get('lig',''))}</td><td class='num'>{s.get('mac',0)}</td>"
+            f"<td class='num'>{s.get('gol',0)}</td><td class='num'>{s.get('dakika',0)}</td></tr>"
+            for s in rows)
+        return (f"<table><tr><th>Sezon</th><th>{kolon}</th><th>Lig</th>"
+                f"<th class='num'>Maç</th><th class='num'>Gol</th><th class='num'>Dk</th></tr>{tr}</table>")
+    kry_html = ""
+    if kulup_s:
+        kry_html += f"<div class='blokbaslik'>Kulüp Kariyeri</div>{_tbl(kulup_s,'Kulüp')}"
+    if milli_s:
+        kry_html += f"<div class='blokbaslik'>Milli Takım</div>{_tbl(milli_s,'Takım')}"
+    rozet = ("<div class='rozet'>🔬 Bu oyuncu için detaylı scout raporu mevcut</div>"
+             if rec.get("degerlendirildi") else "")
+    uyruk = rec.get("vatandaslik") or (p.get("Nationality") or "").strip()
+    aciklama = (f"{isim} — {takim}{(' · ' + lig) if lig else ''} · "
+                f"{mevki or 'kadın futbolu oyuncusu'}. Künye, kariyer istatistikleri "
+                f"ve scout profili — Women's Football Scouting.")
+    jsonld = json.dumps({
+        "@context": "https://schema.org", "@type": "Person", "name": isim,
+        "url": f"{SEO_KOK}/{slug}", "jobTitle": "Professional footballer",
+        "affiliation": {"@type": "SportsTeam", "name": takim, "sport": "Football"},
+        "nationality": uyruk or "—",
+    }, ensure_ascii=False)
+    govde = f"""
+<h1 class="isim">{_e(isim)}</h1>
+<div class="altsatir">{_e(takim)}{(' · ' + _e(mevki)) if mevki else ''} · Uluslararası Scouting Havuzu</div>
+<div class="kutular">{kutular}</div>
+{f"<div class='blokbaslik'>Kariyer Toplamı (Kulüp)</div><div class='statlar'>{statlar}</div>" if statlar else ""}
+{kry_html}
+{rozet}
+<a class="cta" href="{ANA_SITE}/?oyuncu={_e(isim).replace(' ', '%20')}">
+ 📊 Detaylı profil · benzerlik analizi · scout raporu — womenfootballscouting.com</a>"""
+    baslik = f"{isim} — {takim} | Scout Profili & Kariyer"
+    return _sayfa(baslik, aciklama, f"{SEO_KOK}/{slug}", govde,
+                  f'<script type="application/ld+json">{jsonld}</script>')
+
+
 def main():
     CIKTI.mkdir(exist_ok=True)
     for eski in CIKTI.glob("*.html"):
@@ -223,7 +313,28 @@ def main():
     for s, o in slugs.items():
         (CIKTI / f"{s}.html").write_text(oyuncu_sayfasi(o, s), encoding="utf-8")
 
-    # index: takıma göre gruplu tam liste
+    # ── Uluslararası scouting havuzu sayfaları (TR'dekilerle çakışan atlanır) ──
+    _tr_normlar = {_norm_ad(o["oyuncu"]) for o in oyuncular}
+    scout_slugs = {}
+    atlanan_bos = 0
+    for isim, rec in scout.items():
+        if _norm_ad(isim) in _tr_normlar:
+            continue                 # TR liginde zaten sayfası var
+        p = _sd_scout_norm.get(_norm_ad(isim)) or {}
+        kry = _leist_scout_norm.get(_norm_ad(isim)) or {}
+        # ince-içerik filtresi: künyesi de kariyeri de olmayan ham kayıt → sayfa açma
+        if (p.get("bulunamadi") or not p) and not kry.get("sezonlar") \
+                and not (rec.get("dogum") or rec.get("yas") or rec.get("boy")):
+            atlanan_bos += 1
+            continue
+        s = _slug(isim)
+        while s in slugs or s in scout_slugs:
+            s += "-2"
+        scout_slugs[s] = (isim, rec)
+    for s, (isim, rec) in scout_slugs.items():
+        (CIKTI / f"{s}.html").write_text(scouting_sayfasi(isim, rec, s), encoding="utf-8")
+
+    # index: TR takıma göre + Uluslararası havuz ülkeye göre gruplu tam liste
     gruplar = {}
     for s, o in slugs.items():
         gruplar.setdefault(_takim_kisa(o.get("takim", "")) or "Diğer", []).append((s, o["oyuncu"]))
@@ -232,20 +343,35 @@ def main():
         liste += f"<div class='takimbas'>{_e(takim)}</div>"
         for s, ad in sorted(gruplar[takim], key=lambda x: x[1]):
             liste += f"<a href='/{s}'>{_e(ad)}</a>"
+    sc_gruplar = {}
+    for s, (isim, rec) in scout_slugs.items():
+        _u = (rec.get("vatandaslik") or "Diğer").split("/")[0].strip() or "Diğer"
+        sc_gruplar.setdefault(_u, []).append((s, isim))
+    sc_liste = ""
+    for ulke in sorted(sc_gruplar):
+        sc_liste += f"<div class='takimbas'>{_e(ulke)}</div>"
+        for s, ad in sorted(sc_gruplar[ulke], key=lambda x: x[1]):
+            sc_liste += f"<a href='/{s}'>{_e(ad)}</a>"
+    toplam = len(slugs) + len(scout_slugs)
     govde = f"""
-<h1 class="isim">Kadın Futbol Süper Ligi Oyuncuları</h1>
-<div class="altsatir">2025-26 sezonu · {len(slugs)} oyuncu · istatistik, kariyer ve scout profilleri</div>
+<h1 class="isim">Kadın Futbolu Oyuncu Profilleri</h1>
+<div class="altsatir">Türkiye Süper Ligi {len(slugs)} oyuncu + uluslararası scouting havuzu {len(scout_slugs)} oyuncu
+ · istatistik, kariyer ve scout profilleri</div>
+<div class="blokbaslik">🇹🇷 Kadın Futbol Süper Ligi 2025-26</div>
 <div class="oyliste">{liste}</div>
-<a class="cta" href="{ANA_SITE}">📊 Karşılaştırma · percentile · scouting havuzu — womenfootballscouting.com</a>"""
+<div class="blokbaslik" style="margin-top:26px;">🌍 Uluslararası Scouting Havuzu</div>
+<div class="oyliste">{sc_liste}</div>
+<a class="cta" href="{ANA_SITE}">📊 Karşılaştırma · percentile · scout raporları — womenfootballscouting.com</a>"""
     (CIKTI / "index.html").write_text(
-        _sayfa("Kadın Futbol Süper Ligi Oyuncuları — İstatistik & Scout Profilleri",
-               f"Türkiye Kadın Futbol Süper Ligi {len(slugs)} oyuncunun istatistik, kariyer ve scout profilleri.",
+        _sayfa("Kadın Futbolu Oyuncu Profilleri — Süper Lig & Uluslararası Scouting",
+               f"Türkiye Kadın Futbol Süper Ligi {len(slugs)} oyuncu + {len(scout_slugs)} uluslararası "
+               f"oyuncunun istatistik, kariyer ve scout profilleri.",
                f"{SEO_KOK}/", govde), encoding="utf-8")
 
     # sitemap + robots
     bugun = date.today().isoformat()
     urls = "".join(f"<url><loc>{SEO_KOK}/{s}</loc><lastmod>{bugun}</lastmod></url>"
-                   for s in slugs)
+                   for s in list(slugs) + list(scout_slugs))
     (CIKTI / "sitemap.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
@@ -257,7 +383,8 @@ def main():
     # (silinirse mülk doğrulaması düşer; kaldırma!)
     _gdogrula = "google9196afc491851c23.html"
     (CIKTI / _gdogrula).write_text(f"google-site-verification: {_gdogrula}", encoding="utf-8")
-    print(f"[OK] {len(slugs)} oyuncu sayfası + index + sitemap → {CIKTI}")
+    print(f"[OK] TR {len(slugs)} + scouting {len(scout_slugs)} sayfa "
+          f"(ham atlanan: {atlanan_bos}) + index + sitemap → {CIKTI}")
 
 if __name__ == "__main__":
     main()
