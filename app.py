@@ -7758,6 +7758,9 @@ def render_kokpit():
 .kk-ceza.alt{bottom:0;border-bottom:none;}
 .kk-kutu{background:#0d1220f2;border:1px solid #2a3550;border-radius:10px;padding:7px 9px;
  min-width:0;position:relative;z-index:2;}
+/* çift pivot (SavOS + 8) hafif merkezde dursun */
+.kk-ic-sol{justify-self:end;width:88%;transform:translateX(22px);}
+.kk-ic-sag{justify-self:start;width:88%;transform:translateX(-22px);}
 .kk-bas{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #223050;
  padding-bottom:4px;margin-bottom:5px;gap:6px;}
 .kk-bas b{font-size:0.64rem;letter-spacing:0.06em;color:#7dd3fc;font-weight:800;}
@@ -7767,7 +7770,8 @@ def render_kokpit():
 @media (max-width:768px){
  .kk-saha{grid-template-columns:1fr;min-height:0;grid-template-rows:auto;
   grid-template-areas:'st' 'lw' 'on' 'rw' 'pv' 'sk' 'lb' 'ct' 'rb' 'gk';}
- .kk-saha::before,.kk-saha::after,.kk-ceza{display:none;}}
+ .kk-saha::before,.kk-saha::after,.kk-ceza{display:none;}
+ .kk-ic-sol,.kk-ic-sag{justify-self:stretch;width:auto;transform:none;}}
 </style>""", unsafe_allow_html=True)
     _alan = {"SANTRFOR": "st", "SOL KANAT": "lw", "10": "on", "SAĞ KANAT": "rw",
              "SAVUNMACI ORTA SAHA": "pv", "8": "sk", "SOL BEK": "lb", "STOPER": "ct",
@@ -7782,7 +7786,9 @@ def render_kokpit():
             f"<div class='kk-oy'><span>{_html.escape(o['isim'])}</span>"
             f"<i>{_html.escape(o.get('deger') or '—')}</i></div>"
             for o in oyuncular) or "<div class='kk-oy'><span style='color:#526079;'>boş</span></div>"
-        _sh += (f"<div class='kk-kutu' style='grid-area:{alan};'>"
+        # SavOS/8 çift pivotu hafif merkeze çek (kanat gibi kenara yapışmasın)
+        _ek = " kk-ic-sol" if alan == "pv" else (" kk-ic-sag" if alan == "sk" else "")
+        _sh += (f"<div class='kk-kutu{_ek}' style='grid-area:{alan};'>"
                 f"<div class='kk-bas'><b>{grup}</b><span class='kk-say'>{len(oyuncular)}</span></div>"
                 f"{satirlar}</div>")
     st.markdown(f"<div class='tp-anabaslik' style='margin:6px 0;'>{_buyuk('Kadro Sahası')}</div>"
