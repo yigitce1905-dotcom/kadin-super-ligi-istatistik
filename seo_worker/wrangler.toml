@@ -1,8 +1,0 @@
-name = "wfs-oyuncu-proxy"
-main = "worker.js"
-compatibility_date = "2026-07-01"
-
-routes = [
-  { pattern = "womenfootballscouting.com/oyuncu*", zone_name = "womenfootballscouting.com" },
-  { pattern = "womenfootballscouting.com/robots.txt", zone_name = "womenfootballscouting.com" },
-]

@@ -24,9 +24,9 @@ KOK = Path(__file__).parent
 CIKTI = KOK / "seo_site"
 
 ANA_SITE = "https://womenfootballscouting.com"
-# Ana domain altında path (SEO otoritesi tek domainde birleşir);
-# Worker route womenfootballscouting.com/oyuncu* → wfs-oyuncu.pages.dev proxy'ler.
-SEO_KOK = "https://womenfootballscouting.com/oyuncu"
+# Alt alan adı (apex DNS-only/Render'a bağlı olduğundan path-proxy mümkün değil;
+# oyuncu CNAME'i → wfs-oyuncu.pages.dev, Cloudflare Pages custom domain).
+SEO_KOK = "https://oyuncu.womenfootballscouting.com"
 
 oyuncular = json.load(open(KOK / "oyuncular.json", encoding="utf-8"))
 sd = json.load(open(KOK / "soccerdonna_profiller.json", encoding="utf-8"))
@@ -231,7 +231,7 @@ def main():
     for takim in sorted(gruplar):
         liste += f"<div class='takimbas'>{_e(takim)}</div>"
         for s, ad in sorted(gruplar[takim], key=lambda x: x[1]):
-            liste += f"<a href='/oyuncu/{s}'>{_e(ad)}</a>"
+            liste += f"<a href='/{s}'>{_e(ad)}</a>"
     govde = f"""
 <h1 class="isim">Kadın Futbol Süper Ligi Oyuncuları</h1>
 <div class="altsatir">2025-26 sezonu · {len(slugs)} oyuncu · istatistik, kariyer ve scout profilleri</div>
