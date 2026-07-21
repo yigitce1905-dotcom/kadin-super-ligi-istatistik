@@ -2804,6 +2804,14 @@ _manuel_json = _DIZIN / "manual_ages.json"
 _manuel_hash = __import__("hashlib").md5(_manuel_json.read_bytes()).hexdigest() if _manuel_json.exists() else ""
 _MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle(_manuel_hash)
 
+# Manuel mevki override'larını sd_profiller'ın "Position" alanına İŞLE — tek kaynak:
+# böylece profil/liste/arama/kaleci hepsi tutarlı override görür (eskiden override
+# yalnız 2 yerde okunuyordu, ana profil sd.get("Position")'ı doğrudan kullanıyordu).
+# sd_profiller @st.cache_data kopyası → mutasyon rerun'da idempotent, güvenli.
+for _oi, _op in _MANUEL_MEVKI.items():
+    if _op and _oi in sd_profiller and isinstance(sd_profiller[_oi], dict):
+        sd_profiller[_oi]["Position"] = _op
+
 
 def mevki_normalize(pozisyon: str) -> str:
     if not pozisyon: return "Bilinmiyor"
@@ -2814,8 +2822,7 @@ def mevki_normalize(pozisyon: str) -> str:
     if "right back" in p or "fullback, right" in p or "rv" == p: return "Sağ Bek"
     if "left back" in p or "fullback, left" in p or "lv" == p: return "Sol Bek"
     if "centre back" in p or "center back" in p or "central back" in p: return "Stoper"
-    if "defend" in p or "defence" in p: return "Defans"
-    # Orta Saha — detaylı
+    # Orta Saha — detaylı (defansif orta saha "defence" içerse de ÖNCE burada yakalanmalı)
     if "defensive mid" in p or "midfield - def" in p: return "Savunmacı Orta Saha"
     if "midfield, left" in p or "midfield - left" in p: return "Sol Kanat"
     if "midfield, right" in p or "midfield - right" in p: return "Sağ Kanat"
@@ -2824,6 +2831,10 @@ def mevki_normalize(pozisyon: str) -> str:
     if "left wing" in p and "mid" in p: return "Sol Kanat"
     if "right wing" in p and "mid" in p: return "Sağ Kanat"
     if "midfield" in p: return "Orta Saha"
+    # Yan/rol bilgisi olmayan salt "Defence/Defender" → Stoper (varsayılan merkez defans).
+    # Kullanıcı kuralı: hiçbir oyuncuda sadece "Defans" yazmamalı → hep belirli mevki.
+    # (Orta saha kontrollerinden SONRA: "Defence - Defensive Midfield" yukarıda yakalanır.)
+    if "defend" in p or "defence" in p or "defans" in p: return "Stoper"
     # Forvet — detaylı
     if "centre forward" in p or "center forward" in p: return "Santrafor"
     if "second striker" in p: return "İkinci Santrafor"
@@ -7738,6 +7749,12 @@ def kokpit_yukle() -> dict:
     except Exception:
         return {}
 
+# Kokpit mevki düzeltmeleri: SD/scraper'ın yanlış kodladığı oyuncular
+# (isim _isim_norm ile normalize → doğru saha grubu). Kullanıcı bildirimiyle büyür.
+_KOKPIT_MEVKI_DUZELT = {
+    _isim_norm("Yaren Colak"): "SAĞ BEK",   # SD "Midfield, right" (RM) → gerçekte sağ bek
+}
+
 # Saha yerleşimi (90° YATAY — Baran isteği: kale solda, hücum sağda)
 _KOKPIT_ALAN = {"KALECİ": "gk", "SOL BEK": "lb", "STOPER": "ct", "SAĞ BEK": "rb",
                 "SAVUNMACI ORTA SAHA": "pv", "MERKEZ ORTA SAHA": "sk",
@@ -7898,7 +7915,9 @@ def render_kokpit():
 
     _gruplu = {}
     for o in kadro:
-        _gruplu.setdefault(o.get("grup", "DİĞER"), []).append(o)
+        # SD/scraper mevki düzeltmeleri (isim-norm → doğru grup)
+        _g = _KOKPIT_MEVKI_DUZELT.get(_isim_norm(o["isim"]), o.get("grup", "DİĞER"))
+        _gruplu.setdefault(_g, []).append(o)
 
     def _oy_satir(o):
         """İsim + sağda Yaş · Değer · Boy (Baran isteği)."""
