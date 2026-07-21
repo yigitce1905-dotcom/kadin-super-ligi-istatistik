@@ -7749,6 +7749,18 @@ def kokpit_yukle() -> dict:
     except Exception:
         return {}
 
+@st.cache_data(show_spinner=False)
+def _kokpit_url_key_harita() -> dict:
+    """SD profil_url → profil anahtarı (tam ad). Kokpit oyuncusunu (SD kısa ad)
+    tıklanabilir profile bağlar; SD startseite adı ≠ profil anahtarı sorununu URL ile çözer."""
+    m = {}
+    for _src in (birlesik_sd_yukle(), sd_profiller):
+        for _k, _v in _src.items():
+            _u = _v.get("profil_url") if isinstance(_v, dict) else None
+            if _u:
+                m.setdefault(_u, _k)
+    return m
+
 # Kokpit mevki düzeltmeleri: SD/scraper'ın yanlış kodladığı oyuncular
 # (isim _isim_norm ile normalize → doğru saha grubu). Kullanıcı bildirimiyle büyür.
 _KOKPIT_MEVKI_DUZELT = {
@@ -7919,13 +7931,20 @@ def render_kokpit():
         _g = _KOKPIT_MEVKI_DUZELT.get(_isim_norm(o["isim"]), o.get("grup", "DİĞER"))
         _gruplu.setdefault(_g, []).append(o)
 
+    _url2key = _kokpit_url_key_harita()   # SD profil_url → profil anahtarı (tam ad)
     def _oy_satir(o):
-        """İsim + sağda Yaş · Değer · Boy (Baran isteği)."""
+        """İsim (profili varsa tıklanır link) + sağda Yaş · Değer · Boy."""
         _dv = o.get("deger_eur")
         parca = [str(o.get("yas") or "—"),
                  (f"€{_dv/1000:.0f}K" if _dv else "—"),
                  (str(o.get("boy")).replace(",", ".") if o.get("boy") else "—")]
-        return (f"<div class='kk-oy'><span>{_html.escape(o['isim'])}</span>"
+        _key = _url2key.get(o.get("profil_url", ""))
+        if _key:
+            _isim_html = (f"<a href='?oyuncu={_urlquote(_key)}&dil={_dq}' target='_blank' "
+                          f"style='color:#c4b5fd;text-decoration:none;'>{_html.escape(o['isim'])}</a>")
+        else:
+            _isim_html = _html.escape(o["isim"])
+        return (f"<div class='kk-oy'><span>{_isim_html}</span>"
                 f"<i>{' · '.join(parca)}</i></div>")
 
     _sh = ""
