@@ -7912,24 +7912,34 @@ def render_kokpit():
                 + _mk("Ortalama Boy", _boy_ort(kadro), _boy_ort(_yerliler), _boy_ort(_yabancilar))
                 + "</div>", unsafe_allow_html=True)
 
-    # ── Saha başlığı (solda) + sıralama seçeneği (sağda) ──
-    _cb, _cs = st.columns([3, 1.2])
+    # ── Saha başlığı (solda) + sıralama + DÜZENLEME MODU (sağda) ──
+    _cb, _cs, _ce = st.columns([2.3, 1.2, 1.3])
     with _cb:
         st.markdown(f"<div class='tp-anabaslik' style='margin:10px 0 4px;'>{_buyuk('Kadro Sahası')}</div>",
                     unsafe_allow_html=True)
     with _cs:
         _sira = st.selectbox("Sırala", ["Değere göre", "Yaşa göre", "Boya göre", "İsme göre"],
                              key="kokpit_sirala", label_visibility="collapsed")
+    with _ce:
+        _duzenle = st.toggle(f"✏️ {t('Düzenle','Edit')}", key="kokpit_duzenle",
+                             help=t("Gerçek kadro üzerinde oyuncuları mevkiler arası taşı — diziliş dene",
+                                    "Move players between positions on the real squad"))
     _sira_fn = {"Değere göre": lambda o: -(o.get("deger_eur") or 0),
                 "Yaşa göre":   lambda o: int(o["yas"]) if str(o.get("yas", "")).isdigit() else 99,
                 "Boya göre":   lambda o: -_kokpit_boy_f(o),
                 "İsme göre":   lambda o: o["isim"]}[_sira]
 
+    # Düzenleme modu: oyuncunun grubu session_state'ten (elle taşınmışsa) gelir
+    _grup_secenek = list(_KOKPIT_ALAN.keys()) + ["DİĞER"]
+    def _oyuncu_grup(o):
+        _wk = f"kkedit_{secili}_{_isim_norm(o['isim'])}"
+        if _duzenle and st.session_state.get(_wk):
+            return st.session_state[_wk]
+        return _KOKPIT_MEVKI_DUZELT.get(_isim_norm(o["isim"]), o.get("grup", "DİĞER"))
+
     _gruplu = {}
     for o in kadro:
-        # SD/scraper mevki düzeltmeleri (isim-norm → doğru grup)
-        _g = _KOKPIT_MEVKI_DUZELT.get(_isim_norm(o["isim"]), o.get("grup", "DİĞER"))
-        _gruplu.setdefault(_g, []).append(o)
+        _gruplu.setdefault(_oyuncu_grup(o), []).append(o)
 
     _url2key = _kokpit_url_key_harita()   # SD profil_url → profil anahtarı (tam ad)
     def _oy_satir(o):
@@ -7960,6 +7970,32 @@ def render_kokpit():
                 f"{satirlar}</div>")
     st.markdown(f"<div class='kk-saha'><div class='kk-ceza sol'></div>"
                 f"<div class='kk-ceza sag'></div>{_sh}</div>", unsafe_allow_html=True)
+
+    # ── DÜZENLEME MODU: her oyuncuya mevki seçici (gerçek kadro üzerinde diziliş dene) ──
+    if _duzenle:
+        _tasinan = sum(1 for o in kadro
+                       if st.session_state.get(f"kkedit_{secili}_{_isim_norm(o['isim'])}")
+                       and st.session_state[f"kkedit_{secili}_{_isim_norm(o['isim'])}"]
+                       != _KOKPIT_MEVKI_DUZELT.get(_isim_norm(o["isim"]), o.get("grup", "DİĞER")))
+        _eb1, _eb2 = st.columns([3, 1])
+        with _eb1:
+            st.markdown(f"<div class='tp-arabaslik' style='color:#a78bfa;margin-top:6px;'>✏️ "
+                        f"{_buyuk('Kadroyu Düzenle')}</div>"
+                        f"<div class='tp-arametin'>Her oyuncunun mevkisini değiştir — saha anında güncellenir "
+                        f"(yalnız görünüm, gerçek veri değişmez). Taşınan: {_tasinan}</div>",
+                        unsafe_allow_html=True)
+        with _eb2:
+            if st.button(f"↺ {t('Sıfırla','Reset')}", key="kokpit_edit_sifirla", width="stretch"):
+                for o in kadro:
+                    st.session_state.pop(f"kkedit_{secili}_{_isim_norm(o['isim'])}", None)
+                st.rerun()
+        _ecols = st.columns(3)
+        for _i, o in enumerate(sorted(kadro, key=lambda x: x["isim"])):
+            _wk = f"kkedit_{secili}_{_isim_norm(o['isim'])}"
+            _def = _KOKPIT_MEVKI_DUZELT.get(_isim_norm(o["isim"]), o.get("grup", "DİĞER"))
+            _idx = _grup_secenek.index(_def) if _def in _grup_secenek else len(_grup_secenek) - 1
+            with _ecols[_i % 3]:
+                st.selectbox(o["isim"], _grup_secenek, index=_idx, key=_wk)
 
     # ── EKSİK MEVKİ ANALİZİ: 0-1 oyunculu mevkiler + scout havuzu önerileri ──
     _eksikler = [(g, len(_gruplu.get(g, []))) for g in _KOKPIT_ALAN if len(_gruplu.get(g, [])) <= 1]
