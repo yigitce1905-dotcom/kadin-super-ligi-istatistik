@@ -2758,7 +2758,7 @@
   "Haymana": {
    "sd_url": "https://www.soccerdonna.de/en/haymanaspor/startseite/verein_16154.html",
    "cekilis": "2026-07-20",
-   "arma": "",
+   "arma": "armalar/haymana.jpg",
    "kadro": [
     {
      "isim": "Bedriye Cam",
@@ -2921,7 +2921,7 @@
   "Bakırköy Yenimahalle": {
    "sd_url": "https://www.soccerdonna.de/en/bakirkoy-kadin-futbol-sk/startseite/verein_14028.html",
    "cekilis": "2026-07-20",
-   "arma": "",
+   "arma": "armalar/bakirkoy-yenimahalle.jpg",
    "kadro": [
     {
      "isim": "Joan Nabirye",
