@@ -7733,6 +7733,14 @@ def _kokpit_boy_f(o) -> float:
     except Exception:
         return 0.0
 
+# Kulüp gücüne göre gerçekçi aday NOT TAVANI (Yiğit, 2026-07-21):
+# GS/FB/TS → BC↓ (3.5) · FOMGET/BJK/Yüksekova/Amed/Hakkari → CC↓ (3.0) · diğerleri → CD↓ (2.5)
+_KULUP_NOT_TAVANI = {
+    "Galatasaray": 3.5, "Fenerbahçe": 3.5, "Trabzonspor": 3.5,
+    "FOMGET": 3.0, "Beşiktaş": 3.0, "Yüksekovaspor": 3.0, "Amed": 3.0, "Hakkarigücü": 3.0,
+}
+_TAVAN_HARF = {3.5: "BC", 3.0: "CC", 2.5: "CD"}
+
 # Scout havuzu mevki kodu → kokpit grubu (eksik mevki önerileri için)
 _SCOUT_KOD_GRUP = {"GK": "KALECİ", "LFB": "SOL BEK", "LWB": "SOL BEK",
                    "RFB": "SAĞ BEK", "RWB": "SAĞ BEK",
@@ -7901,12 +7909,16 @@ def render_kokpit():
             st.markdown("<div class='tp-arametin'>Tüm mevkilerde 2+ oyuncu var ✓</div>",
                         unsafe_allow_html=True)
         else:
-            st.markdown("<div class='tp-arametin'>Gerçekçilik filtresi: nihai not BC ve altı · "
-                        "TR görüşü olumlu ya da henüz sorulmamış (elit notlular ve İsteksizler hariç — "
-                        "Türkiye'ye gelme ihtimali olmayan oyuncu önerilmez)</div>",
+            # KULÜP GÜCÜNE GÖRE NOT TAVANI (Yiğit): GS/FB/TS BC↓ · orta grup CC↓ · diğer CD↓
+            _tavan = _KULUP_NOT_TAVANI.get(secili, 2.5)
+            _tavan_h = _TAVAN_HARF.get(_tavan, "CD")
+            st.markdown(f"<div class='tp-arametin'>Gerçekçilik filtresi ({_html.escape(secili)}): "
+                        f"nihai not <b style='color:#94a3b8;'>{_tavan_h} ve altı</b> · "
+                        "TR görüşü olumlu ya da henüz sorulmamış "
+                        "(elit notlular ve İsteksizler hariç — gelme ihtimali olmayan önerilmez)</div>",
                         unsafe_allow_html=True)
             _scout = scout_kadro_yukle()
-            # GERÇEKÇİLİK FİLTRESİ (Yiğit): A+/AA/AB/BB gelmez, İsteksiz gelmez.
+            # GERÇEKÇİLİK FİLTRESİ: not tavanı üstü gelmez, İsteksiz gelmez.
             # Öncelik: TR görüşü olumlu olanlar > görüşü henüz sorulmamışlar.
             _TR_ONCELIK = {"Çok İstekli": 0, "İstekli": 1, "Nötr": 2}
             _oneri_havuz = {}
@@ -7914,13 +7926,15 @@ def render_kokpit():
                 if not _sr.get("degerlendirildi"):
                     continue
                 _p = _scotr_puan(_sr.get("nihai", ""))
-                if not (0 < _p <= 3.5):                    # BC ve altı (BC=3.5)
+                if not (0 < _p <= _tavan):                 # kulüp tavanı ve altı
                     continue
                 _gtr = (_sr.get("tr_gorusu") or "").strip()
                 if _gtr and _gtr not in _TR_ONCELIK:       # İsteksiz / Çok İsteksiz → asla
                     continue
-                for _kod in (_sr.get("mevki") or []):
-                    _g = _SCOUT_KOD_GRUP.get(str(_kod).upper().strip())
+                # Çoklu mevki kodu (LCB/MCB/RCB…) aynı gruba MÜKERRER eklemesin → grup seti
+                _gruplar_bu = {_SCOUT_KOD_GRUP.get(str(_kod).upper().strip())
+                               for _kod in (_sr.get("mevki") or [])}
+                for _g in _gruplar_bu:
                     if _g:
                         _oneri_havuz.setdefault(_g, []).append((_sisim, _sr))
             for grup, n in _eksikler:
@@ -7929,10 +7943,19 @@ def render_kokpit():
                             f"<b style='color:{_rk};font-size:0.86rem;'>● {grup}</b> "
                             f"<span class='tp-arametin'>— {n} oyuncu</span></div>",
                             unsafe_allow_html=True)
-                _adaylar = sorted(
+                _sirali = sorted(
                     _oneri_havuz.get(grup, []),
                     key=lambda x: (_TR_ONCELIK.get((x[1].get("tr_gorusu") or "").strip(), 3),
-                                   -_scotr_puan(x[1].get("nihai", ""))))[:3]
+                                   -_scotr_puan(x[1].get("nihai", ""))))
+                # isim bazlı tekilleştirme (aynı oyuncu iki kez görünmesin — güvenlik)
+                _gorulen, _adaylar = set(), []
+                for _ai, _ar in _sirali:
+                    if _ai in _gorulen:
+                        continue
+                    _gorulen.add(_ai)
+                    _adaylar.append((_ai, _ar))
+                    if len(_adaylar) >= 3:
+                        break
                 if _adaylar:
                     def _gtr_rozet(_ar):
                         _g = (_ar.get("tr_gorusu") or "").strip()
@@ -7952,7 +7975,7 @@ def render_kokpit():
                                 + _sat, unsafe_allow_html=True)
                 else:
                     st.markdown("<div class='tp-arametin' style='padding-left:14px;'>"
-                                "Bu mevkiden gerçekçi (BC↓ + TR'ye olumlu/nötr) aday yok.</div>",
+                                f"Bu mevkiden gerçekçi ({_tavan_h}↓ + TR'ye olumlu/nötr) aday yok.</div>",
                                 unsafe_allow_html=True)
 
     if _gruplu.get("DİĞER"):
