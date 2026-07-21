@@ -163,6 +163,10 @@ def main():
         time.sleep(0.4)
         kadro, arma = kadro_cek(url, ad)
         z = zenginlestir(kadro)
+        # Arma boş dönerse (SD'de yok — Bakırköy/Haymana gibi elle eklenenler)
+        # ESKİ armayı KORU; boşla ezme.
+        if not arma:
+            arma = (eski.get("kulupler", {}).get(ad, {}) or {}).get("arma", "")
         eski["kulupler"][ad] = {
             "sd_url": url, "cekilis": date.today().isoformat(),
             "arma": arma, "kadro": kadro}
