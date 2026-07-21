@@ -5774,8 +5774,7 @@ def render_ana_lig_profil(secili):
             (f"📋 {t('Diğer','Other')}", [
                 (f"🏟️ {t('Takım','Club')}", _takim_kisa(row["TümTakımlar"] if transfer else row["Takım"])),
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
-                (f"📍 {t('Doğum Yeri','Birthplace')}",
-                 bayrakli_ulke(_uyruk_goster(sd.get("Nationality",""))) or sd.get("Place of birth",""))]),
+                (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth", ""))]),
         ]
         _ana_kod = _MEVKI_SAHA_KOD.get(row.get("Mevki", ""))
         _saha_svg = _pozisyon_saha(_sc_mevki or ([_ana_kod] if _ana_kod else []))
