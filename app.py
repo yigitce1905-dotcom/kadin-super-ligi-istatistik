@@ -499,6 +499,28 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
         font-size: 0.6rem; font-weight: 800; text-transform: uppercase;
         letter-spacing: 0.03em;
     }
+
+    /* ── Kod/paylaşım kutuları taşmasın (paylaşılabilir link ~462px idi) ── */
+    [data-testid="stCode"], .stCode, pre, code {
+        white-space: pre-wrap !important; overflow-wrap: anywhere !important;
+        word-break: break-all !important; max-width: 100% !important;
+    }
+    /* ── Düz HTML tablolar (kariyer/milli/kokpit) → blok yatay kaydırılır,
+       sayfayı taşırmaz; font küçültülüp padding daraltılır (ws-table hariç) ── */
+    [data-testid="stMarkdown"]:has(table:not(.ws-table)) { overflow-x: auto !important; }
+    [data-testid="stMarkdown"] table:not(.ws-table) { font-size: 0.72rem !important; }
+    [data-testid="stMarkdown"] table:not(.ws-table) td,
+    [data-testid="stMarkdown"] table:not(.ws-table) th {
+        padding: 5px 7px !important;
+    }
+    /* ── Tipografi standardı pt birimleri mobilde hafif küçülsün (taşma/sıkışma) ── */
+    .tp-isim, .sc-isim { font-size: 13pt !important; }
+    .tp-anabaslik, .bk-baslik { font-size: 11pt !important; }
+    .tp-anametin, .bk-satir > b { font-size: 11pt !important; }
+    .bk-satir > span { font-size: 10pt !important; }
+    .tp-sekilli { font-size: 13pt !important; }
+    /* ── İçerik görselleri taşmasın (kokpit sabit-boyut armalar hariç) ── */
+    [data-testid="stMarkdown"] img { max-width: 100% !important; height: auto; }
 }
 
 /* ═══════════════════════════════════════
