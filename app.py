@@ -1480,6 +1480,22 @@ def sd_profiller_yukle():
 
 sd_profiller = sd_profiller_yukle()
 
+@st.cache_data(ttl=3600)
+def _tff_dogum_yeri_harita():
+    """SD'de doğum yeri boş olanlar için TFF'den çekilen doğum yerleri
+    (tff_dogum_yeri.py üretir). {isim: sehir}."""
+    yol = _DIZIN / "tff_dogum_yeri.json"
+    if yol.exists():
+        try:
+            return {k: v.get("dogum_yeri", "") for k, v in
+                    json.load(open(yol, encoding="utf-8")).items()}
+        except Exception:
+            return {}
+    return {}
+
+def _tff_dogum_yeri(isim: str) -> str:
+    return _tff_dogum_yeri_harita().get(isim, "")
+
 
 @st.cache_data(ttl=86400)
 def mac_sonuclari_yukle() -> list:
@@ -5785,7 +5801,8 @@ def render_ana_lig_profil(secili):
             (f"📋 {t('Diğer','Other')}", [
                 (f"🏟️ {t('Takım','Club')}", _takim_kisa(row["TümTakımlar"] if transfer else row["Takım"])),
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
-                (f"📍 {t('Doğum Yeri','Birthplace')}", sd.get("Place of birth", ""))]),
+                (f"📍 {t('Doğum Yeri','Birthplace')}",
+                 sd.get("Place of birth", "") or _tff_dogum_yeri(secili))]),
         ]
         _ana_kod = _MEVKI_SAHA_KOD.get(row.get("Mevki", ""))
         _saha_svg = _pozisyon_saha(_sc_mevki or ([_ana_kod] if _ana_kod else []))
