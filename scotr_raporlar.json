@@ -7448,7 +7448,7 @@
     "mevki1": "CMF",
     "mevki2": "DMF",
     "rol": "Dinamo",
-    "yas": "23",
+    "yas": "24",
     "uyruk": "Kamerun",
     "tam_isim": "Fadimatou Aretouyap Kome",
     "milli_takim": "",
@@ -9117,13 +9117,28 @@
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
     "yurtdisi_gorusu": "",
-    "beceri": {},
+    "beceri": {
+      "Bitiricilik": "DD",
+      "Top Tekniği": "CD",
+      "Penaltı Vuruşu": "CC",
+      "Markaj": "CD",
+      "Top Kapma": "BC",
+      "Uzun Taç": "DD",
+      "Duran Top": "CD",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "BC",
+      "Orta Yapma": "DE",
+      "Kısa Pas": "CC",
+      "Uzun Pas": "CD",
+      "Top Sürme": "CD",
+      "Uzaktan Şut": "CC"
+    },
     "beseri": {},
     "fiziki": {},
     "sahsi": {},
     "kaleci": {},
     "makro": {
-      "beceri": "",
+      "beceri": "CC",
       "beseri": "",
       "fiziki": "",
       "sahsi": "",
@@ -9133,7 +9148,7 @@
     "nihai": "",
     "ivme": "⬈",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": true
   },
   "AYŞE ŞEVVAL AY": {
     "takim": "FATİH VATAN SPOR",
@@ -9154,7 +9169,9 @@
     "yetenek_kumesi": "",
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
-    "beceri": {},
+    "beceri": {
+      "Bitiricilik": "CD"
+    },
     "beseri": {},
     "fiziki": {},
     "sahsi": {},
@@ -9170,7 +9187,7 @@
     "nihai": "",
     "ivme": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": true
   },
   "BEREN LİVA ÇEŞTAN": {
     "takim": "FATİH VATAN SPOR",
@@ -9191,7 +9208,9 @@
     "yetenek_kumesi": "",
     "iktisadi_durum": "",
     "yurtdisi_gorusu": "",
-    "beceri": {},
+    "beceri": {
+      "Bitiricilik": "EE"
+    },
     "beseri": {},
     "fiziki": {},
     "sahsi": {},
@@ -9207,7 +9226,7 @@
     "nihai": "",
     "ivme": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": true
   },
   "BUSE NUR KARATAŞ": {
     "takim": "FATİH VATAN SPOR",
@@ -15434,7 +15453,7 @@
     "mevki1": "LWF",
     "mevki2": "2ST",
     "rol": "İçe Kat Eden Kanat",
-    "yas": "19",
+    "yas": "20",
     "uyruk": "Türkiye",
     "tam_isim": "Berra Bayraktar",
     "milli_takim": "",

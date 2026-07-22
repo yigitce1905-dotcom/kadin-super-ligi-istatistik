@@ -2,7 +2,7 @@
  "kulupler": {
   "Fenerbahçe": {
    "sd_url": "https://www.soccerdonna.de/en/fenerbahce-sk/startseite/verein_9522.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/fenerbahce.jpg",
    "kadro": [
     {
@@ -225,7 +225,7 @@
   },
   "Galatasaray": {
    "sd_url": "https://www.soccerdonna.de/en/galatasaray-sk/startseite/verein_9537.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/galatasaray.jpg",
    "kadro": [
     {
@@ -508,7 +508,7 @@
   },
   "Beşiktaş": {
    "sd_url": "https://www.soccerdonna.de/en/besiktas-jk/startseite/verein_6981.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/besiktas.jpg",
    "kadro": [
     {
@@ -719,7 +719,7 @@
   },
   "Trabzonspor": {
    "sd_url": "https://www.soccerdonna.de/en/trabzonspor/startseite/verein_792.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/trabzonspor.jpg",
    "kadro": [
     {
@@ -930,7 +930,7 @@
   },
   "FOMGET": {
    "sd_url": "https://www.soccerdonna.de/en/abb-fomget-sk/startseite/verein_7247.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/fomget.jpg",
    "kadro": [
     {
@@ -1057,7 +1057,7 @@
   },
   "Amed": {
    "sd_url": "https://www.soccerdonna.de/en/amed-sfk/startseite/verein_7245.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/amed.jpg",
    "kadro": [
     {
@@ -1124,7 +1124,7 @@
   },
   "Fatih Vatan": {
    "sd_url": "https://www.soccerdonna.de/en/fatih-vatan-sk/startseite/verein_7246.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/fatih-vatan.jpg",
    "kadro": [
     {
@@ -1215,7 +1215,7 @@
   },
   "Hakkarigücü": {
    "sd_url": "https://www.soccerdonna.de/en/hakkariguecue-sk/startseite/verein_7066.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/hakkarigucu.jpg",
    "kadro": [
     {
@@ -1270,7 +1270,7 @@
   },
   "Ünye": {
    "sd_url": "https://www.soccerdonna.de/en/uenye-guecue-fk/startseite/verein_13095.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/unye.jpg",
    "kadro": [
     {
@@ -1373,7 +1373,7 @@
   },
   "Giresun Sanayi": {
    "sd_url": "https://www.soccerdonna.de/en/giresun-sanayi-sk/startseite/verein_14056.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/giresun-sanayi.jpg",
    "kadro": [
     {
@@ -1476,7 +1476,7 @@
   },
   "1207 Antalya": {
    "sd_url": "https://www.soccerdonna.de/en/1207-antalyaspor/startseite/verein_7352.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/1207-antalya.jpg",
    "kadro": [
     {
@@ -1567,21 +1567,9 @@
   },
   "Yüksekovaspor": {
    "sd_url": "https://www.soccerdonna.de/en/yuksekova-sk/startseite/verein_15697.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/yuksekovaspor.jpg",
    "kadro": [
-    {
-     "isim": "Sevinj Jafarzade",
-     "kod": "RM",
-     "grup": "SAĞ KANAT",
-     "yas": "32",
-     "uyruk": "Aserbaidschan",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/sevinj-jafarzade/profil/spieler_34988.html",
-     "sozlesme": "",
-     "boy": ""
-    },
     {
      "isim": "Bahar Kol",
      "kod": "DM",
@@ -1634,7 +1622,7 @@
   },
   "Şile Bilgidoğa": {
    "sd_url": "https://www.soccerdonna.de/en/bilgi-doga-sk/startseite/verein_15914.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/sile-bilgidoga.jpg",
    "kadro": [
     {
@@ -1749,7 +1737,7 @@
   },
   "Haymana": {
    "sd_url": "https://www.soccerdonna.de/en/haymanaspor/startseite/verein_16154.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/haymana.jpg",
    "kadro": [
     {
@@ -1852,7 +1840,7 @@
   },
   "Bakırköy Yenimahalle": {
    "sd_url": "https://www.soccerdonna.de/en/bakirkoy-kadin-futbol-sk/startseite/verein_14028.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/bakirkoy-yenimahalle.jpg",
    "kadro": [
     {
@@ -1907,7 +1895,7 @@
   },
   "Kayserispor": {
    "sd_url": "https://www.soccerdonna.de/en/kayseri-kadin-fk/startseite/verein_7356.html",
-   "cekilis": "2026-07-21",
+   "cekilis": "2026-07-22",
    "arma": "armalar/kayserispor.jpg",
    "kadro": [
     {
