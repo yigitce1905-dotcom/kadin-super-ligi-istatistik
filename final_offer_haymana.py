@@ -55,7 +55,7 @@ pdf.ln(3)
 
 maddeler = [
     "800 US DOLLAR net monthly salary",
-    "Win bonus: minimum 200 US DOLLAR per official match won",
+    "Win bonus available for important wins",
     "Accommodation: room in club facility",
     "Round trip flight ticket (home country – Türkiye)",
     "3 meals (breakfast, lunch, dinner in club facilities)",
