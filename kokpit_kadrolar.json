@@ -2,7 +2,7 @@
  "kulupler": {
   "Fenerbahçe": {
    "sd_url": "https://www.soccerdonna.de/en/fenerbahce-sk/startseite/verein_9522.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/fenerbahce.jpg",
    "kadro": [
     {
@@ -237,7 +237,7 @@
   },
   "Galatasaray": {
    "sd_url": "https://www.soccerdonna.de/en/galatasaray-sk/startseite/verein_9537.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/galatasaray.jpg",
    "kadro": [
     {
@@ -544,7 +544,7 @@
   },
   "Beşiktaş": {
    "sd_url": "https://www.soccerdonna.de/en/besiktas-jk/startseite/verein_6981.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/besiktas.jpg",
    "kadro": [
     {
@@ -767,7 +767,7 @@
   },
   "Trabzonspor": {
    "sd_url": "https://www.soccerdonna.de/en/trabzonspor/startseite/verein_792.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/trabzonspor.jpg",
    "kadro": [
     {
@@ -879,18 +879,6 @@
      "boy": ""
     },
     {
-     "isim": "Başak İçinözbebek",
-     "kod": "ZM",
-     "grup": "MERKEZ ORTA SAHA",
-     "yas": "32",
-     "uyruk": "Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/basak-icinoezbebek/profil/spieler_40759.html",
-     "sozlesme": "30.06.2026",
-     "boy": "1,70"
-    },
-    {
      "isim": "Benan Altintaş",
      "kod": "LM",
      "grup": "SOL KANAT",
@@ -913,6 +901,18 @@
      "profil_url": "https://www.soccerdonna.de/en/barbara-zagonyi/profil/spieler_50909.html",
      "sozlesme": "",
      "boy": ""
+    },
+    {
+     "isim": "Başak İçinözbebek",
+     "kod": "ZM",
+     "grup": "MERKEZ ORTA SAHA",
+     "yas": "32",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/basak-icinoezbebek/profil/spieler_40759.html",
+     "sozlesme": "30.06.2026",
+     "boy": "1,70"
     },
     {
      "isim": "Olha Ovdiychuk",
@@ -999,6 +999,18 @@
      "boy": ""
     },
     {
+     "isim": "Millie Farrow",
+     "kod": "MS",
+     "grup": "SANTRFOR",
+     "yas": "30",
+     "uyruk": "England",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/millie-farrow/profil/spieler_26152.html",
+     "sozlesme": "30.06.2026",
+     "boy": "1,63"
+    },
+    {
      "isim": "Violah Nambi",
      "kod": "LA",
      "grup": "SOL KANAT",
@@ -1014,7 +1026,7 @@
   },
   "FOMGET": {
    "sd_url": "https://www.soccerdonna.de/en/abb-fomget-sk/startseite/verein_7247.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/fomget.jpg",
    "kadro": [
     {
@@ -1177,7 +1189,7 @@
   },
   "Amed": {
    "sd_url": "https://www.soccerdonna.de/en/amed-sfk/startseite/verein_7245.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/amed.jpg",
    "kadro": [
     {
@@ -1244,7 +1256,7 @@
   },
   "Fatih Vatan": {
    "sd_url": "https://www.soccerdonna.de/en/fatih-vatan-sk/startseite/verein_7246.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/fatih-vatan.jpg",
    "kadro": [
     {
@@ -1335,7 +1347,7 @@
   },
   "Hakkarigücü": {
    "sd_url": "https://www.soccerdonna.de/en/hakkariguecue-sk/startseite/verein_7066.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/hakkarigucu.jpg",
    "kadro": [
     {
@@ -1390,7 +1402,7 @@
   },
   "Ünye": {
    "sd_url": "https://www.soccerdonna.de/en/uenye-guecue-fk/startseite/verein_13095.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/unye.jpg",
    "kadro": [
     {
@@ -1553,7 +1565,7 @@
   },
   "Giresun Sanayi": {
    "sd_url": "https://www.soccerdonna.de/en/giresun-sanayi-sk/startseite/verein_14056.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/giresun-sanayi.jpg",
    "kadro": [
     {
@@ -1656,7 +1668,7 @@
   },
   "1207 Antalya": {
    "sd_url": "https://www.soccerdonna.de/en/1207-antalyaspor/startseite/verein_7352.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/1207-antalya.jpg",
    "kadro": [
     {
@@ -1747,7 +1759,7 @@
   },
   "Yüksekovaspor": {
    "sd_url": "https://www.soccerdonna.de/en/yuksekova-sk/startseite/verein_15697.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/yuksekovaspor.jpg",
    "kadro": [
     {
@@ -1802,7 +1814,7 @@
   },
   "Şile Bilgidoğa": {
    "sd_url": "https://www.soccerdonna.de/en/bilgi-doga-sk/startseite/verein_15914.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/sile-bilgidoga.jpg",
    "kadro": [
     {
@@ -1917,7 +1929,7 @@
   },
   "Haymana": {
    "sd_url": "https://www.soccerdonna.de/en/haymanaspor/startseite/verein_16154.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/haymana.jpg",
    "kadro": [
     {
@@ -2020,7 +2032,7 @@
   },
   "Bakırköy Yenimahalle": {
    "sd_url": "https://www.soccerdonna.de/en/bakirkoy-kadin-futbol-sk/startseite/verein_14028.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/bakirkoy-yenimahalle.jpg",
    "kadro": [
     {
@@ -2075,9 +2087,21 @@
   },
   "Kayserispor": {
    "sd_url": "https://www.soccerdonna.de/en/kayseri-kadin-fk/startseite/verein_7356.html",
-   "cekilis": "2026-07-22",
+   "cekilis": "2026-07-24",
    "arma": "armalar/kayserispor.jpg",
    "kadro": [
+    {
+     "isim": "Marlène Essimi",
+     "kod": "IV",
+     "grup": "STOPER",
+     "yas": "20",
+     "uyruk": "Kamerun",
+     "deger": "10.000 €",
+     "deger_eur": 10000,
+     "profil_url": "https://www.soccerdonna.de/en/marlne-essimi/profil/spieler_91919.html",
+     "sozlesme": "",
+     "boy": ""
+    },
     {
      "isim": "Buse Ucan",
      "kod": "ZM",
