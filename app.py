@@ -3157,6 +3157,15 @@ def _ab_uyumlu(*uyruklar) -> bool:
             return True
     return False
 
+def _kontrat_guncel(sozlesme, sd_contract):
+    """Güncel sözleşme bitişi. SoccerDonna 'Contract until' geçerli bir tarihse onu
+    döndürür (SD sheet'ten DAHA GÜNCEL — Baran'ın sozlesme'si bayat kalabiliyor);
+    SD '?'/boş ise sheet 'sozlesme'ye düşer, o da yoksa '—'."""
+    _sd = str(sd_contract or "").strip()
+    if _sd and _sd not in ("?", "-", "—", ""):
+        return _sd
+    return str(sozlesme or "").strip() or "—"
+
 def _ilk_uyruk(nat_str: str) -> str:
     """'TurkeyGermany' → 'Turkey', 'United StatesEthiopia' → 'United States', 'France' → 'France'.
     SD uyruk sırasında İLK ülke = milli takım (scouting ground-truth'ta 83/83 doğrulandı).
@@ -4107,7 +4116,7 @@ def render_shortlist_kartlari(isimler, kullanici):
         _kl  = _kd.get("kulup", "") or ""
         _lg  = _kd.get("lig", "") or ""
         _dg  = _kd.get("deger", "") or "—"
-        _sz  = _kd.get("sozlesme", "") or sd.get("Contract until", "") or "—"
+        _sz  = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
         _nh  = _kd.get("nihai", "")
         _uy  = ulke_goster(_uyruk_goster(sd.get("Nationality", "") or _kd.get("vatandaslik", "")))
         _m   = _notlar.get(isim, {})
@@ -4174,7 +4183,8 @@ def render_scouting_detay(tam_isim):
     boy      = sd.get("Height", "—")
     mevki    = sd.get("Position", "—")
     ayak     = sd.get("Foot", "—")
-    sozlesme = sd.get("Contract until", "—")
+    sozlesme = _kontrat_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("sozlesme", ""),
+                               sd.get("Contract until", ""))
     vatandas = sd.get("Nationality", "—")
     sd_url   = sd.get("profil_url", "")
     sd_badge = (f'<a href="{sd_url}" target="_blank" style="font-size:0.78rem;'
@@ -6532,7 +6542,7 @@ def render_paylasim_raporu(isim: str):
     kulup = _takim_kisa(kadro.get("kulup", "") or "") or "—"
     lig   = kadro.get("lig", "") or "—"
     deger = kadro.get("deger", "") or sd.get("Market value", "") or "—"
-    sozl  = kadro.get("sozlesme", "") or sd.get("Contract until", "") or "—"
+    sozl  = _kontrat_guncel(kadro.get("sozlesme", ""), sd.get("Contract until", ""))
     nihai = (kadro.get("nihai", "") or "").strip()
     tarz  = kadro.get("tarz", "") or ""
     if isinstance(tarz, list):
@@ -8444,9 +8454,9 @@ if st.session_state.get("sayfa") == "scouting":
                     def _sozlesme_ay_kalan(_nm):
                         """Sözleşme bitişine kalan ay (negatif=bitmiş). Bilinmiyorsa None."""
                         _rec = _kadro_roster.get(_nm, {})
-                        _s = (_rec.get("sozlesme") or "").strip()
-                        if not _s:
-                            _s = (sd_data.get(_nm, {}).get("Contract until") or "").strip()
+                        # SD 'Contract until' daha güncel → onu öncele; '?'/boşsa sheet'e düş
+                        _s = _kontrat_guncel(_rec.get("sozlesme", ""),
+                                             sd_data.get(_nm, {}).get("Contract until", ""))
                         if not _s or _s in ("—", "-"):
                             return None
                         _m = _ret.search(r"(\d{1,2})[.\-/](\d{1,2})[.\-/]((?:19|20)\d{2})", _s)
@@ -8552,7 +8562,7 @@ if st.session_state.get("sayfa") == "scouting":
                                  if not s.get("milli")]
                         if not _kl and _sezk:
                             _kl = _sezk[0].get("kulup", "")
-                        _sz = _kd.get("sozlesme", "") or sd.get("Contract until", "") or ""
+                        _sz = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
                         _dg = _kd.get("deger", "") or ""
                         _mac = sum(s.get("mac", 0) for s in _sezk)
                         _gol = sum(s.get("gol", 0) for s in _sezk)
