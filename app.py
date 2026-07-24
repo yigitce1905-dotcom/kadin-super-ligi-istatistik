@@ -3127,6 +3127,33 @@ def ulke_goster(m):
     m = (m or "").strip()
     return _ULKE_EN.get(m, m) if EN else _ULKE_TR.get(m, m)
 
+# ── AB (Avrupa Birliği) uyumluluğu: iki uyruktan biri EU-27 ise "AB uyumlu" ──
+_AB_SEC = "__AB_UYUMLU__"          # ülke filtresi sentinel'i
+def _ulke_ascii(s: str) -> str:
+    import unicodedata as _ud
+    s = _ud.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode()
+    return " ".join(s.lower().split())
+_AB_ULKELERI = {_ulke_ascii(x) for x in (
+    # EU-27 (TR + EN + yaygın varyantlar)
+    "Almanya","Germany","Fransa","France","İtalya","Italy","İspanya","Spain",
+    "Hollanda","Netherlands","Belçika","Belgium","Portekiz","Portugal",
+    "Avusturya","Austria","İrlanda","Ireland","Yunanistan","Greece","Polonya","Poland",
+    "İsveç","Sweden","Danimarka","Denmark","Finlandiya","Finland",
+    "Çekya","Çek Cumhuriyeti","Czechia","Czech Republic","Macaristan","Hungary",
+    "Romanya","Romania","Bulgaristan","Bulgaria","Hırvatistan","Croatia",
+    "Slovakya","Slovakia","Slovenya","Slovenia","Litvanya","Lithuania",
+    "Letonya","Latvia","Estonya","Estonia","Lüksemburg","Luxembourg","Malta",
+    "Kıbrıs","Güney Kıbrıs","Cyprus")}
+def _ab_uyumlu(*uyruklar) -> bool:
+    """Verilen uyruklardan (ör. vatandaşlık + 2. vatandaşlık) herhangi biri EU-27 ise True."""
+    for u in uyruklar:
+        s = str(u or "")
+        for sep in ("/", ",", "&", " ve ", ";"):
+            s = s.replace(sep, "|")
+        if any(_ulke_ascii(p) in _AB_ULKELERI for p in s.split("|") if p.strip()):
+            return True
+    return False
+
 def _ilk_uyruk(nat_str: str) -> str:
     """'TurkeyGermany' → 'Turkey', 'United StatesEthiopia' → 'United States', 'France' → 'France'.
     SD uyruk sırasında İLK ülke = milli takım (scouting ground-truth'ta 83/83 doğrulandı).
@@ -3651,11 +3678,20 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
     sonuc = _benzer_oyuncular(hedef_isim, kaynak)
     if not sonuc:
         return
-    st.markdown(f"#### 🔎 {t('Benzer Oyuncular — Türkiye Ligi', 'Similar Players — Turkish League')}")
-    st.caption(t("Türkiye liginden, aynı mevki grubunda yaş, boy, deneyim ve gol/asist profili "
+    if kaynak == "analig":
+        _bas = t('Benzer Oyuncular — Türkiye Ligi', 'Similar Players — Turkish League')
+        _cap = t("Türkiye liginden, aynı mevki grubunda yaş, boy, deneyim ve gol/asist profili "
                  "en yakın 3 oyuncu — yüzde, profillerin yakınlık derecesidir",
-                 "3 closest players in the same position group by age, height, experience and "
-                 "goal/assist profile — the percentage is profile closeness"))
+                 "3 closest players in the Turkish league in the same position group by age, height, "
+                 "experience and goal/assist profile — the percentage is profile closeness")
+    else:
+        _bas = t('Benzer Oyuncular — Scouting Havuzu', 'Similar Players — Scouting Pool')
+        _cap = t("Uluslararası scouting havuzumuzdan, aynı mevki grubunda yaş, boy, deneyim ve "
+                 "gol/asist profili en yakın 3 oyuncu — yüzde, profillerin yakınlık derecesidir",
+                 "3 closest players in our worldwide scouting pool in the same position group by age, "
+                 "height, experience and goal/assist profile — the percentage is profile closeness")
+    st.markdown(f"#### 🔎 {_bas}")
+    st.caption(_cap)
     _benzer_kutu_grid(sonuc[:3])
 
 
@@ -8122,7 +8158,8 @@ if st.session_state.get("sayfa") == "scouting":
         # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
         _kadro_roster = birlesik_scout_yukle()
         sc_df = pd.DataFrame(
-            [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", "")}
+            [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", ""),
+              "Vatandaşlık2": _v.get("milli_takim", "")}   # 2. pasaport (AB filtresi için)
              for _isim, _v in _kadro_roster.items()]
         )
         sd_data = birlesik_sd_yukle()
@@ -8283,9 +8320,14 @@ if st.session_state.get("sayfa") == "scouting":
                     vat_opts = sorted(sc_df[vat_col].dropna().replace("", "").unique().tolist())
                     vat_sec  = st.selectbox(
                         f"🌍 {t('Ülke', 'Country')}",
-                        [_sc_tumu] + [v for v in vat_opts if v],
-                        format_func=lambda x: x if x == _sc_tumu else ulke_goster(x),
-                        key="sc_vat")
+                        [_sc_tumu, _AB_SEC] + [v for v in vat_opts if v],
+                        format_func=lambda x: (
+                            x if x == _sc_tumu else
+                            t("🇪🇺 AB Uyumlu", "🇪🇺 EU-Eligible") if x == _AB_SEC else
+                            ulke_goster(x)),
+                        key="sc_vat",
+                        help=t("AB Uyumlu: iki vatandaşlığından biri EU-27 ülkesi olan oyuncular.",
+                               "EU-Eligible: players with at least one EU-27 nationality among their two passports."))
                 else:
                     vat_sec = _sc_tumu
 
@@ -8382,7 +8424,12 @@ if st.session_state.get("sayfa") == "scouting":
                     filtered = filtered[
                         filtered[isim_col].str.contains(isim_q.strip(), case=False, na=False)]
                 if vat_col and vat_sec != _sc_tumu:
-                    filtered = filtered[filtered[vat_col] == vat_sec]
+                    if vat_sec == _AB_SEC:
+                        filtered = filtered[filtered.apply(
+                            lambda r: _ab_uyumlu(r.get("Vatandaşlık", ""),
+                                                 r.get("Vatandaşlık2", "")), axis=1)]
+                    else:
+                        filtered = filtered[filtered[vat_col] == vat_sec]
                 if sc_rol != _sc_tumu:
                     _rol_isimler = {_i for _i, _v in _kadro_roster.items()
                                     if _v.get("rol") == sc_rol}
