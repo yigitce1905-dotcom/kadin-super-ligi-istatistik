@@ -3143,7 +3143,10 @@ _AB_ULKELERI = {_ulke_ascii(x) for x in (
     "Romanya","Romania","Bulgaristan","Bulgaria","Hırvatistan","Croatia",
     "Slovakya","Slovakia","Slovenya","Slovenia","Litvanya","Lithuania",
     "Letonya","Latvia","Estonya","Estonia","Lüksemburg","Luxembourg","Malta",
-    "Kıbrıs","Güney Kıbrıs","Cyprus")}
+    "Kıbrıs","Güney Kıbrıs","Cyprus",
+    # EEA + İsviçre (serbest dolaşım — AB uyumlu sayılır)
+    "Norveç","Norway","İzlanda","Iceland","Lihtenştayn","Liechtenstein",
+    "İsviçre","Switzerland")}
 def _ab_uyumlu(*uyruklar) -> bool:
     """Verilen uyruklardan (ör. vatandaşlık + 2. vatandaşlık) herhangi biri EU-27 ise True."""
     for u in uyruklar:
@@ -8326,8 +8329,8 @@ if st.session_state.get("sayfa") == "scouting":
                             t("🇪🇺 AB Uyumlu", "🇪🇺 EU-Eligible") if x == _AB_SEC else
                             ulke_goster(x)),
                         key="sc_vat",
-                        help=t("AB Uyumlu: iki vatandaşlığından biri EU-27 ülkesi olan oyuncular.",
-                               "EU-Eligible: players with at least one EU-27 nationality among their two passports."))
+                        help=t("AB Uyumlu: iki vatandaşlığından biri EU-27, EEA (Norveç/İzlanda/Lihtenştayn) veya İsviçre olan oyuncular (serbest dolaşım).",
+                               "EU-Eligible: players with at least one EU-27, EEA (Norway/Iceland/Liechtenstein) or Swiss nationality among their two passports."))
                 else:
                     vat_sec = _sc_tumu
 
