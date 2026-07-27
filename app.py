@@ -3174,6 +3174,16 @@ def _boy_guncel(kadro_boy, sd_height):
     h = str(sd_height or "").strip()
     return h if h and h not in ("-", "—", "0", "?", "") else ""
 
+def _guncel_kulup_goster(sd_rec, sezon_takim):
+    """Künyede gösterilecek GÜNCEL kulüp. SD 'guncel_kulup' sezon kulübünden KANONİK
+    olarak farklıysa (oyuncu ligden ayrılmış = gerçek transfer) onu gösterir; aynıysa/
+    bilinmiyorsa sezon kulübü kalır. Ör. Oleszkiewicz: sezon Trabzon → SD Montpellier."""
+    gk = str((sd_rec or {}).get("guncel_kulup") or "").strip()
+    if gk and gk.lower() not in ("unbekannt", "unknown", "?", "-", "") \
+            and _kanon(gk) != _kanon(sezon_takim or ""):
+        return _takim_kisa(gk)
+    return _takim_kisa(sezon_takim or "")
+
 def _boy_cm(s):
     """'1,75' / '1.75' / '175' / '175 cm' → 175 (int cm). Çözülemezse None."""
     import re as _r
@@ -5872,7 +5882,7 @@ def render_ana_lig_profil(secili):
                 (f"📏 {t('Boy','Height')}", sd.get("Height","")),
                 (f"🦶 {t('Ayak','Foot')}", (sd.get("Foot","") or "").capitalize())]),
             (f"📋 {t('Diğer','Other')}", [
-                (f"🏟️ {t('Takım','Club')}", _takim_kisa(row["TümTakımlar"] if transfer else row["Takım"])),
+                (f"🏟️ {t('Takım','Club')}", _guncel_kulup_goster(sd, row["TümTakımlar"] if transfer else row["Takım"])),
                 (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
                 (f"📍 {t('Doğum Yeri','Birthplace')}",
                  sd.get("Place of birth", "") or _tff_dogum_yeri(secili))]),
