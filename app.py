@@ -3166,6 +3166,29 @@ def _kontrat_guncel(sozlesme, sd_contract):
         return _sd
     return str(sozlesme or "").strip() or "—"
 
+def _boy_guncel(kadro_boy, sd_height):
+    """Boy: sheet 'boy' varsa onu, yoksa SoccerDonna 'Height'a düşer (332 boş boy dolar)."""
+    b = str(kadro_boy or "").strip()
+    if b and b not in ("-", "—", "0", "?", ""):
+        return b
+    h = str(sd_height or "").strip()
+    return h if h and h not in ("-", "—", "0", "?", "") else ""
+
+def _boy_cm(s):
+    """'1,75' / '1.75' / '175' / '175 cm' → 175 (int cm). Çözülemezse None."""
+    import re as _r
+    s = str(s or "").strip().replace(",", ".")
+    if not s:
+        return None
+    m = _r.search(r"\d+(?:\.\d+)?", s)
+    if not m:
+        return None
+    v = float(m.group())
+    if v < 3:            # metre (1.75) → cm
+        v *= 100
+    v = int(round(v))
+    return v if 120 <= v <= 210 else None
+
 def _ilk_uyruk(nat_str: str) -> str:
     """'TurkeyGermany' → 'Turkey', 'United StatesEthiopia' → 'United States', 'France' → 'France'.
     SD uyruk sırasında İLK ülke = milli takım (scouting ground-truth'ta 83/83 doğrulandı).
@@ -4180,7 +4203,8 @@ def render_scouting_detay(tam_isim):
     sd = _sd_norm_bul(sd_data, tam_isim)
     dob      = sd.get("Date of birth", "—")
     yas      = sd.get("Age", "?")
-    boy      = sd.get("Height", "—")
+    boy      = _boy_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("boy", ""),
+                           sd.get("Height", "")) or "—"
     mevki    = sd.get("Position", "—")
     ayak     = sd.get("Foot", "—")
     sozlesme = _kontrat_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("sozlesme", ""),
@@ -8178,6 +8202,10 @@ if st.session_state.get("sayfa") == "scouting":
         sd_data = birlesik_sd_yukle()
         leistung_data = birlesik_leistung_yukle()
         detay_data = scouting_detay_yukle()
+        # Boy (cm): sheet 'boy' → yoksa SD 'Height'; filtre + künye için
+        sc_df["BoyCm"] = sc_df["Tam İsmi"].map(
+            lambda _n: _boy_cm(_boy_guncel((_kadro_roster.get(_n, {}) or {}).get("boy", ""),
+                                           (sd_data.get(_n, {}) or {}).get("Height", ""))))
         _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
         _etiket_liste = etiket_kullanici(_sl_kullanici)
@@ -8368,6 +8396,18 @@ if st.session_state.get("sayfa") == "scouting":
                     f"📅 {t('Doğum Yılı', 'Birth Year')}",
                     yil_min, yil_max, (yil_min, yil_max), key="sc_yil")
 
+                _boy_vals = [b for b in sc_df["BoyCm"].dropna().tolist() if b]
+                if _boy_vals:
+                    _boy_min, _boy_max = min(_boy_vals), max(_boy_vals)
+                    boy_range = st.slider(
+                        f"📏 {t('Boy (cm)', 'Height (cm)')}",
+                        _boy_min, _boy_max, (_boy_min, _boy_max), key="sc_boy",
+                        help=t("SoccerDonna boyu. Aralığı daralttığında boyu bilinmeyen oyuncular gizlenir.",
+                               "SoccerDonna height. Narrowing the range hides players with unknown height."))
+                else:
+                    _boy_min = _boy_max = 0
+                    boy_range = (0, 0)
+
                 ayak_sec = st.selectbox(
                     f"🦶 {t('Ayak', 'Foot')}",
                     [_sc_tumu, "right", "left", "both"], key="sc_ayak",
@@ -8376,18 +8416,23 @@ if st.session_state.get("sayfa") == "scouting":
 
                 # ── 📡 Transfer Radar: sözleşme bitiş yakınlığı ──────────────────
                 # Sözleşmesi yakında biten = düşük bonservis / bedava fırsat.
+                # BİTMİŞ (serbest) ile YAKINDA BİTECEK ayrı tutulur → "≤6 ay" içine
+                # hem geçmiş (30.06) hem gelecek (31.12) tarih karışması önlenir.
                 _transfer_etiket = {
                     _sc_tumu: t("Fark etmez", "Any"),
-                    "exp6":  t("🔴 ≤ 6 ay (bedavaya çok yakın)", "🔴 ≤ 6 mo (near free)"),
-                    "exp12": t("🟡 ≤ 12 ay", "🟡 ≤ 12 mo"),
-                    "exp18": t("🟢 ≤ 18 ay", "🟢 ≤ 18 mo"),
+                    "bitti": t("🆓 Sözleşmesi bitmiş (serbest)", "🆓 Contract expired (free)"),
+                    "exp6":  t("🔴 Gelecek 6 ay içinde bitiyor", "🔴 Expires within next 6 mo"),
+                    "exp12": t("🟡 Gelecek 12 ay içinde bitiyor", "🟡 Expires within next 12 mo"),
+                    "exp18": t("🟢 Gelecek 18 ay içinde bitiyor", "🟢 Expires within next 18 mo"),
                 }
                 transfer_sec = st.selectbox(
                     f"📡 {t('Transfer Radar', 'Transfer Radar')}",
-                    [_sc_tumu, "exp6", "exp12", "exp18"],
+                    [_sc_tumu, "bitti", "exp6", "exp12", "exp18"],
                     format_func=lambda x: _transfer_etiket.get(x, x), key="sc_transfer",
-                    help=t("Sözleşmesi bitmeye yakın oyuncular — düşük bonservis veya bedava transfer fırsatları.",
-                           "Players whose contracts end soon — low-fee or free transfer opportunities."))
+                    help=t("'Bitmiş' = sözleşmesi geçmişte dolmuş (bedava). '≤ ay' = sözleşmesi GELECEKTE, "
+                           "seçilen süre içinde bitecek — geçmiş/gelecek tarih karışmaz.",
+                           "'Expired' = contract already ended (free). '≤ mo' = contract ends in the FUTURE "
+                           "within the selected window — no past/future mix."))
 
                 # ── 🇹🇷 TR Görüşü: oyuncunun Türkiye'ye gelme isteği ─────────────
                 _TR_SIRA = ["Çok İstekli", "İstekli (Şartlar?)", "İstekli",
@@ -8447,9 +8492,12 @@ if st.session_state.get("sayfa") == "scouting":
                     _rol_isimler = {_i for _i, _v in _kadro_roster.items()
                                     if _v.get("rol") == sc_rol}
                     filtered = filtered[filtered[isim_col].isin(_rol_isimler)]
+                if _boy_vals and tuple(boy_range) != (_boy_min, _boy_max):
+                    filtered = filtered[filtered["BoyCm"].apply(
+                        lambda b: b is not None and boy_range[0] <= b <= boy_range[1])]
                 if transfer_sec != _sc_tumu:
                     import datetime as _dtt, re as _ret
-                    _esik = {"exp6": 6, "exp12": 12, "exp18": 18}[transfer_sec]
+                    _esik = {"exp6": 6, "exp12": 12, "exp18": 18}.get(transfer_sec)
 
                     def _sozlesme_ay_kalan(_nm):
                         """Sözleşme bitişine kalan ay (negatif=bitmiş). Bilinmiyorsa None."""
@@ -8477,7 +8525,12 @@ if st.session_state.get("sayfa") == "scouting":
                     _radar = set()
                     for _nm in filtered[isim_col]:
                         _ak = _sozlesme_ay_kalan(_nm)
-                        if _ak is not None and _ak <= _esik:
+                        if _ak is None:
+                            continue
+                        if transfer_sec == "bitti":
+                            if _ak < 0:                    # geçmişte bitmiş = serbest
+                                _radar.add(_nm)
+                        elif 0 <= _ak <= _esik:            # gelecekte, seçilen süre içinde
                             _radar.add(_nm)
                     filtered = filtered[filtered[isim_col].isin(_radar)]
                 if tr_sec != _sc_tumu:
