@@ -117,7 +117,7 @@
     "kulup": "RC Strasbourg",
     "lig": "İskoçya 1",
     "deger": "€25.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -313,7 +313,7 @@
       "RWF"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "ŽFK Partizan Sloga",
+    "kulup": "ŽFK Spartak Subotica",
     "lig": "Sırbistan 1",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -398,7 +398,8 @@
     "iktisadi_durum": "Orta-Düşük",
     "tr_gorusu": "Nötr (Şartlar?)",
     "scout_notu": "Ana Barjaktarović, 2002 doğumlu, ort-üst boyda ve hem hücum hem de savunma hatlarında görev alabilen çok yönlü bir Sırp futbolcudur. Sol ayağını etkili kullanabilmesi ve kariyer geçmişinde kanat/forvet rollerinin bulunması, modern savunma kurgusunda geriden oyun kurma ve topsuz alan becerilerine büyük katkı sağlamaktadır. Lige nazaran avantajlı fiziksel yapısı, hava toplarında ve ikili mücadelelerde takımı adına sahada önemli bir direnç unsuru oluşturmaktadır. Polonya Ekstraliga tecrübesinin yanı sıra Partizan - Sloga gibi ekiplerde edindiği deneyimler, oyuncunun genç yaşına rağmen taktiksel olgunluğunu ve maç disiplinini artırmıştır. Fiziksel kalitesi, sol ayak avantajı ve mevkisel esnekliği göz önüne alındığında, yüksek gelişim potansiyeliyle kadro mühendisliğinde derinlik yaratabilecek oldukça değerli bir oyuncu adayıdır.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "ŽFK Partizan Sloga"
   },
   "Selin Cemal": {
     "tam_isim": "Selin Cemal Başdüdükçü",
@@ -595,10 +596,10 @@
       "RWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Serbest",
+    "kulup": "Fenerbahçe SK",
     "lig": "Almanya 1",
     "deger": "€35.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -674,7 +675,8 @@
     "iktisadi_durum": "Orta-Düşük",
     "tr_gorusu": "Nötr (Şartlar?)",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Miray Cin": {
     "tam_isim": "Miray Cin",
@@ -1653,7 +1655,7 @@
     "kulup": "Jong Excelsior Rotterdam",
     "lig": "Hollanda 1",
     "deger": "€10.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -1838,7 +1840,7 @@
     "kulup": "Bayer 04 Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€10.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -3483,7 +3485,7 @@
     "kulup": "Gotham FC",
     "lig": "ABD 1",
     "deger": "€125.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BB",
@@ -4053,7 +4055,7 @@
     "kulup": "Denver Summit FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€650.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "AA",
@@ -4828,7 +4830,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -6676,7 +6678,7 @@
     "kulup": "Linköping FC",
     "lig": "İsveç 1",
     "deger": "€90.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2030",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "AB",
@@ -6771,7 +6773,7 @@
     "kulup": "Real Madrid CF",
     "lig": "İspanya 1",
     "deger": "€575.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "AB",
@@ -6868,7 +6870,7 @@
     "kulup": "Eintracht Frankfurt",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€260.000",
-    "sozlesme": "30.06.2028",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -6960,7 +6962,7 @@
     "kulup": "Manchester United",
     "lig": "Almanya 1",
     "deger": "€175.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -7141,7 +7143,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€400.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "BB",
@@ -7234,7 +7236,7 @@
     "kulup": "OL Lyonnes",
     "lig": "İngiltere 1",
     "deger": "€540.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "A+",
@@ -7325,10 +7327,10 @@
     "bolge": "Hücum",
     "mevki": [],
     "rol": "",
-    "kulup": "Arsenal FC",
+    "kulup": "London City Lionesses",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
-    "sozlesme": "30.06.2028",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -7406,7 +7408,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Häcken formasıyla Şampiyonlar Ligi'nde Real Madrid ve PSG'ye karşı sergilediği büyüleyici oyunla Arsenal'a transfer oldu. Jenerasyonunun en yüksek tekniğe ve çalım yeteneğine sahip 10 numaralarından biridir. Hücumda öngörülemez yaratıcılığıyla geleceğin süperstar adayıdır.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Arsenal FC"
   },
   "Madelen Janogy": {
     "tam_isim": "Madelen Fatim Miriam Janogy",
@@ -7423,7 +7426,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AB",
@@ -7518,7 +7521,7 @@
     "kulup": "Real Madrid CF",
     "lig": "İsveç 1",
     "deger": "€500.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -7611,7 +7614,7 @@
     "kulup": "North Carolina Courage",
     "lig": "İtalya 1",
     "deger": "€130.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -7702,7 +7705,7 @@
     "kulup": "London City Lionesses",
     "lig": "İngiltere 1",
     "deger": "€150.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -7799,7 +7802,7 @@
     "kulup": "Eintracht Frankfurt",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€175.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BB",
@@ -7992,7 +7995,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "ŽNK Olimpija Ljubljana",
+    "kulup": "ŽNK Hajduk Split",
     "lig": "Slovenya 1",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -8080,7 +8083,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "İstekli (Şartlar?)",
     "scout_notu": "Montenegro women's national team goalkeeper Ajša Kalač, 20, has recently opened a new and dynamic chapter in her career by transferring from ŽFK Leotar Trebinje to ŽNK Olimpija Ljubljana, one of Slovenia's ambitious teams. Benefiting from her left-footedness, Kalač takes on a proactive role in modern build-up play from the back. Her 1.78-meter height provides mobility, and she possesses an agile goalkeeper profile combining this mobility with her reactive speed on the goal line. Her most distinctive abilities include accurate long passes that can change the direction of play with her left foot, sharp reactions to close-range shots, and a quick recovery time in one-on-one situations, beyond her ability to accurately narrow the angle. The most critical areas she needs to focus on and refine are perfecting her timing of aerial duels in crowded penalty areas and improving her composure and ability to make quick decisions under pressure as her international match experience increases. Kalač, who is expected to establish a regular rhythm of elite-level matches with his new team, is a candidate to become one of the most promising left-footed goalkeepers in the region, offering tactical flexibility, if he can maintain his on-field consistency.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "ŽNK Olimpija Ljubljana"
   },
   "Tanja Malesija": {
     "tam_isim": "Тања Малесија",
@@ -8188,7 +8192,7 @@
       "LCB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Serbest",
+    "kulup": "Le Havre AC",
     "lig": "Fransa 2",
     "deger": "",
     "sozlesme": "",
@@ -8252,7 +8256,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Andressa Karolaine": {
     "tam_isim": "Andressa Karolaine Freire Gomes (Kaká)",
@@ -8272,7 +8277,7 @@
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -8308,7 +8313,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "WFC Lusso Nike",
+    "kulup": "WFC Nike Lusso",
     "lig": "Gürcistan 1",
     "deger": "",
     "sozlesme": "",
@@ -8348,7 +8353,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "WFC Lusso Nike"
   },
   "Klil Keshwar": {
     "tam_isim": "K’lil Elyada Kemba Keshwar",
@@ -8424,7 +8430,7 @@
     "kulup": "SC Internacional",
     "lig": "Brezilya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -8482,7 +8488,7 @@
     "kulup": "Bristol City",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -8538,7 +8544,7 @@
     "kulup": "Racing Louisville FC",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -8636,7 +8642,7 @@
     "kulup": "FC Juárez",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -8734,7 +8740,7 @@
     "kulup": "AFC Toronto",
     "lig": "🇨🇦 NSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -8847,7 +8853,7 @@
     "kulup": "Fortuna Hjørring",
     "lig": "Danimarka 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -8986,7 +8992,7 @@
     "kulup": "Al-Ittihad",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -9138,10 +9144,10 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Montpellier HSC (-2026)",
+    "kulup": "FC Fleury 91",
     "lig": "Fransa 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -9179,7 +9185,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Montpellier HSC (-2026)"
   },
   "Shae Yáñez": {
     "tam_isim": "Jessica Shae Yáñez Couey",
@@ -9198,7 +9205,7 @@
     "kulup": "Crystal Palace",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -9255,7 +9262,7 @@
     "kulup": "Gotham FC",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -9312,7 +9319,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -9411,7 +9418,7 @@
     "kulup": "Washington Spirit",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -9511,7 +9518,7 @@
     "kulup": "Real Madrid CF",
     "lig": "İspanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "AA",
@@ -9679,7 +9686,7 @@
     "kulup": "Bayer 04 Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -9720,7 +9727,7 @@
     "kulup": "VfB Stuttgart",
     "lig": "Almanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -9890,7 +9897,7 @@
     "kulup": "Carolina Ascent FC",
     "lig": "🇺🇸 USL S",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -9928,7 +9935,7 @@
       "2ST"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Serbest",
+    "kulup": "AIK Fotboll",
     "lig": "İspanya 1",
     "deger": "",
     "sozlesme": "",
@@ -9951,7 +9958,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Ines Boutaleb": {
     "tam_isim": "ايناس بوطالب",
@@ -10051,7 +10059,7 @@
     "kulup": "FC Basel 1893",
     "lig": "🇨🇭 Super League",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10092,7 +10100,7 @@
     "kulup": "CD Argual",
     "lig": "🇪🇸 2.º Federación",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10172,7 +10180,7 @@
     "kulup": "Logroño United",
     "lig": "İsveç 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10251,7 +10259,7 @@
     "kulup": "SC Corinthians",
     "lig": "Brezilya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10452,7 +10460,7 @@
     "kulup": "Logroño United",
     "lig": "İspanya 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10583,7 +10591,7 @@
       "CFW"
     ],
     "rol": "Hedef Forvet",
-    "kulup": "GKS Katowice",
+    "kulup": "Grindavík/Njarðvík",
     "lig": "Polonya 1",
     "deger": "",
     "sozlesme": "",
@@ -10606,7 +10614,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "GKS Katowice"
   },
   "Karin Lundin": {
     "tam_isim": "Karin Maria Lundin",
@@ -10667,7 +10676,7 @@
     "kulup": "Omonia Nikosia",
     "lig": "Türkiye 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10707,7 +10716,7 @@
     "kulup": "Dallas Trinity FC",
     "lig": "🇺🇸 USL S",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10787,7 +10796,7 @@
     "kulup": "North Carolina Courage",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10824,10 +10833,10 @@
       "CFW"
     ],
     "rol": "Sahte #9",
-    "kulup": "Central Coast Mariners",
+    "kulup": "Trabzonspor",
     "lig": "🇦🇺 A-League",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10847,7 +10856,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Central Coast Mariners"
   },
   "Haley Hopkins": {
     "tam_isim": "Haley Elizabeth Hopkins",
@@ -10866,7 +10876,7 @@
     "kulup": "Kansas City Current",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -10985,7 +10995,7 @@
     "kulup": "Inter Milano",
     "lig": "İtalya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BB",
@@ -11063,7 +11073,7 @@
     "kulup": "SK Brann",
     "lig": "İskoçya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11100,7 +11110,7 @@
       "CFW"
     ],
     "rol": "#10",
-    "kulup": "Serbest",
+    "kulup": "AFC Toronto",
     "lig": "İspanya 1",
     "deger": "",
     "sozlesme": "",
@@ -11161,7 +11171,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Riley Tanner": {
     "tam_isim": "Riley Madison Tanner Rintala",
@@ -11179,10 +11190,10 @@
       "RWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "Sydney FC",
+    "kulup": "Serbest",
     "lig": "ABD 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -11240,7 +11251,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Sydney FC"
   },
   "Uchenna Kanu": {
     "tam_isim": "Uchenna Grace Kanu",
@@ -11338,7 +11350,7 @@
     "kulup": "Gotham FC",
     "lig": "ABD NAIA",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11378,7 +11390,7 @@
     "kulup": "Vittsjö GIK",
     "lig": "ABD NAIA",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11416,10 +11428,10 @@
       "LWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Serbest",
+    "kulup": "Galatasaray SK",
     "lig": "Fransa 2",
     "deger": "€25.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -11492,7 +11504,8 @@
     "iktisadi_durum": "Orta-Düşük",
     "tr_gorusu": "İstekli (Şartlar?)",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Nikee Van Dijk": {
     "tam_isim": "Nikée Dianá van Dijk",
@@ -11511,7 +11524,7 @@
     "kulup": "RB Leipzig",
     "lig": "Hollanda 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11551,7 +11564,7 @@
     "kulup": "AC Milan",
     "lig": "🇮🇹 Serie A",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11738,7 +11751,7 @@
     "vatandaslik": "Hırvatistan",
     "milli_takim": "Avusturya",
     "dogum": "27.07.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,68",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -11792,7 +11805,7 @@
     "kulup": "Houston Dash",
     "lig": "ABD 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11831,7 +11844,7 @@
     "kulup": "ZSKA Moskau",
     "lig": "İsviçre 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11952,7 +11965,7 @@
     "kulup": "BSC YB Frauen",
     "lig": "🇨🇭 Super League",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -11991,7 +12004,7 @@
     "kulup": "Górnik Lęczna",
     "lig": "Polonya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -12031,7 +12044,7 @@
     "kulup": "Bristol City",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -12151,7 +12164,7 @@
     "kulup": "Bay FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -12229,7 +12242,7 @@
     "kulup": "Seattle Reign FC",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -12348,7 +12361,7 @@
     "kulup": "Denver Summit FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -12389,7 +12402,7 @@
     "kulup": "Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -12467,7 +12480,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BC",
@@ -12795,10 +12808,10 @@
       "LWB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "Puskás Akadémia FC",
+    "kulup": "US Sassuolo",
     "lig": "Macaristan 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2025",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -12818,7 +12831,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Puskás Akadémia FC"
   },
   "Melisa Hasanbegovic": {
     "tam_isim": "Melisa Hasanbegović",
@@ -12838,7 +12852,7 @@
     "kulup": "Al-Ula FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -13040,7 +13054,7 @@
     "kulup": "Logroño United",
     "lig": "Gana 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -13172,7 +13186,7 @@
     "kulup": "Piteå IF",
     "lig": "İsveç 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -13332,7 +13346,7 @@
     "kulup": "Piteå IF",
     "lig": "İspanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -13372,7 +13386,7 @@
     "kulup": "Malmö FF",
     "lig": "İsveç 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -13531,7 +13545,7 @@
     "kulup": "SL Benfica",
     "lig": "Portekiz 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BB",
@@ -13686,7 +13700,7 @@
     "kulup": "Spartak Moskau",
     "lig": "Rusya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -13723,7 +13737,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Real Madrid CF B",
+    "kulup": "Granada CF",
     "lig": "İspanya 2",
     "deger": "€40.000",
     "sozlesme": "30.06.2027",
@@ -13746,7 +13760,8 @@
     "iktisadi_durum": "Orta-Düşük",
     "tr_gorusu": "Çok İsteksiz",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Real Madrid CF B"
   },
   "Yessica Rodríguez": {
     "tam_isim": "Yessica Tatiana Rodríguez Angulo",
@@ -13889,10 +13904,10 @@
       "CFW"
     ],
     "rol": "Çalışkan Forvet",
-    "kulup": "Serbest",
+    "kulup": "BK Häcken FF",
     "lig": "Danimarka 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -13912,7 +13927,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Hwa-yeon Son": {
     "tam_isim": "손화연",
@@ -13972,7 +13988,7 @@
     "kulup": "Santos FC",
     "lig": "Brezilya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -14011,7 +14027,7 @@
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "AA",
@@ -14154,7 +14170,7 @@
     "kulup": "Juventus FC",
     "lig": "Portekiz 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -14353,7 +14369,7 @@
     "kulup": "Dallas Trinity FC",
     "lig": "🇺🇸 USL S",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -14670,7 +14686,7 @@
     "kulup": "Aris Ladies FC",
     "lig": "🇨🇾 Πρωτάθλημα",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -14791,7 +14807,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -15111,7 +15127,7 @@
     "kulup": "Washington Spirit",
     "lig": "ABD 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15151,7 +15167,7 @@
     "kulup": "Simba Queens SC",
     "lig": "Tanzanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15313,7 +15329,7 @@
     "kulup": "GKS Katowice",
     "lig": "Polonya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15597,7 +15613,7 @@
     "kulup": "SE Palmeiras",
     "lig": "Rusya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15638,7 +15654,7 @@
     "kulup": "Houston Dash",
     "lig": "İngiltere 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -15756,7 +15772,7 @@
     "kulup": "Malmö FF",
     "lig": "İsveç 1",
     "deger": "€75.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15797,7 +15813,7 @@
     "kulup": "Calgary Wild FC",
     "lig": "🇨🇦 NSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15917,7 +15933,7 @@
     "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15954,10 +15970,10 @@
       "RWF"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "Serbest",
+    "kulup": "Crystal Palace",
     "lig": "İngiltere 2",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -15977,7 +15993,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Tziarra King": {
     "tam_isim": "Tziarra Lanae King",
@@ -16039,7 +16056,7 @@
     "kulup": "Hamburger SV",
     "lig": "Almanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -16280,7 +16297,7 @@
     "kulup": "Chicago Stars FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -16359,7 +16376,7 @@
     "kulup": "Orlando Pride",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -16400,7 +16417,7 @@
     "kulup": "Orlando Pride",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -16519,7 +16536,7 @@
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -16597,7 +16614,7 @@
     "kulup": "Bay FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -16676,7 +16693,7 @@
     "kulup": "Inter Milano",
     "lig": "İtalya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -16797,7 +16814,7 @@
     "kulup": "Bayer 04 Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -16997,7 +17014,7 @@
     "kulup": "SC Sand",
     "lig": "Avusturya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -17091,7 +17108,7 @@
     "kulup": "SCU Torreense",
     "lig": "Portekiz 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -17265,7 +17282,7 @@
     "kulup": "RCD Espanyol",
     "lig": "İspanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -17342,7 +17359,7 @@
     "kulup": "UCLA Bruins",
     "lig": "ABD NCAA",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -17393,10 +17410,10 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "London City Lionesses",
+    "kulup": "Wolverhampton Wanderers",
     "lig": "İngiltere 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -17431,7 +17448,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "London City Lionesses"
   },
   "Alberte Vingum": {
     "tam_isim": "Alberte Vingum Andersen",
@@ -17450,7 +17468,7 @@
     "kulup": "HB Køge",
     "lig": "Danimarka 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -17828,7 +17846,7 @@
       "LWF"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Serbest",
+    "kulup": "ŽFK Budućnost",
     "lig": "Çekya 1",
     "deger": "",
     "sozlesme": "",
@@ -17851,7 +17869,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Sofia Alvarez": {
     "tam_isim": "Sofía Álvarez Tostado Macin",
@@ -17952,7 +17971,7 @@
     "kulup": "FC Porto",
     "lig": "🇵🇹 C. Nacional II",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -17992,7 +18011,7 @@
     "kulup": "Athlone Town",
     "lig": "🇮🇪 Premier Division",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.11.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -18032,7 +18051,7 @@
     "kulup": "Racing Power FC",
     "lig": "Yunanistan 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -18112,7 +18131,7 @@
     "kulup": "FK Bodø/Glimt",
     "lig": "Norveç 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -18349,7 +18368,7 @@
       "LWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Abu Dhabi Country Club",
+    "kulup": "Etihad Club",
     "lig": "🇦🇪 Pro League",
     "deger": "",
     "sozlesme": "",
@@ -18372,7 +18391,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Abu Dhabi Country Club"
   },
   "Jolie Louis": {
     "tam_isim": "Jolie Anais St. Louis",
@@ -18471,7 +18491,7 @@
       "LWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "Sporting Club Casablanca",
+    "kulup": "Union Touarga",
     "lig": "Fas 1",
     "deger": "",
     "sozlesme": "",
@@ -18494,7 +18514,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Sporting Club Casablanca"
   },
   "Zoe Magyarics": {
     "tam_isim": "Zoé Magyarics",
@@ -18634,7 +18655,7 @@
     "kulup": "SC Braga",
     "lig": "Portekiz 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -18752,7 +18773,7 @@
     "kulup": "Vittsjö GIK",
     "lig": "Kanada 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -18872,7 +18893,7 @@
     "kulup": "RB Leipzig",
     "lig": "Almanya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CD",
@@ -19073,7 +19094,7 @@
     "kulup": "Seattle Reign FC",
     "lig": "ABD 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BB",
@@ -19152,7 +19173,7 @@
     "kulup": "SK Brann",
     "lig": "Norveç 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19233,7 +19254,7 @@
     "kulup": "Racing Power FC",
     "lig": "Portekiz 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19273,7 +19294,7 @@
     "kulup": "Como 1907",
     "lig": "🇮🇹 Serie A",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19313,7 +19334,7 @@
     "kulup": "Paris FC",
     "lig": "Fransa 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19390,7 +19411,7 @@
       "CMF"
     ],
     "rol": "Çapa",
-    "kulup": "FC Kolos Kovalivka",
+    "kulup": "WFC Kolos Kovalivka",
     "lig": "🇺🇦 Prime League",
     "deger": "",
     "sozlesme": "",
@@ -19413,7 +19434,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "FC Kolos Kovalivka"
   },
   "Beatriz Cameirao": {
     "tam_isim": "Beatriz Isabel Morgado Cameirão",
@@ -19433,7 +19455,7 @@
     "kulup": "SL Benfica",
     "lig": "Portekiz 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19474,7 +19496,7 @@
     "kulup": "Neftçi PFK",
     "lig": "Azerbaycan 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19595,7 +19617,7 @@
     "kulup": "Wolverhampton Wanderers",
     "lig": "İtalya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19867,7 +19889,7 @@
     "kulup": "Melbourne Victory",
     "lig": "Avusturalya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19905,10 +19927,10 @@
       "2ST"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Melbourne Victory",
+    "kulup": "Durham Women FC",
     "lig": "Avusturalya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19928,7 +19950,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Melbourne Victory"
   },
   "Vesna Milivojevic": {
     "tam_isim": "Весна Миливојевић",
@@ -19948,7 +19971,7 @@
     "kulup": "Malmö FF",
     "lig": "İsveç 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -19987,7 +20010,7 @@
     "kulup": "Melbourne Victory",
     "lig": "Avusturalya 1",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -20611,7 +20634,7 @@
     "kulup": "VfL Wolfsburg",
     "lig": "Almanya 1",
     "deger": "€160.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "BC",
@@ -20701,7 +20724,7 @@
     "kulup": "Portland Thorns FC",
     "lig": "ABD 1",
     "deger": "€80.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -21080,7 +21103,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€300.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -21172,7 +21195,7 @@
     "kulup": "Real Madrid CF",
     "lig": "Almanya 1",
     "deger": "€300.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -21458,7 +21481,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€385.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "AA",
@@ -21556,7 +21579,7 @@
     "kulup": "Denver Summit FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€175.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BB",
@@ -21749,7 +21772,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€425.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BB",
@@ -22033,7 +22056,7 @@
     "kulup": "Eintracht Frankfurt",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€225.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -22418,7 +22441,7 @@
     "kulup": "Paris FC",
     "lig": "Fransa 1",
     "deger": "€100.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -22523,7 +22546,7 @@
     "kulup": "Denver Summit FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€70.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -22631,7 +22654,7 @@
     "kulup": "West Ham United",
     "lig": "Fransa 1",
     "deger": "€90.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -22830,7 +22853,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "OL Lyonnes",
+    "kulup": "Tottenham Hotspur",
     "lig": "Fransa 1",
     "deger": "€230.000",
     "sozlesme": "30.06.2027",
@@ -22906,7 +22929,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Olympique Lyon savunma hattında hem stoper hem de sağ bek olarak hatasız ve yüksek disiplinle oynayabilen istikrarlı bir genç parçadır. Pozisyon bilgisi, geçiş savunmasındaki hızı ve ikili mücadelelerdeki dengesi çok başarılıdır. Elit düzeyde değerli bir rotasyon emniyetidir.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "OL Lyonnes"
   },
   "Lou Bogaert": {
     "tam_isim": "Lou Bogaert",
@@ -22924,10 +22948,10 @@
       "LCB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Paris FC",
+    "kulup": "VfL Wolfsburg",
     "lig": "Fransa 1",
     "deger": "€180.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -23001,7 +23025,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Çok İsteksiz",
     "scout_notu": "Paris FC formasıyla kadınlar Şampiyonlar Ligi'nde ve Fransa liginde modern kanat beki performansıyla adından söz ettiren teknik bir sol bektir. Hücum bindirmeleri, sol çizgi ortaları ve yüksek oyun disiplini dikkat çekicidir. Gelişim grafiği sürekli yukarı yönlüdür.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Paris FC"
   },
   "Wassa Sangaré": {
     "tam_isim": "Wassa Sangaré",
@@ -23112,7 +23137,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "Fransa 1",
     "deger": "€300.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "AB",
@@ -23208,7 +23233,7 @@
     "kulup": "Real Madrid CF",
     "lig": "İspanya 1",
     "deger": "€380.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "AB",
@@ -23302,7 +23327,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "Fransa 1",
     "deger": "€275.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -23490,7 +23515,7 @@
     "kulup": "Paris FC",
     "lig": "Fransa 1",
     "deger": "€200.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -23678,7 +23703,7 @@
     "kulup": "OL Lyonnes",
     "lig": "Fransa 1",
     "deger": "€90.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -24155,10 +24180,10 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Manchester United",
+    "kulup": "Chelsea FC",
     "lig": "İngiltere 1",
     "deger": "€450.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "BB",
@@ -24234,7 +24259,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Lyon sonrasında kiralık olarak katıldığı Manchester United formasıyla İngiltere'de fiziksel gücünü ve hava topu hakimiyetini kanıtlamış bir kanat forvettir. Ön alan pres kalitesi, ceza sahası içi yırtıcılığı ve stoperlerle boğuşabilme kapasitesi çok yüksektir. Büyük maçlarda kritik gol katkısı sunar.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Manchester United"
   },
   "Lucie Calba": {
     "tam_isim": "Lucie Calba",
@@ -24253,7 +24279,7 @@
     "kulup": "FC Fleury 91",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -24538,10 +24564,10 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Everton FC",
+    "kulup": "West Ham United",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€230.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BB",
@@ -24617,7 +24643,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Sampdoria ve sonrasında Nantes formasıyla fiziksel gücü ve sırtı dönük istasyon olabilme özellikleriyle öne çıkan dirençli bir hedef santrafordur. Hava toplarındaki zamanlaması ve stoperleri yıpratan hücum pres kalitesi başarılıdır. Türkiye ligi büyük takımları için çok net bir forvet liyakatidir.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Everton FC"
   },
   "Marie Katoto": {
     "tam_isim": "Marie-Antoinette Oda Katoto",
@@ -24731,7 +24758,7 @@
     "kulup": "Paris FC",
     "lig": "Fransa 1",
     "deger": "€480.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "AA",
@@ -24925,7 +24952,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€70.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -25027,7 +25054,7 @@
     "kulup": "Juventus FC",
     "lig": "İtalya 1",
     "deger": "€80.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -25129,7 +25156,7 @@
     "kulup": "Tottenham Hotspur",
     "lig": "İngiltere 1",
     "deger": "€75.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -25405,7 +25432,7 @@
     "kulup": "Aston Villa",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€175.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "AB",
@@ -25583,7 +25610,7 @@
     "kulup": "Real Madrid CF",
     "lig": "Almanya 1",
     "deger": "€180.000",
-    "sozlesme": "30.06.2028",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -25670,7 +25697,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€500.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BB",
@@ -25757,7 +25784,7 @@
     "kulup": "Manchester United",
     "lig": "İngiltere 1",
     "deger": "€250.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "AB",
@@ -25844,7 +25871,7 @@
     "kulup": "VfL Wolfsburg",
     "lig": "Hollanda 1",
     "deger": "€150.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -25931,7 +25958,7 @@
     "kulup": "London City Lionesses",
     "lig": "İngiltere 1",
     "deger": "€150.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "AA",
@@ -26018,7 +26045,7 @@
     "kulup": "Tottenham Hotspur",
     "lig": "İngiltere 1",
     "deger": "€275.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -26192,7 +26219,7 @@
     "kulup": "FC Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€550.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "A+",
@@ -26366,7 +26393,7 @@
     "kulup": "Portland Thorns FC",
     "lig": "Hollanda 1",
     "deger": "€70.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -26453,7 +26480,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "Fransa 1",
     "deger": "€275.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "AA",
@@ -26627,7 +26654,7 @@
     "kulup": "PSV Eindhoven",
     "lig": "Hollanda 1",
     "deger": "€75.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -26714,7 +26741,7 @@
     "kulup": "Real Madrid CF",
     "lig": "Almanya 1",
     "deger": "€575.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -26909,7 +26936,7 @@
     "kulup": "AFC Toronto",
     "lig": "🇨🇦 NSL",
     "deger": "€45.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -27874,7 +27901,7 @@
     "kulup": "Portland Thorns FC",
     "lig": "ABD 1",
     "deger": "€150.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -28749,7 +28776,7 @@
     "kulup": "Granada CF",
     "lig": "Brezilya 1",
     "deger": "€10.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -29663,7 +29690,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "Brezilya 1",
     "deger": "€120.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BB",
@@ -30168,7 +30195,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "Brezilya 1",
     "deger": "€60.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "AB",
@@ -30267,7 +30294,7 @@
     "kulup": "SC Corinthians",
     "lig": "Brezilya 1",
     "deger": "€70.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "AA",
@@ -30561,7 +30588,7 @@
     "kulup": "San Diego Wave FC",
     "lig": "ABD 1",
     "deger": "€110.000",
-    "sozlesme": "31.12.2027",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "AB",
@@ -30762,7 +30789,7 @@
     "kulup": "Al-Qadsiah",
     "lig": "🇸🇦 SWPL",
     "deger": "€250.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "A+",
@@ -30858,7 +30885,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Serbest",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€180.000",
     "sozlesme": "30.06.2027",
@@ -30945,7 +30972,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Levante ogb sonrasinda Avrupa liglerinde ceza sahasi ici bitiricilik icguduleri ogb kafa vuruslarindaki zamanlamasiyla devlesen klasik bir dokuz numaradir. Pozisyon sezgisi, bitiricilik kalitesi ogb sogukkanliligi dunya standartlarindadir. Topu alip istasyon olabilme kabiliyetiyle takim hucumuna ciddî derinlik katar.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Aston Villa"
   },
   "Bia Zaneratto": {
     "tam_isim": "Beatriz Zaneratto João",
@@ -31167,7 +31195,7 @@
     "kulup": "Club América",
     "lig": "🇲🇽 Liga MX",
     "deger": "€250.000",
-    "sozlesme": "31.12.2028",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "AB",
@@ -31270,7 +31298,7 @@
     "kulup": "San Diego Wave FC",
     "lig": "ABD 1",
     "deger": "€300.000",
-    "sozlesme": "31.12.2028",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "A+",
@@ -31551,7 +31579,7 @@
     "kulup": "London City Lionesses",
     "lig": "Fransa 1",
     "deger": "€100.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31656,7 +31684,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€210.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31761,7 +31789,7 @@
     "kulup": "Orlando Pride",
     "lig": "ABD 1",
     "deger": "€80.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31866,7 +31894,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€400.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "BB",
@@ -31964,7 +31992,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€300.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "BB",
@@ -32064,7 +32092,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€290.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -32162,7 +32190,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€240.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "AA",
@@ -32465,7 +32493,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€350.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BB",
@@ -32567,7 +32595,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€500.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "AB",
@@ -32873,7 +32901,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€700.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "A+",
@@ -32980,7 +33008,7 @@
     "kulup": "Manchester United",
     "lig": "İngiltere 1",
     "deger": "€800.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AB",
@@ -33075,7 +33103,7 @@
     "kulup": "Manchester United",
     "lig": "İngiltere 1",
     "deger": "€450.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "AB",
@@ -33172,7 +33200,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€350.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AB",
@@ -33676,7 +33704,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€700.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AB",
@@ -33774,7 +33802,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€900.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "A+",
@@ -33875,7 +33903,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€425.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "A+",
@@ -33964,7 +33992,7 @@
     "vatandaslik": "İngiltere",
     "milli_takim": "",
     "dogum": "27.07.2003",
-    "yas": 22,
+    "yas": 23,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -33976,7 +34004,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€600.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "AB",
@@ -34075,7 +34103,7 @@
     "kulup": "London City Lionesses",
     "lig": "İngiltere 1",
     "deger": "€80.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -34168,10 +34196,10 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Serbest",
+    "kulup": "Arsenal FC",
     "lig": "İspanya 1",
     "deger": "€250.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -34257,7 +34285,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Real Madrid kalesinde refleks hizi ogb cizgi hakimiyeti ile taninan elit bir kalecidir. Yan toplardaki hamle zamanlamasi ogb karsi karsiya pozisyonlardaki aci kapatma kabiliyeti oldukça yuksektir. Ayak teknigi elit oyun kurucu seviyesinde olmasa da guvenilirdir.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Cata Coll": {
     "tam_isim": "Catalina Thomas Coll Lluch",
@@ -34276,7 +34305,7 @@
     "kulup": "FC Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€300.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -34382,7 +34411,7 @@
     "kulup": "London City Lionesses",
     "lig": "İspanya 1",
     "deger": "€100.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -34487,7 +34516,7 @@
     "kulup": "FC Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€180.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -34589,7 +34618,7 @@
     "kulup": "FC Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€350.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -34691,7 +34720,7 @@
     "kulup": "West Ham United",
     "lig": "İngiltere 1",
     "deger": "€220.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "BC",
@@ -34793,7 +34822,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "İspanya 1",
     "deger": "€400.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BB",
@@ -34894,7 +34923,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -34996,7 +35025,7 @@
     "kulup": "Orlando Pride",
     "lig": "İspanya 1",
     "deger": "€150.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -35199,7 +35228,7 @@
     "kulup": "London City Lionesses",
     "lig": "İspanya 1",
     "deger": "€120.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "BB",
@@ -35398,7 +35427,7 @@
     "kulup": "London City Lionesses",
     "lig": "İspanya 1",
     "deger": "€500.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "A+",
@@ -35695,7 +35724,7 @@
     "vatandaslik": "İspanya",
     "milli_takim": "Nijerya",
     "dogum": "26.07.2006",
-    "yas": 19,
+    "yas": 20,
     "boy": "1,63",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -35707,7 +35736,7 @@
     "kulup": "FC Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€250.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "AA",
@@ -35807,7 +35836,7 @@
     "kulup": "Tottenham Hotspur",
     "lig": "İngiltere 1",
     "deger": "€150.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -36009,7 +36038,7 @@
     "kulup": "Tigres UANL",
     "lig": "Meksika 1",
     "deger": "€100.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "AB",
@@ -36110,7 +36139,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "OL Lyonnes",
     "lig": "İspanya 1",
     "deger": "€650.000",
     "sozlesme": "30.06.2027",
@@ -36191,7 +36220,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Eski bir atlet olmasinin getirdigi dondurucu depar gucu ogb yikici hizlanmasiyla dunya klasinda bir kanat forvettir. Sol ayakli bitiricilik kalitesi, ceza sahasina dikey sizma kosulari durdurulamaz duzeydedir. Atletizm ile saf bitiriciliğin dunya uzerindeki en olumcul birlesimidir.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Mariona Caldentey": {
     "tam_isim": "María Francesca Caldentey Oliver",
@@ -36408,7 +36438,7 @@
     "kulup": "Rayadas de Monterrey",
     "lig": "Kanada 1",
     "deger": "€200.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "AB",
@@ -36507,7 +36537,7 @@
     "kulup": "Real Madrid CF",
     "lig": "İspanya 1",
     "deger": "€180.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "A+",
@@ -36601,10 +36631,10 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Juventus FC",
     "lig": "İspanya 1",
     "deger": "€220.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "AA",
@@ -36681,7 +36711,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "Real Madrid forvet hattinda ceza sahasi ici sezgileri, koklama kalitesi ogb rasyonel bitiriciligi yuksek olan klasik bir dokuz numaradir. Savunma markaj yetenegi rasyonel olarak cok dusuktur lakin kaleyi gordugu andaki son vurus kalitesi dunya standartlarindadir.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Real Madrid CF"
   },
   "Amaiur Sarriegi": {
     "tam_isim": "Amaiur Sarriegi Isasa",
@@ -36700,7 +36731,7 @@
     "kulup": "Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€160.000",
-    "sozlesme": "30.06.2028",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "A+",
       "Top Tekniği": "A+",
@@ -39229,7 +39260,7 @@
     "kulup": "Portland Thorns FC",
     "lig": "ABD 1",
     "deger": "€120.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -39625,7 +39656,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€180.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -39664,7 +39695,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€350.000",
-    "sozlesme": "30.06.2028",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -39741,7 +39772,7 @@
     "kulup": "Malmö FF",
     "lig": "İngiltere 1",
     "deger": "€90.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -39818,7 +39849,7 @@
     "kulup": "Malmö FF",
     "lig": "İsveç 1",
     "deger": "€85.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CC",
@@ -39895,7 +39926,7 @@
     "kulup": "AS Roma",
     "lig": "🇮🇹 Serie A",
     "deger": "€75.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -39934,7 +39965,7 @@
     "kulup": "Everton FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "BC",
@@ -40011,7 +40042,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€325.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "AB",
@@ -40165,7 +40196,7 @@
     "kulup": "Leicester City",
     "lig": "İngiltere 2",
     "deger": "€80.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -40242,7 +40273,7 @@
     "kulup": "FC Como Women",
     "lig": "🇮🇹 Serie A",
     "deger": "€70.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -40281,7 +40312,7 @@
     "kulup": "Malmö FF",
     "lig": "İsveç 1",
     "deger": "€65.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BB",
@@ -40398,7 +40429,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€250.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BB",
@@ -40475,7 +40506,7 @@
     "kulup": "Eintracht Frankfurt",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€160.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -40629,7 +40660,7 @@
     "kulup": "Gotham FC",
     "lig": "İngiltere 1",
     "deger": "€600.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2030",
     "beceri": {
       "Bitiricilik": "AA",
       "Top Tekniği": "AB",
@@ -40937,7 +40968,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -41123,7 +41154,7 @@
     "kulup": "SK Brann",
     "lig": "Norveç 1",
     "deger": "€85.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2030",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -41285,7 +41316,7 @@
     "kulup": "Arna-Bjørnar Fotball",
     "lig": "🇳🇴 1. Divisjon",
     "deger": "€45.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BB",
@@ -41439,7 +41470,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "BC",
@@ -41513,7 +41544,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Aston Villa",
     "lig": "Norveç 1",
     "deger": "€160.000",
     "sozlesme": "31.12.2027",
@@ -41574,7 +41605,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Juventus FC"
   },
   "Marit Bratberg Lund": {
     "tam_isim": "Marit Bratberg Lund",
@@ -41670,7 +41702,7 @@
     "kulup": "VfL Wolfsburg",
     "lig": "Norveç 1",
     "deger": "€180.000",
-    "sozlesme": "31.12.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -41747,7 +41779,7 @@
     "kulup": "Aston Villa",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€160.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -41786,7 +41818,7 @@
     "kulup": "Vålerenga Fotball",
     "lig": "Norveç 1",
     "deger": "€110.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -41980,7 +42012,7 @@
     "kulup": "Birmingham City",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€160.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -42211,7 +42243,7 @@
     "kulup": "FC Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€750.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AB",
@@ -42276,7 +42308,7 @@
     "vatandaslik": "Norveç",
     "milli_takim": "",
     "dogum": "26.07.1994",
-    "yas": 31,
+    "yas": 32,
     "boy": "1,66",
     "ayak": "Sol",
     "vucut_tipi": "",
@@ -42481,7 +42513,7 @@
     "kulup": "Liverpool FC",
     "lig": "İngiltere 1",
     "deger": "€320.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BB",
@@ -42867,7 +42899,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€140.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -42906,7 +42938,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€70.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -42999,7 +43031,7 @@
     "kulup": "Albirex Niigata",
     "lig": "🇯🇵 WE League",
     "deger": "€35.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -43050,7 +43082,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Aston Villa",
     "lig": "Japonya 1",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -43088,7 +43120,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Saki Kumagai": {
     "tam_isim": "熊谷 紗希",
@@ -43454,7 +43487,7 @@
     "kulup": "Utah Royals FC",
     "lig": "ABD 1",
     "deger": "€50.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -43531,7 +43564,7 @@
     "kulup": "West Ham United",
     "lig": "İngiltere 1",
     "deger": "€75.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BB",
@@ -43762,7 +43795,7 @@
     "kulup": "Feyenoord",
     "lig": "Hollanda 1",
     "deger": "€30.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -43878,7 +43911,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€450.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -43955,7 +43988,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€375.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2031",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "AB",
@@ -44263,7 +44296,7 @@
     "kulup": "Everton FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€55.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -44340,7 +44373,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€150.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -44417,7 +44450,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BB",
@@ -44799,10 +44832,10 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Juventus FC",
     "lig": "Almanya 1",
     "deger": "€80.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -44860,7 +44893,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Jun Endo": {
     "tam_isim": "遠藤 純",
@@ -44879,7 +44913,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€120.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -44956,7 +44990,7 @@
     "kulup": "Växjö DFF",
     "lig": "Danimarka 1",
     "deger": "€60.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -45064,7 +45098,7 @@
     "kulup": "Fortuna Hjørring",
     "lig": "Danimarka 1",
     "deger": "€30.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -45157,7 +45191,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€100.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -45289,7 +45323,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€75.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -45402,7 +45436,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "OL Lyonnes",
+    "kulup": "Como 1907",
     "lig": "Fransa 1",
     "deger": "€190.000",
     "sozlesme": "30.06.2027",
@@ -45463,7 +45497,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "OL Lyonnes"
   },
   "Katrine Veje": {
     "tam_isim": "Katrine Vejsgaard Veje",
@@ -45598,7 +45633,7 @@
     "kulup": "London City Lionesses",
     "lig": "ABD 1",
     "deger": "€100.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -45753,7 +45788,7 @@
     "kulup": "Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€120.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -45792,7 +45827,7 @@
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€45.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -45985,7 +46020,7 @@
     "kulup": "AS Roma",
     "lig": "🇮🇹 Serie A",
     "deger": "€60.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -46142,7 +46177,7 @@
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€700.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -46220,7 +46255,7 @@
     "kulup": "Aston Villa",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€100.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -46452,7 +46487,7 @@
     "kulup": "VfB Stuttgart",
     "lig": "İtalya 1",
     "deger": "€85.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -46542,7 +46577,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Inter Milano",
+    "kulup": "Como 1907",
     "lig": "Italy 1",
     "deger": "€60.000",
     "sozlesme": "30.06.2026",
@@ -46631,7 +46666,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "İsteksiz (Şartlar?)",
     "scout_notu": "Francesca Durante, a 29-year-old experienced goalkeeper who also plays for the Italian women's national team, has consistently finished the 2025/2026 season as the first-choice goalkeeper for Lazio in Serie A Femminile. Her 1.80-meter height and long arms give her excellent command of the goal line. Francesca possesses a leadership style, relying on her coordination within the penalty area and effectively directing her defense from behind. Her most notable abilities include her excellent reflexes for shots from close range, her aerial dominance over high balls into the penalty area, and her successful positioning on the goal line. Areas where she needs improvement include her composure and quickness in playing the ball with her feet under pressure from the opponent, a key element of modern goalkeeping, followed by the accuracy of her long passes. Given her extensive Serie A experience and international match knowledge, Francesca is a highly valuable option who, provided she maintains her on-field consistency, can be a reliable goalkeeper for top-tier competitive teams for a long time to come.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Inter Milano"
   },
   "Rachele Baldi": {
     "tam_isim": "Rachele Baldi",
@@ -46650,7 +46686,7 @@
     "kulup": "AS Roma",
     "lig": "🇮🇹 Serie A",
     "deger": "€35.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -46781,7 +46817,7 @@
     "kulup": "Juventus FC",
     "lig": "İtalya 1",
     "deger": "€170.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CC",
@@ -46935,7 +46971,7 @@
     "kulup": "Washington Spirit",
     "lig": "ABD 1",
     "deger": "€140.000",
-    "sozlesme": "31.12.2027",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -47089,7 +47125,7 @@
     "kulup": "AS Roma",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -47436,7 +47472,7 @@
     "kulup": "AS Roma",
     "lig": "🇮🇹 Serie A",
     "deger": "€180.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -47513,7 +47549,7 @@
     "kulup": "FC Barcelona B",
     "lig": "🇪🇸 Primera Federación",
     "deger": "€150.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -47552,7 +47588,7 @@
     "kulup": "Juventus FC",
     "lig": "İtalya 1",
     "deger": "€180.000",
-    "sozlesme": "30.06.2029",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -47629,7 +47665,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -47706,7 +47742,7 @@
     "kulup": "Everton FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BB",
@@ -47899,7 +47935,7 @@
     "kulup": "Juventus FC",
     "lig": "İtalya 1",
     "deger": "€180.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -48053,7 +48089,7 @@
     "kulup": "Bay FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€140.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.08.2026",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BC",
@@ -48127,7 +48163,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "Como 1907",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -48188,7 +48224,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "ACF Fiorentina"
   },
   "Michela Cambiaghi": {
     "tam_isim": "Michela Cambiaghi",
@@ -48207,7 +48244,7 @@
     "kulup": "Juventus FC",
     "lig": "İtalya 1",
     "deger": "€110.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -48349,7 +48386,7 @@
     "vatandaslik": "İtalya",
     "milli_takim": "",
     "dogum": "26.07.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,65",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -48361,7 +48398,7 @@
     "kulup": "Inter Milano",
     "lig": "İtalya 1",
     "deger": "€100.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BC",
@@ -48438,7 +48475,7 @@
     "kulup": "Vålerenga Fotball",
     "lig": "İzlanda 1",
     "deger": "€40.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -48489,7 +48526,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Rangers FC",
+    "kulup": "Víkingur Reykjavík",
     "lig": "İzlanda 1",
     "deger": "€35.000",
     "sozlesme": "31.12.2026",
@@ -48527,7 +48564,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Rangers FC"
   },
   "Cecilia Ran Runarsdottir": {
     "tam_isim": "Cecilía Rán Rúnarsdóttir",
@@ -48546,7 +48584,7 @@
     "kulup": "Inter Milano",
     "lig": "Almanya 1",
     "deger": "€50.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -48677,7 +48715,7 @@
     "kulup": "Hammarby IF DFF",
     "lig": "Norveç 1",
     "deger": "€80.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -48755,7 +48793,7 @@
     "kulup": "Kristianstads DFF",
     "lig": "İtalya 1",
     "deger": "€65.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -48911,7 +48949,7 @@
     "kulup": "Parma Calcio",
     "lig": "İzlanda 1",
     "deger": "€50.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -48950,7 +48988,7 @@
     "kulup": "Inter Milano",
     "lig": "İtalya 1",
     "deger": "€150.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -49220,7 +49258,7 @@
     "kulup": "ACF Fiorentina",
     "lig": "🇮🇹 Serie A",
     "deger": "€45.000",
-    "sozlesme": "31.12.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -49259,7 +49297,7 @@
     "kulup": "Molde FK",
     "lig": "Hollanda 1",
     "deger": "€55.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -49337,7 +49375,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€200.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -49376,7 +49414,7 @@
     "kulup": "SK Brann",
     "lig": "Belçika 1",
     "deger": "€50.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -49531,7 +49569,7 @@
     "kulup": "1. FC Köln",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€40.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -49647,7 +49685,7 @@
     "kulup": "RB Leipzig",
     "lig": "Almanya 1",
     "deger": "€80.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -49740,7 +49778,7 @@
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€95.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -49884,10 +49922,10 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "FC Zürich",
     "lig": "İngiltere 1",
     "deger": "€120.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -49945,7 +49983,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Viola Calligaris": {
     "tam_isim": "Viola Calligaris",
@@ -49965,7 +50004,7 @@
     "kulup": "Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€110.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "BC",
@@ -50042,7 +50081,7 @@
     "kulup": "SC Freiburg",
     "lig": "Almanya 1",
     "deger": "€90.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -50196,7 +50235,7 @@
     "kulup": "West Ham United",
     "lig": "Almanya 1",
     "deger": "€100.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "BC",
@@ -50351,7 +50390,7 @@
     "kulup": "AFC Ajax",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€75.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -50508,7 +50547,7 @@
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€175.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2030",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -50663,7 +50702,7 @@
     "kulup": "VfL Wolfsburg",
     "lig": "Almanya 1",
     "deger": "€100.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -50934,7 +50973,7 @@
     "kulup": "1. FC Union Berlin",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€75.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -51051,7 +51090,7 @@
     "kulup": "Manchester City",
     "lig": "İngiltere 1",
     "deger": "€450.000",
-    "sozlesme": "30.06.2028",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -51129,7 +51168,7 @@
     "kulup": "Leicester City",
     "lig": "İngiltere 2",
     "deger": "€150.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -51285,7 +51324,7 @@
     "kulup": "BSC YB Frauen",
     "lig": "🇨🇭 Super League",
     "deger": "€60.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -52302,7 +52341,7 @@
     "kulup": "AC Milan",
     "lig": "🇮🇹 Serie A",
     "deger": "€90.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -52497,7 +52536,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€140.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -52729,7 +52768,7 @@
     "kulup": "Molde FK",
     "lig": "Norveç 1",
     "deger": "€80.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -52845,7 +52884,7 @@
     "kulup": "Molde FK",
     "lig": "Norveç 1",
     "deger": "€75.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -53758,7 +53797,7 @@
     "kulup": "Ternana Women",
     "lig": "Çin 1",
     "deger": "€60.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "BC",
@@ -54193,7 +54232,7 @@
     "kulup": "SL Benfica",
     "lig": "Çin 1",
     "deger": "€55.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -54229,7 +54268,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Western Sydney Wanderers",
+    "kulup": "Guangdong Women",
     "lig": "Avustralya 1",
     "deger": "€45.000",
     "sozlesme": "30.06.2026",
@@ -54252,7 +54291,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Western Sydney Wanderers"
   },
   "Gu Yasha": {
     "tam_isim": "古雅沙",
@@ -54407,7 +54447,7 @@
     "kulup": "TSG 1899 Hoffenheim",
     "lig": "Fransa 1",
     "deger": "€45.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -54461,7 +54501,7 @@
     "kulup": "FC Twente",
     "lig": "Almanya 1",
     "deger": "€35.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -54633,7 +54673,7 @@
     "kulup": "1. FC Union Berlin",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€60.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -54787,7 +54827,7 @@
     "kulup": "US Sassuolo",
     "lig": "İtalya 1",
     "deger": "€20.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -54864,7 +54904,7 @@
     "kulup": "RSCA Women",
     "lig": "Belçika 1",
     "deger": "€30.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -54978,10 +55018,10 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "OH Leuven Women",
+    "kulup": "RB Leipzig",
     "lig": "Belçika 1",
     "deger": "€40.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2029",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -55001,7 +55041,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "OH Leuven Women"
   },
   "Marie Detruyer": {
     "tam_isim": "Marie Detruyer",
@@ -55217,7 +55258,7 @@
     "kulup": "US Sassuolo",
     "lig": "İtalya 1",
     "deger": "€65.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2026",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -55295,7 +55336,7 @@
     "kulup": "RSCA Women",
     "lig": "Belçika 1",
     "deger": "€75.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -55566,7 +55607,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Como 1907",
     "lig": "İtalya 1",
     "deger": "€100.000",
     "sozlesme": "30.06.2026",
@@ -55627,7 +55668,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Serbest"
   },
   "Hannah Eurlings": {
     "tam_isim": "Hannah Eurlings",
@@ -55647,7 +55689,7 @@
     "kulup": "1. FC Union Berlin",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€55.000",
-    "sozlesme": "30.06.2027",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -55801,7 +55843,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "RSCA Women",
     "lig": "🇮🇹 Serie A",
     "deger": "€45.000",
     "sozlesme": "30.06.2027",
@@ -55824,7 +55866,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "ACF Fiorentina"
   },
   "Elena Dhont": {
     "tam_isim": "Elena Dhont",
@@ -55953,7 +55996,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "AO Étincelle du Faso",
+    "kulup": "Hilal Nador",
     "lig": "🇧🇫 Première Division",
     "deger": "",
     "sozlesme": "",
@@ -55976,7 +56019,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "AO Étincelle du Faso"
   },
   "Assanatou Nako": {
     "tam_isim": "",
@@ -56064,7 +56108,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Racing Club Bobo-Dioulasso",
+    "kulup": "US des Forces Armées",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -56087,7 +56131,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Racing Club Bobo-Dioulasso"
   },
   "Adama Congo": {
     "tam_isim": "",
@@ -56104,7 +56149,7 @@
     "kulup": "SE AEM",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -56138,7 +56183,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "US des Forces Armées",
+    "kulup": "Al-Yarmuk SC",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -56161,7 +56206,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "US des Forces Armées"
   },
   "Fadiratou Tarnadga": {
     "tam_isim": "",
@@ -56215,7 +56261,7 @@
     "kulup": "SD Eibar",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -56252,7 +56298,7 @@
     "kulup": "Hakkarigücü SK",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.05.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -56437,7 +56483,7 @@
     "kulup": "Liaoning Shenbei Hefeng Women",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -56548,7 +56594,7 @@
     "kulup": "Giresun Sanayi SK",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -56841,7 +56887,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Sparks",
+    "kulup": "AO Étincelle du Faso",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -56864,7 +56910,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Sparks"
   },
   "Chiamaka Nnadozie": {
     "tam_isim": "",
@@ -57105,7 +57152,7 @@
     "kulup": "London City Lionesses",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57142,7 +57189,7 @@
     "kulup": "Chicago Stars FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57216,7 +57263,7 @@
     "kulup": "BK Häcken FF",
     "lig": "🇸🇪 Elitettan",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57290,7 +57337,7 @@
     "kulup": "Ottawa Rapid FC",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57327,7 +57374,7 @@
     "kulup": "Inter Milano",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57401,7 +57448,7 @@
     "kulup": "Washington Spirit",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57438,7 +57485,7 @@
     "kulup": "Al-Hilal",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57475,7 +57522,7 @@
     "kulup": "Paris Saint-Germain",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57549,7 +57596,7 @@
     "kulup": "AFC Toronto",
     "lig": "🇨🇦 NSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57586,7 +57633,7 @@
     "kulup": "Washington Spirit",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57731,7 +57778,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Amed SFK",
+    "kulup": "Serbest",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "",
@@ -57754,7 +57801,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Amed SFK"
   },
   "Onyi Echegini": {
     "tam_isim": "",
@@ -57808,7 +57856,7 @@
     "kulup": "Valencia Féminas CF",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57845,7 +57893,7 @@
     "kulup": "Shanxi Xihua",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57879,10 +57927,10 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Fenerbahçe SK",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57902,7 +57950,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Chinwendu Ihezuo": {
     "tam_isim": "",
@@ -57919,7 +57968,7 @@
     "kulup": "CF Pachuca",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -57956,7 +58005,7 @@
     "kulup": "Al-Ittihad",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -58215,7 +58264,7 @@
     "kulup": "Servette FC Chênois Féminin",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -58249,7 +58298,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al-Hilal",
+    "kulup": "Serbest",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
@@ -58272,7 +58321,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Al-Hilal"
   },
   "Salma Amani": {
     "tam_isim": "",
@@ -58289,7 +58339,7 @@
     "kulup": "Wydad Casablanca",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -58323,7 +58373,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al-Ahli",
+    "kulup": "Serbest",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
@@ -58346,7 +58396,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Al-Ahli"
   },
   "Najat Badri": {
     "tam_isim": "",
@@ -58733,7 +58784,7 @@
     "kulup": "Valencia Féminas CF",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -58881,7 +58932,7 @@
     "kulup": "Wydad Casablanca",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -59174,7 +59225,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Aigles de la Médina",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -59197,7 +59248,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Nguenar Ndiaye": {
     "tam_isim": "",
@@ -59547,7 +59599,7 @@
     "kulup": "Al-Hmmah Club",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -59621,7 +59673,7 @@
     "kulup": "Stade Malherbe Caen",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -59954,7 +60006,7 @@
     "kulup": "AO REA",
     "lig": "🇬🇷 Α΄",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -59991,7 +60043,7 @@
     "kulup": "Shaanxi Zhidan Women",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -60062,10 +60114,10 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Åland United",
+    "kulup": "Trabzonspor",
     "lig": "🇫🇮 Kansallinen",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -60085,7 +60137,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Åland United"
   },
   "Sandra Nabweteme": {
     "tam_isim": "",
@@ -60139,7 +60192,7 @@
     "kulup": "East Bengal FC",
     "lig": "🇮🇳 IWL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -60247,7 +60300,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Bakirkoy Kadin Futbol SK",
+    "kulup": "WFC Nike Lusso",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "",
@@ -60270,7 +60323,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Bakirkoy Kadin Futbol SK"
   },
   "Fauzia Najjemba": {
     "tam_isim": "",
@@ -60287,7 +60341,7 @@
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -60398,7 +60452,7 @@
     "kulup": "FC Midtjylland",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -60842,7 +60896,7 @@
     "kulup": "Al-Qadsiah",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -60990,7 +61044,7 @@
     "kulup": "ZSKA Moskau",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -61212,7 +61266,7 @@
     "kulup": "Al-Ula FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -61249,7 +61303,7 @@
     "kulup": "Washington Spirit",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -61323,7 +61377,7 @@
     "kulup": "NEOM SC",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -61431,10 +61485,10 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Amed SFK",
+    "kulup": "Sirnak Belediyegucu",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -61454,7 +61508,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Amed SFK"
   },
   "Eliane Bodolo": {
     "tam_isim": "",
@@ -61579,7 +61634,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Hakkarigücü SK",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -61602,7 +61657,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Hakkarigücü SK"
   },
   "Ousmanou Doudou": {
     "tam_isim": "",
@@ -62874,10 +62930,10 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Freedom FC Women",
+    "kulup": "Brescia CF",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -62897,7 +62953,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Freedom FC Women"
   },
   "Sabrine Mamay": {
     "tam_isim": "",
@@ -62951,7 +63008,7 @@
     "kulup": "AZ Alkmaar",
     "lig": "🇳🇱 Eredivisie",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -63173,7 +63230,7 @@
     "kulup": "MSV Duisburg",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -63207,7 +63264,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Yuksekova SK",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -63230,7 +63287,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Yuksekova SK"
   },
   "Imen Troudi": {
     "tam_isim": "",
@@ -63452,8 +63510,7 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false,
-    "kulup_sheet": "ASF Bou Hajla"
+    "degerlendirildi": false
   },
   "Yasmine Klai": {
     "tam_isim": "",
@@ -63578,7 +63635,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Hakkarigücü SK",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -63601,7 +63658,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Hakkarigücü SK"
   },
   "Esther Siamfuko": {
     "tam_isim": "",
@@ -63948,7 +64006,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Hakkarigücü SK",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -63971,7 +64029,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Hakkarigücü SK"
   },
   "Ireen Lungu": {
     "tam_isim": "",
@@ -65135,7 +65194,7 @@
     "kulup": "TS Galaxy Queens FC",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -66319,7 +66378,7 @@
     "kulup": "Ottawa Rapid FC",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -66464,7 +66523,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "WFC Nike Lusso",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -66487,7 +66546,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Serbest"
   },
   "Nicole Payne": {
     "tam_isim": "",
@@ -66504,7 +66564,7 @@
     "kulup": "Orlando Pride",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -66615,7 +66675,7 @@
     "kulup": "FC Nordsjælland",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -66874,7 +66934,7 @@
     "kulup": "Glasgow City FC",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -67688,7 +67748,7 @@
     "kulup": "ZaNaCo Ladies",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2028",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -67725,7 +67785,7 @@
     "kulup": "Eastern Flames FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "30.06.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -67762,7 +67822,7 @@
     "kulup": "Orlando Pride",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -67799,7 +67859,7 @@
     "kulup": "Fujian",
     "lig": "",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2026",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -67870,7 +67930,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Hapoel Katamon Jerusalem",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -67893,7 +67953,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sheet": "Hapoel Katamon Jerusalem"
   },
   "Racheal Kundananji": {
     "tam_isim": "",
@@ -67910,7 +67971,7 @@
     "kulup": "Bay FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -68021,7 +68082,7 @@
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -68169,7 +68230,7 @@
     "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
-    "sozlesme": "",
+    "sozlesme": "31.12.2027",
     "beceri": {},
     "beseri": {},
     "fiziki": {},
@@ -68208,7 +68269,7 @@
     "kulup": "FC Fleury 91",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -68310,10 +68371,10 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Leicester City",
+    "kulup": "Manchester United",
     "lig": "England 2",
     "deger": "€65.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2029",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -68400,7 +68461,8 @@
     "iktisadi_durum": "Yüksek-Orta",
     "tr_gorusu": "Çok İsteksiz",
     "scout_notu": "27-year-old successful German goalkeeper Janina Leitzig continues her career as the first-choice goalkeeper for Leicester City in England. Standing at a remarkable 1.85 meters tall, she provides confidence in goal-line, especially when dealing with high balls. She combines her physical advantage with commanding presence in the penalty area, showcasing a proactive playing style. Her most notable attributes include a high save percentage on the goal-line, her quick reflexes against finishing shots from inside the penalty area, and her superior aerial ability on crosses. Areas she needs to improve include her ability to build play from the back under pressure, the accuracy of her long passes, and minimizing individual errors caused by occasional lapses in concentration. Given her extensive experience in the English league and her elite athletic profile, if Janina maintains her consistent performance, she could become a more active player in the German national team and attract the attention of major European clubs.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sheet": "Leicester City"
   },
   "Barbora Votikova": {
     "tam_isim": "Barbora Votíková",
@@ -69039,7 +69101,7 @@
     "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "€30.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -69260,7 +69322,7 @@
     "kulup": "Fram Reykjavík",
     "lig": "🇮🇸 Besta deild",
     "deger": "€5.000",
-    "sozlesme": "31.12.2026",
+    "sozlesme": "01.10.2026",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
