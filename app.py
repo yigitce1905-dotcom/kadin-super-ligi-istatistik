@@ -721,6 +721,94 @@ def veri_yukle():
     return df, liste
 
 
+# ─── ARŞİV SEZONLARI (Baran'ın site mimarisi planı 1.2, 2026-08-02) ──────────
+# scraper_arsiv.py ile üretilir (oyuncular.json ile AYNI liste formatı).
+ARSIV_SEZONLAR = {"2024-25": "arsiv_2024_25.json", "2023-24": "arsiv_2023_24.json"}
+
+@st.cache_data(ttl=1800)
+def arsiv_sezon_yukle(sezon_key: str):
+    """Arşiv sezonu JSON'unu (oyuncular.json ile aynı liste formatı) DataFrame'e çevirir.
+    Dosya henüz yoksa (scraper koşmamışsa) boş DataFrame döner."""
+    dosya = ARSIV_SEZONLAR.get(sezon_key)
+    if not dosya:
+        return pd.DataFrame(), []
+    yol = pathlib.Path(__file__).parent / dosya
+    if not yol.exists():
+        return pd.DataFrame(), []
+    with open(yol, encoding="utf-8") as f:
+        liste = json.load(f)
+    df = pd.DataFrame([
+        {k: v for k, v in o.items() if k not in ("takim_detay", "mac_gecmisi")}
+        for o in liste
+    ])
+    if df.empty:
+        return df, liste
+    col_map = {
+        "oyuncu": "Oyuncu", "takim": "Takım", "tum_takimlar": "TümTakımlar",
+        "transfer": "Transfer", "mac_sayisi": "Maç", "ilk11_mac": "İlk11",
+        "yedek_mac": "Yedek", "gol_sayisi": "Gol", "gol_ayak": "GolF",
+        "gol_kafa": "GolH", "penalti_gol": "GolP", "gol_ort": "Gol/Maç",
+        "sari_kart": "Sarı", "kirmizi_kart": "Kırmızı", "toplam_dakika": "Dakika",
+    }
+    df.rename(columns=col_map, inplace=True)
+    for s in ["Maç", "Gol", "Sarı", "Kırmızı", "Dakika"]:
+        if s not in df.columns: df[s] = 0
+        df[s] = pd.to_numeric(df[s], errors="coerce").fillna(0).astype(int)
+    return df, liste
+
+def _oyuncu_coklu_sezon_gecmisi(isim: str):
+    """Bir oyuncunun güncel sezon + tüm arşiv sezonlarındaki Maç/Gol toplamlarını
+    (varsa) tek listede döner: [{'sezon':'2025-26','mac':N,'gol':N}, ...]."""
+    sonuc = []
+    _isim_u = (isim or "").strip().upper()
+    df_guncel, _ = veri_yukle()
+    if not df_guncel.empty:
+        _e = df_guncel[df_guncel["Oyuncu"].str.upper() == _isim_u]
+        if not _e.empty:
+            sonuc.append({"sezon": SEZON_AKTIF, "mac": int(_e["Maç"].sum()), "gol": int(_e["Gol"].sum())})
+    for sezon_key in ARSIV_SEZONLAR:
+        df_a, _ = arsiv_sezon_yukle(sezon_key)
+        if df_a.empty or "Oyuncu" not in df_a.columns:
+            continue
+        _e = df_a[df_a["Oyuncu"].str.upper() == _isim_u]
+        if not _e.empty:
+            sonuc.append({"sezon": sezon_key, "mac": int(_e["Maç"].sum()), "gol": int(_e["Gol"].sum())})
+    return sonuc
+
+def render_arsiv(sezon_key: str):
+    """Arşiv sezonu sayfası: oyuncu tablosu + isimle çok-sezonlu gelişim grafiği
+    (Baran'ın ANALİZ fikri — bir oyuncunun birden çok sezondaki Maç/Gol trendi)."""
+    df_a, _ = arsiv_sezon_yukle(sezon_key)
+    if df_a.empty:
+        st.info(t(f"{sezon_key} sezonu henüz taranmadı. `python scraper_arsiv.py {sezon_key}` ile çekilebilir.",
+                  f"Season {sezon_key} hasn't been scraped yet. Run `python scraper_arsiv.py {sezon_key}`."))
+        return
+    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 12px;'>"
+                f"{len(df_a)} {t('oyuncu','players')} · {sezon_key}</div>", unsafe_allow_html=True)
+    _ara = st.text_input(t("🔍 Oyuncu ara (çok-sezonlu gelişim için)", "🔍 Search player (for multi-season growth)"),
+                         key=_pk(f"arsiv_ara_{sezon_key}"))
+    if _ara:
+        _gecmis = _oyuncu_coklu_sezon_gecmisi(_ara)
+        if _gecmis:
+            st.markdown(f"#### 📈 {t('Çok-Sezonlu Gelişim','Multi-Season Growth')} — {_ara}")
+            _sezonlar = [g["sezon"] for g in _gecmis][::-1]
+            _maclar   = [g["mac"] for g in _gecmis][::-1]
+            _goller   = [g["gol"] for g in _gecmis][::-1]
+            fig = go.Figure()
+            fig.add_trace(go.Bar(x=_sezonlar, y=_maclar, name=t("Maç","Matches"), marker_color="#3b82f6"))
+            fig.add_trace(go.Bar(x=_sezonlar, y=_goller, name=t("Gol","Goals"), marker_color="#1db954"))
+            fig.update_layout(barmode="group", height=320,
+                               paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+                               font_color="#e8eef7", margin=dict(l=10, r=10, t=10, b=10))
+            st.plotly_chart(fig, width="stretch")
+        else:
+            st.warning(t("Bu isimle (tam eşleşme) hiçbir sezonda kayıt bulunamadı.",
+                         "No exact-name match found in any season."))
+    _goster = df_a[["Oyuncu", "Takım", "Maç", "Gol", "Sarı", "Kırmızı"]].sort_values(
+        ["Maç", "Gol"], ascending=False) if "Oyuncu" in df_a.columns else df_a
+    st.dataframe(_goster, width="stretch", height=420, hide_index=True)
+
+
 @st.cache_data(ttl=1800)
 def puan_durumu_cek():
     """Kadınlar Süper Ligi puan durumu. Sezon bittiği için yerel
@@ -1931,13 +2019,115 @@ def shortlist_kullanici(kullanici: str) -> list:
     return shortlist_yukle().get(kullanici, [])
 
 def shortlist_toggle(kullanici: str, oyuncu: str):
+    """My Squad ekle/çıkar. Dönüş: (basarili, mesaj). Ekleme 33 toplam + bölge başı 3
+    limitine tabi (Total Futbol 11-bölge sistemi, Baran'ın planı 2026-08-02)."""
     data = shortlist_yukle()
     lst  = data.setdefault(kullanici, [])
     if oyuncu in lst:
         lst.remove(oyuncu)
-    else:
-        lst.append(oyuncu)
+        shortlist_kaydet(data)
+        return True, ""
+    if len(lst) >= 33:
+        return False, t("My Squad dolu (33/33) — önce birini çıkarmalısın.",
+                         "My Squad is full (33/33) — remove someone first.")
+    _bolge = _bolge_bul(birlesik_scout_yukle().get(oyuncu, {}).get("mevki"))
+    if _bolge is not None:
+        _dolu = sum(1 for o in lst
+                    if _bolge_bul(birlesik_scout_yukle().get(o, {}).get("mevki")) == _bolge)
+        if _dolu >= 3:
+            _ad = _TOTAL_FUTBOL_BOLGE[_bolge]["ad_en" if EN else "ad"]
+            return False, t(f"'{_ad}' bölgesinde zaten 3 oyuncu var.",
+                             f"'{_ad}' zone already has 3 players.")
+    lst.append(oyuncu)
     shortlist_kaydet(data)
+    return True, ""
+
+
+# ─── MY 11 — transfer dönemi "kadromda olsaydı nasıl olurdu" listesi (üst limit 11) ─
+# Baran'ın site mimarisi planı 3.2 (2026-08-02). Shortlist ile aynı GSheet/JSON kalıbı,
+# ayrı depo — My Squad'ın 33'lük bölge-sınırlı takip listesinden bağımsız.
+_MY11_YOL = pathlib.Path(__file__).parent / "my11.json"
+
+def _my11_ws():
+    """'My11' worksheet'ini döndürür (yoksa oluşturur). Hata → None (yerel JSON)."""
+    try:
+        import gspread
+        from google.oauth2.service_account import Credentials as GCredentials
+        scopes = ["https://spreadsheets.google.com/feeds",
+                  "https://www.googleapis.com/auth/drive"]
+        creds_info = dict(st.secrets["gcp_service_account"])
+        creds_info["type"] = "service_account"
+        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
+        gc = gspread.authorize(creds)
+        sh = gc.open_by_key(GSHEET_ID)
+        try:
+            return sh.worksheet("My11")
+        except Exception:
+            ws = sh.add_worksheet(title="My11", rows=500, cols=2)
+            ws.update([["kullanici", "oyuncu"]])
+            return ws
+    except Exception:
+        return None
+
+@st.cache_data(ttl=120, show_spinner=False)
+def my11_yukle() -> dict:
+    ws = _my11_ws()
+    if ws is not None:
+        try:
+            d = {}
+            for r in ws.get_all_records():
+                k = str(r.get("kullanici", "")).strip()
+                o = str(r.get("oyuncu", "")).strip()
+                if k and o:
+                    d.setdefault(k, []).append(o)
+            return d
+        except Exception:
+            pass
+    if not _MY11_YOL.exists():
+        return {}
+    import json
+    try:
+        with open(_MY11_YOL, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {}
+
+def my11_kaydet(data: dict):
+    ws = _my11_ws()
+    if ws is not None:
+        try:
+            rows = [["kullanici", "oyuncu"]]
+            for k, lst in data.items():
+                for o in lst:
+                    rows.append([k, o])
+            ws.clear()
+            ws.update(rows)
+            my11_yukle.clear()
+            return
+        except Exception:
+            pass
+    import json
+    with open(_MY11_YOL, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    my11_yukle.clear()
+
+def my11_kullanici(kullanici: str) -> list:
+    return my11_yukle().get(kullanici, [])
+
+def my11_toggle(kullanici: str, oyuncu: str):
+    """My 11'e ekle/çıkar. Dönüş: (basarili, mesaj). Üst limit 11, bölge sınırı yok."""
+    data = my11_yukle()
+    lst  = data.setdefault(kullanici, [])
+    if oyuncu in lst:
+        lst.remove(oyuncu)
+        my11_kaydet(data)
+        return True, ""
+    if len(lst) >= 11:
+        return False, t("My 11 dolu (11/11) — önce birini çıkarmalısın.",
+                         "My 11 is full (11/11) — remove someone first.")
+    lst.append(oyuncu)
+    my11_kaydet(data)
+    return True, ""
 
 
 # ─── Üyelik Denemeleri (admin elle verir · GSheet kalıcı · yerel JSON fallback) ─
@@ -3966,6 +4156,36 @@ _MEVKI_SAHA_KOD = {
     "Santrafor": "ST", "İkinci Santrafor": "SS", "Forvet": "ST",
 }
 
+# ── Total Futbol 11-Bölge sistemi (My Squad için, Baran'ın numaralandırması) ──
+# Her bölge 3 slotluk (11×3=33 üst limit). Paylaşılan kodlar (MCB/CB, SS/2ST,
+# RWB/LWB, LM/RM) için sabit varsayılan atama yapıldı (dinamik değil).
+_TOTAL_FUTBOL_BOLGE = {
+    1:  {"ad": "Kaleci",                  "ad_en": "Goalkeeper",          "kodlar": ["GK"]},
+    2:  {"ad": "Sağ Bek",                 "ad_en": "Right Back",          "kodlar": ["RB", "RFB", "RWB"]},
+    3:  {"ad": "Sol Bek",                 "ad_en": "Left Back",           "kodlar": ["LB", "LFB", "LWB"]},
+    4:  {"ad": "Sağ Stoper",              "ad_en": "Right CB",            "kodlar": ["RCB", "MCB"]},
+    5:  {"ad": "Sol Stoper",              "ad_en": "Left CB",             "kodlar": ["LCB", "CB"]},
+    6:  {"ad": "Defansif Orta Saha",      "ad_en": "Defensive Mid",       "kodlar": ["DM", "DMF"]},
+    7:  {"ad": "Sağ Kanat",               "ad_en": "Right Wing",          "kodlar": ["RW", "RWF", "RM", "RMF"]},
+    8:  {"ad": "Merkez Orta Saha",        "ad_en": "Central Mid",         "kodlar": ["CM", "CMF"]},
+    9:  {"ad": "Santrafor",               "ad_en": "Center Forward",      "kodlar": ["ST", "CF", "CFW"]},
+    10: {"ad": "Hücumcu OS / 2.Santrafor","ad_en": "Att. Mid / 2nd Striker","kodlar": ["AM", "AMF", "SS", "2ST"]},
+    11: {"ad": "Sol Kanat",               "ad_en": "Left Wing",           "kodlar": ["LW", "LWF", "LM", "LMF"]},
+}
+_BOLGE_KOD_TERS = {kod: no for no, v in _TOTAL_FUTBOL_BOLGE.items() for kod in v["kodlar"]}
+
+def _bolge_bul(kodlar):
+    """Mevki kod listesinden (SAHA_KONUM kodu ya da TR etiket) 11-bölge no'sunu bulur
+    (ilk eşleşen kod = birincil mevki). Eşleşme yoksa None döner."""
+    for k in (kodlar or []):
+        k2 = (k or "").strip()
+        if not k2:
+            continue
+        k2 = _MEVKI_SAHA_KOD.get(k2, k2).upper()
+        if k2 in _BOLGE_KOD_TERS:
+            return _BOLGE_KOD_TERS[k2]
+    return None
+
 def _pozisyon_saha(kodlar) -> str:
     """Verilen mevki kodları için mini saha SVG'si (ilk kod = birincil, parlak)."""
     seen = []
@@ -4122,26 +4342,17 @@ def _kontrat_renk_g(sz):
         return "#cbd5e1"
 
 
-def render_shortlist_kartlari(isimler, kullanici):
-    """Shortlist oyuncularını W-Scope 'Favoriler' tarzı kartlarla göster + scout notu /
-    durum / öncelik düzenleme (yorumlama + işlem)."""
-    if not isimler:
-        st.info(t("Shortlist'in boş. Oyuncu tablosundan aşağıdaki ⭐ ile ekleyebilirsin.",
-                  "Your shortlist is empty. Add players with ⭐ below the table."))
-        return
-    sd_data = birlesik_sd_yukle()
-    _notlar = scoutnot_kullanici(kullanici)
-    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 10px;'>"
-                f"⭐ {len(isimler)} {t('oyuncu takipte','players tracked')}</div>",
-                unsafe_allow_html=True)
+def _sl_kutu(lbl, val, clr="#e8eef7"):
+    return (f"<div style='flex:1;background:#0f1626;border:1px solid #233149;border-radius:8px;"
+            f"padding:8px 6px;text-align:center;'>"
+            f"<div style='font-size:0.56rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;'>{lbl}</div>"
+            f"<div style='font-size:0.95rem;font-weight:800;color:{clr};margin-top:2px;'>{val}</div></div>")
 
-    def _kutu(lbl, val, clr="#e8eef7"):
-        return (f"<div style='flex:1;background:#0f1626;border:1px solid #233149;border-radius:8px;"
-                f"padding:8px 6px;text-align:center;'>"
-                f"<div style='font-size:0.56rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;'>{lbl}</div>"
-                f"<div style='font-size:0.95rem;font-weight:800;color:{clr};margin-top:2px;'>{val}</div></div>")
-
-    for isim in isimler:
+def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar):
+    """Tek My Squad/Shortlist kartı: avatar+isim+durum+skor + stat kutuları + not +
+    ✏️ durum/öncelik/not düzenleme expander'ı. render_shortlist_kartlari ve
+    render_my_squad ortak kullanır (2026-08-02 refaktör)."""
+    if True:
         _kd = birlesik_scout_yukle().get(isim, {})
         sd  = sd_data.get(isim, {})
         _yas = _kd.get("yas") or sd.get("Age", "") or "—"
@@ -4163,8 +4374,8 @@ def render_shortlist_kartlari(isimler, kullanici):
                     f"{_DURUM_EN.get(_durum,_durum) if EN else _durum}</span>") if _durum else ""
         _onc_b = (f"<span style='color:#94a3b8;font-size:0.72rem;'>"
                   f"{_ONCELIK_EN.get(_oncelik,_oncelik) if EN else _oncelik}</span>") if _oncelik else ""
-        _statlar = (_kutu(t("YAŞ","AGE"), _yas) + _kutu("POS", _pos) +
-                    _kutu(t("DEĞER","VALUE"), _dg) + _kutu(t("KONTR.","CONTR."), _sz, _kontrat_renk_g(_sz)))
+        _statlar = (_sl_kutu(t("YAŞ","AGE"), _yas) + _sl_kutu("POS", _pos) +
+                    _sl_kutu(t("DEĞER","VALUE"), _dg) + _sl_kutu(t("KONTR.","CONTR."), _sz, _kontrat_renk_g(_sz)))
         _not_html = (f"<div style='margin-top:11px;border-left:3px solid #7c3aed;padding:2px 0 2px 11px;"
                      f"color:#aab4c4;font-size:0.84rem;line-height:1.55;'>📝 {_notu}</div>") if _notu else ""
         _alt = " · ".join(x for x in [_onc_b, _tarih] if x)
@@ -4197,7 +4408,156 @@ def render_shortlist_kartlari(isimler, kullanici):
                     scoutnot_ayarla(kullanici, isim, _yd, _yo, _yn); st.rerun()
             with _b2:
                 if st.button(f"★ {t('Shortlist’ten Çıkar','Remove')}", key=_pk(f"sl_rm_{isim}"), width="stretch"):
-                    shortlist_toggle(kullanici, isim); st.rerun()
+                    _ok, _msg = shortlist_toggle(kullanici, isim)
+                    if _ok: st.rerun()
+                    else: st.warning(_msg)
+
+def render_shortlist_kartlari(isimler, kullanici):
+    """Shortlist oyuncularını W-Scope 'Favoriler' tarzı kartlarla göster (düz liste,
+    gruplanmamış). Bölge-gruplu görünüm için render_my_squad kullanılır."""
+    if not isimler:
+        st.info(t("Shortlist'in boş. Oyuncu tablosundan aşağıdaki ⭐ ile ekleyebilirsin.",
+                  "Your shortlist is empty. Add players with ⭐ below the table."))
+        return
+    sd_data = birlesik_sd_yukle()
+    _notlar = scoutnot_kullanici(kullanici)
+    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 10px;'>"
+                f"⭐ {len(isimler)} {t('oyuncu takipte','players tracked')}</div>",
+                unsafe_allow_html=True)
+    for isim in isimler:
+        _shortlist_kart_tek(isim, kullanici, sd_data, _notlar)
+
+def render_my_squad(kullanici):
+    """My Squad — Total Futbol 11-bölge gruplu takip listesi (üst limit 33, bölge
+    başına 3). Baran'ın site mimarisi planı, Profile > My Squad (2026-08-02)."""
+    isimler = shortlist_kullanici(kullanici)
+    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 14px;'>"
+                f"⭐ {len(isimler)}/33 {t('oyuncu takipte (bölge başına en fazla 3)','players tracked (max 3 per zone)')}</div>",
+                unsafe_allow_html=True)
+    if not isimler:
+        st.info(t("My Squad boş. Oyuncu profillerinden ⭐ ile ekleyebilirsin.",
+                  "Your My Squad is empty. Add players with ⭐ from player profiles."))
+        return
+    sd_data = birlesik_sd_yukle()
+    _notlar = scoutnot_kullanici(kullanici)
+    _gruplar = {no: [] for no in _TOTAL_FUTBOL_BOLGE}
+    _tanimsiz = []
+    for isim in isimler:
+        _kd = birlesik_scout_yukle().get(isim, {})
+        _b = _bolge_bul(_kd.get("mevki"))
+        (_gruplar[_b] if _b is not None else _tanimsiz).append(isim)
+    for no, v in _TOTAL_FUTBOL_BOLGE.items():
+        _oyuncular = _gruplar[no]
+        if not _oyuncular:
+            continue
+        _ad = v["ad_en"] if EN else v["ad"]
+        st.markdown(
+            f"<div style='margin:18px 0 6px;font-size:0.72rem;font-weight:800;"
+            f"letter-spacing:0.08em;text-transform:uppercase;color:#a78bfa;'>"
+            f"{no}. {_ad} <span style='color:#52525b;font-weight:600;'>({len(_oyuncular)}/3)</span></div>",
+            unsafe_allow_html=True)
+        for isim in _oyuncular:
+            _shortlist_kart_tek(isim, kullanici, sd_data, _notlar)
+    if _tanimsiz:
+        st.markdown(
+            f"<div style='margin:18px 0 6px;font-size:0.72rem;font-weight:800;"
+            f"letter-spacing:0.08em;text-transform:uppercase;color:#71717a;'>"
+            f"{t('Bölgesiz','Unassigned')}</div>", unsafe_allow_html=True)
+        for isim in _tanimsiz:
+            _shortlist_kart_tek(isim, kullanici, sd_data, _notlar)
+
+
+# ─── MY 11 — "kadromda olsaydı nasıl olurdu" saha görselli wishlist (üst limit 11) ──
+_BOLGE_TEMSILI_KOD = {
+    1: "GK", 2: "RB", 3: "LB", 4: "RCB", 5: "LCB", 6: "DM",
+    7: "RW", 8: "CM", 9: "ST", 10: "AM", 11: "LW",
+}
+
+def _my11_saha(oyuncu_bolgeler) -> str:
+    """My 11 için mini saha SVG'si: her oyuncu kendi bölge koordinatında, aynı
+    bölgede birden fazla oyuncu varsa yatay ofsetli (isim ilk 3 harf etiketli)."""
+    if not oyuncu_bolgeler:
+        return ""
+    _bolge_sayim = {}
+    nokta = ""
+    for isim, bolge in oyuncu_bolgeler:
+        kod = _BOLGE_TEMSILI_KOD.get(bolge)
+        if not kod or kod not in _SAHA_KONUM:
+            continue
+        x, y = _SAHA_KONUM[kod]
+        i = _bolge_sayim.get(bolge, 0)
+        _bolge_sayim[bolge] = i + 1
+        x_ofs = x + (i * 11 - 11)   # aynı bölgede 2.-3. oyuncu yanlara kayar
+        etiket = (isim or "?")[:3].upper()
+        nokta += (f"<circle cx='{x_ofs}' cy='{y}' r='8' fill='#7c3aed' stroke='#3b0764' stroke-width='0.8'/>"
+                  f"<text x='{x_ofs}' y='{y+2.3}' text-anchor='middle' font-size='5.6' font-weight='800' "
+                  f"fill='#ffffff' font-family='Sora,monospace'>{etiket}</text>")
+    return (
+        "<svg viewBox='0 0 100 132' width='100%' style='max-width:260px;display:block;margin:0 auto;'>"
+        "<rect x='2' y='2' width='96' height='128' rx='5' fill='#0e2117' stroke='#2f6b4a' stroke-width='1'/>"
+        "<line x1='2' y1='66' x2='98' y2='66' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<circle cx='50' cy='66' r='11' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<circle cx='50' cy='66' r='1.2' fill='#2f6b4a'/>"
+        "<rect x='28' y='2' width='44' height='15' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<rect x='40' y='2' width='20' height='6' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<rect x='28' y='115' width='44' height='15' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        "<rect x='40' y='124' width='20' height='6' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
+        f"{nokta}</svg>")
+
+def _my11_kart_tek(isim, kullanici, sd_data):
+    """My 11 kartı: shortlist kartına benzer ama not/durum editörü yok — sadece
+    detay görüntüleme + çıkar butonu (my11_toggle)."""
+    _kd = birlesik_scout_yukle().get(isim, {})
+    sd  = sd_data.get(isim, {})
+    _yas = _kd.get("yas") or sd.get("Age", "") or "—"
+    _pos = (_kd.get("mevki") or [""])[0] or "—"
+    _kl  = _kd.get("kulup", "") or ""
+    _lg  = _kd.get("lig", "") or ""
+    _dg  = _kd.get("deger", "") or "—"
+    _sz  = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
+    _nh  = _kd.get("nihai", "")
+    _uy  = ulke_goster(_uyruk_goster(sd.get("Nationality", "") or _kd.get("vatandaslik", "")))
+    _skor = (f"<span class='ws-ring' style='border-color:{_scotr_renk(_scotr_puan(_nh))};"
+             f"color:{_scotr_renk(_scotr_puan(_nh))};'>{_nh}</span>") if _nh else ""
+    _statlar = (_sl_kutu(t("YAŞ","AGE"), _yas) + _sl_kutu("POS", _pos) +
+                _sl_kutu(t("DEĞER","VALUE"), _dg) + _sl_kutu(t("KONTR.","CONTR."), _sz, _kontrat_renk_g(_sz)))
+    st.markdown(
+        f"<div style='background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;padding:14px 16px;margin-bottom:10px;'>"
+        f"<div style='display:flex;align-items:center;gap:12px;'>"
+        f"<span class='ws-ava' style='width:38px;height:38px;font-size:1rem;'>{(isim[:1] or '?').upper()}</span>"
+        f"<div style='flex:1;min-width:0;'><div style='font-size:1.05rem;font-weight:800;color:#f4f4f5;'>{isim}</div>"
+        f"<div class='ws-sub' style='font-size:0.72rem;'>{' · '.join(x for x in [_uy,_kl,_lg] if x)}</div></div>"
+        f"<div>{_skor}</div></div>"
+        f"<div style='display:flex;gap:6px;margin-top:12px;'>{_statlar}</div></div>",
+        unsafe_allow_html=True)
+    _m11_cikar_lbl = "✕ " + t("My 11'den Çıkar", "Remove from My 11")
+    if st.button(_m11_cikar_lbl, key=_pk(f"m11_rm_{isim}"), width="stretch"):
+        _ok, _msg = my11_toggle(kullanici, isim)
+        if _ok: st.rerun()
+        else: st.warning(_msg)
+
+def render_my11(kullanici):
+    """My 11 — transfer dönemi 'kadromda olsaydı nasıl olurdu' saha görselli wishlist
+    (üst limit 11, bölge sınırı yok). Baran'ın site mimarisi planı 3.2 (2026-08-02)."""
+    isimler = my11_kullanici(kullanici)
+    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 14px;'>"
+                f"🟣 {len(isimler)}/11 {t('oyuncu eklendi','players added')}</div>",
+                unsafe_allow_html=True)
+    if not isimler:
+        st.info(t("My 11 boş. Oyuncu profillerinden ekleyebilirsin.",
+                  "Your My 11 is empty. Add players from player profiles."))
+        return
+    sd_data = birlesik_sd_yukle()
+    _oyuncu_bolgeler = []
+    for isim in isimler:
+        _kd = birlesik_scout_yukle().get(isim, {})
+        _b = _bolge_bul(_kd.get("mevki"))
+        if _b is not None:
+            _oyuncu_bolgeler.append((isim, _b))
+    st.markdown(_my11_saha(_oyuncu_bolgeler), unsafe_allow_html=True)
+    st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+    for isim in isimler:
+        _my11_kart_tek(isim, kullanici, sd_data)
 
 
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
@@ -4239,16 +4599,29 @@ def render_scouting_detay(tam_isim):
         _profil_baslik(tam_isim, sd_url)
     with _bs2:
         _profil_link_kopyala(tam_isim)
-    # Tek tıkla shortlist'e al/çıkar (profili açınca anında, ismin hemen altında)
+    # Tek tıkla My Squad'a al/çıkar + My 11'e al/çıkar (profili açınca anında, ismin hemen altında)
     _sl_kul = st.session_state.get("kulup_kullanici", "admin")
     _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
-    if st.button(
-            ("⭐ " + t("Shortlist'te ✓ (çıkarmak için tıkla)", "In Shortlist ✓ (click to remove)"))
-            if _in_sl else ("☆ " + t("Shortlist'e Ekle", "Add to Shortlist")),
-            key=_pk(f"sc_sl_top_{tam_isim}"), width="stretch",
-            type="secondary" if _in_sl else "primary"):
-        shortlist_toggle(_sl_kul, tam_isim)
-        st.rerun()
+    _in_m11 = tam_isim in my11_kullanici(_sl_kul)
+    _bcol1, _bcol2 = st.columns(2)
+    with _bcol1:
+        if st.button(
+                ("⭐ " + t("My Squad'ta ✓ (çıkarmak için tıkla)", "In My Squad ✓ (click to remove)"))
+                if _in_sl else ("☆ " + t("My Squad'a Ekle", "Add to My Squad")),
+                key=_pk(f"sc_sl_top_{tam_isim}"), width="stretch",
+                type="secondary" if _in_sl else "primary"):
+            _ok, _msg = shortlist_toggle(_sl_kul, tam_isim)
+            if _ok: st.rerun()
+            else: st.warning(_msg)
+    with _bcol2:
+        if st.button(
+                ("🟣 " + t("My 11'de ✓ (çıkarmak için tıkla)", "In My 11 ✓ (click to remove)"))
+                if _in_m11 else ("⚪ " + t("My 11'e Ekle", "Add to My 11")),
+                key=_pk(f"sc_m11_top_{tam_isim}"), width="stretch",
+                type="secondary" if _in_m11 else "primary"):
+            _ok, _msg = my11_toggle(_sl_kul, tam_isim)
+            if _ok: st.rerun()
+            else: st.warning(_msg)
     # Mevki kodları: scout_kadro mevki[] (DMF/CMF…) ya da SD mevkisinden türet
     _saha_kod = list(_kadro.get("mevki") or [])
     if not _saha_kod:
@@ -6363,7 +6736,7 @@ def _tr_sekme_etiketleri(giris: bool) -> list:
     """TR Veri sekme etiketleri — st.tabs ile birebir aynı sırada (login-gated)."""
     ust = []
     if giris:
-        ust = [t("🏟️ Benim Kadrom", "🏟️ My Squad"),
+        ust = [t("🏟️ Benim Kadrom", "🏟️ My Team"),
                t("📝 Internal Scout", "📝 Internal Scout")]
     return ust + [
         t("📋 Oyuncu Listesi", "📋 Player List"),
@@ -6432,66 +6805,118 @@ with st.sidebar:
     st.markdown("<div style='border-bottom:1px solid #1c2238;margin:8px 2px 0;'></div>",
                 unsafe_allow_html=True)
 
-    # ── PLATFORM grubu ──
-    st.markdown(f"<div class='nav-grup'>{t('PLATFORM', 'PLATFORM')}</div>", unsafe_allow_html=True)
-    if st.button(t(f"📊 TR Veri {SEZON_AKTIF}", f"📊 TR Data {SEZON_AKTIF}"), key="nav_veri", width="stretch",
-                 type="primary" if _aktif_sayfa == "ana" else "secondary"):
+    # ── 1-2-3-4 ACCORDION NAV (Baran'ın site mimarisi planı, 2026-08-02) ──────
+    # Sadece aktif bölümün alt maddeleri açık görünür; diğer 3 bölüm başlığa
+    # daralır. Seçili öğe marka moru (#a78bfa) ile vurgulanır.
+    def _my_team_git():
+        _dil = st.query_params.get("dil", "")
+        st.query_params.clear()
+        if _dil:
+            st.query_params["dil"] = _dil
+        st.session_state["tr_sekme"] = t("🏟️ Benim Kadrom", "🏟️ My Team")
+        st.session_state["sayfa"] = "ana"
+        st.session_state["girildi"] = True
+        st.rerun()
+
+    _sayfa_bolum = {
+        "ana": 1, "altlig": 1, "altyas": 1, "arsiv": 1,
+        "scouting": 2,
+        "profil": 3, "my_squad": 3, "my11": 3, "talep": 3, "iletisim": 3,
+        "saygi": 4, "hakkinda": 4,
+    }
+    _aktif_bolum = _sayfa_bolum.get(_aktif_sayfa, 1)
+
+    # ── 1- TR DATA ──
+    if st.button(t(f"1. TR VERİ {SEZON_AKTIF}", f"1. TR DATA {SEZON_AKTIF}"), key="nav_b1",
+                 width="stretch", type="primary" if _aktif_bolum == 1 else "secondary"):
         _tr_veri_git()
-    if st.button(t("🔎 Scouting", "🔎 Scouting"), key="nav_scout", width="stretch",
-                 type="primary" if _aktif_sayfa == "scouting" else "secondary"):
+    if _aktif_bolum == 1:
+        st.markdown(f"<div class='nav-grup'>{t('SEKMELER', 'TABS')}</div>", unsafe_allow_html=True)
+        _sk_etiketler = _tr_sekme_etiketleri(_nav_giris_var)
+        _aktif_sekme = st.session_state.get("tr_sekme")
+        if _aktif_sekme not in _sk_etiketler:
+            _aktif_sekme = _sk_etiketler[0]
+            st.session_state["tr_sekme"] = _aktif_sekme
+        for _i, _et in enumerate(_sk_etiketler):
+            _akt = (_aktif_sayfa == "ana" and _et == _aktif_sekme)
+            if st.button(_et, key=f"navsek_{_i}", width="stretch",
+                         type="primary" if _akt else "secondary"):
+                st.session_state["tr_sekme"] = _et
+                st.session_state["girildi"] = True
+                if _aktif_sayfa != "ana":
+                    _dil_k = st.query_params.get("dil", "")
+                    st.query_params.clear()
+                    if _dil_k:
+                        st.query_params["dil"] = _dil_k
+                    st.session_state["sayfa"] = "ana"
+                st.rerun()
+        st.markdown(f"<div class='nav-grup'>{t('ALT LİGLER', 'LOWER LEAGUES')}</div>", unsafe_allow_html=True)
+        if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", width="stretch",
+                     type="primary" if _aktif_sayfa == "altlig" else "secondary"):
+            _nav_git("altlig")
+        if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", width="stretch",
+                     type="primary" if _aktif_sayfa == "altyas" else "secondary"):
+            _nav_git("altyas")
+        st.markdown(f"<div class='nav-grup'>{t('ARŞİV', 'ARCHIVE')}</div>", unsafe_allow_html=True)
+        for _sezon_key in ARSIV_SEZONLAR:
+            _akt_arsiv = (_aktif_sayfa == "arsiv" and st.session_state.get("arsiv_sezon") == _sezon_key)
+            if st.button(f"🗄️ {_sezon_key} TSL", key=f"nav_arsiv_{_sezon_key}", width="stretch",
+                         type="primary" if _akt_arsiv else "secondary"):
+                st.session_state["arsiv_sezon"] = _sezon_key
+                _nav_git("arsiv")
+        st.markdown(
+            f"<div style='font-size:0.62rem;color:#52525b;padding:4px 8px 2px;'>"
+            f"{t('22-23 sezonu ayrı sayfa yapısı nedeniyle henüz yok','22-23 season not available yet — different page structure')}</div>",
+            unsafe_allow_html=True)
+
+    # ── 2- DÜNYA VERİ / SCOUTING ──
+    if st.button(t("2. DÜNYA VERİ / SCOUTING", "2. WORLD DATA / SCOUTING"), key="nav_b2",
+                 width="stretch", type="primary" if _aktif_bolum == 2 else "secondary"):
         _nav_git("scouting")
-    if st.button(t("👤 Profilim", "👤 My Profile"), key="nav_profil", width="stretch",
-                 type="primary" if _aktif_sayfa == "profil" else "secondary"):
+
+    # ── 3- PROFILE ──
+    if st.button(t("3. PROFİL", "3. PROFILE"), key="nav_b3",
+                 width="stretch", type="primary" if _aktif_bolum == 3 else "secondary"):
         _nav_git("profil")
-    if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), key="nav_talep", width="stretch",
-                 type="primary" if _aktif_sayfa == "talep" else "secondary"):
-        _nav_git("talep")
-    if st.button(t("📬 İletişim", "📬 Contact"), key="nav_iletisim", width="stretch",
-                 type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
-        _nav_git("iletisim")
-    if st.button(t("🎗️ Saygı Kuşağı", "🎗️ Hall of Respect"), key="nav_saygi", width="stretch",
-                 type="primary" if _aktif_sayfa == "saygi" else "secondary"):
+    if _aktif_bolum == 3:
+        st.markdown(f"<div class='nav-grup'>{t('BENİM', 'MINE')}</div>", unsafe_allow_html=True)
+        if _nav_giris_var:
+            if st.button(t("🏟️ My Team", "🏟️ My Team"), key="nav_myteam", width="stretch",
+                         type="primary" if (_aktif_sayfa == "ana" and st.session_state.get("tr_sekme") == t("🏟️ Benim Kadrom", "🏟️ My Team")) else "secondary"):
+                _my_team_git()
+        if st.button(t("🟣 My 11", "🟣 My 11"), key="nav_my11", width="stretch",
+                     type="primary" if _aktif_sayfa == "my11" else "secondary"):
+            _nav_git("my11")
+        if st.button(t("⭐ My Squad", "⭐ My Squad"), key="nav_mysquad", width="stretch",
+                     type="primary" if _aktif_sayfa == "my_squad" else "secondary"):
+            _nav_git("my_squad")
+        if st.button(t("📩 Talep / Danışmanlık", "📩 Request / Consult"), key="nav_talep", width="stretch",
+                     type="primary" if _aktif_sayfa == "talep" else "secondary"):
+            _nav_git("talep")
+        if st.button(t("📬 İletişim", "📬 Contact"), key="nav_iletisim", width="stretch",
+                     type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
+            _nav_git("iletisim")
+
+    # ── 4- HALL OF RESPECT (Saygı Kuşağı) ──
+    if st.button(t("4. HALL OF RESPECT", "4. HALL OF RESPECT"), key="nav_b4",
+                 width="stretch", type="primary" if _aktif_bolum == 4 else "secondary"):
         _nav_git("saygi")
+    if _aktif_bolum == 4:
+        if st.button(t("🎗️ Our Precious", "🎗️ Our Precious"), key="nav_saygi", width="stretch",
+                     type="primary" if _aktif_sayfa == "saygi" else "secondary"):
+            _nav_git("saygi")
+        if st.button(t("❔ Biz Kimiz?", "❔ Who Are We?"), key="nav_hakkinda", width="stretch",
+                     type="primary" if _aktif_sayfa == "hakkinda" else "secondary"):
+            _nav_git("hakkinda")
+
     # Kulüp Kokpiti — YALNIZ admin (2026-27 iç kadro/kontrat aracı)
     # DİKKAT: kulup_giris boolean; kullanıcı adı kulup_kullanici'da
     if st.session_state.get("kulup_kullanici") == "admin":
+        st.markdown("<div style='border-bottom:1px solid #1c2238;margin:10px 2px;'></div>",
+                    unsafe_allow_html=True)
         if st.button(t("🛰️ Kulüp Kokpiti", "🛰️ Club Cockpit"), key="nav_kokpit", width="stretch",
                      type="primary" if _aktif_sayfa == "kokpit" else "secondary"):
             _nav_git("kokpit")
-
-    # ── TR VERİ SEKMELERİ grubu (tüm sayfalarda görünür) ──
-    st.markdown(f"<div class='nav-grup'>{t('TR VERİ SEKMELERİ', 'TR DATA TABS')}</div>",
-                unsafe_allow_html=True)
-    _sk_etiketler = _tr_sekme_etiketleri(_nav_giris_var)
-    _aktif_sekme = st.session_state.get("tr_sekme")
-    if _aktif_sekme not in _sk_etiketler:
-        _aktif_sekme = _sk_etiketler[0]
-        st.session_state["tr_sekme"] = _aktif_sekme
-    for _i, _et in enumerate(_sk_etiketler):
-        # Aktif vurgu yalnız TR Veri sayfasındayken; başka sayfadayken
-        # tıklanınca TR Veri'ye geçip o sekme açılır.
-        _akt = (_aktif_sayfa == "ana" and _et == _aktif_sekme)
-        if st.button(_et, key=f"navsek_{_i}", width="stretch",
-                     type="primary" if _akt else "secondary"):
-            st.session_state["tr_sekme"] = _et
-            st.session_state["girildi"] = True   # sekmeye tıklayan içeri girer
-            if _aktif_sayfa != "ana":
-                _dil_k = st.query_params.get("dil", "")
-                st.query_params.clear()
-                if _dil_k:
-                    st.query_params["dil"] = _dil_k
-                st.session_state["sayfa"] = "ana"
-            st.rerun()
-
-    # ── Alt kategoriler (TR Veri'nin altında, ücretsiz) ──
-    st.markdown(f"<div class='nav-grup'>{t('ALT KATEGORİLER', 'LOWER CATEGORIES')}</div>",
-                unsafe_allow_html=True)
-    if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", width="stretch",
-                 type="primary" if _aktif_sayfa == "altlig" else "secondary"):
-        _nav_git("altlig")
-    if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", width="stretch",
-                 type="primary" if _aktif_sayfa == "altyas" else "secondary"):
-        _nav_git("altyas")
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
 _hero_oyuncu = len(df_tam) if not df_tam.empty else 0
@@ -7189,6 +7614,25 @@ if st.session_state["sayfa"] == "yukselt":
 if st.session_state["sayfa"] == "profil":
     geri_ana_butonu("geri_profil")
     render_profil()
+    st.stop()
+
+if st.session_state.get("sayfa") == "my_squad":
+    geri_ana_butonu("geri_mysquad")
+    st.markdown(f"## ⭐ {t('My Squad', 'My Squad')}")
+    render_my_squad(st.session_state.get("kulup_kullanici", "admin"))
+    st.stop()
+
+if st.session_state.get("sayfa") == "my11":
+    geri_ana_butonu("geri_my11")
+    st.markdown(f"## 🟣 {t('My 11', 'My 11')}")
+    render_my11(st.session_state.get("kulup_kullanici", "admin"))
+    st.stop()
+
+if st.session_state.get("sayfa") == "arsiv":
+    geri_ana_butonu("geri_arsiv")
+    _arsiv_sezon = st.session_state.get("arsiv_sezon", list(ARSIV_SEZONLAR.keys())[0])
+    st.markdown(f"## 🗄️ {t('Arşiv','Archive')} — {_arsiv_sezon} TSL")
+    render_arsiv(_arsiv_sezon)
     st.stop()
 
 if st.session_state["sayfa"] == "hakkinda":
@@ -8289,10 +8733,10 @@ if st.session_state.get("sayfa") == "scouting":
 
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
             _ONERI_TAB  = t("📥 Öneri Merkezi", "📥 Recommendations")
-            _TAB_OPTS   = [t("Tüm Oyuncular", "All Players"), t("Shortlist", "Shortlist"), _ONERI_TAB]
+            _TAB_OPTS   = [t("Tüm Oyuncular", "All Players"), t("⭐ My Squad", "⭐ My Squad"), _ONERI_TAB]
             _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
                                    key="sc_tab_radio", label_visibility="collapsed")
-            sadece_sl   = (_sc_tab_sel == t("Shortlist", "Shortlist"))
+            sadece_sl   = (_sc_tab_sel == t("⭐ My Squad", "⭐ My Squad"))
 
             # ── Öneri Merkezi sekmesi: tam genişlik panosu + erken çıkış ──────
             # (Scouting sayfası zaten aşağıda st.stop() ile bitiyor; burada da
@@ -9012,7 +9456,7 @@ _dlg = st.session_state.pop("_profil_dlg", None)
 if _dlg:
     _profil_dialog(_dlg[0], _dlg[1])
 
-tab_benim    = _giris_var and _aktif == t("🏟️ Benim Kadrom", "🏟️ My Squad")
+tab_benim    = _giris_var and _aktif == t("🏟️ Benim Kadrom", "🏟️ My Team")
 tab_internal = _giris_var and _aktif == t("📝 Internal Scout", "📝 Internal Scout")
 tab1         = _aktif == t("📋 Oyuncu Listesi", "📋 Player List")
 tab_transfer = _aktif == t("🔄 Transfer Öner", "🔄 Transfer Suggest")
