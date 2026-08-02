@@ -7012,11 +7012,11 @@ with st.sidebar:
                 _nav_git("kokpit")
     st.markdown("<div style='margin-top:2px;'></div>", unsafe_allow_html=True)
 
-    # ── 1- TR DATA ──
-    if st.button(t(f"🇹🇷 1. TR VERİ {SEZON_AKTIF}", f"🇹🇷 1. TR DATA {SEZON_AKTIF}"), key="nav_b1",
-                 width="stretch", type="primary" if _aktif_bolum == 1 else "secondary"):
-        _tr_veri_git()
+    # ── TR DATA — sadece aktif bölümken görünür (üstteki ikon çubuğu geçiş için yeter) ──
     if _aktif_bolum == 1:
+        if st.button(t(f"🇹🇷 TR VERİ {SEZON_AKTIF}", f"🇹🇷 TR DATA {SEZON_AKTIF}"), key="nav_b1",
+                     width="stretch", type="primary"):
+            _tr_veri_git()
         st.markdown(f"<div class='nav-grup'>{t('SEKMELER', 'TABS')}</div>", unsafe_allow_html=True)
         _sk_etiketler = _tr_sekme_etiketleri(_nav_giris_var)
         _aktif_sekme = st.session_state.get("tr_sekme")
@@ -7051,29 +7051,29 @@ with st.sidebar:
                 st.session_state["arsiv_sezon"] = _sezon_key
                 _nav_git("arsiv")
 
-    # ── 2- DÜNYA VERİ / SCOUTING (bayrak özellik — Premium vurgusu) ──
-    st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
-    try:    _dv_oyuncu = len(birlesik_scout_yukle())
-    except Exception: _dv_oyuncu = 0
-    st.markdown(
-        f"<div style='line-height:1.6;padding:3px 4px 7px;margin:0 4px;min-height:1.6em;"
-        f"font-size:0.6rem;font-weight:800;letter-spacing:0.06em;color:#e040fb;'>"
-        f"👑 {t(f'{_dv_oyuncu}+ OYUNCU · EN KAPSAMLI HAVUZ', f'{_dv_oyuncu}+ PLAYERS · MOST COMPREHENSIVE POOL')}</div>",
-        unsafe_allow_html=True)
-    # NOT: Streamlit'in stElementContainer'ı bu satırın gerçek render yüksekliğini
-    # (~25px) hafife alıp ~9px sayıyor, bu yüzden sonraki buton üstüne biniyordu.
-    # Telafi için ekstra boşluk (2026-08-02).
-    st.markdown("<div style='height:28px;'></div>", unsafe_allow_html=True)
-    if st.button(t("🌍 2. DÜNYA VERİ / SCOUTING", "🌍 2. WORLD DATA / SCOUTING"), key="nav_b2",
-                 width="stretch", type="primary" if _aktif_bolum == 2 else "secondary"):
-        _nav_git("scouting")
+    # ── DÜNYA VERİ / SCOUTING — sadece aktif bölümken görünür ──
+    if _aktif_bolum == 2:
+        st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
+        try:    _dv_oyuncu = len(birlesik_scout_yukle())
+        except Exception: _dv_oyuncu = 0
+        st.markdown(
+            f"<div style='line-height:1.6;padding:3px 4px 7px;margin:0 4px;min-height:1.6em;"
+            f"font-size:0.6rem;font-weight:800;letter-spacing:0.06em;color:#e040fb;'>"
+            f"👑 {t(f'{_dv_oyuncu}+ OYUNCU · EN KAPSAMLI HAVUZ', f'{_dv_oyuncu}+ PLAYERS · MOST COMPREHENSIVE POOL')}</div>",
+            unsafe_allow_html=True)
+        # NOT: Streamlit'in stElementContainer'ı bu satırın gerçek render yüksekliğini
+        # (~25px) hafife alıp ~9px sayıyor, bu yüzden sonraki buton üstüne biniyordu.
+        # Telafi için ekstra boşluk (2026-08-02).
+        st.markdown("<div style='height:28px;'></div>", unsafe_allow_html=True)
+        if st.button(t("🌍 DÜNYA VERİ / SCOUTING", "🌍 WORLD DATA / SCOUTING"), key="nav_b2",
+                     width="stretch", type="primary"):
+            _nav_git("scouting")
 
-    # ── 3- PROFILE ──
-    st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
-    if st.button(t("👤 3. PROFİL", "👤 3. PROFILE"), key="nav_b3",
-                 width="stretch", type="primary" if _aktif_bolum == 3 else "secondary"):
-        _nav_git("profil")
+    # ── PROFILE — sadece aktif bölümken görünür ──
     if _aktif_bolum == 3:
+        if st.button(t("👤 PROFİL", "👤 PROFILE"), key="nav_b3",
+                     width="stretch", type="primary"):
+            _nav_git("profil")
         st.markdown(f"<div class='nav-grup'>{t('BENİM', 'MINE')}</div>", unsafe_allow_html=True)
         if _nav_giris_var:
             if st.button(t("🏟️ My Team", "🏟️ My Team"), key="nav_myteam", width="stretch",
@@ -7092,12 +7092,11 @@ with st.sidebar:
                      type="primary" if _aktif_sayfa == "iletisim" else "secondary"):
             _nav_git("iletisim")
 
-    # ── 4- HALL OF RESPECT (Saygı Kuşağı) ──
-    st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
-    if st.button(t("🎗️ 4. HALL OF RESPECT", "🎗️ 4. HALL OF RESPECT"), key="nav_b4",
-                 width="stretch", type="primary" if _aktif_bolum == 4 else "secondary"):
-        _nav_git("saygi")
+    # ── HALL OF RESPECT (Saygı Kuşağı) — sadece aktif bölümken görünür ──
     if _aktif_bolum == 4:
+        if st.button(t("🎗️ HALL OF RESPECT", "🎗️ HALL OF RESPECT"), key="nav_b4",
+                     width="stretch", type="primary"):
+            _nav_git("saygi")
         if st.button(t("🎗️ Our Precious", "🎗️ Our Precious"), key="nav_saygi", width="stretch",
                      type="primary" if _aktif_sayfa == "saygi" else "secondary"):
             _nav_git("saygi")
