@@ -51,7 +51,7 @@ _favicon = _Path(__file__).parent / "static" / "logo_kare.png"
 st.set_page_config(
     page_title=_page_title,
     page_icon=(str(_favicon) if _favicon.exists() else "🎯"), layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",  # "expanded" mobilde de zorla açıyordu (300/375px overlay) — "auto" masaüstünde açık, mobilde kapalı başlar
 )
 
 # ─── Dil (TR varsayılan / EN hedefli sayfalar) ───
@@ -416,6 +416,10 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
         min-width: calc(50% - 3px) !important;
         margin-bottom: 0 !important;
     }
+
+    /* My Squad / My 11 kart stat satırı — mobilde 2'li grid (2026-08-02) */
+    .sl-stat-row { flex-wrap: wrap !important; }
+    .sl-stat-row > div { flex: 1 1 calc(50% - 3px) !important; min-width: calc(50% - 3px); }
 
     /* Profil kartı */
     .profil-kart { padding:14px 16px; }
@@ -4386,7 +4390,7 @@ def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar):
             f"<div style='flex:1;min-width:0;'><div style='font-size:1.05rem;font-weight:800;color:#f4f4f5;'>{isim}</div>"
             f"<div class='ws-sub' style='font-size:0.72rem;'>{' · '.join(x for x in [_uy,_kl,_lg] if x)}</div></div>"
             f"<div style='display:flex;align-items:center;gap:10px;'>{_durum_b}{_skor}</div></div>"
-            f"<div style='display:flex;gap:6px;margin-top:12px;'>{_statlar}</div>"
+            f"<div class='sl-stat-row' style='display:flex;gap:6px;margin-top:12px;'>{_statlar}</div>"
             f"{_not_html}"
             + (f"<div style='margin-top:7px;font-size:0.66rem;color:#52525b;'>{_alt}</div>" if _alt else "")
             + "</div>", unsafe_allow_html=True)
@@ -4528,7 +4532,7 @@ def _my11_kart_tek(isim, kullanici, sd_data):
         f"<div style='flex:1;min-width:0;'><div style='font-size:1.05rem;font-weight:800;color:#f4f4f5;'>{isim}</div>"
         f"<div class='ws-sub' style='font-size:0.72rem;'>{' · '.join(x for x in [_uy,_kl,_lg] if x)}</div></div>"
         f"<div>{_skor}</div></div>"
-        f"<div style='display:flex;gap:6px;margin-top:12px;'>{_statlar}</div></div>",
+        f"<div class='sl-stat-row' style='display:flex;gap:6px;margin-top:12px;'>{_statlar}</div></div>",
         unsafe_allow_html=True)
     _m11_cikar_lbl = "✕ " + t("My 11'den Çıkar", "Remove from My 11")
     if st.button(_m11_cikar_lbl, key=_pk(f"m11_rm_{isim}"), width="stretch"):
