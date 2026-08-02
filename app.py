@@ -10892,8 +10892,14 @@ if tab_benim:
                         f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
                 st.markdown("<br>", unsafe_allow_html=True)
                 st.markdown(f"**{t('Takım Bazlı Gol Sıralaması', 'Goals by Team')}**")
-                takim_gol = (df_tam.groupby("Takım")["Gol"].sum()
-                             .sort_values(ascending=False).reset_index())
+                # İsim varyantları (ALG'in 3 yazımı, Çekmeköy/Şile Bilgidoğa) _takim_kisa ile
+                # birleştirilmeden gruplanırsa aynı kulüp 0 gollü "hayalet" satırlara bölünüyordu.
+                _kanon_takim = df_tam["Takım"].map(_takim_kisa).replace(
+                    {"Çekmeköy Bilgidoğa": "Şile Bilgidoğa"})
+                takim_gol = (df_tam.assign(_Kanon=_kanon_takim)
+                             .groupby("_Kanon")["Gol"].sum()
+                             .sort_values(ascending=False).reset_index()
+                             .rename(columns={"_Kanon": "Takım"}))
                 fig_admin = go.Figure(go.Bar(
                     x=takim_gol["Gol"], y=takim_gol["Takım"], orientation="h",
                     marker=dict(color="#1db954"),
