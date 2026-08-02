@@ -7010,7 +7010,7 @@ with st.sidebar:
     with _ik_kolonlar[3]:
         if st.button("🎗️", key="nav_ikon_4", width="stretch",
                      type="primary" if _aktif_bolum == 4 else "secondary",
-                     help=t("Hall of Respect", "Hall of Respect")):
+                     help=t("Saygı Kuşağı", "Hall of Respect")):
             _nav_git("saygi")
     if _ik_admin:
         with _ik_kolonlar[4]:
@@ -7102,10 +7102,10 @@ with st.sidebar:
 
     # ── HALL OF RESPECT (Saygı Kuşağı) — sadece aktif bölümken görünür ──
     if _aktif_bolum == 4:
-        if st.button(t("🎗️ HALL OF RESPECT", "🎗️ HALL OF RESPECT"), key="nav_b4",
+        if st.button(t("🎗️ SAYGI KUŞAĞI", "🎗️ HALL OF RESPECT"), key="nav_b4",
                      width="stretch", type="primary"):
             _nav_git("saygi")
-        if st.button(t("🎗️ Our Precious", "🎗️ Our Precious"), key="nav_saygi", width="stretch",
+        if st.button(t("🎗️ Değerlilerimiz", "🎗️ Our Precious"), key="nav_saygi", width="stretch",
                      type="primary" if _aktif_sayfa == "saygi" else "secondary"):
             _nav_git("saygi")
         if st.button(t("❔ Biz Kimiz?", "❔ Who Are We?"), key="nav_hakkinda", width="stretch",
