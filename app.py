@@ -5584,15 +5584,16 @@ def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
             kc = renk if i < dolu else "#1a2035"
             kutular += (f"<span style='width:5px;height:9px;background:{kc};"
                         f"border-radius:1px;'></span>")
+        # Ad TAM görünsün diye satır iki katmanlı: üstte ad (kırpılmadan, gerekirse
+        # sarar), altında segment çubuğu + değer (2026-08-02, kırpılma şikayeti üzerine).
         satirlar += (
-            f"<div style='display:flex;align-items:center;gap:6px;margin:3px 0;' "
-            f"title='{ad_g}: {nt}'>"
-            f"<span style='flex:1;min-width:0;font-size:0.63rem;color:#aab4c4;"
-            f"white-space:nowrap;overflow:hidden;text-overflow:ellipsis;'>{ad_g}</span>"
+            f"<div style='margin:5px 0;'>"
+            f"<div style='font-size:0.63rem;color:#aab4c4;line-height:1.25;'>{ad_g}</div>"
+            f"<div style='display:flex;align-items:center;gap:6px;margin-top:2px;'>"
             f"<span style='display:inline-flex;gap:1.5px;flex:0 0 auto;'>{kutular}</span>"
-            f"<span style='flex:0 0 20px;text-align:right;font-size:0.58rem;"
-            f"font-weight:800;color:{renk};font-family:monospace;'>{nt}</span>"
-            f"</div>"
+            f"<span style='font-size:0.6rem;font-weight:800;color:{renk};"
+            f"font-family:monospace;'>{nt}</span>"
+            f"</div></div>"
         )
     return (
         f"<div style='background:#11162a;border:1px solid #232b47;border-radius:10px;"
