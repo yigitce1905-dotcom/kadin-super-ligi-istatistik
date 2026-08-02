@@ -10270,7 +10270,10 @@ if tab5:
 
     # Oyuncu verisinden takım istatistikleri hesapla
     if not df_tam.empty:
-        takim_ozet = df_tam.groupby("Takım").agg(
+        # İsim varyantları (ALG'in 3 yazımı, Çekmeköy/Şile Bilgidoğa) gruplamadan ÖNCE
+        # birleştirilir — yoksa aynı kulüp "hayalet" 0'a yakın ek satırlara bölünüyordu.
+        _lig_kanon = df_tam["Takım"].map(_takim_kisa).replace({"Çekmeköy Bilgidoğa": "Şile Bilgidoğa"})
+        takim_ozet = df_tam.assign(_Kanon=_lig_kanon).groupby("_Kanon").agg(
             Oyuncu=("Oyuncu", "count"),
             TopGol=("Gol", "sum"),
             TopDk=("Dakika", "sum"),
@@ -10280,7 +10283,6 @@ if tab5:
 
         # Kolon adları iç-anahtar olarak TR kalır; görünen etiketler column_config'te çevrilir
         takim_ozet.columns = ["Takım","Oyuncu Sayısı","Toplam Gol","Toplam Dakika","Sarı Kart","Kırmızı Kart"]
-        takim_ozet["Takım"] = takim_ozet["Takım"].map(_takim_kisa)
         takim_ozet.index = range(1, len(takim_ozet)+1)
 
         st.markdown(f"#### {t('Takım Bazlı Sezon İstatistikleri', 'Season Stats by Team')}")
@@ -10887,7 +10889,7 @@ if tab_benim:
                 k1,k2,k3,k4 = st.columns(4)
                 for kol,sayi,etiket in [
                     (k1, len(df_tam),              t("Toplam Oyuncu","Total Players")),
-                    (k2, df_tam["Takım"].nunique(), t("Takım","Teams")),
+                    (k2, _kanon_takim_sayisi(df_tam["Takım"]), t("Takım","Teams")),
                     (k3, int(df_tam["Gol"].sum()),  t("Toplam Gol","Total Goals")),
                     (k4, int(df_tam["Maç"].sum()),  t("Toplam Maç","Total Matches")),
                 ]:
@@ -11007,7 +11009,11 @@ if tab_benim:
 
                 st.markdown("---")
                 st.markdown(f"**📊 {t('Takım vs Lig Ortalaması', 'Team vs League Average')}**")
-                lig_ort   = df_tam.groupby("Takım").agg({"Gol":"sum","Maç":"sum","Dakika":"sum"}).mean()
+                # Kanonik takım ismiyle grupla — yoksa ALG/Şile gibi çift yazımlı
+                # kulüpler ekstra "hayalet" satır olarak ortalamayı yapay düşürüyordu.
+                _lo_kanon = df_tam["Takım"].map(_takim_kisa).replace({"Çekmeköy Bilgidoğa": "Şile Bilgidoğa"})
+                lig_ort   = df_tam.assign(_K=_lo_kanon).groupby("_K").agg(
+                                {"Gol":"sum","Maç":"sum","Dakika":"sum"}).mean()
                 takim_ort = kadro.agg({"Gol":"sum","Maç":"sum","Dakika":"sum"})
                 c1,c2,c3 = st.columns(3)
                 for kol, metrik, birim, birim_en in [
