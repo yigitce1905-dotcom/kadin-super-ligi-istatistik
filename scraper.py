@@ -24,7 +24,10 @@ def fetch(session, url, yeniden=3):
         try:
             r = session.get(url, headers=HEADERS, timeout=20, verify=False)
             r.raise_for_status()
-            return BeautifulSoup(r.content, "lxml")
+            # r.text (r.encoding'e gore decode) kullan - r.content (ham byte)
+            # eski sezon sayfalarinda (windows-1254) lxml'in yanlis auto-detect
+            # yapip Turkce karakterleri (�) bozmasina neden oluyordu.
+            return BeautifulSoup(r.text, "lxml")
         except Exception as e:
             print(f"      [HATA {deneme+1}/{yeniden}] {url[:60]}: {e}")
             time.sleep(3)

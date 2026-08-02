@@ -727,7 +727,8 @@ def veri_yukle():
 
 # ─── ARŞİV SEZONLARI (Baran'ın site mimarisi planı 1.2, 2026-08-02) ──────────
 # scraper_arsiv.py ile üretilir (oyuncular.json ile AYNI liste formatı).
-ARSIV_SEZONLAR = {"2024-25": "arsiv_2024_25.json", "2023-24": "arsiv_2023_24.json"}
+ARSIV_SEZONLAR = {"2024-25": "arsiv_2024_25.json", "2023-24": "arsiv_2023_24.json",
+                   "2022-23": "arsiv_2022_23.json"}
 
 @st.cache_data(ttl=1800)
 def arsiv_sezon_yukle(sezon_key: str):
@@ -6868,10 +6869,6 @@ with st.sidebar:
                          type="primary" if _akt_arsiv else "secondary"):
                 st.session_state["arsiv_sezon"] = _sezon_key
                 _nav_git("arsiv")
-        st.markdown(
-            f"<div style='font-size:0.62rem;color:#52525b;padding:4px 8px 2px;'>"
-            f"{t('22-23 sezonu ayrı sayfa yapısı nedeniyle henüz yok','22-23 season not available yet — different page structure')}</div>",
-            unsafe_allow_html=True)
 
     # ── 2- DÜNYA VERİ / SCOUTING ──
     if st.button(t("2. DÜNYA VERİ / SCOUTING", "2. WORLD DATA / SCOUTING"), key="nav_b2",

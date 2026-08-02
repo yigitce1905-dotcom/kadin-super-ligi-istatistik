@@ -5,8 +5,15 @@ mimarisi plani - Faz 3). scraper.py'nin mac-detay parse mantigini (mac_detayi_is
 yeniden kullanir; sadece haftalik fikstur URL'si sezona gore parametrik.
 
 Dogrulanan pageID'ler (tff.org/default.aspx?pageID=848 arsiv sayfasindan):
-  2024-25 -> 1735   2023-24 -> 1653   2022-23 -> 1623 (FARKLI SAYFA YAPISI,
-  hafta=N parametresiyle mac donmuyor - ayri inceleme gerekir, bu script'te YOK).
+  2024-25 -> 1735   2023-24 -> 1653   2022-23 -> 1623
+
+2022-23 (pageID=1623) ESKI/FARKLI SAYFA SABLONU kullanir: hafta=N parametresi
+yok sayilir, TUM SEZON (grup asamasi + play-off + play-out) TEK sayfada gelir,
+css class'siz duz tr/td yapisiyla. mac_2022_23_linklerini_topla() bu sayfayi
+tek seferde ceker ve TUM tr'leri tarayip macId linki iceren td'nin komsu
+td'lerinden ev/dep takim adini cikarir (193/193 mac dogrulandi, sadece finalin
+tek satirinda takim adi bos kaliyor - o mac atlanir). Mac DETAY sayfasi
+(scraper.mac_detayi_isle) ayni sablonu kullaniyor, degisiklik gerekmedi.
 
 Kullanim:
   python scraper_arsiv.py            # tum tanimli sezonlar
@@ -22,6 +29,8 @@ SEZONLAR = {
     "2024-25": {"pageid": 1735, "cikti": "arsiv_2024_25.json"},
     "2023-24": {"pageid": 1653, "cikti": "arsiv_2023_24.json"},
 }
+SEZON_2022_23_PAGEID = 1623
+SEZON_2022_23_CIKTI  = "arsiv_2022_23.json"
 TOPLAM_HAFTA  = 30
 HAFTA_BEKLEME = 1.0
 MAC_BEKLEME   = 1.2
@@ -122,10 +131,65 @@ def sezon_cek(sezon_ad, pageid, cikti_json, toplam_hafta=TOPLAM_HAFTA, ilk_hafta
     return liste
 
 
+def mac_2022_23_linklerini_topla(session):
+    """2022-23 (pageID=1623) TEK sayfada tum sezonu (grup+play-off+play-out)
+    dondurur, hafta parametresi yok sayilir. tr/td'de css class yok; macId
+    linki iceren td'nin komsu td'lerinden ev/dep takim adi cikarilir."""
+    import re
+    url = f"https://www.tff.org/Default.aspx?pageID={SEZON_2022_23_PAGEID}"
+    soup = scraper.fetch(session, url)
+    if not soup:
+        return []
+    bulunan, mac_linkleri = set(), []
+    for tr in soup.find_all("tr"):
+        tds = tr.find_all("td", recursive=False)
+        if not tds:
+            continue
+        for i, td in enumerate(tds):
+            a = td.find("a", href=re.compile(r"macId=\d+"))
+            if not a:
+                continue
+            m = re.search(r"macId=(\d+)", a["href"])
+            if not m or m.group(1) in bulunan:
+                continue
+            skor_txt = a.get_text(strip=True)
+            if not re.match(r"^\d+\s*-\s*\d+", skor_txt):
+                continue
+            ev  = tds[i-1].get_text(strip=True) if i-1 >= 0 else ""
+            dep = tds[i+1].get_text(strip=True) if i+1 < len(tds) else ""
+            if not ev or not dep:
+                continue   # takim adi cikarilamayan (ornegin final) satir atlanir
+            bulunan.add(m.group(1))
+            mac_linkleri.append({"url": scraper.DETAY_BASE + a["href"].lstrip("/"), "ev": ev, "dep": dep})
+    return mac_linkleri
+
+
+def sezon_2022_23_cek():
+    print("=" * 62)
+    print(f"  TFF ARSIV -- 2022-23 (pageID={SEZON_2022_23_PAGEID}, tek sayfa)")
+    print("=" * 62)
+    session     = requests.Session()
+    oyuncu_dict = {}
+    maclar = mac_2022_23_linklerini_topla(session)
+    print(f"  {len(maclar)} mac bulundu, detaylari cekiliyor...")
+    for i, mac in enumerate(maclar, 1):
+        scraper.mac_detayi_isle(session, mac, oyuncu_dict, hafta_no=1)
+        if i % 20 == 0:
+            print(f"  [{i}/{len(maclar)}]")
+        time.sleep(MAC_BEKLEME)
+    liste = _oyuncu_dict_to_liste(oyuncu_dict)
+    with open(SEZON_2022_23_CIKTI, "w", encoding="utf-8") as f:
+        json.dump(liste, f, ensure_ascii=False, indent=1)
+    print(f"  BITTI: {len(liste)} oyuncu, {len(maclar)} mac -> {SEZON_2022_23_CIKTI}")
+    return liste
+
+
 if __name__ == "__main__":
     hedef = sys.argv[1] if len(sys.argv) > 1 else "all"
     for ad, cfg in SEZONLAR.items():
         if hedef != "all" and hedef != ad:
             continue
         sezon_cek(ad, cfg["pageid"], cfg["cikti"])
+    if hedef in ("all", "2022-23"):
+        sezon_2022_23_cek()
     print("\nTum sezonlar tamamlandi.")
