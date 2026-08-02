@@ -3374,6 +3374,17 @@ def vucut_goster(m):
     return _VUCUT_EN.get(m, m) if EN else m
 def bolge_goster(m):
     return _BOLGE_EN.get(m, m) if EN else m
+def _lig_goster(m):
+    """'lig' alanı çoğunlukla 'Ülke N' şeklinde (örn. 'Almanya 1', 'ABD 2') —
+    sondaki bölüm numarasını koruyup sadece ülke kısmını çevirir. Numara yoksa
+    (ör. sadece 'Türkiye') düz ulke_goster ile aynı davranır."""
+    m = (m or "").strip()
+    if not m:
+        return m
+    parcalar = m.rsplit(" ", 1)
+    if len(parcalar) == 2 and parcalar[1].isdigit():
+        return f"{ulke_goster(parcalar[0])} {parcalar[1]}"
+    return ulke_goster(m)
 def etiket_badge_goster(m):
     return _ETIKET_BADGE_EN.get(m, m) if EN else m
 # EN→TR ters harita (ilk eşleşme kazanır → typo/ikincil adlar ezmez)
@@ -4478,7 +4489,7 @@ def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar):
         _yas = _kd.get("yas") or sd.get("Age", "") or "—"
         _pos = (_kd.get("mevki") or [""])[0] or "—"
         _kl  = _kd.get("kulup", "") or ""
-        _lg  = _kd.get("lig", "") or ""
+        _lg  = _lig_goster(_kd.get("lig", "") or "")
         _dg  = _kd.get("deger", "") or "—"
         _sz  = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
         _nh  = _kd.get("nihai", "")
@@ -4632,7 +4643,7 @@ def _my11_kart_tek(isim, kullanici, sd_data):
     _yas = _kd.get("yas") or sd.get("Age", "") or "—"
     _pos = (_kd.get("mevki") or [""])[0] or "—"
     _kl  = _kd.get("kulup", "") or ""
-    _lg  = _kd.get("lig", "") or ""
+    _lg  = _lig_goster(_kd.get("lig", "") or "")
     _dg  = _kd.get("deger", "") or "—"
     _sz  = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
     _nh  = _kd.get("nihai", "")
@@ -5620,8 +5631,8 @@ def render_scout_raporu(isim: str, bolum: str = "analiz"):
 
     mevki_kod = " / ".join(x for x in [rapor.get("mevki1"), rapor.get("mevki2")] if x)
     alt_satir = " · ".join(x for x in [
-        scout_rol_goster(rapor.get("rol", "")), mevki_kod, rapor.get("bolge", ""),
-        rapor.get("uyruk", "")] if x)
+        scout_rol_goster(rapor.get("rol", "")), mevki_kod, bolge_goster(rapor.get("bolge", "")),
+        ulke_goster(rapor.get("uyruk", ""))] if x)
 
     nihai_rozet = (
         f"<div style='text-align:center;'>"
@@ -5753,10 +5764,10 @@ def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
     # ── Künye satırı ──
     pdf.set_font("DV","",9)
     kunye = [
-        (t("Uyruk","Nationality"), rapor.get("vatandaslik","—")),
+        (t("Uyruk","Nationality"), ulke_goster(rapor.get("vatandaslik","")) or "—"),
         (t("Doğum","Born"), f"{rapor.get('dogum','—')} ({rapor.get('yas','?')})"),
         (t("Boy/Ayak","Height/Foot"), f"{rapor.get('boy','—')} · {rapor.get('ayak','—')}"),
-        (t("Lig","League"), rapor.get("lig","—")),
+        (t("Lig","League"), _lig_goster(rapor.get("lig","")) or "—"),
         (t("Sözleşme","Contract"), rapor.get("sozlesme","—")),
     ]
     for et, dg in kunye:
@@ -5894,8 +5905,8 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
     mevki_kod = " / ".join(rapor.get("mevki", []))
     alt_satir = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki_kod,
                 f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
-                rapor.get("vatandaslik","")] if x)
-    kulup_satir = " · ".join(x for x in [rapor.get("kulup",""), rapor.get("lig",""),
+                ulke_goster(rapor.get("vatandaslik",""))] if x)
+    kulup_satir = " · ".join(x for x in [rapor.get("kulup",""), _lig_goster(rapor.get("lig","")),
                   (f"💰 {rapor.get('deger')}" if rapor.get("deger") else ""),
                   (f"🗓 {rapor.get('sozlesme')}" if rapor.get("sozlesme") else "")] if x)
 
@@ -7125,7 +7136,7 @@ def render_paylasim_raporu(isim: str):
     try:    milli = ulke_goster(kadro.get("milli_takim", "")) if kadro.get("milli_takim") else ""
     except Exception: milli = kadro.get("milli_takim", "")
     kulup = _takim_kisa(kadro.get("kulup", "") or "") or "—"
-    lig   = kadro.get("lig", "") or "—"
+    lig   = _lig_goster(kadro.get("lig", "")) or "—"
     deger = kadro.get("deger", "") or sd.get("Market value", "") or "—"
     sozl  = _kontrat_guncel(kadro.get("sozlesme", ""), sd.get("Contract until", ""))
     nihai = (kadro.get("nihai", "") or "").strip()
@@ -9193,7 +9204,7 @@ if st.session_state.get("sayfa") == "scouting":
                             _trm = _SD_MEVKI_NORM.get(sd.get("Position", ""), "")
                             _poz = mevki_goster(_trm) if _trm else ""
                         _kl = _kd.get("kulup", "") or ""
-                        _lg = _kd.get("lig", "") or ""
+                        _lg = _lig_goster(_kd.get("lig", "") or "")
                         _sezk = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
                                  if not s.get("milli")]
                         if not _kl and _sezk:
