@@ -7034,10 +7034,14 @@ with st.sidebar:
     try:    _dv_oyuncu = len(birlesik_scout_yukle())
     except Exception: _dv_oyuncu = 0
     st.markdown(
-        f"<div style='display:flex;align-items:center;gap:5px;margin:0 4px 4px;"
+        f"<div style='line-height:1.6;padding:3px 4px 7px;margin:0 4px;min-height:1.6em;"
         f"font-size:0.6rem;font-weight:800;letter-spacing:0.06em;color:#e040fb;'>"
         f"👑 {t(f'{_dv_oyuncu}+ OYUNCU · EN KAPSAMLI HAVUZ', f'{_dv_oyuncu}+ PLAYERS · MOST COMPREHENSIVE POOL')}</div>",
         unsafe_allow_html=True)
+    # NOT: Streamlit'in stElementContainer'ı bu satırın gerçek render yüksekliğini
+    # (~25px) hafife alıp ~9px sayıyor, bu yüzden sonraki buton üstüne biniyordu.
+    # Telafi için ekstra boşluk (2026-08-02).
+    st.markdown("<div style='height:28px;'></div>", unsafe_allow_html=True)
     if st.button(t("🌍 2. DÜNYA VERİ / SCOUTING", "🌍 2. WORLD DATA / SCOUTING"), key="nav_b2",
                  width="stretch", type="primary" if _aktif_bolum == 2 else "secondary"):
         _nav_git("scouting")
