@@ -1872,10 +1872,26 @@ def scotr_kadro_yukle() -> dict:
 @st.cache_data(show_spinner=False)
 def birlesik_scout_yukle() -> dict:
     """Scouting havuzu = Sco 🌍 (uluslararası) + Sco TR (Türkiye ligleri).
-    İsim çakışırsa Sco 🌍 kazanır (SD entegrasyonu onda)."""
+    Tam ayni isimde çakışırsa Sco 🌍 kazanır (SD entegrasyonu onda). AYNI isim
+    FARKLI büyük/küçük harfle iki sheet'te de varsa (oyuncu Türkiye'ye transfer
+    olup Dünya sheet'inden silinmemiş — bilinen durum) bayat Dünya kaydı
+    kaldırılır, güncel TR kaydı kazanır (2026-08-02 dedup fix — Hamideche/
+    Jabrani/Nana/Ossol/Mweemba/Sawadogo gibi 6 çift kayıt tespit edildi)."""
+    import unicodedata as _ud3
+    def _n3(s):
+        s = _ud3.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+        return " ".join(s.casefold().split())
     out = dict(scout_kadro_yukle())          # uluslararası havuz önce (mevcut sıra)
-    for k, v in scotr_kadro_yukle().items():  # TR oyuncular listenin SONUNA
-        out.setdefault(k, v)                  # çakışmada Dünya kaydı korunur
+    _norm_harita = {_n3(k): k for k in out}   # normalize isim -> Dünya'daki gerçek anahtar
+    for k, v in scotr_kadro_yukle().items():  # TR oyuncular
+        n = _n3(k)
+        eski_k = _norm_harita.get(n)
+        if eski_k == k:
+            continue                          # tam ayni anahtar - Dünya kaydı korunur
+        if eski_k is not None:
+            del out[eski_k]                   # ayni isim farklı harfle çift kayıt - bayat Dünya kaydı kaldırılır
+        out[k] = v
+        _norm_harita[n] = k
     return out
 
 
