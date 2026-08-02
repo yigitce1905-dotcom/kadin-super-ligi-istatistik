@@ -781,22 +781,27 @@ def arsiv_sezon_yukle(sezon_key: str):
     return df, liste
 
 def _oyuncu_coklu_sezon_gecmisi(isim: str):
-    """Bir oyuncunun güncel sezon + tüm arşiv sezonlarındaki Maç/Gol toplamlarını
-    (varsa) tek listede döner: [{'sezon':'2025-26','mac':N,'gol':N}, ...]."""
+    """Bir oyuncunun güncel sezon + tüm arşiv sezonlarındaki Maç/Gol/Dakika
+    toplamlarını (varsa) tek listede döner:
+    [{'sezon':'2025-26','mac':N,'gol':N,'dakika':N}, ...]."""
     sonuc = []
     _isim_u = (isim or "").strip().upper()
     df_guncel, _ = veri_yukle()
     if not df_guncel.empty:
         _e = df_guncel[df_guncel["Oyuncu"].str.upper() == _isim_u]
         if not _e.empty:
-            sonuc.append({"sezon": SEZON_AKTIF, "mac": int(_e["Maç"].sum()), "gol": int(_e["Gol"].sum())})
+            sonuc.append({"sezon": SEZON_AKTIF, "mac": int(_e["Maç"].sum()),
+                          "gol": int(_e["Gol"].sum()),
+                          "dakika": int(_e["Dakika"].sum()) if "Dakika" in _e.columns else 0})
     for sezon_key in ARSIV_SEZONLAR:
         df_a, _ = arsiv_sezon_yukle(sezon_key)
         if df_a.empty or "Oyuncu" not in df_a.columns:
             continue
         _e = df_a[df_a["Oyuncu"].str.upper() == _isim_u]
         if not _e.empty:
-            sonuc.append({"sezon": sezon_key, "mac": int(_e["Maç"].sum()), "gol": int(_e["Gol"].sum())})
+            sonuc.append({"sezon": sezon_key, "mac": int(_e["Maç"].sum()),
+                          "gol": int(_e["Gol"].sum()),
+                          "dakika": int(_e["Dakika"].sum()) if "Dakika" in _e.columns else 0})
     return sonuc
 
 def render_arsiv(sezon_key: str):
@@ -891,12 +896,20 @@ def render_arsiv(sezon_key: str):
                 _sezonlar = [g["sezon"] for g in _gecmis][::-1]
                 _maclar   = [g["mac"] for g in _gecmis][::-1]
                 _goller   = [g["gol"] for g in _gecmis][::-1]
+                _dakikalar = [g.get("dakika", 0) for g in _gecmis][::-1]
                 fig = go.Figure()
                 fig.add_trace(go.Bar(x=_sezonlar, y=_maclar, name=t("Maç","Matches"), marker_color="#3b82f6"))
                 fig.add_trace(go.Bar(x=_sezonlar, y=_goller, name=t("Gol","Goals"), marker_color="#1db954"))
+                fig.add_trace(go.Scatter(x=_sezonlar, y=_dakikalar, name=t("Dakika","Minutes"),
+                                          mode="lines+markers", marker_color="#f59e0b",
+                                          line=dict(width=2.5), yaxis="y2"))
                 fig.update_layout(barmode="group", height=260,
                                    paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                                   font_color="#e8eef7", margin=dict(l=10, r=10, t=10, b=10))
+                                   font_color="#e8eef7", margin=dict(l=10, r=10, t=10, b=10),
+                                   yaxis=dict(title=t("Maç / Gol","Matches / Goals")),
+                                   yaxis2=dict(title=t("Dakika","Minutes"), overlaying="y", side="right",
+                                               showgrid=False),
+                                   legend=dict(orientation="h", y=1.15))
                 st.plotly_chart(fig, width="stretch", key=_pk(f"arsiv_chart_{sezon_key}_{_isim}"))
 
 
@@ -8481,7 +8494,9 @@ def render_kokpit():
 
     # ── Kulüp seçici: ORTALANMIŞ ARMALAR (seçili renkli, diğerleri siyah-beyaz) ──
     st.markdown("""<style>
-.kk-armalar{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 10px;margin:10px 0 14px;}
+/* Sabit-sütunlu grid (flex-wrap YERİNE) — 16 takım 8x2 tam bölünüyor,
+   son satırda tek eleman yalnız kalıp ortalanma sorunu böylece giderildi. */
+.kk-armalar{display:grid;grid-template-columns:repeat(8,1fr);justify-items:center;gap:6px 10px;margin:10px 0 14px;}
 .kk-arma{display:flex;flex-direction:column;align-items:center;gap:3px;width:76px;
  text-decoration:none!important;padding:6px 2px;border-radius:10px;border:1px solid transparent;}
 .kk-arma img,.kk-arma .kk-harf{height:42px;width:42px;object-fit:contain;border-radius:8px;
@@ -8527,6 +8542,7 @@ def render_kokpit():
 .kk-oy{display:flex;justify-content:space-between;gap:6px;font-size:0.7rem;padding:1.5px 0;color:#d7dde8;}
 .kk-oy i{color:#8899aa;font-style:normal;font-size:0.62rem;white-space:nowrap;font-family:'Sora',monospace;}
 @media (max-width:768px){
+ .kk-armalar{grid-template-columns:repeat(4,1fr);}
  .kk-saha{grid-template-columns:1fr;min-height:0;grid-template-rows:auto;
   grid-template-areas:'gk' 'lb' 'ct' 'rb' 'pv' 'sk' 'on' 'lw' 'st' 'rw';}
  .kk-saha::before,.kk-saha::after,.kk-ceza{display:none;}}
