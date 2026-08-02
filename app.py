@@ -608,6 +608,25 @@ section[data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]
 section[data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]:hover {
     background:#231a52 !important; }
 
+/* Üst-seviye bölüm başlıkları (1-2-3-4) — alt öğelerden görsel olarak ayrışsın */
+.st-key-nav_b1 button, .st-key-nav_b2 button, .st-key-nav_b3 button, .st-key-nav_b4 button {
+    font-size:0.92rem !important; font-weight:800 !important;
+    letter-spacing:0.01em; padding:10px 12px !important; border-radius:8px !important; }
+
+/* 2- DÜNYA VERİ / SCOUTING — bayrak özellik, Premium moru ile hep vurgulu
+   (aktif değilken bile ince mor sol çizgi + hafif dolgu, dikkat çeksin) */
+.st-key-nav_b2 button {
+    background:linear-gradient(90deg,rgba(224,64,251,0.10),transparent) !important;
+    border:1px solid rgba(224,64,251,0.35) !important;
+    border-left:3px solid #e040fb !important; color:#f3d9fb !important; }
+.st-key-nav_b2 button:hover {
+    background:linear-gradient(90deg,rgba(224,64,251,0.18),transparent) !important;
+    border-color:#e040fb !important; }
+.st-key-nav_b2 button[kind="primary"] {
+    background:linear-gradient(90deg,rgba(224,64,251,0.22),rgba(27,21,64,0.9)) !important;
+    border:1px solid #e040fb !important; border-left:3px solid #e040fb !important;
+    color:#fff !important; }
+
 /* Butonlar */
 [data-testid="stButton"] button, [data-testid="stFormSubmitButton"] button {
     border-radius:6px; font-weight:600; font-size:0.84rem;
@@ -6848,7 +6867,7 @@ with st.sidebar:
     _aktif_bolum = _sayfa_bolum.get(_aktif_sayfa, 1)
 
     # ── 1- TR DATA ──
-    if st.button(t(f"1. TR VERİ {SEZON_AKTIF}", f"1. TR DATA {SEZON_AKTIF}"), key="nav_b1",
+    if st.button(t(f"🇹🇷 1. TR VERİ {SEZON_AKTIF}", f"🇹🇷 1. TR DATA {SEZON_AKTIF}"), key="nav_b1",
                  width="stretch", type="primary" if _aktif_bolum == 1 else "secondary"):
         _tr_veri_git()
     if _aktif_bolum == 1:
@@ -6886,13 +6905,22 @@ with st.sidebar:
                 st.session_state["arsiv_sezon"] = _sezon_key
                 _nav_git("arsiv")
 
-    # ── 2- DÜNYA VERİ / SCOUTING ──
-    if st.button(t("2. DÜNYA VERİ / SCOUTING", "2. WORLD DATA / SCOUTING"), key="nav_b2",
+    # ── 2- DÜNYA VERİ / SCOUTING (bayrak özellik — Premium vurgusu) ──
+    st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
+    try:    _dv_oyuncu = len(birlesik_scout_yukle())
+    except Exception: _dv_oyuncu = 0
+    st.markdown(
+        f"<div style='display:flex;align-items:center;gap:5px;margin:0 4px 4px;"
+        f"font-size:0.6rem;font-weight:800;letter-spacing:0.06em;color:#e040fb;'>"
+        f"👑 {t(f'{_dv_oyuncu}+ OYUNCU · EN KAPSAMLI HAVUZ', f'{_dv_oyuncu}+ PLAYERS · MOST COMPREHENSIVE POOL')}</div>",
+        unsafe_allow_html=True)
+    if st.button(t("🌍 2. DÜNYA VERİ / SCOUTING", "🌍 2. WORLD DATA / SCOUTING"), key="nav_b2",
                  width="stretch", type="primary" if _aktif_bolum == 2 else "secondary"):
         _nav_git("scouting")
 
     # ── 3- PROFILE ──
-    if st.button(t("3. PROFİL", "3. PROFILE"), key="nav_b3",
+    st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
+    if st.button(t("👤 3. PROFİL", "👤 3. PROFILE"), key="nav_b3",
                  width="stretch", type="primary" if _aktif_bolum == 3 else "secondary"):
         _nav_git("profil")
     if _aktif_bolum == 3:
@@ -6915,7 +6943,8 @@ with st.sidebar:
             _nav_git("iletisim")
 
     # ── 4- HALL OF RESPECT (Saygı Kuşağı) ──
-    if st.button(t("4. HALL OF RESPECT", "4. HALL OF RESPECT"), key="nav_b4",
+    st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
+    if st.button(t("🎗️ 4. HALL OF RESPECT", "🎗️ 4. HALL OF RESPECT"), key="nav_b4",
                  width="stretch", type="primary" if _aktif_bolum == 4 else "secondary"):
         _nav_git("saygi")
     if _aktif_bolum == 4:
