@@ -826,9 +826,8 @@ def render_arsiv(sezon_key: str):
         _secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), _secenekler,
                                       key=_pk(f"arsiv_oyuncu_{sezon_key}"))
     with f2:
-        _takimlar = [_TUM_TAKIM] + sorted(df_a["Takım"].dropna().unique().tolist())
+        _takimlar = [_TUM_TAKIM] + _takim_kanon_liste(df_a["Takım"])
         _secili_takim = st.selectbox(t("Takım", "Team"), _takimlar,
-                                     format_func=lambda x: x if x == _TUM_TAKIM else _takim_kisa(x),
                                      key=_pk(f"arsiv_takim_{sezon_key}"))
     with f3:
         _siralama = st.selectbox(t("Sırala", "Sort"), _SIRALAMA_OPT,
@@ -839,7 +838,7 @@ def render_arsiv(sezon_key: str):
     if _secili_oyuncu != _TUM_OYUNCU:
         df = df[df["Oyuncu"] == _secili_oyuncu]
     if _secili_takim != _TUM_TAKIM:
-        df = df[df["TümTakımlar"].str.contains(_secili_takim, na=False)]
+        df = df[df["TümTakımlar"].apply(lambda x: _tum_takim_icerir_mi(x, _secili_takim))]
     df = df.sort_values(_sira_map[_siralama], ascending=False).reset_index(drop=True)
     df["Takım (Gösterim)"] = df.apply(
         lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]), axis=1)
@@ -3585,6 +3584,29 @@ def _kanon_takim_sayisi(takim_serisi) -> int:
     burada yalnız özet sayım amacıyla birleştirilir → 17 isim varyantı → 14 kulüp."""
     kanon = takim_serisi.dropna().map(_takim_kisa).replace({"Çekmeköy Bilgidoğa": "Şile Bilgidoğa"})
     return int(kanon.nunique())
+
+
+def _takim_kanonlastir(ham_isim: str) -> str:
+    """Tek bir ham takım adını kanonik (kısa+birleşmiş) forma çevirir —
+    _kanon_takim_sayisi ile AYNI kural: _takim_kisa + Çekmeköy→Şile eşlemesi."""
+    k = _takim_kisa(ham_isim)
+    return {"Çekmeköy Bilgidoğa": "Şile Bilgidoğa"}.get(k, k)
+
+
+def _takim_kanon_liste(takim_serisi) -> list:
+    """Ham 'Takım' serisinden BENZERSİZ kanonik takım adları listesini (sıralı) döner.
+    Seçim kutularında ALG'in 3 yazımı / Çekmeköy-Şile ayrı ayrı görünmesin diye."""
+    return sorted(set(takim_serisi.dropna().map(_takim_kanonlastir)))
+
+
+def _tum_takim_icerir_mi(tum_takimlar_str: str, kanon_hedef: str) -> bool:
+    """'TümTakımlar' (' / ' ile ayrık, transferli oyuncularda birden çok ham isim
+    içerir) içinde kanonik hedef takım var mı? Ham isim varyantlarına bakılmaksızın
+    doğru eşleşir (ör. 'SERCAN İNŞAAT GAZİANTEP ALG SPOR' içinde 'ALG' aranırsa bulunur)."""
+    for parca in str(tum_takimlar_str or "").split(" / "):
+        if _takim_kanonlastir(parca.strip()) == kanon_hedef:
+            return True
+    return False
 
 
 def _uyruk_goster(nat_str: str) -> str:
@@ -9758,9 +9780,8 @@ if tab1:
         secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), secenekler,
             index=secenekler.index(url_oyuncu) if url_oyuncu in secenekler else 0)
     with f2:
-        takimlar = [_TUM_TAKIM] + sorted(df_tam["Takım"].dropna().unique().tolist())
-        secili_takim = st.selectbox(t("Takım", "Team"), takimlar,
-                                    format_func=lambda x: x if x == _TUM_TAKIM else _takim_kisa(x))
+        takimlar = [_TUM_TAKIM] + _takim_kanon_liste(df_tam["Takım"])
+        secili_takim = st.selectbox(t("Takım", "Team"), takimlar)
     with f3:
         secili_kategori = st.selectbox(t("Mevki", "Position"), [_TUM_MEVKI] + list(_MEVKI_DETAY.keys()),
             format_func=mevki_goster, key="ol_kategori")
@@ -9783,7 +9804,7 @@ if tab1:
     if secili_oyuncu != _TUM_OYUNCU:
         df = df[df["Oyuncu"] == secili_oyuncu]
     if secili_takim != _TUM_TAKIM:
-        df = df[df["TümTakımlar"].str.contains(secili_takim, na=False)]
+        df = df[df["TümTakımlar"].apply(lambda x: _tum_takim_icerir_mi(x, secili_takim))]
     if secili_kategori != _TUM_MEVKI and "Mevki" in df.columns:
         if secili_detay != _TUM:
             df = df[df["Mevki"] == secili_detay]
@@ -10158,10 +10179,10 @@ if tab4:
     st.markdown(f"### 🏟️ {t('Takım Analizi', 'Team Analysis')}")
 
     if not df_tam.empty:
-        takim_listesi_tam = sorted(df_tam["Takım"].dropna().unique().tolist())
+        takim_listesi_tam = _takim_kanon_liste(df_tam["Takım"])
         secili_t = st.selectbox(t("Takım seç", "Select Team"), takim_listesi_tam,
-                                key="takim_sayfasi", format_func=_takim_kisa)
-        df_t = df_tam[df_tam["Takım"] == secili_t].copy()
+                                key="takim_sayfasi")
+        df_t = df_tam[df_tam["Takım"].map(_takim_kanonlastir) == secili_t].copy()
 
         st.markdown("---")
 
@@ -10508,15 +10529,16 @@ if tab6:
         # ── Takım başına en golcü ─────────────────────────────────────────────
         st.markdown("<br>")
         st.markdown(f"#### 🏟️ {t('Her Takımın Gol Kraliçesi', 'Top Scorer per Team')}")
-        takimlar_s = sorted(df_tam["Takım"].dropna().unique())
+        _kanon_kol = df_tam["Takım"].map(_takim_kanonlastir)
+        takimlar_s = sorted(_kanon_kol.unique())
         # Golü olan takımlar (hiç gol atmayan takımda 0-gollü "kraliçe" çıkmasın)
         _golcu_takimlar = [tk for tk in takimlar_s
-                           if not df_tam[df_tam["Takım"] == tk].empty
-                           and int(df_tam[df_tam["Takım"] == tk]["Gol"].max()) > 0]
+                           if not df_tam[_kanon_kol == tk].empty
+                           and int(df_tam[_kanon_kol == tk]["Gol"].max()) > 0]
         cols = st.columns(min(4, len(_golcu_takimlar))) if _golcu_takimlar else [st]
         for idx, takim in enumerate(_golcu_takimlar):
             with cols[idx % 4]:
-                df_t = df_tam[df_tam["Takım"]==takim].nlargest(1,"Gol")
+                df_t = df_tam[_kanon_kol==takim].nlargest(1,"Gol")
                 if not df_t.empty and int(df_t.iloc[0]["Gol"]) > 0:
                     r = df_t.iloc[0]
                     st.markdown(
