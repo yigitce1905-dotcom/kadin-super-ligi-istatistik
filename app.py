@@ -800,37 +800,104 @@ def _oyuncu_coklu_sezon_gecmisi(isim: str):
     return sonuc
 
 def render_arsiv(sezon_key: str):
-    """Arşiv sezonu sayfası: oyuncu tablosu + isimle çok-sezonlu gelişim grafiği
-    (Baran'ın ANALİZ fikri — bir oyuncunun birden çok sezondaki Maç/Gol trendi)."""
+    """Arşiv sezonu sayfası — Oyuncu Listesi (free tier) ile AYNI deneyim: arama/
+    takım/sıralama filtreleri + satır seçimli tablo (Dakika dahil) + seçilince
+    sağda detay kartı (stat kutuları + çok-sezonlu Maç/Gol gelişim grafiği)."""
     df_a, _ = arsiv_sezon_yukle(sezon_key)
     if df_a.empty:
         st.info(t(f"{sezon_key} sezonu henüz taranmadı. `python scraper_arsiv.py {sezon_key}` ile çekilebilir.",
                   f"Season {sezon_key} hasn't been scraped yet. Run `python scraper_arsiv.py {sezon_key}`."))
         return
-    st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 12px;'>"
-                f"{len(df_a)} {t('oyuncu','players')} · {sezon_key}</div>", unsafe_allow_html=True)
-    _ara = st.text_input(t("🔍 Oyuncu ara (çok-sezonlu gelişim için)", "🔍 Search player (for multi-season growth)"),
-                         key=_pk(f"arsiv_ara_{sezon_key}"))
-    if _ara:
-        _gecmis = _oyuncu_coklu_sezon_gecmisi(_ara)
-        if _gecmis:
-            st.markdown(f"#### 📈 {t('Çok-Sezonlu Gelişim','Multi-Season Growth')} — {_ara}")
-            _sezonlar = [g["sezon"] for g in _gecmis][::-1]
-            _maclar   = [g["mac"] for g in _gecmis][::-1]
-            _goller   = [g["gol"] for g in _gecmis][::-1]
-            fig = go.Figure()
-            fig.add_trace(go.Bar(x=_sezonlar, y=_maclar, name=t("Maç","Matches"), marker_color="#3b82f6"))
-            fig.add_trace(go.Bar(x=_sezonlar, y=_goller, name=t("Gol","Goals"), marker_color="#1db954"))
-            fig.update_layout(barmode="group", height=320,
-                               paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-                               font_color="#e8eef7", margin=dict(l=10, r=10, t=10, b=10))
-            st.plotly_chart(fig, width="stretch")
+
+    _TUM_OYUNCU = t("— Tüm oyuncular —", "— All players —")
+    _TUM_TAKIM  = t("Tüm Takımlar", "All Teams")
+    _SIRALAMA_OPT = ["Maç ↓", "Gol ↓", "Dakika ↓"]
+    _SIRALAMA_EN  = {"Maç ↓": "Matches ↓", "Gol ↓": "Goals ↓", "Dakika ↓": "Minutes ↓"}
+    _sira_map = {"Maç ↓": "Maç", "Gol ↓": "Gol", "Dakika ↓": "Dakika"}
+
+    f1, f2, f3 = st.columns([2, 2, 1])
+    with f1:
+        _secenekler = [_TUM_OYUNCU] + sorted(df_a["Oyuncu"].tolist())
+        _secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), _secenekler,
+                                      key=_pk(f"arsiv_oyuncu_{sezon_key}"))
+    with f2:
+        _takimlar = [_TUM_TAKIM] + sorted(df_a["Takım"].dropna().unique().tolist())
+        _secili_takim = st.selectbox(t("Takım", "Team"), _takimlar,
+                                     format_func=lambda x: x if x == _TUM_TAKIM else _takim_kisa(x),
+                                     key=_pk(f"arsiv_takim_{sezon_key}"))
+    with f3:
+        _siralama = st.selectbox(t("Sırala", "Sort"), _SIRALAMA_OPT,
+                                 format_func=lambda x: _SIRALAMA_EN[x] if EN else x,
+                                 key=_pk(f"arsiv_sirala_{sezon_key}"))
+
+    df = df_a.copy()
+    if _secili_oyuncu != _TUM_OYUNCU:
+        df = df[df["Oyuncu"] == _secili_oyuncu]
+    if _secili_takim != _TUM_TAKIM:
+        df = df[df["TümTakımlar"].str.contains(_secili_takim, na=False)]
+    df = df.sort_values(_sira_map[_siralama], ascending=False).reset_index(drop=True)
+    df["Takım (Gösterim)"] = df.apply(
+        lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]), axis=1)
+
+    st.markdown(f"#### {len(df)} {t('oyuncu', 'players')} · {sezon_key}")
+
+    liste_df = df[["Oyuncu", "Takım (Gösterim)", "Maç", "Gol", "Dakika"]].reset_index(drop=True)
+    col_liste, col_detay = st.columns([5, 4], gap="medium")
+    with col_liste:
+        secim = st.dataframe(
+            liste_df, width="stretch", height=560,
+            on_select="rerun", selection_mode="single-row", key=_pk(f"arsiv_liste_{sezon_key}"),
+            column_config={
+                "Oyuncu":           st.column_config.TextColumn(t("Oyuncu", "Player"), width="large"),
+                "Takım (Gösterim)": st.column_config.TextColumn(t("Takım", "Team"), width="medium"),
+                "Maç":    st.column_config.NumberColumn(t("Maç", "M"), width="small"),
+                "Gol":    st.column_config.NumberColumn(t("Gol", "G"), width="small"),
+                "Dakika": st.column_config.NumberColumn(t("Dakika", "Min"), width="small"),
+            })
+    with col_detay:
+        _secili_satirlar = secim.selection.rows if secim and secim.selection else []
+        if not _secili_satirlar:
+            st.markdown(
+                f"<div style='background:linear-gradient(180deg,#12182e,#0e1322);border:1px dashed #2d3561;"
+                f"border-radius:14px;padding:46px 24px;text-align:center;color:#7b86a0;'>"
+                f"<div style='font-size:2.2rem;margin-bottom:8px;opacity:0.65;'>⚽</div>"
+                f"<div style='font-weight:600;color:#aebbd0;font-size:0.95rem;'>{t('Listeden bir oyuncuya tıkla','Click a player in the list')}</div>"
+                f"<div style='font-size:0.82rem;margin-top:4px;'>{t('detaylı bilgi ve çok-sezonlu gelişim burada görünür','details and multi-season growth appear here')}</div>"
+                f"</div>", unsafe_allow_html=True)
         else:
-            st.warning(t("Bu isimle (tam eşleşme) hiçbir sezonda kayıt bulunamadı.",
-                         "No exact-name match found in any season."))
-    _goster = df_a[["Oyuncu", "Takım", "Maç", "Gol", "Sarı", "Kırmızı"]].sort_values(
-        ["Maç", "Gol"], ascending=False) if "Oyuncu" in df_a.columns else df_a
-    st.dataframe(_goster, width="stretch", height=420, hide_index=True)
+            _isim = liste_df.iloc[_secili_satirlar[0]]["Oyuncu"]
+            _p = df[df["Oyuncu"] == _isim].iloc[0]
+            _transfer_b = (f' <span style="background:#1a3a2a;color:#1db954;border-radius:4px;'
+                           f'padding:1px 6px;font-size:0.66rem">🔄 Transfer</span>') if _p.get("Transfer") else ""
+            _stat_html = ""
+            for _sutun, _etk, _clr in [("Gol", t("GOL", "GOALS"), "#4ade80"),
+                                        ("Maç", t("MAÇ", "MATCH"), "#60a5fa"),
+                                        ("Dakika", t("DK", "MIN"), "#f59e0b"),
+                                        ("Sarı", t("SARI", "YEL"), "#facc15"),
+                                        ("Kırmızı", t("KIRMIZI", "RED"), "#f87171")]:
+                _stat_html += (f'<div style="background:#0f1117;border-radius:8px;padding:8px 0;text-align:center;flex:1">'
+                               f'<div style="font-size:1.15rem;font-weight:800;color:{_clr}">{int(_p[_sutun])}</div>'
+                               f'<div style="font-size:0.58rem;color:#8899aa">{_etk}</div></div>')
+            st.markdown(
+                f'<div style="background:linear-gradient(160deg,#171c30,#12151f);'
+                f'border:1px solid #232842;border-top:3px solid #3b82f6;border-radius:12px;padding:16px 18px;">'
+                f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{_isim}</div>'
+                f'<div style="margin:5px 0 10px;color:#8899aa;font-size:0.8rem;">🏟 {_p["Takım (Gösterim)"]}{_transfer_b}</div>'
+                f'<div style="display:flex;gap:6px;">{_stat_html}</div>'
+                f'</div>', unsafe_allow_html=True)
+            _gecmis = _oyuncu_coklu_sezon_gecmisi(_isim)
+            if len(_gecmis) > 1:
+                st.markdown(f"##### 📈 {t('Çok-Sezonlu Gelişim','Multi-Season Growth')}")
+                _sezonlar = [g["sezon"] for g in _gecmis][::-1]
+                _maclar   = [g["mac"] for g in _gecmis][::-1]
+                _goller   = [g["gol"] for g in _gecmis][::-1]
+                fig = go.Figure()
+                fig.add_trace(go.Bar(x=_sezonlar, y=_maclar, name=t("Maç","Matches"), marker_color="#3b82f6"))
+                fig.add_trace(go.Bar(x=_sezonlar, y=_goller, name=t("Gol","Goals"), marker_color="#1db954"))
+                fig.update_layout(barmode="group", height=260,
+                                   paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+                                   font_color="#e8eef7", margin=dict(l=10, r=10, t=10, b=10))
+                st.plotly_chart(fig, width="stretch", key=_pk(f"arsiv_chart_{sezon_key}_{_isim}"))
 
 
 @st.cache_data(ttl=1800)
