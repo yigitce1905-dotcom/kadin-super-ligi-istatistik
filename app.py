@@ -906,9 +906,9 @@ def render_arsiv(sezon_key: str):
                 fig.update_layout(barmode="group", height=260,
                                    paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
                                    font_color="#e8eef7", margin=dict(l=10, r=10, t=10, b=10),
-                                   yaxis=dict(title=t("Maç / Gol","Matches / Goals")),
+                                   yaxis=dict(title=t("Maç / Gol","Matches / Goals"), rangemode="tozero"),
                                    yaxis2=dict(title=t("Dakika","Minutes"), overlaying="y", side="right",
-                                               showgrid=False),
+                                               showgrid=False, rangemode="tozero"),
                                    legend=dict(orientation="h", y=1.15))
                 st.plotly_chart(fig, width="stretch", key=_pk(f"arsiv_chart_{sezon_key}_{_isim}"))
 
@@ -6956,6 +6956,39 @@ with st.sidebar:
         "saygi": 4, "hakkinda": 4,
     }
     _aktif_bolum = _sayfa_bolum.get(_aktif_sayfa, 1)
+
+    # ── HIZLI ERİŞİM İKON ÇUBUĞU (Yiğit isteği, 2026-08-02) — her ikon kendi
+    # bölümüne atlar, tıklanınca ilgili bölüm aşağıda açılır (tam-yazılı
+    # başlıklarla birebir aynı işlev, sadece hızlı erişim için kısayol). ──────
+    _ik_admin = st.session_state.get("kulup_kullanici") == "admin"
+    _ik_kolonlar = st.columns(5 if _ik_admin else 4)
+    with _ik_kolonlar[0]:
+        if st.button("🇹🇷", key="nav_ikon_1", width="stretch",
+                     type="primary" if _aktif_bolum == 1 else "secondary",
+                     help=t("TR Veri", "TR Data")):
+            _tr_veri_git()
+    with _ik_kolonlar[1]:
+        if st.button("🌐", key="nav_ikon_2", width="stretch",
+                     type="primary" if _aktif_bolum == 2 else "secondary",
+                     help=t("Dünya Veri / Scouting", "World Data / Scouting")):
+            _nav_git("scouting")
+    with _ik_kolonlar[2]:
+        if st.button("👤", key="nav_ikon_3", width="stretch",
+                     type="primary" if _aktif_bolum == 3 else "secondary",
+                     help=t("Profil", "Profile")):
+            _nav_git("profil")
+    with _ik_kolonlar[3]:
+        if st.button("🎗️", key="nav_ikon_4", width="stretch",
+                     type="primary" if _aktif_bolum == 4 else "secondary",
+                     help=t("Hall of Respect", "Hall of Respect")):
+            _nav_git("saygi")
+    if _ik_admin:
+        with _ik_kolonlar[4]:
+            if st.button("🛰️", key="nav_ikon_5", width="stretch",
+                         type="primary" if _aktif_sayfa == "kokpit" else "secondary",
+                         help=t("Kulüp Kokpiti", "Club Cockpit")):
+                _nav_git("kokpit")
+    st.markdown("<div style='margin-top:2px;'></div>", unsafe_allow_html=True)
 
     # ── 1- TR DATA ──
     if st.button(t(f"🇹🇷 1. TR VERİ {SEZON_AKTIF}", f"🇹🇷 1. TR DATA {SEZON_AKTIF}"), key="nav_b1",
