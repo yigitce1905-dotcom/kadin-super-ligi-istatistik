@@ -4800,7 +4800,8 @@ def render_scouting_detay(tam_isim):
         # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
         _so = birlesik_scout_yukle().get(tam_isim) or {}
         _so_nihai = (_so.get("nihai") or "").strip()
-        _so_ivme  = (_so.get("ivme") or "").strip() or "—"
+        _so_ivme_ham = (_so.get("ivme") or "").strip()
+        _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
         _so_var   = bool(_so.get("degerlendirildi"))
         _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
         _lst_kayit = _sd_norm_bul(leistung_data, tam_isim)   # STAŠKOVÁ↔STASKOVA toleransı
@@ -4995,14 +4996,19 @@ def _scotr_renk(puan: float) -> str:
     return "#6b7280"                   # FF/boş — gri (veri yok)
 
 _SCOTR_POT = {
-    "⬆︎": ("⬆",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
-    "⬆":  ("⬆",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
-    "⇧":  ("⇧",  "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
-    "⬈":  ("⬈",  "#4ade80", "Yükselişte",       "Rising"),
-    "⬌":  ("⬌",  "#fbbf24", "Stabil",           "Stable"),
-    "⬋":  ("⬋",  "#fb923c", "Hafif Düşüş",      "Slight Decline"),
-    "⬇︎": ("⬇",  "#f87171", "Düşüşte",          "Declining"),
-    "⬇":  ("⬇",  "#f87171", "Düşüşte",          "Declining"),
+    # NOT (2026-08-02): gösterim glyph'i (ilk eleman) bilinçli olarak yaygın
+    # emoji-sunumlu oklarla değiştirildi (↗️➡️↘️ vb.) — eski nadir Unicode
+    # semboller (⬈/⬋ gibi, Miscellaneous Symbols and Arrows bloğu) bazı
+    # cihaz/fontlarda "?" (tofu) olarak görünüyordu. Anahtar (ham sheet
+    # değeri) DEĞİŞMEDİ, sadece ekrana basılan glyph.
+    "⬆︎": ("⬆️", "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
+    "⬆":  ("⬆️", "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
+    "⇧":  ("⬆️", "#10b981", "Güçlü Yükseliş",  "Strong Rise"),
+    "⬈":  ("↗️", "#4ade80", "Yükselişte",       "Rising"),
+    "⬌":  ("➡️", "#fbbf24", "Stabil",           "Stable"),
+    "⬋":  ("↘️", "#fb923c", "Hafif Düşüş",      "Slight Decline"),
+    "⬇︎": ("⬇️", "#f87171", "Düşüşte",          "Declining"),
+    "⬇":  ("⬇️", "#f87171", "Düşüşte",          "Declining"),
 }
 
 # 10 kademeli skala: EE(1) → A+(10). FF = 0 dolu kutucuk.
@@ -6432,7 +6438,8 @@ def render_ana_lig_profil(secili):
                     else (t("Dakika", "Minutes"), dk))
             _so = scotr_yukle().get(secili) or {}
             _so_nihai = (_so.get("nihai") or "").strip()
-            _so_ivme  = (_so.get("ivme") or "").strip() or "—"
+            _so_ivme_ham = (_so.get("ivme") or "").strip()
+            _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
             _so_var   = bool(_so.get("degerlendirildi"))
             _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
             _oc1, _oc2 = st.columns(2, gap="medium")
