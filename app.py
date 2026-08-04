@@ -1049,8 +1049,50 @@ def _eposta_gecerli(e: str) -> bool:
     return bool(_re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", (e or "").strip()))
 
 
+WFS_BASE_URL = "https://womenfootballscouting.com"
+
+def _hesap_epostasi_gonder(kime: str, konu: str, govde: str) -> bool:
+    """Hesap işlemleri (doğrulama/şifre sıfırlama) için ortak e-posta gönderici.
+    Aynı [smtp] secrets'ı ve Gmail SMTP_SSL kalıbını kullanır (bkz. talep_gonder)."""
+    try:
+        import smtplib
+        from email.mime.text import MIMEText
+        smtp = st.secrets["smtp"]
+        msg = MIMEText(govde, _charset="utf-8")
+        msg["Subject"] = konu
+        msg["From"] = smtp["email"]
+        msg["To"] = kime
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as s:
+            s.login(smtp["email"], smtp["password"])
+            s.send_message(msg)
+        return True
+    except Exception:
+        return False
+
+
+def _dogrulama_epostasi_gonder(kullanici: str, ad: str) -> bool:
+    token = _amacli_token_uret("dogrula", kullanici, saat=48)
+    link = f"{WFS_BASE_URL}/?dogrula={token}"
+    govde = (f"Merhaba {ad or kullanici},\n\n"
+             f"Women's Football Scouting hesabını doğrulamak için aşağıdaki linke tıkla "
+             f"(48 saat geçerli):\n\n{link}\n\n"
+             f"Bu kaydı sen yapmadıysan bu e-postayı yok sayabilirsin.")
+    return _hesap_epostasi_gonder(kullanici, "Hesabını Doğrula — Women's Football Scouting", govde)
+
+
+def _sifre_sifirlama_epostasi_gonder(kullanici: str) -> bool:
+    token = _amacli_token_uret("sifirla", kullanici, saat=2)
+    link = f"{WFS_BASE_URL}/?sifirla={token}"
+    govde = (f"Merhaba,\n\n"
+             f"Women's Football Scouting hesabın için şifre sıfırlama talebi aldık. "
+             f"Yeni şifre belirlemek için aşağıdaki linke tıkla (2 saat geçerli):\n\n{link}\n\n"
+             f"Bu talebi sen yapmadıysan bu e-postayı yok sayabilirsin, şifren değişmez.")
+    return _hesap_epostasi_gonder(kullanici, "Şifre Sıfırlama — Women's Football Scouting", govde)
+
+
 def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
-    """Yeni üye kaydı (free tier). Döner: (basarili: bool, mesaj_tr, mesaj_en)."""
+    """Yeni üye kaydı (free tier, e-posta doğrulaması BEKLEMEDE başlar).
+    Döner: (basarili: bool, mesaj_tr, mesaj_en)."""
     kullanici = (kullanici or "").strip().lower()
     ad = (ad or "").strip()
     if not _eposta_gecerli(kullanici):
@@ -1071,13 +1113,45 @@ def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
     try:
         from datetime import datetime
         h = _bcrypt.hashpw(sifre.encode(), _bcrypt.gensalt()).decode()
+        try:
+            _smtp_var = bool(st.secrets.get("smtp"))
+        except Exception:
+            _smtp_var = False
+        _durum = "beklemede_dogrulama" if _smtp_var else "aktif"
         ws.append_row([kullanici, h, ad, (kulup or "").strip(), "kulup", "free",
-                       datetime.now().strftime("%Y-%m-%d %H:%M"), "", "aktif"])
-        uyeler_yukle.clear()   # cache tazele → hemen giriş yapabilsin
+                       datetime.now().strftime("%Y-%m-%d %H:%M"), "", _durum])
+        uyeler_yukle.clear()   # cache tazele
+        if _durum == "beklemede_dogrulama" and _dogrulama_epostasi_gonder(kullanici, ad):
+            return (True, "Kayıt alındı! E-postana gönderdiğimiz doğrulama linkine tıklayınca giriş yapabilirsin.",
+                    "Registered! Click the verification link we sent to your e-mail to log in.")
         return (True, "Kayıt başarılı! Aşağıdan e-posta ve şifrenle giriş yapabilirsin.",
                 "Registered! You can now log in with your email and password.")
     except Exception:
         return (False, "Kayıt sırasında bir hata oluştu.", "An error occurred during registration.")
+
+
+def uye_dogrula(kullanici: str) -> bool:
+    """E-posta doğrulama tokenı geçerliyse durumu 'aktif' yapar."""
+    return uye_guncelle(kullanici, durum="aktif")
+
+
+def uye_sifre_guncelle(kullanici: str, yeni_sifre: str) -> bool:
+    """Şifre sıfırlama akışı sonunda yeni bcrypt hash'i yazar (kolon B)."""
+    if not _BCRYPT_OK or len(yeni_sifre or "") < 8:
+        return False
+    ws = _uyeler_ws()
+    if ws is None:
+        return False
+    idx = _uye_satir_bul(ws, kullanici)
+    if not idx:
+        return False
+    try:
+        h = _bcrypt.hashpw(yeni_sifre.encode(), _bcrypt.gensalt()).decode()
+        ws.update_cell(idx, 2, h)
+        uyeler_yukle.clear()
+        return True
+    except Exception:
+        return False
 
 
 def _uye_satir_bul(ws, kullanici: str):
@@ -1184,6 +1258,29 @@ def _oturum_token_coz(token: str):
     except Exception:
         pass
     return None
+
+
+# ─── AMAÇLI TOKEN (e-posta doğrulama / şifre sıfırlama linkleri) ──────────────
+# Oturum çerezinden AYRI bir amaç etiketi taşır (biri diğeri yerine kullanılamaz).
+def _amacli_token_uret(amac: str, veri: str, saat: int = 24) -> str:
+    son = int(_time.time()) + saat * 3600
+    govde = f"{amac}|{veri}|{son}"
+    imza = _hmac.new(_oturum_secret(), govde.encode(), _hashlib.sha256).hexdigest()[:24]
+    return _b64.urlsafe_b64encode(f"{govde}|{imza}".encode()).decode().rstrip("=")
+
+def _amacli_token_coz(amac_beklenen: str, token: str):
+    """Token geçerli VE amacı beklenenle eşleşiyorsa 'veri'yi döndürür, değilse None."""
+    try:
+        dolgu = "=" * (-len(token) % 4)
+        ham = _b64.urlsafe_b64decode((token + dolgu).encode()).decode()
+        amac, veri, son, imza = ham.split("|")
+        if amac != amac_beklenen or int(son) < _time.time():
+            return None
+        beklenen = _hmac.new(_oturum_secret(), f"{amac}|{veri}|{son}".encode(),
+                             _hashlib.sha256).hexdigest()[:24]
+        return veri if _hmac.compare_digest(imza, beklenen) else None
+    except Exception:
+        return None
 
 # Run başına tek instance (modül her rerun'da yeniden çalıştığından sıfırlanır;
 # session_state'te saklamak bileşeni eskitir → cookie senkronu bozulur).
@@ -1348,6 +1445,18 @@ def _giris_yap(ku: str, si: str) -> bool:
             return False
     sonuc = giris_dogrula(ku_n, si.strip())
     if sonuc:
+        _durum = str(sonuc.get("durum", "aktif") or "aktif")
+        if _durum == "beklemede_dogrulama":
+            st.session_state["_giris_hata_mesaj"] = (
+                "Hesabını henüz doğrulamadın. E-postana gönderdiğimiz linke tıkla.",
+                "You haven't verified your account yet. Click the link we e-mailed you.")
+            st.session_state["_giris_dogrulanmamis_kullanici"] = ku_n
+            return False
+        if _durum == "pasif":
+            st.session_state["_giris_hata_mesaj"] = (
+                "Hesabın devre dışı bırakılmış. Bilgi için bize ulaş.",
+                "Your account has been deactivated. Please contact us.")
+            return False
         giris_logla(ku_n, basarili=True)
         _oturum_session_doldur(ku_n, sonuc)
         st.session_state["girildi"]  = True
@@ -1368,20 +1477,114 @@ def giris_formu():
             ku = st.text_input(t("Kullanıcı adı", "Username"),
                                placeholder=t("kullanıcı adı", "username"))
             si = st.text_input(t("Şifre", "Password"), type="password", placeholder="••••")
-            if st.form_submit_button(t("Giriş Yap", "Log In"), width="stretch"):
-                if _giris_yap(ku, si):
-                    st.rerun()
-                else:
-                    _giris_hata_goster()
+            _submit = st.form_submit_button(t("Giriş Yap", "Log In"), width="stretch")
+        _basarisiz = False
+        if _submit:
+            if _giris_yap(ku, si):
+                st.rerun()
+            else:
+                _basarisiz = True
+        if _basarisiz:
+            _giris_hata_goster()
+        if st.button(t("Şifremi unuttum", "Forgot password"), key="sb_sifre_unuttum_ac",
+                     use_container_width=True):
+            st.session_state["_sifre_unuttum_ac"] = not st.session_state.get("_sifre_unuttum_ac", False)
+        if st.session_state.get("_sifre_unuttum_ac"):
+            _sifremi_unuttum_formu()
 
 
 def _giris_hata_goster():
-    """Kilitliyse spesifik mesajı, değilse genel 'hatalı giriş' mesajını gösterir."""
+    """Kilitli/doğrulanmamışsa spesifik mesajı, değilse genel 'hatalı giriş' mesajını gösterir.
+    Form BAĞLAMI DIŞINDA çağrılmalı (içeride st.button kullanır, formda yasak)."""
     _mesaj = st.session_state.pop("_giris_hata_mesaj", None)
     if _mesaj:
         st.error(t(*_mesaj))
     else:
         st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
+    _dogrulanmamis = st.session_state.pop("_giris_dogrulanmamis_kullanici", None)
+    if _dogrulanmamis and st.button(t("📧 Doğrulama e-postasını tekrar gönder", "📧 Resend verification e-mail"),
+                                     key=f"_resend_dogrula_{_dogrulanmamis}", use_container_width=True):
+        _bilgi = uyeler_yukle().get(_dogrulanmamis, {})
+        if _dogrulama_epostasi_gonder(_dogrulanmamis, _bilgi.get("ad", "")):
+            st.success(t("Doğrulama e-postası tekrar gönderildi.", "Verification e-mail resent."))
+        else:
+            st.warning(t("Gönderilemedi, birazdan tekrar dene.", "Could not send, try again shortly."))
+
+
+def _sifremi_unuttum_formu():
+    """Şifre sıfırlama linki talebi. Kullanıcı numaralandırmasını önlemek için
+    e-posta kayıtlı olsun/olmasın AYNI başarı mesajı gösterilir."""
+    with st.form("sifre_unuttum_form", clear_on_submit=True):
+        _ep = st.text_input(t("Kayıtlı e-posta", "Registered e-mail"), placeholder="ornek@eposta.com",
+                            key="su_eposta")
+        _gonder = st.form_submit_button(t("📧 Sıfırlama Linki Gönder", "📧 Send Reset Link"), width="stretch")
+    if _gonder:
+        _ep_n = (_ep or "").strip().lower()
+        if _ep_n and _ep_n in uyeler_yukle():
+            _sifre_sifirlama_epostasi_gonder(_ep_n)
+        st.success(t("E-posta kayıtlıysa sıfırlama linki gönderildi — gelen kutunu kontrol et.",
+                     "If that e-mail is registered, a reset link has been sent — check your inbox."))
+
+
+def render_eposta_dogrula(token: str):
+    """?dogrula=TOKEN — e-posta doğrulama linki. Public, giriş gerektirmez."""
+    st.markdown(f"## ✅ {t('Hesap Doğrulama', 'Account Verification')}")
+    kullanici = _amacli_token_coz("dogrula", token)
+    if not kullanici or kullanici not in uyeler_yukle():
+        st.error(t("Doğrulama linki geçersiz veya süresi dolmuş. Giriş ekranından doğrulama "
+                   "e-postasını tekrar isteyebilirsin.",
+                   "This verification link is invalid or expired. You can request a new one "
+                   "from the login screen."))
+    elif uye_dogrula(kullanici):
+        st.success(t("Hesabın doğrulandı! Şimdi giriş yapabilirsin.",
+                     "Your account is verified! You can now log in."))
+        st.session_state["login_ac"] = True
+    else:
+        st.error(t("Doğrulama sırasında bir hata oluştu, tekrar dene.",
+                   "An error occurred during verification, please try again."))
+    if st.button(t("🔐 Giriş sayfasına dön", "🔐 Go to login"), key="dogrula_don"):
+        st.query_params.clear()
+        st.rerun()
+    st.stop()
+
+
+def render_sifre_sifirla(token: str):
+    """?sifirla=TOKEN — şifre sıfırlama linki. Public, giriş gerektirmez."""
+    st.markdown(f"## 🔑 {t('Yeni Şifre Belirle', 'Set New Password')}")
+    kullanici = _amacli_token_coz("sifirla", token)
+    if not kullanici or kullanici not in uyeler_yukle():
+        st.error(t("Bu link geçersiz veya süresi dolmuş. Giriş ekranından 'Şifremi Unuttum' ile "
+                   "yeni bir link isteyebilirsin.",
+                   "This link is invalid or expired. Request a new one from the login screen's "
+                   "'Forgot Password' option."))
+        if st.button(t("🔐 Giriş sayfasına dön", "🔐 Go to login"), key="sifirla_gecersiz_don"):
+            st.query_params.clear()
+            st.rerun()
+        st.stop()
+        return
+    with st.form("sifre_sifirla_form"):
+        _s1 = st.text_input(t("Yeni şifre (en az 8 karakter)", "New password (min 8 chars)"),
+                            type="password", placeholder="••••••••")
+        _s2 = st.text_input(t("Yeni şifre (tekrar)", "New password (again)"),
+                            type="password", placeholder="••••••••")
+        _gonder = st.form_submit_button(t("💾 Şifreyi Güncelle", "💾 Update Password"),
+                                        width="stretch", type="primary")
+    if _gonder:
+        if (_s1 or "") != (_s2 or ""):
+            st.error(t("Şifreler uyuşmuyor.", "Passwords do not match."))
+        elif len(_s1 or "") < 8:
+            st.error(t("Şifre en az 8 karakter olmalı.", "Password must be at least 8 characters."))
+        elif uye_sifre_guncelle(kullanici, _s1):
+            st.success(t("Şifren güncellendi! Şimdi yeni şifrenle giriş yapabilirsin.",
+                         "Your password has been updated! You can now log in with your new password."))
+            st.session_state["login_ac"] = True
+            if st.button(t("🔐 Giriş sayfasına dön", "🔐 Go to login"), key="sifirla_basarili_don"):
+                st.query_params.clear()
+                st.rerun()
+        else:
+            st.error(t("Güncellenirken bir hata oluştu, tekrar dene.",
+                       "An error occurred while updating, please try again."))
+    st.stop()
 
 
 def _kayit_formu():
@@ -1423,6 +1626,7 @@ def giris_formu_ana():
     _orta = st.columns([1, 1.4, 1])[1]
     _GIR = t("Giriş Yap", "Log In")
     _KYT = t("Kayıt Ol", "Sign Up")
+    _UNUT = t("Şifremi Unuttum", "Forgot Password")
     with _orta:
         st.markdown(
             f"<div style=\"background:linear-gradient(120deg,#0a0e1bee 0%,#1a1438ee 55%,#2a1145cc 100%),"
@@ -1437,10 +1641,13 @@ def giris_formu_ana():
             f"{t('Ücretsiz kayıt ol veya giriş yap — kulüpler ve profesyoneller için.', 'Sign up free or log in — for clubs and professionals.')}</div>"
             f"</div>",
             unsafe_allow_html=True)
-        _mod = st.radio(t("Mod", "Mode"), [_GIR, _KYT], horizontal=True,
+        _mod = st.radio(t("Mod", "Mode"), [_GIR, _KYT, _UNUT], horizontal=True,
                         key="giris_mod_sec", label_visibility="collapsed")
         if _mod == _KYT:
             _kayit_formu()
+            return
+        if _mod == _UNUT:
+            _sifremi_unuttum_formu()
             return
         with st.form("giris_form_ana", clear_on_submit=True):
             ku = st.text_input(t("Kullanıcı adı / E-posta", "Username / Email"),
@@ -7372,6 +7579,14 @@ def render_paylasim_raporu(isim: str):
 # ─── PAYLAŞIM RAPORU (?paylas=X) — public, giriş gerektirmez ──────────────────
 if params.get("paylas", "").strip():
     render_paylasim_raporu(params.get("paylas", ""))
+
+# ─── E-POSTA DOĞRULAMA (?dogrula=TOKEN) — public, giriş gerektirmez ───────────
+if params.get("dogrula", "").strip():
+    render_eposta_dogrula(params.get("dogrula", ""))
+
+# ─── ŞİFRE SIFIRLAMA (?sifirla=TOKEN) — public, giriş gerektirmez ─────────────
+if params.get("sifirla", "").strip():
+    render_sifre_sifirla(params.get("sifirla", ""))
 
 # ─── KULÜP KOKPİTİ ROUTE (?kokpit=Kulüp) — arma seçici tam sayfa yükler ───────
 _qp_kokpit = params.get("kokpit", "").strip()
