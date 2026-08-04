@@ -1334,8 +1334,18 @@ def giris_gerekli_ekrani():
 
 def _giris_yap(ku: str, si: str) -> bool:
     """Ortak giriş mantığı: doğrula → session + cookie. Başarılıysa True.
-    Kullanıcı adı küçük harfe normalize edilir (kulüp + üye anahtarları lowercase)."""
+    Kullanıcı adı küçük harfe normalize edilir (kulüp + üye anahtarları lowercase).
+    Brute-force koruması: art arda _LOGIN_MAX_DENEME başarısız denemeden sonra
+    _LOGIN_KILIT_DAKIKA süreyle şifre kontrolüne HİÇ girmeden reddeder."""
     ku_n = (ku or "").strip().lower()
+    st.session_state.pop("_giris_hata_mesaj", None)
+    if ku_n:
+        kalan = giris_kilit_durumu(ku_n)
+        if kalan > 0:
+            st.session_state["_giris_hata_mesaj"] = (
+                f"Çok fazla başarısız deneme. Lütfen {kalan} dakika sonra tekrar dene.",
+                f"Too many failed attempts. Please try again in {kalan} minute(s).")
+            return False
     sonuc = giris_dogrula(ku_n, si.strip())
     if sonuc:
         giris_logla(ku_n, basarili=True)
@@ -1362,7 +1372,16 @@ def giris_formu():
                 if _giris_yap(ku, si):
                     st.rerun()
                 else:
-                    st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
+                    _giris_hata_goster()
+
+
+def _giris_hata_goster():
+    """Kilitliyse spesifik mesajı, değilse genel 'hatalı giriş' mesajını gösterir."""
+    _mesaj = st.session_state.pop("_giris_hata_mesaj", None)
+    if _mesaj:
+        st.error(t(*_mesaj))
+    else:
+        st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
 
 
 def _kayit_formu():
@@ -1434,7 +1453,7 @@ def giris_formu_ana():
             if _giris_yap(ku, si):
                 st.rerun()
             else:
-                st.error(t("Kullanıcı adı veya şifre hatalı.", "Incorrect username or password."))
+                _giris_hata_goster()
         if _ipt:
             st.session_state["login_ac"] = False
             st.rerun()
@@ -2477,11 +2496,19 @@ def _giris_log_ws():
         creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
         gc = gspread.authorize(creds)
         sh = gc.open_by_key(GSHEET_ID)
+        _basliklar = ["kullanici", "ilk_giris", "son_giris", "giris_sayisi",
+                      "son_hatali_giris", "basarisiz_ardisik", "kilit_bitis"]
         try:
-            return sh.worksheet("GirisLog")
+            ws = sh.worksheet("GirisLog")
+            # Eski sheet 5 kolonluysa (kilitleme öncesi) yeni 2 kolonu SONA ekle (self-healing)
+            hdr = ws.row_values(1)
+            if len(hdr) < len(_basliklar):
+                ws.update(f"A1:{gspread.utils.rowcol_to_a1(1, len(_basliklar)).rstrip('1')}1",
+                          [_basliklar])
+            return ws
         except Exception:
-            ws = sh.add_worksheet(title="GirisLog", rows=2000, cols=5)
-            ws.update([["kullanici", "ilk_giris", "son_giris", "giris_sayisi", "son_hatali_giris"]])
+            ws = sh.add_worksheet(title="GirisLog", rows=2000, cols=len(_basliklar))
+            ws.update([_basliklar])
             return ws
     except Exception:
         return None
@@ -2500,8 +2527,13 @@ def giris_log_oku(kullanici: str) -> dict:
         pass
     return {}
 
+# Brute-force kilitleme: MAX_DENEME ardışık başarısız girişten sonra KILIT_DAKIKA süreyle kilit.
+_LOGIN_MAX_DENEME  = 5
+_LOGIN_KILIT_DAKIKA = 15
+
 def giris_logla(kullanici: str, basarili: bool = True):
-    """Başarılı/başarısız girişi GSheets'e işler. Hata → sessiz (giriş akışını bloklamaz)."""
+    """Başarılı/başarısız girişi GSheets'e işler + brute-force kilit sayacını günceller.
+    Hata → sessiz (giriş akışını bloklamaz)."""
     kullanici = (kullanici or "").strip()
     if not kullanici:
         return
@@ -2509,8 +2541,9 @@ def giris_logla(kullanici: str, basarili: bool = True):
     if ws is None:
         return
     try:
-        from datetime import datetime
-        now = datetime.now().strftime("%Y-%m-%d %H:%M")
+        from datetime import datetime, timedelta
+        now_dt = datetime.now()
+        now = now_dt.strftime("%Y-%m-%d %H:%M")
         records = ws.get_all_records()
         idx, row = None, {}
         for i, r in enumerate(records, start=2):  # satır 1 = başlık
@@ -2520,17 +2553,39 @@ def giris_logla(kullanici: str, basarili: bool = True):
         if basarili:
             ilk  = str(row.get("ilk_giris", "") or now)
             sayi = int(row.get("giris_sayisi", 0) or 0) + 1
-            vals = [kullanici, ilk, now, sayi, str(row.get("son_hatali_giris", "") or "")]
+            vals = [kullanici, ilk, now, sayi, str(row.get("son_hatali_giris", "") or ""), 0, ""]
         else:
+            ardisik = int(row.get("basarisiz_ardisik", 0) or 0) + 1
+            kilit_bitis = str(row.get("kilit_bitis", "") or "")
+            if ardisik >= _LOGIN_MAX_DENEME:
+                kilit_bitis = (now_dt + timedelta(minutes=_LOGIN_KILIT_DAKIKA)).strftime("%Y-%m-%d %H:%M")
             vals = [kullanici, str(row.get("ilk_giris", "") or ""),
                     str(row.get("son_giris", "") or ""),
-                    int(row.get("giris_sayisi", 0) or 0), now]
+                    int(row.get("giris_sayisi", 0) or 0), now, ardisik, kilit_bitis]
         if idx:
-            ws.update(f"A{idx}:E{idx}", [vals])
+            ws.update(f"A{idx}:G{idx}", [vals])
         else:
             ws.append_row(vals)
     except Exception:
         pass
+
+
+def giris_kilit_durumu(kullanici: str) -> int:
+    """Kullanıcı brute-force kilidi altındaysa kalan dakikayı döndürür, değilse 0."""
+    kullanici = (kullanici or "").strip()
+    if not kullanici:
+        return 0
+    row = giris_log_oku(kullanici)
+    kilit_bitis = str(row.get("kilit_bitis", "") or "").strip()
+    if not kilit_bitis:
+        return 0
+    try:
+        from datetime import datetime
+        bitis = datetime.strptime(kilit_bitis, "%Y-%m-%d %H:%M")
+        kalan = (bitis - datetime.now()).total_seconds() / 60
+        return max(0, int(kalan) + 1) if kalan > 0 else 0
+    except Exception:
+        return 0
 
 
 # ─── Scouting Etiketleri (kullanıcı bazlı, oyuncu → etiket) ────────────
@@ -2908,14 +2963,15 @@ def render_oneri_merkezi(sahip: str):
     for o in benim:
         oid = o.get("id", "")
         rc = st.columns(_ORAN, vertical_alignment="center")
-        _link = (f"<a href='{o['sd_url']}' target='_blank' style='color:#a78bfa;font-size:0.66rem;"
-                 f"text-decoration:none;'>🔗 SoccerDonna</a>") if o.get("sd_url") else ""
-        _alt = o.get("kulup", "") or _link
+        _sd_url = o.get("sd_url", "")
+        _link = (f"<a href='{_html.escape(_sd_url)}' target='_blank' style='color:#a78bfa;font-size:0.66rem;"
+                 f"text-decoration:none;'>🔗 SoccerDonna</a>") if _sd_url.lower().startswith(("http://", "https://")) else ""
+        _alt = _html.escape(o.get("kulup", "")) if o.get("kulup") else _link
         rc[0].markdown(
-            f"<div style='font-weight:700;color:#e8eef7;font-size:0.92rem;'>{o.get('oyuncu','')}</div>"
+            f"<div style='font-weight:700;color:#e8eef7;font-size:0.92rem;'>{_html.escape(o.get('oyuncu',''))}</div>"
             f"<div style='color:#7a8699;font-size:0.72rem;'>{_alt}</div>", unsafe_allow_html=True)
         rc[1].markdown(f"<div style='color:#cbd5e1;font-size:0.84rem;padding-top:4px;'>"
-                       f"{o.get('oneren','—') or '—'}</div>", unsafe_allow_html=True)
+                       f"{_html.escape(o.get('oneren','') or '—')}</div>", unsafe_allow_html=True)
         # Durum (değiştirilebilir)
         _d_idx = _ONERI_DURUMLAR.index(o["durum"]) if o.get("durum") in _ONERI_DURUMLAR else 0
         yeni_d = rc[2].selectbox("durum", _ONERI_DURUMLAR, index=_d_idx,
@@ -2929,7 +2985,7 @@ def render_oneri_merkezi(sahip: str):
         if yeni_o != o.get("oncelik"):
             oneri_guncelle(oid, oncelik=yeni_o); st.rerun()
         rc[4].markdown(f"<div style='color:#aab4c4;font-size:0.80rem;line-height:1.45;'>"
-                       f"{o.get('not','') or '—'}</div>", unsafe_allow_html=True)
+                       f"{_html.escape(o.get('not','') or '—')}</div>", unsafe_allow_html=True)
         rc[5].markdown(f"<div style='color:#6b7689;font-size:0.74rem;padding-top:4px;'>"
                        f"{o.get('tarih','')}</div>", unsafe_allow_html=True)
         # Scout raporu talebi
@@ -4530,7 +4586,7 @@ def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar):
         _statlar = (_sl_kutu(t("YAŞ","AGE"), _yas) + _sl_kutu("POS", _pos) +
                     _sl_kutu(t("DEĞER","VALUE"), _dg) + _sl_kutu(t("KONTR.","CONTR."), _sz, _kontrat_renk_g(_sz)))
         _not_html = (f"<div style='margin-top:11px;border-left:3px solid #7c3aed;padding:2px 0 2px 11px;"
-                     f"color:#aab4c4;font-size:0.84rem;line-height:1.55;'>📝 {_notu}</div>") if _notu else ""
+                     f"color:#aab4c4;font-size:0.84rem;line-height:1.55;'>📝 {_html.escape(_notu)}</div>") if _notu else ""
         _alt = " · ".join(x for x in [_onc_b, _tarih] if x)
         st.markdown(
             f"<div style='background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;padding:14px 16px;margin-bottom:10px;'>"
@@ -7561,9 +7617,9 @@ def render_profil():
                 _r1, _r2, _r3 = st.columns([3, 1, 1])
                 _r1.markdown(
                     f"<div style='font-size:0.85rem;color:#cbd5e1;padding:6px 0;'>"
-                    f"💸 <b>{_oku}</b> → {_pad} · {_o.get('tutar','')} "
-                    f"<span style='color:#64748b;'>({_otr})</span>"
-                    + (f"<br><span style='color:#8899aa;font-size:0.78rem;'>📝 {_o.get('not','')}</span>"
+                    f"💸 <b>{_html.escape(_oku)}</b> → {_pad} · {_html.escape(str(_o.get('tutar','')))} "
+                    f"<span style='color:#64748b;'>({_html.escape(_otr)})</span>"
+                    + (f"<br><span style='color:#8899aa;font-size:0.78rem;'>📝 {_html.escape(_o.get('not',''))}</span>"
                        if _o.get("not") else "") + "</div>", unsafe_allow_html=True)
                 if _r2.button(t("✅ Onayla", "✅ Approve"), key=f"odm_ok_{_oku}_{_otr}",
                               type="primary", width="stretch"):
