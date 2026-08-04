@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-"""SD güncel kulübü ('guncel_kulup') Sco 🌐 (Dünya) sheet'ine YENİ 'Güncel Kulüp'
-sütunu olarak yazar. Mevcut 'Kulüp' sütununa DOKUNMAZ (geri alınabilir).
+"""SD güncel kulübü ('guncel_kulup') Sco 🌐 (Dünya) sheet'ine mevcut 'Kulüp'
+sütununun ÜSTÜNE yazar (Yiğit'in talebiyle — eski manuel değer kaybolur,
+sheet sürüm geçmişinden geri alınabilir).
 
-İNDEKS GÜVENLİĞİ: yeni sütun SONA eklenir → fetch_scout_kadro index-parse'ı bozulmaz.
 Eşleşme: İsim - Soyisim (kol 2) → scouting_sd_profiller.json guncel_kulup.
 
 Kullanım:
     python guncel_kulup_sheet_yaz.py            # KURU (önizleme, yazmaz)
-    python guncel_kulup_sheet_yaz.py --yaz      # gerçek yazma
+    python guncel_kulup_sheet_yaz.py --yaz      # gerçek yazma (mevcut Kulüp kolonunu ezer)
 """
 import sys, json, re, unicodedata
 import gspread
@@ -15,7 +15,7 @@ import gspread
 CREDS = r"C:\Users\MSI\Downloads\avid-phoenix-485522-h5-09c4cabbef0b.json"
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID_DUNYA = 1707810792
-BASLIK = "Güncel Kulüp"
+BASLIK = "Kulüp"
 
 def norm(s):
     s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode().lower()
@@ -32,13 +32,9 @@ def main():
     hdr = ws.row_values(2)
     assert hdr[1] == "İsim - Soyisim", f"KOLON KAYMASI (kol2={hdr[1]!r}) — iptal"
 
-    # Zaten 'Güncel Kulüp' sütunu var mı? Varsa onu kullan; yoksa SONA ekle
-    if BASLIK in hdr:
-        hedef_kol = hdr.index(BASLIK) + 1
-        print(f"'{BASLIK}' sütunu zaten var (kol {hedef_kol}) — güncellenecek.")
-    else:
-        hedef_kol = len(hdr) + 1     # header'ın son dolu sütunundan sonra
-        print(f"'{BASLIK}' YENİ sütun olarak kol {hedef_kol}'e eklenecek.")
+    assert BASLIK in hdr, f"'{BASLIK}' sütunu sheet'te bulunamadı — iptal"
+    hedef_kol = hdr.index(BASLIK) + 1
+    print(f"'{BASLIK}' sütunu ÜZERİNE yazılacak (kol {hedef_kol}).")
 
     isimler = ws.col_values(2)       # İsim - Soyisim
     hucreler = [gspread.Cell(2, hedef_kol, BASLIK)]   # başlık row 2'de
@@ -61,11 +57,8 @@ def main():
         print(f"  {a:26} → {g}")
 
     if yaz:
-        if hedef_kol > ws.col_count:      # grid'i genişlet (yeni sütun için)
-            ws.add_cols(hedef_kol - ws.col_count)
         ws.update_cells(hucreler, value_input_option="USER_ENTERED")
-        print(f"\n✓ {yazilan} hücre + başlık YAZILDI (kol {hedef_kol}).")
-        print("Not: Baran'ın 'Kulüp' sütununa dokunulmadı.")
+        print(f"\n✓ {yazilan} hücre 'Kulüp' kolonunun (kol {hedef_kol}) ÜSTÜNE yazıldı.")
     else:
         print(f"\n[KURU MOD] {len(hucreler)} hücre yazılacaktı (yazılmadı). "
               f"Gerçek yazma için: python guncel_kulup_sheet_yaz.py --yaz")

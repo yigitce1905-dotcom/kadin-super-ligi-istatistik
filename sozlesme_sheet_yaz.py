@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-"""SD güncel sözleşme bitişi ('Contract until') Sco 🌐 (Dünya) sheet'ine YENİ
-'Güncel Sözleşme (SD)' sütunu olarak yazar. Baran'ın 'Sözleşme' sütununa DOKUNMAZ.
+"""SD güncel sözleşme bitişi ('Contract until') Sco 🌐 (Dünya) sheet'inde mevcut
+'Sözleşme' sütununun ÜSTÜNE yazar (Yiğit'in talebiyle — eski manuel değer kaybolur,
+sheet sürüm geçmişinden geri alınabilir).
 
-İNDEKS GÜVENLİĞİ: yeni sütun SONA eklenir → fetch_scout_kadro index-parse'ı bozulmaz.
 Eşleşme: İsim - Soyisim (kol 2) → scouting_sd_profiller.json 'Contract until'.
-Yalnız GEÇERLİ tarih yazılır (SD '?'/boş atlanır — Baran'ın verisi korunur).
+Yalnız GEÇERLİ tarih yazılır (SD '?'/boş ise o satır atlanır, mevcut hücre korunur).
 
 Kullanım:
     python sozlesme_sheet_yaz.py            # KURU (önizleme, yazmaz)
-    python sozlesme_sheet_yaz.py --yaz      # gerçek yazma
+    python sozlesme_sheet_yaz.py --yaz      # gerçek yazma (mevcut Sözleşme kolonunu ezer)
 """
 import sys, json, re, unicodedata
 import gspread
@@ -16,7 +16,7 @@ import gspread
 CREDS = r"C:\Users\MSI\Downloads\avid-phoenix-485522-h5-09c4cabbef0b.json"
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID_DUNYA = 1707810792
-BASLIK = "Güncel Sözleşme (SD)"
+BASLIK = "Sözleşme"
 _GECERSIZ = {"", "?", "-", "—", "unbekannt", "unknown"}
 
 def norm(s):
@@ -39,12 +39,9 @@ def main():
     hdr = ws.row_values(2)
     assert hdr[1] == "İsim - Soyisim", f"KOLON KAYMASI (kol2={hdr[1]!r}) — iptal"
 
-    if BASLIK in hdr:
-        hedef_kol = hdr.index(BASLIK) + 1
-        print(f"'{BASLIK}' sütunu zaten var (kol {hedef_kol}) — güncellenecek.")
-    else:
-        hedef_kol = len(hdr) + 1
-        print(f"'{BASLIK}' YENİ sütun olarak kol {hedef_kol}'e eklenecek.")
+    assert BASLIK in hdr, f"'{BASLIK}' sütunu sheet'te bulunamadı — iptal"
+    hedef_kol = hdr.index(BASLIK) + 1
+    print(f"'{BASLIK}' sütunu ÜZERİNE yazılacak (kol {hedef_kol}).")
 
     isimler = ws.col_values(2)
     hucreler = [gspread.Cell(2, hedef_kol, BASLIK)]
@@ -68,11 +65,8 @@ def main():
         print(f"  {a:26} → {c}")
 
     if yaz:
-        if hedef_kol > ws.col_count:
-            ws.add_cols(hedef_kol - ws.col_count)
         ws.update_cells(hucreler, value_input_option="USER_ENTERED")
-        print(f"\n✓ {yazilan} hücre + başlık YAZILDI (kol {hedef_kol}).")
-        print("Not: Baran'ın 'Sözleşme' sütununa dokunulmadı.")
+        print(f"\n✓ {yazilan} hücre 'Sözleşme' kolonunun (kol {hedef_kol}) ÜSTÜNE yazıldı.")
     else:
         print(f"\n[KURU MOD] {len(hucreler)} hücre yazılacaktı (yazılmadı). "
               f"Gerçek yazma için: python sozlesme_sheet_yaz.py --yaz")
