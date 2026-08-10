@@ -224,6 +224,15 @@ footer { visibility:hidden !important; display:none !important; }
     color:#e2e8f0; background:#ffffff10; border:1px solid #ffffff24;
     border-radius:8px; padding:6px 13px; white-space:nowrap; }
 .hero-chip b { color:#4ade80; font-family:'Sora',monospace; }
+/* ── Scouting CTA (ana ekran, sidebar'a bağımlı olmadan her zaman görünür) ── */
+.scouting-cta { text-align:center; margin:0 0 8px; }
+.scouting-cta-txt { font-size:0.86rem; font-weight:600; color:#f3d9fb; line-height:1.5; }
+.scouting-cta-txt b { color:#e040fb; font-family:'Sora',monospace; }
+.st-key-hero_scouting_cta button {
+    background:linear-gradient(90deg,#7c3aed,#e040fb) !important;
+    border:none !important; color:#fff !important; font-weight:800 !important;
+    letter-spacing:0.02em; box-shadow:0 8px 24px -8px #e040fb88; }
+.st-key-hero_scouting_cta button:hover { filter:brightness(1.1); }
 /* ── Alt sayfa banner'ı (fotoğraflı başlık) ── */
 .sayfa-banner { position:relative; border:1px solid #2c2350; border-radius:14px;
     padding:24px 28px; margin:2px 0 18px; overflow:hidden;
@@ -626,6 +635,16 @@ section[data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]
     background:linear-gradient(90deg,rgba(224,64,251,0.22),rgba(27,21,64,0.9)) !important;
     border:1px solid #e040fb !important; border-left:3px solid #e040fb !important;
     color:#fff !important; }
+
+/* Hızlı erişim ikon çubuğunda 🌐 Scouting ikonu — bölüm kapalıyken bile
+   sürekli mor vurgulu kalsın (bayrak özellik, diğer 3 ikondan ayrışsın). */
+.st-key-nav_ikon_2 button {
+    border:1px solid rgba(224,64,251,0.55) !important;
+    background:linear-gradient(135deg,rgba(224,64,251,0.16),rgba(124,58,237,0.10)) !important; }
+.st-key-nav_ikon_2 button:hover { border-color:#e040fb !important; }
+.st-key-nav_ikon_2 button[kind="primary"] {
+    background:linear-gradient(135deg,#e040fb,#7c3aed) !important;
+    border-color:#e040fb !important; }
 
 /* Butonlar */
 [data-testid="stButton"] button, [data-testid="stFormSubmitButton"] button {
@@ -7405,8 +7424,8 @@ if _ust_blok_goster:
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
   <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
          'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
-  <p>{t("Türkiye Kadınlar Süper Ligi istatistikleri · uluslararası oyuncu havuzu · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
-        "Turkish Women's Super League stats · international player pool · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
+  <p>{t("Uluslararası scouting havuzu · Türkiye Kadınlar Süper Ligi istatistikleri · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
+        "International scouting pool · Turkish Women's Super League stats · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
   <div class="hero-chips">
     <span class="hero-chip">{t("SEZON","SEASON")} <b>2025-26</b></span>
     <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
@@ -7415,6 +7434,19 @@ if _ust_blok_goster:
     <span class="hero-chip">🔬 <b>{_hero_scout}</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
   </div>
 </div>""", unsafe_allow_html=True)
+  _cta_kol = st.columns([1, 2.4, 1])[1]
+  with _cta_kol:
+      _dv_n = 0
+      try: _dv_n = len(birlesik_scout_yukle())
+      except Exception: pass
+      st.markdown(
+          f"<div class='scouting-cta'>"
+          f"<div class='scouting-cta-txt'>🌍 <b>{_dv_n}+</b> "
+          f"{t('oyunculuk uluslararası scouting havuzu — sitenin bayrak özelliği','player international scouting pool — the site&#39;s flagship feature')}"
+          f"</div></div>", unsafe_allow_html=True)
+      if st.button(t("🌍 Scouting Havuzunu Keşfet", "🌍 Explore the Scouting Pool"),
+                   key="hero_scouting_cta", width="stretch", type="primary"):
+          _nav_git("scouting")
 
 # "🔐 Giriş" butonuna basılınca ana alanda açılan giriş kartı
 # (üyelik rozeti + giriş/çıkış artık sol navigasyon panelinde)
