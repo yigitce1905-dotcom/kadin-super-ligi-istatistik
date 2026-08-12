@@ -110,6 +110,54 @@ _EN_TR_KALECI = {
 }
 
 
+# ── DEĞER kanonlaştırma ────────────────────────────────────────────────────────
+# Baran başlıklarla birlikte HÜCRE DEĞERLERİNİ de İngilizceye çevirdi. Site
+# Türkçe-anahtarlı (filtreler, renk/grup eşlemeleri, `_ROL_EN`/`_BOLGE_EN` gibi
+# çeviri sözlükleri hep Türkçe değer bekliyor), bu yüzden okuma anında geri
+# kanonik Türkçeye çevrilir. Kesin 1:1 karşılığı OLMAYAN (Baran'ın yeni
+# tanımladığı) roller BİLEREK dokunulmadan bırakılır — uydurma çeviri yapılmaz.
+_DEGER_BOLGE = {
+    "goalkeeper": "Kale", "defender": "Savunma",
+    "midfielder": "Orta Saha", "attacker": "Hücum",
+}
+_DEGER_AYAK = {"right": "Sağ", "left": "Sol", "both": "Çift"}
+_DEGER_VUCUT = {
+    "ectomorph": "Ektomorf", "endomorph": "Endomorf", "mesomorph": "Mezomorf",
+    "meso-ectomorph": "Mezo-Ektomorf", "meso-endomorph": "Mezo-Endomorf",
+}
+# Sitenin mevcut Türkçe rol sözlüğüyle birebir örtüşenler
+_DEGER_ROL = {
+    "line keeper": "Çizgi Kalecisi", "sweeper keeper": "Libero Kaleci",
+    "libero keeper": "Libero Kaleci", "regnant keeper": "Hükmeden Kaleci",
+    "playmaker winger": "Oyun Kurucu Kanat",   # Baran'ın kendi TR karşılığı veride mevcut
+    "playmaker": "Oyun Kurucu", "deep lying playmaker": "Derinden Oyun Kurucu",
+    "inverted winger": "İçe Kat Eden Kanat", "target winger": "Hedef Kanat",
+    "target striker": "Hedef Santrfor", "false #9": "Sahte 9",
+    "balanced full-back": "Dengeli Bek", "poacher": "Tilki",
+    "warrior": "Savaşçı", "dynamo": "Dinamo", "anchor": "Çapa",
+    "no-nonsense back": "Çakılı Stoper", "ball-playing back": "Oyun Kurucu Stoper",
+    "limited back": "Limitli Stoper", "overlapping full-back": "Kanat Bek",
+    "mezzala": "Mezzala", "volante": "Volante", "raumdeuter": "Raumdeuter",
+}
+# Emoji'si birebir eşleşen yetenek kümeleri (emoji farklıysa çevrilmez)
+_DEGER_KUME = {
+    "🩹 insufficient": "🩹 Yedek", "🎁 inadvertent": "🎁 Kalburüstü",
+    "🏅 important": "🏅 Önemli", "🍂 redundant": "🍂 Tercih Dışı",
+}
+_DEGER_ALAN = {
+    "bolge": _DEGER_BOLGE, "ayak": _DEGER_AYAK, "vucut_tipi": _DEGER_VUCUT,
+    "rol": _DEGER_ROL, "yetenek_kumesi": _DEGER_KUME,
+}
+
+
+def deger_kanonlastir(alan: str, deger: str) -> str:
+    """Tek bir alan değerini kanonik Türkçeye çevirir (eşleşme yoksa aynen döner)."""
+    s = (deger or "").strip()
+    if not s:
+        return s
+    return _DEGER_ALAN.get(alan, {}).get(s.lower(), s)
+
+
 def hdr_kanonlastir(hdr: list) -> list:
     """Başlık satırını kanonik TÜRKÇE adlara çevirir (EN sheet desteği)."""
     gk0 = next((i for i, h in enumerate(hdr)
@@ -234,11 +282,11 @@ def parse(metin: str) -> dict:
             "dogum":       dogum,
             "yas":         yas,
             "boy":         h(r, c_boy),
-            "ayak":        h(r, c_ayak),
-            "vucut_tipi":  h(r, c_vucut),
-            "bolge":       h(r, c_bolge),
+            "ayak":        deger_kanonlastir("ayak", h(r, c_ayak)),
+            "vucut_tipi":  deger_kanonlastir("vucut_tipi", h(r, c_vucut)),
+            "bolge":       deger_kanonlastir("bolge", h(r, c_bolge)),
             "mevki":       mevki,
-            "rol":         h(r, c_rol),
+            "rol":         deger_kanonlastir("rol", h(r, c_rol)),
             "kulup":       h(r, c_kulup),
             "lig":         h(r, c_lig),
             "deger":       h(r, c_deger),
@@ -255,7 +303,7 @@ def parse(metin: str) -> dict:
             "tarz":       tarz,
             "nihai":      h(r, i_nihai) if h(r, i_nihai) in GECERLI_NOTLAR else "",
             "ivme":       h(r, i_ivme) if h(r, i_ivme) not in ("", "-") else "",
-            "yetenek_kumesi": h(r, idx("Yetenek Kümesi")),
+            "yetenek_kumesi": deger_kanonlastir("yetenek_kumesi", h(r, idx("Yetenek Kümesi"))),
             "iktisadi_durum": h(r, idx("İktisadi Durum")),
             "tr_gorusu":  h(r, idx("TR Görüşü")),
             "scout_notu": h(r, idx("Scout Notları")),
