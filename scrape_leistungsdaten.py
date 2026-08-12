@@ -48,6 +48,14 @@ def leistung_url(sid: str, slug: str, yil: int | None = None) -> str:
     return f"{base}_{yil}.html" if yil else f"{base}.html"
 
 
+def _guncel_sezon_etiketi() -> str:
+    """Bugüne göre sezon etiketi ('26/27'). Avrupa sezonu Temmuz'da başlar kabul edilir."""
+    from datetime import date
+    b = date.today()
+    y = b.year if b.month >= 7 else b.year - 1
+    return f"{str(y)[2:]}/{str(y + 1)[2:]}"
+
+
 def sezon_yillarini_cek(soup: BeautifulSoup) -> list[int]:
     """Sayfadaki leistungsdaten linkleri / dropdown'dan mevcut yil listesi."""
     yillar = set()
@@ -350,13 +358,19 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
             tum_kayitlar = alt_ozet_parse(soup, ulke)
         return tum_kayitlar
 
-    # Tum yillari sirayla cek. En guncel yil (idx 0) = varsayilan sayfa,
-    # tekrar istek atmadan ondan isle → duplikasyon olmaz.
-    for idx, yil in enumerate(sezon_yillari):
-        etiket = f"{str(yil)[2:]}/{str(yil+1)[2:]}"
-        if idx == 0:
-            tum_kayitlar.extend(ozet_tabloyu_parse(soup, etiket, kulup0, ulke))
-            continue
+    # 2026-08 DÜZELTME — ESKİ HATA: varsayılan sayfa, dropdown'daki EN YENİ yıl
+    # (idx 0) sayılıp o etiketle işleniyordu. SD artık varsayılan sayfada YENİ
+    # (henüz dropdown'a girmemiş) sezonu gösteriyor → 25/26 kulüp satırları hiç
+    # çekilmiyor, üstüne 26/27 verisi "25/26" diye kaydediliyordu.
+    # Doğrusu: varsayılan sayfa AYRI bir sezon (güncel), dropdown yılları ise
+    # tek tek kendi URL'lerinden çekilir.
+    guncel_etiket = mevcut_sezon or _guncel_sezon_etiketi()
+    dropdown_etiketleri = {f"{str(y)[2:]}/{str(y + 1)[2:]}" for y in sezon_yillari}
+    if guncel_etiket not in dropdown_etiketleri:
+        tum_kayitlar.extend(ozet_tabloyu_parse(soup, guncel_etiket, kulup0, ulke))
+
+    for yil in sezon_yillari:
+        etiket = f"{str(yil)[2:]}/{str(yil + 1)[2:]}"
         url_y = leistung_url(sid, slug, yil)
         try:
             r2     = requests.get(url_y, headers=HEADERS, timeout=12)

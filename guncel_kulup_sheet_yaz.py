@@ -30,7 +30,9 @@ def main():
     gc = gspread.service_account(filename=CREDS)
     ws = gc.open_by_key(GSHEET_ID).get_worksheet_by_id(GID_DUNYA)
     hdr = ws.row_values(2)
-    assert hdr[1] == "İsim - Soyisim", f"KOLON KAYMASI (kol2={hdr[1]!r}) — iptal"
+    # Baran 2026-08'de sheet başlıklarını İngilizceye çevirdi → iki ad da kabul
+    assert hdr[1] in ("İsim - Soyisim", "Name & Surname"), \
+        f"KOLON KAYMASI (kol2={hdr[1]!r}) — iptal"
 
     assert BASLIK in hdr, f"'{BASLIK}' sütunu sheet'te bulunamadı — iptal"
     hedef_kol = hdr.index(BASLIK) + 1

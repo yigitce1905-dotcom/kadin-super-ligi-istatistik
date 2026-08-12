@@ -48,9 +48,85 @@ def _yas_hesapla(dogum: str):
     return None
 
 
+# ── Baran 2026-08'de Dünya sheet'inin başlıklarını İNGİLİZCEYE çevirdi. ────────
+# JSON şeması TÜRKÇE kalmalı: app.py nitelik adlarını `_NITELIK_EN` ile çeviriyor,
+# kart_uret.py / portfoy_* scriptleri de Türkçe anahtar bekliyor. Bu yüzden başlık
+# satırı okunur okunmaz kanonik Türkçe adlara çevrilir; sheet TR'ye dönerse de
+# çalışmaya devam eder (eşleşmeyen başlık aynen geçer).
+_EN_TR_GENEL = {
+    "Name & Surname": "İsim - Soyisim",
+    "Country Name": "Sporcunun Tam İsmi",      # Baran yanlış etiketlemiş: içerik TAM İSİM
+    "Citizenship (National Team)": "Vatandaşlık (Millî)",
+    "Secondary Citizenship": "2. Vatandaşlık",
+    "Date of Birth": "Doğum Tarihi", "Age": "Yaş", "Height": "Boy",
+    "Strong Foot": "Ayak", "Body Type": "Vücut Tipi", "Zone": "Bölge",
+    "Main Position": "Mevki 1", "Alternative Position": "Mevki 2",
+    "Playable Position": "Mevki 3", "Role": "Rol",
+    # BECERİ
+    "Finishing": "Bitiricilik", "Ball Technique": "Top Tekniği",
+    "Penalty Kick": "Penaltı Vuruşu", "Marking": "Markaj", "Tackling": "Top Kapma",
+    "Long Throw": "Uzun Taç", "Set Pieces": "Duran Top", "First Touch": "İlk Kontrol",
+    "Heading": "Kafa Vuruşu", "Crossing": "Orta Yapma", "Short Passing": "Kısa Pas",
+    "Long Passing": "Uzun Pas", "Dribbling": "Top Sürme", "Long Shot": "Uzaktan Şut",
+    "Technical Note": "BECERİ Not",
+    # BEŞERİ
+    "Aggression": "Agresiflik", "Bravery": "Cesaret", "Decision": "Karar Alma",
+    "Determination": "Kararlılık", "Concentration": "Konsantrasyon",
+    "Leadership": "Liderlik", "Perception": "Önsezi", "Positioning": "Konumlanma",
+    "Calmness": "Soğukkanlılık", "Strategy": "Takım Oyunu", "Free Spaces": "Topsuz Alan",
+    "Vision": "Görüş", "Mental Note": "BEŞERİ Not",
+    # FİZİKİ
+    "Agility": "Çeviklik", "Durability": "Dayanıklılık", "Balance": "Denge",
+    "Strength": "Güç", "Pace": "Sürat", "Acceleration": "Hızlanma",
+    "Coordination": "Koordinasyon", "Fitness": "Zindelik", "Jumping": "Zıplama",
+    "Weak Foot": "Zayıf Ayak", "Physical Note": "FİZİKİ Not",
+    # ŞAHSİ
+    "Injury Resistance": "Sakatlanma Direnci", "Sportsmanship": "Sportmenlik",
+    "Professionalism": "Profesyonellik", "Loyalty": "Sadakat",
+    "Pressure Resistance": "Baskıya Dayanıklılık", "Compatibility": "Uyumluluk",
+    "Permanence": "Süreklilik", "Diligence": "Çalışkanlık", "Individual Note": "ŞAHSİ Not",
+    # Özet / notlar
+    "Ultimate Note": "NİHAİ", "Development": "İVME", "Class": "Yetenek Kümesi",
+    "Cost": "İktisadi Durum", "🇹🇷 Perspective": "TR Görüşü", "Perspective": "TR Görüşü",
+    "Scouting Notes": "Scout Notları",
+    # Kulüp bilgileri (Baran bunları da çevirdi — TR hâlleri de destekleniyor)
+    "Club": "Kulüp", "League": "Lig", "Value": "Değeri", "Market Value": "Değeri",
+    "Contract": "Sözleşme", "Current Club": "Güncel Kulüp",
+    "Current Contract (SD)": "Güncel Sözleşme (SD)",
+}
+# Kaleci bloğu: aynı İngilizce ad saha oyuncusunda BAŞKA bir Türkçe niteliğe denk
+# geliyor (First Touch/Ball Technique) → bu blok ayrı haritayla çevrilir.
+_EN_TR_KALECI = {
+    "Handling": "Elle Kontrol - Sahiplenme",
+    "First Touch": "Ayakla Kontrol - İlk Temas",
+    "Ball Technique": "Top Tekniği",
+    "Area Domination": "Alan Hakimiyeti", "Line Domination": "Çizgi Hakimiyeti",
+    "Aerial Domination": "Hava Hakimiyeti", "Side-Ball Domination": "Yan Top Hakimiyeti",
+    "Throwing": "Elle Oyun Kurma", "Kicking": "Ayak ile Oyun Kurma - Kısa",
+    "Punt / Clearance": "Degaj ile Oyun Kurma - Uzun", "Rushing Out": "Kaleden Ani Çıkış",
+    "Punching": "Yumruklama Kabiliyeti", "Communication": "İletişim",
+    "In-Side Virtues": "Kaleci Dışı Meziyetler",
+    "Goalkeeping Note": "KALECİ Not",
+}
+
+
+def hdr_kanonlastir(hdr: list) -> list:
+    """Başlık satırını kanonik TÜRKÇE adlara çevirir (EN sheet desteği)."""
+    gk0 = next((i for i, h in enumerate(hdr)
+                if h.strip().startswith(("Handling", "Elle Kontrol"))), len(hdr))
+    out = []
+    for i, h in enumerate(hdr):
+        hs = h.strip()
+        if i >= gk0 and hs in _EN_TR_KALECI:
+            out.append(_EN_TR_KALECI[hs])
+        else:
+            out.append(_EN_TR_GENEL.get(hs, h))
+    return out
+
+
 def parse(metin: str) -> dict:
     rows = list(csv.reader(io.StringIO(metin)))
-    hdr  = rows[1]
+    hdr  = hdr_kanonlastir(rows[1])
 
     def idx(ad):
         return hdr.index(ad)
