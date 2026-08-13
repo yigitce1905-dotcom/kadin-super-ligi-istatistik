@@ -35,6 +35,10 @@ LEISTUNG_YOL  = Path(__file__).parent / "scouting_leistungsdaten.json"
 HEADERS       = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 BEKLEME       = 1.2
 BUGUN         = date.today().isoformat()
+# --bayat için "taze" sayılan günler. Tek güne bakmak, tarama gece yarısını
+# geçtiğinde dünkü TÜM kayıtları bayat gösterip her şeyi baştan çektiriyordu.
+from datetime import timedelta as _td
+_TAZE_GUNLER  = {(date.today() - _td(days=g)).isoformat() for g in range(3)}
 
 
 def spieler_id_ve_slug(profil_url: str):
@@ -410,6 +414,9 @@ def main():
         leistung = {}
 
     sadece_eksik = "--eksik" in args
+    # --bayat: bugün BAŞARIYLA güncellenmemiş kayıtları tazele (ağ hatası sonrası
+    # kalan eski kayıtları hedefli yeniden çekmek için)
+    sadece_bayat = "--bayat" in args
     arama        = next((a for a in args if not a.startswith("--")), None)
 
     hedefler = []
@@ -420,6 +427,8 @@ def main():
         if not profil_url:
             continue
         if sadece_eksik and isim in leistung:
+            continue
+        if sadece_bayat and (leistung.get(isim) or {}).get("guncelleme") in _TAZE_GUNLER:
             continue
         if arama and arama.lower() not in isim.lower():
             continue
@@ -432,8 +441,15 @@ def main():
         print(f"[{i}/{len(hedefler)}] {isim} ...", end=" ", flush=True)
         try:
             satirlar = oyuncu_cek(isim, profil_url, ulke)
-            leistung[isim] = {"sezonlar": satirlar, "guncelleme": BUGUN}
-            print(f"OK {len(satirlar)} satir")
+            # VERİ KORUMA (2026-08-12): ağ hatası/timeout'ta oyuncu_cek boş liste
+            # döndürüyor ve bu ELDEKİ İYİ VERİYİ eziyordu (bir taramada 463 oyuncu
+            # bu şekilde boşaldı). Boş sonuç, dolu bir kayıt varken YAZILMAZ.
+            eski = (leistung.get(isim) or {}).get("sezonlar") or []
+            if not satirlar and eski:
+                print(f"BOŞ döndü — eski {len(eski)} satır KORUNDU")
+            else:
+                leistung[isim] = {"sezonlar": satirlar, "guncelleme": BUGUN}
+                print(f"OK {len(satirlar)} satir")
         except Exception as e:
             print(f"HATA: {e}")
 

@@ -138,6 +138,16 @@ _DEGER_ROL = {
     "no-nonsense back": "Çakılı Stoper", "ball-playing back": "Oyun Kurucu Stoper",
     "limited back": "Limitli Stoper", "overlapping full-back": "Kanat Bek",
     "mezzala": "Mezzala", "volante": "Volante", "raumdeuter": "Raumdeuter",
+    # Baran'ın yeni tanımladığı roller — TR karşılıkları Yiğit/Baran'dan alındı (2026-08-13)
+    "assistant forward": "Yardımcı Forvet",
+    "complete back": "Komple Stoper",
+    "complete striker #9": "Komple Santrfor",
+    "cover back": "Pozisyoncu Stoper",
+    "diligent forward": "Çalışkan Forvet",
+    "diligent liner": "Çalışkan Çizgi Oyuncusu",
+    "inverted/playmaker liner": "Oyun Kurucu Çizgi Oyuncusu",
+    "line winger": "Çizgi Kanat",
+    "old-school #10": "Eski Tip 10",
 }
 # Emoji'si birebir eşleşen yetenek kümeleri (emoji farklıysa çevrilmez)
 _DEGER_KUME = {

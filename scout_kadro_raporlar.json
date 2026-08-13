@@ -511,7 +511,7 @@
       "LCB",
       "LFB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Galatasaray A.Ş.",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€15.000",
@@ -1179,7 +1179,7 @@
       "LWF",
       "AMF"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "Toulouse FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€10.000",
@@ -2234,7 +2234,7 @@
       "RFB",
       "RWF"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "FC Basel 1893 U20",
     "lig": "🇨🇭 Super League U20",
     "deger": "€5.000",
@@ -3306,7 +3306,7 @@
     "mevki": [
       "RCB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€800.000",
@@ -3787,7 +3787,7 @@
       "RCB",
       "RFB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€175.000",
@@ -3977,7 +3977,7 @@
       "LCB",
       "LFB"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "€90.000",
@@ -4073,7 +4073,7 @@
       "CMF",
       "2ST"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "Denver NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€650.000",
@@ -4661,7 +4661,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "OL Lyonnes",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€700.000",
@@ -5636,7 +5636,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Houston Dash",
     "lig": "🇺🇸 NWSL",
     "deger": "€120.000",
@@ -6045,7 +6045,7 @@
       "LWB",
       "RWF"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "Manchester United",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
@@ -6144,7 +6144,7 @@
       "LFB",
       "LWB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
@@ -6337,7 +6337,7 @@
       "RCB",
       "MCB"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€500.000",
@@ -8235,7 +8235,7 @@
       "LFB",
       "LCB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Le Havre AC",
     "lig": "🇫🇷 2e Ligue",
     "deger": "",
@@ -9960,7 +9960,7 @@
       "LCB",
       "LFB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -10281,7 +10281,7 @@
       "RCB",
       "RWB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Super League Carolina",
     "lig": "🇺🇸 USL Super",
     "deger": "",
@@ -10890,7 +10890,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Al Amal FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
@@ -11025,7 +11025,7 @@
       "2ST",
       "RCB"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Internacional",
     "lig": "🇧🇷 Série A",
     "deger": "",
@@ -11108,7 +11108,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Logroño United",
     "lig": "🇪🇸 Liga F",
     "deger": "",
@@ -11149,7 +11149,7 @@
       "RFB",
       "CMF"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "University of Louisville",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
@@ -11408,7 +11408,7 @@
       "RWF",
       "RFB"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "FH Hafnarfjördur",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
@@ -11731,7 +11731,7 @@
       "AMF",
       "LWF"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -11863,7 +11863,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "",
@@ -11943,7 +11943,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "SK Brann",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
@@ -12036,7 +12036,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "AFC Toronto",
     "lig": "🇨🇦 NSL",
     "deger": "",
@@ -12281,7 +12281,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -12728,7 +12728,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Győri ETO FC",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
@@ -12852,7 +12852,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Houston Dash",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -13273,7 +13273,7 @@
     "mevki": [
       "2ST"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Gornik Leczna",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
@@ -13450,7 +13450,7 @@
       "RWF",
       "RFB"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -13889,7 +13889,7 @@
       "RCB",
       "RFB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -14646,7 +14646,7 @@
       "LCB",
       "DMF"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -14981,7 +14981,7 @@
       "2ST",
       "RWF"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Pitea IF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -15077,7 +15077,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Malmö FF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -15204,7 +15204,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "University of Tennessee Lady Volunteers",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
@@ -15299,7 +15299,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
@@ -15378,7 +15378,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Zenit St. Petersburg",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
@@ -15417,7 +15417,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Newcastle United WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
@@ -15457,7 +15457,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Spartak Moskau",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
@@ -15666,7 +15666,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "BK Häcken",
     "lig": "🇸🇪 Elitettan",
     "deger": "",
@@ -15786,7 +15786,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
@@ -16188,7 +16188,7 @@
       "2ST",
       "AMF"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Olympique Marseille",
     "lig": "🇺🇸 USL Super",
     "deger": "",
@@ -16275,7 +16275,7 @@
       "CFW",
       "LWF"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "HB Køge",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
@@ -16475,7 +16475,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Budaörs",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
@@ -16517,7 +16517,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "Aris Limassol",
     "lig": "🇨🇾 Πρωτάθλημα",
     "deger": "",
@@ -16693,7 +16693,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -16855,7 +16855,7 @@
       "RWF",
       "CFW"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "CD Tenerife Femenino",
     "lig": "🇪🇸 Liga F",
     "deger": "",
@@ -16938,7 +16938,7 @@
       "LWF",
       "LFB"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -17330,7 +17330,7 @@
       "RFB",
       "RCB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "GKS Gieksa Katowice",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
@@ -17453,7 +17453,7 @@
       "RFB",
       "RWF"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "US Saint-Malo",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
@@ -17549,7 +17549,7 @@
       "RWF",
       "CMF"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -17643,7 +17643,7 @@
       "RWF",
       "2ST"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -18158,7 +18158,7 @@
       "LWF",
       "RWB"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "LdB FC Malmö",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
@@ -18253,7 +18253,7 @@
       "RWB",
       "RWF"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Crystal Palace LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
@@ -18391,7 +18391,7 @@
       "RWF",
       "RFB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Hamburger SV",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -18485,7 +18485,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "Odense Boldklub Q",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
@@ -18899,7 +18899,7 @@
       "2ST",
       "DMF"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -19194,7 +19194,7 @@
       "LWF",
       "CMF"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -19532,7 +19532,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -19667,7 +19667,7 @@
       "RFB",
       "CMF"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Íþróttafélagið Grótta",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
@@ -19761,7 +19761,7 @@
       "CMF",
       "2ST"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "FK Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "",
@@ -20612,7 +20612,7 @@
       "CFW",
       "RWF"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "ŽNK Mura Nona",
     "lig": "🇸🇮 Nogometna Liga",
     "deger": "",
@@ -20895,7 +20895,7 @@
       "RFB",
       "LFB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -21736,7 +21736,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -21829,7 +21829,7 @@
       "CFW",
       "AMF"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Notre Dame University",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
@@ -21966,7 +21966,7 @@
       "2ST",
       "RWF"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "SPG FC Südburgenland/TSV Hartberg",
     "lig": "🇦🇹 Bundesliga",
     "deger": "",
@@ -22260,7 +22260,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Vittsjö GIK",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -22340,7 +22340,7 @@
       "RWF",
       "2ST"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -23609,7 +23609,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Old-School #10",
+    "rol": "Eski Tip 10",
     "kulup": "Melbourne Victory",
     "lig": "🇦🇺 A-League",
     "deger": "",
@@ -24033,7 +24033,7 @@
       "LWF",
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "€30.000",
@@ -26910,7 +26910,7 @@
       "LFB",
       "LCB"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "VfL Wolfsburg",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€180.000",
@@ -44710,7 +44710,7 @@
       "RFB",
       "LFB"
     ],
-    "rol": "Diligent Liner",
+    "rol": "Çalışkan Çizgi Oyuncusu",
     "kulup": "Newcastle United WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€90.000",
@@ -45290,7 +45290,7 @@
       "LWB",
       "LWF"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "€50.000",
@@ -61363,7 +61363,7 @@
       "LCB",
       "RCB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Sparks",
     "lig": "",
     "deger": "",
@@ -61455,7 +61455,7 @@
       "RWB",
       "RFB"
     ],
-    "rol": "Line Winger",
+    "rol": "Çizgi Kanat",
     "kulup": "Union Sportive des Forces Armées",
     "lig": "",
     "deger": "",
@@ -62828,7 +62828,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Etincelles",
     "lig": "",
     "deger": "",
@@ -62923,7 +62923,7 @@
       "LWB",
       "LWF"
     ],
-    "rol": "Inverted/Playmaker Liner",
+    "rol": "Oyun Kurucu Çizgi Oyuncusu",
     "kulup": "ASO Burkina Faso",
     "lig": "",
     "deger": "",
@@ -63202,7 +63202,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "VfL Stenum",
     "lig": "",
     "deger": "",
@@ -63910,7 +63910,7 @@
       "LFB",
       "LWB"
     ],
-    "rol": "Complete Back",
+    "rol": "Komple Stoper",
     "kulup": "Al-Ittihad FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€65.000",
@@ -66074,7 +66074,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Diligent Forward",
+    "rol": "Çalışkan Forvet",
     "kulup": "CF Pachuca",
     "lig": "🇲🇽 Liga MX",
     "deger": "€45.000",
@@ -66752,7 +66752,7 @@
       "LCB",
       "RCB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "LOSC Lille",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€50.000",
@@ -67994,7 +67994,7 @@
       "MCB",
       "LFB"
     ],
-    "rol": "Cover Back",
+    "rol": "Pozisyoncu Stoper",
     "kulup": "Serbest",
     "lig": "🇫🇷 2e Ligue",
     "deger": "€35.000",
@@ -68183,7 +68183,7 @@
       "DMF",
       "RCB"
     ],
-    "rol": "Complete Back",
+    "rol": "Komple Stoper",
     "kulup": "Valencia Féminas Club de Fútbol",
     "lig": "🇪🇸 Liga F",
     "deger": "€70.000",
@@ -68374,7 +68374,7 @@
       "CFW",
       "AMF"
     ],
-    "rol": "Assistant Forward",
+    "rol": "Yardımcı Forvet",
     "kulup": "Serbest",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€95.000",
@@ -80330,7 +80330,7 @@
       "RFB",
       "DMF"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "€15.000",
@@ -81100,7 +81100,7 @@
       "LCB",
       "LFB"
     ],
-    "rol": "Complete Striker #9",
+    "rol": "Komple Santrfor",
     "kulup": "",
     "lig": "",
     "deger": "",
