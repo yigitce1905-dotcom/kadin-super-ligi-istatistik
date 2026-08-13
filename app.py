@@ -5776,7 +5776,29 @@ _TARZ_EN = {
 _YETENEK_EN_DEG = {"Elit":"Elite","Yetenekli":"Talented","Potansiyelli":"High Potential",
                    "Gelişime Açık":"Developing","Sınırlı":"Limited"}
 _IKTISADI_EN = {"Yüksek":"High","Orta":"Medium","Orta-Düşük":"Mid-Low","Düşük":"Low"}
-_TR_GORUS_EN = {"İstekli":"Willing","Nötr":"Neutral","İsteksiz":"Reluctant"}
+_TR_GORUS_EN = {"İstekli":"Willing","Nötr":"Neutral","İsteksiz":"Reluctant",
+                # Baran'ın 2026-08 yeni skalası (Türkiye'ye gelme isteği)
+                "Yüksek":"High","Orta":"Medium","Düşük":"Low","Uygun":"Suitable"}
+
+# ── TR GÖRÜŞÜ SKALASI (2026-08) ───────────────────────────────────────────────
+# Baran skalayı "Yüksek / Orta / Düşük"e geçirdi; sheet'te henüz göçmemiş
+# satırlarda eski "Çok İstekli … Çok İsteksiz" değerleri duruyor. Site İKİ
+# skalayı da tanır: aşağıdaki sıra hem dropdown sıralaması hem de öneri
+# önceliği için tek kaynaktır (yeni skala üstte, olumludan olumsuza).
+_TR_GORUS_SIRA = ["Yüksek", "Uygun", "Orta", "Düşük",
+                  "Çok İstekli", "İstekli", "İstekli (Şartlar?)",
+                  "Nötr", "Nötr (Şartlar?)",
+                  "İsteksiz (Şartlar?)", "İsteksiz", "Çok İsteksiz"]
+# Öneri motorunda kabul edilen (= gelme ihtimali olan) değerler → öncelik puanı.
+# Düşük/İsteksiz/Çok İsteksiz bilinçli olarak YOK: gelmeyecek oyuncu önerilmez.
+_TR_GORUS_ONCELIK = {"Yüksek": 0, "Çok İstekli": 0, "Uygun": 1, "İstekli": 1,
+                     "Orta": 2, "Nötr": 2}
+
+def tr_gorus_oncelik(x):
+    """TR görüşü → öneri önceliği (küçük=iyi). Kabul edilmiyorsa None.
+    '(Şartlar?)' eki yok sayılır: şartlı istekli de isteklidir."""
+    s = (x or "").replace(" (Şartlar?)", "").strip()
+    return _TR_GORUS_ONCELIK.get(s)
 
 def _scout_ceviri(metin, sozluk):
     if not EN or not metin:
@@ -9068,7 +9090,11 @@ def render_kokpit():
             _scout = scout_kadro_yukle()
             # GERÇEKÇİLİK FİLTRESİ: not tavanı üstü gelmez, İsteksiz gelmez.
             # Öncelik: TR görüşü olumlu olanlar > görüşü henüz sorulmamışlar.
-            _TR_ONCELIK = {"Çok İstekli": 0, "İstekli": 1, "Nötr": 2}
+            # Skala tek kaynaktan (`tr_gorus_oncelik`) okunur — Baran'ın yeni
+            # Yüksek/Orta/Düşük skalası da eski değerler de tanınır. ESKİ HATA:
+            # burada sabit bir liste vardı ve listede olmayan HER değer eleniyordu;
+            # yeni skalaya geçen "Yüksek" (gelmeye çok istekli) oyuncular bu yüzden
+            # önerilerden tamamen düşüyordu.
             _oneri_havuz = {}
             for _sisim, _sr in _scout.items():
                 if not _sr.get("degerlendirildi"):
@@ -9077,7 +9103,9 @@ def render_kokpit():
                 if not (0 < _p <= _tavan):                 # kulüp tavanı ve altı
                     continue
                 _gtr = (_sr.get("tr_gorusu") or "").strip()
-                if _gtr and _gtr not in _TR_ONCELIK:       # İsteksiz / Çok İsteksiz → asla
+                # Görüş girilmişse ve olumlu/nötr değilse (Düşük · İsteksiz ·
+                # Çok İsteksiz) önerilmez; görüşü hiç sorulmamışlar havuzda kalır.
+                if _gtr and tr_gorus_oncelik(_gtr) is None:
                     continue
                 # Çoklu mevki kodu (LCB/MCB/RCB…) aynı gruba MÜKERRER eklemesin → grup seti
                 _gruplar_bu = {_SCOUT_KOD_GRUP.get(str(_kod).upper().strip())
@@ -9093,7 +9121,8 @@ def render_kokpit():
                             unsafe_allow_html=True)
                 _sirali = sorted(
                     _oneri_havuz.get(grup, []),
-                    key=lambda x: (_TR_ONCELIK.get((x[1].get("tr_gorusu") or "").strip(), 3),
+                    key=lambda x: (tr_gorus_oncelik(x[1].get("tr_gorusu")) if
+                                   tr_gorus_oncelik(x[1].get("tr_gorusu")) is not None else 3,
                                    -_scotr_puan(x[1].get("nihai", ""))))
                 # isim bazlı tekilleştirme (aynı oyuncu iki kez görünmesin — güvenlik)
                 _gorulen, _adaylar = set(), []
@@ -9398,12 +9427,15 @@ if st.session_state.get("sayfa") == "scouting":
                            "within the selected window — no past/future mix."))
 
                 # ── 🇹🇷 TR Görüşü: oyuncunun Türkiye'ye gelme isteği ─────────────
-                _TR_SIRA = ["Çok İstekli", "İstekli (Şartlar?)", "İstekli",
-                            "Nötr (Şartlar?)", "İsteksiz (Şartlar?)", "İsteksiz", "Çok İsteksiz"]
+                # Baran 2026-08'de skalayı Yüksek/Orta/Düşük'e geçirdi; eski
+                # "Çok İstekli…Çok İsteksiz" değerleri henüz göçmemiş satırlarda
+                # duruyor → İKİ SKALA da listelenir (yeni olan üstte).
                 _mevcut_tr = {(_v.get("tr_gorusu") or "").strip()
                               for _v in _kadro_roster.values() if (_v.get("tr_gorusu") or "").strip()}
-                _tr_opts = ([x for x in _TR_SIRA if x in _mevcut_tr]
-                            + sorted(_mevcut_tr - set(_TR_SIRA)))
+                # Hatalı hücrelerde tam paragraf scout notu olabiliyor → filtre dışı
+                _mevcut_tr = {x for x in _mevcut_tr if len(x) <= 24}
+                _tr_opts = ([x for x in _TR_GORUS_SIRA if x in _mevcut_tr]
+                            + sorted(_mevcut_tr - set(_TR_GORUS_SIRA)))
                 tr_sec = st.selectbox(
                     f"🇹🇷 {t('TR Görüşü', 'TR Stance')}", [_sc_tumu] + _tr_opts,
                     format_func=lambda x: x if x == _sc_tumu else tr_gorus_goster(x),
