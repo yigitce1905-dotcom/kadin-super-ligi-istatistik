@@ -146,7 +146,10 @@ def parse(metin: str) -> dict:
             "sozlesme":   _ops("Sözleşme"),
             "yetenek_kumesi":  _ops("Yetenek Kümesi"),
             "iktisadi_durum":  _ops("İktisadi Durum"),
-            "yurtdisi_gorusu": _ops("Yurtdışı Görüşü"),
+            # Sheet'teki kolon adı "Yurtdışı İhtimali"; eskiden yalnızca
+            # "Yurtdışı Görüşü" aranıyordu ve _ops hatayı yuttuğu için 395
+            # oyuncunun TAMAMINDA bu alan sessizce boş kalıyordu (2026-08 fix).
+            "yurtdisi_gorusu": _ops("Yurtdışı İhtimali", "Yurtdışı Görüşü"),
             "beceri":     beceri,
             "beseri":     beseri,
             "fiziki":     fiziki,

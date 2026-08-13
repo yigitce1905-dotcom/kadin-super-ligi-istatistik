@@ -17,7 +17,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -105,7 +105,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -190,7 +190,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -282,7 +282,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -367,7 +367,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -455,7 +455,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -555,7 +555,7 @@
     "sozlesme": "30.06.2028",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -640,7 +640,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -734,7 +734,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CD",
@@ -824,7 +824,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -920,7 +920,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -1014,7 +1014,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "AB",
@@ -1105,7 +1105,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -1194,7 +1194,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -1294,7 +1294,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -1379,7 +1379,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -1464,7 +1464,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -1553,7 +1553,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -1643,7 +1643,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "BC",
@@ -1731,7 +1731,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -1821,7 +1821,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -1908,7 +1908,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -1998,7 +1998,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -2087,7 +2087,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -2190,7 +2190,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -2279,7 +2279,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -2370,7 +2370,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -2461,7 +2461,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -2551,7 +2551,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -2641,7 +2641,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -2730,7 +2730,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -2815,7 +2815,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -2903,7 +2903,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -2988,7 +2988,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -3079,7 +3079,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -3170,7 +3170,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -3259,7 +3259,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DE",
@@ -3347,7 +3347,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -3439,7 +3439,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -3524,7 +3524,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -3609,7 +3609,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BB",
@@ -3700,7 +3700,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -3788,7 +3788,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -3890,7 +3890,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -3975,7 +3975,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -4063,7 +4063,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -4153,7 +4153,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -4257,7 +4257,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -4347,7 +4347,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -4436,7 +4436,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -4538,7 +4538,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CD",
@@ -4625,7 +4625,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -4710,7 +4710,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -4803,7 +4803,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "DD",
@@ -4891,7 +4891,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -4981,7 +4981,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -5069,7 +5069,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -5154,7 +5154,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BB",
@@ -5248,7 +5248,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -5343,7 +5343,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -5432,7 +5432,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -5521,7 +5521,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -5608,7 +5608,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -5696,7 +5696,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -5785,7 +5785,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -5875,7 +5875,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -5965,7 +5965,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -6057,7 +6057,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -6146,7 +6146,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -6235,7 +6235,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -6320,7 +6320,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CC",
@@ -6412,7 +6412,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CD",
@@ -6501,7 +6501,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -6588,7 +6588,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -6678,7 +6678,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -6768,7 +6768,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -6853,7 +6853,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -6938,7 +6938,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -7026,7 +7026,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -7111,7 +7111,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -7201,7 +7201,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -7291,7 +7291,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -7378,7 +7378,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CD",
@@ -7469,7 +7469,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -7554,7 +7554,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -7639,7 +7639,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -7724,7 +7724,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -7815,7 +7815,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -7903,7 +7903,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "EE",
@@ -7988,7 +7988,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -8078,7 +8078,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -8163,7 +8163,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -8252,7 +8252,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -8340,7 +8340,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -8427,7 +8427,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -8522,7 +8522,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DE",
@@ -8611,7 +8611,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -8696,7 +8696,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -8788,7 +8788,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -8878,7 +8878,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -8971,7 +8971,7 @@
     "sozlesme": "31.12.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -9071,7 +9071,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -9159,7 +9159,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Yüksek-Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -9250,7 +9250,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -9338,7 +9338,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -9426,7 +9426,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -9511,7 +9511,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -9598,7 +9598,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -9698,7 +9698,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -9785,7 +9785,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "EE",
@@ -9873,7 +9873,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -9958,7 +9958,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -10049,7 +10049,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "CD",
@@ -10144,7 +10144,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -10231,7 +10231,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CD",
@@ -10321,7 +10321,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -10412,7 +10412,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -10497,7 +10497,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -10588,7 +10588,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -10673,7 +10673,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -10758,7 +10758,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -10843,7 +10843,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -10933,7 +10933,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -11020,7 +11020,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -11109,7 +11109,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -11196,7 +11196,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -11281,7 +11281,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -11366,7 +11366,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -11455,7 +11455,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -11544,7 +11544,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Yüksek-Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -11629,7 +11629,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🪙 Yeterli",
     "iktisadi_durum": "Yüksek-Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -11721,7 +11721,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BB",
@@ -11810,7 +11810,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -11908,7 +11908,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -11998,7 +11998,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -12083,7 +12083,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -12171,7 +12171,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -12259,7 +12259,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -12351,7 +12351,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CD",
@@ -12441,7 +12441,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -12528,7 +12528,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -12615,7 +12615,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -12704,7 +12704,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -12794,7 +12794,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -12882,7 +12882,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -12975,7 +12975,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -13066,7 +13066,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -13168,7 +13168,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -13253,7 +13253,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -13342,7 +13342,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -13429,7 +13429,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -13518,7 +13518,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -13609,7 +13609,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🔮 Gelecek Vaad Eden",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -13694,7 +13694,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -13789,7 +13789,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -13892,7 +13892,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -13977,7 +13977,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -14062,7 +14062,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -14147,7 +14147,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -14235,7 +14235,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -14320,7 +14320,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -14405,7 +14405,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -14496,7 +14496,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -14581,7 +14581,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -14666,7 +14666,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -14758,7 +14758,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -14843,7 +14843,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -14928,7 +14928,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -15013,7 +15013,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -15098,7 +15098,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -15183,7 +15183,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -15272,7 +15272,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -15359,7 +15359,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -15446,7 +15446,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -15533,7 +15533,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -15618,7 +15618,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -15703,7 +15703,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -15788,7 +15788,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -15879,7 +15879,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -15964,7 +15964,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -16049,7 +16049,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -16134,7 +16134,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -16223,7 +16223,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -16313,7 +16313,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -16415,7 +16415,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -16500,7 +16500,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -16590,7 +16590,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -16675,7 +16675,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -16764,7 +16764,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -16852,7 +16852,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -16941,7 +16941,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -17031,7 +17031,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -17121,7 +17121,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -17223,7 +17223,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -17313,7 +17313,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -17405,7 +17405,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CC",
@@ -17502,7 +17502,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -17606,7 +17606,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🔮 Gelecek Vaad Eden",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -17697,7 +17697,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -17786,7 +17786,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -17874,7 +17874,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -17976,7 +17976,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -18075,7 +18075,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CD",
@@ -18163,7 +18163,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -18254,7 +18254,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -18345,7 +18345,7 @@
     "sozlesme": "30.06.2028",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -18445,7 +18445,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -18533,7 +18533,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -18621,7 +18621,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -18709,7 +18709,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -18794,7 +18794,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -18879,7 +18879,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -18967,7 +18967,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -19054,7 +19054,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -19139,7 +19139,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -19224,7 +19224,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -19314,7 +19314,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -19399,7 +19399,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -19484,7 +19484,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -19575,7 +19575,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -19660,7 +19660,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -19747,7 +19747,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -19840,7 +19840,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -19930,7 +19930,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -20015,7 +20015,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -20100,7 +20100,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -20185,7 +20185,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -20272,7 +20272,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -20357,7 +20357,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -20447,7 +20447,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -20550,7 +20550,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -20637,7 +20637,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -20722,7 +20722,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -20812,7 +20812,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -20897,7 +20897,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -20982,7 +20982,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -21067,7 +21067,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -21155,7 +21155,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -21243,7 +21243,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -21328,7 +21328,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -21418,7 +21418,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -21503,7 +21503,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -21588,7 +21588,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -21675,7 +21675,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "DD",
@@ -21767,7 +21767,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -21858,7 +21858,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -21943,7 +21943,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -22028,7 +22028,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -22116,7 +22116,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -22205,7 +22205,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -22290,7 +22290,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -22380,7 +22380,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -22465,7 +22465,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -22554,7 +22554,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -22639,7 +22639,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -22724,7 +22724,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -22814,7 +22814,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -22903,7 +22903,7 @@
     "sozlesme": "31.12.2027",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -23005,7 +23005,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -23090,7 +23090,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -23175,7 +23175,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -23260,7 +23260,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -23348,7 +23348,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -23433,7 +23433,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -23518,7 +23518,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -23603,7 +23603,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -23688,7 +23688,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DD",
@@ -23773,7 +23773,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -23858,7 +23858,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -23943,7 +23943,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -24028,7 +24028,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -24113,7 +24113,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -24198,7 +24198,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -24283,7 +24283,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -24372,7 +24372,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -24459,7 +24459,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -24548,7 +24548,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -24633,7 +24633,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -24718,7 +24718,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -24803,7 +24803,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -24894,7 +24894,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -24982,7 +24982,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "DE",
@@ -25070,7 +25070,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -25162,7 +25162,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -25250,7 +25250,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -25339,7 +25339,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -25426,7 +25426,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CD",
@@ -25514,7 +25514,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -25599,7 +25599,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -25686,7 +25686,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -25773,7 +25773,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -25858,7 +25858,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🔮 Gelecek Vaad Eden",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -25943,7 +25943,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -26030,7 +26030,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -26125,7 +26125,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -26215,7 +26215,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -26300,7 +26300,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -26385,7 +26385,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -26470,7 +26470,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -26561,7 +26561,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -26648,7 +26648,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -26737,7 +26737,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -26822,7 +26822,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -26907,7 +26907,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -26992,7 +26992,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -27084,7 +27084,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -27172,7 +27172,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -27264,7 +27264,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -27349,7 +27349,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -27439,7 +27439,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -27524,7 +27524,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -27609,7 +27609,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -27701,7 +27701,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "CC",
@@ -27791,7 +27791,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -27876,7 +27876,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -27961,7 +27961,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -28046,7 +28046,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -28136,7 +28136,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "✔️ Genç Yetenek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -28227,7 +28227,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -28330,7 +28330,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -28418,7 +28418,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -28510,7 +28510,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -28597,7 +28597,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -28701,7 +28701,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -28791,7 +28791,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -28880,7 +28880,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -28971,7 +28971,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -29059,7 +29059,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -29148,7 +29148,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DD",
@@ -29236,7 +29236,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -29327,7 +29327,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -29415,7 +29415,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -29504,7 +29504,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "EE",
@@ -29593,7 +29593,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -29678,7 +29678,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -29763,7 +29763,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "CD",
@@ -29851,7 +29851,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -29944,7 +29944,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -30033,7 +30033,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Yüksek",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -30122,7 +30122,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -30207,7 +30207,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -30295,7 +30295,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -30384,7 +30384,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -30474,7 +30474,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -30563,7 +30563,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -30650,7 +30650,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -30735,7 +30735,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -30820,7 +30820,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -30920,7 +30920,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31020,7 +31020,7 @@
     "sozlesme": "30.06.2027",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31120,7 +31120,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31220,7 +31220,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "⁉️ Tahmin Edilemez",
     "iktisadi_durum": "Tanımsız",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Belirsiz",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -31320,7 +31320,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -31405,7 +31405,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -31490,7 +31490,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -31581,7 +31581,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -31672,7 +31672,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DE",
@@ -31759,7 +31759,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -31844,7 +31844,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Çok Uygun",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -31931,7 +31931,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -32016,7 +32016,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "EE",
@@ -32103,7 +32103,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "EE",
@@ -32188,7 +32188,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -32273,7 +32273,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -32360,7 +32360,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -32447,7 +32447,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -32532,7 +32532,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "EE",
@@ -32617,7 +32617,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -32702,7 +32702,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -32787,7 +32787,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -32874,7 +32874,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -32961,7 +32961,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "EE",
@@ -33048,7 +33048,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -33133,7 +33133,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -33221,7 +33221,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "DE",
@@ -33306,7 +33306,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -33395,7 +33395,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -33482,7 +33482,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -33570,7 +33570,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CD",
@@ -33668,7 +33668,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -33753,7 +33753,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -33840,7 +33840,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -33929,7 +33929,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CC",
@@ -34017,7 +34017,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -34108,7 +34108,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CD",
@@ -34199,7 +34199,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -34289,7 +34289,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -34376,7 +34376,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Hiç Uygun Değil",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "DD",
@@ -34464,7 +34464,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🍂 Tercih Dışı",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -34556,7 +34556,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Şartlara Bağlı",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -34645,7 +34645,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -34730,7 +34730,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🎁 Kalburüstü",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {},
     "beseri": {
       "Agresiflik": "CD",
@@ -34818,7 +34818,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Orta-Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DD",
@@ -34906,7 +34906,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🧒 Genç",
     "iktisadi_durum": "Düşük",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun Değil",
     "beceri": {},
     "beseri": {
       "Agresiflik": "DE",
@@ -34993,7 +34993,7 @@
     "sozlesme": "30.06.2026",
     "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Orta",
-    "yurtdisi_gorusu": "",
+    "yurtdisi_gorusu": "Uygun",
     "beceri": {},
     "beseri": {
       "Agresiflik": "CD",

@@ -264,6 +264,8 @@ footer { visibility:hidden !important; display:none !important; }
     font-family:'Sora',sans-serif; line-height:1.12; white-space:nowrap; }
 .stat-kart .etiket { font-size:0.66rem; color:#8899aa; margin-top:4px;
     text-transform:uppercase; letter-spacing:0.06em; font-weight:600; line-height:1.25; }
+/* Alt açıklama — eskiden satır içi 10px'ti, mobil CSS ezemiyordu (2026-08-13) */
+.stat-kart .alt { font-size:0.63rem; color:#6e7681; margin-top:3px; line-height:1.25; }
 /* Stat kartları içeren sütun satırlarını eşit yükseklikte ger */
 [data-testid="stHorizontalBlock"]:has(.stat-kart) { align-items:stretch; }
 [data-testid="stHorizontalBlock"]:has(.stat-kart) [data-testid="stColumn"] > div { height:100%; }
@@ -402,14 +404,18 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
     .baslik-kutu { padding:13px 15px; margin-bottom:12px; }
     .baslik-kutu h1 { font-size:1.18rem; }
     .baslik-kutu p  { display:none; }
-    .baslik-kutu .ust-bant { font-size:0.58rem; margin-bottom:5px; }
+    /* OKUNABİLİRLİK (2026-08-13): mobilde 9-10px'e düşen etiketler telefonda
+       zor okunuyordu; alt sınır ~11.5px'e çekildi (boyut artışı yer sorunu
+       yaratmıyor, ölçüldü: sayfada yatay taşma yok). */
+    .baslik-kutu .ust-bant { font-size:0.68rem; margin-bottom:5px; }
     .hero-chips { margin-top:10px; gap:6px; }
-    .hero-chip { font-size:0.6rem; padding:3px 8px; }
+    .hero-chip { font-size:0.72rem; padding:4px 9px; }
 
     /* Özet kartlar 2'li grid */
-    .stat-kart { padding:10px 12px; margin-bottom:4px; min-height:72px; }
+    .stat-kart { padding:10px 12px; margin-bottom:4px; min-height:76px; }
     .stat-kart .sayi   { font-size:1.5rem; }
-    .stat-kart .etiket { font-size:0.68rem; }
+    .stat-kart .etiket { font-size:0.76rem; }
+    .stat-kart .alt    { font-size:0.72rem; }
 
     /* Stat kartı satırlarını DİKEY yığma — mobilde 2'li grid (az kaydırma).
        Global sütun-yığma kuralını yalnız bu bloklar için ezer (:has). */
@@ -5807,6 +5813,14 @@ _TR_GORUS_ONCELIK = {"Willing": 0, "Çok İstekli": 0,
 _TR_GORUS_OLUMSUZ = {"Reluctant", "Unwilling", "Gönülsüz",
                      "İsteksiz", "Çok İsteksiz"}
 
+# Yurtdışı İhtimali (TR sheet) — TR görüşünden AYRI bir skala
+_YURTDISI_EN = {"Çok Uygun": "Very Suitable", "Uygun": "Suitable",
+                "Şartlara Bağlı": "Conditional", "Belirsiz": "Uncertain",
+                "Uygun Değil": "Not Suitable", "Hiç Uygun Değil": "Not Suitable At All"}
+
+def yurtdisi_goster(x):
+    return _scout_ceviri(x, _YURTDISI_EN)
+
 def _tr_gorus_sade(x):
     """'(Şartlar?)' ekini atar — şartlı istekli de isteklidir."""
     return (x or "").replace(" (Şartlar?)", "").strip()
@@ -6143,7 +6157,7 @@ def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
         (t("İVME","MOMENTUM"), rapor.get("ivme") or "—", (124,58,237)),
         (t("YETENEK","TALENT"), yetenek_kume_goster(rapor.get("yetenek_kumesi")) or "—", (124,58,237)),
         (t("İKTİSADİ","ECONOMY"), iktisadi_goster(rapor.get("iktisadi_durum")) or "—", (110,120,140)),
-        ((t("YURTDIŞI","ABROAD"), tr_gorus_goster(rapor.get("yurtdisi_gorusu")) or "—", (110,120,140))
+        ((t("YURTDIŞI","ABROAD"), yurtdisi_goster(rapor.get("yurtdisi_gorusu")) or "—", (110,120,140))
          if rapor.get("havuz") == "tr" else
          (t("TR GÖRÜŞÜ","TR VIEW"), tr_gorus_goster(rapor.get("tr_gorusu")) or "—", (110,120,140))),
     ]
@@ -6312,7 +6326,7 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
     if rapor.get("tr_gorusu"):
         rozet.append((f"🇹🇷 {tr_gorus_goster(rapor['tr_gorusu'])}", "#64748b"))
     if rapor.get("yurtdisi_gorusu"):
-        rozet.append((f"✈️ {t('Yurtdışı','Abroad')}: {tr_gorus_goster(rapor['yurtdisi_gorusu'])}", "#64748b"))
+        rozet.append((f"✈️ {t('Yurtdışı','Abroad')}: {yurtdisi_goster(rapor['yurtdisi_gorusu'])}", "#64748b"))
     if rozet:
         cip = "".join(
             f"<span style='display:inline-block;background:{c}1f;border:1px solid {c}55;"
@@ -9777,7 +9791,7 @@ def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
     return (f'<div class="stat-kart" style="border-radius:14px;border-top:2px solid {renk};">'
             f'<div class="sayi" style="color:{renk}">{deger}</div>'
             f'<div class="etiket">{etiket}</div>'
-            + (f'<div style="font-size:10px;color:#6e7681;margin-top:3px;">{alt}</div>' if alt else "")
+            + (f'<div class="alt">{alt}</div>' if alt else "")
             + '</div>')
 
 
