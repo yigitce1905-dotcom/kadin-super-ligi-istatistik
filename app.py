@@ -5776,29 +5776,49 @@ _TARZ_EN = {
 _YETENEK_EN_DEG = {"Elit":"Elite","Yetenekli":"Talented","Potansiyelli":"High Potential",
                    "Gelişime Açık":"Developing","Sınırlı":"Limited"}
 _IKTISADI_EN = {"Yüksek":"High","Orta":"Medium","Orta-Düşük":"Mid-Low","Düşük":"Low"}
-_TR_GORUS_EN = {"İstekli":"Willing","Nötr":"Neutral","İsteksiz":"Reluctant",
-                # Baran'ın 2026-08 yeni skalası (Türkiye'ye gelme isteği)
-                "Yüksek":"High","Orta":"Medium","Düşük":"Low","Uygun":"Suitable"}
+# ── TR GÖRÜŞÜ SKALASI (Baran, 2026-08) ────────────────────────────────────────
+# Ölçüt: "Türkiye'de ORTALAMA bir takımda ORTALAMA bir sözleşmeye ne der?"
+#   Willing     (İstekli)      → kesin evet, görüşmeye açık
+#   Intentioned (Gönüllü)      → olumlu
+#   Neutral     (Nötr)         → kararsız/şartlara bağlı
+#   Reluctant   (Gönülsüz)     → olumsuz
+#   Unwilling   (İsteksiz)     → kesin hayır, görüşmeyi bile kabul etmez
+#   Uncertain   (Tanımlanmamış)→ görüş netleşmedi (bilinmiyor, olumsuz DEĞİL)
+# Sheet İngilizceye geçiyor; henüz göçmemiş satırlardaki eski Türkçe değerler
+# (Çok İstekli … Çok İsteksiz) de tanınmaya devam eder.
+_TR_GORUS_TR = {"Willing": "İstekli", "Intentioned": "Gönüllü", "Neutral": "Nötr",
+                "Reluctant": "Gönülsüz", "Unwilling": "İsteksiz",
+                "Uncertain": "Tanımlanmamış"}
+_TR_GORUS_EN = {"İstekli": "Willing", "Nötr": "Neutral", "İsteksiz": "Unwilling",
+                "Çok İstekli": "Willing", "Çok İsteksiz": "Unwilling",
+                "Gönüllü": "Intentioned", "Gönülsüz": "Reluctant",
+                "Tanımlanmamış": "Uncertain"}
 
-# ── TR GÖRÜŞÜ SKALASI (2026-08) ───────────────────────────────────────────────
-# Baran skalayı "Yüksek / Orta / Düşük"e geçirdi; sheet'te henüz göçmemiş
-# satırlarda eski "Çok İstekli … Çok İsteksiz" değerleri duruyor. Site İKİ
-# skalayı da tanır: aşağıdaki sıra hem dropdown sıralaması hem de öneri
-# önceliği için tek kaynaktır (yeni skala üstte, olumludan olumsuza).
-_TR_GORUS_SIRA = ["Yüksek", "Uygun", "Orta", "Düşük",
+_TR_GORUS_SIRA = ["Willing", "Intentioned", "Neutral", "Reluctant", "Unwilling",
+                  "Uncertain",
                   "Çok İstekli", "İstekli", "İstekli (Şartlar?)",
                   "Nötr", "Nötr (Şartlar?)",
                   "İsteksiz (Şartlar?)", "İsteksiz", "Çok İsteksiz"]
-# Öneri motorunda kabul edilen (= gelme ihtimali olan) değerler → öncelik puanı.
-# Düşük/İsteksiz/Çok İsteksiz bilinçli olarak YOK: gelmeyecek oyuncu önerilmez.
-_TR_GORUS_ONCELIK = {"Yüksek": 0, "Çok İstekli": 0, "Uygun": 1, "İstekli": 1,
-                     "Orta": 2, "Nötr": 2}
+# Öneri motorunda KABUL edilenler → öncelik (küçük=iyi)
+_TR_GORUS_ONCELIK = {"Willing": 0, "Çok İstekli": 0,
+                     "Intentioned": 1, "İstekli": 1,
+                     "Neutral": 2, "Nötr": 2}
+# Açıkça OLUMSUZ olanlar → öneri havuzuna hiç girmez
+_TR_GORUS_OLUMSUZ = {"Reluctant", "Unwilling", "Gönülsüz",
+                     "İsteksiz", "Çok İsteksiz"}
+
+def _tr_gorus_sade(x):
+    """'(Şartlar?)' ekini atar — şartlı istekli de isteklidir."""
+    return (x or "").replace(" (Şartlar?)", "").strip()
 
 def tr_gorus_oncelik(x):
-    """TR görüşü → öneri önceliği (küçük=iyi). Kabul edilmiyorsa None.
-    '(Şartlar?)' eki yok sayılır: şartlı istekli de isteklidir."""
-    s = (x or "").replace(" (Şartlar?)", "").strip()
-    return _TR_GORUS_ONCELIK.get(s)
+    """Öneri önceliği (küçük=iyi). Bilinmiyor/tanımsızsa None."""
+    return _TR_GORUS_ONCELIK.get(_tr_gorus_sade(x))
+
+def tr_gorus_olumsuz(x):
+    """Oyuncu ortalama şartlara kesin hayır diyorsa True (önerilmez).
+    'Uncertain' ve boş değer olumsuz SAYILMAZ — sadece bilinmiyordur."""
+    return _tr_gorus_sade(x) in _TR_GORUS_OLUMSUZ
 
 def _scout_ceviri(metin, sozluk):
     if not EN or not metin:
@@ -5811,10 +5831,15 @@ def tarz_goster(x):         return _scout_ceviri(_tarz_temiz(x), _TARZ_EN)
 def yetenek_kume_goster(x): return _scout_ceviri(x, _YETENEK_EN_DEG)
 def iktisadi_goster(x):     return _scout_ceviri(x, _IKTISADI_EN)
 def tr_gorus_goster(x):
-    if not EN or not x:
+    """TR görüşünü aktif dile çevirir. Sheet İngilizceye geçtiği için ÇİFT
+    YÖNLÜ: TR modda Willing→İstekli, EN modda Çok İstekli→Willing."""
+    if not x:
         return x
-    base = x.replace(" (Şartlar?)", "").strip()
-    return _TR_GORUS_EN.get(base, base) + (" (terms?)" if "(Şartlar?)" in x else "")
+    base = _tr_gorus_sade(x)
+    sartli = "(Şartlar?)" in x
+    if EN:
+        return _TR_GORUS_EN.get(base, base) + (" (terms?)" if sartli else "")
+    return _TR_GORUS_TR.get(base, base) + (" (Şartlar?)" if sartli else "")
 
 
 @st.cache_data(ttl=604800, show_spinner=False)
@@ -9103,9 +9128,10 @@ def render_kokpit():
                 if not (0 < _p <= _tavan):                 # kulüp tavanı ve altı
                     continue
                 _gtr = (_sr.get("tr_gorusu") or "").strip()
-                # Görüş girilmişse ve olumlu/nötr değilse (Düşük · İsteksiz ·
-                # Çok İsteksiz) önerilmez; görüşü hiç sorulmamışlar havuzda kalır.
-                if _gtr and tr_gorus_oncelik(_gtr) is None:
+                # SADECE açıkça olumsuz olanlar elenir (Reluctant · Unwilling).
+                # 'Uncertain', boş değer ve tanınmayan/kaymış hücreler havuzda
+                # kalır — bilinmiyor olmak "gelmez" demek değildir.
+                if tr_gorus_olumsuz(_gtr):
                     continue
                 # Çoklu mevki kodu (LCB/MCB/RCB…) aynı gruba MÜKERRER eklemesin → grup seti
                 _gruplar_bu = {_SCOUT_KOD_GRUP.get(str(_kod).upper().strip())
