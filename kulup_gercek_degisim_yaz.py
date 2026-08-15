@@ -25,7 +25,8 @@ sys.stdout.reconfigure(encoding="utf-8")
 CREDS     = r"C:\Users\MSI\Downloads\avid-phoenix-485522-h5-09c4cabbef0b.json"
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID_DUNYA = 1707810792
-BASLIK_ADAYLARI = ("Kulüp", "Club")
+# Baran başlığı zaman zaman yeniden adlandırıyor: Kulüp → Club → Club Name
+BASLIK_ADAYLARI = ("Kulüp", "Club Name", "Club")
 
 # "Kulüpsüz" sayılan değerler (iki dil + SD'nin kendi terimleri)
 SERBEST = {"", "serbest", "free", "free agent", "vereinslos", "without club"}

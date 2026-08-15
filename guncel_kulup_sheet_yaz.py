@@ -15,7 +15,7 @@ import gspread
 CREDS = r"C:\Users\MSI\Downloads\avid-phoenix-485522-h5-09c4cabbef0b.json"
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID_DUNYA = 1707810792
-BASLIK_ADAYLARI = ("Kulüp", "Club")   # Baran sheet'i İngilizceye çeviriyor
+BASLIK_ADAYLARI = ("Kulüp", "Club Name", "Club")   # Baran başlığı yeniden adlandırıyor
 
 def norm(s):
     s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode().lower()
