@@ -15,11 +15,31 @@ from pathlib import Path
 
 import requests
 
+# Baran 2026-08'de Sco Tr'yi de İngilizceye çevirdi (Sco 🌐 ile birebir aynı
+# 120 kolonluk şema). Bu parser Türkçe başlık adlarına göre indeks buluyordu ve
+# tamamen kırılmıştı: "Kolon bulunamadı: ('İsim - Soyisim', 'Oyuncu Adı')".
+# Dünya için yazılan EN→TR kanonlaştırma burada da aynen geçerli; JSON şeması
+# Türkçe kalır (app.py, kart_uret.py, portfoy_* hepsi Türkçe anahtar bekliyor).
+from fetch_scout_kadro import deger_kanonlastir, hdr_kanonlastir
+
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID       = "864990475"
 CIKTI     = Path(__file__).parent / "scotr_raporlar.json"
 
 GECERLI_NOTLAR = {"AA", "AB", "BB", "BC", "CC", "CD", "DD", "DE", "EE", "FF", "A+"}
+
+# Yurtdışı sütunu: Baran adı da ölçeği de değiştirdi.
+#   "Yurtdışı İhtimali" (Çok Uygun/Uygun/...) → "🌐 Perspective" (İngilizce 6'lı)
+# Sayılar eski Türkçe veriyle birebir tutuyor (Very Suitable 21 = Çok Uygun 21,
+# Suitable 36 = Uygun 36), yani ölçek aynı, yalnızca dili değişmiş.
+_DEGER_YURTDISI = {
+    "very suitable":     "Çok Uygun",
+    "suitable":          "Uygun",
+    "needs improvement": "Gelişmesi Gerek",   # ↩ Baran onayı bekliyor
+    "not suitable":      "Uygun Değil",
+    "irrelevant":        "Alakasız",          # ↩ Baran onayı bekliyor
+    "unclassified":      "Tanımlanmamış",
+}
 
 
 def cek() -> str:
@@ -35,7 +55,7 @@ def parse(metin: str) -> dict:
     'BECERİ Not' başlıkları, +KALECİ bloğu). Başlık adları büyük/küçük harf
     duyarsız aranır; çıktı şeması (site uyumu için) DEĞİŞMEDİ + kaleci eklendi."""
     rows = list(csv.reader(io.StringIO(metin)))
-    hdr  = [h.strip() for h in rows[1]]  # 2. satir = kolon adlari
+    hdr  = hdr_kanonlastir([h.strip() for h in rows[1]])  # 2. satir = kolon adlari
     HU   = [h.upper() for h in hdr]
 
     def idx(*adlar) -> int:
@@ -130,26 +150,30 @@ def parse(metin: str) -> dict:
         kayit = {
             "takim":      hucre(r, i_kulup),
             "dogum":      hucre(r, i_dogum),
-            "bolge":      hucre(r, i_bolge),
+            # Başlıklar gibi DEĞERLER de İngilizceye çevrildi (Defender, right,
+            # 💎 unique ...). Site ve PDF üreticileri Türkçe bekliyor → kanonlaştır.
+            "bolge":      deger_kanonlastir("bolge", hucre(r, i_bolge)),
             "mevki1":     hucre(r, c_mevki[0]).replace("-", "") if c_mevki else "",
             "mevki2":     hucre(r, c_mevki[1]).replace("-", "") if len(c_mevki) > 1 else "",
-            "rol":        hucre(r, i_rol).replace("-", ""),
+            "rol":        deger_kanonlastir("rol", hucre(r, i_rol).replace("-", "")),
             "yas":        hucre(r, i_yas),
             "uyruk":      hucre(r, i_uyruk),
             # ── Scouting entegrasyonu için zengin künye (yeni şema kolonları) ──
             "tam_isim":   _ops("Sporcunun Tam İsmi", "Tam İsim"),
             "milli_takim": _ops("2. Vatandaşlık"),   # dünya parser konvansiyonu (2. pasaport)
             "boy":        _ops("Boy"),
-            "ayak":       _ops("Ayak"),
+            "ayak":       deger_kanonlastir("ayak", _ops("Ayak")),
             "lig":        _ops("Lig"),
             "deger":      _ops("Değeri", "Değer"),
             "sozlesme":   _ops("Sözleşme"),
-            "yetenek_kumesi":  _ops("Yetenek Kümesi"),
-            "iktisadi_durum":  _ops("İktisadi Durum"),
-            # Sheet'teki kolon adı "Yurtdışı İhtimali"; eskiden yalnızca
-            # "Yurtdışı Görüşü" aranıyordu ve _ops hatayı yuttuğu için 395
-            # oyuncunun TAMAMINDA bu alan sessizce boş kalıyordu (2026-08 fix).
-            "yurtdisi_gorusu": _ops("Yurtdışı İhtimali", "Yurtdışı Görüşü"),
+            "yetenek_kumesi":  deger_kanonlastir("yetenek_kumesi", _ops("Yetenek Kümesi")),
+            "iktisadi_durum":  deger_kanonlastir("iktisadi_durum", _ops("İktisadi Durum")),
+            # Kolon adı iki kez değişti (Yurtdışı Görüşü → Yurtdışı İhtimali →
+            # 🌐 Perspective). _ops hatayı yuttuğu için her seferinde 395
+            # oyuncunun TAMAMINDA sessizce boş kalıyordu; eski adlar da tutulur.
+            "yurtdisi_gorusu": _DEGER_YURTDISI.get(
+                _ops("🌐 Perspective", "Yurtdışı İhtimali", "Yurtdışı Görüşü").strip().lower(),
+                _ops("🌐 Perspective", "Yurtdışı İhtimali", "Yurtdışı Görüşü")),
             "beceri":     beceri,
             "beseri":     beseri,
             "fiziki":     fiziki,

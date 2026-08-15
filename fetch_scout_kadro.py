@@ -10,7 +10,7 @@ backfill edilir.
 Sütun düzeni dinamik: grup sınırları header satırındaki başlık adlarından
 bulunur (kolon eklense de kaymaz). Kullanım:  python fetch_scout_kadro.py
 """
-import csv, io, json
+import csv, io, json, re
 from pathlib import Path
 import requests
 
@@ -186,6 +186,9 @@ _DEGER_ROL = {
     "inverted/playmaker liner": "Oyun Kurucu Çizgi Oyuncusu",
     "line winger": "Çizgi Kanat",
     "old-school #10": "Eski Tip 10",
+    # 2026-08: sheet'te yeni beliren roller ↩ Baran onayı bekliyor
+    "traditional full-back": "Klasik Bek",
+    "versatile player": "Çok Yönlü Oyuncu",
 }
 # Emoji'si birebir eşleşen yetenek kümeleri (emoji farklıysa çevrilmez)
 # NOT: ⭐️ Star · ✨ Wondergirl · ⁉️ Unpredictable · ✔️ Young Talent için
@@ -208,12 +211,27 @@ _DEGER_ALAN = {
 }
 
 
+def _sadelestir(s: str) -> str:
+    """Noktalama/boşluk farkını siler: 'Balanced FullBack' == 'balanced full-back'.
+    Baran aynı rolü zaman zaman tireli, zaman zaman bitişik yazıyor; sabit
+    anahtarla arayınca 5 rol (Nononsense Back dâhil, 30 oyuncu) çevrilmeden
+    kalıyordu (2026-08 fix)."""
+    return re.sub(r"[\s\-_/.]", "", s.lower())
+
+
 def deger_kanonlastir(alan: str, deger: str) -> str:
     """Tek bir alan değerini kanonik Türkçeye çevirir (eşleşme yoksa aynen döner)."""
     s = (deger or "").strip()
     if not s:
         return s
-    return _DEGER_ALAN.get(alan, {}).get(s.lower(), s)
+    harita = _DEGER_ALAN.get(alan, {})
+    if s.lower() in harita:
+        return harita[s.lower()]
+    sade = _sadelestir(s)
+    for k, v in harita.items():
+        if _sadelestir(k) == sade:
+            return v
+    return s
 
 
 def hdr_kanonlastir(hdr: list) -> list:
@@ -415,11 +433,28 @@ def yas_backfill(veriler: dict) -> int:
     return n
 
 
+# SD'nin kulüp yerine döndürdüğü, kulüp OLMAYAN değerler
+_KULUP_COP = {"", "-", "?", "pausiert", "karriereende", "unbekannt", "unknown",
+              "vereinslos", "without club"}
+
+
 def kulup_guncelle(veriler: dict) -> int:
-    """Sitede görünen takım SoccerDonna'dan gelsin: SD profilindeki
-    `guncel_kulup` (kulup_guncelle_sd.py yazar) sheet kulübünü EZER.
-    SD bilmiyorsa (alan yok/boş) sheet kulübü kalır; sheet değeri
-    `kulup_sheet` alanında saklanır."""
+    """Sitede görünen takım SHEET'ten gelir; SD yalnızca boşluğu doldurur.
+
+    2026-08 öncesi tam tersiydi: SD `guncel_kulup` sheet'i EZİYORDU ve sitede
+    Excel'dekinden daha kötü adlar çıkıyordu. Ölçüldü — 587 ezmeden yalnızca
+    1'i gerçek bilgi katıyordu:
+      · 196'sı aynı kulübün farklı yazımıydı (AS FAR→AS Far, Piteå→Pitea,
+        Breiðablik→Breidablik: Türkçe/İzlandaca aksanlar da kayboluyordu),
+      · gerisi SD'nin Almanca/eski adlandırmasıydı (AS Roma→AS Rom,
+        Angel City FC→WFC LA, Gotham FC→Sky Blue FC [2021'de bırakılan ad]),
+      · Klil Keshwar sitede 'Serbest' görünüyordu — transferi biz yaptık,
+        sheet doğruydu, SD henüz işlememişti.
+    Yiğit'in kuralı: takım adları Baran'ın yazdığı formatta kalır.
+
+    SD yalnızca sheet boş ya da çöp değer (Almanca 'pausiert' vb.) taşıyorsa
+    devreye girer. SD'nin görüşü her hâlükârda `kulup_sd`de saklanır ki
+    gerçek transferleri yakalayan denetim scriptleri veriyi kaybetmesin."""
     if not SD_YOL.exists():
         return 0
     sd = json.load(open(SD_YOL, encoding="utf-8"))
@@ -429,9 +464,13 @@ def kulup_guncelle(veriler: dict) -> int:
         if not isinstance(p, dict):
             continue
         g = (p.get("guncel_kulup") or "").strip()
-        if g and g != k.get("kulup"):
-            k["kulup_sheet"] = k.get("kulup", "")
-            k["kulup"] = g
+        if not g:
+            continue
+        k["kulup_sd"] = g
+        if g.lower() in _KULUP_COP:
+            continue
+        if (k.get("kulup") or "").strip().lower() in _KULUP_COP:
+            k["kulup"] = g          # sheet boş/çöp → SD doldurur
             n += 1
     return n
 
