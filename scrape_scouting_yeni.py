@@ -17,7 +17,7 @@ SD_YOL    = Path(__file__).parent / "scouting_sd_profiller.json"
 KADRO_YOL = Path(__file__).parent / "scout_kadro_raporlar.json"
 
 
-def sd_ara(isim: str):
+def _ara_tek(isim: str):
     slug  = isim.lower().replace(" ", "-")
     query = isim.replace(" ", "+")
     url   = f"https://www.soccerdonna.de/en/{slug}/suche/ergebnis.html?quicksearch={query}"
@@ -29,6 +29,38 @@ def sd_ara(isim: str):
         return links[0] if links else None
     except Exception:
         return None
+
+
+def isim_varyantlari(isim: str) -> list:
+    """SD, sheet'teki tam adı nadiren birebir taşır: İspanyol çift soyadını ve
+    göbek adını atar (Rosalía Domínguez Navarro → Rosalía Domínguez, Janne
+    Sophie Krumme → Janne Krumme). Tam ad tutmazsa bu kısaltmalar denenir.
+    Yanlış oyuncuya düşmeyi doğum tarihi kontrolü engeller (bkz. main)."""
+    p = isim.split()
+    if len(p) < 3:
+        return [isim]
+    return [isim,
+            " ".join(p[:-1]),        # son soyadı at  (2. soyad)
+            f"{p[0]} {p[-1]}"]       # göbek adı at
+
+
+def sd_ara(isim: str):
+    """(path, kullanilan_ad) — kısaltılmış varyantla bulunduysa ad farklı gelir."""
+    for i, aday in enumerate(isim_varyantlari(isim)):
+        path = _ara_tek(aday)
+        if path:
+            return path, aday
+        if i:
+            time.sleep(0.4)
+    return None, None
+
+
+def _dogum_uyusuyor(profil: dict, beklenen: str) -> bool:
+    """Kısaltılmış ad başka bir oyuncuya düşebilir; iki tarih de doluysa eşleşme
+    şart. Biri boşsa doğrulanamaz → kabul (eski davranış)."""
+    sd_d = (profil.get("Date of birth") or "").strip()
+    bk   = (beklenen or "").strip()
+    return not (sd_d and bk) or sd_d == bk
 
 
 def sd_profil_cek(path: str) -> dict:
@@ -74,28 +106,36 @@ def main():
     sd    = json.load(open(SD_YOL, encoding="utf-8")) if SD_YOL.exists() else {}
     kadro = json.load(open(KADRO_YOL, encoding="utf-8"))
 
-    yeni = [(isim, k.get("vatandaslik", "")) for isim, k in kadro.items()
-            if isim not in sd]
+    # 'bulunamadi' işaretli kayıtlar da yeniden denenir: eski sürüm yalnızca tam
+    # adı arıyordu ve SD'nin kısa adlı oyuncuları kalıcı olarak dışarıda kalıyordu.
+    yeni = [(isim, k.get("vatandaslik", ""), k.get("dogum", ""))
+            for isim, k in kadro.items()
+            if isim not in sd or (sd.get(isim) or {}).get("bulunamadi")]
     print(f"SD havuzu: {len(sd)} | Sco 🌍: {len(kadro)} | çekilecek yeni: {len(yeni)}")
     print()
 
     eklendi, bulunamadi = 0, []
-    for i, (isim, vat) in enumerate(yeni, 1):
+    for i, (isim, vat, dogum) in enumerate(yeni, 1):
         print(f"[{i:3}/{len(yeni)}] {isim} ... ", end="", flush=True)
-        path = sd_ara(isim)
-        if not path:
-            print("BULUNAMADI")
+        path, kullanilan = sd_ara(isim)
+        profil = sd_profil_cek(path) if path else {}
+        if profil and kullanilan != isim and not _dogum_uyusuyor(profil, dogum):
+            # kısaltılmış ad başka bir oyuncuyu getirdi → kabul etme
+            print(f"RED (doğum {profil.get('Date of birth','?')} ≠ {dogum})")
+            profil = {}
+        if not profil:
+            print("BULUNAMADI") if path is None else None
             bulunamadi.append(isim)
             sd[isim] = {"vatandaslik": vat, "bulunamadi": True}
             time.sleep(0.4)
             continue
-        profil = sd_profil_cek(path)
         profil["vatandaslik"] = vat
         sd[isim] = profil
         eklendi += 1
         ist = (f"| {len(profil['sezon_istatistikleri'])} ist.satır"
                if "sezon_istatistikleri" in profil else "")
-        print(f"OK — {profil.get('Position','?')} {ist}")
+        not_ = "" if kullanilan == isim else f"  [SD adı: {kullanilan}]"
+        print(f"OK — {profil.get('Position','?')} {ist}{not_}")
         if eklendi % 10 == 0:
             json.dump(sd, open(SD_YOL, "w", encoding="utf-8"),
                       ensure_ascii=False, indent=2)
