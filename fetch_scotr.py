@@ -35,9 +35,9 @@ GECERLI_NOTLAR = {"AA", "AB", "BB", "BC", "CC", "CD", "DD", "DE", "EE", "FF", "A
 _DEGER_YURTDISI = {
     "very suitable":     "Çok Uygun",
     "suitable":          "Uygun",
-    "needs improvement": "Gelişmesi Gerek",   # ↩ Baran onayı bekliyor
+    "needs improvement": "Gelişmesi Gerek",   # Yiğit onayladı (2026-08-15)
     "not suitable":      "Uygun Değil",
-    "irrelevant":        "Alakasız",          # ↩ Baran onayı bekliyor
+    "irrelevant":        "Alakasız",          # Yiğit onayladı (2026-08-15)
     "unclassified":      "Tanımlanmamış",
 }
 

@@ -186,7 +186,7 @@ _DEGER_ROL = {
     "inverted/playmaker liner": "Oyun Kurucu Çizgi Oyuncusu",
     "line winger": "Çizgi Kanat",
     "old-school #10": "Eski Tip 10",
-    # 2026-08: sheet'te yeni beliren roller ↩ Baran onayı bekliyor
+    # 2026-08: sheet'te yeni beliren roller — Yiğit onayladı (2026-08-15)
     "traditional full-back": "Klasik Bek",
     "versatile player": "Çok Yönlü Oyuncu",
 }
