@@ -214,10 +214,12 @@ def milli_mi(lig: str) -> bool:
     # Kulup turnuvalari (oncelikli — milli kelimelerini ezer)
     if "champions league" in l:
         return False
-    # Bosluk/tire varyantlarini ez: SD 'SheBelieves Cup' yaziyordu, kalip
-    # 'she believes' bosluklu oldugu icin tutmuyor ve millî mac kulup maci
-    # sayiliyordu (2026-08 fix).
-    lz = re.sub(r"[\s\-]", "", l)
+    # Bosluk/tire VE aksan varyantlarini ez: SD 'SheBelieves Cup' yaziyordu
+    # (kalip 'she believes' bosluklu) ve 'CONMEBOL Copa América Femenina'da
+    # aksanli 'América' kalibi tutturmuyordu — her iki durumda da millî mac
+    # kulup maci sayiliyordu (2026-08 fix).
+    lz = unicodedata.normalize("NFKD", l).encode("ascii", "ignore").decode()
+    lz = re.sub(r"[\s\-’']", "", lz)
     milli_kelimeler = (
         "nations league", "world cup", "euro qual", "em-qual", "em qual",
         "euro qualif", "qualification league", "qualification playoffs",
@@ -232,6 +234,8 @@ def milli_mi(lig: str) -> bool:
         "uefa women's championship", "uefa womens championship",
         "inter-confederation", "interconfederation", "visitmalta",
         "copa america", "concacaf w", "gold cup", "arab cup",
+        "asian games", "sud ladies cup", "arnold clark cup", "conmebol",
+        "sudamericano", "afcon", "cosafa", "wafcon", "kirin",
     )
     if any(k.replace(" ", "").replace("-", "") in lz for k in milli_kelimeler):
         return True

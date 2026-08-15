@@ -586,7 +586,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 108,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -2389,7 +2389,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "AlgeriaFrance",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -2400,7 +2400,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "AlgeriaFrance",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -2511,18 +2511,18 @@
         "asist": 0,
         "sari": 1,
         "dakika": 100,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Bolivia",
         "lig": "CONMEBOL Copa América Femenina",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 204,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -2548,14 +2548,14 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "",
+        "kulup": "Bolivia",
         "lig": "CONMEBOL Sub20 Femenina",
         "mac": 4,
         "gol": 1,
         "asist": 0,
         "sari": 0,
         "dakika": 339,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -3307,7 +3307,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 157,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -3356,7 +3356,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 66,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -6490,7 +6490,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 64,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -10673,7 +10673,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 527,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -10728,7 +10728,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 256,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-12"
@@ -13142,7 +13142,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Ghana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -13180,7 +13180,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 1,
@@ -14432,7 +14432,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 213,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "15/16",
@@ -15854,7 +15854,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 423,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -15891,14 +15891,14 @@
       },
       {
         "sezon": "17/18",
-        "kulup": "",
+        "kulup": "Paraguay",
         "lig": "CONMEBOL Copa América Femenina",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 245,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -16249,7 +16249,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 258,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -16271,7 +16271,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 40,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -16452,7 +16452,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 372,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -17757,25 +17757,25 @@
       },
       {
         "sezon": "17/18",
-        "kulup": "",
+        "kulup": "Uruguay",
         "lig": "CONMEBOL Copa América Femenina",
         "mac": 4,
         "gol": 1,
         "asist": 0,
         "sari": 0,
         "dakika": 339,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "13/14",
-        "kulup": "",
+        "kulup": "Uruguay",
         "lig": "CONMEBOL Copa América Femenina",
         "mac": 2,
         "gol": 1,
         "asist": 0,
         "sari": 1,
         "dakika": 171,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "12/13",
@@ -17857,7 +17857,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 118,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -19110,14 +19110,14 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Brazil",
         "lig": "CONMEBOL Sub20 Femenina",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 154,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -25086,7 +25086,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 224,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "23/24",
@@ -25218,7 +25218,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 190,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -25229,7 +25229,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 253,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -25255,14 +25255,14 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "",
+        "kulup": "VenezuelaUnited States",
         "lig": "CONMEBOL Sub20 Femenina",
         "mac": 3,
         "gol": 2,
         "asist": 1,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -26505,7 +26505,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -28746,7 +28746,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Morocco",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -37842,7 +37842,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 105,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "19/20",
@@ -39275,7 +39275,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Cameroon",
         "lig": "WC Inter-confederation Playoffs",
         "mac": 1,
         "gol": 0,
@@ -39286,7 +39286,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Cameroon",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -43715,7 +43715,7 @@
         "asist": 3,
         "sari": 1,
         "dakika": 379,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -43825,7 +43825,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 344,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -43913,7 +43913,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 279,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -45084,7 +45084,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Ghana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -52105,7 +52105,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 135,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -53929,7 +53929,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 151,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -54231,7 +54231,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 177,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-12"
@@ -54937,14 +54937,14 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "United States",
         "lig": "Sud Ladies Cup",
         "mac": 2,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 128,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -56454,7 +56454,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 143,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -56810,7 +56810,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 137,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -66145,7 +66145,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "",
+        "kulup": "Sweden",
         "lig": "UEFA Women’s Championship",
         "mac": 4,
         "gol": 2,
@@ -71840,7 +71840,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -74746,7 +74746,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 208,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -77592,7 +77592,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 111,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -78823,7 +78823,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 205,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -79290,7 +79290,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 0,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -80795,7 +80795,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 168,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -81306,7 +81306,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 226,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -82789,7 +82789,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 262,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "19/20",
@@ -83113,7 +83113,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 146,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -84640,7 +84640,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -87837,7 +87837,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 123,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -88183,7 +88183,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 135,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -93341,7 +93341,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 236,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -95742,7 +95742,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 120,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -97176,7 +97176,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 146,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -97533,7 +97533,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -98269,7 +98269,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -98851,7 +98851,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -99406,7 +99406,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 169,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -99906,7 +99906,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -100582,7 +100582,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 60,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -101307,7 +101307,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -101961,7 +101961,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 118,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -102340,7 +102340,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 256,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -103813,7 +103813,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 91,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -104769,7 +104769,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 120,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -105093,7 +105093,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 324,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -105236,7 +105236,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 540,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -105565,7 +105565,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 390,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -105785,7 +105785,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 521,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-12"
@@ -106054,7 +106054,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 407,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -106186,7 +106186,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 492,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "16/17",
@@ -106735,7 +106735,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 135,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -106823,7 +106823,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 199,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -107334,7 +107334,7 @@
         "asist": 2,
         "sari": 0,
         "dakika": 469,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -107576,7 +107576,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 506,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "16/17",
@@ -107664,7 +107664,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 341,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-12"
@@ -107779,7 +107779,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 329,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -108350,7 +108350,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 346,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -108493,7 +108493,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -108586,7 +108586,7 @@
         "asist": 3,
         "sari": 1,
         "dakika": 379,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -108696,7 +108696,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 344,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -108784,7 +108784,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 279,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -108866,7 +108866,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 374,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -109042,7 +109042,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 156,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -109075,7 +109075,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 300,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -109146,7 +109146,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 157,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "23/24",
@@ -109300,7 +109300,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 297,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -109459,7 +109459,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 186,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -109624,7 +109624,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 510,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -109679,7 +109679,7 @@
         "asist": 1,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -110201,7 +110201,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 104,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -110327,7 +110327,7 @@
         "asist": 1,
         "sari": 1,
         "dakika": 320,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -110492,7 +110492,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 416,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -110651,7 +110651,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 286,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -110849,7 +110849,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 150,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -111887,7 +111887,7 @@
         "asist": 5,
         "sari": 1,
         "dakika": 415,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -112096,7 +112096,7 @@
         "asist": 3,
         "sari": 2,
         "dakika": 450,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "16/17",
@@ -112475,7 +112475,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 157,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -112568,7 +112568,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 274,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -112793,7 +112793,7 @@
         "asist": 4,
         "sari": 0,
         "dakika": 330,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -112903,7 +112903,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 91,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -113320,7 +113320,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -113397,7 +113397,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -114018,7 +114018,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -114677,7 +114677,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -114776,7 +114776,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 182,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -115342,7 +115342,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -115430,7 +115430,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -116106,7 +116106,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 187,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -116194,7 +116194,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 244,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -117002,7 +117002,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -117079,7 +117079,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 197,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -117953,7 +117953,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 163,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -118041,7 +118041,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 149,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -118497,7 +118497,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -118887,7 +118887,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 38,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -119343,7 +119343,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 117,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -120398,7 +120398,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 125,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -120475,7 +120475,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 208,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -121129,7 +121129,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 156,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -121217,7 +121217,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 185,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -121849,7 +121849,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 170,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -121926,7 +121926,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 64,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -122382,7 +122382,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 55,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -123777,7 +123777,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 134,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -123854,7 +123854,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 83,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -124156,7 +124156,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 135,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -124244,7 +124244,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 199,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -124821,7 +124821,7 @@
         "asist": 2,
         "sari": 0,
         "dakika": 153,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -125244,7 +125244,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -125887,7 +125887,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 97,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -126969,7 +126969,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -128473,7 +128473,7 @@
       },
       {
         "sezon": "12/13",
-        "kulup": "",
+        "kulup": "Spain",
         "lig": "UEFA Women’s Championship",
         "mac": 4,
         "gol": 0,
@@ -128837,7 +128837,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 13,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -130013,7 +130013,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 74,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -130535,7 +130535,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 152,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -132117,7 +132117,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 223,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -132826,7 +132826,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 257,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -133667,7 +133667,7 @@
         "asist": 0,
         "sari": 2,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -136046,7 +136046,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 212,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -137365,7 +137365,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 22,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -138206,7 +138206,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 134,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -139629,7 +139629,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 75,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -139768,14 +139768,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 245,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -139806,14 +139806,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -139904,14 +139904,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 1,
         "dakika": 253,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -139991,14 +139991,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 148,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -140126,14 +140126,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 2,
         "gol": 1,
         "asist": 1,
         "sari": 0,
         "dakika": 31,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -140229,14 +140229,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 3,
         "asist": 0,
         "sari": 0,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -140294,14 +140294,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 1,
         "asist": 0,
         "sari": 1,
         "dakika": 208,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -140359,14 +140359,14 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, North",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 6,
         "asist": 1,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -164310,7 +164310,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-15"
@@ -168455,25 +168455,25 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Japan",
         "lig": "Sud Ladies Cup",
         "mac": 3,
         "gol": 3,
         "asist": 2,
         "sari": 1,
         "dakika": 225,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Japan",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 3,
         "asist": 2,
         "sari": 0,
         "dakika": 269,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -172537,7 +172537,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 225,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -179746,7 +179746,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -180823,7 +180823,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -181224,7 +181224,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 225,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -182098,7 +182098,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 225,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -182664,7 +182664,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 135,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -183939,7 +183939,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 114,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -184284,7 +184284,7 @@
       },
       {
         "sezon": "12/13",
-        "kulup": "",
+        "kulup": "Italy",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 0,
@@ -184637,7 +184637,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 159,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -186104,7 +186104,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 205,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -186835,7 +186835,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 185,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -187555,7 +187555,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 167,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -188807,7 +188807,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 54,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -189593,7 +189593,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 204,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -190395,7 +190395,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 77,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -190917,7 +190917,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 65,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -191560,7 +191560,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 86,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -193247,7 +193247,7 @@
         "asist": 1,
         "sari": 1,
         "dakika": 114,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -218461,7 +218461,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 119,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -218741,7 +218741,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -219241,7 +219241,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -219785,7 +219785,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 62,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -220532,7 +220532,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -221087,7 +221087,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 70,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -221807,7 +221807,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 132,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -223164,7 +223164,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 142,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -223477,7 +223477,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 29,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -224312,7 +224312,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 203,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -224801,7 +224801,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -225510,7 +225510,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 241,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -226120,7 +226120,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 209,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -227219,7 +227219,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 206,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -227983,7 +227983,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 80,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -228373,7 +228373,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 139,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -229142,7 +229142,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 193,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -229675,7 +229675,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 106,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -234983,7 +234983,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -235681,7 +235681,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 44,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "20/21",
@@ -248482,7 +248482,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -248504,7 +248504,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -248839,7 +248839,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -248861,7 +248861,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -249229,7 +249229,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -249251,7 +249251,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -249887,7 +249887,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -249909,7 +249909,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -251083,7 +251083,7 @@
         "asist": 1,
         "sari": 1,
         "dakika": 268,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -251105,7 +251105,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 90,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -251374,7 +251374,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 258,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -251396,7 +251396,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 40,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -251813,7 +251813,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 146,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
@@ -252042,25 +252042,25 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, South",
         "lig": "Arnold Clark Cup",
         "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 0,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "22/23",
-        "kulup": "",
+        "kulup": "Korea, South",
         "lig": "Asian Games",
         "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 17,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -252779,7 +252779,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 405,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -253202,7 +253202,7 @@
         "asist": 3,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -253537,7 +253537,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 450,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -253751,7 +253751,7 @@
         "asist": 2,
         "sari": 0,
         "dakika": 360,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -253998,7 +253998,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -254678,7 +254678,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 180,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -255024,7 +255024,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 268,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -255502,7 +255502,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 195,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -255826,7 +255826,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 192,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -255985,7 +255985,7 @@
         "asist": 2,
         "sari": 0,
         "dakika": 125,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -256424,7 +256424,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 348,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -256660,7 +256660,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 250,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -257665,7 +257665,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 0,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -257769,7 +257769,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 450,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -257994,7 +257994,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 300,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -258422,7 +258422,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 62,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -258932,7 +258932,7 @@
         "asist": 1,
         "sari": 0,
         "dakika": 157,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -262640,7 +262640,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 480,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -262816,7 +262816,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 630,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "17/18",
@@ -262849,7 +262849,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 180,
-        "milli": false
+        "milli": true
       }
     ],
     "guncelleme": "2026-08-13"
@@ -274385,7 +274385,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Senegal",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -275388,7 +275388,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -275437,7 +275437,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -275475,7 +275475,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -275650,7 +275650,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -275776,7 +275776,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -275913,7 +275913,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -275929,7 +275929,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -276016,7 +276016,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -276032,7 +276032,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -276048,7 +276048,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -276064,7 +276064,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 1,
@@ -277447,7 +277447,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Cameroon",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -277606,7 +277606,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Cameroon",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -278644,7 +278644,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278660,7 +278660,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278676,7 +278676,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -278692,7 +278692,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278708,7 +278708,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -278724,7 +278724,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278740,7 +278740,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -278794,7 +278794,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278805,7 +278805,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -278925,7 +278925,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -279210,7 +279210,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -279473,7 +279473,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -279527,7 +279527,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -279538,7 +279538,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -279812,7 +279812,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -279861,7 +279861,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -279932,7 +279932,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -280239,7 +280239,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "TunisiaFrance",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -280277,7 +280277,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -280326,7 +280326,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "TunisiaFrance",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -280375,7 +280375,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -280528,7 +280528,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -280588,7 +280588,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -280615,7 +280615,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -280642,7 +280642,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -280697,7 +280697,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -280883,7 +280883,7 @@
     "sezonlar": [
       {
         "sezon": "26/27",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -280894,7 +280894,7 @@
       },
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -280916,7 +280916,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -280971,7 +280971,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -281152,7 +281152,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 2,
@@ -281201,7 +281201,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -281267,7 +281267,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 1,
@@ -281283,7 +281283,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -281294,7 +281294,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -281338,7 +281338,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -281497,7 +281497,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -281590,7 +281590,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -281667,7 +281667,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -281749,7 +281749,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -281787,7 +281787,7 @@
     "sezonlar": [
       {
         "sezon": "26/27",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -281798,7 +281798,7 @@
       },
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -281913,7 +281913,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -281929,7 +281929,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -281945,7 +281945,7 @@
     "sezonlar": [
       {
         "sezon": "26/27",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -281956,7 +281956,7 @@
       },
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282000,7 +282000,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 2,
@@ -282049,7 +282049,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282098,7 +282098,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282147,7 +282147,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282163,7 +282163,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282174,7 +282174,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282190,7 +282190,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282206,7 +282206,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282228,7 +282228,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 2,
@@ -282288,7 +282288,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282304,7 +282304,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282326,7 +282326,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282364,7 +282364,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 1,
@@ -282380,7 +282380,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282396,7 +282396,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282456,7 +282456,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 2,
@@ -282472,7 +282472,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282494,7 +282494,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282510,7 +282510,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282521,7 +282521,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -282553,7 +282553,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282575,7 +282575,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -282591,7 +282591,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282602,7 +282602,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282640,7 +282640,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282667,7 +282667,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -282694,7 +282694,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282710,7 +282710,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282732,7 +282732,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282748,7 +282748,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282775,7 +282775,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282791,7 +282791,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282807,7 +282807,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -282823,7 +282823,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282872,7 +282872,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 2,
@@ -282888,7 +282888,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282904,7 +282904,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282920,7 +282920,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282936,7 +282936,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -282974,7 +282974,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282990,7 +282990,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -283006,7 +283006,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -283022,7 +283022,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -283038,7 +283038,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -283054,7 +283054,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -283070,7 +283070,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -283201,7 +283201,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -283217,7 +283217,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -283255,7 +283255,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Nigeria",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -283908,7 +283908,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "NigeriaUnited States",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -284005,7 +284005,7 @@
     "sezonlar": [
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -284619,7 +284619,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -284630,7 +284630,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 1,
@@ -285158,7 +285158,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "24/25",
@@ -285334,7 +285334,7 @@
         "asist": 3,
         "sari": 2,
         "dakika": 371,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -285504,7 +285504,7 @@
         "asist": 3,
         "sari": 0,
         "dakika": 291,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "23/24",
@@ -285779,7 +285779,7 @@
         "asist": 6,
         "sari": 0,
         "dakika": 540,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "16/17",
@@ -286202,7 +286202,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 450,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -286872,7 +286872,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 175,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
@@ -289392,7 +289392,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -289683,7 +289683,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -290094,7 +290094,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -290154,7 +290154,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -290220,7 +290220,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -291763,7 +291763,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 1,
@@ -291807,7 +291807,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -292037,7 +292037,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 1,
@@ -292306,7 +292306,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -292361,7 +292361,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 0,
@@ -292487,7 +292487,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -292525,7 +292525,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -292580,7 +292580,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -292799,7 +292799,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -292854,7 +292854,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -292991,7 +292991,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -293040,7 +293040,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 1,
@@ -293056,7 +293056,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -293738,7 +293738,7 @@
     "sezonlar": [
       {
         "sezon": "26/27",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -293749,7 +293749,7 @@
       },
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -293815,7 +293815,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -293946,7 +293946,7 @@
     "sezonlar": [
       {
         "sezon": "26/27",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -293957,7 +293957,7 @@
       },
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -293979,7 +293979,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -294624,7 +294624,7 @@
     "sezonlar": [
       {
         "sezon": "26/27",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -294635,7 +294635,7 @@
       },
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -294954,7 +294954,7 @@
         "asist": 0,
         "sari": 0,
         "dakika": 210,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "19/20",
@@ -295768,7 +295768,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burkina Faso",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -297004,7 +297004,7 @@
     "sezonlar": [
       {
         "sezon": "25/26",
-        "kulup": "",
+        "kulup": "Burkina Faso",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -297026,7 +297026,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "",
+        "kulup": "Burkina Faso",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -298044,7 +298044,7 @@
         "asist": 0,
         "sari": 1,
         "dakika": 270,
-        "milli": false
+        "milli": true
       },
       {
         "sezon": "21/22",
