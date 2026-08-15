@@ -232844,352 +232844,6 @@
     ],
     "guncelleme": "2026-08-12"
   },
-  "D. van de Donk": {
-    "sezonlar": [
-      {
-        "sezon": "25/26",
-        "kulup": "London City",
-        "lig": "Women’s Super League",
-        "mac": 6,
-        "gol": 1,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 248,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "London City",
-        "lig": "Women’s FA Cup",
-        "mac": 2,
-        "gol": 1,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 82,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Netherlands",
-        "lig": "FIFA Women’s World Cup qualifiers - UEFA League A",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 26,
-        "milli": true
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Olympique Lyon",
-        "lig": "Première Ligue",
-        "mac": 17,
-        "gol": 5,
-        "asist": 3,
-        "sari": 0,
-        "dakika": 996,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Olympique Lyon",
-        "lig": "Première Ligue Playoffs",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 101,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Olympique Lyon",
-        "lig": "UEFA Women’s Champions League",
-        "mac": 8,
-        "gol": 2,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 368,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Olympique Lyon",
-        "lig": "UEFA Women’s Championship",
-        "mac": 3,
-        "gol": 0,
-        "asist": 2,
-        "sari": 0,
-        "dakika": 171,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Netherlands",
-        "lig": "UEFA Women’s Nations League A",
-        "mac": 5,
-        "gol": 1,
-        "asist": 1,
-        "sari": 1,
-        "dakika": 210,
-        "milli": true
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Netherlands",
-        "lig": "Freundschaftsspiele",
-        "mac": 4,
-        "gol": 1,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 283,
-        "milli": true
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Olympique Lyon",
-        "lig": "Première Ligue",
-        "mac": 18,
-        "gol": 2,
-        "asist": 3,
-        "sari": 3,
-        "dakika": 1055,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Olympique Lyon",
-        "lig": "Première Ligue Playoffs",
-        "mac": 2,
-        "gol": 1,
-        "asist": 1,
-        "sari": 1,
-        "dakika": 166,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Olympique Lyon",
-        "lig": "Coupe de France",
-        "mac": 2,
-        "gol": 0,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 126,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Olympique Lyon",
-        "lig": "Trophée des Championnes",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 76,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Olympique Lyon",
-        "lig": "UEFA Women’s Champions League",
-        "mac": 10,
-        "gol": 2,
-        "asist": 3,
-        "sari": 1,
-        "dakika": 714,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Netherlands",
-        "lig": "UEFA Women’s Euro qualification League A",
-        "mac": 6,
-        "gol": 0,
-        "asist": 1,
-        "sari": 1,
-        "dakika": 487,
-        "milli": true
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Netherlands",
-        "lig": "UEFA Women’s Nations League A",
-        "mac": 6,
-        "gol": 1,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 515,
-        "milli": true
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Netherlands",
-        "lig": "UEFA Women’s Nations League Finals",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 152,
-        "milli": true
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Netherlands",
-        "lig": "Freundschaftsspiele",
-        "mac": 1,
-        "gol": 0,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 69,
-        "milli": true
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Arsenal LFC",
-        "lig": "Women’s Super League",
-        "mac": 21,
-        "gol": 2,
-        "asist": 2,
-        "sari": 1,
-        "dakika": 1259,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Arsenal LFC",
-        "lig": "Women’s FA Cup",
-        "mac": 2,
-        "gol": 2,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 101,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Arsenal LFC",
-        "lig": "Players Cup",
-        "mac": 3,
-        "gol": 0,
-        "asist": 1,
-        "sari": 2,
-        "dakika": 287,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Netherlands",
-        "lig": "Olympische Spiele",
-        "mac": 4,
-        "gol": 0,
-        "asist": 4,
-        "sari": 1,
-        "dakika": 342,
-        "milli": true
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Arsenal LFC",
-        "lig": "Three Nations. One Goal",
-        "mac": 2,
-        "gol": 2,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 152,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Netherlands",
-        "lig": "Freundschaftsspiele",
-        "mac": 5,
-        "gol": 2,
-        "asist": 3,
-        "sari": 0,
-        "dakika": 436,
-        "milli": true
-      },
-      {
-        "sezon": "15/16",
-        "kulup": "Arsenal LFC",
-        "lig": "Women’s Super League",
-        "mac": 6,
-        "gol": 1,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 444,
-        "milli": false
-      },
-      {
-        "sezon": "15/16",
-        "kulup": "Netherlands",
-        "lig": "Olympia QF UEFA",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 90,
-        "milli": true
-      },
-      {
-        "sezon": "15/16",
-        "kulup": "Netherlands",
-        "lig": "Freundschaftsspiele",
-        "mac": 1,
-        "gol": 0,
-        "asist": 1,
-        "sari": 0,
-        "dakika": 90,
-        "milli": true
-      },
-      {
-        "sezon": "12/13",
-        "kulup": "FCE/PSV",
-        "lig": "BeNe League",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 82,
-        "milli": false
-      },
-      {
-        "sezon": "12/13",
-        "kulup": "FCE/PSV",
-        "lig": "BeNe League Orange",
-        "mac": 14,
-        "gol": 8,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 1238,
-        "milli": false
-      },
-      {
-        "sezon": "12/13",
-        "kulup": "FCE/PSV",
-        "lig": "UEFA Women’s Championship",
-        "mac": 3,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 256,
-        "milli": false
-      },
-      {
-        "sezon": "12/13",
-        "kulup": "Netherlands",
-        "lig": "Freundschaftsspiele",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 123,
-        "milli": true
-      }
-    ],
-    "guncelleme": "2026-08-12"
-  },
   "L. Beerensteyn": {
     "sezonlar": [
       {
@@ -256543,198 +256197,6 @@
     ],
     "guncelleme": "2026-08-13"
   },
-  "A. Le Moguédec": {
-    "sezonlar": [
-      {
-        "sezon": "25/26",
-        "kulup": "Paris FC",
-        "lig": "Première Ligue",
-        "mac": 20,
-        "gol": 3,
-        "asist": 7,
-        "sari": 5,
-        "dakika": 1511,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Paris FC",
-        "lig": "Première Ligue Playoffs",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 180,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Paris FC",
-        "lig": "Coupe de France",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 180,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Paris FC",
-        "lig": "Coupe LFFP",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 113,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Paris FC",
-        "lig": "UEFA Women’s Champions League",
-        "mac": 7,
-        "gol": 0,
-        "asist": 2,
-        "sari": 0,
-        "dakika": 495,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Paris FC",
-        "lig": "UEFA Women’s Champions League Qualifying",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 112,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "France",
-        "lig": "UEFA Women’s Nations League Finals",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 0,
-        "milli": true
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "France",
-        "lig": "FIFA Women’s World Cup qualifiers - UEFA League A",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 61,
-        "milli": true
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Stade Reims",
-        "lig": "Première Ligue",
-        "mac": 22,
-        "gol": 2,
-        "asist": 1,
-        "sari": 1,
-        "dakika": 1694,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "France",
-        "lig": "Freundschaftsspiele",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 31,
-        "milli": true
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Stade Reims",
-        "lig": "Première Ligue",
-        "mac": 22,
-        "gol": 2,
-        "asist": 6,
-        "sari": 2,
-        "dakika": 1454,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Stade Reims",
-        "lig": "Première Ligue Playoffs",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 86,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "France",
-        "lig": "Freundschaftsspiele",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 101,
-        "milli": true
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Nantes",
-        "lig": "Division 2 Féminin - Groupe A",
-        "mac": 16,
-        "gol": 0,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 1352,
-        "milli": false
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Nantes",
-        "lig": "Coupe de France",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 264,
-        "milli": false
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "Nantes",
-        "lig": "Division 2 Féminin - Groupe A",
-        "mac": 21,
-        "gol": 4,
-        "asist": 0,
-        "sari": 5,
-        "dakika": 1497,
-        "milli": false
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "Nantes",
-        "lig": "Coupe de France",
-        "mac": 4,
-        "gol": 1,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 310,
-        "milli": false
-      }
-    ],
-    "guncelleme": "2026-08-12"
-  },
   "Sabrina D'Angelo": {
     "sezonlar": [
       {
@@ -265256,187 +264718,6 @@
         "asist": 0,
         "sari": 0,
         "dakika": 120,
-        "milli": true
-      }
-    ],
-    "guncelleme": "2026-08-12"
-  },
-  "Oluwatosin Demehin": {
-    "sezonlar": [
-      {
-        "sezon": "25/26",
-        "kulup": "Galatasaray",
-        "lig": "Kadın Futbol Süper Ligi",
-        "mac": 21,
-        "gol": 1,
-        "asist": 0,
-        "sari": 4,
-        "dakika": 1777,
-        "milli": false
-      },
-      {
-        "sezon": "25/26",
-        "kulup": "Galatasaray",
-        "lig": "Women’s Africa Cup of Nations",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 130,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Galatasaray",
-        "lig": "Kadın Futbol Süper Ligi",
-        "mac": 19,
-        "gol": 1,
-        "asist": 0,
-        "sari": 6,
-        "dakika": 1697,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Galatasaray",
-        "lig": "UEFA Women’s Champions League",
-        "mac": 5,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 450,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Galatasaray",
-        "lig": "UEFA Women’s Champions League Qualifying",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 174,
-        "milli": false
-      },
-      {
-        "sezon": "24/25",
-        "kulup": "Galatasaray",
-        "lig": "Women’s Africa Cup of Nations",
-        "mac": 6,
-        "gol": 1,
-        "asist": 0,
-        "sari": 2,
-        "dakika": 540,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Stade Reims",
-        "lig": "Première Ligue",
-        "mac": 11,
-        "gol": 1,
-        "asist": 1,
-        "sari": 2,
-        "dakika": 990,
-        "milli": false
-      },
-      {
-        "sezon": "23/24",
-        "kulup": "Nigeria",
-        "lig": "Olympische Spiele",
-        "mac": 3,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 270,
-        "milli": true
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Stade Reims",
-        "lig": "Première Ligue",
-        "mac": 15,
-        "gol": 0,
-        "asist": 0,
-        "sari": 5,
-        "dakika": 1261,
-        "milli": false
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Stade Reims",
-        "lig": "Coupe de France",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 180,
-        "milli": false
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Nigeria",
-        "lig": "World Cup",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 383,
-        "milli": true
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Stade Reims",
-        "lig": "Revelations Cup",
-        "mac": 3,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 270,
-        "milli": false
-      },
-      {
-        "sezon": "22/23",
-        "kulup": "Nigeria",
-        "lig": "Freundschaftsspiele",
-        "mac": 2,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 125,
-        "milli": true
-      },
-      {
-        "sezon": "21/22",
-        "kulup": "Nigeria",
-        "lig": "U20 Weltmeisterschaft",
-        "mac": 4,
-        "gol": 0,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 360,
-        "milli": true
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Rivers Angels",
-        "lig": "CAF Women’s Champions League",
-        "mac": 3,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 270,
-        "milli": false
-      },
-      {
-        "sezon": "20/21",
-        "kulup": "Nigeria",
-        "lig": "Freundschaftsspiele",
-        "mac": 1,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 64,
         "milli": true
       }
     ],
@@ -299950,6 +299231,4108 @@
         "asist": 0,
         "sari": 0,
         "dakika": 270,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Ana Le Moguédec": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Paris FC",
+        "lig": "Première Ligue",
+        "mac": 20,
+        "gol": 3,
+        "asist": 7,
+        "sari": 5,
+        "dakika": 1511,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Paris FC",
+        "lig": "Première Ligue Playoffs",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Paris FC",
+        "lig": "Coupe de France",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Paris FC",
+        "lig": "Coupe LFFP",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 113,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Paris FC",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 7,
+        "gol": 0,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 495,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Paris FC",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 112,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "France",
+        "lig": "UEFA Women’s Nations League Finals",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "France",
+        "lig": "FIFA Women’s World Cup qualifiers - UEFA League A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 61,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Stade Reims",
+        "lig": "Première Ligue",
+        "mac": 22,
+        "gol": 2,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 1694,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "France",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 31,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Stade Reims",
+        "lig": "Première Ligue",
+        "mac": 22,
+        "gol": 2,
+        "asist": 6,
+        "sari": 2,
+        "dakika": 1454,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Stade Reims",
+        "lig": "Première Ligue Playoffs",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 86,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "France",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 101,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Nantes",
+        "lig": "Division 2 Féminin - Groupe A",
+        "mac": 16,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1352,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Nantes",
+        "lig": "Coupe de France",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 264,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Nantes",
+        "lig": "Division 2 Féminin - Groupe A",
+        "mac": 21,
+        "gol": 4,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 1497,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Nantes",
+        "lig": "Coupe de France",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 310,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-08-12"
+  },
+  "Dani van de Donk": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "London City",
+        "lig": "Women’s Super League",
+        "mac": 6,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 248,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "London City",
+        "lig": "Women’s FA Cup",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 82,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Netherlands",
+        "lig": "FIFA Women’s World Cup qualifiers - UEFA League A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 26,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Olympique Lyon",
+        "lig": "Première Ligue",
+        "mac": 17,
+        "gol": 5,
+        "asist": 3,
+        "sari": 0,
+        "dakika": 996,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Olympique Lyon",
+        "lig": "Première Ligue Playoffs",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 101,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Olympique Lyon",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 8,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 368,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Olympique Lyon",
+        "lig": "UEFA Women’s Championship",
+        "mac": 3,
+        "gol": 0,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 171,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Netherlands",
+        "lig": "UEFA Women’s Nations League A",
+        "mac": 5,
+        "gol": 1,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 210,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Netherlands",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 283,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Olympique Lyon",
+        "lig": "Première Ligue",
+        "mac": 18,
+        "gol": 2,
+        "asist": 3,
+        "sari": 3,
+        "dakika": 1055,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Olympique Lyon",
+        "lig": "Première Ligue Playoffs",
+        "mac": 2,
+        "gol": 1,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 166,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Olympique Lyon",
+        "lig": "Coupe de France",
+        "mac": 2,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 126,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Olympique Lyon",
+        "lig": "Trophée des Championnes",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 76,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Olympique Lyon",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 10,
+        "gol": 2,
+        "asist": 3,
+        "sari": 1,
+        "dakika": 714,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Netherlands",
+        "lig": "UEFA Women’s Euro qualification League A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 487,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Netherlands",
+        "lig": "UEFA Women’s Nations League A",
+        "mac": 6,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 515,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Netherlands",
+        "lig": "UEFA Women’s Nations League Finals",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 152,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Netherlands",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 69,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Arsenal LFC",
+        "lig": "Women’s Super League",
+        "mac": 21,
+        "gol": 2,
+        "asist": 2,
+        "sari": 1,
+        "dakika": 1259,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Arsenal LFC",
+        "lig": "Women’s FA Cup",
+        "mac": 2,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 101,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Arsenal LFC",
+        "lig": "Players Cup",
+        "mac": 3,
+        "gol": 0,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 287,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Netherlands",
+        "lig": "Olympische Spiele",
+        "mac": 4,
+        "gol": 0,
+        "asist": 4,
+        "sari": 1,
+        "dakika": 342,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Arsenal LFC",
+        "lig": "Three Nations. One Goal",
+        "mac": 2,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 152,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Netherlands",
+        "lig": "Freundschaftsspiele",
+        "mac": 5,
+        "gol": 2,
+        "asist": 3,
+        "sari": 0,
+        "dakika": 436,
+        "milli": true
+      },
+      {
+        "sezon": "15/16",
+        "kulup": "Arsenal LFC",
+        "lig": "Women’s Super League",
+        "mac": 6,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 444,
+        "milli": false
+      },
+      {
+        "sezon": "15/16",
+        "kulup": "Netherlands",
+        "lig": "Olympia QF UEFA",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "15/16",
+        "kulup": "Netherlands",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "12/13",
+        "kulup": "FCE/PSV",
+        "lig": "BeNe League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 82,
+        "milli": false
+      },
+      {
+        "sezon": "12/13",
+        "kulup": "FCE/PSV",
+        "lig": "BeNe League Orange",
+        "mac": 14,
+        "gol": 8,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1238,
+        "milli": false
+      },
+      {
+        "sezon": "12/13",
+        "kulup": "FCE/PSV",
+        "lig": "UEFA Women’s Championship",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 256,
+        "milli": false
+      },
+      {
+        "sezon": "12/13",
+        "kulup": "Netherlands",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 123,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-12"
+  },
+  "Blessing Demehin": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Galatasaray",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 21,
+        "gol": 1,
+        "asist": 0,
+        "sari": 4,
+        "dakika": 1777,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Galatasaray",
+        "lig": "Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 130,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Galatasaray",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 19,
+        "gol": 1,
+        "asist": 0,
+        "sari": 6,
+        "dakika": 1697,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Galatasaray",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 450,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Galatasaray",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 174,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Galatasaray",
+        "lig": "Women’s Africa Cup of Nations",
+        "mac": 6,
+        "gol": 1,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 540,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Stade Reims",
+        "lig": "Première Ligue",
+        "mac": 11,
+        "gol": 1,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 990,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Nigeria",
+        "lig": "Olympische Spiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Stade Reims",
+        "lig": "Première Ligue",
+        "mac": 15,
+        "gol": 0,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 1261,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Stade Reims",
+        "lig": "Coupe de France",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Nigeria",
+        "lig": "World Cup",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 383,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Stade Reims",
+        "lig": "Revelations Cup",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Nigeria",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 125,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Nigeria",
+        "lig": "U20 Weltmeisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 360,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Rivers Angels",
+        "lig": "CAF Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Nigeria",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 64,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-12"
+  },
+  "Kenza Chapelle": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Nantes",
+        "lig": "Coupe de France",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Straßburg",
+        "lig": "Première Ligue",
+        "mac": 18,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 719,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Straßburg",
+        "lig": "Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Straßburg",
+        "lig": "Seconde Ligue",
+        "mac": 14,
+        "gol": 5,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 772,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "MoroccoFrance",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Nantes",
+        "lig": "Division 2 Féminin - Groupe A",
+        "mac": 22,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1158,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Nantes",
+        "lig": "Coupe de France",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 134,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "FC Fleury",
+        "lig": "Première Ligue",
+        "mac": 16,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 219,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "FC Fleury",
+        "lig": "Coupe de France",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 35,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "FC Fleury",
+        "lig": "Première Ligue",
+        "mac": 12,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 656,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "FC Fleury",
+        "lig": "Coupe de France",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 56,
+        "milli": false
+      },
+      {
+        "sezon": "19/20",
+        "kulup": "MoroccoFrance",
+        "lig": "U19 EM Qualifikation",
+        "mac": 3,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 170,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Majda Dresevic": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "FK Breznica Pljevija",
+        "lig": "1. ŽFL",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 689,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FK Breznica Pljevija",
+        "lig": "1. ŽFL",
+        "mac": 18,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1475,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FK Breznica Pljevija",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 199,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "FK Breznica Pljevija",
+        "lig": "1. ŽFL",
+        "mac": 17,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1146,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "FK Breznica Pljevija",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "FK Breznica Pljevija",
+        "lig": "1. ŽFL",
+        "mac": 18,
+        "gol": 2,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1330,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Danilovgrad",
+        "lig": "1. ŽFL",
+        "mac": 12,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 841,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Montenegro",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "ŽFK Budućnost",
+        "lig": "1. ŽFL",
+        "mac": 10,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 424,
+        "milli": false
+      },
+      {
+        "sezon": "19/20",
+        "kulup": "Montenegro",
+        "lig": "U19 EM Qualifikation",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 135,
+        "milli": true
+      },
+      {
+        "sezon": "18/19",
+        "kulup": "Montenegro",
+        "lig": "U19 EM Qualifikation",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 101,
+        "milli": true
+      },
+      {
+        "sezon": "17/18",
+        "kulup": "ŽFK Mladost",
+        "lig": "1. ŽFL",
+        "mac": 7,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 512,
+        "milli": false
+      },
+      {
+        "sezon": "16/17",
+        "kulup": "ŽFK Mladost",
+        "lig": "1. ŽFL",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 213,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Alina Kerschbaumer": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Hertha BSC",
+        "lig": "2. Bundesliga",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 59,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "First Vienna FC 1894",
+        "lig": "Frauen Bundesliga",
+        "mac": 18,
+        "gol": 2,
+        "asist": 3,
+        "sari": 1,
+        "dakika": 1399,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "First Vienna FC 1894",
+        "lig": "Frauen Bundesliga Qualifikationsgruppe",
+        "mac": 4,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 211,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "First Vienna FC 1894",
+        "lig": "ÖFB Frauen Cup",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 138,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Austria",
+        "lig": "U19 Europameisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 281,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Austria",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 482,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 86,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Austria",
+        "lig": "U17 Europameisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 332,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Austria",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 484,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 162,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Austria",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 418,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 162,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Austria",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 186,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Emanuela Pfister": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 8,
+        "gol": 1,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 402,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 276,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 173,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 5,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 257,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 11,
+        "gol": 9,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 866,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Schweizer Cup",
+        "mac": 2,
+        "gol": 5,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 6,
+        "gol": 2,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 426,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 61,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 10,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 352,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Schweizer Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 13,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 44,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 204,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 74,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 7,
+        "gol": 3,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 375,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U19-Liga Schweiz",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Schweizer Cup",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 154,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 121,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U17 Europameisterschaft",
+        "mac": 4,
+        "gol": 1,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 320,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "SwitzerlandBrazil",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 210,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Emilie Mece": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 235,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 367,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 235,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 196,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 472,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SwitzerlandAlbania",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 188,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Emma Egli": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "FC Aarau",
+        "lig": "Women’s Super League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 60,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 105,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "UEFA Women’s Europa Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 67,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 583,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 600,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 241,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 107,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 135,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League",
+        "mac": 13,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 623,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Schweizer Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 31,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Switzerland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 405,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 135,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Switzerland",
+        "lig": "U17 Europameisterschaft",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Switzerland",
+        "lig": "UEFA Development Tournament",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 60,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Freyja Stefánsdóttir": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Víkingur",
+        "lig": "Damallsvenskan",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 128,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "Víkingur",
+        "lig": "Besta deild kvenna",
+        "mac": 12,
+        "gol": 6,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 699,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "Iceland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 199,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Víkingur",
+        "lig": "Damallsvenskan",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 128,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Víkingur",
+        "lig": "Besta deild kvenna",
+        "mac": 12,
+        "gol": 6,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 699,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Iceland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 199,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Iceland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 194,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Víkingur",
+        "lig": "Besta deild kvenna",
+        "mac": 15,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 967,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Víkingur",
+        "lig": "Besta deild kvenna - Efri hluti",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 279,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Víkingur",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 23,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Iceland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 257,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Iceland",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 140,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Víkingur",
+        "lig": "Besta deild kvenna",
+        "mac": 16,
+        "gol": 1,
+        "asist": 3,
+        "sari": 1,
+        "dakika": 1178,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Víkingur",
+        "lig": "Besta deild kvenna - Efri hluti",
+        "mac": 5,
+        "gol": 1,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 408,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Víkingur",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 27,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Iceland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 351,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Iceland",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 188,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Víkingur",
+        "lig": "1. deild kvenna",
+        "mac": 16,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 622,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Víkingur",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 5,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 249,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Iceland",
+        "lig": "U17 EM Qualifikation Liga B",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 80,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Iceland",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 79,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Helga Rut Einarsdóttir": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Valur Reykjavik",
+        "lig": "Besta deild kvenna",
+        "mac": 12,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 825,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "Valur Reykjavik",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 87,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "Iceland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Valur Reykjavik",
+        "lig": "Besta deild kvenna",
+        "mac": 12,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 825,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Valur Reykjavik",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 87,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Valur Reykjavik",
+        "lig": "UEFA Women’s Europa Cup",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 108,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Iceland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Iceland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Breidablik",
+        "lig": "Besta deild kvenna",
+        "mac": 11,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 494,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Breidablik",
+        "lig": "Besta deild kvenna - Efri hluti",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 266,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Breidablik",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Breidablik",
+        "lig": "Meistarakeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Iceland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 477,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Iceland",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grindavik",
+        "lig": "1. deild kvenna",
+        "mac": 17,
+        "gol": 1,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1512,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Grindavik",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 122,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Iceland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 450,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Iceland",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 234,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Grindavik",
+        "lig": "1. deild kvenna",
+        "mac": 13,
+        "gol": 1,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1045,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Grindavik",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Iceland",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 127,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Ingibjörg Magnúsdóttir": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Besta deild kvenna",
+        "mac": 14,
+        "gol": 5,
+        "asist": 3,
+        "sari": 2,
+        "dakika": 916,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Meistarakeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "Iceland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 175,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Besta deild kvenna",
+        "mac": 14,
+        "gol": 5,
+        "asist": 3,
+        "sari": 2,
+        "dakika": 916,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Meistarakeppni kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Iceland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 175,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Iceland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Besta deild kvenna",
+        "mac": 16,
+        "gol": 2,
+        "asist": 4,
+        "sari": 0,
+        "dakika": 517,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Besta deild kvenna - Efri hluti",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 136,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FH Hafnarfjördur",
+        "lig": "Bikarkeppni kvenna",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 214,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Jada Conijnenberg": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Oud-Heverlee Leuven",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 2,
+        "gol": 3,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 195,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Oud-Heverlee Leuven",
+        "lig": "Super League",
+        "mac": 20,
+        "gol": 13,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1413,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Oud-Heverlee Leuven",
+        "lig": "Super League Play-offs I",
+        "mac": 5,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 382,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Oud-Heverlee Leuven",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 7,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 407,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Oud-Heverlee Leuven",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 4,
+        "gol": 2,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 340,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "IFK Norrköping DFK",
+        "lig": "Damallsvenskan",
+        "mac": 11,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 530,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "IFK Norrköping DFK",
+        "lig": "Vrouwen Eredivisie",
+        "mac": 11,
+        "gol": 5,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 299,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "IFK Norrköping DFK",
+        "lig": "Svenska Cupen",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 175,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Feyenoord",
+        "lig": "Vrouwen Eredivisie",
+        "mac": 16,
+        "gol": 5,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 856,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Feyenoord",
+        "lig": "KNVB Beker",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 79,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Feyenoord",
+        "lig": "Vrouwen Eredivisie",
+        "mac": 9,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 170,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Feyenoord",
+        "lig": "KNVB Beker",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 16,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Feyenoord",
+        "lig": "Vrouwen Eredivisie",
+        "mac": 22,
+        "gol": 1,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1688,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Julia Woźniak": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Sporting Clube de Portugal",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 210,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Sporting Clube de Portugal",
+        "lig": "Campeonato Nacional Feminino",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Sporting Clube de Portugal",
+        "lig": "Nacional II Divisão - Manutenção/Descida",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 450,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Sporting Clube de Portugal",
+        "lig": "Taça da Liga Feminina",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 360,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Sporting Clube de Portugal",
+        "lig": "UEFA Women’s Europa Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Poland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Poland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Sosnowiec",
+        "lig": "Ekstraliga",
+        "mac": 9,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 744,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Sosnowiec",
+        "lig": "Puchar Polski kobiet",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 300,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Poland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Poland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 360,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Medyk Konin",
+        "lig": "Ekstraliga",
+        "mac": 12,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1080,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Poland",
+        "lig": "U17 Weltmeisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 360,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Poland",
+        "lig": "U17 Europameisterschaft",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 480,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Poland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Medyk Konin",
+        "lig": "Ekstraliga",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 163,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Poland",
+        "lig": "U17 Europameisterschaft",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Poland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Lenelotte Müller": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "VfB Stuttgart",
+        "lig": "2. Bundesliga",
+        "mac": 16,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 909,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 Europameisterschaft",
+        "mac": 5,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 480,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 30,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "VfB Stuttgart",
+        "lig": "Regionalliga Süd",
+        "mac": 10,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 534,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 252,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 223,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 106,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Lia Ammann": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "FC Rapperswil/Jona",
+        "lig": "Women’s Super League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 69,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FC St. Gallen 1879",
+        "lig": "Women’s Super League",
+        "mac": 17,
+        "gol": 3,
+        "asist": 3,
+        "sari": 1,
+        "dakika": 841,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FC St. Gallen 1879",
+        "lig": "Schweizer Cup",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 165,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FC St. Gallen 1879",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 374,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 264,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 463,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 115,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FC St. Gallen 1879",
+        "lig": "Women’s Super League",
+        "mac": 11,
+        "gol": 1,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 532,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FC St. Gallen 1879",
+        "lig": "Schweizer Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 116,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "FC St. Gallen 1879",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 103,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 14,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 30,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Switzerland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 60,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 216,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Luzie Zähringer": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Bayern München II",
+        "lig": "Bundesliga",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 108,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Bayern München II",
+        "lig": "2. Bundesliga",
+        "mac": 22,
+        "gol": 2,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1849,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 Europameisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 360,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 225,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 60,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bayern München II",
+        "lig": "2. Bundesliga",
+        "mac": 16,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 1440,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bayern München II",
+        "lig": "DFB-Pokal",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 14,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 376,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 162,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 207,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 8,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 643,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 234,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Maj Schneider": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "SC Freiburg",
+        "lig": "Bundesliga",
+        "mac": 25,
+        "gol": 1,
+        "asist": 2,
+        "sari": 3,
+        "dakika": 1181,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "SC Freiburg",
+        "lig": "DFB-Pokal",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 Europameisterschaft",
+        "mac": 5,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 480,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 225,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 74,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SC Freiburg",
+        "lig": "Bundesliga",
+        "mac": 16,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 416,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SC Freiburg",
+        "lig": "2. Bundesliga",
+        "mac": 4,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 360,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "SC Freiburg",
+        "lig": "DFB-Pokal",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 3,
+        "asist": 3,
+        "sari": 0,
+        "dakika": 504,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 311,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SC Freiburg II",
+        "lig": "Bundesliga",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "SC Freiburg II",
+        "lig": "Regionalliga Süd",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 519,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 220,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 147,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Deutschland U17",
+        "lig": "B-Juniorinnen-Bundesliga Süd",
+        "mac": 6,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 394,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Germany",
+        "lig": "U17 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 244,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 327,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 166,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "SC Freiburg U17",
+        "lig": "B-Juniorinnen-Bundesliga Süd",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 261,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 28,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Paula Rintzner": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Carl Zeiss Jena",
+        "lig": "2. Bundesliga",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 38,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Bayern München II",
+        "lig": "2. Bundesliga",
+        "mac": 24,
+        "gol": 1,
+        "asist": 2,
+        "sari": 1,
+        "dakika": 1325,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "U19 Europameisterschaft",
+        "mac": 5,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 311,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 30,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bayern München II",
+        "lig": "2. Bundesliga",
+        "mac": 10,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 334,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 137,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bayern München II",
+        "lig": "2. Bundesliga",
+        "mac": 18,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 761,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bayern München II",
+        "lig": "B-Juniorinnen-Bundesliga Süd",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 49,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 6,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 319,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "FC Bayern München U17",
+        "lig": "B-Juniorinnen-Bundesliga Süd",
+        "mac": 9,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 617,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Germany",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 163,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Sara Grabovac": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "RB Salzburg",
+        "lig": "Frauen Bundesliga",
+        "mac": 17,
+        "gol": 4,
+        "asist": 1,
+        "sari": 3,
+        "dakika": 1530,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "RB Salzburg",
+        "lig": "Frauen Bundesliga Meistergruppe",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 228,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "RB Salzburg",
+        "lig": "ÖFB Frauen Cup",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 239,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "AustriaCroatia",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "AustriaCroatia",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 1,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "AustriaCroatia",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bergheim/Salzb.",
+        "lig": "Frauen Bundesliga",
+        "mac": 16,
+        "gol": 4,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 1430,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bergheim/Salzb.",
+        "lig": "Frauen Bundesliga Qualifikationsgruppe",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 57,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bergheim/Salzb.",
+        "lig": "ÖFB Frauen Cup",
+        "mac": 3,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 270,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "AustriaCroatia",
+        "lig": "U17 Europameisterschaft",
+        "mac": 4,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 306,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "AustriaCroatia",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "AustriaCroatia",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Una Rankic": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "FC Luzern",
+        "lig": "Women’s Super League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 65,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FC Basel",
+        "lig": "Women’s Super League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 202,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FC Basel",
+        "lig": "Schweizer Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 36,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "FC Basel",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 215,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "FIFA Women’s World Cup qualifiers - UEFA League C",
+        "mac": 4,
+        "gol": 1,
+        "asist": 2,
+        "sari": 1,
+        "dakika": 250,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 221,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 1,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Leotar Trebinje",
+        "lig": "Premijer Ženska Liga BiH",
+        "mac": 12,
+        "gol": 6,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 1080,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Leotar Trebinje",
+        "lig": "Premijer Ženska Liga BiH Championship",
+        "mac": 6,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 540,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "UEFA Women’s Nations League B",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 177,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U19 EM Qualifikation Liga B",
+        "mac": 2,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "UEFA Women’s Euro qualification League B",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "UEFA Women’s Nations League B",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "UEFA Women’s Nations League Relegation",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 241,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U17 EM Qualifikation Liga B",
+        "mac": 1,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Bosnien U17",
+        "lig": "Premijer Ženska Liga BiH",
+        "mac": 4,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 315,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U17 EM Qualifikation Liga B",
+        "mac": 3,
+        "gol": 5,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Bosnia-HerzegovinaSerbia",
+        "lig": "U17 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 30,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Valentina Illinger": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "RB Salzburg",
+        "lig": "Frauen Bundesliga",
+        "mac": 16,
+        "gol": 0,
+        "asist": 1,
+        "sari": 2,
+        "dakika": 1334,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "RB Salzburg",
+        "lig": "Frauen Bundesliga Meistergruppe",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 540,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "RB Salzburg",
+        "lig": "ÖFB Frauen Cup",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 299,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Austria",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 204,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Austria",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 513,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bergheim/Salzb.",
+        "lig": "Frauen Bundesliga",
+        "mac": 16,
+        "gol": 0,
+        "asist": 2,
+        "sari": 2,
+        "dakika": 1440,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bergheim/Salzb.",
+        "lig": "Frauen Bundesliga Qualifikationsgruppe",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 450,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bergheim/Salzb.",
+        "lig": "ÖFB Frauen Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Austria",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 5,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 405,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 410,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Austria",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 427,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 129,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Austria",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 421,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Austria",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Yara Zwyssig": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Grasshoppers Zürich",
+        "lig": "Women’s Super League Playoffs",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 360,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 540,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 360,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Switzerland",
+        "lig": "Freundschaftsspiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-15"
+  },
+  "Zofia Pągowska": {
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "UKS SMS Łódź",
+        "lig": "Ekstraliga",
+        "mac": 22,
+        "gol": 4,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1676,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "UKS SMS Łódź",
+        "lig": "Puchar Polski kobiet",
+        "mac": 1,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Poland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 126,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Poland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "UKS SMS Łódź",
+        "lig": "Ekstraliga",
+        "mac": 13,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 840,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "UKS SMS Łódź",
+        "lig": "Puchar Polski kobiet",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 177,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Poland",
+        "lig": "U19 Europameisterschaft",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 92,
+        "milli": true
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Poland",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Poland",
+        "lig": "U17 Weltmeisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 128,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Poland",
+        "lig": "U17 Europameisterschaft",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Poland",
+        "lig": "U17 EM Qualifikation Liga A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 10,
         "milli": true
       }
     ],
