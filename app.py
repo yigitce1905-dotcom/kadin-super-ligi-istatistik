@@ -5781,7 +5781,9 @@ _TARZ_EN = {
 }
 _YETENEK_EN_DEG = {"Elit":"Elite","Yetenekli":"Talented","Potansiyelli":"High Potential",
                    "Gelişime Açık":"Developing","Sınırlı":"Limited"}
-_IKTISADI_EN = {"Yüksek":"High","Orta":"Medium","Orta-Düşük":"Mid-Low","Düşük":"Low"}
+_IKTISADI_EN = {"Fahiş":"Prohibitive","Yüksek":"High","Orta":"Medium",
+                "Orta-Düşük":"Mid-Low","Düşük":"Low","Ucuz":"Cheap",
+                "Tanımlanmamış":"Undefined"}
 # ── TR GÖRÜŞÜ SKALASI (Baran, 2026-08) ────────────────────────────────────────
 # Ölçüt: "Türkiye'de ORTALAMA bir takımda ORTALAMA bir sözleşmeye ne der?"
 #   Willing     (İstekli)      → kesin evet, görüşmeye açık

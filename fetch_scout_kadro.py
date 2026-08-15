@@ -90,9 +90,47 @@ _EN_TR_GENEL = {
     "Cost": "İktisadi Durum", "🇹🇷 Perspective": "TR Görüşü", "Perspective": "TR Görüşü",
     "Scouting Notes": "Scout Notları",
     # Kulüp bilgileri (Baran bunları da çevirdi — TR hâlleri de destekleniyor)
-    "Club": "Kulüp", "League": "Lig", "Value": "Değeri", "Market Value": "Değeri",
+    "Club": "Kulüp", "Club Name": "Kulüp", "League": "Lig",
+    "Value": "Değeri", "Market Value": "Değeri",
     "Contract": "Sözleşme", "Current Club": "Güncel Kulüp",
     "Current Contract (SD)": "Güncel Sözleşme (SD)",
+    # ── OYUN TARZI (2026-08-13) ────────────────────────────────────────────
+    # Baran bu 32 kolonu da İngilizceye çevirdi. Sıra ve anlam eski Türkçe
+    # başlıklarla birebir örtüşüyor. Bu başlıklar aynı zamanda `tarz` listesinin
+    # DEĞERLERİ olarak JSON'a yazılıyor → site `_TARZ_EN` ile TR→EN çevirdiği
+    # için kanonik Türkçeye döndürülür.
+    "Maker an Overlap": "Kanattan Bindirme Yapar",
+    "Supporter the Attack": "Fırsat Buldukça Hücuma Katılır",
+    "Supporter the Defense": "Fırsat Buldukça Savunmaya Katılır",
+    "Try Key / Line-Breaking Passer": "Sık Sık Ara/Kilit Pas Dener",
+    "Long-Range Striker": "Kaleyi Uzaktan Yoklar",
+    "Prefer Passing to Shooting": "Şut Çekmek Yerine Pas Vermeyi Tercih Eder",
+    "Power Shooter/Crosser": "Sert Şutlar/Ortalar Yapabilir",
+    "Curved Shooter/Crosser": "Başarılıı Plase veya Kavisli Şut/Orta Dener",
+    "Provooker Rivals": "Rakip Oyunculara Sataşır",
+    "Sharp Defender": "Temaslı-Agresif Markaj Yapar",
+    "Leader with Area Dominance": "Alanına Hakim Bir Liderdir",
+    "Objector Against the Referees": "Hakemlere İtiraz Etmeyi Sever",
+    "Station Player": "Kaleye Sırtı Dönük Oynayabilir - İstasyon Olabilir",
+    "Comer for get the Ball": "Topu Almak İçin Gerilere Kadar Gelir",
+    "Responsible, if Necessary": "Gerektiğinde Sorumluluk Alarak Bireysel Oynar",
+    "Tempo Setter": "Maçın Temposuna Yön Verir",
+    "Show-woman": "Şov Oyunu Sergiler",
+    "Player at a High Tempo": "Yüksek Tempolu Oynar",
+    "Road-Runner": "Hızını Sahaya Yansıtır",
+    "Ball Juggler": "Tekniği İle Rakipten Sıyrılabilir",
+    "Strong Weak-Foot": "Zayıf Ayağını Kullanabilir",
+    "Set Piece Master": "Duran Toplarda Topun Başına Geçer",
+    "Sliding Tackler": "Kayarak Top Çalar",
+    "Player to the Gallery": "Tribüne Oynar, Abartılı Sevinir",
+    "Card-Prone Player": "Karta Meyilli Hamleler Yapabilir",
+    "Ball-Lover": "Topla Oyalanmayı Sever",
+    "GK / Long Clearances": "Uzun Degajmanlar Yapabilir",
+    "GK / Joiner the Game": "Oyuna Katılımı Yüksektir",
+    "GK / Collector with Long Arms": "Kol Boyu Sayesinde Yan Toplarda Etkili Olur",
+    "GK / Thrower Long-Range": "Eliyle Uzun Paslar Çıkartabilir",
+    "GK / Penalty Kick Saver": "Penaltı Canavarıdır",
+    "GK / Complete Keeper": "Çizgide, Alanda, Alan Dışında Oynayabilir; Komple Kalecidir",
 }
 # Kaleci bloğu: aynı İngilizce ad saha oyuncusunda BAŞKA bir Türkçe niteliğe denk
 # geliyor (First Touch/Ball Technique) → bu blok ayrı haritayla çevrilir.
@@ -150,13 +188,23 @@ _DEGER_ROL = {
     "old-school #10": "Eski Tip 10",
 }
 # Emoji'si birebir eşleşen yetenek kümeleri (emoji farklıysa çevrilmez)
+# NOT: ⭐️ Star · ✨ Wondergirl · ⁉️ Unpredictable · ✔️ Young Talent için
+# Türkçe karşılık Baran'dan alınmadı → bilerek çevrilmiyor (uydurulmaz).
 _DEGER_KUME = {
     "🩹 insufficient": "🩹 Yedek", "🎁 inadvertent": "🎁 Kalburüstü",
     "🏅 important": "🏅 Önemli", "🍂 redundant": "🍂 Tercih Dışı",
+    "🔮 promising": "🔮 Gelecek Vaad Eden", "💎 unique": "💎 Eşsiz",
+    "🧒 callow": "🧒 Genç",
+}
+# İktisadi durum (maliyet) skalası — Baran 2026-08'de İngilizceye çevirdi
+_DEGER_IKTISADI = {
+    "prohibitive": "Fahiş", "high": "Yüksek", "medium": "Orta",
+    "low": "Düşük", "cheap": "Ucuz", "undefined": "Tanımlanmamış",
 }
 _DEGER_ALAN = {
     "bolge": _DEGER_BOLGE, "ayak": _DEGER_AYAK, "vucut_tipi": _DEGER_VUCUT,
     "rol": _DEGER_ROL, "yetenek_kumesi": _DEGER_KUME,
+    "iktisadi_durum": _DEGER_IKTISADI,
 }
 
 
@@ -314,7 +362,7 @@ def parse(metin: str) -> dict:
             "nihai":      h(r, i_nihai) if h(r, i_nihai) in GECERLI_NOTLAR else "",
             "ivme":       h(r, i_ivme) if h(r, i_ivme) not in ("", "-") else "",
             "yetenek_kumesi": deger_kanonlastir("yetenek_kumesi", h(r, idx("Yetenek Kümesi"))),
-            "iktisadi_durum": h(r, idx("İktisadi Durum")),
+            "iktisadi_durum": deger_kanonlastir("iktisadi_durum", h(r, idx("İktisadi Durum"))),
             "tr_gorusu":  h(r, idx("TR Görüşü")),
             "scout_notu": h(r, idx("Scout Notları")),
             "degerlendirildi": degerlendirildi,

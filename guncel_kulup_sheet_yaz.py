@@ -15,7 +15,7 @@ import gspread
 CREDS = r"C:\Users\MSI\Downloads\avid-phoenix-485522-h5-09c4cabbef0b.json"
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID_DUNYA = 1707810792
-BASLIK = "Kulüp"
+BASLIK_ADAYLARI = ("Kulüp", "Club")   # Baran sheet'i İngilizceye çeviriyor
 
 def norm(s):
     s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode().lower()
@@ -34,12 +34,15 @@ def main():
     assert hdr[1] in ("İsim - Soyisim", "Name & Surname"), \
         f"KOLON KAYMASI (kol2={hdr[1]!r}) — iptal"
 
-    assert BASLIK in hdr, f"'{BASLIK}' sütunu sheet'te bulunamadı — iptal"
-    hedef_kol = hdr.index(BASLIK) + 1
-    print(f"'{BASLIK}' sütunu ÜZERİNE yazılacak (kol {hedef_kol}).")
+    _baslik = next((b for b in BASLIK_ADAYLARI if b in hdr), None)
+    assert _baslik, f"Kulüp sütunu bulunamadı (aranan: {BASLIK_ADAYLARI}) — iptal"
+    hedef_kol = hdr.index(_baslik) + 1
+    print(f"'{_baslik}' sütunu ÜZERİNE yazılacak (kol {hedef_kol}).")
 
-    isimler = ws.col_values(2)       # İsim - Soyisim
-    hucreler = [gspread.Cell(2, hedef_kol, BASLIK)]   # başlık row 2'de
+    isimler = ws.col_values(2)       # İsim - Soyisim / Name & Surname
+    # Başlık hücresine DOKUNULMAZ: sheet'teki mevcut ad korunur (aksi hâlde
+    # Baran 'Club' diye yeniden adlandırdığında script bunu geri alıyordu).
+    hucreler = []
     yazilan = 0
     ornek = []
     for i in range(2, len(isimler)):   # row 3+
