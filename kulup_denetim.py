@@ -21,37 +21,70 @@ from pathlib import Path
 KOK = Path(__file__).parent
 
 # SD'nin aynı kulüp için kullandığı alternatif/eski adlar → transfer sayılmaz.
-# Her satır: sheet'teki ad ile SD'nin adı (ikisi de normalize edilerek eşleşir).
+# Her satır: (BİZİM yazımımız, SD'nin yazımı). Eşleşme normalize edilerek
+# yapılır, ama ilk sütun aynı zamanda `kanonik_ad`ın döndürdüğü GÖRÜNEN ad
+# olduğu için düzgün büyük/küçük harfle yazılmalı ('psv' değil 'PSV').
 TAKMA_ADLAR = [
-    ("gotham", "sky blue"),            # Sky Blue FC 2021'de Gotham FC oldu
-    ("angel city", "wfc la"),
-    ("rosengard", "ldb malmo"),        # LdB FC Malmö → FC Rosengård
-    ("denver summit", "denver nwsl"),  # SD yeni NWSL takımlarına gecici ad veriyor
-    ("boston legacy", "nwsl boston"),
-    ("bay", "bay area nwsl"),
-    ("san diego wave", "sacramento nwsl"),
-    ("racing louisville", "proof"),    # 2026 yeniden adlandirma
-    ("roma", "rom"),
-    ("inter", "inter mailand"),
-    ("linkoping", "linkopings"),
-    ("ferencvarosi tc", "ferencvaros budapest"),
-    ("servette", "cs chenois"),
-    ("beijing women", "bg phoenix"),
-    ("dinamo bsupc", "dynamo minsk"),
-    ("nasaf qarshi", "pfc sevinch karshi"),
-    ("rsca women", "rsc anderlecht"),
-    ("breidablik kopavogur", "breidablik"),
-    ("grindavik njardvik", "umfg umfn"),
-    ("hafnarfjordur", "hafnarfjordur"),
+    ("PSV", "FCE/PSV"),                    # SD birleşik yazıyor
+    ("Gotham FC", "Sky Blue FC"),          # Sky Blue FC 2021'de Gotham FC oldu
+    ("Angel City FC", "WFC LA"),
+    ("FC Rosengård", "LdB FC Malmö"),      # 2015'te bırakılan ad
+    ("Denver Summit FC", "Denver NWSL"),   # SD yeni NWSL takımlarına geçici ad veriyor
+    ("Boston Legacy FC", "NWSL Boston"),
+    ("Bay FC", "Bay Area NWSL"),
+    ("San Diego Wave FC", "Sacramento NWSL"),
+    ("Racing Louisville FC", "Proof FC"),  # 2026 yeniden adlandırma
+    ("AS Roma", "AS Rom"),
+    ("Inter", "Inter Mailand"),
+    ("Lokomotiv Moskva", "Lok Moskau"),
+    ("Linköping FC", "Linköpings FC"),
+    ("Ferencvárosi TC", "Ferencváros Budapest"),
+    ("Servette FC", "CS Chenois"),
+    ("Beijing Women", "BG Phoenix"),
+    ("WFC Dinamo-BSUPC", "Dynamo Minsk"),
+    ("FC Nasaf Qarshi", "PFC Sevinch Karshi"),
+    ("RSCA Women", "RSC Anderlecht"),
+    ("Breiðablik Kópavogur", "Breidablik"),
+    ("Grindavík/Njarðvík", "UMFG/UMFN"),
+    # SD'nin ALMANCA kulüp adları
+    ("Internazionale Milano", "Inter Mailand"),
+    ("AC Milan", "ACF Mailand"),
+    ("RC Strasbourg", "Racing Straßburg"),
+    ("Club YLA", "FC Brügge"),
+    # SD'nin uzun/resmî ya da eski adları
+    ("FC Nordsjælland", "Farum Boldklub"),
+    ("ÍBV Vestmannaeyjar", "Iþrottabandalag Vestmannaeyja"),
+    ("UWC FC", "University of Western Cape"),
+    ("BDF XI", "Botswana Defence Force"),
+    ("Amnokgang SC", "Amrokgang"),
+    ("Budaörsi SC", "Budaörs"),
+    ("Gazelle FC", "Gazelles"),
 ]
 
+# Rezerv/alt takım işaretleri — 'II' taşıyan ile taşımayan AYNI kulüp değildir
+_REZERV = re.compile(r"(?:^|\s)(ii|2|b|u-?\d{2})$", re.I)
+
+# DİKKAT: 'ii', 'b', '2' BİLEREK GÜRÜLTÜ SAYILMAZ — rezerv takım ayrı kulüptür.
+# Eskiden siliniyordu ve '1. FC Köln II' ile '1. FC Köln' aynı kulüp sayılıyordu;
+# Vildan Kardeşler ile Lucie Schlime'a A takımı yazılacaktı (2026-08 fix).
 _GURULTU = re.compile(
     r"\b(fc|cf|sc|lfc|afc|ac|as|ss|ssd|sk|if|bk|zfk|znk|wfc|ufc|club|kulubu|"
-    r"kadin|womens?|women|feminin[ae]?|femminile|damen|w|ii|b|university|univ)\b")
+    r"kadin|womens?|women|feminin[ae]?|femminile|damen|w|university|univ)\b")
+
+
+# NFKD bunları ASCII'ye indirmez, encode('ascii','ignore') de sessizce SİLER:
+# 'Breiðablik' → 'Breiablik' olup 'Breidablik' ile eşleşmiyordu (3 İzlandalı
+# oyuncu sahte transfer adayı olarak çıkıyordu). Önce elle çevrilir.
+_HARF = str.maketrans({
+    "ð": "d", "Ð": "D", "þ": "th", "Þ": "Th", "ø": "o", "Ø": "O",
+    "æ": "ae", "Æ": "Ae", "đ": "d", "Đ": "D", "ł": "l", "Ł": "L",
+    "ı": "i", "İ": "I", "ş": "s", "Ş": "S", "ğ": "g", "Ğ": "G",
+})
 
 
 def norm(s: str) -> str:
-    s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode().lower()
+    s = str(s or "").translate(_HARF)
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
     s = re.sub(r"[^a-z0-9 ]", " ", s)
     s = _GURULTU.sub(" ", s)
     return re.sub(r"\s+", " ", s).strip()
@@ -65,12 +98,29 @@ def takma_ad_mi(a: str, b: str) -> bool:
     return False
 
 
+def kanonik_ad(sd_adi: str) -> str:
+    """SD'nin eski/birleşik adını bizim tarafın adına çevirir.
+
+    Transferi SD tespit ediyor ama adı SD'nin yazımıyla almak istemiyoruz:
+    Anam Imo gerçekten Rosengård'a geçmiş, SD bunu 2015'te bırakılan
+    'LdB FC Malmö' adıyla yazıyor. Eşleşme yoksa ad aynen döner."""
+    n = norm(sd_adi)
+    for bizim, sd in TAKMA_ADLAR:
+        if n == norm(sd):
+            return bizim
+    return sd_adi
+
+
 def ayni_mi(a: str, b: str) -> bool:
     na, nb = norm(a), norm(b)
     if not na or not nb:
         return True                      # karşılaştırılamaz → sessiz geç
     if na == nb:
         return True
+    # A takımı ↔ rezerv takım ayrı kulüptür: biri 'II' taşıyıp diğeri
+    # taşımıyorsa ortak kelimeye rağmen AYNI sayılmaz.
+    if bool(_REZERV.search(na)) != bool(_REZERV.search(nb)):
+        return takma_ad_mi(a, b)
     ta, tb = set(na.split()), set(nb.split())
     if ta & tb:                          # ortak ayırt edici kelime → aynı kulüp
         return True

@@ -23,6 +23,7 @@ import json
 import sys
 import time
 import re
+import unicodedata
 from collections import Counter
 from datetime import date
 from pathlib import Path
@@ -80,8 +81,13 @@ def sezon_yillarini_cek(soup: BeautifulSoup) -> list[int]:
     return sorted(yillar, reverse=True)
 
 
-# SoccerDonna ulke (milli takim) URL slug'lari — kulup sanilmasinlar diye elenir
+# SoccerDonna ulke (milli takim) URL slug'lari — kulup sanilmasinlar diye elenir.
+# DIKKAT: liste basta yalnizca ALMANCA slug'lardan olusuyordu, oysa scraper /en/
+# sayfalarini cekiyor ve slug'lar INGILIZCE geliyor (united-states, sweden...).
+# Sonuc: Lindsey Heaps'in 26/27 kulubu 'Verein. Staaten', Jennifer Falk'inki
+# 'Sweden' cikiyordu (2026-08 fix). Iki dil de tutulur.
 ULKE_SLUGLARI = {
+    # Almanca
     "rumaenien", "deutschland", "frankreich", "polen", "bosnien-herzegowina",
     "nordirland", "italien", "spanien", "england", "niederlande", "belgien",
     "schweiz", "oesterreich", "tuerkei", "portugal", "schweden", "norwegen",
@@ -92,19 +98,80 @@ ULKE_SLUGLARI = {
     "china", "australien", "mexiko", "kolumbien", "chile", "neuseeland",
     "weissrussland", "belarus", "litauen", "lettland", "estland", "georgien",
     "armenien", "aserbaidschan", "kasachstan", "israel", "zypern", "malta",
-    "luxemburg", "moldau", "moldawien", "wales", "haiti", "ghana", "nigeria",
+    "luxemburg", "moldau", "moldawien", "haiti", "ghana", "nigeria",
     "kamerun", "marokko", "suedafrika", "costa-rica", "kosta-rika",
+    "vereinigte-staaten", "elfenbeinkueste", "sambia", "suedkorea",
+    "nordkorea", "aegypten", "tunesien", "algerien", "senegal", "tansania",
+    "kongo", "kenia", "uganda", "simbabwe", "botsuana", "namibia", "malawi",
+    "indien", "thailand", "vietnam", "philippinen", "indonesien", "usbekistan",
+    "iran", "irak", "jordanien", "libanon", "saudi-arabien", "katar",
+    "vietnam", "myanmar", "papua-neuguinea", "fidschi", "panama", "jamaika",
+    "trinidad-und-tobago", "puerto-rico", "kuba", "venezuela", "ecuador",
+    "peru", "bolivien", "paraguay", "uruguay", "guatemala", "honduras",
+    "el-salvador", "nicaragua", "dominikanische-republik", "faeroeer",
+    "gibraltar", "andorra", "liechtenstein",
+    "kap-verde", "verein-staaten", "bangladesch", "elfenbeinkuste",
+    # 'san-marino' BİLEREK YOK: San Marino Academy gerçek bir İtalyan Serie B
+    # kulübü ve SD bağlantı metni sadece 'San Marino'. Millî takımı elemek için
+    # eklersek Chirine Lamti gibi oyuncuların kulübünü kaybediyoruz.
+    # Ingilizce
+    "united-states", "romania", "germany", "france", "poland",
+    "bosnia-herzegovina", "northern-ireland", "italy", "spain",
+    "netherlands", "belgium", "switzerland", "austria", "turkey", "tuerkiye",
+    "sweden", "norway", "denmark", "finland", "iceland", "russia", "serbia",
+    "croatia", "slovenia", "slovakia", "czech-republic", "czechia", "hungary",
+    "greece", "bulgaria", "north-macedonia", "albania", "ireland", "scotland",
+    "canada", "brazil", "argentina", "australia", "mexico", "colombia",
+    "chile", "new-zealand", "belarus", "lithuania", "latvia", "estonia",
+    "georgia", "armenia", "azerbaijan", "kazakhstan", "cyprus", "moldova",
+    "south-africa", "morocco", "cameroon", "ivory-coast", "cote-divoire",
+    "zambia", "south-korea", "north-korea", "korea-republic", "egypt",
+    "tunisia", "algeria", "senegal", "tanzania", "kenya", "uganda",
+    "zimbabwe", "botswana", "namibia", "malawi", "india", "thailand",
+    "vietnam", "philippines", "indonesia", "uzbekistan", "jordan",
+    "lebanon", "saudi-arabia", "qatar", "myanmar", "papua-new-guinea",
+    "fiji", "panama", "jamaica", "trinidad-and-tobago", "puerto-rico",
+    "cuba", "venezuela", "ecuador", "peru", "bolivia", "paraguay",
+    "uruguay", "guatemala", "honduras", "el-salvador", "nicaragua",
+    "dominican-republic", "faroe-islands", "faroe-island", "china-pr",
+    "republic-of-ireland", "chinese-taipei", "hong-kong", "malaysia",
+    "burkina-faso", "mali", "guinea", "gabon", "congo-dr", "dr-congo",
+    "ethiopia", "rwanda", "burundi", "mozambique", "angola", "benin", "togo",
 }
 
 
+def _slugla(ad: str) -> str:
+    """Bağlantı metnini URL slug'ina benzet: 'Südkorea' -> 'suedkorea'."""
+    a = ad.strip().lower()
+    for x, y in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
+        a = a.replace(x, y)
+    a = unicodedata.normalize("NFKD", a).encode("ascii", "ignore").decode()
+    return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", a)).strip("-")
+
+
+def _ulke_mu(href: str, metin: str = "") -> bool:
+    """Bu bağlantı bir millî takım mı?
+
+    Yalnızca URL slug'ina bakmak yetmiyordu: SD sayfayı bazen Almanca
+    döndürüyor ve slug listesi hangi dili eklersek ekleyelim eksik kalıyor
+    (Noh Jin-young'un kulübü 'Südkorea', Monique Ngock'unki 'Kap Verde'
+    çıkıyordu). Bağlantı METNİ de slug'lanip aynı kümede aranır — böylece
+    listeye yalnızca ülke ADI eklemek yetiyor, URL biçimini bilmek gerekmiyor."""
+    for aday in (re.search(r"/([a-z0-9-]+)/historische-kader/verein_", href),):
+        if aday:
+            base = re.sub(r"-u-?\d+$", "", aday.group(1).rstrip("-"))
+            if base in ULKE_SLUGLARI:      # U19/U17 alt takimlari da millî
+                return True
+    if metin:
+        base = re.sub(r"-u-?\d+$", "", _slugla(metin))
+        if base in ULKE_SLUGLARI:
+            return True
+    return False
+
+
+# Geriye dönük ad (eski çağrılar bozulmasın)
 def _ulke_slug_mu(href: str) -> bool:
-    m = re.search(r"/([a-z-]+)/historische-kader/verein_", href)
-    if not m:
-        return False
-    slug = m.group(1).rstrip("-")
-    # U19/U17 gibi alt takimlar da milli: rumaenien-u19
-    base = re.sub(r"-u-?\d+$", "", slug)
-    return base in ULKE_SLUGLARI
+    return _ulke_mu(href)
 
 
 def kulup_bul(soup: BeautifulSoup) -> str:
@@ -116,9 +183,9 @@ def kulup_bul(soup: BeautifulSoup) -> str:
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if "/verein_" in href and "/historische-kader/" in href:
-            if _ulke_slug_mu(href):
-                continue  # milli takim — atla
             isim = a.get_text(strip=True)
+            if _ulke_mu(href, isim):
+                continue  # milli takim — atla
             if isim and isim not in ("", "-"):
                 sayac[isim] += 1
     if not sayac:
@@ -147,14 +214,26 @@ def milli_mi(lig: str) -> bool:
     # Kulup turnuvalari (oncelikli — milli kelimelerini ezer)
     if "champions league" in l:
         return False
+    # Bosluk/tire varyantlarini ez: SD 'SheBelieves Cup' yaziyordu, kalip
+    # 'she believes' bosluklu oldugu icin tutmuyor ve millî mac kulup maci
+    # sayiliyordu (2026-08 fix).
+    lz = re.sub(r"[\s\-]", "", l)
     milli_kelimeler = (
         "nations league", "world cup", "euro qual", "em-qual", "em qual",
         "euro qualif", "qualification league", "qualification playoffs",
         "friendl", "freundschaft", "vier-nationen", "turnier", "tournament",
         "algarve", "cyprus women", "pinatar", "she believes", "olympi",
         "wm-qual", "wm qual",
+        # Kıta/millî turnuvalar — bunlar eksikti ve maçlar KULÜP maçı sayılıyordu:
+        # oyuncunun kulübü 'Senegal' (36 satır), 'Burkina Faso' (32) çıkıyordu.
+        # DİKKAT: yalın "championship" EKLENEMEZ — FA Women's Championship bir
+        # KULÜP ligidir; bu yüzden UEFA öneki şart.
+        "cup of nations", "asian cup", "uefa women’s championship",
+        "uefa women's championship", "uefa womens championship",
+        "inter-confederation", "interconfederation", "visitmalta",
+        "copa america", "concacaf w", "gold cup", "arab cup",
     )
-    if any(k in l for k in milli_kelimeler):
+    if any(k.replace(" ", "").replace("-", "") in lz for k in milli_kelimeler):
         return True
     if re.search(r"\bu-?(17|19|20|23)\b", l):
         return True
@@ -417,7 +496,15 @@ def main():
     # --bayat: bugün BAŞARIYLA güncellenmemiş kayıtları tazele (ağ hatası sonrası
     # kalan eski kayıtları hedefli yeniden çekmek için)
     sadece_bayat = "--bayat" in args
-    arama        = next((a for a in args if not a.startswith("--")), None)
+    # --dosya=yol : satır başına bir isim; parser düzeltmesinden etkilenen belirli
+    # oyuncuları hedefli yeniden çekmek için (tüm havuzu taramaktan çok daha hızlı)
+    _d = next((a for a in args if a.startswith("--dosya=")), None)
+    liste = None
+    if _d:
+        liste = {s.strip() for s in open(_d.split("=", 1)[1], encoding="utf-8")
+                 if s.strip()}
+        print(f"Liste dosyasi: {len(liste)} isim")
+    arama = next((a for a in args if not a.startswith("--")), None)
 
     hedefler = []
     for isim, veri in profiller.items():
@@ -429,6 +516,8 @@ def main():
         if sadece_eksik and isim in leistung:
             continue
         if sadece_bayat and (leistung.get(isim) or {}).get("guncelleme") in _TAZE_GUNLER:
+            continue
+        if liste is not None and isim not in liste:
             continue
         if arama and arama.lower() not in isim.lower():
             continue
