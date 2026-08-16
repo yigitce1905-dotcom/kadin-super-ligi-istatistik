@@ -291,6 +291,12 @@ footer { visibility:hidden !important; display:none !important; }
     border:none !important; color:#fff !important; font-weight:800 !important;
     letter-spacing:0.02em; box-shadow:0 8px 24px -8px #e040fb88; }
 .st-key-hero_scouting_cta button:hover { filter:brightness(1.1); }
+/* ── Profil: "Oyuncu Raporu PDF hazırla" özet kartlarına yapışmasın ──
+   Ayraç <div> işe yaramıyor: Streamlit markdown kabını 6px'e sabitleyip
+   overflow:visible bırakıyor, yükseklik veren çocuk butonu itmiyor.
+   Anahtar sınıfına doğrudan üst boşluk verilir (_pk sonuna "__1" gibi
+   sonek eklediği için başlangıç eşleşmesi kullanılır). */
+[class*="st-key-pdf_hazirla"] { margin-top:40px !important; }
 /* ── Alt sayfa banner'ı (fotoğraflı başlık) ── */
 .sayfa-banner { position:relative; border:1px solid #2c2350; border-radius:14px;
     padding:24px 28px; margin:2px 0 18px; overflow:hidden;
@@ -4006,6 +4012,18 @@ def _tum_takim_icerir_mi(tum_takimlar_str: str, kanon_hedef: str) -> bool:
     return False
 
 
+def _uyruk_ayir(nat_str: str) -> tuple:
+    """SD'nin bitişik uyruk dizesini ikiye ayırır: 'TurkeyGermany' → ('Turkey',
+    'Germany'). SD tek alanda iki pasaportu ayraçsız veriyor; tek parça
+    bırakılınca bayrak basılamıyor ve '2. Uyruk' satırı hiç dolmuyordu.
+    Kaynak önceliği Baran'ın kuralı: SD esas, boşsa dosyaya bakılır."""
+    s = (nat_str or "").strip()
+    if not s:
+        return ("", "")
+    p = [x.strip() for x in _re.split(r"(?<=[a-z])(?=[A-Z])|\s*/\s*", s) if x.strip()]
+    return (p[0] if p else "", p[1] if len(p) > 1 else "")
+
+
 def _uyruk_goster(nat_str: str) -> str:
     """Çift vatandaşlık gösterimi: 'DenmarkFaroe Island' → 'Denmark / Faroe Island'.
     SD profilinde iki uyruk ayraçsız bitişik geliyor; küçük→büyük sınırına ' / ' koyar.
@@ -4683,19 +4701,29 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
 # ── ORTAK PROFİL BİLEŞENLERİ (scouting + ana lig aynı görünsün diye) ──────────
 # ── Mevki haritası: mini futbol sahası (Transfermarkt tarzı) ──────────────────
 # Dikey saha (GK altta, ST üstte) viewBox 0 0 100 132.
+# Koordinatlar sheet'in GERÇEK mevki sözlüğüne göre kuruldu (2026-08 tarama:
+# GK LFB LCB MCB RCB RFB LWB RWB DMF CMF AMF LWF RWF 2ST CFW — 15 kod).
+# Önceki düzende AMF/2ST/MCB taban dizilişte yoktu ve RWB ile RFB neredeyse
+# üst üste biniyordu; her kod artık kendi ayrı slotunda.
+# Dikey aralık ≥15, yatay ≥17 → r=6.4 dairelerde çakışma yok.
 _SAHA_KONUM = {
-    "GK": (50, 120),
-    "LB": (17, 101), "RB": (83, 101), "CB": (50, 104), "LCB": (37, 104), "RCB": (63, 104),
-    "LWB": (14, 89), "RWB": (86, 89),
-    "DM": (50, 87), "DMF": (50, 87),
-    "LM": (18, 69), "RM": (82, 69), "CM": (50, 69),
-    "LMF": (18, 69), "RMF": (82, 69), "CMF": (50, 69),
-    "AM": (50, 52), "AMF": (50, 52),
-    "LW": (19, 40), "RW": (81, 40), "LWF": (19, 40), "RWF": (81, 40),
-    "SS": (50, 35), "2ST": (50, 35),
-    "ST": (50, 18), "CF": (50, 18), "CFW": (50, 18),
-    # Sheet'lerin kullandığı ek kodlar (18.07.2026 tarama: 400 kayıt haritasızdı)
-    "LFB": (17, 101), "RFB": (83, 101), "MCB": (50, 104),
+    "GK": (50, 121),
+    # Savunma dörtlüsü/beşlisi
+    "LFB": (13, 104), "LCB": (33, 106), "MCB": (50, 106), "RCB": (67, 106), "RFB": (87, 104),
+    # Kanat bekler — beklerin bir tık ÖNÜNDE, artık ayrı satırda
+    "LWB": (12, 88), "RWB": (88, 88),
+    "DMF": (50, 88),
+    "CMF": (50, 70),
+    "AMF": (50, 52),
+    "LWF": (14, 46), "RWF": (86, 46),
+    "2ST": (50, 34), "2NDST": (50, 34),
+    "CFW": (50, 16),
+    # ── Eski/eş anlamlı kodlar (ana lig eşlemesi, My 11, arşiv) ──
+    "LB": (13, 104), "RB": (87, 104), "CB": (50, 106),
+    "DM": (50, 88), "CM": (50, 70), "AM": (50, 52),
+    "LM": (14, 46), "RM": (86, 46), "LMF": (14, 46), "RMF": (86, 46),
+    "LW": (14, 46), "RW": (86, 46),
+    "SS": (50, 34), "ST": (50, 16), "CF": (50, 16),
 }
 # Normalize TR mevki → standart kod (ana lig için)
 _MEVKI_SAHA_KOD = {
@@ -4739,8 +4767,8 @@ def _bolge_bul(kodlar):
 # Sahada HER ZAMAN çizilen taban diziliş (sönük). Baran'ın profil tasarımında
 # saha boş değil: 11 kişilik siluet duruyor ve oyuncunun mevkileri onun üstünde
 # yeşil vurgulanıyor — böylece "hangi mevki" değil "dizilişin neresi" okunuyor.
-_SAHA_TABAN = ["GK", "LB", "LCB", "RCB", "RB", "DMF", "LMF", "CMF", "RMF",
-               "LW", "RW", "ST"]
+_SAHA_TABAN = ["GK", "LFB", "LCB", "MCB", "RCB", "RFB", "LWB", "RWB",
+               "DMF", "CMF", "AMF", "LWF", "RWF", "2ST", "CFW"]
 
 
 def _pozisyon_saha(kodlar) -> str:
@@ -4792,15 +4820,13 @@ def _buyuk(s: str) -> str:
 
 
 def _profil_baslik(isim, sd_url=""):
-    """İsim başlığı (İSİM: 14pt mor BÜYÜK) + sağda SoccerDonna linki (Ara Başlık)."""
-    _badge = (f'<a href="{sd_url}" target="_blank" class="tp-arabaslik" '
-              f'style="text-decoration:none;color:#a78bfa;">🔗 SOCCERDONNA</a>') if sd_url else ""
-    st.markdown(
-        '<div style="display:flex;justify-content:space-between;align-items:flex-start;'
-        'gap:16px;flex-wrap:wrap;margin:2px 0 4px;">'
-        f'<div class="sc-isim">{isim}</div>'
-        f'<div style="padding-top:8px;">{_badge}</div></div>',
-        unsafe_allow_html=True)
+    """İsim başlığı (İSİM: 14pt mor BÜYÜK).
+
+    SoccerDonna rozeti buradan ÇIKARILDI (Baran, 2026-08): ismin hemen sağında
+    durup paylaşım kutusuna yapışıyordu. Artık sağ sütunun en üstünde,
+    _profil_link_kopyala içinde sağa dayalı duruyor."""
+    st.markdown(f'<div class="sc-isim" style="margin:2px 0 4px;">{isim}</div>',
+                unsafe_allow_html=True)
 
 
 def _profil_kutulari(gruplar):
@@ -4808,9 +4834,14 @@ def _profil_kutulari(gruplar):
     gruplar: [(başlık, [(etiket, değer), …]), …]. Boş değer/kutu gizlenir.
     Tipografi: başlık=ANA BAŞLIK, etiket=Ara Başlık (BÜYÜK, _buyuk), değer=ANA METİN."""
     def _bk(baslik, satirlar):
+        # Boş alan SATIRI GİZLEMEZ, "—" gösterir (Baran, 2026-08): eksik bilgi
+        # görünmezse kimse fark edip SD'ye ya da dosyaya eklemiyor. Örn. Busem
+        # Şeker'de piyasa değeri satırı tamamen kayboluyordu.
         ic = "".join(
-            f"<div class='bk-satir'><span>{_buyuk(_e)}</span><b>{_v}</b></div>"
-            for _e, _v in satirlar if str(_v).strip() not in ("", "—", "None"))
+            f"<div class='bk-satir'><span>{_buyuk(_e)}</span>"
+            f"<b{'' if str(_v).strip() not in ('', 'None') else ' style=\"color:#5b6b7f;\"'}>"
+            f"{_v if str(_v).strip() not in ('', 'None') else '—'}</b></div>"
+            for _e, _v in satirlar)
         return (f"<div class='bilgi-kutu'><div class='bk-baslik'>{_buyuk(baslik)}</div>{ic}</div>"
                 if ic else "")
     _html = "".join(_bk(b, s) for b, s in gruplar)
@@ -5161,9 +5192,9 @@ def render_scouting_detay(tam_isim):
     # Büyük isim başlığı + yanında paylaşılabilir link (ana lig ile ORTAK düzen)
     _bs1, _bs2 = st.columns([1.55, 1], gap="large")
     with _bs1:
-        _profil_baslik(tam_isim, sd_url)
+        _profil_baslik(tam_isim)
     with _bs2:
-        _profil_link_kopyala(tam_isim)
+        _profil_link_kopyala(tam_isim, sd_url)
     # Tek tıkla My Squad'a al/çıkar + My 11'e al/çıkar (profili açınca anında, ismin hemen altında)
     _sl_kul = st.session_state.get("kulup_kullanici", "admin")
     _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
@@ -5209,10 +5240,17 @@ def render_scouting_detay(tam_isim):
     # 2. Uyruk = ikinci pasaport ('milli_takim' alanı — ad yanıltıcı, bkz. üstteki
     # not). Millî takım uyruğu ise _milli'de ve ilk satırda gösteriliyor.
     _ikinci_uyruk = (_kadro.get("milli_takim") or "").strip()
+    _sd_u1, _sd_u2 = _uyruk_ayir(vatandas)
     _kutu_grp = [
         (f"👤 {t('Kişisel Bilgiler','Personal Info')}", [
-            (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_milli or _uyruk_goster(vatandas))),
-            (f"🌐 {t('2. Uyruk','2nd Nationality')}", ulke_goster(_ikinci_uyruk)),
+            # Baran'ın kaynak kuralı: SD esas, boşsa dosya. SD iki pasaportu tek
+            # dizede bitişik verdiği için ayrıştırılıyor (bkz. _uyruk_ayir).
+            # bayrakli_ulke (ulke_goster değil): TR profiliyle aynı görünüm —
+            # Baran'ın tasarımında uyruklar bayrakla gösteriliyor.
+            (f"🌍 {t('Uyruk','Nationality')}",
+             bayrakli_ulke(_sd_u1 or _milli)),
+            (f"🌐 {t('2. Uyruk','2nd Nationality')}",
+             bayrakli_ulke(_sd_u2 or _ikinci_uyruk)),
             (f"📅 {t('Doğum Tarihi','Date of Birth')}", dob),
             (f"🎂 {t('Yaş','Age')}", _yas_g)]),
         (f"⚽ {t('Futbolcu Bilgileri','Footballer Info')}", [
@@ -6787,10 +6825,17 @@ def _bolum_kilit(k: str):
         + "</div></div>", unsafe_allow_html=True)
 
 
-def _profil_link_kopyala(isim):
-    """İsim yanında paylaşılabilir ?oyuncu= linki + kopyala butonu (iki profil ortak)."""
+def _profil_link_kopyala(isim, sd_url=""):
+    """Paylaşılabilir ?oyuncu= linki + kopyala butonu (iki profil ortak).
+    SoccerDonna bağlantısı en üstte, sayfanın SAĞ ÜST köşesinde durur."""
     import streamlit.components.v1 as _comp
     import json as _j
+    if sd_url:
+        st.markdown(
+            f'<div style="text-align:right;margin:0 0 6px;">'
+            f'<a href="{_html.escape(sd_url, quote=True)}" target="_blank" '
+            f'class="tp-arabaslik" style="text-decoration:none;color:#a78bfa;">'
+            f'🔗 SOCCERDONNA</a></div>', unsafe_allow_html=True)
     _isim_js = _j.dumps(isim)
     # Tipografi (Baran std): başlık=Ara Başlık (11pt mor BÜYÜK) · URL=Link yazısı
     # (8pt eğik altçizili mor) · Kopyala=Ara Yazı (11pt kalın BÜYÜK beyaz)
@@ -6902,9 +6947,9 @@ def render_ana_lig_profil(secili):
         # Başlık + yanında paylaşılabilir link (Baran: üstteki boşluk kullanılsın)
         _bs1, _bs2 = st.columns([1.55, 1], gap="large")
         with _bs1:
-            _profil_baslik(secili, sd.get("profil_url", ""))
+            _profil_baslik(secili)
         with _bs2:
-            _profil_link_kopyala(secili)
+            _profil_link_kopyala(secili, sd.get("profil_url", ""))
         _mv = sd.get("Market value", "")
         # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
         # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
@@ -6924,8 +6969,9 @@ def render_ana_lig_profil(secili):
                     return str(v).strip()
             return ""
 
-        _tr_mevki = "-".join(x for x in (_st.get("mevki1"), _st.get("mevki2"),
-                                         _st.get("mevki3")) if (x or "").strip())
+        _tr_mevki_kod = [str(x).strip() for x in (_st.get("mevki1"), _st.get("mevki2"),
+                                                  _st.get("mevki3")) if str(x or "").strip()]
+        _tr_mevki = "-".join(_tr_mevki_kod)
         _tr_boy = _ilk_dolu(sd.get("Height"), _st.get("boy"))
         _tr_tip = (_st.get("vucut_tipi") or "").strip()
         # Doğum tarihi ve yaş AYNI kaynaktan gelmeli: eskiden tarih sheet'ten,
@@ -6933,16 +6979,13 @@ def render_ana_lig_profil(secili):
         # çelişen künyeler çıkıyordu.
         _tr_dogum = _ilk_dolu(sd.get("Date of birth"), _st.get("dogum"))
         _tr_yas = _ilk_dolu(_yas_hesapla(_tr_dogum), _st.get("yas"), sd.get("Age"))
+        _sd_uyruk1, _sd_uyruk2 = _uyruk_ayir(sd.get("Nationality", ""))
         _kutu_grp = [
             (f"👤 {t('Kişisel Bilgiler','Personal Info')}", [
-                # Uyrukta SD DEĞİL sheet öncelikli: SD çift vatandaşlığı ayraçsız
-                # tek dize veriyor ("TurkeyGermany") ve tek bayrak basılamıyor.
-                # Baran'ın notu da bu alanın türetilmiş olduğunu söylüyor ("millî
-                # maça hangi ülkeyle çıktıysa"); o çıkarım sheet'te hazır duruyor.
-                (f"🌍 {t('Uyruk','Nationality')}", bayrakli_ulke(
-                    _ilk_dolu(_st.get("uyruk"), _ilk_uyruk(sd.get("Nationality", ""))))),
+                (f"🌍 {t('Uyruk','Nationality')}",
+                 bayrakli_ulke(_ilk_dolu(_sd_uyruk1, _st.get("uyruk")))),
                 (f"🌐 {t('2. Uyruk','2nd Nationality')}",
-                 bayrakli_ulke(_uyruk_goster(_st.get("milli_takim", "")))),
+                 bayrakli_ulke(_ilk_dolu(_sd_uyruk2, _st.get("milli_takim")))),
                 (f"📅 {t('Doğum Tarihi','Date of Birth')}", _tr_dogum),
                 (f"🎂 {t('Yaş','Age')}", _tr_yas)]),
             (f"⚽ {t('Futbolcu Bilgileri','Footballer Info')}", [
@@ -6959,16 +7002,21 @@ def render_ana_lig_profil(secili):
                  _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
                 # Değer yalnızca SD'den okunuyordu; SD'de boş olan oyuncularda
                 # (örn. Busem Şeker) satır tamamen kayboluyordu → sheet yedeği.
-                (f"💰 {t('Değer','Value')}", _ilk_dolu(_mv, _st.get("deger"))),
-                (f"📍 {t('Doğum Yeri','Birthplace')}",
-                 sd.get("Place of birth", "") or _tff_dogum_yeri(secili))]),
+                # Doğum Yeri kaldırıldı (Baran, 2026-08) — künyede yer kaplıyordu.
+                (f"💰 {t('Değer','Value')}", _ilk_dolu(_mv, _st.get("deger")))]),
         ]
         _ana_kod = _MEVKI_SAHA_KOD.get(row.get("Mevki", ""))
-        _saha_svg = _pozisyon_saha(_sc_mevki or ([_ana_kod] if _ana_kod else []))
+        # Sahada 3 mevkinin ÜÇÜ de vurgulanır: _sc_mevki yalnızca 2 kod
+        # taşıyabiliyordu, künyede CMF-RWB-LWB yazarken sahada LWB yanmıyordu.
+        _saha_svg = _pozisyon_saha(_tr_mevki_kod or _sc_mevki
+                                   or ([_ana_kod] if _ana_kod else []))
         def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
             # ── ÖZET satırı: hep görünür (Baran tasarımı) ─────────────────────────
+            # Gol yenmeyen maç ARTIK HERKESTE (Baran, 2026-08): savunma ağırlıklı
+            # rollerdeki orta sahalar için de anlamlı bir gösterge. Eskiden
+            # yalnızca kalecide hesaplanıyordu.
             _cs_ozet = None
-            if row.get("Mevki", "") == "Kaleci":
+            if True:
                 try:
                     _ygm2 = _yenilen_gol_map()
                     _htk2 = _oyuncu_hafta_takim(detay)
@@ -7044,6 +7092,9 @@ def render_ana_lig_profil(secili):
             _ozet_ciz()
 
         # ── Markalı PDF rapor indir (TALEP üzerine üretilir) ─────────────────
+        # Boşluk CSS ile veriliyor (bkz. .st-key-pdf_hazirla kuralı): ayraç
+        # <div> denendi ama Streamlit markdown kabını 6px'e sabitleyip
+        # overflow:visible bıraktığı için 22px'lik çocuk butonu itmiyordu.
         _pdfk = f"lig_pdf_iste_{secili}"
         if not st.session_state.get(_pdfk):
             if st.button(f"📄 {t('Oyuncu Raporu PDF hazırla', 'Prepare Player Report PDF')}",
