@@ -2366,6 +2366,26 @@ def _isim_norm(s: str) -> str:
 
 
 @st.cache_data(show_spinner=False)
+def _scotr_norm_harita() -> dict:
+    return {_isim_norm(k): k for k in scotr_yukle()}
+
+
+def scotr_bul(isim: str) -> dict:
+    """Sco Tr kaydını getirir; birebir yoksa diakritiksiz eşleştirir.
+
+    TFF ile scout sheet'i aynı oyuncuyu farklı yazıyor: TFF 'JELENA KARLİCİC'
+    (Türkçe İ), sheet 'JELENA KARLIČIĆ' (Sırpça Č/Ć). Birebir sözlük araması
+    tuttuğu için 10 oyuncunun TAM DOLU scout raporu sitede hiç görünmüyordu
+    (Karličić, Stašková, Nicoară, Aleksić, Zuñiga, Gürtner...) — 2026-08-17."""
+    d = scotr_yukle()
+    k = d.get(isim)
+    if k:
+        return k
+    anahtar = _scotr_norm_harita().get(_isim_norm(isim))
+    return d.get(anahtar) or {}
+
+
+@st.cache_data(show_spinner=False)
 def _profil_norm_harita() -> dict:
     """Diakritiksiz isim → kanonik profil anahtarı. Kaynaklar arası yazım
     farkında (Sco TR: STAŠKOVÁ, SD: STASKOVA) profil 'bulunamadı' olmasın.
@@ -6253,7 +6273,7 @@ def render_scout_raporu(isim: str, bolum: str = "analiz"):
 
     bolum="gozlem" → yalnız Oyun Tarzı + scout notu (GÖZLEM bölümü);
     bolum="analiz" → scout raporu kartı + nitelik panelleri + İkizler."""
-    rapor = scotr_yukle().get(isim)
+    rapor = scotr_bul(isim)
     if not rapor:
         return
 
@@ -7059,7 +7079,7 @@ def render_ana_lig_profil(secili):
         # ── Künye kutuları — Baran'ın profil tasarımı (2026-08) ───────────────
         # Scouting profiliyle AYNI üç grup: Kişisel / Futbolcu / Kulüp. Bölge,
         # vücut tipi, lig ve sözleşme scotr dosyasından gelir (SD'de yok).
-        _st = scotr_yukle().get(secili) or {}
+        _st = scotr_bul(secili)
 
         def _ilk_dolu(*x):
             """Baran'ın kaynak kuralı: künye alanlarında SoccerDonna esastır,
@@ -7132,7 +7152,7 @@ def render_ana_lig_profil(secili):
             _ek_kutu = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet)
                         if _cs_ozet is not None else None)
             _so_notu  = bool((scotr_yukle().get(secili, {}).get("scout_notu") or "").strip())
-            _so = scotr_yukle().get(secili) or {}
+            _so = scotr_bul(secili)
             _so_nihai = (_so.get("nihai") or "").strip()
             _so_ivme_ham = (_so.get("ivme") or "").strip()
             _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
@@ -7532,7 +7552,7 @@ def render_ana_lig_profil(secili):
         with st.expander(_bolum_baslik("GÖZLEM", "OBSERVATION", "gozlem"), expanded=False):
             if not _bolum_acik("gozlem"):
                 _bolum_kilit("gozlem")
-            elif scotr_yukle().get(secili):
+            elif scotr_bul(secili):
                 render_scout_raporu(secili, "gozlem")
             else:
                 st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
@@ -7543,8 +7563,8 @@ def render_ana_lig_profil(secili):
                 _bolum_kilit("analiz")
             else:
                 # Rol verimliliği (en üstte) + Scout raporu + Nitelik İkizleri
-                if scotr_yukle().get(secili):
-                    render_rol_verimliligi(scotr_yukle()[secili], "tr")
+                if scotr_bul(secili):
+                    render_rol_verimliligi(scotr_bul(secili), "tr")
                     render_scout_raporu(secili, "analiz")
                 # Benzer oyuncular (ana lig havuzu)
                 benzer_oyuncular_goster(secili, "analig")
