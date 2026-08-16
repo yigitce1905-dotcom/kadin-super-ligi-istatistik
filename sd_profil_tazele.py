@@ -120,8 +120,12 @@ def main():
             except ValueError:
                 pass
         if gecmis:
-            print(f"  ! Sözleşmesi GEÇMİŞTE kalan {len(gecmis)} kayıt "
-                  f"(SD güncellememiş ya da oyuncu serbest): "
+            # DİKKAT: "SD'de sözleşme bitti" ≠ "oyuncu serbest". SD yenilemeleri
+            # geç işliyor — Yiğit doğruladı: Ebru Topçu ve Cansu Nur Kaya
+            # yenilemişti ama SD hâlâ eski tarihi gösteriyordu. Nevcan Keleş ise
+            # sakattı. Bu liste bir SONUÇ değil, TEYİT KUYRUĞUDUR.
+            print(f"  ! SD'de sözleşme tarihi geçmiş {len(gecmis)} kayıt — "
+                  f"TEYİT GEREKLİ (SD yenilemeyi geç işleyebilir, serbest demek değil): "
                   + ", ".join(f"{a} ({b})" for a, b in gecmis[:5])
                   + (" ..." if len(gecmis) > 5 else ""))
 
