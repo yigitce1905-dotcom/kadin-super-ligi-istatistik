@@ -3714,7 +3714,8 @@ _MR_DANIS_EN = {
     "Yıldız": "Star", "Uzman": "Expert", "Potansiyel": "Potential",
     "Yeterli": "Adequate", "Yedek": "Backup",
 }
-_ROL_EN = {
+# ESKİ rol sözlüğü (2026-08 öncesi adlandırma) — yalnızca yedek olarak durur.
+_ROL_EN_ESKI1 = {
     "Dengeli Bek": "Balanced Full-Back", "Hedef Kanat": "Target Winger",
     "Hedef Santrfor": "Target Striker", "Hükmeden Kaleci": "Commanding Goalkeeper",
     "Kanat Bek": "Wing-Back", "Libero Kaleci": "Sweeper Keeper",
@@ -4868,7 +4869,7 @@ def render_rol_verimliligi(kayit: dict, anahtar: str = ""):
             _bas + "<div class='profil-kart' style='padding:12px 16px;'>"
             "<div class='tp-anametin' style='text-transform:none;'>"
             + t("En verimli rol", "Most efficient role")
-            + ": <b style='color:#1db954;'>" + _html.escape(r["kullanilan"] or "—")
+            + ": <b style='color:#1db954;'>" + _html.escape(scout_rol_goster(r["kullanilan"]) or "—")
             + "</b></div><div class='tp-arametin' style='margin-top:6px;'>"
             + t("Nitelik notları henüz ayırt edici değil (tümü aynı seviyede), "
                 "bu yüzden belirlenen rol gösteriliyor.",
@@ -4890,7 +4891,7 @@ def render_rol_verimliligi(kayit: dict, anahtar: str = ""):
         _satir += (
             "<div style='margin:7px 0;'>"
             "<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px;'>"
-            "<span class='tp-anametin'>" + _html.escape(ad) + _rozet + "</span>"
+            "<span class='tp-anametin'>" + _html.escape(scout_rol_goster(ad)) + _rozet + "</span>"
             "<b class='tp-anametin' style='color:" + _renk + ";'>" + f"{skor:.0f}" + "</b></div>"
             "<div style='height:6px;background:#1a2233;border-radius:3px;margin-top:3px;'>"
             "<div style='height:6px;width:" + f"{_oran:.1f}" + "%;background:" + _renk
@@ -4907,7 +4908,7 @@ def render_rol_verimliligi(kayit: dict, anahtar: str = ""):
                   "background:#12281c;border:1px solid #1db95455;'>"
                   "<span class='tp-anametin' style='color:#1db954;text-transform:none;'>"
                   + t("Yetkinliklerine göre ", "Based on her attributes, ")
-                  + "<b>" + _html.escape(en_iyi[0]) + "</b>"
+                  + "<b>" + _html.escape(scout_rol_goster(en_iyi[0])) + "</b>"
                   + t(" rolünde daha verimli olabilir", " could be more efficient")
                   + _fark + "</span></div>")
     elif kullanilan:
@@ -5351,7 +5352,7 @@ def render_scouting_detay(tam_isim):
     # vücut tipi tek satırda birleşti.
     _mevki_kod = [k for k in (_kadro.get("mevki") or []) if str(k).strip()]
     _mevki_g = "-".join(_mevki_kod) if _mevki_kod else mevki_disp(mevki)
-    _vucut = (_kadro.get("vucut_tipi") or "").strip()
+    _vucut = vucut_goster((_kadro.get("vucut_tipi") or "").strip())
     _boy_tip = " / ".join(x for x in (boy if boy != "—" else "", _vucut) if x)
     _bolge_g = bolge_goster(_kadro.get("bolge", ""))
     _lig_g = (_kadro.get("lig") or "").strip()
@@ -6053,7 +6054,8 @@ _NITELIK_EN = {
     "Yumruklama Kabiliyeti":"Punching","İletişim":"Communication",
     "Kaleci Dışı Meziyetler":"Outfield Ability",
 }
-_ROL_EN = {
+# ESKİ rol sözlüğü #2 (OS/BK/SV ekli adlandırma) — yalnızca yedek.
+_ROL_EN_ESKI2 = {
     "*Mezzala":"*Mezzala","*Raumdeuter":"*Raumdeuter","*Versatile":"*Versatile","*Volante":"*Volante",
     "Dengeli BK":"Balanced FB","Derinden Oyun Kurucu OS":"Deep-Lying Playmaker MF","Dinamo OS":"Box-to-Box MF",
     "Hedef KT":"Target Winger","Hedef ST":"Target Man","Hücumcu BK":"Attacking FB",
@@ -6063,6 +6065,29 @@ _ROL_EN = {
     "Çakılı SV":"No-Nonsense CB","Çalışkan Hücum BK":"Hard-Working Att. FB","Çalışkan ST":"Pressing Forward",
     "Çapa OS":"Anchor MF","Çizgi KT":"Touchline Winger","İçe Kat Eden KT":"Inverted Winger",
 }
+
+def _rol_en_kur() -> dict:
+    """Rol TR→EN haritası. TEK DOĞRU KAYNAK Baran'ın matrisi: 34 rolün hem
+    Türkçe hem İngilizce adı orada. Eskiden iki ayrı _ROL_EN sözlüğü vardı ve
+    ikincisi birincisini EZİYORDU; sonuçta 34 rolün 33'ü İngilizce arayüzde
+    Türkçe kalıyordu (2026-08-17). Eski sözlükler yalnızca artık kullanılmayan
+    değerler için yedekte tutulur."""
+    harita = dict(_ROL_EN_ESKI1)
+    harita.update(_ROL_EN_ESKI2)
+    try:
+        import json as _j, pathlib as _p
+        _m = _j.loads((_p.Path(__file__).parent / "rol_matrisi.json")
+                      .read_text(encoding="utf-8"))
+        for _r in _m.get("roller", []):
+            if _r.get("ad") and _r.get("ad_en"):
+                harita[_r["ad"]] = _r["ad_en"]
+    except Exception:
+        pass
+    return harita
+
+
+_ROL_EN = _rol_en_kur()
+
 _TARZ_EN = {
     "Alanına Hakim Bir Liderdir":"A commanding leader in her area",
     "Başarılıı Plase veya Kavisli Şut/Orta Dener":"Tries placed or curled shots/crosses",
@@ -7093,7 +7118,7 @@ def render_ana_lig_profil(secili):
                                                   _st.get("mevki3")) if str(x or "").strip()]
         _tr_mevki = "-".join(_tr_mevki_kod)
         _tr_boy = _ilk_dolu(sd.get("Height"), _st.get("boy"))
-        _tr_tip = (_st.get("vucut_tipi") or "").strip()
+        _tr_tip = vucut_goster((_st.get("vucut_tipi") or "").strip())
         # Doğum tarihi ve yaş AYNI kaynaktan gelmeli: eskiden tarih sheet'ten,
         # yaş SD'den okunuyordu ve "19.07.1996 / 28 yaş" gibi kendi içinde
         # çelişen künyeler çıkıyordu.
