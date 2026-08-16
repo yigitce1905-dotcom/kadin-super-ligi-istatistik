@@ -155,6 +155,12 @@ def parse(metin: str) -> dict:
             "bolge":      deger_kanonlastir("bolge", hucre(r, i_bolge)),
             "mevki1":     hucre(r, c_mevki[0]).replace("-", "") if c_mevki else "",
             "mevki2":     hucre(r, c_mevki[1]).replace("-", "") if len(c_mevki) > 1 else "",
+            # Mevki 3 = "Playable Position". Sheet'te vardı ama okunmuyordu;
+            # Baran'ın yeni profil tasarımı mevkiyi 3'lü gösteriyor (CMF-RWB-RFB).
+            "mevki3":     hucre(r, c_mevki[2]).replace("-", "") if len(c_mevki) > 2 else "",
+            # Vücut Tipi (Mezomorf/Ektomorf/Endomorf) — Dünya parser'ında vardı,
+            # TR'de hiç okunmuyordu. Yeni tasarımda "Boy / Tip" olarak gösteriliyor.
+            "vucut_tipi": deger_kanonlastir("vucut_tipi", _ops("Vücut Tipi", "Vücut")),
             "rol":        deger_kanonlastir("rol", hucre(r, i_rol).replace("-", "")),
             "yas":        hucre(r, i_yas),
             "uyruk":      hucre(r, i_uyruk),

@@ -3750,6 +3750,24 @@ def rol_goster(m):
     return _ROL_EN.get(m, m) if EN else m
 def vucut_goster(m):
     return _VUCUT_EN.get(m, m) if EN else m
+_AYAK_TR = {"right": "Sağ", "left": "Sol", "both": "Çift",
+            "sağ": "Sağ", "sol": "Sol", "çift": "Çift"}
+_AYAK_EN = {"Sağ": "Right", "Sol": "Left", "Çift": "Both"}
+
+
+def _ayak_goster(sd_ayak: str, sheet_ayak: str = "") -> str:
+    """Güçlü ayak — Baran'ın kaynak kuralı: SoccerDonna esas alınır, ama SD
+    'Both/Çift' diyorsa Scouting is life dosyası baz alınır (orada hangi ayağın
+    baskın olduğu yazıyor). SD İngilizce döndüğü için ('right') TR arayüzde
+    çevrilmeden basılıyordu — 'GÜÇLÜ AYAK = Right' görünüyordu."""
+    sd_tr = _AYAK_TR.get((sd_ayak or "").strip().lower(), "")
+    sh_tr = _AYAK_TR.get((sheet_ayak or "").strip().lower(), "")
+    tr = sh_tr if (not sd_tr or sd_tr == "Çift") and sh_tr else (sd_tr or sh_tr)
+    if not tr:
+        return ""
+    return _AYAK_EN.get(tr, tr) if EN else tr
+
+
 def bolge_goster(m):
     return _BOLGE_EN.get(m, m) if EN else m
 def _lig_goster(m):
@@ -4718,8 +4736,15 @@ def _bolge_bul(kodlar):
             return _BOLGE_KOD_TERS[k2]
     return None
 
+# Sahada HER ZAMAN çizilen taban diziliş (sönük). Baran'ın profil tasarımında
+# saha boş değil: 11 kişilik siluet duruyor ve oyuncunun mevkileri onun üstünde
+# yeşil vurgulanıyor — böylece "hangi mevki" değil "dizilişin neresi" okunuyor.
+_SAHA_TABAN = ["GK", "LB", "LCB", "RCB", "RB", "DMF", "LMF", "CMF", "RMF",
+               "LW", "RW", "ST"]
+
+
 def _pozisyon_saha(kodlar) -> str:
-    """Verilen mevki kodları için mini saha SVG'si (ilk kod = birincil, parlak)."""
+    """Mini saha SVG'si: sönük taban diziliş + oyuncunun mevkileri (ilk kod parlak)."""
     seen = []
     for k in (kodlar or []):
         k = (k or "").upper().strip()
@@ -4727,7 +4752,14 @@ def _pozisyon_saha(kodlar) -> str:
             seen.append(k)
     if not seen:
         return ""
-    nokta = ""
+    # Taban siluet: oyuncunun mevkileriyle ÇAKIŞANLAR çizilmez (üstüne yeşil gelecek).
+    # Çakışma koordinat bazlı: RB ile RFB aynı noktada, iki daire üst üste binmesin.
+    _dolu = {_SAHA_KONUM[k] for k in seen}
+    nokta = "".join(
+        f"<circle cx='{_SAHA_KONUM[b][0]}' cy='{_SAHA_KONUM[b][1]}' r='6.4' "
+        f"fill='#16261d' stroke='#2f6b4a' stroke-width='0.7'/>"
+        for b in _SAHA_TABAN
+        if b in _SAHA_KONUM and _SAHA_KONUM[b] not in _dolu)
     for i, k in enumerate(seen):
         x, y = _SAHA_KONUM[k]
         # Nokta yazıları = Ara Yazı (kalın BEYAZ); birincil dolgu koyulaştırıldı
@@ -4737,7 +4769,7 @@ def _pozisyon_saha(kodlar) -> str:
         else:
             fill, r, tcol = "#15803d", 8, "#ffffff"
         nokta += (f"<circle cx='{x}' cy='{y}' r='{r}' fill='{fill}' stroke='#0a3d1f' stroke-width='0.8'/>"
-                  f"<text x='{x}' y='{y+2.3}' text-anchor='middle' font-size='6.2' font-weight='800' "
+                  f"<text x='{x}' y='{y+2.3}' text-anchor='middle' font-size='5.6' font-weight='800' "
                   f"fill='{tcol}' font-family='Sora,monospace'>{k}</text>")
     return (
         "<svg viewBox='0 0 100 132' width='100%' style='max-width:188px;display:block;margin:0 auto;'>"
@@ -5108,7 +5140,8 @@ def render_scouting_detay(tam_isim):
     boy      = _boy_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("boy", ""),
                            sd.get("Height", "")) or "—"
     mevki    = sd.get("Position", "—")
-    ayak     = sd.get("Foot", "—")
+    ayak     = _ayak_goster(sd.get("Foot", ""),
+                            birlesik_scout_yukle().get(tam_isim, {}).get("ayak", ""))
     sozlesme = _kontrat_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("sozlesme", ""),
                                sd.get("Contract until", ""))
     vatandas = sd.get("Nationality", "—")
@@ -5161,19 +5194,37 @@ def render_scouting_detay(tam_isim):
         if _trm in _MEVKI_SAHA_KOD:
             _saha_kod = [_MEVKI_SAHA_KOD[_trm]]
     _saha_svg = _pozisyon_saha(_saha_kod)
+    # ── Künye kutuları — Baran'ın profil tasarımı (2026-08) ───────────────────
+    # Gruplama Kişisel/Futbolcu/Diğer değil, Kişisel/Futbolcu/KULÜP oldu: sözleşme
+    # ve değer artık "Diğer"e değil kulüp bloğuna ait, lig ve takım da yanlarında.
+    # Mevki 3'lü gösteriliyor (Ana-Alternatif-Oynayabilir: CMF-RWB-LWB), boy ile
+    # vücut tipi tek satırda birleşti.
+    _mevki_kod = [k for k in (_kadro.get("mevki") or []) if str(k).strip()]
+    _mevki_g = "-".join(_mevki_kod) if _mevki_kod else mevki_disp(mevki)
+    _vucut = (_kadro.get("vucut_tipi") or "").strip()
+    _boy_tip = " / ".join(x for x in (boy if boy != "—" else "", _vucut) if x)
+    _bolge_g = bolge_goster(_kadro.get("bolge", ""))
+    _lig_g = (_kadro.get("lig") or "").strip()
+    _takim_g = (_kadro.get("kulup") or "").strip()
+    # 2. Uyruk = ikinci pasaport ('milli_takim' alanı — ad yanıltıcı, bkz. üstteki
+    # not). Millî takım uyruğu ise _milli'de ve ilk satırda gösteriliyor.
+    _ikinci_uyruk = (_kadro.get("milli_takim") or "").strip()
     _kutu_grp = [
-        (f"👤 {t('Kişisel','Personal')}", [
-            (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_uyruk_goster(vatandas))),
-            (f"📅 {t('Doğum','Born')}", dob),
+        (f"👤 {t('Kişisel Bilgiler','Personal Info')}", [
+            (f"🌍 {t('Uyruk','Nationality')}", ulke_goster(_milli or _uyruk_goster(vatandas))),
+            (f"🌐 {t('2. Uyruk','2nd Nationality')}", ulke_goster(_ikinci_uyruk)),
+            (f"📅 {t('Doğum Tarihi','Date of Birth')}", dob),
             (f"🎂 {t('Yaş','Age')}", _yas_g)]),
-        (f"⚽ {t('Futbolcu','Player')}", [
-            (f"📌 {t('Mevki','Position')}", mevki_disp(mevki)),
-            (f"📏 {t('Boy','Height')}", boy),
-            (f"🦶 {t('Ayak','Foot')}", ayak)]),
-        (f"📋 {t('Diğer','Other')}", [
+        (f"⚽ {t('Futbolcu Bilgileri','Footballer Info')}", [
+            (f"📍 {t('Bölge','Area')}", _bolge_g),
+            (f"📌 {t('Mevki','Position')}", _mevki_g),
+            (f"📏 {t('Boy / Tip','Height / Type')}", _boy_tip),
+            (f"🦶 {t('Güçlü Ayak','Strong Foot')}", ayak)]),
+        (f"📋 {t('Kulüp Bilgileri','Club Info')}", [
+            (f"🏆 {t('Lig','League')}", _lig_g),
+            (f"👕 {t('Takım','Team')}", _takim_g),
             (f"📄 {t('Sözleşme','Contract')}", sozlesme),
-            (f"💰 {t('Piyasa Değeri','Market Value')}", _deger),
-            (f"🏳️ {t('Milli Takım','National Team')}", ulke_goster(_milli))]),
+            (f"💰 {t('Değer','Value')}", _deger)]),
     ]
     def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
         # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
@@ -5182,6 +5233,7 @@ def render_scouting_detay(tam_isim):
         _so_ivme_ham = (_so.get("ivme") or "").strip()
         _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
         _so_var   = bool(_so.get("degerlendirildi"))
+        _so_notu  = bool((_so.get("scout_notu") or "").strip())
         _so_renk  = _scotr_renk(_scotr_puan(_so_nihai)) if _so_nihai else "#8899aa"
         _lst_kayit = _sd_norm_bul(leistung_data, tam_isim)   # STAŠKOVÁ↔STASKOVA toleransı
         _ls_kulup = [s for s in _lst_kayit.get("sezonlar", [])
@@ -5193,17 +5245,28 @@ def render_scouting_detay(tam_isim):
                 _szr = [s for s in _ls_kulup if s.get("sezon") == _sz]
                 _m = sum(int(s.get("mac") or 0) for s in _szr)
                 _g = sum(int(s.get("gol") or 0) for s in _szr)
+                _a = sum(int(s.get("asist") or 0) for s in _szr)
+                _dk = sum(int(s.get("dakika") or 0) for s in _szr)
+                # Baran'ın tasarımında sezon bloğu 4 rakam gösteriyor. Onun
+                # taslağındaki "Clean Sheets" bizde YOK (SD Leistungsdaten maç/
+                # gol/asist/sarı/dakika veriyor, kalecide bile clean sheet yok) →
+                # uydurmak yerine asist konuldu; kulüp adı başlığa taşındı.
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
                     '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
-                    + _buyuk(t("Son Sezon", "Latest Season")) + " · " + _sz + '</div>'
-                    '<div style="display:flex;gap:22px;margin-top:8px;">'
+                    + _buyuk(t("Sezon", "Season")) + " · " + _sz
+                    + ('<span class="tp-arametin" style="margin-left:8px;">'
+                       + str((_szr[0].get("kulup") or ""))[:22] + '</span>'
+                       if _szr[0].get("kulup") else "") + '</div>'
+                    '<div style="display:flex;gap:20px;margin-top:8px;flex-wrap:wrap;">'
                     '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(_m) + '</div>'
                     '<div class="tp-arametin">' + t("Maç", "Matches") + '</div></div>'
                     '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#1db954;">' + str(_g) + '</div>'
                     '<div class="tp-arametin">' + t("Gol", "Goals") + '</div></div>'
-                    '<div><div class="tp-anametin" style="margin-top:3px;">' + str((_szr[0].get("kulup") or ""))[:22] + '</div>'
-                    '<div class="tp-arametin">' + t("Kulüp", "Club") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#38bdf8;">' + str(_a) + '</div>'
+                    '<div class="tp-arametin">' + t("Asist", "Assists") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(_dk) + '</div>'
+                    '<div class="tp-arametin">' + t("Dakika", "Minutes") + '</div></div>'
                     '</div></div>', unsafe_allow_html=True)
             else:
                 st.markdown(
@@ -5217,17 +5280,23 @@ def render_scouting_detay(tam_isim):
             st.markdown(
                 '<div class="profil-kart" style="padding:12px 16px;">'
                 '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
-                + _buyuk(t("Scout Özeti", "Scout Summary")) + '</div>'
-                '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
+                + _buyuk(t("Gözlemcilik", "Scouting")) + '</div>'
+                '<div style="display:flex;gap:20px;margin-top:8px;align-items:flex-start;flex-wrap:wrap;">'
                 '<div><div class="tp-sekilli" style="font-family:monospace;color:' + _so_renk + ';">'
                 + (_so_nihai or "—") + '</div>'
-                '<div class="tp-arametin">' + t("Nihai Not", "Rating") + '</div></div>'
+                '<div class="tp-arametin">' + t("Nihai Not", "Note") + '</div></div>'
                 '<div><div class="tp-sekilli" style="color:#a78bfa;">' + _so_ivme + '</div>'
-                '<div class="tp-arametin">' + t("İvme", "Momentum") + '</div></div>'
-                '<div><div class="tp-sekilli">' + ("✅" if _so_var else "❎") + '</div>'
-                '<div class="tp-arametin">'
-                + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
-                + '</div></div>'
+                '<div class="tp-arametin">' + t("İvme", "Development") + '</div></div>'
+                # Baran'ın tasarımındaki iki ayrı satır: nitelik notları girilmiş mi
+                # (oyun içi analiz) ve serbest metin scout raporu var mı.
+                '<div><div class="tp-sekilli" style="color:'
+                + ("#1db954" if _so_var else "#64748b") + ';">'
+                + (t("Var", "Yes") if _so_var else t("Yok", "No")) + '</div>'
+                '<div class="tp-arametin">' + t("Oyun İçi Analiz", "In-Game Analysis") + '</div></div>'
+                '<div><div class="tp-sekilli" style="color:'
+                + ("#1db954" if _so_notu else "#64748b") + ';">'
+                + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
+                '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
                 '</div></div>', unsafe_allow_html=True)
 
     if _saha_svg:
@@ -6842,18 +6911,55 @@ def render_ana_lig_profil(secili):
         _sc_kayit = birlesik_scout_yukle().get(secili) or _scout_norm_bul(secili) or {}
         _sc_mevki = list(_sc_kayit.get("mevki") or [])
         _mevki_deger = " / ".join(_sc_mevki) if _sc_mevki else mevki_disp(sd.get("Position",""))
+        # ── Künye kutuları — Baran'ın profil tasarımı (2026-08) ───────────────
+        # Scouting profiliyle AYNI üç grup: Kişisel / Futbolcu / Kulüp. Bölge,
+        # vücut tipi, lig ve sözleşme scotr dosyasından gelir (SD'de yok).
+        _st = scotr_yukle().get(secili) or {}
+
+        def _ilk_dolu(*x):
+            """Baran'ın kaynak kuralı: künye alanlarında SoccerDonna esastır,
+            orada bilgi yoksa Scouting is life dosyasına düşülür."""
+            for v in x:
+                if str(v or "").strip() not in ("", "-", "?", "unknown", "None"):
+                    return str(v).strip()
+            return ""
+
+        _tr_mevki = "-".join(x for x in (_st.get("mevki1"), _st.get("mevki2"),
+                                         _st.get("mevki3")) if (x or "").strip())
+        _tr_boy = _ilk_dolu(sd.get("Height"), _st.get("boy"))
+        _tr_tip = (_st.get("vucut_tipi") or "").strip()
+        # Doğum tarihi ve yaş AYNI kaynaktan gelmeli: eskiden tarih sheet'ten,
+        # yaş SD'den okunuyordu ve "19.07.1996 / 28 yaş" gibi kendi içinde
+        # çelişen künyeler çıkıyordu.
+        _tr_dogum = _ilk_dolu(sd.get("Date of birth"), _st.get("dogum"))
+        _tr_yas = _ilk_dolu(_yas_hesapla(_tr_dogum), _st.get("yas"), sd.get("Age"))
         _kutu_grp = [
-            (f"👤 {t('Kişisel','Personal')}", [
-                (f"🌍 {t('Uyruk','Nationality')}", bayrakli_ulke(_uyruk_goster(sd.get("Nationality","")))),
-                (f"📅 {t('Doğum','Born')}", sd.get("Date of birth","")),
-                (f"🎂 {t('Yaş','Age')}", (_yas_hesapla(sd.get("Date of birth","")) or sd.get("Age","")))]),
-            (f"⚽ {t('Futbolcu','Player')}", [
-                (f"📌 {t('Mevki','Position')}", _mevki_deger),
-                (f"📏 {t('Boy','Height')}", sd.get("Height","")),
-                (f"🦶 {t('Ayak','Foot')}", (sd.get("Foot","") or "").capitalize())]),
-            (f"📋 {t('Diğer','Other')}", [
-                (f"🏟️ {t('Takım','Club')}", _guncel_kulup_goster(sd, row["TümTakımlar"] if transfer else row["Takım"])),
-                (f"💰 {t('Piyasa Değeri','Market Value')}", _mv if _mv not in ("unknown","?","") else ""),
+            (f"👤 {t('Kişisel Bilgiler','Personal Info')}", [
+                # Uyrukta SD DEĞİL sheet öncelikli: SD çift vatandaşlığı ayraçsız
+                # tek dize veriyor ("TurkeyGermany") ve tek bayrak basılamıyor.
+                # Baran'ın notu da bu alanın türetilmiş olduğunu söylüyor ("millî
+                # maça hangi ülkeyle çıktıysa"); o çıkarım sheet'te hazır duruyor.
+                (f"🌍 {t('Uyruk','Nationality')}", bayrakli_ulke(
+                    _ilk_dolu(_st.get("uyruk"), _ilk_uyruk(sd.get("Nationality", ""))))),
+                (f"🌐 {t('2. Uyruk','2nd Nationality')}",
+                 bayrakli_ulke(_uyruk_goster(_st.get("milli_takim", "")))),
+                (f"📅 {t('Doğum Tarihi','Date of Birth')}", _tr_dogum),
+                (f"🎂 {t('Yaş','Age')}", _tr_yas)]),
+            (f"⚽ {t('Futbolcu Bilgileri','Footballer Info')}", [
+                (f"📍 {t('Bölge','Area')}", bolge_goster(_st.get("bolge", ""))),
+                (f"📌 {t('Mevki','Position')}", _tr_mevki or _mevki_deger),
+                (f"📏 {t('Boy / Tip','Height / Type')}",
+                 " / ".join(x for x in (_tr_boy, _tr_tip) if x)),
+                (f"🦶 {t('Güçlü Ayak','Strong Foot')}",
+                 _ayak_goster(sd.get("Foot", ""), _st.get("ayak", "")))]),
+            (f"📋 {t('Kulüp Bilgileri','Club Info')}", [
+                (f"🏆 {t('Lig','League')}", _st.get("lig", "")),
+                (f"👕 {t('Takım','Team')}", _guncel_kulup_goster(sd, row["TümTakımlar"] if transfer else row["Takım"])),
+                (f"📄 {t('Sözleşme','Contract')}",
+                 _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
+                # Değer yalnızca SD'den okunuyordu; SD'de boş olan oyuncularda
+                # (örn. Busem Şeker) satır tamamen kayboluyordu → sheet yedeği.
+                (f"💰 {t('Değer','Value')}", _ilk_dolu(_mv, _st.get("deger"))),
                 (f"📍 {t('Doğum Yeri','Birthplace')}",
                  sd.get("Place of birth", "") or _tff_dogum_yeri(secili))]),
         ]
@@ -6872,8 +6978,12 @@ def render_ana_lig_profil(secili):
                         and _ygm2.get((m["hafta"], _kanon(_htk2.get(m["hafta"], row["Takım"])))) == 0)
                 except Exception:
                     _cs_ozet = None
-            _oz3 = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet) if _cs_ozet is not None
-                    else (t("Dakika", "Minutes"), dk))
+            # Baran'ın tasarımı: Maç · Gol · Gol Yenmeyen · Dakika. Clean sheet
+            # yalnızca kalecide hesaplanıyor; diğerlerinde o sütun düşer, dakika
+            # her hâlükârda gösterilir (eskiden ikisinden BİRİ gösteriliyordu).
+            _ek_kutu = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet)
+                        if _cs_ozet is not None else None)
+            _so_notu  = bool((scotr_yukle().get(secili, {}).get("scout_notu") or "").strip())
             _so = scotr_yukle().get(secili) or {}
             _so_nihai = (_so.get("nihai") or "").strip()
             _so_ivme_ham = (_so.get("ivme") or "").strip()
@@ -6891,24 +7001,32 @@ def render_ana_lig_profil(secili):
                     '<div class="tp-arametin">' + t("Maç", "Matches") + '</div></div>'
                     '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#1db954;">' + str(gol) + '</div>'
                     '<div class="tp-arametin">' + t("Gol", "Goals") + '</div></div>'
-                    '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#2979ff;">' + str(_oz3[1]) + '</div>'
-                    '<div class="tp-arametin">' + str(_oz3[0]) + '</div></div>'
+                    + ('<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#2979ff;">'
+                       + str(_ek_kutu[1]) + '</div>'
+                       '<div class="tp-arametin">' + str(_ek_kutu[0]) + '</div></div>'
+                       if _ek_kutu else "")
+                    + '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(dk) + '</div>'
+                    '<div class="tp-arametin">' + t("Dakika", "Minutes") + '</div></div>'
                     '</div></div>', unsafe_allow_html=True)
             with _oc2:
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
                     '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
-                    + _buyuk(t("Scout Özeti", "Scout Summary")) + '</div>'
-                    '<div style="display:flex;gap:22px;margin-top:8px;align-items:flex-start;">'
+                    + _buyuk(t("Gözlemcilik", "Scouting")) + '</div>'
+                    '<div style="display:flex;gap:20px;margin-top:8px;align-items:flex-start;flex-wrap:wrap;">'
                     '<div><div class="tp-sekilli" style="font-family:monospace;color:' + _so_renk + ';">'
                     + (_so_nihai or "—") + '</div>'
-                    '<div class="tp-arametin">' + t("Nihai Not", "Rating") + '</div></div>'
+                    '<div class="tp-arametin">' + t("Nihai Not", "Note") + '</div></div>'
                     '<div><div class="tp-sekilli" style="color:#a78bfa;">' + _so_ivme + '</div>'
-                    '<div class="tp-arametin">' + t("İvme", "Momentum") + '</div></div>'
-                    '<div><div class="tp-sekilli">' + ("✅" if _so_var else "❎") + '</div>'
-                    '<div class="tp-arametin">'
-                    + (t("Detay Rapor Var", "Full Report") if _so_var else t("Detay Rapor Yok", "No Report"))
-                    + '</div></div>'
+                    '<div class="tp-arametin">' + t("İvme", "Development") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="color:'
+                    + ("#1db954" if _so_var else "#64748b") + ';">'
+                    + (t("Var", "Yes") if _so_var else t("Yok", "No")) + '</div>'
+                    '<div class="tp-arametin">' + t("Oyun İçi Analiz", "In-Game Analysis") + '</div></div>'
+                    '<div><div class="tp-sekilli" style="color:'
+                    + ("#1db954" if _so_notu else "#64748b") + ';">'
+                    + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
+                    '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
                     '</div></div>', unsafe_allow_html=True)
 
         if _saha_svg:
