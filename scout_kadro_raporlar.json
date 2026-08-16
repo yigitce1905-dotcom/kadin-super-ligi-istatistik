@@ -55,7 +55,7 @@
       "CFW",
       "AMF"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Serbest",
     "lig": "",
     "deger": "€95.000",
@@ -248,7 +248,7 @@
       "CMF",
       "AMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "AS FAR",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€25.000",
@@ -835,7 +835,7 @@
       "RFB",
       "RWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Valencia CF",
     "lig": "🇪🇸 Liga F",
     "deger": "€65.000",
@@ -930,7 +930,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Wydad Casablanca",
     "lig": "🇫🇷 2e Ligue",
     "deger": "€25.000",
@@ -1026,7 +1026,7 @@
       "CMF",
       "2ndST"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Serbest",
     "lig": "",
     "deger": "€90.000",
@@ -1122,7 +1122,7 @@
       "CFW",
       "2ndST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Serbest",
     "lig": "",
     "deger": "€70.000",
@@ -1310,7 +1310,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Etincelles",
     "lig": "🇷🇼 Shampiyona 1",
     "deger": "",
@@ -1405,7 +1405,7 @@
       "2ST",
       "RWF"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Piteå IF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -1502,7 +1502,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Houston Dash",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -1795,7 +1795,7 @@
       "RWF",
       "2ST"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -1889,7 +1889,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Gotham FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -2170,7 +2170,7 @@
       "DMF",
       "AMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Bay FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€225.000",
@@ -2267,7 +2267,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -2362,7 +2362,7 @@
       "RWF",
       "2ST"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -2455,7 +2455,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "VfL Stenum",
     "lig": "🇩🇪 Regionalliga West",
     "deger": "",
@@ -2547,7 +2547,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Pachuca Femenil",
     "lig": "🇲🇽 Liga MX",
     "deger": "€45.000",
@@ -2641,7 +2641,7 @@
       "CFW",
       "AMF"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Notre Dame Fighting Irish",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
@@ -2736,7 +2736,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Tennessee",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
@@ -2831,7 +2831,7 @@
       "RFB",
       "RWF"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "FC Basel 1893 U20",
     "lig": "🇨🇭 Super League U20",
     "deger": "€5.000",
@@ -2926,7 +2926,7 @@
       "RWF",
       "RFB"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "FH Hafnarfjörður",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
@@ -3021,7 +3021,7 @@
       "CMF",
       "LWB"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "SC Freiburg",
     "lig": "🇨🇭 Super League",
     "deger": "€45.000",
@@ -3118,7 +3118,7 @@
       "CMF",
       "2ST"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Internazionale Milano",
     "lig": "🇮🇹 Serie A",
     "deger": "",
@@ -3213,7 +3213,7 @@
       "CMF",
       "AMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Al-Yarmuk SC",
     "lig": "🇰🇼 الدرجة الأولى",
     "deger": "",
@@ -3307,7 +3307,7 @@
       "CMF",
       "DMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Valencia Féminas Club de Fútbol",
     "lig": "🇳🇬 NWFL Premier",
     "deger": "€8.000",
@@ -3401,7 +3401,7 @@
       "CMF",
       "RWB"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Portland Thorns FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€350.000",
@@ -3498,7 +3498,7 @@
       "DMF",
       "LCB"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Serbest",
     "lig": "",
     "deger": "€70.000",
@@ -3592,7 +3592,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -3688,7 +3688,7 @@
       "CFW",
       "AMF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "AFC Toronto",
     "lig": "🇨🇳 超级联赛",
     "deger": "€35.000",
@@ -3784,7 +3784,7 @@
       "AMF",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "AJ Auxerre",
     "lig": "🇫🇷 3e Ligue",
     "deger": "",
@@ -3880,7 +3880,7 @@
       "AMF",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Ferencvárosi TC",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
@@ -3976,7 +3976,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Vitória SC Guimarães",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
@@ -4939,7 +4939,7 @@
       "RWF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -5033,7 +5033,7 @@
       "LWB",
       "LWF"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "ASO Burkina Faso",
     "lig": "🇧🇫 W-Championnat D1",
     "deger": "",
@@ -5130,7 +5130,7 @@
       "LFB",
       "LCB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "VfL Wolfsburg",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€180.000",
@@ -5226,7 +5226,7 @@
       "RFB",
       "RWF"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "US Saint-Malo",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
@@ -7374,7 +7374,7 @@
       "AMF",
       "LWF"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -7469,7 +7469,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "OL Lyonnes",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€700.000",
@@ -7567,7 +7567,7 @@
       "RFB",
       "LWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "AS FAR",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€55.000",
@@ -7664,7 +7664,7 @@
       "LWB",
       "LWF"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "London City Lionesses",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€30.000",
@@ -7759,7 +7759,7 @@
       "AMF",
       "RWF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "FC Nantes",
     "lig": "🇨🇭 Super League",
     "deger": "€40.000",
@@ -7855,7 +7855,7 @@
       "CMF",
       "2ST"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Eintracht Frankfurt II",
     "lig": "🇩🇪 Bundesliga 2",
     "deger": "€15.000",
@@ -7957,7 +7957,7 @@
       "2ndST",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Paris Saint-Germain",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€90.000",
@@ -8052,7 +8052,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Etincelles",
     "lig": "🇷🇼 Shampiyona 1",
     "deger": "",
@@ -8148,7 +8148,7 @@
       "2ST",
       "LWF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Kansas City Current",
     "lig": "🇺🇸 NWSL",
     "deger": "€450.000",
@@ -8436,7 +8436,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "BSC YB Frauen",
     "lig": "🇨🇭 Super League",
     "deger": "",
@@ -8531,7 +8531,7 @@
       "CFW",
       "RWF"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "FC Rosengård",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "€35.000",
@@ -8627,7 +8627,7 @@
       "RWF",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Chelsea FC Jugend",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL U23",
     "deger": "€5.000",
@@ -8923,7 +8923,7 @@
     "mevki": [
       "GK"
     ],
-    "rol": "Libero Kaleci",
+    "rol": "Süpürücü Kaleci",
     "kulup": "Brighton & Hove Albion",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€85.000",
@@ -10275,7 +10275,7 @@
       "AMF",
       "2ndST"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Shanxi Xihua",
     "lig": "🇪🇸 Liga F",
     "deger": "€12.000",
@@ -10370,7 +10370,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Ottawa Rapid FC",
     "lig": "🇪🇸 Liga F",
     "deger": "€30.000",
@@ -10464,7 +10464,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Leeds Modernians",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WNL",
     "deger": "€30.000",
@@ -10504,7 +10504,7 @@
     "mevki": [
       "GK"
     ],
-    "rol": "Libero Kaleci",
+    "rol": "Süpürücü Kaleci",
     "kulup": "AS FAR",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€45.000",
@@ -11357,7 +11357,7 @@
       "LCB",
       "LFB"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€90.000",
@@ -11542,7 +11542,7 @@
       "CMF",
       "RWF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "FC Rapperswil-Jona",
     "lig": "🇨🇭 Super League",
     "deger": "€5.000",
@@ -11640,7 +11640,7 @@
       "CMF",
       "RWB"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "TSV Limmer",
     "lig": "🇩🇪 Bundesliga 2",
     "deger": "€5.000",
@@ -11737,7 +11737,7 @@
       "DMF",
       "AMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Sparta Rotterdam",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€5.000",
@@ -11828,7 +11828,7 @@
       "DMF",
       "CMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "BK Häcken FF",
     "lig": "🇸🇪 Elitettan",
     "deger": "€80.000",
@@ -11929,7 +11929,7 @@
       "CMF",
       "DMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "West Ham United",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€25.000",
@@ -12026,7 +12026,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "1. FSV Mainz 05 U19",
     "lig": "🇩🇪 U19 FV",
     "deger": "€5.000",
@@ -12120,7 +12120,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Hakkarigücü",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
@@ -13463,7 +13463,7 @@
       "LFB",
       "LWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "OL Lyonnes",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€820.000",
@@ -13560,7 +13560,7 @@
       "LWB",
       "LFB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Tooro Queens",
     "lig": "🇺🇬 FWSL",
     "deger": "€5.000",
@@ -13654,7 +13654,7 @@
       "RFB",
       "RWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Angel City FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
@@ -13751,7 +13751,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "FC Domont",
     "lig": "🇪🇸 Liga F",
     "deger": "€40.000",
@@ -13791,7 +13791,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Chicago Stars FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€80.000",
@@ -14568,7 +14568,7 @@
       "LCB",
       "LFB"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "",
     "lig": "",
     "deger": "",
@@ -14751,7 +14751,7 @@
       "CMF",
       "AMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "€10.000",
@@ -14856,7 +14856,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Barcelona SC Guayaquil",
     "lig": "🇪🇨 Superliga",
     "deger": "€5.000",
@@ -15034,7 +15034,7 @@
       "RFB",
       "CMF"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "ÍF Grótta",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
@@ -16007,7 +16007,7 @@
       "CMF",
       "2ST"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "Denver Summit FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€650.000",
@@ -16109,7 +16109,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Inter",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€65.000",
@@ -16299,7 +16299,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "SF Damaiense",
     "lig": "🇵🇹 Liga BPI",
     "deger": "€5.000",
@@ -17949,7 +17949,7 @@
       "RFB",
       "DMF"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "€15.000",
@@ -18225,7 +18225,7 @@
       "DMF",
       "CMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Carolina Ascent FC",
     "lig": "🇺🇸 USL Super",
     "deger": "",
@@ -18318,7 +18318,7 @@
       "DMF",
       "CMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Lexington SC",
     "lig": "🇺🇸 USL Super",
     "deger": "",
@@ -18412,7 +18412,7 @@
       "DMF",
       "CMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Manchester City",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
@@ -18508,7 +18508,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "SK Brann",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
@@ -18603,7 +18603,7 @@
       "LWF",
       "AMF"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "Toulouse FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€10.000",
@@ -18701,7 +18701,7 @@
       "LWF",
       "RWB"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
@@ -18796,7 +18796,7 @@
       "CMF",
       "AMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Athlone Town",
     "lig": "🇮🇪 Premier Division",
     "deger": "",
@@ -18890,7 +18890,7 @@
       "LWF",
       "CMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "ABB Fomget SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€10.000",
@@ -18983,7 +18983,7 @@
       "CFW",
       "2ndST"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Al-Hilal",
     "lig": "🇺🇸 NWSL",
     "deger": "€150.000",
@@ -19407,7 +19407,7 @@
       "RCB",
       "RWB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Carolina Ascent FC",
     "lig": "🇺🇸 USL Super",
     "deger": "",
@@ -21202,7 +21202,7 @@
       "RFB",
       "RWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Fenerbahçe SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€35.000",
@@ -21300,7 +21300,7 @@
       "RWB",
       "RWF"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "€60.000",
@@ -21397,7 +21397,7 @@
       "AMF",
       "RWB"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "RB Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€25.000",
@@ -21438,7 +21438,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "SD Éibar",
     "lig": "🇪🇸 2.º Federación",
     "deger": "",
@@ -21533,7 +21533,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Gotham FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€250.000",
@@ -21729,7 +21729,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Liaoning Club",
     "lig": "🇨🇳 超级联赛",
     "deger": "",
@@ -21823,7 +21823,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Le Mans",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
@@ -21863,7 +21863,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Lokomotive Moskau",
     "lig": "🇭🇷 1. HNLŽ",
     "deger": "",
@@ -21956,7 +21956,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Club Tijuana",
     "lig": "🇲🇽 Liga MX",
     "deger": "€25.000",
@@ -24745,7 +24745,7 @@
       "2ST",
       "RCB"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "SC Internacional",
     "lig": "🇧🇷 Série A",
     "deger": "",
@@ -24786,7 +24786,7 @@
       "CFW",
       "LWF"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "HB Køge",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
@@ -24866,7 +24866,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "ETO FC Győr",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
@@ -24906,7 +24906,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Internazionale Milano",
     "lig": "🇮🇹 Serie A",
     "deger": "",
@@ -24985,7 +24985,7 @@
     "mevki": [
       "2ST"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Górnik Lęczna",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
@@ -25026,7 +25026,7 @@
       "CFW",
       "RWF"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "ŽNK Mura",
     "lig": "🇸🇮 Nogometna Liga",
     "deger": "",
@@ -25067,7 +25067,7 @@
       "2ST",
       "AMF"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Olympique Marseille",
     "lig": "🇺🇸 USL Super",
     "deger": "",
@@ -25153,7 +25153,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Yardımcı Forvet",
+    "rol": "Yardımcı Santrfor",
     "kulup": "Newcastle United",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
@@ -26092,7 +26092,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "FC Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -26171,7 +26171,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Spartak Moskau",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
@@ -26211,7 +26211,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Zenit St. Petersburg",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
@@ -26252,7 +26252,7 @@
       "RCB",
       "MCB"
     ],
-    "rol": "Komple Santrfor",
+    "rol": "Komple #9",
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€500.000",
@@ -26565,7 +26565,7 @@
       "DMF",
       "CMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
@@ -26607,7 +26607,7 @@
       "AMF",
       "RWF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Újpest FC",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
@@ -26649,7 +26649,7 @@
       "DMF",
       "RFB"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "SK Brann",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
@@ -26690,7 +26690,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Monte Real",
     "lig": "🇵🇹 Nacional II Divisão",
     "deger": "",
@@ -26731,7 +26731,7 @@
       "CMF",
       "DMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Arsenal FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€325.000",
@@ -26811,7 +26811,7 @@
     "mevki": [
       "DMF"
     ],
-    "rol": "Derinden Oyun Kurucu",
+    "rol": "Derin Oyun Kurucu",
     "kulup": "Everton FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
@@ -26893,7 +26893,7 @@
       "LWF",
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "€30.000",
@@ -26935,7 +26935,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Logroño United",
     "lig": "🇪🇸 Liga F",
     "deger": "",
@@ -26977,7 +26977,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "SL Benfica",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
@@ -27057,7 +27057,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Al-Amal",
     "lig": "🇸🇦 SWPL",
     "deger": "",
@@ -27151,7 +27151,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Malmö FF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -27237,7 +27237,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Vittsjö GIK",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -27316,7 +27316,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "BK Häcken FF",
     "lig": "🇸🇪 Elitettan",
     "deger": "",
@@ -27356,7 +27356,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Çalışkan Forvet",
+    "rol": "Çalışkan Santrfor",
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
@@ -27461,7 +27461,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "Aris Ladies FC",
     "lig": "🇨🇾 Πρωτάθλημα",
     "deger": "",
@@ -27503,7 +27503,7 @@
       "LWB",
       "RWF"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "Manchester United",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
@@ -27604,7 +27604,7 @@
       "RFB",
       "LFB"
     ],
-    "rol": "Çalışkan Çizgi Oyuncusu",
+    "rol": "Çalışkan Kenar",
     "kulup": "Newcastle United",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€90.000",
@@ -27699,7 +27699,7 @@
     "mevki": [
       "CMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -27780,7 +27780,7 @@
       "LWB",
       "RWB"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Neftçi PFK",
     "lig": "🇦🇿 Yüksək Qızlar Liqası",
     "deger": "",
@@ -27874,7 +27874,7 @@
       "CMF",
       "DMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Racing Power FC",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
@@ -27916,7 +27916,7 @@
       "AMF",
       "RFB"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Zenit St. Petersburg",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
@@ -27958,7 +27958,7 @@
       "AMF",
       "DMF"
     ],
-    "rol": "Dinamo",
+    "rol": "Dinamo/İki Yönlü",
     "kulup": "Orlando Pride",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -28000,7 +28000,7 @@
       "LWF",
       "RWF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -28080,7 +28080,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -28121,7 +28121,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "USV Neulengbach (-2026)",
     "lig": "🇦🇹 Bundesliga",
     "deger": "",
@@ -28162,7 +28162,7 @@
       "2ST",
       "AMF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "SG 99 Andernach",
     "lig": "🇩🇪 Bundesliga 2",
     "deger": "",
@@ -28256,7 +28256,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "FC Como Women",
     "lig": "🇮🇹 Serie A",
     "deger": "€70.000",
@@ -28353,7 +28353,7 @@
       "CFW",
       "LWF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Union Touarga",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "",
@@ -28394,7 +28394,7 @@
       "CFW",
       "LWF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "€85.000",
@@ -28475,7 +28475,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Malmö FF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
@@ -28571,7 +28571,7 @@
       "2ST",
       "AMF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Göteborgs FC",
     "lig": "🇸🇪 Ettan Div. 1",
     "deger": "",
@@ -28612,7 +28612,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Trabzonspor AŞ",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
@@ -28654,7 +28654,7 @@
       "RWF",
       "LWF"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Houston Dash",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -28734,7 +28734,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Sahte 9",
+    "rol": "Sahte #9",
     "kulup": "Liverpool FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
@@ -29270,7 +29270,7 @@
       "RFB",
       "LFB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Serbest",
     "lig": "-",
     "deger": "",
@@ -29312,7 +29312,7 @@
       "RWF",
       "RFB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Hamburger SV",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -29408,7 +29408,7 @@
       "LFB",
       "LCB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Le Havre AC",
     "lig": "🇫🇷 2e Ligue",
     "deger": "",
@@ -29491,7 +29491,7 @@
       "RFB",
       "RCB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "GKS Katowice",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
@@ -29533,7 +29533,7 @@
       "RFB",
       "CMF"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "University of Louisville",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
@@ -29575,7 +29575,7 @@
       "LWF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Boston Legacy FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -29655,7 +29655,7 @@
       "LFB",
       "LWB"
     ],
-    "rol": "Oyun Kurucu Çizgi Oyuncusu",
+    "rol": "Oyun Kurucu Bek",
     "kulup": "Tottenham Hotspur",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
@@ -34009,7 +34009,7 @@
       "2ST",
       "RWF"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "SpG Südburgenland / TSV Hartberg",
     "lig": "🇦🇹 Bundesliga",
     "deger": "",
@@ -34051,7 +34051,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "Melbourne Victory",
     "lig": "🇦🇺 A-League",
     "deger": "",
@@ -34148,7 +34148,7 @@
       "CMF",
       "2ST"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "WFC Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "",
@@ -34189,7 +34189,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "AFC Toronto",
     "lig": "🇨🇦 NSL",
     "deger": "",
@@ -34276,7 +34276,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "Bayer 04 Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -34368,7 +34368,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "Odense Boldklub Q",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
@@ -34410,7 +34410,7 @@
       "2ST",
       "DMF"
     ],
-    "rol": "Eski Tip 10",
+    "rol": "Eski Tip #10",
     "kulup": "Chicago Stars FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -34491,7 +34491,7 @@
       "LFB",
       "LWF"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Servette FC",
     "lig": "🇨🇭 Super League",
     "deger": "",
@@ -34532,7 +34532,7 @@
       "RWB",
       "RFB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Logroño United",
     "lig": "🇪🇸 Liga F",
     "deger": "",
@@ -34574,7 +34574,7 @@
       "RFB",
       "LFB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Stade de Reims",
     "lig": "🇫🇷 2e Ligue",
     "deger": "",
@@ -34616,7 +34616,7 @@
       "LFB",
       "LWF"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Spartak Myjava",
     "lig": "🇲🇪 1ЖФЛ",
     "deger": "",
@@ -34658,7 +34658,7 @@
       "RWB",
       "LWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Malmö FF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "€90.000",
@@ -34740,7 +34740,7 @@
       "RWB",
       "LFB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Utah Royals FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
@@ -34827,7 +34827,7 @@
       "RFB",
       "RWB"
     ],
-    "rol": "Kanat Bek",
+    "rol": "Hücum Bek",
     "kulup": "Chelsea FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€350.000",
@@ -34907,7 +34907,7 @@
     "mevki": [
       "AMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Melbourne Victory",
     "lig": "🇦🇺 A-League",
     "deger": "",
@@ -35003,7 +35003,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Bulls FC Academy",
     "lig": "🇦🇺 Academy League",
     "deger": "",
@@ -35099,7 +35099,7 @@
       "2ST",
       "LWF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "SE Palmeiras",
     "lig": "🇧🇷 Série A",
     "deger": "",
@@ -35141,7 +35141,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Grasshopper Club Zürich",
     "lig": "🇨🇭 Super League",
     "deger": "",
@@ -35183,7 +35183,7 @@
       "AMF",
       "DMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Real Madrid CF",
     "lig": "🇪🇸 Liga F",
     "deger": "",
@@ -35272,7 +35272,7 @@
       "AMF",
       "CMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "SC  Casablanca",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "",
@@ -35313,7 +35313,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "SC Braga",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
@@ -35354,7 +35354,7 @@
       "AMF",
       "RWF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Malmö FF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "€65.000",
@@ -35436,7 +35436,7 @@
       "2ST",
       "LWF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Manchester City",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
@@ -35517,7 +35517,7 @@
       "CMF",
       "AMF"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Wolverhampton Wanderers",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
@@ -35559,7 +35559,7 @@
       "AMF",
       "2ST"
     ],
-    "rol": "Oyun Kurucu",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Durham Women FC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
@@ -35956,7 +35956,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Canberra United",
     "lig": "🇦🇺 A-League",
     "deger": "€40.000",
@@ -36036,7 +36036,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "SC Corinthians",
     "lig": "🇧🇷 Série A",
     "deger": "",
@@ -36078,7 +36078,7 @@
       "2ST",
       "RWF"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "RB Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -36157,7 +36157,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "RB Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
@@ -36198,7 +36198,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "RCD Espanyol",
     "lig": "🇪🇸 Liga F",
     "deger": "",
@@ -36278,7 +36278,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "ETO FC Győr",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
@@ -36319,7 +36319,7 @@
       "CFW",
       "RWF"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Gangjin WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "",
@@ -36360,7 +36360,7 @@
       "2ST",
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "CF Pachuca",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
@@ -36401,7 +36401,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Clube Condeixa",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
@@ -36442,7 +36442,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Alingsås IF",
     "lig": "🇸🇪 Elitettan",
     "deger": "",
@@ -36482,7 +36482,7 @@
     "mevki": [
       "CFW"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "Gotham FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€600.000",
@@ -36563,7 +36563,7 @@
       "CFW",
       "2ST"
     ],
-    "rol": "Tilki",
+    "rol": "Fırsatçı Golcü",
     "kulup": "",
     "lig": "",
     "deger": "",

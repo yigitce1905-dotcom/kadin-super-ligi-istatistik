@@ -164,31 +164,56 @@ _DEGER_VUCUT = {
     "meso-ectomorph": "Mezo-Ektomorf", "meso-endomorph": "Mezo-Endomorf",
 }
 # Sitenin mevcut Türkçe rol sözlüğüyle birebir örtüşenler
+# TEK KANONİK ROL SÖZLÜĞÜ (2026-08-17, Baran kararı).
+# Daha önce iki ayrı Türkçe adlandırma vardı: burada uydurulanlar ile Baran'ın
+# "Matrisler" dosyasındakiler. 14 rolde çakışıyorlardı. Matris adları esas
+# alındı; Baran'ın gerekçeleri:
+#   · "Hücum Bek" bir ROL adı, "Kanat Bek" ise bir MEVKİ adı — karıştırılmamalı
+#     (Overlapping Full-Back = Hücum Bek; Diligent Liner = Çalışkan Kenar,
+#      o da bir kanat bek rolüdür)
+#   · Forvet yerine Santrfor: "Yardımcı Santrfor" daha doğru kullanım
+#   · Poacher = "Fırsatçı Golcü" ("Tilki" değil)
+# TEK İSTİSNA: Old-School #10 → matris "Tam #10" diyor ama Baran "Eski Tip #10"
+# demenin daha doğru olduğunu söyledi.
+# AYRICA DÜZELTİLDİ: 'sweeper keeper' ile 'libero keeper' İKİSİ DE "Libero
+# Kaleci"ye gidiyordu — matris bunları ayrı roller olarak tanımlıyor.
 _DEGER_ROL = {
-    "line keeper": "Çizgi Kalecisi", "sweeper keeper": "Libero Kaleci",
-    "libero keeper": "Libero Kaleci", "regnant keeper": "Hükmeden Kaleci",
-    "playmaker winger": "Oyun Kurucu Kanat",   # Baran'ın kendi TR karşılığı veride mevcut
-    "playmaker": "Oyun Kurucu", "deep lying playmaker": "Derinden Oyun Kurucu",
-    "inverted winger": "İçe Kat Eden Kanat", "target winger": "Hedef Kanat",
-    "target striker": "Hedef Santrfor", "false #9": "Sahte 9",
-    "balanced full-back": "Dengeli Bek", "poacher": "Tilki",
-    "warrior": "Savaşçı", "dynamo": "Dinamo", "anchor": "Çapa",
-    "no-nonsense back": "Çakılı Stoper", "ball-playing back": "Oyun Kurucu Stoper",
-    "limited back": "Limitli Stoper", "overlapping full-back": "Kanat Bek",
-    "mezzala": "Mezzala", "volante": "Volante", "raumdeuter": "Raumdeuter",
-    # Baran'ın yeni tanımladığı roller — TR karşılıkları Yiğit/Baran'dan alındı (2026-08-13)
-    "assistant forward": "Yardımcı Forvet",
+    "line keeper": "Çizgi Kalecisi",
+    "sweeper keeper": "Süpürücü Kaleci",
+    "libero keeper": "Libero Kaleci",
+    "regnant keeper": "Hükmeden Kaleci",
     "complete back": "Komple Stoper",
-    "complete striker #9": "Komple Santrfor",
+    "limited back": "Limitli Stoper",
+    "no-nonsense back": "Çakılı Stoper",
     "cover back": "Pozisyoncu Stoper",
-    "diligent forward": "Çalışkan Forvet",
-    "diligent liner": "Çalışkan Çizgi Oyuncusu",
-    "inverted/playmaker liner": "Oyun Kurucu Çizgi Oyuncusu",
+    "ball-playing back": "Oyun Kurucu Stoper",
+    "traditional full-back": "Savunmacı Bek",
+    "balanced full-back": "Dengeli Bek",
+    "overlapping full-back": "Hücum Bek",
+    "inverted/playmaker liner": "Oyun Kurucu Bek",
+    "diligent liner": "Çalışkan Kenar",
+    "anchor": "Çapa",
+    "volante": "Volante",
+    "warrior": "Savaşçı",
+    "deep lying playmaker": "Derin Oyun Kurucu",
+    "dynamo": "Dinamo/İki Yönlü",
+    "mezzala": "Mezzala",
+    "playmaker": "Hücumcu Oyun Kurucu",
+    "old-school #10": "Eski Tip #10",        # istisna (matris: "Tam #10")
+    "false #9": "Sahte #9",
+    "assistant forward": "Yardımcı Santrfor",
+    "assistant striker": "Yardımcı Santrfor",
+    "raumdeuter": "Raumdeuter",
     "line winger": "Çizgi Kanat",
-    "old-school #10": "Eski Tip 10",
-    # 2026-08: sheet'te yeni beliren roller — Yiğit onayladı (2026-08-15)
-    "traditional full-back": "Klasik Bek",
-    "versatile player": "Çok Yönlü Oyuncu",
+    "inverted winger": "İçe Kat Eden Kanat",
+    "playmaker winger": "Oyun Kurucu Kanat",
+    "target winger": "Hedef Kanat",
+    "complete striker #9": "Komple #9",
+    "diligent forward": "Çalışkan Santrfor",
+    "poacher": "Fırsatçı Golcü",
+    "target striker": "Hedef Santrfor",
+    "versatile": "Çok Yönlü",
+    "versatile player": "Çok Yönlü",
 }
 # Emoji'si birebir eşleşen yetenek kümeleri (emoji farklıysa çevrilmez)
 # NOT: ⭐️ Star · ✨ Wondergirl · ⁉️ Unpredictable · ✔️ Young Talent için

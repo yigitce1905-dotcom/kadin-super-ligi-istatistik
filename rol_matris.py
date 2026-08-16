@@ -61,7 +61,7 @@ MEVKI_ESLEME = {
 def matrisi_cek() -> dict:
     """Sheets'ten Roles sekmesini çekip rol tanımlarını JSON'a yazar."""
     import gspread
-    from fetch_scout_kadro import _EN_TR_GENEL, _EN_TR_KALECI
+    from fetch_scout_kadro import _EN_TR_GENEL, _EN_TR_KALECI, _DEGER_ROL
 
     gc = gspread.service_account(filename=CREDS)
     ws = gc.open_by_key(MATRIS_ID).get_worksheet_by_id(GID_ROLES)
@@ -95,9 +95,14 @@ def matrisi_cek() -> dict:
         if not toplam:
             continue          # dosyada roller bir de BOŞ şablon olarak tekrarlıyor
         mevkiler = [m for m in _MEVKI_SUTUN if sayi(r[hdr.index(m)])]
+        # Görünen ad TEK kanonik sözlükten gelir (_DEGER_ROL): matris "Tam #10"
+        # diyor ama Baran "Eski Tip #10" tercih etti. Sözlükte yoksa matrisin
+        # kendi adı kullanılır.
+        ad_en = (r[1] or "").strip()
+        ad = _DEGER_ROL.get(ad_en.lower(), ad)
         roller.append({
             "ad": ad,
-            "ad_en": (r[1] or "").strip(),
+            "ad_en": ad_en,
             "mevkiler": mevkiler,
             "agirlik": agirlik,
             "toplam": toplam,
@@ -166,6 +171,42 @@ def rol_skorlari(kayit: dict, mevkiler=None, matris=None) -> list:
         sonuc.append((rol["ad"], round(ham * rol["katsayi"], 1),
                       round(100 * kapsanan / rol["toplam"], 1)))
     return sorted(sonuc, key=lambda x: -x[1])
+
+
+def oyuncu_mevkileri(kayit: dict) -> list:
+    """Kayıttan mevki kodlarını çıkarır (TR şeması mevki1/2/3, Dünya şeması liste)."""
+    if "mevki1" in kayit:
+        ham = [kayit.get("mevki1"), kayit.get("mevki2"), kayit.get("mevki3")]
+    else:
+        ham = kayit.get("mevki") or []
+    return [str(m).strip() for m in ham if str(m or "").strip()]
+
+
+def rol_onerisi(kayit: dict, matris=None) -> dict:
+    """Profil/analiz için hazır sonuç.
+
+    Dönen alanlar:
+      kullanilan  : scout'un atadığı rol (oyunda kullanıldığı rol)
+      siralama    : [(rol, skor, kapsam)] — mevkisine uyan roller
+      hesaplandi  : False ise notlar ayırt edici değil
+      berabere    : ilk iki rol 1 puandan yakınsa True
+
+    Baran'ın kuralı (2026-08-17): notları ayırt edici olmayan oyuncularda
+    (izleyemediği için hepsini en düşük seviyeye sabitlediği kayıtlar)
+    verimlilik hesabı YAPILMAZ — belirlenen rol neyse en verimli rol o
+    gösterilir. Bu kayıtlar zamanla azalacak."""
+    matris = matris or matris_yukle()
+    kullanilan = (kayit.get("rol") or "").strip()
+    mev = oyuncu_mevkileri(kayit)
+
+    if not ayirt_edici_mi(kayit):
+        return {"kullanilan": kullanilan, "siralama": [], "hesaplandi": False,
+                "berabere": False, "mevkiler": mev}
+
+    s = rol_skorlari(kayit, mev, matris)
+    return {"kullanilan": kullanilan, "siralama": s, "hesaplandi": bool(s),
+            "berabere": len(s) > 1 and abs(s[0][1] - s[1][1]) < 1.0,
+            "mevkiler": mev}
 
 
 def main():

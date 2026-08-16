@@ -4812,6 +4812,105 @@ def _pozisyon_saha(kodlar) -> str:
         f"{nokta}</svg>")
 
 
+@st.cache_data(ttl=3600)
+def _rol_matrisi_yukle():
+    """Baran'ın rol/nitelik matrisi (rol_matrisi.json). Yoksa None."""
+    try:
+        from rol_matris import matris_yukle
+        return matris_yukle()
+    except Exception:
+        return None
+
+
+def render_rol_verimliligi(kayit: dict, anahtar: str = ""):
+    """ROL VERİMLİLİĞİ bloğu — ANALİZ bölümünün en üstünde.
+
+    Amaç (Baran, 2026-08-17): sheet'teki 'Rol' alanı oyuncunun OYUNDA
+    KULLANILDIĞI roldür. Bu blok yetkinliklerine bakıp "şu rollerde daha
+    verimli olabilir" diyebilmek için var — yani teknik direktöre onun
+    görmediğini göstermek. Kullanılan rolle ayrışması hata değil, ürünün ta
+    kendisi."""
+    matris = _rol_matrisi_yukle()
+    if not matris:
+        return
+    try:
+        from rol_matris import rol_onerisi
+        r = rol_onerisi(kayit, matris)
+    except Exception:
+        return
+
+    _bas = ("<div class='tp-anabaslik' style='letter-spacing:0.08em;margin:2px 0 8px;'>"
+            + "🧭 " + _buyuk(t("Rol Verimliliği", "Role Efficiency")) + "</div>")
+
+    if not r["hesaplandi"]:
+        # Notları ayırt edici değil → hesap yapılmaz, belirlenen rol gösterilir.
+        st.markdown(
+            _bas + "<div class='profil-kart' style='padding:12px 16px;'>"
+            "<div class='tp-anametin' style='text-transform:none;'>"
+            + t("En verimli rol", "Most efficient role")
+            + ": <b style='color:#1db954;'>" + _html.escape(r["kullanilan"] or "—")
+            + "</b></div><div class='tp-arametin' style='margin-top:6px;'>"
+            + t("Nitelik notları henüz ayırt edici değil (tümü aynı seviyede), "
+                "bu yüzden belirlenen rol gösteriliyor.",
+                "Attribute grades are not yet discriminating (all at the same level), "
+                "so the assigned role is shown.")
+            + "</div></div>", unsafe_allow_html=True)
+        return
+
+    s = r["siralama"][:5]
+    en_iyi = s[0]
+    kullanilan = r["kullanilan"]
+    _satir = ""
+    for ad, skor, _kap in s:
+        _bu = (ad == kullanilan)
+        _oran = max(2.0, min(100.0, skor / 10.0))
+        _renk = "#1db954" if ad == en_iyi[0] else ("#a78bfa" if _bu else "#3b4a63")
+        _rozet = ("<span class='tp-arametin' style='color:#a78bfa;margin-left:6px;'>"
+                  + t("kullanılıyor", "in use") + "</span>") if _bu else ""
+        _satir += (
+            "<div style='margin:7px 0;'>"
+            "<div style='display:flex;justify-content:space-between;align-items:baseline;gap:8px;'>"
+            "<span class='tp-anametin'>" + _html.escape(ad) + _rozet + "</span>"
+            "<b class='tp-anametin' style='color:" + _renk + ";'>" + f"{skor:.0f}" + "</b></div>"
+            "<div style='height:6px;background:#1a2233;border-radius:3px;margin-top:3px;'>"
+            "<div style='height:6px;width:" + f"{_oran:.1f}" + "%;background:" + _renk
+            + ";border-radius:3px;'></div></div></div>")
+
+    # Asıl mesaj: kullanılan rolden daha verimli bir rol var mı?
+    _mesaj = ""
+    if kullanilan and en_iyi[0] != kullanilan:
+        _kul = next((x for x in r["siralama"] if x[0] == kullanilan), None)
+        _fark = f" (+{en_iyi[1] - _kul[1]:.0f})" if _kul else ""
+        # text-transform:none ŞART — .tp-anametin 'capitalize' taşıyor, o kısa
+        # etiketler için tasarlanmış; cümlede "Daha Verimli Olabilir" çıkıyordu.
+        _mesaj = ("<div style='margin-top:10px;padding:9px 12px;border-radius:8px;"
+                  "background:#12281c;border:1px solid #1db95455;'>"
+                  "<span class='tp-anametin' style='color:#1db954;text-transform:none;'>"
+                  + t("Yetkinliklerine göre ", "Based on her attributes, ")
+                  + "<b>" + _html.escape(en_iyi[0]) + "</b>"
+                  + t(" rolünde daha verimli olabilir", " could be more efficient")
+                  + _fark + "</span></div>")
+    elif kullanilan:
+        _mesaj = ("<div style='margin-top:10px;' class='tp-arametin'>"
+                  + t("Kullanıldığı rol, yetkinliklerine göre de en verimli rol.",
+                      "The role she is used in is also the most efficient one.")
+                  + "</div>")
+    if r["berabere"]:
+        _mesaj += ("<div style='margin-top:6px;' class='tp-arametin'>⚠️ "
+                   + t("İlk iki rol arasındaki fark 1 puandan az — fiilen berabere.",
+                       "The top two roles differ by less than 1 point — effectively tied.")
+                   + "</div>")
+
+    st.markdown(_bas + "<div class='profil-kart' style='padding:12px 16px;'>"
+                + _satir + _mesaj +
+                "<div class='tp-arametin' style='margin-top:9px;'>"
+                + t("Puan 1000 üzerinden; her rol kendi ağırlık toplamına göre "
+                    "eşitlenmiştir (kusursuz oyuncu her rolde 1000 alır).",
+                    "Score out of 1000; each role is normalised by its own total "
+                    "weight (a perfect player scores 1000 in every role).")
+                + "</div></div>", unsafe_allow_html=True)
+
+
 def _buyuk(s: str) -> str:
     """Dil-farkında BÜYÜK harf (Baran tipografi standardı). CSS uppercase Türkçe'de
     i→I bozduğu için TR modunda i→İ / ı→I çevirisi Python'da yapılır; emoji korunur."""
@@ -5411,7 +5510,8 @@ def render_scouting_detay(tam_isim):
         if not _bolum_acik("analiz"):
             _bolum_kilit("analiz")
         else:
-            render_scout_kadro_raporu(tam_isim, "analiz")   # Scout raporu + Nitelik İkizleri (başta)
+            render_rol_verimliligi(_kadro, "sc")            # Rol verimliliği (en üstte)
+            render_scout_kadro_raporu(tam_isim, "analiz")   # Scout raporu + Nitelik İkizleri
             benzer_oyuncular_goster(tam_isim, "scouting")
 
 
@@ -7442,8 +7542,9 @@ def render_ana_lig_profil(secili):
             if not _bolum_acik("analiz"):
                 _bolum_kilit("analiz")
             else:
-                # Scout raporu + Nitelik İkizleri (başta)
+                # Rol verimliliği (en üstte) + Scout raporu + Nitelik İkizleri
                 if scotr_yukle().get(secili):
+                    render_rol_verimliligi(scotr_yukle()[secili], "tr")
                     render_scout_raporu(secili, "analiz")
                 # Benzer oyuncular (ana lig havuzu)
                 benzer_oyuncular_goster(secili, "analig")
