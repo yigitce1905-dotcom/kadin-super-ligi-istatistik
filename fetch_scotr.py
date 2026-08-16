@@ -212,6 +212,11 @@ def parse(metin: str) -> dict:
 def main():
     metin = cek()
     veriler = parse(metin)
+    # Doğum tarihi varsa yaş ONDAN hesaplanır: elle yazılan yaş her yıl bayatlar,
+    # doğum tarihi bayatlamaz (Dünya tarafında bu yüzden kendi içinde çelişen
+    # kayıt çıkmıştı). Şu an TR'de tutarsızlık yok; kural koruma amaçlı.
+    from fetch_scout_kadro import yas_dogumdan_tazele
+    _yt = yas_dogumdan_tazele(veriler)
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(veriler, f, ensure_ascii=False, indent=2)
     n_ok = sum(1 for v in veriler.values() if v["degerlendirildi"])

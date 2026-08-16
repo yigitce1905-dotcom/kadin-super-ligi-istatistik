@@ -429,6 +429,25 @@ def parse(metin: str) -> dict:
     return veriler
 
 
+def yas_dogumdan_tazele(veriler: dict) -> int:
+    """Doğum tarihi varsa yaşı ONDAN hesapla (sheet'teki yazılı yaşı ezerek).
+
+    Elle yazılan yaş her yıl bayatlar, doğum tarihi bayatlamaz. Sheet'te bu
+    yüzden kendi içinde çelişen kayıtlar birikiyordu (ör. Blessing Demehin:
+    doğum 13.03.2002 ama yaş 28 yazıyordu — 24 olmalı). Aynı hatanın profil
+    ekranındaki sürümü 2026-08-16'da düzeltilmişti; kaynak veride de kapatıldı."""
+    n = 0
+    for k in veriler.values():
+        dg = (k.get("dogum") or "").strip()
+        if not dg:
+            continue
+        y = _yas_hesapla(dg)
+        if y and str(k.get("yas") or "") != str(y):
+            k["yas"] = y
+            n += 1
+    return n
+
+
 def yas_backfill(veriler: dict) -> int:
     """Yaşı/doğumu boş olanları SoccerDonna profilinden tamamla."""
     if not SD_YOL.exists():
@@ -503,6 +522,7 @@ def kulup_guncelle(veriler: dict) -> int:
 def main():
     veriler = parse(cek())
     bf = yas_backfill(veriler)
+    yt = yas_dogumdan_tazele(veriler)
     kg = kulup_guncelle(veriler)
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(veriler, f, ensure_ascii=False, indent=2)
@@ -510,6 +530,7 @@ def main():
     n_yas = sum(1 for v in veriler.values() if v.get("yas"))
     print(f"{len(veriler)} oyuncu ({n_ok} değerlendirilmiş) -> {CIKTI.name}")
     print(f"Yaş dolu: {n_yas}/{len(veriler)} (SD backfill: {bf})")
+    print(f"Yaş doğumdan tazelendi: {yt}")
     print(f"Kulüp SD'den güncellendi: {kg}")
 
 
