@@ -1,5 +1,5 @@
 """
-Türkiye Kadınlar Süper Ligi 2025-2026 — Streamlit Web Arayüzü
+Türkiye Kadınlar Süper Ligi — Streamlit Web Arayüzü (aktif sezon: SEZON_AKTIF)
 """
 # Sessiz segfault (exit 139) teşhisi: native çökmede Python yığınını stderr'e
 # döker → Render Logs'ta hangi satırda öldüğü görünür. Maliyeti sıfır.
@@ -70,9 +70,7 @@ def _pwa_kur() -> None:
     altından sunduğu için o kapsam elde edilemiyor — Android'de sayfa yine
     ana ekrana eklenebilir ama otomatik kurulum balonu çıkmaz.
     """
-    import streamlit.components.v1 as _bilesen
-    _bilesen.html(
-        """
+    _kod = """
 <script>
 (function () {
   try {
@@ -97,9 +95,19 @@ def _pwa_kur() -> None:
   } catch (e) { /* origin engellenirse sessizce vazgeç */ }
 })();
 </script>
-""",
-        height=0,
-    )
+"""
+    # st.components.v1.html kullanımdan kaldırılma yolunda ("will be removed in
+    # a future release → use st.iframe"). Yenisi varsa o kullanılır, yoksa
+    # eskisine düşülür. Her ikisi de patlarsa PWA'sız devam edilir — bir ana
+    # ekran kısayolu için sitenin tamamı riske atılmaz.
+    try:
+        if hasattr(st, "iframe"):
+            st.iframe(_kod, height=1)
+        else:
+            import streamlit.components.v1 as _bilesen
+            _bilesen.html(_kod, height=0)
+    except Exception:
+        pass
 
 
 _pwa_kur()
@@ -781,6 +789,26 @@ st.markdown(f"""<style>
 # Sezon seçici UI, SEZONLAR ≥ 2 olunca eklenecek (şimdilik görünmez altyapı).
 SEZON_AKTIF = "2025-26"
 SEZONLAR = ["2025-26"]
+
+
+def sezon_uzun(s: str = "") -> str:
+    """'2025-26' → '2025-2026' (UI ve PDF metinlerinde kullanılan uzun biçim).
+
+    Bitiş yılı, başlangıç yılına 1 eklenerek bulunur; ilk sürümde başlangıcın
+    ilk iki hanesi öne ekleniyordu ve yüzyıl dönümünde '1999-00' → '1999-1900'
+    çıkıyordu."""
+    s = s or SEZON_AKTIF
+    try:
+        return f"{int(s.split('-')[0])}-{int(s.split('-')[0]) + 1}"
+    except (ValueError, IndexError):
+        return s
+
+
+# Sezon etiketleri ARTIK SABİT YAZILMAZ (2026-08). Eskiden '2025-26' ve
+# '2025-2026' UI'da 9 ayrı yere gömülüydü; sezon dönümünde birini atlamak
+# sitenin yarısının eski sezonu göstermesi demekti. Tek doğru kaynak:
+# SEZON_AKTIF. Yeni sezonda yalnızca yukarıdaki iki satır güncellenir.
+SEZON_UZUN = sezon_uzun()
 
 def sezon_dosya(ad: str, sezon: str = "") -> pathlib.Path:
     """Sezonluk veri dosyası yolu: veri/<sezon>/<ad> varsa o, yoksa kök (geriye uyum)."""
@@ -1996,6 +2024,19 @@ def mac_sonuclari_yukle() -> list:
         with open(yol, encoding="utf-8") as f:
             return json.load(f)
     return []
+
+
+def mac_haftalari_sayisi() -> int:
+    """Oynanmış en yüksek hafta numarası (0 = veri yok).
+
+    Ana sayfa altyazısında '30 hafta' sabit yazılıydı; hafta sayısı takım
+    sayısına bağlı ve sezon başında 30 hafta verisi zaten yok. Artık veriden
+    okunuyor, sezon başlarken de doğru rakamı gösteriyor."""
+    try:
+        return max((int(m.get("hafta") or 0) for m in mac_sonuclari_yukle()),
+                   default=0)
+    except Exception:
+        return 0
 
 
 def _kanon(ad: str) -> str:
@@ -6596,7 +6637,8 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
 
     # Sezon istatistik kutuları (6'lı)
     pdf.set_text_color(*MOR); pdf.set_font("DV", "B", 10)
-    pdf.cell(0, 6, t("2025-26 SEZON İSTATİSTİKLERİ", "2025-26 SEASON STATS"), ln=1)
+    pdf.cell(0, 6, t(f"{SEZON_AKTIF} SEZON İSTATİSTİKLERİ",
+                     f"{SEZON_AKTIF} SEASON STATS"), ln=1)
     statlar = [(t("Maç", "Matches"), str(mac)), (t("İlk 11", "Starts"), f"{ilk11} (%{ilk11_oran})"),
                (t("Dakika", "Minutes"), str(dk)), (t("Gol", "Goals"), str(gol)),
                (t("Gol/Maç", "G/Match"), str(ort)),
@@ -6843,7 +6885,7 @@ def render_ana_lig_profil(secili):
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
                     '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
-                    + _buyuk(t("2025-26 Özet", "2025-26 Summary")) + '</div>'
+                    + _buyuk(t(f"{SEZON_AKTIF} Özet", f"{SEZON_AKTIF} Summary")) + '</div>'
                     '<div style="display:flex;gap:22px;margin-top:8px;">'
                     '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(mac) + '</div>'
                     '<div class="tp-arametin">' + t("Maç", "Matches") + '</div></div>'
@@ -7168,7 +7210,7 @@ def render_ana_lig_profil(secili):
                      box-shadow:0 8px 32px rgba(0,0,0,0.6);
                      border:1px solid #1db95444;">
                   <div style="font-size:0.68rem;letter-spacing:3px;color:#1db954aa;margin-bottom:4px">
-                    {t("KADIN FUTBOL · 2025-2026","WOMEN'S FOOTBALL · 2025-2026")}
+                    {t(f"KADIN FUTBOL · {SEZON_UZUN}", f"WOMEN'S FOOTBALL · {SEZON_UZUN}")}
                   </div>
                   <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
                   <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{_takim_kisa(row['Takım'])}</div>
@@ -7540,7 +7582,7 @@ if _ust_blok_goster:
   <p>{t("Uluslararası scouting havuzu · Türkiye Kadınlar Süper Ligi istatistikleri · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
         "International scouting pool · Turkish Women's Super League stats · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
   <div class="hero-chips">
-    <span class="hero-chip">{t("SEZON","SEASON")} <b>2025-26</b></span>
+    <span class="hero-chip">{t("SEZON","SEASON")} <b>{SEZON_AKTIF}</b></span>
     <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
     <span class="hero-chip"><b>{_hero_oyuncu}</b> {t("OYUNCU","PLAYERS")}</span>
     <span class="hero-chip"><b>{_hero_gol}</b> {t("GOL","GOALS")}</span>
@@ -9993,8 +10035,12 @@ def render_giris_ekrani():
     ad = st.session_state.get("kulup_ad", "")
     selam = f"{t('Hoş geldin','Welcome')}{(' ' + ad) if ad else ''} 👋"
     st.markdown(f"### {selam}")
-    st.caption(t("Türkiye Kadınlar Süper Ligi · 2025-2026 Sezonu · 30 hafta verisi",
-                 "Turkish Women's Super League · 2025-2026 Season · 30 weeks of data"))
+    # Hafta sayısı artık sabit değil: takım sayısı değişince 30 yanlış oluyordu.
+    _hafta = mac_haftalari_sayisi()
+    st.caption(t(f"Türkiye Kadınlar Süper Ligi · {SEZON_UZUN} Sezonu"
+                 + (f" · {_hafta} hafta verisi" if _hafta else ""),
+                 f"Turkish Women's Super League · {SEZON_UZUN} Season"
+                 + (f" · {_hafta} weeks of data" if _hafta else "")))
 
     if o:
         st.markdown(
@@ -10774,7 +10820,7 @@ if tab5:
 # SEKME 6 — EN İYİLER
 # ══════════════════════════════════════════════════════════════════════════════
 if tab6:
-    st.markdown(f"### 🌟 {t('2025-2026 Sezonu En İyileri', '2025-2026 Season Top Performers')}")
+    st.markdown(f"### 🌟 {t(f'{SEZON_UZUN} Sezonu En İyileri', f'{SEZON_UZUN} Season Top Performers')}")
     if df_tam.empty:
         st.info(t("Veri yok.", "No data."))
     elif deneme_modunda() or not tier_yeterli("basic"):
@@ -11380,7 +11426,7 @@ if tab_benim:
         else:
             # ── KULÜP GÖRÜNÜMÜ ────────────────────────────────────────
             st.markdown(f"##### 🏟️ {kulup_ad} — {t('Kadro Paneli', 'Squad Panel')}")
-            st.caption(f"2025-26 {t('sezonu','season')} · {kulup_takim}")
+            st.caption(f"{SEZON_AKTIF} {t('sezonu','season')} · {kulup_takim}")
 
             _tk_kelime = (kulup_takim or "").split()
             kadro = df_tam[df_tam["Takım"].str.contains(
@@ -12287,8 +12333,8 @@ st.markdown(
     f'-webkit-background-clip:text;background-clip:text;color:transparent;'
     f'font-weight:800;letter-spacing:0.12em;">'
     f'{t("KADIN FUTBOLU PLATFORMU","WOMEN\'S FOOTBALL PLATFORM")}</span><br>'
-    f'{t("Veri kaynağı: TFF — tff.org &amp; SoccerDonna | 2025-2026 Kadınlar Süper Ligi",
-         "Data sources: TFF — tff.org &amp; SoccerDonna | 2025-2026 Women\'s Super League")}<br>'
+    f'{t(f"Veri kaynağı: TFF — tff.org &amp; SoccerDonna | {SEZON_UZUN} Kadınlar Süper Ligi",
+         f"Data sources: TFF — tff.org &amp; SoccerDonna | {SEZON_UZUN} Women\'s Super League")}<br>'
     f'<a href="mailto:womensfootballscouting@gmail.com" '
     f'style="color:#8b93ab;text-decoration:none;">📧 womensfootballscouting@gmail.com</a>'
     f'</div>',
