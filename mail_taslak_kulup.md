@@ -70,7 +70,7 @@ Konu satırı üç seçenek — A önerim:
 ## KISA SÜRÜM (LinkedIn / WhatsApp / soğuk temas)
 
 > Hi [İSİM] — I run a women's football agency in Istanbul. We've built a scouted
-> database of 1,150 players (681 fully assessed on 58 attributes) because the
+> database of 1,150 players (681 fully assessed on 44 attributes) because the
 > usual data tools barely cover the women's game outside the top leagues.
 >
 > Right now we have 35 assessed free agents and 49 players out of contract on
