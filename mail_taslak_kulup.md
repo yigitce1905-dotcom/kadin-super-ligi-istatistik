@@ -40,7 +40,7 @@ Konu satırı üç seçenek — A önerim:
 > recruitment still comes down to who someone happens to have watched.
 >
 > We built our database on that gap. **1,150 players, 681 of them fully assessed
-> across 58 attributes** — technical, mental, physical and personal — graded by
+> across 44 attributes** — technical, mental, physical and personal — graded by
 > scouts who watched them, not derived from event data. Each player also carries a
 > role-fit analysis: which role her attributes actually suit, which is often not
 > the role she is being used in.
