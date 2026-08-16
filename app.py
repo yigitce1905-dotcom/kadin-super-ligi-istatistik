@@ -54,6 +54,56 @@ st.set_page_config(
     initial_sidebar_state="auto",  # "expanded" mobilde de zorla açıyordu (300/375px overlay) — "auto" masaüstünde açık, mobilde kapalı başlar
 )
 
+
+def _pwa_kur() -> None:
+    """Sayfayı telefona kurulabilir hâle getirir (ana ekrana ekle).
+
+    Streamlit'in index.html'i pakette olduğu için (site-packages) doğrudan
+    düzenlenemez — her kurulum/yükseltmede kaybolur. Bunun yerine etiketler
+    çalışma anında ana belgenin <head>'ine enjekte edilir. components.v1.html
+    srcdoc iframe kullanır, yani iframe ana sayfayla AYNI ORIGIN'dedir ve
+    window.parent.document erişilebilir.
+
+    Etkisi: iOS'ta 'Ana Ekrana Ekle' tam çalışır (adres çubuğu kalkar, ikon
+    ve tema rengi uygulanır). Android'in kurulum istemi ayrıca kök kapsamda
+    (/sw.js) bir service worker ister; Streamlit statik dosyaları /app/static
+    altından sunduğu için o kapsam elde edilemiyor — Android'de sayfa yine
+    ana ekrana eklenebilir ama otomatik kurulum balonu çıkmaz.
+    """
+    import streamlit.components.v1 as _bilesen
+    _bilesen.html(
+        """
+<script>
+(function () {
+  try {
+    var d = window.parent.document;
+    if (!d || d.getElementById('wfs-pwa')) return;          // bir kez yeter
+    var im = d.createElement('meta'); im.id = 'wfs-pwa';    // işaret
+    im.name = 'wfs-pwa'; im.content = '1'; d.head.appendChild(im);
+
+    function ekle(tag, attrs) {
+      var e = d.createElement(tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      d.head.appendChild(e);
+    }
+    ekle('link', {rel: 'manifest', href: '/app/static/manifest.json'});
+    ekle('link', {rel: 'apple-touch-icon', href: '/app/static/pwa-180.png'});
+    ekle('meta', {name: 'theme-color', content: '#0f1117'});
+    ekle('meta', {name: 'apple-mobile-web-app-capable', content: 'yes'});
+    ekle('meta', {name: 'mobile-web-app-capable', content: 'yes'});
+    ekle('meta', {name: 'apple-mobile-web-app-title', content: 'WF Scouting'});
+    ekle('meta', {name: 'apple-mobile-web-app-status-bar-style',
+                  content: 'black-translucent'});
+  } catch (e) { /* origin engellenirse sessizce vazgeç */ }
+})();
+</script>
+""",
+        height=0,
+    )
+
+
+_pwa_kur()
+
 # ─── Dil (TR varsayılan / EN hedefli sayfalar) ───
 # Tercih URL'de (?dil=EN) saklanır → sayfa yenilense de korunur.
 if "dil" not in st.session_state:
