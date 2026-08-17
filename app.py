@@ -4342,10 +4342,11 @@ def _yas_hesapla(dob):
         return 0
 
 
-def _boy_cm(boy):
-    import re
-    m = re.search(r"(\d)[,.](\d{2})", boy or "")
-    return int(m.group(1)) * 100 + int(m.group(2)) if m else 0
+# NOT: burada ikinci bir _boy_cm tanımı vardı ve yukarıdaki (satır ~3931)
+# sürümü EZİYORDU. Zayıf olan kazanıyordu: yalnızca "1,75" kalıbını tanıyor,
+# düz "175" cm'i tanımıyor ve bulamayınca None yerine 0 dönüyordu. 0, "en fazla
+# boy" filtresinde yanlışlıkla geçer (0 <= sınır). Şu anki veri tamamen "1,65"
+# biçiminde olduğu için zarar görünmüyordu; gizli mayın kaldırıldı (2026-08-17).
 
 
 def _poz_kategori(poz):
@@ -6122,8 +6123,23 @@ _TARZ_EN = {
     "Şov Oyunu Sergiler":"Plays with flair",
     "Şut Çekmek Yerine Pas Vermeyi Tercih Eder":"Prefers passing over shooting",
 }
-_YETENEK_EN_DEG = {"Elit":"Elite","Yetenekli":"Talented","Potansiyelli":"High Potential",
-                   "Gelişime Açık":"Developing","Sınırlı":"Limited"}
+# Yetenek kümesi — sözlük eski değerlerle doluydu (Elit/Yetenekli/…) ama sheet
+# 2026-08'de emoji'li kümelere geçti; SIFIR örtüşme vardı, yani 820 kayıtta
+# İngilizce arayüzde Türkçe görünüyordu. Değerler veriden birebir alındı.
+# Star/Wondergirl/Unpredictable/Young Talent zaten İngilizce (Baran Türkçe
+# karşılıklarını henüz vermedi) → aynen geçerler.
+_YETENEK_EN_DEG = {
+    "🍂 Tercih Dışı": "🍂 Out of Favour",
+    "🩹 Yedek": "🩹 Insufficient",
+    "🎁 Kalburüstü": "🎁 Inadvertent",
+    "🧒 Genç": "🧒 Callow",
+    "🏅 Önemli": "🏅 Important",
+    "🔮 Gelecek Vaad Eden": "🔮 Promising",
+    "💎 Eşsiz": "💎 Unique",
+    # eski değerler (arşiv kayıtları için yedekte)
+    "Elit": "Elite", "Yetenekli": "Talented", "Potansiyelli": "High Potential",
+    "Gelişime Açık": "Developing", "Sınırlı": "Limited",
+}
 _IKTISADI_EN = {"Fahiş":"Prohibitive","Yüksek":"High","Orta":"Medium",
                 "Orta-Düşük":"Mid-Low","Düşük":"Low","Ucuz":"Cheap",
                 "Tanımlanmamış":"Undefined"}
@@ -6159,9 +6175,15 @@ _TR_GORUS_OLUMSUZ = {"Reluctant", "Unwilling", "Gönülsüz",
                      "İsteksiz", "Çok İsteksiz"}
 
 # Yurtdışı İhtimali (TR sheet) — TR görüşünden AYRI bir skala
+# Yurtdışı ihtimali. Baran ölçeği 2026-08'de yeniledi; "Alakasız",
+# "Gelişmesi Gerek" ve "Tanımlanmamış" sözlükte yoktu → 227 kayıt İngilizce
+# arayüzde Türkçe kalıyordu. Sheet'in kendi İngilizce karşılıkları kullanıldı.
 _YURTDISI_EN = {"Çok Uygun": "Very Suitable", "Uygun": "Suitable",
+                "Gelişmesi Gerek": "Needs Improvement", "Uygun Değil": "Not Suitable",
+                "Alakasız": "Irrelevant", "Tanımlanmamış": "Unclassified",
+                # eski ölçekten kalanlar (arşiv kayıtları için)
                 "Şartlara Bağlı": "Conditional", "Belirsiz": "Uncertain",
-                "Uygun Değil": "Not Suitable", "Hiç Uygun Değil": "Not Suitable At All"}
+                "Hiç Uygun Değil": "Not Suitable At All"}
 
 def yurtdisi_goster(x):
     return _scout_ceviri(x, _YURTDISI_EN)
@@ -6973,7 +6995,6 @@ def _bolum_kilit(k: str):
 def _profil_link_kopyala(isim, sd_url=""):
     """Paylaşılabilir ?oyuncu= linki + kopyala butonu (iki profil ortak).
     SoccerDonna bağlantısı en üstte, sayfanın SAĞ ÜST köşesinde durur."""
-    import streamlit.components.v1 as _comp
     import json as _j
     if sd_url:
         st.markdown(
@@ -6986,8 +7007,7 @@ def _profil_link_kopyala(isim, sd_url=""):
     # (8pt eğik altçizili mor) · Kopyala=Ara Yazı (11pt kalın BÜYÜK beyaz)
     _lbl_kop = t("KOPYALA", "COPY"); _lbl_ok = t("KOPYALANDI ✓", "COPIED ✓")
     _lbl_bas = "🔗 " + _buyuk(t("Paylaşılabilir link", "Share link"))
-    _comp.html(
-        '<div style="font-family:Inter,sans-serif;">'
+    _icerik = ('<div style="font-family:Inter,sans-serif;">'
         '<div style="font-size:11pt;color:#a78bfa;font-weight:700;margin-bottom:5px;">' + _lbl_bas + '</div>'
         '<div style="display:flex;gap:6px;">'
         '<input id="lnk" readonly style="flex:1;min-width:0;background:#0f1117;color:#a78bfa;'
@@ -7008,7 +7028,18 @@ def _profil_link_kopyala(isim, sd_url=""):
         'navigator.clipboard.writeText(url).then(ok).catch(function(){'
         'try{document.execCommand("copy");}catch(e){}ok();});}'
         'else{try{document.execCommand("copy");}catch(e){}ok();}};'
-        '</script>', height=74)
+        '</script>')
+    # st.components.v1.html kullanımdan kaldırılıyor ("use st.iframe"). Yenisi
+    # varsa o, yoksa eskisi. DİKKAT: st.iframe height=0'da HİÇ render etmiyor
+    # (PWA bloğunda görüldü) — burada 74px zaten gerekli.
+    try:
+        if hasattr(st, "iframe"):
+            st.iframe(_icerik, height=74)
+        else:
+            import streamlit.components.v1 as _comp
+            _comp.html(_icerik, height=74)
+    except Exception:
+        pass
 
 
 def render_ana_lig_profil(secili):
