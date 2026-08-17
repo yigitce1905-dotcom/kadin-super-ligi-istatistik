@@ -10098,19 +10098,39 @@ if st.session_state.get("sayfa") == "scouting":
                     # başta olması gerekir. Eskiden sıralama yoktu, sheet satır
                     # sırası geliyordu (önce Dünya, sonra TR) — yani listenin
                     # başındaki isim tamamen tesadüfiydi.
+                    # VARSAYILAN RASTGELE (Yiğit, 2026-08-17): havuz keşif içindir,
+                    # hep aynı isimlerin başta olması listeyi tek yönlü okutuyor.
+                    # Tohum OTURUMDA SABİT — aksi hâlde her sayfa çevirmede yeniden
+                    # karışır ve aynı oyuncu iki kez/hiç görünmezdi.
                     _SIRA = {
+                        t("🔀 Rastgele", "🔀 Random"): ("_Rastgele", True),
                         t("Skor (yüksek → düşük)", "Score (high → low)"): ("_Skor", False),
                         t("İsim (A → Z)", "Name (A → Z)"): (isim_col, True),
                         t("Yaş (genç → yaşlı)", "Age (young → old)"): ("_Yas", True),
                         t("Yaş (yaşlı → genç)", "Age (old → young)"): ("_Yas", False),
                         t("Maç (çok → az)", "Matches (many → few)"): ("_Mac", False),
                     }
+                    if "sc_karistir_tohum" not in st.session_state:
+                        import random as _rnd
+                        st.session_state["sc_karistir_tohum"] = _rnd.randint(0, 10**6)
                     _sc1, _sc2 = st.columns([1.4, 2.6])
                     with _sc1:
                         _sira_sec = st.selectbox(t("Sırala", "Sort"), list(_SIRA),
                                                  key="sc_sirala")
                     _skol, _artan = _SIRA[_sira_sec]
-                    if _skol == "_Yas":
+                    if _skol == "_Rastgele":
+                        with _sc2:
+                            st.markdown("<div style='height:28px;'></div>",
+                                        unsafe_allow_html=True)
+                            if st.button("🔀 " + t("Yeniden karıştır", "Reshuffle"),
+                                         key="sc_karistir"):
+                                import random as _rnd2
+                                st.session_state["sc_karistir_tohum"] = _rnd2.randint(0, 10**6)
+                                st.session_state["sc_sayfa"] = 1
+                                st.rerun()
+                        filtered = filtered.sample(
+                            frac=1, random_state=st.session_state["sc_karistir_tohum"])
+                    elif _skol == "_Yas":
                         # yaşı bilinmeyenler (0) hep SONA — küçük diye başa gelmesin
                         filtered = filtered.assign(
                             _YasSira=filtered["_Yas"].replace(0, 999 if _artan else -1))
