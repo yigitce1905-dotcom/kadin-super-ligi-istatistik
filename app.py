@@ -10072,8 +10072,41 @@ if st.session_state.get("sayfa") == "scouting":
                     def _esc(s):
                         return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
+                    # ── SAYFALAMA ────────────────────────────────────────────
+                    # Tüm sonuç TEK st.markdown çağrısında basılıyordu. 1540
+                    # oyuncuda bu ~1,2 MB tek satırlık HTML demek; Streamlit
+                    # dizeyi önce Markdown ayrıştırıcısından geçirdiği için o
+                    # boyutta bozuluyor ve ham etiketler ekrana METİN olarak
+                    # dökülüyordu ("<td class='num ws-mono' data-label='Maç'>").
+                    # 100 satır ≈ 78 KB — güvenli aralık. (2026-08-17)
+                    _SAYFA_BOY = 100
+                    _top_kayit = len(filtered)
+                    _sayfa_sayisi = max(1, -(-_top_kayit // _SAYFA_BOY))
+                    _sf_key = "sc_sayfa"
+                    if st.session_state.get(_sf_key, 1) > _sayfa_sayisi:
+                        st.session_state[_sf_key] = 1
+                    if _sayfa_sayisi > 1:
+                        _pc1, _pc2 = st.columns([1, 3])
+                        with _pc1:
+                            _sayfa = st.number_input(
+                                t("Sayfa", "Page"), min_value=1,
+                                max_value=_sayfa_sayisi,
+                                key=_sf_key, step=1)
+                        with _pc2:
+                            _bas_i = (_sayfa - 1) * _SAYFA_BOY
+                            st.markdown(
+                                f"<div style='padding-top:30px;font-size:0.78rem;color:#64748b;'>"
+                                f"{_bas_i + 1}–{min(_bas_i + _SAYFA_BOY, _top_kayit)}"
+                                f" / {_top_kayit} · {_sayfa_sayisi} "
+                                f"{t('sayfa', 'pages')}</div>",
+                                unsafe_allow_html=True)
+                    else:
+                        _sayfa = 1
+                    _dilim = filtered.iloc[(_sayfa - 1) * _SAYFA_BOY:
+                                           (_sayfa - 1) * _SAYFA_BOY + _SAYFA_BOY]
+
                     _isim_sira, _sat = [], ""
-                    for _, row in filtered.iterrows():
+                    for _, row in _dilim.iterrows():
                         tam_isim = str(row.get(isim_col, ""))
                         vatandas = str(row.get(vat_col, "")) if vat_col else ""
                         _isim_sira.append(tam_isim)
