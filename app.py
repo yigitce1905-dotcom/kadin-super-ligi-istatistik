@@ -9678,6 +9678,20 @@ if st.session_state.get("sayfa") == "scouting":
         sc_df["BoyCm"] = sc_df["Tam İsmi"].map(
             lambda _n: _boy_cm(_boy_guncel((_kadro_roster.get(_n, {}) or {}).get("boy", ""),
                                            (sd_data.get(_n, {}) or {}).get("Height", ""))))
+        # Sıralama sütunları. Liste bugüne kadar HİÇ sıralanmıyordu: sheet'in
+        # satır sırasını aynen alıyordu (önce Dünya, sonra TR). 1540 satır tek
+        # sayfada dökülürken bu fark edilmiyordu; sayfalamadan sonra TR ligi
+        # oyuncuları 12. sayfaya düştüğü için görünür oldu. (2026-08-17)
+        sc_df["_Skor"] = sc_df["Tam İsmi"].map(
+            lambda _n: _scotr_puan((_kadro_roster.get(_n, {}) or {}).get("nihai", "")))
+        sc_df["_Yas"] = sc_df["Tam İsmi"].map(
+            lambda _n: int(str((_kadro_roster.get(_n, {}) or {}).get("yas", "") or 0) or 0)
+            if str((_kadro_roster.get(_n, {}) or {}).get("yas", "") or "").isdigit() else 0)
+        sc_df["_Mac"] = sc_df["Tam İsmi"].map(
+            lambda _n: sum(s.get("mac", 0) for s in
+                           (leistung_data.get(_n, {}) or {}).get("sezonlar", [])
+                           if not s.get("milli")))
+
         _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
         _etiket_liste = etiket_kullanici(_sl_kullanici)
@@ -10079,6 +10093,35 @@ if st.session_state.get("sayfa") == "scouting":
                     # boyutta bozuluyor ve ham etiketler ekrana METİN olarak
                     # dökülüyordu ("<td class='num ws-mono' data-label='Maç'>").
                     # 100 satır ≈ 78 KB — güvenli aralık. (2026-08-17)
+                    # ── SIRALAMA ─────────────────────────────────────────────
+                    # Varsayılan SKOR: 1540 kişilik listede en iyi oyuncuların
+                    # başta olması gerekir. Eskiden sıralama yoktu, sheet satır
+                    # sırası geliyordu (önce Dünya, sonra TR) — yani listenin
+                    # başındaki isim tamamen tesadüfiydi.
+                    _SIRA = {
+                        t("Skor (yüksek → düşük)", "Score (high → low)"): ("_Skor", False),
+                        t("İsim (A → Z)", "Name (A → Z)"): (isim_col, True),
+                        t("Yaş (genç → yaşlı)", "Age (young → old)"): ("_Yas", True),
+                        t("Yaş (yaşlı → genç)", "Age (old → young)"): ("_Yas", False),
+                        t("Maç (çok → az)", "Matches (many → few)"): ("_Mac", False),
+                    }
+                    _sc1, _sc2 = st.columns([1.4, 2.6])
+                    with _sc1:
+                        _sira_sec = st.selectbox(t("Sırala", "Sort"), list(_SIRA),
+                                                 key="sc_sirala")
+                    _skol, _artan = _SIRA[_sira_sec]
+                    if _skol == "_Yas":
+                        # yaşı bilinmeyenler (0) hep SONA — küçük diye başa gelmesin
+                        filtered = filtered.assign(
+                            _YasSira=filtered["_Yas"].replace(0, 999 if _artan else -1))
+                        filtered = filtered.sort_values(
+                            ["_YasSira", isim_col], ascending=[_artan, True],
+                            kind="mergesort")
+                    else:
+                        filtered = filtered.sort_values(
+                            [_skol, isim_col], ascending=[_artan, True],
+                            kind="mergesort")
+
                     _SAYFA_BOY = 100
                     _top_kayit = len(filtered)
                     _sayfa_sayisi = max(1, -(-_top_kayit // _SAYFA_BOY))
