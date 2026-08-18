@@ -430,6 +430,18 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
     display:inline-flex; align-items:center; justify-content:center;
     font-size:0.6rem; font-weight:800; font-family:'Sora',monospace; }
 
+/* İsim (1. sütun) SABİT kalır — kullanıcı geri bildirimi (2026-08-19):
+   "Skor" sütunu tabloda en sonda; sağa kaydırınca isim gözden kayboluyor,
+   hangi satırda olduğunu bulmak için başa geri dönmek gerekiyordu. Artık
+   isim sütunu yatay kaydırmada solda sabit — Skor'a bakarken isim hep
+   görünür. Yalnız masaüstü/tablet'te etkili; mobilde (≤768px) tablo zaten
+   tam-genişlik karta dönüşüyor, yatay kaydırma hiç gerekmiyor. */
+.ws-table td:first-child, .ws-table th:first-child {
+    position: sticky; left: 0; z-index: 1; background: #0d0d16;
+}
+.ws-table thead th:first-child { z-index: 3; }   /* dikey+yatay sabit kesişimi */
+.ws-table tbody tr:hover td:first-child { background: #13131f; }
+
 /* Benzer Oyuncular — yan yana kutular (5'li grid, mobilde otomatik sarar) */
 .benzer-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
 .benzer-kutu { background:#0d0d16; border:1px solid #2a2a38; border-radius:11px;
