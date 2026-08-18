@@ -32,16 +32,50 @@ GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID_DUNYA = 1707810792
 BEKLEYEN = KOK / "_fm_bekleyen.json"      # işlenmeyi bekleyen çeviriler
 IZ = "[FM taslak]"
+KARIYER = {}
+
+
+# NFKD ł/ø/ð/þ'yi çözmez — aksan değil, ayrı harftirler. "Górnik Lęczna"
+# (bizim yazım) ile "Górnik Łęczna" (FM) eşleşmiyordu.
+_HARF = str.maketrans({
+    "ø": "o", "Ø": "O", "æ": "ae", "Æ": "AE", "å": "a", "Å": "A",
+    "ð": "d", "Ð": "D", "þ": "th", "Þ": "TH", "ß": "ss",
+    "ı": "i", "İ": "I", "ł": "l", "Ł": "L", "đ": "d", "Đ": "D",
+})
 
 
 def norm(s):
-    s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode()
+    s = str(s or "").translate(_HARF)
+    s = unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode()
     return " ".join(s.casefold().split())
+
+
+# Sheet ile FM ülke adlarını farklı yazıyor. Aynı ülke, farklı yazım —
+# kimlik sinyalini boşa düşürmesin diye ortak bir ada indiriyoruz.
+_ULKE_ES = {
+    "danmark": "denmark", "pr china": "china", "china pr": "china",
+    "the netherlands": "netherlands", "holland": "netherlands",
+    "marocco": "morocco", "dr congo": "congo",
+    "democratic republic of the congo": "congo", "democratic republic": "congo",
+    "usa": "united states", "united states of america": "united states",
+    "south korea": "korea republic", "korea south": "korea republic",
+    "republic of ireland": "ireland", "eire": "ireland",
+    "ivory coast": "cote divoire", "cote d ivoire": "cote divoire",
+}
+
+
+def _ulke(s):
+    n = norm(s)
+    return _ULKE_ES.get(n, n)
 
 
 def yaz(kayitlar: dict, yaz_gercek: bool):
     """kayitlar: {isim: {"fm_yas": int, "nitelikler": {nitelik_adi: harf}}}"""
     from fetch_scout_kadro import hdr_kanonlastir
+
+    global KARIYER
+    kd = KOK / "scouting_leistungsdaten.json"
+    KARIYER = json.load(open(kd, encoding="utf-8")) if kd.exists() else {}
 
     gc = gspread.service_account(filename=CREDS)
     ws = gc.open_by_key(GSHEET_ID).get_worksheet_by_id(GID_DUNYA)
@@ -84,10 +118,23 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
         fm_yas = k.get("fm_yas")
         bb = _h("Boy").replace(",", ".")
         fb = str(k.get("fm_boy") or "").strip()
-        bk, fk = _h("Kulüp").lower(), str(k.get("fm_kulup") or "").lower()
-        bu, fu = norm(_h("Vatandaşlık (Millî)")), norm(k.get("fm_uyruk") or "")
+        bk, fk = norm(_h("Kulüp")), norm(k.get("fm_kulup"))
+        bu = _ulke(_h("Vatandaşlık (Millî)"))
+        fu = {_ulke(x) for x in (k.get("fm_uyruklar")
+                                 or [k.get("fm_uyruk") or ""]) if x}
 
         sinyal = {}
+        # FM'in kulübü bizim KENDİ kariyer verimizde geçiyor mu? Sheet'in
+        # "Kulüp" hücresi güncel DURUMU tutuyor ("Serbest"), FM ise veri tabanı
+        # anlık görüntüsündeki son kulübü. Michaela Abam'da sheet "Serbest",
+        # FM "Cruz Azul" diyordu ve kimlik doğrulanamıyordu — oysa bizim
+        # leistungsdaten kaydı onu 25/26'da Cruz Azul'da 27 maçla gösteriyor.
+        # Yani çelişki değil, iki farklı soruya verilmiş iki doğru cevap.
+        if fk and isim in KARIYER:
+            gecmis = {norm(s.get("kulup")) for s in
+                      (KARIYER[isim] or {}).get("sezonlar", []) if s.get("kulup")}
+            if gecmis:
+                sinyal["kariyer"] = any(fk in g or g in fk for g in gecmis)
         if bizim_yas.isdigit() and fm_yas:
             sinyal["yaş"] = abs(int(bizim_yas) - int(fm_yas)) <= 2
         if bb and fb:
@@ -98,7 +145,7 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
         if bk and fk:
             sinyal["kulüp"] = bk in fk or fk in bk
         if bu and fu:
-            sinyal["uyruk"] = bu == fu
+            sinyal["uyruk"] = bu in fu
 
         if any(v is False for v in sinyal.values()) and not any(sinyal.values()):
             atlanan.append((isim, f"kimlik doğrulanamadı: {sinyal}")); continue
