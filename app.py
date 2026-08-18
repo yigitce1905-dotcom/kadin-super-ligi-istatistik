@@ -8085,8 +8085,14 @@ params = st.query_params
 url_oyuncu = params.get("oyuncu", "")
 
 # ─── SAYFA DURUMU ─────────────────────────────────────────────────────────────
+# Varsayılan sayfa "scouting" (Yiğit, 2026-08-19 — ikinci ve kesin talimat):
+# "siteye giricem önce scouting kısmı çıkacak karşıma, TR 2025-2026 değil!
+# solda bir sürü şeyler var Türkiyeyle ilgili, şunu ikinci plana at." Bu aynı
+# zamanda sol nav'daki 1-2-3-4 accordion'u da otomatik doğru açar: Bölüm 2
+# (Dünya/Scouting) genişler, Bölüm 1 (TR Veri'nin ~14 alt sekmesi) başlığa
+# daralır — TR nav-yığını artık göze ilk çarpan şey değil.
 if "sayfa" not in st.session_state:
-    st.session_state["sayfa"] = "ana"
+    st.session_state["sayfa"] = "scouting"
 
 # Kalıcı oturum: cookie geçerliyse sayfa yenilense de girişi geri yükle
 _oturum_geri_yukle()
