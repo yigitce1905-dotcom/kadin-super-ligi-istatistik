@@ -31,6 +31,8 @@ from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 PROFILLER_YOL = Path(__file__).parent / "scouting_sd_profiller.json"
 LEISTUNG_YOL  = Path(__file__).parent / "scouting_leistungsdaten.json"
 HEADERS       = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
