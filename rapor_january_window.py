@@ -23,7 +23,23 @@ KOK = pathlib.Path(__file__).parent
 
 KREM  = (250, 248, 242); KART = (255, 255, 255); KENAR = (228, 224, 214)
 METIN = (26, 32, 44);    GRIM = (122, 130, 142)
-LIME  = (181, 229, 0);   OLIV = (106, 140, 0);  KOYU = (11, 15, 20)
+
+# ── MARKA ANAHTARI (2026-08-17) ──────────────────────────────────────────────
+# Kulüplere Women's Football Scouting kimliğiyle yazıyoruz; ek olarak giden
+# raporun da o kimlikte olması gerekiyor, yoksa alıcı iki farklı marka görüp
+# tereddüt eder. ISM sürümü duruyor:  python rapor_january_window.py --ism
+_ISM = "--ism" in sys.argv
+if _ISM:
+    LIME = (181, 229, 0); OLIV = (106, 140, 0)          # ISM lime/oliv
+    LOGO_AD = "ism_logo_beyaz.png"
+    ALT_BILGI = "Yiğit Çelebi · IDEAL Sports Management · +90 506 578 46 43"
+    DOSYA_ON = "ISM"
+else:
+    LIME = (168, 85, 247); OLIV = (124, 58, 237)        # site moru (#a855f7)
+    LOGO_AD = "logo_beyaz.png"
+    ALT_BILGI = "Women's Football Scouting · womenfootballscouting.com"
+    DOSYA_ON = "WFS"
+KOYU = (15, 17, 23) if not _ISM else (11, 15, 20)      # site arka planı #0f1117
 
 HEDEF_YIL = "2026"          # 31.12.2026 biten sözleşmeler → Ocak 2027 penceresi
 BASLIK_YIL = "2027"
@@ -138,7 +154,7 @@ pdf.set_auto_page_break(False)
 pdf.add_font("DV", "",  str(_f / "DejaVuSans.ttf"))
 pdf.add_font("DV", "B", str(_f / "DejaVuSans-Bold.ttf"))
 pdf.add_font("IMZA", "", r"C:\Windows\Fonts\segoesc.ttf")
-logo = KOK / "static" / "ism_logo_beyaz.png"
+logo = KOK / "static" / LOGO_AD
 X0, CW = 14, 182
 
 
@@ -146,10 +162,28 @@ def zemin():
     pdf.set_fill_color(*KREM); pdf.rect(0, 0, 210, 297, "F")
 
 
+def _logo_olcu(genislik_mm):
+    """Logonun mm yüksekliği (en-boy oranından). Sabit ofset kullanılamaz:
+    ISM logosu 150×35 (yatık), site logosu 850×553 (neredeyse kare) — aynı
+    formül ikisini birden ortalayamıyordu, marka geçişinde logo bandın
+    dışına taşıyordu."""
+    try:
+        from PIL import Image as _Im
+        w, h = _Im.open(logo).size
+        return genislik_mm * h / w
+    except Exception:
+        return genislik_mm * 0.23          # ISM logosunun oranı (yedek)
+
+
 def marka_bandi(h=13, baslik=""):
     pdf.set_fill_color(*KOYU); pdf.rect(0, 0, 210, h, "F")
     if logo.exists():
-        pdf.image(str(logo), x=10, y=h / 2 - 3.2, w=32)
+        _lw = 32 if _ISM else 26           # kare logo daha dar durmalı
+        _lh = _logo_olcu(_lw)
+        if _lh > h - 3:                    # bantı taşırmasın
+            _lw *= (h - 3) / _lh
+            _lh = h - 3
+        pdf.image(str(logo), x=10, y=(h - _lh) / 2, w=_lw)
     if baslik:
         pdf.set_xy(100, h / 2 - 3); pdf.set_font("DV", "B", 10.5)
         pdf.set_text_color(255, 255, 255)
@@ -159,7 +193,7 @@ def marka_bandi(h=13, baslik=""):
 def alt_bilgi(no):
     pdf.set_y(-14); pdf.set_font("DV", "", 7.4); pdf.set_text_color(*GRIM)
     pdf.set_x(X0)
-    pdf.cell(CW / 2, 5, "Yiğit Çelebi · IDEAL Sports Management · +90 506 578 46 43")
+    pdf.cell(CW / 2, 5, ALT_BILGI)
     pdf.cell(CW / 2, 5, f"Page {no}", align="R")
 
 
@@ -196,7 +230,7 @@ def kapak(kohort_a, kohort_b):
     pdf.multi_cell(172, 5.5,
         "This report lists the players in our assessed pool who become available in that "
         "window, and the players who are already free agents. Every player here carries our "
-        "own analyst assessment against a fixed 47-attribute framework — not a scraped rating.")
+        "own analyst assessment against a fixed 44-attribute framework — not a scraped rating.")
 
     _ozet = [(str(len(kohort_a)), "EXPIRING 31 DEC"), (str(len(kohort_b)), "FREE AGENTS"),
              (str(len({k['uyruk'] for k in kohort_a + kohort_b if k['uyruk']})), "NATIONALITIES"),
@@ -236,7 +270,8 @@ def kapak(kohort_a, kohort_b):
     pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
     pdf.line(15, 257, 76, 257)
     pdf.set_xy(15, 258); pdf.set_font("DV", "B", 8.5); pdf.set_text_color(*METIN)
-    pdf.cell(90, 5, "Yiğit Çelebi · IDEAL Sports Management", ln=1)
+    pdf.cell(90, 5, "Yiğit Çelebi · "
+             + ("IDEAL Sports Management" if _ISM else "Women's Football Scouting"), ln=1)
     pdf.set_x(15); pdf.set_font("DV", "", 7.8); pdf.set_text_color(*GRIM)
     pdf.cell(90, 4.5, "+90 506 578 46 43 · womenfootballscouting.com", ln=1)
 
@@ -346,7 +381,7 @@ def main():
     sayfa = bolum_yaz("Free agents",
                       "Currently without a club — available immediately.",
                       kohort_b, sayfa)
-    cikti = pathlib.Path.home() / "Desktop" / f"ISM_January_Window_Report_{BASLIK_YIL}.pdf"
+    cikti = pathlib.Path.home() / "Desktop" / f"{DOSYA_ON}_January_Window_Report_{BASLIK_YIL}.pdf"
     pdf.output(str(cikti))
     print(f"OK {cikti} ({cikti.stat().st_size // 1024} KB)")
     print(f"   31 Aralık biten: {len(kohort_a)} · serbest: {len(kohort_b)} · sayfa: {sayfa}")
