@@ -31,9 +31,12 @@ import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-# FM 1-99 → harf (20'lik ölçek karşılıkları)
-ESIK = [(96, "A+"), (86, "AA"), (76, "AB"), (71, "BB"), (66, "BC"),
-        (61, "CC"), (56, "CD"), (51, "DD"), (41, "DE"), (26, "EE"), (0, "FF")]
+# FM 1-99 → harf. EŞİKLER YİĞİT'TEN (2026-08-17) — benim ilk önerim 20'lik
+# ölçeğin karşılıklarına oturtulmuştu ve daha cimriydi; bu tablo esastır.
+#   A+ 99-100 · AA 95-98 · AB 85-94 · BB 75-84 · BC 65-74 · CC 55-64
+#   CD 45-54  · DD 35-44 · DE 25-34 · EE 15-24 · FF 0-14
+ESIK = [(99, "A+"), (95, "AA"), (85, "AB"), (75, "BB"), (65, "BC"),
+        (55, "CC"), (45, "CD"), (35, "DD"), (25, "DE"), (15, "EE"), (0, "FF")]
 
 
 def harf(deger) -> str:
