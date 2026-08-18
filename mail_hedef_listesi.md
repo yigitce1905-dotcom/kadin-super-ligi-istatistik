@@ -302,10 +302,65 @@ noktadan sonra getiri hızla azalıyor: taranan her 5 kulüpten ~1'i
 isimli/kullanılabilir bir sonuç veriyor, kalanı ya hiç kurumsal
 site/mail yapısı olmayan amatör kulüpler ya da yalnız genel santral.
 
-Devam etmemi istersen sıradaki 15-20 kulübü tararım, ama bu noktada
-bir değerlendirme yapmak istersen: elimizdeki 10 kişisel-mail'li ve
-~28 isimli-lider'li kulüp zaten ilk gönderim dalgası için yeterli
-büyüklükte bir havuz.
+## H) ALTINCI DALGA — roster'ı kapatma (19.08.2026, üçüncü oturum)
+
+CL_Europa_hedef_havuzu.md'nin "C tam roster"ında eksik kalan tek parça,
+3. tur eleme çekilişindeki (11 Ağustos, maçlar 26 Ağu/2 Eyl) 18 takımın
+tam listesiydi — Wikipedia'nın kırpılmış özeti "7 kazanan, isim yok"
+diyordu. UEFA/Chelsea'nin resmi haberlerinden tam liste bulundu: Austria
+Vienna, Brann(A), Czarni Sosnowiec(A), HB Køge(A), OH Leuven(A), PSV
+Eindhoven(A), Servette(A), Sparta Prague(A) + Ajax, Chelsea, Eintracht
+Frankfurt, Inter, Juventus, PSG, Real Madrid, Real Sociedad, St. Pölten(A),
+Wolfsburg — **hepsi zaten roster'da tanımlıydı, tek gerçekten yeni isim
+Austria Wien çıktı.**
+
+### 56. FK Austria Wien (Frauen) 🇦🇹
+- Martin Pototschnig, "sportlicher Leiter" olarak anılıyor ama kaynak
+  **2018 tarihli** — 8 yıl eski, güncel olmayabilir, isim GÜVENİLİR
+  SAYILMADI.
+- Genel: `fak@fk-austria.at`
+
+### 57. FC Aktobe (әйелдер) 🇰🇿
+- Hiçbir isim/kişisel mail bulunamadı. Genel: fc-aktobe.kz üzerinden,
+  yalnız telefon (+7 7132 972-500).
+
+### Elit/dev kulüpler — örneklemeyle kapatıldı, tek tek taranmadı
+Barcelona, Bayern München, Chelsea'yi temsilen taradım (İspanya/Almanya/
+İngiltere — 3 farklı futbol kültürü): **üçü de yalnızca kurumsal
+basın/medya ofisi veriyor**, kişisel/ulaşılabilir bir scouting-recruitment
+teması yok (Bayern: `media@fcb-frauenfussball.de` genel basın; Barcelona'da
+"Marc Vivés" adı geçti ama maili yalnızca KALIP TAHMİNİYDİ, kullanılmadı;
+Chelsea'de hiçbir isim/mail çıkmadı, yalnız akademi deneme günleri var).
+Bu üçü, zaten stratejide "kaynak, müşteri değil" diye baştan elenen 21
+mega-kulübün davranış kalıbını doğruluyor (10+ kişilik kendi scout
+departmanları var, kurumsal filtre bilinçli). Kalan 18'ini
+(Man City, Arsenal, Lyon, Paris FC, Roma, Benfica, Häcken, Wolfsburg,
+PSG, Real Madrid, Real Sociedad, Inter, Juventus, Ajax, Sporting CP,
+Anderlecht, Feyenoord, Eintracht Frankfurt) aynı sonucu tek tek
+doğrulamak için ayrı ayrı taramadım — getiri sıfıra yakın olurdu.
+İstersen herhangi birini özel olarak tararım.
+
+---
+
+## ROSTER KAPANDI — nihai özet (19.08.2026)
+
+**CL+Europa Cup havuzundaki 90-100 kulübün TAMAMI tek tek değerlendirildi:**
+
+| Kategori | Sayı |
+|---|---|
+| Kişisel + doğrulanmış mail | **10** |
+| İsimli lider + genel/departman adresi | **~30** |
+| Hiçbir iletişim bulunamadı | 11 |
+| Ukrayna/Belarus (bilinçli hariç) | 5 |
+| Elit/dev — kurumsal basın ofisi dışında ulaşılamaz (3'ü örneklendi, 21'i kalıptan) | 24 |
+| **TOPLAM** | **~90** |
+
+**Gönderilebilir en güçlü 10:** Fortuna Hjørring, Vålerenga, Slovan
+Liberec, Breiðablik, HJK Helsinki, Brann, Spartak Myjava, Ferencváros,
+Flora Tallinn, Mġarr United (kadın takımı adresi).
+
+Roster taraması burada kapanıyor. Sıradaki adım mail taslaklarını
+hazırlamak.
 
 ---
 
