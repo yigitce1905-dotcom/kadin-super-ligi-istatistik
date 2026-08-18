@@ -7,10 +7,12 @@ SoccerDonna profili arar + çeker, JSON'a ekler (mevcut kayıtlara dokunmaz).
 
 Kullanım:  python scrape_scouting_yeni.py
 """
-import json, time
+import json, sys, time
 from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
+
+sys.stdout.reconfigure(encoding="utf-8")
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
 SD_YOL    = Path(__file__).parent / "scouting_sd_profiller.json"
