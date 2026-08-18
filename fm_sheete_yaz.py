@@ -69,24 +69,43 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
         # Yaş tek başına yetmiyor: Sharon Sampson'ın sheet'teki yaşı 126
         # (doğum tarihi de boş) — açık bir yazım hatası, farklı bir oyuncu
         # değil. Kulüp VE boy tutuyorsa yaş hatası kimliği bozmaz.
-        bizim_yas = (satir[i_yas].strip() if i_yas is not None and len(satir) > i_yas else "")
+        # İsim zaten birebir eşleşti (satırı onunla bulduk). Ek olarak EN AZ BİR
+        # bağımsız sinyal isteriz: yaş, kulüp, boy ya da uyruk.
+        # DİKKAT: sheet'te 431 satırda Yaş = 126 yazıyor ve hepsinin Doğum
+        # Tarihi boş — boş tarihten yaş hesaplayan formülün artığı (2026-1900).
+        # 126 bir yaş değil, "veri yok" demek; sinyal sayılmaz.
+        def _h(ad):
+            i = kol.get(ad)
+            return satir[i].strip() if i is not None and len(satir) > i else ""
+
+        bizim_yas = _h("Yaş")
+        if bizim_yas == "126":
+            bizim_yas = ""
         fm_yas = k.get("fm_yas")
-        yas_ok = not (bizim_yas.isdigit() and fm_yas
-                      and abs(int(bizim_yas) - int(fm_yas)) > 2)
-        if not yas_ok:
-            i_kulup, i_boy = kol.get("Kulüp"), kol.get("Boy")
-            bk = (satir[i_kulup].strip().lower() if i_kulup is not None and len(satir) > i_kulup else "")
-            bb = (satir[i_boy].strip().replace(",", ".") if i_boy is not None and len(satir) > i_boy else "")
-            fk = str(k.get("fm_kulup") or "").strip().lower()
-            fb = str(k.get("fm_boy") or "").strip()          # cm
-            kulup_ok = bool(bk and fk and (bk in fk or fk in bk))
-            boy_ok = bool(bb and fb and abs(float(bb) * 100 - float(fb)) <= 2)
-            if not (kulup_ok and boy_ok):
-                atlanan.append((isim, f"kimlik doğrulanamadı (yaş bizde {bizim_yas}, "
-                                      f"FM {fm_yas}; kulüp={kulup_ok} boy={boy_ok})"))
-                continue
-            print(f"   ! {isim}: yaş uyuşmuyor (bizde {bizim_yas}) ama kulüp+boy "
-                  f"tuttu — kabul edildi")
+        bb = _h("Boy").replace(",", ".")
+        fb = str(k.get("fm_boy") or "").strip()
+        bk, fk = _h("Kulüp").lower(), str(k.get("fm_kulup") or "").lower()
+        bu, fu = norm(_h("Vatandaşlık (Millî)")), norm(k.get("fm_uyruk") or "")
+
+        sinyal = {}
+        if bizim_yas.isdigit() and fm_yas:
+            sinyal["yaş"] = abs(int(bizim_yas) - int(fm_yas)) <= 2
+        if bb and fb:
+            try:
+                sinyal["boy"] = abs(float(bb) * 100 - float(fb)) <= 2
+            except ValueError:
+                pass
+        if bk and fk:
+            sinyal["kulüp"] = bk in fk or fk in bk
+        if bu and fu:
+            sinyal["uyruk"] = bu == fu
+
+        if any(v is False for v in sinyal.values()) and not any(sinyal.values()):
+            atlanan.append((isim, f"kimlik doğrulanamadı: {sinyal}")); continue
+        if not sinyal:
+            atlanan.append((isim, "doğrulanacak veri yok (yaş/boy/kulüp/uyruk boş)")); continue
+        if not all(sinyal.values()):
+            print(f"   ! {isim}: kısmi eşleşme {sinyal} — kabul edildi")
 
         yazilan = 0
         for nit, harf in (k.get("nitelikler") or {}).items():
