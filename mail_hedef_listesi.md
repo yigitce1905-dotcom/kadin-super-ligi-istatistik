@@ -251,22 +251,61 @@ Resmî site var (ki.fo) ama kadın takımına özel kişi/mail yayımlanmamış.
 - **KFF Vllaznia** 🇦🇱 — Başkan Lazer Matiaj, Menajer Nikolin Leka
   (isimler var, mail yok)
 
+## G) BEŞİNCİ DALGA — 1. tur elenen küçük federasyon kulüpleri (19.08.2026)
+
+### 36. FC Flora Tallinn (naiste) 🇪🇪
+- **Taavi Trasberg — Sports Director** `taavi@fcflora.ee`
+- Kaynak: fcflora.ee (resmî site)
+
+### 37. Mġarr United (Women) 🇲🇹
+- Kadın takımına özel adres: `mgrutdwomanfc@gmail.com`
+- Genel: `info@mgarrutd.com`
+
+### 38-49. İsimli lider var, kişisel mail yok
+- **Malmö FF (Dam)** 🇸🇪 — Maxim Khalil, Sportchef; genel `info@mff.se`
+- **HB Køge** 🇩🇰 — Martin Lund, Sportschef
+- **ŽNK Mura** 🇸🇮 — Grega Ciglar, Športni direktor
+- **OH Leuven** 🇧🇪 — Gyorgy Csepregi, Sportief Directeur; genel `info@ohl.be`
+- **Racing Union Luxembourg** 🇱🇺 — Delvin Skenderovic, Directeur Sportif
+- **Czarni Sosnowiec** 🇵🇱 — Robert Majewski, Dyrektor sportowy; genel
+  `sekretariat@czarnisosnowiec.pl`
+- **PSV Vrouwen** 🇳🇱 — Kasper Kurland (teknik direktör), Sandra
+  Doreleijers (kadın futbolu müdürü) — büyük kulüp, düşük öncelik
+- **Glentoran Women** 🏴󠁧󠁢󠁮󠁩󠁲󠁿 — Kim Turner, Akademi Direktörü; genel
+  `webmanager@glentoran.com`
+- **KFF Vllaznia** 🇦🇱 — Başkan Lazer Matiaj
+- **Hapoel Katamon Jerusalem** 🇮🇱 — Başkan Yotam Carmon
+- **FC Pyunik** 🇦🇲 — Genel Direktör Suren Baghdasaryan (erkek takımı
+  odaklı); genel `fcpyunik@netsys.am`
+- **KFF Apolonia Fier** 🇦🇱 — sahibi Koço Kokëdhima; genel `info@fkapolonia.al`
+
+### 50-55. Hiçbir isim/mail bulunamadı — yalnız genel santral
+Omonia Nicosia 🇨🇾 · TSC Bačka Topola 🇷🇸 (genel `office@fktsc.com`) ·
+Rangers Women 🏴󠁧󠁢󠁳󠁣󠁴󠁿 (dev) · WFC Nike Lusso 🇬🇪 · ŽFK Skopje 2014 🇲🇰 ·
+Budućnost Podgorica 🇲🇪 · WFC Ludogorets Razgrad 🇧🇬 · Neftçi PFK 🇦🇿
+(genel santral var) · FC Zimbru Chișinău 🇲🇩
+
 ---
 
-## Güncel özet (19.08.2026, gün sonu)
+## Güncel özet (19.08.2026, gün sonu — 2. oturum)
 
-**Kişisel + doğrulanmış mail:** 8 kulüp (Fortuna Hjørring, Vålerenga,
-Slovan Liberec, Breiðablik, HJK, Brann, Spartak Myjava, Ferencváros).
-**Genel adres + isimli lider:** ~20 kulüp.
-**Bulunamadı (hiçbir iletişim yok):** 6 kulüp.
-**Taranan toplam:** ~37 kulüp. **Havuzda kalan:** ~55-60 kulüp
-(çoğu 1. tur eleneni küçük/amatör federasyon kulübü — Ermenistan,
-Moldova, Karadağ, İsrail, Bulgaristan, Gürcistan, Malta vb. — bunlarda
-resmî site/kurumsal iletişim ihtimali daha da düşük, ama talimat gereği
-sırada bekliyorlar).
+**Kişisel + doğrulanmış mail:** 10 kulüp (Fortuna Hjørring, Vålerenga,
+Slovan Liberec, Breiðablik, HJK, Brann, Spartak Myjava, Ferencváros,
+Flora Tallinn, + Mġarr United'ın kadın takımına özel adresi).
+**İsimli lider + genel/departman adresi:** ~28 kulüp.
+**Hiçbir iletişim bulunamadı:** 9 kulüp.
+**Taranan toplam: 49 kulüp.** CL_Europa_hedef_havuzu.md'deki ~90-100
+kulüplük havuzun geri kalanı (~40-45 kulüp) esas olarak İrlanda/İzlanda/
+Kıbrıs/Kuzey İrlanda/Galler'de 1. turda elenmiş, çok küçük/amatör
+yapılı kulüpler (Zamalar, Riga FC, KÍ Klaksvík zaten tarandı) — bu
+noktadan sonra getiri hızla azalıyor: taranan her 5 kulüpten ~1'i
+isimli/kullanılabilir bir sonuç veriyor, kalanı ya hiç kurumsal
+site/mail yapısı olmayan amatör kulüpler ya da yalnız genel santral.
 
-Bu ölçekte hepsini tek oturumda bitirmek gerçekçi değil; her oturumda
-sıradaki 15-20 kulübü tarayıp bu dosyayı güncellemeye devam edeceğim.
+Devam etmemi istersen sıradaki 15-20 kulübü tararım, ama bu noktada
+bir değerlendirme yapmak istersen: elimizdeki 10 kişisel-mail'li ve
+~28 isimli-lider'li kulüp zaten ilk gönderim dalgası için yeterli
+büyüklükte bir havuz.
 
 ---
 
