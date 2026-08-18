@@ -18,6 +18,7 @@ Kullanım (fm_nitelik_esle.cevir çıktısıyla):
     python fm_sheete_yaz.py --yaz
 """
 import json
+import re
 import sys
 import unicodedata
 from pathlib import Path
@@ -33,6 +34,8 @@ GID_DUNYA = 1707810792
 BEKLEYEN = KOK / "_fm_bekleyen.json"      # işlenmeyi bekleyen çeviriler
 IZ = "[FM taslak]"
 KARIYER = {}
+SD = {}
+BUGUN_YIL = __import__("datetime").date.today().year
 
 
 # NFKD ł/ø/ð/þ'yi çözmez — aksan değil, ayrı harftirler. "Górnik Lęczna"
@@ -69,6 +72,28 @@ def _ulke(s):
     return _ULKE_ES.get(n, n)
 
 
+# Kulüp adında ayırt edici olmayan kelimeler — bunların üzerinden eşleşme
+# kurulmaz, yoksa her "FC" her "FC"ye eşit olurdu.
+_GENEL = {"fc", "sc", "sk", "if", "bk", "ff", "cf", "afc", "cd", "ac", "as",
+          "ud", "sv", "vfl", "tsg", "club", "clube", "de", "the", "women",
+          "womens", "damer", "kadin", "feminin", "ii", "b", "u23", "u19"}
+
+
+def _kulup_jeton(ad):
+    return {p for p in re.split(r"[\s\-.]+", norm(ad))
+            if len(p) >= 3 and p not in _GENEL}
+
+
+def _kulup_ayni(a, b):
+    """'OH Leuven' ile 'Oud-Heverlee Leuven' aynı kulüp; alt dize
+    karşılaştırması bunu göremiyordu. 'Bayern München II' ile 'FC Bayern
+    München' de öyle."""
+    ja, jb = _kulup_jeton(a), _kulup_jeton(b)
+    if not ja or not jb:
+        return False
+    return bool(ja & jb) or norm(a) in norm(b) or norm(b) in norm(a)
+
+
 def yaz(kayitlar: dict, yaz_gercek: bool):
     """kayitlar: {isim: {"fm_yas": int, "nitelikler": {nitelik_adi: harf}}}"""
     from fetch_scout_kadro import hdr_kanonlastir
@@ -76,6 +101,9 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
     global KARIYER
     kd = KOK / "scouting_leistungsdaten.json"
     KARIYER = json.load(open(kd, encoding="utf-8")) if kd.exists() else {}
+    global SD
+    sp = KOK / "scouting_sd_profiller.json"
+    SD = json.load(open(sp, encoding="utf-8")) if sp.exists() else {}
 
     gc = gspread.service_account(filename=CREDS)
     ws = gc.open_by_key(GSHEET_ID).get_worksheet_by_id(GID_DUNYA)
@@ -112,14 +140,27 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
             i = kol.get(ad)
             return satir[i].strip() if i is not None and len(satir) > i else ""
 
+        # Sheet satırı çoğu düşük öncelikli oyuncuda neredeyse boş (yaş 126,
+        # boy ve kulüp yok). Ama BİZİM SD profillerimizde doğum tarihi ve boy
+        # duruyor — kimliği kendi zengin kaynağımızdan doğrulamamak saçma
+        # olurdu. Jada Conijnenberg, Luzie Zähringer ve Julia Woźniak tam
+        # olarak bu yüzden eleniyordu.
+        sdp = SD.get(isim) or {}
+
         bizim_yas = _h("Yaş")
         if bizim_yas == "126":
             bizim_yas = ""
+        if not bizim_yas.isdigit():
+            d = (sdp.get("Date of birth") or "").strip()
+            m = re.match(r"\d{2}\.\d{2}\.(\d{4})$", d)
+            if m:
+                bizim_yas = str(BUGUN_YIL - int(m.group(1)))
         fm_yas = k.get("fm_yas")
-        bb = _h("Boy").replace(",", ".")
+        bb = (_h("Boy") or sdp.get("Height") or "").replace(",", ".")
         fb = str(k.get("fm_boy") or "").strip()
         bk, fk = norm(_h("Kulüp")), norm(k.get("fm_kulup"))
         bu = _ulke(_h("Vatandaşlık (Millî)"))
+        sd_uy = norm(sdp.get("Nationality"))
         fu = {_ulke(x) for x in (k.get("fm_uyruklar")
                                  or [k.get("fm_uyruk") or ""]) if x}
 
@@ -134,7 +175,7 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
             gecmis = {norm(s.get("kulup")) for s in
                       (KARIYER[isim] or {}).get("sezonlar", []) if s.get("kulup")}
             if gecmis:
-                sinyal["kariyer"] = any(fk in g or g in fk for g in gecmis)
+                sinyal["kariyer"] = any(_kulup_ayni(fk, g) for g in gecmis)
         if bizim_yas.isdigit() and fm_yas:
             sinyal["yaş"] = abs(int(bizim_yas) - int(fm_yas)) <= 2
         if bb and fb:
@@ -143,11 +184,34 @@ def yaz(kayitlar: dict, yaz_gercek: bool):
             except ValueError:
                 pass
         if bk and fk:
-            sinyal["kulüp"] = bk in fk or fk in bk
+            sinyal["kulüp"] = _kulup_ayni(bk, fk)
         if bu and fu:
-            sinyal["uyruk"] = bu in fu
+            # SD uyrukları bitişik yazıyor ("SurinameNetherlands"); çifte
+            # vatandaşta FM'in yazdığı ülke onun İÇİNDE geçiyorsa da tutar.
+            sinyal["uyruk"] = bu in fu or any(x and x in sd_uy for x in fu)
+        elif fu and sd_uy:
+            sinyal["uyruk"] = any(x and x in sd_uy for x in fu)
 
-        if any(v is False for v in sinyal.values()) and not any(sinyal.values()):
+        # Sinyaller EŞİT AĞIRLIKTA DEĞİL:
+        #   yaş, boy  → fiziksel gerçek. İkisi birden tutmuyorsa başka insandır.
+        #               (Kim Min-jung: yaş 3 yıl, boy 6 cm sapıyordu; Kore
+        #               adları sık tekrar ettiği için tam da burada yanılırdık.)
+        #   kulüp     → FM'in anlık görüntüsü tasarımı gereği bayat; tutmaması
+        #               beklenen bir şey, çelişki sayılmaz.
+        #   kariyer   → TEK YÖNLÜ: True ise doğrular, False ise BİLGİ YOKLUĞU
+        #               demektir (kendi kariyer verimiz eksik olabilir ya da
+        #               transfer bizim kayıttan yeni olabilir). Aslaug ve
+        #               Natasha Anasi'de yaş+kulüp+uyruk tutarken yalnız
+        #               kariyer tutmuyordu; onları elemek yanlıştı.
+        #   uyruk     → zayıf; milyonlarca kişi paylaşıyor, çifte vatandaşta
+        #               FM doğum ülkesini yazıyor.
+        fiz = [sinyal[a] for a in ("yaş", "boy") if a in sinyal]
+        guclu = [sinyal[a] for a in ("yaş", "boy", "kulüp", "kariyer") if a in sinyal]
+        if len(fiz) == 2 and not any(fiz):
+            atlanan.append((isim, f"yaş VE boy tutmuyor: {sinyal}")); continue
+        if fiz and not any(fiz) and not any(guclu):
+            atlanan.append((isim, f"tek fiziksel veri tutmuyor: {sinyal}")); continue
+        if not any(sinyal.values()):
             atlanan.append((isim, f"kimlik doğrulanamadı: {sinyal}")); continue
         if not sinyal:
             atlanan.append((isim, "doğrulanacak veri yok (yaş/boy/kulüp/uyruk boş)")); continue

@@ -273,6 +273,7 @@ def main():
         onbellek[isim] = {
             "url": KOK_URL + yol, "meta": meta, "kaleci": kaleci,
             "fm_yas": p["yas"], "fm_boy": p["boy"], "fm_kulup": p["fm_kulup"],
+            "fm_uyruk": p["fm_uyruk"], "fm_uyruklar": p["fm_uyruklar"],
             "mevkiler": p["mevkiler"], "nitelikler": nitelikler, "eslesme": nasil,
         }
         json.dump(onbellek, open(ONBELLEK, "w", encoding="utf-8"),
