@@ -5068,6 +5068,10 @@ def render_rol_arama():
     st.caption(t(f"{len(_sonuclar)} oyuncu bu rol için yeterli veriyle notlanmış — ilk {min(_adet, len(_sonuclar))} gösteriliyor.",
                  f"{len(_sonuclar)} players graded with enough data for this role — showing top {min(_adet, len(_sonuclar))}."))
 
+    # .ws-table/.ws-wrap kullanılıyor (site genelindeki scouting tablolarıyla
+    # aynı sınıf): isim sütunu yatay kaydırmada sabit kalır (bkz. app.py'deki
+    # .ws-table td:first-child kuralı), mobilde otomatik tam-genişlik karta
+    # döner — Yiğit'in "her yerde aynı davransın" isteği (2026-08-19).
     _dil_q = st.session_state.get("dil", "TR")
     _satir = ""
     for i, (isim, skor, kapsam) in enumerate(_sonuclar[:_adet], 1):
@@ -5079,23 +5083,21 @@ def render_rol_arama():
         _renk = "#1db954" if i <= 3 else ("#a78bfa" if i <= 10 else "#3b4a63")
         _satir += (
             f"<tr>"
-            f"<td style='padding:7px 8px;color:{_renk};font-weight:800;font-family:monospace;'>{i}</td>"
-            f"<td style='padding:7px 8px;'><a href='{_html.escape(_href)}' target='_blank' "
-            f"style='color:#e2e8f0;font-weight:700;text-decoration:none;'>{_html.escape(isim)}</a></td>"
-            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(str(_kulup))}</td>"
-            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(str(_uyruk))}</td>"
-            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;text-align:center;'>{_html.escape(str(_yas))}</td>"
-            f"<td style='padding:7px 8px;text-align:center;'><b style='color:{_renk};'>{skor:.0f}</b></td>"
-            f"<td style='padding:7px 8px;text-align:center;font-size:0.72rem;color:#64748b;'>%{kapsam:.0f}</td>"
+            f"<td><span style='color:{_renk};font-weight:800;font-family:Sora,monospace;"
+            f"font-size:0.72rem;margin-right:6px;'>#{i}</span>"
+            f"<a class='ws-name' href='{_html.escape(_href)}' target='_blank'>{_html.escape(isim)}</a></td>"
+            f"<td data-label='{t('Kulüp','Club')}'>{_html.escape(str(_kulup))}</td>"
+            f"<td data-label='{t('Uyruk','Nation')}'>{_html.escape(str(_uyruk))}</td>"
+            f"<td class='num ws-mono' data-label='{t('Yaş','Age')}'>{_html.escape(str(_yas))}</td>"
+            f"<td class='num' data-label='{t('Puan','Score')}'><b style='color:{_renk};'>{skor:.0f}</b></td>"
+            f"<td class='num ws-mono' data-label='{t('Kapsam','Coverage')}'>%{kapsam:.0f}</td>"
             f"</tr>")
+    _thead = (
+        f"<tr><th>{t('Oyuncu','Player')}</th><th>{t('Kulüp','Club')}</th>"
+        f"<th>{t('Uyruk','Nation')}</th><th class='num'>{t('Yaş','Age')}</th>"
+        f"<th class='num'>{t('Puan','Score')}</th><th class='num'>{t('Kapsam','Coverage')}</th></tr>")
     st.markdown(
-        "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;'>"
-        f"<thead><tr style='color:#7c3aed;font-size:0.68rem;letter-spacing:0.08em;text-align:left;'>"
-        f"<th style='padding:4px 8px;'>#</th><th style='padding:4px 8px;'>{t('OYUNCU','PLAYER')}</th>"
-        f"<th style='padding:4px 8px;'>{t('KULÜP','CLUB')}</th><th style='padding:4px 8px;'>{t('UYRUK','NATION')}</th>"
-        f"<th style='padding:4px 8px;text-align:center;'>{t('YAŞ','AGE')}</th>"
-        f"<th style='padding:4px 8px;text-align:center;'>{t('PUAN','SCORE')}</th>"
-        f"<th style='padding:4px 8px;text-align:center;'>{t('KAPSAM','COVERAGE')}</th></tr></thead>"
+        f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
         f"<tbody>{_satir}</tbody></table></div>", unsafe_allow_html=True)
     st.caption(t("Puan 1000 üzerinden (bkz. oyuncu profilindeki Rol Verimliliği). "
                  "Kapsam, rolün istediği ağırlığın yüzde kaçının notlandığını gösterir — "
@@ -5243,6 +5245,9 @@ def render_serbest_radar():
     if not _sonuc:
         return
 
+    # .ws-table/.ws-wrap: isim sütunu yatay kaydırmada sabit kalır, mobilde
+    # otomatik karta döner — site genelindeki scouting tablolarıyla aynı sınıf
+    # (Yiğit, 2026-08-19).
     _dil_q = st.session_state.get("dil", "TR")
     _renk_harita = {"A+": "#34d399", "AA": "#34d399", "AB": "#4ade80", "BB": "#a3e635",
                     "BC": "#facc15", "CC": "#fb923c", "CD": "#f97316", "DD": "#f87171",
@@ -5256,22 +5261,20 @@ def render_serbest_radar():
         _nr = _renk_harita.get(k["nihai"], "#6b7280")
         _satir += (
             f"<tr>"
-            f"<td style='padding:7px 8px;'><a href='{_html.escape(_href)}' target='_blank' "
-            f"style='color:#e2e8f0;font-weight:700;text-decoration:none;'>{_html.escape(k['isim'])}</a>"
-            f"<div style='font-size:0.7rem;color:#64748b;'>{_html.escape(k['mevki'])} · {_html.escape(str(k['yas']))}</div></td>"
-            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(ulke_goster(k['uyruk']) or '—')}</td>"
-            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(_takim_kisa(k['kulup']) if not k['serbest'] else '—')}</td>"
-            f"<td style='padding:7px 8px;'>{_durum_hucre}</td>"
-            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;text-align:center;'>{k['mac'] or '—'}</td>"
-            f"<td style='padding:7px 8px;text-align:center;'><span style='color:{_nr};font-weight:800;"
-            f"font-family:monospace;'>{_html.escape(k['nihai'])}</span></td></tr>")
+            f"<td><a class='ws-name' href='{_html.escape(_href)}' target='_blank'>{_html.escape(k['isim'])}</a>"
+            f"<div class='ws-sub'>{_html.escape(k['mevki'])} · {_html.escape(str(k['yas']))}</div></td>"
+            f"<td data-label='{t('Uyruk','Nation')}'>{_html.escape(ulke_goster(k['uyruk']) or '—')}</td>"
+            f"<td data-label='{t('Kulüp','Club')}'>{_html.escape(_takim_kisa(k['kulup']) if not k['serbest'] else '—')}</td>"
+            f"<td data-label='{t('Durum','Status')}'>{_durum_hucre}</td>"
+            f"<td class='num ws-mono' data-label='{t('25/26 Maç','25/26 Apps')}'>{k['mac'] or '—'}</td>"
+            f"<td class='num' data-label='{t('Nihai','Rating')}'><span style='color:{_nr};font-weight:800;"
+            f"font-family:Sora,monospace;'>{_html.escape(k['nihai'])}</span></td></tr>")
+    _thead = (
+        f"<tr><th>{t('Oyuncu','Player')}</th><th>{t('Uyruk','Nation')}</th>"
+        f"<th>{t('Kulüp','Club')}</th><th>{t('Durum','Status')}</th>"
+        f"<th class='num'>{t('25/26 Maç','25/26 Apps')}</th><th class='num'>{t('Nihai','Rating')}</th></tr>")
     st.markdown(
-        "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;'>"
-        f"<thead><tr style='color:#7c3aed;font-size:0.68rem;letter-spacing:0.08em;text-align:left;'>"
-        f"<th style='padding:4px 8px;'>{t('OYUNCU','PLAYER')}</th><th style='padding:4px 8px;'>{t('UYRUK','NATION')}</th>"
-        f"<th style='padding:4px 8px;'>{t('KULÜP','CLUB')}</th><th style='padding:4px 8px;'>{t('DURUM','STATUS')}</th>"
-        f"<th style='padding:4px 8px;text-align:center;'>{t('25/26 MAÇ','25/26 APPS')}</th>"
-        f"<th style='padding:4px 8px;text-align:center;'>{t('NİHAİ','RATING')}</th></tr></thead>"
+        f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
         f"<tbody>{_satir}</tbody></table></div>", unsafe_allow_html=True)
     if len(_sonuc) > 100:
         st.caption(t(f"İlk 100 gösteriliyor ({len(_sonuc)} toplam) — pencereyi ya da mevkiyi daraltarak azalt.",
