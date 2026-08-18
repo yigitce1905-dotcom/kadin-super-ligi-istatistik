@@ -4435,8 +4435,28 @@ def _benzer_havuz(kaynak):
             "mevki_kod": ((_kd.get("mevki") or [""])[0] or "").upper(),
             "rol":       _kd.get("rol", ""),
             "deger":     _deger_num(_kd.get("deger", "")),
+            # Nitelik notları (34 BECERİ/BEŞERİ/FİZİKİ notu, 0-10 puana çevrili) —
+            # Yiğit'in isteği (2026-08-19): benzerlik yaş/boy/istatistik yerine
+            # ASIL scouting verisine (gerçek nitelik notlarına) dayansın.
+            "nitelik":   _nitelik_puanlari(_kd) if kaynak == "scouting" else {},
         })
     return havuz
+
+
+def _nitelik_puanlari(kadro_kayit: dict) -> dict:
+    """Oyuncunun NOTLANMIŞ (blank olmayan) niteliklerini 0-10 puana çevirir.
+    rol_matris.py ile aynı ölçek/kural — FF de dahil (rol_matris'in kendi
+    kuralı: FF gerçek bir yargı olarak sayılır, burada yeniden yorumlanmaz)."""
+    try:
+        from rol_matris import oyuncu_nitelikleri, NOT_PUAN
+    except Exception:
+        return {}
+    out = {}
+    for nit, harf in oyuncu_nitelikleri(kadro_kayit).items():
+        harf = (harf or "").strip()
+        if harf in NOT_PUAN:
+            out[nit] = NOT_PUAN[harf]
+    return out
 
 
 def _benzer_skor_ortak(q, o):
@@ -4456,8 +4476,24 @@ def _benzer_skor_ortak(q, o):
         fark += d * d
         n += 1
     if not n:
+        base = 0.0
+    else:
+        base = (1.0 - (fark / n) ** 0.5) * 100.0
+
+    # Nitelik-vektör benzerliği (2026-08-19): yaş/boy/istatistik yerine
+    # GERÇEK scout notlarını kıyaslar — asıl scouting verisi bu. Yalnızca HER
+    # İKİ oyuncuda da ortak notlanmış en az 8 nitelik varsa devreye girer
+    # (azsa gürültü); varsa istatistik tabanlı skordan daha ağır sayılır,
+    # çünkü scout notu yaş/boydan çok daha zengin bir sinyal.
+    qn, on = q.get("nitelik") or {}, o.get("nitelik") or {}
+    ortak = set(qn) & set(on)
+    if len(ortak) >= 8:
+        ort_fark = sum(abs(qn[nk] - on[nk]) for nk in ortak) / len(ortak)
+        nitelik_benzerlik = max(0.0, (1.0 - ort_fark / 10.0) * 100.0)
+        base = (base * 0.35 + nitelik_benzerlik * 0.65) if n else nitelik_benzerlik
+    elif not n:
         return 0.0
-    base = (1.0 - (fark / n) ** 0.5) * 100.0
+
     # Kategorik yakınlık: aynı detay mevki kodu + aynı rol (scout_kadro)
     if q.get("mevki_kod") and q["mevki_kod"] == o.get("mevki_kod"):
         base += 10
@@ -4528,10 +4564,12 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
                  "experience and goal/assist profile — the percentage is profile closeness")
     else:
         _bas = t('Benzer Oyuncular — Scouting Havuzu', 'Similar Players — Scouting Pool')
-        _cap = t("Uluslararası scouting havuzumuzdan, aynı mevki grubunda yaş, boy, deneyim ve "
-                 "gol/asist profili en yakın 3 oyuncu — yüzde, profillerin yakınlık derecesidir",
-                 "3 closest players in our worldwide scouting pool in the same position group by age, "
-                 "height, experience and goal/assist profile — the percentage is profile closeness")
+        _cap = t("Uluslararası scouting havuzumuzdan, aynı mevki grubunda profili en yakın 3 oyuncu — "
+                 "notlanmış nitelikler (BECERİ/BEŞERİ/FİZİKİ) varsa asıl kıyas onlar üzerinden yapılır, "
+                 "yoksa yaş/boy/istatistiğe düşülür. Yüzde, profillerin yakınlık derecesidir",
+                 "3 closest players in our worldwide scouting pool in the same position group — where "
+                 "graded attributes (technical/mental/physical) exist, the comparison is based on those; "
+                 "otherwise it falls back to age/height/stats. The percentage is profile closeness")
     st.markdown(f"#### 🔎 {_bas}")
     st.caption(_cap)
     _benzer_kutu_grid(sonuc[:3])
