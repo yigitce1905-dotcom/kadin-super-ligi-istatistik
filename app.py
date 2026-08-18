@@ -5266,6 +5266,105 @@ def render_serbest_radar():
                      f"Showing first 100 (of {len(_sonuc)}) — narrow the window or position to reduce."))
 
 
+# ── Yetenek Vitrini — Yetenek Kümesi etiketlerini keşif bölümüne çıkarır ───────
+# Etiketler (💎 Eşsiz, 🔮 Gelecek Vaad Eden, vb.) şimdiye kadar SADECE tek
+# oyuncu profilinde rozet olarak görünüyordu; havuz-geneli göz atılabilir bir
+# yeri yoktu (Yiğit, 2026-08-19 — fikir #4).
+_YETENEK_VITRIN_RENK = {
+    "💎 Eşsiz": "#34d399", "🔮 Gelecek Vaad Eden": "#a78bfa",
+    "🏅 Önemli": "#facc15", "🎁 Kalburüstü": "#4ade80",
+    "🧒 Genç": "#38bdf8", "🩹 Yedek": "#fb923c", "🍂 Tercih Dışı": "#6b7280",
+}
+# Öncelik sırası: "keşif" hissi için en ilgi çekiciler önde
+_YETENEK_VITRIN_SIRA = ["🔮 Gelecek Vaad Eden", "💎 Eşsiz", "🏅 Önemli",
+                        "🎁 Kalburüstü", "🧒 Genç", "🩹 Yedek", "🍂 Tercih Dışı"]
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def _yetenek_vitrin_havuzu():
+    """{yetenek_kumesi: [oyuncu kaydı, ...]} — nihai nota göre azalan, genç öncelikli."""
+    kadro = birlesik_scout_yukle()
+    out = {k: [] for k in _YETENEK_VITRIN_SIRA}
+    _NOT_SIRA = {"A+": 11, "AA": 10, "AB": 9, "BB": 8, "BC": 7, "CC": 6,
+                 "CD": 5, "DD": 4, "DE": 3, "EE": 2, "FF": 1}
+    for isim, v in kadro.items():
+        kume = (v.get("yetenek_kumesi") or "").strip()
+        if kume not in out:
+            continue
+        yas = v.get("yas")
+        try:
+            yas_n = int(yas)
+        except (TypeError, ValueError):
+            yas_n = 99
+        out[kume].append((isim, v, _NOT_SIRA.get(v.get("nihai"), 0), yas_n))
+    for kume in out:
+        out[kume].sort(key=lambda x: (-x[2], x[3]))
+    return out
+
+
+def render_yetenek_vitrini():
+    """YETENEK VİTRİNİ — Scout Pro sekmesi. Etiket kümelerini kart gridiyle
+    keşfedilebilir hale getirir; havuzun 'canlı küratörlü' hissetmesi için."""
+    havuz = _yetenek_vitrin_havuzu()
+    st.markdown(
+        f"<div style='padding:4px 0 2px;'>"
+        f"<div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;'>"
+        f"💎 {t('Yetenek Vitrini','Talent Showcase')}</div>"
+        f"<div style='color:#8899aa;font-size:0.82rem;margin-top:2px;'>"
+        + t("Scout ekibinin etiketlediği oyuncuları kümesine göre keşfet.",
+            "Explore scout-tagged players by their talent class.")
+        + "</div></div>", unsafe_allow_html=True)
+
+    _kume_kart = ""
+    for kume in _YETENEK_VITRIN_SIRA:
+        n = len(havuz.get(kume, []))
+        if not n:
+            continue
+        renk = _YETENEK_VITRIN_RENK.get(kume, "#a78bfa")
+        _kume_kart += (
+            f"<div style='flex:1 1 120px;background:#111118;border:1px solid {renk}44;"
+            f"border-radius:10px;padding:10px 12px;text-align:center;'>"
+            f"<div style='font-size:1.3rem;'>{kume.split()[0]}</div>"
+            f"<div style='font-size:0.68rem;color:{renk};font-weight:700;margin-top:2px;'>"
+            f"{yetenek_kume_goster(kume)}</div>"
+            f"<div style='font-size:0.72rem;color:#64748b;margin-top:1px;'>{n}</div></div>")
+    st.markdown(f"<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;'>{_kume_kart}</div>",
+                unsafe_allow_html=True)
+
+    _secenekler = [k for k in _YETENEK_VITRIN_SIRA if havuz.get(k)]
+    if not _secenekler:
+        st.info(t("Henüz etiketlenmiş oyuncu yok.", "No tagged players yet."))
+        return
+    _kume_sec = st.selectbox(t("Küme", "Class"), _secenekler,
+                             format_func=yetenek_kume_goster, key="yv_kume_sec")
+
+    _liste = havuz[_kume_sec][:24]
+    _dil_q = st.session_state.get("dil", "TR")
+    _renk = _YETENEK_VITRIN_RENK.get(_kume_sec, "#a78bfa")
+    _kartlar = ""
+    for isim, v, _ns, _yas in _liste:
+        _href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
+        _kulup = _takim_kisa(v.get("kulup", "")) or "—"
+        _uyruk = ulke_goster(v.get("vatandaslik", "")) or "—"
+        _nihai = v.get("nihai") or "—"
+        _kartlar += (
+            f"<a href='{_html.escape(_href)}' target='_blank' style='text-decoration:none;"
+            f"flex:1 1 160px;min-width:150px;max-width:220px;'>"
+            f"<div style='background:#111118;border:1px solid {_renk}33;border-radius:12px;"
+            f"padding:12px 14px;height:100%;'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:baseline;'>"
+            f"<span style='color:{_renk};font-weight:800;font-family:monospace;font-size:0.95rem;'>{_html.escape(_nihai)}</span>"
+            f"<span style='color:#64748b;font-size:0.7rem;'>{_html.escape(str(v.get('yas') or '—'))} {t('yaş','yrs')}</span></div>"
+            f"<div style='color:#e2e8f0;font-weight:700;font-size:0.88rem;margin-top:6px;'>{_html.escape(isim)}</div>"
+            f"<div style='color:#94a3b8;font-size:0.74rem;margin-top:2px;'>{_html.escape(str(_kulup))}</div>"
+            f"<div style='color:#64748b;font-size:0.7rem;margin-top:1px;'>{_html.escape(str(_uyruk))}</div>"
+            f"</div></a>")
+    st.markdown(f"<div style='display:flex;flex-wrap:wrap;gap:10px;'>{_kartlar}</div>", unsafe_allow_html=True)
+    if len(havuz[_kume_sec]) > 24:
+        st.caption(t(f"İlk 24 gösteriliyor ({len(havuz[_kume_sec])} toplam).",
+                     f"Showing first 24 (of {len(havuz[_kume_sec])})."))
+
+
 def _buyuk(s: str) -> str:
     """Dil-farkında BÜYÜK harf (Baran tipografi standardı). CSS uppercase Türkçe'de
     i→I bozduğu için TR modunda i→İ / ı→I çevirisi Python'da yapılır; emoji korunur."""
@@ -10099,19 +10198,20 @@ if st.session_state.get("sayfa") == "scouting":
 </div>""", unsafe_allow_html=True)
 
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
-            _ONERI_TAB = t("📥 Öneri Merkezi", "📥 Recommendations")
-            _ROL_TAB   = t("🎭 Rol Arama", "🎭 Role Search")
-            _SSR_TAB   = t("🆓 Serbest & Sözleşme", "🆓 Free Agent & Contract")
+            _ONERI_TAB  = t("📥 Öneri Merkezi", "📥 Recommendations")
+            _ROL_TAB    = t("🎭 Rol Arama", "🎭 Role Search")
+            _SSR_TAB    = t("🆓 Serbest & Sözleşme", "🆓 Free Agent & Contract")
+            _YETENEK_TAB = t("💎 Yetenek Vitrini", "💎 Talent Showcase")
             _TAB_OPTS  = [t("Tüm Oyuncular", "All Players"), t("⭐ My Squad", "⭐ My Squad"),
-                          _ROL_TAB, _SSR_TAB, _ONERI_TAB]
+                          _ROL_TAB, _SSR_TAB, _YETENEK_TAB, _ONERI_TAB]
             _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
                                    key="sc_tab_radio", label_visibility="collapsed")
             sadece_sl   = (_sc_tab_sel == t("⭐ My Squad", "⭐ My Squad"))
 
-            # ── Öneri Merkezi / Rol Arama / Serbest & Sözleşme sekmeleri: tam
-            # genişlik panosu + erken çıkış (Scouting sayfası zaten aşağıda
-            # st.stop() ile bitiyor; burada da render edip durmak filtre/tablo
-            # bloğunu temiz şekilde atlar).
+            # ── Öneri Merkezi / Rol Arama / Serbest & Sözleşme / Yetenek Vitrini
+            # sekmeleri: tam genişlik panosu + erken çıkış (Scouting sayfası
+            # zaten aşağıda st.stop() ile bitiyor; burada da render edip durmak
+            # filtre/tablo bloğunu temiz şekilde atlar).
             if _sc_tab_sel == _ONERI_TAB:
                 render_oneri_merkezi(_sl_kullanici)
                 st.stop()
@@ -10120,6 +10220,9 @@ if st.session_state.get("sayfa") == "scouting":
                 st.stop()
             if _sc_tab_sel == _SSR_TAB:
                 render_serbest_radar()
+                st.stop()
+            if _sc_tab_sel == _YETENEK_TAB:
+                render_yetenek_vitrini()
                 st.stop()
 
             # ── 🤖 Akıllı Arama (kural tabanlı; API'siz, milisaniyelik) ───────
