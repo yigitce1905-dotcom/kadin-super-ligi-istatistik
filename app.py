@@ -112,11 +112,11 @@ def _pwa_kur() -> None:
 
 _pwa_kur()
 
-# ─── Dil (TR varsayılan / EN hedefli sayfalar) ───
+# ─── Dil (EN varsayılan — uluslararası scouting ağı görünümü / TR isteğe bağlı) ───
 # Tercih URL'de (?dil=EN) saklanır → sayfa yenilense de korunur.
 if "dil" not in st.session_state:
     _qp_dil = st.query_params.get("dil", "")
-    st.session_state["dil"] = _qp_dil if _qp_dil in ("TR", "EN") else "TR"
+    st.session_state["dil"] = _qp_dil if _qp_dil in ("TR", "EN") else "EN"
 
 def t(tr, en):
     """Dile göre metin döndürür (EN seçiliyse İngilizce, değilse Türkçe)."""
@@ -2339,6 +2339,23 @@ def birlesik_scout_yukle() -> dict:
         out[k] = v
         _norm_harita[n] = k
     return out
+
+
+@st.cache_data(show_spinner=False)
+def dunya_havuz_ozet() -> dict:
+    """Uluslararası scouting havuzunun büyüklüğünü gösteren sayılar (karşılama
+    ekranı + ana sayfa hero'su için). Yalnız Dünya havuzundan (scout_kadro_yukle)
+    hesaplanır — TR ligi buraya karışırsa 'ülke/lig sayısı' anlamsızlaşır."""
+    d = scout_kadro_yukle()
+    ulke = {v.get("vatandaslik", "").strip() for v in d.values() if v.get("vatandaslik", "").strip()}
+    lig = {v.get("lig", "").strip() for v in d.values()
+           if v.get("lig", "").strip() and v.get("lig", "").strip() != "-"}
+    return {
+        "oyuncu": len(d),
+        "degerlendirilmis": sum(1 for v in d.values() if v.get("degerlendirildi")),
+        "ulke": len(ulke),
+        "lig": len(lig),
+    }
 
 
 @st.cache_data(show_spinner=False)
@@ -7905,9 +7922,11 @@ with st.sidebar:
             _nav_git("kokpit")
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
-_hero_oyuncu = len(df_tam) if not df_tam.empty else 0
-_hero_takim  = _kanon_takim_sayisi(df_tam["Takım"]) if not df_tam.empty else 0
-_hero_gol    = int(df_tam["Gol"].sum()) if not df_tam.empty else 0
+# Yiğit (2026-08-18): ilk açılışta TR ligi verileri göze girmesin, dünya
+# scouting ağı havası olsun. Çipler bu yüzden DÜNYA havuzuyla açılır; TR
+# Süper Lig en sona, tek bir bağlamsal çip olarak düşer.
+try:    _hero_dh = dunya_havuz_ozet()
+except Exception: _hero_dh = {"oyuncu": 0, "degerlendirilmis": 0, "ulke": 0, "lig": 0}
 try:    _hero_scout = len(birlesik_scout_yukle())
 except Exception: _hero_scout = 0
 # Hero + danışmanlık bandı YALNIZ ana ekranın İLK sekmesinde (Oyuncu Listesi)
@@ -7925,25 +7944,25 @@ if _ust_blok_goster:
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
   <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
          'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
-  <p>{t("Uluslararası scouting havuzu · Türkiye Kadınlar Süper Ligi istatistikleri · kariyer ve benzerlik analizi · kulüplere özel kadro danışmanlığı",
-        "International scouting pool · Turkish Women's Super League stats · career &amp; similarity analysis · club-tailored squad consultancy")}</p>
+  <p>{t("Dünya genelinde scouting ağı · kulüplere özel kadro danışmanlığı · kariyer ve benzerlik analizi · Türkiye Kadınlar Süper Ligi istatistikleri",
+        "Worldwide scouting network · club-tailored squad consultancy · career &amp; similarity analysis · Turkish Women's Super League stats")}</p>
   <div class="hero-chips">
-    <span class="hero-chip">{t("SEZON","SEASON")} <b>{SEZON_AKTIF}</b></span>
-    <span class="hero-chip"><b>{_hero_takim}</b> {t("TAKIM","TEAMS")}</span>
-    <span class="hero-chip"><b>{_hero_oyuncu}</b> {t("OYUNCU","PLAYERS")}</span>
-    <span class="hero-chip"><b>{_hero_gol}</b> {t("GOL","GOALS")}</span>
-    <span class="hero-chip">🔬 <b>{_hero_scout}</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
+    <span class="hero-chip">🌍 <b>{_hero_dh['oyuncu']}</b> {t("OYUNCU","PLAYERS SCOUTED")}</span>
+    <span class="hero-chip"><b>{_hero_dh['ulke']}</b> {t("ÜLKE","COUNTRIES")}</span>
+    <span class="hero-chip"><b>{_hero_dh['lig']}</b> {t("LİG","LEAGUES")}</span>
+    <span class="hero-chip">🔬 <b>{_hero_dh['degerlendirilmis']}</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
+    <span class="hero-chip">🇹🇷 {t("TR SÜPER LİG","TR SUPER LEAGUE")} <b>{SEZON_AKTIF}</b></span>
   </div>
 </div>""", unsafe_allow_html=True)
   _cta_kol = st.columns([1, 2.4, 1])[1]
   with _cta_kol:
-      _dv_n = 0
-      try: _dv_n = len(birlesik_scout_yukle())
-      except Exception: pass
+      _cta_ulke = _hero_dh["ulke"]
+      _cta_metin_tr = f"oyunculuk uluslararası scouting havuzu · {_cta_ulke} ülke — sitenin bayrak özelliği"
+      _cta_metin_en = f"player international scouting pool across {_cta_ulke} countries — the site&#39;s flagship feature"
       st.markdown(
           f"<div class='scouting-cta'>"
-          f"<div class='scouting-cta-txt'>🌍 <b>{_dv_n}+</b> "
-          f"{t('oyunculuk uluslararası scouting havuzu — sitenin bayrak özelliği','player international scouting pool — the site&#39;s flagship feature')}"
+          f"<div class='scouting-cta-txt'>🌍 <b>{_hero_dh['oyuncu']}+</b> "
+          f"{t(_cta_metin_tr, _cta_metin_en)}"
           f"</div></div>", unsafe_allow_html=True)
       if st.button(t("🌍 Scouting Havuzunu Keşfet", "🌍 Explore the Scouting Pool"),
                    key="hero_scouting_cta", width="stretch", type="primary"):
@@ -10472,42 +10491,57 @@ def render_paketler():
 
 
 def render_giris_ekrani():
-    """GİRİŞ sekmesi: kısa sayısal özet + Hakkında içeriği."""
+    """GİRİŞ sekmesi: kısa sayısal özet + Hakkında içeriği.
+
+    Sıra bilinçli: DÜNYA scouting havuzu ÖNCE gösterilir, TR Süper Lig
+    ikinci sırada. Yiğit'in isteği (2026-08-18): "siteyi ilk açtığımızda
+    Türkiye ligi verileri gözümüze girmesin, dünya genelini kapsayan bir
+    scouting ağı mekanizması havası istiyorum" — ilk gördüğü şey platformun
+    global ölçeği olsun, tek bir ulusal lig değil."""
     o = genel_ozet_hesapla()
+    dh = dunya_havuz_ozet()
     ad = st.session_state.get("kulup_ad", "")
     selam = f"{t('Hoş geldin','Welcome')}{(' ' + ad) if ad else ''} 👋"
     st.markdown(f"### {selam}")
-    # Hafta sayısı artık sabit değil: takım sayısı değişince 30 yanlış oluyordu.
-    _hafta = mac_haftalari_sayisi()
-    st.caption(t(f"Türkiye Kadınlar Süper Ligi · {SEZON_UZUN} Sezonu"
-                 + (f" · {_hafta} hafta verisi" if _hafta else ""),
-                 f"Turkish Women's Super League · {SEZON_UZUN} Season"
-                 + (f" · {_hafta} weeks of data" if _hafta else "")))
+    st.caption(t(f"Uluslararası Kadın Futbolu Scouting Ağı · {dh['ulke']} ülke · {dh['lig']} lig",
+                 f"International Women's Football Scouting Network · {dh['ulke']} countries · {dh['lig']} leagues"))
+
+    if dh:
+        st.markdown(
+            f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a855f7;"
+            f"font-weight:700;margin:10px 0 10px;'>🌍 {t('Dünya Scouting Havuzu','Global Scouting Pool')}</div>",
+            unsafe_allow_html=True)
+        # Disiplinli palet: platform/scouting=mor vurgu (#a855f7), veri=yeşil (#1db954).
+        dunya_satiri = [
+            (dh["oyuncu"], t("Havuzdaki Oyuncu","Players in Pool"), t("dünya geneli","worldwide"), "#a855f7"),
+            (dh["degerlendirilmis"], t("Scout Raporu","Scout Reports"),
+             t("nitelik bazlı değerlendirme","attribute-graded"), "#a855f7"),
+            (dh["ulke"], t("Ülke","Countries"), t("kapsanan pazar","markets covered"), "#a855f7"),
+            (dh["lig"], t("Lig","Leagues"), t("dünya genelinde","across the globe"), "#a855f7"),
+        ]
+        cols = st.columns(4)
+        for kol, (d, e, a, r) in zip(cols, dunya_satiri):
+            kol.markdown(_ozet_kart(d, e, a, r), unsafe_allow_html=True)
+        st.markdown("<br>", unsafe_allow_html=True)
 
     if o:
+        _hafta = mac_haftalari_sayisi()
         st.markdown(
             f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#1db954;"
-            f"font-weight:700;margin:10px 0 10px;'>📊 {t('Kısa Sayısal Özet','Quick Summary')}</div>",
+            f"font-weight:700;margin:4px 0 10px;'>🇹🇷 {t('Türkiye Kadınlar Süper Ligi','Turkish Women&#39;s Super League')}"
+            f"<span style='color:#6e7681;text-transform:none;letter-spacing:normal;font-weight:400;'>"
+            f" · {SEZON_UZUN}{f' · {_hafta} ' + t('hafta','weeks') if _hafta else ''}</span></div>",
             unsafe_allow_html=True)
-        # Disiplinli palet: veri=yeşil (#1db954), platform/scouting=mor vurgu (#a855f7).
-        satir1 = [
-            (o["oyuncu"], t("Toplam Oyuncu","Total Players"),
+        tr_satiri = [
+            (o["oyuncu"], t("Oyuncu","Players"),
              f"{o['yerli']} {t('yerli','dom.')} · {o['yabanci']} {t('yabancı','for.')}", "#1db954"),
-            (o["takim"], t("Toplam Takım","Total Teams"), t("Süper Lig","Super League"), "#1db954"),
-            (o["scouting"], t("Scouting Raporu","Scouting Reports"), t("uluslararası havuz","intl. pool"), "#a855f7"),
-            (o["mac"], t("Toplam Maç","Total Matches"), t("sezon geneli","full season"), "#1db954"),
+            (o["takim"], t("Takım","Teams"), t("Süper Lig","Super League"), "#1db954"),
+            (o["mac"], t("Maç","Matches"), t("sezon geneli","full season"), "#1db954"),
+            (o["gol"], t("Gol","Goals"), t("tüm lig","whole league"), "#1db954"),
         ]
-        satir2 = [
-            (o["gol"], t("Toplam Gol","Total Goals"), t("tüm lig","whole league"), "#1db954"),
-            (o["yerli"], t("Yerli Oyuncu","Domestic Players"),
-             (f"%{round(o['yerli']/o['oyuncu']*100)} " + t("yerli oran","domestic")) if o["oyuncu"] else "", "#1db954"),
-            (o["ort_yas"], t("Ortalama Yaş","Average Age"), t("lig geneli","league-wide"), "#1db954"),
-            (o["u23"], t("U-23 Yetenek","U-23 Talents"), t("geleceğin yıldızları","future stars"), "#a855f7"),
-        ]
-        for satir in (satir1, satir2):
-            cols = st.columns(4)
-            for kol, (d, e, a, r) in zip(cols, satir):
-                kol.markdown(_ozet_kart(d, e, a, r), unsafe_allow_html=True)
+        cols = st.columns(4)
+        for kol, (d, e, a, r) in zip(cols, tr_satiri):
+            kol.markdown(_ozet_kart(d, e, a, r), unsafe_allow_html=True)
         st.markdown("<br>", unsafe_allow_html=True)
 
     # Üyelik paketleri
