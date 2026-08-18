@@ -1,6 +1,8 @@
 # Hedef Havuzu — CL + Europa Cup 2026-27 (tam liste)
 
-**Durum:** roster tamamlandı (19.08.2026), iletişim araştırması SÜRÜYOR.
+**Durum:** roster tamamlandı, tüm kulüpler tarandı, en riskli 8 kayıt
+kadın-bölümüne-özel mi diye ikinci kez doğrulandı, kadın futbolu
+ajansları eklendi (19.08.2026). Detaylar mail_hedef_listesi.md'de.
 **Kaynak:** UEFA.com + Wikipedia (2026–27 UEFA Women's Champions League
 qualifying rounds, 2026–27 UEFA Women's Europa Cup).
 

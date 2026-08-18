@@ -38,6 +38,14 @@ kalıptan türetilmiş tek adres yok.
 > oyuncu bulmak; bizim mailimiz onun işini kolaylaştıran bir şey. Kulüp
 > Danimarka'da köklü, Avrupa'da düzenli oynuyor, bütçesi devasa değil.
 
+### 1b. SK Sturm Graz (Frauen) 🇦🇹 — 19.08 düzeltmesi, artık A-sınıfı
+- **Michael Erlitz — Sektionsleiter Frauen (Kadın Bölümü Lideri)**, 01.09.2024'ten beri
+  `michael.erlitz@sksturm.at` · 0664/206 55 93
+- Kaynak: sksturm.at haberi + akastmk-frauen.at (kadın akademisi resmî sitesi) — çift doğrulandı
+- ÖNEMLİ: bu kayıt önceki bir sürümde "genel: office@sksturm.at (B listesi)"
+  diye geçiyordu — o adres ERKEK kulübünün santralı, kadın bölümüne özel
+  DEĞİL. Yiğit'in uyarısı (19.08.2026) üzerine yeniden tarandı ve düzeltildi.
+
 ### 2. FC Slovan Liberec 🇨🇿
 - **Michaela Harvilová — Sportovní manažerka žen** (kadın futbolu sportif menajeri)
   `michaela.harvilova@fcsl.cz`
@@ -342,22 +350,147 @@ doğrulamak için ayrı ayrı taramadım — getiri sıfıra yakın olurdu.
 
 ---
 
-## ROSTER KAPANDI — nihai özet (19.08.2026)
+## I) DOĞRULAMA TURU — kadın bölümüne özel mi, yoksa erkek kulübüne mi? (19.08.2026)
 
-**CL+Europa Cup havuzundaki 90-100 kulübün TAMAMI tek tek değerlendirildi:**
+Yiğit'in uyarısı: "sportif direktöre mutlaka bak, yanlışlıkla erkek
+takımına atmayalım." Haklıydı — CL/Europa Cup'a giren kulüplerin
+çoğu ÇİFT CİNSİYETLİ (aynı çatı altında hem erkek hem kadın takımı),
+ve "genel santral" adresi çoğunlukla ERKEK kulübünün ana hattı.
+En riskli 8 kaydı tek tek yeniden doğruladım:
+
+**Yükseltildi (kadın bölümüne özel isim/mail bulundu):**
+- 🇦🇹 **Sturm Graz** → Michael Erlitz (yukarıda, madde 1b) — B'den A'ya çıktı
+- 🇭🇺 **Ferencváros** → Mikula Gábor'un "Női labdarúgás" (kadın futbolu)
+  sayfasında, açıkça recruitment/transfer teması olarak listelendiği
+  ikinci kez doğrulandı — zaten A idi, şimdi ÇİFT doğrulanmış
+- 🇸🇪 **Malmö FF** → Maxim Khalil'in sayfası "Sportchef DAM" başlığıyla
+  ikinci kez doğrulandı, kadın takımı sayfasında — isim güvenilir
+  (mail hâlâ yok)
+
+**Düşürüldü (genel adres/isim kadına özel DEĞİLMİŞ, riskli):**
+- 🇦🇹 **FK Austria Wien** — `fak@fk-austria.at` ERKEK kulübünün ana
+  hattı; kadına özel tek isim medya/iletişim sorumlusu (Philipp Marx,
+  kadın futboluna özel değil). "Lisa Makas" (bölüm sorumlusu) ve
+  "Stefan Kenesei" (kadın takımı yöneticisi) isimleri bulundu ama mail
+  yok. **Genel adrese ASLA mail atılmamalı** — erkek kulübüne düşer.
+- 🇷🇸 **TSC Bačka Topola** — `office@fktsc.com` tamamen genel, kadın
+  bölümüne dair hiçbir isim/departman yok. Kullanılmamalı.
+- 🇸🇰 **Spartak Myjava** — `riaditel@spartakmyjava.sk` doğrulandı:
+  bu, kulübün YÖNETİM KURULU BAŞKANI'nın adresi (erkek kulübü dahil
+  TÜM kulübün başı), kadına özel değil. Önceki turda "Sports
+  Director" diye yanlış sunulmuştu — DÜZELTİLDİ, artık "riskli" sayılır.
+- 🇧🇪 **OH Leuven** — Csepregi'nin erkek mi kadın mı sorumlu olduğu
+  doğrulanamadı, kadına özel personel bulunamadı. Riskli.
+- 🇸🇮 **ŽNK Mura** — NŠ Mura hem erkek (ünlü, şampiyon NK Mura) hem
+  kadın bölümünü aynı çatı altında yönetiyor; Grega Ciglar'ın hangi
+  takımdan sorumlu olduğu doğrulanamadı. Riskli — kullanılmamalı.
+- 🇷🇴 **Farul Constanța** — Academia Hagi hem erkek (Süper Lig şampiyonu)
+  hem kadın altyapısını barındırıyor; Zoltan Iasko'nun kadın futboluna
+  özel olduğu doğrulanamadı. Riskli.
+- 🇭🇷 **ŽNK Hajduk Split** — `info@hajduk.hr` ERKEK kulübünün (HNK
+  Hajduk, Hırvatistan'ın en büyük kulüplerinden) ana hattı. ŽNK Hajduk
+  ayrı bir tüzel kişilik (2021'den beri iş ortaklığı anlaşmasıyla
+  bağlı) — başkanı **Matea Bešlić** (mail bulunamadı). Genel adrese
+  mail atılmamalı.
+
+**Sonuç:** doğrulanan 8 riskli kayıttan 3'ü A-sınıfına çıktı, 5'i
+"kullanılmamalı/riskli" diye işaretlendi. Kalan ~25 "isimli lider"
+kayıtları için de aynı titizlikte tek tek doğrulama YAPILMADI (zaman
+kısıtı) — **gönderim öncesi her birinin başlığında "žen-/frauen-/
+dam-/kvinne-/women's" gibi açık bir kadın-futbolu ifadesi olduğunu
+tekrar kontrol etmeden mail atma.**
+
+---
+
+## J) HEDEF GENİŞLEMESİ — kadın futbolunda menajerlik şirketleri (19.08.2026)
+
+Yiğit'in ikinci talebi: "kadın futbolunda çalışan büyük menajerlik
+şirketlerini de hedef almalıyız." Bu kulüplerden FARKLI bir hedef
+kitle — mantık da farklı: ajanslar bize scouting verisi ALICISI değil,
+muhtemelen (a) havuzumuzdaki temsilsiz/serbest oyuncuları keşfetmek
+isteyen, ya da (b) kendi oyuncularını kulüplere pitch ederken nitelik
+verisi kullanmak isteyen bir taraf.
+
+Kulüp taramasıyla AYNI titizlikte gerçek araştırma yapıldı (isim +
+doğrulanmış kişisel mail, uydurma yok):
+
+### 1. Ignite Talent 🇬🇧 — *en iyi hedef, kesinlikle kadın futboluna özel*
+- **Ashley Brown — Kurucu & FIFA lisanslı ajan**
+  `ashley@ignitetalent.co.uk` · +44 7765 402603
+- Kaynak: ignitetalent.co.uk/contact (resmî site)
+- 2017'de kurulmuş, "global women's football agency" — müşterileri
+  arasında Mary Earps, Stine Larsen gibi isimler var. Manchester
+  United, PSG, Bayern, Real Madrid'le çalışıyor. Küçük/orta ölçekli,
+  yeni bir platforma daha erişilebilir olabilir.
+
+### 2. Agency CMG 🇸🇪 — kesinlikle kadın futboluna özel
+- **Maria Karlsson De Cecco — CEO & FIFA lisanslı ajan**
+  `maria@agencycmg.com`
+- Kaynak: agencycmg.com/about (resmî site)
+- Stockholm merkezli, 2015'te kurulmuş, **münhasıran** kadın futbolunda
+  ("represents top players, coaches, decision makers and clubs
+  exclusively in the world of women's football").
+
+### 3. FLOWSPORTS (SEG International) 🇳🇱
+- Genel: `hello@flowsports.agency` · +31 (0) 541 29 93 51
+- Kaynak: flowsports.agency/contact (resmî site)
+- "Global agency in women's football" — isimli temas kişisi sitede
+  yayımlanmamış, genel adres kullanılmalı.
+
+### 4. Wasserman ("The Team") — Women's Football Europe
+- **Luca Russo — VP, Women's Football, Europe**
+- Wasserman'ın Volante Sports'u (İngiltere'nin lider kadın futbolu
+  ajansı) satın almasıyla oluşan birim. Kişisel mail bulunamadı —
+  büyük ajans, isim doğrulandı ama doğrudan adrese ulaşılamadı.
+- ⚠️ 2026'da "The Team" olarak yeniden markalandı — eski "Wasserman"
+  adıyla arama yapılırsa güncel olmayan sonuçlar çıkabilir.
+
+### 5. TMJ — isim var, mail DOĞRULANAMADI
+- **Sara Toussaint — Co-CEO** (kadın futboluna münhasır ajanslardan
+  ilklerinden biri, kurucu Guillermo Zamarripa)
+- Bulunan mail adresi (`sara.toussaint@...`) yalnızca ÜÇÜNCÜ TARAF bir
+  toplayıcı siteden (ContactOut) geldi, resmî kaynaktan DOĞRULANMADI —
+  bu yüzden **kullanılmadı**. TMJ'nin kendi sitesi üzerinden iletişim
+  formuyla denenmeli.
+
+### 6. CAA Base (eski adıyla Base Soccer)
+- Genel: `baseinfo@caa.com`
+- Fran Kirby, Georgia Stanway gibi İngiltere millî oyuncularını temsil
+  ediyor — büyük/köklü ajans, CAA'nın (dev bir şirket) bir kolu.
+  İsimli kadın futbolu temas kişisi bu turda bulunamadı.
+
+**Önceliğim Ignite Talent ve Agency CMG** — ikisi de gerçek, doğrulanmış
+kişisel mail'e sahip VE kadın futboluna münhasır/özel odaklı, kulüp
+listesindeki en iyi 10'la aynı kalitede.
+
+---
+
+## ROSTER KAPANDI — nihai özet (19.08.2026, doğrulama + ajans turu sonrası)
+
+**CL+Europa Cup havuzundaki 90-100 kulübün TAMAMI tek tek değerlendirildi,
+en riskli 8'i kadın-bölümüne-özel mi diye ikinci kez doğrulandı, kadın
+futbolu ajansları ayrı bir kategori olarak eklendi:**
 
 | Kategori | Sayı |
 |---|---|
-| Kişisel + doğrulanmış mail | **10** |
-| İsimli lider + genel/departman adresi | **~30** |
-| Hiçbir iletişim bulunamadı | 11 |
+| Kulüp — kişisel + kadın-bölümüne-özel DOĞRULANMIŞ mail | **9** |
+| Ajans — kişisel + kadın-futboluna-özel doğrulanmış mail | **2** |
+| Kulüp — isimli lider + genel/departman adresi (doğrulanmamış, dikkatli kullan) | **~22** |
+| Kulüp — riskli (erkek kulübüne düşme ihtimali yüksek, KULLANMA) | **5** |
+| Hiçbir iletişim bulunamadı (kulüp+ajans) | 12 |
 | Ukrayna/Belarus (bilinçli hariç) | 5 |
-| Elit/dev — kurumsal basın ofisi dışında ulaşılamaz (3'ü örneklendi, 21'i kalıptan) | 24 |
-| **TOPLAM** | **~90** |
+| Elit/dev — kurumsal basın ofisi dışında ulaşılamaz | 24+ |
 
-**Gönderilebilir en güçlü 10:** Fortuna Hjørring, Vålerenga, Slovan
-Liberec, Breiðablik, HJK Helsinki, Brann, Spartak Myjava, Ferencváros,
-Flora Tallinn, Mġarr United (kadın takımı adresi).
+**Gönderilebilir en güçlü 11 (kulüp + ajans, hepsi kadın-futboluna-özel
+doğrulanmış kişisel mail):** Fortuna Hjørring, Vålerenga, Slovan
+Liberec, Breiðablik, HJK Helsinki, Brann, Sturm Graz, Ferencváros,
+Flora Tallinn, Mġarr United (kadın takımı adresi) — **+ Ignite Talent,
+Agency CMG** (ajans).
+
+**KULLANMA — erkek kulübüne düşme riski yüksek:** FK Austria Wien
+(fak@fk-austria.at), TSC Bačka Topola (office@fktsc.com), Spartak
+Myjava (riaditel@... — kulüp başkanı, kadına özel değil), ŽNK Mura,
+ŽNK Hajduk Split (info@hajduk.hr).
 
 Roster taraması burada kapanıyor. Sıradaki adım mail taslaklarını
 hazırlamak.
