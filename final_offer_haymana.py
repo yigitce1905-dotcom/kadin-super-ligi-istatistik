@@ -31,7 +31,7 @@ pdf.ln(10)
 
 # ── Tarih (sağ) ──
 pdf.set_font("TMS", "B", 11); pdf.set_text_color(*SIYAH)
-pdf.cell(0, 6, "21.07.2026", align="R", ln=1)
+pdf.cell(0, 6, "22.07.2026", align="R", ln=1)
 pdf.ln(4)
 
 # ── Başlık ──
@@ -54,11 +54,13 @@ pdf.line(22, pdf.get_y(), 22 + pdf.get_string_width("Our final offer for the pla
 pdf.ln(3)
 
 maddeler = [
+    "Season duration: 10 months (August – May)",
     "800 US DOLLAR net monthly salary",
     "Win bonus available for important wins",
     "Accommodation: room in club facility",
     "Round trip flight ticket (home country – Türkiye)",
     "3 meals (breakfast, lunch, dinner in club facilities)",
+    "Agency fee: 10%",
 ]
 pdf.set_font("TMS", "", 11.5)
 for m in maddeler:

@@ -1,0 +1,279 @@
+=== GÜNCEL KULÜP — BARAN İÇİN (SoccerDonna doğrulaması) ===
+SERBEST kalmış: 49 | Kulüp değişmiş: 152 | Emekli: 4 | Kontrol gerek: 63
+Not: 'Değişmiş' ve 'Serbest' isim+uyruk ile teyitli. 'Kontrol' = SD aramasıyla kesinleşmedi, göz at.
+
+########## SERBEST KALMIŞ (49) ##########
+  Aicha Hamideche  |  bizde: Abu Dhabi  →  SERBEST
+  Akane Okuma  |  bizde: INAC Kobe Leonessa  →  SERBEST
+  Alexia Putellas  |  bizde: FC Barcelona  →  SERBEST
+  Anna Henderson  |  bizde: Fort Lauderdale Utd  →  SERBEST
+  Annamaria Serturini  |  bizde: Internazionale Milano  →  SERBEST
+  Aurora Mikalsen  |  bizde: SK Brann  →  SERBEST
+  Charlotte Grant  |  bizde: Tottenham Hotspur  →  SERBEST
+  Chika Hirao  |  bizde: Granada CF  →  SERBEST
+  Cori Sullivan  |  bizde: Lexington  →  SERBEST
+  Cortnee Vine  |  bizde: North Carolina Courage  →  SERBEST
+  Cynthia Konlan  |  bizde: Swieqi United  →  SERBEST
+  Emilie Haavi  |  bizde: AS Roma  →  SERBEST
+  Fatma Sakar  |  bizde: 1. FC Union Berlin  →  SERBEST
+  Frankie Tagliaferri  |  bizde: Utah Royals  →  SERBEST
+  Georgia Stanway  |  bizde: FC Bayern München  →  SERBEST
+  Geraldine Reuteler  |  bizde: Eintracht Frankfurt  →  SERBEST
+  Hana Kerner  |  bizde: Celtic  →  SERBEST
+  Jenny Hipp  |  bizde: 1. FC Union Berlin  →  SERBEST
+  Joy Omewa  |  bizde: Fortuna Hjørring  →  SERBEST
+  Kathleen McGovern  |  bizde: Hibernian FC  →  SERBEST
+  Katrina Gorry  |  bizde: West Ham United  →  SERBEST
+  Klil Keshwar  |  bizde: IA Akranes  →  SERBEST
+  Kristina Maksuti  |  bizde: Gotham FC  →  SERBEST
+  Lena Silano  |  bizde: UD Tenerife  →  SERBEST
+  Lily Dubuc  |  bizde: Sporting de Huelva  →  SERBEST
+  Loreta Kullashi  |  bizde: Badalona  →  SERBEST
+  Louisa Aniwaa  |  bizde: Valadares Gaia  →  SERBEST
+  Luana Buhler  |  bizde: Tottenham Hotspur  →  SERBEST
+  Madelyn Desiano  |  bizde: Odense Boldklub Q  →  SERBEST
+  Meryem Cal  |  bizde: Beşiktaş JK  →  SERBEST
+  Miray Cin  |  bizde: Borussia Mönchengladbach  →  SERBEST
+  Misa Rodriguez  |  bizde: Real Madrid  →  SERBEST
+  Natalie Viggiano  |  bizde: Spokane Zephyr  →  SERBEST
+  Ona Batlle  |  bizde: FC Barcelona  →  SERBEST
+  Opah Clement  |  bizde: SD Eibar  →  SERBEST
+  Ruby Nathan  |  bizde: Canberra United  →  SERBEST
+  Salma Paralluelo  |  bizde: FC Barcelona  →  SERBEST
+  Samiah Phiri  |  bizde: Nantes  →  SERBEST
+  Selina Cerci  |  bizde: TSG 1899 Hoffenheim  →  SERBEST
+  Shelina Zadorsky  |  bizde: West Ham United  →  SERBEST
+  Sofia Alvarez  |  bizde: AEK  →  SERBEST
+  Tegan McGrady  |  bizde: Serbest  →  SERBEST
+  Teresa Abelleira  |  bizde: Real Madrid  →  SERBEST
+  Tessa Wullaert  |  bizde: Internazionale Milano  →  SERBEST
+  Tziarra King  |  bizde: Seattle Reign  →  SERBEST
+  Viola Calligaris  |  bizde: Juventus FC  →  SERBEST
+  Yamila Badell  |  bizde: SD Huesca  →  SERBEST
+  Yasmim  |  bizde: Orlando Pride  →  SERBEST
+  Zara Jonsson  |  bizde: Djurgaardens IF  →  SERBEST
+
+########## KULÜP DEĞİŞMİŞ (152) ##########
+  Adriana  |  Orlando Pride  →  Al-Qadsiah
+  Agnese Bonfantini  |  Internazionale Milano  →  ACF Fiorentina
+  Amaiur Sarriegi  |  Real Sociedad  →  Atlético de Madrid
+  Amanda Andradottir  |  FC Twente  →  Molde FK
+  Amanda Gutierres  |  SE Palmeiras  →  Boston Legacy FC
+  Amber Tysiak  |  West Ham United  →  1. FC Union Berlin
+  Amina Muratovic  |  FC Zürich  →  Servette FC Chênois Féminin
+  Amirah Ali  |  Valencia  →  Piteå IF
+  Ana Capeta  |  Sporting  →  Juventus FC
+  Ana Ferreira  |  Valadares  →  Nespereira Futebol Clube
+  Ana Milovic  |  Slavia Prag  →  ŽNK Mura
+  Anastasiya Pobegaylo  |  Fortuna Hjørring  →  FC Rosengård
+  Anastasiya Shuppo  |  ETO FC Györ  →  Rubin Kazan
+  Andjela Milovanovic  |  ŽFK Crvena Zvezda  →  GKS Katowice
+  Anita Marcos  |  Valencia  →  Madrid CFF
+  Anna Kozyupa  |  Lokomotiv Moskova  →  Lokomotive Moskau
+  Aslaug Munda Gunnlaugsdottir  |  Breiðablik  →  Parma Calcio
+  Aude Gbedjissi  |  RC Lens  →  Galatasaray SK
+  Barbara Olivieri  |  Houston Dash  →  Boston Legacy FC
+  Beata Olsson  |  Kristianstads DFF  →  Liverpool FC
+  Beth Mead  |  Arsenal FC  →  Manchester City
+  Bia Zaneratto  |  Kansas City Current  →  SE Palmeiras
+  Brenna Lovera  |  Glasgow City FC  →  SK Brann
+  Brianna Pinto  |  North Carolina Courage  →  Chicago Stars FC
+  Bryndis Arna Nielsdottir  |  Växjö DFF  →  Breiðablik Kópavogur
+  Caitlin Dijkstra  |  VfL Wolfsburg  →  Tottenham Hotspur
+  Camryn Biegalski  |  Chicago Stars FC  →  Denver Summit FC
+  Cathinka Tandberg  |  Hammarby IF  →  Tottenham Hotspur
+  Cecilia Ran Runarsdottir  |  FC Bayern München  →  Inter Milano
+  Chloe Kelly  |  Manchester City  →  Arsenal FC
+  Clarissa Larisey  |  Crystal Palace  →  Houston Dash
+  Comfort Yeboah  |  Ampem Darkoa  →  DUX Logroño
+  Constance Picaud  |  FC Fleury 91  →  West Ham United
+  Coumba Sow  |  Servette FC  →  FC Basel 1893
+  Dajana Spasojevic  |  Kızılyıldız  →  SFK 2000 Sarajevo
+  Diede Lemey  |  SV Werder Bremen  →  FC Twente
+  Dilja Yr Zomers  |  OH Leuven  →  SK Brann
+  Doly Wabeua  |  Racing Power  →  SF Damaiense
+  Doris Bacic  |  Napoli  →  Lazio Women
+  Edna Imade  |  Granada CF  →  FC Bayern München
+  Ekaterina Miklashevich  |  ALG Spor  →  WFC Minsk
+  Elene Lete  |  Real Sociedad  →  London City Lionesses
+  Ella Peddemors  |  FC Twente  →  VfL Wolfsburg
+  Ella Touon  |  SGS Essen  →  1. FC Köln
+  Elma Junttila Nelhage  |  OL Féminin  →  OL Lyonnes
+  Emily Alvarado  |  Club Tijuana  →  FC Juárez
+  Emily Sams  |  Orlando Pride  →  Angel City FC
+  Emily Wallrabenstein  |  Eintracht Frankfurt II  →  Bayer 04 Leverkusen
+  Emina Ekic  |  Spokane Zephyr  →  Houston Dash
+  Emoke Papai  |  SV Werder Bremen  →  1. FC Nürnberg
+  Eudimilla De Souza  |  Corinthians  →  Santos FC
+  Evelyn Ijeh  |  AC Milan  →  North Carolina Courage
+  Fanney Inga Birkisdottir  |  Valur  →  BK Häcken FF
+  Felicia Schröder  |  BK Häcken  →  Real Madrid CF
+  Flavine Mawete  |  Djurgaardens IF  →  DUX Logroño
+  Francesca Durante  |  Lazio  →  Inter Milano
+  Freja Thisgaard  |  Brøndby IF  →  Napoli Women
+  Giulia Dragoni  |  AS Roma  →  FC Barcelona B
+  Guro Bergsvand  |  Brighton & Hove  →  VfL Wolfsburg
+  Guro Reiten  |  Chelsea FC  →  Gotham FC
+  Hannah Eurlings  |  OH Leuven  →  1. FC Union Berlin
+  Helena Bozic  |  Dinamo Moskova  →  Changchun Dazhongzhuoyue Women
+  Hildur Antonsdottir  |  Fortuna Hjørring  →  Madrid CFF
+  Hlin Eiriksdottir  |  Kristianstads DFF  →  Leicester City
+  Hwa-yeon Son  |  AIK Fotball  →  Gangjin WFC
+  Ines Nourani  |  CF Montréal  →  UConn Huskies
+  Ingrid Engen  |  FC Barcelona  →  OL Lyonnes
+  Iris Omarsdottir  |  Stabæk Chk  →  ACF Fiorentina
+  Isabela  |  SC Corinthians  →  Paris Saint-Germain
+  Jana Fernandez  |  FC Barcelona  →  London City Lionesses
+  Janou Levels  |  Bayer 04 Leverkusen  →  VfL Wolfsburg
+  Jasmine Hamid  |  Fort Lauderdale Utd  →  Dallas Trinity FC
+  Jennifer Falk  |  AFC Liverpool  →  BK Häcken FF
+  Jessica Hinton  |  Vanderbilt  →  SF Damaiense
+  Jheniffer  |  SC Corinthians  →  Tigres UANL
+  Jill Janssens  |  TSG 1899 Hoffenheim  →  1. FC Union Berlin
+  Jonna Andersson  |  Hammarby IF  →  Linköping FC
+  Jordynn Dudley  |  Florida S Seminoles  →  Gotham FC
+  Josefine Hasbo  |  Harvard Crimson  →  Boston Legacy FC
+  Julia Mickenhagen  |  Bayer04 Leverkusen  →  VfB Stuttgart
+  Julia Zigiotti Olme  |  FC Bayern München  →  Manchester United
+  Julie Blakstad  |  Hammarby IF  →  Tottenham Hotspur
+  Jynaya Dos Santos  |  Canberra United  →  Bulls FC Academy
+  Kaitlyn Torpey  |  San Diego Wave  →  Newcastle United
+  Kamilla Melgard  |  Madrid CFF  →  Aston Villa
+  Katla Tryggvadottir  |  Kristianstads DFF  →  ACF Fiorentina
+  Kelly Gago  |  FC Nantes  →  Everton FC
+  Kyra Carusa  |  San Diego Wave  →  HB Køge
+  Laia Aleixandri  |  Manchester City  →  FC Barcelona
+  Laia Codina  |  Arsenal FC  →  West Ham United
+  Larissa Muhlhaus  |  SV Werder Bremen  →  Eintracht Frankfurt
+  Laura Giuliani  |  AC Milan  →  VfB Stuttgart
+  Lily Bryant  |  Princeton Tigers  →  FC Porto
+  Lindsey Heaps  |  OL Lyonnes  →  Denver Summit FC
+  Lisanne Grawe  |  Eintracht Frankfurt  →  1. FC Union Berlin
+  Liz Rijsbergen  |  FC Twente  →  PSV Eindhoven
+  Lucia Kendall  |  Southampton FC  →  Aston Villa
+  Lucie Calba  |  Girondins Bordeaux  →  FC Nantes
+  Lucie Schlime  |  First Vienna FC 1894  →  SC Sand
+  Maggie Cagle  |  Virginia Cavaliers  →  Vittsjö GIK
+  Magou Doucoure  |  Bayern Münih II  →  Hamburger SV
+  Maika Hamano  |  Tottenham Hotspur  →  Chelsea FC
+  Marina Marti  |  Valencia  →  CD Tenerife Femenino
+  Mariza  |  SC Corinthians  →  Tigres UANL
+  Mary Earps  |  Paris Saint-Germain  →  London City Lionesses
+  Mathilde Harviken  |  Rosenborg BK  →  Juventus FC
+  Maya Neal  |  KR Reykjavik  →  ÍF Grótta
+  Melissa Kossler  |  TSG 1899 Hoffenheim  →  Denver Summit FC
+  Meriame Terchoun  |  Dijon FCO  →  Servette FC Chênois Féminin
+  Michaely Bihina  |  Racing Power  →  SL Benfica
+  Milena Nikolic  |  Basel FC  →  ZSKA Moskau
+  Mille Bech  |  B.93 Kopenhagen  →  Odense Boldklub Q
+  Millie Farrow  |  Sydney FC  →  Central Coast Mariners
+  Milly Clegg  |  Halifax Tides  →  Vittsjö GIK
+  Nadine Riesen  |  Eintracht Frankfurt  →  West Ham United
+  Natasha Anasi  |  Valur  →  Grindavík/Njarðvík
+  Natasha Kowalski  |  SGS Essen  →  Bayer 04 Leverkusen
+  Nia Christopher  |  Fort Lauderdale Utd  →  FH Hafnarfjörður
+  Nikee Van Dijk  |  FC Twente  →  Inter Milano
+  Noelle Henning  |  NDC Ontario  →  Michigan State Spartans
+  Oihane Hernandez  |  Real Madrid  →  Orlando Pride
+  Olga Carmona  |  Real Madrid  →  Paris Saint-Germain
+  Priscila  |  San Diego Wave  →  América Mineiro
+  Rebecka Blomqvist  |  VfL Wolfsburg  →  Eintracht Frankfurt
+  Riley Tanner  |  Spokane Zephyr  →  Sydney FC
+  Risa Shimizu  |  AFC Liverpool  →  Manchester City
+  Sam Kerr  |  Chelsea FC  →  Gotham FC
+  Sanda Malesevic  |  Kész-St. Mihály  →  Újpest FC
+  Sandra Maria Jessen  |  Þór/KA  →  1. FC Köln
+  Sara Holmgaard  |  Everton FC  →  Real Madrid CF
+  Sarah Wijnants  |  RSCA Women  →  ACF Fiorentina
+  Selma Panengstuen  |  Kolbotn IL  →  Tottenham Hotspur
+  Sharn Freier  |  Brisbane Roar  →  VfL Wolfsburg
+  Shekiera Martinez  |  West Ham United  →  Tottenham Hotspur
+  Signe Gaupset  |  SK Brann  →  Tottenham Hotspur
+  Sunniva Skoglund  |  Stabæk Chk  →  SK Brann
+  Suzuka Yosue  |  AO REA  →  Pogoń Szczecin
+  Sydney Collins  |  North Carolina Courage  →  Bay FC
+  Szidonia Papp  |  Nees Atromitou FC  →  Budaörsi SC
+  Tamara Bolt  |  Dallas Trinity  →  Washington Spirit
+  Taylor Aylmer  |  Spokane Zephyr  →  Lexington SC
+  Telma Ivarsdottir  |  Breiðablik  →  Rangers FC
+  Thea Bjelde  |  Vålerenga  →  VfL Wolfsburg
+  Tuva Hansen  |  FC Bayern München  →  West Ham United
+  Vesna Milivojevic  |  IFK Norrköping  →  Malmö FF
+  Victoria Pelova  |  Arsenal FC  →  Tottenham Hotspur
+  Vitoria Yaya  |  SC Corinthians  →  Paris Saint-Germain
+  Vivien Endemann  |  VfL Wolfsburg  →  Liverpool FC
+  Wassa Sangaré  |  Stade de Reims  →  OL Lyonnes
+  Xu Huan  |  Jiangsu Women  →  Estoril Praia
+  Zoe Magyarics  |  FK Csíkszereda  →  SpG Südburgenland / TSV Hartberg
+  Zsanett Kajan  |  Lazio  →  Parma Calcio
+
+########## EMEKLİ (4) ##########
+  Guro Pettersen  |  bizde: SV Werder Bremen
+  Imani Dorsey  |  bizde: Utah Royals
+  Ivana Rudelic  |  bizde: FC Basel 1893
+  Jassie Vasconcelos  |  bizde: Altach
+
+########## KONTROL GEREK (SD aramada netleşmedi) (63) ##########
+  A. Le Moguédec  |  bizde: RC Strasbourg  →  (v2 tahmin: Paris FC)
+  Alex Strickland  |  bizde:   →  (v2 tahmin: ?)
+  Amalie Jael Vangsgaard  |  bizde: Juventus FC  →  (v2 tahmin: Aston Villa)
+  Angelina Costantino  |  bizde:   →  (v2 tahmin: ?)
+  Caroline Moller Hansen  |  bizde: Real Madrid  →  (v2 tahmin: SL Benfica)
+  Cecilie Floe Nielsen  |  bizde: HB Køge  →  (v2 tahmin: Dalum IF/Næsby BK)
+  Chen Qiaozhu  |  bizde: Guangdong Women  →  (v2 tahmin: Beijing Women)
+  Chloe N’Gazi  |  bizde:   →  (v2 tahmin: ?)
+  Choe Yu-ri  |  bizde: Birmingham City  →  (v2 tahmin: Suwon FC Women)
+  Cris Vieira  |  bizde: Valadres  →  (v2 tahmin: SC Braga)
+  Dou Jiaxing  |  bizde: Jiangsu Women  →  (v2 tahmin: Changchun Dazhongzhuoyue Women)
+  Elisa Sense  |  bizde: Eintracht Frankfurt  →  (v2 tahmin: Real Madrid CF)
+  Elisa Vidarsdottir  |  bizde: Valur  →  (v2 tahmin: Breiðablik Kópavogur)
+  Gio DeMarco  |  bizde:   →  (v2 tahmin: ?)
+  Gloria Slis(h)kovic  |  bizde:   →  (v2 tahmin: ?)
+  Gu Yasha  |  bizde: Wuhan Jiangda  →  (v2 tahmin: Beijing Women)
+  Gudny Arnadottir  |  bizde: AC Milan  →  (v2 tahmin: Kristianstads DFF)
+  Gudrun Arnardottir  |  bizde: FC Rosengård  →  (v2 tahmin: Hammarby IF DFF)
+  Ingibjorg Sigurdardottir  |  bizde: Brøndby IF  →  (v2 tahmin: SC Freiburg)
+  Ingrid Borges  |  bizde:   →  (v2 tahmin: ?)
+  Izzy D'Aquila  |  bizde:   →  (v2 tahmin: ?)
+  Jess Emerton  |  bizde: Amedspor  →  (v2 tahmin: Omonia Nikosia)
+  Jheniffer Cardinali  |  bizde:   →  (v2 tahmin: ?)
+  Joanna Weclawek  |  bizde: Śląsk Wroclaw  →  (v2 tahmin: 1KS Ślęza Wrocław)
+  Jolie Louis  |  bizde:   →  (v2 tahmin: ?)
+  Kathrine Moller Kuhl  |  bizde: Arsenal FC  →  (v2 tahmin: Atlético de Madrid)
+  Kaylan Williams  |  bizde:   →  (v2 tahmin: ?)
+  Kim Min-ji  |  bizde: bizde: Seoul City WFC  →  (v2 tahmin: SERBEST)
+  Kim Shin-ji  |  bizde: Rangers FC  →  (v2 tahmin: AS Roma)
+  L. Beerensteyn  |  bizde: VfL Wolfsburg  →  (v2 tahmin: Real Madrid CF)
+  Laurie Moise  |  bizde:   →  (v2 tahmin: ?)
+  Layssa Oliveira  |  bizde: Lokomotif Moskova  →  (v2 tahmin: SE Palmeiras)
+  Lexi Llyod-Smith  |  bizde:   →  (v2 tahmin: ?)
+  Li Mengwen  |  bizde: bizde: Rangers FC  →  (v2 tahmin: SERBEST)
+  Lise Lichtfus  |  bizde: Dijon FCO  →  (v2 tahmin: TSG 1899 Hoffenheim)
+  Maja Bay Ostergaard  |  bizde: FC Nordsjælland  →  (v2 tahmin: Växjö DFF)
+  Majda Dres(h)evic  |  bizde:   →  (v2 tahmin: ?)
+  Marit Bratberg Lund  |  bizde: SL Benfica  →  (v2 tahmin: Lillestrøm SK Kvinner)
+  Melina Krueger  |  bizde:   →  (v2 tahmin: ?)
+  Mille Gejl Jensen  |  bizde: Crystal Palace  →  (v2 tahmin: HB Køge)
+  Nadja Stanovic  |  bizde: Slavia Prag  →  (v2 tahmin: SK Slavia Praha)
+  Natalia Mashina  |  bizde: Spartak Moscow  →  (v2 tahmin: Spartak Moskau)
+  Noh Jin-young  |  bizde: Munkyung Sangmu  →  (v2 tahmin: Gyeongju KHNP WFC)
+  O. Jean-François  |  bizde: Chelsea FC  →  (v2 tahmin: Aston Villa)
+  Olivia Moller Holdt  |  bizde: FC Rosengård  →  (v2 tahmin: Tottenham Hotspur)
+  P. Peyraud-Magnin  |  bizde: Juventus FC  →  (v2 tahmin: Denver Summit FC)
+  Park Hye-jeong  |  bizde: Sejong Sportstoto  →  (v2 tahmin: Incheon Hyundai Steel Red Angels WFC)
+  Sandrine Mauron  |  bizde: bizde: Servette FC  →  (v2 tahmin: SERBEST)
+  Sara Thrige Andersen  |  bizde: PSV Eindhoven  →  (v2 tahmin: B.93 København U19)
+  Shao Ziqin  |  bizde: Jiangsu Women  →  (v2 tahmin: SL Benfica)
+  Shen Menglu  |  bizde: bizde: Bayer 04 Leverkusen  →  (v2 tahmin: SERBEST)
+  Shen Mengyu  |  bizde: London City Lionesses  →  (v2 tahmin: Shanghai Shengli Women)
+  Shin Na-yeong  |  bizde: Incheon Red Angels  →  (v2 tahmin: Brooklyn FC)
+  Sofie Junge Pedersen  |  bizde: FC Badalona Women  →  (v2 tahmin: Varde IF (-2025))
+  Son Hwa-yeon  |  bizde: Sejong Sportstoto  →  (v2 tahmin: Gangjin WFC)
+  Viktoria Valyuk  |  bizde: ZFK Minsk  →  (v2 tahmin: Vitória SC Guimarães)
+  Vilde Boe Risa  |  bizde: bizde: Atlético de Madrid  →  (v2 tahmin: SERBEST)
+  Yan Jinjin  |  bizde: bizde: Shanghai Shengli  →  (v2 tahmin: SERBEST)
+  Yang Lina  |  bizde: Shanghai Shengli  →  (v2 tahmin: Galatasaray SK)
+  Yao Lingwei  |  bizde: bizde: Wuhan Jiangda  →  (v2 tahmin: SERBEST)
+  Zeliya Sengul  |  bizde:   →  (v2 tahmin: ?)
+  Zhang Rui  |  bizde: Wuhan Jiangda  →  (v2 tahmin: Shandong Women)
+  Zhu Yu  |  bizde: Wuhan Jiangda  →  (v2 tahmin: Shanghai Shengli Women)

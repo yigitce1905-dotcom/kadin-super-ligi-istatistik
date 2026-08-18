@@ -1,0 +1,68 @@
+BARAN — VERİ HİJYENİ RAPORU
+Tarama: 2026-07-18 · kaynak: canlı sheet (dünya 1129 + TR 368)
+Not: Aşağıdakiler siteyi BOZMUYOR (kod toleranslı) ama sheet temizliği için.
+============================================================
+
+1) İSİM YAZIM FARKI (10) — sheet ↔ SoccerDonna uyuşmuyor
+   (çoğu SD diakritik düşürmüş; birkaçı sheet Türkçe İ/I hatası)
+   sheet= 'ARMISA KUC'                 SD= 'ARMISA KUÇ'
+   sheet= 'JELENA KARLIČIĆ'            SD= 'JELENA KARLİCİC'
+   sheet= 'MARIJA ALEKSIĆ'             SD= 'MARIJA ALEKSIC'
+   sheet= 'TEODORA NICOARĂ'            SD= 'TEODORA NICOARA'
+   sheet= 'ANDREA STAŠKOVÁ'            SD= 'ANDREA STASKOVA'
+   sheet= 'MARIA PAULA SALAS ZUÑIGA'   SD= 'MARIA PAULA SALAS ZUNIGA'
+   sheet= 'Çimen ERDİN'                SD= 'ÇİMEN ERDİN'
+   sheet= 'ESİN NISA SİVASLI'          SD= 'ESİN NİSA SİVASLI'
+   sheet= 'NISA DEREN KANDEMİR'        SD= 'NİSA DEREN KANDEMİR'
+   sheet= 'ANDREA GÜRTNER'             SD= 'ANDREA GURTNER'
+
+2) İKİ SHEET'TE ÇİFT KAYIT (6) — TR'ye transfer, DÜNYA sheet'inden SİL
+   - AICHA HAMIDECHE
+   - SOULAIMA JABRANI
+   - JULIETTE NANA
+   - KEVINE OSSOL
+   - LUSHOMO MWEEMBA
+   - RASMATA SAWADOGO
+
+3) POZİSYONSUZ (41) — Mevki-1 veya Bölge boş, saha haritası çizilmiyor
+   - Akudo Esther Ogbonna
+   - Annecy Nguiadem
+   - Aurelle Awona
+   - Belkissa Sawadogo
+   - Biira Nadunga
+   - Catherine Mbangono
+   - Christy Ucheibe Ucheibe
+   - Claudine Meffometou
+   - Coumba Sylla Mbodji
+   - DIAKIESE KALUZODI ISABELLE
+   - Diane Wabeua
+   - Eliane Bodolo
+   - Fadimatou Kome
+   - Fadiratou Tarnadga
+   - Fatima Tagnout
+   - Haimata Nacoulma
+   - Hanane Ait El-Haj
+   - Hapsatou Malado Diallo
+   - Jeanna Niang
+   - Jeannette Yango
+   - Kebotseng Moletsane
+   - Letisha Lungu
+   - Lubandji Ochumba
+   - Madina Roumba
+   - Mariem Houji
+   - Marieme Babou
+   - Marilyin Johnson
+   - Moussourieto Adinda-Apko
+   - Ndeye Awa Diakhate
+   - Nesrine Zizi
+   - Nesryne El-Chad
+   - Noxolo Casane
+   - Onyi Echegini
+   - Pascaline Bassane
+   - Pauline Xulu
+   - Peace Efih Efih
+   - Reine Gake
+   - Sedilame Boseja
+   - Tatiana Ewodo Ekogo
+   - Tayla Gace
+   - Tenning Sene

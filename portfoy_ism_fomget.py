@@ -1,0 +1,242 @@
+# -*- coding: utf-8 -*-
+"""IDEAL Sports Management — ANKARA FOMGET'e özel TRANSFER SHORTLIST PDF'i.
+
+Havuz house style (krem zemin + ISM lime aksan). Kapak (özet + imza) →
+mevki bölgeleri (KALECİ / DEFANS / ORTA SAHA / HÜCUM) → tam genişlik zengin
+oyuncu kartları (künye + öne çıkanlar + highlight video + varsa scout raporu).
+
+Kadro güncelleme: OYUNCULAR listesini düzenle → python portfoy_ism_fomget.py
+Çıktı: Desktop\\ISM_Fomget_Shortlist_2026.pdf
+"""
+import json, pathlib, sys, unicodedata, re
+from urllib.parse import quote
+
+sys.stdout.reconfigure(encoding="utf-8")
+KOK = pathlib.Path(__file__).parent
+
+KREM  = (250, 248, 242); KART = (255, 255, 255); KENAR = (228, 224, 214)
+METIN = (26, 32, 44);    GRIM = (122, 130, 142)
+LIME  = (181, 229, 0);   OLIV = (106, 140, 0);  KOYU = (11, 15, 20)
+
+# (isim, mevki, grup, uyruk, "yaş (yıl)", boy_cm, ayak, kulüp/durum, not, video)
+OYUNCULAR = [
+ # ── KALECİ ──
+ ("Ashley Orkus","KL","KL","ABD","27 (1998)",180,"Sağ","Fram (İzlanda Top Division) — Eylül ortası itibarıyla serbest",
+  "ABD U15–U18 milli; Profesyonel seviyede düzenli maç deneyimi (son: Tampa Bay Sun, USL S)",
+  "https://www.youtube.com/watch?v=hnzyTjfz1zY"),
+
+ # ── DEFANS ──
+ ("Imana","STP (LCB)","DEF","Cezayir / Kanada","",176,"Sol","Son kulüp: BIIK Kazygurt (Kazakistan)",
+  "Cezayir A Milli; güçlü fizik + hava hakimiyeti + savunma pozisyonlaması; oyun kurmada rahat; Avrupa deneyimi (Fleury 91, Stade Brestois, Arna-Bjørnar); UEFA WCL eleme",
+  "https://youtu.be/n03QnZ-1T5w"),
+ ("Renée Guion","SLB / DEF","DEF","ABD","26 (1999)",173,"","Carolina Ascent FC (USL Super League)",
+  "Clemson Üniv. çıkışlı; FC Gintra (Litvanya) + Fortuna Hjørring (Danimarka) Avrupa deneyimi; disiplinli sol bek / savunmacı",
+  "https://youtu.be/18Twjs_Ehnk"),
+ ("Kiley Dulaney","SĞB","DEF","ABD","23 (2002)",175,"","Dallas Trinity FC (USL Super League)",
+  "Arkansas Razorbacks çıkışlı; Washington Spirit (NWSL) deneyimi; hücuma çıkan çok yönlü sağ bek",
+  "https://m.youtube.com/watch?v=lSkr7qEazt4"),
+ ("Mya Christie","SĞB","DEF","İskoçya","21 (2004)",168,"Sağ","Aberdeen FC (İskoçya · SWPL 1)",
+  "İskoçya U19 Milli (8 caps) + U23 deneyimi; SWPL 1'de düzenli forma, #26; hücuma çıkan sağ bek/kanat",
+  "https://www.youtube.com/watch?v=RvQnE99gBBg"),
+ ("Myla Schneider","STP / DOS","DEF","Kanada / Trinidad-Tobago","23 (2003)",165,"Sağ","Son kulüp: Rio Tinto (Portekiz)",
+  "Trinidad-Tobago A Milli; 2x All-Conference First Team; Şampiyonluk MVP'si",
+  "https://youtu.be/gY2iuPN8tuw"),
+ ("Melisa Hasanbegović","STP","DEF","Bosna Hersek","31 (1995)",178,"Sağ","Al-Ula FC (Suudi Arabistan 1. Lig)",
+  "Fiziği güçlü, hava toplarında etkili stoper; Suudi liginde düzenli ilk 11; gol katkısı olan stoper (duran top hedefi)",
+  "https://youtu.be/PbqsUg-L_ms"),
+ ("Enez Mango","SLB","DEF","Kenya","33",0,"","Farul Constanța (Romanya)",
+  "Takım kaptanı karakterinde, tecrübeli ve lider sol bek; 2025/26 sezon highlights",
+  "https://youtu.be/WYqBwmWzl4I"),
+
+ # ── ORTA SAHA ──
+ ("Ernestina Abambila","DOS / MOS","OS","Gana","27 (1998)",168,"Çift","ETO FC Győr (Macaristan · Női NB I)",
+  "Gana A Milli; 'Savaşçı' profil — top kazanan, iki yönlü orta saha; çift ayak; Macaristan üst liginde düzenli",
+  "https://www.youtube.com/live/odSkSFVJAtI"),
+ ("Abby Werthman","OOS / KNT","OS","ABD","",0,"Sol","Western Michigan University (ABD üniversite ligi)",
+  "Sol ayaklı hücum orta sahası / kanat; 2024 MAC Turnuvası MVP + All-Region; 12 gol 9 asist sezonu",
+  "https://m.youtube.com/watch?v=bH5N86u2RPU"),
+ ("Charlène Meyong","MOS","OS","Kamerun","27 (1998)",167,"","Al-Ahli (Suudi Arabistan)",
+  "Kamerun A Milli, 22 caps, 1 gol; 2025 Afrika Kupası kadrosunda; Al-Ahli'de 2025/26 düzenli forma",
+  "https://youtu.be/3CyqRdF7LVI"),
+ ("Izzy Groves","DOS (6)","OS","Jamaika / Kanada","27 (1999)",178,"","Son kulüpler: Athlone Town (İrlanda) & London City Lionesses (İngiltere)",
+  "Jamaika A Milli; 6 numara, top kazanan defansif orta saha; UEFA Ligi elemesinde 2 gol (Athlone Town)",
+  "https://youtube.com/watch?v=26VF4wLKvl4"),
+
+ # ── HÜCUM ──
+ ("Marilyn 'Lali' Esquivel","FW","FW","Arjantin","31 (1995)",0,"","Gimnasia y Esgrima La Plata (Arjantin 1. Lig · KAPTAN)",
+  "Deneyimli forvet ve takım kaptanı; Olimpia (Paraguay) ile şampiyonluk (2023) + Copa Libertadores Femenina; Brasil Ladies Cup 2025'te Palmeiras'a gol",
+  "https://youtu.be/XG5fMQDCx9c"),
+ ("Enzi Starks Broussard","KNT","FW","ABD","25 (2001)",170,"Sağ","Son kulüp: Dallas Trinity FC (USL Super League)",
+  "ABD U17 Milli; 2x Yılın Ofansif Oyuncusu (US Development Academy)",
+  "https://www.youtube.com/watch?v=DBkKjJxH1ik"),
+ ("Moses Esther Chioma","KNT","FW","Nijerya","20 (2006)",165,"Çift","Edo Queens (Nijerya)",
+  "Nijerya U20 (Falconets); hız + bitiricilik; NWFL 2023/24 + WAFU B şampiyonu",
+  "https://youtu.be/-68PygF3owI"),
+]
+
+# sitede scout raporu olanlar → karta ★ Scout Raporu eklenir
+_scout = json.load(open(KOK / "scout_kadro_raporlar.json", encoding="utf-8"))
+def _norm(s): return re.sub(r"\s+"," ",re.sub(r"[^a-z ]"," ",unicodedata.normalize("NFKD",str(s)).encode("ascii","ignore").decode().lower())).strip()
+_site_isim = {_norm(k): k for k in _scout}
+
+GRUPLAR = [("KL","KALECİ","GOALKEEPER"), ("DEF","DEFANS","DEFENDERS"),
+           ("OS","ORTA SAHA","MIDFIELDERS"), ("FW","HÜCUM","FORWARDS")]
+
+from fpdf import FPDF
+_f = KOK / "fonts"
+pdf = FPDF(orientation="P", unit="mm", format="A4")
+pdf.set_auto_page_break(False)
+pdf.add_font("DV", "", str(_f / "DejaVuSans.ttf"))
+pdf.add_font("DV", "B", str(_f / "DejaVuSans-Bold.ttf"))
+pdf.add_font("IMZA", "", r"C:\Windows\Fonts\segoesc.ttf")
+logo = KOK / "static" / "ism_logo_beyaz.png"
+
+def zemin():
+    pdf.set_fill_color(*KREM); pdf.rect(0, 0, 210, 297, "F")
+
+def marka_bandi(h=13, baslik=""):
+    pdf.set_fill_color(*KOYU); pdf.rect(0, 0, 210, h, "F")
+    if logo.exists(): pdf.image(str(logo), x=10, y=h/2 - 3.2, w=32)
+    if baslik:
+        pdf.set_xy(100, h/2 - 3); pdf.set_font("DV", "B", 10.5)
+        pdf.set_text_color(255, 255, 255)
+        pdf.cell(100, 6, baslik, align="R")
+
+def imza_blogu(x, y):
+    pdf.set_xy(x, y); pdf.set_font("IMZA", "", 17); pdf.set_text_color(*METIN)
+    pdf.cell(80, 9, "Yiğit Çelebi", ln=1)
+    pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+    pdf.line(x + 1, y + 11, x + 62, y + 11)
+    pdf.set_xy(x + 1, y + 12); pdf.set_font("DV", "B", 8.5); pdf.set_text_color(*METIN)
+    pdf.cell(90, 5, "Yiğit Çelebi · IDEAL Sports Management", ln=1)
+    pdf.set_x(x + 1); pdf.set_font("DV", "", 7.8); pdf.set_text_color(*GRIM)
+    pdf.cell(90, 4.5, "+90 506 578 46 43 · womenfootballscouting.com", ln=1)
+
+# ════════ KAPAK ════════
+pdf.add_page(); zemin()
+marka_bandi(h=34)
+pdf.set_xy(14, 46); pdf.set_font("DV", "B", 25); pdf.set_text_color(*METIN)
+pdf.cell(0, 11, "TRANSFER SHORTLIST", ln=1)
+pdf.set_x(14); pdf.set_font("DV", "B", 10.5); pdf.set_text_color(*OLIV)
+pdf.cell(0, 6, "ANKARA FOMGET · KADIN FUTBOLU · YAZ 2026", ln=1)
+pdf.set_x(14); pdf.set_font("DV", "", 9); pdf.set_text_color(*GRIM)
+pdf.cell(0, 6, "Kadro planlamanıza yönelik seçilmiş aday oyuncular", ln=1)
+
+_say = {g: sum(1 for o in OYUNCULAR if o[2] == g) for g, _, _ in GRUPLAR}
+_ulkeler = {p.strip() for o in OYUNCULAR for p in o[3].split("/") if p.strip()}
+_ozet = [(str(len(OYUNCULAR)), "OYUNCU"), (str(len(_ulkeler)), "FARKLI ÜLKE"),
+         (f"{_say['KL']}", "KALECİ"), (f"{_say['DEF']}", "DEFANS"),
+         (f"{_say['OS']}", "ORTA SAHA"), (f"{_say['FW']}", "HÜCUM")]
+ox, oy = 14, 76; bw, bh = 29, 24
+for i, (deger, et) in enumerate(_ozet):
+    x = ox + i * (bw + 3.6)
+    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+    pdf.rect(x, oy, bw, bh, "DF")
+    pdf.set_fill_color(*LIME); pdf.rect(x, oy, bw, 1.6, "F")
+    pdf.set_xy(x, oy + 5); pdf.set_text_color(*METIN); pdf.set_font("DV", "B", 15)
+    pdf.cell(bw, 7, deger, align="C")
+    pdf.set_xy(x, oy + 15); pdf.set_text_color(*GRIM); pdf.set_font("DV", "", 6.4)
+    pdf.cell(bw, 4, et, align="C")
+
+pdf.set_xy(14, 112); pdf.set_font("DV", "", 9.2); pdf.set_text_color(60, 68, 82)
+pdf.multi_cell(150, 5.4,
+    "Bu dosya, Ankara Fomget Kadın Futbol Takımı'nın Yaz 2026 kadro planlamasına "
+    "yönelik seçilmiş aday oyuncuları mevki bölgelerine göre "
+    "sunar. Her oyuncu kartında güncel kulüp/durum, künye, öne çıkan özellikler "
+    "ve tek tıkla izlenebilen highlight videosu yer alır. İlgilendiğiniz "
+    "oyuncular için detaylı scout raporu, referans ve görüşme organizasyonu "
+    "hızlıca sağlanır.")
+
+imza_blogu(14, 246)
+
+# ════════ BÖLGE SAYFALARI ════════
+CW, CH = 182, 47
+X0 = 14
+
+def kart(o, y):
+    isim, mevki, grup, uyruk, yas_str, boy, ayak, kulup, notu, video = o
+    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+    pdf.rect(X0, y, CW, CH, "DF")
+    pdf.set_fill_color(*LIME); pdf.rect(X0, y, 2, CH, "F")
+    pdf.set_xy(X0 + 7, y + 5); pdf.set_font("DV", "B", 12.5); pdf.set_text_color(*METIN)
+    pdf.cell(120, 6, isim)
+    pdf.set_font("DV", "B", 8)
+    cw_ = pdf.get_string_width(mevki) + 8
+    pdf.set_fill_color(*KOYU); pdf.rect(X0 + CW - 6 - cw_, y + 4.6, cw_, 7, "F")
+    pdf.set_xy(X0 + CW - 6 - cw_, y + 5.1); pdf.set_text_color(*LIME)
+    pdf.cell(cw_, 6, mevki, align="C")
+    yas_gorunum = (yas_str.replace(" (", " yaş (", 1) if "(" in yas_str
+                   else (f"{yas_str} yaş" if yas_str else ""))
+    meta = "  ·  ".join(x2 for x2 in [
+        yas_gorunum, uyruk, (f"{boy} cm" if boy else ""),
+        (f"{ayak} ayak" if ayak else "")] if x2)
+    pdf.set_xy(X0 + 7, y + 13); pdf.set_font("DV", "", 8.4); pdf.set_text_color(*GRIM)
+    pdf.cell(CW - 14, 5, meta)
+    pdf.set_font("DV", "B", 9)
+    while pdf.get_string_width(kulup or "—") > CW - 16 and pdf.font_size_pt > 7:
+        pdf.set_font_size(pdf.font_size_pt - 0.2)
+    pdf.set_xy(X0 + 7, y + 19.5); pdf.set_text_color(*OLIV)
+    pdf.cell(CW - 14, 5, kulup or "—")
+    maddeler = [m.strip(" .") for m in re.split(r"[;]|\s·\s", notu) if m.strip()][:3]
+    yy = y + 26.5
+    pdf.set_font("DV", "", 8.2)
+    for m in maddeler:
+        pdf.set_xy(X0 + 7, yy); pdf.set_text_color(*OLIV)
+        pdf.cell(4, 4.6, "•")
+        pdf.set_text_color(60, 68, 82)
+        pdf.cell(CW - 20, 4.6, m[:100])
+        yy += 4.8
+    bw_ = 42
+    if video:
+        pdf.set_fill_color(*LIME)
+        pdf.rect(X0 + CW - 6 - bw_, y + CH - 10.5, bw_, 7, "F")
+        pdf.set_xy(X0 + CW - 6 - bw_, y + CH - 10); pdf.set_font("DV", "B", 8)
+        pdf.set_text_color(*KOYU)
+        pdf.cell(bw_, 6, "▶  HIGHLIGHTS İZLE", align="C", link=video)
+    site_key = _site_isim.get(_norm(isim))
+    if site_key:
+        pdf.set_xy(X0 + CW - 6 - bw_ - 46, y + CH - 10); pdf.set_font("DV", "B", 8)
+        pdf.set_text_color(*OLIV)
+        pdf.cell(42, 6, "★ Scout Raporu", align="R",
+                 link=f"https://womenfootballscouting.com/?paylas={quote(site_key)}")
+
+Y0, Y_MAX = 34, 278
+
+def _grup_sayfa_ac(tr, en, adet):
+    pdf.add_page(); zemin()
+    marka_bandi(h=13, baslik="ANKARA FOMGET SHORTLIST · YAZ 2026")
+    pdf.set_fill_color(*LIME); pdf.rect(X0, 20, 3.2, 8, "F")
+    pdf.set_xy(X0 + 7, 20.6); pdf.set_font("DV", "B", 15); pdf.set_text_color(*METIN)
+    pdf.cell(90, 7, tr)
+    pdf.set_font("DV", "", 9.5); pdf.set_text_color(*GRIM)
+    pdf.cell(50, 7, "· " + en)
+    pdf.set_xy(X0, 20.6); pdf.set_font("DV", "", 9); pdf.set_text_color(*GRIM)
+    pdf.cell(CW, 7, f"{adet} oyuncu", align="R")
+
+def _alt_bilgi(no):
+    pdf.set_y(-16); pdf.set_font("DV", "", 7.6); pdf.set_text_color(*GRIM)
+    pdf.set_x(X0)
+    pdf.cell(CW / 2, 5, "Yiğit Çelebi · IDEAL Sports Management · +90 506 578 46 43")
+    pdf.cell(CW / 2, 5, f"Sayfa {no}", align="R")
+
+_sayfa_no = 1
+for g, tr, en in GRUPLAR:
+    grup_oyun = [o for o in OYUNCULAR if o[2] == g]
+    if not grup_oyun:
+        continue
+    _sayfa_no += 1
+    _grup_sayfa_ac(tr, en, len(grup_oyun))
+    y = Y0
+    for o in grup_oyun:
+        if y + CH > Y_MAX:
+            _alt_bilgi(_sayfa_no)
+            _sayfa_no += 1
+            _grup_sayfa_ac(tr + " · devam", en, len(grup_oyun))
+            y = Y0
+        kart(o, y)
+        y += CH + 6
+    _alt_bilgi(_sayfa_no)
+
+cikti = pathlib.Path.home() / "Desktop" / "ISM_Fomget_Shortlist_2026.pdf"
+pdf.output(str(cikti))
+print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu · {_sayfa_no} sayfa")

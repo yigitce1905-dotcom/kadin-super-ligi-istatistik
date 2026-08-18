@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Player Competency Card</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Oswald:wght@300;400;500;600;700&family=Graduate&display=swap');
+
+:root{
+  --bg1:#2c2b31; --bg2:#232228;
+  --purple:#c14ee6; --purple-soft:#9b57c9; --purple-dim:#7a4a97;
+  --line:#b74ee0;
+  --blue:#2ba6e8;   --blue-g:#59c6ff;
+  --green:#2fc65a;  --green-g:#5cf08a;
+  --yellow:#f0c53c; --yellow-g:#ffe27a;
+  --orange:#ef8b38; --orange-g:#ffb36b;
+  --red:#e24a4f;    --red-g:#ff7a80;
+  --seg-off:#3a3942;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#111;display:flex;justify-content:center;align-items:center;min-height:100vh}
+
+.card{
+  position:relative;width:1080px;height:1080px;
+  background:
+    radial-gradient(120% 90% at 30% 8%, #34323a 0%, var(--bg1) 45%, var(--bg2) 100%);
+  padding:54px 58px 46px;
+  font-family:'Oswald',sans-serif;color:#eee;overflow:hidden;
+}
+/* ince dokulu diagonal katman */
+.card::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.05;
+  background:repeating-linear-gradient(135deg,#fff 0 1px,transparent 1px 7px);
+}
+
+/* köşe parantezleri */
+.corner{position:absolute;width:70px;height:70px;border:2px solid var(--purple);opacity:.85}
+.corner.tl{top:26px;left:26px;border-right:0;border-bottom:0}
+.corner.tr{top:26px;right:26px;border-left:0;border-bottom:0}
+.corner.bl{bottom:26px;left:26px;border-right:0;border-top:0}
+.corner.br{bottom:26px;right:26px;border-left:0;border-top:0}
+
+.caption{
+  position:relative;text-align:center;font-weight:500;letter-spacing:.42em;
+  font-size:16px;color:#9a8fae;text-transform:uppercase;margin-bottom:22px;
+}
+
+/* ── ÜST BLOK ── */
+.top{position:relative;display:grid;grid-template-columns:1fr 372px;gap:26px}
+.name{
+  font-family:'Playfair Display',serif;font-weight:900;font-size:66px;line-height:1.02;
+  color:var(--purple);text-transform:uppercase;letter-spacing:.01em;
+  text-shadow:0 0 26px rgba(193,78,230,.45);
+}
+.club{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:32px;
+  color:#d6a9ec;margin-top:12px;
+}
+.meta{
+  font-family:'Oswald',sans-serif;font-weight:400;font-size:22px;letter-spacing:.03em;
+  color:#c79fe0;margin-top:4px;
+}
+
+/* rozetler (iki daire) */
+.badges{display:flex;gap:34px;margin-top:40px}
+.circle{
+  width:158px;height:158px;border-radius:50%;
+  background:
+    repeating-linear-gradient(120deg,#26252b 0 3px,#1f1e24 3px 6px);
+  border:2px solid var(--purple);
+  box-shadow:0 0 22px rgba(193,78,230,.30), inset 0 0 26px rgba(0,0,0,.55);
+  display:flex;align-items:center;justify-content:center;
+}
+.grade{
+  font-family:'Graduate',serif;font-size:62px;letter-spacing:.02em;
+  color:var(--blue);
+  text-shadow:0 2px 0 #0b3a58, 0 0 18px rgba(43,166,232,.65);
+  -webkit-text-stroke:1.5px #0d4d75;
+}
+.arrow{width:88px;height:88px}
+
+/* foto */
+.photo{
+  position:relative;height:360px;border-radius:20px;overflow:hidden;
+  border:3px solid var(--purple);
+  box-shadow:0 0 30px rgba(193,78,230,.35), inset 0 0 40px rgba(0,0,0,.4);
+  background:linear-gradient(160deg,#3a3550,#241f33);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.photo .ph{font-family:'Oswald';color:#a98fc9;font-size:19px;letter-spacing:.12em;
+  line-height:1.7;text-transform:uppercase;padding:0 18px}
+.photo .ph b{display:block;font-size:44px;opacity:.5;margin-bottom:10px}
+
+/* ── AYIRICI ── */
+.divider{position:relative;height:2px;margin:30px 2px 26px;
+  background:linear-gradient(90deg,transparent,var(--line) 12%,var(--line) 88%,transparent);
+  box-shadow:0 0 12px rgba(183,78,224,.5)}
+.divider::after{content:"";position:absolute;top:6px;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(183,78,224,.4) 20%,rgba(183,78,224,.4) 80%,transparent)}
+
+/* ── BARLAR ── */
+.bars{position:relative;display:flex;flex-direction:column;gap:15px}
+.row{display:grid;grid-template-columns:300px 1fr;align-items:center;gap:14px}
+.label{
+  font-family:'Playfair Display',serif;font-weight:700;font-size:29px;
+  color:var(--purple);text-shadow:0 0 16px rgba(193,78,230,.35);
+}
+.segs{display:grid;grid-template-columns:repeat(10,1fr);gap:9px}
+.seg{
+  height:36px;border-radius:9px;border:1px solid rgba(160,120,190,.28);
+  background:repeating-linear-gradient(115deg,#333139 0 3px,#2c2a32 3px 6px);
+}
+.seg.on{position:relative;border-color:rgba(255,255,255,.35)}
+.seg.on::after{content:"";position:absolute;inset:0;border-radius:8px;
+  background:repeating-linear-gradient(115deg,rgba(255,255,255,.10) 0 3px,rgba(0,0,0,.05) 3px 6px)}
+.seg.blue.on  {background:linear-gradient(160deg,var(--blue-g),var(--blue));   box-shadow:0 0 14px rgba(43,166,232,.6)}
+.seg.green.on {background:linear-gradient(160deg,var(--green-g),var(--green)); box-shadow:0 0 14px rgba(47,198,90,.55)}
+.seg.yellow.on{background:linear-gradient(160deg,var(--yellow-g),var(--yellow));box-shadow:0 0 14px rgba(240,197,60,.55)}
+.seg.orange.on{background:linear-gradient(160deg,var(--orange-g),var(--orange));box-shadow:0 0 14px rgba(239,139,56,.55)}
+.seg.red.on   {background:linear-gradient(160deg,var(--red-g),var(--red));      box-shadow:0 0 14px rgba(226,74,79,.55)}
+
+/* ── ALT BİLGİ ── */
+.footer{position:absolute;left:0;right:0;bottom:30px;text-align:center;
+  font-family:'Oswald';font-weight:400;font-size:17px;letter-spacing:.16em;
+  color:#9a8fae;text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+
+  <div class="caption">Scout Report&nbsp;&nbsp;|&nbsp;&nbsp;Player Competency Card</div>
+
+  <div class="top">
+    <div class="left">
+      <div class="name" id="d-name"></div>
+      <div class="club" id="d-club"></div>
+      <div class="meta" id="d-meta"></div>
+      <div class="badges">
+        <div class="circle"><span class="grade" id="d-grade"></span></div>
+        <div class="circle"><svg class="arrow" id="d-arrow" viewBox="0 0 100 100"></svg></div>
+      </div>
+    </div>
+    <div class="photo" id="d-photo">
+      <div class="ph"><b>◇</b>Oyuncu Fotoğrafı<br>(AI ile üretilecek)</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="bars" id="d-bars"></div>
+
+  <div class="footer" id="d-footer"></div>
+</div>
+
+<script>
+// ───────── KART VERİSİ (buraya oyuncu bilgisi girilir) ─────────
+const DATA = {
+  name:"Yiğit Çelebi",
+  club:"Mostar Karagümrük", nationality:"Serbia",
+  year:"2000", pos:"LCB", height:"1.77m", body:"Mezo-Endomorf",
+  grade:"AA",
+  trend:"up",                 // up | flat | down  (gelişim yönü)
+  photo:null,                 // AI foto URL/data-uri; null => placeholder
+  scout:"Yiğit Çelebi",
+  bars:[
+    ["Regional Domination", 9],
+    ["Goal-Line Domination",8],
+    ["Aerial Domination",   7],
+    ["Build-up Play",       6],
+    ["Ball Technique",      5],
+    ["Reflexes & Power",    4],
+  ]
+};
+
+// puan → renk bandı (kullanıcı kuralı: 10-9 mavi / 8-7 yeşil / 6-5 sarı / 4-3 turuncu / 2-1 kırmızı)
+function band(s){ return s>=9?"blue":s>=7?"green":s>=5?"yellow":s>=3?"orange":"red"; }
+
+const ARROW={
+  up:  {rot:-45, col:"var(--blue)",   glow:"rgba(43,166,232,.7)"},
+  flat:{rot:0,   col:"var(--yellow)", glow:"rgba(240,197,60,.7)"},
+  down:{rot:45,  col:"var(--red)",    glow:"rgba(226,74,79,.7)"},
+};
+
+function render(d){
+  document.getElementById('d-name').textContent  = d.name;
+  document.getElementById('d-club').textContent   = d.club + "  |  " + d.nationality;
+  document.getElementById('d-meta').textContent   = [d.year,d.pos,d.height,d.body].filter(Boolean).join("  |  ");
+  document.getElementById('d-grade').textContent  = d.grade;
+  document.getElementById('d-footer').textContent = "womenfootballscouting.com";
+
+  // ok
+  const a=ARROW[d.trend]||ARROW.flat;
+  document.getElementById('d-arrow').innerHTML =
+    `<g transform="rotate(${a.rot} 50 50)" stroke="${a.col}" stroke-width="9"
+        stroke-linecap="round" stroke-linejoin="round" fill="none"
+        style="filter:drop-shadow(0 0 8px ${a.glow})">
+       <line x1="20" y1="50" x2="78" y2="50"/>
+       <polyline points="58,30 80,50 58,70"/>
+     </g>`;
+
+  // foto
+  if(d.photo){
+    document.getElementById('d-photo').innerHTML = `<img src="${d.photo}" alt="">`;
+  }
+  // barlar
+  const wrap=document.getElementById('d-bars'); wrap.innerHTML="";
+  d.bars.forEach(([lbl,score])=>{
+    const b=band(score);
+    let segs="";
+    for(let i=1;i<=10;i++) segs+=`<div class="seg ${b} ${i<=score?'on':''}"></div>`;
+    wrap.insertAdjacentHTML('beforeend',
+      `<div class="row"><div class="label">${lbl}</div><div class="segs">${segs}</div></div>`);
+  });
+}
+render(DATA);
+</script>
+</body>
+</html>

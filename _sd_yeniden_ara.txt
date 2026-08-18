@@ -1,0 +1,76 @@
+=== C: YENİDEN ARAMA (isim+uyruk) — 137 oyuncu ===
+Aynı 71 | SERBEST 17 | DEĞİŞMİŞ 31 | Emekli 3 | Bulunamadı 15
+
+--- SERBEST (17) ---
+  Fatma Sakar | 1. FC Union Berlin -> SERBEST  (SD: Fatma Şakar)
+  Miray Cin | Borussia Mönchengladbach -> SERBEST  (SD: Miray Cin)
+  Meryem Cal | Beşiktaş JK -> SERBEST  (SD: Meryem Çal)
+  Tegan McGrady | Serbest -> SERBEST  (SD: Tegan McGrady)
+  Loreta Kullashi | Badalona -> SERBEST  (SD: Loreta Kullashi)
+  Kristina Maksuti | Gotham FC -> SERBEST  (SD: Kristina Maksuti)
+  Natalie Viggiano | Spokane Zephyr -> SERBEST  (SD: Natalie Viggiano)
+  Lena Silano | UD Tenerife -> SERBEST  (SD: Lena Silano)
+  Zara Jonsson | Djurgaardens IF -> SERBEST  (SD: Zara Jönsson)
+  Madelyn Desiano | Odense Boldklub Q -> SERBEST  (SD: Madelyn Desiano)
+  Cori Sullivan | Lexington -> SERBEST  (SD: Cori Sullivan)
+  Hana Kerner | Celtic -> SERBEST  (SD: Hana Kerner)
+  Anna Henderson | Fort Lauderdale Utd -> SERBEST  (SD: Anna Henderson)
+  Tziarra King | Seattle Reign -> SERBEST  (SD: Tziarra King)
+  Frankie Tagliaferri | Utah Royals -> SERBEST  (SD: Frankie Tagliaferri)
+  Lily Dubuc | Sporting de Huelva -> SERBEST  (SD: Lily Dubuc)
+  Samiah Phiri | Nantes -> SERBEST  (SD: Samiah Phiri)
+
+--- KULÜP DEĞİŞMİŞ (31) ---
+  Julia Zigiotti Olme | FC Bayern München -> Manchester United  (SD: Julia Zigiotti Olme)
+  Evelyn Ijeh | AC Milan -> North Carolina Courage  (SD: Evelyn Ijeh)
+  Emily Alvarado | Club Tijuana -> FC Juárez  (SD: Emily Alvarado)
+  Doris Bacic | Napoli -> Lazio Women  (SD: Doris Bačić)
+  Ines Nourani | CF Montréal -> UConn Huskies  (SD: Inès Nourani)
+  Noelle Henning | NDC Ontario -> Michigan State Spartans  (SD: Noelle Henning)
+  Jasmine Hamid | Fort Lauderdale Utd -> Dallas Trinity FC  (SD: Jasmine Hamid)
+  Nia Christopher | Fort Lauderdale Utd -> FH Hafnarfjörður  (SD: Nia Christopher)
+  Brenna Lovera | Glasgow City FC -> SK Brann  (SD: Brenna Lovera)
+  Riley Tanner | Spokane Zephyr -> Sydney FC  (SD: Riley Tanner)
+  Jordynn Dudley | Florida S Seminoles -> Gotham FC  (SD: Jordynn Dudley)
+  Maggie Cagle | Virginia Cavaliers -> Vittsjö GIK  (SD: Maggie Cagle)
+  Emina Ekic | Spokane Zephyr -> Houston Dash  (SD: Emina Ekić)
+  Milena Nikolic | Basel FC -> ZSKA Moskau  (SD: Milena Nikolić)
+  Sydney Collins | North Carolina Courage -> Bay FC  (SD: Sydney Collins)
+  Camryn Biegalski | Chicago Stars FC -> Denver Summit FC  (SD: Camryn Biegalski)
+  Amirah Ali | Valencia -> Piteå IF  (SD: Amirah Ali)
+  Kyra Carusa | San Diego Wave -> HB Køge  (SD: Kyra Carusa)
+  Szidonia Papp | Nees Atromitou FC -> Budaörsi SC  (SD: Szidónia Papp)
+  Edna Imade | Granada CF -> FC Bayern München  (SD: Edna Imade)
+  Mille Bech | B.93 Kopenhagen -> Odense Boldklub Q  (SD: Mille Bech)
+  Dajana Spasojevic | Kızılyıldız -> SFK 2000 Sarajevo  (SD: Dajana Spasojević)
+  Brianna Pinto | North Carolina Courage -> Chicago Stars FC  (SD: Brianna Pinto)
+  Taylor Aylmer | Spokane Zephyr -> Lexington SC  (SD: Taylor Aylmer)
+  Barbara Olivieri | Houston Dash -> Boston Legacy FC  (SD: Bárbara Olivieri)
+  Helena Bozic | Dinamo Moskova -> Changchun Dazhongzhuoyue Women  (SD: Helena Božić)
+  Maya Neal | KR Reykjavik -> ÍF Grótta  (SD: Maya Neal)
+  Lily Bryant | Princeton Tigers -> FC Porto  (SD: Lily Bryant)
+  Jessica Hinton | Vanderbilt -> SF Damaiense  (SD: Jessica Hinton)
+  Jynaya Dos Santos | Canberra United -> Bulls FC Academy  (SD: Jynaya dos Santos)
+  Vesna Milivojevic | IFK Norrköping -> Malmö FF  (SD: Vesna Milivojević)
+
+--- EMEKLİ (3) ---
+  Ivana Rudelic | FC Basel 1893  (SD: Ivana Rudelić)
+  Imani Dorsey | Utah Royals  (SD: Imani Dorsey)
+  Jassie Vasconcelos | Altach  (SD: Jassie Vasconcelos)
+
+--- SD'DE BULUNAMADI (15) ---
+  Zeliya Sengul | FC Rapperswil-Jona
+  Chloe N’Gazi | Marseille
+  Jheniffer Cardinali | Tigres UANL
+  Ingrid Borges | Corinthians
+  Gloria Slis(h)kovic | Juventus FC
+  Majda Dres(h)evic | FK Breznica
+  Izzy D'Aquila | Malmö FF
+  Gio DeMarco | Carolina Ascent
+  Laurie Moise | S. Alabama Jaguars
+  Lexi Llyod-Smith | Bristol City
+  Melina Krueger | Hamburger SV
+  Angelina Costantino | Orlando Pride
+  Kaylan Williams | Dinamo Moskova
+  Alex Strickland | Valadares
+  Jolie Louis | Seattle Redhawks

@@ -1,0 +1,10 @@
+İşlenen 795 | Değişiklik 9
+  satır149: Nikee Van Dijk | Inter Milano -> RB Leipzig
+  satır185: Natalia Vendito | Ferroviária -> Spielerin löschen
+  satır266: Anita Marcos | Madrid CFF -> RCD Espanyol
+  satır371: Lucie Calba | FC Nantes -> FC Fleury 91
+  satır394: Nina Nijstad | PSV Eindhoven -> Portland Thorns FC
+  satır405: Shelina Zadorsky | Serbest -> AFC Toronto
+  satır481: Ona Batlle | Serbest -> Arsenal FC
+  satır486: Alexia Putellas | Serbest -> London City Lionesses
+  satır792: Elena Dhont | Sassuolo Calcio -> SV Werder Bremen
