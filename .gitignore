@@ -31,3 +31,10 @@ app_dev.py
 
 seo_site/
 .wrangler/
+
+# calisma/test dosyalari — takip edilmez (2026-08-17: git add -A ile yanlislikla eklenmislerdi)
+_*.py
+_*.txt
+_*.json
+BARAN_*.txt
+KULUP_GUNCELLEME_BARAN.txt
