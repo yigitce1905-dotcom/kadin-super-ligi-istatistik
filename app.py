@@ -4988,6 +4988,111 @@ def render_rol_verimliligi(kayit: dict, anahtar: str = ""):
                 + "</div></div>", unsafe_allow_html=True)
 
 
+@st.cache_data(ttl=3600, show_spinner=False)
+def _havuz_rol_siralamasi() -> dict:
+    """Her rol için TÜM Dünya scouting havuzunun rol-uyum sıralaması.
+    {rol_ad: [(isim, skor_1000, kapsam_yuzde), ...]} — skora göre azalan.
+
+    Yiğit'in isteği (2026-08-19): rol_matris.py şimdiye kadar tek oyuncu
+    profilinde "bu oyuncu için en verimli rol" gösteriyordu; kulüp asıl
+    "bu role göre TÜM havuzda en iyi kim" sorusunu soruyor. Notları ayırt
+    edici olmayan (hepsi aynı seviye — genelde hiç izlenmemiş) oyuncular ve
+    ağırlığın yarısından azı notlanmış sonuçlar elenir; düşük kapsamlı skor
+    yanıltıcı olur."""
+    from rol_matris import matris_yukle, rol_skorlari, oyuncu_mevkileri, ayirt_edici_mi
+    matris = matris_yukle()
+    kadro = birlesik_scout_yukle()
+    sonuc = {r["ad"]: [] for r in matris["roller"]}
+    for isim, kayit in kadro.items():
+        if not ayirt_edici_mi(kayit):
+            continue
+        mev = oyuncu_mevkileri(kayit)
+        for rol_ad, skor, kapsam in rol_skorlari(kayit, mev, matris):
+            if kapsam < 50:
+                continue
+            sonuc[rol_ad].append((isim, skor, kapsam))
+    for rol_ad in sonuc:
+        sonuc[rol_ad].sort(key=lambda x: -x[1])
+    return sonuc
+
+
+def render_rol_arama():
+    """ROL ARAMA — havuz-geneli rol uyumu sıralaması (Scout Pro sekmesi).
+
+    "Bana Mezzala lazım" dediğinde kulübün göreceği ekran budur: bir rol
+    seç, tüm Dünya havuzunda o role en uygun oyuncular sırayla gelsin."""
+    matris = _rol_matrisi_yukle()
+    if not matris:
+        st.info(t("Rol matrisi yüklenemedi.", "Role matrix could not be loaded."))
+        return
+    siralama = _havuz_rol_siralamasi()
+    kadro = birlesik_scout_yukle()
+
+    st.markdown(
+        f"<div style='padding:4px 0 2px;'>"
+        f"<div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;'>"
+        f"🎭 {t('Rol Arama','Role Search')}</div>"
+        f"<div style='color:#8899aa;font-size:0.82rem;margin-top:2px;'>"
+        + t("Bir rol seç, tüm Dünya havuzunda o role en uygun oyuncuları gör — "
+            "yetkinliklerine göre, oynadığı mevkiden bağımsız.",
+            "Pick a role, see the best-fit players across the whole World pool — "
+            "by attributes, regardless of their listed position.")
+        + "</div></div>", unsafe_allow_html=True)
+
+    _rol_adlari = [r["ad"] for r in matris["roller"]]
+    _rol_sec = st.selectbox(
+        t("Rol", "Role"), _rol_adlari,
+        format_func=lambda ad: scout_rol_goster(ad),
+        key="rol_arama_sec")
+
+    _sonuclar = siralama.get(_rol_sec, [])
+    if not _sonuclar:
+        st.warning(t("Bu rol için yeterli notlanmış oyuncu yok.",
+                      "Not enough graded players for this role yet."))
+        return
+
+    _sag_kol = st.columns([3, 1])[1]
+    _adet = _sag_kol.selectbox(t("Göster", "Show"), [10, 25, 50], key="rol_arama_adet")
+    st.caption(t(f"{len(_sonuclar)} oyuncu bu rol için yeterli veriyle notlanmış — ilk {min(_adet, len(_sonuclar))} gösteriliyor.",
+                 f"{len(_sonuclar)} players graded with enough data for this role — showing top {min(_adet, len(_sonuclar))}."))
+
+    _dil_q = st.session_state.get("dil", "TR")
+    _satir = ""
+    for i, (isim, skor, kapsam) in enumerate(_sonuclar[:_adet], 1):
+        kd = kadro.get(isim, {})
+        _href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
+        _kulup = _takim_kisa(kd.get("kulup", "")) or "—"
+        _uyruk = ulke_goster(kd.get("vatandaslik", "")) or "—"
+        _yas = kd.get("yas", "") or "—"
+        _renk = "#1db954" if i <= 3 else ("#a78bfa" if i <= 10 else "#3b4a63")
+        _satir += (
+            f"<tr>"
+            f"<td style='padding:7px 8px;color:{_renk};font-weight:800;font-family:monospace;'>{i}</td>"
+            f"<td style='padding:7px 8px;'><a href='{_html.escape(_href)}' target='_blank' "
+            f"style='color:#e2e8f0;font-weight:700;text-decoration:none;'>{_html.escape(isim)}</a></td>"
+            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(str(_kulup))}</td>"
+            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(str(_uyruk))}</td>"
+            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;text-align:center;'>{_html.escape(str(_yas))}</td>"
+            f"<td style='padding:7px 8px;text-align:center;'><b style='color:{_renk};'>{skor:.0f}</b></td>"
+            f"<td style='padding:7px 8px;text-align:center;font-size:0.72rem;color:#64748b;'>%{kapsam:.0f}</td>"
+            f"</tr>")
+    st.markdown(
+        "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;'>"
+        f"<thead><tr style='color:#7c3aed;font-size:0.68rem;letter-spacing:0.08em;text-align:left;'>"
+        f"<th style='padding:4px 8px;'>#</th><th style='padding:4px 8px;'>{t('OYUNCU','PLAYER')}</th>"
+        f"<th style='padding:4px 8px;'>{t('KULÜP','CLUB')}</th><th style='padding:4px 8px;'>{t('UYRUK','NATION')}</th>"
+        f"<th style='padding:4px 8px;text-align:center;'>{t('YAŞ','AGE')}</th>"
+        f"<th style='padding:4px 8px;text-align:center;'>{t('PUAN','SCORE')}</th>"
+        f"<th style='padding:4px 8px;text-align:center;'>{t('KAPSAM','COVERAGE')}</th></tr></thead>"
+        f"<tbody>{_satir}</tbody></table></div>", unsafe_allow_html=True)
+    st.caption(t("Puan 1000 üzerinden (bkz. oyuncu profilindeki Rol Verimliliği). "
+                 "Kapsam, rolün istediği ağırlığın yüzde kaçının notlandığını gösterir — "
+                 "düşükse sıralama az veriye dayanıyor demektir.",
+                 "Score out of 1000 (see Role Efficiency on player profiles). Coverage shows "
+                 "what percent of the role's required weight is graded — low coverage means "
+                 "the ranking rests on limited data."))
+
+
 def _buyuk(s: str) -> str:
     """Dil-farkında BÜYÜK harf (Baran tipografi standardı). CSS uppercase Türkçe'de
     i→I bozduğu için TR modunda i→İ / ı→I çevirisi Python'da yapılır; emoji korunur."""
@@ -9821,17 +9926,22 @@ if st.session_state.get("sayfa") == "scouting":
 </div>""", unsafe_allow_html=True)
 
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
-            _ONERI_TAB  = t("📥 Öneri Merkezi", "📥 Recommendations")
-            _TAB_OPTS   = [t("Tüm Oyuncular", "All Players"), t("⭐ My Squad", "⭐ My Squad"), _ONERI_TAB]
+            _ONERI_TAB = t("📥 Öneri Merkezi", "📥 Recommendations")
+            _ROL_TAB   = t("🎭 Rol Arama", "🎭 Role Search")
+            _TAB_OPTS  = [t("Tüm Oyuncular", "All Players"), t("⭐ My Squad", "⭐ My Squad"),
+                          _ROL_TAB, _ONERI_TAB]
             _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
                                    key="sc_tab_radio", label_visibility="collapsed")
             sadece_sl   = (_sc_tab_sel == t("⭐ My Squad", "⭐ My Squad"))
 
-            # ── Öneri Merkezi sekmesi: tam genişlik panosu + erken çıkış ──────
-            # (Scouting sayfası zaten aşağıda st.stop() ile bitiyor; burada da
-            #  render edip durmak filtre/tablo bloğunu temiz şekilde atlar.)
+            # ── Öneri Merkezi / Rol Arama sekmeleri: tam genişlik panosu + erken
+            # çıkış (Scouting sayfası zaten aşağıda st.stop() ile bitiyor; burada
+            # da render edip durmak filtre/tablo bloğunu temiz şekilde atlar).
             if _sc_tab_sel == _ONERI_TAB:
                 render_oneri_merkezi(_sl_kullanici)
+                st.stop()
+            if _sc_tab_sel == _ROL_TAB:
+                render_rol_arama()
                 st.stop()
 
             # ── 🤖 Akıllı Arama (kural tabanlı; API'siz, milisaniyelik) ───────
