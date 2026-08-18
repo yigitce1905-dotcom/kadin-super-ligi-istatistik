@@ -5093,6 +5093,179 @@ def render_rol_arama():
                  "the ranking rests on limited data."))
 
 
+# ── Serbest & Sözleşme Radarı — January Window PDF'inin canlı hâli ────────────
+# rapor_january_window.py'nin AYNI mantığı (bölge/mevki grubu, serbest kümesi,
+# nihai not puanı), ama tek seferlik PDF yerine bugünün tarihine göre HER AN
+# güncel, filtrelenebilir bir sayfa (Yiğit, 2026-08-19).
+_KONTRAT_BOLGE_GRUP = {
+    "goalkeeper": "GK", "kale": "GK", "kaleci": "GK",
+    "defender": "DEF", "savunma": "DEF", "defans": "DEF",
+    "midfielder": "MID", "orta saha": "MID",
+    "attacker": "FWD", "hücum": "FWD", "forvet": "FWD",
+}
+_KONTRAT_MEVKI_GRUP = {
+    "GK": "GK",
+    "LCB": "DEF", "RCB": "DEF", "MCB": "DEF", "CB": "DEF",
+    "LFB": "DEF", "RFB": "DEF", "LWB": "DEF", "RWB": "DEF",
+    "DMF": "MID", "CMF": "MID", "AMF": "MID",
+    "LWF": "FWD", "RWF": "FWD", "CFW": "FWD", "2ST": "FWD",
+    "ST": "FWD", "CF": "FWD", "2ndST": "FWD",
+}
+_KONTRAT_SERBEST = {"serbest", "free", "free agent", "bosta", "unemployed", "vereinslos"}
+_KONTRAT_PUAN = {"A+": 12.5, "AA": 12, "AB": 11, "BB": 10, "BC": 9,
+                  "CC": 8, "CD": 7, "DD": 6, "DE": 5, "EE": 4, "FF": 0}
+
+
+def _kontrat_grup_bul(v):
+    b = _KONTRAT_BOLGE_GRUP.get((v.get("bolge") or "").strip().lower())
+    if b:
+        return b
+    for m in (v.get("mevki") or []):
+        g = _KONTRAT_MEVKI_GRUP.get((m or "").strip())
+        if g:
+            return g
+    return None
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def _serbest_sozlesme_havuzu():
+    """Dünya havuzunda DEĞERLENDİRİLMİŞ oyunculardan serbest + sözleşmesi
+    olanları çıkarır; 'yaklaşan' filtresi render anında bugünün tarihine
+    göre uygulanır (cache 30dk — her run'da tarih hesaplamak gereksiz)."""
+    import datetime as _dt
+    import re
+    dunya   = scout_kadro_yukle()
+    sd      = birlesik_sd_yukle()
+    kariyer = birlesik_leistung_yukle()
+    bugun   = _dt.date.today()
+    out = []
+    for isim, v in dunya.items():
+        if not v.get("degerlendirildi") or v.get("nihai") not in _KONTRAT_PUAN:
+            continue
+        grup = _kontrat_grup_bul(v)
+        if not grup:
+            continue
+        kulup = (v.get("kulup") or "").strip()
+        p = sd.get(isim) or {}
+        kb = (p.get("Contract until") or "").strip()
+        if not re.match(r"^\d{2}\.\d{2}\.\d{4}$", kb):
+            kb = (v.get("sozlesme") or "").strip()
+        serbest = kulup.lower() in _KONTRAT_SERBEST
+        kalan_gun = None
+        if not serbest and re.match(r"^\d{2}\.\d{2}\.\d{4}$", kb):
+            try:
+                g, a, y = kb.split(".")
+                kalan_gun = (_dt.date(int(y), int(a), int(g)) - bugun).days
+            except Exception:
+                kalan_gun = None
+        if not serbest and (kalan_gun is None or kalan_gun < 0):
+            continue   # sözleşmesi bitmiş görünüyor ama kulüp güncellenmemiş — veri güvenilmez, atla
+        mac = dk = 0
+        for s in (kariyer.get(isim) or {}).get("sezonlar", []):
+            if not s.get("milli") and str(s.get("sezon", "")).replace("20", "") in ("25/26",):
+                mac += int(s.get("mac") or 0)
+                dk  += int(s.get("dakika") or 0)
+        out.append({
+            "isim": isim, "grup": grup, "nihai": v.get("nihai"),
+            "puan": _KONTRAT_PUAN[v.get("nihai")],
+            "mevki": "/".join([m for m in (v.get("mevki") or []) if m][:3]),
+            "yas": v.get("yas") or "", "uyruk": (v.get("vatandaslik") or "").strip(),
+            "kulup": kulup, "lig": (v.get("lig") or "").strip(),
+            "kontrat": kb, "serbest": serbest, "kalan_gun": kalan_gun,
+            "mac": mac, "dk": dk,
+        })
+    out.sort(key=lambda x: (not x["serbest"],
+                            x["kalan_gun"] if x["kalan_gun"] is not None else 9999,
+                            -x["puan"]))
+    return out
+
+
+def render_serbest_radar():
+    """SERBEST & SÖZLEŞME RADARI — Scout Pro sekmesi. January Window raporunun
+    (tek seferlik PDF) canlı, filtrelenebilir hâli — her ziyarette bugünün
+    tarihine göre güncel."""
+    havuz = _serbest_sozlesme_havuzu()
+    if not havuz:
+        st.info(t("Şu an gösterilecek kayıt yok.", "Nothing to show right now."))
+        return
+
+    st.markdown(
+        f"<div style='padding:4px 0 2px;'>"
+        f"<div style='font-family:Oswald,Sora,sans-serif;font-size:1.5rem;font-weight:700;color:#fff;'>"
+        f"🆓 {t('Serbest & Sözleşme Radarı','Free Agent & Contract Radar')}</div>"
+        f"<div style='color:#8899aa;font-size:0.82rem;margin-top:2px;'>"
+        + t("Değerlendirilmiş oyunculardan şu an serbest olanlar ve sözleşmesi yaklaşanlar — "
+            "her ziyarette bugünün tarihine göre güncellenir.",
+            "Assessed players who are free agents or approaching contract expiry — "
+            "refreshed against today's date on every visit.")
+        + "</div></div>", unsafe_allow_html=True)
+
+    _kol1, _kol2, _kol3 = st.columns(3)
+    _durum_tumu = t("Tümü", "All")
+    _durum_sec = _kol1.selectbox(
+        t("Durum", "Status"),
+        [_durum_tumu, t("🆓 Serbest", "🆓 Free Agent"), t("⏳ Sözleşmesi bitiyor", "⏳ Contract Expiring")],
+        key="ssr_durum")
+    _pencere = _kol2.selectbox(t("Pencere (ay)", "Window (months)"), [3, 6, 12], index=1, key="ssr_pencere")
+    _GRUP_ETIKET = {"GK": t("Kaleci", "Goalkeeper"), "DEF": t("Defans", "Defender"),
+                     "MID": t("Orta Saha", "Midfielder"), "FWD": t("Forvet", "Forward")}
+    _mevki_sec = _kol3.selectbox(t("Mevki Grubu", "Position Group"),
+                                 [_durum_tumu] + list(_GRUP_ETIKET.values()), key="ssr_mevki")
+
+    _gun_siniri = _pencere * 30
+    _sonuc = []
+    for k in havuz:
+        if _durum_sec == t("🆓 Serbest", "🆓 Free Agent") and not k["serbest"]:
+            continue
+        if _durum_sec == t("⏳ Sözleşmesi bitiyor", "⏳ Contract Expiring"):
+            if k["serbest"] or k["kalan_gun"] is None or k["kalan_gun"] > _gun_siniri:
+                continue
+        elif not k["serbest"] and k["kalan_gun"] is not None and k["kalan_gun"] > _gun_siniri:
+            continue   # "Tümü"nde de pencere dışı sözleşmeliler gösterilmez, yoksa liste anlamsızlaşır
+        if _mevki_sec != _durum_tumu and _GRUP_ETIKET.get(k["grup"]) != _mevki_sec:
+            continue
+        _sonuc.append(k)
+
+    st.caption(t(f"{len(_sonuc)} oyuncu bu filtrelerle eşleşiyor.",
+                 f"{len(_sonuc)} players match these filters."))
+    if not _sonuc:
+        return
+
+    _dil_q = st.session_state.get("dil", "TR")
+    _renk_harita = {"A+": "#34d399", "AA": "#34d399", "AB": "#4ade80", "BB": "#a3e635",
+                    "BC": "#facc15", "CC": "#fb923c", "CD": "#f97316", "DD": "#f87171",
+                    "DE": "#ef4444", "EE": "#dc2626"}
+    _satir = ""
+    for k in _sonuc[:100]:
+        _href = f"?oyuncu={_urlquote(k['isim'])}&dil={_dil_q}"
+        _durum_hucre = (f"<span style='color:#34d399;font-weight:700;'>🆓 {t('Serbest','Free')}</span>"
+                        if k["serbest"] else
+                        f"<span style='color:#facc15;'>{k['kalan_gun']} {t('gün','days')}</span>")
+        _nr = _renk_harita.get(k["nihai"], "#6b7280")
+        _satir += (
+            f"<tr>"
+            f"<td style='padding:7px 8px;'><a href='{_html.escape(_href)}' target='_blank' "
+            f"style='color:#e2e8f0;font-weight:700;text-decoration:none;'>{_html.escape(k['isim'])}</a>"
+            f"<div style='font-size:0.7rem;color:#64748b;'>{_html.escape(k['mevki'])} · {_html.escape(str(k['yas']))}</div></td>"
+            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(ulke_goster(k['uyruk']) or '—')}</td>"
+            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;'>{_html.escape(_takim_kisa(k['kulup']) if not k['serbest'] else '—')}</td>"
+            f"<td style='padding:7px 8px;'>{_durum_hucre}</td>"
+            f"<td style='padding:7px 8px;font-size:0.78rem;color:#94a3b8;text-align:center;'>{k['mac'] or '—'}</td>"
+            f"<td style='padding:7px 8px;text-align:center;'><span style='color:{_nr};font-weight:800;"
+            f"font-family:monospace;'>{_html.escape(k['nihai'])}</span></td></tr>")
+    st.markdown(
+        "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;'>"
+        f"<thead><tr style='color:#7c3aed;font-size:0.68rem;letter-spacing:0.08em;text-align:left;'>"
+        f"<th style='padding:4px 8px;'>{t('OYUNCU','PLAYER')}</th><th style='padding:4px 8px;'>{t('UYRUK','NATION')}</th>"
+        f"<th style='padding:4px 8px;'>{t('KULÜP','CLUB')}</th><th style='padding:4px 8px;'>{t('DURUM','STATUS')}</th>"
+        f"<th style='padding:4px 8px;text-align:center;'>{t('25/26 MAÇ','25/26 APPS')}</th>"
+        f"<th style='padding:4px 8px;text-align:center;'>{t('NİHAİ','RATING')}</th></tr></thead>"
+        f"<tbody>{_satir}</tbody></table></div>", unsafe_allow_html=True)
+    if len(_sonuc) > 100:
+        st.caption(t(f"İlk 100 gösteriliyor ({len(_sonuc)} toplam) — pencereyi ya da mevkiyi daraltarak azalt.",
+                     f"Showing first 100 (of {len(_sonuc)}) — narrow the window or position to reduce."))
+
+
 def _buyuk(s: str) -> str:
     """Dil-farkında BÜYÜK harf (Baran tipografi standardı). CSS uppercase Türkçe'de
     i→I bozduğu için TR modunda i→İ / ı→I çevirisi Python'da yapılır; emoji korunur."""
@@ -9928,20 +10101,25 @@ if st.session_state.get("sayfa") == "scouting":
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
             _ONERI_TAB = t("📥 Öneri Merkezi", "📥 Recommendations")
             _ROL_TAB   = t("🎭 Rol Arama", "🎭 Role Search")
+            _SSR_TAB   = t("🆓 Serbest & Sözleşme", "🆓 Free Agent & Contract")
             _TAB_OPTS  = [t("Tüm Oyuncular", "All Players"), t("⭐ My Squad", "⭐ My Squad"),
-                          _ROL_TAB, _ONERI_TAB]
+                          _ROL_TAB, _SSR_TAB, _ONERI_TAB]
             _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
                                    key="sc_tab_radio", label_visibility="collapsed")
             sadece_sl   = (_sc_tab_sel == t("⭐ My Squad", "⭐ My Squad"))
 
-            # ── Öneri Merkezi / Rol Arama sekmeleri: tam genişlik panosu + erken
-            # çıkış (Scouting sayfası zaten aşağıda st.stop() ile bitiyor; burada
-            # da render edip durmak filtre/tablo bloğunu temiz şekilde atlar).
+            # ── Öneri Merkezi / Rol Arama / Serbest & Sözleşme sekmeleri: tam
+            # genişlik panosu + erken çıkış (Scouting sayfası zaten aşağıda
+            # st.stop() ile bitiyor; burada da render edip durmak filtre/tablo
+            # bloğunu temiz şekilde atlar).
             if _sc_tab_sel == _ONERI_TAB:
                 render_oneri_merkezi(_sl_kullanici)
                 st.stop()
             if _sc_tab_sel == _ROL_TAB:
                 render_rol_arama()
+                st.stop()
+            if _sc_tab_sel == _SSR_TAB:
+                render_serbest_radar()
                 st.stop()
 
             # ── 🤖 Akıllı Arama (kural tabanlı; API'siz, milisaniyelik) ───────
