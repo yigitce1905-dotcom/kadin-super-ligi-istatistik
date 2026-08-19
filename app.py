@@ -4820,7 +4820,10 @@ def veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data):
     def _liste(baslik, lst):
         if lst:
             ozet = ", ".join(lst[:40]) + (f" … (+{len(lst)-40})" if len(lst) > 40 else "")
-            st.markdown(f"**{baslik} ({len(lst)}):** <span style='color:#94a3b8;font-size:0.85rem;'>{ozet}</span>",
+            # NOT (19.08.2026, otonom tarama): "**...**" Markdown kalınıydı ama
+            # unsafe_allow_html=True ile ham HTML basılıyor — yıldızlar hiç
+            # işlenmiyordu, <b> ile değiştirildi.
+            st.markdown(f"<b>{_html.escape(baslik)} ({len(lst)}):</b> <span style='color:#94a3b8;font-size:0.85rem;'>{ozet}</span>",
                         unsafe_allow_html=True)
 
     _liste(t("🔴 SD profili bulunamayan", "🔴 No SD profile found"), sd_yok)
@@ -8976,7 +8979,7 @@ def render_profil():
     st.markdown(f"#### 🗂️ {t('Çektiğim Scouting Raporları', 'My Scouting Reports')} ({len(etk_dolu)})")
     if etk_dolu:
         for isim, e in etk_dolu.items():
-            st.markdown(f"- {etiket_badge_goster(e)} &nbsp; **{isim}**", unsafe_allow_html=True)
+            st.markdown(f"- {etiket_badge_goster(e)} &nbsp; <b>{_html.escape(isim)}</b>", unsafe_allow_html=True)
     else:
         st.caption(t("Üzerinde çalıştığın (etiketlediğin) oyuncular burada listelenir.",
                      "Players you've worked on (tagged) are listed here."))
@@ -11953,7 +11956,12 @@ if tab6:
             df_siralali.index += 1
             rozetler = ["🥇","🥈","🥉","4.","5."]
             for i, (_, row) in enumerate(df_siralali.iterrows()):
-                degerler = " · ".join(f"**{row[s]}**" for s in sutunlar if s in row)
+                # NOT (19.08.2026, otonom tarama): "**value**" Markdown kalın
+                # işaretiydi ama bu satır unsafe_allow_html=True ile HAM HTML
+                # olarak basılıyor — Markdown hiç işlenmiyor, ekranda birebir
+                # "**23**" gibi yıldızlarla görünüyordu. Kalınlık zaten dıştaki
+                # span'ın font-weight:600'ünden geliyor, yıldızlar gereksizdi.
+                degerler = " · ".join(f"{row[s]}" for s in sutunlar if s in row)
                 st.markdown(
                     f'<div style="background:#1a1f36;border-radius:8px;padding:10px 14px;'
                     f'margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">'
@@ -12058,7 +12066,7 @@ if tab6:
                     ["Temiz Seri"], "🧹")
 
         # ── Takım başına en golcü ─────────────────────────────────────────────
-        st.markdown("<br>")
+        st.markdown("<br>", unsafe_allow_html=True)
         st.markdown(f"#### 🏟️ {t('Her Takımın Gol Kraliçesi', 'Top Scorer per Team')}")
         _kanon_kol = df_tam["Takım"].map(_takim_kanonlastir)
         takimlar_s = sorted(_kanon_kol.unique())
@@ -12961,7 +12969,8 @@ if tab10:
                     f"🔴 {t('En yaşlı','Oldest')}: <b style='color:#ff6b6b'>{y['Takım']}</b> ({y['Ort']} {t('yaş','yrs')})</div>",
                     unsafe_allow_html=True)
 
-            st.markdown(f"<br>**⚽ {t('Mevkiye Göre Ortalama Yaş', 'Average Age by Position')}**")
+            st.markdown(f"<br>**⚽ {t('Mevkiye Göre Ortalama Yaş', 'Average Age by Position')}**",
+                        unsafe_allow_html=True)
             pos_yas_map = dict(zip(df_tam["Oyuncu"], df_tam["Mevki"])) if not df_tam.empty else {}
             yas_df["mevki"] = yas_df["isim"].map(pos_yas_map).fillna("Bilinmiyor")
             mevki_yas = (yas_df[yas_df["mevki"] != "Bilinmiyor"]
