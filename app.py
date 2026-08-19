@@ -10996,20 +10996,42 @@ def render_paketler():
 
 
 def render_giris_ekrani():
-    """GİRİŞ sekmesi: kısa sayısal özet + Hakkında içeriği.
+    """GİRİŞ sekmesi: hero + kısa sayısal özet + Hakkında içeriği.
 
     Sıra bilinçli: DÜNYA scouting havuzu ÖNCE gösterilir, TR Süper Lig
     ikinci sırada. Yiğit'in isteği (2026-08-18): "siteyi ilk açtığımızda
     Türkiye ligi verileri gözümüze girmesin, dünya genelini kapsayan bir
     scouting ağı mekanizması havası istiyorum" — ilk gördüğü şey platformun
-    global ölçeği olsun, tek bir ulusal lig değil."""
+    global ölçeği olsun, tek bir ulusal lig değil.
+
+    Hero (19.08.2026 eklendi): bu ekran girildi=False iken HERKESİN gördüğü
+    tek sayfa — sitenin gerçek ön kapısı. Daha önce düz "### Hoş geldin"
+    yazısıydı; "ana" sayfasındaki .baslik-kutu hero'suyla aynı görsel dil
+    kullanılır (marka tutarlılığı + ilk izlenim artık boş değil). Not: "ana"
+    sayfasının kendi hero'su artık scouting varsayılan sayfa olduğu için
+    çoğu oturumda hiç görünmüyor — bu yüzden marka görselinin en azından
+    burada, ön kapıda, mutlaka görünmesi önemli."""
     o = genel_ozet_hesapla()
     dh = dunya_havuz_ozet()
     ad = st.session_state.get("kulup_ad", "")
-    selam = f"{t('Hoş geldin','Welcome')}{(' ' + ad) if ad else ''} 👋"
-    st.markdown(f"### {selam}")
-    st.caption(t(f"Uluslararası Kadın Futbolu Scouting Ağı · {dh['ulke']} ülke · {dh['lig']} lig",
-                 f"International Women's Football Scouting Network · {dh['ulke']} countries · {dh['lig']} leagues"))
+
+    st.markdown(f"""
+<div class="baslik-kutu">
+  <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
+  <h1>{t('Veri · Scouting · <span class="vurgu">Kadro Danışmanlığı</span>',
+         'Data · Scouting · <span class="vurgu">Squad Consultancy</span>')}</h1>
+  <p>{t("Dünya genelinde scouting ağı · kulüplere özel kadro danışmanlığı · kariyer ve benzerlik analizi · Türkiye Kadınlar Süper Ligi istatistikleri",
+        "Worldwide scouting network · club-tailored squad consultancy · career &amp; similarity analysis · Turkish Women's Super League stats")}</p>
+  <div class="hero-chips">
+    <span class="hero-chip">🌍 <b>{dh.get('oyuncu', 0)}</b> {t("OYUNCU","PLAYERS SCOUTED")}</span>
+    <span class="hero-chip"><b>{dh.get('ulke', 0)}</b> {t("ÜLKE","COUNTRIES")}</span>
+    <span class="hero-chip"><b>{dh.get('lig', 0)}</b> {t("LİG","LEAGUES")}</span>
+    <span class="hero-chip">🔬 <b>{dh.get('degerlendirilmis', 0)}</b> {t("SCOUT RAPORU","SCOUT REPORTS")}</span>
+  </div>
+</div>""", unsafe_allow_html=True)
+
+    if ad:
+        st.caption(f"{t('Hoş geldin','Welcome')} {ad} 👋")
 
     if dh:
         st.markdown(
