@@ -5633,8 +5633,13 @@ def render_shortlist_kartlari(isimler, kullanici):
     """Shortlist oyuncularını W-Scope 'Favoriler' tarzı kartlarla göster (düz liste,
     gruplanmamış). Bölge-gruplu görünüm için render_my_squad kullanılır."""
     if not isimler:
-        st.info(t("Shortlist'in boş. Oyuncu tablosundan aşağıdaki ⭐ ile ekleyebilirsin.",
-                  "Your shortlist is empty. Add players with ⭐ below the table."))
+        # NOT (19.08.2026, otonom tarama): eski metin "tablonun altındaki ⭐"
+        # diyordu ama tabloda satır-içi yıldız YOK — ekleme mekanizması oyuncu
+        # profilindeki "☆ My Squad'a Ekle" butonu. Kullanıcıyı var olmayan bir
+        # UI öğesine yönlendiriyordu; render_my_squad'daki doğru metinle
+        # tutarlı hâle getirildi.
+        st.info(t("Shortlist'in boş. Oyuncu profillerindeki ⭐ ile ekleyebilirsin.",
+                  "Your shortlist is empty. Add players with ⭐ from player profiles."))
         return
     sd_data = birlesik_sd_yukle()
     _notlar = scoutnot_kullanici(kullanici)
