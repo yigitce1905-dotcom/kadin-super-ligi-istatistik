@@ -4533,6 +4533,16 @@ def _dusuk_notlu_tr_mi(r: dict) -> bool:
     return (r.get("nihai") or "").strip().upper() in ("EE", "FF")
 
 
+@st.cache_data(show_spinner=False)
+def _scouting_havuz_boyutu() -> int:
+    """Keşif yüzeylerinde gösterilen 'havuz büyüklüğü' — TR EE/FF filtreli
+    (sc_df/'Tüm Oyuncular' ile AYNI sayı). Sidebar rozeti eskiden ham
+    birlesik_scout_yukle() uzunluğunu (1639) kullanıyordu, ana listedeki
+    filtrelenmiş sayıyla (1612) tutarsızdı (Mehmet Baran Danış, 19.08.2026:
+    "Rakamlar tutarlı değil")."""
+    return sum(1 for v in birlesik_scout_yukle().values() if not _dusuk_notlu_tr_mi(v))
+
+
 def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     havuz = _benzer_havuz(kaynak)
     _hn = _isim_norm(hedef_isim)
@@ -8330,13 +8340,16 @@ with st.sidebar:
                         st.query_params["dil"] = _dil_k
                     st.session_state["sayfa"] = "ana"
                 st.rerun()
-        st.markdown(f"<div class='nav-grup'>{t('ALT LİGLER', 'LOWER LEAGUES')}</div>", unsafe_allow_html=True)
-        if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", width="stretch",
-                     type="primary" if _aktif_sayfa == "altlig" else "secondary"):
-            _nav_git("altlig")
-        if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", width="stretch",
-                     type="primary" if _aktif_sayfa == "altyas" else "secondary"):
-            _nav_git("altyas")
+        if _ik_admin:
+            # Alt Ligler/Alt Yaşlar sadece admin girişinde görünür — veri henüz
+            # kulüplere açılacak olgunlukta değil (Mehmet Baran Danış, 19.08.2026).
+            st.markdown(f"<div class='nav-grup'>{t('ALT LİGLER', 'LOWER LEAGUES')}</div>", unsafe_allow_html=True)
+            if st.button(t("🥈 Alt Ligler", "🥈 Lower Leagues"), key="nav_altlig", width="stretch",
+                         type="primary" if _aktif_sayfa == "altlig" else "secondary"):
+                _nav_git("altlig")
+            if st.button(t("🌱 Alt Yaşlar", "🌱 Youth Leagues"), key="nav_altyas", width="stretch",
+                         type="primary" if _aktif_sayfa == "altyas" else "secondary"):
+                _nav_git("altyas")
         st.markdown(f"<div class='nav-grup'>{t('ARŞİV', 'ARCHIVE')}</div>", unsafe_allow_html=True)
         for _sezon_key in ARSIV_SEZONLAR:
             _akt_arsiv = (_aktif_sayfa == "arsiv" and st.session_state.get("arsiv_sezon") == _sezon_key)
@@ -8348,7 +8361,7 @@ with st.sidebar:
     # ── DÜNYA VERİ / SCOUTING — sadece aktif bölümken görünür ──
     if _aktif_bolum == 2:
         st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
-        try:    _dv_oyuncu = len(birlesik_scout_yukle())
+        try:    _dv_oyuncu = _scouting_havuz_boyutu()
         except Exception: _dv_oyuncu = 0
         st.markdown(
             f"<div style='line-height:1.6;padding:3px 4px 7px;margin:0 4px;min-height:1.6em;"
@@ -9579,7 +9592,10 @@ def render_altlig():
 
 if st.session_state.get("sayfa") == "altlig":
     geri_ana_butonu("geri_altlig")
-    render_altlig()
+    if st.session_state.get("kulup_kullanici") == "admin":
+        render_altlig()
+    else:
+        st.warning(t("Bu sayfa yönetici içindir.", "This page is admin-only."))
     st.stop()
 
 
@@ -9711,7 +9727,10 @@ def render_altyas():
 
 if st.session_state.get("sayfa") == "altyas":
     geri_ana_butonu("geri_altyas")
-    render_altyas()
+    if st.session_state.get("kulup_kullanici") == "admin":
+        render_altyas()
+    else:
+        st.warning(t("Bu sayfa yönetici içindir.", "This page is admin-only."))
     st.stop()
 
 
@@ -10165,8 +10184,8 @@ if st.session_state.get("sayfa") == "scouting":
     geri_ana_butonu("geri_scouting")
     if tier_yeterli("premium"):
         _sayfa_banner("b2.jpg", f"🔎 {t('Scouting Havuzu','Scouting Pool')}",
-            t("Yabancı oyuncu kurasyonu · 2026-27 kadro planlama · SoccerDonna verileri ile zenginleştirilmiş",
-              "Foreign player curation · 2026-27 squad planning · enriched with SoccerDonna data"))
+            t("Dünya genelinde scouting havuzu · nitelik bazlı değerlendirme · kadro ve transfer kararlarına destek",
+              "Global scouting pool · attribute-graded players · built to support squad and transfer decisions"))
 
         # Roster kaynağı: Sco 🌍 sekmesi (scout_kadro_raporlar.json — commit'li snapshot).
         # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
