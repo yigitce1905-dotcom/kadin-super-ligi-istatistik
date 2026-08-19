@@ -5040,7 +5040,7 @@ def _havuz_rol_siralamasi() -> dict:
     kadro = birlesik_scout_yukle()
     sonuc = {r["ad"]: [] for r in matris["roller"]}
     for isim, kayit in kadro.items():
-        if not ayirt_edici_mi(kayit):
+        if not ayirt_edici_mi(kayit) or _dusuk_notlu_tr_mi(kayit):
             continue
         mev = oyuncu_mevkileri(kayit)
         for rol_ad, skor, kapsam in rol_skorlari(kayit, mev, matris):
@@ -5328,7 +5328,7 @@ def _yetenek_vitrin_havuzu():
                  "CD": 5, "DD": 4, "DE": 3, "EE": 2, "FF": 1}
     for isim, v in kadro.items():
         kume = (v.get("yetenek_kumesi") or "").strip()
-        if kume not in out:
+        if kume not in out or _dusuk_notlu_tr_mi(v):
             continue
         yas = v.get("yas")
         try:
@@ -6439,7 +6439,7 @@ def akilli_arama(q: str, n: int = 15):
 
     sonuc = []
     for isim, r in d.items():
-        if not r.get("degerlendirildi"):
+        if not r.get("degerlendirildi") or _dusuk_notlu_tr_mi(r):
             continue
         mev = set(r.get("mevki") or [])
         if mevki_sec and not (mev & mevki_sec):
@@ -10171,10 +10171,15 @@ if st.session_state.get("sayfa") == "scouting":
         # Roster kaynağı: Sco 🌍 sekmesi (scout_kadro_raporlar.json — commit'li snapshot).
         # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
         _kadro_roster = birlesik_scout_yukle()
+        # Türkiye ligi kaynaklı EE/FF notlu oyuncular scouting keşif/liste
+        # yüzeyinden çıkarılır (Yiğit, 19.08.2026: "genel olarak scouting
+        # tarafında ... göstermeyelim kararı aldık EE ve altını"). Kendi
+        # profiline doğrudan linkle erişim (paylaşım linki, My Squad'a
+        # önceden eklenmiş olma) etkilenmez — sadece keşif/liste görünümü.
         sc_df = pd.DataFrame(
             [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", ""),
               "Vatandaşlık2": _v.get("milli_takim", "")}   # 2. pasaport (AB filtresi için)
-             for _isim, _v in _kadro_roster.items()]
+             for _isim, _v in _kadro_roster.items() if not _dusuk_notlu_tr_mi(_v)]
         )
         sd_data = birlesik_sd_yukle()
         leistung_data = birlesik_leistung_yukle()
