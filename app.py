@@ -6624,11 +6624,17 @@ _TARZ_EN = {
 # İngilizce arayüzde Türkçe görünüyordu. Değerler veriden birebir alındı.
 # Star/Wondergirl/Unpredictable/Young Talent zaten İngilizce (Baran Türkçe
 # karşılıklarını henüz vermedi) → aynen geçerler.
+# NOT (19.08.2026, otonom görsel/hata taraması): ilk çeviri turunda "Yedek"→
+# "Insufficient" ve "Kalburüstü"→"Inadvertent" gibi anlamdan tamamen kopuk
+# kelimeler seçilmişti (muhtemelen aceleyle/yanlış). EN arayüz varsayılan dil
+# olduğu için bu, İngilizce konuşan kulüplere "Inadvertent" (kasıtsız/yanlışlıkla)
+# gibi anlamsız bir yetenek etiketi gösteriyordu — doğru scouting terimleriyle
+# değiştirildi.
 _YETENEK_EN_DEG = {
     "🍂 Tercih Dışı": "🍂 Out of Favour",
-    "🩹 Yedek": "🩹 Insufficient",
-    "🎁 Kalburüstü": "🎁 Inadvertent",
-    "🧒 Genç": "🧒 Callow",
+    "🩹 Yedek": "🩹 Reserve",
+    "🎁 Kalburüstü": "🎁 Standout",
+    "🧒 Genç": "🧒 Young Talent",
     "🏅 Önemli": "🏅 Important",
     "🔮 Gelecek Vaad Eden": "🔮 Promising",
     "💎 Eşsiz": "💎 Unique",
