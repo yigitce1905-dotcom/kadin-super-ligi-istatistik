@@ -2267,9 +2267,7 @@ def scout_kadro_yukle() -> dict:
         return json.load(f)
 
 
-@st.cache_data(ttl=3600)
-
-@st.cache_data(show_spinner=False)
+@st.cache_data(ttl=3600, show_spinner=False)
 def scotr_kadro_yukle() -> dict:
     """Sco TR raporlarını scouting (Sco 🌍) şemasına çevirir — TR ligi oyuncuları
     scouting havuzunda da görünsün (Baran isteği, 11.07.2026). Dosyalar ayrı kalır;
@@ -2305,7 +2303,17 @@ def scotr_kadro_yukle() -> dict:
             "mevki":      mevki,
             "rol":        r.get("rol", ""),
             # TR kulübü sheet'ten (Baran TR transferlerini anlık işler);
-            # sheet boşsa SD'nin güncel kulübü (kulup_guncelle_sd.py)
+            # sheet boşsa SD'nin güncel kulübü (kulup_guncelle_sd.py).
+            # NOT (19.08.2026): Yiğit "SD öncelikli olsun" istedi (Zver/Maia
+            # örnekleriyle) — ama df_tam (GERÇEK TFF maç verisi, tahmin değil)
+            # ikisinin de BU SEZON gerçekten o TR kulüplerinde 20+ maç
+            # oynadığını doğruluyor. Yani sheet bu iki örnekte YANLIŞ değildi,
+            # Baran'ın bilgisi güncel değildi — SD öncelikli yapmak SD henüz
+            # işlemediği YENİ transferlerde durumu daha kötü yapardı. Bilinçli
+            # olarak GERİ ALINDI, bkz. sohbet — ayrı bir gerçek sorun (TR
+            # sheet'teki "sozlesme" tarihlerinin %89'u birebir "30.06.2026" —
+            # muhtemelen bireysel değil varsayılan) hâlâ geçerli ve Yiğit'e
+            # raporlandı, ayrı bir karar bekliyor.
             "kulup":      r.get("takim", "") or _p.get("guncel_kulup", ""),
             "lig":        r.get("lig", "") or "Türkiye",
             "deger":      r.get("deger", ""),
