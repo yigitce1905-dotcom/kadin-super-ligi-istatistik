@@ -360,8 +360,8 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
 .altbilgi { text-align:center; color:#505870; font-size:0.76rem;
     margin-top:36px; padding-top:14px; border-top:1px solid #1e2340; }
 
-/* ══ BARAN TİPOGRAFİ STANDARDI (2026-07-19) — profil sayfası ve sonrası ══
-   İSİM      14pt · kalın · düz · BÜYÜK · mor      (.sc-isim / .tp-isim)
+/* ══ BARAN TİPOGRAFİ STANDARDI (2026-07-19, İSİM 19.08.2026'da revize edildi) ══
+   İSİM      22pt · kalın · düz · BÜYÜK · beyaz    (.sc-isim / .tp-isim)
    ANA BAŞLIK 12pt · kalın · düz · BÜYÜK · mor     (.tp-anabaslik / .bk-baslik / expander)
    ANA METİN 12pt · normal · düz · Başlık Büyük · beyaz (.tp-anametin / .bk-satir b)
    ŞEKİLLİ   14pt · kalın · düz · BÜYÜK · renk özgür (.tp-sekilli)
@@ -369,9 +369,11 @@ section[data-testid="stSidebar"] { background-color:#12161f; }
    Ara Metin 10pt · normal · eğik · Başlık Büyük · gri (.tp-arametin)
    Ara Yazı  11pt · kalın · düz · BÜYÜK · beyaz    (.tp-arayazi / butonlar)
    Link       8pt · normal · eğik+altçizili · mor  (.tp-link)
-   NOT: Türkçe metinler Python `_buyuk()` ile büyütülür (CSS uppercase i→I bozar). */
-.tp-isim      { font-size:14pt; font-weight:700; font-style:normal;
-    text-transform:uppercase; color:#a78bfa; }
+   NOT: Türkçe metinler Python `_buyuk()` ile büyütülür (CSS uppercase i→I bozar).
+   NOT (19.08.2026): İSİM eskiden 14pt mordu; Yiğit isteği üzerine büyütüldü +
+   beyaza çevrildi (koyu zemin üstünde okunurluk için hafif gölge eklendi). */
+.tp-isim      { font-size:22pt; font-weight:700; font-style:normal;
+    text-transform:uppercase; color:#ffffff; text-shadow:0 1px 4px rgba(0,0,0,0.55); }
 .tp-anabaslik { font-size:12pt; font-weight:700; font-style:normal; color:#a78bfa; }
 .tp-anametin  { font-size:12pt; font-weight:400; font-style:normal;
     text-transform:capitalize; color:#f1f5f9; }
@@ -389,8 +391,9 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
     font-size:11pt !important; font-weight:700 !important; }
 
 /* ── Scouting odaklı profil: isim + gruplu bilgi kutuları ── */
-.sc-isim { font-family:'Oswald','Sora',sans-serif; font-size:14pt; font-weight:700;
-    color:#a78bfa; line-height:1.15; letter-spacing:0.02em; text-transform:uppercase; }
+.sc-isim { font-family:'Oswald','Sora',sans-serif; font-size:22pt; font-weight:700;
+    color:#ffffff; line-height:1.15; letter-spacing:0.02em; text-transform:uppercase;
+    text-shadow:0 1px 4px rgba(0,0,0,0.55); }
 .sc-mevki { color:#93c5fd; font-size:0.96rem; margin:7px 0 2px; font-weight:600; }
 .bilgi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
     gap:12px; margin:18px 0 22px; }
@@ -609,7 +612,7 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
         padding: 5px 7px !important;
     }
     /* ── Tipografi standardı pt birimleri mobilde hafif küçülsün (taşma/sıkışma) ── */
-    .tp-isim, .sc-isim { font-size: 13pt !important; }
+    .tp-isim, .sc-isim { font-size: 17pt !important; }
     .tp-anabaslik, .bk-baslik { font-size: 11pt !important; }
     .tp-anametin, .bk-satir > b { font-size: 11pt !important; }
     .bk-satir > span { font-size: 10pt !important; }
@@ -4408,11 +4411,15 @@ def _benzer_havuz(kaynak):
         # 'Türkiye Ligi' kartlarında kulüp = bu sezonki TR takımı (SD kariyer
         # satırı yurtdışına transfer olanlarda yabancı kulüp gösteriyordu)
         _tr_takim = dict(zip(df_tam["Oyuncu"], df_tam["Takım"]))
+        # nihai notu (scout_kadro zenginleştirmesi analig'de kasıtlı boş — ama
+        # EE/FF filtresi (_dusuk_notlu_tr_mi) için yine de lazım)
+        _nihai_kaynagi = birlesik_scout_yukle()
     else:
         profiller = birlesik_sd_yukle()
         leistung  = birlesik_leistung_yukle()
         kadro     = birlesik_scout_yukle()
         _tr_takim = {}
+        _nihai_kaynagi = kadro
     havuz = []
     _gorulen = set()
     for isim, p in profiller.items():
@@ -4436,7 +4443,7 @@ def _benzer_havuz(kaynak):
             "boy":       _boy_cm(p.get("Height", "")),
             "ulke":      p.get("Nationality", ""),
             "kulup":     _kl,
-            "havuz":     _kd.get("havuz", ""),
+            "havuz":     "tr" if kaynak == "analig" else _kd.get("havuz", ""),
             "mac":       mac,
             "gol":       sum(s.get("gol", 0) for s in sez),
             "asist":     sum(s.get("asist", 0) for s in sez),
@@ -4447,6 +4454,7 @@ def _benzer_havuz(kaynak):
             "mevki_kod": ((_kd.get("mevki") or [""])[0] or "").upper(),
             "rol":       _kd.get("rol", ""),
             "deger":     _deger_num(_kd.get("deger", "")),
+            "nihai":     _nihai_kaynagi.get(isim, {}).get("nihai", ""),
             # Nitelik notları (34 BECERİ/BEŞERİ/FİZİKİ notu, 0-10 puana çevrili) —
             # Yiğit'in isteği (2026-08-19): benzerlik yaş/boy/istatistik yerine
             # ASIL scouting verisine (gerçek nitelik notlarına) dayansın.
@@ -4514,13 +4522,24 @@ def _benzer_skor_ortak(q, o):
     return round(max(0.0, min(base, 99.0)), 1)
 
 
+def _dusuk_notlu_tr_mi(r: dict) -> bool:
+    """TR ligi kaynaklı VE nihai notu EE/FF (en düşük iki kademe) olan oyuncu mu —
+    böyle bir kayıt scouting önerilerinde (Benzer Oyuncular/Nitelik İkizleri/
+    Transfer Hedefleri) ADAY olarak çıkmasın; kaliteyi düşürüyor (Yiğit,
+    19.08.2026). Sadece ADAY tarafında filtrelenir — kendi profilini
+    görüntülemeyi engellemez."""
+    if (r or {}).get("havuz") != "tr":
+        return False
+    return (r.get("nihai") or "").strip().upper() in ("EE", "FF")
+
+
 def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     havuz = _benzer_havuz(kaynak)
     _hn = _isim_norm(hedef_isim)
     q = next((o for o in havuz if _isim_norm(o["isim"]) == _hn), None)
     if not q or q["kat"] == "?":
         return []
-    grup = [o for o in havuz if o["kat"] == q["kat"]]
+    grup = [o for o in havuz if o["kat"] == q["kat"] and not _dusuk_notlu_tr_mi(o)]
     adaylar = sorted(((_benzer_skor_ortak(q, o), o) for o in grup
                       if _isim_norm(o["isim"]) != _hn),
                      reverse=True, key=lambda x: x[0])
@@ -4549,10 +4568,15 @@ def _benzer_kutu_grid(items):
         href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
         wrap = "display:block;" if buyuk else "flex:1 1 0;min-width:140px;"
         kls  = "benzer-kutu benzer-buyuk" if buyuk else "benzer-kutu"
+        # 5'e yuvarlama 97-99 aralığını "100" gösterebiliyordu — bu her zaman
+        # FARKLI bir oyuncu (kendisi hariç tutulur), yani asla "%100 aynı"
+        # denemez (Yiğit, 19.08.2026: "nasıl %100 aynı oluyor"). Gösterimde
+        # 99'da tavanla.
+        skor_g = min(int(round(skor / 5.0) * 5), 99)
         return (
             f"<a href='{href}' style='text-decoration:none;{wrap}'>"
             f"<div class='{kls}'>"
-            f"<div class='bk-skor' style='color:{_renk(skor)};'>%{int(round(skor / 5.0) * 5)}</div>"
+            f"<div class='bk-skor' style='color:{_renk(skor)};'>%{skor_g}</div>"
             f"<div class='bk-ad'>{_esc(isim)}</div>"
             f"<div class='bk-alt'>{_esc(bilgi)}</div>"
             f"</div></a>"
@@ -5387,13 +5411,22 @@ def _buyuk(s: str) -> str:
     return s.upper() if EN else s.replace("i", "İ").replace("ı", "I").upper()
 
 
-def _profil_baslik(isim, sd_url=""):
-    """İsim başlığı (İSİM: 14pt mor BÜYÜK).
+def _profil_baslik(isim, sd_url="", tam_isim=""):
+    """İsim başlığı (büyük, beyaz — 2026-08-19 revizyonu, bkz. aşağı).
 
     SoccerDonna rozeti buradan ÇIKARILDI (Baran, 2026-08): ismin hemen sağında
     durup paylaşım kutusuna yapışıyordu. Artık sağ sütunun en üstünde,
-    _profil_link_kopyala içinde sağa dayalı duruyor."""
-    st.markdown(f'<div class="sc-isim" style="margin:2px 0 4px;">{isim}</div>',
+    _profil_link_kopyala içinde sağa dayalı duruyor.
+
+    tam_isim (kadro verisindeki 'tam_isim' alanı) verilirse VE görünen isimden
+    farklıysa altına küçük/italik/gri (Ara Metin stili) resmi tam isim eklenir
+    — Yiğit (19.08.2026): "Jéssica Silva" gibi bilinen kısa isimlerin altında
+    "Jéssica Lisandra Manjenje Nogueira Silva" gibi resmi tam isim görünsün."""
+    alt = ""
+    ti = (tam_isim or "").strip()
+    if ti and ti != isim.strip():
+        alt = f'<div class="tp-arametin" style="margin:-2px 0 4px;">{_html.escape(ti)}</div>'
+    st.markdown(f'<div class="sc-isim" style="margin:2px 0 4px;">{isim}</div>{alt}',
                 unsafe_allow_html=True)
 
 
@@ -5760,7 +5793,7 @@ def render_scouting_detay(tam_isim):
     # Büyük isim başlığı + yanında paylaşılabilir link (ana lig ile ORTAK düzen)
     _bs1, _bs2 = st.columns([1.55, 1], gap="large")
     with _bs1:
-        _profil_baslik(tam_isim)
+        _profil_baslik(tam_isim, tam_isim=_kadro.get("tam_isim", ""))
     with _bs2:
         _profil_link_kopyala(tam_isim, sd_url)
     # Tek tıkla My Squad'a al/çıkar + My 11'e al/çıkar (profili açınca anında, ismin hemen altında)
@@ -6192,9 +6225,12 @@ def _nitelik_ikizleri(isim: str, n: int = 5):
     q = havuz.get(isim)
     if not q:
         return []
+    d = birlesik_scout_yukle()
     skorlar = []
     for aday, v in havuz.items():
         if aday == isim:
+            continue
+        if _dusuk_notlu_tr_mi(d.get(aday, {})):
             continue
         ortak = set(q) & set(v)
         if len(ortak) < 12:
@@ -6449,35 +6485,27 @@ def akilli_arama(q: str, n: int = 15):
 
 
 def nitelik_ikizleri_goster(isim: str):
-    """Scout raporunun altına 'Nitelik İkizleri' kartlarını çizer."""
-    ikizler = _nitelik_ikizleri(isim)
+    """Scout raporunun altına 'Nitelik İkizleri' kartlarını çizer.
+    _benzer_kutu_grid ile aynı büyük-ilk-kart + sabit-grid düzeni kullanılır —
+    eski serbest flex-wrap'te son satırda kalan (en DÜŞÜK benzerlikli) kartlar
+    flex-grow ile en geniş/en öne çıkan kart gibi görünüyordu (Yiğit, 19.08.2026:
+    "en üstte en çok benzeyen değil en az benzeyen büyük gösteriliyor"). Ayrıca
+    5→3 karta düşürüldü (aynı geri bildirim)."""
+    ikizler = _nitelik_ikizleri(isim, n=3)
     if not ikizler:
         return
     d = birlesik_scout_yukle()
     st.markdown(f"##### 🧬 {t('Nitelik İkizleri', 'Attribute Twins')}")
     st.caption(t("47 boyutlu nitelik profiline göre en benzer oyuncular — 'benzer ama daha uygun' adaylar",
                  "Most similar players by 47-dimension attribute profile — 'similar but more affordable' candidates"))
-    kartlar = []
+    items = []
     for aday, benzerlik in ikizler:
         r = d.get(aday, {})
-        nihai = r.get("nihai", "")
-        n_renk = _scotr_renk(_scotr_puan(nihai)) if nihai else "#6b7280"
-        satir2 = " · ".join(x for x in [
+        bilgi = " · ".join(x for x in [
             str(r.get("yas", "") or ""), r.get("kulup", ""),
-            (f"💰{r.get('deger')}" if r.get("deger") else "")] if x)
-        kartlar.append(
-            f"<div style='flex:1 1 150px;min-width:150px;background:#12172b;border:1px solid #262c45;"
-            f"border-radius:12px;padding:10px 12px;'>"
-            f"<div style='display:flex;justify-content:space-between;align-items:center;gap:6px;'>"
-            f"<span style='font-weight:700;font-size:0.82rem;color:#e2e8f0;'>{aday}</span>"
-            f"<span style='color:{n_renk};font-weight:800;font-family:monospace;font-size:0.8rem;'>{nihai}</span></div>"
-            f"<div style='font-size:0.68rem;color:#94a3b8;margin-top:3px;'>{satir2 or '&nbsp;'}</div>"
-            f"<div style='margin-top:6px;background:#1e2540;border-radius:6px;height:6px;overflow:hidden;'>"
-            f"<div style='width:{benzerlik}%;height:100%;background:linear-gradient(90deg,#7c3aed,#a78bfa);'></div></div>"
-            f"<div style='font-size:0.66rem;color:#a78bfa;margin-top:3px;font-weight:700;'>%{benzerlik} {t('benzer','similar')}</div>"
-            f"</div>")
-    st.markdown("<div style='display:flex;gap:10px;flex-wrap:wrap;'>" + "".join(kartlar) + "</div>",
-                unsafe_allow_html=True)
+            (f"💰{r.get('deger')}" if r.get("deger") else ""), r.get("nihai", "")] if x)
+        items.append((aday, benzerlik, bilgi))
+    _benzer_kutu_grid(items)
 
 # ─── Scout raporu TR→EN çevirileri (sabit kümeler; scout notu/isim orijinal) ──
 _NITELIK_EN = {
@@ -6724,18 +6752,40 @@ def scout_notu_goster(metin) -> str:
     return metin if dil == "tr" else _en_tr_ceviri(metin)
 
 
-def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
-    """Tek nitelik grubu paneli — kompakt: ad + 10 kutucuklu segment çizgisi."""
+# Kanonik nitelik şemaları — grup başına TÜM olası nitelik adı (sıra sabit).
+# Amaç: oyuncuda notlanmamış (boş) nitelikler panelden SESSİZCE düşmesin,
+# '—' ile görünsün — yoksa "kısmen dolu" panel "eksik/hatalı" izlenimi veriyor
+# (Yiğit, 19.08.2026: "PERSONAL ve PHYSICAL kısımlarında eksik not var").
+_NITELIK_SEMA_BECERI = ["Bitiricilik","Top Tekniği","Penaltı Vuruşu","Markaj","Top Kapma","Uzun Taç",
+    "Duran Top","İlk Kontrol","Kafa Vuruşu","Orta Yapma","Kısa Pas","Uzun Pas","Top Sürme","Uzaktan Şut"]
+_NITELIK_SEMA_BESERI = ["Agresiflik","Cesaret","Karar Alma","Kararlılık","Konsantrasyon","Liderlik",
+    "Önsezi","Konumlanma","Soğukkanlılık","Takım Oyunu","Topsuz Alan","Görüş"]
+_NITELIK_SEMA_FIZIKI = ["Çeviklik","Dayanıklılık","Denge","Güç","Sürat","Hızlanma","Koordinasyon",
+    "Zindelik","Zıplama","Zayıf Ayak"]
+_NITELIK_SEMA_SAHSI = ["Sakatlanma Direnci","Sportmenlik","Profesyonellik","Sadakat",
+    "Baskıya Dayanıklılık","Uyumluluk","Süreklilik","Çalışkanlık"]
+_NITELIK_SEMA_KALECI = ["Elle Kontrol - Sahiplenme","Ayakla Kontrol - İlk Temas","Alan Hakimiyeti",
+    "Çizgi Hakimiyeti","Hava Hakimiyeti","Yan Top Hakimiyeti","Elle Oyun Kurma",
+    "Ayak ile Oyun Kurma - Kısa","Degaj ile Oyun Kurma - Uzun","Kaleden Ani Çıkış",
+    "Yumruklama Kabiliyeti","İletişim","Top Tekniği","Kaleci Dışı Meziyetler"]
+
+
+def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not, sema=None):
+    """Tek nitelik grubu paneli — kompakt: ad + 10 kutucuklu segment çizgisi.
+    sema verilirse (kanonik tam liste), o sırayla TÜM nitelikler basılır;
+    oyuncuda notlanmamış olanlar '—' ile (sessizce atlanmaz)."""
     m_puan = _scotr_puan(makro_not)
     m_renk = _scotr_renk(m_puan)
     makro_html = (f"<span style='background:{m_renk}22;color:{m_renk};"
                   f"border:1px solid {m_renk};border-radius:5px;padding:0 7px;"
                   f"font-size:0.64rem;font-weight:800;'>{makro_not}</span>") if makro_not else ""
     satirlar = ""
-    for ad, nt in nitelikler.items():
+    for ad in (sema or nitelikler.keys()):
+        nt = nitelikler.get(ad, "")
         ad_g = nitelik_goster(ad)
         dolu = _scotr_segman(nt)
         renk = _scotr_renk(_scotr_puan(nt))
+        nt_g = nt if nt else "—"
         kutular = ""
         for i in range(10):
             kc = renk if i < dolu else "#1a2035"
@@ -6749,7 +6799,7 @@ def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not):
             f"<div style='display:flex;align-items:center;gap:6px;margin-top:2px;'>"
             f"<span style='display:inline-flex;gap:1.5px;flex:0 0 auto;'>{kutular}</span>"
             f"<span style='font-size:0.6rem;font-weight:800;color:{renk};"
-            f"font-family:monospace;'>{nt}</span>"
+            f"font-family:monospace;'>{nt_g}</span>"
             f"</div></div>"
         )
     return (
@@ -6871,18 +6921,18 @@ def render_scout_raporu(isim: str, bolum: str = "analiz"):
     # ── Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği ──
     makro = rapor.get("makro", {})
     _gk = bool(rapor.get("kaleci"))
-    sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", rapor.get("kaleci", {}), makro.get("kaleci", ""))
+    sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", rapor.get("kaleci", {}), makro.get("kaleci", ""), _NITELIK_SEMA_KALECI)
                if _gk else
-               (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", "")))
+               (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", ""), _NITELIK_SEMA_BECERI))
     siralama = [
         sol_ust,
-        (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", "")),
-        (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", "")),
-        (t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", "")),
+        (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", ""), _NITELIK_SEMA_BESERI),
+        (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", ""), _NITELIK_SEMA_FIZIKI),
+        (t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", ""), _NITELIK_SEMA_SAHSI),
     ]
-    for kol, (baslik, ikon, nit, mk) in zip(st.columns(4, gap="small"), siralama):
+    for kol, (baslik, ikon, nit, mk, sema) in zip(st.columns(4, gap="small"), siralama):
         if nit:
-            kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk),
+            kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk, sema),
                          unsafe_allow_html=True)
 
     # (Oyun Tarzı + scout notu → GÖZLEM bölümüne taşındı; bolum="gozlem")
@@ -7151,18 +7201,18 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
     # Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği
     makro = rapor.get("makro", {})
     _gk = bool(rapor.get("kaleci"))
-    sol_ust = ((t("KALECİLİK","GOALKEEPING"), "🧤", rapor.get("kaleci",{}), makro.get("kaleci",""))
+    sol_ust = ((t("KALECİLİK","GOALKEEPING"), "🧤", rapor.get("kaleci",{}), makro.get("kaleci",""), _NITELIK_SEMA_KALECI)
                if _gk else
-               (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri","")))
+               (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri",""), _NITELIK_SEMA_BECERI))
     siralama = [
         sol_ust,
-        (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri","")),
-        (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki","")),
-        (t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi","")),
+        (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri",""), _NITELIK_SEMA_BESERI),
+        (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki",""), _NITELIK_SEMA_FIZIKI),
+        (t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi",""), _NITELIK_SEMA_SAHSI),
     ]
-    for kol, (b, ik, nit, mk) in zip(st.columns(4, gap="small"), siralama):
+    for kol, (b, ik, nit, mk, sema) in zip(st.columns(4, gap="small"), siralama):
         if nit:
-            kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk), unsafe_allow_html=True)
+            kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk, sema), unsafe_allow_html=True)
 
     # (Oyun Tarzı + scout notu → GÖZLEM bölümüne taşındı; bolum="gozlem")
 
@@ -7570,7 +7620,7 @@ def render_ana_lig_profil(secili):
         # Başlık + yanında paylaşılabilir link (Baran: üstteki boşluk kullanılsın)
         _bs1, _bs2 = st.columns([1.55, 1], gap="large")
         with _bs1:
-            _profil_baslik(secili)
+            _profil_baslik(secili, tam_isim=birlesik_scout_yukle().get(secili, {}).get("tam_isim", ""))
         with _bs2:
             _profil_link_kopyala(secili, sd.get("profil_url", ""))
         _mv = sd.get("Market value", "")
@@ -8523,18 +8573,18 @@ def render_paylasim_raporu(isim: str):
     # TAM rapor olsun (Baran: "beşeri/fiziki bizde hep var ama göstermiyorduk")
     _mk = kadro.get("makro", {})
     _pgk = bool(kadro.get("kaleci"))
-    _sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", kadro.get("kaleci", {}), _mk.get("kaleci", ""))
+    _sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", kadro.get("kaleci", {}), _mk.get("kaleci", ""), _NITELIK_SEMA_KALECI)
                 if _pgk else
-                (t("BECERİ", "TECHNICAL"), "⚽", kadro.get("beceri", {}), _mk.get("beceri", "")))
+                (t("BECERİ", "TECHNICAL"), "⚽", kadro.get("beceri", {}), _mk.get("beceri", ""), _NITELIK_SEMA_BECERI))
     _siralama = [
         _sol_ust,
-        (t("BEŞERİ", "MENTAL"),   "🧠", kadro.get("beseri", {}), _mk.get("beseri", "")),
-        (t("FİZİKİ", "PHYSICAL"), "💪", kadro.get("fiziki", {}), _mk.get("fiziki", "")),
-        (t("ŞAHSİ",  "PERSONAL"), "🎖️", kadro.get("sahsi", {}),  _mk.get("sahsi", "")),
+        (t("BEŞERİ", "MENTAL"),   "🧠", kadro.get("beseri", {}), _mk.get("beseri", ""), _NITELIK_SEMA_BESERI),
+        (t("FİZİKİ", "PHYSICAL"), "💪", kadro.get("fiziki", {}), _mk.get("fiziki", ""), _NITELIK_SEMA_FIZIKI),
+        (t("ŞAHSİ",  "PERSONAL"), "🎖️", kadro.get("sahsi", {}),  _mk.get("sahsi", ""), _NITELIK_SEMA_SAHSI),
     ]
-    for _kol, (_b, _ik, _nit, _m) in zip(st.columns(4, gap="small"), _siralama):
+    for _kol, (_b, _ik, _nit, _m, _sema) in zip(st.columns(4, gap="small"), _siralama):
         if _nit:
-            _kol.markdown(_scotr_nitelik_paneli(_b, _ik, _nit, _m), unsafe_allow_html=True)
+            _kol.markdown(_scotr_nitelik_paneli(_b, _ik, _nit, _m, _sema), unsafe_allow_html=True)
 
     # Nitelik radarı — vitrin: ürünün veri derinliğini girişsiz göster
     nitelik_radari_goster(isim)
