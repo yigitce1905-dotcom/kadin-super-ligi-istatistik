@@ -2290,6 +2290,18 @@ def scotr_kadro_yukle() -> dict:
         if not (_yr.isdigit() and 13 < int(_yr) < 50):
             _yr = str(_p.get("Age", "") or "").split()[0] if _p.get("Age") else ""
         _dg = r.get("dogum", "") or _p.get("Date of birth", "")
+        # Güncel kulüp: SD öncelikli — "en güncel orası hep" (Yiğit, 19.08.2026).
+        # _guncel_kulup_goster()'daki (TR profili künyesinde zaten kullanılan)
+        # AYNI kanonik-karşılaştırma kuralı: SD kulübü sheet'in "takim"ından
+        # KANONİK olarak farklıysa (gerçek transfer) SD kazanır; aynıysa/SD
+        # boşsa sheet kalır. df_tam'daki maç geçmişi (oyuncu SEZON İÇİNDE bu
+        # kulüpte oynamış) burada tek başına kanıt sayılmaz — Giacinti de bu
+        # sezon TR'de 14 maç oynamış ama sonra Como 1907'ye gitmiş; "maç oynadı"
+        # "hâlâ orada" anlamına gelmiyor. SD'nin kendi güncelliği esas alınır.
+        _kulup_sheet = (r.get("takim") or "").strip()
+        _kulup_sd    = (_p.get("guncel_kulup") or "").strip()
+        _kulup_farkli = bool(_kulup_sd) and _kanon(_kulup_sd) != _kanon(_kulup_sheet)
+        _kulup_final = _kulup_sd if _kulup_farkli else (_kulup_sheet or _kulup_sd)
         out[isim] = {
             "tam_isim":   r.get("tam_isim") or isim,
             "vatandaslik": r.get("uyruk", ""),
@@ -2302,20 +2314,11 @@ def scotr_kadro_yukle() -> dict:
             "bolge":      r.get("bolge", ""),
             "mevki":      mevki,
             "rol":        r.get("rol", ""),
-            # TR kulübü sheet'ten (Baran TR transferlerini anlık işler);
-            # sheet boşsa SD'nin güncel kulübü (kulup_guncelle_sd.py).
-            # NOT (19.08.2026): Yiğit "SD öncelikli olsun" istedi (Zver/Maia
-            # örnekleriyle) — ama df_tam (GERÇEK TFF maç verisi, tahmin değil)
-            # ikisinin de BU SEZON gerçekten o TR kulüplerinde 20+ maç
-            # oynadığını doğruluyor. Yani sheet bu iki örnekte YANLIŞ değildi,
-            # Baran'ın bilgisi güncel değildi — SD öncelikli yapmak SD henüz
-            # işlemediği YENİ transferlerde durumu daha kötü yapardı. Bilinçli
-            # olarak GERİ ALINDI, bkz. sohbet — ayrı bir gerçek sorun (TR
-            # sheet'teki "sozlesme" tarihlerinin %89'u birebir "30.06.2026" —
-            # muhtemelen bireysel değil varsayılan) hâlâ geçerli ve Yiğit'e
-            # raporlandı, ayrı bir karar bekliyor.
-            "kulup":      r.get("takim", "") or _p.get("guncel_kulup", ""),
-            "lig":        r.get("lig", "") or "Türkiye",
+            "kulup":      _kulup_final,
+            # Lig: kulüp SD'nin farklı kulübüne geçtiyse "Türkiye" varsayılmaz —
+            # yanlış olur (Giacinti: "Como 1907, TSL'de oynuyor" gibi tutarsız
+            # bir kombinasyon). Kulüp sheet'ten geldiyse eski davranış korunur.
+            "lig":        ("" if _kulup_farkli else (r.get("lig", "") or "Türkiye")),
             "deger":      r.get("deger", ""),
             "sozlesme":   r.get("sozlesme", ""),
             "beceri":     r.get("beceri", {}),
@@ -7671,6 +7674,9 @@ def render_ana_lig_profil(secili):
         _tr_dogum = _ilk_dolu(sd.get("Date of birth"), _st.get("dogum"))
         _tr_yas = _ilk_dolu(_yas_hesapla(_tr_dogum), _st.get("yas"), sd.get("Age"))
         _sd_uyruk1, _sd_uyruk2 = _uyruk_ayir(sd.get("Nationality", ""))
+        _sezon_takim = row["TümTakımlar"] if transfer else row["Takım"]
+        _sd_kulup_ham = (sd.get("guncel_kulup") or "").strip()
+        _sd_kulup_farkli = bool(_sd_kulup_ham) and _kanon(_sd_kulup_ham) != _kanon(_sezon_takim or "")
         _kutu_grp = [
             (f"👤 {t('Kişisel Bilgiler','Personal Info')}", [
                 (f"🌍 {t('Uyruk','Nationality')}",
@@ -7687,8 +7693,12 @@ def render_ana_lig_profil(secili):
                 (f"🦶 {t('Güçlü Ayak','Strong Foot')}",
                  _ayak_goster(sd.get("Foot", ""), _st.get("ayak", "")))]),
             (f"📋 {t('Kulüp Bilgileri','Club Info')}", [
-                (f"🏆 {t('Lig','League')}", _st.get("lig", "")),
-                (f"👕 {t('Takım','Team')}", _guncel_kulup_goster(sd, row["TümTakımlar"] if transfer else row["Takım"])),
+                # Lig: TEAM SD'nin farklı bir kulübüne geçtiyse (aşağıdaki
+                # _guncel_kulup_goster ile aynı kanonik kıyas) sheet'in "lig"i
+                # (hep 🇹🇷) gösterilmez — "Como 1907, TSL'de oynuyor" gibi
+                # tutarsız bir kombinasyon olurdu (Yiğit, 19.08.2026 — Giacinti).
+                (f"🏆 {t('Lig','League')}", "" if _sd_kulup_farkli else _st.get("lig", "")),
+                (f"👕 {t('Takım','Team')}", _guncel_kulup_goster(sd, _sezon_takim)),
                 (f"📄 {t('Sözleşme','Contract')}",
                  _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
                 # Değer yalnızca SD'den okunuyordu; SD'de boş olan oyuncularda
