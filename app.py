@@ -5618,7 +5618,7 @@ def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar):
         sd  = sd_data.get(isim, {})
         _yas = _kd.get("yas") or sd.get("Age", "") or "—"
         _pos = (_kd.get("mevki") or [""])[0] or "—"
-        _kl  = _kd.get("kulup", "") or ""
+        _kl  = _kulup_goster(_kd.get("kulup", ""))
         _lg  = _lig_goster(_kd.get("lig", "") or "")
         _dg  = _kd.get("deger", "") or "—"
         _sz  = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
@@ -5777,7 +5777,7 @@ def _my11_kart_tek(isim, kullanici, sd_data):
     sd  = sd_data.get(isim, {})
     _yas = _kd.get("yas") or sd.get("Age", "") or "—"
     _pos = (_kd.get("mevki") or [""])[0] or "—"
-    _kl  = _kd.get("kulup", "") or ""
+    _kl  = _kulup_goster(_kd.get("kulup", ""))
     _lg  = _lig_goster(_kd.get("lig", "") or "")
     _dg  = _kd.get("deger", "") or "—"
     _sz  = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
@@ -6549,7 +6549,7 @@ def akilli_arama(q: str, n: int = 15):
         else:
             sira = skor
         sonuc.append({"isim": isim, "yas": yas, "mevki": "/".join(r.get("mevki") or []),
-                      "kulup": r.get("kulup", ""), "deger": r.get("deger", ""),
+                      "kulup": _kulup_goster(r.get("kulup", "")), "deger": r.get("deger", ""),
                       "nihai": r.get("nihai", ""), "cipler": cipler, "sira": sira})
     sonuc.sort(key=lambda x: -x["sira"])
     return ozet, sonuc[:n]
@@ -6573,7 +6573,7 @@ def nitelik_ikizleri_goster(isim: str):
     for aday, benzerlik in ikizler:
         r = d.get(aday, {})
         bilgi = " · ".join(x for x in [
-            str(r.get("yas", "") or ""), r.get("kulup", ""),
+            str(r.get("yas", "") or ""), _kulup_goster(r.get("kulup", "")),
             (f"💰{r.get('deger')}" if r.get("deger") else ""), r.get("nihai", "")] if x)
         items.append((aday, benzerlik, bilgi))
     _benzer_kutu_grid(items)
@@ -7066,7 +7066,7 @@ def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
     pdf.cell(0, 8, isim, ln=1)
     pdf.set_x(12); pdf.set_font("DV","",9)
     mevki = " / ".join(rapor.get("mevki", []))
-    alt = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki, rapor.get("kulup","")] if x)
+    alt = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki, _kulup_goster(rapor.get("kulup",""))] if x)
     pdf.cell(0, 6, alt, ln=1)
     pdf.set_xy(150, 7); pdf.set_font("DV","",7)
     pdf.cell(48, 4, t("SCOUT RAPORU","SCOUT REPORT"), ln=2, align="R")
@@ -7219,7 +7219,7 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
     alt_satir = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki_kod,
                 f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
                 ulke_goster(rapor.get("vatandaslik",""))] if x)
-    kulup_satir = " · ".join(x for x in [rapor.get("kulup",""), _lig_goster(rapor.get("lig","")),
+    kulup_satir = " · ".join(x for x in [_kulup_goster(rapor.get("kulup","")), _lig_goster(rapor.get("lig","")),
                   (f"💰 {rapor.get('deger')}" if rapor.get("deger") else ""),
                   (f"🗓 {rapor.get('sozlesme')}" if rapor.get("sozlesme") else "")] if x)
 
@@ -10818,7 +10818,7 @@ if st.session_state.get("sayfa") == "scouting":
                         if not _poz:
                             _trm = _SD_MEVKI_NORM.get(sd.get("Position", ""), "")
                             _poz = mevki_goster(_trm) if _trm else ""
-                        _kl = _kd.get("kulup", "") or ""
+                        _kl = _kulup_goster(_kd.get("kulup", ""))
                         _lg = _lig_goster(_kd.get("lig", "") or "")
                         _sezk = [s for s in leistung_data.get(tam_isim, {}).get("sezonlar", [])
                                  if not s.get("milli")]
