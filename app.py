@@ -1765,12 +1765,14 @@ def giris_formu_ana():
             f"{t('Ücretsiz kayıt ol veya giriş yap — kulüpler ve profesyoneller için.', 'Sign up free or log in — for clubs and professionals.')}</div>"
             f"</div>",
             unsafe_allow_html=True)
-        _mod = st.radio(t("Mod", "Mode"), [_GIR, _KYT, _UNUT], horizontal=True,
-                        key="giris_mod_sec", label_visibility="collapsed")
-        if _mod == _KYT:
+        _MOD_ETIKET = {"giris": _GIR, "kayit": _KYT, "unuttum": _UNUT}
+        _mod = st.radio(t("Mod", "Mode"), ["giris", "kayit", "unuttum"], horizontal=True,
+                        key="giris_mod_sec", label_visibility="collapsed",
+                        format_func=lambda k: _MOD_ETIKET[k])
+        if _mod == "kayit":
             _kayit_formu()
             return
-        if _mod == _UNUT:
+        if _mod == "unuttum":
             _sifremi_unuttum_formu()
             return
         with st.form("giris_form_ana", clear_on_submit=True):
@@ -10367,30 +10369,36 @@ if st.session_state.get("sayfa") == "scouting":
 </div>""", unsafe_allow_html=True)
 
             # ── Scout Pro: Sekme seçimi ───────────────────────────────────────
-            _ONERI_TAB  = t("📥 Öneri Merkezi", "📥 Recommendations")
-            _ROL_TAB    = t("🎭 Rol Arama", "🎭 Role Search")
-            _SSR_TAB    = t("🆓 Serbest & Sözleşme", "🆓 Free Agent & Contract")
-            _YETENEK_TAB = t("💎 Yetenek Vitrini", "💎 Talent Showcase")
-            _TAB_OPTS  = [t("Tüm Oyuncular", "All Players"), t("⭐ My Squad", "⭐ My Squad"),
-                          _ROL_TAB, _SSR_TAB, _YETENEK_TAB, _ONERI_TAB]
+            # NOT: seçenekler dile bağlı olmayan sabit anahtarlar (session_state
+            # key'i dil değişince bayatlamasın — bkz. altlig_gorunum ile aynı düzeltme)
+            _TAB_ETIKET = {
+                "tumu":    t("Tüm Oyuncular", "All Players"),
+                "my_squad": t("⭐ My Squad", "⭐ My Squad"),
+                "rol":     t("🎭 Rol Arama", "🎭 Role Search"),
+                "ssr":     t("🆓 Serbest & Sözleşme", "🆓 Free Agent & Contract"),
+                "yetenek": t("💎 Yetenek Vitrini", "💎 Talent Showcase"),
+                "oneri":   t("📥 Öneri Merkezi", "📥 Recommendations"),
+            }
+            _TAB_OPTS  = ["tumu", "my_squad", "rol", "ssr", "yetenek", "oneri"]
             _sc_tab_sel = st.radio(t("Görünüm", "View"), _TAB_OPTS, horizontal=True,
-                                   key="sc_tab_radio", label_visibility="collapsed")
-            sadece_sl   = (_sc_tab_sel == t("⭐ My Squad", "⭐ My Squad"))
+                                   key="sc_tab_radio", label_visibility="collapsed",
+                                   format_func=lambda k: _TAB_ETIKET[k])
+            sadece_sl   = (_sc_tab_sel == "my_squad")
 
             # ── Öneri Merkezi / Rol Arama / Serbest & Sözleşme / Yetenek Vitrini
             # sekmeleri: tam genişlik panosu + erken çıkış (Scouting sayfası
             # zaten aşağıda st.stop() ile bitiyor; burada da render edip durmak
             # filtre/tablo bloğunu temiz şekilde atlar).
-            if _sc_tab_sel == _ONERI_TAB:
+            if _sc_tab_sel == "oneri":
                 render_oneri_merkezi(_sl_kullanici)
                 st.stop()
-            if _sc_tab_sel == _ROL_TAB:
+            if _sc_tab_sel == "rol":
                 render_rol_arama()
                 st.stop()
-            if _sc_tab_sel == _SSR_TAB:
+            if _sc_tab_sel == "ssr":
                 render_serbest_radar()
                 st.stop()
-            if _sc_tab_sel == _YETENEK_TAB:
+            if _sc_tab_sel == "yetenek":
                 render_yetenek_vitrini()
                 st.stop()
 
@@ -11257,11 +11265,12 @@ if tab_internal:
         st.caption(t("İzlediğin maçlara özel SWOT + serbest not. Yalnızca sen görürsün.",
                      "Private SWOT + free notes for matches you watched. Only you can see them."))
 
-        _int_mod = st.radio("mod", [t("➕ Yeni Rapor", "➕ New Report"),
-                                    t("📋 Raporlarım", "📋 My Reports")],
-                            horizontal=True, label_visibility="collapsed", key="int_mod")
+        _int_mod = st.radio("mod", ["yeni", "raporlarim"],
+                            horizontal=True, label_visibility="collapsed", key="int_mod",
+                            format_func=lambda k: t("➕ Yeni Rapor", "➕ New Report") if k == "yeni"
+                                        else t("📋 Raporlarım", "📋 My Reports"))
 
-        if _int_mod == t("➕ Yeni Rapor", "➕ New Report"):
+        if _int_mod == "yeni":
             ic1, ic2, ic3, ic4 = st.columns([1.2, 1.4, 1.4, 0.9])
             with ic1: _i_tarih = st.date_input(t("Maç Tarihi", "Match Date"), key="int_tarih")
             with ic2: _i_ev    = st.text_input(t("Ev Sahibi", "Home"), key="int_ev", placeholder="Türkiye U19")
