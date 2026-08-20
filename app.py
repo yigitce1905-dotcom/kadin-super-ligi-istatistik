@@ -13101,7 +13101,7 @@ if tab11:
             # Renk açıklaması
             st.markdown(
                 "<div style='font-size:11px;color:#8899aa;'>"
-                "🟢 ≤1.0 &nbsp; 🟡 1.0–2.0 &nbsp; 🔴 >2.0 &nbsp; G/Maç</div>",
+                f"🟢 ≤1.0 &nbsp; 🟡 1.0–2.0 &nbsp; 🔴 >2.0 &nbsp; {t('G/Maç','G/Match')}</div>",
                 unsafe_allow_html=True)
 
 
