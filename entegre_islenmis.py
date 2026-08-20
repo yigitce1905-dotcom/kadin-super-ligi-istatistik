@@ -21,6 +21,8 @@ import json
 import sys
 from pathlib import Path
 
+sys.stdout.reconfigure(encoding="utf-8")
+
 from fetch_scout_kadro import cek, parse, yas_backfill, kulup_guncelle, CIKTI
 
 

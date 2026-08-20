@@ -10,9 +10,11 @@ backfill edilir.
 Sütun düzeni dinamik: grup sınırları header satırındaki başlık adlarından
 bulunur (kolon eklense de kaymaz). Kullanım:  python fetch_scout_kadro.py
 """
-import csv, io, json, re
+import csv, io, json, re, sys
 from pathlib import Path
 import requests
+
+sys.stdout.reconfigure(encoding="utf-8")
 
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 GID       = "1707810792"
