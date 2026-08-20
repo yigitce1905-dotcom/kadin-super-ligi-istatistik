@@ -53,8 +53,12 @@ if KURU:
     sys.exit(0)
 
 adim("3/4 — Siteye entegre (sheet → JSON)")
+# NOT: fetch_scout_kadro.py buradan AYRICA çağrılmaz — entegre_islenmis.py onu
+# zaten import edip aynı yaş/kulüp backfill'ini MERGE EDİLMİŞ veri üzerinde
+# uyguluyor. Ayrıca çalıştırmak fetch_scout_kadro.py'nin ham sheet overwrite'i
+# yüzünden merge'i siler (canlı sheette olmayan ama commit'te olan oyuncular
+# kaybolur — 2026-08-20'de 115 oyuncu, ör. Fadimatou Kome, bu yüzden gitmişti).
 calistir("entegre_islenmis.py", [])
-calistir("fetch_scout_kadro.py", [])   # yaş + SD kulüp override'ı JSON'a işlensin
 
 adim("3b/4 — KIRIK PROFİL TARAMASI (bulgu varsa Yiğit'e ilet)")
 calistir("profil_tutarlilik_tarama.py", [])
