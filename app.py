@@ -4073,6 +4073,15 @@ def _takim_kisa(ad: str) -> str:
     return " ".join(s.split()).strip(" -·") or ad
 
 
+def _kulup_goster(ham: str) -> str:
+    """_takim_kisa + 'Serbest' (serbest oyuncu) değerini dile göre çevirir —
+    ham veri her zaman Türkçe 'Serbest' taşır (bkz. kulup_guncelle_sd.py)."""
+    ham = (ham or "").strip()
+    if ham.lower() in _KONTRAT_SERBEST:
+        return t("Serbest", "Free Agent")
+    return _takim_kisa(ham)
+
+
 def _kanon_takim_sayisi(takim_serisi) -> int:
     """Süper Lig benzersiz KULÜP sayısı (özet/headline için). İsim varyantları _takim_kisa ile
     birleşir (ör. 'ALG SPOR' / 'GAZİANTEP ALG SPOR' / 'SERCAN İNŞAAT GAZİANTEP ALG SPOR' → tek 'ALG').
@@ -4597,7 +4606,7 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
 
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
-                _takim_kisa(o.get("kulup", "")),
+                _kulup_goster(o.get("kulup", "")),
                 ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # yaş · takım · memleket
         return " · ".join(x for x in parc if x)
 
@@ -4746,7 +4755,7 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
                  "3 closest candidates to this player from our worldwide scouting pool"))
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
-                _takim_kisa(o.get("kulup", "")),
+                _kulup_goster(o.get("kulup", "")),
                 ulke_goster(_uyruk_goster(o.get("ulke", "")))]   # yaş · takım · memleket
         return " · ".join(x for x in parc if x)
     _benzer_kutu_grid([(o["isim"], s, _lbl(o)) for s, o in ad[:3]])
@@ -5155,7 +5164,7 @@ def render_rol_arama():
     for i, (isim, skor, kapsam) in enumerate(_sonuclar[:_adet], 1):
         kd = kadro.get(isim, {})
         _href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
-        _kulup = _takim_kisa(kd.get("kulup", "")) or "—"
+        _kulup = _kulup_goster(kd.get("kulup", "")) or "—"
         _uyruk = ulke_goster(kd.get("vatandaslik", "")) or "—"
         _yas = kd.get("yas", "") or "—"
         _renk = "#1db954" if i <= 3 else ("#a78bfa" if i <= 10 else "#3b4a63")
@@ -5439,7 +5448,7 @@ def render_yetenek_vitrini():
     _kartlar = ""
     for isim, v, _ns, _yas in _liste:
         _href = f"?oyuncu={_urlquote(isim)}&dil={_dil_q}"
-        _kulup = _takim_kisa(v.get("kulup", "")) or "—"
+        _kulup = _kulup_goster(v.get("kulup", "")) or "—"
         _uyruk = ulke_goster(v.get("vatandaslik", "")) or "—"
         _nihai = v.get("nihai") or "—"
         _kartlar += (
@@ -8579,7 +8588,7 @@ def render_paylasim_raporu(isim: str):
     except Exception: uyruk = kadro.get("vatandaslik", "") or "—"
     try:    milli = ulke_goster(kadro.get("milli_takim", "")) if kadro.get("milli_takim") else ""
     except Exception: milli = kadro.get("milli_takim", "")
-    kulup = _takim_kisa(kadro.get("kulup", "") or "") or "—"
+    kulup = _kulup_goster(kadro.get("kulup", "")) or "—"
     lig   = _lig_goster(kadro.get("lig", "")) or "—"
     deger = kadro.get("deger", "") or sd.get("Market value", "") or "—"
     sozl  = _kontrat_guncel(kadro.get("sozlesme", ""), sd.get("Contract until", ""))
