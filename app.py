@@ -3740,6 +3740,24 @@ def mevki_goster(m):
         return m
     return _MEVKI_EN.get(m, m)
 
+# Fantasy Kadro saha etiketleri TR→EN (kısa pozisyon kısaltmaları; iç değer TR kalır)
+_ETIKET_EN = {
+    "Kaleci": "GK",
+    "Sol Bek": "LB", "Sağ Bek": "RB",
+    "Sol-OB": "LCB", "Sağ-OB": "RCB", "Merkez-OB": "CB",
+    "Sol K.": "LWB", "Sağ K.": "RWB",
+    "Sol OM": "LCM", "Sağ OM": "RCM", "Merkez OM": "CM",
+    "Sol-Merkez": "LM", "Sağ-Merkez": "RM",
+    "Def OM": "DM", "Def OM-1": "DM1", "Def OM-2": "DM2", "Ofansif OM": "AM",
+    "Sol Kanat": "LW", "Sağ Kanat": "RW",
+    "Santrafor": "ST", "Sol Santr": "LST", "Sağ Santr": "RST",
+}
+def etiket_goster(e):
+    """Fantasy Kadro slot etiketini aktif dile göre gösterir (iç değer TR kalır)."""
+    if not EN:
+        return e
+    return _ETIKET_EN.get(e, e)
+
 
 def mevki_disp(raw: str) -> str:
     """Ham SD pozisyonunu ('Midfield - Defensive Midfield') temiz, DİLE UYGUN ada çevirir.
@@ -12307,7 +12325,7 @@ if tab7:
                 renk   = MEVKI_RENK_F.get(mevki, "#aaa")
 
                 if dolu:
-                    hover        = f"<b>{oyuncu}</b><br>{etiket}"
+                    hover        = f"<b>{oyuncu}</b><br>{etiket_goster(etiket)}"
                     marker_renk  = renk
                     border_renk  = "white"
                     border_kalin = 2.5
@@ -12322,7 +12340,7 @@ if tab7:
                         isim_ust = parcalar[0]
                         isim_alt = ""
                 else:
-                    hover        = etiket
+                    hover        = etiket_goster(etiket)
                     marker_renk  = "rgba(40,40,40,0.6)"
                     border_renk  = "rgba(255,255,255,0.35)"
                     border_kalin = 1.5
@@ -12366,7 +12384,7 @@ if tab7:
                 # Mevki etiketi (daire altında)
                 fig.add_annotation(
                     x=px, y=py - 7.5,
-                    text=etiket,
+                    text=etiket_goster(etiket),
                     showarrow=False,
                     font=dict(size=7.5,
                               color="rgba(255,255,255,0.85)" if dolu else "rgba(255,255,255,0.4)"),
@@ -12377,7 +12395,7 @@ if tab7:
                 fig.add_trace(go.Scatter(
                     x=[None], y=[None], mode="markers",
                     marker=dict(size=10, color=renk),
-                    name=mevki, showlegend=True,
+                    name=mevki_goster(mevki), showlegend=True,
                 ))
 
             fig.update_layout(
