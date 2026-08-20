@@ -3643,7 +3643,16 @@ def df_tablo(df, basliklar=None, formatlar=None, height=None):
     def fmt(c, v):
         if c in formatlar:
             try:
-                return esc(formatlar[c](v))
+                sonuc = formatlar[c](v)
+                # Opt-in renk desteği: formatter (metin, renk_hex) tuple'ı
+                # dönebilirse hücre renkli basılır — geri uyumlu, düz string
+                # dönen mevcut formatter'lar etkilenmez (19.08.2026 otonom
+                # tarama, ilk kullanım: Kaleci Sayfası'nda grafikle aynı renk
+                # eşiğini tabloya da taşımak için).
+                if isinstance(sonuc, tuple) and len(sonuc) == 2:
+                    metin, renk = sonuc
+                    return f"<span style='color:{esc(renk)};font-weight:700;'>{esc(metin)}</span>"
+                return esc(sonuc)
             except Exception:
                 return esc(v)
         try:
@@ -13038,7 +13047,9 @@ if tab11:
                 basliklar={"Kaleci": t("Kaleci","Goalkeeper"), "Takım": t("Takım","Team"),
                            "Maç": t("Maç","Matches"), "YenilenGol": t("Y.Gol","GA"),
                            "G/Maç": t("G/Maç","G/Match")},
-                formatlar={"G/Maç": lambda v: f"{v:.2f}"})
+                formatlar={"G/Maç": lambda v: (
+                    f"{v:.2f}",
+                    "#1db954" if v <= 1.0 else "#ffab00" if v <= 2.0 else "#ff6b6b")})
 
         with col_grafik:
             st.markdown(f"**📊 {t('Maç Başına Yenilen Gol (≥5 maç)', 'Goals Conceded per Match (≥5 matches)')}**")
