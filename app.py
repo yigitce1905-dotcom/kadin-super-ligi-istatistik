@@ -8031,12 +8031,12 @@ def render_ana_lig_profil(secili):
                             x=dilimler, y=sayilar,
                             marker_color=["#1565c0","#1976d2","#1e88e5","#ff8f00","#f57c00","#e65100"],
                             text=sayilar, textposition="outside",
-                            hovertemplate="%{x}. dk — %{y} gol<extra></extra>",
+                            hovertemplate="%{x}. " + t("dk","min") + " — %{y} " + t("gol","goals") + "<extra></extra>",
                         ))
                         fig2.update_layout(paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
                             font=dict(color="#e0e0e0"), height=260,
                             xaxis=dict(title=t("Dakika Aralığı","Minutes Range"), gridcolor="#2d3561"),
-                            yaxis=dict(title="Gol", gridcolor="#2d3561", dtick=1),
+                            yaxis=dict(title=t("Gol","Goals"), gridcolor="#2d3561", dtick=1),
                             margin=dict(l=30,r=10,t=10,b=40), showlegend=False)
                         st.plotly_chart(fig2, width="stretch", key=_pk("plt_2980"))
                     elif gol > 0:
@@ -11838,8 +11838,8 @@ if tab4:
         fig_s.update_layout(
             paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
             font=dict(color="#e0e0e0"), height=380,
-            xaxis=dict(title="Toplam Dakika", gridcolor="#2d3561"),
-            yaxis=dict(title="Toplam Gol", gridcolor="#2d3561"),
+            xaxis=dict(title=t("Toplam Dakika","Total Minutes"), gridcolor="#2d3561"),
+            yaxis=dict(title=t("Toplam Gol","Total Goals"), gridcolor="#2d3561"),
             legend=dict(orientation="h", y=1.1),
             margin=dict(l=40,r=20,t=40,b=40))
         st.plotly_chart(fig_s, width="stretch")
@@ -11937,8 +11937,8 @@ if tab6:
         fig_lig.update_layout(
             paper_bgcolor="#0f1117", plot_bgcolor="#1a1f36",
             font=dict(color="#e0e0e0"), height=420,
-            xaxis=dict(title="Toplam Dakika", gridcolor="#2d3561"),
-            yaxis=dict(title="Toplam Gol",    gridcolor="#2d3561"),
+            xaxis=dict(title=t("Toplam Dakika","Total Minutes"), gridcolor="#2d3561"),
+            yaxis=dict(title=t("Toplam Gol","Total Goals"),    gridcolor="#2d3561"),
             legend=dict(orientation="h", y=1.08),
             margin=dict(l=40,r=20,t=40,b=40))
         st.plotly_chart(fig_lig, width="stretch")
@@ -12964,12 +12964,12 @@ if tab10:
                 x=by_year["dogum_yili"], y=by_year["sayi"],
                 marker=dict(color=by_year["sayi"],
                             colorscale=[[0,"#0d3b2e"],[1,"#1db954"]], showscale=False),
-                hovertemplate="%{x}: %{y} oyuncu<extra></extra>",
+                hovertemplate="%{x}: %{y} " + t("oyuncu","players") + "<extra></extra>",
             ))
             fig_year.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
                 xaxis=dict(title=t("Doğum Yılı","Birth Year"), color="#8899aa", gridcolor="#1e2340", dtick=2),
-                yaxis=dict(title="Oyuncu", color="#8899aa", gridcolor="#1e2340"),
+                yaxis=dict(title=t("Oyuncu","Players"), color="#8899aa", gridcolor="#1e2340"),
                 bargap=0.1, margin=dict(l=10,r=10,t=10,b=10),
                 height=260, font=dict(color="#e0e0e0"),
             )
