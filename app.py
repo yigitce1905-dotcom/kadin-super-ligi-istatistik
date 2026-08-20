@@ -3280,11 +3280,12 @@ def _sd_url_isim(url: str) -> str:
 @st.dialog("➕ Oyuncu Öner")
 def _oneri_ekle_dialog(sahip: str):
     _mod0 = st.session_state.get("_oneri_dialog_mod", "url")
-    _opts = [t("🔗 SoccerDonna URL", "🔗 SoccerDonna URL"), t("✏️ Elle Ekle", "✏️ Manual")]
-    mod = st.radio("yontem", _opts, index=(0 if _mod0 == "url" else 1),
-                   horizontal=True, label_visibility="collapsed", key="_oneri_mod")
+    _MOD_ETIKET = {"url": t("🔗 SoccerDonna URL", "🔗 SoccerDonna URL"), "manuel": t("✏️ Elle Ekle", "✏️ Manual")}
+    mod = st.radio("yontem", ["url", "manuel"], index=(0 if _mod0 == "url" else 1),
+                   horizontal=True, label_visibility="collapsed", key="_oneri_mod",
+                   format_func=lambda k: _MOD_ETIKET[k])
     url = oyuncu = kulup = ""
-    if mod == _opts[0]:
+    if mod == "url":
         url = st.text_input(t("SoccerDonna Linki", "SoccerDonna Link"),
                             placeholder="https://www.soccerdonna.de/en/player/...", key="_oneri_url")
         st.caption(t("URL'den oyuncu adı otomatik çıkarılır. (İstersen 'Elle Ekle' ile tam gir.)",
@@ -3301,7 +3302,7 @@ def _oneri_ekle_dialog(sahip: str):
     if c1.button(t("İptal", "Cancel"), use_container_width=True, key="_oneri_iptal"):
         st.rerun()
     if c2.button(t("Ekle", "Add"), type="primary", use_container_width=True, key="_oneri_ekle_btn"):
-        if mod == _opts[0]:
+        if mod == "url":
             if not (url or "").strip():
                 st.warning(t("Lütfen SoccerDonna linki gir.", "Please enter a SoccerDonna link.")); st.stop()
             oyuncu = _sd_url_isim(url) or t("SoccerDonna Oyuncusu", "SoccerDonna Player")
@@ -5292,28 +5293,30 @@ def render_serbest_radar():
         + "</div></div>", unsafe_allow_html=True)
 
     _kol1, _kol2, _kol3 = st.columns(3)
-    _durum_tumu = t("Tümü", "All")
+    _TUMU = "__tumu__"   # dile bağlı olmayan sabit — session_state key dil değişince bayatlamasın
+    _DURUM_ETIKET = {_TUMU: t("Tümü", "All"), "serbest": t("🆓 Serbest", "🆓 Free Agent"),
+                      "bitiyor": t("⏳ Sözleşmesi bitiyor", "⏳ Contract Expiring")}
     _durum_sec = _kol1.selectbox(
-        t("Durum", "Status"),
-        [_durum_tumu, t("🆓 Serbest", "🆓 Free Agent"), t("⏳ Sözleşmesi bitiyor", "⏳ Contract Expiring")],
-        key="ssr_durum")
+        t("Durum", "Status"), [_TUMU, "serbest", "bitiyor"],
+        format_func=lambda k: _DURUM_ETIKET[k], key="ssr_durum")
     _pencere = _kol2.selectbox(t("Pencere (ay)", "Window (months)"), [3, 6, 12], index=1, key="ssr_pencere")
     _GRUP_ETIKET = {"GK": t("Kaleci", "Goalkeeper"), "DEF": t("Defans", "Defender"),
                      "MID": t("Orta Saha", "Midfielder"), "FWD": t("Forvet", "Forward")}
     _mevki_sec = _kol3.selectbox(t("Mevki Grubu", "Position Group"),
-                                 [_durum_tumu] + list(_GRUP_ETIKET.values()), key="ssr_mevki")
+                                 [_TUMU] + list(_GRUP_ETIKET.keys()), key="ssr_mevki",
+                                 format_func=lambda k: _DURUM_ETIKET.get(k) or _GRUP_ETIKET.get(k, k))
 
     _gun_siniri = _pencere * 30
     _sonuc = []
     for k in havuz:
-        if _durum_sec == t("🆓 Serbest", "🆓 Free Agent") and not k["serbest"]:
+        if _durum_sec == "serbest" and not k["serbest"]:
             continue
-        if _durum_sec == t("⏳ Sözleşmesi bitiyor", "⏳ Contract Expiring"):
+        if _durum_sec == "bitiyor":
             if k["serbest"] or k["kalan_gun"] is None or k["kalan_gun"] > _gun_siniri:
                 continue
         elif not k["serbest"] and k["kalan_gun"] is not None and k["kalan_gun"] > _gun_siniri:
             continue   # "Tümü"nde de pencere dışı sözleşmeliler gösterilmez, yoksa liste anlamsızlaşır
-        if _mevki_sec != _durum_tumu and _GRUP_ETIKET.get(k["grup"]) != _mevki_sec:
+        if _mevki_sec != _TUMU and k["grup"] != _mevki_sec:
             continue
         _sonuc.append(k)
 
