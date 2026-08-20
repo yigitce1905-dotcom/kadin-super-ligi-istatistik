@@ -9428,6 +9428,8 @@ if st.session_state["sayfa"] == "talep":
 # ─── ALT LİGLER SAYFASI (Süper Lig verisinden TAMAMEN izole) ─────────────────
 _ALTLIG_DOSYALAR = {"Kadınlar 1. Ligi": "altlig_1lig.json",
                     "Kadınlar 2. Ligi": "altlig_2lig.json"}
+_ALTLIG_EN      = {"Kadınlar 1. Ligi": "Women's 1st League", "Kadınlar 2. Ligi": "Women's 2nd League"}
+_ALTLIG_KISA_EN = {"Kadınlar 1. Ligi": "1ST LEAGUE", "Kadınlar 2. Ligi": "2ND LEAGUE"}
 
 @st.cache_data(ttl=600)
 def altlig_yukle(dosya: str):
@@ -9523,7 +9525,8 @@ def render_altlig():
     st.caption(t("TFF Kadınlar alt ligleri · gruplar, puan durumu ve oyuncu istatistikleri — Süper Lig verisinden tamamen ayrı.",
                  "TFF Women's lower leagues · groups, standings & player stats — fully separate from the Super League."))
     _ligler = list(_ALTLIG_DOSYALAR.keys())
-    _lig = (st.selectbox(t("Lig", "League"), _ligler, key="altlig_lig")
+    _lig = (st.selectbox(t("Lig", "League"), _ligler, key="altlig_lig",
+                         format_func=lambda x: t(x, _ALTLIG_EN.get(x, x)))
             if len(_ligler) > 1 else _ligler[0])
     data = altlig_yukle(_ALTLIG_DOSYALAR[_lig])
     if not data:
@@ -9532,30 +9535,35 @@ def render_altlig():
 
     gruplar = data.get("gruplar", {})
     _oyuncular = data.get("oyuncular", [])
-    _ad = _lig.replace("Kadınlar ", "").upper()
-    _oy_lbl = t("👤 Oyuncular", "👤 Players")
-    _pd_lbl = t("🏆 Puan Durumu", "🏆 Standings")
-    _ei_lbl = t("🌟 En İyiler", "🌟 Top Performers")
-    _ta_lbl = t("🏟️ Takımlar", "🏟️ Teams")
-    _kr_lbl = t("👑 Gol Kraliçesi", "👑 Top Scorers")
+    _ad = t(_lig.replace("Kadınlar ", "").upper(), _ALTLIG_KISA_EN.get(_lig, _lig.upper()))
+    _GORUNUM_ETIKET = {
+        "oyuncular": t("👤 Oyuncular", "👤 Players"),
+        "puan_durumu": t("🏆 Puan Durumu", "🏆 Standings"),
+        "en_iyiler": t("🌟 En İyiler", "🌟 Top Performers"),
+        "takimlar": t("🏟️ Takımlar", "🏟️ Teams"),
+        "gol_kralicesi": t("👑 Gol Kraliçesi", "👑 Top Scorers"),
+    }
     secenekler = []
     if _oyuncular:
-        secenekler += [_oy_lbl, _ei_lbl, _ta_lbl]
+        secenekler += ["oyuncular", "en_iyiler", "takimlar"]
     if gruplar:
-        secenekler.append(_pd_lbl)
+        secenekler.append("puan_durumu")
     if data.get("gol_kralicesi"):
-        secenekler.append(_kr_lbl)
+        secenekler.append("gol_kralicesi")
+    # NOT: seçenekler dile bağlı olmayan sabit anahtarlar (session_state key'i
+    # dil değişince bayatlamasın — bkz. altyas_grup ile aynı düzeltme)
     secim = st.radio("g", secenekler, horizontal=True,
-                     label_visibility="collapsed", key="altlig_gorunum")
+                     label_visibility="collapsed", key="altlig_gorunum",
+                     format_func=lambda k: _GORUNUM_ETIKET[k])
 
     # Lig geneli görünümler
-    if secim == _ei_lbl:
+    if secim == "en_iyiler":
         _altlig_en_iyiler(_oyuncular)
         return
-    if secim == _ta_lbl:
+    if secim == "takimlar":
         _altlig_takim_analizi(_oyuncular)
         return
-    if secim == _kr_lbl:
+    if secim == "gol_kralicesi":
         st.markdown(f"#### 👑 {t('Gol Kraliçesi — Resmi TFF Tablosu', 'Top Scorers — Official TFF')}")
         kr = data["gol_kralicesi"]
         krdf = pd.DataFrame([{t("Oyuncu", "Player"): f"{i + 1}. {r['oyuncu']}",
@@ -9567,7 +9575,7 @@ def render_altlig():
         return
 
     # Puan Durumu — gruplar yapısal olarak ayrı oynar; her grubun tablosu alt alta.
-    if secim == _pd_lbl:
+    if secim == "puan_durumu":
         st.markdown(f"#### 🏆 {t('Puan Durumu', 'Standings')}")
         for g in gruplar:
             puan_df = _altlig_puan_df(gruplar[g].get("puan_durumu", []))
@@ -9664,6 +9672,7 @@ _ALTYAS_DOSYALAR = {  # kategori → veri dosyası (sırayla sekme/seçici olur)
     "U15 Kızlar": "altlig_u15.json",   # kaynak: tffistanbul.org (İstanbul U15 Genç Kızlar A/B/C)
     "U13 Kızlar": "altlig_u13.json",   # kaynak: tffistanbul.org (İstanbul U13 Minik Kızlar 1/2/3)
 }
+_ALTYAS_EN = {"U17 Kızlar": "U17 Girls", "U15 Kızlar": "U15 Girls", "U13 Kızlar": "U13 Girls"}
 
 def render_altyas():
     st.markdown(f"## 🌱 {t('Alt Yaşlar', 'Youth Leagues')}")
@@ -9672,7 +9681,8 @@ def render_altyas():
     _ligler = list(_ALTYAS_DOSYALAR.keys())
     # Kategori seçimi GÖRÜNÜR kutucuklarla (yatay radio) — kullanıcı U13/U15'in
     # varlığını dropdown'a tıklamadan görsün.
-    _lig = (st.radio(t("Kategori", "Category"), _ligler, horizontal=True, key="altyas_lig")
+    _lig = (st.radio(t("Kategori", "Category"), _ligler, horizontal=True, key="altyas_lig",
+                     format_func=lambda x: t(x, _ALTYAS_EN.get(x, x)))
             if len(_ligler) > 1 else _ligler[0])
     data = altlig_yukle(_ALTYAS_DOSYALAR[_lig])
     if not data:
@@ -9680,21 +9690,24 @@ def render_altyas():
                   "Data not ready yet — to be generated locally via scraper_u17_selenium.py."))
         return
 
-    _kr_lbl = t("👑 Gol Kraliçesi", "👑 Top Scorers")
-    _oy_lbl = t("👤 Oyuncular", "👤 Players")
-    _ei_lbl = t("🌟 En İyiler", "🌟 Top Performers")
-    _ta_lbl = t("🏟️ Takımlar", "🏟️ Teams")
-    secenekler = [_oy_lbl, _ei_lbl, _ta_lbl] + ([_kr_lbl] if data.get("gol_kralicesi") else [])
-    secim = st.radio("ay", secenekler, horizontal=True, label_visibility="collapsed", key="altyas_mod")
+    _GORUNUM_ETIKET = {
+        "gol_kralicesi": t("👑 Gol Kraliçesi", "👑 Top Scorers"),
+        "oyuncular": t("👤 Oyuncular", "👤 Players"),
+        "en_iyiler": t("🌟 En İyiler", "🌟 Top Performers"),
+        "takimlar": t("🏟️ Takımlar", "🏟️ Teams"),
+    }
+    secenekler = ["oyuncular", "en_iyiler", "takimlar"] + (["gol_kralicesi"] if data.get("gol_kralicesi") else [])
+    secim = st.radio("ay", secenekler, horizontal=True, label_visibility="collapsed", key="altyas_mod",
+                     format_func=lambda k: _GORUNUM_ETIKET[k])
 
-    if secim == _ei_lbl:
+    if secim == "en_iyiler":
         _altlig_en_iyiler(data.get("oyuncular", []))
         return
-    if secim == _ta_lbl:
+    if secim == "takimlar":
         _altlig_takim_analizi(data.get("oyuncular", []))
         return
 
-    if secim == _kr_lbl:
+    if secim == "gol_kralicesi":
         _kr_baslik = (t("Gol Kraliçesi (Resmi TFF Top-10)", "Top Scorers (Official TFF Top-10)")
                       if "U17" in _lig else t("Gol Kraliçesi (İlk 10)", "Top Scorers (Top 10)"))
         st.markdown(f"#### 👑 {_kr_baslik}")
@@ -9719,12 +9732,14 @@ def render_altyas():
                           key="altyas_ara", label_visibility="collapsed",
                           placeholder=t("Oyuncu veya takım ara…", "Search player or team…"))
     _gruplar = sorted({o.get("grup") for o in oyuncular if o.get("grup")})
-    _grup_sec = _c2.selectbox(t("Grup", "Group"), [t("Tüm gruplar", "All groups")] + [str(g) for g in _gruplar],
-                              key="altyas_grup", label_visibility="collapsed")
+    _TUM_GRUP = "__tum__"   # dile bağlı olmayan sabit değer — session_state key dil değişince bayatlamasın
+    _grup_sec = _c2.selectbox(t("Grup", "Group"), [_TUM_GRUP] + [str(g) for g in _gruplar],
+                              key="altyas_grup", label_visibility="collapsed",
+                              format_func=lambda x: t("Tüm gruplar", "All groups") if x == _TUM_GRUP else x)
     _arl = (_ara or "").lower().strip()
     flt = [o for o in oyuncular
            if (not _arl or _arl in o["oyuncu"].lower() or _arl in o.get("takim", "").lower())
-           and (_grup_sec in (t("Tüm gruplar", "All groups"),) or str(o.get("grup")) == _grup_sec)]
+           and (_grup_sec == _TUM_GRUP or str(o.get("grup")) == _grup_sec)]
     if not flt:
         st.caption(t("Eşleşen oyuncu yok.", "No matching players."))
         return
