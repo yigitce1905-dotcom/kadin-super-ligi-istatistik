@@ -3998,7 +3998,7 @@ def _guncel_kulup_goster(sd_rec, sezon_takim):
     gk = str((sd_rec or {}).get("guncel_kulup") or "").strip()
     if gk and gk.lower() not in ("unbekannt", "unknown", "?", "-", "") \
             and _kanon(gk) != _kanon(sezon_takim or ""):
-        return _takim_kisa(gk)
+        return _kulup_goster(gk)
     return _takim_kisa(sezon_takim or "")
 
 def _boy_cm(s):
@@ -5907,7 +5907,8 @@ def render_scouting_detay(tam_isim):
     _boy_tip = " / ".join(x for x in (boy if boy != "—" else "", _vucut) if x)
     _bolge_g = bolge_goster(_kadro.get("bolge", ""))
     _lig_g = (_kadro.get("lig") or "").strip()
-    _takim_g = (_kadro.get("kulup") or "").strip()
+    _takim_ham = (_kadro.get("kulup") or "").strip()
+    _takim_g = t("Serbest", "Free Agent") if _takim_ham.lower() in _KONTRAT_SERBEST else _takim_ham
     # 2. Uyruk = ikinci pasaport ('milli_takim' alanı — ad yanıltıcı, bkz. üstteki
     # not). Millî takım uyruğu ise _milli'de ve ilk satırda gösteriliyor.
     _ikinci_uyruk = (_kadro.get("milli_takim") or "").strip()
