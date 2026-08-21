@@ -10572,40 +10572,33 @@ if st.session_state.get("sayfa") == "scouting":
                     format_func=lambda x: (
                         (_sc_ayak_en.get(x, x) if x != _sc_tumu else _sc_tumu) if EN else x))
 
-                # ── 💰 Bütçe: piyasa değerine ('deger' alanı) göre filtre ────────
-                # Düşük bütçeli kulüplerin düşük maliyetli oyunculara bakabilmesi
-                # için istendi (Yiğit, 2026-08-21). 'deger' scout_kadro'dan gelen
-                # piyasa değeri (örn. '€80.000') — aynı parser (_aa_deger_eur)
-                # zaten Akıllı Arama'nın bütçe kriterinde kullanılıyordu, burada
-                # sidebar'a taşındı. Aralık, boy/doğum yılı filtreleriyle aynı
-                # kalıpta (gerçek veriden min/max) dinamik kurulur.
-                _deger_vals = []
-                for _dn in _kadro_roster:
-                    _dv = _aa_deger_eur(_kadro_roster[_dn].get("deger"))
-                    if _dv is not None:
-                        _deger_vals.append(_dv)
-                if _deger_vals:
-                    _dg_min_k = min(_deger_vals) // 1000
-                    _dg_max_k = -(-max(_deger_vals) // 1000)     # yukarı yuvarla (€K)
-                    if _dg_max_k <= _dg_min_k:
-                        _dg_max_k = _dg_min_k + 1
-                    _dg_step = max(1, (_dg_max_k - _dg_min_k) // 100)
-                    deger_range_k = st.slider(
-                        f"💰 {t('Bütçe — Piyasa Değeri', 'Budget — Market Value')} (€K)",
-                        _dg_min_k, _dg_max_k, (_dg_min_k, _dg_max_k),
-                        step=_dg_step, key="sc_deger",
-                        help=t("Scout kadrosundaki 'Değer' alanı (piyasa değeri). Bütçe dostu arama için "
-                               "aralığı sola çekin — değeri bilinmeyen oyuncular aralık daraltılınca gizlenir.",
-                               "Market value from the scout roster ('Value' field). For budget-friendly "
-                               "search, drag the range to the left — players with unknown value are hidden "
-                               "once the range is narrowed."))
-                    if tuple(deger_range_k) != (_dg_min_k, _dg_max_k):
-                        st.caption(
-                            "💰 €" + f"{deger_range_k[0] * 1000:,}".replace(",", ".") +
-                            " – €" + f"{deger_range_k[1] * 1000:,}".replace(",", "."))
-                else:
-                    _dg_min_k = _dg_max_k = 0
-                    deger_range_k = (0, 0)
+                # ── 💰 Maliyet (Cost): kategorik İktisadi Durum skalası ──────────
+                # Yiğit'in kastettiği "Cost" excel'deki Low/Medium/High sütunu —
+                # oyuncunun piyasa değeri DEĞİL (2026-08-21 düzeltme; önceki
+                # sürüm yanlışlıkla 'deger' piyasa değerini _aa_deger_eur ile
+                # parse edip €K slider yapmıştı). Gerçek kaynak: sheet'teki
+                # "Cost" sütunu fetch_scout_kadro.py'de _EN_TR_GENEL ile
+                # "İktisadi Durum" başlığına, değerleri de _DEGER_IKTISADI ile
+                # kanonik Türkçeye (Ucuz/Düşük/Orta/Yüksek/Fahiş/Tanımlanmamış)
+                # çevrilip her oyuncu kaydına 'iktisadi_durum' alanı olarak
+                # yazılıyor (bkz. app.py iktisadi_goster/_IKTISADI_EN — profil
+                # sayfasında zaten aynı alan gösteriliyor). TR Görüşü filtresiyle
+                # aynı kalıp: mevcut değerlerden dinamik seçenek listesi, hiçbir
+                # şey seçilmezse ('Tümü') filtre uygulanmaz.
+                _ikt_sira = ["Ucuz", "Düşük", "Orta", "Yüksek", "Fahiş", "Tanımlanmamış"]
+                _ikt_mevcut = {(_v.get("iktisadi_durum") or "").strip()
+                               for _v in _kadro_roster.values()
+                               if (_v.get("iktisadi_durum") or "").strip()}
+                _ikt_opts = ([x for x in _ikt_sira if x in _ikt_mevcut]
+                             + sorted(_ikt_mevcut - set(_ikt_sira)))
+                ikt_sec = st.multiselect(
+                    f"💰 {t('Maliyet (Cost)', 'Cost')}", _ikt_opts,
+                    format_func=iktisadi_goster, placeholder=t("Tümü", "All"),
+                    key="sc_iktisadi",
+                    help=t("Scout kadrosundaki 'İktisadi Durum' (Cost) alanı — piyasa değeri değil, "
+                           "scout'un maliyet değerlendirmesi. Boş bırakılırsa tüm oyuncular gösterilir.",
+                           "The scout roster's 'Cost' field — not market value, the scout's cost "
+                           "assessment. Leave empty to show all players."))
 
                 # ── 📡 Transfer Radar: sözleşme bitiş yakınlığı ──────────────────
                 # Sözleşmesi yakında biten = düşük bonservis / bedava fırsat.
@@ -10691,12 +10684,10 @@ if st.session_state.get("sayfa") == "scouting":
                 if _boy_vals and tuple(boy_range) != (_boy_min, _boy_max):
                     filtered = filtered[filtered["BoyCm"].apply(
                         lambda b: b is not None and boy_range[0] <= b <= boy_range[1])]
-                if _deger_vals and tuple(deger_range_k) != (_dg_min_k, _dg_max_k):
-                    def _deger_filtre(_n):
-                        _dv = _aa_deger_eur((_kadro_roster.get(_n) or {}).get("deger"))
-                        return (_dv is not None and
-                                deger_range_k[0] * 1000 <= _dv <= deger_range_k[1] * 1000)
-                    filtered = filtered[filtered[isim_col].apply(_deger_filtre)]
+                if ikt_sec:
+                    _ikt_isimler = {_i for _i, _v in _kadro_roster.items()
+                                    if (_v.get("iktisadi_durum") or "").strip() in ikt_sec}
+                    filtered = filtered[filtered[isim_col].isin(_ikt_isimler)]
                 if transfer_sec != _sc_tumu:
                     import datetime as _dtt, re as _ret
                     _esik = {"exp6": 6, "exp12": 12, "exp18": 18}.get(transfer_sec)
