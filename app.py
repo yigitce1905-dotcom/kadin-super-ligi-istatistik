@@ -5442,7 +5442,22 @@ def render_yetenek_vitrini():
     _kume_sec = st.selectbox(t("Küme", "Class"), _secenekler,
                              format_func=yetenek_kume_goster, key="yv_kume_sec")
 
-    _liste = havuz[_kume_sec][:24]
+    # ── Sayfalama (2026-08-21, Yiğit): sadece ilk 24 sabit gösteriliyordu,
+    # geri kalan oyuncular hiç görünmüyordu. Sayfa başına aynı sayı (24)
+    # korunur, session_state'te sayfa numarası tutulur; küme değişince 1'e
+    # sıfırlanır (aksi halde ör. 3. sayfadayken küme değiştirince boş kalırdı).
+    _YV_SAYFA_BOY = 24
+    if st.session_state.get("yv_kume_onceki") != _kume_sec:
+        st.session_state["yv_sayfa"] = 1
+        st.session_state["yv_kume_onceki"] = _kume_sec
+
+    _tum_liste = havuz[_kume_sec]
+    _yv_toplam = len(_tum_liste)
+    _yv_sayfa_sayisi = max(1, -(-_yv_toplam // _YV_SAYFA_BOY))
+    _yv_sayfa = min(st.session_state.get("yv_sayfa", 1), _yv_sayfa_sayisi)
+    _yv_bas = (_yv_sayfa - 1) * _YV_SAYFA_BOY
+    _liste = _tum_liste[_yv_bas:_yv_bas + _YV_SAYFA_BOY]
+
     _dil_q = st.session_state.get("dil", "TR")
     _renk = _YETENEK_VITRIN_RENK.get(_kume_sec, "#a78bfa")
     _kartlar = ""
@@ -5464,9 +5479,28 @@ def render_yetenek_vitrini():
             f"<div style='color:#64748b;font-size:0.7rem;margin-top:1px;'>{_html.escape(str(_uyruk))}</div>"
             f"</div></a>")
     st.markdown(f"<div style='display:flex;flex-wrap:wrap;gap:10px;'>{_kartlar}</div>", unsafe_allow_html=True)
-    if len(havuz[_kume_sec]) > 24:
-        st.caption(t(f"İlk 24 gösteriliyor ({len(havuz[_kume_sec])} toplam).",
-                     f"Showing first 24 (of {len(havuz[_kume_sec])})."))
+
+    # ── Önceki / Sayfa X of Y / Sonraki ──────────────────────────────────
+    if _yv_sayfa_sayisi > 1:
+        st.markdown("<div style='height:10px;'></div>", unsafe_allow_html=True)
+        _yv_c1, _yv_c2, _yv_c3 = st.columns([1, 2, 1])
+        with _yv_c1:
+            if st.button(f"← {t('Önceki', 'Previous')}", key="yv_onceki_btn",
+                         disabled=(_yv_sayfa <= 1), width="stretch"):
+                st.session_state["yv_sayfa"] = _yv_sayfa - 1
+                st.rerun()
+        with _yv_c2:
+            st.markdown(
+                f"<div style='text-align:center;padding-top:6px;color:#94a3b8;font-size:0.82rem;'>"
+                f"{t('Sayfa', 'Page')} {_yv_sayfa} / {_yv_sayfa_sayisi} · {_yv_toplam} {t('oyuncu', 'players')}</div>",
+                unsafe_allow_html=True)
+        with _yv_c3:
+            if st.button(f"{t('Sonraki', 'Next')} →", key="yv_sonraki_btn",
+                         disabled=(_yv_sayfa >= _yv_sayfa_sayisi), width="stretch"):
+                st.session_state["yv_sayfa"] = _yv_sayfa + 1
+                st.rerun()
+    else:
+        st.caption(f"{_yv_toplam} {t('oyuncu', 'players')}")
 
 
 def _buyuk(s: str) -> str:
@@ -10538,6 +10572,41 @@ if st.session_state.get("sayfa") == "scouting":
                     format_func=lambda x: (
                         (_sc_ayak_en.get(x, x) if x != _sc_tumu else _sc_tumu) if EN else x))
 
+                # ── 💰 Bütçe: piyasa değerine ('deger' alanı) göre filtre ────────
+                # Düşük bütçeli kulüplerin düşük maliyetli oyunculara bakabilmesi
+                # için istendi (Yiğit, 2026-08-21). 'deger' scout_kadro'dan gelen
+                # piyasa değeri (örn. '€80.000') — aynı parser (_aa_deger_eur)
+                # zaten Akıllı Arama'nın bütçe kriterinde kullanılıyordu, burada
+                # sidebar'a taşındı. Aralık, boy/doğum yılı filtreleriyle aynı
+                # kalıpta (gerçek veriden min/max) dinamik kurulur.
+                _deger_vals = []
+                for _dn in _kadro_roster:
+                    _dv = _aa_deger_eur(_kadro_roster[_dn].get("deger"))
+                    if _dv is not None:
+                        _deger_vals.append(_dv)
+                if _deger_vals:
+                    _dg_min_k = min(_deger_vals) // 1000
+                    _dg_max_k = -(-max(_deger_vals) // 1000)     # yukarı yuvarla (€K)
+                    if _dg_max_k <= _dg_min_k:
+                        _dg_max_k = _dg_min_k + 1
+                    _dg_step = max(1, (_dg_max_k - _dg_min_k) // 100)
+                    deger_range_k = st.slider(
+                        f"💰 {t('Bütçe — Piyasa Değeri', 'Budget — Market Value')} (€K)",
+                        _dg_min_k, _dg_max_k, (_dg_min_k, _dg_max_k),
+                        step=_dg_step, key="sc_deger",
+                        help=t("Scout kadrosundaki 'Değer' alanı (piyasa değeri). Bütçe dostu arama için "
+                               "aralığı sola çekin — değeri bilinmeyen oyuncular aralık daraltılınca gizlenir.",
+                               "Market value from the scout roster ('Value' field). For budget-friendly "
+                               "search, drag the range to the left — players with unknown value are hidden "
+                               "once the range is narrowed."))
+                    if tuple(deger_range_k) != (_dg_min_k, _dg_max_k):
+                        st.caption(
+                            "💰 €" + f"{deger_range_k[0] * 1000:,}".replace(",", ".") +
+                            " – €" + f"{deger_range_k[1] * 1000:,}".replace(",", "."))
+                else:
+                    _dg_min_k = _dg_max_k = 0
+                    deger_range_k = (0, 0)
+
                 # ── 📡 Transfer Radar: sözleşme bitiş yakınlığı ──────────────────
                 # Sözleşmesi yakında biten = düşük bonservis / bedava fırsat.
                 # BİTMİŞ (serbest) ile YAKINDA BİTECEK ayrı tutulur → "≤6 ay" içine
@@ -10622,6 +10691,12 @@ if st.session_state.get("sayfa") == "scouting":
                 if _boy_vals and tuple(boy_range) != (_boy_min, _boy_max):
                     filtered = filtered[filtered["BoyCm"].apply(
                         lambda b: b is not None and boy_range[0] <= b <= boy_range[1])]
+                if _deger_vals and tuple(deger_range_k) != (_dg_min_k, _dg_max_k):
+                    def _deger_filtre(_n):
+                        _dv = _aa_deger_eur((_kadro_roster.get(_n) or {}).get("deger"))
+                        return (_dv is not None and
+                                deger_range_k[0] * 1000 <= _dv <= deger_range_k[1] * 1000)
+                    filtered = filtered[filtered[isim_col].apply(_deger_filtre)]
                 if transfer_sec != _sc_tumu:
                     import datetime as _dtt, re as _ret
                     _esik = {"exp6": 6, "exp12": 12, "exp18": 18}.get(transfer_sec)
