@@ -1113,24 +1113,19 @@ def kulup_credentials_yukle() -> dict:
 # ─── ÜYE SİSTEMİ (self-servis kayıt → GSheets "Uyeler") ───────────────────────
 def _uyeler_ws():
     """GSheets 'Uyeler' worksheet'i (yoksa oluşturur). Lokalde GSheets yoksa None."""
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Uyeler")
+    except Exception:
         try:
-            return sh.worksheet("Uyeler")
-        except Exception:
             ws = sh.add_worksheet(title="Uyeler", rows=5000, cols=9)
             ws.update([["kullanici", "hash", "ad", "kulup", "rol", "tier",
                         "kayit_tarihi", "bitis_tarihi", "durum"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 
 @st.cache_data(ttl=300, show_spinner=False)
@@ -2179,9 +2174,12 @@ def _son_lig_haftasi() -> int:
 
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 
-@st.cache_data(ttl=300)
-def scouting_gsheet_yukle() -> pd.DataFrame:
-    """Google Sheets'ten scouting oyuncu listesini çeker (251 oyuncu)."""
+@st.cache_resource(show_spinner=False)
+def _gs_sheet():
+    """Tek seferlik Google Sheets auth + acma (Spreadsheet nesnesi tum sure boyunca
+    paylasilir). Onceden her _xxx_ws() kendi basina auth+open_by_key yapiyordu —
+    her shortlist/etiket/not/giris-log okuma-yazmasinda gereksiz bir OAuth+API
+    round-trip'e yol aciyordu. Hata -> None (cagiran yerler yerel JSON'a duser)."""
     try:
         import gspread
         from google.oauth2.service_account import Credentials as GCredentials
@@ -2190,11 +2188,21 @@ def scouting_gsheet_yukle() -> pd.DataFrame:
         creds_info = dict(st.secrets["gcp_service_account"])
         creds_info["type"] = "service_account"
         creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc   = gspread.authorize(creds)
-        ws   = gc.open_by_key(GSHEET_ID).sheet1
-        rows = ws.get_all_records()
+        gc = gspread.authorize(creds)
+        return gc.open_by_key(GSHEET_ID)
+    except Exception:
+        return None
+
+@st.cache_data(ttl=300)
+def scouting_gsheet_yukle() -> pd.DataFrame:
+    """Google Sheets'ten scouting oyuncu listesini çeker (251 oyuncu)."""
+    try:
+        sh = _gs_sheet()
+        if sh is None:
+            return pd.DataFrame()
+        rows = sh.sheet1.get_all_records()
         return pd.DataFrame(rows)
-    except Exception as e:
+    except Exception:
         return pd.DataFrame()
 
 @st.cache_data(ttl=3600)
@@ -2484,24 +2492,18 @@ _SHORTLIST_YOL = pathlib.Path(__file__).parent / "shortlist.json"
 
 def _shortlist_ws():
     """'Shortlist' worksheet'ini döndürür (yoksa oluşturur). Hata → None (yerel JSON)."""
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"])
-        creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Shortlist")
+    except Exception:
         try:
-            return sh.worksheet("Shortlist")
-        except Exception:
             ws = sh.add_worksheet(title="Shortlist", rows=2000, cols=2)
             ws.update([["kullanici", "oyuncu"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=120, show_spinner=False)
 def shortlist_yukle() -> dict:
@@ -2582,24 +2584,18 @@ _MY11_YOL = pathlib.Path(__file__).parent / "my11.json"
 
 def _my11_ws():
     """'My11' worksheet'ini döndürür (yoksa oluşturur). Hata → None (yerel JSON)."""
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"])
-        creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("My11")
+    except Exception:
         try:
-            return sh.worksheet("My11")
-        except Exception:
             ws = sh.add_worksheet(title="My11", rows=500, cols=2)
             ws.update([["kullanici", "oyuncu"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=120, show_spinner=False)
 def my11_yukle() -> dict:
@@ -2668,24 +2664,18 @@ _DENEME_YOL = pathlib.Path(__file__).parent / "denemeler.json"
 
 def _deneme_ws():
     """'Denemeler' worksheet'ini döndürür (yoksa oluşturur). Hata → None."""
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"])
-        creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Denemeler")
+    except Exception:
         try:
-            return sh.worksheet("Denemeler")
-        except Exception:
             ws = sh.add_worksheet(title="Denemeler", rows=1000, cols=5)
             ws.update([["kullanici", "tier", "baslangic", "bitis", "veren"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=120)
 def denemeler_yukle() -> list:
@@ -2773,23 +2763,18 @@ def deneme_iptal(kullanici: str):
 _INTERNAL_YOL = pathlib.Path(__file__).parent / "internal_raporlar.json"
 
 def _internal_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("InternalRaporlar")
+    except Exception:
         try:
-            return sh.worksheet("InternalRaporlar")
-        except Exception:
             ws = sh.add_worksheet(title="InternalRaporlar", rows=2000, cols=9)
             ws.update([["id","kullanici","tarih","ev","dep","skor","genel_not","oyuncular_json","olusturma"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=60)
 def _internal_tum() -> list:
@@ -2880,32 +2865,27 @@ def internal_sil(rapor_id):
 # ─── Giriş Kaydı (Profilim için: ilk/son giriş, sayı, hatalı giriş) ────────────
 # GSheets "GirisLog" worksheet'i. Cloud'da kalıcı; lokalde GSheets yoksa sessizce atlanır.
 def _giris_log_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
+    import gspread
+    _basliklar = ["kullanici", "ilk_giris", "son_giris", "giris_sayisi",
+                  "son_hatali_giris", "basarisiz_ardisik", "kilit_bitis"]
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"])
-        creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
-        _basliklar = ["kullanici", "ilk_giris", "son_giris", "giris_sayisi",
-                      "son_hatali_giris", "basarisiz_ardisik", "kilit_bitis"]
+        ws = sh.worksheet("GirisLog")
+        # Eski sheet 5 kolonluysa (kilitleme öncesi) yeni 2 kolonu SONA ekle (self-healing)
+        hdr = ws.row_values(1)
+        if len(hdr) < len(_basliklar):
+            ws.update(f"A1:{gspread.utils.rowcol_to_a1(1, len(_basliklar)).rstrip('1')}1",
+                      [_basliklar])
+        return ws
+    except Exception:
         try:
-            ws = sh.worksheet("GirisLog")
-            # Eski sheet 5 kolonluysa (kilitleme öncesi) yeni 2 kolonu SONA ekle (self-healing)
-            hdr = ws.row_values(1)
-            if len(hdr) < len(_basliklar):
-                ws.update(f"A1:{gspread.utils.rowcol_to_a1(1, len(_basliklar)).rstrip('1')}1",
-                          [_basliklar])
-            return ws
-        except Exception:
             ws = sh.add_worksheet(title="GirisLog", rows=2000, cols=len(_basliklar))
             ws.update([_basliklar])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 def giris_log_oku(kullanici: str) -> dict:
     """Bir kullanıcının giriş kaydını döndürür (yoksa boş dict)."""
@@ -2989,24 +2969,18 @@ _ETIKETLER  = ["—", "🔴 Öncelik", "👀 İzle", "💰 Pahalı", "✅ Görü
 _ETIKET_YOL = pathlib.Path(__file__).parent / "etiketler.json"
 
 def _etiket_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"])
-        creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Etiketler")
+    except Exception:
         try:
-            return sh.worksheet("Etiketler")
-        except Exception:
             ws = sh.add_worksheet(title="Etiketler", rows=2000, cols=3)
             ws.update([["kullanici", "oyuncu", "etiket"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=120, show_spinner=False)
 def etiket_yukle() -> dict:
@@ -3080,23 +3054,18 @@ _DURUM_RENK = {"👀 İzleniyor": "#60a5fa", "📞 İlgileniyor": "#22d3ee", "�
                "🤝 Anlaşıldı": "#34d399", "⏳ Beklemede": "#94a3b8", "❌ Vazgeçildi": "#f87171"}
 
 def _scoutnot_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("ScoutNotu")
+    except Exception:
         try:
-            return sh.worksheet("ScoutNotu")
-        except Exception:
             ws = sh.add_worksheet(title="ScoutNotu", rows=2000, cols=6)
             ws.update([["kullanici", "oyuncu", "durum", "oncelik", "not", "tarih"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=120, show_spinner=False)
 def scoutnot_yukle() -> dict:
@@ -3176,23 +3145,18 @@ _ONERI_KOLON = ["id", "sahip", "tarih", "oyuncu", "kulup", "oneren",
                 "durum", "oncelik", "not", "sd_url", "rapor_talep"]
 
 def _oneriler_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Oneriler")
+    except Exception:
         try:
-            return sh.worksheet("Oneriler")
-        except Exception:
             ws = sh.add_worksheet(title="Oneriler", rows=3000, cols=len(_ONERI_KOLON))
             ws.update([_ONERI_KOLON])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 @st.cache_data(ttl=60, show_spinner=False)
 def oneriler_yukle() -> list:
@@ -3412,24 +3376,18 @@ def render_oneri_merkezi(sahip: str):
 TALEP_EMAIL = "mehmetbarandanis@gmail.com"
 
 def _talep_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds",
-                  "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"])
-        creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds)
-        sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Talepler")
+    except Exception:
         try:
-            return sh.worksheet("Talepler")
-        except Exception:
             ws = sh.add_worksheet(title="Talepler", rows=2000, cols=7)
             ws.update([["tarih", "tip", "isim", "kulup", "email", "detay", "sistem_on_onerisi"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 def talep_gonder(tip, isim, kulup, email, detay, oneri=""):
     """Talebi Sheets'e yazar ve e-posta gönderir. (kayit_ok, mail_ok) döndürür."""
@@ -3577,7 +3535,9 @@ def manuel_yaslar_yukle(file_hash: str = "") -> tuple:
     return ages, positions, nationalities
 
 _manuel_json = _DIZIN / "manual_ages.json"
-_manuel_hash = __import__("hashlib").md5(_manuel_json.read_bytes()).hexdigest() if _manuel_json.exists() else ""
+# mtime tabanli "hash": her rerun'da dosyanin tamamini okuyup MD5'lemek yerine
+# tek bir stat() cagrisi — dosya degismedikce ayni deger, degisince otomatik yeniler.
+_manuel_hash = str(_manuel_json.stat().st_mtime_ns) if _manuel_json.exists() else ""
 _MANUEL_YAS, _MANUEL_MEVKI, _MANUEL_UYRUK = manuel_yaslar_yukle(_manuel_hash)
 
 # Manuel mevki override'larını sd_profiller'ın "Position" alanına İŞLE — tek kaynak:
@@ -4176,15 +4136,21 @@ if not df_tam.empty:
     df_tam = df_zenginlestir(df_tam, _manuel_hash)  # hash değişince otomatik yeniler
 
 
-# coaches.json — cache yok, her başlatmada taze okunur
 _coaches_yol = sezon_dosya("coaches.json")
-coaches_data = json.load(open(_coaches_yol, encoding="utf-8")) if _coaches_yol.exists() else {}
+
+@st.cache_data(ttl=300, show_spinner=False)
+def _coaches_data_yukle() -> dict:
+    """coaches.json (kucuk dosya ama her rerun'da yeniden acilip parse edilmesin diye cache'li)."""
+    if not _coaches_yol.exists():
+        return {}
+    with open(_coaches_yol, encoding="utf-8") as f:
+        return json.load(f)
 
 @st.cache_data(show_spinner=False)
 def tum_hocalar() -> list:
     """Sezondaki tüm hocaların listesi (tekrarsız, sıralı)."""
     hocalar = set()
-    for isim_listesi in coaches_data.values():
+    for isim_listesi in _coaches_data_yukle().values():
         for h in isim_listesi:
             hocalar.add(h)
     return sorted(hocalar)
@@ -6823,14 +6789,28 @@ def _not_dili(metin: str) -> str:
     return "tr" if tr_p > en_p else "en"
 
 
+def _ceviri_zaman_asimli(fn, *args, timeout=5.0):
+    """deep_translator requests.get() cagrisina timeout PARAMETRESI GECMIYOR
+    (kutuphane kodu sabit) — Google'in ucu yavas/tikanirsa sayfa render'i
+    sonsuza kadar beklerdi. Ayri thread'te calistirip suresi dolunca
+    TimeoutError firlatir; arkada asili kalan thread'i (varsa) wait=False ile
+    bekletmeden birakiriz ki cagiran fonksiyon YINE de hemen donsun."""
+    import concurrent.futures as _cf
+    _ex = _cf.ThreadPoolExecutor(max_workers=1)
+    try:
+        return _ex.submit(fn, *args).result(timeout=timeout)
+    finally:
+        _ex.shutdown(wait=False)
+
+
 @st.cache_data(show_spinner=False, max_entries=1024)
 def _tr_en_ceviri(metin: str) -> str:
-    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata → orijinal TR.
+    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata/zaman aşımı → orijinal TR.
     Kadın futbolu: Google TR cinsiyetsiz 'o'yu 'he' çevirdiği için eril zamirler dişile çekilir."""
     try:
         import re
         from deep_translator import GoogleTranslator
-        cev = GoogleTranslator(source="tr", target="en").translate(metin) or metin
+        cev = _ceviri_zaman_asimli(GoogleTranslator(source="tr", target="en").translate, metin) or metin
         for pat, rep in ((r"\bhimself\b", "herself"), (r"\bHimself\b", "Herself"),
                          (r"\bhe\b", "she"), (r"\bHe\b", "She"),
                          (r"\bhim\b", "her"), (r"\bHim\b", "Her"),
@@ -6843,10 +6823,10 @@ def _tr_en_ceviri(metin: str) -> str:
 
 @st.cache_data(show_spinner=False, max_entries=1024)
 def _en_tr_ceviri(metin: str) -> str:
-    """Serbest EN metni TR'ye çevirir. Hata → orijinal EN."""
+    """Serbest EN metni TR'ye çevirir. Hata/zaman aşımı → orijinal EN."""
     try:
         from deep_translator import GoogleTranslator
-        return GoogleTranslator(source="en", target="tr").translate(metin) or metin
+        return _ceviri_zaman_asimli(GoogleTranslator(source="en", target="tr").translate, metin) or metin
     except Exception:
         return metin
 
@@ -8532,13 +8512,12 @@ with st.sidebar:
 # Yiğit (2026-08-18): ilk açılışta TR ligi verileri göze girmesin, dünya
 # scouting ağı havası olsun. Çipler bu yüzden DÜNYA havuzuyla açılır; TR
 # Süper Lig en sona, tek bir bağlamsal çip olarak düşer.
-try:    _hero_dh = dunya_havuz_ozet()
-except Exception: _hero_dh = {"oyuncu": 0, "degerlendirilmis": 0, "ulke": 0, "lig": 0}
-try:    _hero_scout = len(birlesik_scout_yukle())
-except Exception: _hero_scout = 0
 # Hero + danışmanlık bandı YALNIZ ana ekranın İLK sekmesinde (Oyuncu Listesi)
 # gösterilir; diğer TR Veri alt sekmelerinde (Profil, Karşılaştırma vb.) üstte yer
 # kaplamasın diye gizlenir (kullanıcı geri bildirimi: "sadece ilk sekmede göster").
+# Gate ÖNCE hesaplanır: _hero_dh (ve eskiden burada duran, hiç kullanılmayan
+# birlesik_scout_yukle() çağrısı — 1600+ oyunculuk birleşik havuzun tam
+# kopyasını HER rerun'da çıkarıyordu) yalnız gösterilecekse hesaplanır.
 _ana_ekran = (not url_oyuncu) and st.session_state.get("sayfa", "ana") == "ana"
 _tr_sekmeler_h = _tr_sekme_etiketleri(st.session_state.get("kulup_giris", False))
 _ilk_tr_sekme  = _tr_sekmeler_h[0] if _tr_sekmeler_h else None
@@ -8546,6 +8525,8 @@ _tr_sekme_sec  = st.session_state.get("tr_sekme", _ilk_tr_sekme)
 _ilk_sekmede   = (_tr_sekme_sec == _ilk_tr_sekme) or (_tr_sekme_sec not in _tr_sekmeler_h)
 _ust_blok_goster = _ana_ekran and _ilk_sekmede and not params.get("paylas", "").strip()
 if _ust_blok_goster:
+  try:    _hero_dh = dunya_havuz_ozet()
+  except Exception: _hero_dh = {"oyuncu": 0, "degerlendirilmis": 0, "ulke": 0, "lig": 0}
   st.markdown(f"""
 <div class="baslik-kutu">
   <div class="ust-bant">⚡ {t("KADIN FUTBOLU PLATFORMU", "WOMEN'S FOOTBALL PLATFORM")}</div>
@@ -9097,21 +9078,18 @@ _PLAN_FIYAT = {"basic": ("Basic", "499 €"), "pro": ("Pro", "999 €"), "premiu
 
 
 def _odemeler_ws():
+    sh = _gs_sheet()
+    if sh is None:
+        return None
     try:
-        import gspread
-        from google.oauth2.service_account import Credentials as GCredentials
-        scopes = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-        creds_info = dict(st.secrets["gcp_service_account"]); creds_info["type"] = "service_account"
-        creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
-        gc = gspread.authorize(creds); sh = gc.open_by_key(GSHEET_ID)
+        return sh.worksheet("Odemeler")
+    except Exception:
         try:
-            return sh.worksheet("Odemeler")
-        except Exception:
             ws = sh.add_worksheet(title="Odemeler", rows=5000, cols=6)
             ws.update([["kullanici", "plan", "tutar", "tarih", "durum", "not"]])
             return ws
-    except Exception:
-        return None
+        except Exception:
+            return None
 
 
 @st.cache_data(ttl=120, show_spinner=False)
