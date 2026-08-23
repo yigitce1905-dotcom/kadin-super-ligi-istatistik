@@ -134,6 +134,17 @@ def kadro_cek(url: str, kulup_ad: str = "") -> tuple:
         })
     return kadro, arma
 
+_MANUEL_YOL = KOK / "kokpit_manuel_ekle.json"
+
+def manuel_ekle_yukle() -> dict:
+    """SD henuz guncellemedigi (transfer lag) ama baska kaynakla (kulubun resmi
+    duyurusu vb.) DOGRULANMIS imzalar icin kalici ekleme listesi. Her kulup
+    icin isim-normalize eslesirse (SD sonunda kadroyu guncellerse) otomatik
+    atlanir -- cift kayit olusmaz, dosyayi elle temizlemeye gerek kalmaz."""
+    if _MANUEL_YOL.exists():
+        return json.load(open(_MANUEL_YOL, encoding="utf-8"))
+    return {}
+
 def zenginlestir(kadro: list) -> int:
     """Elimizdeki SD profillerinden sözleşme/boy ekle (isim-norm eşleşmesi)."""
     sd = {}
@@ -158,11 +169,21 @@ def main():
     yol = KOK / "kokpit_kadrolar.json"
     eski = json.load(open(yol, encoding="utf-8")) if yol.exists() else {"kulupler": {}}
     eski["sezon"] = "2026-27"
+    manuel = manuel_ekle_yukle()
     for ad, url in KULUPLER.items():
         print(f"── {ad} çekiliyor…")
         time.sleep(0.4)
         kadro, arma = kadro_cek(url, ad)
         z = zenginlestir(kadro)
+        # SD henüz güncellemediği (transfer lag) ama başka kaynakla doğrulanmış
+        # imzalar: kokpit_manuel_ekle.json'dan ekle. SD kadroda zaten varsa
+        # (isim-norm eşleşirse) atla — çift kayıt olmaz.
+        gorulen_norm = {_norm(o["isim"]) for o in kadro}
+        ek_sayisi = 0
+        for ek in manuel.get(ad, []):
+            if _norm(ek["isim"]) not in gorulen_norm:
+                kadro.append({k: v for k, v in ek.items() if k != "_not"})
+                ek_sayisi += 1
         # Arma boş dönerse (SD'de yok — Bakırköy/Haymana gibi elle eklenenler)
         # ESKİ armayı KORU; boşla ezme.
         if not arma:
@@ -171,7 +192,8 @@ def main():
             "sd_url": url, "cekilis": date.today().isoformat(),
             "arma": arma, "kadro": kadro}
         toplam = sum(o["deger_eur"] or 0 for o in kadro)
-        print(f"   {len(kadro)} oyuncu · sözleşme/boy eşleşen: {z} · toplam değer ~€{toplam:,}")
+        ek_not = f" · manuel eklenen: {ek_sayisi}" if ek_sayisi else ""
+        print(f"   {len(kadro)} oyuncu · sözleşme/boy eşleşen: {z} · toplam değer ~€{toplam:,}{ek_not}")
     json.dump(eski, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"[OK] {yol.name} yazıldı.")
 
