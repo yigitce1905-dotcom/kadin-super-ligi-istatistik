@@ -337,8 +337,13 @@ def parse(metin: str) -> dict:
         if not r or not h(r, c_isim):      # Oyuncu Adı (eşleşme anahtarı)
             _bos_ardisik += 1
             # Ana liste ile ALTTAKİ ayrı bölüm (Afrika milli takım kadroları vb.) arasında
-            # ~200 satırlık boşluk var. Büyük boşluk = ikinci blok başladı → DUR.
-            if veriler and _bos_ardisik >= 20:
+            # boşluk var. 2026-08-23: sheet'te ARA blok icinde 51 satırlık YENİ bir boşluk
+            # belirdi (rows 1143-1193) — eşik 20'yken bu, ikinci blok sanılıp erken kesiliyor
+            # ve arkasındaki 57 gerçek oyuncu (Megan Campbell, Pernille Mosegaard Harder dahil)
+            # sessizce siliniyordu. Eşik 100'e çıkarıldı: sheet sonu zaten döngünün doğal
+            # bitişiyle (rows tükenince) durur, break yalnızca gerçekten anormal/çok büyük
+            # bir boşluk için bir güvenlik supabı.
+            if veriler and _bos_ardisik >= 100:
                 break
             continue
         _bos_ardisik = 0
