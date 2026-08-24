@@ -176,12 +176,70 @@ def _ulke_slug_mu(href: str) -> bool:
     return _ulke_mu(href)
 
 
-def kulup_bul(soup: BeautifulSoup) -> str:
+def _isim_esit_mi(a: str, b: str) -> bool:
+    """Aksan/bosluk farkina duyarsiz isim karsilastirmasi (SD bazen 'Ã¼' gibi bozuk kodlar donuyor)."""
+    def sade(s):
+        s = unicodedata.normalize("NFKD", str(s or "")).encode("ascii", "ignore").decode().lower()
+        return re.sub(r"[^a-z]", "", s)
+    sa, sb = sade(a), sade(b)
+    return bool(sa) and bool(sb) and sa == sb
+
+
+def _mac_raporundan_kulup(tablo, oyuncu_isim: str, adaylar: set):
+    """
+    TEK MAC / BERABERLIK durumunda kulup_bul()'un ic-ice yasadigi tie-break
+    sorununu cozer: ilgili satirdaki 'Spielbericht' (mac raporu) linkine gidip
+    iki takimin kadro (Line-up) tablolarindan oyuncunun ADINI arar, hangi
+    takimin kadrosunda gecmisse O takimi dondurur.
+
+    2026-08 BULUNDU: tek maclik sezonlarda (ornek: Zeynep Kerimoglu'nun
+    2020/21 Fomget-Dudullu macinda Dudullu'da oynamasina ragmen sayfada
+    ev sahibi=1, deplasman=1 link sayisiyla TIE olusuyor ve Python'un max()'u
+    ilk eklenen (=ev sahibi) kulubu seciyordu -> yanlis kulup her zaman ev
+    sahibi taraf oluyordu. Bu fonksiyon mac raporundaki gercek kadroya
+    bakarak dogru tarafi bulur.
+    """
+    for tr in tablo.select("tr"):
+        linkler = {a.get_text(strip=True) for a in tr.select("a[href*='/historische-kader/']")}
+        if not (linkler & adaylar):
+            continue
+        rapor = tr.select_one("a[href*='spielbericht_']")
+        if not rapor:
+            continue
+        try:
+            r = requests.get(rapor["href"] if rapor["href"].startswith("http")
+                              else f"https://www.soccerdonna.de{rapor['href']}",
+                              headers=HEADERS, timeout=12)
+            rsoup = BeautifulSoup(r.text, "html.parser")
+        except Exception:
+            continue
+        for th in rsoup.find_all("th"):
+            baslik = th.get_text(strip=True)
+            if not baslik.startswith("Line-up:"):
+                continue
+            kulup_adi = baslik.split("Line-up:", 1)[1].strip()
+            kadro_tablo = th.find_parent("table")
+            if not kadro_tablo:
+                continue
+            for a in kadro_tablo.select("a[href*='/profil/spieler_']"):
+                if _isim_esit_mi(a.get_text(strip=True), oyuncu_isim):
+                    # kulup_adi (rapordaki tam ad) adaylardan hangisine karsilik geliyor?
+                    for aday in adaylar:
+                        if _isim_esit_mi(aday, kulup_adi) or aday.lower() in kulup_adi.lower() \
+                           or kulup_adi.lower() in aday.lower():
+                            return aday
+                    return kulup_adi
+        time.sleep(BEKLEME)
+    return None
+
+
+def kulup_bul(soup: BeautifulSoup, oyuncu_isim: str = "") -> str:
     """
     Maç tablosundaki '/verein_' linklerinden oyuncunun kulübünü bul.
     En sık geçen KULÜP (milli takim/ulke degil) = oyuncunun kulübü.
     """
     sayac = Counter()
+    ilk_tablo = None
     for a in soup.find_all("a", href=True):
         href = a["href"]
         if "/verein_" in href and "/historische-kader/" in href:
@@ -190,15 +248,28 @@ def kulup_bul(soup: BeautifulSoup) -> str:
                 continue  # milli takim — atla
             if isim and isim not in ("", "-"):
                 sayac[isim] += 1
+                if ilk_tablo is None:
+                    ilk_tablo = a.find_parent("table")
     if not sayac:
         return ""
     # Ek guvenlik: isimde milli takim kelimesi geceni dusur
     milli_kelimeler = {"national", "nationalmannschaft", "verband", "federation"}
     filtreli = {k: v for k, v in sayac.items()
-                if not any(w in k.lower() for w in milli_kelimeler)}
-    if filtreli:
-        return max(filtreli, key=filtreli.get)
-    return max(sayac, key=sayac.get)
+                if not any(w in k.lower() for w in milli_kelimeler)} or sayac
+
+    maks = max(filtreli.values())
+    adaylar = [k for k, v in filtreli.items() if v == maks]
+    if len(adaylar) == 1:
+        return adaylar[0]
+
+    # BERABERLIK (2026-08 fix): birden fazla kulup ayni sayida gorunuyor —
+    # eskiden ilk bulunan (=cogunlukla ev sahibi) sessizce seciliyordu.
+    # Mac raporundan gercek kadroya bakarak dogru tarafi bulmayi dene.
+    if oyuncu_isim and ilk_tablo is not None:
+        cozum = _mac_raporundan_kulup(ilk_tablo, oyuncu_isim, set(adaylar))
+        if cozum:
+            return cozum
+    return adaylar[0]
 
 
 def int_cevir(metin: str) -> int:
@@ -435,7 +506,7 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
             break
 
     sezon_yillari = sezon_yillarini_cek(soup)
-    kulup0 = kulup_bul(soup)
+    kulup0 = kulup_bul(soup, isim)
 
     tum_kayitlar = []
 
@@ -482,7 +553,7 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
         try:
             r2     = requests.get(url_y, headers=HEADERS, timeout=12)
             soup2  = BeautifulSoup(r2.text, "html.parser")
-            kulup2 = kulup_bul(soup2)
+            kulup2 = kulup_bul(soup2, isim)
             tum_kayitlar.extend(ozet_tabloyu_parse(soup2, etiket, kulup2, ulke))
         except Exception as e:
             print(f"  [HATA] {etiket}: {e}")
