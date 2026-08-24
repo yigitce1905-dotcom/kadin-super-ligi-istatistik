@@ -458,6 +458,24 @@ def oyuncu_cek(isim: str, profil_url: str, ulke: str = "") -> list[dict]:
     if guncel_etiket not in dropdown_etiketleri:
         tum_kayitlar.extend(ozet_tabloyu_parse(soup, guncel_etiket, kulup0, ulke))
 
+    # 2026-08-24 DÜZELTME: SD, varsayılan sayfada GÜNCEL sezonu artık eski
+    # "Competition | Matches" tablosuyla değil, TÜM kariyeri tek tabloda listeleyen
+    # "Season | Club / Competition" BİRLEŞİK tabloyla gösteriyor (ozet_tabloyu_parse
+    # başlığı "competition"a tam eşitlik arıyor, "Club / Competition" ile eşleşmiyor
+    # → 0 satır döner). Eski sezonlar dropdown'dan zaten geldiği için tum_kayitlar
+    # boş kalmıyor, bu yüzden 'if not tum_kayitlar' fallback'i hiç tetiklenmiyor ve
+    # en güncel sezon (25/26, takvim-yılı liglerde ör. '2025') sessizce kayboluyordu.
+    # Çözüm: birleşik tablo EN ÜSTTEN itibaren okunur, ama SADECE henüz dropdown'a
+    # (=arşive) DÜŞMEMİŞ öndeki satırlar alınır — tablo en yeniden eskiye sıralı,
+    # dropdown'da olan bir sezona denk gelir gelmez durulur. Böylece eski sezonlar
+    # tekrar eklenmez (takvim-yılı liglerde aynı maçlar farklı etiketle mükerrer
+    # sayılabilirdi — ör. NWSL 2017 hem eski format '17/18' hem birleşik '2017'
+    # altında, FARKLI maç sayılarıyla görünüyor).
+    for kayit in alt_ozet_parse(soup, ulke):
+        if kayit["sezon"] in dropdown_etiketleri:
+            break
+        tum_kayitlar.append(kayit)
+
     for yil in sezon_yillari:
         etiket = f"{str(yil)[2:]}/{str(yil + 1)[2:]}"
         url_y = leistung_url(sid, slug, yil)

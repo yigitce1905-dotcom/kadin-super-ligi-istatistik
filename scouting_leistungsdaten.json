@@ -1324,6 +1324,28 @@
   "Hoda Khalaf": {
     "sezonlar": [
       {
+        "sezon": "2023",
+        "kulup": "Bollstanäs SK Elitettan",
+        "lig": "Bollstanäs SK Elitettan",
+        "mac": 16,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Bollstanäs SK Elitettan",
+        "lig": "Bollstanäs SK Elitettan",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "22/23",
         "kulup": "Bollstanäs SK",
         "lig": "Elitettan",
@@ -1368,7 +1390,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Emily Wallrabenstein": {
     "sezonlar": [
@@ -1845,7 +1867,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Tegan McGrady": {
     "sezonlar": [
@@ -1949,7 +1971,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Loreta Kullashi": {
     "sezonlar": [
@@ -2503,8 +2525,19 @@
   "Marlene Flores": {
     "sezonlar": [
       {
+        "sezon": "2021",
+        "kulup": "Real Tomayapo Copa Libertadores",
+        "lig": "Real Tomayapo Copa Libertadores",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
-        "kulup": "Brasil",
+        "kulup": "Bolivia",
         "lig": "CONMEBOL Copa América Femenina",
         "mac": 4,
         "gol": 0,
@@ -2558,7 +2591,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Gloria Douglas": {
     "sezonlar": [
@@ -2597,7 +2630,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "CD Femarguín",
+        "kulup": "Puerto RicoUnited States",
         "lig": "CONCACAF W Gold Cup",
         "mac": 2,
         "gol": 0,
@@ -2619,7 +2652,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "Women’s Premier Division",
         "mac": 11,
         "gol": 3,
@@ -2685,7 +2718,7 @@
       },
       {
         "sezon": "17/18",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 3,
         "gol": 0,
@@ -2696,7 +2729,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "Women’s Premier Division",
         "mac": 5,
         "gol": 4,
@@ -2707,7 +2740,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "FAI Women’s Cup",
         "mac": 2,
         "gol": 0,
@@ -2718,7 +2751,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "Women’s National League Cup",
         "mac": 2,
         "gol": 3,
@@ -2729,7 +2762,7 @@
       },
       {
         "sezon": "15/16",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "Women’s Premier Division",
         "mac": 6,
         "gol": 4,
@@ -2740,7 +2773,7 @@
       },
       {
         "sezon": "15/16",
-        "kulup": "Shelbourne FC",
+        "kulup": "Shelbourne",
         "lig": "FAI Women’s Cup",
         "mac": 2,
         "gol": 2,
@@ -2772,7 +2805,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Kristina Maksuti": {
     "sezonlar": [
@@ -3019,7 +3052,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Jheniffer Cardinali": {
     "sezonlar": [
@@ -3464,7 +3497,7 @@
       },
       {
         "sezon": "20/21",
-        "kulup": "FC Domont",
+        "kulup": "Argentina",
         "lig": "SheBelieves Cup",
         "mac": 1,
         "gol": 0,
@@ -3485,10 +3518,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Kelly Restrepo": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "Gremio Brasileirão Feminino",
+        "lig": "Gremio Brasileirão Feminino",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "23/24",
         "kulup": "Gremio",
@@ -3501,10 +3545,21 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Alice Goedert": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Brazil",
+        "lig": "Brasilien U17 U17 Weltmeisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Brazil",
@@ -3517,7 +3572,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Beata Olsson": {
     "sezonlar": [
@@ -3807,6 +3862,28 @@
   "Ines Nourani": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "CanadaAlgeria",
+        "lig": "Kanada U20 CONCACAF U20 Championship",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2024",
+        "kulup": "CanadaAlgeria",
+        "lig": "Kanada U17 CONCACAF U17 Championship",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "CanadaAlgeria",
         "lig": "CONCACAF U20 Championship",
@@ -3829,7 +3906,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Noelle Henning": {
     "sezonlar": [
@@ -4152,6 +4229,17 @@
   "Karin Lundin": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Alingsås IF Damallsvenskan",
+        "lig": "Alingsås IF Damallsvenskan",
+        "mac": 23,
+        "gol": 5,
+        "asist": 1,
+        "sari": 4,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Alingsås IF",
         "lig": "Damallsvenskan",
@@ -4241,7 +4329,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Damallsvenskan",
         "mac": 16,
         "gol": 4,
@@ -4252,7 +4340,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Svenska Cupen",
         "mac": 2,
         "gol": 0,
@@ -4263,7 +4351,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "UEFA Women’s Champions League",
         "mac": 5,
         "gol": 0,
@@ -4274,7 +4362,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 1,
         "gol": 0,
@@ -4405,7 +4493,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Jess Emerton": {
     "sezonlar": [
@@ -4421,7 +4509,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Jasmine Hamid": {
     "sezonlar": [
@@ -5046,7 +5134,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "SC Montpellier",
+        "kulup": "NigeriaUnited States",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -5167,7 +5255,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Sky Blue FC",
+        "kulup": "NigeriaUnited States",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 6,
         "gol": 1,
@@ -5232,6 +5320,28 @@
         "milli": true
       },
       {
+        "sezon": "19/20",
+        "kulup": "Sky Blue FC",
+        "lig": "NWSL Fall Series",
+        "mac": 4,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 360,
+        "milli": false
+      },
+      {
+        "sezon": "19/20",
+        "kulup": "Sky Blue FC",
+        "lig": "NWSL Challenge Cup",
+        "mac": 6,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 468,
+        "milli": false
+      },
+      {
         "sezon": "18/19",
         "kulup": "Seattle Reign FC",
         "lig": "NWSL",
@@ -5276,7 +5386,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Haley Bugeja": {
     "sezonlar": [
@@ -6822,6 +6932,105 @@
   "Zara Jonsson": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Halmstads BK Division 1 Södra",
+        "lig": "Halmstads BK Division 1 Södra",
+        "mac": 12,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2025",
+        "kulup": "Djurgarden IF Damallsvenskan",
+        "lig": "Djurgarden IF Damallsvenskan",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Djurgarden IF Damallsvenskan",
+        "lig": "Djurgarden IF Damallsvenskan",
+        "mac": 11,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Stabæk FK Toppserien",
+        "lig": "Stabæk FK Toppserien",
+        "mac": 21,
+        "gol": 1,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Stabæk FK Toppserien Mesterskapssluttspill",
+        "lig": "Stabæk FK Toppserien Mesterskapssluttspill",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Stabæk FK Toppserien",
+        "lig": "Stabæk FK Toppserien",
+        "mac": 18,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Stabæk FK Toppserien",
+        "lig": "Stabæk FK Toppserien",
+        "mac": 18,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Stabæk FK 1. Divisjon",
+        "lig": "Stabæk FK 1. Divisjon",
+        "mac": 15,
+        "gol": 14,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2019",
+        "kulup": "Stabæk FK Toppserien",
+        "lig": "Stabæk FK Toppserien",
+        "mac": 7,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Halmstads BK",
         "lig": "Damallsvenskan",
@@ -7009,7 +7218,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Zsanett Kajan": {
     "sezonlar": [
@@ -10116,6 +10325,83 @@
   "Imani Dorsey": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Utah Royals FC NWSL",
+        "lig": "Utah Royals FC NWSL",
+        "mac": 17,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Utah Royals FC NWSL",
+        "lig": "Utah Royals FC NWSL",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 21,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 15,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Sky Blue FC NWSL Fall Series",
+        "lig": "Sky Blue FC NWSL Fall Series",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2019",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 23,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2018",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 13,
+        "gol": 4,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Utah Royals FC",
         "lig": "NWSL",
@@ -10248,7 +10534,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Camryn Biegalski": {
     "sezonlar": [
@@ -10374,7 +10660,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lauren Leal": {
     "sezonlar": [
@@ -13179,6 +13465,17 @@
   "Sumaya Komuntale": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
@@ -13190,7 +13487,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Sharon Sampson": {
     "sezonlar": [
@@ -13645,6 +13942,17 @@
   "Natalia Vendito": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Brazil",
+        "lig": "Brasilien U17 U17-Südamerikameisterschaft",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Brazil",
         "lig": "U17-Südamerikameisterschaft",
@@ -13656,7 +13964,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Amirah Ali": {
     "sezonlar": [
@@ -15736,6 +16044,50 @@
   "Fabiola Sandoval": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "Cruzeiro Belo Horizonte Brasileirão Feminino",
+        "lig": "Cruzeiro Belo Horizonte Brasileirão Feminino",
+        "mac": 15,
+        "gol": 6,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Internacional Brasileirão Feminino",
+        "lig": "Internacional Brasileirão Feminino",
+        "mac": 14,
+        "gol": 2,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "São José Esporte Clube Brasileirão Feminino",
+        "lig": "São José Esporte Clube Brasileirão Feminino",
+        "mac": 11,
+        "gol": 8,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "EC Bahia Salvador Brasileirão Feminino",
+        "lig": "EC Bahia Salvador Brasileirão Feminino",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "Cruzeiro EC",
         "lig": "Brasileirão Feminino",
@@ -15847,7 +16199,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "São José Esporte Clube",
+        "kulup": "Paraguay",
         "lig": "CONMEBOL Copa América Femenina",
         "mac": 6,
         "gol": 1,
@@ -15923,7 +16275,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Joy Omewa": {
     "sezonlar": [
@@ -17416,7 +17768,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Kaltrina Biqkaj": {
     "sezonlar": [
@@ -17789,7 +18141,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Lexi Missimo": {
     "sezonlar": [
@@ -18381,6 +18733,17 @@
   "Juliana Silva": {
     "sezonlar": [
       {
+        "sezon": "21/22",
+        "kulup": "Condeixa",
+        "lig": "1a Divisao - Norte",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 363,
+        "milli": false
+      },
+      {
         "sezon": "20/21",
         "kulup": "AD Ovarense",
         "lig": "1a Divisao - Norte",
@@ -18414,7 +18777,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Juliet Nalukenge": {
     "sezonlar": [
@@ -19109,6 +19472,17 @@
   "Carol Lara": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Brazil",
+        "lig": "Brasilien U20 CONMEBOL Sub20 Femenina",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Brazil",
         "lig": "CONMEBOL Sub20 Femenina",
@@ -19120,7 +19494,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Cori Sullivan": {
     "sezonlar": [
@@ -19191,10 +19565,21 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Promise Selana": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "TS Galaxy Ladies Football Club SAFA Women’s League",
+        "lig": "TS Galaxy Ladies Football Club SAFA Women’s League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "22/23",
         "kulup": "City Lads",
@@ -19207,7 +19592,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Mari Kiskonen": {
     "sezonlar": [
@@ -19756,7 +20141,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Jassie Vasconcelos": {
     "sezonlar": [
@@ -19937,7 +20322,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Klaudia Slowinska": {
     "sezonlar": [
@@ -20639,7 +21024,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Anna Henderson": {
     "sezonlar": [
@@ -20677,7 +21062,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Olga Massombo": {
     "sezonlar": [
@@ -21011,6 +21396,28 @@
   "Kelen Bender": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "Botafogo Brasileirão Feminino",
+        "lig": "Botafogo Brasileirão Feminino",
+        "mac": 15,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Botafogo Brasileirão Feminino",
+        "lig": "Botafogo Brasileirão Feminino",
+        "mac": 14,
+        "gol": 3,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "Botafogo",
         "lig": "Brasileirão Feminino",
@@ -21055,7 +21462,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Hlin Eiriksdottir": {
     "sezonlar": [
@@ -22795,6 +23202,28 @@
   "Tziarra King": {
     "sezonlar": [
       {
+        "sezon": "26/27",
+        "kulup": "Brooklyn",
+        "lig": "USL Super League",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 180,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Brooklyn",
+        "lig": "USL Super League",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 180,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "Seattle Reign FC",
         "lig": "NWSL",
@@ -22916,7 +23345,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Melina Krueger": {
     "sezonlar": [
@@ -24475,6 +24904,39 @@
   "Frankie Tagliaferri": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "Utah Royals FC NWSL",
+        "lig": "Utah Royals FC NWSL",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "North Carolina Courage NWSL",
+        "lig": "North Carolina Courage NWSL",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "North Carolina Courage NWSL",
+        "lig": "North Carolina Courage NWSL",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "Utah Royals FC",
         "lig": "NWSL",
@@ -24530,7 +24992,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Brianna Pinto": {
     "sezonlar": [
@@ -25781,17 +26243,17 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "Monte Real Football Academy Taca da Portugal Feminina",
-        "lig": "Monte Real Football Academy Taca da Portugal Feminina",
+        "kulup": "ADRC Vasco Gama",
+        "lig": "Taca da Portugal Feminina",
         "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
-        "dakika": 0,
+        "dakika": 61,
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Natasha Kowalski": {
     "sezonlar": [
@@ -27398,7 +27860,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lily Bryant": {
     "sezonlar": [
@@ -28702,10 +29164,21 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Izzy Engle": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "United States",
+        "lig": "United States U20 CONCACAF U20 Championship",
+        "mac": 3,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "United States",
@@ -28740,7 +29213,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Chaymaa Mourtaji": {
     "sezonlar": [
@@ -28915,7 +29388,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Joanna Weclawek": {
     "sezonlar": [
@@ -29518,7 +29991,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Samiah Phiri": {
     "sezonlar": [
@@ -29534,7 +30007,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Delice Boboy": {
     "sezonlar": [
@@ -37757,6 +38230,61 @@
   "Layssa Oliveira": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Lokomotive Moskau Superliga",
+        "lig": "Lokomotive Moskau Superliga",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Lokomotive Moskau Superliga",
+        "lig": "Lokomotive Moskau Superliga",
+        "mac": 24,
+        "gol": 12,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Lokomotive Moskau Superliga Championship Round",
+        "lig": "Lokomotive Moskau Superliga Championship Round",
+        "mac": 5,
+        "gol": 4,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Lokomotive Moskau Superliga",
+        "lig": "Lokomotive Moskau Superliga",
+        "mac": 22,
+        "gol": 7,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Red Bull Bragantino Brasileirão Feminino",
+        "lig": "Red Bull Bragantino Brasileirão Feminino",
+        "mac": 10,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Lok Moskau",
         "lig": "Superliga",
@@ -37835,7 +38363,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "RB Bragatino",
+        "kulup": "Brazil",
         "lig": "CONMEBOL Sub20 Femenina",
         "mac": 4,
         "gol": 0,
@@ -37856,7 +38384,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Rafaela Rufino": {
     "sezonlar": [
@@ -38020,8 +38548,19 @@
   "Jolie Louis": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Trinidad and TobagoUnited States",
+        "lig": "Trinidad & Tobago CONCACAF W Championship",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
-        "kulup": "Trinidad/Tobago",
+        "kulup": "Trinidad and TobagoUnited States",
         "lig": "CONCACAF W Championship",
         "mac": 3,
         "gol": 0,
@@ -38031,7 +38570,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Joseph Shwendwsky": {
     "sezonlar": [
@@ -38645,10 +39184,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Klil Keshwar": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "IA Akranes 1. deild kvenna",
+        "lig": "IA Akranes 1. deild kvenna",
+        "mac": 18,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "IA Akranes 1. deild kvenna",
+        "lig": "IA Akranes 1. deild kvenna",
+        "mac": 18,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "IA Akranes",
@@ -38695,7 +39256,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Trinidad/Tobago",
+        "kulup": "Trinidad and Tobago",
         "lig": "CONCACAF W Championship Qualifiers",
         "mac": 1,
         "gol": 0,
@@ -38727,10 +39288,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Taina Gondim": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "Internacional Brasileirão Feminino",
+        "lig": "Internacional Brasileirão Feminino",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "23/24",
         "kulup": "Internacional",
@@ -38743,7 +39315,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Lauren Brzykcy": {
     "sezonlar": [
@@ -38885,7 +39457,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Emily Alvarado": {
     "sezonlar": [
@@ -39137,6 +39709,17 @@
   "Sierra Cota-Yarde": {
     "sezonlar": [
       {
+        "sezon": "25/26",
+        "kulup": "AFC Toronto",
+        "lig": "Northern Super League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 270,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "AFC Toronto",
         "lig": "Northern Super League",
@@ -39160,7 +39743,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Portugal",
+        "kulup": "PortugalCanada",
         "lig": "Freundschaftsspiele",
         "mac": 1,
         "gol": 0,
@@ -39171,7 +39754,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Portugal",
+        "kulup": "PortugalCanada",
         "lig": "Freundschaftsspiele",
         "mac": 1,
         "gol": 0,
@@ -39182,7 +39765,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Portugal",
+        "kulup": "PortugalCanada",
         "lig": "Freundschaftsspiele",
         "mac": 1,
         "gol": 0,
@@ -39193,7 +39776,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Portugal",
+        "kulup": "PortugalCanada",
         "lig": "U19 EM Qualifikation Liga A",
         "mac": 2,
         "gol": 0,
@@ -39203,7 +39786,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Ange Bawou": {
     "sezonlar": [
@@ -41184,7 +41767,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Meaghan Nally": {
     "sezonlar": [
@@ -42172,7 +42755,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Uchenna Kanu": {
     "sezonlar": [
@@ -43274,6 +43857,61 @@
   "Eudimilla De Souza": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "Corinthians Brasileirão Feminino",
+        "lig": "Corinthians Brasileirão Feminino",
+        "mac": 13,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 14,
+        "gol": 3,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 14,
+        "gol": 5,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Gremio Brasileirão Feminino",
+        "lig": "Gremio Brasileirão Feminino",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Gremio Brasileirão Feminino",
+        "lig": "Gremio Brasileirão Feminino",
+        "mac": 5,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "Corinthians",
         "lig": "Brasileirão Feminino",
@@ -43406,7 +44044,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Leia Varley": {
     "sezonlar": [
@@ -44275,11 +44913,11 @@
         "sezon": "23/24",
         "kulup": "MTK Hungaria",
         "lig": "Női NB I",
-        "mac": 5,
-        "gol": 0,
+        "mac": 18,
+        "gol": 2,
         "asist": 0,
         "sari": 0,
-        "dakika": 167,
+        "dakika": 747,
         "milli": false
       },
       {
@@ -44294,7 +44932,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Anita Marcos": {
     "sezonlar": [
@@ -48378,7 +49016,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Sana Coskun": {
     "sezonlar": [
@@ -48727,7 +49365,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Berra Cambaz": {
     "sezonlar": [
@@ -51831,22 +52469,55 @@
         "sezon": "26/27",
         "kulup": "Sacramento NWSL",
         "lig": "NWSL",
-        "mac": 17,
+        "mac": 21,
         "gol": 1,
         "asist": 1,
         "sari": 0,
-        "dakika": 1530,
+        "dakika": 1890,
         "milli": false
       },
       {
         "sezon": "26/27",
-        "kulup": "Sacramento NWSL",
+        "kulup": "United States",
         "lig": "SheBelieves Cup",
         "mac": 1,
         "gol": 0,
         "asist": 0,
         "sari": 0,
         "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Sacramento NWSL",
+        "lig": "NWSL",
+        "mac": 21,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 1890,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "United States",
+        "lig": "SheBelieves Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "United States",
+        "lig": "Freundschaftsspiele",
+        "mac": 6,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 422,
         "milli": true
       },
       {
@@ -51873,7 +52544,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Sacramento NWSL",
+        "kulup": "United States",
         "lig": "CONCACAF W Champions Cup",
         "mac": 2,
         "gol": 0,
@@ -51938,7 +52609,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lilly Reale": {
     "sezonlar": [
@@ -53454,6 +54125,50 @@
   "Sam Coffey": {
     "sezonlar": [
       {
+        "sezon": "25/26",
+        "kulup": "Manchester City LFC",
+        "lig": "Women’s Super League",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 523,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Manchester City LFC",
+        "lig": "Women’s FA Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "United States",
+        "lig": "SheBelieves Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 180,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "United States",
+        "lig": "Freundschaftsspiele",
+        "mac": 7,
+        "gol": 2,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 425,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "Portland Thorns FC",
         "lig": "NWSL",
@@ -53477,7 +54192,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Portland Thorns FC",
+        "kulup": "United States",
         "lig": "CONCACAF W Champions Cup",
         "mac": 5,
         "gol": 0,
@@ -53543,7 +54258,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Portland Thorns FC",
+        "kulup": "United States",
         "lig": "CONCACAF W Gold Cup",
         "mac": 6,
         "gol": 0,
@@ -53685,7 +54400,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Olivia Moultrie": {
     "sezonlar": [
@@ -70702,7 +71417,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Khrystyna Pereviznyk": {
     "sezonlar": [
@@ -71300,7 +72015,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Rose Bella": {
     "sezonlar": [
@@ -71486,7 +72201,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ann-Katrin Berger": {
     "sezonlar": [
@@ -131598,6 +132313,61 @@
   "Jana Fernandez": {
     "sezonlar": [
       {
+        "sezon": "25/26",
+        "kulup": "London City",
+        "lig": "Women’s Super League",
+        "mac": 22,
+        "gol": 1,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 1902,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "London City",
+        "lig": "Women’s FA Cup",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 210,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "London City",
+        "lig": "Players Cup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 45,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Spain",
+        "lig": "UEFA Women’s Nations League Finals",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 48,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Spain",
+        "lig": "FIFA Women’s World Cup qualifiers - UEFA League A",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 99,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "F.C. Barcelona",
         "lig": "Primera División Femenina",
@@ -131654,7 +132424,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "F.C. Barcelona",
+        "kulup": "Spain",
         "lig": "UEFA Women’s Championship",
         "mac": 2,
         "gol": 0,
@@ -131684,6 +132454,160 @@
         "sari": 0,
         "dakika": 91,
         "milli": true
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "F.C. Barcelona",
+        "lig": "Primera División Femenina",
+        "mac": 9,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 579,
+        "milli": false
+      },
+      {
+        "sezon": "23/24",
+        "kulup": "Spain",
+        "lig": "UEFA Women’s Euro qualification League A",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 31,
+        "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "F.C. Barcelona",
+        "lig": "Primera División Femenina",
+        "mac": 6,
+        "gol": 1,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 400,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "F.C. Barcelona",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 17,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Spain",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 70,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "F.C. Barcelona",
+        "lig": "Primera División Femenina",
+        "mac": 12,
+        "gol": 2,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 587,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "F.C. Barcelona",
+        "lig": "Supercopa Femenina",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 154,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "F.C. Barcelona",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 252,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Spain",
+        "lig": "Freundschaftsspiele",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 445,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "F.C. Barcelona",
+        "lig": "Primera División Femenina",
+        "mac": 16,
+        "gol": 0,
+        "asist": 2,
+        "sari": 1,
+        "dakika": 775,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "F.C. Barcelona",
+        "lig": "Segunda División Grupo Norte B",
+        "mac": 12,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 1080,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "F.C. Barcelona",
+        "lig": "Segunda División Grupo Norte C",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "F.C. Barcelona",
+        "lig": "Copa de la Reina",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 12,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "F.C. Barcelona",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 103,
+        "milli": false
       },
       {
         "sezon": "19/20",
@@ -131752,7 +132676,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Aitana Bonmati": {
     "sezonlar": [
@@ -134336,7 +135260,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Real Madrid",
+        "kulup": "Spain",
         "lig": "FFA Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -134413,7 +135337,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Real Madrid",
+        "kulup": "Spain",
         "lig": "UEFA Women’s Championship",
         "mac": 1,
         "gol": 0,
@@ -134479,7 +135403,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "La Coruna",
+        "kulup": "A Coruña",
         "lig": "Primera División Femenina",
         "mac": 20,
         "gol": 2,
@@ -134490,7 +135414,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "La Coruna",
+        "kulup": "A Coruña",
         "lig": "Copa de la Reina",
         "mac": 2,
         "gol": 1,
@@ -134577,7 +135501,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Vicky Lopez": {
     "sezonlar": [
@@ -139712,11 +140636,34 @@
     "guncelleme": "2026-08-12"
   },
   "Ju-mi Pak": {
-    "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Naegohyang",
+        "lig": "AFC Women’s Champions League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-08-24"
   },
   "Son-gum Yu": {
     "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Korea, North",
+        "lig": "Women’s Asian Cup",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 450,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Korea, North",
@@ -139727,9 +140674,31 @@
         "sari": 0,
         "dakika": 180,
         "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Korea, North",
+        "lig": "Asian Games",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 15,
+        "milli": true
+      },
+      {
+        "sezon": "17/18",
+        "kulup": "Korea, North",
+        "lig": "U17 Weltmeisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 360,
+        "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Myong-gum Ri": {
     "sezonlar": [
@@ -139876,7 +140845,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Hye-gyong Ri": {
     "sezonlar": [
@@ -151999,7 +152968,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Maren Mjelde": {
     "sezonlar": [
@@ -170277,6 +171246,61 @@
   "Hina Sugita": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "WFC LA NWSL",
+        "lig": "WFC LA NWSL",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2025",
+        "kulup": "Portland Thorns FC NWSL",
+        "lig": "Portland Thorns FC NWSL",
+        "mac": 22,
+        "gol": 0,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Portland Thorns FC NWSL",
+        "lig": "Portland Thorns FC NWSL",
+        "mac": 21,
+        "gol": 2,
+        "asist": 0,
+        "sari": 4,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Portland Thorns FC NWSL",
+        "lig": "Portland Thorns FC NWSL",
+        "mac": 18,
+        "gol": 6,
+        "asist": 0,
+        "sari": 3,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Portland Thorns FC NWSL",
+        "lig": "Portland Thorns FC NWSL",
+        "mac": 21,
+        "gol": 5,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Portland Thorns FC",
         "lig": "NWSL",
@@ -170289,7 +171313,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Portland Thorns FC",
+        "kulup": "Japan",
         "lig": "CONCACAF W Champions Cup",
         "mac": 1,
         "gol": 0,
@@ -170344,7 +171368,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Portland Thorns FC",
+        "kulup": "Japan",
         "lig": "SheBelieves Cup",
         "mac": 1,
         "gol": 0,
@@ -170399,7 +171423,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Portland Thorns FC",
+        "kulup": "Japan",
         "lig": "SheBelieves Cup",
         "mac": 3,
         "gol": 0,
@@ -170509,7 +171533,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "INAC Leonessa",
+        "kulup": "Japan",
         "lig": "SheBelieves Cup",
         "mac": 3,
         "gol": 0,
@@ -170553,7 +171577,7 @@
       },
       {
         "sezon": "18/19",
-        "kulup": "INAC Leonessa",
+        "kulup": "Japan",
         "lig": "SheBelieves Cup",
         "mac": 3,
         "gol": 0,
@@ -170629,7 +171653,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Maika Hamano": {
     "sezonlar": [
@@ -197690,6 +198714,28 @@
   "Gudny Arnadottir": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Kristianstads DFF Damallsvenskan",
+        "lig": "Kristianstads DFF Damallsvenskan",
+        "mac": 14,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Kristianstads DFF Damallsvenskan",
+        "lig": "Kristianstads DFF Damallsvenskan",
+        "mac": 24,
+        "gol": 1,
+        "asist": 0,
+        "sari": 9,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Kristianstads DFF",
         "lig": "Damallsvenskan",
@@ -197713,7 +198759,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Kristianstads DFF",
+        "kulup": "Iceland",
         "lig": "UEFA Women’s Championship",
         "mac": 2,
         "gol": 0,
@@ -197922,7 +198968,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "ACF Mailand",
+        "kulup": "Iceland",
         "lig": "UEFA Women’s Championship",
         "mac": 1,
         "gol": 0,
@@ -198152,7 +199198,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Natasha Anasi": {
     "sezonlar": [
@@ -200548,7 +201594,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "West Ham United LFC",
+        "kulup": "Iceland",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 0,
@@ -200680,7 +201726,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "West Ham United LFC",
+        "kulup": "Iceland",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 1,
@@ -200702,7 +201748,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "West Ham United LFC",
+        "kulup": "Iceland",
         "lig": "SheBelieves Cup",
         "mac": 2,
         "gol": 1,
@@ -200889,7 +201935,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "Portland Thorns FC",
+        "kulup": "Iceland",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 0,
@@ -201065,7 +202111,7 @@
       },
       {
         "sezon": "12/13",
-        "kulup": "Valur Reykjavik",
+        "kulup": "Iceland",
         "lig": "UEFA Women’s Championship",
         "mac": 4,
         "gol": 1,
@@ -201185,7 +202231,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Selma Sol Magnusdottir": {
     "sezonlar": [
@@ -206460,7 +207506,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "1899 Hoffenheim",
+        "kulup": "Switzerland",
         "lig": "UEFA Women’s Championship",
         "mac": 2,
         "gol": 0,
@@ -206800,7 +207846,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Viola Calligaris": {
     "sezonlar": [
@@ -214966,6 +216012,17 @@
       {
         "sezon": "26/27",
         "kulup": "BSC Young Boys",
+        "lig": "Women’s Super League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 36,
+        "milli": false
+      },
+      {
+        "sezon": "26/27",
+        "kulup": "BSC Young Boys",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 2,
         "gol": 1,
@@ -215229,7 +216286,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Paris Saint-Germain",
+        "kulup": "Switzerland",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 1,
@@ -215548,7 +216605,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "VfL Wolfsburg",
+        "kulup": "Switzerland",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 1,
@@ -215625,7 +216682,7 @@
       },
       {
         "sezon": "14/15",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Damallsvenskan",
         "mac": 13,
         "gol": 9,
@@ -215636,7 +216693,7 @@
       },
       {
         "sezon": "14/15",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "UEFA Women’s Champions League",
         "mac": 6,
         "gol": 0,
@@ -215669,7 +216726,7 @@
       },
       {
         "sezon": "13/14",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Damallsvenskan",
         "mac": 18,
         "gol": 11,
@@ -215680,7 +216737,7 @@
       },
       {
         "sezon": "13/14",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "UEFA Women’s Champions League",
         "mac": 4,
         "gol": 3,
@@ -215702,7 +216759,7 @@
       },
       {
         "sezon": "12/13",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Damallsvenskan",
         "mac": 21,
         "gol": 10,
@@ -215713,7 +216770,7 @@
       },
       {
         "sezon": "12/13",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Svenska Cupen",
         "mac": 1,
         "gol": 0,
@@ -215724,7 +216781,7 @@
       },
       {
         "sezon": "12/13",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "UEFA Women’s Champions League",
         "mac": 5,
         "gol": 0,
@@ -215757,7 +216814,7 @@
       },
       {
         "sezon": "11/12",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Damallsvenskan",
         "mac": 21,
         "gol": 15,
@@ -215768,7 +216825,7 @@
       },
       {
         "sezon": "11/12",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "Svenska Cupen",
         "mac": 3,
         "gol": 0,
@@ -215779,7 +216836,7 @@
       },
       {
         "sezon": "11/12",
-        "kulup": "LdB FC Malmö",
+        "kulup": "FC Rosengård",
         "lig": "UEFA Women’s Champions League",
         "mac": 2,
         "gol": 0,
@@ -215844,7 +216901,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ana-Maria Crnogorcevic": {
     "sezonlar": [
@@ -228524,6 +229581,17 @@
   "Jassina Blom": {
     "sezonlar": [
       {
+        "sezon": "26/27",
+        "kulup": "F.C. Sevilla",
+        "lig": "Copa Andalucía Femenina",
+        "mac": 1,
+        "gol": 2,
+        "asist": 2,
+        "sari": 0,
+        "dakika": 71,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "UDG Tenerife Sur",
         "lig": "Primera División Femenina",
@@ -228547,7 +229615,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "UDG Tenerife Sur",
+        "kulup": "Belgium",
         "lig": "UEFA Women’s Championship",
         "mac": 2,
         "gol": 0,
@@ -228920,7 +229988,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Sarah Wijnants": {
     "sezonlar": [
@@ -233859,6 +234927,72 @@
   "L. Beerensteyn": {
     "sezonlar": [
       {
+        "sezon": "25/26",
+        "kulup": "VfL Wolfsburg",
+        "lig": "Bundesliga",
+        "mac": 21,
+        "gol": 9,
+        "asist": 4,
+        "sari": 0,
+        "dakika": 1273,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "VfL Wolfsburg",
+        "lig": "DFB-Pokal",
+        "mac": 4,
+        "gol": 1,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 336,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "VfL Wolfsburg",
+        "lig": "DFB-Supercup",
+        "mac": 1,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "VfL Wolfsburg",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 10,
+        "gol": 5,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 911,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Netherlands",
+        "lig": "FIFA Women’s World Cup qualifiers - UEFA League A",
+        "mac": 4,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 316,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Netherlands",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 135,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "VfL Wolfsburg",
         "lig": "Bundesliga",
@@ -233915,7 +235049,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "VfL Wolfsburg",
+        "kulup": "Netherlands",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 0,
@@ -234168,7 +235302,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Bayern München",
+        "kulup": "Netherlands",
         "lig": "UEFA Women’s Championship",
         "mac": 4,
         "gol": 0,
@@ -234509,7 +235643,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "FC Twente",
+        "kulup": "Netherlands",
         "lig": "UEFA Women’s Championship",
         "mac": 3,
         "gol": 0,
@@ -234574,28 +235708,6 @@
         "milli": true
       },
       {
-        "sezon": "13/14",
-        "kulup": "ADO Den Haag",
-        "lig": "BeNe League",
-        "mac": 18,
-        "gol": 7,
-        "asist": 0,
-        "sari": 1,
-        "dakika": 1488,
-        "milli": false
-      },
-      {
-        "sezon": "13/14",
-        "kulup": "Netherlands",
-        "lig": "U19 Europameisterschaft",
-        "mac": 3,
-        "gol": 0,
-        "asist": 0,
-        "sari": 0,
-        "dakika": 69,
-        "milli": true
-      },
-      {
         "sezon": "12/13",
         "kulup": "ADO Den Haag",
         "lig": "BeNe League",
@@ -234651,7 +235763,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "K. Buchanan": {
     "sezonlar": [
@@ -240761,7 +241873,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Kathrine Moller Kuhl": {
     "sezonlar": [
@@ -255933,6 +257045,94 @@
   "Yao Lingwei": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Changchun Dazhong Women Chinese Women’s Super League",
+        "lig": "Changchun Dazhong Women Chinese Women’s Super League",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 9,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Jiangsu Shuntian Chinese Women’s Super League Championship Stage",
+        "lig": "Jiangsu Shuntian Chinese Women’s Super League Championship Stage",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Jiangsu Shuntian Chinese Women’s Super League",
+        "lig": "Jiangsu Shuntian Chinese Women’s Super League",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Jiangsu Shuntian Chinese Women’s Super League Championship Stage",
+        "lig": "Jiangsu Shuntian Chinese Women’s Super League Championship Stage",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Jiangsu Shuntian Chinese Women’s Super League",
+        "lig": "Jiangsu Shuntian Chinese Women’s Super League",
+        "mac": 8,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2019",
+        "kulup": "Jiangsu Shuntian Chinese Women’s Super League",
+        "lig": "Jiangsu Shuntian Chinese Women’s Super League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Changchun Daz.",
         "lig": "Chinese Women’s Super League",
@@ -255978,7 +257178,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Wuhan Jiangda University",
+        "kulup": "China",
         "lig": "Asian Games",
         "mac": 4,
         "gol": 0,
@@ -256000,7 +257200,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Wuhan Jiangda University",
+        "kulup": "China",
         "lig": "Women’s Asian Cup",
         "mac": 5,
         "gol": 0,
@@ -256142,7 +257342,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Wang Yanwen": {
     "sezonlar": [
@@ -256405,6 +257605,72 @@
   "Yan Jinjin": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Shanghai Shenhua Chinese Women’s Super League",
+        "lig": "Shanghai Shenhua Chinese Women’s Super League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Shanghai Shenhua Chinese Women’s Super League",
+        "lig": "Shanghai Shenhua Chinese Women’s Super League",
+        "mac": 10,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Shanghai Shenhua Chinese Women’s Super League Championship Stage",
+        "lig": "Shanghai Shenhua Chinese Women’s Super League Championship Stage",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Shanghai Shenhua Chinese Women’s Super League",
+        "lig": "Shanghai Shenhua Chinese Women’s Super League",
+        "mac": 9,
+        "gol": 4,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Shanghai Shenhua Chinese Women’s Super League Championship Stage",
+        "lig": "Shanghai Shenhua Chinese Women’s Super League Championship Stage",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Shanghai Shenhua Chinese Women’s Super League",
+        "lig": "Shanghai Shenhua Chinese Women’s Super League",
+        "mac": 9,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Shanghai Shenhua",
         "lig": "Chinese Women’s Super League",
@@ -256417,7 +257683,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Mongolei",
+        "kulup": "China",
         "lig": "Asian Games",
         "mac": 5,
         "gol": 4,
@@ -256505,7 +257771,7 @@
       },
       {
         "sezon": "17/18",
-        "kulup": "Giappone",
+        "kulup": "China",
         "lig": "Women’s Asian Cup",
         "mac": 1,
         "gol": 0,
@@ -256537,7 +257803,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Zhang Rui": {
     "sezonlar": [
@@ -258370,6 +259636,83 @@
   "Lou Jiahui": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Henan Huishang Women Chinese Women’s Super League",
+        "lig": "Henan Huishang Women Chinese Women’s Super League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 8,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Henan Huishang Women Chinese Women’s Super League Relegation Stage",
+        "lig": "Henan Huishang Women Chinese Women’s Super League Relegation Stage",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Henan Huishang Women Chinese Women’s Super League",
+        "lig": "Henan Huishang Women Chinese Women’s Super League",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Henan Huishang Women Chinese Women’s Super League",
+        "lig": "Henan Huishang Women Chinese Women’s Super League",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2019",
+        "kulup": "Henan Huishang Women Chinese Women’s Super League",
+        "lig": "Henan Huishang Women Chinese Women’s Super League",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Henan Huishang",
         "lig": "Chinese Women’s Super League",
@@ -258415,7 +259758,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Wuhan Jiangda University",
+        "kulup": "China",
         "lig": "Asian Games",
         "mac": 3,
         "gol": 0,
@@ -258437,7 +259780,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Wuhan Jiangda University",
+        "kulup": "China",
         "lig": "Women’s Asian Cup",
         "mac": 4,
         "gol": 0,
@@ -258645,7 +259988,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Shao Ziqin": {
     "sezonlar": [
@@ -258891,6 +260234,39 @@
   "Gu Yasha": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Beijing BG Phoenix Football Club Chinese Women’s Super League",
+        "lig": "Beijing BG Phoenix Football Club Chinese Women’s Super League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 10,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "BG Phoenix",
         "lig": "Chinese Women’s Super League",
@@ -258925,7 +260301,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Wuhan Jiangda University",
+        "kulup": "China",
         "lig": "Asian Games",
         "mac": 4,
         "gol": 1,
@@ -259067,7 +260443,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Lise Lichtfus": {
     "sezonlar": [
@@ -261517,7 +262893,7 @@
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s Super League",
         "mac": 7,
         "gol": 0,
@@ -261528,7 +262904,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s FA Cup",
         "mac": 2,
         "gol": 0,
@@ -261539,7 +262915,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Players Cup",
         "mac": 1,
         "gol": 0,
@@ -261550,7 +262926,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League",
         "mac": 4,
         "gol": 0,
@@ -261561,7 +262937,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 4,
         "gol": 0,
@@ -261594,7 +262970,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s Super League",
         "mac": 18,
         "gol": 0,
@@ -261605,7 +262981,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s FA Cup",
         "mac": 1,
         "gol": 0,
@@ -261616,7 +262992,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Players Cup",
         "mac": 3,
         "gol": 0,
@@ -261627,7 +263003,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 2,
         "gol": 0,
@@ -261671,7 +263047,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s Super League",
         "mac": 18,
         "gol": 0,
@@ -261682,7 +263058,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s FA Cup",
         "mac": 1,
         "gol": 0,
@@ -261693,7 +263069,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Players Cup",
         "mac": 1,
         "gol": 0,
@@ -261704,7 +263080,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League",
         "mac": 9,
         "gol": 0,
@@ -261715,7 +263091,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 2,
         "gol": 0,
@@ -261748,7 +263124,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s Super League",
         "mac": 20,
         "gol": 0,
@@ -261759,7 +263135,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s FA Cup",
         "mac": 2,
         "gol": 0,
@@ -261770,7 +263146,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Players Cup",
         "mac": 1,
         "gol": 0,
@@ -261781,7 +263157,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League",
         "mac": 5,
         "gol": 0,
@@ -261792,7 +263168,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League Qualifying",
         "mac": 3,
         "gol": 0,
@@ -261803,7 +263179,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Arsenal LFC",
+        "kulup": "Austria",
         "lig": "UEFA Women’s Championship",
         "mac": 4,
         "gol": 0,
@@ -261836,7 +263212,7 @@
       },
       {
         "sezon": "20/21",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s Super League",
         "mac": 13,
         "gol": 0,
@@ -261847,7 +263223,7 @@
       },
       {
         "sezon": "20/21",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s FA Cup",
         "mac": 3,
         "gol": 0,
@@ -261858,7 +263234,7 @@
       },
       {
         "sezon": "20/21",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Players Cup",
         "mac": 1,
         "gol": 0,
@@ -261880,7 +263256,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s Super League",
         "mac": 12,
         "gol": 0,
@@ -261891,7 +263267,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Women’s FA Cup",
         "mac": 4,
         "gol": 0,
@@ -261902,7 +263278,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "Players Cup",
         "mac": 4,
         "gol": 0,
@@ -261913,7 +263289,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "Arsenal LFC",
+        "kulup": "Arsenal FC",
         "lig": "UEFA Women’s Champions League",
         "mac": 2,
         "gol": 0,
@@ -262100,7 +263476,7 @@
       },
       {
         "sezon": "16/17",
-        "kulup": "Bayern München",
+        "kulup": "Austria",
         "lig": "UEFA Women’s Championship",
         "mac": 5,
         "gol": 0,
@@ -262363,7 +263739,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Christiane Endler": {
     "sezonlar": [
@@ -263603,10 +264979,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Jacqueline Sedogo": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burkina Faso",
+        "lig": "Burkina Faso Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burkina Faso",
@@ -263619,7 +265006,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Rabiatou Koudougou": {
     "sezonlar": [
@@ -263635,7 +265022,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Adama Congo": {
     "sezonlar": [
@@ -263913,7 +265300,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Diamilatou Zongo": {
     "sezonlar": [
@@ -264027,6 +265414,17 @@
   "Mariam Ouattara": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Burkina Faso",
+        "lig": "Burkina Faso Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Burkina Faso",
         "lig": "Women’s Africa Cup of Nations",
@@ -264038,10 +265436,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Limata Nikiema": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burkina Faso",
+        "lig": "Burkina Faso Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burkina Faso",
@@ -264054,7 +265463,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Juliette Nana": {
     "sezonlar": [
@@ -264185,6 +265594,17 @@
   "Habibou Ouedraogo": {
     "sezonlar": [
       {
+        "sezon": "26/27",
+        "kulup": "Olympique Marseille",
+        "lig": "Coupe LFFP",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 29,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "ASEC Mimosas",
         "lig": "CAF Women’s Champions League",
@@ -264196,7 +265616,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Stephanie Sow": {
     "sezonlar": [
@@ -264245,7 +265665,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Felicite Kafando": {
     "sezonlar": [
@@ -264261,7 +265681,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Chiamaka Nnadozie": {
     "sezonlar": [
@@ -264656,7 +266076,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-13"
+    "guncelleme": "2026-08-24"
   },
   "Osinachi Ohale": {
     "sezonlar": [
@@ -265837,7 +267257,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "FK Minsk",
+        "kulup": "Nigeria",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -266067,7 +267487,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Halimatu Ayinde": {
     "sezonlar": [
@@ -268840,6 +270260,28 @@
   "Desire Oparanozie": {
     "sezonlar": [
       {
+        "sezon": "2023",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Wuhan Jiangda University Chinese Women’s Super League",
+        "lig": "Wuhan Jiangda University Chinese Women’s Super League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "22/23",
         "kulup": "Wuhan Jiangda University",
         "lig": "Chinese Women’s Super League",
@@ -269071,7 +270513,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Esther Okoronkwo": {
     "sezonlar": [
@@ -269449,6 +270891,17 @@
   "Akudo Ogbonna": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "IFK Kalmar Elitettan",
+        "lig": "IFK Kalmar Elitettan",
+        "mac": 11,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "IFK Kalmar",
         "lig": "Elitettan",
@@ -269504,10 +270957,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Opeyemi Sunday": {
     "sezonlar": [
+      {
+        "sezon": "2018",
+        "kulup": "Nigeria",
+        "lig": "Nigeria U20 U20 Weltmeisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2016",
+        "kulup": "Nigeria",
+        "lig": "Nigeria U17 U17 Weltmeisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "17/18",
         "kulup": "Nigeria",
@@ -269531,7 +271006,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ugochi Emenayo": {
     "sezonlar": [
@@ -269811,7 +271286,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "La Coruna",
+        "kulup": "A Coruña",
         "lig": "Segunda División Grupo Norte",
         "mac": 16,
         "gol": 1,
@@ -269822,7 +271297,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "La Coruna",
+        "kulup": "A Coruña",
         "lig": "Copa de la Reina",
         "mac": 1,
         "gol": 0,
@@ -269953,7 +271428,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Suliat Abideen": {
     "sezonlar": [
@@ -271396,6 +272871,39 @@
   "Fatima Dahmos": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "AS Far",
         "lig": "CAF Women’s Champions League",
@@ -271440,7 +272948,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Siham Boukhami": {
     "sezonlar": [
@@ -272165,7 +273673,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "US Saint-Malo",
+        "kulup": "MoroccoFrance",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -272176,7 +273684,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "US Saint-Malo",
+        "kulup": "MoroccoFrance",
         "lig": "VisitMalta Women’s Trophy",
         "mac": 1,
         "gol": 0,
@@ -272318,7 +273826,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ibtissam Jraidi": {
     "sezonlar": [
@@ -272893,6 +274401,28 @@
   "Ghizlane Chhiri": {
     "sezonlar": [
       {
+        "sezon": "2023",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "22/23",
         "kulup": "AS Far",
         "lig": "CAF Women’s Champions League",
@@ -272959,7 +274489,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Samya Hassani": {
     "sezonlar": [
@@ -273222,7 +274752,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Imane Saoud": {
     "sezonlar": [
@@ -274243,6 +275773,28 @@
   "Sofia Bouftini": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "AS Far CAF Women’s Champions League",
+        "lig": "AS Far CAF Women’s Champions League",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "AS Far",
         "lig": "CAF Women’s Champions League",
@@ -274298,10 +275850,21 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Imane Abdelahad": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "Sporting Casablanca CAF Women’s Champions League",
+        "lig": "Sporting Casablanca CAF Women’s Champions League",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "22/23",
         "kulup": "Sp. Casablanca",
@@ -274314,7 +275877,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Anta Dembele": {
     "sezonlar": [
@@ -274368,6 +275931,17 @@
   "Mame Diarra Diouf": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Senegal",
         "lig": "Women’s Africa Cup of Nations",
@@ -274379,10 +275953,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ndeye Ndiaye Kane": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Senegal",
@@ -274395,10 +275980,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Edmee Diagne": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Senegal",
@@ -274411,7 +276007,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Mama Diop": {
     "sezonlar": [
@@ -274706,6 +276302,39 @@
   "Haby Balde": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Senegal",
+        "lig": "Senegal WC Inter-confederation Playoffs",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "Senegal",
         "lig": "Women’s Africa Cup of Nations",
@@ -274739,7 +276368,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Safietou Sagna": {
     "sezonlar": [
@@ -274788,10 +276417,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Salimata Ndiaye": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Senegal",
@@ -274804,10 +276444,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ndeye Meissa Diaw": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Senegal",
@@ -274820,7 +276471,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Meta Camara": {
     "sezonlar": [
@@ -274880,7 +276531,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Bineta Korkel Seck": {
     "sezonlar": [
@@ -274994,6 +276645,17 @@
   "Astou Ngom": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Senegal",
         "lig": "Women’s Africa Cup of Nations",
@@ -275005,10 +276667,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ruth Aturo": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "FC KTP Kotka Karsinta Naisten Ykköseen",
+        "lig": "FC KTP Kotka Karsinta Naisten Ykköseen",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "21/22",
         "kulup": "FC KTP Kotka",
@@ -275022,7 +276695,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "FC KTP Kotka",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -275032,10 +276705,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Asia Nakibuuka": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -275048,10 +276732,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Yudaya Nakayenze": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -275064,7 +276759,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Aisha Nantongo": {
     "sezonlar": [
@@ -275474,6 +277169,17 @@
   "Hasifah Nassuna": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
@@ -275485,10 +277191,76 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ritah Kivumbi": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "Mallbackens IF Elitettan",
+        "lig": "Mallbackens IF Elitettan",
+        "mac": 13,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Mallbackens IF Elitettan",
+        "lig": "Mallbackens IF Elitettan",
+        "mac": 12,
+        "gol": 7,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Mallbackens IF Elitettan",
+        "lig": "Mallbackens IF Elitettan",
+        "mac": 24,
+        "gol": 5,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Mallbackens IF Elitettan",
+        "lig": "Mallbackens IF Elitettan",
+        "mac": 21,
+        "gol": 7,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2019",
+        "kulup": "Växjö DFF Damallsvenskan",
+        "lig": "Växjö DFF Damallsvenskan",
+        "mac": 13,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2018",
+        "kulup": "Växjö DFF Damallsvenskan",
+        "lig": "Växjö DFF Damallsvenskan",
+        "mac": 20,
+        "gol": 2,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "22/23",
         "kulup": "Mallbackens IF",
@@ -275524,7 +277296,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Mallbackens IF",
+        "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -275589,7 +277361,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Joan Nabirye": {
     "sezonlar": [
@@ -275671,7 +277443,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Fauzia Najjemba": {
     "sezonlar": [
@@ -275928,6 +277700,17 @@
   "Riticia Nabbosa": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Uganda",
         "lig": "Women’s Africa Cup of Nations",
@@ -275939,7 +277722,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Vanessa Karungi": {
     "sezonlar": [
@@ -276010,10 +277793,21 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Daisy Nakaziro": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -276026,10 +277820,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Lillian Mutuuzo": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -276042,10 +277847,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Lukiya Namubiru": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -276058,10 +277874,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Margret Kunihira": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -276074,7 +277901,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Pauline Ayangma": {
     "sezonlar": [
@@ -276091,7 +277918,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Atasehir Belediyespor",
+        "kulup": "Atasehir",
         "lig": "Kadın Futbol Süper Ligi",
         "mac": 16,
         "gol": 0,
@@ -276102,7 +277929,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Konak Belediyespor",
+        "kulup": "Konak",
         "lig": "Kadınlar Süper Ligi - Group B",
         "mac": 9,
         "gol": 0,
@@ -276113,7 +277940,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Konak Belediyespor",
+        "kulup": "Konak",
         "lig": "Kadınlar Süper Ligi - Final Stages",
         "mac": 2,
         "gol": 0,
@@ -276123,7 +277950,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Easther Mayi Kith": {
     "sezonlar": [
@@ -276710,8 +278537,118 @@
   "Estelle Johnson": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 15,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 19,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Sky Blue FC NWSL Fall Series",
+        "lig": "Sky Blue FC NWSL Fall Series",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2019",
+        "kulup": "Sky Blue FC NWSL",
+        "lig": "Sky Blue FC NWSL",
+        "mac": 15,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2018",
+        "kulup": "Washington Spirit NWSL",
+        "lig": "Washington Spirit NWSL",
+        "mac": 20,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2017",
+        "kulup": "Washington Spirit NWSL",
+        "lig": "Washington Spirit NWSL",
+        "mac": 20,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2016",
+        "kulup": "Washington Spirit NWSL",
+        "lig": "Washington Spirit NWSL",
+        "mac": 11,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2015",
+        "kulup": "Washington Spirit NWSL",
+        "lig": "Washington Spirit NWSL",
+        "mac": 19,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2013",
+        "kulup": "Western New York NWSL",
+        "lig": "Western New York NWSL",
+        "mac": 22,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2012",
+        "kulup": "New York Fury WPSL Elite League",
+        "lig": "New York Fury WPSL Elite League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "22/23",
-        "kulup": "North Carolina Courage",
+        "kulup": "CameroonUnited States",
         "lig": "WC Inter-confederation Playoffs",
         "mac": 2,
         "gol": 0,
@@ -276744,7 +278681,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Sky Blue FC",
+        "kulup": "CameroonUnited States",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 1,
@@ -276985,7 +278922,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Gabrielle Onguene": {
     "sezonlar": [
@@ -277435,6 +279372,17 @@
   "Flora Kameni": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "FC 15 de Agosto CAF Women’s Champions League",
+        "lig": "FC 15 de Agosto CAF Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "15 de Agosto",
         "lig": "CAF Women’s Champions League",
@@ -277479,7 +279427,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Monique Ngock": {
     "sezonlar": [
@@ -278405,10 +280353,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ella Djankale": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278421,10 +280380,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ayawoa Kaglan": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278437,7 +280407,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Takiyatou Yaya": {
     "sezonlar": [
@@ -278465,7 +280435,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "İlkadım",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278475,10 +280445,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Odette Gnintegma": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278491,10 +280472,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Amiratou Ndjambara": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278507,7 +280499,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Mafille Woedikou": {
     "sezonlar": [
@@ -278568,7 +280560,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Nord Allier Yzeure",
+        "kulup": "Togo",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 2,
@@ -278578,7 +280570,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Nathalie Badate": {
     "sezonlar": [
@@ -278638,10 +280630,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Koudjoukalo Sama": {
     "sezonlar": [
+      {
+        "sezon": "22/23",
+        "kulup": "Nord Allier Yzeure",
+        "lig": "Division 2 Féminin - Groupe B",
+        "mac": 9,
+        "gol": 1,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 613,
+        "milli": false
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278654,10 +280657,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Akoko Assigno": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278670,10 +280684,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Dede Houndjo-Tete": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278686,10 +280711,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ame Amouklou": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 1,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278702,10 +280738,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Akossiwa Dogbe": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278718,10 +280765,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Yawa Konou": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278734,10 +280792,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Solim Kadanga": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Togo",
+        "lig": "Togo Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Togo",
@@ -278750,7 +280819,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Dhekra Mahfoudh": {
     "sezonlar": [
@@ -278777,7 +280846,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Chaima Abbassi": {
     "sezonlar": [
@@ -278854,7 +280923,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "1. FFC 08 Niederkirchen",
+        "kulup": "TunisiaGermany",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -278919,7 +280988,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Rania Aouina": {
     "sezonlar": [
@@ -279002,7 +281071,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Thonon Évian",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -279034,7 +281103,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ella Kaabachi": {
     "sezonlar": [
@@ -279209,6 +281278,17 @@
   "Sabrine Mamay": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Tunisia",
+        "lig": "Tunesien Women’s Africa Cup of Nations",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
@@ -279220,7 +281300,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Sabrine Ellouzi": {
     "sezonlar": [
@@ -279472,6 +281552,17 @@
   "Ibtissem Ben Mohamed": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Tunisia",
+        "lig": "Tunesien Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
@@ -279483,7 +281574,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Yasmine Jemai": {
     "sezonlar": [
@@ -279511,7 +281602,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Fatih Vatan",
+        "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -279521,10 +281612,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ghada Ayadi": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Tunisia",
+        "lig": "Tunesien Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Tunisia",
+        "lig": "Tunesien Women’s Africa Cup of Nations",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Tunisia",
@@ -279548,7 +281661,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Hanna Hamdi": {
     "sezonlar": [
@@ -279860,6 +281973,17 @@
   "Imen Troudi": {
     "sezonlar": [
       {
+        "sezon": "2017",
+        "kulup": "UMF Stjarnan Besta deild kvenna",
+        "lig": "UMF Stjarnan Besta deild kvenna",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "21/22",
         "kulup": "Tunisia",
         "lig": "Women’s Africa Cup of Nations",
@@ -279893,7 +282017,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Samia Aouni": {
     "sezonlar": [
@@ -280271,10 +282395,21 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Soumaya Laamiri": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Tunisia",
+        "lig": "Tunesien Women’s Africa Cup of Nations",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Tunisia",
@@ -280287,7 +282422,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Yasmine Klai": {
     "sezonlar": [
@@ -280336,7 +282471,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Catherine Musonda": {
     "sezonlar": [
@@ -280385,7 +282520,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Judith Soko": {
     "sezonlar": [
@@ -280401,7 +282536,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lushomo Mweemba": {
     "sezonlar": [
@@ -280565,6 +282700,28 @@
   "Esther Siamfuko": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "Zambia",
+        "lig": "Sambia Olympische Spiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Zambia",
+        "lig": "Sambia Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "23/24",
         "kulup": "Zambia",
         "lig": "Olympische Spiele",
@@ -280609,10 +282766,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Anita Mulenga": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Zambia",
+        "lig": "Sambia Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Zambia",
+        "lig": "Sambia Olympische Spiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Zambia",
@@ -280636,10 +282815,43 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Mary Wilombe": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Zambia",
+        "lig": "Sambia Women’s Africa Cup of Nations",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Zambia",
+        "lig": "Sambia Olympische Spiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Zambia",
+        "lig": "Sambia World Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Zambia",
@@ -280740,7 +282952,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Misozi Zulu": {
     "sezonlar": [
@@ -281912,6 +284124,17 @@
   "Maweta Chilenga": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Zambia",
+        "lig": "Sambia Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Zambia",
         "lig": "Women’s Africa Cup of Nations",
@@ -281923,10 +284146,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Noria Sosala": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Zambia",
+        "lig": "Sambia Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Zambia",
@@ -281939,7 +284173,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Avell Chitundu": {
     "sezonlar": [
@@ -282064,6 +284298,17 @@
   "Kesegofetse Mochawe": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Gaborone United CAF Women’s Champions League",
+        "lig": "Gaborone United CAF Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Gaborone Utd",
         "lig": "CAF Women’s Champions League",
@@ -282076,7 +284321,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Gaborone Utd",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282108,10 +284353,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Nancy Baeletsi": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Gaborone United CAF Women’s Champions League",
+        "lig": "Gaborone United CAF Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Gaborone Utd",
@@ -282125,7 +284381,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Gaborone Utd",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 0,
@@ -282157,10 +284413,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Masego Montsho": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282184,10 +284462,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Golebaone Selebatso": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Botsuana",
@@ -282200,10 +284489,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Refilwe Tholakele": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "Mamelodi Sundowns CAF Women’s Champions League",
+        "lig": "Mamelodi Sundowns CAF Women’s Champions League",
+        "mac": 5,
+        "gol": 5,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282238,7 +284538,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Lone Gaofetoge": {
     "sezonlar": [
@@ -282266,7 +284566,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Hakkarigücü",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282298,10 +284598,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Mokgabo Thanda": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282336,10 +284647,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Lesego Radiakanyo": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Gaborone United CAF Women’s Champions League",
+        "lig": "Gaborone United CAF Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Gaborone Utd",
@@ -282353,7 +284675,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Gaborone Utd",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -282374,10 +284696,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Thuto Ramafifi": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Botsuana",
@@ -282390,10 +284723,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Bonang Otlhagile": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Botsuana",
@@ -282406,7 +284750,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Keitumetse Dithebe": {
     "sezonlar": [
@@ -282434,7 +284778,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Fomget",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -282466,10 +284810,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Veronicah Mogotsi": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282504,10 +284859,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Balotlhanyi Johannes": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282531,7 +284908,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Leano Busang": {
     "sezonlar": [
@@ -282547,10 +284924,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Nondi Mahlasela": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282585,10 +284973,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Esalenna Galekhutle": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282612,10 +285022,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Gaonyadiwe Ontlametse": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Gaborone United CAF Women’s Champions League",
+        "lig": "Gaborone United CAF Women’s Champions League",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Gaborone Utd",
@@ -282629,7 +285050,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Gaborone Utd",
+        "kulup": "Botsuana",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 3,
         "gol": 1,
@@ -282650,7 +285071,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Annah Sechane": {
     "sezonlar": [
@@ -282677,10 +285098,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Goitsemang Tlamma": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Gaborone United CAF Women’s Champions League",
+        "lig": "Gaborone United CAF Women’s Champions League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Gaborone Utd",
@@ -282704,10 +285136,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Michelle Abueng": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282742,10 +285185,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Laone Moloi": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "Botsuana",
+        "lig": "Botswana Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "24/25",
         "kulup": "Botsuana",
@@ -282769,10 +285223,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Charlotte Irankunda": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282785,10 +285250,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Diane Irankunda": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282801,10 +285277,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Aniella Uwimana": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282817,10 +285304,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Erica Kanyamuneza": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282833,7 +285331,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Sandrine Niyonkuru": {
     "sezonlar": [
@@ -282887,6 +285385,17 @@
   "Falone Sumaili": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
@@ -282898,10 +285407,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Asha Djafari": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282914,10 +285434,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Angelique Keza": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282930,10 +285461,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Amissa Inarukundo": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -282946,10 +285488,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Cheilla Ineza": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "IFK Värnamo Division 1 Södra",
+        "lig": "IFK Värnamo Division 1 Södra",
+        "mac": 20,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2024",
+        "kulup": "Husqvarna FF Division 1 Mellersta",
+        "lig": "Husqvarna FF Division 1 Mellersta",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "IFK Värnamo",
@@ -282984,10 +285548,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Jeanine Irakoze": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -283000,10 +285575,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Nasra Nahimana": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -283016,7 +285602,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Joelle Bukuru": {
     "sezonlar": [
@@ -283037,6 +285623,17 @@
   "Rachelle Bukuru": {
     "sezonlar": [
       {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "21/22",
         "kulup": "Burundi",
         "lig": "Women’s Africa Cup of Nations",
@@ -283048,10 +285645,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Annociate Nshimirimana": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -283064,10 +285672,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Djazila Uwineza": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -283080,7 +285699,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Saffira Guinand": {
     "sezonlar": [
@@ -283130,7 +285749,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Yverdon-Sport FC",
+        "kulup": "BurundiSwitzerland",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -283195,10 +285814,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Peace Olga Niyomwungere": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -283211,10 +285841,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Salha Nduwayo": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Burundi",
+        "lig": "Burundi Women’s Africa Cup of Nations",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Burundi",
@@ -283227,7 +285868,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Tochukwu Oluehi": {
     "sezonlar": [
@@ -283397,7 +286038,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Ngozi Okobi": {
     "sezonlar": [
@@ -283671,6 +286312,17 @@
   "Chinonyerem Macleans": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "Liaoning Club Chinese Women’s Super League",
+        "lig": "Liaoning Club Chinese Women’s Super League",
+        "mac": 3,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "24/25",
         "kulup": "Al Shabab",
         "lig": "Chinese Women’s Super League",
@@ -283782,7 +286434,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Gornik Leczna",
+        "kulup": "Nigeria",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 0,
@@ -283814,7 +286466,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Nicole Payne": {
     "sezonlar": [
@@ -283956,10 +286608,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Jeannete Sagna": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "Senegal",
+        "lig": "Senegal WC Inter-confederation Playoffs",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Senegal",
+        "lig": "Senegal Women’s Africa Cup of Nations",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "22/23",
         "kulup": "Senegal",
@@ -283983,10 +286657,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Margret Namirimu": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -283999,10 +286684,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Joanitah Ainembabazi": {
     "sezonlar": [
+      {
+        "sezon": "2022",
+        "kulup": "Uganda",
+        "lig": "Uganda Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "21/22",
         "kulup": "Uganda",
@@ -284015,7 +286711,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Rosella Bella": {
     "sezonlar": [
@@ -284328,7 +287024,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Madrid CFF",
+        "kulup": "NigeriaSweden",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 5,
         "gol": 0,
@@ -284339,7 +287035,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "Freundschaftsspiele",
         "mac": 2,
         "gol": 0,
@@ -284372,7 +287068,7 @@
       },
       {
         "sezon": "20/21",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "Freundschaftsspiele",
         "mac": 3,
         "gol": 0,
@@ -284427,7 +287123,7 @@
       },
       {
         "sezon": "18/19",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "World Cup",
         "mac": 3,
         "gol": 0,
@@ -284438,7 +287134,7 @@
       },
       {
         "sezon": "18/19",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "Cyprus Women’s Cup",
         "mac": 4,
         "gol": 2,
@@ -284449,7 +287145,7 @@
       },
       {
         "sezon": "18/19",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "Vier-Nationen-Turnier",
         "mac": 2,
         "gol": 1,
@@ -284592,7 +287288,7 @@
       },
       {
         "sezon": "10/11",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "World Cup",
         "mac": 3,
         "gol": 0,
@@ -284603,7 +287299,7 @@
       },
       {
         "sezon": "10/11",
-        "kulup": "Nigeria",
+        "kulup": "NigeriaSweden",
         "lig": "Freundschaftsspiele",
         "mac": 1,
         "gol": 0,
@@ -284613,7 +287309,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lebogang Ramalepe": {
     "sezonlar": [
@@ -284876,6 +287572,17 @@
   "Regiri Ngobeni": {
     "sezonlar": [
       {
+        "sezon": "2023",
+        "kulup": "University of Western Cape SAFA Women’s League",
+        "lig": "University of Western Cape SAFA Women’s League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "22/23",
         "kulup": "Brasil",
         "lig": "SAFA Women’s League",
@@ -284898,10 +287605,65 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Luciana": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 14,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 13,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 15,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 15,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2020",
+        "kulup": "Ferroviaria Brasileirão Feminino",
+        "lig": "Ferroviaria Brasileirão Feminino",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Ferroviaria",
@@ -284948,7 +287710,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Ferroviaria",
+        "kulup": "Brazil",
         "lig": "CONCACAF W Gold Cup",
         "mac": 5,
         "gol": 0,
@@ -285079,7 +287841,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Antonia": {
     "sezonlar": [
@@ -286376,7 +289138,7 @@
       },
       {
         "sezon": "24/25",
-        "kulup": "Club América",
+        "kulup": "Brazil",
         "lig": "CONCACAF W Champions Cup",
         "mac": 2,
         "gol": 0,
@@ -286453,7 +289215,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Internacional",
+        "kulup": "Brazil",
         "lig": "SheBelieves Cup",
         "mac": 2,
         "gol": 0,
@@ -286540,7 +289302,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lucia Garcia": {
     "sezonlar": [
@@ -289192,179 +291954,191 @@
   },
   "Anna Campanella": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Jaida Thomas": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Elizabeth Wambui": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Suwaibatu Mohammed": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Jong-sun Kim": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Pom-mi Jo": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Aminata Korogo": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Justine Zongo": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Mounifatou Helby": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Chantal Zongo": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ami Sanou": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "İnyeme Etim": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Rita Akarekor": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Assia Zouhair": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Thiaba Gueye Sene": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Gladys Irene Dacosta": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Astou Sy": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Sheebah Zalwango": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Zaina Nandede": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Tracy Akiror": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Flore Enyegue": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ousmanou Doudou": {
-    "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "sezonlar": [
+      {
+        "sezon": "25/26",
+        "kulup": "Cameroon",
+        "lig": "Women’s Africa Cup of Nations",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 109,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-08-24"
   },
   "Kafui Bagnim": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Essowe Dowatanti": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Adjo Ayawo": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Bendukilou Manou": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Fatima Salou": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Adjo Hatto": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Afigan Gagban": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lucie Gantim": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Aya Gazahi": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Imen Mchara": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Najla Harrathi": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Esther Banda": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Theo George": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Lesego Moeng": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Refiloe Tshambani": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Belinda Ndoreraho": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Rukiya Bizimana": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Bora Ineza": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Gloris Gakiza": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Suzanne Zilfa": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Ariella Umurerwa": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Esperance Habonimana": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Kaylin Swart": {
     "sezonlar": [
@@ -289957,7 +292731,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Glasgow City LFC",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 1,
         "gol": 0,
@@ -290077,10 +292851,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Thalea Smidt": {
     "sezonlar": [
+      {
+        "sezon": "2021",
+        "kulup": "Mamelodi Sundowns CAF Women’s Champions League",
+        "lig": "Mamelodi Sundowns CAF Women’s Champions League",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "22/23",
         "kulup": "South Africa",
@@ -290126,7 +292911,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Karabo Dhlamini": {
     "sezonlar": [
@@ -291977,7 +294762,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "CD Parquesol",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -292009,7 +294794,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Refiloe Jane": {
     "sezonlar": [
@@ -292442,6 +295227,28 @@
   "Melinda Kgadiete": {
     "sezonlar": [
       {
+        "sezon": "2023",
+        "kulup": "Mamelodi Sundowns CAF Women’s Champions League",
+        "lig": "Mamelodi Sundowns CAF Women’s Champions League",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Mamelodi Sundowns CAF Women’s Champions League",
+        "lig": "Mamelodi Sundowns CAF Women’s Champions League",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "South Africa",
         "lig": "Freundschaftsspiele",
@@ -292519,7 +295326,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Sibulele Holweni": {
     "sezonlar": [
@@ -292621,12 +295428,34 @@
         "sari": 0,
         "dakika": 85,
         "milli": true
+      },
+      {
+        "sezon": "17/18",
+        "kulup": "South Africa",
+        "lig": "U17 Weltmeisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 2,
+        "dakika": 270,
+        "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Kholosa Biyana": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "University of Western Cape SAFA Women’s League",
+        "lig": "University of Western Cape SAFA Women’s League",
+        "mac": 1,
+        "gol": 1,
+        "asist": 0,
+        "sari": 5,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "South Africa",
@@ -292717,7 +295546,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Sporting Gijón",
+        "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 4,
         "gol": 0,
@@ -292793,7 +295622,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Robyn Moodaly": {
     "sezonlar": [
@@ -293055,6 +295884,17 @@
   "Tiisetso Makhubela": {
     "sezonlar": [
       {
+        "sezon": "2025",
+        "kulup": "South Africa",
+        "lig": "Südafrika Women’s Africa Cup of Nations",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "South Africa",
         "lig": "Women’s Africa Cup of Nations",
@@ -293143,10 +295983,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Thubelihle Shamase": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "Gintra Universitetas A Lyga",
+        "lig": "Gintra Universitetas A Lyga",
+        "mac": 17,
+        "gol": 8,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "University of Johannesburg SAFA Women’s League",
+        "lig": "University of Johannesburg SAFA Women’s League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Gintra Universitetas",
@@ -293225,10 +296087,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Eunice Sakala": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "Zambia",
+        "lig": "Sambia World Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "22/23",
         "kulup": "Zambia",
@@ -293252,10 +296125,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Vast Phiri": {
     "sezonlar": [
+      {
+        "sezon": "2023",
+        "kulup": "Zambia",
+        "lig": "Sambia World Cup",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2021",
+        "kulup": "Zambia",
+        "lig": "Sambia Olympische Spiele",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "22/23",
         "kulup": "Zambia",
@@ -293279,7 +296174,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Mary Mulenga": {
     "sezonlar": [
@@ -293306,7 +296201,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Susan Banda": {
     "sezonlar": [
@@ -293359,7 +296254,7 @@
   },
   "Comfort Selemani": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Hellen Chanda": {
     "sezonlar": [
@@ -293940,7 +296835,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Racheal Nachula": {
     "sezonlar": [
@@ -294351,11 +297246,11 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Elizabeth Nachivula": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Prisca Chilufya": {
     "sezonlar": [
@@ -294650,6 +297545,17 @@
   "Natasha Witika": {
     "sezonlar": [
       {
+        "sezon": "2014",
+        "kulup": "Zambia",
+        "lig": "Sambia U17 U17 Weltmeisterschaft",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
+      {
         "sezon": "13/14",
         "kulup": "Zambia",
         "lig": "U17 Weltmeisterschaft",
@@ -294661,7 +297567,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Moa Edrud": {
     "sezonlar": [
@@ -295438,7 +298344,7 @@
   },
   "Sydney Bellamy": {
     "sezonlar": [],
-    "guncelleme": "2026-08-12"
+    "guncelleme": "2026-08-24"
   },
   "Gloria Sliskovic": {
     "sezonlar": [
@@ -296998,7 +299904,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Balkissa Sawadogo": {
     "sezonlar": [
@@ -304412,7 +307318,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Tatiana Ewodo Ekogo": {
     "sezonlar": [
@@ -304676,7 +307582,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "FC Kiryat Gat",
+        "kulup": "Nigeria",
         "lig": "Women’s Africa Cup of Nations",
         "mac": 2,
         "gol": 1,
@@ -304741,7 +307647,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Janne Sophie Krumme": {
     "sezonlar": [
@@ -305031,6 +307937,83 @@
   "Silvia Cristobal Fernandez": {
     "sezonlar": [
       {
+        "sezon": "25/26",
+        "kulup": "Real Madrid",
+        "lig": "Primera División Femenina",
+        "mac": 11,
+        "gol": 1,
+        "asist": 1,
+        "sari": 3,
+        "dakika": 455,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Real Madrid",
+        "lig": "Primera Federación",
+        "mac": 7,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 434,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Real Madrid",
+        "lig": "UEFA Women’s Champions League",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Real Madrid",
+        "lig": "UEFA Women’s Champions League Qualifying",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 11,
+        "milli": false
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Spain",
+        "lig": "U19 Europameisterschaft",
+        "mac": 5,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 450,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Spain",
+        "lig": "U19 EM Qualifikation Liga A",
+        "mac": 6,
+        "gol": 0,
+        "asist": 1,
+        "sari": 1,
+        "dakika": 437,
+        "milli": true
+      },
+      {
+        "sezon": "25/26",
+        "kulup": "Spain",
+        "lig": "Freundschaftsspiele",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 217,
+        "milli": true
+      },
+      {
         "sezon": "24/25",
         "kulup": "Real Madrid B",
         "lig": "Primera División Femenina",
@@ -305139,9 +308122,31 @@
         "sari": 0,
         "dakika": 45,
         "milli": true
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Spain",
+        "lig": "UEFA Development Tournament",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 185,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Spain",
+        "lig": "UEFA Development Tournament",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 160,
+        "milli": true
       }
     ],
-    "guncelleme": "2026-08-15"
+    "guncelleme": "2026-08-24"
   },
   "Zuzanna Izabella Witek": {
     "sezonlar": [
@@ -309755,7 +312760,7 @@
       },
       {
         "sezon": "23/24",
-        "kulup": "Karadeniz Ereglispor",
+        "kulup": "Kdz Ereğli",
         "lig": "Kadın Futbol Süper Ligi",
         "mac": 30,
         "gol": 3,
@@ -309766,7 +312771,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Karadeniz Ereglispor",
+        "kulup": "Kdz Ereğli",
         "lig": "Kadınlar Süper Ligi - Group A",
         "mac": 14,
         "gol": 1,
@@ -309777,7 +312782,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Karadeniz Ereglispor",
+        "kulup": "Kdz Ereğli",
         "lig": "Kadınlar Süper Ligi - Final Stages",
         "mac": 2,
         "gol": 1,
@@ -309788,7 +312793,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Karadeniz Ereglispor",
+        "kulup": "Kdz Ereğli",
         "lig": "Kadınlar Süper Ligi - Group A",
         "mac": 22,
         "gol": 5,
@@ -309799,7 +312804,7 @@
       },
       {
         "sezon": "20/21",
-        "kulup": "Konak Belediyespor",
+        "kulup": "Konak",
         "lig": "Kadınlar 1. Ligi 2021",
         "mac": 3,
         "gol": 0,
@@ -309810,7 +312815,7 @@
       },
       {
         "sezon": "19/20",
-        "kulup": "Konak Belediyespor",
+        "kulup": "Konak",
         "lig": "Kadın Futbol Süper Ligi",
         "mac": 3,
         "gol": 1,
@@ -309853,7 +312858,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Meryem Kucukbirinci": {
     "sezonlar": [
@@ -313897,6 +316902,17 @@
   "Blue Ellis": {
     "sezonlar": [
       {
+        "sezon": "2024",
+        "kulup": "MFA Žalgiris A Lyga",
+        "lig": "MFA Žalgiris A Lyga",
+        "mac": 13,
+        "gol": 10,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
         "sezon": "23/24",
         "kulup": "MFA Žalgiris",
         "lig": "A Lyga",
@@ -313930,7 +316946,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Chioma Olise": {
     "sezonlar": [
@@ -323808,7 +326824,7 @@
   },
   "Arin Ucak": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Meryem Sevent": {
     "sezonlar": [
@@ -324956,7 +327972,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Cimen Erdin": {
     "sezonlar": [
@@ -325361,7 +328377,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Suheyla Calcinar": {
     "sezonlar": [
@@ -325705,7 +328721,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Esma Dural": {
     "sezonlar": [
@@ -325725,7 +328741,7 @@
   },
   "Ilayda Demir": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Yagmur Gonullu": {
     "sezonlar": [
@@ -325745,15 +328761,15 @@
   },
   "Duru Cengiz": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Selin Cebeci": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Heja Yazgar": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Hazal Koksaldi": {
     "sezonlar": [
@@ -326751,13 +329767,13 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Erva Karaovali": {
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "Ünye Gücü",
+        "kulup": "Unye",
         "lig": "Kadın Futbol Süper Ligi",
         "mac": 7,
         "gol": 0,
@@ -326811,7 +329827,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Leslie Ramirez": {
     "sezonlar": [
@@ -326893,11 +329909,11 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Merve Ekemen": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Milica Popovic": {
     "sezonlar": [
@@ -327220,18 +330236,29 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Nisa Yildiz": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Irem Ortel": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Tuana Yılmaz": {
     "sezonlar": [
+      {
+        "sezon": "2025",
+        "kulup": "MFA Žalgiris A Lyga",
+        "lig": "MFA Žalgiris A Lyga",
+        "mac": 8,
+        "gol": 1,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "24/25",
         "kulup": "Fatih Vatan",
@@ -327365,7 +330392,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Katie Bowen": {
     "sezonlar": [
@@ -327902,7 +330929,7 @@
   },
   "Cristina Prieto": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Patricia Morais": {
     "sezonlar": [
@@ -328571,13 +331598,13 @@
   },
   "Nisa Yesilyurt": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Princess Owusu": {
     "sezonlar": [
       {
         "sezon": "24/25",
-        "kulup": "Ünye Gücü",
+        "kulup": "Unye",
         "lig": "Kadın Futbol Süper Ligi",
         "mac": 24,
         "gol": 3,
@@ -328587,23 +331614,23 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Belinay Dogru": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Ozge Harman": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Seval Akgul": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Ezel Gocmen": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Elvin Balci": {
     "sezonlar": [
@@ -328619,10 +331646,32 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Otandeka Laki": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "MFA Žalgiris A Lyga",
+        "lig": "MFA Žalgiris A Lyga",
+        "mac": 1,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "2023",
+        "kulup": "FK Saned A Lyga",
+        "lig": "FK Saned A Lyga",
+        "mac": 9,
+        "gol": 2,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
       {
         "sezon": "23/24",
         "kulup": "MFA Žalgiris",
@@ -328657,11 +331706,11 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Aysegul Aydin": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Mine Okaytu": {
     "sezonlar": [
@@ -328710,7 +331759,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Bahar Ozen": {
     "sezonlar": [
@@ -328726,7 +331775,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Buket Ozsoy": {
     "sezonlar": [
@@ -328742,7 +331791,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Elvin Kilinc": {
     "sezonlar": [
@@ -328759,7 +331808,7 @@
       },
       {
         "sezon": "22/23",
-        "kulup": "Hatay",
+        "kulup": "Hatayspor",
         "lig": "Kadınlar Süper Ligi - Group A",
         "mac": 9,
         "gol": 0,
@@ -328770,7 +331819,7 @@
       },
       {
         "sezon": "21/22",
-        "kulup": "Hatay",
+        "kulup": "Hatayspor",
         "lig": "Kadınlar Süper Ligi - Group A",
         "mac": 9,
         "gol": 0,
@@ -328791,7 +331840,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Buse Ucan": {
     "sezonlar": [
@@ -328807,11 +331856,11 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Kafayat Bashiru": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Marlene Essimi": {
     "sezonlar": [
@@ -328849,7 +331898,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Bahar Yildiz": {
     "sezonlar": [
@@ -328887,7 +331936,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Ilayda Karakaya": {
     "sezonlar": [
@@ -328903,7 +331952,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Jae-Eun Song": {
     "sezonlar": [
@@ -329170,7 +332219,7 @@
   },
   "Yetunde Ayantosho": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Mukarama Abdulai": {
     "sezonlar": [
@@ -329219,10 +332268,21 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Mercy Attobrah": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "Ghana",
+        "lig": "Ghana U20 U20 Weltmeisterschaft",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "23/24",
         "kulup": "Ghana",
@@ -329235,11 +332295,11 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Ceren Guzelhan": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Tuana Turcin": {
     "sezonlar": [
@@ -329343,7 +332403,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Zeynep Koyun": {
     "sezonlar": [
@@ -329370,7 +332430,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Philomena Abakah": {
     "sezonlar": [
@@ -329408,18 +332468,40 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Selda Cubukcu": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Yagmur Yavuz": {
     "sezonlar": [],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   },
   "Jumoke Alani": {
     "sezonlar": [
+      {
+        "sezon": "2024",
+        "kulup": "Nigeria",
+        "lig": "Nigeria U20 U20 Weltmeisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 0,
+        "milli": true
+      },
+      {
+        "sezon": "2022",
+        "kulup": "Nigeria",
+        "lig": "Nigeria U20 U20 Weltmeisterschaft",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": true
+      },
       {
         "sezon": "23/24",
         "kulup": "Nigeria",
@@ -329454,6 +332536,6 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-08-18"
+    "guncelleme": "2026-08-24"
   }
 }
