@@ -8596,10 +8596,10 @@ def render_paylasim_raporu(isim: str):
 
     _mv = kadro.get("mevki", "")
     mevki = " · ".join(_mv) if isinstance(_mv, list) else str(_mv or "")
-    rol   = kadro.get("rol", "") or ""
+    rol   = scout_rol_goster(kadro.get("rol", "") or "")
     yas   = kadro.get("yas", "") or str(sd.get("Age", "") or "").split()[0] if (kadro.get("yas") or sd.get("Age")) else "—"
     boy   = kadro.get("boy", "") or sd.get("Height", "") or "—"
-    ayak  = kadro.get("ayak", "") or sd.get("Foot", "") or "—"
+    ayak  = _ayak_goster(sd.get("Foot", ""), kadro.get("ayak", "")) or "—"
     try:    uyruk = ulke_goster(kadro.get("vatandaslik", "")) or sd.get("Nationality", "") or "—"
     except Exception: uyruk = kadro.get("vatandaslik", "") or "—"
     try:    milli = ulke_goster(kadro.get("milli_takim", "")) if kadro.get("milli_takim") else ""
@@ -8625,7 +8625,7 @@ def render_paylasim_raporu(isim: str):
               f"<div style='width:74px;height:74px;border-radius:50%;border:3px solid {_ngr};"
               f"display:flex;align-items:center;justify-content:center;font-family:Sora,monospace;"
               f"font-size:1.5rem;font-weight:900;color:{_ngr};'>{_e(nihai)}</div>"
-              f"<div style='font-size:0.58rem;color:#8899aa;letter-spacing:0.1em;margin-top:4px;'>NİHAİ</div></div>") if nihai else ""
+              f"<div style='font-size:0.58rem;color:#8899aa;letter-spacing:0.1em;margin-top:4px;'>{t('NİHAİ','RATING')}</div></div>") if nihai else ""
     _bilgiler = [(t("Yaş","Age"), yas), (t("Uyruk","Nat."), uyruk), (t("Milli Tk.","NT"), milli or "—"),
                  (t("Kulüp","Club"), kulup), (t("Lig","League"), lig), (t("Boy","Height"), boy),
                  (t("Ayak","Foot"), ayak), (t("Değer","Value"), deger), (t("Sözleşme","Contract"), sozl)]
