@@ -5839,12 +5839,13 @@ def render_scouting_detay(tam_isim):
     sd = _sd_norm_bul(sd_data, tam_isim)
     dob      = sd.get("Date of birth", "—")
     yas      = sd.get("Age", "?")
-    boy      = _boy_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("boy", ""),
+    _d5      = birlesik_scout_yukle()   # 26.08.2026: bu fonksiyonda 5 ayrı tam kopya yerine 1 (bkz. render_ana_lig_profil'deki _d_scout)
+    boy      = _boy_guncel(_d5.get(tam_isim, {}).get("boy", ""),
                            sd.get("Height", "")) or "—"
     mevki    = sd.get("Position", "—")
     ayak     = _ayak_goster(sd.get("Foot", ""),
-                            birlesik_scout_yukle().get(tam_isim, {}).get("ayak", ""))
-    sozlesme = _kontrat_guncel(birlesik_scout_yukle().get(tam_isim, {}).get("sozlesme", ""),
+                            _d5.get(tam_isim, {}).get("ayak", ""))
+    sozlesme = _kontrat_guncel(_d5.get(tam_isim, {}).get("sozlesme", ""),
                                sd.get("Contract until", ""))
     vatandas = sd.get("Nationality", "—")
     sd_url   = sd.get("profil_url", "")
@@ -5852,7 +5853,7 @@ def render_scouting_detay(tam_isim):
                 f'color:#60a5fa;text-decoration:none;">🔗 SoccerDonna</a>') if sd_url else ""
 
     # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım) — norm toleranslı
-    _kadro  = birlesik_scout_yukle().get(tam_isim) or _scout_norm_bul(tam_isim) or {}
+    _kadro  = _d5.get(tam_isim) or _scout_norm_bul(tam_isim) or {}
     _deger  = _kadro.get("deger", "")
     # Milli takım = "Vatandaşlık (Millî)" (vatandaslik). NOT: milli_takim alanı aslında
     # "2. Vatandaşlık" (ikinci pasaport) → milli takım için YANLIŞ (örn. Miray Cin Türkiye
@@ -5938,7 +5939,7 @@ def render_scouting_detay(tam_isim):
     ]
     def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
         # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
-        _so = birlesik_scout_yukle().get(tam_isim) or {}
+        _so = _d5.get(tam_isim) or {}
         _so_nihai = (_so.get("nihai") or "").strip()
         _so_ivme_ham = (_so.get("ivme") or "").strip()
         _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
@@ -6072,7 +6073,7 @@ def render_scouting_detay(tam_isim):
     with st.expander(_bolum_baslik("GÖZLEM", "OBSERVATION", "gozlem"), expanded=False):
         if not _bolum_acik("gozlem"):
             _bolum_kilit("gozlem")
-        elif birlesik_scout_yukle().get(tam_isim):
+        elif _d5.get(tam_isim):
             render_scout_kadro_raporu(tam_isim, "gozlem")
         else:
             st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
@@ -6090,15 +6091,16 @@ def render_scouting_detay(tam_isim):
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
+    _d6 = birlesik_scout_yukle()   # 26.08.2026: tek çekim — bu router her profil görüntülemede 3x çekiyordu
     # Gelen isim hiçbir katmanda birebir yoksa diakritik-toleranslı çözümle
     # (STAŠKOVÁ ↔ STASKOVA gibi kaynaklar arası yazım farkları)
     if (isim not in df_tam["Oyuncu"].values
-            and isim not in birlesik_scout_yukle()
+            and isim not in _d6
             and isim not in birlesik_sd_yukle()):
         isim = _profil_norm_harita().get(_isim_norm(isim), isim)
     # Kaynak: scouting oyuncusu mu (ana lig kadrosunda değil ama SD havuzunda var)?
     _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (
-        isim in birlesik_sd_yukle() or isim in birlesik_scout_yukle())
+        isim in birlesik_sd_yukle() or isim in _d6)
     _geri_lbl = (t("← Scouting'e Dön", "← Back to Scouting") if _scout_oyuncu
                  else t("← Listeye Dön", "← Back to List"))
     if st.button(_geri_lbl, key="odakli_geri", type="primary"):
@@ -6125,7 +6127,7 @@ def render_odakli_profil(isim):
     # Scouting oyuncusu mu? (Premium kademe gerekir) — TR havuzu dahil
     # (Sco TR oyuncularının SD'si soccerdonna_profiller'de; eskiden yalnız
     # dünya SD dosyasına bakıldığından profilleri 'bulunamadı' oluyordu)
-    if isim in birlesik_sd_yukle() or isim in birlesik_scout_yukle():
+    if isim in birlesik_sd_yukle() or isim in _d6:
         if not tier_yeterli("premium"):
             pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"),
                                tier="premium")
@@ -6288,15 +6290,17 @@ def nitelik_radari_goster(isim: str):
                  "Pool percentile: 100 = top of the pool on this axis"))
 
 
-def _nitelik_ikizleri(isim: str, n: int = 5):
-    """Hedefe nitelik profili en çok benzeyen n oyuncu: [(isim, %benzerlik), ...]"""
+def _nitelik_ikizleri(isim: str, n: int = 5, _kadro: dict = None):
+    """Hedefe nitelik profili en çok benzeyen n oyuncu: [(isim, %benzerlik), ...]
+    _kadro: çağıran zaten birlesik_scout_yukle() çekmişse tekrar (2. tam kopya)
+    çekmemek için veriliyor — bkz. nitelik_ikizleri_goster (26.08.2026)."""
     import math
     saha, gk = _nitelik_vektorleri()
     havuz = gk if isim in gk else saha
     q = havuz.get(isim)
     if not q:
         return []
-    d = birlesik_scout_yukle()
+    d = _kadro if _kadro is not None else birlesik_scout_yukle()
     skorlar = []
     for aday, v in havuz.items():
         if aday == isim:
@@ -6562,10 +6566,10 @@ def nitelik_ikizleri_goster(isim: str):
     flex-grow ile en geniş/en öne çıkan kart gibi görünüyordu (Yiğit, 19.08.2026:
     "en üstte en çok benzeyen değil en az benzeyen büyük gösteriliyor"). Ayrıca
     5→3 karta düşürüldü (aynı geri bildirim)."""
-    ikizler = _nitelik_ikizleri(isim, n=3)
+    d = birlesik_scout_yukle()
+    ikizler = _nitelik_ikizleri(isim, n=3, _kadro=d)
     if not ikizler:
         return
-    d = birlesik_scout_yukle()
     st.markdown(f"##### 🧬 {t('Nitelik İkizleri', 'Attribute Twins')}")
     st.caption(t("47 boyutlu nitelik profiline göre en benzer oyuncular — 'benzer ama daha uygun' adaylar",
                  "Most similar players by 47-dimension attribute profile — 'similar but more affordable' candidates"))
@@ -7710,14 +7714,15 @@ def render_ana_lig_profil(secili):
 
         # Başlık + yanında paylaşılabilir link (Baran: üstteki boşluk kullanılsın)
         _bs1, _bs2 = st.columns([1.55, 1], gap="large")
+        _d_scout = birlesik_scout_yukle()   # 26.08.2026: tek çekim, aşağıda tekrar kullanılır (2 tam kopya -> 1)
         with _bs1:
-            _profil_baslik(secili, tam_isim=birlesik_scout_yukle().get(secili, {}).get("tam_isim", ""))
+            _profil_baslik(secili, tam_isim=_d_scout.get(secili, {}).get("tam_isim", ""))
         with _bs2:
             _profil_link_kopyala(secili, sd.get("profil_url", ""))
         _mv = sd.get("Market value", "")
         # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
         # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
-        _sc_kayit = birlesik_scout_yukle().get(secili) or _scout_norm_bul(secili) or {}
+        _sc_kayit = _d_scout.get(secili) or _scout_norm_bul(secili) or {}
         _sc_mevki = list(_sc_kayit.get("mevki") or [])
         _mevki_deger = " / ".join(_sc_mevki) if _sc_mevki else mevki_disp(sd.get("Position",""))
         # ── Künye kutuları — Baran'ın profil tasarımı (2026-08) ───────────────

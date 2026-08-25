@@ -9,6 +9,11 @@ services:
     name: womenfootball-scouting
     runtime: python
     plan: free            # uyur (ilk açılış ~40 sn). Hep-açık için: starter ($7/ay)
+    # NOT (26.08.2026): Starter da free ile AYNI 512MB RAM'e sahip — sadece uyumayı
+    # engelliyor. OOM/restart bellek sorununu Starter ÇÖZMEZ; gerçek RAM artışı
+    # yalnız Standard planında (2GB, $25/ay). Bkz. app.py'deki birlesik_scout_yukle()
+    # tekrar-çekim optimizasyonları (aynı tarih) — free/starter'da kalınacaksa
+    # bellek baskısını asıl orada azaltmak gerekiyor.
     region: frankfurt      # Türkiye'ye en yakın bölge
     branch: main
     buildCommand: "pip install -r requirements.txt"
