@@ -6049,7 +6049,7 @@ def render_scouting_detay(tam_isim):
     <div style="color:#a5b4fc;font-weight:700;font-size:1.0rem;">🎯 {t("Scouting Değerlendirmesi","Scouting Assessment")}</div>
     {_mrd_badge}
   </div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px 18px;font-size:0.88rem;">{_satirlar}</div>
 </div>""", unsafe_allow_html=True)
 
     # ── KIRMIZI ŞERİT + standart AÇ-KAPA bölümler (Baran tasarımı; TR profiliyle ortak) ──
@@ -7984,8 +7984,15 @@ def render_ana_lig_profil(secili):
                                 + _hucre(_cs_v, _cs_renk)
                                 + _hucre(_kart_v, _kart_renk)
                                 + "</div>")
-                        st.markdown(f"<div style='display:flex;gap:6px;align-items:stretch;'>{_lejant}{_kartlar}</div>",
-                                    unsafe_allow_html=True)
+                        # 26.08.2026: legend(34px) + 5 kart(min 60px) = ~364px sabit min genişlik —
+                        # mobilde (p1/p2 dikey yığılınca bile ~320px kalıyor) taşıyordu; site
+                        # genelindeki "geniş içerik yatay kaydırılsın" kuralına uydurduk (bkz.
+                        # .ws-wrap / stDataFrame overflow-x kuralları).
+                        st.markdown(
+                            "<div style='overflow-x:auto;-webkit-overflow-scrolling:touch;'>"
+                            f"<div style='display:flex;gap:6px;align-items:stretch;'>{_lejant}{_kartlar}</div>"
+                            "</div>",
+                            unsafe_allow_html=True)
                         st.caption(t("⏱ Süre · ⚽ Gol · 🛡 Clean Sheet · 🟨 Kart (oynamadıysa 0′)",
                                      "⏱ Minutes · ⚽ Goals · 🛡 Clean Sheet · 🟨 Cards (0′ if didn't play)"))
 
