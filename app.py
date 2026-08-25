@@ -13258,7 +13258,11 @@ _TRANSFER_DB = {
     ("Hücumcu Orta Saha", "Orta",   "Yerli"):      ["MELİKE DİNÇEL"],
     ("Hücumcu Orta Saha", "Orta",   "Yabancı"):    ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO", "VANESA LEVENAJ"],
     ("Hücumcu Orta Saha", "Orta",   "Farketmez"):  ["SULIAT OLAJUMOKE ABIDEEN", "RASMATA SAWADOGO"],
-    ("Hücumcu Orta Saha", "Dusuk",  "Yerli"):      ["AÇELYA NOMAK", "ALEYNA MERAL", "OLIVIA MATILDE JOHANSSON ALCAIDE"],
+    # NOT (26.08.2026): JOHANSSON ALCAIDE (İsveç) yanlışlıkla "Yerli" listesindeydi —
+    # gerçek uyruğuna göre "Yabancı"ya taşındı; bu kombinasyonda Yabancı satırı hiç
+    # yoktu (kulüp bu filtreyi seçince "öneri tanımlanmadı" görüyordu).
+    ("Hücumcu Orta Saha", "Dusuk",  "Yerli"):      ["AÇELYA NOMAK", "ALEYNA MERAL"],
+    ("Hücumcu Orta Saha", "Dusuk",  "Yabancı"):    ["OLIVIA MATILDE JOHANSSON ALCAIDE"],
     ("Hücumcu Orta Saha", "Dusuk",  "Farketmez"):  ["AÇELYA NOMAK", "ALEYNA MERAL", "OLIVIA MATILDE JOHANSSON ALCAIDE"],
 
     # ── Savunmacı Orta Saha ───────────────────────────────────────────────────
