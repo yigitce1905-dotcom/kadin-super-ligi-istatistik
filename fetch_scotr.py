@@ -1,7 +1,14 @@
 """
-'Scouting is life' Google Sheet --> 'Sco Tr' sekmesi (gid=864990475)
+'Scouting is life' Google Sheet --> 'Sco 26-27 TR' sekmesi (gid=2094311456)
 Tum lig scout raporu tablosunu ceker, temiz JSON'a donusturur:
 scotr_raporlar.json
+
+NOT (26.08.2026): Eskiden 'Sco Tr (25-26)' sekmesini (gid=864990475) okuyordu.
+Baran artik yeni sezonda 'Sco 26-27 TR' sekmesinde calisiyor; eski sekme
+donuk kaldi (Yigit: "Baran excel TR 26-27'de guncelledi, siteye yansisin").
+Eski sekmede 395 oyuncu vardi, yenisinde (bu sezonun gercek kadrolari,
+kokpit_kadrolar.json ile eslesen ~192 oyuncu) daha az ama GUNCEL -- bkz.
+_sco_2627_sync.py (ilk doldurma) ve tr2627_dunyaya_kopyala.py (Dunya'ya kopya).
 
 Parse INDEX BAZLIDIR: kolon adlari tekrarlansa bile kayma olmaz.
 Grup sinirlari header satirindaki sabit kolonlardan dinamik bulunur.
@@ -23,7 +30,7 @@ import requests
 from fetch_scout_kadro import deger_kanonlastir, hdr_kanonlastir
 
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
-GID       = "864990475"
+GID       = "2094311456"   # Sco 26-27 TR (eskisi: 864990475, Sco Tr 25-26 — artik donuk)
 CIKTI     = Path(__file__).parent / "scotr_raporlar.json"
 
 GECERLI_NOTLAR = {"AA", "AB", "BB", "BC", "CC", "CD", "DD", "DE", "EE", "FF", "A+"}

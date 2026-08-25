@@ -6256,7 +6256,7 @@
     "yas": 27,
     "boy": "1,68",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "RCB"
@@ -6790,7 +6790,7 @@
     "yas": 37,
     "boy": "",
     "ayak": "",
-    "vucut_tipi": "",
+    "vucut_tipi": "Ektomorf",
     "bolge": "",
     "mevki": [],
     "rol": "",
@@ -6828,7 +6828,7 @@
     "yas": 25,
     "boy": "",
     "ayak": "",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "",
     "mevki": [],
     "rol": "",
@@ -6866,7 +6866,7 @@
     "yas": 25,
     "boy": "1,63",
     "ayak": "Sol",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "LWF"
@@ -6943,7 +6943,7 @@
     "yas": 26,
     "boy": "1,64",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "CMF"
@@ -7020,7 +7020,7 @@
     "yas": 26,
     "boy": "1,68",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "MCB"
@@ -7121,7 +7121,7 @@
     "yas": 23,
     "boy": "1,64",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "CFW"
@@ -7514,7 +7514,7 @@
     "yas": 26,
     "boy": "1,66",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "AMF"
@@ -7718,7 +7718,7 @@
     "yas": 29,
     "boy": "1,62",
     "ayak": "Sol",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "CMF"
@@ -7797,7 +7797,7 @@
     "yas": 26,
     "boy": "1,67",
     "ayak": "Sol",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
     "mevki": [
       "LWF"
@@ -7876,7 +7876,7 @@
     "yas": 23,
     "boy": "1,70",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Endomorf",
     "bolge": "Savunma",
     "mevki": [
       "LCB"
@@ -7953,7 +7953,7 @@
     "yas": 19,
     "boy": "1,78",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "CFW"
@@ -8102,15 +8102,15 @@
     "degerlendirildi": true,
     "kulup_sd": "Sporting Casablanca"
   },
-  "Peace Olga Niyomwungere": {
-    "tam_isim": "",
+  "Peace Niyomwungere": {
+    "tam_isim": "Peace Olga Niyomwungere",
     "vatandaslik": "Burundi",
     "milli_takim": "",
-    "dogum": "20.12.2005",
-    "yas": 20,
+    "dogum": "",
+    "yas": "",
     "boy": "",
-    "ayak": "",
-    "vucut_tipi": "",
+    "ayak": "Sağ",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "",
     "mevki": [],
     "rol": "",
@@ -8174,8 +8174,7 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
-    "degerlendirildi": true,
-    "kulup_sd": "Shan United WFC"
+    "degerlendirildi": true
   },
   "Jong-sun Kim": {
     "tam_isim": "김정순",
@@ -8185,7 +8184,7 @@
     "yas": 22,
     "boy": "1,68",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Kale",
     "mevki": [
       "GK"
@@ -8291,7 +8290,7 @@
     "yas": 24,
     "boy": "1,60",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "DMF"
@@ -8398,7 +8397,7 @@
     "yas": 19,
     "boy": "1,57",
     "ayak": "Sol",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
     "mevki": [
       "RWF"
@@ -8496,7 +8495,7 @@
     "yas": 24,
     "boy": "1,59",
     "ayak": "Sol",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
     "mevki": [
       "LWF"
@@ -8599,7 +8598,7 @@
     "yas": 25,
     "boy": "1,66",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "DMF"
@@ -8703,7 +8702,7 @@
     "yas": 23,
     "boy": "1,56",
     "ayak": "Sol",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "LFB"
@@ -8804,7 +8803,7 @@
     "yas": 22,
     "boy": "1,63",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "AMF"
@@ -8907,7 +8906,7 @@
     "yas": 22,
     "boy": "1,67",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Endomorf",
     "bolge": "Savunma",
     "mevki": [
       "RFB"
@@ -9009,7 +9008,7 @@
     "yas": 21,
     "boy": "1,67",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "2ST"
@@ -9111,7 +9110,7 @@
     "yas": 22,
     "boy": "1,70",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "CMF"
@@ -9206,7 +9205,7 @@
     "yas": 20,
     "boy": "1,62",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "LWF"
@@ -9306,7 +9305,7 @@
     "yas": 24,
     "boy": "1,65",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "CFW"
@@ -9409,7 +9408,7 @@
     "yas": 22,
     "boy": "1,67",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "CFW"
@@ -9486,7 +9485,7 @@
     "yas": 36,
     "boy": "1,72",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "RCB"
@@ -9662,7 +9661,7 @@
     "yas": 28,
     "boy": "1,68",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
     "mevki": [
       "RWF"
@@ -9764,7 +9763,7 @@
     "yas": 30,
     "boy": "1,74",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [],
     "rol": "",
@@ -10035,7 +10034,7 @@
     "yas": 27,
     "boy": "1,73",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Kale",
     "mevki": [
       "GK"
@@ -10141,7 +10140,7 @@
     "yas": 27,
     "boy": "1,74",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
     "mevki": [
       "CFW"
@@ -10242,7 +10241,7 @@
     "yas": 27,
     "boy": "1,62",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "DMF"
@@ -10350,7 +10349,7 @@
     "yas": 29,
     "boy": "1,70",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "RCB"
@@ -10449,7 +10448,7 @@
     "yas": 27,
     "boy": "1,79",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "LCB"
@@ -10552,7 +10551,7 @@
     "yas": 26,
     "boy": "1,70",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "CFW"
@@ -10648,7 +10647,7 @@
     "yas": 27,
     "boy": "1,65",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
     "mevki": [
       "RFB"
@@ -10751,7 +10750,7 @@
     "yas": 30,
     "boy": "1,64",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Hücum",
     "mevki": [
       "LWF"
@@ -10934,7 +10933,7 @@
     "yas": 27,
     "boy": "1,70",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "CMF"
@@ -11013,7 +11012,7 @@
     "yas": 27,
     "boy": "1,65",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "AMF",
@@ -11094,7 +11093,7 @@
     "yas": 24,
     "boy": "1,65",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
     "mevki": [
       "LWF"
@@ -11242,14 +11241,14 @@
     "kulup_sd": "GKS Gieksa Katowice"
   },
   "Mafille Woedikou": {
-    "tam_isim": "",
+    "tam_isim": "Afi Apeafa \"Mafille\" Woedikou",
     "vatandaslik": "Togo",
     "milli_takim": "",
     "dogum": "15.07.1994",
     "yas": 32,
-    "boy": "",
-    "ayak": "",
-    "vucut_tipi": "",
+    "boy": "1,70",
+    "ayak": "Sağ",
+    "vucut_tipi": "Mezomorf",
     "bolge": "",
     "mevki": [],
     "rol": "",
@@ -11280,41 +11279,98 @@
     "kulup_sd": "AS Cannes"
   },
   "Astou Ngom": {
-    "tam_isim": "",
+    "tam_isim": "Astou N'gom",
     "vatandaslik": "Senegal",
     "milli_takim": "",
     "dogum": "06.03.1994",
     "yas": 32,
-    "boy": "",
-    "ayak": "",
-    "vucut_tipi": "",
-    "bolge": "",
-    "mevki": [],
-    "rol": "",
+    "boy": "1,63",
+    "ayak": "Sağ",
+    "vucut_tipi": "Mezomorf",
+    "bolge": "Hücum",
+    "mevki": [
+      "LWF",
+      "RWF",
+      "RWB"
+    ],
+    "rol": "İçe Kat Eden Kanat",
     "kulup": "AS Cherbourg",
     "lig": "🇫🇷 3e Ligue",
-    "deger": "",
-    "sozlesme": "",
-    "beceri": {},
-    "beseri": {},
-    "fiziki": {},
-    "sahsi": {},
+    "deger": "€5.000",
+    "sozlesme": "30.06.2026",
+    "beceri": {
+      "Bitiricilik": "CC",
+      "Top Tekniği": "CC",
+      "Penaltı Vuruşu": "DD",
+      "Markaj": "CD",
+      "Top Kapma": "DE",
+      "Uzun Taç": "DD",
+      "Duran Top": "DE",
+      "İlk Kontrol": "CC",
+      "Kafa Vuruşu": "DE",
+      "Orta Yapma": "DD",
+      "Kısa Pas": "CD",
+      "Uzun Pas": "CD",
+      "Top Sürme": "BC",
+      "Uzaktan Şut": "DD"
+    },
+    "beseri": {
+      "Agresiflik": "CC",
+      "Cesaret": "DD",
+      "Karar Alma": "CD",
+      "Kararlılık": "CC",
+      "Konsantrasyon": "CC",
+      "Liderlik": "CD",
+      "Önsezi": "DD",
+      "Konumlanma": "DD",
+      "Soğukkanlılık": "DE",
+      "Takım Oyunu": "DD",
+      "Topsuz Alan": "BC",
+      "Görüş": "DD"
+    },
+    "fiziki": {
+      "Çeviklik": "BC",
+      "Dayanıklılık": "BC",
+      "Denge": "CC",
+      "Güç": "DD",
+      "Sürat": "CD",
+      "Hızlanma": "BB",
+      "Koordinasyon": "BC",
+      "Zindelik": "BC",
+      "Zıplama": "CC",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "BC",
+      "Sportmenlik": "DD",
+      "Profesyonellik": "DE",
+      "Sadakat": "CD",
+      "Baskıya Dayanıklılık": "CC",
+      "Uyumluluk": "BC",
+      "Süreklilik": "CC",
+      "Çalışkanlık": "CD"
+    },
     "kaleci": {},
     "makro": {
-      "beceri": "",
-      "beseri": "",
-      "fiziki": "",
-      "sahsi": "",
+      "beceri": "CD",
+      "beseri": "CD",
+      "fiziki": "CC",
+      "sahsi": "CC",
       "kaleci": ""
     },
-    "tarz": [],
-    "nihai": "FF",
-    "ivme": "",
-    "yetenek_kumesi": "",
+    "tarz": [
+      "Kanattan Bindirme Yapar",
+      "Başarılıı Plase veya Kavisli Şut/Orta Dener",
+      "Alanına Hakim Bir Liderdir",
+      "Yüksek Tempolu Oynar"
+    ],
+    "nihai": "CC",
+    "ivme": "⬊",
+    "yetenek_kumesi": "🩹 Yedek",
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Intentioned",
     "scout_notu": "",
-    "degerlendirildi": false,
+    "degerlendirildi": true,
     "kulup_sd": "AS Cherbourg"
   },
   "Astou Sy": {
@@ -18981,7 +19037,7 @@
     "vatandaslik": "Senegal",
     "milli_takim": "",
     "dogum": "26.08.2003",
-    "yas": 22,
+    "yas": 23,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
@@ -39044,7 +39100,7 @@
     "vatandaslik": "Brazil",
     "milli_takim": "",
     "dogum": "26.08.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,85",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Endomorf",
@@ -56486,7 +56542,7 @@
     "vatandaslik": "PR China",
     "milli_takim": "",
     "dogum": "26.08.1996",
-    "yas": 29,
+    "yas": 30,
     "boy": "1,68",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -59106,7 +59162,7 @@
     "vatandaslik": "The Netherlands",
     "milli_takim": "Spain",
     "dogum": "26.08.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,77",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -62911,7 +62967,7 @@
       "Çeviklik": "BB",
       "Dayanıklılık": "AA",
       "Denge": "AA",
-      "Güç": "A+",
+      "Güç": "BC",
       "Sürat": "AB",
       "Hızlanma": "AA",
       "Koordinasyon": "BB",
@@ -62933,12 +62989,12 @@
     "makro": {
       "beceri": "BC",
       "beseri": "AB",
-      "fiziki": "AA",
+      "fiziki": "AB",
       "sahsi": "AA",
       "kaleci": ""
     },
     "tarz": [],
-    "nihai": "AA",
+    "nihai": "AB",
     "ivme": "",
     "yetenek_kumesi": "",
     "iktisadi_durum": "Yüksek",
@@ -85479,7 +85535,7 @@
     "vatandaslik": "",
     "milli_takim": "",
     "dogum": "26.08.2003",
-    "yas": 22,
+    "yas": 23,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
@@ -86935,7 +86991,7 @@
     "vatandaslik": "PR China",
     "milli_takim": "",
     "dogum": "26.08.1996",
-    "yas": 29,
+    "yas": 30,
     "boy": "1,66",
     "ayak": "Sağ",
     "vucut_tipi": "",
