@@ -272,7 +272,7 @@
       "RCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "1. FC Nürnberg",
+    "kulup": "1. FC Nuremberg",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -354,7 +354,7 @@
       "CMF"
     ],
     "rol": "Oyun Kurucu Kanat",
-    "kulup": "1. FC Nürnberg",
+    "kulup": "1. FC Nuremberg",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "",
@@ -618,7 +618,7 @@
       "LWF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "University of Johannesburg",
+    "kulup": "Serbest",
     "lig": "🇿🇦 Super League",
     "deger": "€5.000",
     "sozlesme": "31.12.2026",
@@ -1333,7 +1333,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "1207 Antalya KFK",
+    "kulup": "1207 Antalyaspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€0",
     "sozlesme": "",
@@ -1437,7 +1437,7 @@
       "DMF"
     ],
     "rol": "Savaşçı",
-    "kulup": "1207 Antalya KFK",
+    "kulup": "1207 Antalyaspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -1525,7 +1525,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "1207 Antalya KFK",
+    "kulup": "1207 Antalyaspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€0",
     "sozlesme": "",
@@ -1703,7 +1703,7 @@
       "RWF"
     ],
     "rol": "Savunmacı Bek",
-    "kulup": "1207 Antalya KFK",
+    "kulup": "1207 Antalyaspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -1791,7 +1791,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "1207 Antalya KFK",
+    "kulup": "1207 Antalyaspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€0",
     "sozlesme": "30.06.2027",
@@ -2518,7 +2518,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Fofila PF",
+    "kulup": "Fofila",
     "lig": "🇧🇮 Ligue A",
     "deger": "€2.500",
     "sozlesme": "30.06.2026",
@@ -2777,7 +2777,7 @@
     "bolge": "Hücum",
     "mevki": [],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
     "sozlesme": "30.06.2028",
@@ -2875,7 +2875,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€90.000",
     "sozlesme": "30.06.2028",
@@ -3104,7 +3104,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
     "sozlesme": "30.06.2028",
@@ -3258,7 +3258,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
     "sozlesme": "30.06.2028",
@@ -3337,7 +3337,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
     "sozlesme": "30.06.2029",
@@ -3470,7 +3470,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "AFC Ajax",
+    "kulup": "Ajax Amsterdam",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€85.000",
     "sozlesme": "30.06.2029",
@@ -3549,7 +3549,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "AFC Ajax",
+    "kulup": "Ajax Amsterdam",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -3668,7 +3668,7 @@
       "2ST"
     ],
     "rol": "Eski Tip #10",
-    "kulup": "WFC Minsk",
+    "kulup": "FK Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "",
     "sozlesme": "",
@@ -4125,7 +4125,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "FC Ebolowa Filles",
+    "kulup": "FC Ebolowa",
     "lig": "🇨🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -4275,7 +4275,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Stade de Reims",
+    "kulup": "Stade Rennais F.C.",
     "lig": "🇫🇷 2e Ligue",
     "deger": "",
     "sozlesme": "",
@@ -4600,7 +4600,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al Ain FC",
+    "kulup": "Al Ain",
     "lig": "🇦🇪 Pro League",
     "deger": "",
     "sozlesme": "",
@@ -4641,7 +4641,7 @@
       "CFW"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "Al-Amal",
+    "kulup": "Al Amal FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
@@ -4735,7 +4735,7 @@
       "2ndST"
     ],
     "rol": "Sahte #9",
-    "kulup": "Al-Hilal",
+    "kulup": "Al Hilal FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€150.000",
     "sozlesme": "30.06.2026",
@@ -4830,7 +4830,7 @@
       "AMF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Ghana Police FC",
+    "kulup": "Police Ladies",
     "lig": "🇬🇭 Premier League",
     "deger": "",
     "sozlesme": "",
@@ -5059,7 +5059,7 @@
       "LWB"
     ],
     "rol": "Komple Stoper",
-    "kulup": "Al-Ittihad",
+    "kulup": "Al-Ittihad FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€65.000",
     "sozlesme": "30.06.2026",
@@ -5156,7 +5156,7 @@
       "CFW"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Al-Ittihad",
+    "kulup": "Al-Ittihad FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€30.000",
     "sozlesme": "30.06.2026",
@@ -5250,7 +5250,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "Al-Ittihad",
+    "kulup": "Al-Ittihad FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -5349,7 +5349,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Al-Qadsiah",
+    "kulup": "Al-Qadsiah FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€250.000",
     "sozlesme": "30.06.2027",
@@ -5450,7 +5450,7 @@
       "2ST"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "ETO FC Győr",
+    "kulup": "Győri ETO FC",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
     "sozlesme": "",
@@ -5528,7 +5528,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "ETO FC Győr",
+    "kulup": "Győri ETO FC",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
     "sozlesme": "",
@@ -5686,7 +5686,7 @@
       "LCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Al-Taraji",
+    "kulup": "Al-Taraji Club",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
@@ -6185,7 +6185,7 @@
       "LWB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "US Sassuolo",
+    "kulup": "US Sassuolo Calcio",
     "lig": "🇮🇹 Serie A",
     "deger": "",
     "sozlesme": "31.12.2025",
@@ -6262,7 +6262,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Gyeongju KHNP WFC",
+    "kulup": "Gyeongju Korea Hydro & Nuclear Power WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€60.000",
     "sozlesme": "31.12.2026",
@@ -6341,7 +6341,7 @@
       "CMF"
     ],
     "rol": "Oyun Kurucu Kanat",
-    "kulup": "Amed SF",
+    "kulup": "Amed Sportif FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€20.000",
     "sozlesme": "30.06.2027",
@@ -6436,7 +6436,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Amed SF",
+    "kulup": "Amed Sportif FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€15.000",
     "sozlesme": "30.06.2027",
@@ -6528,7 +6528,7 @@
       "AMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Amed SF",
+    "kulup": "Amed Sportif FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€0",
     "sozlesme": "",
@@ -6619,7 +6619,7 @@
       "CMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Amed SF",
+    "kulup": "Amed Sportif FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -6708,7 +6708,7 @@
       "DMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Amed SF",
+    "kulup": "Amed Sportif FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€0",
     "sozlesme": "",
@@ -6949,7 +6949,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Incheon Hyundai Steel Red Angels WFC",
+    "kulup": "Hyundai Steel Red Angels WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€75.000",
     "sozlesme": "31.12.2026",
@@ -7026,7 +7026,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Amnokgang SC",
+    "kulup": "Amrokgang",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -7127,7 +7127,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Amnokgang SC",
+    "kulup": "Amrokgang",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -7231,7 +7231,7 @@
       "LWF"
     ],
     "rol": "Mezzala",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
     "sozlesme": "31.12.2029",
@@ -7330,7 +7330,7 @@
       "RWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
     "sozlesme": "31.12.2029",
@@ -7427,7 +7427,7 @@
       "RFB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€175.000",
     "sozlesme": "31.12.2028",
@@ -7520,7 +7520,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€65.000",
     "sozlesme": "31.12.2028",
@@ -7617,7 +7617,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -7724,7 +7724,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€150.000",
     "sozlesme": "31.12.2029",
@@ -7803,7 +7803,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€120.000",
     "sozlesme": "31.12.2027",
@@ -7882,7 +7882,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Seoul City WFC",
+    "kulup": "Seoul City Amazones",
     "lig": "🇰🇷 WK리그",
     "deger": "€50.000",
     "sozlesme": "31.12.2026",
@@ -7959,7 +7959,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Angel City FC",
+    "kulup": "Feyenoord Rotterdam",
     "lig": "🇺🇸 NWSL",
     "deger": "€140.000",
     "sozlesme": "31.12.2028",
@@ -8039,7 +8039,7 @@
       "CMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "SC Casablanca",
+    "kulup": "Sporting Casablanca",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "",
     "sozlesme": "",
@@ -8190,7 +8190,7 @@
       "GK"
     ],
     "rol": "Libero Kaleci",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8296,7 +8296,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8403,7 +8403,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8501,7 +8501,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8604,7 +8604,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8708,7 +8708,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8809,7 +8809,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -8912,7 +8912,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -9014,7 +9014,7 @@
       "2ST"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -9116,7 +9116,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -9211,7 +9211,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -9311,7 +9311,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "April 25 SC",
+    "kulup": "April 25",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -9491,7 +9491,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Arna-Bjørnar Fotball",
+    "kulup": "Arna-Bjørnar",
     "lig": "🇳🇴 1. Divisjon",
     "deger": "€45.000",
     "sozlesme": "31.12.2027",
@@ -11177,7 +11177,7 @@
       "LCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "GKS Katowice",
+    "kulup": "GKS Gieksa Katowice",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
     "sozlesme": "",
@@ -11465,7 +11465,7 @@
       "LWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€55.000",
     "sozlesme": "30.06.2026",
@@ -11560,7 +11560,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€45.000",
     "sozlesme": "30.06.2026",
@@ -11670,7 +11670,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Monte Real",
+    "kulup": "Monte Real Football Academy",
     "lig": "🇵🇹 Nacional II Divisão",
     "deger": "",
     "sozlesme": "",
@@ -11748,7 +11748,7 @@
       "AMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -11842,7 +11842,7 @@
       "RCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€30.000",
     "sozlesme": "30.06.2026",
@@ -11935,7 +11935,7 @@
       "RCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -12028,7 +12028,7 @@
       "AMF"
     ],
     "rol": "Mezzala",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€20.000",
     "sozlesme": "30.06.2026",
@@ -12122,7 +12122,7 @@
       "DMF"
     ],
     "rol": "Volante",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€20.000",
     "sozlesme": "30.06.2026",
@@ -12215,7 +12215,7 @@
       "RWF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€30.000",
     "sozlesme": "30.06.2026",
@@ -12311,7 +12311,7 @@
       "RCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€15.000",
     "sozlesme": "30.06.2026",
@@ -12401,7 +12401,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al-Hilal",
+    "kulup": "Al Hilal FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
@@ -12479,7 +12479,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€350.000",
     "sozlesme": "30.06.2028",
@@ -12558,7 +12558,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€180.000",
     "sozlesme": "30.06.2029",
@@ -12639,7 +12639,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -12808,7 +12808,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€175.000",
     "sozlesme": "30.06.2029",
@@ -12887,7 +12887,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
     "sozlesme": "30.06.2028",
@@ -12966,7 +12966,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€80.000",
     "sozlesme": "30.06.2029",
@@ -13046,7 +13046,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -13163,7 +13163,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "ASF Bouhajla",
+    "kulup": "ASF Bouhajlaَ",
     "lig": "🇹🇳 البطولة",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -13888,7 +13888,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€475.000",
     "sozlesme": "30.06.2027",
@@ -13985,7 +13985,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€175.000",
     "sozlesme": "30.06.2028",
@@ -14073,7 +14073,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€150.000",
     "sozlesme": "30.06.2026",
@@ -14247,7 +14247,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€160.000",
     "sozlesme": "31.12.2027",
@@ -14326,7 +14326,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€150.000",
     "sozlesme": "30.06.2027",
@@ -14405,7 +14405,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
     "sozlesme": "30.06.2026",
@@ -14789,7 +14789,7 @@
       "AMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Athlone Town",
+    "kulup": "Athlone Town A.F.C. Ladies",
     "lig": "🇮🇪 Premier Division",
     "deger": "",
     "sozlesme": "30.11.2026",
@@ -14881,7 +14881,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Atlético de Madrid",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€300.000",
     "sozlesme": "30.06.2027",
@@ -14981,7 +14981,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Atlético de Madrid",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€160.000",
     "sozlesme": "30.06.2027",
@@ -15080,7 +15080,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Atlético de Madrid",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€140.000",
     "sozlesme": "30.06.2027",
@@ -15185,7 +15185,7 @@
       "RFB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Atlético de Madrid",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -15262,7 +15262,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Yanga Princess",
+    "kulup": "Younga Princess",
     "lig": "🇹🇿 Premier League",
     "deger": "",
     "sozlesme": "",
@@ -15340,7 +15340,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Atlético de Madrid",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€110.000",
     "sozlesme": "30.06.2028",
@@ -15642,7 +15642,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "TS Galaxy Queens FC",
+    "kulup": "TS Galaxy Ladies Football Club",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "",
@@ -15720,7 +15720,7 @@
       "AMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Bay FC",
+    "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€225.000",
     "sozlesme": "31.12.2030",
@@ -15815,7 +15815,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Bay FC",
+    "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€140.000",
     "sozlesme": "31.08.2026",
@@ -15894,7 +15894,7 @@
       "GK"
     ],
     "rol": "Libero Kaleci",
-    "kulup": "Bay FC",
+    "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€45.000",
     "sozlesme": "31.12.2027",
@@ -16003,7 +16003,7 @@
       "CMF"
     ],
     "rol": "Mezzala",
-    "kulup": "Bay FC",
+    "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -16160,7 +16160,7 @@
       "RFB"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "Bay FC",
+    "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -16344,7 +16344,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Bayer 04 Leverkusen",
+    "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€120.000",
     "sozlesme": "30.06.2027",
@@ -16439,7 +16439,7 @@
       "2ST"
     ],
     "rol": "Eski Tip #10",
-    "kulup": "Bayer 04 Leverkusen",
+    "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -16531,7 +16531,7 @@
       "LFB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Bayer 04 Leverkusen",
+    "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -16623,7 +16623,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Bayer 04 Leverkusen",
+    "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€225.000",
     "sozlesme": "30.06.2027",
@@ -16704,7 +16704,7 @@
       "LCB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Bayer 04 Leverkusen",
+    "kulup": "Bayer Leverkusen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€10.000",
     "sozlesme": "30.06.2029",
@@ -16893,7 +16893,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "BDF XI",
+    "kulup": "Botswana Defence Force",
     "lig": "🇧🇼 National League",
     "deger": "",
     "sozlesme": "",
@@ -16983,7 +16983,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "ZISD Women",
+    "kulup": "ZISD Queens FC",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -17061,7 +17061,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Beijing Women",
+    "kulup": "Beijing BG Phoenix Football Club",
     "lig": "🇨🇳 超级联赛",
     "deger": "€110.000",
     "sozlesme": "31.12.2026",
@@ -17217,7 +17217,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€160.000",
     "sozlesme": "30.06.2029",
@@ -18013,7 +18013,7 @@
       "RCB"
     ],
     "rol": "Çapa",
-    "kulup": "BIIK-Schymkent",
+    "kulup": "BIIK Kazygurt",
     "lig": "🇰🇿 Химия",
     "deger": "",
     "sozlesme": "",
@@ -18053,7 +18053,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Birmingham City",
+    "kulup": "Birmingham City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€160.000",
     "sozlesme": "30.06.2029",
@@ -18133,7 +18133,7 @@
       "CMF"
     ],
     "rol": "Çapa",
-    "kulup": "BK Häcken FF",
+    "kulup": "BK Häcken",
     "lig": "🇸🇪 Elitettan",
     "deger": "€55.000",
     "sozlesme": "30.06.2026",
@@ -18225,7 +18225,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "BK Häcken FF",
+    "kulup": "BK Häcken",
     "lig": "🇸🇪 Elitettan",
     "deger": "€75.000",
     "sozlesme": "30.06.2026",
@@ -18407,7 +18407,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "BK Häcken FF",
+    "kulup": "BK Häcken",
     "lig": "🇸🇪 Elitettan",
     "deger": "€80.000",
     "sozlesme": "30.06.2027",
@@ -18689,7 +18689,7 @@
       "LFB"
     ],
     "rol": "Komple #9",
-    "kulup": "Boston Legacy FC",
+    "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "€90.000",
     "sozlesme": "31.12.2029",
@@ -18783,7 +18783,7 @@
       "CFW"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "Boston Legacy FC",
+    "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "€400.000",
     "sozlesme": "31.12.2029",
@@ -18888,7 +18888,7 @@
       "CMF"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Boston Legacy FC",
+    "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2029",
@@ -18967,7 +18967,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Boston Legacy FC",
+    "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "€45.000",
     "sozlesme": "31.12.2027",
@@ -19122,7 +19122,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Boston Legacy FC",
+    "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -19313,7 +19313,7 @@
       "RWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "Bradford City",
+    "kulup": "Bradford City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 3",
     "deger": "€5.000",
     "sozlesme": "30.06.2026",
@@ -19551,7 +19551,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Breiðablik Kópavogur",
+    "kulup": "Breidablik",
     "lig": "🇮🇸 Besta deild",
     "deger": "€45.000",
     "sozlesme": "31.12.2026",
@@ -19706,7 +19706,7 @@
       "LWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Brighton & Hove Albion",
+    "kulup": "Brighton & Hove Albion WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€95.000",
     "sozlesme": "30.06.2026",
@@ -19797,7 +19797,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Brighton & Hove Albion",
+    "kulup": "Brighton & Hove Albion WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€95.000",
     "sozlesme": "30.06.2026",
@@ -19951,7 +19951,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "Brighton & Hove Albion",
+    "kulup": "Brighton & Hove Albion WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€85.000",
     "sozlesme": "30.06.2026",
@@ -20060,7 +20060,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Brighton & Hove Albion",
+    "kulup": "Brighton & Hove Albion WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€170.000",
     "sozlesme": "30.06.2026",
@@ -20141,7 +20141,7 @@
       "LFB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "Bristol City",
+    "kulup": "Bristol Rovers",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€140.000",
     "sozlesme": "30.06.2029",
@@ -20493,7 +20493,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "BSC YB Frauen",
+    "kulup": "BSC Young Boys",
     "lig": "🇨🇭 Super League",
     "deger": "€60.000",
     "sozlesme": "30.06.2028",
@@ -20572,7 +20572,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "BSC YB Frauen",
+    "kulup": "BSC Young Boys",
     "lig": "🇨🇭 Super League",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -21055,7 +21055,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Carolina Ascent FC",
+    "kulup": "Super League Carolina",
     "lig": "🇺🇸 USL Super",
     "deger": "",
     "sozlesme": "",
@@ -21149,7 +21149,7 @@
       "RWB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Carolina Ascent FC",
+    "kulup": "Super League Carolina",
     "lig": "🇺🇸 USL Super",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -21701,7 +21701,7 @@
       "RWF"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Aris Ladies FC",
+    "kulup": "Aris Limassol",
     "lig": "🇨🇾 Πρωτάθλημα",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -21861,7 +21861,7 @@
       "MCB"
     ],
     "rol": "Komple #9",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€500.000",
     "sozlesme": "30.06.2027",
@@ -21958,7 +21958,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€150.000",
     "sozlesme": "30.06.2027",
@@ -22052,7 +22052,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€600.000",
     "sozlesme": "30.06.2027",
@@ -22149,7 +22149,7 @@
       "RCB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€800.000",
     "sozlesme": "30.06.2029",
@@ -22240,7 +22240,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€525.000",
     "sozlesme": "30.06.2030",
@@ -22337,7 +22337,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
     "sozlesme": "30.06.2030",
@@ -22433,7 +22433,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€475.000",
     "sozlesme": "30.06.2027",
@@ -22522,7 +22522,7 @@
       "2ST"
     ],
     "rol": "Oyun Kurucu Kanat",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€700.000",
     "sozlesme": "30.06.2030",
@@ -22617,7 +22617,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€700.000",
     "sozlesme": "30.06.2030",
@@ -22716,7 +22716,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€650.000",
     "sozlesme": "30.06.2029",
@@ -22820,7 +22820,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€600.000",
     "sozlesme": "30.06.2030",
@@ -22920,7 +22920,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€300.000",
     "sozlesme": "30.06.2026",
@@ -23021,7 +23021,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€240.000",
     "sozlesme": "30.06.2027",
@@ -23125,7 +23125,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€210.000",
     "sozlesme": "30.06.2028",
@@ -23231,7 +23231,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
     "sozlesme": "30.06.2028",
@@ -23320,7 +23320,7 @@
       "RWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€350.000",
     "sozlesme": "30.06.2029",
@@ -23398,7 +23398,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "MSV Duisburg",
+    "kulup": "FCR 2001 Duisburg",
     "lig": "🇩🇪 Bundesliga 2",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -23475,7 +23475,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
     "sozlesme": "30.06.2029",
@@ -23554,7 +23554,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€375.000",
     "sozlesme": "30.06.2031",
@@ -23633,7 +23633,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€95.000",
     "sozlesme": "30.06.2029",
@@ -23729,7 +23729,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Chelsea FC II",
+    "kulup": "Chelsea FC Jugend",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL U23",
     "deger": "€5.000",
     "sozlesme": "30.06.2028",
@@ -23824,7 +23824,7 @@
       "RWF"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Chicago Stars FC",
+    "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "€60.000",
     "sozlesme": "30.06.2026",
@@ -23920,7 +23920,7 @@
       "RWF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Chicago Stars FC",
+    "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "€650.000",
     "sozlesme": "31.12.2028",
@@ -24017,7 +24017,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Chicago Stars FC",
+    "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "€175.000",
     "sozlesme": "31.12.2028",
@@ -24113,7 +24113,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Chicago Stars FC",
+    "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "€150.000",
     "sozlesme": "31.12.2028",
@@ -24209,7 +24209,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Chicago Stars FC",
+    "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "€80.000",
     "sozlesme": "31.12.2028",
@@ -24304,7 +24304,7 @@
       "DMF"
     ],
     "rol": "Eski Tip #10",
-    "kulup": "Chicago Stars FC",
+    "kulup": "Chicago Red Stars",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -24487,7 +24487,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "B.93 København U19",
+    "kulup": "B93 København U18",
     "lig": "🇩🇰 U19",
     "deger": "€45.000",
     "sozlesme": "30.06.2027",
@@ -24567,7 +24567,7 @@
       "AMF"
     ],
     "rol": "Savaşçı",
-    "kulup": "KSK Lanchkhuti",
+    "kulup": "WFC Lanchkhuti",
     "lig": "🇬🇪 ქალთა ლიგა",
     "deger": "",
     "sozlesme": "",
@@ -24644,7 +24644,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Club Tijuana",
+    "kulup": "Xolos Tijuana",
     "lig": "🇲🇽 Liga MX",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -24738,7 +24738,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "AO REA",
+    "kulup": "AO PEA",
     "lig": "🇬🇷 Α΄",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -24816,7 +24816,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Club YLA",
+    "kulup": "FC Brügge",
     "lig": "🇧🇪 Super League",
     "deger": "€35.000",
     "sozlesme": "30.06.2027",
@@ -25216,7 +25216,7 @@
       "LWF"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "Budaörsi SC",
+    "kulup": "Budaörs",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
     "sozlesme": "",
@@ -25613,7 +25613,7 @@
       "LWF"
     ],
     "rol": "Raumdeuter",
-    "kulup": "Cruzeiro EC",
+    "kulup": "Cruzeiro Belo Horizonte",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "",
@@ -25776,7 +25776,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Crystal Palace",
+    "kulup": "Crystal Palace LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€30.000",
     "sozlesme": "30.06.2027",
@@ -25855,7 +25855,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Gyeongju KHNP WFC",
+    "kulup": "Gyeongju Korea Hydro & Nuclear Power WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€45.000",
     "sozlesme": "31.12.2026",
@@ -26025,7 +26025,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "CSKA Moskau",
+    "kulup": "ZSKA Moskau",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -26196,7 +26196,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Incheon Hyundai Steel Red Angels WFC",
+    "kulup": "Hyundai Steel Red Angels WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€90.000",
     "sozlesme": "31.12.2026",
@@ -26271,7 +26271,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "D’Youville Saints",
+    "kulup": "D‘Youville Saints",
     "lig": "🇺🇸 NCAA Div. II",
     "deger": "",
     "sozlesme": "",
@@ -26309,7 +26309,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "FK Gintra",
+    "kulup": "Gintra Universitetas",
     "lig": "🇱🇹 A Lyga",
     "deger": "",
     "sozlesme": "",
@@ -26387,7 +26387,7 @@
       "CMF"
     ],
     "rol": "Çapa",
-    "kulup": "ŽNK Mura",
+    "kulup": "ŽNK Mura Nona",
     "lig": "🇸🇮 Nogometna Liga",
     "deger": "",
     "sozlesme": "",
@@ -26562,7 +26562,7 @@
       "2ST"
     ],
     "rol": "Eski Tip #10",
-    "kulup": "Denver Summit FC",
+    "kulup": "Denver NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€650.000",
     "sozlesme": "31.12.2029",
@@ -26662,7 +26662,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Denver Summit FC",
+    "kulup": "Crystal Palace LFC",
     "lig": "🇺🇸 NWSL",
     "deger": "€70.000",
     "sozlesme": "31.12.2027",
@@ -26771,7 +26771,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Denver Summit FC",
+    "kulup": "Denver NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€100.000",
     "sozlesme": "31.12.2028",
@@ -26868,7 +26868,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Denver Summit FC",
+    "kulup": "Denver NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€175.000",
     "sozlesme": "31.12.2027",
@@ -26965,7 +26965,7 @@
       "RCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Denver Summit FC",
+    "kulup": "Denver NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -27484,7 +27484,7 @@
       "DMF"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Duquesne Dukes",
+    "kulup": "Duquesne University Dukes",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
     "sozlesme": "",
@@ -27579,7 +27579,7 @@
       "2ST"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Durham Women FC",
+    "kulup": "Durham City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -27749,7 +27749,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Red Arrows",
+    "kulup": "Red Arrows FC",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -27843,7 +27843,7 @@
       "LWB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Edo Queens",
+    "kulup": "Sunshine Queens",
     "lig": "🇳🇬 NWFL Premier",
     "deger": "€6.000",
     "sozlesme": "30.06.2026",
@@ -28660,7 +28660,7 @@
       "2ST"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Eintracht Frankfurt II",
+    "kulup": "Eintracht Frankfurt U17",
     "lig": "🇩🇪 Bundesliga 2",
     "deger": "€15.000",
     "sozlesme": "30.06.2027",
@@ -29607,7 +29607,7 @@
       "DMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Everton FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -29687,7 +29687,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Everton FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -29766,7 +29766,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Everton FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€65.000",
     "sozlesme": "30.06.2026",
@@ -29845,7 +29845,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Everton FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€55.000",
     "sozlesme": "30.06.2027",
@@ -29999,7 +29999,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Everton FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€30.000",
     "sozlesme": "30.06.2026",
@@ -30080,7 +30080,7 @@
       "LCB"
     ],
     "rol": "Volante",
-    "kulup": "Excelsior Rotterdam",
+    "kulup": "SBV Excelsior Beloften",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -30175,7 +30175,7 @@
       "MCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Excelsior Rotterdam",
+    "kulup": "SBV Excelsior Beloften",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€5.000",
     "sozlesme": "30.06.2026",
@@ -30358,7 +30358,7 @@
       "LWB"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€550.000",
     "sozlesme": "30.06.2027",
@@ -30446,7 +30446,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€180.000",
     "sozlesme": "30.06.2027",
@@ -30549,7 +30549,7 @@
       "GK"
     ],
     "rol": "Libero Kaleci",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€300.000",
     "sozlesme": "30.06.2029",
@@ -30656,7 +30656,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€650.000",
     "sozlesme": "30.06.2028",
@@ -30757,7 +30757,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€850.000",
     "sozlesme": "30.06.2028",
@@ -30858,7 +30858,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€550.000",
     "sozlesme": "30.06.2027",
@@ -30963,7 +30963,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€350.000",
     "sozlesme": "30.06.2029",
@@ -31066,7 +31066,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€250.000",
     "sozlesme": "30.06.2028",
@@ -31167,7 +31167,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€750.000",
     "sozlesme": "30.06.2028",
@@ -31247,7 +31247,7 @@
       "CFW"
     ],
     "rol": "Sahte #9",
-    "kulup": "USV Neulengbach",
+    "kulup": "SV Neulengbach",
     "lig": "🇦🇹 Bundesliga",
     "deger": "",
     "sozlesme": "",
@@ -31315,7 +31315,7 @@
     "vatandaslik": "Switzerland",
     "milli_takim": "Senegal",
     "dogum": "27.08.1994",
-    "yas": 31,
+    "yas": 32,
     "boy": "1,78",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -31324,7 +31324,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "FC Basel 1893",
+    "kulup": "FC Basel",
     "lig": "🇨🇭 Super League",
     "deger": "€85.000",
     "sozlesme": "30.06.2027",
@@ -31592,7 +31592,7 @@
       "LFB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€350.000",
     "sozlesme": "30.06.2028",
@@ -31687,7 +31687,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€190.000",
     "sozlesme": "30.06.2028",
@@ -31784,7 +31784,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€70.000",
     "sozlesme": "30.06.2029",
@@ -31887,7 +31887,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€1.100.000",
     "sozlesme": "30.06.2027",
@@ -31987,7 +31987,7 @@
       "2ST"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€400.000",
     "sozlesme": "30.06.2027",
@@ -32086,7 +32086,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€385.000",
     "sozlesme": "30.06.2027",
@@ -32185,7 +32185,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€155.000",
     "sozlesme": "30.06.2027",
@@ -32290,7 +32290,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "Grêmio FBPA",
+    "kulup": "Gremio",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "",
@@ -32367,7 +32367,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€450.000",
     "sozlesme": "30.06.2028",
@@ -32446,7 +32446,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€275.000",
     "sozlesme": "30.06.2028",
@@ -32527,7 +32527,7 @@
       "LWF"
     ],
     "rol": "Komple #9",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2029",
@@ -32608,7 +32608,7 @@
       "2ST"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Santos FC",
+    "kulup": "FC Santos",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "",
@@ -32685,7 +32685,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€450.000",
     "sozlesme": "30.06.2029",
@@ -32765,7 +32765,7 @@
       "2ST"
     ],
     "rol": "Sahte #9",
-    "kulup": "FC Como Women",
+    "kulup": "SSD Riozzese Como",
     "lig": "🇮🇹 Serie A",
     "deger": "€70.000",
     "sozlesme": "30.06.2028",
@@ -32965,7 +32965,7 @@
       "2ST"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Grasshopper Club Zürich",
+    "kulup": "Grasshoppers Zürich",
     "lig": "🇨🇭 Super League",
     "deger": "",
     "sozlesme": "",
@@ -33043,7 +33043,7 @@
       "LWB"
     ],
     "rol": "",
-    "kulup": "Beijing Women",
+    "kulup": "Beijing BG Phoenix Football Club",
     "lig": "🇨🇳 超级联赛",
     "deger": "€25.000",
     "sozlesme": "31.12.2026",
@@ -33121,7 +33121,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "FC Fleury 91",
+    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
     "sozlesme": "30.06.2028",
@@ -33218,7 +33218,7 @@
       "MCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "FC Fleury 91",
+    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€50.000",
     "sozlesme": "30.06.2026",
@@ -33311,7 +33311,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "FC Fleury 91",
+    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
     "sozlesme": "30.06.2027",
@@ -33417,7 +33417,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "FC Fleury 91",
+    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -33626,7 +33626,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Henan FC",
+    "kulup": "Henan Huishang Women",
     "lig": "🇨🇳 超级联赛",
     "deger": "€35.000",
     "sozlesme": "31.12.2026",
@@ -33779,7 +33779,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Shaanxi Zhidan",
+    "kulup": "Shaanxi Baorong",
     "lig": "🇨🇳 超级联赛",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -33949,7 +33949,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "FC Nasaf Qarshi",
+    "kulup": "PFC Sevinch Karshi",
     "lig": "🇺🇿 Super Chempionati",
     "deger": "",
     "sozlesme": "",
@@ -33987,7 +33987,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Sichuan",
+    "kulup": "Sichuan FC",
     "lig": "🇨🇳 超级联赛",
     "deger": "",
     "sozlesme": "",
@@ -34160,7 +34160,7 @@
       "RWF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "FC Rapperswil-Jona",
+    "kulup": "FC Rapperswil/Jona",
     "lig": "🇨🇭 Super League",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -34257,7 +34257,7 @@
       "LWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "FC Rosengård",
+    "kulup": "LdB FC Malmö",
     "lig": "🇳🇴 Toppserien",
     "deger": "€85.000",
     "sozlesme": "31.12.2026",
@@ -34338,7 +34338,7 @@
       "RWF"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "FC Rosengård",
+    "kulup": "LdB FC Malmö",
     "lig": "🇳🇴 Toppserien",
     "deger": "€35.000",
     "sozlesme": "30.06.2026",
@@ -34434,7 +34434,7 @@
       "LCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "FC Rosengård",
+    "kulup": "LdB FC Malmö",
     "lig": "🇳🇴 Toppserien",
     "deger": "€30.000",
     "sozlesme": "31.12.2026",
@@ -34524,7 +34524,7 @@
       "RWB"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "FC Rosengård",
+    "kulup": "LdB FC Malmö",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -34619,7 +34619,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Wuhan Jiangda",
+    "kulup": "Wuhan Jiangda University",
     "lig": "🇨🇳 超级联赛",
     "deger": "€35.000",
     "sozlesme": "31.12.2026",
@@ -35736,7 +35736,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "Fenerbahçe SK",
+    "kulup": "Fenerbahçe Jugend",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€0",
     "sozlesme": "30.06.2028",
@@ -35841,7 +35841,7 @@
       "CFW"
     ],
     "rol": "Sahte #9",
-    "kulup": "Ferencvárosi TC",
+    "kulup": "Ferencváros Budapest",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
     "sozlesme": "",
@@ -35936,7 +35936,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Ferroviária",
+    "kulup": "Ferroviaria",
     "lig": "🇧🇷 Série B1",
     "deger": "€10.000",
     "sozlesme": "31.12.2026",
@@ -36122,7 +36122,7 @@
       "RFB"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "FH Hafnarfjörður",
+    "kulup": "FH Hafnarfjördur",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
     "sozlesme": "",
@@ -36538,7 +36538,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Fofila PF",
+    "kulup": "Fofila",
     "lig": "🇧🇮 Ligue A",
     "deger": "",
     "sozlesme": "",
@@ -36576,7 +36576,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Fofila PF",
+    "kulup": "Fofila",
     "lig": "🇧🇮 Ligue A",
     "deger": "",
     "sozlesme": "",
@@ -36614,7 +36614,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Fofila PF",
+    "kulup": "Fofila",
     "lig": "🇧🇮 Ligue A",
     "deger": "",
     "sozlesme": "",
@@ -36652,7 +36652,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Fofila PF",
+    "kulup": "Fofila",
     "lig": "🇧🇮 Ligue A",
     "deger": "",
     "sozlesme": "",
@@ -36694,7 +36694,7 @@
       "RFB"
     ],
     "rol": "Savaşçı",
-    "kulup": "ETO FC Győr",
+    "kulup": "Győri ETO FC",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
     "sozlesme": "",
@@ -37059,7 +37059,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Fujian Quanzhou Nan'an",
+    "kulup": "Fujian",
     "lig": "🇨🇳 超级联赛",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -38059,7 +38059,7 @@
       "LWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -38154,7 +38154,7 @@
       "MCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Galatasaray SK",
+    "kulup": "Serbest",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€10.000",
     "sozlesme": "30.06.2027",
@@ -38247,7 +38247,7 @@
       "RWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -38348,7 +38348,7 @@
       "LFB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€15.000",
     "sozlesme": "30.06.2028",
@@ -38437,7 +38437,7 @@
       "RWF"
     ],
     "rol": "Raumdeuter",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€50.000",
     "sozlesme": "30.06.2028",
@@ -38536,7 +38536,7 @@
       "CMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€60.000",
     "sozlesme": "30.06.2028",
@@ -38632,7 +38632,7 @@
       "RCB"
     ],
     "rol": "Volante",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€30.000",
     "sozlesme": "30.06.2028",
@@ -38729,7 +38729,7 @@
       "RCB"
     ],
     "rol": "Komple Stoper",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€30.000",
     "sozlesme": "30.06.2028",
@@ -38822,7 +38822,7 @@
       "RWF"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -38922,7 +38922,7 @@
       "AMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2027",
@@ -39017,7 +39017,7 @@
       "LWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -39109,7 +39109,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "Galatasaray SK",
+    "kulup": "Galatasaray",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -39199,7 +39199,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "San Marino Academy",
+    "kulup": "Serbest",
     "lig": "🇮🇹 Serie B",
     "deger": "",
     "sozlesme": "",
@@ -39353,7 +39353,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Gazelle FC",
+    "kulup": "Gazelles",
     "lig": "🇹🇩 Ligue Nationale",
     "deger": "",
     "sozlesme": "",
@@ -39507,7 +39507,7 @@
       "AMF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Giresun Sanayi SK",
+    "kulup": "Giresun Sanayispor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -39602,7 +39602,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Gyeongju KHNP WFC",
+    "kulup": "Gyeongju Korea Hydro & Nuclear Power WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€95.000",
     "sozlesme": "31.12.2026",
@@ -39679,7 +39679,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Sejong Sportstoto WFC",
+    "kulup": "Gumi Sportstoto WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€50.000",
     "sozlesme": "31.12.2026",
@@ -39772,7 +39772,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Seoul City WFC",
+    "kulup": "Seoul City Amazones",
     "lig": "🇰🇷 WK리그",
     "deger": "€55.000",
     "sozlesme": "31.12.2026",
@@ -39865,7 +39865,7 @@
       "CMF"
     ],
     "rol": "Mezzala",
-    "kulup": "FK Gintra",
+    "kulup": "Gintra Universitetas",
     "lig": "🇱🇹 A Lyga",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -39942,7 +39942,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€140.000",
     "sozlesme": "31.12.2026",
@@ -40052,7 +40052,7 @@
       "LFB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€130.000",
     "sozlesme": "31.12.2027",
@@ -40148,7 +40148,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€250.000",
     "sozlesme": "31.12.2026",
@@ -40250,7 +40250,7 @@
       "2ST"
     ],
     "rol": "Mezzala",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€350.000",
     "sozlesme": "31.12.2029",
@@ -40347,7 +40347,7 @@
       "DMF"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€125.000",
     "sozlesme": "31.12.2028",
@@ -40443,7 +40443,7 @@
       "CMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€250.000",
     "sozlesme": "31.12.2026",
@@ -40542,7 +40542,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€600.000",
     "sozlesme": "31.12.2030",
@@ -40697,7 +40697,7 @@
       "CFW"
     ],
     "rol": "Komple #9",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -40791,7 +40791,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -41022,7 +41022,7 @@
       "2ST"
     ],
     "rol": "Oyun Kurucu Kanat",
-    "kulup": "ŽFK Ljuboten",
+    "kulup": "Kayseri Kadin FK",
     "lig": "🇲🇰 1. лига",
     "deger": "",
     "sozlesme": "",
@@ -41101,7 +41101,7 @@
       "2ST"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Club Santos Laguna",
+    "kulup": "Laguna",
     "lig": "🇲🇽 Liga MX",
     "deger": "€20.000",
     "sozlesme": "30.06.2027",
@@ -41268,7 +41268,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Club Santos Laguna",
+    "kulup": "Laguna",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
     "sozlesme": "",
@@ -41343,7 +41343,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Club Tijuana",
+    "kulup": "Xolos Tijuana",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
     "sozlesme": "",
@@ -41535,7 +41535,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "SL Benfica",
+    "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "€55.000",
     "sozlesme": "30.06.2029",
@@ -41765,7 +41765,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al-Taraji",
+    "kulup": "Al-Taraji Club",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
@@ -41924,7 +41924,7 @@
       "CFW"
     ],
     "rol": "Sahte #9",
-    "kulup": "Hakkarigücü SK",
+    "kulup": "Hakkarigücü Spor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -42750,7 +42750,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Haymanaspor",
+    "kulup": "Haymana SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -42857,7 +42857,7 @@
       "LWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "Haymanaspor",
+    "kulup": "Haymana SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -42952,7 +42952,7 @@
       "AMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Haymanaspor",
+    "kulup": "Haymana SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€10.000",
     "sozlesme": "30.06.2027",
@@ -43046,7 +43046,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "AS Banque de l’Habitat",
+    "kulup": "AS Banque de l Habitat",
     "lig": "🇹🇳 البطولة",
     "deger": "",
     "sozlesme": "",
@@ -43205,7 +43205,7 @@
       "CMF"
     ],
     "rol": "Çapa",
-    "kulup": "WFC Kolos Kovalivka",
+    "kulup": "FC Kolos Kovalivka",
     "lig": "🇺🇦 Prime League",
     "deger": "",
     "sozlesme": "",
@@ -43362,7 +43362,7 @@
       "LWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Dallas Trinity FC",
+    "kulup": "USL Dallas/Fort Worth",
     "lig": "🇺🇸 USL Super",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -44002,7 +44002,7 @@
       "LWF"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Houston Dash",
+    "kulup": "Parma Calcio 1913",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -44332,7 +44332,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "UWC FC",
+    "kulup": "University of Western Cape",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "",
@@ -44467,7 +44467,7 @@
       "DMF"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "ÍBV Vestmannaeyjar",
+    "kulup": "Iþrottabandalag Vestmannaeyja",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
     "sozlesme": "",
@@ -44561,7 +44561,7 @@
       "CMF"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "ÍF Grótta",
+    "kulup": "Íþróttafélagið Grótta",
     "lig": "🇮🇸 Besta deild",
     "deger": "",
     "sozlesme": "",
@@ -44821,7 +44821,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Incheon Hyundai Steel Red Angels WFC",
+    "kulup": "Hyundai Steel Red Angels WFC",
     "lig": "🇰🇷 WK리그",
     "deger": "€65.000",
     "sozlesme": "31.12.2026",
@@ -44874,7 +44874,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Red Arrows",
+    "kulup": "Red Arrows FC",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -44949,7 +44949,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Red Arrows",
+    "kulup": "Red Arrows FC",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -45028,7 +45028,7 @@
       "LWF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Inter",
+    "kulup": "Inter Mailand",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€65.000",
     "sozlesme": "30.06.2026",
@@ -45123,7 +45123,7 @@
       "CFW"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Internazionale Milano",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "",
     "sozlesme": "30.06.2029",
@@ -45202,7 +45202,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Internazionale Milano",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€100.000",
     "sozlesme": "30.06.2028",
@@ -45283,7 +45283,7 @@
       "2ST"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Internazionale Milano",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -45378,7 +45378,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Internazionale Milano",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€120.000",
     "sozlesme": "30.06.2027",
@@ -45455,7 +45455,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Red Arrows",
+    "kulup": "Red Arrows FC",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -45530,7 +45530,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Red Arrows",
+    "kulup": "Red Arrows FC",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -45682,7 +45682,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Ipswich Town",
+    "kulup": "Ipswich Town WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€30.000",
     "sozlesme": "30.06.2027",
@@ -45787,7 +45787,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€80.000",
     "sozlesme": "30.06.2028",
@@ -45890,7 +45890,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€70.000",
     "sozlesme": "30.06.2027",
@@ -45960,7 +45960,7 @@
     "vatandaslik": "Spain",
     "milli_takim": "",
     "dogum": "27.08.1996",
-    "yas": 29,
+    "yas": 30,
     "boy": "1,69",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -45969,7 +45969,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€220.000",
     "sozlesme": "30.06.2028",
@@ -46068,7 +46068,7 @@
       "AMF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -46145,7 +46145,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "ZaNaCo Ladies",
+    "kulup": "ZANACO Ladies",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -46222,7 +46222,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€180.000",
     "sozlesme": "30.06.2029",
@@ -46301,7 +46301,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€180.000",
     "sozlesme": "30.06.2028",
@@ -46380,7 +46380,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€170.000",
     "sozlesme": "30.06.2028",
@@ -46459,7 +46459,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -46538,7 +46538,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
     "sozlesme": "30.06.2028",
@@ -46617,7 +46617,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€80.000",
     "sozlesme": "30.06.2028",
@@ -46694,7 +46694,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "ZESCO Ndola",
+    "kulup": "ZESCO United",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -46809,7 +46809,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€50.000",
     "sozlesme": "30.06.2028",
@@ -47113,7 +47113,7 @@
       "LWF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Kansas City Current",
+    "kulup": "NWSL Kansas City",
     "lig": "🇺🇸 NWSL",
     "deger": "€450.000",
     "sozlesme": "31.12.2027",
@@ -47211,7 +47211,7 @@
       "RWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Kansas City Current",
+    "kulup": "NWSL Kansas City",
     "lig": "🇺🇸 NWSL",
     "deger": "€210.000",
     "sozlesme": "31.12.2028",
@@ -47305,7 +47305,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Kansas City Current",
+    "kulup": "NWSL Kansas City",
     "lig": "🇺🇸 NWSL",
     "deger": "€100.000",
     "sozlesme": "31.12.2027",
@@ -47410,7 +47410,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "Kansas City Current",
+    "kulup": "NWSL Kansas City",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -48394,7 +48394,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Leicester City",
+    "kulup": "Leicester City WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€150.000",
     "sozlesme": "30.06.2028",
@@ -48662,7 +48662,7 @@
       "LCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Linköping FC",
+    "kulup": "Linköpings FC",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "€90.000",
     "sozlesme": "31.12.2030",
@@ -48758,7 +48758,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Liverpool FC",
+    "kulup": "Liverpool LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -48855,7 +48855,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Liverpool FC",
+    "kulup": "Liverpool LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€180.000",
     "sozlesme": "30.06.2026",
@@ -48934,7 +48934,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Liverpool FC",
+    "kulup": "Liverpool LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€320.000",
     "sozlesme": "30.06.2026",
@@ -49163,7 +49163,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Liverpool FC",
+    "kulup": "Liverpool LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€55.000",
     "sozlesme": "30.06.2027",
@@ -52152,7 +52152,7 @@
       "CFW"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "Botafogo FR",
+    "kulup": "Botafogo",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "",
@@ -52230,7 +52230,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "SC Internacional",
+    "kulup": "Internacional",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -52479,7 +52479,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "FC Basel 1893",
+    "kulup": "FC Basel",
     "lig": "🇨🇭 Super League",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -52557,7 +52557,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
     "sozlesme": "30.06.2029",
@@ -52652,7 +52652,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€250.000",
     "sozlesme": "30.06.2029",
@@ -52749,7 +52749,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€350.000",
     "sozlesme": "30.06.2027",
@@ -52851,7 +52851,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€825.000",
     "sozlesme": "30.06.2027",
@@ -52953,7 +52953,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€500.000",
     "sozlesme": "30.06.2029",
@@ -53057,7 +53057,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€425.000",
     "sozlesme": "30.06.2029",
@@ -53159,7 +53159,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€375.000",
     "sozlesme": "30.06.2027",
@@ -53262,7 +53262,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€350.000",
     "sozlesme": "30.06.2029",
@@ -53366,7 +53366,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€290.000",
     "sozlesme": "30.06.2027",
@@ -53467,7 +53467,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€300.000",
     "sozlesme": "30.06.2028",
@@ -53560,7 +53560,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€500.000",
     "sozlesme": "30.06.2029",
@@ -53639,7 +53639,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€500.000",
     "sozlesme": "30.06.2027",
@@ -53729,7 +53729,7 @@
       "LWF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
     "sozlesme": "30.06.2027",
@@ -53809,7 +53809,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€375.000",
     "sozlesme": "30.06.2027",
@@ -53888,7 +53888,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€70.000",
     "sozlesme": "30.06.2027",
@@ -53983,7 +53983,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€450.000",
     "sozlesme": "30.06.2029",
@@ -54062,7 +54062,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Manchester City",
+    "kulup": "Manchester City LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€55.000",
     "sozlesme": "30.06.2026",
@@ -55470,7 +55470,7 @@
       "LWF"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Servette FC",
+    "kulup": "CS Chenois",
     "lig": "🇨🇭 Super League",
     "deger": "",
     "sozlesme": "",
@@ -55547,7 +55547,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Servette FC",
+    "kulup": "CS Chenois",
     "lig": "🇨🇭 Super League",
     "deger": "€40.000",
     "sozlesme": "30.06.2027",
@@ -55991,7 +55991,7 @@
       "GK"
     ],
     "rol": "Libero Kaleci",
-    "kulup": "Michigan State Spartans",
+    "kulup": "Michigan State University Spartans",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
     "sozlesme": "",
@@ -56132,7 +56132,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Beijing Women",
+    "kulup": "Beijing BG Phoenix Football Club",
     "lig": "🇨🇳 超级联赛",
     "deger": "€40.000",
     "sozlesme": "31.12.2026",
@@ -56226,7 +56226,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "Beijing Women",
+    "kulup": "Beijing BG Phoenix Football Club",
     "lig": "🇨🇳 超级联赛",
     "deger": "€60.000",
     "sozlesme": "31.12.2026",
@@ -56306,7 +56306,7 @@
       "LWB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "Changchun Dazhongzhuoyue Women",
+    "kulup": "Changchun Dazhong Women",
     "lig": "🇨🇳 超级联赛",
     "deger": "",
     "sozlesme": "",
@@ -56381,7 +56381,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Changchun Dazhongzhuoyue Women",
+    "kulup": "Changchun Dazhong Women",
     "lig": "🇨🇳 超级联赛",
     "deger": "",
     "sozlesme": "",
@@ -56551,7 +56551,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Montpellier FC",
+    "kulup": "SC Montpellier",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€80.000",
     "sozlesme": "30.06.2027",
@@ -56691,7 +56691,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Changchun Dazhongzhuoyue Women",
+    "kulup": "Changchun Dazhong Women",
     "lig": "🇨🇳 超级联赛",
     "deger": "€50.000",
     "sozlesme": "31.12.2026",
@@ -57491,7 +57491,7 @@
       "RWB"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Neftçi PFK",
+    "kulup": "Neftçi Baku",
     "lig": "🇦🇿 Yüksək Qızlar Liqası",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -57585,7 +57585,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Changchun Dazhongzhuoyue Women",
+    "kulup": "Changchun Dazhong Women",
     "lig": "🇨🇳 超级联赛",
     "deger": "€30.000",
     "sozlesme": "31.12.2026",
@@ -57740,7 +57740,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Shandong",
+    "kulup": "Shandong Sports Lottery",
     "lig": "🇨🇳 超级联赛",
     "deger": "€20.000",
     "sozlesme": "31.12.2026",
@@ -57819,7 +57819,7 @@
       "LFB"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Newcastle United",
+    "kulup": "Newcastle United WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€90.000",
     "sozlesme": "31.12.2026",
@@ -57914,7 +57914,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Shanghai Shengli",
+    "kulup": "Shanghai Shenhua",
     "lig": "🇨🇳 超级联赛",
     "deger": "€50.000",
     "sozlesme": "31.12.2026",
@@ -58209,7 +58209,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Shanghai Shengli",
+    "kulup": "Shanghai Shenhua",
     "lig": "🇨🇳 超级联赛",
     "deger": "€90.000",
     "sozlesme": "30.06.2027",
@@ -58418,7 +58418,7 @@
       "AMF"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "Notre Dame Fighting Irish",
+    "kulup": "Notre Dame University",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
     "sozlesme": "",
@@ -58513,7 +58513,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Shanghai Shengli",
+    "kulup": "Shanghai Shenhua",
     "lig": "🇨🇳 超级联赛",
     "deger": "€65.000",
     "sozlesme": "31.12.2026",
@@ -60122,7 +60122,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Wuhan Jiangda",
+    "kulup": "Wuhan Jiangda University",
     "lig": "🇨🇳 超级联赛",
     "deger": "€80.000",
     "sozlesme": "31.12.2026",
@@ -60999,7 +60999,7 @@
       "LWB"
     ],
     "rol": "Mezzala",
-    "kulup": "AC Sparta Praha",
+    "kulup": "Sparta Praha",
     "lig": "🇨🇿 1. liga",
     "deger": "€5.000",
     "sozlesme": "30.06.2028",
@@ -61274,7 +61274,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "RB Leipzig",
+    "kulup": "Rasenballsport Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -61501,7 +61501,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "FC Nordsjælland",
+    "kulup": "Farum Boldklub",
     "lig": "🇩🇰 A-Liga",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -61673,7 +61673,7 @@
       "CFW"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "Pachuca Femenil",
+    "kulup": "CF Pachuca",
     "lig": "🇲🇽 Liga MX",
     "deger": "€45.000",
     "sozlesme": "30.06.2026",
@@ -61767,7 +61767,7 @@
       "RCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Pachuca Femenil",
+    "kulup": "CF Pachuca",
     "lig": "🇲🇽 Liga MX",
     "deger": "€45.000",
     "sozlesme": "30.06.2026",
@@ -61860,7 +61860,7 @@
       "CFW"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "PAOK FC",
+    "kulup": "PAOK Saloniki",
     "lig": "🇬🇷 Α΄",
     "deger": "",
     "sozlesme": "",
@@ -61952,7 +61952,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€180.000",
     "sozlesme": "30.06.2028",
@@ -62048,7 +62048,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€480.000",
     "sozlesme": "30.06.2029",
@@ -62148,7 +62148,7 @@
       "RWB"
     ],
     "rol": "",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€200.000",
     "sozlesme": "30.06.2029",
@@ -62244,7 +62244,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€40.000",
     "sozlesme": "30.06.2031",
@@ -62343,7 +62343,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€200.000",
     "sozlesme": "30.06.2028",
@@ -62436,7 +62436,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
     "sozlesme": "30.06.2028",
@@ -63909,7 +63909,7 @@
       "RWF"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Piteå IF",
+    "kulup": "Pitea IF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -65019,7 +65019,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "PSV Eindhoven",
+    "kulup": "FCE/PSV",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -65108,7 +65108,7 @@
       "RWB"
     ],
     "rol": "",
-    "kulup": "PSV Eindhoven",
+    "kulup": "FCE/PSV",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€25.000",
     "sozlesme": "30.06.2027",
@@ -65187,7 +65187,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "PSV Eindhoven",
+    "kulup": "FCE/PSV",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -65456,7 +65456,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Deportivo Alavés",
+    "kulup": "Deportivo Alavés Gloriosas",
     "lig": "🇪🇸 Liga F",
     "deger": "€85.000",
     "sozlesme": "30.06.2027",
@@ -65614,7 +65614,7 @@
       "LFB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Stade de Reims",
+    "kulup": "Stade Reims",
     "lig": "🇫🇷 2e Ligue",
     "deger": "",
     "sozlesme": "",
@@ -65692,7 +65692,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Le Mans",
+    "kulup": "Le Mans FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -65842,7 +65842,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "WFC Nike Lusso",
+    "kulup": "WFC Lusso Nike",
     "lig": "🇬🇪 ქალთა ლიგა",
     "deger": "",
     "sozlesme": "",
@@ -65919,7 +65919,7 @@
       "RWF"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "Racing Louisville FC",
+    "kulup": "Proof Louisville FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€125.000",
     "sozlesme": "31.12.2028",
@@ -66013,7 +66013,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "Racing Louisville FC",
+    "kulup": "Proof Louisville FC",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -66117,7 +66117,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "WFC Nike Lusso",
+    "kulup": "WFC Lusso Nike",
     "lig": "🇬🇪 ქალთა ლიგა",
     "deger": "",
     "sozlesme": "",
@@ -66194,7 +66194,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "FC Samartex 1996",
+    "kulup": "FC Samartex 1996 Ladies",
     "lig": "🇬🇭 Premier League",
     "deger": "",
     "sozlesme": "",
@@ -66287,7 +66287,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Rayadas de Monterrey",
+    "kulup": "Rayados de Monterrey",
     "lig": "🇲🇽 Liga MX",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -66464,7 +66464,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Víkingur Reykjavík",
+    "kulup": "Víkingur Reykjavik",
     "lig": "🇮🇸 Besta deild",
     "deger": "€35.000",
     "sozlesme": "31.12.2026",
@@ -66559,7 +66559,7 @@
       "RWF"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "RB Leipzig",
+    "kulup": "Rasenballsport Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -66638,7 +66638,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€35.000",
     "sozlesme": "30.06.2028",
@@ -66732,7 +66732,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "RB Leipzig",
+    "kulup": "Rasenballsport Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€40.000",
     "sozlesme": "30.06.2029",
@@ -66825,7 +66825,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "RB Leipzig",
+    "kulup": "Rasenballsport Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€80.000",
     "sozlesme": "30.06.2028",
@@ -67013,7 +67013,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "Bologna FC 1909",
+    "kulup": "ASD Bologna FC 1909",
     "lig": "🇮🇹 Serie A",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -67183,7 +67183,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "RC Strasbourg",
+    "kulup": "Racing Straßburg",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€70.000",
     "sozlesme": "30.06.2027",
@@ -67263,7 +67263,7 @@
       "2ST"
     ],
     "rol": "Raumdeuter",
-    "kulup": "RC Strasbourg",
+    "kulup": "Racing Straßburg",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -67361,7 +67361,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "RCD Espanyol",
+    "kulup": "Espanyol Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -67440,7 +67440,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€380.000",
     "sozlesme": "30.06.2028",
@@ -67535,7 +67535,7 @@
       "DMF"
     ],
     "rol": "Çapa",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€575.000",
     "sozlesme": "30.06.2027",
@@ -67635,7 +67635,7 @@
       "DMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "",
     "sozlesme": "30.06.2030",
@@ -67723,7 +67723,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€300.000",
     "sozlesme": "30.06.2030",
@@ -67819,7 +67819,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€575.000",
     "sozlesme": "30.06.2029",
@@ -67907,7 +67907,7 @@
       "LFB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€180.000",
     "sozlesme": "30.06.2030",
@@ -67995,7 +67995,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€350.000",
     "sozlesme": "30.06.2028",
@@ -68093,7 +68093,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€180.000",
     "sozlesme": "30.06.2028",
@@ -68189,7 +68189,7 @@
     "bolge": "Hücum",
     "mevki": [],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€500.000",
     "sozlesme": "30.06.2030",
@@ -68285,7 +68285,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Internazionale Milano",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€150.000",
     "sozlesme": "30.06.2028",
@@ -68362,7 +68362,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -68441,7 +68441,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -68541,7 +68541,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Parma Calcio",
+    "kulup": "Parma Calcio 1913",
     "lig": "🇮🇹 Serie A",
     "deger": "€50.000",
     "sozlesme": "30.06.2027",
@@ -68616,7 +68616,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Brescia CF",
+    "kulup": "ACF Brescia Femminile",
     "lig": "🇮🇹 Serie B",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -68846,7 +68846,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Feyenoord",
+    "kulup": "Feyenoord Rotterdam",
     "lig": "🇳🇱 Eredivisie",
     "deger": "€30.000",
     "sozlesme": "30.06.2028",
@@ -68923,7 +68923,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "FC Rosengård",
+    "kulup": "LdB FC Malmö",
     "lig": "🇳🇴 Toppserien",
     "deger": "€45.000",
     "sozlesme": "31.12.2027",
@@ -69095,7 +69095,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "RSCA Women",
+    "kulup": "RSC Anderlecht",
     "lig": "🇧🇪 Super League",
     "deger": "€45.000",
     "sozlesme": "30.06.2027",
@@ -69191,7 +69191,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "RSCA Women",
+    "kulup": "RSC Anderlecht",
     "lig": "🇧🇪 Super League",
     "deger": "€75.000",
     "sozlesme": "30.06.2027",
@@ -69270,7 +69270,7 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "RSCA Women",
+    "kulup": "RSC Anderlecht",
     "lig": "🇧🇪 Super League",
     "deger": "€40.000",
     "sozlesme": "30.06.2026",
@@ -69349,7 +69349,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "RSCA Women",
+    "kulup": "RSC Anderlecht",
     "lig": "🇧🇪 Super League",
     "deger": "€30.000",
     "sozlesme": "30.06.2027",
@@ -69429,7 +69429,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "RSCA Women",
+    "kulup": "RSC Anderlecht",
     "lig": "🇧🇪 Super League",
     "deger": "€45.000",
     "sozlesme": "30.06.2027",
@@ -69618,7 +69618,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "San Diego Wave FC",
+    "kulup": "Sacramento NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€45.000",
     "sozlesme": "31.12.2026",
@@ -69715,7 +69715,7 @@
       "RFB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "San Diego Wave FC",
+    "kulup": "Sacramento NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€75.000",
     "sozlesme": "31.12.2028",
@@ -69810,7 +69810,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "San Diego Wave FC",
+    "kulup": "Sacramento NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€375.000",
     "sozlesme": "31.12.2028",
@@ -69913,7 +69913,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "San Diego Wave FC",
+    "kulup": "Sacramento NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€300.000",
     "sozlesme": "31.12.2027",
@@ -70009,7 +70009,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "San Diego Wave FC",
+    "kulup": "Sacramento NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "€110.000",
     "sozlesme": "31.12.2026",
@@ -70109,7 +70109,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Hammarby IF DFF",
+    "kulup": "Hammarby",
     "lig": "🇳🇴 Toppserien",
     "deger": "€40.000",
     "sozlesme": "31.12.2026",
@@ -70202,7 +70202,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Sanfrecce Hiroshima",
+    "kulup": "Sanfrecce Hiroshima Ladies",
     "lig": "🇯🇵 WEリーグ",
     "deger": "€25.000",
     "sozlesme": "30.06.2027",
@@ -70379,7 +70379,7 @@
       "2ST"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "SC Braga",
+    "kulup": "Sporting Clube de Braga Feminino",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -70512,7 +70512,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "SC Casablanca",
+    "kulup": "Wydad Casablanca",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -70619,7 +70619,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "SC Corinthians",
+    "kulup": "Corinthians",
     "lig": "🇧🇷 Série A",
     "deger": "€10.000",
     "sozlesme": "31.12.2028",
@@ -70723,7 +70723,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "SC Corinthians",
+    "kulup": "Corinthians",
     "lig": "🇧🇷 Série A",
     "deger": "€10.000",
     "sozlesme": "31.12.2027",
@@ -70826,7 +70826,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "SC Corinthians",
+    "kulup": "Corinthians",
     "lig": "🇧🇷 Série A",
     "deger": "€10.000",
     "sozlesme": "31.12.2028",
@@ -70929,7 +70929,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "SC Corinthians",
+    "kulup": "Corinthians",
     "lig": "🇧🇷 Série A",
     "deger": "€70.000",
     "sozlesme": "31.12.2028",
@@ -71031,7 +71031,7 @@
       "CFW"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "SC Corinthians",
+    "kulup": "Corinthians",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -71418,7 +71418,7 @@
       "RCB"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "SC Internacional",
+    "kulup": "Internacional",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "",
@@ -71746,7 +71746,7 @@
       "CMF"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "SC Victoria Hamburg",
+    "kulup": "SC Viktoria Hamburg",
     "lig": "🇩🇪 Bundesliga 3",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -71840,7 +71840,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "SCC Mohammédia",
+    "kulup": "SC Chabab Mohammédia",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€15.000",
     "sozlesme": "30.06.2026",
@@ -72212,7 +72212,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "SE Palmeiras",
+    "kulup": "SC Palmeiras",
     "lig": "🇧🇷 Série A",
     "deger": "€225.000",
     "sozlesme": "31.12.2026",
@@ -72314,7 +72314,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "SE Palmeiras",
+    "kulup": "SC Palmeiras",
     "lig": "🇧🇷 Série A",
     "deger": "€10.000",
     "sozlesme": "31.12.2026",
@@ -72404,7 +72404,7 @@
       "LWF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "SE Palmeiras",
+    "kulup": "SC Palmeiras",
     "lig": "🇧🇷 Série A",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -72909,7 +72909,7 @@
       "RCB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "GKS Katowice",
+    "kulup": "GKS Gieksa Katowice",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -72986,7 +72986,7 @@
       "2ST"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Górnik Lęczna",
+    "kulup": "Gornik Leczna",
     "lig": "🇵🇱 Ekstraliga",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -73063,7 +73063,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Sporting Clube",
+    "kulup": "Sporting Clube de Portugal",
     "lig": "🇵🇹 Cameonato Nacional",
     "deger": "€20.000",
     "sozlesme": "30.06.2028",
@@ -73157,7 +73157,7 @@
       "DMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Racing Power FC",
+    "kulup": "Racing Power Football Club",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -73548,7 +73548,7 @@
       "2ST"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Serbest",
+    "kulup": "USL Brooklyn",
     "lig": "-",
     "deger": "",
     "sozlesme": "",
@@ -74087,7 +74087,7 @@
       "CMF"
     ],
     "rol": "Volante",
-    "kulup": "Serbest",
+    "kulup": "pausiert",
     "lig": "-",
     "deger": "€95.000",
     "sozlesme": "30.06.2026",
@@ -74169,7 +74169,7 @@
       "2ST"
     ],
     "rol": "Mezzala",
-    "kulup": "Racing Power FC",
+    "kulup": "Racing Power Football Club",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -74247,7 +74247,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "SF Damaiense",
+    "kulup": "Sport Futebol Damaiense",
     "lig": "🇵🇹 Liga BPI",
     "deger": "€5.000",
     "sozlesme": "30.06.2026",
@@ -74497,7 +74497,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "SL Benfica",
+    "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "€100.000",
     "sozlesme": "30.06.2027",
@@ -74572,7 +74572,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "CSKA Moskau",
+    "kulup": "ZSKA Moskau",
     "lig": "🇷🇺 Суперлига",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -75763,7 +75763,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al-Qadsiah",
+    "kulup": "Al-Qadsiah FC",
     "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -76391,7 +76391,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "Piteå IF",
+    "kulup": "Pitea IF",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -76749,7 +76749,7 @@
       "CFW"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "BK Häcken FF",
+    "kulup": "BK Häcken",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
     "sozlesme": "31.12.2029",
@@ -76903,7 +76903,7 @@
       "RWF"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "ŽNK Mura",
+    "kulup": "ŽNK Mura Nona",
     "lig": "🇸🇮 Nogometna Liga",
     "deger": "",
     "sozlesme": "",
@@ -77132,7 +77132,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "AS Banque de l’Habitat",
+    "kulup": "AS Banque de l Habitat",
     "lig": "🇹🇳 البطولة",
     "deger": "",
     "sozlesme": "",
@@ -78448,7 +78448,7 @@
       "CMF"
     ],
     "rol": "Çapa",
-    "kulup": "Servette FC",
+    "kulup": "CS Chenois",
     "lig": "🇨🇭 Super League",
     "deger": "€60.000",
     "sozlesme": "30.06.2026",
@@ -78616,7 +78616,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "€200.000",
     "sozlesme": "31.12.2027",
@@ -78692,7 +78692,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Angel City FC",
+    "kulup": "WFC LA",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -78867,7 +78867,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Sevilla FC",
+    "kulup": "F.C. Sevilla",
     "lig": "🇪🇸 Liga F",
     "deger": "€40.000",
     "sozlesme": "30.06.2027",
@@ -78959,7 +78959,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Boston Legacy FC",
+    "kulup": "NWSL Boston",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -79705,7 +79705,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Shanghai Shengli",
+    "kulup": "Shanghai Shenhua",
     "lig": "🇨🇳 超级联赛",
     "deger": "€90.000",
     "sozlesme": "31.12.2026",
@@ -80279,7 +80279,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "TS Galaxy Queens FC",
+    "kulup": "TS Galaxy Ladies Football Club",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "",
@@ -80354,7 +80354,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "UWC FC",
+    "kulup": "University of Western Cape",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "",
@@ -80600,7 +80600,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "SK Slavia Praha",
+    "kulup": "Slavia Praha",
     "lig": "🇨🇿 I. Liga",
     "deger": "€35.000",
     "sozlesme": "30.06.2027",
@@ -80705,7 +80705,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "SL Benfica",
+    "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "",
@@ -80874,7 +80874,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "SL Benfica",
+    "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "€150.000",
     "sozlesme": "30.06.2027",
@@ -80955,7 +80955,7 @@
       "RWF"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "SL Benfica",
+    "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -81032,7 +81032,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "ZESCO Ndola",
+    "kulup": "ZESCO United",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -81109,7 +81109,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -81202,7 +81202,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "Sobaeksu SC",
+    "kulup": "Sobaeksu",
     "lig": "🇰🇵 1부류",
     "deger": "€0",
     "sozlesme": "",
@@ -81401,7 +81401,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Chelsea FC",
+    "kulup": "Chelsea LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€150.000",
     "sozlesme": "30.06.2030",
@@ -81479,7 +81479,7 @@
       "RWF"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "Crystal Palace",
+    "kulup": "Crystal Palace LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
     "sozlesme": "30.06.2029",
@@ -81558,7 +81558,7 @@
       "RWF"
     ],
     "rol": "Eski Tip #10",
-    "kulup": "SpG Südburgenland / TSV Hartberg",
+    "kulup": "SPG FC Südburgenland/TSV Hartberg",
     "lig": "🇦🇹 Bundesliga",
     "deger": "",
     "sozlesme": "",
@@ -81599,7 +81599,7 @@
       "2ST"
     ],
     "rol": "Sahte #9",
-    "kulup": "Liverpool FC",
+    "kulup": "Liverpool LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
     "sozlesme": "",
@@ -81677,7 +81677,7 @@
       "RWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Stabæk Fotball",
+    "kulup": "Stabaek Fotball Kvinner J19",
     "lig": "🇳🇴 Toppserien",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -81765,7 +81765,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Stabæk Fotball",
+    "kulup": "Stabæk FK",
     "lig": "🇳🇴 Toppserien",
     "deger": "€60.000",
     "sozlesme": "30.06.2027",
@@ -81822,7 +81822,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Liverpool FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -82093,7 +82093,7 @@
       "RCB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Steel City Sparks",
+    "kulup": "Sparks",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -82186,7 +82186,7 @@
       "LWF"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Sultanbeyligücü SK",
+    "kulup": "Fatih Vatanspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -82279,7 +82279,7 @@
       "AMF"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "Sultanbeyligücü SK",
+    "kulup": "Fatih Vatanspor",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -82474,7 +82474,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Suwon FC Women",
+    "kulup": "Suwon FMC Ladies",
     "lig": "🇰🇷 WK리그",
     "deger": "€150.000",
     "sozlesme": "31.12.2026",
@@ -82553,7 +82553,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Suwon FC Women",
+    "kulup": "Suwon FMC Ladies",
     "lig": "🇰🇷 WK리그",
     "deger": "€120.000",
     "sozlesme": "30.06.2026",
@@ -82632,7 +82632,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Suwon FC Women",
+    "kulup": "Suwon FMC Ladies",
     "lig": "🇰🇷 WK리그",
     "deger": "€70.000",
     "sozlesme": "31.12.2026",
@@ -82712,7 +82712,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "SV Werder Bremen",
+    "kulup": "Werder Bremen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€50.000",
     "sozlesme": "30.06.2027",
@@ -82791,7 +82791,7 @@
       "GK"
     ],
     "rol": "Libero Kaleci",
-    "kulup": "SV Werder Bremen",
+    "kulup": "Werder Bremen",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€20.000",
     "sozlesme": "30.06.2026",
@@ -82898,7 +82898,7 @@
       "LCB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Şile Bilgi Doğa",
+    "kulup": "Bilgidoga SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -83087,7 +83087,7 @@
       "2ST"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "Tennessee",
+    "kulup": "University of Tennessee Lady Volunteers",
     "lig": "🇺🇸 NCAA Div. I",
     "deger": "",
     "sozlesme": "",
@@ -83181,7 +83181,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Ternana Women",
+    "kulup": "Ternana Calcio Femminile",
     "lig": "🇮🇹 Serie B",
     "deger": "€60.000",
     "sozlesme": "30.06.2027",
@@ -83298,7 +83298,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Bristol City",
+    "kulup": "Bristol Rovers",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€50.000",
     "sozlesme": "30.06.2028",
@@ -83403,7 +83403,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Tigres UANL",
+    "kulup": "Tigres de la UANL",
     "lig": "🇲🇽 Liga MX",
     "deger": "€10.000",
     "sozlesme": "31.12.2027",
@@ -83506,7 +83506,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Tigres UANL",
+    "kulup": "Tigres de la UANL",
     "lig": "🇲🇽 Liga MX",
     "deger": "€10.000",
     "sozlesme": "31.12.2026",
@@ -83609,7 +83609,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Tigres UANL",
+    "kulup": "Serbest",
     "lig": "🇲🇽 Liga MX",
     "deger": "€100.000",
     "sozlesme": "31.12.2025",
@@ -83884,7 +83884,7 @@
       "LWB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -83980,7 +83980,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€275.000",
     "sozlesme": "30.06.2029",
@@ -84068,7 +84068,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€100.000",
     "sozlesme": "30.06.2026",
@@ -84157,7 +84157,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€230.000",
     "sozlesme": "30.06.2027",
@@ -84250,7 +84250,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€400.000",
     "sozlesme": "30.06.2027",
@@ -84344,7 +84344,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€180.000",
     "sozlesme": "31.12.2027",
@@ -84414,7 +84414,7 @@
     "vatandaslik": "Norway",
     "milli_takim": "",
     "dogum": "27.08.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,69",
     "ayak": "Sol",
     "vucut_tipi": "",
@@ -84423,7 +84423,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€180.000",
     "sozlesme": "31.12.2026",
@@ -84502,7 +84502,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€150.000",
     "sozlesme": "30.06.2028",
@@ -84601,7 +84601,7 @@
     "bolge": "Orta Saha",
     "mevki": [],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€90.000",
     "sozlesme": "30.06.2027",
@@ -84695,7 +84695,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -84798,7 +84798,7 @@
       "MCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -84953,7 +84953,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€220.000",
     "sozlesme": "31.12.2026",
@@ -85032,7 +85032,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€45.000",
     "sozlesme": "30.06.2029",
@@ -86089,7 +86089,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "TS Galaxy Queens FC",
+    "kulup": "TS Galaxy Ladies Football Club",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -86195,7 +86195,7 @@
       "RWF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "TS Galaxy Queens FC",
+    "kulup": "TS Galaxy Ladies Football Club",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "",
@@ -86311,7 +86311,7 @@
       "LWB"
     ],
     "rol": "",
-    "kulup": "TSG 1899 Hoffenheim",
+    "kulup": "1899 Hoffenheim",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€80.000",
     "sozlesme": "30.06.2028",
@@ -86405,7 +86405,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "TSG 1899 Hoffenheim",
+    "kulup": "1899 Hoffenheim",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€45.000",
     "sozlesme": "30.06.2029",
@@ -87195,7 +87195,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Urawa Red Diamonds",
+    "kulup": "Urawa Reds",
     "lig": "🇯🇵 WEリーグ",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -87275,7 +87275,7 @@
       "RFB"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "US des Forces Armées",
+    "kulup": "Union Sportive des Forces Armées",
     "lig": "🇧🇫 W-Championnat D1",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -87369,7 +87369,7 @@
       "MCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "US des Forces Armées",
+    "kulup": "Union Sportive des Forces Armées",
     "lig": "🇧🇫 W-Championnat D1",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -87462,7 +87462,7 @@
       "LWB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "US des Forces Armées",
+    "kulup": "Union Sportive des Forces Armées",
     "lig": "🇧🇫 W-Championnat D1",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -87554,7 +87554,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "US des Forces Armées",
+    "kulup": "Union Sportive des Forces Armées",
     "lig": "🇧🇫 W-Championnat D1",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -87981,7 +87981,7 @@
       "2ST"
     ],
     "rol": "",
-    "kulup": "Servette FC",
+    "kulup": "CS Chenois",
     "lig": "🇨🇭 Super League",
     "deger": "€55.000",
     "sozlesme": "30.06.2027",
@@ -88059,7 +88059,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "US Sassuolo",
+    "kulup": "Sunderland AFC Women",
     "lig": "🇮🇹 Serie A",
     "deger": "€65.000",
     "sozlesme": "30.06.2026",
@@ -88138,7 +88138,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "US Sassuolo",
+    "kulup": "US Sassuolo Calcio",
     "lig": "🇮🇹 Serie A",
     "deger": "€20.000",
     "sozlesme": "30.06.2027",
@@ -88218,7 +88218,7 @@
       "RFB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€100.000",
     "sozlesme": "30.06.2028",
@@ -88300,7 +88300,7 @@
       "RWB"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "RB Leipzig",
+    "kulup": "Rasenballsport Leipzig",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -88916,7 +88916,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "UWC FC",
+    "kulup": "University of Western Cape",
     "lig": "🇿🇦 Super League",
     "deger": "",
     "sozlesme": "",
@@ -89033,7 +89033,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Ünye KSK",
+    "kulup": "Serbest",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2027",
@@ -89141,7 +89141,7 @@
       "DMF"
     ],
     "rol": "Çapa",
-    "kulup": "Ünye KSK",
+    "kulup": "Ünye Gücü FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89230,7 +89230,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Ünye KSK",
+    "kulup": "Ünye Gücü FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89324,7 +89324,7 @@
       "RWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Ünye KSK",
+    "kulup": "Ünye Gücü FK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89415,7 +89415,7 @@
       "RWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "Valencia CF",
+    "kulup": "Deportivo Alavés Gloriosas",
     "lig": "🇪🇸 Liga F",
     "deger": "€65.000",
     "sozlesme": "30.06.2026",
@@ -89512,7 +89512,7 @@
       "RCB"
     ],
     "rol": "Komple Stoper",
-    "kulup": "Valencia CF",
+    "kulup": "Valencia Féminas Club de Fútbol",
     "lig": "🇪🇸 Liga F",
     "deger": "€70.000",
     "sozlesme": "30.06.2026",
@@ -89608,7 +89608,7 @@
       "DMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Valencia CF",
+    "kulup": "Valencia Féminas Club de Fútbol",
     "lig": "🇪🇸 Liga F",
     "deger": "€8.000",
     "sozlesme": "30.06.2026",
@@ -90035,7 +90035,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Atlético de Madrid",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€120.000",
     "sozlesme": "30.06.2029",
@@ -90115,7 +90115,7 @@
       "LWB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "VfB Stuttgart",
+    "kulup": "VfB Stuttgart 1893",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -90203,7 +90203,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "VfB Stuttgart",
+    "kulup": "VfB Stuttgart 1893",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€85.000",
     "sozlesme": "30.06.2028",
@@ -91293,7 +91293,7 @@
       "2ST"
     ],
     "rol": "Sahte #9",
-    "kulup": "Vitória SC Guimarães",
+    "kulup": "Vitória Sport Clube Guimarães",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "",
@@ -92280,7 +92280,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "FC Barcelona",
+    "kulup": "F.C. Barcelona",
     "lig": "🇪🇸 Liga F",
     "deger": "€450.000",
     "sozlesme": "30.06.2027",
@@ -92436,7 +92436,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Real Madrid CF",
+    "kulup": "Real Madrid",
     "lig": "🇪🇸 Liga F",
     "deger": "€325.000",
     "sozlesme": "30.06.2027",
@@ -92513,7 +92513,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€90.000",
     "sozlesme": "30.06.2029",
@@ -92619,7 +92619,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€230.000",
     "sozlesme": "30.06.2029",
@@ -92715,7 +92715,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€170.000",
     "sozlesme": "30.06.2027",
@@ -92794,7 +92794,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -92873,7 +92873,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€220.000",
     "sozlesme": "30.06.2029",
@@ -92977,7 +92977,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€110.000",
     "sozlesme": "30.06.2027",
@@ -93056,7 +93056,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€100.000",
     "sozlesme": "30.06.2029",
@@ -93135,7 +93135,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€75.000",
     "sozlesme": "30.06.2027",
@@ -93215,7 +93215,7 @@
       "DMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "West Ham United",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -93311,7 +93311,7 @@
       "MCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "West Ham United",
+    "kulup": "Aberdeen LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€35.000",
     "sozlesme": "30.06.2028",
@@ -93482,7 +93482,7 @@
       "RCB"
     ],
     "rol": "Oyun Kurucu Stoper",
-    "kulup": "WFC Dinamo-BSUPC",
+    "kulup": "Dynamo Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "€15.000",
     "sozlesme": "30.06.2026",
@@ -93575,7 +93575,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Paris FC",
+    "kulup": "Paris Football Club",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -93653,7 +93653,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "WFC Minsk",
+    "kulup": "FK Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "",
     "sozlesme": "",
@@ -93745,7 +93745,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "WFC Minsk",
+    "kulup": "FK Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "",
     "sozlesme": "",
@@ -93851,7 +93851,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Breiðablik Kópavogur",
+    "kulup": "Breidablik",
     "lig": "🇮🇸 Besta deild",
     "deger": "€65.000",
     "sozlesme": "31.12.2026",
@@ -93928,7 +93928,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Breiðablik Kópavogur",
+    "kulup": "Breidablik",
     "lig": "🇮🇸 Besta deild",
     "deger": "€25.000",
     "sozlesme": "31.12.2026",
@@ -94007,7 +94007,7 @@
       "DMF"
     ],
     "rol": "Mezzala",
-    "kulup": "AC Milan",
+    "kulup": "ACF Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€90.000",
     "sozlesme": "30.06.2028",
@@ -94100,7 +94100,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "WFC Nike Lusso",
+    "kulup": "WFC Lusso Nike",
     "lig": "🇬🇪 ქალთა ლიგა",
     "deger": "",
     "sozlesme": "",
@@ -94348,7 +94348,7 @@
       "2ST"
     ],
     "rol": "Oyun Kurucu Kanat",
-    "kulup": "AC Milan",
+    "kulup": "ACF Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€35.000",
     "sozlesme": "30.06.2028",
@@ -94441,7 +94441,7 @@
       "RCB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -94621,7 +94621,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "Wuhan Jiangda",
+    "kulup": "Wuhan Jiangda University",
     "lig": "🇨🇳 超级联赛",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -94716,7 +94716,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Wuhan Jiangda",
+    "kulup": "Wuhan Jiangda University",
     "lig": "🇨🇳 超级联赛",
     "deger": "€150.000",
     "sozlesme": "31.12.2026",
@@ -94797,7 +94797,7 @@
       "AMF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€75.000",
     "sozlesme": "30.06.2028",
@@ -94890,7 +94890,7 @@
       "RCB"
     ],
     "rol": "",
-    "kulup": "Wuhan Jiangda",
+    "kulup": "Wuhan Jiangda University",
     "lig": "🇨🇳 超级联赛",
     "deger": "€40.000",
     "sozlesme": "31.12.2026",
@@ -94969,7 +94969,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "ACF Fiorentina",
+    "kulup": "ACF Florenz",
     "lig": "🇮🇹 Serie A",
     "deger": "€55.000",
     "sozlesme": "30.06.2027",
@@ -95155,7 +95155,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "AS Roma",
+    "kulup": "AS Rom",
     "lig": "🇮🇹 Serie A",
     "deger": "€60.000",
     "sozlesme": "30.06.2029",
@@ -95313,7 +95313,7 @@
       "RWB"
     ],
     "rol": "Çok Yönlü",
-    "kulup": "Yüksekova SK",
+    "kulup": "Yuksekova SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -95407,7 +95407,7 @@
       "CMF"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Yüksekova SK",
+    "kulup": "Yuksekova SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -95502,7 +95502,7 @@
       "LWF"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Yüksekova SK",
+    "kulup": "Yuksekova SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -95594,7 +95594,7 @@
       "RWF"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "Yüksekova SK",
+    "kulup": "Yuksekova SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -95689,7 +95689,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "Yüksekova SK",
+    "kulup": "Yuksekova SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -95790,7 +95790,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Yüksekova SK",
+    "kulup": "Yuksekova SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -95830,7 +95830,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Yverdon Sport FC",
+    "kulup": "Yverdon-Sport FC",
     "lig": "🇨🇭 Super League",
     "deger": "€60.000",
     "sozlesme": "30.06.2027",
@@ -95870,7 +95870,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Internazionale Milano",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€50.000",
     "sozlesme": "30.06.2029",
@@ -95963,7 +95963,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Juventus FC",
+    "kulup": "Juventus Football Club",
     "lig": "🇮🇹 Serie A",
     "deger": "€240.000",
     "sozlesme": "30.06.2029",
@@ -96171,7 +96171,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Urawa Red Diamonds",
+    "kulup": "Urawa Reds",
     "lig": "🇯🇵 WEリーグ",
     "deger": "",
     "sozlesme": "",
@@ -96246,7 +96246,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "ZESCO Ndola",
+    "kulup": "ZESCO United",
     "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
@@ -96286,7 +96286,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "ZESCO Ndola",
+    "kulup": "ZESCO United",
     "lig": "🇿🇲 Super League",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -96390,7 +96390,7 @@
       "2ST"
     ],
     "rol": "Mezzala",
-    "kulup": "AS FAR",
+    "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "",
     "sozlesme": "",
@@ -96466,7 +96466,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Querétaro FC",
+    "kulup": "Gallos Blancos de Querétaro",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
     "sozlesme": "",
@@ -96543,7 +96543,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "ŽFK Spartak Jaffa",
+    "kulup": "ZFK Spartak Jaffa",
     "lig": "🇷🇸 Супер лига",
     "deger": "€12.000",
     "sozlesme": "30.06.2026",
@@ -96651,7 +96651,7 @@
       "RWF"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "ŽFK Spartak Subotica",
+    "kulup": "ZFK Spartak Jaffa",
     "lig": "🇷🇸 Супер лига",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -96751,7 +96751,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Rayadas de Monterrey",
+    "kulup": "Rayados de Monterrey",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
     "sozlesme": "",
@@ -96828,7 +96828,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "ŽNK Hajduk Split",
+    "kulup": "ŽNK Hajduk",
     "lig": "🇭🇷 1. HNLŽ",
     "deger": "€10.000",
     "sozlesme": "30.06.2026",
@@ -96931,7 +96931,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Tigres UANL",
+    "kulup": "Tigres de la UANL",
     "lig": "🇲🇽 Liga MX",
     "deger": "",
     "sozlesme": "",
@@ -97009,7 +97009,7 @@
       "RCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "ŽNK Mura",
+    "kulup": "ŽNK Mura Nona",
     "lig": "🇸🇮 Nogometna Liga",
     "deger": "€10.000",
     "sozlesme": "30.06.2027",
@@ -97099,7 +97099,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "Hammarby IF DFF",
+    "kulup": "Hammarby",
     "lig": "🇳🇴 Toppserien",
     "deger": "€80.000",
     "sozlesme": "31.12.2027",
@@ -97270,7 +97270,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Jiangsu Shuntian",
+    "kulup": "GD Estoril Praia",
     "lig": "🇨🇳 超级联赛",
     "deger": "€45.000",
     "sozlesme": "31.12.2026",
@@ -97804,7 +97804,7 @@
       "RFB"
     ],
     "rol": "Savaşçı",
-    "kulup": "SCU Torreense",
+    "kulup": "SC Uniao Torreense",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -97882,7 +97882,7 @@
       "RWB"
     ],
     "rol": "Savaşçı",
-    "kulup": "SL Benfica",
+    "kulup": "Benfica Lissabon",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -98038,7 +98038,7 @@
       "2ST"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "AIK Fotboll",
+    "kulup": "AIK Solna",
     "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -98375,7 +98375,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Bay FC",
+    "kulup": "Bay Area NWSL",
     "lig": "🇺🇸 NWSL",
     "deger": "",
     "sozlesme": "31.12.2027",
@@ -98757,7 +98757,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Glasgow City FC",
+    "kulup": "Glasgow City LFC",
     "lig": "🏴󠁧󠁢󠁳󠁣󠁴󠁿 SWPL",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -98834,7 +98834,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Aston Villa",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€100.000",
     "sozlesme": "30.06.2029",
@@ -98912,7 +98912,7 @@
       "GK"
     ],
     "rol": "Libero Kaleci",
-    "kulup": "Crystal Palace",
+    "kulup": "Crystal Palace LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -99008,7 +99008,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Everton FC",
+    "kulup": "Everton LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€45.000",
     "sozlesme": "30.06.2026",
@@ -99178,7 +99178,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€150.000",
     "sozlesme": "31.12.2026",
@@ -99255,7 +99255,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Tottenham Hotspur",
+    "kulup": "Tottenham Hotspur LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€70.000",
     "sozlesme": "31.12.2026",
@@ -99513,7 +99513,7 @@
       "CFW"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Newcastle United",
+    "kulup": "Newcastle United WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "",
     "sozlesme": "",
@@ -99812,7 +99812,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Newcastle United",
+    "kulup": "Newcastle United WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL 2",
     "deger": "€40.000",
     "sozlesme": "30.06.2027",
@@ -99890,7 +99890,7 @@
       "2ST"
     ],
     "rol": "",
-    "kulup": "FC Bayern München",
+    "kulup": "Bayern München",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€700.000",
     "sozlesme": "30.06.2028",
@@ -100566,7 +100566,7 @@
       "RWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "AC Milan",
+    "kulup": "ACF Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€60.000",
     "sozlesme": "30.06.2027",
@@ -100698,7 +100698,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Gotham FC",
+    "kulup": "Sky Blue FC",
     "lig": "🇺🇸 NWSL",
     "deger": "€600.000",
     "sozlesme": "30.06.2028",
@@ -100850,7 +100850,7 @@
       "DMF"
     ],
     "rol": "",
-    "kulup": "Brighton & Hove Albion",
+    "kulup": "Brighton & Hove Albion WFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€250.000",
     "sozlesme": "30.06.2028",
