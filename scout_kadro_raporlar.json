@@ -618,7 +618,7 @@
       "LWF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Serbest",
+    "kulup": "University of Johannesburg",
     "lig": "🇿🇦 Super League",
     "deger": "€5.000",
     "sozlesme": "31.12.2026",
@@ -693,7 +693,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[Completed]",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "University of Johannesburg"
   },
   "Lisanne Grawe": {
     "tam_isim": "Lisanne Gräwe",
@@ -2108,7 +2108,7 @@
       "2ST"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "ABB Fomget SK",
+    "kulup": "Serbest",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€10.000",
     "sozlesme": "",
@@ -2182,7 +2182,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "ABB Fomget SK"
+    "kulup_sd": "Serbest"
   },
   "Merve Tasucu": {
     "tam_isim": "Merve Nur Taşucu",
@@ -14789,7 +14789,7 @@
       "AMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Athlone Town A.F.C. Ladies",
+    "kulup": "Athlone Town",
     "lig": "🇮🇪 Premier Division",
     "deger": "",
     "sozlesme": "30.11.2026",
@@ -14865,7 +14865,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Alex Strickland is a solid American fullback. She relies on disciplined lateral tracking and earnest ground tackle recovery, though her final-third crossing output is developmental.",
     "degerlendirildi": true,
-    "kulup_sd": "Athlone Town A.F.C. Ladies"
+    "kulup_sd": "Athlone Town"
   },
   "Gio Garbelini": {
     "tam_isim": "Giovana Queiroz Costa Garbelini",
@@ -31247,7 +31247,7 @@
       "CFW"
     ],
     "rol": "Sahte #9",
-    "kulup": "SV Neulengbach",
+    "kulup": "USC Landhaus",
     "lig": "🇦🇹 Bundesliga",
     "deger": "",
     "sozlesme": "",
@@ -31308,7 +31308,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "SV Neulengbach"
+    "kulup_sd": "USC Landhaus"
   },
   "Coumba Sow": {
     "tam_isim": "Coumba Sow",
@@ -32446,7 +32446,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Bayern München",
+    "kulup": "Real Madrid",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€275.000",
     "sozlesme": "30.06.2028",
@@ -32509,7 +32509,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Bayern München"
+    "kulup_sd": "Real Madrid"
   },
   "Edna Imade": {
     "tam_isim": "Edna Imade",
@@ -33121,7 +33121,7 @@
       "LWF"
     ],
     "rol": "",
-    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
+    "kulup": "FC Fleury 91",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
     "sozlesme": "30.06.2028",
@@ -33201,7 +33201,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Bordeaux formasıyla genç yaşta lig deneyimi kazanan, hızı ve hücum hattındaki hareketliliğiyle dikkat çeken potansiyelli bir kanat forvet adayıdır. Savunma arkasına yaptığı koşular umut vaat etse de son vuruş kalitesini ve fiziksel gücü arttırması gerekmektedir.",
     "degerlendirildi": true,
-    "kulup_sd": "Football Club Fleury 91 Cœur d’Essonne"
+    "kulup_sd": "FC Fleury 91"
   },
   "Aude Bizet": {
     "tam_isim": "Aude Bizet",
@@ -33218,7 +33218,7 @@
       "MCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
+    "kulup": "FC Fleury 91",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€50.000",
     "sozlesme": "30.06.2026",
@@ -33295,7 +33295,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Football Club Fleury 91 Cœur d’Essonne"
+    "kulup_sd": "FC Fleury 91"
   },
   "Katriina Talaslahti": {
     "tam_isim": "Katriina Talaslahti",
@@ -33311,7 +33311,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
+    "kulup": "FC Fleury 91",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
     "sozlesme": "30.06.2027",
@@ -33401,7 +33401,7 @@
     "tr_gorusu": "Reluctant",
     "scout_notu": "Katriina Talaslahti, a 25-year-old goalkeeper who has also played for the Finnish national team, currently serves as the first-choice goalkeeper for Dijon FCO in the French Première Ligue 1.81 meters. Her height provides a physical advantage, making her a line-goalkeeper, particularly in goal-line defense. She combines goalkeeping with command of the penalty area's near zones. Her key skills include sharp reflexes on the goal-line, composure in one-on-one situations, and excellent aerial ability against shoots. Areas she needs to improve include her ball-playing skills, the quality of her passes under pressure in the attacking 3rd, and her speed in distributing the ball – all essential for modern football. Given her current form and potential, Katriina has the potential to become a first-choice goalkeeper for top-level teams in European women's football if she can improve her consistency and level of play within two years.",
     "degerlendirildi": true,
-    "kulup_sd": "Football Club Fleury 91 Cœur d’Essonne"
+    "kulup_sd": "FC Fleury 91"
   },
   "Chloe N’Gazi": {
     "tam_isim": "كلوي نقازي",
@@ -33417,7 +33417,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Football Club Fleury 91 Cœur d’Essonne",
+    "kulup": "FC Fleury 91",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -33510,7 +33510,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Chloé N'Gazi is an experienced goalkeeper for Fleury 91 in France and Algeria. She exhibits dependable goal-line shot stopping, solid aerial claims on crosses, and assertive penalty-box organization.",
     "degerlendirildi": true,
-    "kulup_sd": "Football Club Fleury 91 Cœur d’Essonne"
+    "kulup_sd": "FC Fleury 91"
   },
   "Emily Alvarado": {
     "tam_isim": "Emily Sofia Alvarado Natividad",
@@ -34257,7 +34257,7 @@
       "LWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "LdB FC Malmö",
+    "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "€85.000",
     "sozlesme": "31.12.2026",
@@ -34321,7 +34321,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "LdB FC Malmö"
+    "kulup_sd": "FC Rosengård"
   },
   "Anam Imo": {
     "tam_isim": "Anam Imo",
@@ -34338,7 +34338,7 @@
       "RWF"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "LdB FC Malmö",
+    "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "€35.000",
     "sozlesme": "30.06.2026",
@@ -34416,7 +34416,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Anam Imo is an agile striker for Piteå IF and Nigeria. She displays quick off-ball channel runs and clean penalty-box finishing, offering sharp transition pace.",
     "degerlendirildi": true,
-    "kulup_sd": "LdB FC Malmö"
+    "kulup_sd": "FC Rosengård"
   },
   "Cecily Wellesley-Smith": {
     "tam_isim": "Cecily Margaret Wellesley-Smith",
@@ -34434,7 +34434,7 @@
       "LCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "LdB FC Malmö",
+    "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "€30.000",
     "sozlesme": "31.12.2026",
@@ -34506,7 +34506,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "LdB FC Malmö"
+    "kulup_sd": "FC Rosengård"
   },
   "Anastasiya Pobegaylo": {
     "tam_isim": "Анастасія Анатолеўна Пабягайла",
@@ -34524,7 +34524,7 @@
       "RWB"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "LdB FC Malmö",
+    "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "",
     "sozlesme": "31.12.2028",
@@ -34602,7 +34602,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Anastasiya Shuppo is an experienced Belarusian attacking midfielder for Dynamo Minsk. She offers refined spatial passing vision, set-piece accuracy, and clever half-space pocket turns.",
     "degerlendirildi": true,
-    "kulup_sd": "LdB FC Malmö"
+    "kulup_sd": "FC Rosengård"
   },
   "Liu Yanqiu": {
     "tam_isim": "刘艳秋",
@@ -34987,7 +34987,7 @@
       "CFW"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "CD Argual",
+    "kulup": "Real Avilés",
     "lig": "🇪🇸 2.º Federación",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -35048,7 +35048,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "CD Argual"
+    "kulup_sd": "Real Avilés"
   },
   "Suliat Abideen": {
     "tam_isim": "Suliat Olajumoke Abideen",
@@ -36463,7 +36463,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "RC Saint-Denis",
+    "kulup": "Guingamp E.A.",
     "lig": "🇫🇷 3e Ligue",
     "deger": "",
     "sozlesme": "",
@@ -36524,7 +36524,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "RC Saint-Denis"
+    "kulup_sd": "Guingamp E.A."
   },
   "Charlotte Irankunda": {
     "tam_isim": "",
@@ -36694,7 +36694,7 @@
       "RFB"
     ],
     "rol": "Savaşçı",
-    "kulup": "Győri ETO FC",
+    "kulup": "ABB Fomget SK",
     "lig": "🇭🇺 Női NB I",
     "deger": "",
     "sozlesme": "",
@@ -36755,7 +36755,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Győri ETO FC"
+    "kulup_sd": "ABB Fomget SK"
   },
   "Evarine Katongo": {
     "tam_isim": "",
@@ -38154,7 +38154,7 @@
       "MCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Serbest",
+    "kulup": "Benfica Lissabon",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€10.000",
     "sozlesme": "30.06.2027",
@@ -38230,7 +38230,7 @@
     "tr_gorusu": "Willing",
     "scout_notu": "Oluwatosin Blessing Demehin is a robust 24-year-old Nigerian international center-back who brings immense athletic density and elite recovery strength to the defense. Educated in major tournament environments with Nigeria, she excels at tight man-marking, aerial box-clearances, and physical ground duels. However, her short passing range and ball control under intense pressing blocks represent noticeable technical restrictions.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Benfica Lissabon"
   },
   "Ela Yetim": {
     "tam_isim": "Elâ Yetim",
@@ -39507,7 +39507,7 @@
       "AMF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Giresun Sanayispor",
+    "kulup": "Serbest",
     "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -39586,7 +39586,7 @@
     "tr_gorusu": "Willing",
     "scout_notu": "Juliette Nana is one of Burkina Faso's key attacking talents. Operating as an inverted right winger, she combines rapid 1v1 footwork with dangerous inside drives and finesse shots.",
     "degerlendirildi": true,
-    "kulup_sd": "Giresun Sanayispor"
+    "kulup_sd": "Serbest"
   },
   "Jang Sel-gi": {
     "tam_isim": "장슬기",
@@ -41924,7 +41924,7 @@
       "CFW"
     ],
     "rol": "Sahte #9",
-    "kulup": "Hakkarigücü Spor",
+    "kulup": "ABB Fomget SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -42003,7 +42003,7 @@
     "tr_gorusu": "Willing",
     "scout_notu": "Rasmata Sawadogo is a Burkina Faso international forward for Hakkarigucu. She is highly mobile and proactive in sniffing out goal opportunities, though her technical refinement and core strength require further polish.",
     "degerlendirildi": true,
-    "kulup_sd": "Hakkarigücü Spor"
+    "kulup_sd": "ABB Fomget SK"
   },
   "Magou Doucoure": {
     "tam_isim": "Magou Doucouré",
@@ -61952,7 +61952,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€180.000",
     "sozlesme": "30.06.2028",
@@ -62032,7 +62032,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Roma formasıyla İtalya Serie A'da gol rekorları kıran ve gol kraliçesi olan, durdurulamaz bir saf santrafordur. Ceza sahası içi sezgileri, fiziksel gücü ve kaleyi gördüğü andaki ölümcül son vuruş kalitesi dünya standartlarındadır. Ön alan presiyle stoperleri yıpratan çalışkan bir yapısı vardır.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Clara Mateo": {
     "tam_isim": "Clara Mateo",
@@ -62048,7 +62048,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€480.000",
     "sozlesme": "30.06.2029",
@@ -62131,7 +62131,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Paris FC hücum organizasyonlarında tekniği, uzaktan şut tehdidi ve kilit pas vizyonuyla liyakatini tescillemiş yaratıcı bir kanat/orta sahadır. Şampiyonlar Ligi'ndeki büyük maç performanslarıyla takımını sırtlamıştır. Ceza sahası çevresindeki oyun zekası en büyük gücüdür.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Melween N'Dongala": {
     "tam_isim": "Melween N'Dongala",
@@ -62148,7 +62148,7 @@
       "RWB"
     ],
     "rol": "",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€200.000",
     "sozlesme": "30.06.2029",
@@ -62228,7 +62228,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Olympique Lyon altyapısından yetişen, sağ bek ve sol bek mevkilerinde yüksek sürat ve atletizm sunan genç bir savunma beki adayıdır. Çabukluğu ve geçiş savunmasındaki hızı umut vaat etmektedir. Hücum ortalarını geliştirdiğinde modern seviyeye tam oturacaktır.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Maeline Mendy": {
     "tam_isim": "Maeline Mendy",
@@ -62244,7 +62244,7 @@
       "CMF"
     ],
     "rol": "",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€40.000",
     "sozlesme": "30.06.2031",
@@ -62327,7 +62327,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Olympique Lyon altyapısının çıkardığı, alt yaş milli takımlarında kaptanlık yapmış muazzam bir yaratıcı 10 numara yeteneğidir. Sıra dışı top tekniği, dar alandan çıkış çabukluğu ve kilit pas vizyonu dünya çapında bir tavan potansiyeli gösterir. Geleceğin mutlak süperstar adaylarındanıdır.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Ana Le Moguédec": {
     "tam_isim": "Anaële Le Moguédec",
@@ -62343,7 +62343,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€200.000",
     "sozlesme": "30.06.2028",
@@ -62420,7 +62420,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Fransa alt ligleri ve Strasbourg süreçlerinde merkez orta sahada yüksek efor ve mücadeleyle oynayan, takım savunmasına katkı sağlayan bir işçidir. İkili mücadele direnci ve pres gücü Türkiye ligi standartları için son derece uygundur ve rahatlıkla katkı verir.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Mylène Chavas": {
     "tam_isim": "Mylène Chavas",
@@ -62436,7 +62436,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€100.000",
     "sozlesme": "30.06.2028",
@@ -62526,7 +62526,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Bordeaux sonrasında Real Madrid kadrosuna katılarak uluslararası seviyede önemli bir rotasyon deneyimi kazandı. Çizgi refleksleri ve yan toplardaki hava hakimiyeti en belirgin özellikleridir. Güvenilir bir ikinci kaleci olmanın ötesinde potansiyeli yüksektir.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Freja Thisgaard": {
     "tam_isim": "Freja Thisgaard",
@@ -63799,7 +63799,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "pausiert",
+    "kulup": "Sydney FC",
     "lig": "-",
     "deger": "€50.000",
     "sozlesme": "30.06.2026",
@@ -63892,7 +63892,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "pausiert"
+    "kulup_sd": "Sydney FC"
   },
   "Amirah Ali": {
     "tam_isim": "Amirah Iman-Ali",
@@ -67183,7 +67183,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Racing Straßburg",
+    "kulup": "RC Strasbourg",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€70.000",
     "sozlesme": "30.06.2027",
@@ -67246,7 +67246,7 @@
     "tr_gorusu": "Reluctant",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Racing Straßburg"
+    "kulup_sd": "RC Strasbourg"
   },
   "Natalia Wrobel": {
     "tam_isim": "Natalia Wróbel",
@@ -67263,7 +67263,7 @@
       "2ST"
     ],
     "rol": "Raumdeuter",
-    "kulup": "Racing Straßburg",
+    "kulup": "RC Strasbourg",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -67344,7 +67344,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Born in 2003, Polish international midfielder Natalia Wróbel built a resilient competitive foundation through her early senior career in Poland before gaining valuable top-flight European experience in Denmark and Scotland. Operating as a creative attacking midfielder, she excels in unlocking compact low blocks through dynamic half-space positioning and quick ball movement. Because she exhibits exceptional close-control dribbling and lateral agility, she routinely bypasses defensive pressure in dense central corridors. Her astute spatial awareness and vision allow her to thread decisive key passes into the penalty area, thereby creating high-quality scoring chances for her teammates. However, her off-the-ball defensive work rate needs greater consistency, as she occasionally lags in structured defensive positioning when her team loses possession. In addition, her long-range shooting selection requires refinement, because she sometimes rushes decisions instead of opting for superior tactical continuations. Furthermore, owing to her smaller physical height and lighter frame, her capacity to win aerial duels and sustain heavy physical contact remains naturally capped. Given her offensive creativity and technical profile, she is ideally tailored to serve as a starting XI player for an mid-table team in professional league or a star player for a upper-table team within a semi-professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "Racing Straßburg"
+    "kulup_sd": "RC Strasbourg"
   },
   "Anita Marcos": {
     "tam_isim": "Ana Marcos Moral",
@@ -68923,7 +68923,7 @@
       "GK"
     ],
     "rol": "Süpürücü Kaleci",
-    "kulup": "LdB FC Malmö",
+    "kulup": "FC Rosengård",
     "lig": "🇳🇴 Toppserien",
     "deger": "€45.000",
     "sozlesme": "31.12.2027",
@@ -69000,7 +69000,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "LdB FC Malmö"
+    "kulup_sd": "FC Rosengård"
   },
   "Selma Sol Magnusdottir": {
     "tam_isim": "Selma Sól Magnúsdóttir",
@@ -73914,7 +73914,7 @@
       "RWF"
     ],
     "rol": "Sahte #9",
-    "kulup": "Serbest",
+    "kulup": "Sydney FC",
     "lig": "-",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -73977,7 +73977,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Sydney FC"
   },
   "Kristina Maksuti": {
     "tam_isim": "Kristina Maureen Maksuti",
@@ -74087,7 +74087,7 @@
       "CMF"
     ],
     "rol": "Volante",
-    "kulup": "pausiert",
+    "kulup": "Career break",
     "lig": "-",
     "deger": "€95.000",
     "sozlesme": "30.06.2026",
@@ -74152,7 +74152,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "pausiert"
+    "kulup_sd": "Career break"
   },
   "Suzuka Yosue": {
     "tam_isim": "鈴鹿 ヨスエ",
@@ -75223,7 +75223,7 @@
       "LWF"
     ],
     "rol": "Eski Tip #10",
-    "kulup": "Serbest",
+    "kulup": "Sandvikens IF",
     "lig": "-",
     "deger": "",
     "sozlesme": "",
@@ -75300,7 +75300,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "Natalie Viggiano is a hardworking central midfielder providing box-to-box engine volume and steady short passing.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Sandvikens IF"
   },
   "Hana Kerner": {
     "tam_isim": "Hana Kerner",
@@ -75918,7 +75918,7 @@
       "LWF"
     ],
     "rol": "Çizgi Kanat",
-    "kulup": "Serbest",
+    "kulup": "Brisbane Roar",
     "lig": "-",
     "deger": "€50.000",
     "sozlesme": "30.06.2026",
@@ -75982,7 +75982,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Brisbane Roar"
   },
   "Ruby Nathan": {
     "tam_isim": "Ruby Sofia Nathan",
@@ -82186,7 +82186,7 @@
       "LWF"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Fatih Vatanspor",
+    "kulup": "Sultanbeyli Gücü Spor Kulübü",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -82261,7 +82261,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Fatih Vatanspor"
+    "kulup_sd": "Sultanbeyli Gücü Spor Kulübü"
   },
   "Zeynep Keskin": {
     "tam_isim": "Zeynep Gül Keskin",
@@ -89141,7 +89141,7 @@
       "DMF"
     ],
     "rol": "Çapa",
-    "kulup": "Ünye Gücü FK",
+    "kulup": "Ünye KFK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89213,7 +89213,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Ünye Gücü FK"
+    "kulup_sd": "Ünye KFK"
   },
   "Suhde Arpaci": {
     "tam_isim": "Suhde Nur Arpacı",
@@ -89230,7 +89230,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Ünye Gücü FK",
+    "kulup": "Ünye KFK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89306,7 +89306,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Ünye Gücü FK"
+    "kulup_sd": "Ünye KFK"
   },
   "Yaren Colak": {
     "tam_isim": "Emine Yarren Çolak",
@@ -89324,7 +89324,7 @@
       "RWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Ünye Gücü FK",
+    "kulup": "Ünye KFK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89398,7 +89398,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Ünye Gücü FK"
+    "kulup_sd": "Ünye KFK"
   },
   "Hanane Ait El-Haj": {
     "tam_isim": "Hanane Ait El-Haj",
@@ -93575,7 +93575,7 @@
       "CMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "Paris Football Club",
+    "kulup": "Paris FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "30.06.2028",
@@ -93636,7 +93636,7 @@
     "tr_gorusu": "Reluctant",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Football Club"
+    "kulup_sd": "Paris FC"
   },
   "Kseniya Kubichnaya": {
     "tam_isim": "Ксения Сергеевна Кубичная",
@@ -96390,7 +96390,7 @@
       "2ST"
     ],
     "rol": "Mezzala",
-    "kulup": "AS Far",
+    "kulup": "FC Fleury 91",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "",
     "sozlesme": "",
@@ -96452,7 +96452,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "AS Far"
+    "kulup_sd": "FC Fleury 91"
   },
   "Grace Chanda": {
     "tam_isim": "",
