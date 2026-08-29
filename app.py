@@ -3996,6 +3996,7 @@ _TAKIM_KISA_MAP = [
     ("YÜKSEKOVA", "Yüksekovaspor"), ("HAKKARİGÜCÜ", "Hakkarigücü"), ("HAKKARIGÜCÜ", "Hakkarigücü"),
     ("ÜNYE", "Ünye"), ("GİRESUN", "Giresun Sanayi"), ("GIRESUN", "Giresun Sanayi"),
     ("FATİH VATAN", "Fatih Vatan"), ("FATIH VATAN", "Fatih Vatan"),
+    ("SULTANBEYLİ", "Sultanbeyligücü"), ("SULTANBEYLI", "Sultanbeyligücü"),
     # Çekmeköy ile Şile İKİ AYRI takım — ikisi de "BİLGİDOĞA" içerir, Çekmeköy ÖNCE gelmeli
     ("ÇEKMEKÖY", "Çekmeköy Bilgidoğa"), ("CEKMEKÖY", "Çekmeköy Bilgidoğa"),
     ("BİLGİDOĞA", "Şile Bilgidoğa"), ("BILGIDOĞA", "Şile Bilgidoğa"),

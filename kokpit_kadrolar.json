@@ -1914,12 +1914,6 @@
     }
    ]
   },
-  "Fatih Vatan": {
-   "sd_url": "https://www.soccerdonna.de/en/fatih-vatan-sk/startseite/verein_7246.html",
-   "cekilis": "2026-08-29",
-   "arma": "armalar/fatih-vatan.jpg",
-   "kadro": []
-  },
   "Hakkarigücü": {
    "sd_url": "https://www.soccerdonna.de/en/hakkariguecue-sk/startseite/verein_7066.html",
    "cekilis": "2026-08-29",
@@ -3492,6 +3486,229 @@
      "profil_url": "https://www.soccerdonna.de/en/elvin-kilinc/profil/spieler_56509.html",
      "sozlesme": "30.06.2027",
      "boy": "1,67"
+    }
+   ]
+  },
+  "Sultanbeyligücü": {
+   "sd_url": "https://www.soccerdonna.de/en/sultanbeyli-guecue-sk/startseite/verein_18221.html",
+   "cekilis": "2026-08-29",
+   "arma": "",
+   "kadro": [
+    {
+     "isim": "Duygu Yılmaz",
+     "kod": "TW",
+     "grup": "KALECİ",
+     "yas": "38",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/duygu-yilmaz/profil/spieler_10623.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Sümeyye Günaydın",
+     "kod": "TW",
+     "grup": "KALECİ",
+     "yas": "19",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/suemeyye-guenaydin/profil/spieler_85774.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Nur Yuntur",
+     "kod": "RV",
+     "grup": "SAĞ BEK",
+     "yas": "21",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/nur-yuntur/profil/spieler_115934.html",
+     "sozlesme": "?",
+     "boy": "1,63"
+    },
+    {
+     "isim": "Serpil Isler",
+     "kod": "IV",
+     "grup": "STOPER",
+     "yas": "21",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/serpil-isler/profil/spieler_115930.html",
+     "sozlesme": "?",
+     "boy": "1,70"
+    },
+    {
+     "isim": "Ilayda Inal",
+     "kod": "OM",
+     "grup": "HÜCUMCU ORTA SAHA",
+     "yas": "19",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/ilayda-inal/profil/spieler_87342.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Sunay Onal",
+     "kod": "",
+     "grup": "DİĞER",
+     "yas": "16",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/sunay-onal/profil/spieler_122770.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Hacer Arici",
+     "kod": "ZM",
+     "grup": "MERKEZ ORTA SAHA",
+     "yas": "17",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/hacer-arici/profil/spieler_117428.html",
+     "sozlesme": "?",
+     "boy": "1,60"
+    },
+    {
+     "isim": "Amani Ayed",
+     "kod": "LM",
+     "grup": "SOL KANAT",
+     "yas": "19",
+     "uyruk": "Tunesien / Schweden",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/amani-ayed/profil/spieler_110242.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Fatmanur Yantur",
+     "kod": "LM",
+     "grup": "SOL KANAT",
+     "yas": "22",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/fatmanur-yantur/profil/spieler_90665.html",
+     "sozlesme": "?",
+     "boy": "1,66"
+    },
+    {
+     "isim": "Zehra Gökcek",
+     "kod": "",
+     "grup": "DİĞER",
+     "yas": "20",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/zehra-goekcek/profil/spieler_83980.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Açelya Nomak",
+     "kod": "OM",
+     "grup": "HÜCUMCU ORTA SAHA",
+     "yas": "19",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/acelya-nomak/profil/spieler_79476.html",
+     "sozlesme": "?",
+     "boy": "1,73"
+    },
+    {
+     "isim": "Tuana Yilmaz",
+     "kod": "LM",
+     "grup": "SOL KANAT",
+     "yas": "20",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/tuana-yilmaz/profil/spieler_57412.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Ülkü Kahya",
+     "kod": "RM",
+     "grup": "SAĞ KANAT",
+     "yas": "22",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/uelkue-kahya/profil/spieler_56518.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Ayşe Şevval Ay",
+     "kod": "ZM",
+     "grup": "MERKEZ ORTA SAHA",
+     "yas": "27",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/ayse-sevval-ay/profil/spieler_40664.html",
+     "sozlesme": "?",
+     "boy": "1,63"
+    },
+    {
+     "isim": "Irmak Olmezer",
+     "kod": "RA",
+     "grup": "SAĞ KANAT",
+     "yas": "17",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/irmak-olmezer/profil/spieler_110771.html",
+     "sozlesme": "?",
+     "boy": "1,67"
+    },
+    {
+     "isim": "Cansu İriş",
+     "kod": "LA",
+     "grup": "SOL KANAT",
+     "yas": "27",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/cansu-iris/profil/spieler_43159.html",
+     "sozlesme": "?",
+     "boy": "1,58"
+    },
+    {
+     "isim": "Kumsal Ozkan",
+     "kod": "MS",
+     "grup": "SANTRFOR",
+     "yas": "15",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/kumsal-ozkan/profil/spieler_122143.html",
+     "sozlesme": "",
+     "boy": ""
+    },
+    {
+     "isim": "Şehriban Dülek",
+     "kod": "LA",
+     "grup": "SOL KANAT",
+     "yas": "25",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/sehriban-duelek/profil/spieler_39864.html",
+     "sozlesme": "?",
+     "boy": "1,66"
     }
    ]
   }

@@ -27,7 +27,7 @@ KULUPLER = {
     "Trabzonspor":    "https://www.soccerdonna.de/en/trabzonspor/startseite/verein_792.html",
     "FOMGET":         "https://www.soccerdonna.de/en/abb-fomget-sk/startseite/verein_7247.html",
     "Amed":           "https://www.soccerdonna.de/en/amed-sfk/startseite/verein_7245.html",
-    "Fatih Vatan":    "https://www.soccerdonna.de/en/fatih-vatan-sk/startseite/verein_7246.html",
+    "Sultanbeyligücü": "https://www.soccerdonna.de/en/sultanbeyli-guecue-sk/startseite/verein_18221.html",
     "Hakkarigücü":    "https://www.soccerdonna.de/en/hakkariguecue-sk/startseite/verein_7066.html",
     "Ünye":           "https://www.soccerdonna.de/en/uenye-guecue-fk/startseite/verein_13095.html",
     "Giresun Sanayi": "https://www.soccerdonna.de/en/giresun-sanayi-sk/startseite/verein_14056.html",
@@ -194,6 +194,10 @@ def main():
         toplam = sum(o["deger_eur"] or 0 for o in kadro)
         ek_not = f" · manuel eklenen: {ek_sayisi}" if ek_sayisi else ""
         print(f"   {len(kadro)} oyuncu · sözleşme/boy eşleşen: {z} · toplam değer ~€{toplam:,}{ek_not}")
+    # KULUPLER'den çıkarılan (isim değişikliği / lig düşüşü) kulüpleri temizle
+    for eski_ad in [k for k in eski["kulupler"] if k not in KULUPLER]:
+        del eski["kulupler"][eski_ad]
+        print(f"   [temizlendi] {eski_ad} — artık KULUPLER'de yok")
     json.dump(eski, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"[OK] {yol.name} yazıldı.")
 

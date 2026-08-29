@@ -81,7 +81,8 @@ def _takim_kisa(ad: str) -> str:
                       ("FENERBAHÇE", "Fenerbahçe"), ("TRABZONSPOR", "Trabzonspor"),
                       ("FOMGET", "FOMGET"), ("AMED", "Amed"), ("YÜKSEKOVA", "Yüksekovaspor"),
                       ("HAKKARİ", "Hakkarigücü"), ("ÜNYE", "Ünye"), ("GİRESUN", "Giresun Sanayi"),
-                      ("FATİH VATAN", "Fatih Vatan"), ("ÇEKMEKÖY", "Çekmeköy Bilgidoğa"),
+                      ("FATİH VATAN", "Fatih Vatan"), ("SULTANBEYLİ", "Sultanbeyligücü"),
+                      ("SULTANBEYLI", "Sultanbeyligücü"), ("ÇEKMEKÖY", "Çekmeköy Bilgidoğa"),
                       ("BİLGİDOĞA", "Şile Bilgidoğa"), ("1207", "1207 Antalya"),
                       ("BEYLERBEYİ", "Beylerbeyi"), ("BORNOVA", "Bornova Hitab"), ("ALG", "ALG")]:
         if sub in up:
