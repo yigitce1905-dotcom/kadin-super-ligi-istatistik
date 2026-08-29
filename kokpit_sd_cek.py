@@ -68,24 +68,53 @@ def _deger_eur(s: str):
         return int(sayi * 1_000)
     return int(sayi)
 
+# SD'de arması olmayan kulüpler için TFF logo yedeği (fys.tff.org tam boy JPG).
+# Sultanbeyligücü: tff.org/Default.aspx?pageId=28&kulupID=3554 → KulupLogolari/015639.jpg
+TFF_ARMA = {
+    "Sultanbeyligücü": "https://fys.tff.org/TFFUploadFolder/KulupLogolari/015639.jpg",
+}
+
+
 def arma_indir(url: str, kulup_ad: str) -> str:
-    """Kulüp armasını indirir (SD: /static/bilder_sd/mediumfotos/<verein_id>.jpg).
+    """Kulüp armasını indirir. Önce SD medium foto, olmazsa TFF_ARMA yedeği.
     static/armalar/<slug>.jpg olarak kaydeder; dosya adını döndürür ('' = yok)."""
-    m = re.search(r"verein_(\d+)", url)
-    if not m:
-        return ""
-    src = f"https://www.soccerdonna.de/static/bilder_sd/mediumfotos/{m.group(1)}.jpg"
     slug = unicodedata.normalize("NFKD", kulup_ad).encode("ascii", "ignore").decode()
     slug = re.sub(r"[^a-zA-Z0-9]+", "-", slug).strip("-").lower()
     hedef = KOK / "static" / "armalar" / f"{slug}.jpg"
     hedef.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        veri = requests.get(src, headers=H, timeout=15).content
-        if len(veri) > 500:
-            hedef.write_bytes(veri)
-            return f"armalar/{slug}.jpg"
-    except Exception:
-        pass
+    # 1) SoccerDonna medium foto — ham baytları aynen yaz (mevcut davranış)
+    m = re.search(r"verein_(\d+)", url)
+    if m:
+        try:
+            veri = requests.get(
+                f"https://www.soccerdonna.de/static/bilder_sd/mediumfotos/{m.group(1)}.jpg",
+                headers=H, timeout=15).content
+            if len(veri) > 500:
+                hedef.write_bytes(veri)
+                return f"armalar/{slug}.jpg"
+        except Exception:
+            pass
+    # 2) SD'de yok → TFF tam boy logo yedeği (PIL varsa 256px'e küçült)
+    if kulup_ad in TFF_ARMA:
+        try:
+            veri = requests.get(TFF_ARMA[kulup_ad],
+                                headers={**H, "Referer": "https://www.tff.org/"},
+                                timeout=15).content
+            if len(veri) > 500:
+                try:
+                    from PIL import Image
+                    import io as _io
+                    im = Image.open(_io.BytesIO(veri)).convert("RGB")
+                    im.thumbnail((256, 256), Image.LANCZOS)
+                    buf = _io.BytesIO()
+                    im.save(buf, "JPEG", quality=88)
+                    veri = buf.getvalue()
+                except Exception:
+                    pass
+                hedef.write_bytes(veri)
+                return f"armalar/{slug}.jpg"
+        except Exception:
+            pass
     return ""
 
 
