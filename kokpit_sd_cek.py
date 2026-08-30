@@ -82,6 +82,12 @@ def arma_indir(url: str, kulup_ad: str) -> str:
     slug = re.sub(r"[^a-zA-Z0-9]+", "-", slug).strip("-").lower()
     hedef = KOK / "static" / "armalar" / f"{slug}.jpg"
     hedef.parent.mkdir(parents=True, exist_ok=True)
+
+    def _resim_mi(b: bytes) -> bool:
+        # JPEG / PNG / GIF / WEBP sihirli baytları — HTML hata sayfası yazmayı önler
+        return b[:3] == b"\xff\xd8\xff" or b[:8] == b"\x89PNG\r\n\x1a\n" \
+            or b[:6] in (b"GIF87a", b"GIF89a") or (b[:4] == b"RIFF" and b[8:12] == b"WEBP")
+
     # 1) SoccerDonna medium foto — ham baytları aynen yaz (mevcut davranış)
     m = re.search(r"verein_(\d+)", url)
     if m:
@@ -89,18 +95,21 @@ def arma_indir(url: str, kulup_ad: str) -> str:
             veri = requests.get(
                 f"https://www.soccerdonna.de/static/bilder_sd/mediumfotos/{m.group(1)}.jpg",
                 headers=H, timeout=15).content
-            if len(veri) > 500:
+            if len(veri) > 500 and _resim_mi(veri):
                 hedef.write_bytes(veri)
                 return f"armalar/{slug}.jpg"
         except Exception:
             pass
-    # 2) SD'de yok → TFF tam boy logo yedeği (PIL varsa 256px'e küçült)
+    # 2) SD'de yok → TFF tam boy logo yedeği. Geçerli dosya zaten varsa dokunma
+    #    (TFF ara sıra HTML challenge sayfası döndürüyor — üzerine yazma).
     if kulup_ad in TFF_ARMA:
+        if hedef.exists() and _resim_mi(hedef.read_bytes()[:16]):
+            return f"armalar/{slug}.jpg"
         try:
             veri = requests.get(TFF_ARMA[kulup_ad],
                                 headers={**H, "Referer": "https://www.tff.org/"},
                                 timeout=15).content
-            if len(veri) > 500:
+            if len(veri) > 500 and _resim_mi(veri):
                 try:
                     from PIL import Image
                     import io as _io
@@ -115,6 +124,9 @@ def arma_indir(url: str, kulup_ad: str) -> str:
                 return f"armalar/{slug}.jpg"
         except Exception:
             pass
+        # indirilemedi ama elde eski geçerli dosya varsa onu koru
+        if hedef.exists():
+            return f"armalar/{slug}.jpg"
     return ""
 
 
