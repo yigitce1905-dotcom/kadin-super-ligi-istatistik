@@ -870,8 +870,8 @@ def veri_yukle():
 
 # ─── ARŞİV SEZONLARI (Baran'ın site mimarisi planı 1.2, 2026-08-02) ──────────
 # scraper_arsiv.py ile üretilir (oyuncular.json ile AYNI liste formatı).
-ARSIV_SEZONLAR = {"2024-25": "arsiv_2024_25.json", "2023-24": "arsiv_2023_24.json",
-                   "2022-23": "arsiv_2022_23.json"}
+ARSIV_SEZONLAR = {"2025-26": "arsiv_2025_26.json", "2024-25": "arsiv_2024_25.json",
+                   "2023-24": "arsiv_2023_24.json", "2022-23": "arsiv_2022_23.json"}
 
 @st.cache_data(ttl=1800)
 def arsiv_sezon_yukle(sezon_key: str):
