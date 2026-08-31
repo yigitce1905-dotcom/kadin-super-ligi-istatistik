@@ -1,5 +1,5 @@
 """
-TFF Kadınlar Süper Ligi 2025-2026 — Hoca Veri Toplayıcı
+TFF Kadınlar Süper Ligi 2026-2027 — Hoca Veri Toplayıcı
 Tüm maçlardaki "Teknik Sorumlu" bölümlerini tarayarak
 hangi hoca hangi takımda çalıştı bilgisini toplar.
 """
