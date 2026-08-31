@@ -190,11 +190,11 @@
     "mac_sayisi": 1,
     "ilk11_mac": 1,
     "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
     "gol_kafa": 0,
     "penalti_gol": 0,
-    "gol_ort": 1.0,
+    "gol_ort": 0.0,
     "sari_kart": 1,
     "kirmizi_kart": 0,
     "toplam_dakika": 90,
@@ -202,7 +202,7 @@
       {
         "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
         "mac": 1,
-        "gol": 1,
+        "gol": 0,
         "sari": 1,
         "kirmizi": 0,
         "dakika": 90
@@ -215,13 +215,11 @@
         "rakip": "HAYMANA SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
-        "gol": 1,
-        "gol_ayak": 1,
+        "gol": 0,
+        "gol_ayak": 0,
         "gol_kafa": 0,
         "penalti_gol": 0,
-        "gol_dakikalari": [
-          26
-        ],
+        "gol_dakikalari": [],
         "sari": 1,
         "kirmizi": 0
       }

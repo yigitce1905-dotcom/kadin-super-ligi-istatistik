@@ -156,7 +156,11 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
                 key   = f"{kid}|{metin}"
                 if key in seen: continue
                 seen.add(key)
-                if re.search(r"\(KKG\)|\(OG\)", metin, re.IGNORECASE): continue
+                # Kendi kalesine gol (own goal) — TFF bunu "(K)" ile isaretliyor
+                # (26.08.2026: Rita Doku vakasi — Haymana-Antalyaspor, 2-2 yerine
+                # yanlislikla 2-3 olarak sayilmisti). "(KKG)"/"(OG)" da eski/olasi
+                # varyantlar icin korunuyor.
+                if re.search(r"\(K\)|\(KKG\)|\(OG\)", metin, re.IGNORECASE): continue
                 takim      = kisi_takim.get(kid, current_team)
                 isim_temiz = re.sub(r",.*$", "", metin).strip()
                 # Gol tipi: (F)=ayak (H)=kafa (P)=penaltı

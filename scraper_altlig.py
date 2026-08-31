@@ -121,7 +121,7 @@ def _mac_golculer(soup, ev, dep):
                     res["ev_gol"] += 1
                 else:
                     res["dep_gol"] += 1
-                owngoal = bool(re.search(r"\(KKG\)|\(OG\)", metin, re.I))
+                owngoal = bool(re.search(r"\(K\)|\(KKG\)|\(OG\)", metin, re.I))
                 res["golculer"].append({"oyuncu": re.sub(r",.*$", "", metin).strip(),
                                         "takim": cur, "detay": metin,
                                         "kid": kid, "og": owngoal})
