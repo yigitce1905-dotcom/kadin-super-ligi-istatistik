@@ -2439,6 +2439,45 @@ def scotr_bul(isim: str) -> dict:
 
 
 @st.cache_data(show_spinner=False)
+def _sd_esleme_haritalari():
+    """sd_profiller için iki eşleme haritası: diyakritiksiz-tam ve kelime-sırasız-token.
+    TFF isimleri bazen 'SOYAD AD' sırayla geliyor (örn. 'POPOVIC MILICA'), sd_profiller
+    ise 'Ad Soyad' — salt diyakritik normalizasyonu (_isim_norm) bunu yakalamaz, kelime
+    sırasından bağımsız bir anahtar da gerekiyor (2026-09-01, 2026-27 sezon açılışı)."""
+    norm_harita, token_harita = {}, {}
+    for k in sd_profiller:
+        n = _isim_norm(k)
+        norm_harita.setdefault(n, k)
+        token_harita.setdefault(tuple(sorted(n.split())), k)
+    return norm_harita, token_harita
+
+
+def _sd_profil_bul(isim: str) -> dict:
+    """sd_profiller kaydını bulur: birebir → diyakritik toleranslı → kelime sırasından
+    bağımsız → alt küme (orta isim eksik/fazla, örn. 'Millie Farrow' ↔ 'MILLIE LAURA
+    FARROW') eşleşmesi — yalnız TEK aday varsa (belirsiz eşleşmeyi önlemek için)."""
+    if isim in sd_profiller:
+        return sd_profiller[isim]
+    norm_harita, token_harita = _sd_esleme_haritalari()
+    n = _isim_norm(isim)
+    k = norm_harita.get(n)
+    if k:
+        return sd_profiller[k]
+    tk = tuple(sorted(n.split()))
+    k = token_harita.get(tk)
+    if k:
+        return sd_profiller[k]
+    hedef = set(tk)
+    if len(hedef) >= 2:
+        adaylar = {aday_k for aday_tk, aday_k in token_harita.items()
+                   if aday_tk and set(aday_tk) != hedef
+                   and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
+        if len(adaylar) == 1:
+            return sd_profiller[adaylar.pop()]
+    return {}
+
+
+@st.cache_data(show_spinner=False)
 def _profil_norm_harita() -> dict:
     """Diakritiksiz isim → kanonik profil anahtarı. Kaynaklar arası yazım
     farkında (Sco TR: STAŠKOVÁ, SD: STASKOVA) profil 'bulunamadı' olmasın.
@@ -3473,7 +3512,7 @@ def kaleci_istatistikleri_hesapla() -> pd.DataFrame:
     for o in oyuncu_listesi:
         isim  = o["oyuncu"]
         takim = o["takim"]
-        pos   = sd_profiller.get(isim, {}).get("Position", "")
+        pos   = _MANUEL_MEVKI.get(isim) or _sd_profil_bul(isim).get("Position", "")
         if "Goalkeeper" not in pos:
             continue
 
@@ -4109,20 +4148,20 @@ def df_zenginlestir(_df: "pd.DataFrame", file_hash: str = "", _v: str = "v3") ->
     df = _df.copy()
     df["Mevki"] = df["Oyuncu"].map(
         lambda o: mevki_normalize(
-            _MANUEL_MEVKI.get(o) or sd_profiller.get(o, {}).get("Position", "")
+            _MANUEL_MEVKI.get(o) or _sd_profil_bul(o).get("Position", "")
         )
     )
     df["Uyruk"] = df["Oyuncu"].map(
-        lambda o: _MANUEL_UYRUK.get(o) or _ilk_uyruk(sd_profiller.get(o, {}).get("Nationality", ""))
+        lambda o: _MANUEL_UYRUK.get(o) or _ilk_uyruk(_sd_profil_bul(o).get("Nationality", ""))
     )
     df["Boy"] = df["Oyuncu"].map(
-        lambda o: sd_profiller.get(o, {}).get("Height", "")
+        lambda o: _sd_profil_bul(o).get("Height", "")
     )
 
     def _yas(oyuncu):
         if oyuncu in _MANUEL_YAS:
             return _MANUEL_YAS[oyuncu]
-        profil = sd_profiller.get(oyuncu, {})
+        profil = _sd_profil_bul(oyuncu)
         try:
             age = float(str(profil.get("Age", "")).split()[0])
             return age if 15 <= age <= 40 else None
@@ -7459,7 +7498,7 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     from fpdf import FPDF
     _f = pathlib.Path(__file__).parent / "fonts"
     row = df_tam[df_tam["Oyuncu"] == secili].iloc[0]
-    sd  = sd_profiller.get(secili, {})
+    sd  = _sd_profil_bul(secili)
     mac = int(row.get("Maç", 0)); gol = int(row.get("Gol", 0)); dk = int(row.get("Dakika", 0))
     ilk11 = int(row.get("İlk11", 0)); sari = int(row.get("Sarı", 0)); kir = int(row.get("Kırmızı", 0))
     gol_f = int(row.get("GolF", 0)); gol_h = int(row.get("GolH", 0)); pen = int(row.get("GolP", 0))
@@ -7673,7 +7712,7 @@ def render_ana_lig_profil(secili):
         )
 
         # SoccerDonna profil verisi
-        sd = sd_profiller.get(secili, {})
+        sd = _sd_profil_bul(secili)
 
         # Mevki emoji
         MEVKİ_İKON = {
@@ -8210,7 +8249,7 @@ def render_ana_lig_profil(secili):
                 _al_sezon = _al.get("sezonlar", [])
                 if _al_sezon:
                     # Milli takım: SD uyruk sırasında İLK ülke (= NT; çift-uyruklularda doğru takım)
-                    _al_milli = ulke_goster(_ilk_uyruk(sd_profiller.get(secili, {}).get("Nationality", "")))
+                    _al_milli = ulke_goster(_ilk_uyruk(_sd_profil_bul(secili).get("Nationality", "")))
                     _kariyer_kulup_milli(secili, _al_sezon, "analig", _al_milli, _al.get("guncelleme", ""))
         # ── 3) GÖZLEM ─────────────────────────────────────────────────────────
         with st.expander(_bolum_baslik("GÖZLEM", "OBSERVATION", "gozlem"), expanded=False):
@@ -11515,7 +11554,7 @@ if tab1:
         for _i in range(len(df)):
             _r = df.iloc[_i]
             _ad = str(_r["Oyuncu"])
-            _sdp = sd_profiller.get(_ad, {})
+            _sdp = _sd_profil_bul(_ad)
             _nat = ulke_goster(_uyruk_goster(_sdp.get("Nationality", ""))) if _sdp.get("Nationality") else ""
             _mvk = _r.get("Mevki", "") or ""
             _mvk_g = mevki_goster(_mvk) if _mvk else ""
@@ -11579,7 +11618,7 @@ if tab1:
                 p_row = df_tam[df_tam["Oyuncu"] == tikli_oyuncu]
                 if not p_row.empty:
                     p   = p_row.iloc[0]
-                    sd  = sd_profiller.get(tikli_oyuncu, {})
+                    sd  = _sd_profil_bul(tikli_oyuncu)
                     _mvk = p.get("Mevki", "")
                     _mrk = mevki_renk(_mvk)
                     transfer  = bool(p.get("Transfer", False))
@@ -12727,7 +12766,7 @@ if tab_genç:
             isim = o["oyuncu"]
             yas  = _MANUEL_YAS.get(isim)
             if not yas:
-                try: yas = float(str(sd_profiller.get(isim,{}).get("Age","")).split()[0])
+                try: yas = float(str(_sd_profil_bul(isim).get("Age","")).split()[0])
                 except: yas = None
             if not yas or yas >= 23: continue
 
@@ -12738,10 +12777,10 @@ if tab_genç:
             gpm   = round(gol / mac, 2) if mac else 0
             dk_mac = round(dk / mac, 0) if mac else 0
 
-            pos = _MANUEL_MEVKI.get(isim) or sd_profiller.get(isim,{}).get("Position","")
+            pos = _MANUEL_MEVKI.get(isim) or _sd_profil_bul(isim).get("Position","")
             mevki = mevki_normalize(pos)
 
-            nat = _MANUEL_UYRUK.get(isim) or sd_profiller.get(isim,{}).get("Nationality","")
+            nat = _MANUEL_UYRUK.get(isim) or _sd_profil_bul(isim).get("Nationality","")
             nat = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat).split()[0] if nat else "—"
 
             # Erken Olgunluk Skoru
@@ -13461,7 +13500,7 @@ if tab_transfer:
                     unsafe_allow_html=True)
 
                 for i, isim in enumerate(oneriler, 1):
-                    profil = sd_profiller.get(isim, {})
+                    profil = _sd_profil_bul(isim)
                     yas_v  = profil.get("Age", "—")
                     boy_v  = profil.get("Height", "—")
                     nat_v  = profil.get("Nationality", "—")
