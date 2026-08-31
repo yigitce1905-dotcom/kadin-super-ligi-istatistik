@@ -13170,7 +13170,10 @@ if tab11:
         aktif = kal_df[kal_df["Maç"] >= 5].copy()
 
         # Üst kartlar
-        if not aktif.empty:
+        if aktif.empty:
+            st.caption(t("⏳ Sezon başında hiç kaleci 5 maça ulaşmadığı için özet kartlar henüz görünmüyor.",
+                         "⏳ Summary cards aren't shown yet — no goalkeeper has reached 5 matches this early in the season."))
+        else:
             en_iyi = aktif.loc[aktif["G/Maç"].idxmin()]
             en_kotu = aktif.loc[aktif["G/Maç"].idxmax()]
             k1, k2, k3, k4 = st.columns(4)
@@ -13204,38 +13207,44 @@ if tab11:
 
         with col_grafik:
             st.markdown(f"**📊 {t('Maç Başına Yenilen Gol (≥5 maç)', 'Goals Conceded per Match (≥5 matches)')}**")
-            plot_df = aktif.sort_values("G/Maç")
-            renkler = ["#1db954" if g <= 1.0 else "#ffab00" if g <= 2.0 else "#ff6b6b"
-                       for g in plot_df["G/Maç"]]
-            fig = go.Figure(go.Bar(
-                x=plot_df["G/Maç"],
-                y=plot_df["Kaleci"],
-                orientation="h",
-                marker=dict(color=renkler),
-                text=[f"{g:.2f}" for g in plot_df["G/Maç"]],
-                textposition="outside",
-                textfont=dict(color="#e0e0e0", size=11),
-                hovertemplate="%{y}<br>%{x:.2f} "+t("G/Maç","G/Match")+"<extra></extra>",
-            ))
-            fig.add_vline(x=1.0, line_dash="dash", line_color="#1db954",
-                          annotation_text="1.0", annotation_font=dict(color="#1db954", size=10))
-            fig.add_vline(x=2.0, line_dash="dash", line_color="#ffab00",
-                          annotation_text="2.0", annotation_font=dict(color="#ffab00", size=10))
-            fig.update_layout(
-                paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
-                xaxis=dict(title=t("Maç Başına Yenilen Gol","Goals Conceded per Match"), color="#8899aa",
-                           gridcolor="#1e2340", range=[0, max(plot_df["G/Maç"]) * 1.15]),
-                yaxis=dict(color="#e0e0e0"),
-                margin=dict(l=10, r=60, t=10, b=10),
-                height=500, font=dict(color="#e0e0e0"),
-            )
-            st.plotly_chart(fig, width="stretch")
+            if aktif.empty:
+                # Sezon başında (ör. 1. hafta) hiç kaleci 5 maça ulaşmamış olabilir —
+                # max(plot_df[...]) bos dizide ValueError firlatiyordu (2026-09-01).
+                st.info(t("Henüz 5 maça çıkan kaleci yok — sezon ilerledikçe grafik burada görünecek.",
+                          "No goalkeeper has reached 5 matches yet — the chart will appear as the season progresses."))
+            else:
+                plot_df = aktif.sort_values("G/Maç")
+                renkler = ["#1db954" if g <= 1.0 else "#ffab00" if g <= 2.0 else "#ff6b6b"
+                           for g in plot_df["G/Maç"]]
+                fig = go.Figure(go.Bar(
+                    x=plot_df["G/Maç"],
+                    y=plot_df["Kaleci"],
+                    orientation="h",
+                    marker=dict(color=renkler),
+                    text=[f"{g:.2f}" for g in plot_df["G/Maç"]],
+                    textposition="outside",
+                    textfont=dict(color="#e0e0e0", size=11),
+                    hovertemplate="%{y}<br>%{x:.2f} "+t("G/Maç","G/Match")+"<extra></extra>",
+                ))
+                fig.add_vline(x=1.0, line_dash="dash", line_color="#1db954",
+                              annotation_text="1.0", annotation_font=dict(color="#1db954", size=10))
+                fig.add_vline(x=2.0, line_dash="dash", line_color="#ffab00",
+                              annotation_text="2.0", annotation_font=dict(color="#ffab00", size=10))
+                fig.update_layout(
+                    paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
+                    xaxis=dict(title=t("Maç Başına Yenilen Gol","Goals Conceded per Match"), color="#8899aa",
+                               gridcolor="#1e2340", range=[0, max(plot_df["G/Maç"]) * 1.15]),
+                    yaxis=dict(color="#e0e0e0"),
+                    margin=dict(l=10, r=60, t=10, b=10),
+                    height=500, font=dict(color="#e0e0e0"),
+                )
+                st.plotly_chart(fig, width="stretch")
 
-            # Renk açıklaması
-            st.markdown(
-                "<div style='font-size:11px;color:#8899aa;'>"
-                f"🟢 ≤1.0 &nbsp; 🟡 1.0–2.0 &nbsp; 🔴 >2.0 &nbsp; {t('G/Maç','G/Match')}</div>",
-                unsafe_allow_html=True)
+                # Renk açıklaması
+                st.markdown(
+                    "<div style='font-size:11px;color:#8899aa;'>"
+                    f"🟢 ≤1.0 &nbsp; 🟡 1.0–2.0 &nbsp; 🔴 >2.0 &nbsp; {t('G/Maç','G/Match')}</div>",
+                    unsafe_allow_html=True)
 
 
 # ══════════════════════════════════════════════════════════════════════════════
