@@ -12754,13 +12754,23 @@ if tab_benim:
 # SEKME — GENÇ YETENEKLER
 # ══════════════════════════════════════════════════════════════════════════════
 if tab_genç:
+    # Sezon başında (ör. 1. hafta) sabit "en az 8 maç" eşiği kimsenin
+    # karşılayamayacağı bir bar koyup sekmeyi hep boş gösteriyordu. Eşik artık
+    # oynanan hafta sayısına göre uyarlanıyor (min(8, mevcut hafta)) — 8. hafta
+    # dolunca kendiliğinden 8'e sabitlenir, elle geri almaya gerek yok
+    # (Yiğit, 2026-09-01: "8 hafta sonunda düzeltmeyi unutma").
+    _genc_esik = min(8, max(1, _son_lig_haftasi()))
     st.markdown(f"##### 🌱 {t('Genç Yetenekler', 'Young Talents')}")
-    st.caption(t("23 yaş altı · En az 8 maç · Erken Olgunluk Skoru'na göre sıralı",
-                 "Under 23 · At least 8 matches · Sorted by Early Maturity Score"))
+    if _genc_esik < 8:
+        st.caption(t(f"23 yaş altı · En az {_genc_esik} maç (sezon başı — 8. haftada 8 maça çıkacak) · Erken Olgunluk Skoru'na göre sıralı",
+                     f"Under 23 · At least {_genc_esik} match(es) (early season — rises to 8 by week 8) · Sorted by Early Maturity Score"))
+    else:
+        st.caption(t("23 yaş altı · En az 8 maç · Erken Olgunluk Skoru'na göre sıralı",
+                     "Under 23 · At least 8 matches · Sorted by Early Maturity Score"))
 
     # Veri hazırla
     @st.cache_data(ttl=3600)
-    def genc_yetenekler_hesapla():
+    def genc_yetenekler_hesapla(esik: int):
         rows = []
         for o in ham_liste:
             isim = o["oyuncu"]
@@ -12771,7 +12781,7 @@ if tab_genç:
             if not yas or yas >= 23: continue
 
             mac = int(o.get("mac_sayisi", 0))
-            if mac < 8: continue
+            if mac < esik: continue
             gol   = int(o.get("gol_sayisi", 0))
             dk    = int(o.get("toplam_dakika", 0))
             gpm   = round(gol / mac, 2) if mac else 0
@@ -12794,7 +12804,7 @@ if tab_genç:
             })
         return pd.DataFrame(rows).sort_values("Skor", ascending=False).reset_index(drop=True)
 
-    genc_df = genc_yetenekler_hesapla()
+    genc_df = genc_yetenekler_hesapla(_genc_esik)
 
     if genc_df.empty:
         st.warning(t("Veri bulunamadı.", "No data found."))
