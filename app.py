@@ -808,8 +808,8 @@ st.markdown(f"""<style>
 # Yeni sezon açılışı: SEZONLAR başına yeni sezon ekle + veri/<yeni>/ klasörünü
 # doldur + KÖKTEKİ eski sezon kopyalarını sil (fallback bayat veri göstermesin).
 # Sezon seçici UI, SEZONLAR ≥ 2 olunca eklenecek (şimdilik görünmez altyapı).
-SEZON_AKTIF = "2025-26"
-SEZONLAR = ["2025-26"]
+SEZON_AKTIF = "2026-27"
+SEZONLAR = ["2026-27", "2025-26"]
 
 
 def sezon_uzun(s: str = "") -> str:
@@ -870,14 +870,8 @@ def veri_yukle():
 
 # ─── ARŞİV SEZONLARI (Baran'ın site mimarisi planı 1.2, 2026-08-02) ──────────
 # scraper_arsiv.py ile üretilir (oyuncular.json ile AYNI liste formatı).
-ARSIV_SEZONLAR = {"2024-25": "arsiv_2024_25.json", "2023-24": "arsiv_2023_24.json",
-                   "2022-23": "arsiv_2022_23.json"}
-# NOT (26.08.2026): arsiv_2025_26.json HAZIR ama BİLEREK henüz listede değil —
-# SEZON_AKTIF hâlâ "2025-26" ve oyuncular.json hâlâ o sezonun canlı verisi;
-# şimdi eklersek bir oyuncunun sezon geçmişinde "2025-26" AYNI istatistiklerle
-# iki kez görünürdü (biri "güncel", biri "arşiv"). Yeni sezon verisi gelince
-# (SEZON_AKTIF="2026-27" + oyuncular.json sıfırlama ile AYNI anda) şu satır
-# eklenmeli: "2025-26": "arsiv_2025_26.json",
+ARSIV_SEZONLAR = {"2025-26": "arsiv_2025_26.json", "2024-25": "arsiv_2024_25.json",
+                   "2023-24": "arsiv_2023_24.json", "2022-23": "arsiv_2022_23.json"}
 
 @st.cache_data(ttl=1800)
 def arsiv_sezon_yukle(sezon_key: str):

@@ -1,5 +1,5 @@
 """
-TFF Kadınlar Süper Ligi 2025-2026 — Web Scraper
+TFF Kadınlar Süper Ligi 2026-2027 — Web Scraper
 Oyuncu: maç geçmişi, gol, penaltı, sarı/kırmızı kart, dakika, ilk11/yedek
 """
 
@@ -328,7 +328,7 @@ def veriyi_kaydet(oyuncu_dict):
 
 def ana_calistir():
     print("=" * 62)
-    print("  TFF Kadinlar Super Ligi 2025-2026 -- Veri Toplayici")
+    print("  TFF Kadinlar Super Ligi 2026-2027 -- Veri Toplayici")
     print("=" * 62)
     session     = requests.Session()
     oyuncu_dict = {}
