@@ -4667,9 +4667,21 @@ def _benzer_havuz(kaynak):
         mac = sum(s.get("mac", 0) for s in sez)
         if mac < 5:
             continue
-        _kd = kadro.get(isim, {})
-        _kl = (_tr_takim.get(isim) or _kd.get("kulup", "")
-               or (sez[0].get("kulup", "") if sez else ""))
+        # Ham kadro.get(isim) TAM eşleşme arıyordu — sd_profiller'daki ALL-CAPS
+        # anahtar ("NEHİR ZEYTÜNLÜ") ile scotr sheet'inin kendi anahtarı ("Nehir
+        # Zeytunlu", farklı yazım) birbirini bulamayınca "havuz" bayrağı boş
+        # kalıyor, TR'li oyuncu 'Transfer Hedefleri — Dünya Geneli' listesine
+        # sızıyordu (Yiğit, 2026-09-01). scouting kaynağında robust bulucuya
+        # düşülür (analig'de kadro zaten {} — etkisiz).
+        _kd = _scout_kayit_bul(isim) if kaynak == "scouting" else kadro.get(isim, {})
+        # Öncelik: bu haftaki TFF verisi > SD güncel kulüp > scout_kadro > kariyer
+        # geçmişinin EN SON sezonu. Sonuncusu (sez[0]) bayat olabilir — oyuncu
+        # transfer olduysa (Yiğit, 2026-09-01: Nehir Zeytünlü örneği — bu sezon
+        # hiç maça çıkmadığı için _tr_takim'de yok, kariyer geçmişi hâlâ eski
+        # kulübünü ('25/26: Beşiktaş') gösteriyordu, oysa SD güncel kulübü
+        # zaten doğru şekilde Yüksekova'ydı) sez[0] güncel transferi YAKALAYAMAZ.
+        _kl = (_tr_takim.get(isim) or (p.get("guncel_kulup") or "").strip()
+               or _kd.get("kulup", "") or (sez[0].get("kulup", "") if sez else ""))
         havuz.append({
             "isim":      isim,
             "kat":       _poz_kategori(p.get("Position", "")),
