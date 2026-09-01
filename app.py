@@ -462,6 +462,21 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
 .benzer-buyuk .bk-ad   { font-size:1.08rem; margin:7px 0 5px; }
 .benzer-buyuk .bk-alt  { font-size:0.72rem; }
 
+/* Bilgi ikonu — üzerine gelince (hover) açıklama balonu açar (Benzer Sporcular vb.) */
+.ism-info { position:relative; display:inline-block; cursor:help;
+    font-size:0.8em; opacity:0.7; margin-left:5px; vertical-align:2px; }
+.ism-info:hover { opacity:1; }
+.ism-info .ism-pop { visibility:hidden; opacity:0; position:absolute; z-index:60;
+    left:0; top:1.5em; width:min(300px, 78vw); background:#13131f;
+    border:1px solid #3a3358; border-radius:10px; padding:11px 14px;
+    font-size:0.72rem; line-height:1.55; font-weight:400; color:#c7cbe0;
+    text-align:left; box-shadow:0 8px 24px rgba(0,0,0,0.45);
+    transition:opacity .15s ease; }
+.ism-info:hover .ism-pop { visibility:visible; opacity:1; }
+.ism-info .ism-pop ul { margin:0; padding-left:16px; }
+.ism-info .ism-pop li { margin-bottom:5px; }
+.ism-info .ism-pop li:last-child { margin-bottom:0; }
+
 /* ══════════════════════════════════════════════════
    MOBİL RESPONSIVE  (≤ 768px)
 ══════════════════════════════════════════════════ */
@@ -4508,6 +4523,11 @@ def _benzer_havuz(kaynak):
             "dk_mac":    sum(s.get("dakika", 0) for s in sez) / mac,
             # scout_kadro zenginleştirmesi (scouting; analig'de boş)
             "mevki_kod": ((_kd.get("mevki") or [""])[0] or "").upper(),
+            # Tüm mevki kodları (ana+alternatif) — "aynı mevkide oynayan/oynayabilen"
+            # kıyası için kesişim kullanılır (Yiğit, 2026-09-01).
+            "mevki_set": frozenset(str(m).strip().upper() for m in (_kd.get("mevki") or []) if str(m).strip()),
+            "ayak":      (_kd.get("ayak") or "").strip(),
+            "lig":       (_kd.get("lig") or "").strip(),
             "rol":       _kd.get("rol", ""),
             "deger":     _deger_num(_kd.get("deger", "")),
             "nihai":     _nihai_kaynagi.get(isim, {}).get("nihai", ""),
@@ -4570,11 +4590,17 @@ def _benzer_skor_ortak(q, o):
     elif not n:
         return 0.0
 
-    # Kategorik yakınlık: aynı detay mevki kodu + aynı rol (scout_kadro)
-    if q.get("mevki_kod") and q["mevki_kod"] == o.get("mevki_kod"):
-        base += 10
+    # Kategorik yakınlık: mevki (ana+alternatif kod kümesi kesişimi — "oynayabilen"
+    # de sayılır) + rol (scout_kadro) + Kişisel/Futbolcu Bilgileri'nden uyruk ve
+    # güçlü ayak (Yiğit, 2026-09-01: "Benzer Sporcular" sıralamasına bu alanlar da girsin).
+    if q.get("mevki_set") and (q["mevki_set"] & (o.get("mevki_set") or frozenset())):
+        base += 10 if q["mevki_kod"] == o.get("mevki_kod") else 6
     if q.get("rol") and q["rol"] == o.get("rol"):
         base += 8
+    if q.get("ulke") and q["ulke"] == o.get("ulke"):
+        base += 3
+    if q.get("ayak") and q["ayak"] == o.get("ayak"):
+        base += 2
     return round(max(0.0, min(base, 99.0)), 1)
 
 
@@ -4606,6 +4632,20 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     if not q or q["kat"] == "?":
         return []
     grup = [o for o in havuz if o["kat"] == q["kat"] and not _dusuk_notlu_tr_mi(o)]
+    # "Oynadığı lig içerisinden" (Yiğit, 2026-09-01): sorgu oyuncusunun ligi
+    # biliniyorsa aday havuzu AYNI lige daraltılır (bilinmiyorsa — ör. sezon
+    # arası transfer, lig bilgisi henüz yok — eski davranışa düşülür, tüm
+    # havuz kalır; analig kaynağında zaten tek lig olduğu için etkisiz).
+    if q.get("lig"):
+        _lig_q = q["lig"].strip().casefold()
+        grup = [o for o in grup if (o.get("lig") or "").strip().casefold() == _lig_q]
+    # Aynı takımda oynayan VE hiç Türkiye'de oynamamış (havuz != "tr") oyuncular
+    # dahil edilmez — takım arkadaşları trivially "benzer" çıkar ama TR
+    # deneyimi olmayanlar scouting açısından düşük değerli öneridir.
+    _kulup_q = (q.get("kulup") or "").strip().casefold()
+    if _kulup_q:
+        grup = [o for o in grup if not (
+            (o.get("kulup") or "").strip().casefold() == _kulup_q and o.get("havuz") != "tr")]
     adaylar = sorted(((_benzer_skor_ortak(q, o), o) for o in grup
                       if _isim_norm(o["isim"]) != _hn),
                      reverse=True, key=lambda x: x[0])
@@ -4654,6 +4694,12 @@ def _benzer_kutu_grid(items):
     st.markdown(html, unsafe_allow_html=True)
 
 
+def _tip_ikon(maddeler):
+    """Küçük ℹ️ ikonu — üzerine gelince (hover) açıklama balonunda madde listesi açar."""
+    _lis = "".join(f"<li>{m}</li>" for m in maddeler)
+    return f"<span class='ism-info'>ℹ️<span class='ism-pop'><ul>{_lis}</ul></span></span>"
+
+
 def benzer_oyuncular_goster(hedef_isim, kaynak):
     sonuc = _benzer_oyuncular(hedef_isim, kaynak)
     if not sonuc:
@@ -4664,15 +4710,26 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
                  "en yakın 3 oyuncu — yüzde, profillerin yakınlık derecesidir",
                  "3 closest players in the Turkish league in the same position group by age, height, "
                  "experience and goal/assist profile — the percentage is profile closeness")
+        st.markdown(f"#### 🔎 {_bas}")
     else:
-        _bas = t('Benzer Oyuncular — Scouting Havuzu', 'Similar Players — Scouting Pool')
-        _cap = t("Uluslararası scouting havuzumuzdan, aynı mevki grubunda profili en yakın 3 oyuncu — "
-                 "notlanmış nitelikler (BECERİ/BEŞERİ/FİZİKİ) varsa asıl kıyas onlar üzerinden yapılır, "
-                 "yoksa yaş/boy/istatistiğe düşülür. Yüzde, profillerin yakınlık derecesidir",
-                 "3 closest players in our worldwide scouting pool in the same position group — where "
-                 "graded attributes (technical/mental/physical) exist, the comparison is based on those; "
-                 "otherwise it falls back to age/height/stats. The percentage is profile closeness")
-    st.markdown(f"#### 🔎 {_bas}")
+        _bas = t('Benzer Sporcular — Oynadığı Lig İçerisinden',
+                 'Similar Athletes — Within Their League')
+        _cap = t("Analiz/Scouting raporlarına göre, sporcuya en çok benzeyen 3 isim",
+                 "Based on analysis/scouting reports, the 3 names most similar to this athlete")
+        _maddeler = t(
+            ["Aynı ligde oynamış/oynayan sporcuları gösterir.",
+             "Aynı bölgede oynamış/oynayan sporcuları gösterir.",
+             "Aynı mevkide oynayan/oynayabilen sporcuları gösterir.",
+             f"\"👤 {t('Kişisel Bilgiler','Personal Info')}\" ve \"⚽ {t('Futbolcu Bilgileri','Footballer Info')}\" "
+             "değerleri göz önünde bulundurulur ve sıralamayı etkiler.",
+             "Aynı takımda oynayan ve hiç Türkiye'de oynamamış oyuncular dahil edilmez."],
+            ["Shows athletes who have played/play in the same league.",
+             "Shows athletes who have played/play in the same region.",
+             "Shows athletes who play/can play in the same position.",
+             "\"👤 Personal Info\" and \"⚽ Footballer Info\" values are taken into account and affect "
+             "the ranking.",
+             "Players on the same team who have never played in Turkey are excluded."])
+        st.markdown(f"#### 🔎 {_bas} {_tip_ikon(_maddeler)}", unsafe_allow_html=True)
     st.caption(_cap)
     _benzer_kutu_grid(sonuc[:3])
 
