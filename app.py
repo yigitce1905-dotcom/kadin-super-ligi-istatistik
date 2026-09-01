@@ -4219,6 +4219,16 @@ def _takim_kisa(ad: str) -> str:
     for sub, kisa in _TAKIM_KISA_MAP:
         if sub in up:
             return kisa
+    # Diyakritik-duyarsız ikinci geçiş: bazı kaynaklar (SD, dünya sheet'i)
+    # kulüp adını ASCII-transliterasyonlu yazıyor (ör. "Besiktas" — Ş/İ yok).
+    # Bu yüzden "Nehir Zeytünlü" gibi gerçek bir Beşiktaş oyuncusu "dünya
+    # transfer hedefi" listesine yanlışlıkla sızıyordu (Yiğit, 2026-09-01).
+    up_ascii = _isim_norm(ad).replace(" ", "")
+    if up_ascii:
+        for sub, kisa in _TAKIM_KISA_MAP:
+            sub_ascii = _isim_norm(sub).replace(" ", "")
+            if sub_ascii and sub_ascii in up_ascii:
+                return kisa
     # Bilinmeyen (alt lig vb.): boilerplate ekleri at, sadeleştir
     s = ad
     for k in _TAKIM_BOILERPLATE:
@@ -4754,6 +4764,12 @@ def _benzer_skor_ortak(q, o):
         base += 3
     if q.get("ayak") and q["ayak"] == o.get("ayak"):
         base += 2
+    # "Skill Rating" yakınlığı (Yiğit, 2026-09-01: her iki Benzer Sporcular/
+    # Transfer Hedefleri kartına da eklensin) — nihai harf notu (CC/BC/…)
+    # sayısal ölçeğe çevrilip farkına göre puanlanır, tam eşit notta +5.
+    if q.get("nihai") and o.get("nihai"):
+        _fark_nihai = abs(_scotr_puan(q["nihai"]) - _scotr_puan(o["nihai"]))
+        base += max(0.0, 1.0 - _fark_nihai / 5.0) * 5
     return round(max(0.0, min(base, 99.0)), 1)
 
 
@@ -4792,8 +4808,8 @@ def _benzer_oyuncular(hedef_isim, kaynak, k=5):
     if q.get("lig"):
         _lig_q = q["lig"].strip().casefold()
         grup = [o for o in grup if (o.get("lig") or "").strip().casefold() == _lig_q]
-    # Aynı takımda oynayan VE hiç Türkiye'de oynamamış (havuz != "tr") oyuncular
-    # dahil edilmez — takım arkadaşları trivially "benzer" çıkar ama TR
+    # Aynı takımda oynayan VE aynı ligde hiç oynamamış (havuz != "tr") oyuncular
+    # dahil edilmez — takım arkadaşları trivially "benzer" çıkar ama aynı lig
     # deneyimi olmayanlar scouting açısından düşük değerli öneridir.
     _kulup_q = (q.get("kulup") or "").strip().casefold()
     if _kulup_q:
@@ -4875,13 +4891,15 @@ def benzer_oyuncular_goster(hedef_isim, kaynak):
              "Aynı mevkide oynayan/oynayabilen sporcuları gösterir.",
              f"\"👤 {t('Kişisel Bilgiler','Personal Info')}\" ve \"⚽ {t('Futbolcu Bilgileri','Footballer Info')}\" "
              "değerleri göz önünde bulundurulur ve sıralamayı etkiler.",
-             "Aynı takımda oynayan ve hiç Türkiye'de oynamamış oyuncular dahil edilmez."],
+             "Nihai Not değerleri en yakın olan sporcular gösterilir.",
+             "Aynı takımda oynayan ve aynı ligde oynamamış oyuncular dahil edilmez."],
             ["Shows athletes who have played/play in the same league.",
              "Shows athletes who have played/play in the same region.",
              "Shows athletes who play/can play in the same position.",
              "\"👤 Personal Info\" and \"⚽ Footballer Info\" values are taken into account and affect "
              "the ranking.",
-             "Players on the same team who have never played in Turkey are excluded."])
+             "Players with the closest Skill Rating values are shown.",
+             "Players who play on the same team and have not played in the same league are not included."])
         st.markdown(f"#### 🔎 {_bas} {_tip_ikon(_maddeler)}", unsafe_allow_html=True)
     st.caption(_cap)
     _benzer_kutu_grid(sonuc[:3])
@@ -4929,20 +4947,22 @@ def radar_goster(isim, kaynak):
     st.plotly_chart(fig, width="stretch", key=_pk("plt_1966"))
 
 
-# ── Çapraz transfer hedefi (ana lig oyuncusuna benzeyen scouting adayları) ──
+# ── Çapraz transfer hedefi (bir oyuncuya benzeyen, KENDİ ligi DIŞINDAKİ scouting adayları) ──
 def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scouting"):
+    """🌍 Transfer Hedefleri — Dünya Geneli. hedef_kaynak='analig' (TR profilinden
+    çağrıldığında, varsayılan) ya da 'scouting' (Dünya profilinden çağrıldığında,
+    2026-09-01'de eklendi) — sorgu HANGİ ligden olursa olsun, KENDİ ligindeki
+    adaylar hariç tutulur (Yiğit: "Avrupa'dan bir oyuncuya en çok benzeyen
+    oyuncular dersek, TR'den isim görebiliriz" — yani kural artık "TR hariç"
+    değil, "sorgunun KENDİ ligi hariç")."""
     h = _benzer_havuz(hedef_kaynak)
     a = _benzer_havuz(aday_kaynak)
     _hn = _isim_norm(hedef_isim)
     q = next((o for o in h if _isim_norm(o["isim"]) == _hn), None)
     if not q or q["kat"] == "?":
         return
-    grup = [o for o in a if o["kat"] == q["kat"]]
+    grup = [o for o in a if o["kat"] == q["kat"] and not _dusuk_notlu_tr_mi(o)]
     if not grup:
-        return
-    ad = sorted(((_benzer_skor_ortak(q, o), o) for o in grup),
-                reverse=True, key=lambda x: x[0])
-    if not ad:
         return
     # TR entegrasyonu sonrası oyuncunun scouting kopyası kendine %100 benziyordu —
     # diakritik-toleranslı isim karşılaştırmasıyla kendisi elenir
@@ -4950,25 +4970,64 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
     def _bnorm(s):
         s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
         return " ".join(s.casefold().split())
-    ad = [(s, o) for s, o in ad if _bnorm(o["isim"]) != _bnorm(hedef_isim)]
-    # Türkiye'de oynayanlar 'dünya geneli transfer hedefi' OLAMAZ (Benzer
-    # Oyuncular listesiyle mükerrerlik + GS'li oyuncuyu TR kulübüne önerme
-    # saçmalığı): TR havuz bayrağı / TR ligi kadrosunda isim / TR ligi kulübü
-    _tr_isimler  = {_bnorm(x) for x in df_tam["Oyuncu"].values}
-    _tr_takimlar = {_kanon(x) for x in df_tam["Takım"].unique() if x}
-    def _tr_mi(o):
-        if o.get("havuz") == "tr":
-            return True
-        if _bnorm(o["isim"]) in _tr_isimler:
-            return True
-        _k = o.get("kulup", "")
-        return bool(_k) and _kanon(_k) in _tr_takimlar
-    ad = [(s, o) for s, o in ad if not _tr_mi(o)]
+    grup = [o for o in grup if _bnorm(o["isim"]) != _bnorm(hedef_isim)]
+    # Sorgunun KENDİ ligindeki adaylar hariç tutulur ("Benzer Sporcular —
+    # Oynadığı Lig İçerisinden"la mükerrerlik + "aynı ligdeki oyuncuya dünya
+    # transfer hedefi öner" saçmalığını önler). hedef_kaynak="analig" için
+    # sorgu HER ZAMAN TR'dir ama _benzer_havuz("analig") "lig" alanı hiç
+    # doldurmaz (kadro={}) — bu yüzden üç sinyalli sağlam TR-tespiti (havuz
+    # bayrağı / TR kadrosunda isim / TR kulübü) korunur. hedef_kaynak=
+    # "scouting" için (Dünya profilinden çağrıldığında) sorgu HERHANGİ bir
+    # ligden olabilir — orada "lig" alanı dolu geldiği için doğrudan
+    # karşılaştırılır (Yiğit, 2026-09-01: "Türkiye ifadelerini aynı lig
+    # olarak değiştirebiliriz").
+    if hedef_kaynak == "analig":
+        _tr_isimler  = {_bnorm(x) for x in df_tam["Oyuncu"].values}
+        _tr_takimlar = {_kanon(x) for x in df_tam["Takım"].unique() if x}
+        def _ayni_lig_mi(o):
+            if o.get("havuz") == "tr":
+                return True
+            if _bnorm(o["isim"]) in _tr_isimler:
+                return True
+            _k = o.get("kulup", "")
+            return bool(_k) and _kanon(_k) in _tr_takimlar
+    else:
+        _lig_q = (q.get("lig") or "").strip().casefold()
+        def _ayni_lig_mi(o):
+            return bool(_lig_q) and (o.get("lig") or "").strip().casefold() == _lig_q
+    grup = [o for o in grup if not _ayni_lig_mi(o)]
+    if not grup:
+        return
+    # Aynı takımda oynayan VE sorgunun kendi ligini de oynamış (havuz=="tr" —
+    # bkz. _benzer_oyuncular'daki simetrik kural) oyuncular dahil edilmez.
+    _kulup_q = (q.get("kulup") or "").strip().casefold()
+    if _kulup_q:
+        grup = [o for o in grup if not (
+            (o.get("kulup") or "").strip().casefold() == _kulup_q and o.get("havuz") == "tr")]
+    ad = sorted(((_benzer_skor_ortak(q, o), o) for o in grup),
+                reverse=True, key=lambda x: x[0])
     if not ad:
         return
-    st.markdown(f"#### 🌍 {t('Benzer Transfer Hedefleri — Dünya Geneli', 'Similar Transfer Targets — Worldwide')}")
-    st.caption(t("Dünya genelindeki scouting havuzumuzdan bu oyuncuya profili en yakın 3 aday",
-                 "3 closest candidates to this player from our worldwide scouting pool"))
+    _bas = t('Transfer Hedefleri — Dünya Geneli', 'Transfer Targets — Worldwide')
+    _cap = t("Dünya genelindeki scouting havuzumuzdan bu oyuncu için en yakın 3 aday.",
+             "The 3 closest candidates for this player from our global scouting pool.")
+    _maddeler = t(
+        ["Aynı ligde oynamamış/oynamayan sporcuları gösterir.",
+         "Aynı bölgede oynamış/oynayan sporcuları gösterir.",
+         "Aynı mevkide oynayan/oynayabilen sporcuları gösterir.",
+         f"\"👤 {t('Kişisel Bilgiler','Personal Info')}\" ve \"⚽ {t('Futbolcu Bilgileri','Footballer Info')}\" "
+         "değerleri göz önünde bulundurulur ve sıralamayı etkiler.",
+         "Nihai Not değerleri en yakın olan sporcular gösterilir.",
+         "Aynı takımda oynayan ve aynı ligde oynamış oyuncular dahil edilmez."],
+        ["Shows athletes who have not played/are not playing in the same league.",
+         "Shows athletes who have played/play in the same region.",
+         "Shows athletes who play/can play in the same position.",
+         "\"👤 Personal Info\" and \"⚽ Footballer Info\" values are taken into account and affect "
+         "the ranking.",
+         "Players with the closest Skill Rating values are shown.",
+         "Players who play on the same team and have played in the same league are not included."])
+    st.markdown(f"#### 🌍 {_bas} {_tip_ikon(_maddeler)}", unsafe_allow_html=True)
+    st.caption(f"*{_cap}*")
     def _lbl(o):
         parc = [(f"{o['yas']:.0f} {t('yaş','yrs')}" if o.get("yas") else ""),
                 _kulup_goster(o.get("kulup", "")),
@@ -6337,6 +6396,7 @@ def render_scouting_detay(tam_isim):
             render_rol_verimliligi(_kadro, "sc")            # Rol verimliliği (en üstte)
             render_scout_kadro_raporu(tam_isim, "analiz")   # Scout raporu + Nitelik İkizleri
             benzer_oyuncular_goster(tam_isim, "scouting")
+            capraz_transfer_goster(tam_isim, hedef_kaynak="scouting")
 
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
