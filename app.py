@@ -924,10 +924,14 @@ def _oyuncu_coklu_sezon_gecmisi(isim: str):
     toplamlarını (varsa) tek listede döner:
     [{'sezon':'2025-26','mac':N,'gol':N,'dakika':N}, ...]."""
     sonuc = []
-    _isim_u = (isim or "").strip().upper()
+    # _isim_norm (diyakritik+casefold) — raw .upper() Türkçe 'i'yi 'İ' değil 'I'ya
+    # çevirdiği için TFF'nin ALL-CAPS adlarıyla (NİHAL gibi) eşleşmiyordu, çok
+    # sezonlu grafik/arşiv sekmesinde oyuncu "yokmuş" gibi görünüyordu
+    # (Yiğit, 2026-09-01: "büyük-küçük harf sorunu ... hem oyuncuda").
+    _isim_n = _isim_norm(isim)
     df_guncel, _ = veri_yukle()
     if not df_guncel.empty:
-        _e = df_guncel[df_guncel["Oyuncu"].str.upper() == _isim_u]
+        _e = df_guncel[df_guncel["Oyuncu"].map(_isim_norm) == _isim_n]
         if not _e.empty:
             sonuc.append({"sezon": SEZON_AKTIF, "mac": int(_e["Maç"].sum()),
                           "gol": int(_e["Gol"].sum()),
@@ -936,7 +940,7 @@ def _oyuncu_coklu_sezon_gecmisi(isim: str):
         df_a, _ = arsiv_sezon_yukle(sezon_key)
         if df_a.empty or "Oyuncu" not in df_a.columns:
             continue
-        _e = df_a[df_a["Oyuncu"].str.upper() == _isim_u]
+        _e = df_a[df_a["Oyuncu"].map(_isim_norm) == _isim_n]
         if not _e.empty:
             sonuc.append({"sezon": sezon_key, "mac": int(_e["Maç"].sum()),
                           "gol": int(_e["Gol"].sum()),
@@ -2077,7 +2081,7 @@ def _kanon(ad: str) -> str:
     mac_sonuclari (uzun/sponsorlu adlar) ile oyuncular.json (kısa adlar) ve sezon
     içinde değişen sponsor adları (ör. ALG'nin 4 varyantı) aynı anahtara gelsin diye.
     _takim_kisa kullanır → Çekmeköy/Şile gibi ayrı takımlar ayrı kalır."""
-    return _takim_kisa(ad or "").upper()
+    return _tr_upper(_takim_kisa(ad or ""))
 
 
 @st.cache_data(ttl=3600)
@@ -2282,6 +2286,60 @@ def scotr_yukle() -> dict:
         return json.load(f)
 
 
+@st.cache_data(show_spinner=False)
+def scotr_arsiv_yukle() -> dict:
+    """2025-26 sezonundan kalan Sco TR raporları — 2026-27'ye geçişte ('Sco 26-27 TR'
+    sekmesinin İLK DOLUMU, 2026-08-03) 395 değerlendirmeden yalnız 115'i yeni sheet'e
+    kopyalanmıştı; geri kalan ~280 oyuncunun raporu 2026-27'de görünmüyordu (Yiğit,
+    2026-09-01: 'sanırım 2025-26'da bulunan sporcuların verileri silinmiş... eğer
+    2026-27'de yoksa 2025-26'dan scouting raporunu al'). Bu dosya o eski veriyi KALICI
+    YEDEK olarak tutar — scotr_bul()/_scout_kayit_bul() bu sezonda hiç bulunamayan bir
+    oyuncu için SON ÇARE olarak buna bakar; bulunursa '_arsiv_sezon' alanıyla işaretlenir
+    ki UI 'geçen sezonun verisi' uyarısını gösterebilsin (bkz. render_scout_raporu /
+    render_scout_kadro_raporu başındaki uyarı)."""
+    yol = pathlib.Path(__file__).parent / "arsiv_scotr_2025_26.json"
+    if not yol.exists():
+        return {}
+    with open(yol, encoding="utf-8") as f:
+        return json.load(f)
+
+
+@st.cache_data(show_spinner=False)
+def _scotr_arsiv_esleme_haritalari():
+    norm_harita, token_harita = {}, {}
+    for k in scotr_arsiv_yukle():
+        n = _isim_norm(k)
+        norm_harita.setdefault(n, k)
+        token_harita.setdefault(tuple(sorted(n.split())), k)
+    return norm_harita, token_harita
+
+
+def _scotr_arsiv_bul(isim: str) -> dict:
+    """arşiv (2025-26) Sco TR kaydını bulur — scotr_bul ile aynı esneklikte (tam/
+    normalize/eksik-orta-ad toleranslı token alt-küme). Bulunursa '_arsiv_sezon'
+    işaretiyle döner (çağıran UI'da uyarı göstermek için kullanır)."""
+    d = scotr_arsiv_yukle()
+    if not d:
+        return {}
+    rec = d.get(isim)
+    if not rec:
+        norm_harita, token_harita = _scotr_arsiv_esleme_haritalari()
+        n = _isim_norm(isim)
+        k = norm_harita.get(n) or token_harita.get(tuple(sorted(n.split())))
+        if not k:
+            hedef = set(n.split())
+            if len(hedef) >= 2:
+                adaylar = {aday_k for aday_tk, aday_k in token_harita.items()
+                           if aday_tk and set(aday_tk) != hedef
+                           and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
+                if len(adaylar) == 1:
+                    k = adaylar.pop()
+        rec = d.get(k) if k else None
+    if not rec:
+        return {}
+    return {**rec, "_arsiv_sezon": "2025-26"}
+
+
 @st.cache_data(ttl=3600)
 def scout_kadro_yukle() -> dict:
     """Zengin scout kadro raporları (Kulüp/Lig/Sözleşme + Yetenek Kümesi + tarz ✔)."""
@@ -2393,6 +2451,45 @@ def birlesik_scout_yukle() -> dict:
 
 
 @st.cache_data(show_spinner=False)
+def _scout_kayit_esleme_haritalari():
+    """birlesik_scout_yukle() anahtarları için diyakritiksiz-tam ve kelime-sırasız/
+    eksik-orta-ad toleranslı token haritası (Yiğit, 2026-09-01: 'raporu olmasına
+    rağmen düşmeyen oyuncular var' — TFF 'SUHDE NUR ARPACI', sheet 'Suhde Arpaci')."""
+    norm_harita, token_harita = {}, {}
+    for k in birlesik_scout_yukle():
+        n = _isim_norm(k)
+        norm_harita.setdefault(n, k)
+        token_harita.setdefault(tuple(sorted(n.split())), k)
+    return norm_harita, token_harita
+
+
+def _scout_kayit_bul(isim: str) -> dict:
+    """birlesik_scout_yukle() kaydını bulur — birebir yoksa diyakritiksiz, o da
+    yoksa eksik/fazla orta ad toleranslı (token alt-küme) eşleştirir. _sd_profil_bul
+    ile aynı desen (bkz. aşağı), farklı kaynak sözlüğü için."""
+    veri = birlesik_scout_yukle()
+    if isim in veri:
+        return veri[isim]
+    norm_harita, token_harita = _scout_kayit_esleme_haritalari()
+    n = _isim_norm(isim)
+    k = norm_harita.get(n)
+    if k:
+        return veri.get(k, {})
+    tk = tuple(sorted(n.split()))
+    k = token_harita.get(tk)
+    if k:
+        return veri.get(k, {})
+    hedef = set(tk)
+    if len(hedef) >= 2:
+        adaylar = {aday_k for aday_tk, aday_k in token_harita.items()
+                   if aday_tk and set(aday_tk) != hedef
+                   and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
+        if len(adaylar) == 1:
+            return veri.get(adaylar.pop(), {})
+    return _scotr_arsiv_bul(isim)
+
+
+@st.cache_data(show_spinner=False)
 def dunya_havuz_ozet() -> dict:
     """Uluslararası scouting havuzunun büyüklüğünü gösteren sayılar (karşılama
     ekranı + ana sayfa hero'su için). Yalnız Dünya havuzundan (scout_kadro_yukle)
@@ -2438,19 +2535,49 @@ def _scotr_norm_harita() -> dict:
     return {_isim_norm(k): k for k in scotr_yukle()}
 
 
+@st.cache_data(show_spinner=False)
+def _scotr_token_harita() -> dict:
+    """scotr_yukle() anahtarları için kelime-sırasız token haritası — TFF'nin tam
+    adı ('SUHDE NUR ARPACI') ile sheet'in eksik orta adlı kaydı ('Suhde Arpaci')
+    gibi farkları yakalamak için (Yiğit, 2026-09-01: 'raporu olmasına rağmen
+    düşmeyen oyuncular var')."""
+    harita = {}
+    for k in scotr_yukle():
+        harita.setdefault(tuple(sorted(_isim_norm(k).split())), k)
+    return harita
+
+
 def scotr_bul(isim: str) -> dict:
-    """Sco Tr kaydını getirir; birebir yoksa diakritiksiz eşleştirir.
+    """Sco Tr kaydını getirir; birebir yoksa diakritiksiz, o da yoksa eksik/fazla
+    orta ad toleranslı (token alt-küme) eşleştirir.
 
     TFF ile scout sheet'i aynı oyuncuyu farklı yazıyor: TFF 'JELENA KARLİCİC'
     (Türkçe İ), sheet 'JELENA KARLIČIĆ' (Sırpça Č/Ć). Birebir sözlük araması
     tuttuğu için 10 oyuncunun TAM DOLU scout raporu sitede hiç görünmüyordu
-    (Karličić, Stašková, Nicoară, Aleksić, Zuñiga, Gürtner...) — 2026-08-17."""
+    (Karličić, Stašková, Nicoară, Aleksić, Zuñiga, Gürtner...) — 2026-08-17.
+    Token alt-küme fallback'i 2026-09-01'de eklendi: TFF 'SUHDE NUR ARPACI',
+    sheet 'Suhde Arpaci' (orta ad eksik) gibi durumları da yakalar."""
     d = scotr_yukle()
     k = d.get(isim)
     if k:
         return k
-    anahtar = _scotr_norm_harita().get(_isim_norm(isim))
-    return d.get(anahtar) or {}
+    n = _isim_norm(isim)
+    anahtar = _scotr_norm_harita().get(n)
+    if anahtar:
+        return d.get(anahtar) or {}
+    token_harita = _scotr_token_harita()
+    tk = tuple(sorted(n.split()))
+    anahtar = token_harita.get(tk)
+    if anahtar:
+        return d.get(anahtar) or {}
+    hedef = set(tk)
+    if len(hedef) >= 2:
+        adaylar = {aday_k for aday_tk, aday_k in token_harita.items()
+                   if aday_tk and set(aday_tk) != hedef
+                   and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
+        if len(adaylar) == 1:
+            return d.get(adaylar.pop()) or {}
+    return _scotr_arsiv_bul(isim)
 
 
 @st.cache_data(show_spinner=False)
@@ -4064,6 +4191,17 @@ _TAKIM_BOILERPLATE = [
     " KULÜBÜ", " A.Ş.", " A.Ş",
 ]
 
+def _tr_upper(s) -> str:
+    """Türkçe-doğru BÜYÜK harf — KANONİK EŞLEŞTİRME için (gösterim değil; dile bakmaz,
+    bkz. _buyuk() gösterim karşılığı). Python'un varsayılan .upper()'ı Türkçe kuralını
+    bilmez: 'i' İngilizce kuralıyla 'I'ya gider, Türkçe 'İ'ye değil. Bu yüzden SD/sheet'ten
+    Title-Case gelen 'Beşiktaş JK' ile TFF'nin ALL-CAPS 'BEŞİKTAŞ ...' _TAKIM_KISA_MAP'te
+    AYNI takıma eşleşmiyordu (Yiğit, 2026-09-01: 'büyük-küçük harf sorunu ... kulüplerde,
+    örn Galatasaray'; kanıt: Nihal Saraç'ın ligi SD'nin 'Beşiktaş JK' farklı kanonikleştiği
+    için hatalı 'transfer oldu' sayılıp boş gösteriliyordu)."""
+    return str(s or "").replace("i", "İ").replace("ı", "I").upper()
+
+
 def _takim_kisa(ad: str) -> str:
     """Uzun TFF takım adını kısa görünüme indirger. 'A / B' (transfer) için her parçayı ayrı kısaltır.
     Aynı kulübün isim varyantları (ALG'nin 3 sponsor adı, Çekmeköy→Şile taşınması) kısaltmada
@@ -4077,7 +4215,7 @@ def _takim_kisa(ad: str) -> str:
         # Çekmeköy→Şile: aynı kulüp (taşındı) — transfer satırında güncel adla tek görünsün
         parcalar = ["Şile Bilgidoğa" if p == "Çekmeköy Bilgidoğa" else p for p in parcalar]
         return " / ".join(dict.fromkeys(parcalar))
-    up = ad.upper()
+    up = _tr_upper(ad)
     for sub, kisa in _TAKIM_KISA_MAP:
         if sub in up:
             return kisa
@@ -6036,7 +6174,7 @@ def render_scouting_detay(tam_isim):
     ]
     def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
         # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
-        _so = _d5.get(tam_isim) or {}
+        _so = _scout_kayit_bul(tam_isim)
         _so_nihai = (_so.get("nihai") or "").strip()
         _so_ivme_ham = (_so.get("ivme") or "").strip()
         _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
@@ -7012,6 +7150,11 @@ def render_scout_raporu(isim: str, bolum: str = "analiz"):
     rapor = scotr_bul(isim)
     if not rapor:
         return
+    if rapor.get("_arsiv_sezon"):
+        st.warning(t(f"⚠️ Bu sezon henüz değerlendirilmedi — {rapor['_arsiv_sezon']} sezonundan "
+                      "kalan rapor gösteriliyor (kulüp/kadro bilgisi güncel olmayabilir).",
+                      f"⚠️ Not yet evaluated this season — showing the {rapor['_arsiv_sezon']} report "
+                      "(club/squad info may be outdated)."), icon="⚠️")
 
     # ── GÖZLEM bölümü: yalnız Oyun Tarzı + scout notu ──────────────────
     if bolum == "gozlem":
@@ -7291,9 +7434,14 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
 
     bolum="gozlem" → yalnız Oyun Tarzı + scout notu (GÖZLEM bölümü);
     bolum="analiz" → scout raporu kartı + nitelik panelleri + İkizler + PDF."""
-    rapor = birlesik_scout_yukle().get(isim)
+    rapor = _scout_kayit_bul(isim)
     if not rapor:
         return
+    if rapor.get("_arsiv_sezon"):
+        st.warning(t(f"⚠️ Bu sezon henüz değerlendirilmedi — {rapor['_arsiv_sezon']} sezonundan "
+                      "kalan rapor gösteriliyor (kulüp/kadro bilgisi güncel olmayabilir).",
+                      f"⚠️ Not yet evaluated this season — showing the {rapor['_arsiv_sezon']} report "
+                      "(club/squad info may be outdated)."), icon="⚠️")
 
     # ── GÖZLEM bölümü: yalnız Oyun Tarzı + scout notu ──────────────────
     if bolum == "gozlem":
@@ -7904,8 +8052,8 @@ def render_ana_lig_profil(secili):
             # her hâlükârda gösterilir (eskiden ikisinden BİRİ gösteriliyordu).
             _ek_kutu = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet)
                         if _cs_ozet is not None else None)
-            _so_notu  = bool((scotr_yukle().get(secili, {}).get("scout_notu") or "").strip())
             _so = scotr_bul(secili)
+            _so_notu  = bool((_so.get("scout_notu") or "").strip())
             _so_nihai = (_so.get("nihai") or "").strip()
             _so_ivme_ham = (_so.get("ivme") or "").strip()
             _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
