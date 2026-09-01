@@ -12146,8 +12146,11 @@ if tab6:
                 ["Dakika","Maç"], "🏃")
 
         with r1c3:
-            # Min 10 maç şartı
-            df_ort = df_tam[df_tam["Maç"]>=10].nlargest(5,"Gol/Maç")[["Oyuncu","Takım","Gol/Maç","Gol","Maç"]]
+            # Min 10 maç şartı — sezon başında (henüz 10 hafta oynanmadıysa) kimse
+            # karşılayamaz, bar mevcut haftaya uyarlanıyor (2026-09-01, aynı mantık
+            # Genç Yetenekler'deki gibi: 10. haftada kendiliğinden 10'a sabitlenir).
+            _esik10 = min(10, max(1, _son_lig_haftasi()))
+            df_ort = df_tam[df_tam["Maç"]>=_esik10].nlargest(5,"Gol/Maç")[["Oyuncu","Takım","Gol/Maç","Gol","Maç"]]
             en_iyi_kart(t("En İyi Gol Ortalaması","Best Goals/Match"),
                 df_ort, ["Gol/Maç"], "🎯")
 
@@ -12167,8 +12170,8 @@ if tab6:
                 ["GolP"], "🥅")
 
         with r2c3:
-            # En temiz oyuncu: sarı kart almadan en çok dakika
-            df_temiz = df_tam[(df_tam["Sarı"]==0) & (df_tam["Kırmızı"]==0) & (df_tam["Maç"]>=10)]
+            # En temiz oyuncu: sarı kart almadan en çok dakika (esik10: yukarida)
+            df_temiz = df_tam[(df_tam["Sarı"]==0) & (df_tam["Kırmızı"]==0) & (df_tam["Maç"]>=_esik10)]
             en_iyi_kart(t("Disiplin Şampiyonu","Discipline Champion"),
                 df_temiz.nlargest(5,"Dakika")[["Oyuncu","Takım","Dakika","Maç"]],
                 ["Dakika"], "🛡️")
@@ -12179,8 +12182,9 @@ if tab6:
         r3c1, r3c2, r3c3 = st.columns(3)
 
         with r3c1:
-            # Starter şampiyonu: en yüksek ilk 11 oranı (min 15 maç)
-            df_s = df_tam[df_tam["Maç"]>=15].copy()
+            # Starter şampiyonu: en yüksek ilk 11 oranı (min 15 maç, sezon başında uyarlanır)
+            _esik15 = min(15, max(1, _son_lig_haftasi()))
+            df_s = df_tam[df_tam["Maç"]>=_esik15].copy()
             df_s["Starter%"] = (df_s["İlk11"] / df_s["Maç"] * 100).round(1)
             en_iyi_kart(t("Starter Şampiyonu","Starter Champion"),
                 df_s.nlargest(5,"Starter%")[["Oyuncu","Takım","Starter%","Maç"]],
