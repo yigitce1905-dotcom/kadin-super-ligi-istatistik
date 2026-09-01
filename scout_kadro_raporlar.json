@@ -1145,7 +1145,7 @@
       "RWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "1. FC Union Berlin U17",
+    "kulup": "1. FC Union Berlin II",
     "lig": "🇩🇪 U17 FV",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -1223,7 +1223,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Born in 2009, defensive prospect Defne Bashev developed her foundational tactical discipline through 1. FC Union Berlin's youth academy system in Germany. Operating predominantly as a balanced left full-back who can also cover right full-back or wide midfield roles, she focuses on maintaining compact defensive line discipline and providing structural cover along the flank. Because she possesses good spatial awareness and a diligent work ethic, she consistently tracks back during transition phases to protect her perimeter and break up opposition wing attacks. Furthermore, her willingness to execute timely interceptions alongside her full-back versatility enables her to adapt across both defensive flanks during dynamic match situations. However, her short-passing precision and progressive passing range under aggressive opposition pressing traps require technical refinement, as her vertical distributions can occasionally result in possession turnovers. Additionally, her 1v1 ground tackle timing and composure under heavy physical contact need further development to avoid being outmuscled by physically assertive attackers. Due to her compact 1.58m physical frame and modest vertical mechanics, her capacity to contest aerial duels or cover vast open dynamic channels against explosive wingers remains naturally capped. Given her full-back flexibility, defensive discipline, and German youth academy background, she is well-suited to serve as a rotation player for a relegation-fighting team in a semi-professional league or as a bench player for a mid-table team in a semi-professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "1. FC Union Berlin U17"
+    "kulup_sd": "1. FC Union Berlin II"
   },
   "Sevda Balta": {
     "tam_isim": "Sevda Nur Balta",
@@ -16344,7 +16344,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Bayer Leverkusen",
+    "kulup": "Manchester City LFC",
     "lig": "🇩🇪 Bundesliga",
     "deger": "€120.000",
     "sozlesme": "30.06.2027",
@@ -16422,7 +16422,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Frankfurt formasıyla Köln kiralık süreci sonrasında hücum rotasyonunda hızı ve dripling kalitesiyle süre alan potansiyelli bir kanat oyuncusudur. Kanatlardan ceza sahasına direkt bindirmeleri ve yüksek enerjisiyle oyuna hareketlilik getirir. Gelişimini istikrarlı sürdüren bir rotasyon parçasıdır.",
     "degerlendirildi": true,
-    "kulup_sd": "Bayer Leverkusen"
+    "kulup_sd": "Manchester City LFC"
   },
   "Natasha Kowalski": {
     "tam_isim": "Natasha Kowalski",
@@ -20310,7 +20310,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Hakkarigücü Spor",
     "lig": "-",
     "deger": "",
     "sozlesme": "",
@@ -20371,7 +20371,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Hakkarigücü Spor"
   },
   "Vanessa Karungi": {
     "tam_isim": "Vanessa Edith Karungi",
@@ -35727,7 +35727,7 @@
     "vatandaslik": "Türkiye",
     "milli_takim": "",
     "dogum": "20.08.2009",
-    "yas": 17,
+    "yas": 16,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -38059,7 +38059,7 @@
       "LWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -38136,14 +38136,14 @@
     "tr_gorusu": "Willing",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Blessing Demehin": {
     "tam_isim": "Oluwatosin Blessing Demehin",
     "vatandaslik": "Nigeria",
     "milli_takim": "",
     "dogum": "13.03.2002",
-    "yas": 24,
+    "yas": 28,
     "boy": "1,71",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -38247,7 +38247,7 @@
       "RWB"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Galatasaray",
+    "kulup": "NAC Breda",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2028",
@@ -38331,7 +38331,7 @@
     "tr_gorusu": "Willing",
     "scout_notu": "Born in 2007, dynamic winger Ela Yetim honed her technical versatility through Dutch youth academies before continuing her competitive development in elite domestic Turkish club setups. Operating predominantly as an inverted left wing-forward, she excels at cutting inside onto her favored foot to drive into central half-spaces and disrupt opposition defensive structures. Because she possesses sharp sudden acceleration and tight 1v1 dribbling control, she routinely beats wide defenders and draws opposition defensive cover out of position. Furthermore, her willingness to take offensive initiative allows her to unleash curved shot attempts and deliver incisive key passes into the penalty box. However, her decision-making during fast transition plays requires further maturity, as she occasionally delays releasing the ball to over-dribble into dense defensive traffic. Additionally, her defensive tracking back and positional discipline during out-of-possession shifts need refinement to prevent wide defensive gaps on her flank. Due to her compact 1.61m physical frame and moderate core strength, her capacity to win aerial duels or withstand heavy body-to-body contact from physical full-backs remains naturally capped. Combining her creative dribbling flair, sharp acceleration, and offensive upside, she is well-suited to serve as a starting XI player for an upper-table team in a semi-professional league or as a rotation player for a mid-table team in a professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "NAC Breda"
   },
   "Meryem Baskaya": {
     "tam_isim": "Meryem Başkaya",
@@ -38348,7 +38348,7 @@
       "LFB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€15.000",
     "sozlesme": "30.06.2028",
@@ -38420,7 +38420,7 @@
     "tr_gorusu": "Willing",
     "scout_notu": "Born in 2006, central defender Selin Cemal developed her defensive foundations through structured academy systems before stepping into competitive adult football. Operating as a physical, no-nonsense right-sided center back, she focuses primarily on interior space denial and maintaining structural balance within the defensive line. Because she possesses a solid physical build and assertive tackling timing, she consistently prevails in ground duels and neutralizes opposing attackers in defensive 1v1 situations. Furthermore, her disciplined defensive positioning and body orientation enable her to read opposition entry passes effectively and intercept dangerous central balls. However, her progressive passing distribution requires substantial technical refinement, as she often chooses conservative safety options rather than attempting vertical line-breaking passes. Additionally, her composure under intense opposition high-pressing traps needs improvement to prevent turnover risks during deep build-up phases. Due to her biomechanical movement patterns and lower top-end recovery speed, her capacity to cover large dynamic spaces behind a high defensive line remains naturally capped. Considering her physical presence and disciplined defensive foundation, she is well-suited to serve as a starting XI player for a mid-table team in a semi-professional league or a rotation player for a first 3 team within a semi-professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Jessica Silva": {
     "tam_isim": "JÉssica Lisandra Manjenje Nogueira Silva",
@@ -38437,7 +38437,7 @@
       "RWF"
     ],
     "rol": "Raumdeuter",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€50.000",
     "sozlesme": "30.06.2028",
@@ -38519,7 +38519,7 @@
     "tr_gorusu": "",
     "scout_notu": "Jessica Silva is a famous Portuguese wide forward born in 1994 who operates predominantly on the right and left flanks. She developed her technical foundation and unpredictable dynamic style within the youth setup at Clube de Albergaria in Portugal before advancing to high-level senior competitions. Because of her extraordinary agility, deceleration control, and creative 1v1 dribbling, she continuously unbalances organized defensive structures by breaking wide lines with ease. Furthermore, her ability to execute rapid changes of direction while maintaining high-speed ball control allows her to consistently carve out high-value crossing and shooting lanes in the final third. Her defensive positioning during low-block rest defense scenarios requires greater tactical discipline, as she sometimes leaves her full-back isolated by delaying her recovery runs. In addition, streamlining her final decision-making in half-spaces will help reduce unnecessary turnovers against double-teaming defensive schemes. Her aerial duel contribution and physical hold-up capacity remain mediocre due to her lighter physical frame when competing against physical defenders. Functioning as a flair-driven, high-confidence isolation winger, she plays with immense self-belief and serves as a game-breaking primary creator who demands high involvement in key moments. As a famous talented footballer, she is best evaluated as suitable for the Top 10 Leagues in the World as a Starting XI Player for a Championship Contender.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Oliwia Domin": {
     "tam_isim": "Oliwia Domin",
@@ -38536,7 +38536,7 @@
       "CMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€60.000",
     "sozlesme": "30.06.2028",
@@ -38614,7 +38614,7 @@
     "tr_gorusu": "",
     "scout_notu": "As a Polish international midfielder born in 2004, Oliwia Domin possesses a compact heighter than 1.60-meter mesomorphic physique that grants her agile dynamic mobility in central half-spaces. Because she developed her tactical foundations through structured Polish youth pipelines before advancing into senior competitive football, she established high operational stamina and a disciplined box-to-box work rate. Due to her sharp acceleration, clean first-touch control, and press-resistant ball technique, she consistently escapes tight midfield pressing traps to drive progressive transitions into the attacking third. Furthermore, because she displays brave competitive engagement and a strong high-tempo work ethic, she actively connects offensive build-up phases while offering immediate counter-pressing support in transition. However, since her final-third finishing technique and long-range shot power remain modest, her capacity to generate direct goal-scoring threats from perimeter zones requires further technical refinement. Additionally, because her vision for vertical line-breaking passes under heavy central density can occasionally lack ambition, refining her creative decision-making in the final third stays an essential growth area. Owing to her limited physical core strength and low weak-foot repeatability, her ability to outmuscle physically dominant central midfielders in heavy body-contact duels remains average. Functioning as a high-tempo dynamic midfielder, her combative attitude, high pressure tolerance, and relentless operational energy provide team momentum during fast-paced transitional phases. Given her dynamic pressing ability, solid technical background, and high-tempo mobility, She is best evaluated as suitable for the Top 10 Leagues in the World as a Rotation Player for an Mid-Table Contender or she can evaluated as a Starting XI Player for a Best Team in a Professional League.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Eleni Markou": {
     "tam_isim": "Ελένη Μάρκου",
@@ -38632,7 +38632,7 @@
       "RCB"
     ],
     "rol": "Volante",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€30.000",
     "sozlesme": "30.06.2028",
@@ -38712,7 +38712,7 @@
     "tr_gorusu": "",
     "scout_notu": "As a Greek international defensive midfielder born in 1995, Eleni Markou features a robust about 1.70-meter meso-endomorphic frame that provides her with a physical advantage in central defensive corridors. Because she built her defensive versatility across Greek international football and European top-flight environments, she developed exceptional tactical discipline when operating as a defensive anchor or central defender. Due to her aggressive ground tackle execution, disciplined marking technique, and strong positional reading, she routinely breaks up opposition central attacks and recovers loose secondary balls. Furthermore, because she exhibits commanding box organization and assertive aerial challenge timing, she effectively neutralizes high cross deliveries and set-piece threats inside the penalty box. However, since her progressive passing distribution out of deep build-up phases lacks line-breaking range, her ability to initiate rapid vertical transitions under high pressing traps requires technical refinement. Additionally, because her dynamic turning agility and lateral recovery speed across open spaces are naturally limited, covering fast counter-attacks behind an expansive high defensive line remains a tactical challenge. Owing to her conservative passing selection and minimal weak-foot usage, her overall contribution to creative final-third ball circulation remains average. Functioning as an authoritative holding midfielder, her vocal leadership, competitive drive, and uncompromising duel engagement generate structural stability and defensive composure for her unit. Given her defensive duel dominance, tactical versatility across central lines, and extensive international experience, she is well-suited to serve as a Starting XI Player for Best Teams in a Semi-Professional League or as a Star Player for an Upper-Table Team in a Semi-Professional League.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Carole Costa": {
     "tam_isim": "Carole Da Silva Costa",
@@ -38729,7 +38729,7 @@
       "RCB"
     ],
     "rol": "Komple Stoper",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€30.000",
     "sozlesme": "30.06.2028",
@@ -38805,7 +38805,7 @@
     "tr_gorusu": "",
     "scout_notu": "Carole Costa is a veteran Portuguese central defender born in 1990 who specializes in build-up organization and low-block defense. She refined her defensive fundamentals and tactical reading as a product of the Leixões youth structure in Portugal prior to building an extensive professional career. Owing to her superior anticipatory vision and spatial orientation, she consistently intercepts opposition line-breaking passes and neutralizes counter-attacks before danger materializes. Moreover, her line-breaking passing range and composure under intense pressure enable her team to construct fluid build-up plays directly from the defensive third. Her lateral quickness when covering large open spaces behind a high defensive line requires careful management, as she can be exposed by rapid wide forwards on fast transitions. Consequently, pairing her with a pacey cover defender will maximize her defensive efficiency and maintain structural balance. Her recovery speed in isolated ground duels over long distances is somewhat limited due to a lack of elite top-end sprinting speed. As a vocal, highly composed defensive anchor, she commands the backline with strong tactical leadership and psychological resilience under high-pressure scenarios. She is best evaluated as suitable for a team competing the championship in the Top 10 Leagues in the World as a starter for.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Marta Cintra": {
     "tam_isim": "Marta Naizia Da Silva Cintra",
@@ -38822,7 +38822,7 @@
       "RWF"
     ],
     "rol": "Hedef Kanat",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -38904,7 +38904,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Dana Foederer": {
     "tam_isim": "Dana Margaretha Wilhelmina Foederer",
@@ -38922,7 +38922,7 @@
       "AMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2027",
@@ -39000,7 +39000,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Sila Tetik": {
     "tam_isim": "Sıla Besra Tetik",
@@ -39017,7 +39017,7 @@
       "LWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -39093,14 +39093,14 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Vitoria Almeida": {
     "tam_isim": "Vitória Silva De Almeida",
     "vatandaslik": "Brazil",
     "milli_takim": "",
     "dogum": "26.08.1999",
-    "yas": 27,
+    "yas": 26,
     "boy": "1,85",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Endomorf",
@@ -39109,7 +39109,7 @@
       "CFW"
     ],
     "rol": "Hedef Santrfor",
-    "kulup": "Galatasaray",
+    "kulup": "Galatasaray SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€5.000",
     "sozlesme": "30.06.2027",
@@ -39185,7 +39185,7 @@
     "tr_gorusu": "",
     "scout_notu": "As a Brazilian center-forward born in 1999, Vitoria Almeida possesses an imposing 1.85-meter physical stature that makes her a formidable target reference inside the opposition penalty area. Because she developed her physical target-play style through competitive Brazilian football, she honed specialized back-to-goal hold-up mechanics and box dominance against aggressive central defenders. Due to her elite physical strength, balance, and back-to-goal ball shielding, she consistently holds off heavy body contact to lay off passes and secure deep long-ball distributions. Furthermore, because she displays strong aerial leap mechanics and assertive positioning on cross deliveries, she poses a major goal threat during set-piece routines and wide air-ball attacks. However, since her turning acceleration and short-burst agility across open spaces are mechanically heavy, her capacity to beat defenders on 1v1 dribbles or run into open channels remains naturally capped. Additionally, because her operational fitness and pressing volume off the ball require physical conditioning, sustaining continuous high-intensity counter-pressing shifts throughout 90 minutes stays a key focus area. Owing to her limited mobility during fast-break transitions and basic weak-foot execution, her contribution to fluid combination play outside the penalty box remains average. Functioning as a classic target striker, her physical presence and focal-point positioning pin opposing center-backs deep, creating valuable half-space gaps for incoming wingers. Given her elite physical ball-handling ability, aerial dominance, and focus on target profile, she is well-suited to serve as a star player for mid-level teams in a professional league or as a substitute option for best teams in a professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "Galatasaray"
+    "kulup_sd": "Galatasaray SK"
   },
   "Chirine Lamti": {
     "tam_isim": "",
@@ -43205,7 +43205,7 @@
       "CMF"
     ],
     "rol": "Çapa",
-    "kulup": "FC Kolos Kovalivka",
+    "kulup": "WFC Kolos Kovalivka",
     "lig": "🇺🇦 Prime League",
     "deger": "",
     "sozlesme": "",
@@ -43266,7 +43266,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "FC Kolos Kovalivka"
+    "kulup_sd": "WFC Kolos Kovalivka"
   },
   "Nadia Nadim": {
     "tam_isim": "Nadia Nadim",
@@ -46538,7 +46538,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "Juventus Football Club",
+    "kulup": "Inter Mailand",
     "lig": "🇮🇹 Serie A",
     "deger": "€110.000",
     "sozlesme": "30.06.2028",
@@ -46601,7 +46601,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Juventus Football Club"
+    "kulup_sd": "Inter Mailand"
   },
   "Remina Chiba": {
     "tam_isim": "千葉 玲海菜",
@@ -47608,7 +47608,7 @@
     "vatandaslik": "Kosovo",
     "milli_takim": "",
     "dogum": "12.9.2007",
-    "yas": 18,
+    "yas": 28,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -50991,7 +50991,7 @@
       "LWF"
     ],
     "rol": "Hücum Bek",
-    "kulup": "London City Lionesses",
+    "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€30.000",
     "sozlesme": "30.06.2026",
@@ -51069,7 +51069,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Rofiat Imuran is an agile 22-year-old left wingback for Nigeria. She provides rapid overlapping runs and dangerous left-flank crossing deliveries, with continuous recovery stamina.",
     "degerlendirildi": true,
-    "kulup_sd": "London City Lionesses"
+    "kulup_sd": "Aston Villa LFC"
   },
   "Nesryne El-Chad": {
     "tam_isim": "Nesryne El-Chad",
@@ -52074,7 +52074,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Hakkarigücü Spor",
     "lig": "-",
     "deger": "",
     "sozlesme": "",
@@ -52135,7 +52135,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Hakkarigücü Spor"
   },
   "Kelen Bender": {
     "tam_isim": "Kélen Bender",
@@ -55799,7 +55799,7 @@
       "AMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Melbourne Victory",
+    "kulup": "Serbest",
     "lig": "🇦🇺 A-League",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -55878,7 +55878,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Melbourne Victory"
+    "kulup_sd": "Serbest"
   },
   "Sienna Saveska": {
     "tam_isim": "Sienna Saveska",
@@ -60112,7 +60112,7 @@
     "vatandaslik": "PR China",
     "milli_takim": "",
     "dogum": "01.09.1997",
-    "yas": 28,
+    "yas": 29,
     "boy": "1,70",
     "ayak": "Sol",
     "vucut_tipi": "",
@@ -60200,7 +60200,7 @@
       "AMF"
     ],
     "rol": "Mezzala",
-    "kulup": "Olympique Marseille",
+    "kulup": "Olympique de Marseille",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -60279,7 +60279,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Habibou Ouedraogo is a dynamic mezzala for Burkina Faso. She carries possession through wide channels and provides robust physical duel support in central zones.",
     "degerlendirildi": true,
-    "kulup_sd": "Olympique Marseille"
+    "kulup_sd": "Olympique de Marseille"
   },
   "Lexi Missimo": {
     "tam_isim": "Alexis Missimo",
@@ -60296,7 +60296,7 @@
       "AMF"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Olympique Marseille",
+    "kulup": "Olympique de Marseille",
     "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "31.12.2026",
@@ -60366,7 +60366,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Olympique Marseille"
+    "kulup_sd": "Olympique de Marseille"
   },
   "Gabi Nunes": {
     "tam_isim": "Gabriela Nunes da Silva",
@@ -77057,7 +77057,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Stade Malherbe Caen",
+    "kulup": "ZNK Radomlje",
     "lig": "🇸🇳 D1 Championship",
     "deger": "",
     "sozlesme": "",
@@ -77118,7 +77118,7 @@
     "tr_gorusu": "Willing",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Stade Malherbe Caen"
+    "kulup_sd": "ZNK Radomlje"
   },
   "Soumaya Laamiri": {
     "tam_isim": "",
@@ -77904,7 +77904,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "Serbest",
+    "kulup": "Al Hilal FC",
     "lig": "-",
     "deger": "€70.000",
     "sozlesme": "30.06.2026",
@@ -77982,7 +77982,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "Ibtissam Jraidi is Morocco's top goalscorer. She possesses lethal penalty-box instinct, clinical short finish execution, and sharp channel off-ball timing.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Al Hilal FC"
   },
   "Christy Ucheibe": {
     "tam_isim": "Christy Ucheibe",
@@ -82186,7 +82186,7 @@
       "LWF"
     ],
     "rol": "Çalışkan Kenar",
-    "kulup": "Sultanbeyli Gücü Spor Kulübü",
+    "kulup": "Sultanbeyli Gücü SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -82261,7 +82261,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Sultanbeyli Gücü Spor Kulübü"
+    "kulup_sd": "Sultanbeyli Gücü SK"
   },
   "Zeynep Keskin": {
     "tam_isim": "Zeynep Gül Keskin",
@@ -82898,7 +82898,7 @@
       "LCB"
     ],
     "rol": "Oyun Kurucu Bek",
-    "kulup": "Bilgidoga SK",
+    "kulup": "Bilgi Doga SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -82977,7 +82977,7 @@
     "tr_gorusu": "",
     "scout_notu": "Esin Nisa Sivasli is a 18-year-old left defender for Sile Bilgi Doga (ex-Besiktas Academy). Recognized as one of the league's most rapid improvers, she brings high dynamic energy and sharp tackles, despite occasional positional lapses.",
     "degerlendirildi": true,
-    "kulup_sd": "Bilgidoga SK"
+    "kulup_sd": "Bilgi Doga SK"
   },
   "Emily Orman": {
     "tam_isim": "Emily Orman",
@@ -83609,7 +83609,7 @@
       "AMF"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Club Atlético de Madrid",
     "lig": "🇲🇽 Liga MX",
     "deger": "€100.000",
     "sozlesme": "31.12.2025",
@@ -83698,7 +83698,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Ispanya tarihinin en golcu efsanelerinden biri, harika bir sahte dokuz numara ogb bağlantı oyuncusu maestrosudur. Futbol akli, ceza sahasi onundeki tek pas kalitesi ogb pas vizyonu dunya klasidir. Boyunun avantajiyla hava toplarinda da ciddî bir istasyon olusturur.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Club Atlético de Madrid"
   },
   "Peace Efih Efih": {
     "tam_isim": "",
@@ -85819,7 +85819,7 @@
     "vatandaslik": "Türkiye",
     "milli_takim": "",
     "dogum": "29.08.2003",
-    "yas": 23,
+    "yas": 22,
     "boy": "1,70",
     "ayak": "Sol",
     "vucut_tipi": "Ektomorf",
@@ -89033,7 +89033,7 @@
       "GK"
     ],
     "rol": "Çizgi Kalecisi",
-    "kulup": "Serbest",
+    "kulup": "Ünye Kadin SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€25.000",
     "sozlesme": "30.06.2027",
@@ -89125,7 +89125,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "As a Trinidad and Tobago international goalkeeper born in 2000, K'lil Keshwar possesses an imposing taller than 1.85-meter physical frame that provides her with a natural physical advantage inside the penalty area. Because she transitioned from an outfield defensive position in her early youth to structured U.S. collegiate football, she developed strong tactical awareness and defensive organization when protecting her penalty box. Due to her exceptional vertical reach, physical stature, and proactive positioning on set-piece deliveries, she consistently claims high cross trajectories, thereby neutralizing opposition wide threats and securing her defensive perimeter. Furthermore, because she displays sharp line-stopping reflexes and strong wrist resistance against high-velocity strikes, she parries difficult close-range attempts safely away from central rebound zones. However, since her sweeping mobility and rushing-out timing beyond the 18-yard box remain periodically hesitant, her capacity to smother direct long-ball passes behind a high defensive line requires tactical calibration. Additionally, because her long-range punt trajectory and pass execution under aggressive high-pressing triggers lack consistent biomechanical repeatability, refining her deep build-up distribution remains a key growth area. Owing to her reliance on simple, low-risk short passes and limited weak-foot usage, her overall contribution to progressive ball circulation during deep build-up phases remains average. Functioning as an area-dominating goalkeeper, her vocal communication and commanding presence organize the defensive block effectively, generating team composure and psychological stability during sustained opponent pressure. Given her aerial dominance, collegiate development foundation, and reliable shot-stopping profile; she is well-suited to serve as a Starting XI Player for a Upper-Table Team in a Semi-Professional League or as a Rotation Player for Best Teams in a Semi-Professional League.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Ünye Kadin SK"
   },
   "Kafayat Shittu": {
     "tam_isim": "Kafayat Folakemi Shittu",
@@ -89141,7 +89141,7 @@
       "DMF"
     ],
     "rol": "Çapa",
-    "kulup": "Ünye KFK",
+    "kulup": "Ünye Kadin SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89213,7 +89213,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Ünye KFK"
+    "kulup_sd": "Ünye Kadin SK"
   },
   "Suhde Arpaci": {
     "tam_isim": "Suhde Nur Arpacı",
@@ -89230,7 +89230,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Ünye KFK",
+    "kulup": "Ünye Kadin SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89306,7 +89306,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Ünye KFK"
+    "kulup_sd": "Ünye Kadin SK"
   },
   "Yaren Colak": {
     "tam_isim": "Emine Yarren Çolak",
@@ -89324,7 +89324,7 @@
       "RWB"
     ],
     "rol": "Dengeli Bek",
-    "kulup": "Ünye KFK",
+    "kulup": "Ünye Kadin SK",
     "lig": "🇹🇷 Süper Lig",
     "deger": "€2.500",
     "sozlesme": "30.06.2027",
@@ -89398,7 +89398,7 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Ünye KFK"
+    "kulup_sd": "Ünye Kadin SK"
   },
   "Hanane Ait El-Haj": {
     "tam_isim": "Hanane Ait El-Haj",
@@ -93215,7 +93215,7 @@
       "DMF"
     ],
     "rol": "Derin Oyun Kurucu",
-    "kulup": "West Ham United LFC",
+    "kulup": "Sheffield United Community LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -93294,7 +93294,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Born in 2004, combative midfielder Halle Houssein developed her tactical understanding and competitive sharpness through prestigious English academy structures before transitioning into senior professional football. Operating primarily as a defensive or box-to-box central midfielder, she focuses on breaking up opposition play and providing defensive stability in the middle third. Because she possesses strong physical engagement and aggressive tackling timing, she excels at winning ground duels and disrupting opponent build-up play in central areas. Furthermore, her high work rate and tactical discipline allow her to cover significant ground laterally, consistently closing down passing lanes and pressing opposition ball-carriers. However, her progressive ball distribution under pressure requires further refinement, as she sometimes opts for safe sideways passes rather than looking for vertical line-breaking opportunities. Additionally, her emotional control and foul management during high-intensity transition phases need improvement to avoid committing unnecessary tactical fouls in dangerous zones. Due to her moderate frame and vertical jump mechanics, her capacity to consistently dominate aerial duels against tall physical midfielders remains naturally capped. Combining her tenacity, defensive work rate, and elite youth pedigree, she is well-suited to serve as a starting XI player for a mid-table team within a professional league or as a rotation player for an upper-table team in a professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "West Ham United LFC"
+    "kulup_sd": "Sheffield United Community LFC"
   },
   "Selin Cemal": {
     "tam_isim": "Selin Cemal Başdüdükçü",
@@ -93745,7 +93745,7 @@
       "GK"
     ],
     "rol": "Hükmeden Kaleci",
-    "kulup": "FK Minsk",
+    "kulup": "Serbest",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "",
     "sozlesme": "",
@@ -93835,7 +93835,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "Ekaterina Miklashevich is an experienced goalkeeper for Lokomotiv Moscow and Belarus. She offers dependable goal-line shot stopping and solid box communication, with basic foot distribution.",
     "degerlendirildi": true,
-    "kulup_sd": "FK Minsk"
+    "kulup_sd": "Serbest"
   },
   "Bryndis Arna Nielsdottir": {
     "tam_isim": "Bryndís Arna Níelsdóttir",
