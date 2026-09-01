@@ -4317,9 +4317,24 @@ def df_zenginlestir(_df: "pd.DataFrame", file_hash: str = "", _v: str = "v3") ->
         profil = _sd_profil_bul(oyuncu)
         try:
             age = float(str(profil.get("Age", "")).split()[0])
-            return age if 15 <= age <= 40 else None
+            if 15 <= age <= 40:
+                return age
         except Exception:
+            pass
+        # SD'nin ham "Age" alanı yeni eklenen profillerde bazen "0"/boş geliyor
+        # (SD kendi tarafında henüz senkron değil) ama "Date of birth" güvenilir —
+        # oradan hesapla (Yiğit, 2026-09-01 taramasında keşfedildi: Rita Doku vb.
+        # yaşsız görünüyordu, oysa doğum tarihi profilde vardı).
+        # NOT: _yas_hesapla() burada henüz tanımlı değil (df_zenginlestir modül
+        # yüklenirken en tepede çağrılıyor) — hesap burada tekrarlanır.
+        m = _re.search(r"(\d{2})\.(\d{2})\.(\d{4})", profil.get("Date of birth", "") or "")
+        if not m:
             return None
+        g, a, y = map(int, m.groups())
+        from datetime import date as _date
+        t_ = _date.today()
+        dob_yas = t_.year - y - ((t_.month, t_.day) < (a, g))
+        return dob_yas if 15 <= dob_yas <= 40 else None
 
     df["Yaş"] = df["Oyuncu"].map(_yas)
     return df

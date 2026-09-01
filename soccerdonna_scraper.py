@@ -4,7 +4,7 @@ oyuncular.json'daki her oyuncuyu SoccerDonna'da arar,
 profil bilgilerini çekip soccerdonna_profiller.json'a kaydeder.
 """
 
-import json, re, time, unicodedata
+import datetime, json, re, time, unicodedata
 import requests
 from bs4 import BeautifulSoup
 from difflib import SequenceMatcher
@@ -92,6 +92,24 @@ def profil_cek(session, profil_url: str) -> dict:
         img = soup.find("img", {"class": re.compile(r"vereinlogo|club")})
         if img and img.get("alt"):
             veri["Mevcut Kulüp"] = img["alt"]
+
+        # SD'nin ham "Age" alanı yeni eklenen profillerde bazen "0"/boş geliyor
+        # (SD kendi tarafında henüz senkron değil) — "Date of birth" güvenilirse
+        # ondan hesapla (Yiğit, 2026-09-01: Rita Doku vb. bu yüzden yaşsız
+        # görünüyordu, sitede de aynı sorun tekrarlamasın diye kaynağında düzeltildi).
+        _ham_yas = str(veri.get("Age", "")).strip()
+        try:
+            _yas_gecerli = 13 <= float(_ham_yas.split()[0]) <= 45
+        except Exception:
+            _yas_gecerli = False
+        if not _yas_gecerli and veri.get("Date of birth"):
+            m = re.search(r"(\d{2})\.(\d{2})\.(\d{4})", veri["Date of birth"])
+            if m:
+                g, a, y = map(int, m.groups())
+                bugun = datetime.date.today()
+                hesap_yas = bugun.year - y - ((bugun.month, bugun.day) < (a, g))
+                if 13 <= hesap_yas <= 45:
+                    veri["Age"] = str(hesap_yas)
 
         return veri
     except Exception:
