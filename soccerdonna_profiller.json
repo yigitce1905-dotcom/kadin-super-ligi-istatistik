@@ -7507,7 +7507,20 @@
     "sd_isim": "Ceren Guzelhan",
     "es_skoru": 1.0
   },
-  "POPOVIC MILICA": {},
+  "POPOVIC MILICA": {
+    "profil_url": "https://www.soccerdonna.de/en/milica-popovic/profil/spieler_89266.html",
+    "Date of birth": "10.10.2003",
+    "Age": "22",
+    "Name in native country": "Milica Popović",
+    "Height": "1,64",
+    "Nationality": "Serbia",
+    "Position": "Striker - Centre Forward",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Contract until": "30.06.2027",
+    "sd_isim": "Milica Popović",
+    "es_skoru": 1.0
+  },
   "PATRICIA ISABEL DE SOUSA BARROS MORAIS": {
     "profil_url": "https://www.soccerdonna.de/en/patricia-morais/profil/spieler_10583.html",
     "Date of birth": "17.06.1992",
@@ -8205,7 +8218,16 @@
     "sd_isim": "Betul Karaca",
     "es_skoru": 0.774
   },
-  "HANİFE ZEYNEP BİRİZ": {},
+  "HANİFE ZEYNEP BİRİZ": {
+    "profil_url": "https://www.soccerdonna.de/en/zeynep-biriz/profil/spieler_123157.html",
+    "Date of birth": "24.05.2007",
+    "Age": "19",
+    "Nationality": "Turkey",
+    "Position": "Defence",
+    "Market value": "unknown",
+    "sd_isim": "Zeynep Biriz",
+    "es_skoru": 0.85
+  },
   "İMREN AKKAYA": {
     "profil_url": "https://www.soccerdonna.de/en/imren-akkaya/profil/spieler_66411.html",
     "Date of birth": "12.10.2002",
@@ -8286,5 +8308,25 @@
     "Contract until": "30.06.2027",
     "sd_isim": "Cristina Recalde",
     "es_skoru": 0.627
+  },
+  "MELİKE ALAGÖZ": {
+    "profil_url": "https://www.soccerdonna.de/en/melike-alagoz/profil/spieler_123156.html",
+    "Date of birth": "15.04.2000",
+    "Age": "26",
+    "Nationality": "Turkey",
+    "Position": "Midfield",
+    "Market value": "unknown",
+    "sd_isim": "Melike Alagoz",
+    "es_skoru": 1.0
+  },
+  "SENA GÖKSOY": {
+    "profil_url": "https://www.soccerdonna.de/en/sena-goksoy/profil/spieler_123158.html",
+    "Date of birth": "25.06.2002",
+    "Age": "24",
+    "Nationality": "Turkey",
+    "Position": "Midfield",
+    "Market value": "unknown",
+    "sd_isim": "Sena Goksoy",
+    "es_skoru": 1.0
   }
 }
