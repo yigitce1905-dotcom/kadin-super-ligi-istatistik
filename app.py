@@ -462,17 +462,21 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
 .benzer-buyuk .bk-ad   { font-size:1.08rem; margin:7px 0 5px; }
 .benzer-buyuk .bk-alt  { font-size:0.72rem; }
 
-/* Bilgi ikonu — üzerine gelince (hover) açıklama balonu açar (Benzer Sporcular vb.) */
+/* Bilgi ikonu — üzerine gelince (hover) açıklama balonu açar (Benzer Sporcular vb.)
+   Mobilde hover diye bir şey yok — dokunma odaklanmayı (:focus) tetikler, o yüzden
+   tabindex="0" ile odaklanabilir yapılıp :focus/:focus-visible de aynı kurala
+   bağlandı (Yiğit, 2026-09-01: "mobil deneyimi iyileştir"). */
 .ism-info { position:relative; display:inline-block; cursor:help;
-    font-size:0.8em; opacity:0.7; margin-left:5px; vertical-align:2px; }
-.ism-info:hover { opacity:1; }
+    font-size:0.8em; opacity:0.7; margin-left:5px; vertical-align:2px; outline:none; }
+.ism-info:hover, .ism-info:focus, .ism-info:focus-visible { opacity:1; }
 .ism-info .ism-pop { visibility:hidden; opacity:0; position:absolute; z-index:60;
     left:0; top:1.5em; width:min(300px, 78vw); background:#13131f;
     border:1px solid #3a3358; border-radius:10px; padding:11px 14px;
     font-size:0.72rem; line-height:1.55; font-weight:400; color:#c7cbe0;
     text-align:left; box-shadow:0 8px 24px rgba(0,0,0,0.45);
     transition:opacity .15s ease; }
-.ism-info:hover .ism-pop { visibility:visible; opacity:1; }
+.ism-info:hover .ism-pop, .ism-info:focus .ism-pop, .ism-info:focus-visible .ism-pop,
+.ism-info:focus-within .ism-pop { visibility:visible; opacity:1; }
 .ism-info .ism-pop ul { margin:0; padding-left:16px; }
 .ism-info .ism-pop li { margin-bottom:5px; }
 .ism-info .ism-pop li:last-child { margin-bottom:0; }
@@ -2266,9 +2270,13 @@ def _sheet_alias_ekle(out: dict) -> dict:
     return out
 
 
+@st.cache_data(show_spinner=False)
 def birlesik_sd_yukle() -> dict:
     """SD profilleri: scouting havuzu + TR ligi (soccerdonna_profiller.json).
-    TR oyuncuların kariyer/künye verisi TR-Veri tarafında zaten mevcut — köprü."""
+    TR oyuncuların kariyer/künye verisi TR-Veri tarafında zaten mevcut — köprü.
+    NOT (Yiğit, 2026-09-01: "siteyi hızlandır"): bu fonksiyon cache'siz kalmıştı —
+    kardeşi birlesik_leistung_yukle() zaten cache'li, iki dict'i her çağrıda
+    yeniden birleştirmek (1800+ kayıt) gereksiz tekrardı."""
     return _sheet_alias_ekle({**sd_profiller_yukle(), **scouting_sd_yukle()})
 
 
@@ -2277,8 +2285,12 @@ def birlesik_leistung_yukle() -> dict:
     """Kariyer (sezon) verileri: scouting + TR ligi (analig_leistungsdaten.json)."""
     return _sheet_alias_ekle({**analig_leistung_yukle(), **scouting_leistung_yukle()})
 
+@st.cache_data(ttl=3600, show_spinner=False)
 def scotr_yukle() -> dict:
-    """Sco Tr scout raporları (1207 Antalyaspor — nitelik notları, rol, tarz)."""
+    """Sco Tr scout raporları (1207 Antalyaspor — nitelik notları, rol, tarz).
+    NOT (Yiğit, 2026-09-01: "siteyi hızlandır"): önceden cache'siz kalmıştı —
+    scotr_bul() bir TR profil sayfasında BİRDEN FAZLA kez çağrıldığı için her
+    seferinde ~300 kayıtlık dosyayı diskten yeniden okuyup parse ediyordu."""
     yol = pathlib.Path(__file__).parent / "scotr_raporlar.json"
     if not yol.exists():
         return {}
@@ -4876,9 +4888,10 @@ def _benzer_kutu_grid(items):
 
 
 def _tip_ikon(maddeler):
-    """Küçük ℹ️ ikonu — üzerine gelince (hover) açıklama balonunda madde listesi açar."""
+    """Küçük ℹ️ ikonu — üzerine gelince (hover, masaüstü) ya da dokununca
+    (tabindex ile odaklanma, mobil) açıklama balonunda madde listesi açar."""
     _lis = "".join(f"<li>{m}</li>" for m in maddeler)
-    return f"<span class='ism-info'>ℹ️<span class='ism-pop'><ul>{_lis}</ul></span></span>"
+    return f"<span class='ism-info' tabindex='0'>ℹ️<span class='ism-pop'><ul>{_lis}</ul></span></span>"
 
 
 def benzer_oyuncular_goster(hedef_isim, kaynak):
