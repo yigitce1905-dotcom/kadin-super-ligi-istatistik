@@ -2088,6 +2088,22 @@ def _kanon(ad: str) -> str:
     return _tr_upper(_takim_kisa(ad or ""))
 
 
+def _takim_mac_sayisi(takim_ad: str = None) -> int:
+    """Bir takımın (veya None ise tüm ligin) gerçekten oynadığı resmi maç sayısı.
+
+    'Toplam Maç' kartları önceden oyuncuların 'Maç' (mac_sayisi) sütunu toplanarak
+    hesaplanıyordu — bu oyuncu-KATILIM sayısıdır, gerçek maç sayısı değil (ör. 1.
+    haftada oynayan herkesin mac_sayisi=1 olduğundan toplam = oyuncu sayısına eşit
+    çıkıyor: 161 oyuncu → yanlışlıkla '161 maç', oysa ligde henüz 8 resmi maç var).
+    mac_sonuclari.json'daki gerçek fikstürden, takım bazında sayar."""
+    maclar = mac_sonuclari_yukle()
+    if takim_ad is None:
+        return len(maclar)
+    hedef = _kanon(takim_ad)
+    return sum(1 for m in maclar
+               if _kanon(m.get("ev", "")) == hedef or _kanon(m.get("dep", "")) == hedef)
+
+
 @st.cache_data(ttl=3600)
 def _yenilen_gol_map() -> dict:
     """{(hafta, TAKIM_UPPER): o hafta yenilen gol} — clean sheet hesabı için."""
@@ -12190,7 +12206,7 @@ if tab4:
         for kol, sayi, etiket in [
             (t1, len(df_t),                  t("Oyuncu","Players")),
             (t2, int(df_t["Gol"].sum()),      t("Toplam Gol","Total Goals")),
-            (t3, int(df_t["Maç"].sum()),      t("Toplam Maç","Total Matches")),
+            (t3, _takim_mac_sayisi(secili_t),  t("Toplam Maç","Total Matches")),
             (t4, int(df_t["Dakika"].sum()),   t("Toplam Dakika","Total Minutes")),
             (t5, int(df_t["Sarı"].sum()),     t("Sarı Kart","Yellow Cards")),
         ]:
@@ -12921,7 +12937,7 @@ if tab_benim:
                     (k1, len(df_tam),              t("Toplam Oyuncu","Total Players")),
                     (k2, _kanon_takim_sayisi(df_tam["Takım"]), t("Takım","Teams")),
                     (k3, int(df_tam["Gol"].sum()),  t("Toplam Gol","Total Goals")),
-                    (k4, int(df_tam["Maç"].sum()),  t("Toplam Maç","Total Matches")),
+                    (k4, _takim_mac_sayisi(),        t("Toplam Maç","Total Matches")),
                 ]:
                     kol.markdown(
                         f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -12975,7 +12991,7 @@ if tab_benim:
                 for kol,sayi,etiket in [
                     (k1, len(kadro),                t("Oyuncu","Players")),
                     (k2, int(kadro["Gol"].sum()),   t("Toplam Gol","Total Goals")),
-                    (k3, int(kadro["Maç"].sum()),   t("Toplam Maç","Total Matches")),
+                    (k3, _takim_mac_sayisi(kulup_takim), t("Toplam Maç","Total Matches")),
                     (k4, int(kadro["Dakika"].sum()),t("Toplam Dakika","Total Minutes")),
                     (k5, en_golcu,                  t("En Golcü","Top Scorer")),
                 ]:
