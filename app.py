@@ -4057,6 +4057,43 @@ _ULKE_TR = {}
 for _tr_ad, _en_ad in _ULKE_EN.items():
     _ULKE_TR.setdefault(_en_ad, _tr_ad)
 
+# _ULKE_EN'de hiç TR karşılığı olmayan / SoccerDonna'nın kullandığı alternatif
+# yazımlar (Yiğit'in fark ettiği: TR modda pek çok ülke adı İngilizce kalıyordu).
+_ULKE_TR.update({
+    "Afghanistan": "Afganistan", "Angola": "Angola", "Benin": "Benin",
+    "Bermuda": "Bermuda", "Botswana": "Botsvana", "Burundi": "Burundi",
+    "Congo DR": "Kongo DC", "Cuba": "Küba", "Czech Republic": "Çekya",
+    "Czezchia": "Çekya", "Côte d'Ivoire": "Fildişi Sahili",
+    "Cote d'Ivoire": "Fildişi Sahili", "Danmark": "Danimarka",
+    "Eritrea": "Eritre", "Ethiopia": "Etiyopya", "Faroe Islands": "Faroe Adaları",
+    "Gabon": "Gabon", "Guadeloupe": "Guadeloupe", "Haiti": "Haiti",
+    "Indonesia": "Endonezya", "Kazakhistan": "Kazakistan",
+    "Korea, South": "Güney Kore", "Liberia": "Liberya",
+    "Macedonia": "Kuzey Makedonya", "Malta": "Malta", "Moldovo": "Moldova",
+    "North Korea": "Kuzey Kore", "PR China": "Çin", "Panama": "Panama",
+    "Rwanda": "Ruanda", "San Marino": "San Marino",
+    "St. Vincent & Grenadinen": "Saint Vincent ve Grenadinler",
+    "The Netherlands": "Hollanda", "the Netherlands": "Hollanda",
+    "Trinidad & Tobago": "Trinidad ve Tobago", "Trinidad&Tobago": "Trinidad ve Tobago",
+    "Turkiye": "Türkiye", "Uganda": "Uganda", "United States": "ABD",
+    "Vietnam": "Vietnam", "Zimbabwe": "Zimbabve",
+    "Bosnia & Herzegovina": "Bosna Hersek", "Bosnia&Herzegovina": "Bosna Hersek",
+    "El Salvador": "El Salvador", "Pakistan": "Pakistan", "Syria": "Suriye",
+    "Marocco": "Fas", "Tunusia": "Tunus",
+})
+
+_ULKE_COKLU_BOLUCU = _re.compile(r"(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])")
+
+def _ulke_coklu_ayir(m: str) -> list:
+    """SoccerDonna'dan bazı çift-uyruk hücreleri ayraçsız gelir (ör.
+    'AzerbaijanTurkey', 'KolombyaHonduras') — iki ülke adı camelCase sınırında
+    birbirine yapışık. Ayraç (/ veya ,) yoksa bu sınırdan böler."""
+    m = (m or "").strip()
+    if not m or "/" in m or "," in m:
+        return [m] if m else []
+    parcalar = [p.strip() for p in _ULKE_COKLU_BOLUCU.split(m) if p.strip()]
+    return parcalar if parcalar else [m]
+
 # ── Ülke bayrakları (TR+EN ad → ISO2; iki yazım da aynı bayrağa) ─────────────
 _ULKE_ISO = {
  "ABD":"US","USA":"US","United States":"US","Türkiye":"TR","Turkey":"TR",
@@ -4109,8 +4146,12 @@ def bayrakli_ulke(m):
 
 def ulke_goster(m):
     """Ülke adını aktif dile çevirir (çift yönlü). EN: TR→EN, TR: EN→TR.
-    Kaynaklar karışık (sheet Türkçe, SoccerDonna İngilizce) → iki yönde de tutarlı."""
+    Kaynaklar karışık (sheet Türkçe, SoccerDonna İngilizce) → iki yönde de tutarlı.
+    Ayraçsız çift-uyruk hücrelerini (ör. 'AzerbaijanTurkey') önce ayırır."""
     m = (m or "").strip()
+    parcalar = _ulke_coklu_ayir(m)
+    if len(parcalar) > 1:
+        return " / ".join(ulke_goster(p) for p in parcalar)
     return _ULKE_EN.get(m, m) if EN else _ULKE_TR.get(m, m)
 
 # ── AB (Avrupa Birliği) uyumluluğu: iki uyruktan biri EU-27 ise "AB uyumlu" ──
