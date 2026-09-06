@@ -13157,7 +13157,12 @@ if tab_genç:
             mevki = mevki_normalize(pos)
 
             nat = _MANUEL_UYRUK.get(isim) or _sd_profil_bul(isim).get("Nationality","")
-            nat = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat).split()[0] if nat else "—"
+            # NOT: "Uyruk" burada HAM (İngilizce) kalır - df_tam["Uyruk"] ile aynı
+            # kanonik format (bkz. df_zenginlestir/_ilk_uyruk), aşağıdaki
+            # tercih_filtre == "Turkey" karşılaştırması buna dayanıyor. Görüntüleme
+            # sırasında çevrilmesi gerekiyorsa ulke_goster() render noktasında
+            # uygulanmalı, bu sütunda değil (denendi, filtreyi kırdı - geri alındı).
+            nat = _ilk_uyruk(nat) if nat else "—"
 
             # Erken Olgunluk Skoru
             skor = round((mac/30*40) + (gpm*10*40) + (dk_mac/90*20), 1)
