@@ -13431,14 +13431,18 @@ if tab10:
         u23      = int((yas_df["yas"] < 23).sum())
 
         k1, k2, k3, k4 = st.columns(4)
-        for kol, sayi, etiket in [
-            (k1, f"{avg_age:.1f}", t("Lig Ort. Yaşı","League Avg. Age")),
-            (k2, f"{youngest['yas']:.0f} — {youngest['isim']}", t("En Genç","Youngest")),
-            (k3, f"{oldest['yas']:.0f} — {oldest['isim']}", t("En Yaşlı","Oldest")),
-            (k4, u23, t("U-23 Oyuncu","U-23 Players")),
+        # En Genç/En Yaşlı kartları yaş+isim birleşik gösteriyor — uzun isimler
+        # (ör. "ESMA SULTAN ÇELİK") .sayi'nin sabit 1.6rem + nowrap kuralıyla
+        # kart dışına taşıp kırpılıyordu. Bu iki kart için küçük font + sarma.
+        _uzun_isim_stili = "font-size:1.05rem;white-space:normal;word-break:break-word;line-height:1.2;"
+        for kol, sayi, etiket, stil in [
+            (k1, f"{avg_age:.1f}", t("Lig Ort. Yaşı","League Avg. Age"), ""),
+            (k2, f"{youngest['yas']:.0f} — {youngest['isim']}", t("En Genç","Youngest"), _uzun_isim_stili),
+            (k3, f"{oldest['yas']:.0f} — {oldest['isim']}", t("En Yaşlı","Oldest"), _uzun_isim_stili),
+            (k4, u23, t("U-23 Oyuncu","U-23 Players"), ""),
         ]:
             kol.markdown(
-                f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
+                f'<div class="stat-kart"><div class="sayi" style="{stil}">{sayi}</div>'
                 f'<div class="etiket">{etiket}</div></div>', unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
