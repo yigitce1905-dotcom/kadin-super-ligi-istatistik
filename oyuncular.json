@@ -183,49 +183,6 @@
     ]
   },
   {
-    "oyuncu": "RITA DOKU",
-    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
-    "tum_takimlar": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
-        "rakip": "HAYMANA SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "AMANDA MARIA LIHV",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "tum_takimlar": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
@@ -317,8 +274,8 @@
   },
   {
     "oyuncu": "ZSANETT BERNADETT KAJAN",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -333,7 +290,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 1,
         "sari": 0,
@@ -344,7 +301,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -362,8 +319,8 @@
   },
   {
     "oyuncu": "ZEYNEP KERİMOĞLU",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 0,
@@ -378,7 +335,7 @@
     "toplam_dakika": 22,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 1,
         "sari": 0,
@@ -389,7 +346,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": false,
         "dakika": 22,
@@ -3768,6 +3725,49 @@
     ]
   },
   {
+    "oyuncu": "RITA DOKU",
+    "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "tum_takimlar": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+        "rakip": "HAYMANA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "KIERA RILEY LANEY",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "tum_takimlar": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
@@ -3984,8 +3984,8 @@
   },
   {
     "oyuncu": "NATALIA MUNTEANU",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4000,7 +4000,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4011,7 +4011,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4027,8 +4027,8 @@
   },
   {
     "oyuncu": "REGINA IBIANG OTU",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4043,7 +4043,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4054,7 +4054,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4070,8 +4070,8 @@
   },
   {
     "oyuncu": "BUSEM ŞEKER",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4086,7 +4086,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4097,7 +4097,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4113,8 +4113,8 @@
   },
   {
     "oyuncu": "ECE TÜRKOĞLU",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4129,7 +4129,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4140,7 +4140,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4156,8 +4156,8 @@
   },
   {
     "oyuncu": "KATE ELIZABETH BOWEN",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4172,7 +4172,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4183,7 +4183,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4199,8 +4199,8 @@
   },
   {
     "oyuncu": "İPEK KAYA",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4215,7 +4215,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 1,
@@ -4226,7 +4226,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4242,8 +4242,8 @@
   },
   {
     "oyuncu": "MESUDE ALAYONT",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4258,7 +4258,7 @@
     "toplam_dakika": 78,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4269,7 +4269,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 78,
@@ -4285,8 +4285,8 @@
   },
   {
     "oyuncu": "SULIAT OLAJUMOKE ABIDEEN",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4301,7 +4301,7 @@
     "toplam_dakika": 87,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4312,7 +4312,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 87,
@@ -4328,8 +4328,8 @@
   },
   {
     "oyuncu": "ANDREA STASKOVA",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4344,7 +4344,7 @@
     "toplam_dakika": 90,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4355,7 +4355,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
@@ -4371,8 +4371,8 @@
   },
   {
     "oyuncu": "MARIA APARECIDA SOUZA ALVES",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 1,
@@ -4387,7 +4387,7 @@
     "toplam_dakika": 68,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4398,7 +4398,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 68,
@@ -4414,8 +4414,8 @@
   },
   {
     "oyuncu": "FATMA ŞAKAR",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 0,
@@ -4430,7 +4430,7 @@
     "toplam_dakika": 12,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4441,7 +4441,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": false,
         "dakika": 12,
@@ -4457,8 +4457,8 @@
   },
   {
     "oyuncu": "PERİTAN BOZDAĞ",
-    "takim": "FENERBAHÇE A.Ş.",
-    "tum_takimlar": "FENERBAHÇE A.Ş.",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
     "transfer": false,
     "mac_sayisi": 1,
     "ilk11_mac": 0,
@@ -4473,7 +4473,7 @@
     "toplam_dakika": 3,
     "takim_detay": [
       {
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "mac": 1,
         "gol": 0,
         "sari": 0,
@@ -4484,7 +4484,7 @@
     "mac_gecmisi": [
       {
         "hafta": 1,
-        "takim": "FENERBAHÇE A.Ş.",
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
         "ilk11": false,
         "dakika": 3,
@@ -4528,7 +4528,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4571,7 +4571,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4614,7 +4614,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4657,7 +4657,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4700,7 +4700,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4743,7 +4743,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 83,
         "gol": 0,
@@ -4786,7 +4786,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 83,
         "gol": 0,
@@ -4829,7 +4829,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4872,7 +4872,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 58,
         "gol": 0,
@@ -4915,7 +4915,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -4958,7 +4958,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -5001,7 +5001,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": false,
         "dakika": 32,
         "gol": 0,
@@ -5044,7 +5044,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": false,
         "dakika": 7,
         "gol": 0,
@@ -5087,7 +5087,7 @@
       {
         "hafta": 1,
         "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "rakip": "FENERBAHÇE A.Ş.",
+        "rakip": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
         "ilk11": false,
         "dakika": 7,
         "gol": 0,
