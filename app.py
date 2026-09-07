@@ -8204,9 +8204,10 @@ def render_ana_lig_profil(secili):
                         and _ygm2.get((m["hafta"], _kanon(_htk2.get(m["hafta"], row["Takım"])))) == 0)
                 except Exception:
                     _cs_ozet = None
-            # Baran'ın tasarımı: Maç · Gol · Gol Yenmeyen · Dakika. Clean sheet
-            # yalnızca kalecide hesaplanıyor; diğerlerinde o sütun düşer, dakika
-            # her hâlükârda gösterilir (eskiden ikisinden BİRİ gösteriliyordu).
+            # Baran'ın tasarımı: Maç · Gol · Gol Yenmeyen · Dakika. Gol Yenmeyen
+            # ARTIK HERKESTE hesaplanıyor (bkz. yukarıdaki 2026-08 notu) - bu
+            # yorum eskiden "yalnızca kalecide" diyordu, kod zaten değişmişti
+            # ama metin güncellenmemişti (2026-09-07 tutarlılık düzeltmesi).
             _ek_kutu = ((t("Gol Yenmeyen", "Clean Sheets"), _cs_ozet)
                         if _cs_ozet is not None else None)
             _so = scotr_bul(secili)
