@@ -13636,7 +13636,7 @@ if tab11:
 # Öneri veri tabanı: (mevki, bütçe, tercih) → [oyuncu adları]
 _TRANSFER_DB = {
     ("Kaleci", "Yuksek", "Yerli"):      ["SELDA AKGÖZ", "GAMZE NUR YAMAN", "GÖKNUR GÜLERYÜZ"],
-    ("Kaleci", "Yuksek", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOE", "ROBERTA APRILE"],
+    ("Kaleci", "Yuksek", "Yabancı"):    ["NATALIA MUNTEANU", "MARIA ASUNCION QUINONES GOICOECHEA", "ROBERTA APRILE"],
     ("Kaleci", "Yuksek", "Farketmez"):  ["NATALIA MUNTEANU", "SELDA AKGÖZ", "GAMZE NUR YAMAN"],
     ("Kaleci", "Orta",   "Yerli"):      ["EZGİ ÇAĞLAR", "FATMA ŞAHİN", "İREM DAMLA ŞAHİN"],
     ("Kaleci", "Orta",   "Yabancı"):    ["AYTAJ SHARIFOVA", "FLORENTİNA KOLGECİ", "BEATRIZ BUENO NICOLETI"],
