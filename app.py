@@ -7869,7 +7869,7 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     yas = _MANUEL_YAS.get(secili)
     yas_s = (f"{yas:.0f}" if isinstance(yas, (int, float)) else
              (str(sd.get("Age", "")).split()[0] if sd.get("Age") else "—"))
-    uyruk = _MANUEL_UYRUK.get(secili) or row.get("Uyruk", "—") or "—"
+    uyruk = ulke_goster(_MANUEL_UYRUK.get(secili) or row.get("Uyruk", "")) or "—"
     mevki = row.get("Mevki", "—"); takim = row.get("Takım", "—")
 
     pdf = FPDF(orientation="P", unit="mm", format="A4")
