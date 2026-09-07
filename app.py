@@ -12298,7 +12298,7 @@ if tab4:
                 uyruk_sayilari = df_t[df_t["Uyruk"]!=""]["Uyruk"].value_counts().head(8)
                 fig_uyruk = go.Figure(go.Bar(
                     x=uyruk_sayilari.values,
-                    y=uyruk_sayilari.index,
+                    y=[ulke_goster(u) for u in uyruk_sayilari.index],
                     orientation="h",
                     marker_color="#2979ff",
                     text=uyruk_sayilari.values,
@@ -12445,9 +12445,12 @@ if tab6:
             ua, ub = st.columns(2)
             with ua:
                 st.markdown(f"**{t('Oyuncu sayısına göre', 'By number of players')}**")
+                # NOT: df_tam["Uyruk"] HAM/İngilizce tutulur (filtreler buna dayanıyor,
+                # bkz. Genç Yetenekler fix) - gruplama ham değerle, SADECE eksen
+                # etiketi ulke_goster() ile çevrilir (TR modda "Turkey" değil "Türkiye").
                 uyruk_sayi = df_tam[df_tam["Uyruk"]!=""]["Uyruk"].value_counts().head(15)
                 fig_u = go.Figure(go.Bar(
-                    x=uyruk_sayi.values, y=uyruk_sayi.index,
+                    x=uyruk_sayi.values, y=[ulke_goster(u) for u in uyruk_sayi.index],
                     orientation="h", marker_color="#2979ff",
                     text=uyruk_sayi.values, textposition="outside",
                 ))
@@ -12460,7 +12463,7 @@ if tab6:
                 st.markdown(f"**{t('Gol sayısına göre', 'By number of goals')}**")
                 uyruk_gol = df_tam[df_tam["Uyruk"]!=""].groupby("Uyruk")["Gol"].sum().sort_values(ascending=False).head(15)
                 fig_ug = go.Figure(go.Bar(
-                    x=uyruk_gol.values, y=uyruk_gol.index,
+                    x=uyruk_gol.values, y=[ulke_goster(u) for u in uyruk_gol.index],
                     orientation="h", marker_color="#1db954",
                     text=uyruk_gol.values, textposition="outside",
                 ))
@@ -13080,7 +13083,7 @@ if tab_benim:
                     uyr_dag = kadro["Uyruk"].value_counts().head(8).reset_index()
                     uyr_dag.columns = ["Uyruk","Sayı"]
                     fig_uyr = go.Figure(go.Bar(
-                        x=uyr_dag["Sayı"], y=uyr_dag["Uyruk"], orientation="h",
+                        x=uyr_dag["Sayı"], y=uyr_dag["Uyruk"].map(ulke_goster), orientation="h",
                         marker=dict(color="#1db954"),
                         text=uyr_dag["Sayı"], textposition="outside",
                         textfont=dict(color="#e0e0e0", size=11),
