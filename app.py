@@ -13313,7 +13313,13 @@ if tab9:
 
             _as_tumu = t("Tümü", "All")
             with fa1:
-                sel_nats = st.multiselect(f"🌍 {t('Uyruk','Nationality')}", all_nats, placeholder=t("Tümü","All"), key="as_nat")
+                # NOT: all_nats/sel_nats HAM (İngilizce, df_tam["Uyruk"] ile ayni
+                # kanonik format) kalir - filtreleme (mask &= ...isin(sel_nats))
+                # buna dayaniyor. format_func SADECE acilir listedeki gorunumu
+                # cevirir, secilen deger degismez (Genc Yetenekler'deki filtre
+                # regresyonundan sonra bu yontem tercih edildi).
+                sel_nats = st.multiselect(f"🌍 {t('Uyruk','Nationality')}", all_nats,
+                    format_func=ulke_goster, placeholder=t("Tümü","All"), key="as_nat")
             with fa2:
                 as_kategori = st.selectbox(f"📋 {t('Mevki','Position')}", [_as_tumu] + list(_MEVKI_DETAY.keys()),
                     format_func=mevki_goster, key="as_kat")
@@ -13375,6 +13381,8 @@ if tab9:
                 _goster_df = filtered[show].copy()
                 if EN and "Mevki" in _goster_df.columns:
                     _goster_df["Mevki"] = _goster_df["Mevki"].map(mevki_goster)
+                if "Uyruk" in _goster_df.columns:
+                    _goster_df["Uyruk"] = _goster_df["Uyruk"].map(ulke_goster)
                 df_tablo(_goster_df,
                     basliklar={"Oyuncu": t("Oyuncu","Player"), "Takım": t("Takım","Team"),
                                "Mevki": t("Mevki","Position"), "Uyruk": t("Uyruk","Nationality"),
