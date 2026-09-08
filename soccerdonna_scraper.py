@@ -11,7 +11,29 @@ from difflib import SequenceMatcher
 
 CIKTI     = "soccerdonna_profiller.json"
 BEKLEME   = 1.5    # istek arası bekleme (saniye)
-ES_SINIRI = 0.55   # fuzzy match eşiği (0-1)
+ES_SINIRI = 0.55   # display-isim fuzzy match eşiği (0-1) — son çare fallback
+
+# 2026-09-08 (Yiğit: "Paola Ellis ve Katie Bowen'ın yaşları hatalı"): eski mantık
+# sadece arama sonucundaki KISA görünen ismi (ör. "Kelisha Bowens") TFF'nin TAM
+# adıyla (ör. "KATE ELIZABETH BOWEN") SequenceMatcher ile kıyaslıyordu — bu, uzun
+# TFF adlarını (orta isim eksik görünen doğru eşleşmeleri) haksız yere cezalandırıp
+# rastgele karakter örtüşmesi yüksek olan YANLIŞ kişileri öne çıkarabiliyordu.
+# Gerçek çare: SoccerDonna'nın her profilde tuttuğu "Name in native country" alanı
+# (oyuncunun TAM/resmi adı) — bu, kısa takma-ad yerine gerçek kimliği verir.
+# Artık: DISPLAY_YUKSEK üstü net eşleşmeler hızlı yoldan geçer (ekstra istek yok);
+# belirsiz/düşük skorlu adaylarda en iyi ADAY_LIMIT aday için TAM profil çekilip
+# "Name in native country" TFF adıyla token-bazlı (kelime sırasız + orta isim
+# eksik/fazla toleranslı) karşılaştırılır — gerçek kimlik bu şekilde doğrulanır.
+DISPLAY_YUKSEK = 0.85   # bu skorun üstünde native-doğrulama atlanır (hızlı yol)
+NATIVE_SINIRI  = 0.6    # native-isim token-skoru bu değerin altındaysa reddedilir
+# NOT (test): ADAY_LIMIT=6 iken doğru kişi ("Blue Ellis", "Jessica Silva") kısa
+# görünen adı yüzünden display-skor sıralamasında ilk 6'ya bile girmiyordu —
+# tam da bu scraper'ın düzeltmeye çalıştığı önyargı. 20'ye çıkarıldı (soyad
+# aramaları genelde <40 sonuç veriyor); maliyet yalnız BELİRSİZ vakalarda ödenir.
+ADAY_LIMIT     = 20     # native-doğrulama için TAM profili çekilecek en fazla aday
+
+_STOPWORD = {"DE", "DA", "DO", "DOS", "DAS", "DEL", "DELLA", "VAN", "VON",
+             "EL", "AL", "BINTI", "BIN", "Y", "E", "AND", "&"}
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
@@ -33,10 +55,51 @@ def eslesme_skoru(isim1: str, isim2: str) -> float:
     return SequenceMatcher(None, temizle(isim1), temizle(isim2)).ratio()
 
 
+def native_eslesme_skoru(tff_isim: str, native_isim: str) -> float:
+    """TFF'nin tam adı ile SD'nin 'Name in native country' alanını kıyaslar.
+    Kelime sırasından bağımsız + orta isim eksik/fazla toleranslı (Jaccard,
+    bağlaç/edat kelimeleri hariç) ile ham karakter-dizisi benzerliğinin (sıralı
+    token'lar üstünden, transliterasyon/yazım farkına dayanıklı) BÜYÜĞÜ alınır —
+    ikisi de düşük çıkarsa gerçekten farklı kişidir (bkz. Ellis/Bowen vakaları)."""
+    if not tff_isim or not native_isim:
+        return 0.0
+    t1 = set(temizle(tff_isim).split())
+    t2 = set(temizle(native_isim).split())
+    if not t1 or not t2:
+        return 0.0
+    t1e, t2e = t1 - _STOPWORD, t2 - _STOPWORD
+    if not t1e or not t2e:
+        t1e, t2e = t1, t2
+    birlik = t1e | t2e
+    jaccard = len(t1e & t2e) / len(birlik) if birlik else 0.0
+    dizi = SequenceMatcher(None, " ".join(sorted(t1e)), " ".join(sorted(t2e))).ratio()
+    return max(jaccard, dizi)
+
+
 def soyadi_cikart(tam_isim: str) -> str:
     """Son kelimeyi soyad olarak döndür."""
     parcalar = tam_isim.strip().split()
     return parcalar[-1] if parcalar else tam_isim
+
+
+def _ilk_isim(tam_isim: str) -> str:
+    parcalar = tam_isim.strip().split()
+    return parcalar[0] if parcalar else tam_isim
+
+
+def kisayol_skoru(tff_isim: str, aday_isim: str) -> float:
+    """Native-doğrulama kısa listesine kimin gireceğini belirleyen ön-eleme
+    skoru — tam_skor (eski davranış) ile İLK İSİM eşleşmesinin büyüğü.
+    Neden: soyad zaten ara()'nın kendisinde filtrelendi; ilk isim eşleşmesi
+    çok daha güçlü bir kimlik sinyali, ama TFF'nin uzun tam adı ('JESSICA
+    LISANDRA MAJENJE NOGUEIRA DA SILVA') SD'nin kısa görünen adına ('Jessica
+    Silva') karşı ham SequenceMatcher'da haksız düşük çıkıyor — kalabalık
+    soyad havuzlarında (ör. 'Silva' → 800+ sonuç) doğru aday ilk ADAY_LIMIT'e
+    hiç girmiyordu. Yalnız SIRALAMA için kullanılır; kabul kararı hâlâ ya
+    DISPLAY_YUKSEK'teki tam_skor ya da native doğrulamadan geçer."""
+    tam_skor = eslesme_skoru(tff_isim, aday_isim)
+    ilk_skor = SequenceMatcher(None, temizle(_ilk_isim(tff_isim)), temizle(_ilk_isim(aday_isim))).ratio()
+    return max(tam_skor, ilk_skor)
 
 
 def ara(session, soyad: str):
@@ -155,25 +218,60 @@ def ana_calistir():
             sonuclar = ara(session, ad)
             time.sleep(BEKLEME)
 
-        # En iyi eşleşmeyi bul
-        en_iyi = None
-        en_iyi_skor = 0.0
-        for sonuc in sonuclar:
-            skor = eslesme_skoru(tam_isim, sonuc["isim"])
-            if skor > en_iyi_skor:
-                en_iyi_skor = skor
-                en_iyi = sonuc
+        # Kabul kararı için ham display-skor (DISPLAY_YUKSEK hızlı yolu bunu kullanır)
+        skorlu = sorted(
+            ((eslesme_skoru(tam_isim, s["isim"]), s) for s in sonuclar),
+            key=lambda x: -x[0],
+        )
+        # Native-doğrulama kısa listesine kimin gireceği: ilk-isim-ağırlıklı
+        # ön-eleme skoru (kalabalık soyad havuzlarında doğru adayı üste çeker)
+        kisa_liste = sorted(
+            ((kisayol_skoru(tam_isim, s["isim"]), s) for s in sonuclar),
+            key=lambda x: -x[0],
+        )
 
-        if en_iyi and en_iyi_skor >= ES_SINIRI:
-            print(f"    ✓ Bulundu: {en_iyi['isim']} (skor: {en_iyi_skor:.2f})")
-            profil = profil_cek(session, en_iyi["url"])
+        en_iyi = en_iyi_profil = None
+        en_iyi_skor = 0.0
+        yontem = "yok"
+
+        if skorlu and skorlu[0][0] >= DISPLAY_YUKSEK:
+            # Net eşleşme — native-doğrulama için ekstra istek atmaya gerek yok
+            en_iyi_skor, en_iyi = skorlu[0]
+            yontem = "display"
+        elif skorlu:
+            # Belirsiz/düşük skor: en iyi ADAY_LIMIT adayın TAM profilini çekip
+            # gerçek kimliği "Name in native country" alanından doğrula
+            en_native_skor = 0.0
+            en_native = en_native_profil = None
+            for _, aday in kisa_liste[:ADAY_LIMIT]:
+                profil = profil_cek(session, aday["url"])
+                time.sleep(BEKLEME)
+                native = profil.get("Name in native country", "")
+                n_skor = native_eslesme_skoru(tam_isim, native)
+                if n_skor > en_native_skor:
+                    en_native_skor, en_native, en_native_profil = n_skor, aday, profil
+
+            if en_native and en_native_skor >= NATIVE_SINIRI:
+                en_iyi, en_iyi_skor, en_iyi_profil = en_native, en_native_skor, en_native_profil
+                yontem = "native"
+            elif skorlu[0][0] >= ES_SINIRI:
+                # native-doğrulama da netleştiremedi — eski düşük-güven fallback
+                # (şüpheli eşleşme olarak es_skoru<0.75 ile işaretli kalır)
+                en_iyi_skor, en_iyi = skorlu[0]
+                yontem = "display-dusuk"
+
+        if en_iyi:
+            print(f"    ✓ Bulundu [{yontem}]: {en_iyi['isim']} (skor: {en_iyi_skor:.2f})")
+            profil = en_iyi_profil if en_iyi_profil is not None else profil_cek(session, en_iyi["url"])
+            if en_iyi_profil is None:
+                time.sleep(BEKLEME)
             profil["sd_isim"]   = en_iyi["isim"]
             profil["es_skoru"]  = round(en_iyi_skor, 3)
+            profil["es_yontem"] = yontem
             mevcut[tam_isim]    = profil
             basarili           += 1
-            time.sleep(BEKLEME)
         else:
-            print(f"    ✗ Bulunamadı (en iyi skor: {en_iyi_skor:.2f})")
+            print(f"    ✗ Bulunamadı (en iyi skor: {(skorlu[0][0] if skorlu else 0.0):.2f})")
             mevcut[tam_isim] = {}
 
         # Her 20 oyuncuda bir kaydet
