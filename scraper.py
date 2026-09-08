@@ -280,6 +280,102 @@ def _ekle(oyuncu_dict, kid, isim, takim, mac=0, gol=0,
         oyuncu_dict[kid]["_takim_set"] = takim
 
 
+def _onceki_veriyi_yukle() -> list:
+    """Bir önceki başarılı çalıştırmadan kalan oyuncular.json — bu çalıştırmada
+    geçici bir ağ hatası / TFF'nin o an tek bir maç sayfasını vermemesi yüzünden
+    kaybolan veriyi geri yüklemek için fallback kaynağı."""
+    try:
+        with open(CIKTI_JSON, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return []
+
+
+def _hafta_takim_kapsami(veri: list) -> set:
+    """{(hafta, KANONİK_TAKIM_ADI)} — o hafta o takımın gerçek maç verisi
+    (en az 1 oyuncunun o haftaya ait mac_gecmisi kaydı) var mı."""
+    kapsam = set()
+    for o in veri:
+        for m in o.get("mac_gecmisi", []):
+            kapsam.add((m.get("hafta"), (m.get("takim") or "").strip().upper()))
+    return kapsam
+
+
+def eksik_haftalari_geri_yukle(yeni_liste: list, eski_liste: list) -> tuple:
+    """2026-09-08 (Yiğit: Fenerbahçe'nin 2. haftası sessizce kaybolmuştu — TFF
+    sayfası o an canlı ve doluydu, sadece bu çalıştırmada tek seferlik bir
+    ağ/istek hatası olmuştu): script her çalıştığında sıfırdan tarıyor, önceki
+    çıktıyla birleştirmiyordu — TEK bir maç sayfası bu çalıştırmada başarısız
+    olursa (retry'lar tükenirse) veya 'Eksik kadro' görünürse, önceden GERÇEKTEN
+    çekilmiş o maçın verisi kalıcı olarak siliniyordu. Artık: önceki çalıştırmada
+    var olup bu çalıştırmada eksik çıkan her (hafta, takım) için, önceki veri bu
+    listeye geri eklenir. Döndürür: (birleşmiş liste, kaybolup geri yüklenen
+    (hafta,takım) sayısı)."""
+    if not eski_liste:
+        return yeni_liste, 0
+
+    kayip = _hafta_takim_kapsami(eski_liste) - _hafta_takim_kapsami(yeni_liste)
+    if not kayip:
+        return yeni_liste, 0
+
+    print(f"\n  [!] {len(kayip)} (hafta,takım) önceki çalıştırmada vardı, bu "
+          f"çalıştırmada YOK -> eski veriden geri yükleniyor:")
+    for h, t in sorted(kayip):
+        print(f"      hafta {h}: {t}")
+
+    yeni_isim_harita = {o["oyuncu"]: o for o in yeni_liste}
+    for eski_o in eski_liste:
+        eski_kayip_kayitlar = [
+            m for m in eski_o.get("mac_gecmisi", [])
+            if (m.get("hafta"), (m.get("takim") or "").strip().upper()) in kayip
+        ]
+        if not eski_kayip_kayitlar:
+            continue
+
+        isim  = eski_o["oyuncu"]
+        hedef = yeni_isim_harita.get(isim)
+
+        if hedef is None:
+            # Oyuncu bu çalıştırmada hiç geçmedi (yalnız kayıp maçtaydı) —
+            # eski kaydı aynen ekle.
+            yeni_liste.append(eski_o)
+            yeni_isim_harita[isim] = eski_o
+            continue
+
+        mevcut_haftalar = {m["hafta"] for m in hedef.get("mac_gecmisi", [])}
+        for m in eski_kayip_kayitlar:
+            if m["hafta"] in mevcut_haftalar:
+                continue  # o haftada zaten (başka/yeni) veri var, dokunma
+            hedef.setdefault("mac_gecmisi", []).append(m)
+            hedef["mac_sayisi"]    = hedef.get("mac_sayisi", 0) + 1
+            hedef["ilk11_mac"]     = hedef.get("ilk11_mac", 0) + (1 if m.get("ilk11") else 0)
+            hedef["yedek_mac"]     = hedef.get("yedek_mac", 0) + (0 if m.get("ilk11") else 1)
+            hedef["gol_sayisi"]    = hedef.get("gol_sayisi", 0) + m.get("gol", 0)
+            hedef["gol_ayak"]      = hedef.get("gol_ayak", 0) + m.get("gol_ayak", 0)
+            hedef["gol_kafa"]      = hedef.get("gol_kafa", 0) + m.get("gol_kafa", 0)
+            hedef["penalti_gol"]   = hedef.get("penalti_gol", 0) + m.get("penalti_gol", 0)
+            hedef["sari_kart"]     = hedef.get("sari_kart", 0) + m.get("sari", 0)
+            hedef["kirmizi_kart"]  = hedef.get("kirmizi_kart", 0) + m.get("kirmizi", 0)
+            hedef["toplam_dakika"] = hedef.get("toplam_dakika", 0) + m.get("dakika", 0)
+            hedef["gol_ort"] = (round(hedef["gol_sayisi"] / hedef["mac_sayisi"], 2)
+                                 if hedef["mac_sayisi"] else 0)
+            t  = m["takim"]
+            td = next((x for x in hedef.setdefault("takim_detay", []) if x["takim"] == t), None)
+            if td:
+                td["mac"] += 1; td["gol"] += m.get("gol", 0)
+                td["sari"] += m.get("sari", 0); td["kirmizi"] += m.get("kirmizi", 0)
+                td["dakika"] += m.get("dakika", 0)
+            else:
+                hedef["takim_detay"].append({
+                    "takim": t, "mac": 1, "gol": m.get("gol", 0),
+                    "sari": m.get("sari", 0), "kirmizi": m.get("kirmizi", 0),
+                    "dakika": m.get("dakika", 0),
+                })
+        hedef["mac_gecmisi"].sort(key=lambda x: x["hafta"])
+
+    return yeni_liste, len(kayip)
+
+
 def veriyi_kaydet(oyuncu_dict):
     liste = []
     for v in oyuncu_dict.values():
@@ -314,6 +410,10 @@ def veriyi_kaydet(oyuncu_dict):
             "takim_detay":   takim_detay,
             "mac_gecmisi":   gecmis,
         })
+    liste, kayip_sayisi = eksik_haftalari_geri_yukle(liste, _onceki_veriyi_yukle())
+    if kayip_sayisi:
+        print(f"  [OK] {kayip_sayisi} kayıp (hafta,takım) önceki veriden geri yüklendi.")
+
     liste.sort(key=lambda x: (-x["mac_sayisi"], -x["gol_sayisi"]))
 
     with open(CIKTI_JSON, "w", encoding="utf-8") as f:

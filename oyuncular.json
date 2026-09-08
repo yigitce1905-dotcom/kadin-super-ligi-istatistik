@@ -488,6 +488,303 @@
     ]
   },
   {
+    "oyuncu": "ELIZABETH OWUSUAA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 2,
+    "gol_ayak": 2,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 1.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 2,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          55
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          39
+        ],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "RAFAELA SUDRE DOS SANTOS",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 1,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          34
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NİHAL SARAÇ",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 0,
+    "gol_kafa": 1,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 170,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 1,
+        "sari": 2,
+        "kirmizi": 0,
+        "dakika": 170
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 0,
+        "gol_kafa": 1,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          82
+        ],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 80,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "POPOVIC MILICA",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 176,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 1,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 176
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 86,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          59
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MELİKE ÖZTÜRK",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 110,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 1,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 110
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": false,
+        "dakika": 20,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          45
+        ],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "ELVİN BALCI",
     "takim": "HAYMANA SPOR KULÜBÜ",
     "tum_takimlar": "HAYMANA SPOR KULÜBÜ",
@@ -724,242 +1021,6 @@
     ]
   },
   {
-    "oyuncu": "REGINA IBIANG OTU",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 1,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.5,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 1,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 1,
-        "gol_ayak": 1,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          49
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ZSANETT BERNADETT KAJAN",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 1,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.5,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 167,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 1,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 167
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 1,
-        "gol_ayak": 1,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          94
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 77,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ANDREA STASKOVA",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 1,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.5,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 167,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 1,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 167
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 77,
-        "gol": 1,
-        "gol_ayak": 1,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          20
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ZEYNEP KERİMOĞLU",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 0,
-    "yedek_mac": 2,
-    "gol_sayisi": 1,
-    "gol_ayak": 0,
-    "gol_kafa": 1,
-    "penalti_gol": 0,
-    "gol_ort": 0.5,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 51,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 1,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 51
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 22,
-        "gol": 1,
-        "gol_ayak": 0,
-        "gol_kafa": 1,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          85
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": false,
-        "dakika": 29,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "RASMATA SAWADOGO",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "tum_takimlar": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
@@ -1130,6 +1191,301 @@
         "penalti_gol": 0,
         "gol_dakikalari": [
           76
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "LUSHOMO MWEEMBA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 1,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          90
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ZSANETT BERNADETT KAJAN",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 167,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 1,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 167
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          94
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 77,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ZEYNEP KERİMOĞLU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 1,
+    "gol_ayak": 0,
+    "gol_kafa": 1,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 51,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 1,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 51
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 22,
+        "gol": 1,
+        "gol_ayak": 0,
+        "gol_kafa": 1,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          85
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": false,
+        "dakika": 29,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "REGINA IBIANG OTU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 1,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          49
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ANDREA STASKOVA",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 1,
+    "gol_ayak": 1,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.5,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 167,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 1,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 167
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 77,
+        "gol": 1,
+        "gol_ayak": 1,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          20
         ],
         "sari": 0,
         "kirmizi": 0
@@ -1764,6 +2120,1317 @@
     ]
   },
   {
+    "oyuncu": "SELDA AKGÖZ",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MERYEM KÜÇÜKBİRİNCİ",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "JELENA KARLİCİC",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 94,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 94
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 70,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 24,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ECE TEKMEN",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 158,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 158
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 78,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 80,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "İLAYDA CİVELEK",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "CANSU NUR KAYA",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 112,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 2,
+        "kirmizi": 0,
+        "dakika": 112
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 46,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 66,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "YELİZ AÇAR",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "BİRGÜL SADIKOĞLU",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 164,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 164
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 78,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 86,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SEVGİ ÇINAR KARAOĞLU",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 22,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 22
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 12,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 10,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "BERNA YENİÇERİ",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 16,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 16
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 12,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 4,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MESUARE BEGALLO",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 30,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 30
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 20,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 10,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "PATRICIA ISABEL DE SOUSA BARROS MORAIS",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "EDA KARATAŞ",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "CHANG JANG",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 112,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 112
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 22,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MARTA NAIZIA DA SILVA CINTRA",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 98,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 98
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 70,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": false,
+        "dakika": 28,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "CRISTINA MARTIN PRIETO GUTIEREZ",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 103,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 103
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 58,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": false,
+        "dakika": 45,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MELİKE PEKEL",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 145,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 145
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 83,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 62,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "CAROLE DA SILVA COSTA",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "JESSICA LISANDRA MAJENJE NOGUEIRA DA SILVA",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 173,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 173
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 83,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "DANA MARGARETHA WILHELMINA FOEDERER",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ELİF KESKİN",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "AUDE GBEDJISSI",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "VITORIA SILVA DE ALMEIDA",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 77,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 77
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "TRABZONSPOR A.Ş.",
+        "ilk11": false,
+        "dakika": 32,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": true,
+        "dakika": 45,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "SYDNEY CELESTE BELLAMY",
     "takim": "HAYMANA SPOR KULÜBÜ",
     "tum_takimlar": "HAYMANA SPOR KULÜBÜ",
@@ -2152,576 +3819,6 @@
         "rakip": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
         "ilk11": true,
         "dakika": 42,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "NATALIA MUNTEANU",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "BUSEM ŞEKER",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ECE TÜRKOĞLU",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "KATE ELIZABETH BOWEN",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "İPEK KAYA",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MESUDE ALAYONT",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 147,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 147
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 78,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 69,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "SULIAT OLAJUMOKE ABIDEEN",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 148,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 148
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 87,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 61,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MARIA APARECIDA SOUZA ALVES",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 129,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 129
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 68,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": true,
-        "dakika": 61,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "FATMA ŞAKAR",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 0,
-    "yedek_mac": 2,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 25,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 25
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 12,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": false,
-        "dakika": 13,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "PERİTAN BOZDAĞ",
-    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 0,
-    "yedek_mac": 2,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 16,
-    "takim_detay": [
-      {
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 16
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 3,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
-        "rakip": "AMED SPORTİF FAALİYETLER",
-        "ilk11": false,
-        "dakika": 13,
         "gol": 0,
         "gol_ayak": 0,
         "gol_kafa": 0,
@@ -3360,6 +4457,975 @@
     ]
   },
   {
+    "oyuncu": "CRISTINA ELIZABETH RECALDE  CABANAS",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MELDA ÇETİN",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "JUSTİCE TWENEBOAA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ALEYNA MERAL",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "VICTORIA THALITA ALVRANGA DIAS",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ÖZLEM AKKAYA",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "KEVINE OSSOL",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 1,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 1,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 1
+      }
+    ]
+  },
+  {
+    "oyuncu": "NATALIA MUNTEANU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "BUSEM ŞEKER",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ECE TÜRKOĞLU",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "KATE ELIZABETH BOWEN",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "İPEK KAYA",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MESUDE ALAYONT",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 147,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 147
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 78,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 69,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SULIAT OLAJUMOKE ABIDEEN",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 148,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 148
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 87,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 61,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MARIA APARECIDA SOUZA ALVES",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 129,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 129
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 68,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": true,
+        "dakika": 61,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "FATMA ŞAKAR",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 25,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 25
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 12,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": false,
+        "dakika": 13,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "PERİTAN BOZDAĞ",
+    "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "tum_takimlar": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 16,
+    "takim_detay": [
+      {
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 16
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 3,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+        "rakip": "AMED SPORTİF FAALİYETLER",
+        "ilk11": false,
+        "dakika": 13,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "KARYNA ALKHOVIK",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "tum_takimlar": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
@@ -3593,51 +5659,6 @@
     ]
   },
   {
-    "oyuncu": "NİHAL SARAÇ",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 0,
-    "gol_kafa": 1,
-    "penalti_gol": 0,
-    "gol_ort": 1.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 1,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 1,
-        "gol_ayak": 0,
-        "gol_kafa": 1,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          82
-        ],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "AMANDA MARIA LIHV",
     "takim": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
     "tum_takimlar": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
@@ -3766,96 +5787,6 @@
         "penalti_gol": 0,
         "gol_dakikalari": [
           78
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "LUSHOMO MWEEMBA",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 1,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 1.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 1,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 1,
-        "gol_ayak": 1,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          90
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ELIZABETH OWUSUAA",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 1,
-    "gol_ayak": 1,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 1.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 1,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 1,
-        "gol_ayak": 1,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          55
         ],
         "sari": 0,
         "kirmizi": 0
@@ -3996,522 +5927,6 @@
     ]
   },
   {
-    "oyuncu": "SELDA AKGÖZ",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MERYEM KÜÇÜKBİRİNCİ",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "RAFAELA SUDRE DOS SANTOS",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "POPOVIC MILICA",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "JELENA KARLİCİC",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 70,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 70
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 70,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ECE TEKMEN",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 78,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 78
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 78,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "İLAYDA CİVELEK",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "CANSU NUR KAYA",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 46,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 46
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 46,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "YELİZ AÇAR",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "BİRGÜL SADIKOĞLU",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 78,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 78
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 78,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "SEVGİ ÇINAR KARAOĞLU",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 12,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 12
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 12,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "BERNA YENİÇERİ",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 12,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 12
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 12,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "AMIRA OULD BRAHAM",
     "takim": "BEŞİKTAŞ A.Ş.",
     "tum_takimlar": "BEŞİKTAŞ A.Ş.",
@@ -4555,522 +5970,6 @@
     ]
   },
   {
-    "oyuncu": "MESUARE BEGALLO",
-    "takim": "BEŞİKTAŞ A.Ş.",
-    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 20,
-    "takim_detay": [
-      {
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 20
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "BEŞİKTAŞ A.Ş.",
-        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 20,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "PATRICIA ISABEL DE SOUSA BARROS MORAIS",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "EDA KARATAŞ",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "CHANG JANG",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MARTA NAIZIA DA SILVA CINTRA",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 70,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 70
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 70,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "CRISTINA MARTIN PRIETO GUTIEREZ",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 58,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 58
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 58,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MELİKE PEKEL",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 83,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 83
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 83,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "CAROLE DA SILVA COSTA",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "JESSICA LISANDRA MAJENJE NOGUEIRA DA SILVA",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 83,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 83
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 83,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "DANA MARGARETHA WILHELMINA FOEDERER",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ELİF KESKİN",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "AUDE GBEDJISSI",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "ECEM CUMERT",
     "takim": "GALATASARAY A.Ş.",
     "tum_takimlar": "GALATASARAY A.Ş.",
@@ -5103,92 +6002,6 @@
         "rakip": "TRABZONSPOR A.Ş.",
         "ilk11": false,
         "dakika": 7,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MELİKE ÖZTÜRK",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 20,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 20
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": false,
-        "dakika": 20,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "VITORIA SILVA DE ALMEIDA",
-    "takim": "GALATASARAY A.Ş.",
-    "tum_takimlar": "GALATASARAY A.Ş.",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 32,
-    "takim_detay": [
-      {
-        "takim": "GALATASARAY A.Ş.",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 32
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "GALATASARAY A.Ş.",
-        "rakip": "TRABZONSPOR A.Ş.",
-        "ilk11": false,
-        "dakika": 32,
         "gol": 0,
         "gol_ayak": 0,
         "gol_kafa": 0,
@@ -7694,264 +8507,6 @@
     ]
   },
   {
-    "oyuncu": "CRISTINA ELIZABETH RECALDE  CABANAS",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MELDA ÇETİN",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "JUSTİCE TWENEBOAA",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ALEYNA MERAL",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "VICTORIA THALITA ALVRANGA DIAS",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ÖZLEM AKKAYA",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "ŞEVVAL DURSUN",
     "takim": "HAKKARİGÜCÜ SPOR",
     "tum_takimlar": "HAKKARİGÜCÜ SPOR",
@@ -7996,49 +8551,6 @@
   },
   {
     "oyuncu": "ÇİMEN ERDİN",
-    "takim": "HAKKARİGÜCÜ SPOR",
-    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "HAKKARİGÜCÜ SPOR",
-        "rakip": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "KEVINE OSSOL",
     "takim": "HAKKARİGÜCÜ SPOR",
     "tum_takimlar": "HAKKARİGÜCÜ SPOR",
     "transfer": false,
@@ -8812,6 +9324,178 @@
     ]
   },
   {
+    "oyuncu": "SİNEM BASAK",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NURSEL ÖZKAN",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 49,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 49
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": true,
+        "dakika": 49,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "HATİCE YAŞAR",
+    "takim": "HAKKARİGÜCÜ SPOR",
+    "tum_takimlar": "HAKKARİGÜCÜ SPOR",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 41,
+    "takim_detay": [
+      {
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 41
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "HAKKARİGÜCÜ SPOR",
+        "rakip": "GALATASARAY A.Ş.",
+        "ilk11": false,
+        "dakika": 41,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ELENI MARKOU",
+    "takim": "GALATASARAY A.Ş.",
+    "tum_takimlar": "GALATASARAY A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 68,
+    "takim_detay": [
+      {
+        "takim": "GALATASARAY A.Ş.",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 68
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "GALATASARAY A.Ş.",
+        "rakip": "HAKKARİGÜCÜ SPOR",
+        "ilk11": false,
+        "dakika": 68,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "MİNENUR SARIOĞLU",
     "takim": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
     "tum_takimlar": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
@@ -9446,6 +10130,780 @@
         "rakip": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
         "ilk11": false,
         "dakika": 30,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "FADIMATOU ARETOUYAP KOME",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ECEMNUR ÖZTÜRK",
+    "takim": "BEŞİKTAŞ A.Ş.",
+    "tum_takimlar": "BEŞİKTAŞ A.Ş.",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 4,
+    "takim_detay": [
+      {
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 4
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "BEŞİKTAŞ A.Ş.",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 4,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "AYTAJ SHARIFOVA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MERVE ODABAŞOĞLU",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NEHİR ZEYTÜNLÜ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 46,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 46
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 46,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SEVİNC FAYIL QIZI JAFARZADE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 21,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 21
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 21,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NUMPOA MADİNA FABIOLA TRAORE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "JUMOKE VIKTORIA ALANİ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 58,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 58
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 58,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SUZZY DEDE TEYE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "PRİNCELLA ADUBEA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 80,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 80
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 80,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "AYŞE NUR SERT",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "LAURA CARİNE TALEB MULLER",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 58,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 58
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 58,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "AMINATA HAIDARA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 1,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 90,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 90
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "BAHAR KOL",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 44,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 44
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 44,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MAIKO BEBIA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 69,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 69
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 69,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ZEYNEP BİLİR",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 10,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 10
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 10,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SUZIE MBİANDJİ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 32,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 32
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 32,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "anastthesıa achıaa",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 1,
+    "ilk11_mac": 0,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 32,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 1,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 32
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 32,
         "gol": 0,
         "gol_ayak": 0,
         "gol_kafa": 0,
