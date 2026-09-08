@@ -4261,7 +4261,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Bourges Foot 18"
+    "kulup_sd": "Bourges FC"
   },
   "Koudjoukalo Sama": {
     "tam_isim": "",
@@ -4429,7 +4429,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "ES 3 Cités Poitiers",
+    "kulup": "Clermont Foot 63",
     "lig": "🇫🇷 3e Ligue",
     "deger": "",
     "sozlesme": "",
@@ -4490,7 +4490,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "ES 3 Cités Poitiers"
+    "kulup_sd": "Clermont Foot 63"
   },
   "Ines Boutaleb": {
     "tam_isim": "ايناس بوطالب",
@@ -28744,7 +28744,7 @@
     "tr_gorusu": "Reluctant",
     "scout_notu": "Born in 2007, German central midfielder Tessa Zimmermann established a disciplined and ambitious athletic character through her extensive youth development in Germany and international junior appearances. Operating as a dynamic box-to-box midfielder and inner corridor player, she influences the game across both halves of the pitch by combining continuous physical energy with disciplined positioning. Because she possesses impressive aerobic capacity and tactical work rate, she consistently dominates central turf by regaining second balls and pressing opponents relentlessly. Additionally, her defensive anticipation and reading of the game enable her to break up opposition counter-attacks before they enter dangerous zones. However, her vertical line-breaking passing vision requires further expansion, as she often chooses safe lateral options instead of exploiting open forward channels. Her composure under aggressive high-pressing traps needs development to ensure cleaner ball output under physical pressure. Due to her biomechanical frame and stride pattern, her raw top-end sprint speed over long distances is fundamentally capped. Based on her energetic box-to-box profile and tactical foundation, she is well-positioned to act as a starting XI player for a mid-table team in semi-professional league or a rotation player for an upper-table team within a professional league. Given her high potential, a move to the professional league within a few years will become crucial, and she will likely be a standout starter in mid-to-upper-mid-table teams.",
     "degerlendirildi": true,
-    "kulup_sd": "Eintracht Frankfurt U17"
+    "kulup_sd": "Eintracht Frankfurt II"
   },
   "Elizabeth Nachivula": {
     "tam_isim": "",
@@ -32860,7 +32860,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "FC Domont",
+    "kulup": "Corinthians",
     "lig": "🇪🇸 Liga F",
     "deger": "€10.000",
     "sozlesme": "30.06.2027",
@@ -33840,7 +33840,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Shaanxi Baorong"
+    "kulup_sd": "Shaanxi Women"
   },
   "Imane Saoud": {
     "tam_isim": "Imane Saoud",
@@ -34680,7 +34680,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Wuhan Jiangda University"
+    "kulup_sd": "Wuhan Women"
   },
   "Mille Bech": {
     "tam_isim": "Mille Schjerbech Bech",
@@ -35727,7 +35727,7 @@
     "vatandaslik": "Türkiye",
     "milli_takim": "",
     "dogum": "20.08.2009",
-    "yas": 17,
+    "yas": 16,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -38143,7 +38143,7 @@
     "vatandaslik": "Nigeria",
     "milli_takim": "",
     "dogum": "13.03.2002",
-    "yas": 24,
+    "yas": 28,
     "boy": "1,71",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -39100,7 +39100,7 @@
     "vatandaslik": "Brazil",
     "milli_takim": "",
     "dogum": "26.08.1999",
-    "yas": 27,
+    "yas": 26,
     "boy": "1,85",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Endomorf",
@@ -42100,7 +42100,7 @@
       "LCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "Hamburger SV",
+    "kulup": "Serbest",
     "lig": "🇩🇪 Bundesliga",
     "deger": "",
     "sozlesme": "",
@@ -42177,7 +42177,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Gloria Slišković is a top young Bosnian central defender playing in Italy's Serie A for Juventus. She displays excellent zone positioning, proactive aerial clearing capability, and composed short build-up passing.",
     "degerlendirildi": true,
-    "kulup_sd": "Hamburger SV"
+    "kulup_sd": "Serbest"
   },
   "Melina Krueger": {
     "tam_isim": "Melina Krüger",
@@ -43632,7 +43632,7 @@
       "MCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Hilal Nador",
+    "kulup": "Yuksekova SK",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -43708,7 +43708,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Madina Traore is a physically robust central defender for Burkina Faso. She exhibits strong upper-body duel resistance and reliable inside-the-box clearances, though her turning acceleration and progressive passing range are basic.",
     "degerlendirildi": true,
-    "kulup_sd": "Hilal Nador"
+    "kulup_sd": "Yuksekova SK"
   },
   "Nthabiseng Majiya": {
     "tam_isim": "",
@@ -46945,7 +46945,7 @@
     "tr_gorusu": "",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "FC Juárez"
+    "kulup_sd": "Palm Hills SC"
   },
   "Lillian Mutuuzo": {
     "tam_isim": "",
@@ -47608,7 +47608,7 @@
     "vatandaslik": "Kosovo",
     "milli_takim": "",
     "dogum": "12.9.2007",
-    "yas": 18,
+    "yas": 28,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -48645,7 +48645,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Adele Kabre is a clinical poacher for Burkina Faso. She possesses fine penalty-box positional instincts and powerful short finish execution, stretching central defenses.",
     "degerlendirildi": true,
-    "kulup_sd": "Liaoning Club"
+    "kulup_sd": "Liaoning Women"
   },
   "Jonna Andersson": {
     "tam_isim": "Jonna Ann-Charlotte Andersson",
@@ -50520,7 +50520,7 @@
       "MCB"
     ],
     "rol": "",
-    "kulup": "London City Lionesses",
+    "kulup": "West Ham United LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€70.000",
     "sozlesme": "30.06.2026",
@@ -50583,7 +50583,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "London City Lionesses"
+    "kulup_sd": "West Ham United LFC"
   },
   "Alexia Putellas": {
     "tam_isim": "Alexia Putellas Segura",
@@ -55799,7 +55799,7 @@
       "AMF"
     ],
     "rol": "Hücumcu Oyun Kurucu",
-    "kulup": "Serbest",
+    "kulup": "Western Sydney Wanderers",
     "lig": "🇦🇺 A-League",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -55878,7 +55878,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Western Sydney Wanderers"
   },
   "Sienna Saveska": {
     "tam_isim": "Sienna Saveska",
@@ -56367,7 +56367,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Changchun Dazhong Women"
+    "kulup_sd": "Changchun Women"
   },
   "Sandrine Niyonkuru": {
     "tam_isim": "",
@@ -56442,7 +56442,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Changchun Dazhong Women"
+    "kulup_sd": "Changchun Women"
   },
   "Justine Rouquet": {
     "tam_isim": "Justine Rouquet",
@@ -56551,7 +56551,7 @@
       "CFW"
     ],
     "rol": "",
-    "kulup": "SC Montpellier",
+    "kulup": "Serbest",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€80.000",
     "sozlesme": "30.06.2027",
@@ -56575,7 +56575,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "SC Montpellier"
+    "kulup_sd": "Serbest"
   },
   "M. Alidou": {
     "tam_isim": "Marie-Yasmine Alidou d'Anjou",
@@ -56752,7 +56752,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Changchun Dazhong Women"
+    "kulup_sd": "Changchun Women"
   },
   "Ju-mi Pak": {
     "tam_isim": "박주미",
@@ -57646,7 +57646,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Changchun Dazhong Women"
+    "kulup_sd": "Changchun Women"
   },
   "Yuan Cong": {
     "tam_isim": "袁丛",
@@ -60183,7 +60183,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Wuhan Jiangda University"
+    "kulup_sd": "Wuhan Women"
   },
   "Habibou Ouedraogo": {
     "tam_isim": "Habibou Ouedraogo",
@@ -60786,7 +60786,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "Orlando Pride",
+    "kulup": "Manchester City LFC",
     "lig": "🇺🇸 NWSL",
     "deger": "€80.000",
     "sozlesme": "31.12.2027",
@@ -60876,7 +60876,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Orlando Pride formasiyla NWSL liginde yilin kaleciligine oynayan, inanilmaz bir hava hakimiyeti olan eldivendir. Yan ortalardaki cikis zamanlamasi ogb kale cizgisi basarisi rasyonel duzeyde hatasizdir. Turkiye buyuk takimlari icin kalede mutlak bir elit emniyet sibobu olabilecek kalitededir.",
     "degerlendirildi": true,
-    "kulup_sd": "Orlando Pride"
+    "kulup_sd": "Manchester City LFC"
   },
   "Oihane Hernandez": {
     "tam_isim": "Oihane Hernández Zurbano",
@@ -62832,7 +62832,7 @@
       "RFB"
     ],
     "rol": "",
-    "kulup": "Paris Saint-Germain",
+    "kulup": "Arsenal FC",
     "lig": "🇫🇷 Première Ligue",
     "deger": "€300.000",
     "sozlesme": "30.06.2027",
@@ -62913,7 +62913,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "PSG arka hattının sertliği, agresif markajı ve fiziksel ikili mücadele kazanma oranıyla tanınan ana emniyet sigortasıdır. Alan savunmasında ve rakibi yıpratma konusunda Avrupa'nın en zorlu stoperlerinden biridir. Takım savunmasına kattığı karakter ve direnç üst seviyededir.",
     "degerlendirildi": true,
-    "kulup_sd": "Paris Saint-Germain"
+    "kulup_sd": "Arsenal FC"
   },
   "Romée Leuchter": {
     "tam_isim": "Romée Elke Henk Leuchter",
@@ -66287,7 +66287,7 @@
       "RWF"
     ],
     "rol": "",
-    "kulup": "Rayados de Monterrey",
+    "kulup": "Career break",
     "lig": "🇲🇽 Liga MX",
     "deger": "€200.000",
     "sozlesme": "30.06.2027",
@@ -72120,7 +72120,7 @@
       "CMF"
     ],
     "rol": "Savaşçı",
-    "kulup": "SE AEM Lleida",
+    "kulup": "Serbest",
     "lig": "🇪🇸 2.º Federación",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -72196,7 +72196,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Adama Congo is a combative defensive midfielder for Burkina Faso. She excels at physical ground duels and midfield interception, offsetting raw progressive passing range with high engine energy.",
     "degerlendirildi": true,
-    "kulup_sd": "SE AEM Lleida"
+    "kulup_sd": "Serbest"
   },
   "Bia Zaneratto": {
     "tam_isim": "Beatriz Zaneratto João",
@@ -73218,7 +73218,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Racing Power Football Club"
+    "kulup_sd": "Serbest"
   },
   "Pauline Ayangma": {
     "tam_isim": "Pauline Charlotte Alang Ayangma",
@@ -73833,7 +73833,7 @@
       "CMF"
     ],
     "rol": "Dinamo/İki Yönlü",
-    "kulup": "Serbest",
+    "kulup": "Werder Bremen",
     "lig": "-",
     "deger": "",
     "sozlesme": "",
@@ -73896,7 +73896,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Werder Bremen"
   },
   "Riley Tanner": {
     "tam_isim": "Riley Madison Tanner Rintala",
@@ -74324,7 +74324,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Club Deportivo Toluca",
     "lig": "-",
     "deger": "€25.000",
     "sozlesme": "30.06.2026",
@@ -74387,7 +74387,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Club Deportivo Toluca"
   },
   "Aurora Mikalsen": {
     "tam_isim": "Aurora Watten Mikalsen",
@@ -77711,7 +77711,7 @@
       "AMF"
     ],
     "rol": "Yardımcı Santrfor",
-    "kulup": "Serbest",
+    "kulup": "Ipswich Town WFC",
     "lig": "-",
     "deger": "€95.000",
     "sozlesme": "30.06.2026",
@@ -77790,7 +77790,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Rosella Ayane is a top English-born forward for Tottenham Hotspur and Morocco. She delivers high-intensity pressing work rate, explosive wide channel drives, and strong aerial duel threat.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Ipswich Town WFC"
   },
   "Ghizlane Chebbak": {
     "tam_isim": "Ghizlane Chebbak",
@@ -85282,7 +85282,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Township Rollers",
+    "kulup": "---",
     "lig": "🇧🇼 National League",
     "deger": "",
     "sozlesme": "",
@@ -85819,7 +85819,7 @@
     "vatandaslik": "Türkiye",
     "milli_takim": "",
     "dogum": "29.08.2003",
-    "yas": 23,
+    "yas": 22,
     "boy": "1,70",
     "ayak": "Sol",
     "vucut_tipi": "Ektomorf",
@@ -86595,7 +86595,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Born in 2008, deep-lying midfielder Lucia Ozkur developed her technical and tactical fundamentals within TSV Limmer's youth setup in Germany. Operating predominantly as a deep-lying playmaker who can also cover central midfield or right wing-back roles, she focuses on anchoring the midfield line and dropping deep to collect possession directly from her central defenders. Because she possesses good technical intent and a clear preference for passing over shooting, she consistently drops into deep build-up areas to initiate possession and attempt incisive key passes. Furthermore, her technical skill allows her to bypass pressing opponents in tight central spaces, while her aggressive contact marking enables her to disrupt opponent midfield plays. However, her progressive passing precision over longer distances requires technical refinement, as her vertical distribution can occasionally surrender accuracy under aggressive opposition pressing. Additionally, her positional composure and foul management during high-intensity duels need better calibration to avoid committing unnecessary tactical fouls. Due to her modest 1.66m physical frame and lower acceleration mechanics, her capacity to cover expansive dynamic spaces during fast-paced transition plays or dominate aerial duels remains naturally capped. Combining her deep-lying playmaker instincts, dual-citizenship background, and German club development, she is well-suited to serve as a rotation player for a mid-table team in a semi-professional league or as a bench player for an upper-table team in a semi-professional league.",
     "degerlendirildi": true,
-    "kulup_sd": "TSV Limmer"
+    "kulup_sd": "GD A-dos-Francos"
   },
   "Mariangela Medina": {
     "tam_isim": "Mariángela Medina Martínez",
@@ -86664,7 +86664,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Serbest",
+    "kulup": "Fenerbahçe SK",
     "lig": "-",
     "deger": "",
     "sozlesme": "",
@@ -86725,7 +86725,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "Fenerbahçe SK"
   },
   "Daisy Nakaziro": {
     "tam_isim": "Daisy Nakaziro",
@@ -87062,7 +87062,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "FC Nantes"
   },
   "Ines Nourani": {
     "tam_isim": "إيناس نوراني",
@@ -90297,7 +90297,7 @@
       "CFW"
     ],
     "rol": "Çalışkan Santrfor",
-    "kulup": "VfL Stenum",
+    "kulup": "Union Sportive des Forces Armées",
     "lig": "🇩🇪 Regionalliga West",
     "deger": "",
     "sozlesme": "30.06.2026",
@@ -91370,7 +91370,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "Viktoria Valyuk is a hardworking young central midfielder for Dynamo Minsk and Belarus. She supports midfield pressing loops and short ball recycling in domestic fixtures.",
     "degerlendirildi": true,
-    "kulup_sd": "Vitória Sport Clube Guimarães"
+    "kulup_sd": "FK Minsk"
   },
   "Maggie Cagle": {
     "tam_isim": "Maggie Jones Cagle",
@@ -94698,7 +94698,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Desire Oparanozie is a veteran physical target forward for Nigeria. She uses strong back-to-goal holding and aerial chest control to link midfielders effectively.",
     "degerlendirildi": true,
-    "kulup_sd": "Wuhan Jiangda University"
+    "kulup_sd": "Wuhan Women"
   },
   "Wang Shuang": {
     "tam_isim": "王霜",
@@ -94779,7 +94779,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Wuhan Jiangda University"
+    "kulup_sd": "Wuhan Women"
   },
   "Katla Tryggvadottir": {
     "tam_isim": "Katla Tryggvadóttir",
@@ -94953,7 +94953,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Wuhan Jiangda University"
+    "kulup_sd": "Wuhan Women"
   },
   "Iris Omarsdottir": {
     "tam_isim": "Íris Ómarsdóttir",
@@ -97882,7 +97882,7 @@
       "RWB"
     ],
     "rol": "Savaşçı",
-    "kulup": "Benfica Lissabon",
+    "kulup": "Sporting Clube de Portugal",
     "lig": "🇵🇹 Liga BPI",
     "deger": "",
     "sozlesme": "30.06.2027",
@@ -97943,7 +97943,7 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Benfica Lissabon"
+    "kulup_sd": "Sporting Clube de Portugal"
   },
   "Natalia Mashina": {
     "tam_isim": "Наталья Викторовна Машина",
