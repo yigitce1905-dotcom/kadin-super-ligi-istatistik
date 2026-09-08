@@ -8307,5 +8307,27 @@
     "Market value": "unknown",
     "sd_isim": "Sena Goksoy",
     "es_skoru": 1.0
+  },
+  "PAOLA SIMONE NICOLE ELLIS": {
+    "profil_url": "https://www.soccerdonna.de/en/blue-ellis/profil/spieler_80705.html",
+    "Date of birth": "11.07.1999",
+    "Age": "27",
+    "Nationality": "Haiti",
+    "Position": "Striker - Right Wing",
+    "Height": "1,65",
+    "Market value": "unknown",
+    "sd_isim": "Blue Ellis",
+    "es_skoru": 1.0
+  },
+  "JESSICA LISANDRA MAJENJE NOGUEIRA DA SILVA": {
+    "profil_url": "https://www.soccerdonna.de/en/jessica-silva/profil/spieler_19097.html",
+    "Date of birth": "11.12.1994",
+    "Age": "31",
+    "Nationality": "PortugalAngola",
+    "Position": "Striker - Left Wing",
+    "Height": "1,70",
+    "Market value": "50.000 €",
+    "sd_isim": "Jéssica Silva",
+    "es_skoru": 1.0
   }
 }
