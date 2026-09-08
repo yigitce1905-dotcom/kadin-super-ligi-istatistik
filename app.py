@@ -996,7 +996,8 @@ def render_arsiv(sezon_key: str):
     col_liste, col_detay = st.columns([5, 4], gap="medium")
     with col_liste:
         secim = st.dataframe(
-            liste_df, width="stretch", height=560,
+            liste_df.assign(Oyuncu=liste_df["Oyuncu"].map(isim_goster)),
+            width="stretch", height=560,
             on_select="rerun", selection_mode="single-row", key=_pk(f"arsiv_liste_{sezon_key}"),
             column_config={
                 "Oyuncu":           st.column_config.TextColumn(t("Oyuncu", "Player"), width="large"),
@@ -1032,7 +1033,7 @@ def render_arsiv(sezon_key: str):
             st.markdown(
                 f'<div style="background:linear-gradient(160deg,#171c30,#12151f);'
                 f'border:1px solid #232842;border-top:3px solid #3b82f6;border-radius:12px;padding:16px 18px;">'
-                f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{_isim}</div>'
+                f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{isim_goster(_isim)}</div>'
                 f'<div style="margin:5px 0 10px;color:#8899aa;font-size:0.8rem;">🏟 {_p["Takım (Gösterim)"]}{_transfer_b}</div>'
                 f'<div style="display:flex;gap:6px;">{_stat_html}</div>'
                 f'</div>', unsafe_allow_html=True)
@@ -3793,6 +3794,8 @@ import re as _re
 import html as _html
 
 
+_ISIM_KOLONLARI = {"Oyuncu", "Takım", "Rakip", "Kulüp", "Kaleci", "TümTakımlar"}
+
 def df_tablo(df, basliklar=None, formatlar=None, height=None):
     """DataFrame'i ws-table HTML olarak render eder: masaüstünde tablo, mobilde
     (≤768px) mevcut .ws-table CSS'i sayesinde OTOMATİK kart düzeni (yatay kaydırma yok).
@@ -3845,7 +3848,15 @@ def df_tablo(df, basliklar=None, formatlar=None, height=None):
     for _, r in df.iterrows():
         hucreler = []
         for i, c in enumerate(cols):
-            val = fmt(c, r[c])
+            hucre_deger = r[c]
+            # İlk kolon (ws-name) hemen her tabloda oyuncu/takım kimliğidir; ayrıca
+            # "Takım"/"Rakip"/"Kulüp" gibi isim kolonları ilk sırada olmasa da
+            # (ör. Gelişmiş Arama'da Takım 2. kolon) aynı şekilde çevrilir — TFF'nin
+            # HAM BÜYÜK HARF adı Baş Harfleri Büyük'e döner (isim_goster zaten-
+            # karışık-harfli/Dünya adlarına dokunmaz).
+            if (i == 0 or c in _ISIM_KOLONLARI) and isinstance(hucre_deger, str):
+                hucre_deger = isim_goster(hucre_deger)
+            val = fmt(c, hucre_deger)
             if i == 0:
                 hucreler.append(f"<td><span class='ws-name'>{val}</span></td>")
             else:
@@ -4271,7 +4282,67 @@ def _tr_upper(s) -> str:
     return str(s or "").replace("i", "İ").replace("ı", "I").upper()
 
 
+_KISALTMA_RE   = _re.compile(r"^([A-ZÇĞİÖŞÜ]\.)*[A-ZÇĞİÖŞÜ]\.?$")
+_TR_ISARET_RE  = _re.compile(r"[ÇĞİÖŞÜ]")
+
+def _tr_kucuk(s: str) -> str:
+    """Türkçe-doğru küçük harf: İ→i (noktalı), I→ı (noktasız) — Python'un
+    varsayılan .lower()'ı bu ayrımı bilmez (bkz. _tr_upper/_buyuk)."""
+    return str(s or "").replace("İ", "i").replace("I", "ı").lower()
+
+
+def isim_goster(s: str) -> str:
+    """Oyuncu/takım adını (TFF kaynaklı HAM BÜYÜK HARF, ör. 'ARMİSA KUÇ',
+    'FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI') okunaklı Baş Harfleri Büyük
+    gösterime çevirir (Yiğit, 2026-09-08: 'ilk harfler büyük gerisi küçük').
+
+    YALNIZCA girdi ZATEN TAMAMEN BÜYÜKSE dönüştürülür — SoccerDonna/Dünya
+    scouting kaynaklı adlar zaten doğru karışık harfle geliyor ('Katie Bowen',
+    'McDonald' gibi soyadları olabilir) ve OLDUĞU GİBİ bırakılır; aksi halde
+    körü körüne title-case bu tür adları bozardı. 'A.Ş.' gibi nokta ayraçlı
+    kısaltmalar da olduğu gibi korunur.
+
+    Düz 'I' harfi Türkçe'de noktasız 'ı', İngilizce'de düz 'i' — ALL-CAPS
+    kaynakta ikisi de aynı 'I' harfine düşer, tek başına ayırt edilemez (bkz.
+    'ABIGAIL KOFI KIM' → yanlışlıkla 'Abıgaıl Kofı Kım' olmuştu, 2026-09-08).
+    Çözüm: adın TAMAMINDA başka bir Türkçe harf (Ç/Ğ/İ/Ö/Ş/Ü) var mı diye
+    bakılır — varsa (ör. 'FATİH VATAN', 'HAKKARİGÜCÜ') ad Türkçe kabul edilip
+    'I'lar 'ı' olur; hiç yoksa (ör. 'ABIGAIL KOFI KIM', 'PAOLA ... ELLIS')
+    yabancı kabul edilip düz küçük harfle yazılır. Mükemmel değil (ör. hiç
+    Türkçe işaretsiz 'KIRAN' gibi soyadlarda kaçırabilir) ama körü körüne
+    'her zaman Türkçe' varsaymaktan çok daha az yanlış üretir. SADECE
+    GÖRÜNTÜLEME içindir — ham df_tam/oyuncular.json değerleri (filtreleme,
+    _kanon, _sd_profil_bul, dict anahtarları, URL parametreleri) HİÇ
+    değişmez (bkz. Uyruk dersi)."""
+    s = str(s or "")
+    if not s or s != s.upper():
+        return s  # zaten karışık/küçük harfli (Dünya kaynağı) — dokunma
+    turkce = bool(_TR_ISARET_RE.search(s))
+    parcalar = []
+    for k in s.split(" "):
+        if not k or _KISALTMA_RE.match(k):
+            parcalar.append(k)
+            continue
+        kucuk = _tr_kucuk(k) if turkce else k.lower()
+        ilk = kucuk[0]
+        if turkce:
+            ilk_buyuk = "İ" if ilk == "i" else ("I" if ilk == "ı" else ilk.upper())
+        else:
+            ilk_buyuk = ilk.upper()
+        parcalar.append(ilk_buyuk + kucuk[1:])
+    return " ".join(parcalar)
+
+
 def _takim_kisa(ad: str) -> str:
+    """_takim_kisa_ham + isim_goster — kısa takım adı HER ZAMAN Baş Harfleri
+    Büyük gösterilir (Yiğit, 2026-09-08). Kanonik eşleştirme (_kanon, nunique
+    dedup) etkilenmez: _kanon zaten _tr_upper ile yeniden büyütür, dict-key
+    karşılaştırmaları (Çekmeköy→Şile) _TAKIM_KISA_MAP'in zaten doğru-yazılmış
+    değerlerine bakar — casing burada saf gösterim detayıdır."""
+    return isim_goster(_takim_kisa_ham(ad))
+
+
+def _takim_kisa_ham(ad: str) -> str:
     """Uzun TFF takım adını kısa görünüme indirger. 'A / B' (transfer) için her parçayı ayrı kısaltır.
     Aynı kulübün isim varyantları (ALG'nin 3 sponsor adı, Çekmeköy→Şile taşınması) kısaltmada
     aynılaşır → transfer gösteriminde tekilleştirilir ('ALG / ALG / ALG' → 'ALG').
@@ -4280,7 +4351,7 @@ def _takim_kisa(ad: str) -> str:
     if not ad:
         return ad
     if "/" in ad:
-        parcalar = [_takim_kisa(p.strip()) for p in ad.split("/")]
+        parcalar = [_takim_kisa_ham(p.strip()) for p in ad.split("/")]
         # Çekmeköy→Şile: aynı kulüp (taşındı) — transfer satırında güncel adla tek görünsün
         parcalar = ["Şile Bilgidoğa" if p == "Çekmeköy Bilgidoğa" else p for p in parcalar]
         return " / ".join(dict.fromkeys(parcalar))
@@ -7870,7 +7941,7 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     yas_s = (f"{yas:.0f}" if isinstance(yas, (int, float)) else
              (str(sd.get("Age", "")).split()[0] if sd.get("Age") else "—"))
     uyruk = ulke_goster(_MANUEL_UYRUK.get(secili) or row.get("Uyruk", "")) or "—"
-    mevki = row.get("Mevki", "—"); takim = row.get("Takım", "—")
+    mevki = row.get("Mevki", "—"); takim = isim_goster(row.get("Takım", "—"))
 
     pdf = FPDF(orientation="P", unit="mm", format="A4")
     pdf.set_auto_page_break(True, margin=14)
@@ -7883,7 +7954,7 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     # Başlık bandı
     pdf.set_fill_color(*MOR); pdf.rect(0, 0, 210, 30, "F")
     pdf.set_xy(12, 6); pdf.set_text_color(255, 255, 255); pdf.set_font("DV", "B", 17)
-    pdf.cell(0, 8, secili, ln=1)
+    pdf.cell(0, 8, isim_goster(secili), ln=1)
     pdf.set_x(12); pdf.set_font("DV", "", 9)
     pdf.cell(0, 6, " · ".join(x for x in [mevki, takim] if x and x != "—"), ln=1)
     pdf.set_xy(150, 7); pdf.set_font("DV", "", 7)
@@ -8118,7 +8189,7 @@ def render_ana_lig_profil(secili):
         _bs1, _bs2 = st.columns([1.55, 1], gap="large")
         _d_scout = birlesik_scout_yukle()   # 26.08.2026: tek çekim, aşağıda tekrar kullanılır (2 tam kopya -> 1)
         with _bs1:
-            _profil_baslik(secili, tam_isim=_d_scout.get(secili, {}).get("tam_isim", ""))
+            _profil_baslik(isim_goster(secili), tam_isim=_d_scout.get(secili, {}).get("tam_isim", ""))
         with _bs2:
             _profil_link_kopyala(secili, sd.get("profil_url", ""))
         _mv = sd.get("Market value", "")
@@ -10088,7 +10159,7 @@ def render_altlig():
                 st.markdown(
                     f"<div style='background:#0e1326;border:1px solid #232a40;border-top:3px solid #a855f7;"
                     f"border-radius:10px;padding:14px 16px;'>"
-                    f"<div style='font-size:1.05rem;font-weight:800;color:#fff;'>{o['oyuncu']}</div>"
+                    f"<div style='font-size:1.05rem;font-weight:800;color:#fff;'>{isim_goster(o['oyuncu'])}</div>"
                     f"<div style='color:#8899aa;font-size:0.8rem;margin:3px 0 10px;'>🏟 {_takim_kisa(o['tum_takimlar'])}</div>"
                     f"<div style='display:flex;gap:8px;flex-wrap:wrap;'>{_kut}</div>"
                     f"<div style='margin-top:10px;font-size:0.76rem;color:#9aa6ba;'>"
@@ -10229,7 +10300,7 @@ def render_altyas():
                 st.markdown(
                     f"<div style='background:#0e1326;border:1px solid #232a40;border-top:3px solid #4ade80;"
                     f"border-radius:10px;padding:14px 16px;'>"
-                    f"<div style='font-size:1.05rem;font-weight:800;color:#fff;'>{o['oyuncu']}</div>"
+                    f"<div style='font-size:1.05rem;font-weight:800;color:#fff;'>{isim_goster(o['oyuncu'])}</div>"
                     f"<div style='color:#8899aa;font-size:0.8rem;margin:3px 0 10px;'>🏟 {o.get('tum_takimlar', o.get('takim',''))}"
                     f" · {t('Grup','Group')} {o.get('grup','—')}</div>"
                     f"<div style='display:flex;gap:8px;flex-wrap:wrap;'>{_kut}</div>"
@@ -11934,7 +12005,7 @@ if tab1:
             _sat += (
                 "<tr><td><div style='display:flex;align-items:center;gap:10px;'>"
                 f"<span class='ws-ava'>{_harf}</span><div>"
-                f"<a class='ws-name' href='{_href}' target='_blank'>{_ad}</a>"
+                f"<a class='ws-name' href='{_href}' target='_blank'>{isim_goster(_ad)}</a>"
                 f"<div class='ws-sub'>{_nat}</div></div></div></td>"
                 f"<td data-label='{t('Pozisyon','Pos')}'>{_poz}</td>"
                 f"<td data-label='{t('Takım','Team')}'>{_tk}</td>"
@@ -11957,7 +12028,8 @@ if tab1:
         col_liste, col_detay = st.columns([5, 4], gap="medium")
         with col_liste:
             secim = st.dataframe(
-                liste_df, width="stretch", height=560,
+                liste_df.assign(Oyuncu=liste_df["Oyuncu"].map(isim_goster)),
+                width="stretch", height=560,
                 on_select="rerun", selection_mode="single-row", key="ol_liste",
                 column_config={
                     "Oyuncu":           st.column_config.TextColumn(t("Oyuncu","Player"), width="large"),
@@ -12012,7 +12084,7 @@ if tab1:
                     st.markdown(
                         f'<div style="background:linear-gradient(160deg,#171c30,#12151f);'
                         f'border:1px solid #232842;border-top:3px solid {_mrk};border-radius:12px;padding:16px 18px;">'
-                        f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{tikli_oyuncu}</div>'
+                        f'<div style="font-size:1.15rem;font-weight:800;color:#fff;">{isim_goster(tikli_oyuncu)}</div>'
                         f'<div style="margin:5px 0 10px;">'
                         f'<span style="color:{_mrk};font-weight:700;background:{_mrk}22;border:1px solid {_mrk}55;'
                         f'border-radius:5px;padding:1px 8px;font-size:0.74rem;">{_mvk_g or "—"}</span>'
@@ -12065,7 +12137,7 @@ if tab2:
             if _def:
                 st.session_state["profil_sec"] = _def
         secili = st.selectbox(t("Oyuncu seç", "Select Player"), oyuncu_listesi,
-                              key="profil_sec")
+                              format_func=isim_goster, key="profil_sec")
         render_ana_lig_profil(secili)
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -12101,6 +12173,7 @@ if tab3:
         oyuncu_listesi2,
         default=varsayilan,
         max_selections=4,
+        format_func=isim_goster,
         key="karsilastirma_sec",
     )
 
@@ -12140,7 +12213,7 @@ if tab3:
                 r=dg + [dg[0]],
                 theta=kategoriler + [kategoriler[0]],
                 fill="toself",
-                name=oyuncu,
+                name=isim_goster(oyuncu),
                 line=dict(color=renk, width=2.5),
                 opacity=0.35,
             ))
@@ -12213,19 +12286,21 @@ if tab3:
             baslik_html += (
                 f'<span style="background:{renk}22;color:{renk};border:1px solid {renk}44;'
                 f'border-radius:6px;padding:4px 12px;font-weight:600;font-size:0.85rem">'
-                f'{oy}</span>'
+                f'{isim_goster(oy)}</span>'
             )
         baslik_html += "</div>"
         st.markdown(baslik_html, unsafe_allow_html=True)
         st.caption(t("★ = o kategoride en iyi", "★ = best in that category"))
 
+        df_karsilastirma_g = df_karsilastirma.rename(
+            columns={oy: isim_goster(oy) for oy in secili_oyuncular})
         st.dataframe(
-            df_karsilastirma,
+            df_karsilastirma_g,
             width="stretch",
             height=430,
             column_config={
                 col: st.column_config.TextColumn(col, width="medium")
-                for col in df_karsilastirma.columns
+                for col in df_karsilastirma_g.columns
             },
         )
 
@@ -12327,7 +12402,7 @@ if tab4:
                 x=alt["Dakika"], y=alt["Gol"],
                 mode="markers+text", name=mevki_goster(mevki),
                 marker=dict(color=renk, size=10),
-                text=alt["Oyuncu"].str.split().str[-1],
+                text=alt["Oyuncu"].map(isim_goster).str.split().str[-1],
                 textposition="top center", textfont=dict(size=9),
                 hovertemplate="%{text}<br>%{x} " + t("dk","min") + ", %{y} " + t("gol","goals") + "<extra></extra>",
             ))
@@ -12419,7 +12494,7 @@ if tab6:
                 x=alt["Dakika"], y=alt["Gol"],
                 mode="markers", name=mevki_goster(mevki),
                 marker=dict(color=renk, size=7, opacity=0.8),
-                text=alt["Oyuncu"],
+                text=alt["Oyuncu"].map(isim_goster),
                 hovertemplate="%{text}<br>%{x} " + t("dk","min") + " · %{y} " + t("gol","goals") + "<extra></extra>",
             ))
         # En golcülerin etiketini göster
@@ -12427,7 +12502,7 @@ if tab6:
         fig_lig.add_trace(go.Scatter(
             x=top10["Dakika"], y=top10["Gol"],
             mode="text", showlegend=False,
-            text=top10["Oyuncu"].str.split().str[-1],
+            text=top10["Oyuncu"].map(isim_goster).str.split().str[-1],
             textposition="top center", textfont=dict(size=9, color="#e0e0e0"),
         ))
         fig_lig.update_layout(
@@ -12491,7 +12566,7 @@ if tab6:
                 st.markdown(
                     f'<div style="background:#1a1f36;border-radius:8px;padding:10px 14px;'
                     f'margin-bottom:6px;display:flex;justify-content:space-between;align-items:center">'
-                    f'<span style="font-size:1.1rem">{rozetler[i]} {row["Oyuncu"]}'
+                    f'<span style="font-size:1.1rem">{rozetler[i]} {isim_goster(row["Oyuncu"])}'
                     f'<span style="color:#8899aa;font-size:0.78rem;margin-left:8px">{_takim_kisa(row["Takım"])}</span></span>'
                     f'<span style="color:#1db954;font-weight:600">{degerler}</span></div>',
                     unsafe_allow_html=True
@@ -12614,7 +12689,7 @@ if tab6:
                         f'<div style="background:#1a1f36;border-radius:8px;padding:10px;'
                         f'margin-bottom:8px;border-top:2px solid #1db954">'
                         f'<div style="color:#8899aa;font-size:0.68rem">{takim[:30]}</div>'
-                        f'<div style="font-weight:600;font-size:0.9rem;margin:3px 0">{r["Oyuncu"]}</div>'
+                        f'<div style="font-weight:600;font-size:0.9rem;margin:3px 0">{isim_goster(r["Oyuncu"])}</div>'
                         f'<div style="color:#1db954;font-size:0.82rem">⚽ {int(r["Gol"])} {t("gol","goals")}</div>'
                         f'</div>',
                         unsafe_allow_html=True
@@ -13218,12 +13293,13 @@ if tab_genç:
             for idx, (_, r) in enumerate(top5.iterrows()):
                 with cols[idx]:
                     _mrk = mevki_renk(r['Mevki'])
+                    _og_parca = isim_goster(r['Oyuncu']).split()
                     st.markdown(
                         f"<div style='background:#1a1f36;border-radius:10px;padding:12px;"
                         f"text-align:center;border-top:3px solid {_mrk};'>"
                         f"<div style='font-size:11px;font-weight:700;color:#fff;"
-                        f"margin-bottom:4px;'>{r['Oyuncu'].split()[0]}<br>"
-                        f"<span style='font-size:10px;'>{r['Oyuncu'].split()[-1]}</span></div>"
+                        f"margin-bottom:4px;'>{_og_parca[0]}<br>"
+                        f"<span style='font-size:10px;'>{_og_parca[-1]}</span></div>"
                         f"<div style='font-size:20px;font-weight:800;color:#1db954;'>{r['Yaş']:.0f}</div>"
                         f"<div style='display:inline-block;font-size:9px;font-weight:700;"
                         f"color:{_mrk};background:{_mrk}22;border:1px solid {_mrk}55;"
@@ -13249,7 +13325,7 @@ if tab_genç:
                                 color=mevki_renk(mev),
                                 opacity=0.85,
                                 line=dict(color="#0f1117", width=1)),
-                    text=grp["Oyuncu"].str.split().str[0],
+                    text=grp["Oyuncu"].map(isim_goster).str.split().str[0],
                     textposition="top center",
                     textfont=dict(size=9, color="#c9d1d9"),
                     hovertemplate=(
@@ -13257,7 +13333,7 @@ if tab_genç:
                         "Yaş: %{x}<br>G/Maç: %{y}<br>"
                         "Maç: %{customdata[1]}<extra></extra>"
                     ),
-                    customdata=grp[["Oyuncu","Maç"]].values,
+                    customdata=grp.assign(Oyuncu=grp["Oyuncu"].map(isim_goster))[["Oyuncu","Maç"]].values,
                 ))
             fig_sc.update_layout(
                 paper_bgcolor="#0f1117", plot_bgcolor="#0f1117",
@@ -13447,8 +13523,8 @@ if tab10:
         _uzun_isim_stili = "font-size:1.05rem;white-space:normal;word-break:break-word;line-height:1.2;"
         for kol, sayi, etiket, stil in [
             (k1, f"{avg_age:.1f}", t("Lig Ort. Yaşı","League Avg. Age"), ""),
-            (k2, f"{youngest['yas']:.0f} — {youngest['isim']}", t("En Genç","Youngest"), _uzun_isim_stili),
-            (k3, f"{oldest['yas']:.0f} — {oldest['isim']}", t("En Yaşlı","Oldest"), _uzun_isim_stili),
+            (k2, f"{youngest['yas']:.0f} — {isim_goster(youngest['isim'])}", t("En Genç","Youngest"), _uzun_isim_stili),
+            (k3, f"{oldest['yas']:.0f} — {isim_goster(oldest['isim'])}", t("En Yaşlı","Oldest"), _uzun_isim_stili),
             (k4, u23, t("U-23 Oyuncu","U-23 Players"), ""),
         ]:
             kol.markdown(
