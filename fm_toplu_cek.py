@@ -39,7 +39,7 @@ from bs4 import BeautifulSoup
 sys.stdout.reconfigure(encoding="utf-8")
 
 KOK = Path(__file__).parent
-LISTE = Path.home() / "Desktop" / "NOTLANACAK_oncelik_listesi.csv"
+LISTE = Path.home() / "Desktop" / "WFS_ISM" / "Veri" / "NOTLANACAK_oncelik_listesi.csv"
 BEKLEYEN = KOK / "_fm_bekleyen.json"
 ONBELLEK = KOK / "_fm_ham_cache.json"      # çekilen ham FM verisi (tekrar çekme)
 BULUNAMAYAN = KOK / "_fm_bulunamayan.json"

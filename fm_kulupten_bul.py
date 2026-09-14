@@ -33,7 +33,7 @@ import fm_toplu_cek as F
 from fm_nitelik_esle import cevir
 
 KOK = Path(__file__).parent
-LISTE = Path.home() / "Desktop" / "NOTLANACAK_oncelik_listesi.csv"
+LISTE = Path.home() / "Desktop" / "WFS_ISM" / "Veri" / "NOTLANACAK_oncelik_listesi.csv"
 
 # Kulüp adının aramada işe yaramayan kuyrukları (şehir/tüzel ek)
 _KUYRUK = re.compile(

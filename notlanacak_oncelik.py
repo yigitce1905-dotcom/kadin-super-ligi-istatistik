@@ -30,7 +30,7 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 KOK = Path(__file__).parent
-CIKTI = Path.home() / "Desktop" / "NOTLANACAK_oncelik_listesi.csv"
+CIKTI = Path.home() / "Desktop" / "WFS_ISM" / "Veri" / "NOTLANACAK_oncelik_listesi.csv"
 
 SERBEST = {"serbest", "free", "free agent", "vereinslos"}
 UST_LIG = ("WSL", "NWSL", "Bundesliga", "Première Ligue", "Liga F", "Serie A",
