@@ -2032,12 +2032,53 @@ def pro_paywall_goster(ozellik_adi: str = None, tier: str = "pro"):
     )
 
 
+# Sezon 2026-2027 başlangıcı (TFF 1. hafta fikstürü, 29.08.2026'da doğrulandı) —
+# "en az 1 sezon" tabanının referans noktası: kickoff + 1 yıl.
+_KONTRAT_TABAN_2627 = "29.08.2027"
+
+def _kontrat_taban_uygula(veri: dict) -> None:
+    """soccerdonna_profiller.json'daki HER kayıt = şu an TR Kadınlar Süper Ligi
+    2026-2027 kadrosunda bir oyuncu (dosya oyuncular.json'daki roster'la eşleş-
+    tirilerek üretiliyor) — yani TFF tescili gereği EN AZ 1 sezonluk (2026-2027)
+    sözleşmesi var (Yiğit, 2026-09-15: "TR 2026-2027'de olanlar en az 1 sene
+    sözleşmeli onu unutma"). SD'nin 'Contract until' alanı yenilemeleri geç
+    işleyebiliyor (bkz. sd_profil_tazele.py başındaki Busem Şeker vakası) —
+    boş/geçmiş görünebilir, bu SERBEST KALDIĞI anlamına GELMEZ. Böyle durumlarda
+    ham SD değerini SİLMEDEN (_sd_kontrat_ham'da saklanır) bir en-az tabanı
+    (sezon başlangıcı + 1 yıl) uygulanır.
+
+    NOT: taban SADECE boş/geçmiş tarihte devreye girer — normal, GELECEKTEKİ
+    bir tarih (ör. sezon sonu 31.05.2027) DOKUNULMADAN kalır; "en az 1 sene"
+    zaten mevcut sezonu kapsıyor demektir, bugünden itibaren 1 yıl DEĞİL
+    (ilk versiyon bunu "bugün + 330 gün" sanıp 471 kayıttan 457'sini —
+    geçerli/gelecek tarihli olanlar dahil — yanlışlıkla eziyordu)."""
+    import datetime as _dt
+    bugun = _dt.date.today()
+    for v in veri.values():
+        if not isinstance(v, dict):
+            continue
+        ham = str(v.get("Contract until") or "").strip()
+        gecerli = False
+        if ham and ham not in ("?", "-", "—"):
+            try:
+                g, a, y = (int(x) for x in ham.split(".")[:3])
+                gecerli = _dt.date(y, a, g) >= bugun   # yalnızca GEÇMİŞ tarih şüpheli
+            except Exception:
+                pass
+        if not gecerli:
+            if "_sd_kontrat_ham" not in v:
+                v["_sd_kontrat_ham"] = ham or None
+            v["Contract until"] = _KONTRAT_TABAN_2627
+
+
 @st.cache_data(ttl=3600)
 def sd_profiller_yukle():
     yol = _DIZIN / "soccerdonna_profiller.json"
     if yol.exists():
         with open(yol, encoding="utf-8") as f:
-            return json.load(f)
+            veri = json.load(f)
+        _kontrat_taban_uygula(veri)
+        return veri
     return {}
 
 sd_profiller = sd_profiller_yukle()
@@ -2057,6 +2098,49 @@ def _tff_dogum_yeri_harita():
 
 def _tff_dogum_yeri(isim: str) -> str:
     return _tff_dogum_yeri_harita().get(isim, "")
+
+@st.cache_data(ttl=3600)
+def _tff_dogum_tarihi_harita() -> dict:
+    """tff_dogum_yeri.json'un HAM 'dogum_tarihi' alanı (DD.MM.YYYY) — profil
+    künyesinde 'Doğum Tarihi' satırını da göstermek için (_tff_yas_harita()
+    bunun YAŞINI önceden hesaplar, bu ise tarihin kendisini verir)."""
+    yol = _DIZIN / "tff_dogum_yeri.json"
+    if yol.exists():
+        try:
+            return {k: v.get("dogum_tarihi", "") for k, v in
+                    json.load(open(yol, encoding="utf-8")).items()}
+        except Exception:
+            return {}
+    return {}
+
+def _tff_dogum_tarihi(isim: str) -> str:
+    return _tff_dogum_tarihi_harita().get(isim, "")
+
+@st.cache_data(ttl=3600)
+def _tff_yas_harita() -> dict:
+    """SD'de hiç profili olmayan (~49 oyuncu, 2026-09-15) TR süper lig
+    oyuncuları için TFF'nin kendi profilinden ('Doğum Tarihi', tff_dogum_yeri.py
+    çeker) yaş hesaplar. {isim: yaş}. _yas() zincirinin SON basamağı — Yiğit:
+    'yaşlarını TFF profillerinden bile çekebilirdin, None yazması hoş durmuyor'."""
+    import re as _re_, datetime as _dt_
+    yol = _DIZIN / "tff_dogum_yeri.json"
+    if not yol.exists():
+        return {}
+    try:
+        veri = json.load(open(yol, encoding="utf-8"))
+    except Exception:
+        return {}
+    out = {}
+    bugun = _dt_.date.today()
+    for isim, v in veri.items():
+        m = _re_.search(r"(\d{2})\.(\d{2})\.(\d{4})", (v or {}).get("dogum_tarihi", "") or "")
+        if not m:
+            continue
+        g, a, y = map(int, m.groups())
+        yas = bugun.year - y - ((bugun.month, bugun.day) < (a, g))
+        if 15 <= yas <= 40:
+            out[isim] = yas
+    return out
 
 
 @st.cache_data(ttl=86400)
@@ -4478,13 +4562,17 @@ def df_zenginlestir(_df: "pd.DataFrame", file_hash: str = "", _v: str = "v3") ->
         # NOT: _yas_hesapla() burada henüz tanımlı değil (df_zenginlestir modül
         # yüklenirken en tepede çağrılıyor) — hesap burada tekrarlanır.
         m = _re.search(r"(\d{2})\.(\d{2})\.(\d{4})", profil.get("Date of birth", "") or "")
-        if not m:
-            return None
-        g, a, y = map(int, m.groups())
-        from datetime import date as _date
-        t_ = _date.today()
-        dob_yas = t_.year - y - ((t_.month, t_.day) < (a, g))
-        return dob_yas if 15 <= dob_yas <= 40 else None
+        if m:
+            g, a, y = map(int, m.groups())
+            from datetime import date as _date
+            t_ = _date.today()
+            dob_yas = t_.year - y - ((t_.month, t_.day) < (a, g))
+            if 15 <= dob_yas <= 40:
+                return dob_yas
+        # SD'de hiç profili olmayan oyuncular (Yiğit, 2026-09-15: "yaşlarını TFF
+        # profillerinden bile çekebilirdin") — son çare TFF'nin kendi künyesi
+        # (tff_dogum_yeri.py çeker, _tff_yas_harita() hesaplar).
+        return _tff_yas_harita().get(oyuncu)
 
     df["Yaş"] = df["Oyuncu"].map(_yas)
     return df
@@ -6321,7 +6409,7 @@ def render_scouting_detay(tam_isim):
     # "2. Vatandaşlık" (ikinci pasaport) → milli takım için YANLIŞ (örn. Miray Cin Türkiye
     # oynar ama 2. vatandaşlığı Almanya). Çift uyruklularda doğru NT = Millî vatandaşlık.
     _milli  = _kadro.get("vatandaslik", "") or _ilk_uyruk(vatandas)
-    _yas_g  = f"{yas}" if str(yas) not in ("", "?", "—") else ""
+    _yas_g  = f"{yas}" if str(yas) not in ("", "?", "—", "None") else ""
 
     # Büyük isim başlığı + yanında paylaşılabilir link (ana lig ile ORTAK düzen)
     _bs1, _bs2 = st.columns([1.55, 1], gap="large")
@@ -8219,8 +8307,9 @@ def render_ana_lig_profil(secili):
         # Doğum tarihi ve yaş AYNI kaynaktan gelmeli: eskiden tarih sheet'ten,
         # yaş SD'den okunuyordu ve "19.07.1996 / 28 yaş" gibi kendi içinde
         # çelişen künyeler çıkıyordu.
-        _tr_dogum = _ilk_dolu(sd.get("Date of birth"), _st.get("dogum"))
-        _tr_yas = _ilk_dolu(_yas_hesapla(_tr_dogum), _st.get("yas"), sd.get("Age"))
+        _tr_dogum = _ilk_dolu(sd.get("Date of birth"), _st.get("dogum"), _tff_dogum_tarihi(secili))
+        _tr_yas = _ilk_dolu(_yas_hesapla(_tr_dogum), _st.get("yas"), sd.get("Age"),
+                             _tff_yas_harita().get(secili))
         _sd_uyruk1, _sd_uyruk2 = _uyruk_ayir(sd.get("Nationality", ""))
         _sezon_takim = row["TümTakımlar"] if transfer else row["Takım"]
         _sd_kulup_ham = (sd.get("guncel_kulup") or "").strip()
@@ -13223,6 +13312,10 @@ if tab_genç:
             if not yas:
                 try: yas = float(str(_sd_profil_bul(isim).get("Age","")).split()[0])
                 except: yas = None
+            if not yas:
+                # SD'de hiç profili olmayan oyuncular TFF künyesinden düşer —
+                # yoksa gerçek genç yetenekler bu listeden sessizce kaybolur.
+                yas = _tff_yas_harita().get(isim)
             if not yas or yas >= 23: continue
 
             mac = int(o.get("mac_sayisi", 0))
@@ -13976,9 +14069,12 @@ if tab_transfer:
 
                 for i, isim in enumerate(oneriler, 1):
                     profil = _sd_profil_bul(isim)
-                    yas_v  = profil.get("Age", "—")
-                    boy_v  = profil.get("Height", "—")
-                    nat_v  = profil.get("Nationality", "—")
+                    # NOT: .get(k, "—") yalnız ANAHTAR YOKSA varsayılana düşer —
+                    # anahtar var ama değeri None/"" ise ham hâliyle sızar ("None"
+                    # metni gibi). "or" ile boş/None'ı da güvenle "—"ye çeviriyoruz.
+                    yas_v  = profil.get("Age") or "—"
+                    boy_v  = profil.get("Height") or "—"
+                    nat_v  = profil.get("Nationality") or "—"
                     if nat_v:
                         nat_v = _re.sub(r"(?<=[a-z])(?=[A-Z])", " ", nat_v).split()[0]
 
