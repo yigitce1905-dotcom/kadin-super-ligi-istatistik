@@ -73,13 +73,35 @@ def mac_linklerini_topla(session, hafta_no):
     return mac_linkleri
 
 
-def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
-    soup = fetch(session, mac_info["url"])
-    if not soup: return
+def _mac_sayfasi_oku(session, url, deneme=3):
+    """Maç detay sayfasını çeker + bölümlere ayırır. TFF sunucusu bazen (aşırı
+    istek/ağ kesintisi) İSTEK BAŞARILI (200 OK) ama İÇERİK EKSİK/YARIM bir sayfa
+    döndürüyor — fetch()'in kendi retry'ı sadece EXCEPTION'da devreye girdiği
+    için bunu yakalamıyordu (Yüksekova-Şile 1.hafta maçı böyle 2 ayrı tam
+    taramada da atlanmıştı). Bu yüzden "İlk 11 < 2" görülürse aynı sayfayı
+    birkaç kez daha çekip gerçekten eksik mi yoksa şans eseri yarım mı geldiğini
+    doğruluyoruz."""
+    son_soup, son_bolumler, son_sayfa = None, [], ""
+    for _ in range(deneme):
+        soup = fetch(session, url)
+        if not soup:
+            time.sleep(2); continue
+        bolumler = []
+        for tablo in soup.find_all("table"):
+            bs = tablo.select(".MacDetayMiniBaslik")
+            if len(bs) == 1:
+                bolumler.append((bs[0].get_text(strip=True), tablo))
+        son_soup, son_bolumler = soup, bolumler
+        son_sayfa = soup.get_text(" ", strip=True).lower()
+        if sum(1 for ad, _ in bolumler if ad == "İlk 11") >= 2:
+            return soup, bolumler, son_sayfa   # tam geldi
+        time.sleep(2)                          # yarım geldi olabilir, tekrar dene
+    return son_soup, son_bolumler, son_sayfa   # tüm denemeler eksik kaldı
 
-    sayfa = soup.get_text(" ", strip=True).lower()
-    if "ertelendi" in sayfa or "iptal" in sayfa:
-        print("      [ATLA] Ertelendi/Iptal"); return
+
+def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
+    soup, bolumler, sayfa = _mac_sayfasi_oku(session, mac_info["url"])
+    if not soup: return
 
     ev_takim  = mac_info["ev"]
     dep_takim = mac_info["dep"]
@@ -88,14 +110,14 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
         ev_takim  = takim_els[0].get_text(strip=True)
         dep_takim = takim_els[1].get_text(strip=True)
 
-    bolumler = []
-    for tablo in soup.find_all("table"):
-        bs = tablo.select(".MacDetayMiniBaslik")
-        if len(bs) == 1:
-            bolumler.append((bs[0].get_text(strip=True), tablo))
-
     if sum(1 for ad, _ in bolumler if ad == "İlk 11") < 2:
-        print("      [ATLA] Eksik kadro"); return
+        # NOT: "ertelendi"/"iptal" kelimesi sayfanın TAMAMINDA (stadyum adı dahil)
+        # aranırsa yanlış pozitif verir — ör. "Şemdinli İlçe Stadı ... (Ertelendi)"
+        # gerçekte oynanmış bir maçı (Yüksekova-Şile, 1.hafta) yanlışlıkla atlattı.
+        # Bu yüzden sadece kadro GERÇEKTEN yoksa (asıl postpone/iptal sinyali) bu
+        # kelimeleri ek bir teşhis notu olarak kullanıyoruz.
+        sebep = "Ertelendi/Iptal" if ("ertelendi" in sayfa or "iptal" in sayfa) else "Eksik kadro"
+        print(f"      [ATLA] {sebep}"); return
 
     # ── Per-maç tracking ────────────────────────────────────────────────────
     kisi_takim:   dict[str, str] = {}
