@@ -621,6 +621,80 @@
     ]
   },
   {
+    "oyuncu": "CEREN GÜZELHAN",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 2,
+    "yedek_mac": 1,
+    "gol_sayisi": 2,
+    "gol_ayak": 2,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.67,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 211,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 2,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 211
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 31,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 2,
+        "gol_ayak": 2,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [
+          16,
+          29
+        ],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "RAFAELA SUDRE DOS SANTOS",
     "takim": "BEŞİKTAŞ A.Ş.",
     "tum_takimlar": "BEŞİKTAŞ A.Ş.",
@@ -3039,6 +3113,787 @@
         "rakip": "TRABZONSPOR A.Ş.",
         "ilk11": true,
         "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "KLIL ELYADA KEMBA KESHWAR",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 270,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 270
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "RREZONA RAMADANI",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 260,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 260
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 80,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SARA MALİQİ",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 270,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 270
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MARIEM HOUIJ",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 2,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 170,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 170
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 70,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 10,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "PRECIOUS ONYINYECHI CHRISTOPHER",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 270,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 270
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ELİF KESGİN",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 2,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 270,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 2,
+        "kirmizi": 0,
+        "dakika": 270
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "YETUNDE ZARAT AYANTOSHO",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 2,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 135,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 135
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 59,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 23,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 53,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NAGEHAN AKŞAN",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 270,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 270
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "PHILOMENA ABAKAH",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 3,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 247,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 247
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 67,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NAZMİYE AYTOP",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 2,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 189,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 189
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 9,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "EMİNE YAREN ÇOLAK",
+    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 3,
+    "ilk11_mac": 1,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 147,
+    "takim_detay": [
+      {
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "mac": 3,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 147
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 1,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 20,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 2,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 37,
         "gol": 0,
         "gol_ayak": 0,
         "gol_kafa": 0,
@@ -6789,66 +7644,6 @@
     ]
   },
   {
-    "oyuncu": "CEREN GÜZELHAN",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 1,
-    "yedek_mac": 1,
-    "gol_sayisi": 2,
-    "gol_ayak": 2,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 1.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 121,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 2,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 121
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": false,
-        "dakika": 31,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 2,
-        "gol_ayak": 2,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [
-          16,
-          29
-        ],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "SEJDE AFTONİA AYLLİN AYKAL",
     "takim": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "tum_takimlar": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
@@ -7324,7 +8119,7 @@
     ]
   },
   {
-    "oyuncu": "KLIL ELYADA KEMBA KESHWAR",
+    "oyuncu": "SUHDE NUR ARPACI",
     "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
     "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
     "transfer": false,
@@ -7365,579 +8160,9 @@
         "kirmizi": 0
       },
       {
-        "hafta": 2,
+        "hafta": 3,
         "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "RREZONA RAMADANI",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 170,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 170
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 80,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "SARA MALİQİ",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MARIEM HOUIJ",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 1,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 80,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 80
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 70,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 10,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "PRECIOUS ONYINYECHI CHRISTOPHER",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ELİF KESGİN",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "YETUNDE ZARAT AYANTOSHO",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 1,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 82,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 82
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 59,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": false,
-        "dakika": 23,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "NAGEHAN AKŞAN",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "PHILOMENA ABAKAH",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 157,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 157
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 67,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "NAZMİYE AYTOP",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 2,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 180,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 180
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "EMİNE YAREN ÇOLAK",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 2,
-    "ilk11_mac": 1,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 110,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 2,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 110
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": false,
-        "dakika": 20,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      },
-      {
-        "hafta": 2,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+        "rakip": "YÜKSEKOVA SPOR KULÜBÜ",
         "ilk11": true,
         "dakika": 90,
         "gol": 0,
@@ -12576,6 +12801,804 @@
     ]
   },
   {
+    "oyuncu": "AYTAJ SHARIFOVA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MERVE ODABAŞOĞLU",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NEHİR ZEYTÜNLÜ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 91,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 91
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 46,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 45,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "NUMPOA MADİNA FABIOLA TRAORE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "JUMOKE VIKTORIA ALANİ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 148,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 148
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 58,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SUZZY DEDE TEYE",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "PRİNCELLA ADUBEA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 170,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 170
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 80,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "AYŞE NUR SERT",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 171,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 171
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 81,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "LAURA CARİNE TALEB MULLER",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 119,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 119
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 58,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 61,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "AMINATA HAIDARA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 2,
+    "yedek_mac": 0,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 1,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 180,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 1,
+        "kirmizi": 0,
+        "dakika": 180
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 1,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "BAHAR KOL",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 89,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 89
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 44,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 45,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "MAIKO BEBIA",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 1,
+    "yedek_mac": 1,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 159,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 159
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 69,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": true,
+        "dakika": 90,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "ZEYNEP BİLİR",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 19,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 19
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 10,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 9,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
+    "oyuncu": "SUZIE MBİANDJİ",
+    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
+    "transfer": false,
+    "mac_sayisi": 2,
+    "ilk11_mac": 0,
+    "yedek_mac": 2,
+    "gol_sayisi": 0,
+    "gol_ayak": 0,
+    "gol_kafa": 0,
+    "penalti_gol": 0,
+    "gol_ort": 0.0,
+    "sari_kart": 0,
+    "kirmizi_kart": 0,
+    "toplam_dakika": 61,
+    "takim_detay": [
+      {
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "mac": 2,
+        "gol": 0,
+        "sari": 0,
+        "kirmizi": 0,
+        "dakika": 61
+      }
+    ],
+    "mac_gecmisi": [
+      {
+        "hafta": 2,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "BEŞİKTAŞ A.Ş.",
+        "ilk11": false,
+        "dakika": 32,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      },
+      {
+        "hafta": 3,
+        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
+        "rakip": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+        "ilk11": false,
+        "dakika": 29,
+        "gol": 0,
+        "gol_ayak": 0,
+        "gol_kafa": 0,
+        "penalti_gol": 0,
+        "gol_dakikalari": [],
+        "sari": 0,
+        "kirmizi": 0
+      }
+    ]
+  },
+  {
     "oyuncu": "KAFAYAT ATOKE BAŞHIRU",
     "takim": "KAYSERİ KADIN FUTBOL KULÜBÜ",
     "tum_takimlar": "KAYSERİ KADIN FUTBOL KULÜBÜ / KARADEMİR GRUP KAYSERİ KADIN FUTBOL KULÜBÜ",
@@ -13054,49 +14077,6 @@
           64
         ],
         "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "SUHDE NUR ARPACI",
-    "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "tum_takimlar": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 1,
-        "takim": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
         "kirmizi": 0
       }
     ]
@@ -14005,135 +14985,6 @@
     ]
   },
   {
-    "oyuncu": "AYTAJ SHARIFOVA",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MERVE ODABAŞOĞLU",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "NEHİR ZEYTÜNLÜ",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 46,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 46
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 46,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
     "oyuncu": "SEVİNC FAYIL QIZI JAFARZADE",
     "takim": "YÜKSEKOVA SPOR KULÜBÜ",
     "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
@@ -14166,479 +15017,6 @@
         "rakip": "BEŞİKTAŞ A.Ş.",
         "ilk11": true,
         "dakika": 21,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "NUMPOA MADİNA FABIOLA TRAORE",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "JUMOKE VIKTORIA ALANİ",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 58,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 58
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 58,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "SUZZY DEDE TEYE",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "PRİNCELLA ADUBEA",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 80,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 80
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 80,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "AYŞE NUR SERT",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 1,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 1,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 1,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "LAURA CARİNE TALEB MULLER",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 58,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 58
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 58,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "AMINATA HAIDARA",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 1,
-    "yedek_mac": 0,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 90,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 90
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": true,
-        "dakika": 90,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "BAHAR KOL",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 44,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 44
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": false,
-        "dakika": 44,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "MAIKO BEBIA",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 69,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 69
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": false,
-        "dakika": 69,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "ZEYNEP BİLİR",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 10,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 10
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": false,
-        "dakika": 10,
-        "gol": 0,
-        "gol_ayak": 0,
-        "gol_kafa": 0,
-        "penalti_gol": 0,
-        "gol_dakikalari": [],
-        "sari": 0,
-        "kirmizi": 0
-      }
-    ]
-  },
-  {
-    "oyuncu": "SUZIE MBİANDJİ",
-    "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-    "tum_takimlar": "YÜKSEKOVA SPOR KULÜBÜ",
-    "transfer": false,
-    "mac_sayisi": 1,
-    "ilk11_mac": 0,
-    "yedek_mac": 1,
-    "gol_sayisi": 0,
-    "gol_ayak": 0,
-    "gol_kafa": 0,
-    "penalti_gol": 0,
-    "gol_ort": 0.0,
-    "sari_kart": 0,
-    "kirmizi_kart": 0,
-    "toplam_dakika": 32,
-    "takim_detay": [
-      {
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "mac": 1,
-        "gol": 0,
-        "sari": 0,
-        "kirmizi": 0,
-        "dakika": 32
-      }
-    ],
-    "mac_gecmisi": [
-      {
-        "hafta": 2,
-        "takim": "YÜKSEKOVA SPOR KULÜBÜ",
-        "rakip": "BEŞİKTAŞ A.Ş.",
-        "ilk11": false,
-        "dakika": 32,
         "gol": 0,
         "gol_ayak": 0,
         "gol_kafa": 0,
