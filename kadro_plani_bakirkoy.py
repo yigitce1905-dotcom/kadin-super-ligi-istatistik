@@ -237,7 +237,7 @@ sat_y = [BY0 + PAD + sum(sat_hs[:i]) + i * GAP for i in range(3)]
 
 for grup, (sat, kol) in YERLESIM.items():
     x, y, w, h = kol_x[kol], sat_y[sat], kol_w[kol], sat_hs[sat]
-    oy = gruplu.get(grup, [])
+    oy = sorted(gruplu.get(grup, []), key=lambda o: o[2] != TRANSFER)   # sahada transferler üstte
     pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.35)
     pdf.rect(x, y, w, h, "DF", round_corners=True, corner_radius=2)
     pdf.set_fill_color(*LIME); pdf.rect(x, y + 2.2, 1.4, 5.2, "F")
