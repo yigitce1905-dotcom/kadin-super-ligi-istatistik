@@ -50,6 +50,17 @@ OYUNCULAR = [
     ("FORVET", "Mia Darden", TRANSFER, "26", "ABD", "1,70", "Son kulüp: Al Ahly SC (Mısır)", "Al Ahly SC"),
     ("FORVET", "Milica Babic", TRANSFER, "21", "Sırbistan / İsveç", "1,85",
      "Serbest · son: ŽFK Emina Mostar (Bosna-Hersek)", "Serbest"),
+    # ── Bakırköy mevcut kadrosundan (2026-09-21; yaş/boy SoccerDonna + Sco TR sayfası, kadro: TFF) ──
+    ("MERKEZ ORTA SAHA", "Ece Aydın", MEVCUT, "18", "Türkiye", "1,61", "Bakırköy", "Bakırköy"),
+    ("MERKEZ ORTA SAHA", "Nehir Aydın", MEVCUT, "19", "Türkiye", "", "Bakırköy", "Bakırköy"),
+    ("SAĞ BEK", "Betül Karaca", MEVCUT, "22", "Türkiye", "1,61", "Bakırköy", "Bakırköy"),
+    ("STOPER", "Zeynep Biriz", MEVCUT, "19", "Türkiye", "1,73", "Bakırköy", "Bakırköy"),
+    ("SAĞ KANAT", "İmren Akkaya", MEVCUT, "23", "Türkiye", "1,60", "Bakırköy", "Bakırköy"),
+    ("10 NO", "Melike Alagöz", MEVCUT, "26", "Türkiye", "1,69", "Bakırköy", "Bakırköy"),
+    ("SOL KANAT", "Gülüşan Yavuz", MEVCUT, "25", "Türkiye", "1,63", "Bakırköy", "Bakırköy"),
+    ("SAĞ KANAT", "Beyza Kurnaz", MEVCUT, "20", "Türkiye", "1,60", "Bakırköy", "Bakırköy"),
+    ("FORVET", "Kübra Altıntaş", MEVCUT, "26", "Türkiye", "1,62", "Bakırköy", "Bakırköy"),
+    ("FORVET", "Esra Çetinkaya", MEVCUT, "25", "Türkiye", "", "Bakırköy", "Bakırköy"),
 ]
 
 # isim → {"link": [(etiket, url)], "not": [madde, ...]}   — link etiketi 'VİDEO' ise listede ▶ olarak görünür
@@ -188,7 +199,7 @@ def boy_str(b):
 
 mevcut_n = sum(1 for o in OYUNCULAR if o[2] == MEVCUT)
 transfer_n = sum(1 for o in OYUNCULAR if o[2] == TRANSFER)
-gruplu = {g: [o for o in OYUNCULAR if o[0] == g] for g in SIRA}
+gruplu = {g: sorted([o for o in OYUNCULAR if o[0] == g], key=lambda o: o[2] != MEVCUT) for g in SIRA}
 
 # ════════ SAYFA 1 — KOKPİT SAHA DÜZENİ ════════
 pdf.add_page(); zemin()
@@ -196,7 +207,7 @@ marka_bandi(f"{KULUP} · KADRO PLANI 2026-27")
 sayfa_basligi("Kadro Planı",
               f"{len(OYUNCULAR)} oyuncu · {mevcut_n} mevcut · {transfer_n} transfer önerisi · kale solda, hücum sağda")
 
-BY0, BH = 35, 158          # saha çerçevesi
+BY0, BH = 35, 160          # saha çerçevesi
 pdf.set_fill_color(*SAHA); pdf.set_draw_color(*SAHA_CIZGI); pdf.set_line_width(0.5)
 pdf.rect(X0, BY0, CW, BH, "DF", round_corners=True, corner_radius=3)
 pdf.set_line_width(0.4)
@@ -209,11 +220,23 @@ oran = [0.9, 1.05, 1.05, 1.05]
 ic_w = CW - 2 * PAD - 3 * GAP
 kol_w = [ic_w * o / sum(oran) for o in oran]
 kol_x = [X0 + PAD + sum(kol_w[:i]) + i * GAP for i in range(4)]
-sat_h = (BH - 2 * PAD - 2 * GAP) / 3
-sat_y = [BY0 + PAD + i * (sat_h + GAP) for i in range(3)]
+MEV_H, TRF_H, BASLIK_H = 7.6, 10.8, 12.0     # oyuncu satırı yükseklikleri (mevcut: 2 satır, transfer: 3 satır)
+SATIR_GRUPLARI = {0: ["SOL BEK", "ÖN LİBERO", "SOL KANAT"], 1: ["KALECİ", "STOPER", "10 NO", "FORVET"],
+                  2: ["SAĞ BEK", "MERKEZ ORTA SAHA", "SAĞ KANAT"]}
+
+
+def kutu_ihtiyac(g):
+    return BASLIK_H + sum(MEV_H if o[2] == MEVCUT else TRF_H for o in gruplu[g])
+
+
+ihtiyac = [max(kutu_ihtiyac(g) for g in SATIR_GRUPLARI[i]) for i in range(3)]
+bosluk = (BH - 2 * PAD - 2 * GAP) - sum(ihtiyac)
+assert bosluk >= 0, f"saha kutuları sığmıyor ({-bosluk:.1f} mm eksik) — oyuncu sayısı çok"
+sat_hs = [ih + bosluk / 3 for ih in ihtiyac]
+sat_y = [BY0 + PAD + sum(sat_hs[:i]) + i * GAP for i in range(3)]
 
 for grup, (sat, kol) in YERLESIM.items():
-    x, y, w, h = kol_x[kol], sat_y[sat], kol_w[kol], sat_h
+    x, y, w, h = kol_x[kol], sat_y[sat], kol_w[kol], sat_hs[sat]
     oy = gruplu.get(grup, [])
     pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.35)
     pdf.rect(x, y, w, h, "DF", round_corners=True, corner_radius=2)
@@ -226,47 +249,48 @@ for grup, (sat, kol) in YERLESIM.items():
     pdf.cell(6.4, 4, str(len(oy)), align="C")
     pdf.set_draw_color(*KENAR); pdf.set_line_width(0.25)
     pdf.line(x + 2, y + 9.4, x + w - 2, y + 9.4)
-    satir_h = min(15.5, (h - 12.6) / max(len(oy), 1))
-    yy = y + 11.4
+    yy = y + 10.8
     for _, isim, statu, yas, uyruk, boy, kulup, kisa in oy:
-        marker(x + 3.2, yy + 1.1, statu)
-        sigdir(isim, w - 12.5, 8.4, bold=True)
+        marker(x + 3.2, yy + 0.9, statu)
+        sigdir(isim, w - 12.5, 8.2, bold=True)
         pdf.set_xy(x + 8, yy); pdf.set_text_color(*METIN)
-        pdf.cell(w - 11, 4.2, isim)
+        pdf.cell(w - 11, 4.0, isim)
         veri_yok = not (yas or uyruk or boy or kulup)
         meta = "detay bilgisi bekleniyor" if veri_yok else (
             " · ".join(p for p in [(f"{yas} yaş" if yas else ""), uyruk, boy_str(boy)] if p) or "—")
-        sigdir(meta, w - 11, 6.6)
-        pdf.set_xy(x + 8, yy + 4.2); pdf.set_text_color(*GRIM)
-        pdf.cell(w - 11, 3.4, meta)
-        if not veri_yok:
+        sigdir(meta, w - 11, 6.5)
+        pdf.set_xy(x + 8, yy + 3.9); pdf.set_text_color(*GRIM)
+        pdf.cell(w - 11, 3.2, meta)
+        if statu == TRANSFER and not veri_yok:      # mevcut oyuncuda kulüp zaten belli (Bakırköy)
             kl = kisa or "—"
-            sigdir(kl, w - 11, 6.6, bold=True)
-            pdf.set_xy(x + 8, yy + 7.4); pdf.set_text_color(*OLIV)
-            pdf.cell(w - 11, 3.4, kl)
-        yy += satir_h
+            sigdir(kl, w - 11, 6.5, bold=True)
+            pdf.set_xy(x + 8, yy + 7.0); pdf.set_text_color(*OLIV)
+            pdf.cell(w - 11, 3.2, kl)
+        yy += MEV_H if statu == MEVCUT else TRF_H
 alt_bilgi(1)
 
-# ════════ SAYFA 2 — OYUNCU LİSTESİ ════════
-pdf.add_page(); zemin()
-marka_bandi(f"{KULUP} · KADRO PLANI 2026-27")
-sayfa_basligi("Oyuncu Listesi")
-
+# ════════ SAYFA 2+ — OYUNCU LİSTESİ (sayfa başına 14 satır) ════════
 kolonlar = [("MEVKİ", 32), ("OYUNCU", 48), ("DURUM", 22), ("YAŞ", 11), ("UYRUK", 46), ("BOY", 13),
             ("KULÜP / DURUM", 70), ("VİDEO", 35)]
-ty = 34
-pdf.set_fill_color(*KOYU); pdf.rect(X0, ty, CW, 8.5, "F")
-tx = X0
-pdf.set_font("DV", "B", 7.4); pdf.set_text_color(255, 255, 255)
-for ad, w in kolonlar:
-    pdf.set_xy(tx + 3, ty + 2.2); pdf.cell(w - 3, 4, ad)
-    tx += w
-ty += 8.5
-RH = 7.7
-sira_no = 0
-for grup in SIRA:
-    for _, isim, statu, yas, uyruk, boy, kulup, kisa in gruplu[grup]:
-        sira_no += 1
+RH = 7.7; SAYFA_SATIR = 14
+tum_satirlar = [(g, o) for g in SIRA for o in gruplu[g]]
+sayfa_no = 1
+for parca_i in range(0, len(tum_satirlar), SAYFA_SATIR):
+    parca = tum_satirlar[parca_i:parca_i + SAYFA_SATIR]
+    sayfa_no += 1
+    pdf.add_page(); zemin()
+    marka_bandi(f"{KULUP} · KADRO PLANI 2026-27")
+    sayfa_basligi("Oyuncu Listesi", f"{len(OYUNCULAR)} oyuncu · {parca_i + 1}–{parca_i + len(parca)}")
+    ty = 34
+    pdf.set_fill_color(*KOYU); pdf.rect(X0, ty, CW, 8.5, "F")
+    tx = X0
+    pdf.set_font("DV", "B", 7.4); pdf.set_text_color(255, 255, 255)
+    for ad, w in kolonlar:
+        pdf.set_xy(tx + 3, ty + 2.2); pdf.cell(w - 3, 4, ad)
+        tx += w
+    ty += 8.5
+    for sira_no, (grup, o) in enumerate(parca, 1):
+        _, isim, statu, yas, uyruk, boy, kulup, kisa = o
         pdf.set_fill_color(*(KART if sira_no % 2 else (245, 243, 236)))
         pdf.rect(X0, ty, CW, RH, "F")
         tx = X0
@@ -274,7 +298,7 @@ for grup in SIRA:
         for i, ((ad, w), d) in enumerate(zip(kolonlar, degerler)):
             if i == 2:
                 marker(tx + 3, ty + 2.5, statu)
-                pdf.set_xy(tx + 7.5, ty + 2), pdf.set_font("DV", "B", 7)
+                pdf.set_xy(tx + 7.5, ty + 2); pdf.set_font("DV", "B", 7)
                 pdf.set_text_color(*(OLIV if statu == TRANSFER else METIN))
                 pdf.cell(w - 8, 4, "Transfer" if statu == TRANSFER else "Mevcut")
             elif i == 7:
@@ -294,18 +318,18 @@ for grup in SIRA:
                 pdf.cell(w - 4, 4.2, str(d))
             tx += w
         ty += RH
-pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3); pdf.line(X0, ty, X0 + CW, ty)
-pdf.set_xy(X0, ty + 3.5); pdf.set_font("DV", "", 7.2); pdf.set_text_color(*GRIM)
-pdf.multi_cell(CW, 3.8,
-    f"Yaş, uyruk, boy ve kulüp/durum bilgileri SoccerDonna, ISM veri tabanı ve oyuncu temsilcilerinden {TARIH} itibarıyla "
-    "derlenmiştir; güncel durumlar (özellikle 'Serbest' yazanlar) teyit edilmelidir. "
-    "'—' işareti, doğrulanabilir veri bulunmayan alanları gösterir. Video/profil bağlantıları tıklanabilir.")
-alt_bilgi(2)
+    pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3); pdf.line(X0, ty, X0 + CW, ty)
+    if parca_i + SAYFA_SATIR >= len(tum_satirlar):          # son liste sayfası: dipnot
+        pdf.set_xy(X0, ty + 3.5); pdf.set_font("DV", "", 7.2); pdf.set_text_color(*GRIM)
+        pdf.multi_cell(CW, 3.8,
+            f"Yaş, uyruk, boy ve kulüp/durum bilgileri SoccerDonna, ISM veri tabanı ve oyuncu temsilcilerinden {TARIH} itibarıyla "
+            "derlenmiştir; güncel durumlar (özellikle 'Serbest' yazanlar) teyit edilmelidir. "
+            "'—' işareti, doğrulanabilir veri bulunmayan alanları gösterir. Video/profil bağlantıları tıklanabilir.")
+    alt_bilgi(sayfa_no)
 
 # ════════ SAYFA 3+ — ÖNE ÇIKAN ÖZELLİKLER (sayfa başına 4 kart) ════════
 notlu = [o for o in OYUNCULAR if o[1] in EKSTRA]
 KW = (CW - 6) / 2; KH = 72; KGAP = 6
-sayfa_no = 2
 for parca_i in range(0, len(notlu), 4):
     parca = notlu[parca_i:parca_i + 4]
     sayfa_no += 1
