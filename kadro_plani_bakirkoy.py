@@ -45,9 +45,9 @@ OYUNCULAR = [
     ("SAĞ KANAT", "Cemile Günay", MEVCUT, "17", "Türkiye", "1,61", "Bakırköy", "Bakırköy"),
     ("SOL KANAT", "Christelle Demba", TRANSFER, "28", "Orta Afrika Cumhuriyeti", "1,70",
      "Serbest · son: Riga FC (Letonya)", "Serbest"),
-    ("10 NO", "Aurea Del Carmen", TRANSFER, "25", "ABD", "", "Northwestern Wildcats (ABD üniv.)",
-     "Northwestern Wildcats"),
-    ("FORVET", "Mia Darden", TRANSFER, "26", "ABD", "1,70", "Al Ahly SC", "Al Ahly SC"),
+    ("10 NO", "Aurea Del Carmen", TRANSFER, "25", "ABD", "1,62", "Son okul: Northwestern Üniv. (NCAA Div. I)",
+     "Northwestern Üniv."),
+    ("FORVET", "Mia Darden", TRANSFER, "26", "ABD", "1,70", "Son kulüp: Al Ahly SC (Mısır)", "Al Ahly SC"),
     ("FORVET", "Milica Babic", TRANSFER, "21", "Sırbistan / İsveç", "1,85",
      "Serbest · son: ŽFK Emina Mostar (Bosna-Hersek)", "Serbest"),
 ]
@@ -69,7 +69,8 @@ EKSTRA = {
     "Abigail Appiah": {
         "link": [("VİDEO 1", "https://drive.google.com/open?id=1nVuTDCtcCorWO9sAqOyu55oN-wXmmvYy"),
                  ("VİDEO 2", "https://youtu.be/HclgMGpxM9E"),
-                 ("HABER", "https://www.myjoyonline.com/wafcon-2026q-abigail-appiah-receives-late-black-queens-call-up-for-egypt-doubleheader/")],
+                 ("HABER", "https://www.myjoyonline.com/wafcon-2026q-abigail-appiah-receives-late-black-queens-call-up-for-egypt-doubleheader/"),
+                 ("PROFİL", "https://globalsportsarchive.com/en/soccer/athlete/abigail-appiah/7888588")],
         "not": ["Uzun boylu savunmacı orta saha (stoper de oynayabilir)",
                 "Son kulüp: Hapoel Ra'anana (İsrail) — 2025/26 sezonu; öncesinde Jonina Ladies",
                 "Gana A Milli (Black Queens): WAFCON 2026 elemelerinde Mısır maçları için çağrıldı (Ekim 2025)"],
@@ -83,6 +84,19 @@ EKSTRA = {
                 "14 maçta 13 gol (ISM notu)",
                 "Türkiye deneyimi: Amed (2021-23) ve ALG Spor (2023-24); son kulüp Riga FC (Letonya)",
                 "Fransa'da ikamet kartı var, şu an Fransa'da"],
+    },
+    "Aurea Del Carmen": {
+        "link": [("VİDEO", "https://www.youtube.com/watch?v=kEbbUcHKDzw")],
+        "not": ["Forvet / hücumcu orta saha; sağ ayaklı, 1,62 m (5'4)",
+                "Big Ten Konferansı 2. Takımı (Second Team All-Big Ten)",
+                "United Soccer Coaches Kuzey Bölgesi 3. Takımı (3rd Team All-North Region)",
+                "Son okul: Northwestern University (NCAA Div. I)"],
+    },
+    "Mia Darden": {
+        "link": [("VİDEO", "https://www.youtube.com/watch?v=MKq0evg9SKU")],
+        "not": ["Forvet / kanat; iki ayağını da kullanıyor, 1,70 m (5'7)",
+                "Al Ahly (Mısır): Mısır Ligi ikincisi (2025-26), Mısır Kupası şampiyonu (2025)",
+                "Moterų A Lyga (Litvanya) 2023 sezonunda gol krallığında ilk 3"],
     },
     "Milica Babic": {
         "link": [("VİDEO", "https://youtu.be/WFRCQhMvBcs")],
@@ -288,48 +302,52 @@ pdf.multi_cell(CW, 3.8,
     "'—' işareti, doğrulanabilir veri bulunmayan alanları gösterir. Video/profil bağlantıları tıklanabilir.")
 alt_bilgi(2)
 
-# ════════ SAYFA 3 — ÖNE ÇIKAN ÖZELLİKLER ════════
+# ════════ SAYFA 3+ — ÖNE ÇIKAN ÖZELLİKLER (sayfa başına 4 kart) ════════
 notlu = [o for o in OYUNCULAR if o[1] in EKSTRA]
-pdf.add_page(); zemin()
-marka_bandi(f"{KULUP} · KADRO PLANI 2026-27")
-sayfa_basligi("Transfer Önerileri · Öne Çıkan Özellikler", f"{len(notlu)} oyuncu · bilgiler ISM notları ve açık kaynaklardan")
-KW = (CW - 6) / 2; KH = 52; KGAP = 6
-for n, o in enumerate(notlu):
-    grup, isim, statu, yas, uyruk, boy, kulup, kisa = o
-    x = X0 + (n % 2) * (KW + KGAP)
-    y = 35 + (n // 2) * (KH + 4)
-    pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
-    pdf.rect(x, y, KW, KH, "DF")
-    pdf.set_fill_color(*LIME); pdf.rect(x, y, 1.8, KH, "F")
-    pdf.set_xy(x + 6, y + 3.6); pdf.set_font("DV", "B", 11); pdf.set_text_color(*METIN)
-    pdf.cell(KW - 50, 6, isim)
-    pdf.set_font("DV", "B", 7.2)
-    pw = pdf.get_string_width(grup) + 7
-    pdf.set_fill_color(*KOYU); pdf.rect(x + KW - 5 - pw, y + 3.8, pw, 5.6, "F")
-    pdf.set_xy(x + KW - 5 - pw, y + 4.3); pdf.set_text_color(*LIME); pdf.cell(pw, 4.6, grup, align="C")
-    meta = " · ".join(p for p in [(f"{yas} yaş" if yas else ""), uyruk, boy_str(boy)] if p) or "—"
-    sigdir(meta, KW - 12, 7.6)
-    pdf.set_xy(x + 6, y + 11); pdf.set_text_color(*GRIM); pdf.cell(KW - 12, 4, meta)
-    sigdir(kulup, KW - 12, 8, bold=True)
-    pdf.set_xy(x + 6, y + 15.6); pdf.set_text_color(*OLIV); pdf.cell(KW - 12, 4, kulup)
-    yy = y + 21.5
-    pdf.set_font("DV", "", 7.4)
-    for m in EKSTRA[isim]["not"]:
-        pdf.set_xy(x + 6, yy); pdf.set_text_color(*OLIV); pdf.cell(3, 3.7, "•")
-        pdf.set_xy(x + 9.5, yy); pdf.set_text_color(60, 68, 82)
-        pdf.multi_cell(KW - 15, 3.7, m, align="L")
-        yy = pdf.get_y() + 0.6
-    # bağlantı düğmeleri
-    bx = x + 6; by = y + KH - 8.6
-    pdf.set_font("DV", "B", 6.8)
-    for et, url in EKSTRA[isim]["link"]:
-        yazi = ("▶ " if et.startswith("VİDEO") else "") + et
-        bw_ = pdf.get_string_width(yazi) + 6
-        pdf.set_fill_color(*LIME); pdf.rect(bx, by, bw_, 5.8, "F")
-        pdf.set_xy(bx, by + 0.9); pdf.set_text_color(*KOYU); pdf.cell(bw_, 4, yazi, align="C", link=url)
-        bx += bw_ + 2.5
-alt_bilgi(3)
+KW = (CW - 6) / 2; KH = 72; KGAP = 6
+sayfa_no = 2
+for parca_i in range(0, len(notlu), 4):
+    parca = notlu[parca_i:parca_i + 4]
+    sayfa_no += 1
+    pdf.add_page(); zemin()
+    marka_bandi(f"{KULUP} · KADRO PLANI 2026-27")
+    sayfa_basligi("Transfer Önerileri · Öne Çıkan Özellikler",
+                  f"{len(notlu)} oyuncu · bilgiler ISM notları ve açık kaynaklardan")
+    for n, o in enumerate(parca):
+        grup, isim, statu, yas, uyruk, boy, kulup, kisa = o
+        x = X0 + (n % 2) * (KW + KGAP)
+        y = 35 + (n // 2) * (KH + 6)
+        pdf.set_fill_color(*KART); pdf.set_draw_color(*KENAR); pdf.set_line_width(0.3)
+        pdf.rect(x, y, KW, KH, "DF")
+        pdf.set_fill_color(*LIME); pdf.rect(x, y, 1.8, KH, "F")
+        pdf.set_xy(x + 6, y + 4); pdf.set_font("DV", "B", 12.5); pdf.set_text_color(*METIN)
+        pdf.cell(KW - 50, 7, isim)
+        pdf.set_font("DV", "B", 7.6)
+        pw = pdf.get_string_width(grup) + 7
+        pdf.set_fill_color(*KOYU); pdf.rect(x + KW - 5 - pw, y + 4.4, pw, 6, "F")
+        pdf.set_xy(x + KW - 5 - pw, y + 5); pdf.set_text_color(*LIME); pdf.cell(pw, 4.8, grup, align="C")
+        meta = " · ".join(p for p in [(f"{yas} yaş" if yas else ""), uyruk, boy_str(boy)] if p) or "—"
+        sigdir(meta, KW - 12, 8.4)
+        pdf.set_xy(x + 6, y + 12.6); pdf.set_text_color(*GRIM); pdf.cell(KW - 12, 4.4, meta)
+        sigdir(kulup, KW - 12, 8.8, bold=True)
+        pdf.set_xy(x + 6, y + 18); pdf.set_text_color(*OLIV); pdf.cell(KW - 12, 4.4, kulup)
+        yy = y + 26
+        pdf.set_font("DV", "", 8)
+        for m in EKSTRA[isim]["not"]:
+            pdf.set_xy(x + 6, yy); pdf.set_text_color(*OLIV); pdf.cell(3, 4.2, "•")
+            pdf.set_xy(x + 9.5, yy); pdf.set_text_color(60, 68, 82)
+            pdf.multi_cell(KW - 15, 4.2, m, align="L")
+            yy = pdf.get_y() + 0.9
+        bx = x + 6; by = y + KH - 10
+        pdf.set_font("DV", "B", 7.2)
+        for et, url in EKSTRA[isim]["link"]:
+            yazi = ("▶ " if et.startswith("VİDEO") else "") + et
+            bw_ = pdf.get_string_width(yazi) + 7
+            pdf.set_fill_color(*LIME); pdf.rect(bx, by, bw_, 6.2, "F")
+            pdf.set_xy(bx, by + 1.05); pdf.set_text_color(*KOYU); pdf.cell(bw_, 4, yazi, align="C", link=url)
+            bx += bw_ + 2.5
+    alt_bilgi(sayfa_no)
 
 cikti = pathlib.Path.home() / "Desktop" / "ISM_Bakirkoy_Yenimahalle_Kadro_Plani_2026-27.pdf"
 pdf.output(str(cikti))
-print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu · 3 sayfa")
+print(f"✓ {cikti} ({cikti.stat().st_size // 1024} KB) · {len(OYUNCULAR)} oyuncu · {sayfa_no} sayfa")
