@@ -13,6 +13,7 @@ from datetime import date
 from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
+import soccerdonna_scraper
 
 sys.stdout.reconfigure(encoding="utf-8")
 KOK = Path(__file__).parent
@@ -22,6 +23,11 @@ H = {
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.9",
 }
+# soccerdonna_scraper.HEADERS (eski/minimal User-Agent) artık SD tarafından 403
+# ile reddediliyor (bkz. reference_sd_kokpit_403_fix) — profil_cek'i buradaki
+# doğrulanmış H ile kullan.
+soccerdonna_scraper.HEADERS = H
+profil_cek = soccerdonna_scraper.profil_cek
 
 # 2026-27 sezonu — 16 kulüp (ALG yok; Beylerbeyi/Bornova Süper Lig'de değil)
 # FB/GS/BJK/FOMGET yeni SD kayıtları; diğerleri eski verein ID'leriyle (SD yönlendirir)
@@ -191,24 +197,53 @@ def manuel_ekle_yukle() -> dict:
         return json.load(open(_MANUEL_YOL, encoding="utf-8"))
     return {}
 
-def zenginlestir(kadro: list) -> int:
-    """Elimizdeki SD profillerinden sözleşme/boy ekle (isim-norm eşleşmesi)."""
+_SCOUTING_YOL = KOK / "scouting_sd_profiller.json"
+
+def zenginlestir(kadro: list, session, kulup_ad: str, yeni_profiller: dict) -> int:
+    """Elimizdeki SD profillerinden sözleşme/boy ekle (isim-norm eşleşmesi).
+
+    Eşleşme yoksa (yeni transfer / hiç taranmamış oyuncu): kadro satırında
+    ZATEN kulüp sayfasından çekilmiş TAM/kesin profil_url var — soyadla arama
+    yapıp fuzzy eşleştirmeye gerek yok. O linki doğrudan çekip (profil_cek)
+    hem bu kokpit satırını hem de scouting_sd_profiller.json'u besliyoruz ki
+    bir sonraki çalıştırmada / diğer araçlarda (nitelik pipeline vb.) da
+    kullanılabilsin (Yiğit, 2026-09-30: 'kadroları çekerken gördüğün SD
+    profillerini de çeksene')."""
     sd = {}
     for dosya in ("soccerdonna_profiller.json", "scouting_sd_profiller.json"):
         yol = KOK / dosya
         if yol.exists():
             sd.update(json.load(open(yol, encoding="utf-8")))
     sd_norm = {_norm(k): v for k, v in sd.items()}
-    n = 0
+    n = yeni = 0
+    bugun = date.today().isoformat()
     for o in kadro:
         p = sd_norm.get(_norm(o["isim"]))
-        if isinstance(p, dict) and not p.get("bulunamadi"):
+        if isinstance(p, dict) and not p.get("bulunamadi") and (p.get("Contract until") or p.get("Height")):
             o["sozlesme"] = (p.get("Contract until") or "").strip()
             o["boy"] = (p.get("Height") or "").strip()
             n += 1
-        else:
-            o["sozlesme"] = ""
-            o["boy"] = ""
+            continue
+        # eşleşme yok/eksik ama roster sayfasından gelen kesin profil linki var
+        if o.get("profil_url"):
+            profil = profil_cek(session, o["profil_url"])
+            time.sleep(0.5)
+            if profil.get("Position") or profil.get("Date of birth"):
+                profil["vatandaslik"] = profil.get("Nationality", "")
+                profil["kunye_guncelleme"] = bugun
+                profil["guncel_kulup"] = kulup_ad
+                profil["guncel_kulup_t"] = bugun
+                profil["_sd_ts"] = bugun
+                yeni_profiller[o["isim"]] = profil
+                o["sozlesme"] = (profil.get("Contract until") or "").strip()
+                o["boy"] = (profil.get("Height") or "").strip()
+                n += 1
+                yeni += 1
+                continue
+        o["sozlesme"] = ""
+        o["boy"] = ""
+    if yeni:
+        print(f"      [+{yeni} yeni SD profili çekildi]")
     return n
 
 def main():
@@ -216,11 +251,13 @@ def main():
     eski = json.load(open(yol, encoding="utf-8")) if yol.exists() else {"kulupler": {}}
     eski["sezon"] = "2026-27"
     manuel = manuel_ekle_yukle()
+    session = requests.Session()
+    yeni_profiller = {}
     for ad, url in KULUPLER.items():
         print(f"── {ad} çekiliyor…")
         time.sleep(0.4)
         kadro, arma = kadro_cek(url, ad)
-        z = zenginlestir(kadro)
+        z = zenginlestir(kadro, session, ad, yeni_profiller)
         # SD henüz güncellemediği (transfer lag) ama başka kaynakla doğrulanmış
         # imzalar: kokpit_manuel_ekle.json'dan ekle. SD kadroda zaten varsa
         # (isim-norm eşleşirse) atla — çift kayıt olmaz.
@@ -246,6 +283,12 @@ def main():
         print(f"   [temizlendi] {eski_ad} — artık KULUPLER'de yok")
     json.dump(eski, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"[OK] {yol.name} yazıldı.")
+
+    if yeni_profiller:
+        mevcut = json.load(open(_SCOUTING_YOL, encoding="utf-8")) if _SCOUTING_YOL.exists() else {}
+        mevcut.update(yeni_profiller)
+        json.dump(mevcut, open(_SCOUTING_YOL, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print(f"[OK] {_SCOUTING_YOL.name} güncellendi (+{len(yeni_profiller)} yeni profil).")
 
 if __name__ == "__main__":
     main()

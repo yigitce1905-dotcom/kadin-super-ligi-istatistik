@@ -4347,6 +4347,8 @@ _TAKIM_KISA_MAP = [
     ("BİLGİDOĞA", "Şile Bilgidoğa"), ("BILGIDOĞA", "Şile Bilgidoğa"),
     ("1207", "1207 Antalya"), ("BEYLERBEYİ", "Beylerbeyi"), ("BEYLERBEYI", "Beylerbeyi"),
     ("BORNOVA", "Bornova Hitab"), ("ALG", "ALG"),
+    # Sponsor adı (ör. "KARADEMİR GRUP KAYSERİ...") ne olursa olsun sade kulüp adı gösterilsin
+    ("KAYSERİ", "Kayserispor"), ("KAYSERI", "Kayserispor"),
 ]
 _TAKIM_BOILERPLATE = [
     " SPORTİF YATIRIM HİZMETLERİ A.Ş", " SPORTİF FAALİYETLER", " KADIN FUTBOL SPOR KULÜBÜ",
