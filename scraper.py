@@ -65,10 +65,17 @@ def mac_linklerini_topla(session, hafta_no):
         if not a or "macId=" not in a["href"]: continue
         ev_td  = tr.find("td", class_="haftaninMaclariEv")
         dep_td = tr.find("td", class_="haftaninMaclariDeplasman")
+        skor_td = tr.find("td", class_="haftaninMaclariSkor")
         mac_linkleri.append({
             "url": DETAY_BASE + a["href"].lstrip("/"),
             "ev":  ev_td.get_text(strip=True)  if ev_td  else "",
             "dep": dep_td.get_text(strip=True) if dep_td else "",
+            # Henuz oynanmamis maclarda TFF bu hucreye sadece "-" basar —
+            # bu sinyal zaten elimizdeyken (ekstra istek yok) detay sayfasini
+            # cekip 3x3 "eksik kadro" retry dansina girmeyi onluyor (Yigit,
+            # 2026-10-05: gelecek haftalarin tek tek denenmesi scraper'i
+            # dakikalarca yavaslatiyordu).
+            "oynandi": skor_td.get_text(strip=True) != "-" if skor_td else True,
         })
     return mac_linkleri
 
@@ -100,6 +107,9 @@ def _mac_sayfasi_oku(session, url, deneme=3):
 
 
 def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
+    if not mac_info.get("oynandi", True):
+        print("      [ATLA] Henüz oynanmadı (skor yok)")
+        return
     soup, bolumler, sayfa = _mac_sayfasi_oku(session, mac_info["url"])
     if not soup: return
 
