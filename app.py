@@ -4349,6 +4349,10 @@ _TAKIM_KISA_MAP = [
     ("BORNOVA", "Bornova Hitab"), ("ALG", "ALG"),
     # Sponsor adı (ör. "KARADEMİR GRUP KAYSERİ...") ne olursa olsun sade kulüp adı gösterilsin
     ("KAYSERİ", "Kayserispor"), ("KAYSERI", "Kayserispor"),
+    # Bu ikisi eşlemede hiç yoktu → fallback'te TÜM BÜYÜK HARF kalıyordu
+    # (ör. "BAKIRKÖY", "HAYMANA"), diğer tüm takımların aksine (Yiğit, 2026-10-04)
+    ("BAKIRKÖY", "Bakırköy Yenimahalle"), ("BAKIRKOY", "Bakırköy Yenimahalle"),
+    ("HAYMANA", "Haymana"),
 ]
 _TAKIM_BOILERPLATE = [
     " SPORTİF YATIRIM HİZMETLERİ A.Ş", " SPORTİF FAALİYETLER", " KADIN FUTBOL SPOR KULÜBÜ",
