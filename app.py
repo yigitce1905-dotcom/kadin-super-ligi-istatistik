@@ -11586,6 +11586,21 @@ def genel_ozet_hesapla() -> dict:
     }
 
 
+def _son_tr_veri_tarihi() -> str:
+    """kokpit_kadrolar.json'daki kulüplerin en güncel 'cekilis' tarihi — giriş
+    ekranında veri tazeliği göstergesi için (Yiğit, 2026-10-05: siteyi geliştir
+    turunda eklendi; daha önce hiçbir yerde 'son güncelleme' bilgisi yoktu)."""
+    try:
+        yol = _DIZIN / "kokpit_kadrolar.json"
+        if not yol.exists():
+            return ""
+        d = json.load(open(yol, encoding="utf-8"))
+        tarihler = [v.get("cekilis", "") for v in d.get("kulupler", {}).values() if v.get("cekilis")]
+        return max(tarihler) if tarihler else ""
+    except Exception:
+        return ""
+
+
 def _ozet_kart(deger, etiket, alt="", renk="#58a6ff"):
     return (f'<div class="stat-kart" style="border-radius:14px;border-top:2px solid {renk};">'
             f'<div class="sayi" style="color:{renk}">{deger}</div>'
@@ -11771,6 +11786,10 @@ def render_giris_ekrani():
 
     if ad:
         st.caption(f"{t('Hoş geldin','Welcome')} {ad} 👋")
+
+    _son_tarih = _son_tr_veri_tarihi()
+    if _son_tarih:
+        st.caption(f"🔄 {t('Türkiye verisi son güncelleme','Turkey data last updated')}: {_son_tarih}")
 
     if dh:
         st.markdown(
