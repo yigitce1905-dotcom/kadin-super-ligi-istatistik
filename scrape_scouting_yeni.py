@@ -14,7 +14,9 @@ from bs4 import BeautifulSoup
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+     "Accept-Language": "en-US,en;q=0.9"}
 SD_YOL    = Path(__file__).parent / "scouting_sd_profiller.json"
 KADRO_YOL = Path(__file__).parent / "scout_kadro_raporlar.json"
 
