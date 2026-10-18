@@ -1,0 +1,659 @@
+{
+ "degisen": [
+  {
+   "kaynak": "tr",
+   "isim": "Kiera Laney",
+   "alan": "boy",
+   "sheet": "1,70",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Amanda Lihv",
+   "alan": "boy",
+   "sheet": "1,66",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Helena Obeng",
+   "alan": "boy",
+   "sheet": "1,61",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Olivia Asiamah",
+   "alan": "boy",
+   "sheet": "1,66",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Rita Doku",
+   "alan": "boy",
+   "sheet": "1,66",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Rita Doku",
+   "alan": "ayak",
+   "sheet": "Sağ",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Fatma Kilinc",
+   "alan": "boy",
+   "sheet": "1,63",
+   "sd": "1,62"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sefika Oz",
+   "alan": "ayak",
+   "sheet": "Sol",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Yagmur Gonullu",
+   "alan": "boy",
+   "sheet": "1,64",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Kevser Kartal",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Nazli Ornek",
+   "alan": "boy",
+   "sheet": "1,67",
+   "sd": "1,68"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Buket Karadag",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,72"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Rabiya Karagul",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Melike Dincel",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,68"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Beyza Semercioglu",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Kezban Tag",
+   "alan": "boy",
+   "sheet": "1,70",
+   "sd": "1,71"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Karyna Alkhovik",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Dilan Bora",
+   "alan": "dogum",
+   "sheet": "12.03.2002",
+   "sd": "15.02.2002"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Dilan Bora",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Mavis Owusu",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Kaltrina Biqkaj",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,74"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Irem Pehlivan",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,74"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ismigul Yalciner",
+   "alan": "boy",
+   "sheet": "1,67",
+   "sd": "1,68"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Helin Erbulun",
+   "alan": "boy",
+   "sheet": "1,63",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ecrin Senturk",
+   "alan": "boy",
+   "sheet": "1,57",
+   "sd": "1,56"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Gulsah Yavuz",
+   "alan": "boy",
+   "sheet": "1,62",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Jelena Karlicic",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Birgul Sadikoglu",
+   "alan": "boy",
+   "sheet": "1,70",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Selda Akgoz",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Rafa Sudre",
+   "alan": "boy",
+   "sheet": "1,54",
+   "sd": "1,57"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sara Begallo",
+   "alan": "boy",
+   "sheet": "1,58",
+   "sd": "1,52"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Amira Braham",
+   "alan": "boy",
+   "sheet": "1,66",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Berna Yeniceri",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Nihal Sarac",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Gamze Agirman",
+   "alan": "boy",
+   "sheet": "1,73",
+   "sd": "1,75"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Elif Mutlu",
+   "alan": "boy",
+   "sheet": "1,63",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Dilara Pilic",
+   "alan": "boy",
+   "sheet": "1,67",
+   "sd": "1,68"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sevgi Cinar",
+   "alan": "boy",
+   "sheet": "1,62",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ipek Kaya",
+   "alan": "boy",
+   "sheet": "1,73",
+   "sd": "1,75"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Peritan Bozdag",
+   "alan": "boy",
+   "sheet": "1,66",
+   "sd": "1,65"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Suliat Abideen",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Mesude Alayont",
+   "alan": "boy",
+   "sheet": "1,74",
+   "sd": "1,76"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Oliwia Domin",
+   "alan": "boy",
+   "sheet": "1,64",
+   "sd": "1,61"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Melike Pekel",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,72"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Eda Karatas",
+   "alan": "boy",
+   "sheet": "1,74",
+   "sd": "1,77"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Elif Keskin",
+   "alan": "boy",
+   "sheet": "1,64",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Narin Yakut",
+   "alan": "boy",
+   "sheet": "1,70",
+   "sd": "1,72"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ecem Cumert",
+   "alan": "boy",
+   "sheet": "1,65",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Berra Pekgoz",
+   "alan": "boy",
+   "sheet": "1,62",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Esra Yarim",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Irem Eren",
+   "alan": "boy",
+   "sheet": "1,67",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Lushomo Mweemba",
+   "alan": "boy",
+   "sheet": "1,60",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Hatice Yasar",
+   "alan": "boy",
+   "sheet": "1,62",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Justice Tweneboaa",
+   "alan": "boy",
+   "sheet": "1,64",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sydney Bellamy",
+   "alan": "dogum",
+   "sheet": "01.01.2003",
+   "sd": "24.08.2003"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Lavin Achola",
+   "alan": "ayak",
+   "sheet": "Sağ",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Bahar Ozen",
+   "alan": "boy",
+   "sheet": "1,65",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Bahar Ozen",
+   "alan": "ayak",
+   "sheet": "Sağ",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Tuana Yilmaz",
+   "alan": "boy",
+   "sheet": "1,66",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Duygu Yilmaz",
+   "alan": "boy",
+   "sheet": "1,78",
+   "sd": "1,77"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Valentina Troka",
+   "alan": "boy",
+   "sheet": "1,78",
+   "sd": "1,76"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Nur Yuntur",
+   "alan": "dogum",
+   "sheet": "18.06.2005",
+   "sd": "18.08.2005"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Nur Yuntur",
+   "alan": "boy",
+   "sheet": "1,64",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Irmak Olmezer",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ecrin Koyun",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Donjeta Halilaj",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Gamze Yaman",
+   "alan": "boy",
+   "sheet": "1,70",
+   "sd": "1,71"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Basak Icinozbebek",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Madina Rouamba",
+   "alan": "boy",
+   "sheet": "1,75",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Medine Erkan",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Mariem Houij",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,68"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sara Maliqi",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ceren Guzelhan",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Berra Bayraktar",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Bahar Kol",
+   "alan": "boy",
+   "sheet": "1,65",
+   "sd": "1,71"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Princella Adubea",
+   "alan": "dogum",
+   "sheet": "26.04.1998",
+   "sd": "27.12.1998"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Ayse Sert",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,67"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Maiko Bebia",
+   "alan": "dogum",
+   "sheet": "22.05.2003",
+   "sd": "20.05.2003"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Maiko Bebia",
+   "alan": "boy",
+   "sheet": "1,58",
+   "sd": "1,57"
+  }
+ ],
+ "suphe": [
+  {
+   "kaynak": "tr",
+   "isim": "Tina Kolgeci",
+   "neden": "doğum tarihi farkı 2170 gün",
+   "sheet_dogum": "30.10.2000",
+   "sd_dogum": "09.10.2006",
+   "sheet_uyruk": "Kosovo",
+   "sd_uyruk": "Kosovo",
+   "sd_url": "https://www.soccerdonna.de/en/festina-kolgeci/profil/spieler_110520.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Busem Seker",
+   "neden": "doğum tarihi farkı 730 gün",
+   "sheet_dogum": "19.07.1996",
+   "sd_dogum": "19.07.1998",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "TurkeyGermany",
+   "sd_url": "https://www.soccerdonna.de/en/busem-seker/profil/spieler_27856.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Carole Costa",
+   "neden": "doğum tarihi farkı 5203 gün",
+   "sheet_dogum": "03.05.1990",
+   "sd_dogum": "31.07.2004",
+   "sheet_uyruk": "Portugal",
+   "sd_uyruk": "Portugal",
+   "sd_url": "https://www.soccerdonna.de/en/carolina-vieira-da-silva-costa/profil/spieler_80464.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Pinar Ozer",
+   "neden": "doğum tarihi farkı 5563 gün",
+   "sheet_dogum": "31.01.2001",
+   "sd_dogum": "08.11.1985",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "TurkeyGermany",
+   "sd_url": "https://www.soccerdonna.de/en/senem-oezer/profil/spieler_1421.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sinem Basak",
+   "neden": "doğum tarihi farkı 1448 gün",
+   "sheet_dogum": "12.10.2001",
+   "sd_dogum": "29.09.2005",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "Turkey",
+   "sd_url": "https://www.soccerdonna.de/en/sinem-basak/profil/spieler_110980.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Fatma Sahin",
+   "neden": "doğum tarihi farkı 3415 gün",
+   "sheet_dogum": "15.12.1990",
+   "sd_dogum": "21.04.2000",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "TurkeyAustria",
+   "sd_url": "https://www.soccerdonna.de/en/fatma-sahin/profil/spieler_40099.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Azra Ardos",
+   "neden": "doğum tarihi farkı 372 gün",
+   "sheet_dogum": "24.11.2004",
+   "sd_dogum": "18.11.2003",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "Turkey",
+   "sd_url": "https://www.soccerdonna.de/en/azra-ardos/profil/spieler_41990.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Sare Ozturk",
+   "neden": "uyruk örtüşmüyor",
+   "sheet_dogum": "10.01.2006",
+   "sd_dogum": "-",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "Germany",
+   "sd_url": "https://www.soccerdonna.de/en/fatma-oeztuerk/profil/spieler_75222.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Merve Odabasoglu",
+   "neden": "doğum tarihi farkı 758 gün",
+   "sheet_dogum": "20.01.2001",
+   "sd_dogum": "24.12.1998",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "Turkey",
+   "sd_url": "https://www.soccerdonna.de/en/merve-odabasoglu/profil/spieler_57937.html"
+  },
+  {
+   "kaynak": "tr",
+   "isim": "Diyan Ceyhan",
+   "neden": "doğum tarihi farkı 763 gün",
+   "sheet_dogum": "15.05.2003",
+   "sd_dogum": "12.04.2001",
+   "sheet_uyruk": "Turkiye",
+   "sd_uyruk": "Turkey",
+   "sd_url": "https://www.soccerdonna.de/en/diyan-ceyhan/profil/spieler_39862.html"
+  }
+ ]
+}

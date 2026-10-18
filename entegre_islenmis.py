@@ -49,6 +49,14 @@ def main():
     # sheet kulübü üzerine yeniden uygula — yoksa sheet çekişi Serbest/transfer
     # bilgisini eski sheet değerine geri döndürür (ağ gerektirmez; SD JSON kalıcı).
     kg = kulup_guncelle(sonuc)
+    # SD ↔ sheet uyuşmazlığında SD kazanır (doğum/boy/ayak) — bkz sd_ez.py. Yaş doğumdan yeniden hesaplanır.
+    from sd_ez import uygula as sd_ez_uygula
+    from fetch_scout_kadro import SD_YOL, yas_dogumdan_tazele
+    _sd_all = json.load(open(SD_YOL, encoding="utf-8")) if Path(SD_YOL).exists() else {}
+    ez_deg, ez_suphe = sd_ez_uygula(
+        sonuc, lambda k, r: (_sd_all.get(k) if isinstance(_sd_all.get(k), dict)
+                             and _sd_all[k].get("profil_url") and not _sd_all[k].get("bulunamadi") else None), "dunya")
+    yas_dogumdan_tazele(sonuc)
 
     print(f"Canlı sheet      : {len(canli)} oyuncu")
     print(f"Commit (önceki)  : {len(comm)} oyuncu")
@@ -57,6 +65,7 @@ def main():
     print(f"  ✗ atlanan (ham): {len(atlanan)} (ham Afrika bloğu — eklenmedi)")
     print(f"Yaş backfill     : {bf}")
     print(f"SD kulüp uygulandı: {kg} (Serbest/transfer korundu)")
+    print(f"SD ezdi (doğum/boy/ayak): {len(ez_deg)} alan | şüpheli eşleşme (dokunulmadı): {len(ez_suphe)}")
     print(f"SONUÇ            : {len(sonuc)} oyuncu")
     if eklenen:
         print("\nYeni eklenen işlenmiş oyuncular:")
@@ -69,6 +78,8 @@ def main():
 
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(sonuc, f, ensure_ascii=False, indent=2)
+    with open(Path(__file__).parent / "sd_ez_log_dunya.json", "w", encoding="utf-8") as f:
+        json.dump({"degisen": ez_deg, "suphe": ez_suphe}, f, ensure_ascii=False, indent=1)
     print(f"\n[OK] {CIKTI.name} güncellendi.")
 
 

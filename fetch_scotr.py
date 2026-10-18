@@ -223,6 +223,14 @@ def main():
     # doğum tarihi bayatlamaz (Dünya tarafında bu yüzden kendi içinde çelişen
     # kayıt çıkmıştı). Şu an TR'de tutarsızlık yok; kural koruma amaçlı.
     from fetch_scout_kadro import yas_dogumdan_tazele
+    # SD ↔ sheet uyuşmazlığında SD kazanır (doğum/boy/ayak) — bkz sd_ez.py
+    from sd_ez import uygula as sd_ez_uygula, tr_sd_bulucu
+    _tsd_yol = Path(__file__).parent / "soccerdonna_profiller.json"
+    _tsd = json.load(open(_tsd_yol, encoding="utf-8")) if _tsd_yol.exists() else {}
+    ez_deg, ez_suphe = sd_ez_uygula(veriler, tr_sd_bulucu(_tsd), "tr")
+    print(f"SD ezdi (doğum/boy/ayak): {len(ez_deg)} alan | şüpheli eşleşme (dokunulmadı): {len(ez_suphe)}")
+    with open(Path(__file__).parent / "sd_ez_log_tr.json", "w", encoding="utf-8") as f:
+        json.dump({"degisen": ez_deg, "suphe": ez_suphe}, f, ensure_ascii=False, indent=1)
     _yt = yas_dogumdan_tazele(veriler)
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(veriler, f, ensure_ascii=False, indent=2)
