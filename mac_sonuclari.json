@@ -305,6 +305,13 @@
   },
   {
     "hafta": 6,
+    "ev": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "dep": "GİRESUN SANAYİSPOR",
+    "ev_gol": 3,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 6,
     "ev": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
     "dep": "HAKKARİGÜCÜ SPOR",
     "ev_gol": 1,
