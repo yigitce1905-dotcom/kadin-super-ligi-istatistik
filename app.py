@@ -4512,6 +4512,8 @@ def _kulup_goster(ham: str) -> str:
     ham = (ham or "").strip()
     if ham.lower() in _KONTRAT_SERBEST:
         return t("Serbest", "Free Agent")
+    if ham.lower() == "career break":        # SD 'Career break' (ara vermiş) ham İngilizce basılıyordu
+        return t("Kariyere Ara Verdi", "Career Break")
     return _takim_kisa(ham)
 
 
@@ -6505,7 +6507,9 @@ def render_scouting_detay(tam_isim):
     _bolge_g = bolge_goster(_kadro.get("bolge", ""))
     _lig_g = (_kadro.get("lig") or "").strip()
     _takim_ham = (_kadro.get("kulup") or "").strip()
-    _takim_g = t("Serbest", "Free Agent") if _takim_ham.lower() in _KONTRAT_SERBEST else _takim_ham
+    _takim_g = (t("Serbest", "Free Agent") if _takim_ham.lower() in _KONTRAT_SERBEST
+                else t("Kariyere Ara Verdi", "Career Break") if _takim_ham.lower() == "career break"
+                else _takim_ham)
     # 2. Uyruk = ikinci pasaport ('milli_takim' alanı — ad yanıltıcı, bkz. üstteki
     # not). Millî takım uyruğu ise _milli'de ve ilk satırda gösteriliyor.
     _ikinci_uyruk = (_kadro.get("milli_takim") or "").strip()
