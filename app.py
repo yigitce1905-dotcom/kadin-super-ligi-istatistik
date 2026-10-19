@@ -830,6 +830,16 @@ st.markdown(f"""<style>
 SEZON_AKTIF = "2026-27"
 SEZONLAR = ["2026-27", "2025-26"]
 
+# Profil sezon bağlamı (2026-10-19): oyuncu profilinde 2025-26 seçilince maç sonuçları /
+# hükmen / rakip haritaları o sezonun dosyasından okunur. Streamlit her çalıştırmada
+# script'i baştan çalıştırdığı için bu sözlük her run'da sıfırlanır; ayrıca
+# render_ana_lig_profil finally ile boşaltır.
+_PROFIL_SEZON = {"s": ""}
+
+
+def _profil_sezon() -> str:
+    return _PROFIL_SEZON["s"] or SEZON_AKTIF
+
 
 def sezon_uzun(s: str = "") -> str:
     """'2025-26' → '2025-2026' (UI ve PDF metinlerinde kullanılan uzun biçim).
@@ -2144,12 +2154,17 @@ def _tff_yas_harita() -> dict:
 
 
 @st.cache_data(ttl=86400)
-def mac_sonuclari_yukle() -> list:
-    yol = sezon_dosya("mac_sonuclari.json")
+def _mac_sonuclari_sezon(sezon: str) -> list:
+    yol = sezon_dosya("mac_sonuclari.json", sezon)
     if yol.exists():
         with open(yol, encoding="utf-8") as f:
             return json.load(f)
     return []
+
+
+def mac_sonuclari_yukle(sezon: str = "") -> list:
+    """Maç sonuçları: sezon verilmezse profil bağlamındaki (yoksa aktif) sezon."""
+    return _mac_sonuclari_sezon(sezon or _profil_sezon())
 
 
 def mac_haftalari_sayisi() -> int:
@@ -2190,10 +2205,10 @@ def _takim_mac_sayisi(takim_ad: str = None) -> int:
 
 
 @st.cache_data(ttl=3600)
-def _yenilen_gol_map() -> dict:
+def _yenilen_gol_map_sezon(sezon: str) -> dict:
     """{(hafta, TAKIM_UPPER): o hafta yenilen gol} — clean sheet hesabı için."""
     m = {}
-    for x in mac_sonuclari_yukle():
+    for x in mac_sonuclari_yukle(sezon):
         h = x.get("hafta")
         ev, dep = (x.get("ev") or ""), (x.get("dep") or "")
         eg, dg = x.get("ev_gol", 0), x.get("dep_gol", 0)
@@ -2201,20 +2216,28 @@ def _yenilen_gol_map() -> dict:
         if dep: m[(h, _kanon(dep))] = eg
     return m
 
+def _yenilen_gol_map() -> dict:
+    return _yenilen_gol_map_sezon(_profil_sezon())
+
+
 def _hafta_yenilen(takim: str, hafta) -> "int | None":
     """O hafta takımın yediği gol (clean sheet için); maç bulunamazsa None."""
     return _yenilen_gol_map().get((hafta, _kanon(takim)))
 
 @st.cache_data(ttl=3600)
-def _rakip_map() -> dict:
+def _rakip_map_sezon(sezon: str) -> dict:
     """{(hafta, TAKIM_UPPER): rakip_takim_tam_adi}"""
     m = {}
-    for x in mac_sonuclari_yukle():
+    for x in mac_sonuclari_yukle(sezon):
         h = x.get("hafta")
         ev, dep = (x.get("ev") or ""), (x.get("dep") or "")
         if ev:  m[(h, _kanon(ev))] = dep
         if dep: m[(h, _kanon(dep))] = ev
     return m
+
+def _rakip_map() -> dict:
+    return _rakip_map_sezon(_profil_sezon())
+
 
 def _hafta_rakip(takim: str, hafta) -> str:
     return _rakip_map().get((hafta, _kanon(takim)), "")
@@ -2260,13 +2283,13 @@ def _oyuncu_hafta_takim(detay: dict) -> dict:
     return out
 
 @st.cache_data(ttl=3600)
-def _forfeit_hafta_takim() -> set:
+def _forfeit_hafta_takim_sezon(sezon: str) -> set:
     """Hükmen (çekilme) maçlarının (hafta, TAKIM_UPPER) kümesi — HER İKİ takım için.
     Tespit: bir takımın SONDAKİ ardışık 0-3 mağlubiyet serisi ≥3 → çekilme tail'i
     (ALG gibi sezon-ortası çekilme dahil; Beylerbeyi/Bornova gibi hiç katılmama da).
     Bu haftalarda gerçek maç oynanmadığı için gol/clean-sheet atfında dışlanır."""
     by_team = {}  # KANON -> [(hafta, attigi, yedigi)]
-    for x in mac_sonuclari_yukle():
+    for x in mac_sonuclari_yukle(sezon):
         ev, dep = _kanon(x.get("ev") or ""), _kanon(x.get("dep") or "")
         eg, dg, h = x.get("ev_gol", 0), x.get("dep_gol", 0), x.get("hafta", 0)
         if ev:  by_team.setdefault(ev, []).append((h, eg, dg))
@@ -2285,15 +2308,24 @@ def _forfeit_hafta_takim() -> set:
                 cekilen.add((h, tk))
     # Forfeit maçın HER İKİ takımını işaretle (ikisi de o hafta gerçek maç oynamadı)
     out = set()
-    for x in mac_sonuclari_yukle():
+    for x in mac_sonuclari_yukle(sezon):
         ev, dep, h = _kanon(x.get("ev") or ""), _kanon(x.get("dep") or ""), x.get("hafta", 0)
         if (h, ev) in cekilen or (h, dep) in cekilen:
             out.add((h, ev)); out.add((h, dep))
     return out
 
+
+def _forfeit_hafta_takim() -> set:
+    return _forfeit_hafta_takim_sezon(_profil_sezon())
+
+
 @st.cache_data(ttl=3600)
+def _son_lig_haftasi_sezon(sezon: str) -> int:
+    return max((x.get("hafta", 0) for x in mac_sonuclari_yukle(sezon)), default=0)
+
+
 def _son_lig_haftasi() -> int:
-    return max((x.get("hafta", 0) for x in mac_sonuclari_yukle()), default=0)
+    return _son_lig_haftasi_sezon(_profil_sezon())
 
 
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
@@ -7935,18 +7967,19 @@ def _pct_renk(p: int) -> str:
     if p >= 30: return "#f59e0b"
     return "#ef4444"
 
-def _percentil_hesapla(secili: str):
+def _percentil_hesapla(secili: str, df=None):
     """Oyuncunun mevki grubu içindeki yüzdelik (percentile) sıralaması.
     Akran havuzu: aynı geniş mevki + anlamlı süre (kademeli eşik)."""
-    if df_tam.empty or "Mevki" not in df_tam.columns:
+    _dfp = df_tam if df is None else df
+    if _dfp.empty or "Mevki" not in _dfp.columns:
         return None
-    alt = df_tam[df_tam["Oyuncu"] == secili]
+    alt = _dfp[_dfp["Oyuncu"] == secili]
     if alt.empty:
         return None
     grup = _MEVKI_GRUP_MAP.get(alt.iloc[0].get("Mevki", ""))
     if not grup:
         return None
-    d = df_tam.copy()
+    d = _dfp.copy()
     d["_g"] = d["Mevki"].map(lambda m: _MEVKI_GRUP_MAP.get(m))
     grup_df = d[d["_g"] == grup]
     peers = grup_df[grup_df["Dakika"] >= 450]
@@ -7981,9 +8014,9 @@ def _percentil_hesapla(secili: str):
         out.append((etiket, ds, int(pct)))
     return {"grup": grup, "n": len(peers), "metrikler": out}
 
-def render_percentil_panel(secili: str):
+def render_percentil_panel(secili: str, df=None):
     """Profilde mevki-içi percentile barlarını çizer."""
-    veri = _percentil_hesapla(secili)
+    veri = _percentil_hesapla(secili, df)
     if not veri:
         return
     grup = veri["grup"]
@@ -8201,7 +8234,33 @@ def _profil_link_kopyala(isim, sd_url=""):
         pass
 
 
+ARSIV_PROFIL_SEZON = "2025-26"      # profilde tıklamalı geçilebilen önceki sezon
+
+
+@st.cache_data(ttl=1800)
+def _arsiv_detay_harita(sezon_key: str) -> dict:
+    """{isim_norm: arşiv sezonu oyuncu kaydı (mac_gecmisi dahil)}"""
+    _df, _liste = arsiv_sezon_yukle(sezon_key)
+    return {_isim_norm(o["oyuncu"]): o for o in (_liste or [])}
+
+
+@st.cache_data(ttl=1800)
+def _arsiv_df_zengin(sezon_key: str):
+    """Arşiv sezonu DataFrame'i (Mevki/Uyruk/Boy/Yaş zenginleştirilmiş) — lig sıralaması + percentil için."""
+    _df, _ = arsiv_sezon_yukle(sezon_key)
+    if _df.empty:
+        return _df
+    return df_zenginlestir(_df, f"arsiv_{sezon_key}_v1")
+
+
 def render_ana_lig_profil(secili):
+    try:
+        _render_ana_lig_profil_ic(secili)
+    finally:
+        _PROFIL_SEZON["s"] = ""
+
+
+def _render_ana_lig_profil_ic(secili):
     _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
     if deneme_modunda() and secili not in DENEME_TR_OYUNCULAR:
@@ -8224,6 +8283,17 @@ def render_ana_lig_profil(secili):
         dk_mac = round(dk/mac)     if mac else 0
         ilk11_oran = round(ilk11/mac*100) if mac else 0
         transfer = bool(row.get("Transfer", False))
+        # ── SEZON SEÇİCİ durumu (Yiğit, 2026-10-19: "2025-2026 sezonuna tıklamalı
+        # bakabilmeliyim"). Widget Özet kartının üstünde çizilir; değeri burada
+        # session_state'ten (önceki çalıştırmadan) okunur — widget henüz çizilmedi.
+        _ARS = ARSIV_PROFIL_SEZON
+        _arsiv_rec = _arsiv_detay_harita(_ARS).get(_isim_norm(secili))
+        _SEZ_KEY_W = f"profil_sezon_{_isim_norm(secili)}"
+        _sez_key = SEZON_AKTIF
+        if _arsiv_rec and st.session_state.get(_SEZ_KEY_W) == sezon_uzun(_ARS):
+            _sez_key = _ARS
+        _sec_isim = secili
+        _df_ref = df_tam
         # Gol tipi özeti metni
         gol_detay_parcalar = []
         if gol_f: gol_detay_parcalar.append(f"{gol_f}F")
@@ -8354,7 +8424,40 @@ def render_ana_lig_profil(secili):
         # taşıyabiliyordu, künyede CMF-RWB-LWB yazarken sahada LWB yanmıyordu.
         _saha_svg = _pozisyon_saha(_tr_mevki_kod or _sc_mevki
                                    or ([_ana_kod] if _ana_kod else []))
+        if _sez_key != SEZON_AKTIF and _arsiv_rec:
+            # Seçilen ARŞİV sezonunun verileri: özet kartı, istatistikler, oyuncu kartı bunlarla çizilir
+            _PROFIL_SEZON["s"] = _sez_key
+            _df_ref = _arsiv_df_zengin(_sez_key)
+            _sec_isim = _arsiv_rec["oyuncu"]
+            _e_ars = _df_ref[_df_ref["Oyuncu"] == _sec_isim] if not _df_ref.empty else _df_ref
+            if not _e_ars.empty:
+                row = _e_ars.iloc[0]
+            detay = _arsiv_rec
+            mac    = int(_arsiv_rec.get("mac_sayisi", 0) or 0)
+            gol    = int(_arsiv_rec.get("gol_sayisi", 0) or 0)
+            gol_f  = int(_arsiv_rec.get("gol_ayak", 0) or 0)
+            gol_h  = int(_arsiv_rec.get("gol_kafa", 0) or 0)
+            pen    = int(_arsiv_rec.get("penalti_gol", 0) or 0)
+            sari   = int(_arsiv_rec.get("sari_kart", 0) or 0)
+            kir    = int(_arsiv_rec.get("kirmizi_kart", 0) or 0)
+            dk     = int(_arsiv_rec.get("toplam_dakika", 0) or 0)
+            ilk11  = int(_arsiv_rec.get("ilk11_mac", 0) or 0)
+            yedek  = int(_arsiv_rec.get("yedek_mac", 0) or 0)
+            ort    = round(gol / mac, 2) if mac else 0
+            dk_mac = round(dk / mac) if mac else 0
+            ilk11_oran = round(ilk11 / mac * 100) if mac else 0
+            transfer = bool(_arsiv_rec.get("transfer", False))
+            gol_detay_parcalar = []
+            if gol_f: gol_detay_parcalar.append(f"{gol_f}F")
+            if gol_h: gol_detay_parcalar.append(f"{gol_h}H")
+            if pen:   gol_detay_parcalar.append(f"{pen}P")
+            gol_detay = f" ({' · '.join(gol_detay_parcalar)})" if gol_detay_parcalar else ""
         def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
+            # Sezon seçici (tıklamalı): yalnız önceki sezon verisi olan oyuncularda görünür
+            if _arsiv_rec:
+                _sez_secenek = [sezon_uzun(SEZON_AKTIF), sezon_uzun(_ARS)]
+                st.segmented_control(t("Sezon", "Season"), _sez_secenek, default=_sez_secenek[0],
+                                     key=_SEZ_KEY_W, label_visibility="collapsed")
             # ── ÖZET satırı: hep görünür (Baran tasarımı) ─────────────────────────
             # Gol yenmeyen maç ARTIK HERKESTE (Baran, 2026-08): savunma ağırlıklı
             # rollerdeki orta sahalar için de anlamlı bir gösterge. Eskiden
@@ -8388,7 +8491,7 @@ def render_ana_lig_profil(secili):
                 st.markdown(
                     '<div class="profil-kart" style="padding:12px 16px;">'
                     '<div class="tp-anabaslik" style="letter-spacing:0.08em;">'
-                    + _buyuk(t(f"{SEZON_AKTIF} Özet", f"{SEZON_AKTIF} Summary")) + '</div>'
+                    + _buyuk(t(f"{_sez_key} Özet", f"{_sez_key} Summary")) + '</div>'
                     '<div style="display:flex;gap:22px;margin-top:8px;">'
                     '<div><div class="tp-sekilli" style="font-family:Sora,sans-serif;color:#f1f5f9;">' + str(mac) + '</div>'
                     '<div class="tp-arametin">' + t("Maç", "Matches") + '</div></div>'
@@ -8470,7 +8573,7 @@ def render_ana_lig_profil(secili):
                 # Sezon İstatistikleri + Mevki İçi Sıralama (percentile) — YAN YANA (kompakt)
                 _stat_html = f"""
                 <div class="profil-kart" style="padding:14px 16px;">
-                  <div style="font-size:0.95rem;font-weight:700;color:#f1f5f9;">📊 {t('Sezon İstatistikleri','Season Stats')}</div>
+                  <div style="font-size:0.95rem;font-weight:700;color:#f1f5f9;">📊 {t('Sezon İstatistikleri','Season Stats')} · {sezon_uzun(_sez_key)}</div>
                   <div class="profil-stat" style="margin-top:8px;">
                     <div class="profil-stat-item"><div class="deger">{mac}</div><div class="ad">{t("Maç","Matches")}</div></div>
                     <div class="profil-stat-item"><div class="deger">{ilk11}</div><div class="ad">▶ {t("İlk 11","Starting 11")}</div></div>
@@ -8486,12 +8589,12 @@ def render_ana_lig_profil(secili):
                     <div class="profil-stat-item"><div class="deger" style="color:#e53935">{kir}</div><div class="ad">🟥 {t("Kırmızı","Red")}</div></div>
                   </div>
                 </div>"""
-                if _percentil_hesapla(secili):
+                if _percentil_hesapla(_sec_isim, _df_ref):
                     _c1, _c2 = st.columns(2, gap="medium")
                     with _c1:
                         st.markdown(_stat_html, unsafe_allow_html=True)
                     with _c2:
-                        render_percentil_panel(secili)
+                        render_percentil_panel(_sec_isim, _df_ref)
                 else:
                     st.markdown(_stat_html, unsafe_allow_html=True)
                 p1, p2 = st.columns(2)
@@ -8573,9 +8676,9 @@ def render_ana_lig_profil(secili):
                         (r1, "Gol",    t("Gol","Goals")),
                         (r2, "Dakika", t("Dakika","Minutes")),
                     ]:
-                        s_df = df_tam.sort_values(metrik, ascending=False).reset_index(drop=True)
+                        s_df = _df_ref.sort_values(metrik, ascending=False).reset_index(drop=True)
                         s_df.index += 1
-                        idx = s_df[s_df["Oyuncu"] == secili].index
+                        idx = s_df[s_df["Oyuncu"] == _sec_isim].index
                         sira = int(idx[0]) if len(idx) else "—"
                         # Baran: 50pt dev rakam alan kaplıyor — vurgu ~20pt yeter
                         kol.markdown(
@@ -8584,7 +8687,7 @@ def render_ana_lig_profil(secili):
                             f"<div style='font-size:0.68rem;color:#8b95a9;letter-spacing:0.08em;"
                             f"text-transform:uppercase;'>{etiket}</div>"
                             f"<div style='font-size:1.25rem;font-weight:800;color:#f1f5f9;margin-top:2px;'>"
-                            f"{sira}. <span style='font-size:0.85rem;color:#64748b;font-weight:600;'>/ {len(df_tam)}</span></div>"
+                            f"{sira}. <span style='font-size:0.85rem;color:#64748b;font-weight:600;'>/ {len(_df_ref)}</span></div>"
                             "</div>", unsafe_allow_html=True)
 
                 st.markdown("<br>", unsafe_allow_html=True)
@@ -8731,7 +8834,7 @@ def render_ana_lig_profil(secili):
                      box-shadow:0 8px 32px rgba(0,0,0,0.6);
                      border:1px solid #1db95444;">
                   <div style="font-size:0.68rem;letter-spacing:3px;color:#1db954aa;margin-bottom:4px">
-                    {t(f"KADIN FUTBOL · {SEZON_UZUN}", f"WOMEN'S FOOTBALL · {SEZON_UZUN}")}
+                    {t(f"KADIN FUTBOL · {sezon_uzun(_sez_key)}", f"WOMEN'S FOOTBALL · {sezon_uzun(_sez_key)}")}
                   </div>
                   <div style="font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:2px">{secili}</div>
                   <div style="color:#8899aa;font-size:0.78rem;margin-bottom:20px">{_takim_kisa(row['Takım'])}</div>
