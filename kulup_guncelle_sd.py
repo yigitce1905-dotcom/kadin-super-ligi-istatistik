@@ -63,6 +63,24 @@ def profil_kulup(url: str) -> str | None:
         return "(Kariyer sonu)"
     return None
 
+def aktif_serbest_temizle(sd: dict) -> int:
+    """SD 'Serbest' diyor ama oyuncu SON 2 lig haftasında maça çıkmış → SD gecikmiş (yeni tescil).
+    guncel_kulup silinir ki site, oyuncuyu 'Serbest' göstermesin (2026-10-19: Sibel Duman/Bakırköy,
+    Yağmur Özkumru/Haymana 6. haftada oynadı, SD profilleri hâlâ kulüpsüz)."""
+    yol = KOK / "oyuncular.json"
+    if not yol.exists():
+        return 0
+    oy = json.load(open(yol, encoding="utf-8"))
+    son = max((m["hafta"] for o in oy for m in o.get("mac_gecmisi", [])), default=0)
+    n = 0
+    for o in oy:
+        v = sd.get(o["oyuncu"])
+        if isinstance(v, dict) and v.get("guncel_kulup") == "Serbest"                 and any(m["hafta"] >= son - 1 and m.get("dakika", 0) > 0 for m in o.get("mac_gecmisi", [])):
+            v.pop("guncel_kulup", None)
+            n += 1
+    return n
+
+
 def isle(dosya: str, zorla: bool) -> None:
     yol = KOK / dosya
     if not yol.exists():
@@ -83,6 +101,8 @@ def isle(dosya: str, zorla: bool) -> None:
             json.dump(sd, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
             print(f"  [{i}/{len(hedef)}] ara kayıt (kulüp bulunan: {ok})")
         time.sleep(0.3)
+    if dosya == "soccerdonna_profiller.json":
+        print(f"  aktif oynayıp SD'de 'Serbest' görünen (düzeltildi): {aktif_serbest_temizle(sd)}")
     json.dump(sd, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(f"  bitti: {ok}/{len(hedef)} kulüp yazıldı")
 

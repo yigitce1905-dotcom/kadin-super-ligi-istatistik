@@ -3932,6 +3932,14 @@ def df_tablo(df, basliklar=None, formatlar=None, height=None):
         return _html.escape(str(x))
 
     def fmt(c, v):
+        # Boş (NaN/None) değer biçimleyiciye girmeden "—" olur — yoksa f"{v:.0f}" gibi
+        # sayısal biçimleyiciler "nan" basıyordu (2026-10-19: Gelişmiş Arama'da SD profili
+        # olmayan oyuncunun Yaş hücresi "nan" görünüyordu).
+        try:
+            if v is None or (not isinstance(v, (list, tuple, dict, set)) and pd.isna(v)):
+                return "—"
+        except (TypeError, ValueError):
+            pass
         if c in formatlar:
             try:
                 sonuc = formatlar[c](v)
