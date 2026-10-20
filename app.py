@@ -2485,14 +2485,31 @@ def _scotr_arsiv_bul(isim: str) -> dict:
     return {**rec, "_arsiv_sezon": "2025-26"}
 
 
-@st.cache_data(ttl=3600)
-def scout_kadro_yukle() -> dict:
-    """Zengin scout kadro raporları (Kulüp/Lig/Sözleşme + Yetenek Kümesi + tarz ✔)."""
+def _scout_kadro_ham() -> dict:
     yol = pathlib.Path(__file__).parent / "scout_kadro_raporlar.json"
     if not yol.exists():
         return {}
     with open(yol, encoding="utf-8") as f:
         return json.load(f)
+
+
+@st.cache_data(ttl=3600)
+def scout_kadro_yukle() -> dict:
+    """Zengin scout kadro raporları (Kulüp/Lig/Sözleşme + Yetenek Kümesi + tarz ✔).
+
+    ÖNCELİK KURALI (Baran, 2026-10-20): aynı oyuncu birden çok sheet'te olabilir (Dünya,
+    TR 2025-26, TR 2026-27) ve hepsi FARKLI değerlendirmelerle durur; EN GÜNCELİ TR 2026-27.
+    Bu yüzden TR 2026-27'de değerlendirilmiş bir oyuncu Dünya havuzundan ÇIKARILIR (Dünya
+    listeleri/serbest radarı/transfer önerileri yalnız yurtdışı oyuncuyu görür); oyuncu
+    birleşik havuzda TR kaydıyla yer alır. TR 2025-26 zaten yalnız son çare yedek
+    (bkz. scotr_arsiv_yukle). Sheet'ler 'transfer edilebilir' gibi düşünülür: TR'ye gelen
+    Dünya'dan, yurtdışına giden TR'den çıkar."""
+    ham = _scout_kadro_ham()
+    try:
+        tr_adlar = {_isim_norm(k) for k, r in scotr_yukle().items() if r.get("degerlendirildi")}
+    except Exception:
+        tr_adlar = set()
+    return {k: v for k, v in ham.items() if _isim_norm(k) not in tr_adlar}
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -2572,7 +2589,8 @@ def scotr_kadro_yukle() -> dict:
 @st.cache_data(show_spinner=False)
 def birlesik_scout_yukle() -> dict:
     """Scouting havuzu = Sco 🌍 (uluslararası) + Sco TR (Türkiye ligleri).
-    Tam ayni isimde çakışırsa Sco 🌍 kazanır (SD entegrasyonu onda). AYNI isim
+    Çakışan oyuncuda TR 2026-27 kazanır (Baran, 2026-10-20; scout_kadro_yukle zaten
+    TR'de değerlendirilmiş oyuncuları Dünya'dan çıkarır). AYNI isim
     FARKLI büyük/küçük harfle iki sheet'te de varsa (oyuncu Türkiye'ye transfer
     olup Dünya sheet'inden silinmemiş — bilinen durum) bayat Dünya kaydı
     kaldırılır, güncel TR kaydı kazanır (2026-08-02 dedup fix — Hamideche/
@@ -7511,8 +7529,8 @@ def _scotr_nitelik_paneli(baslik, ikon, nitelikler, makro_not, sema=None):
 def render_scout_raporu(isim: str, bolum: str = "analiz"):
     """Sco Tr scout raporunu (varsa) FM tarzı görsel panelle çizer.
 
-    bolum="gozlem" → yalnız Oyun Tarzı + scout notu (GÖZLEM bölümü);
-    bolum="analiz" → scout raporu kartı + nitelik panelleri + İkizler."""
+    bolum="gozlem" → scout raporu bandı (nihai/ivme) + oyun tarzı + scout notu + nitelik panelleri;
+    bolum="analiz" → nitelik ikizleri."""
     rapor = scotr_bul(isim)
     if not rapor:
         return
@@ -7524,6 +7542,72 @@ def render_scout_raporu(isim: str, bolum: str = "analiz"):
 
     # ── GÖZLEM bölümü: yalnız Oyun Tarzı + scout notu ──────────────────
     if bolum == "gozlem":
+        # Baran (2026-10-20): scout raporu (nihai/ivme bandı + nitelik panelleri) ile yazılı gözlem
+        # (oyun tarzı + scout notu) TEK bölümde: önce not bandı, sonra yazı, sonra nitelik detayı.
+        # ── Başlık bandı: rol + nihai + ivme ────────────────────────────────
+        nihai   = rapor.get("nihai", "")
+        n_puan  = _scotr_puan(nihai)
+        n_renk  = _scotr_renk(n_puan)
+        pot     = (rapor.get("ivme") or rapor.get("potansiyel") or "").strip()
+        pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
+        for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
+            if pot == anahtar or (pot and pot.startswith(anahtar[0])):
+                pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
+                break
+
+        mevki_kod = " / ".join(x for x in [rapor.get("mevki1"), rapor.get("mevki2")] if x)
+        alt_satir = " · ".join(x for x in [
+            scout_rol_goster(rapor.get("rol", "")), mevki_kod, bolge_goster(rapor.get("bolge", "")),
+            ulke_goster(rapor.get("uyruk", ""))] if x)
+
+        nihai_rozet = (
+            f"<div style='text-align:center;'>"
+            f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {n_renk};"
+            f"display:flex;align-items:center;justify-content:center;font-size:1.05rem;"
+            f"font-weight:900;color:{n_renk};background:{n_renk}15;font-family:monospace;'>"
+            f"{nihai or '—'}</div>"
+            f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+            f"{t('NİHAİ','RATING')}</div></div>"
+        )
+        pot_rozet = (
+            f"<div style='text-align:center;'>"
+            f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {pot_renk};"
+            f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
+            f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
+            f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+            f"{t('İVME','MOMENTUM')}</div></div>"
+        ) if pot_ok else ""
+
+        pot_satir = (
+            f"<div style='font-size:0.70rem;color:{pot_renk};margin-top:5px;"
+            f"font-weight:700;'>{pot_ok} {t(pot_tr, pot_en)}</div>"
+        ) if pot_ok else ""
+
+        # Tek parça (girintisiz, boş satırsız) — Streamlit markdown'ın HTML bloğunu
+        # boşluk satırında kesip ham metne çevirmesini önler.
+        st.markdown(
+            f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
+            f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 22px;"
+            f"margin-bottom:12px;'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:center;"
+            f"gap:14px;flex-wrap:wrap;'>"
+            f"<div>"
+            f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
+            f"letter-spacing:0.18em;margin-bottom:5px;'>🔬 "
+            f"{t('SCOUT RAPORU','SCOUT REPORT')} · SCO TR</div>"
+            f"<div style='font-size:1.05rem;font-weight:800;color:#f1f5f9;'>{isim}</div>"
+            f"<div style='font-size:0.76rem;color:#8899bb;margin-top:3px;'>{alt_satir}</div>"
+            f"{pot_satir}"
+            f"</div>"
+            f"<div style='display:flex;gap:14px;'>{nihai_rozet}{pot_rozet}</div>"
+            f"</div></div>",
+            unsafe_allow_html=True)
+
+
+        if not rapor.get("degerlendirildi"):
+            st.info(t("Bu oyuncu için detaylı nitelik değerlendirmesi henüz tamamlanmadı.",
+                      "Detailed attribute assessment for this player is not yet complete."))
+
         _yazildi = False
         tarz = rapor.get("tarz", [])
         if tarz:
@@ -7551,93 +7635,30 @@ def render_scout_raporu(isim: str, bolum: str = "analiz"):
         if not _yazildi:
             st.caption(t("Bu oyuncu için oyun tarzı veya gözlem notu henüz eklenmedi.",
                          "No play style or observation note added for this player yet."))
+        if rapor.get("degerlendirildi"):
+            # ── Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği ──
+            makro = rapor.get("makro", {})
+            _gk = bool(rapor.get("kaleci"))
+            sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", rapor.get("kaleci", {}), makro.get("kaleci", ""), _NITELIK_SEMA_KALECI)
+                       if _gk else
+                       (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", ""), _NITELIK_SEMA_BECERI))
+            siralama = [
+                sol_ust,
+                (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", ""), _NITELIK_SEMA_BESERI),
+                (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", ""), _NITELIK_SEMA_FIZIKI),
+                (t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", ""), _NITELIK_SEMA_SAHSI),
+            ]
+            for kol, (baslik, ikon, nit, mk, sema) in zip(st.columns(4, gap="small"), siralama):
+                if nit:
+                    kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk, sema),
+                                 unsafe_allow_html=True)
+
         return
 
-    st.markdown("---")
-
-    # ── Başlık bandı: rol + nihai + ivme ────────────────────────────────
-    nihai   = rapor.get("nihai", "")
-    n_puan  = _scotr_puan(nihai)
-    n_renk  = _scotr_renk(n_puan)
-    pot     = (rapor.get("ivme") or rapor.get("potansiyel") or "").strip()
-    pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
-    for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
-        if pot == anahtar or (pot and pot.startswith(anahtar[0])):
-            pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
-            break
-
-    mevki_kod = " / ".join(x for x in [rapor.get("mevki1"), rapor.get("mevki2")] if x)
-    alt_satir = " · ".join(x for x in [
-        scout_rol_goster(rapor.get("rol", "")), mevki_kod, bolge_goster(rapor.get("bolge", "")),
-        ulke_goster(rapor.get("uyruk", ""))] if x)
-
-    nihai_rozet = (
-        f"<div style='text-align:center;'>"
-        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {n_renk};"
-        f"display:flex;align-items:center;justify-content:center;font-size:1.05rem;"
-        f"font-weight:900;color:{n_renk};background:{n_renk}15;font-family:monospace;'>"
-        f"{nihai or '—'}</div>"
-        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
-        f"{t('NİHAİ','RATING')}</div></div>"
-    )
-    pot_rozet = (
-        f"<div style='text-align:center;'>"
-        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {pot_renk};"
-        f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
-        f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
-        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
-        f"{t('İVME','MOMENTUM')}</div></div>"
-    ) if pot_ok else ""
-
-    pot_satir = (
-        f"<div style='font-size:0.70rem;color:{pot_renk};margin-top:5px;"
-        f"font-weight:700;'>{pot_ok} {t(pot_tr, pot_en)}</div>"
-    ) if pot_ok else ""
-
-    # Tek parça (girintisiz, boş satırsız) — Streamlit markdown'ın HTML bloğunu
-    # boşluk satırında kesip ham metne çevirmesini önler.
-    st.markdown(
-        f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
-        f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 22px;"
-        f"margin-bottom:12px;'>"
-        f"<div style='display:flex;justify-content:space-between;align-items:center;"
-        f"gap:14px;flex-wrap:wrap;'>"
-        f"<div>"
-        f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
-        f"letter-spacing:0.18em;margin-bottom:5px;'>🔬 "
-        f"{t('SCOUT RAPORU','SCOUT REPORT')} · SCO TR</div>"
-        f"<div style='font-size:1.05rem;font-weight:800;color:#f1f5f9;'>{isim}</div>"
-        f"<div style='font-size:0.76rem;color:#8899bb;margin-top:3px;'>{alt_satir}</div>"
-        f"{pot_satir}"
-        f"</div>"
-        f"<div style='display:flex;gap:14px;'>{nihai_rozet}{pot_rozet}</div>"
-        f"</div></div>",
-        unsafe_allow_html=True)
-
+    # ── ANALİZ bölümü: nitelik ikizleri (not bandı + paneller GÖZLEM'e taşındı) ──
     if not rapor.get("degerlendirildi"):
-        st.info(t("Bu oyuncu için detaylı nitelik değerlendirmesi henüz tamamlanmadı.",
-                  "Detailed attribute assessment for this player is not yet complete."))
         return
-
-    # ── Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği ──
-    makro = rapor.get("makro", {})
-    _gk = bool(rapor.get("kaleci"))
-    sol_ust = ((t("KALECİLİK", "GOALKEEPING"), "🧤", rapor.get("kaleci", {}), makro.get("kaleci", ""), _NITELIK_SEMA_KALECI)
-               if _gk else
-               (t("BECERİ", "TECHNICAL"), "⚽", rapor.get("beceri", {}), makro.get("beceri", ""), _NITELIK_SEMA_BECERI))
-    siralama = [
-        sol_ust,
-        (t("BEŞERİ", "MENTAL"),   "🧠", rapor.get("beseri", {}), makro.get("beseri", ""), _NITELIK_SEMA_BESERI),
-        (t("FİZİKİ", "PHYSICAL"), "💪", rapor.get("fiziki", {}), makro.get("fiziki", ""), _NITELIK_SEMA_FIZIKI),
-        (t("ŞAHSİ",  "PERSONAL"), "🎖️", rapor.get("sahsi",  {}), makro.get("sahsi", ""), _NITELIK_SEMA_SAHSI),
-    ]
-    for kol, (baslik, ikon, nit, mk, sema) in zip(st.columns(4, gap="small"), siralama):
-        if nit:
-            kol.markdown(_scotr_nitelik_paneli(baslik, ikon, nit, mk, sema),
-                         unsafe_allow_html=True)
-
-    # (Oyun Tarzı + scout notu → GÖZLEM bölümüne taşındı; bolum="gozlem")
-
+    st.markdown("---")
     st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
     nitelik_ikizleri_goster(isim)
 
@@ -7798,8 +7819,8 @@ def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
 def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
     """Zengin scout kadro raporunu (scouting tarafı) görsel panelle çizer + PDF.
 
-    bolum="gozlem" → yalnız Oyun Tarzı + scout notu (GÖZLEM bölümü);
-    bolum="analiz" → scout raporu kartı + nitelik panelleri + İkizler + PDF."""
+    bolum="gozlem" → scout raporu bandı + rozetler + oyun tarzı + scout notu + nitelik panelleri;
+    bolum="analiz" → radar + ikizler + PDF + paylaşım linki."""
     rapor = _scout_kayit_bul(isim)
     if not rapor:
         return
@@ -7811,6 +7832,76 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
 
     # ── GÖZLEM bölümü: yalnız Oyun Tarzı + scout notu ──────────────────
     if bolum == "gozlem":
+        # Baran (2026-10-20): scout raporu (bant + rozetler + nitelik panelleri) ile yazılı gözlem tek bölümde.
+        # Başlık bandı
+        nihai = rapor.get("nihai",""); n_renk = _scotr_renk(_scotr_puan(nihai))
+        pot = (rapor.get("ivme") or "").strip()
+        pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
+        for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
+            if pot == anahtar or (pot and pot.startswith(anahtar[0])):
+                pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
+                break
+        mevki_kod = " / ".join(rapor.get("mevki", []))
+        alt_satir = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki_kod,
+                    f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
+                    ulke_goster(rapor.get("vatandaslik",""))] if x)
+        kulup_satir = " · ".join(x for x in [_kulup_goster(rapor.get("kulup","")), _lig_goster(rapor.get("lig","")),
+                      (f"💰 {rapor.get('deger')}" if rapor.get("deger") else ""),
+                      (f"🗓 {rapor.get('sozlesme')}" if rapor.get("sozlesme") else "")] if x)
+
+        nihai_rozet = (
+            f"<div style='text-align:center;'>"
+            f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {n_renk};"
+            f"display:flex;align-items:center;justify-content:center;font-size:1.05rem;"
+            f"font-weight:900;color:{n_renk};background:{n_renk}15;font-family:monospace;'>"
+            f"{nihai or '—'}</div>"
+            f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+            f"{t('NİHAİ','RATING')}</div></div>"
+        )
+        pot_rozet = (
+            f"<div style='text-align:center;'>"
+            f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {pot_renk};"
+            f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
+            f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
+            f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
+            f"{t('İVME','MOMENTUM')}</div></div>"
+        ) if pot_ok else ""
+
+        st.markdown(
+            f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
+            f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 22px;margin-bottom:12px;'>"
+            f"<div style='display:flex;justify-content:space-between;align-items:center;"
+            f"gap:14px;flex-wrap:wrap;'>"
+            f"<div>"
+            f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
+            f"letter-spacing:0.18em;margin-bottom:5px;'>🔬 {t('SCOUT RAPORU','SCOUT REPORT')}</div>"
+            f"<div style='font-size:1.05rem;font-weight:800;color:#f1f5f9;'>{isim}</div>"
+            f"<div style='font-size:0.76rem;color:#8899bb;margin-top:3px;'>{alt_satir}</div>"
+            f"<div style='font-size:0.72rem;color:#6b7a99;margin-top:2px;'>{kulup_satir}</div>"
+            f"</div>"
+            f"<div style='display:flex;gap:14px;'>{nihai_rozet}{pot_rozet}</div>"
+            f"</div></div>",
+            unsafe_allow_html=True)
+
+        # Etiket rozetleri: Yetenek Kümesi / İktisadi / TR Görüşü
+        rozet = []
+        if rapor.get("yetenek_kumesi"):
+            rk = _YETENEK_RENK.get(rapor["yetenek_kumesi"], "#a78bfa")
+            rozet.append((f"💎 {yetenek_kume_goster(rapor['yetenek_kumesi'])}", rk))
+        if rapor.get("iktisadi_durum"):
+            rozet.append((f"💰 {iktisadi_goster(rapor['iktisadi_durum'])}", "#64748b"))
+        if rapor.get("tr_gorusu"):
+            rozet.append((f"🇹🇷 {tr_gorus_goster(rapor['tr_gorusu'])}", "#64748b"))
+        if rapor.get("yurtdisi_gorusu"):
+            rozet.append((f"✈️ {t('Yurtdışı','Abroad')}: {yurtdisi_goster(rapor['yurtdisi_gorusu'])}", "#64748b"))
+        if rozet:
+            cip = "".join(
+                f"<span style='display:inline-block;background:{c}1f;border:1px solid {c}55;"
+                f"color:{c};border-radius:6px;padding:3px 11px;margin:0 6px 6px 0;"
+                f"font-size:0.74rem;font-weight:700;'>{m}</span>" for m, c in rozet)
+            st.markdown(f"<div style='margin-bottom:8px;'>{cip}</div>", unsafe_allow_html=True)
+
+
         _yazildi = False
         tarz = [tarz_goster(o) for o in rapor.get("tarz", [])]
         if tarz:
@@ -7832,95 +7923,24 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
         if not _yazildi:
             st.caption(t("Bu oyuncu için oyun tarzı veya gözlem notu henüz eklenmedi.",
                          "No play style or observation note added for this player yet."))
+        # Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği
+        makro = rapor.get("makro", {})
+        _gk = bool(rapor.get("kaleci"))
+        sol_ust = ((t("KALECİLİK","GOALKEEPING"), "🧤", rapor.get("kaleci",{}), makro.get("kaleci",""), _NITELIK_SEMA_KALECI)
+                   if _gk else
+                   (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri",""), _NITELIK_SEMA_BECERI))
+        siralama = [
+            sol_ust,
+            (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri",""), _NITELIK_SEMA_BESERI),
+            (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki",""), _NITELIK_SEMA_FIZIKI),
+            (t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi",""), _NITELIK_SEMA_SAHSI),
+        ]
+        for kol, (b, ik, nit, mk, sema) in zip(st.columns(4, gap="small"), siralama):
+            if nit:
+                kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk, sema), unsafe_allow_html=True)
         return
 
     st.markdown("---")
-
-    # Başlık bandı
-    nihai = rapor.get("nihai",""); n_renk = _scotr_renk(_scotr_puan(nihai))
-    pot = (rapor.get("ivme") or "").strip()
-    pot_ok, pot_renk, pot_tr, pot_en = "", "#8899aa", "", ""
-    for anahtar, (ok, renk, tr_ad, en_ad) in _SCOTR_POT.items():
-        if pot == anahtar or (pot and pot.startswith(anahtar[0])):
-            pot_ok, pot_renk, pot_tr, pot_en = ok, renk, tr_ad, en_ad
-            break
-    mevki_kod = " / ".join(rapor.get("mevki", []))
-    alt_satir = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki_kod,
-                f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
-                ulke_goster(rapor.get("vatandaslik",""))] if x)
-    kulup_satir = " · ".join(x for x in [_kulup_goster(rapor.get("kulup","")), _lig_goster(rapor.get("lig","")),
-                  (f"💰 {rapor.get('deger')}" if rapor.get("deger") else ""),
-                  (f"🗓 {rapor.get('sozlesme')}" if rapor.get("sozlesme") else "")] if x)
-
-    nihai_rozet = (
-        f"<div style='text-align:center;'>"
-        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {n_renk};"
-        f"display:flex;align-items:center;justify-content:center;font-size:1.05rem;"
-        f"font-weight:900;color:{n_renk};background:{n_renk}15;font-family:monospace;'>"
-        f"{nihai or '—'}</div>"
-        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
-        f"{t('NİHAİ','RATING')}</div></div>"
-    )
-    pot_rozet = (
-        f"<div style='text-align:center;'>"
-        f"<div style='width:54px;height:54px;border-radius:50%;border:3px solid {pot_renk};"
-        f"display:flex;align-items:center;justify-content:center;font-size:1.45rem;"
-        f"font-weight:900;color:{pot_renk};background:{pot_renk}15;'>{pot_ok or '—'}</div>"
-        f"<div style='font-size:0.56rem;color:#64748b;margin-top:3px;letter-spacing:0.1em;'>"
-        f"{t('İVME','MOMENTUM')}</div></div>"
-    ) if pot_ok else ""
-
-    st.markdown(
-        f"<div style='background:linear-gradient(135deg,#151a33,#1d1438);"
-        f"border:1px solid #3b2d6e;border-radius:14px;padding:18px 22px;margin-bottom:12px;'>"
-        f"<div style='display:flex;justify-content:space-between;align-items:center;"
-        f"gap:14px;flex-wrap:wrap;'>"
-        f"<div>"
-        f"<div style='font-size:0.66rem;font-weight:800;color:#a78bfa;"
-        f"letter-spacing:0.18em;margin-bottom:5px;'>🔬 {t('SCOUT RAPORU','SCOUT REPORT')}</div>"
-        f"<div style='font-size:1.05rem;font-weight:800;color:#f1f5f9;'>{isim}</div>"
-        f"<div style='font-size:0.76rem;color:#8899bb;margin-top:3px;'>{alt_satir}</div>"
-        f"<div style='font-size:0.72rem;color:#6b7a99;margin-top:2px;'>{kulup_satir}</div>"
-        f"</div>"
-        f"<div style='display:flex;gap:14px;'>{nihai_rozet}{pot_rozet}</div>"
-        f"</div></div>",
-        unsafe_allow_html=True)
-
-    # Etiket rozetleri: Yetenek Kümesi / İktisadi / TR Görüşü
-    rozet = []
-    if rapor.get("yetenek_kumesi"):
-        rk = _YETENEK_RENK.get(rapor["yetenek_kumesi"], "#a78bfa")
-        rozet.append((f"💎 {yetenek_kume_goster(rapor['yetenek_kumesi'])}", rk))
-    if rapor.get("iktisadi_durum"):
-        rozet.append((f"💰 {iktisadi_goster(rapor['iktisadi_durum'])}", "#64748b"))
-    if rapor.get("tr_gorusu"):
-        rozet.append((f"🇹🇷 {tr_gorus_goster(rapor['tr_gorusu'])}", "#64748b"))
-    if rapor.get("yurtdisi_gorusu"):
-        rozet.append((f"✈️ {t('Yurtdışı','Abroad')}: {yurtdisi_goster(rapor['yurtdisi_gorusu'])}", "#64748b"))
-    if rozet:
-        cip = "".join(
-            f"<span style='display:inline-block;background:{c}1f;border:1px solid {c}55;"
-            f"color:{c};border-radius:6px;padding:3px 11px;margin:0 6px 6px 0;"
-            f"font-size:0.74rem;font-weight:700;'>{m}</span>" for m, c in rozet)
-        st.markdown(f"<div style='margin-bottom:8px;'>{cip}</div>", unsafe_allow_html=True)
-
-    # Nitelik panelleri: 4 sütun yan yana (BEC-BEŞ-FİZ-ŞAH) — Baran isteği
-    makro = rapor.get("makro", {})
-    _gk = bool(rapor.get("kaleci"))
-    sol_ust = ((t("KALECİLİK","GOALKEEPING"), "🧤", rapor.get("kaleci",{}), makro.get("kaleci",""), _NITELIK_SEMA_KALECI)
-               if _gk else
-               (t("BECERİ","TECHNICAL"), "⚽", rapor.get("beceri",{}), makro.get("beceri",""), _NITELIK_SEMA_BECERI))
-    siralama = [
-        sol_ust,
-        (t("BEŞERİ","MENTAL"),   "🧠", rapor.get("beseri",{}), makro.get("beseri",""), _NITELIK_SEMA_BESERI),
-        (t("FİZİKİ","PHYSICAL"), "💪", rapor.get("fiziki",{}), makro.get("fiziki",""), _NITELIK_SEMA_FIZIKI),
-        (t("ŞAHSİ","PERSONAL"),  "🎖️", rapor.get("sahsi",{}),  makro.get("sahsi",""), _NITELIK_SEMA_SAHSI),
-    ]
-    for kol, (b, ik, nit, mk, sema) in zip(st.columns(4, gap="small"), siralama):
-        if nit:
-            kol.markdown(_scotr_nitelik_paneli(b, ik, nit, mk, sema), unsafe_allow_html=True)
-
-    # (Oyun Tarzı + scout notu → GÖZLEM bölümüne taşındı; bolum="gozlem")
 
     # Nitelik Radarı + İkizleri (Moneyball — benzer profil, farklı fiyat)
     st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
