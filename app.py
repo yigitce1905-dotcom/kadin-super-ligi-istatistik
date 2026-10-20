@@ -2507,9 +2507,14 @@ def scout_kadro_yukle() -> dict:
     ham = _scout_kadro_ham()
     try:
         tr_adlar = {_isim_norm(k) for k, r in scotr_yukle().items() if r.get("degerlendirildi")}
+        # Dünya satırı BOŞ (değerlendirilmemiş) ama TR 2025-26'da değerlendirilmiş kaydı var → boş satır
+        # gölgelemesin; oyuncu arşiv kaydıyla (⚠ "geçen sezonun raporu" uyarılı) görünür (Soulaima Jabrani).
+        arsiv_degerli = {_isim_norm(k) for k, r in scotr_arsiv_yukle().items() if r.get("degerlendirildi")}
     except Exception:
-        tr_adlar = set()
-    return {k: v for k, v in ham.items() if _isim_norm(k) not in tr_adlar}
+        tr_adlar, arsiv_degerli = set(), set()
+    return {k: v for k, v in ham.items()
+            if _isim_norm(k) not in tr_adlar
+            and not (not v.get("degerlendirildi") and _isim_norm(k) in arsiv_degerli)}
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -2595,10 +2600,8 @@ def birlesik_scout_yukle() -> dict:
     olup Dünya sheet'inden silinmemiş — bilinen durum) bayat Dünya kaydı
     kaldırılır, güncel TR kaydı kazanır (2026-08-02 dedup fix — Hamideche/
     Jabrani/Nana/Ossol/Mweemba/Sawadogo gibi 6 çift kayıt tespit edildi)."""
-    import unicodedata as _ud3
     def _n3(s):
-        s = _ud3.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
-        return " ".join(s.casefold().split())
+        return _isim_norm(s)
     out = dict(scout_kadro_yukle())          # uluslararası havuz önce (mevcut sıra)
     _norm_harita = {_n3(k): k for k in out}   # normalize isim -> Dünya'daki gerçek anahtar
     for k, v in scotr_kadro_yukle().items():  # TR oyuncular
@@ -2687,9 +2690,16 @@ def _scout_norm_bul(isim: str):
     return birlesik_scout_yukle().get(anahtar) if anahtar else None
 
 
+_ISIM_HARF_TABLO = {ord(a): b for a, b in {"ı": "i", "İ": "I", "ø": "o", "Ø": "O", "ł": "l", "Ł": "L", "đ": "d",
+                                            "Đ": "D", "ß": "ss", "æ": "ae", "Æ": "AE", "œ": "oe", "þ": "th"}.items()}
+
+
 def _isim_norm(s: str) -> str:
+    """Diyakritiksiz, küçük harfli isim anahtarı. NFKD yalnız birleşik harfleri ayırır; 'ı' (noktasız)
+    ASCII'ye çevrilmeyip SİLİNİYORDU → 'Birgül Sadıkoğlu' ≠ 'Birgul Sadikoglu' (2026-10-20: Birgül
+    Sadıkoğlu hem Dünya hem TR 26-27'de olduğu hâlde eşleşmiyordu). Ayrışmayan harfler önce çevrilir."""
     import unicodedata as _ud
-    s = _ud.normalize("NFKD", str(s)).encode("ascii", "ignore").decode()
+    s = _ud.normalize("NFKD", str(s).translate(_ISIM_HARF_TABLO)).encode("ascii", "ignore").decode()
     return " ".join(s.casefold().split())
 
 
