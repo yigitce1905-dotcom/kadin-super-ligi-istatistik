@@ -2,7 +2,7 @@
  "kulupler": {
   "Fenerbahçe": {
    "sd_url": "https://www.soccerdonna.de/en/fenerbahce-sk/startseite/verein_9522.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/fenerbahce.jpg",
    "kadro": [
     {
@@ -357,7 +357,7 @@
   },
   "Galatasaray": {
    "sd_url": "https://www.soccerdonna.de/en/galatasaray-sk/startseite/verein_9537.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/galatasaray.jpg",
    "kadro": [
     {
@@ -491,18 +491,6 @@
      "profil_url": "https://www.soccerdonna.de/en/sila-tetik/profil/spieler_71199.html",
      "sozlesme": "30.06.2027",
      "boy": "1,61"
-    },
-    {
-     "isim": "Berra Pekgöz",
-     "kod": "MS",
-     "grup": "SANTRFOR",
-     "yas": "19",
-     "uyruk": "Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/berra-pekgoez/profil/spieler_87338.html",
-     "sozlesme": "?",
-     "boy": "1,63"
     },
     {
      "isim": "Ebru Topçu",
@@ -676,7 +664,7 @@
   },
   "Beşiktaş": {
    "sd_url": "https://www.soccerdonna.de/en/besiktas-jk/startseite/verein_6981.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/besiktas.jpg",
    "kadro": [
     {
@@ -736,7 +724,7 @@
      "deger": "",
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/glory-ogbonna/profil/spieler_35763.html",
-     "sozlesme": "?",
+     "sozlesme": "30.06.2027",
      "boy": "1,70"
     },
     {
@@ -868,7 +856,7 @@
      "deger": "",
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/cansu-kaya/profil/spieler_39868.html",
-     "sozlesme": "30.06.2026",
+     "sozlesme": "30.06.2027",
      "boy": "1,65"
     },
     {
@@ -983,7 +971,7 @@
   },
   "Trabzonspor": {
    "sd_url": "https://www.soccerdonna.de/en/trabzonspor/startseite/verein_792.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/trabzonspor.jpg",
    "kadro": [
     {
@@ -1266,7 +1254,7 @@
   },
   "FOMGET": {
    "sd_url": "https://www.soccerdonna.de/en/abb-fomget-sk/startseite/verein_7247.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/fomget.jpg",
    "kadro": [
     {
@@ -1307,8 +1295,8 @@
     },
     {
      "isim": "Jemery Myvett",
-     "kod": "",
-     "grup": "DİĞER",
+     "kod": "LV",
+     "grup": "SOL BEK",
      "yas": "22",
      "uyruk": "Guatemala",
      "deger": "",
@@ -1438,18 +1426,6 @@
      "boy": "1,68"
     },
     {
-     "isim": "Quinty Sabajo",
-     "kod": "OM",
-     "grup": "HÜCUMCU ORTA SAHA",
-     "yas": "35",
-     "uyruk": "Suriname / Niederlande",
-     "deger": "35.000 €",
-     "deger_eur": 35000,
-     "profil_url": "https://www.soccerdonna.de/en/quinty-sabajo/profil/spieler_35776.html",
-     "sozlesme": "30.06.2027",
-     "boy": ""
-    },
-    {
      "isim": "Ebru Şahin",
      "kod": "DM",
      "grup": "SAVUNMACI ORTA SAHA",
@@ -1486,6 +1462,18 @@
      "boy": "1,64"
     },
     {
+     "isim": "Quinty Sabajo",
+     "kod": "OM",
+     "grup": "HÜCUMCU ORTA SAHA",
+     "yas": "35",
+     "uyruk": "Suriname / Niederlande",
+     "deger": "35.000 €",
+     "deger_eur": 35000,
+     "profil_url": "https://www.soccerdonna.de/en/quinty-sabajo/profil/spieler_35776.html",
+     "sozlesme": "30.06.2027",
+     "boy": ""
+    },
+    {
      "isim": "Milica Mijatović",
      "kod": "OM",
      "grup": "HÜCUMCU ORTA SAHA",
@@ -1506,7 +1494,7 @@
      "deger": "",
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/merve-tasucu/profil/spieler_90748.html",
-     "sozlesme": "30.06.2026",
+     "sozlesme": "30.06.2027",
      "boy": "1,61"
     },
     {
@@ -1594,18 +1582,6 @@
      "boy": "1,78"
     },
     {
-     "isim": "Mavis Owusu",
-     "kod": "LA",
-     "grup": "SOL KANAT",
-     "yas": "22",
-     "uyruk": "Ghana",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/mavis-owusu/profil/spieler_37788.html",
-     "sozlesme": "30.06.2027",
-     "boy": "1,67"
-    },
-    {
      "isim": "Andjela Tošković",
      "kod": "RA",
      "grup": "SAĞ KANAT",
@@ -1645,7 +1621,7 @@
   },
   "Amed": {
    "sd_url": "https://www.soccerdonna.de/en/amed-sfk/startseite/verein_7245.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/amed.jpg",
    "kadro": [
     {
@@ -1976,7 +1952,7 @@
   },
   "Hakkarigücü": {
    "sd_url": "https://www.soccerdonna.de/en/hakkariguecue-sk/startseite/verein_7066.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/hakkarigucu.jpg",
    "kadro": [
     {
@@ -2199,7 +2175,7 @@
   },
   "Ünye": {
    "sd_url": "https://www.soccerdonna.de/en/uenye-guecue-fk/startseite/verein_13095.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/unye.jpg",
    "kadro": [
     {
@@ -2482,7 +2458,7 @@
   },
   "Giresun Sanayi": {
    "sd_url": "https://www.soccerdonna.de/en/giresun-sanayi-sk/startseite/verein_14056.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/giresun-sanayi.jpg",
    "kadro": [
     {
@@ -2495,7 +2471,7 @@
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/melisa-kara/profil/spieler_118833.html",
      "sozlesme": "30.06.2028",
-     "boy": "1,65"
+     "boy": "1,62"
     },
     {
      "isim": "Esma Celik",
@@ -2519,7 +2495,7 @@
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/eylul-cayan/profil/spieler_123567.html",
      "sozlesme": "30.06.2029",
-     "boy": ""
+     "boy": "1,64"
     },
     {
      "isim": "Pamuk Aydin",
@@ -2590,7 +2566,7 @@
      "deger": "",
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/nevcan-keles/profil/spieler_66689.html",
-     "sozlesme": "30.06.2026",
+     "sozlesme": "30.06.2027",
      "boy": "1,66"
     },
     {
@@ -2633,9 +2609,21 @@
   },
   "1207 Antalya": {
    "sd_url": "https://www.soccerdonna.de/en/1207-antalyaspor/startseite/verein_7352.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/1207-antalya.jpg",
    "kadro": [
+    {
+     "isim": "Nurcan Yagci",
+     "kod": "TW",
+     "grup": "KALECİ",
+     "yas": "26",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/nurcan-yagci/profil/spieler_79433.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,67"
+    },
     {
      "isim": "Olivia Asiamah",
      "kod": "TW",
@@ -2647,6 +2635,18 @@
      "profil_url": "https://www.soccerdonna.de/en/olivia-asiamah/profil/spieler_123060.html",
      "sozlesme": "30.06.2027",
      "boy": "1,67"
+    },
+    {
+     "isim": "Ekin Sahin",
+     "kod": "",
+     "grup": "DİĞER",
+     "yas": "",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/ekin-sahin/profil/spieler_125796.html",
+     "sozlesme": "",
+     "boy": ""
     },
     {
      "isim": "Karly Harfouche",
@@ -2709,18 +2709,6 @@
      "boy": "1,65"
     },
     {
-     "isim": "Nasma Manduta",
-     "kod": "ZM",
-     "grup": "MERKEZ ORTA SAHA",
-     "yas": "19",
-     "uyruk": "Tansania",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/nasma-manduta/profil/spieler_125122.html",
-     "sozlesme": "30.06.2027",
-     "boy": "1,52"
-    },
-    {
      "isim": "Yagmur Gönüllü",
      "kod": "RM",
      "grup": "SAĞ KANAT",
@@ -2767,6 +2755,18 @@
      "profil_url": "https://www.soccerdonna.de/en/kiera-laney/profil/spieler_123076.html",
      "sozlesme": "30.06.2027",
      "boy": "1,66"
+    },
+    {
+     "isim": "Nasma Manduta",
+     "kod": "ZM",
+     "grup": "MERKEZ ORTA SAHA",
+     "yas": "19",
+     "uyruk": "Tansania",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/nasma-manduta/profil/spieler_125122.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,52"
     },
     {
      "isim": "Sarah Yasongamo",
@@ -2856,9 +2856,21 @@
   },
   "Yüksekovaspor": {
    "sd_url": "https://www.soccerdonna.de/en/yuksekova-sk/startseite/verein_15697.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/yuksekovaspor.jpg",
    "kadro": [
+    {
+     "isim": "Büşra Kenet",
+     "kod": "TW",
+     "grup": "KALECİ",
+     "yas": "26",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/buesra-kenet/profil/spieler_43168.html",
+     "sozlesme": "?",
+     "boy": "1,80"
+    },
     {
      "isim": "Aytaj Sharifova",
      "kod": "TW",
@@ -3115,7 +3127,7 @@
   },
   "Şile Bilgidoğa": {
    "sd_url": "https://www.soccerdonna.de/en/bilgi-doga-sk/startseite/verein_15914.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/sile-bilgidoga.jpg",
    "kadro": [
     {
@@ -3127,8 +3139,8 @@
      "deger": "",
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/oceane-konan/profil/spieler_121309.html",
-     "sozlesme": "?",
-     "boy": "1,76"
+     "sozlesme": "30.06.2027",
+     "boy": "1,71"
     },
     {
      "isim": "Mine Sarıoğlu",
@@ -3141,30 +3153,6 @@
      "profil_url": "https://www.soccerdonna.de/en/mine-sarioglu/profil/spieler_116351.html",
      "sozlesme": "30.06.2027",
      "boy": "1,66"
-    },
-    {
-     "isim": "Songül Altinöz",
-     "kod": "IV",
-     "grup": "STOPER",
-     "yas": "38",
-     "uyruk": "Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/songuel-altinoez/profil/spieler_57189.html",
-     "sozlesme": "30.06.2027",
-     "boy": "1,68"
-    },
-    {
-     "isim": "Ilden Simsek",
-     "kod": "RV",
-     "grup": "SAĞ BEK",
-     "yas": "18",
-     "uyruk": "Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/ilden-simsek/profil/spieler_123478.html",
-     "sozlesme": "30.06.2027",
-     "boy": "1,55"
     },
     {
      "isim": "Ecrin Koyun",
@@ -3213,6 +3201,30 @@
      "profil_url": "https://www.soccerdonna.de/en/hava-ates/profil/spieler_108696.html",
      "sozlesme": "30.06.2027",
      "boy": "1,59"
+    },
+    {
+     "isim": "Ilden Simsek",
+     "kod": "RV",
+     "grup": "SAĞ BEK",
+     "yas": "18",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/ilden-simsek/profil/spieler_123478.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,55"
+    },
+    {
+     "isim": "Songül Altinöz",
+     "kod": "IV",
+     "grup": "STOPER",
+     "yas": "38",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/songuel-altinoez/profil/spieler_57189.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,68"
     },
     {
      "isim": "Filiz Kurtuluş",
@@ -3275,30 +3287,6 @@
      "boy": "1,63"
     },
     {
-     "isim": "Arife Ispiroglu",
-     "kod": "LM",
-     "grup": "SOL KANAT",
-     "yas": "16",
-     "uyruk": "Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/arife-ispiroglu/profil/spieler_117430.html",
-     "sozlesme": "30.06.2028",
-     "boy": "1,60"
-    },
-    {
-     "isim": "Yaren Surutoglu",
-     "kod": "",
-     "grup": "DİĞER",
-     "yas": "21",
-     "uyruk": "Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/yaren-surutoglu/profil/spieler_106704.html",
-     "sozlesme": "30.06.2027",
-     "boy": "1,67"
-    },
-    {
      "isim": "Gamze Demirtas",
      "kod": "",
      "grup": "DİĞER",
@@ -3321,6 +3309,30 @@
      "profil_url": "https://www.soccerdonna.de/en/esin-sivasli/profil/spieler_113417.html",
      "sozlesme": "30.06.2027",
      "boy": "1,70"
+    },
+    {
+     "isim": "Yaren Surutoglu",
+     "kod": "",
+     "grup": "DİĞER",
+     "yas": "21",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/yaren-surutoglu/profil/spieler_106704.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,67"
+    },
+    {
+     "isim": "Arife Ispiroglu",
+     "kod": "LM",
+     "grup": "SOL KANAT",
+     "yas": "16",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/arife-ispiroglu/profil/spieler_117430.html",
+     "sozlesme": "30.06.2028",
+     "boy": "1,60"
     },
     {
      "isim": "Bouazo Gemima",
@@ -3374,7 +3386,7 @@
   },
   "Haymana": {
    "sd_url": "https://www.soccerdonna.de/en/haymanaspor/startseite/verein_16154.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/haymana.jpg",
    "kadro": [
     {
@@ -3609,9 +3621,21 @@
   },
   "Bakırköy Yenimahalle": {
    "sd_url": "https://www.soccerdonna.de/en/bakirkoy-kadin-futbol-sk/startseite/verein_14028.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/bakrkoy-yenimahalle.jpg",
    "kadro": [
+    {
+     "isim": "Shivani Battaglia",
+     "kod": "TW",
+     "grup": "KALECİ",
+     "yas": "22",
+     "uyruk": "Australien",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/shivani-battaglia/profil/spieler_124974.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,78"
+    },
     {
      "isim": "Lara Karaca",
      "kod": "TW",
@@ -3635,6 +3659,30 @@
      "profil_url": "https://www.soccerdonna.de/en/oezlem-aliosmanoglu/profil/spieler_104554.html",
      "sozlesme": "30.06.2027",
      "boy": "1,69"
+    },
+    {
+     "isim": "Sibel Duman",
+     "kod": "IV",
+     "grup": "STOPER",
+     "yas": "36",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/sibel-duman/profil/spieler_11467.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,73"
+    },
+    {
+     "isim": "Beyza Kocatürk",
+     "kod": "LV",
+     "grup": "SOL BEK",
+     "yas": "29",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/beyza-kocatuerk/profil/spieler_40747.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,62"
     },
     {
      "isim": "Betul Karaca",
@@ -3757,18 +3805,6 @@
      "boy": "1,61"
     },
     {
-     "isim": "İsmigül Yalçıner",
-     "kod": "ZM",
-     "grup": "MERKEZ ORTA SAHA",
-     "yas": "31",
-     "uyruk": "Bulgarien / Türkei",
-     "deger": "",
-     "deger_eur": null,
-     "profil_url": "https://www.soccerdonna.de/en/ismiguel-yalciner/profil/spieler_41641.html",
-     "sozlesme": "30.06.2027",
-     "boy": "1,68"
-    },
-    {
      "isim": "Melike Alagoz",
      "kod": "OM",
      "grup": "HÜCUMCU ORTA SAHA",
@@ -3791,6 +3827,18 @@
      "profil_url": "https://www.soccerdonna.de/en/sena-goksoy/profil/spieler_123158.html",
      "sozlesme": "31.12.2026",
      "boy": "1,69"
+    },
+    {
+     "isim": "İsmigül Yalçıner",
+     "kod": "ZM",
+     "grup": "MERKEZ ORTA SAHA",
+     "yas": "31",
+     "uyruk": "Bulgarien / Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/ismiguel-yalciner/profil/spieler_41641.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,68"
     },
     {
      "isim": "Gulsah Yavuz",
@@ -3839,12 +3887,24 @@
      "profil_url": "https://www.soccerdonna.de/en/esra-etinkaya/profil/spieler_64195.html",
      "sozlesme": "31.12.2026",
      "boy": "1,69"
+    },
+    {
+     "isim": "Yetunde Ayantosho",
+     "kod": "",
+     "grup": "DİĞER",
+     "yas": "18",
+     "uyruk": "",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/yetunde-ayantosho/profil/spieler_78786.html",
+     "sozlesme": "?",
+     "boy": "1,65"
     }
    ]
   },
   "Kayserispor": {
    "sd_url": "https://www.soccerdonna.de/en/kayseri-kadin-fk/startseite/verein_7356.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/kayserispor.jpg",
    "kadro": [
     {
@@ -4151,7 +4211,7 @@
   },
   "Sultanbeyligücü": {
    "sd_url": "https://www.soccerdonna.de/en/sultanbeyli-guecue-sk/startseite/verein_18221.html",
-   "cekilis": "2026-10-18",
+   "cekilis": "2026-10-21",
    "arma": "armalar/sultanbeyligucu.jpg",
    "kadro": [
     {
@@ -4275,6 +4335,18 @@
      "boy": "1,63"
     },
     {
+     "isim": "Berra Pekgöz",
+     "kod": "MS",
+     "grup": "SANTRFOR",
+     "yas": "19",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/berra-pekgoez/profil/spieler_87338.html",
+     "sozlesme": "?",
+     "boy": "1,63"
+    },
+    {
      "isim": "Fatmanur Yantur",
      "kod": "LM",
      "grup": "SOL KANAT",
@@ -4331,6 +4403,18 @@
      "deger": "",
      "deger_eur": null,
      "profil_url": "https://www.soccerdonna.de/en/uelkue-kahya/profil/spieler_56518.html",
+     "sozlesme": "30.06.2027",
+     "boy": "1,67"
+    },
+    {
+     "isim": "Havva Isgi",
+     "kod": "LM",
+     "grup": "SOL KANAT",
+     "yas": "21",
+     "uyruk": "Türkei",
+     "deger": "",
+     "deger_eur": null,
+     "profil_url": "https://www.soccerdonna.de/en/havva-isgi/profil/spieler_103628.html",
      "sozlesme": "30.06.2027",
      "boy": "1,67"
     },
