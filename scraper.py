@@ -19,6 +19,10 @@ HEADERS       = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleW
 # ────────────────────────────────────────────────────────────────────────────
 
 
+# 7.hafta Fomget 6-0 Sultanbeyli: raporda Fomget 5 gol + Z.Ü. Kahya 54' (F) görünüyor, resmi skor 6-0 -> kendi kalesine.
+KENDI_KALE_ELLE = {("320643", "1717451", 54)}
+
+
 def fetch(session, url, yeniden=3):
     for deneme in range(yeniden):
         try:
@@ -193,6 +197,11 @@ def mac_detayi_isle(session, mac_info, oyuncu_dict, hafta_no):
                 # yanlislikla 2-3 olarak sayilmisti). "(KKG)"/"(OG)" da eski/olasi
                 # varyantlar icin korunuyor.
                 if re.search(r"\(K\)|\(KKG\)|\(OG\)", metin, re.IGNORECASE): continue
+                # TFF raporu bazen kendi kalesine golü (K) YAZMADAN rakip listesinde (F) diye veriyor;
+                # resmi skorla çelişen vakalar elle burada (macId, kisiId, dakika) tutulur.
+                _mid = re.search(r"macId=(\d+)", mac_info["url"])
+                _dk  = re.search(r",\s*(\d+)\.dk", metin)
+                if _mid and _dk and (_mid.group(1), kid, int(_dk.group(1))) in KENDI_KALE_ELLE: continue
                 takim      = kisi_takim.get(kid, current_team)
                 isim_temiz = re.sub(r",.*$", "", metin).strip()
                 # Gol tipi: (F)=ayak (H)=kafa (P)=penaltı

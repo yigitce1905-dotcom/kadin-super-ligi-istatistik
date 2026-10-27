@@ -330,5 +330,61 @@
     "dep": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
     "ev_gol": 2,
     "dep_gol": 6
+  },
+  {
+    "hafta": 7,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+    "ev_gol": 6,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+    "dep": "BEŞİKTAŞ A.Ş.",
+    "ev_gol": 2,
+    "dep_gol": 5
+  },
+  {
+    "hafta": 7,
+    "ev": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "dep": "HAYMANA SPOR KULÜBÜ",
+    "ev_gol": 5,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "GALATASARAY A.Ş.",
+    "dep": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
+    "ev_gol": 22,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "GİRESUN SANAYİSPOR",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 13
+  },
+  {
+    "hafta": 7,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "KARADEMİR GRUP KAYSERİ KADIN FUTBOL KULÜBÜ",
+    "dep": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 7,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 6,
+    "dep_gol": 1
   }
 ]
