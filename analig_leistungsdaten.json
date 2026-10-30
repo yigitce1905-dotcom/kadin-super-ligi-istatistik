@@ -37267,7 +37267,7 @@
         "milli": true
       }
     ],
-    "guncelleme": "2026-10-29"
+    "guncelleme": "2026-10-30"
   },
   "ELANUR LAÇIN": {
     "sezonlar": [
@@ -45376,7 +45376,7 @@
         "milli": false
       }
     ],
-    "guncelleme": "2026-10-29"
+    "guncelleme": "2026-10-30"
   },
   "SOULAIMA JABRANI": {
     "sezonlar": [
@@ -61605,5 +61605,98 @@
       }
     ],
     "guncelleme": "2026-10-29"
+  },
+  "HİLAL ECRİN KARAGÖZ": {
+    "sezonlar": [
+      {
+        "sezon": "21/22",
+        "kulup": "Kocaelispor",
+        "lig": "Kadınlar Süper Ligi - Group A",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 181,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Kocaelispor",
+        "lig": "Kadınlar Süper Ligi - Relegation Playoffs",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-10-30"
+  },
+  "GEMIMA BOUAZO": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
+  },
+  "BELİNAY DOĞRU": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
+  },
+  "YAĞMUR ÜLKÜ": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
+  },
+  "FATMA KOÇ": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
+  },
+  "AYŞENUR KIRCA": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
+  },
+  "YAREN CİVELEK": {
+    "sezonlar": [
+      {
+        "sezon": "22/23",
+        "kulup": "Konak",
+        "lig": "Kadınlar Süper Ligi - Group A",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 236,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Konak",
+        "lig": "Kadınlar Süper Ligi - Group B",
+        "mac": 6,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 302,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Konak",
+        "lig": "Kadınlar Süper Ligi - Final Stages",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 23,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-10-30"
+  },
+  "SEVGİ KUVAN": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
+  },
+  "SEDA TÜRKEŞ": {
+    "sezonlar": [],
+    "guncelleme": "2026-10-30"
   }
 }
