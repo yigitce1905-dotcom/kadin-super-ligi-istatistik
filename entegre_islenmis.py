@@ -57,6 +57,10 @@ def main():
         sonuc, lambda k, r: (_sd_all.get(k) if isinstance(_sd_all.get(k), dict)
                              and _sd_all[k].get("profil_url") and not _sd_all[k].get("bulunamadi") else None), "dunya")
     yas_dogumdan_tazele(sonuc)
+    # Baran kuralı: TR vatandaşı Unpredictable/Callow oyuncular Dünya listesine girmez
+    # (commit'teki eski kayıtlar da burada temizlenir).
+    from fetch_scout_kadro import dunya_odak_filtre
+    odak_disi = dunya_odak_filtre(sonuc)
 
     print(f"Canlı sheet      : {len(canli)} oyuncu")
     print(f"Commit (önceki)  : {len(comm)} oyuncu")
@@ -66,6 +70,7 @@ def main():
     print(f"Yaş backfill     : {bf}")
     print(f"SD kulüp uygulandı: {kg} (Serbest/transfer korundu)")
     print(f"SD ezdi (doğum/boy/ayak): {len(ez_deg)} alan | şüpheli eşleşme (dokunulmadı): {len(ez_suphe)}")
+    print(f"Odak dışı (TR vatandaşı Unpredictable/Callow): {len(odak_disi)} oyuncu çıkarıldı")
     print(f"SONUÇ            : {len(sonuc)} oyuncu")
     if eklenen:
         print("\nYeni eklenen işlenmiş oyuncular:")

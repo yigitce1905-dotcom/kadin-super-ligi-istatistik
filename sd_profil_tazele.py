@@ -29,7 +29,10 @@ from bs4 import BeautifulSoup
 sys.stdout.reconfigure(encoding="utf-8")
 
 KOK = Path(__file__).parent
-HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+# SD sade User-Agent'ı 403 ile reddediyor → tam tarayıcı başlıkları (kokpit_sd_cek ile aynı)
+HEADERS = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+           "Accept-Language": "en-US,en;q=0.9"}
 # Yalnızca bu alanlar güncellenir — scout/nitelik verisine dokunulmaz
 KUNYE = ("Date of birth", "Age", "Height", "Foot", "Nationality",
          "Current club", "Contract until", "Place of birth")

@@ -53,6 +53,7 @@ def profil_bilgi(url):
             if "verein_" not in href or _ulke_mu(href):
                 continue
             ad = a.get_text(strip=True)
+            if ad.lower() == "delete player": continue   # SD sayfa bağlantısı, kulüp değil
             if ad.lower() in ("vereinslos", "without club"): out["kulup"] = "Serbest"; break
             if ad.lower() in ("unbekannt", "unknown", "karriereende"): break   # SD bilmiyor → koru
             if ad and ad != "-" and not ad.isdigit(): out["kulup"] = ad; break

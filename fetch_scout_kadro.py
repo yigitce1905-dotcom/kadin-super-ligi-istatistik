@@ -526,11 +526,38 @@ def kulup_guncelle(veriler: dict) -> int:
     return n
 
 
+# Baran (2026-10-29): Dünya listesinin odağı f/p oyuncu, yetenek keşfi ve transfer.
+# Türkiye vatandaşı olup "⁉️ Unpredictable" ya da "🧒 Callow" (sitede "🧒 Genç")
+# sınıfındaki oyuncular Dünya listesine alınmaz. Sheet'te kalırlar, sadece siteye girmezler.
+# Milli takımı Türkiye olanlar da (çift vatandaş) Türkiye vatandaşı sayılır.
+_ODAK_DISI_KUME = ("⁉", "🧒", "unpredictable", "callow")
+
+
+def _turk_mu(rec: dict) -> bool:
+    for alan in ("vatandaslik", "milli_takim"):
+        s = (rec.get(alan) or "").lower().replace("ü", "u")
+        if "turkiye" in s or "turkey" in s:
+            return True
+    return False
+
+
+def dunya_odak_filtre(veriler: dict) -> list:
+    """Kuralı uygular, çıkarılan oyuncuların adlarını döndürür (yerinde siler)."""
+    cikan = [isim for isim, rec in veriler.items()
+             if _turk_mu(rec) and any(k in (rec.get("yetenek_kumesi") or "").lower()
+                                      for k in _ODAK_DISI_KUME)]
+    for isim in cikan:
+        del veriler[isim]
+    return cikan
+
+
 def main():
     veriler = parse(cek())
     bf = yas_backfill(veriler)
     yt = yas_dogumdan_tazele(veriler)
     kg = kulup_guncelle(veriler)
+    odak = dunya_odak_filtre(veriler)
+    print(f"Dünya odak filtresi (TR vatandaşı Unpredictable/Callow): {len(odak)} oyuncu çıkarıldı")
     with open(CIKTI, "w", encoding="utf-8") as f:
         json.dump(veriler, f, ensure_ascii=False, indent=2)
     n_ok = sum(1 for v in veriler.values() if v["degerlendirildi"])

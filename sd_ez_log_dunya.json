@@ -569,13 +569,6 @@
   },
   {
    "kaynak": "dunya",
-   "isim": "Mariza",
-   "alan": "boy",
-   "sheet": "1,72",
-   "sd": "1,64"
-  },
-  {
-   "kaynak": "dunya",
    "isim": "Gabi Portilho",
    "alan": "boy",
    "sheet": "1,64",
@@ -4090,97 +4083,6 @@
   },
   {
    "kaynak": "dunya",
-   "isim": "Yagmur Cakmak",
-   "alan": "boy",
-   "sheet": "1,66",
-   "sd": "1,60"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Yagmur Gonullu",
-   "alan": "boy",
-   "sheet": "1,67",
-   "sd": "1,63"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Elif Mutlu",
-   "alan": "boy",
-   "sheet": "1,63",
-   "sd": "1,64"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Sevgi Cinar",
-   "alan": "boy",
-   "sheet": "1,62",
-   "sd": "1,66"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Dilara Pilic",
-   "alan": "boy",
-   "sheet": "1,67",
-   "sd": "1,68"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Irmak Olmezer",
-   "alan": "boy",
-   "sheet": "1,69",
-   "sd": "1,67"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Zeynep Keskin",
-   "alan": "boy",
-   "sheet": "",
-   "sd": "1,60"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Yaren Colak",
-   "alan": "boy",
-   "sheet": "",
-   "sd": "1,64"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Ayse Sert",
-   "alan": "boy",
-   "sheet": "1,68",
-   "sd": "1,67"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Sine Buyuk",
-   "alan": "boy",
-   "sheet": "1,62",
-   "sd": "1,64"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Berra Cambaz",
-   "alan": "boy",
-   "sheet": "1,69",
-   "sd": "1,71"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Birgül Sadıkoğlu",
-   "alan": "dogum",
-   "sheet": "18.10.2000",
-   "sd": "23.03.2000"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Birgül Sadıkoğlu",
-   "alan": "boy",
-   "sheet": "1,70",
-   "sd": "1,69"
-  },
-  {
-   "kaynak": "dunya",
    "isim": "Sude Oztas",
    "alan": "boy",
    "sheet": "1,69",
@@ -4202,13 +4104,6 @@
   },
   {
    "kaynak": "dunya",
-   "isim": "Sibel Koksal",
-   "alan": "boy",
-   "sheet": "1,63",
-   "sd": "1,66"
-  },
-  {
-   "kaynak": "dunya",
    "isim": "Sana Coskun",
    "alan": "boy",
    "sheet": "1,70",
@@ -4216,38 +4111,10 @@
   },
   {
    "kaynak": "dunya",
-   "isim": "Yaren Oz",
-   "alan": "boy",
-   "sheet": "1,74",
-   "sd": "1,72"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Yaren Oz",
-   "alan": "ayak",
-   "sheet": "Sağ",
-   "sd": "Sol"
-  },
-  {
-   "kaynak": "dunya",
    "isim": "Selen Altunkulak",
    "alan": "boy",
    "sheet": "1,59",
    "sd": "1,61"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Gamze Yaman",
-   "alan": "boy",
-   "sheet": "1,70",
-   "sd": "1,71"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Ela Yetim",
-   "alan": "ayak",
-   "sheet": "Sağ",
-   "sd": "Sol"
   },
   {
    "kaynak": "dunya",
@@ -5084,10 +4951,38 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Rosalia Dominguez",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Rosalia Dominguez",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Lia Ammann",
    "alan": "boy",
    "sheet": "",
    "sd": "1,70"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Silvia Cristobal",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Silvia Cristobal",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
   },
   {
    "kaynak": "dunya",
@@ -5172,6 +5067,34 @@
    "alan": "ayak",
    "sheet": "",
    "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Naja Mihelic",
+   "alan": "boy",
+   "sheet": "1,62",
+   "sd": "1,59"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Ziva Rakovec",
+   "alan": "boy",
+   "sheet": "1,75",
+   "sd": "1,76"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Sara Ketis",
+   "alan": "boy",
+   "sheet": "1,61",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Nina Kajzba",
+   "alan": "boy",
+   "sheet": "1,75",
+   "sd": "1,74"
   },
   {
    "kaynak": "dunya",
@@ -5361,6 +5284,104 @@
    "alan": "ayak",
    "sheet": "",
    "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Hapsatou Malado",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,74"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Hapsatou Malado",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Zuzanna Witek",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Zuzanna Witek",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Amber Barrett",
+   "alan": "boy",
+   "sheet": "1,68",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Mariza Nascimento",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Burcu Ozsoy",
+   "alan": "boy",
+   "sheet": "1,64",
+   "sd": "1,62"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Sine Buyuk",
+   "alan": "boy",
+   "sheet": "1,62",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Ela Yetim",
+   "alan": "ayak",
+   "sheet": "Sağ",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Yaren Oz",
+   "alan": "boy",
+   "sheet": "1,74",
+   "sd": "1,72"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Yaren Oz",
+   "alan": "ayak",
+   "sheet": "Sağ",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Sibel Koksal",
+   "alan": "boy",
+   "sheet": "1,63",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Zeynep Keskin",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,60"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Berra Cambaz",
+   "alan": "boy",
+   "sheet": "1,69",
+   "sd": "1,71"
   }
  ],
  "suphe": [
@@ -5403,6 +5424,16 @@
    "sheet_uyruk": "Burkina Faso",
    "sd_uyruk": "Burkina Faso",
    "sd_url": "https://www.soccerdonna.de/en/rabiatou-koudougou/profil/spieler_74285.html"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Xu Huan",
+   "neden": "doğum tarihi farkı 1251 gün",
+   "sheet_dogum": "06.03.1999",
+   "sd_dogum": "08.08.2002",
+   "sheet_uyruk": "PR China",
+   "sd_uyruk": "China",
+   "sd_url": "https://www.soccerdonna.de/en/xiaoxu-huang/profil/spieler_69084.html"
   }
  ]
 }

@@ -53,6 +53,8 @@ def profil_kulup(url: str) -> str | None:
         if _ulke_mu(href):
             continue
         ad = a.get_text(strip=True)
+        if ad.lower() == "delete player":        # SD sayfa bağlantısı, kulüp değil
+            continue
         if ad.lower() in ("vereinslos", "without club"):
             return "Serbest"
         if ad.lower() in ("unbekannt", "unknown", "karriereende"):
@@ -63,10 +65,25 @@ def profil_kulup(url: str) -> str | None:
         return "(Kariyer sonu)"
     return None
 
+# Süper Lig kulüplerinin SD adlarında geçen parçalar (ASCII'ye indirgenmiş, küçük harf)
+_LIG_PARCA = ("fenerbah", "galatasaray", "besiktas", "trabzon", "fomget", "ankara", "amed",
+              "hakkari", "unye", "giresun", "1207", "antalya", "yuksekova", "sile", "bilgi doga",
+              "bilgidoga", "cekmekoy", "haymana", "bakirkoy", "kayseri", "sultanbeyli")
+
+
+def _ascii(s: str) -> str:
+    import unicodedata
+    s = (s or "").replace("ı", "i").replace("İ", "I")
+    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower()
+
+
 def aktif_serbest_temizle(sd: dict) -> int:
-    """SD 'Serbest' diyor ama oyuncu SON 2 lig haftasında maça çıkmış → SD gecikmiş (yeni tescil).
-    guncel_kulup silinir ki site, oyuncuyu 'Serbest' göstermesin (2026-10-19: Sibel Duman/Bakırköy,
-    Yağmur Özkumru/Haymana 6. haftada oynadı, SD profilleri hâlâ kulüpsüz)."""
+    """SD oyuncuyu 'Serbest' ya da lig DIŞI bir kulüpte gösteriyor ama oyuncu SON 2 lig
+    haftasında maça çıkmış → SD gecikmiş (yeni tescil). guncel_kulup silinir ki site TFF
+    takımını göstersin. Örnekler: 2026-10-19 Sibel Duman/Bakırköy ve Yağmur Özkumru/Haymana
+    (SD'de kulüpsüz); 2026-10-30 María Sánchez (SD: Águila Roja) ve Raheemot Adebayo
+    (SD: Yelimay Semey) — ikisi de son haftalarda Bakırköy/Haymana'da oynadı.
+    Lig İÇİ kulüp farkına dokunulmaz: o gerçek transfer olabilir (Yetunde Ünye→Bakırköy)."""
     yol = KOK / "oyuncular.json"
     if not yol.exists():
         return 0
@@ -75,7 +92,12 @@ def aktif_serbest_temizle(sd: dict) -> int:
     n = 0
     for o in oy:
         v = sd.get(o["oyuncu"])
-        if isinstance(v, dict) and v.get("guncel_kulup") == "Serbest"                 and any(m["hafta"] >= son - 1 and m.get("dakika", 0) > 0 for m in o.get("mac_gecmisi", [])):
+        if not isinstance(v, dict) or not v.get("guncel_kulup"):
+            continue
+        gk = v["guncel_kulup"]
+        lig_disi = gk == "Serbest" or not any(p in _ascii(gk) for p in _LIG_PARCA)
+        if lig_disi and any(m["hafta"] >= son - 1 and m.get("dakika", 0) > 0
+                            for m in o.get("mac_gecmisi", [])):
             v.pop("guncel_kulup", None)
             n += 1
     return n
@@ -102,7 +124,7 @@ def isle(dosya: str, zorla: bool) -> None:
             print(f"  [{i}/{len(hedef)}] ara kayıt (kulüp bulunan: {ok})")
         time.sleep(0.3)
     if dosya == "soccerdonna_profiller.json":
-        print(f"  aktif oynayıp SD'de 'Serbest' görünen (düzeltildi): {aktif_serbest_temizle(sd)}")
+        print(f"  aktif oynayıp SD'de Serbest/lig dışı görünen (düzeltildi): {aktif_serbest_temizle(sd)}")
     json.dump(sd, open(yol, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
     print(f"  bitti: {ok}/{len(hedef)} kulüp yazıldı")
 
