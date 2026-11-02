@@ -435,5 +435,47 @@
     "dep": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
     "ev_gol": 0,
     "dep_gol": 12
+  },
+  {
+    "hafta": 9,
+    "ev": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
+    "dep": "1207 ANTALYASPOR  KADIN FUTBOL KULÜBÜ",
+    "ev_gol": 4,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 9,
+    "ev": "BAKIRKÖY KADIN FUTBOL SPOR KULÜBÜ",
+    "dep": "YÜKSEKOVA SPOR KULÜBÜ",
+    "ev_gol": 0,
+    "dep_gol": 2
+  },
+  {
+    "hafta": 9,
+    "ev": "GALATASARAY A.Ş.",
+    "dep": "SAFİ MCL BENTONİT ÜNYE KADIN SPOR KULÜBÜ",
+    "ev_gol": 3,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 9,
+    "ev": "GİRESUN SANAYİSPOR",
+    "dep": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
+    "ev_gol": 0,
+    "dep_gol": 8
+  },
+  {
+    "hafta": 9,
+    "ev": "KARADEMİR GRUP KAYSERİ KADIN FUTBOL KULÜBÜ",
+    "dep": "HAYMANA SPOR KULÜBÜ",
+    "ev_gol": 2,
+    "dep_gol": 1
+  },
+  {
+    "hafta": 9,
+    "ev": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
+    "dep": "AMED SPORTİF FAALİYETLER",
+    "ev_gol": 1,
+    "dep_gol": 0
   }
 ]

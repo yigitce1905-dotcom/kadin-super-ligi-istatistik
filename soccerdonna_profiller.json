@@ -3369,7 +3369,6 @@
     "Debut (Club)": "15.09.2024",
     "sd_isim": "Armera Tukaj",
     "es_skoru": 1.0,
-    "guncel_kulup": "Serbest",
     "guncel_kulup_t": "2026-10-29",
     "kunye_guncelleme": "2026-10-29"
   },
@@ -10399,5 +10398,23 @@
     "es_yontem": "display",
     "guncel_kulup": "Giresun Sanayispor",
     "guncel_kulup_t": "2026-10-30"
-  }
+  },
+  "SUDE KOÇ": {},
+  "JESSİCA THAYNARA ALVES DE SA SANTOS": {},
+  "MARLENE FLORES SEGOVİA": {
+    "profil_url": "https://www.soccerdonna.de/en/marlene-flores/profil/spieler_46682.html",
+    "Date of birth": "23.04.2001",
+    "Age": "25",
+    "Name in native country": "Marlene Flores Segovia",
+    "Height": "1,67",
+    "Nationality": "Bolivia",
+    "Position": "Striker - Left Wing",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Contract until": "30.06.2027",
+    "sd_isim": "Marlene Flores",
+    "es_skoru": 1.0,
+    "es_yontem": "native"
+  },
+  "DENİZ YILDIZ": {}
 }

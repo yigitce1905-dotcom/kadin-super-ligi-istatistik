@@ -61698,5 +61698,76 @@
   "SEDA TÜRKEŞ": {
     "sezonlar": [],
     "guncelleme": "2026-10-30"
+  },
+  "MARLENE FLORES SEGOVİA": {
+    "sezonlar": [
+      {
+        "sezon": "2021",
+        "kulup": "Real Tomayapo Copa Libertadores",
+        "lig": "Real Tomayapo Copa Libertadores",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      },
+      {
+        "sezon": "24/25",
+        "kulup": "Bolivia",
+        "lig": "CONMEBOL Copa América Femenina",
+        "mac": 4,
+        "gol": 0,
+        "asist": 0,
+        "sari": 1,
+        "dakika": 100,
+        "milli": true
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "Bolivia",
+        "lig": "CONMEBOL Copa América Femenina",
+        "mac": 3,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 204,
+        "milli": true
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Real Tomayapo",
+        "lig": "Copa Libertadores",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      },
+      {
+        "sezon": "20/21",
+        "kulup": "Bolivia",
+        "lig": "Freundschaftsspiele",
+        "mac": 2,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 111,
+        "milli": true
+      },
+      {
+        "sezon": "19/20",
+        "kulup": "Bolivia",
+        "lig": "CONMEBOL Sub20 Femenina",
+        "mac": 4,
+        "gol": 1,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 339,
+        "milli": true
+      }
+    ],
+    "guncelleme": "2026-11-02"
   }
 }
