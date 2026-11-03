@@ -1,5 +1,5 @@
 {
-  "guncelleme": "2026-27 sezonu 9. hafta (02.11.2026)",
+  "guncelleme": "2026-27 sezonu 9. hafta (03.11.2026)",
   "not": "TFF resmi puan durumu (tff.org pageID=1000), tff_sonuc_guncelle.py ile çekildi.",
   "hafta": 9,
   "siralar": [
@@ -17,6 +17,18 @@
     },
     {
       "Sıra": 2,
+      "Takım": "BEŞİKTAŞ A.Ş.",
+      "O": "9",
+      "G": "6",
+      "B": "2",
+      "M": "1",
+      "A": "19",
+      "Y": "5",
+      "AV": "14",
+      "P": "20"
+    },
+    {
+      "Sıra": 3,
       "Takım": "ANKARA BÜYÜKŞEHİR BELEDİYESİ FOMGET SPOR KULÜBÜ",
       "O": "9",
       "G": "6",
@@ -28,7 +40,7 @@
       "P": "19"
     },
     {
-      "Sıra": 3,
+      "Sıra": 4,
       "Takım": "FENERBAHÇE ARSAVEV KADIN FUTBOL TAKIMI",
       "O": "7",
       "G": "6",
@@ -40,31 +52,31 @@
       "P": "19"
     },
     {
-      "Sıra": 4,
-      "Takım": "BEŞİKTAŞ A.Ş.",
-      "O": "8",
-      "G": "6",
-      "B": "1",
-      "M": "1",
-      "A": "19",
-      "Y": "5",
-      "AV": "14",
-      "P": "19"
-    },
-    {
       "Sıra": 5,
       "Takım": "TRABZONSPOR A.Ş.",
-      "O": "8",
+      "O": "9",
       "G": "5",
-      "B": "3",
+      "B": "4",
       "M": "0",
       "A": "21",
       "Y": "4",
       "AV": "17",
-      "P": "18"
+      "P": "19"
     },
     {
       "Sıra": 6,
+      "Takım": "HAKKARİGÜCÜ SPOR",
+      "O": "9",
+      "G": "5",
+      "B": "3",
+      "M": "1",
+      "A": "14",
+      "Y": "5",
+      "AV": "9",
+      "P": "18"
+    },
+    {
+      "Sıra": 7,
       "Takım": "YÜKSEKOVA SPOR KULÜBÜ",
       "O": "9",
       "G": "4",
@@ -74,18 +86,6 @@
       "Y": "5",
       "AV": "19",
       "P": "16"
-    },
-    {
-      "Sıra": 7,
-      "Takım": "HAKKARİGÜCÜ SPOR",
-      "O": "8",
-      "G": "4",
-      "B": "3",
-      "M": "1",
-      "A": "12",
-      "Y": "5",
-      "AV": "7",
-      "P": "15"
     },
     {
       "Sıra": 8,
@@ -174,13 +174,13 @@
     {
       "Sıra": 15,
       "Takım": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
-      "O": "8",
+      "O": "9",
       "G": "1",
       "B": "0",
-      "M": "7",
+      "M": "8",
       "A": "6",
-      "Y": "71",
-      "AV": "-65",
+      "Y": "73",
+      "AV": "-67",
       "P": "0"
     },
     {

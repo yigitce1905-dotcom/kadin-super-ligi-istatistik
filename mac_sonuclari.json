@@ -466,6 +466,13 @@
   },
   {
     "hafta": 9,
+    "ev": "HAKKARİGÜCÜ SPOR",
+    "dep": "ŞİLE BİLGİDOĞA SPORTİF YATIRIM HİZMETLERİ A.Ş",
+    "ev_gol": 2,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 9,
     "ev": "KARADEMİR GRUP KAYSERİ KADIN FUTBOL KULÜBÜ",
     "dep": "HAYMANA SPOR KULÜBÜ",
     "ev_gol": 2,
@@ -476,6 +483,13 @@
     "ev": "SULTANBEYLİ GÜCÜ SPOR KULÜBÜ",
     "dep": "AMED SPORTİF FAALİYETLER",
     "ev_gol": 1,
+    "dep_gol": 0
+  },
+  {
+    "hafta": 9,
+    "ev": "TRABZONSPOR A.Ş.",
+    "dep": "BEŞİKTAŞ A.Ş.",
+    "ev_gol": 0,
     "dep_gol": 0
   }
 ]
