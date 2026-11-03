@@ -10123,20 +10123,20 @@
     "kunye_guncelleme": "2026-10-29"
   },
   "MARIA ALEJANDRA SANCHEZ": {
-    "profil_url": "https://www.soccerdonna.de/en/alejandra-sanchez/profil/spieler_52619.html",
+    "profil_url": "https://www.soccerdonna.de/en/maria-sanchez/profil/spieler_79406.html",
     "Date of birth": "16.05.1995",
-    "Place of birth": "Bogotá",
     "Age": "31",
     "Name in native country": "María Alejandra Sánchez Espinel",
+    "Height": "1,65",
     "Nationality": "Colombia",
-    "Position": "Striker",
+    "Position": "Defence - Fullback, left",
     "Market value": "unknown",
-    "Contract until": "?",
-    "sd_isim": "Alejandra Sánchez",
-    "es_skoru": 0.85,
-    "es_yontem": "display",
-    "guncel_kulup_t": "2026-10-29",
-    "kunye_guncelleme": "2026-10-29"
+    "Contract until": "30.06.2027",
+    "Debut (Club)": "23.10.2026",
+    "eski_profil_url": "https://www.soccerdonna.de/en/alejandra-sanchez/profil/spieler_52619.html",
+    "sd_isim": "María Sánchez",
+    "es_skoru": 1.0,
+    "es_yontem": "kokpit-kadro+TFF-2026-11-03"
   },
   "MIA LENEICE DARDEN": {
     "profil_url": "https://www.soccerdonna.de/en/mia-darden/profil/spieler_94621.html",
@@ -10399,8 +10399,33 @@
     "guncel_kulup": "Giresun Sanayispor",
     "guncel_kulup_t": "2026-10-30"
   },
-  "SUDE KOÇ": {},
-  "JESSİCA THAYNARA ALVES DE SA SANTOS": {},
+  "SUDE KOÇ": {
+    "profil_url": "https://www.soccerdonna.de/en/sude-koc/profil/spieler_126412.html",
+    "Date of birth": "22.06.2010",
+    "Age": "16",
+    "Name in native country": "Sude Koç",
+    "Nationality": "Turkey",
+    "Position": "Midfield",
+    "Market value": "unknown",
+    "sd_isim": "Sude Koc",
+    "es_skoru": 1.0,
+    "es_yontem": "kokpit-kadro+TFF-2026-11-03"
+  },
+  "JESSİCA THAYNARA ALVES DE SA SANTOS": {
+    "profil_url": "https://www.soccerdonna.de/en/thaynara/profil/spieler_126270.html",
+    "Date of birth": "29.09.2002",
+    "Place of birth": "Brasília",
+    "Age": "24",
+    "Height": "1,67",
+    "Nationality": "Brazil",
+    "Position": "Goalkeeper",
+    "Foot": "right",
+    "Market value": "unknown",
+    "Contract until": "30.06.2027",
+    "sd_isim": "Thaynara",
+    "es_skoru": 1.0,
+    "es_yontem": "kokpit-kadro+TFF-forma1-2026-11-03"
+  },
   "MARLENE FLORES SEGOVİA": {
     "profil_url": "https://www.soccerdonna.de/en/marlene-flores/profil/spieler_46682.html",
     "Date of birth": "23.04.2001",
