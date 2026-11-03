@@ -821,6 +821,13 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Aurelle Awona",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,71"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Tatiana Ewodo Ekogo",
    "alan": "boy",
    "sheet": "",
@@ -1598,6 +1605,13 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Sandra Jessen",
+   "alan": "boy",
+   "sheet": "1,71",
+   "sd": "1,68"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Fanney Inga Birkisdottir",
    "alan": "boy",
    "sheet": "1,72",
@@ -2008,6 +2022,13 @@
    "alan": "boy",
    "sheet": "1,67",
    "sd": "1,63"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Nesryne El-Chad",
+   "alan": "boy",
+   "sheet": "1,72",
+   "sd": "1,67"
   },
   {
    "kaynak": "dunya",
@@ -2887,6 +2908,20 @@
   {
    "kaynak": "dunya",
    "isim": "Safietou Sagna",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Ndeye Awa Diakhate",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,66"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Ndeye Awa Diakhate",
    "alan": "ayak",
    "sheet": "",
    "sd": "Sağ"
