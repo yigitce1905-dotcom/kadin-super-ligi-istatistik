@@ -2081,7 +2081,7 @@ def _kontrat_taban_uygula(veri: dict) -> None:
             v["Contract until"] = _KONTRAT_TABAN_2627
 
 
-@st.cache_data(ttl=3600)
+@st.cache_data
 def sd_profiller_yukle():
     yol = _DIZIN / "soccerdonna_profiller.json"
     if yol.exists():
@@ -2361,7 +2361,7 @@ def scouting_gsheet_yukle() -> pd.DataFrame:
     except Exception:
         return pd.DataFrame()
 
-@st.cache_data(ttl=3600)
+@st.cache_data
 def scouting_sd_yukle() -> dict:
     """SoccerDonna verilerini JSON'dan yükler."""
     yol = pathlib.Path(__file__).parent / "scouting_sd_profiller.json"
@@ -2371,7 +2371,7 @@ def scouting_sd_yukle() -> dict:
     with open(yol, encoding="utf-8") as f:
         return json.load(f)
 
-@st.cache_data(ttl=3600)
+@st.cache_data
 def scouting_leistung_yukle() -> dict:
     """SoccerDonna kariyer (leistungsdaten) verilerini JSON'dan yükler."""
     yol = pathlib.Path(__file__).parent / "scouting_leistungsdaten.json"
@@ -2381,9 +2381,8 @@ def scouting_leistung_yukle() -> dict:
     with open(yol, encoding="utf-8") as f:
         return json.load(f)
 
-@st.cache_data(ttl=3600)
-
-@st.cache_data(show_spinner=False)
+# Önbelleksiz (05.11.2026, Render bellek): tek çağıranları birlesik_sd_yukle / birlesik_leistung_yukle
+# zaten cache'li; buradaki çift cache katmanı aynı büyük dict'i 2 kez daha saklıyordu.
 def _sheet_alias_ekle(out: dict) -> dict:
     """Sheet (havuz) adlarını diakritik-toleranslı takma ad olarak ekler:
     sheet 'ANDREA STAŠKOVÁ' ↔ SD/kariyer 'ANDREA STASKOVA' — böylece sitedeki
@@ -2418,7 +2417,7 @@ def birlesik_leistung_yukle() -> dict:
     """Kariyer (sezon) verileri: scouting + TR ligi (analig_leistungsdaten.json)."""
     return _sheet_alias_ekle({**analig_leistung_yukle(), **scouting_leistung_yukle()})
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(show_spinner=False)
 def scotr_yukle() -> dict:
     """Sco Tr scout raporları (1207 Antalyaspor — nitelik notları, rol, tarz).
     NOT (Yiğit, 2026-09-01: "siteyi hızlandır"): önceden cache'siz kalmıştı —
@@ -2459,16 +2458,19 @@ def _scotr_arsiv_esleme_haritalari():
     return norm_harita, token_harita
 
 
-def _scotr_arsiv_bul(isim: str) -> dict:
+def _scotr_arsiv_bul(isim: str, _d: dict = None, _haritalar: tuple = None) -> dict:
     """arşiv (2025-26) Sco TR kaydını bulur — scotr_bul ile aynı esneklikte (tam/
     normalize/eksik-orta-ad toleranslı token alt-küme). Bulunursa '_arsiv_sezon'
-    işaretiyle döner (çağıran UI'da uyarı göstermek için kullanır)."""
-    d = scotr_arsiv_yukle()
+    işaretiyle döner (çağıran UI'da uyarı göstermek için kullanır).
+    _d / _haritalar: döngüde çağıran önceden bir kez alıp verir — st.cache_data her
+    çağrıda TAM KOPYA döndürdüğü için (bkz. _benzer_havuz, 05.11.2026 bellek aşımı)."""
+    d = _d if _d is not None else scotr_arsiv_yukle()
     if not d:
         return {}
     rec = d.get(isim)
     if not rec:
-        norm_harita, token_harita = _scotr_arsiv_esleme_haritalari()
+        norm_harita, token_harita = (_haritalar if _haritalar is not None
+                                     else _scotr_arsiv_esleme_haritalari())
         n = _isim_norm(isim)
         k = norm_harita.get(n) or token_harita.get(tuple(sorted(n.split())))
         if not k:
@@ -2493,7 +2495,7 @@ def _scout_kadro_ham() -> dict:
         return json.load(f)
 
 
-@st.cache_data(ttl=3600)
+@st.cache_data
 def scout_kadro_yukle() -> dict:
     """Zengin scout kadro raporları (Kulüp/Lig/Sözleşme + Yetenek Kümesi + tarz ✔).
 
@@ -2517,7 +2519,7 @@ def scout_kadro_yukle() -> dict:
             and not (not v.get("degerlendirildi") and _isim_norm(k) in arsiv_degerli)}
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(show_spinner=False)
 def scotr_kadro_yukle() -> dict:
     """Sco TR raporlarını scouting (Sco 🌍) şemasına çevirir — TR ligi oyuncuları
     scouting havuzunda da görünsün (Baran isteği, 11.07.2026). Dosyalar ayrı kalır;
@@ -2629,14 +2631,22 @@ def _scout_kayit_esleme_haritalari():
     return norm_harita, token_harita
 
 
-def _scout_kayit_bul(isim: str) -> dict:
+def _scout_kayit_bul(isim: str, _veri: dict = None, _haritalar: tuple = None,
+                     _arsiv: tuple = None) -> dict:
     """birlesik_scout_yukle() kaydını bulur — birebir yoksa diyakritiksiz, o da
     yoksa eksik/fazla orta ad toleranslı (token alt-küme) eşleştirir. _sd_profil_bul
-    ile aynı desen (bkz. aşağı), farklı kaynak sözlüğü için."""
-    veri = birlesik_scout_yukle()
+    ile aynı desen (bkz. aşağı), farklı kaynak sözlüğü için.
+
+    ⚠️ BELLEK (05.11.2026, Render 512 MB aşımı): birlesik_scout_yukle() bir
+    st.cache_data — HER ÇAĞRIDA ~1,5 MB'lık havuzun tam kopyasını döndürür.
+    Bu fonksiyon döngüde (ör. _benzer_havuz, ~1.500 oyuncu) çağrılınca tek sayfa
+    açılışı 2,4 GB kopya üretiyordu. Döngüde çağıran _veri / _haritalar / _arsiv'i
+    (scotr_arsiv_yukle(), _scotr_arsiv_esleme_haritalari()) önceden BİR KEZ alıp verir."""
+    veri = _veri if _veri is not None else birlesik_scout_yukle()
     if isim in veri:
         return veri[isim]
-    norm_harita, token_harita = _scout_kayit_esleme_haritalari()
+    norm_harita, token_harita = (_haritalar if _haritalar is not None
+                                 else _scout_kayit_esleme_haritalari())
     n = _isim_norm(isim)
     k = norm_harita.get(n)
     if k:
@@ -2652,7 +2662,7 @@ def _scout_kayit_bul(isim: str) -> dict:
                    and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
         if len(adaylar) == 1:
             return veri.get(adaylar.pop(), {})
-    return _scotr_arsiv_bul(isim)
+    return _scotr_arsiv_bul(isim, *(_arsiv or (None, None)))
 
 
 @st.cache_data(show_spinner=False)
@@ -4809,7 +4819,7 @@ def norm_val(val, maks):
 
 
 # ── Ana lig (TR Süper Lig) kariyer verisi ──
-@st.cache_data(ttl=3600)
+@st.cache_data
 def analig_leistung_yukle() -> dict:
     yol = pathlib.Path(__file__).parent / "analig_leistungsdaten.json"
     if not yol.exists():
@@ -4938,7 +4948,7 @@ def _deger_num(s) -> int:
     return int(d) if d else 0
 
 
-@st.cache_data(ttl=3600)
+@st.cache_data
 def _benzer_havuz(kaynak):
     """kaynak: 'analig' | 'scouting' → feature listesi (pozisyon, yaş, fizik, kariyer +
     scouting'de scout_kadro: mevki kodu, rol, piyasa değeri)."""
@@ -4960,6 +4970,10 @@ def _benzer_havuz(kaynak):
         _nihai_kaynagi = kadro
     havuz = []
     _gorulen = set()
+    # Döngü öncesi TEK çekim (bellek: bkz. _scout_kayit_bul docstring'i)
+    if kaynak == "scouting":
+        _kb_har = _scout_kayit_esleme_haritalari()
+        _kb_ars = (scotr_arsiv_yukle(), _scotr_arsiv_esleme_haritalari())
     for isim, p in profiller.items():
         if not isinstance(p, dict) or p.get("bulunamadi"):
             continue
@@ -4977,7 +4991,8 @@ def _benzer_havuz(kaynak):
         # kalıyor, TR'li oyuncu 'Transfer Hedefleri — Dünya Geneli' listesine
         # sızıyordu (Yiğit, 2026-09-01). scouting kaynağında robust bulucuya
         # düşülür (analig'de kadro zaten {} — etkisiz).
-        _kd = _scout_kayit_bul(isim) if kaynak == "scouting" else kadro.get(isim, {})
+        _kd = (_scout_kayit_bul(isim, _veri=kadro, _haritalar=_kb_har, _arsiv=_kb_ars)
+               if kaynak == "scouting" else kadro.get(isim, {}))
         # Öncelik: bu haftaki TFF verisi > SD güncel kulüp > scout_kadro > kariyer
         # geçmişinin EN SON sezonu. Sonuncusu (sez[0]) bayat olabilir — oyuncu
         # transfer olduysa (Yiğit, 2026-09-01: Nehir Zeytünlü örneği — bu sezon
@@ -5580,7 +5595,7 @@ def _pozisyon_saha(kodlar) -> str:
         f"{nokta}</svg>")
 
 
-@st.cache_data(ttl=3600)
+@st.cache_data
 def _rol_matrisi_yukle():
     """Baran'ın rol/nitelik matrisi (rol_matrisi.json). Yoksa None."""
     try:
@@ -5679,7 +5694,7 @@ def render_rol_verimliligi(kayit: dict, anahtar: str = ""):
                 + "</div></div>", unsafe_allow_html=True)
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(show_spinner=False)
 def _havuz_rol_siralamasi() -> dict:
     """Her rol için TÜM Dünya scouting havuzunun rol-uyum sıralaması.
     {rol_ad: [(isim, skor_1000, kapsam_yuzde), ...]} — skora göre azalan.
@@ -6815,7 +6830,7 @@ def _scotr_segman(nt: str) -> int:
 
 
 # ─── NİTELİK İKİZLERİ (Moneyball) — 47 boyutlu nitelik vektörü benzerliği ────
-@st.cache_data(show_spinner=False, ttl=3600)
+@st.cache_data(show_spinner=False)
 def _nitelik_ham():
     """Değerlendirilmiş oyuncuların HAM nitelik vektörleri (0-10 segman).
     Saha ve kaleci ayrı uzay. Anahtar biçimi: 'grup:Nitelik Adı'."""
@@ -6841,7 +6856,7 @@ def _nitelik_ham():
     return ham_saha, ham_gk
 
 
-@st.cache_data(show_spinner=False, ttl=3600)
+@st.cache_data(show_spinner=False)
 def _nitelik_vektorleri():
     """Havuz ortalamasından sapmaya merkezlenmiş vektörler → kosinüs profil ŞEKLİNİ ölçer."""
     ham_saha, ham_gk = _nitelik_ham()
@@ -6949,7 +6964,7 @@ def _nitelik_ikizleri(isim: str, n: int = 5, _kadro: dict = None):
 
 
 # ─── ROL UYGUNLUĞU — Baran'ın rol atamalarından öğrenilen prototiplere benzerlik ──
-@st.cache_data(show_spinner=False, ttl=3600)
+@st.cache_data(show_spinner=False)
 def _rol_merkezleri():
     """Her rolün nitelik prototipi: o role atanmış oyuncuların merkezlenmiş
     vektör ortalaması (≥4 oyuncusu olan roller). {(rol, gk_mi): merkez_vektör}"""
