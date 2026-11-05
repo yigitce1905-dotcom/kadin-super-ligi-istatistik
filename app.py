@@ -9372,6 +9372,28 @@ with st.sidebar:
                      type="primary" if _aktif_sayfa == "kokpit" else "secondary"):
             _nav_git("kokpit")
 
+# ─── Blog duyurusu (süreli) ──────────────────────────────────────────────────
+# Yazılar blog.womenfootballscouting.com'da (GitHub Pages, repo wfs-blog). Kart hem ana
+# sayfa hero'sunda hem yeni ziyaretçinin düştüğü Scouting Havuzu sayfasında çıkar;
+# bitiş tarihinden sonra kendiliğinden kalkar.
+def _blog_duyuru(kap_stil: str = ""):
+    import datetime as _dt_blog
+    if _dt_blog.date.today() > _dt_blog.date(2026, 11, 14):
+        return
+    st.markdown(
+        f"<div style='{kap_stil}'>"
+        "<a href='https://blog.womenfootballscouting.com/fenerbahce-galatasaray-derbi/' "
+        "target='_blank' rel='noopener' style='display:block;text-decoration:none;color:#a78bfa;"
+        "margin:10px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid #3d3180;"
+        "border-left:4px solid #f7d417;border-right:4px solid #fdb913;"
+        "background:linear-gradient(90deg,#0b2163dd 0%,#1a1438f2 50%,#7d1226dd 100%);'>"
+        f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı · Derbi dosyası', 'New article · Derby file'))}</span><br>"
+        f"<span class='tp-sekilli' style='color:#ffffff;'>"
+        f"{_buyuk(t('Derbi öncesi üç bakış: Fenerbahçe – Galatasaray', 'Three views before the derby: Fenerbahçe – Galatasaray'))}</span><br>"
+        f"<span class='tp-arametin'>{t('Üç yorumcu, dört kilit eşleşme, skor tahminleri — okumak için tıkla →', 'Three pundits, four key duels, score predictions (in Turkish) — click to read →')}</span>"
+        "</a></div>", unsafe_allow_html=True)
+
+
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
 # Yiğit (2026-08-18): ilk açılışta TR ligi verileri göze girmesin, dünya
 # scouting ağı havası olsun. Çipler bu yüzden DÜNYA havuzuyla açılır; TR
@@ -9419,6 +9441,7 @@ if _ust_blok_goster:
       if st.button(t("🌍 Scouting Havuzunu Keşfet", "🌍 Explore the Scouting Pool"),
                    key="hero_scouting_cta", width="stretch", type="primary"):
           _nav_git("scouting")
+      _blog_duyuru()
 
 # "🔐 Giriş" butonuna basılınca ana alanda açılan giriş kartı
 # (üyelik rozeti + giriş/çıkış artık sol navigasyon panelinde)
@@ -11784,6 +11807,7 @@ if st.session_state.get("sayfa") == "scouting":
                     # (Liste-sayfası Shortlist/Etiket bloğu kaldırıldı — oyuncu profilindeki
                     #  "⭐ Shortliste ekle" yeterli ve daha kullanışlı.)
     else:
+        _blog_duyuru("max-width:560px;margin:24px auto -40px;")
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
              background:linear-gradient(135deg,#1a0f2e,#1e1338);
