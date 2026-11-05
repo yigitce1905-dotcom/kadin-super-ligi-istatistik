@@ -1144,6 +1144,94 @@ def kulup_credentials_yukle() -> dict:
         return {}
 
 
+# ─── ARKA PLANDA TAZELENEN ÖNBELLEK (Google Sheets okumaları) ──────────────────
+# 05.11.2026 (Yiğit: "ciddi hantallaşma var, hızlanma istiyorum"): üyeler/deneme/
+# My Squad/My 11/etiket/not okumaları st.cache_data(ttl=60-300) idi. Süre dolunca
+# o anki ziyaretçi, sayfası açılmadan önce ~10 Google API çağrısını SIRAYLA bekliyordu
+# (canlıda 19 sn'lik takılmalar). Şimdi: süresi dolan veri BEKLETMEDEN döner, tazesi
+# arka planda çekilir. Yazma sonrası .clear() → sonraki okuma senkron ve güncel.
+import threading as _threading
+import time as _time
+import copy as _copy
+
+
+@st.cache_resource(show_spinner=False)
+def _arka_depo() -> dict:
+    """Süreç boyu tek depo (modül her rerun'da yeniden çalıştığı için global olamaz)."""
+    return {"kilit": _threading.Lock(), "veri": {}, "nesil": {}, "yenileniyor": set()}
+
+
+def _arka_tazelenen(tazelik: int):
+    """Sıfır argümanlı okuyucular için stale-while-revalidate önbelleği.
+    - İlk çağrı / .clear() sonrası: senkron çeker.
+    - Veri `tazelik` sn'den eskiyse: eskisini hemen döndürür, arka planda tek iş
+      parçacığıyla tazeler.
+    - Arka plan tazelemesi boş sonuç getirirse (Sheets geçici hatası → {} / [])
+      ve elde dolu veri varsa eskisi korunur.
+    - Arka plan çekimi sürerken .clear() gelirse (yazma oldu) o çekim sonucu
+      atılır (nesil sayacı) → yazma öncesi bayat veri geri yazılmaz.
+    Dönüş her çağrıda derin kopya (st.cache_data ile aynı: çağıran değiştirebilir)."""
+    def dec(fn):
+        ad = fn.__name__
+
+        def _arkada_yenile(nesil):
+            d = _arka_depo()
+            try:
+                yeni = fn()
+                with d["kilit"]:
+                    if d["nesil"].get(ad, 0) != nesil:
+                        return                       # bu arada yazma oldu → sonucu at
+                    eski = d["veri"].get(ad)
+                    if not yeni and eski and eski[1]:
+                        d["veri"][ad] = (_time.time(), eski[1])   # geçici hata: eskiyi koru
+                    else:
+                        d["veri"][ad] = (_time.time(), yeni)
+            except Exception:
+                pass
+            finally:
+                with d["kilit"]:
+                    d["yenileniyor"].discard(ad)
+
+        def sarici():
+            d = _arka_depo()
+            with d["kilit"]:
+                kayit = d["veri"].get(ad)
+                nesil = d["nesil"].get(ad, 0)
+                baslat = False
+                if kayit is not None and _time.time() - kayit[0] > tazelik \
+                        and ad not in d["yenileniyor"]:
+                    d["yenileniyor"].add(ad)
+                    baslat = True
+            if kayit is None:
+                deger = fn()
+                with d["kilit"]:
+                    if d["nesil"].get(ad, 0) == nesil:
+                        d["veri"][ad] = (_time.time(), deger)
+                return _copy.deepcopy(deger)
+            if baslat:
+                th = _threading.Thread(target=_arkada_yenile, args=(nesil,), daemon=True,
+                                       name=f"tazele-{ad}")
+                try:   # _gs_sheet() (cache_resource) "missing ScriptRunContext" log uyarısı vermesin
+                    from streamlit.runtime.scriptrunner import add_script_run_ctx, get_script_run_ctx
+                    add_script_run_ctx(th, get_script_run_ctx())
+                except Exception:
+                    pass
+                th.start()
+            return _copy.deepcopy(kayit[1])
+
+        def clear():
+            d = _arka_depo()
+            with d["kilit"]:
+                d["veri"].pop(ad, None)
+                d["nesil"][ad] = d["nesil"].get(ad, 0) + 1
+
+        sarici.clear = clear
+        sarici.__name__ = ad
+        sarici.__doc__ = fn.__doc__
+        return sarici
+    return dec
+
+
 # ─── ÜYE SİSTEMİ (self-servis kayıt → GSheets "Uyeler") ───────────────────────
 def _uyeler_ws():
     """GSheets 'Uyeler' worksheet'i (yoksa oluşturur). Lokalde GSheets yoksa None."""
@@ -1162,7 +1250,7 @@ def _uyeler_ws():
             return None
 
 
-@st.cache_data(ttl=300, show_spinner=False)
+@_arka_tazelenen(300)
 def uyeler_yukle() -> dict:
     """Kayıtlı üyeler → {kullanici(lower): {hash, ad, takim, rol, tier, bitis_tarihi, durum}}.
     5 dk cache → her rerun GSheets okumaz (oturum geri-yükleme sıcak yol). Kayıt/değişiklik
@@ -2869,7 +2957,7 @@ def _shortlist_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=120, show_spinner=False)
+@_arka_tazelenen(120)
 def shortlist_yukle() -> dict:
     ws = _shortlist_ws()
     if ws is not None:
@@ -2961,7 +3049,7 @@ def _my11_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=120, show_spinner=False)
+@_arka_tazelenen(120)
 def my11_yukle() -> dict:
     ws = _my11_ws()
     if ws is not None:
@@ -3041,7 +3129,7 @@ def _deneme_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=120)
+@_arka_tazelenen(120)
 def denemeler_yukle() -> list:
     ws = _deneme_ws()
     if ws is not None:
@@ -3140,7 +3228,7 @@ def _internal_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=60)
+@_arka_tazelenen(60)
 def _internal_tum() -> list:
     ws = _internal_ws()
     if ws is not None:
@@ -3346,7 +3434,7 @@ def _etiket_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=120, show_spinner=False)
+@_arka_tazelenen(120)
 def etiket_yukle() -> dict:
     ws = _etiket_ws()
     if ws is not None:
@@ -3431,7 +3519,7 @@ def _scoutnot_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=120, show_spinner=False)
+@_arka_tazelenen(120)
 def scoutnot_yukle() -> dict:
     ws = _scoutnot_ws()
     if ws is not None:
@@ -3522,7 +3610,7 @@ def _oneriler_ws():
         except Exception:
             return None
 
-@st.cache_data(ttl=60, show_spinner=False)
+@_arka_tazelenen(60)
 def oneriler_yukle() -> list:
     ws = _oneriler_ws()
     if ws is not None:
@@ -6699,31 +6787,38 @@ def render_scouting_detay(tam_isim):
     st.markdown("<div style='height:3px;background:linear-gradient(90deg,#e5484d,#7c1d24);"
                 "border-radius:2px;margin:18px 0 12px;'></div>", unsafe_allow_html=True)
 
+    # Bölüm gövdeleri fragment'te saklanır → büyük havuzları (leistung_data, _d5) değil,
+    # yalnız bu oyuncunun küçük kaydını yakalasınlar (oturum başına bellek).
+    _kar_kayit = _sd_norm_bul(leistung_data, tam_isim)
+    _gozlem_var = bool(_d5.get(tam_isim))
+
     # ── 1) KARİYER ────────────────────────────────────────────────────────────
-    with st.expander(_bolum_baslik("KARİYER", "CAREER", "kariyer"), expanded=False):
+    def _govde_kariyer():
         if not _bolum_acik("kariyer"):
             _bolum_kilit("kariyer")
         else:
-            _sezonlar = _sd_norm_bul(leistung_data, tam_isim).get("sezonlar", [])
+            _sezonlar = _kar_kayit.get("sezonlar", [])
             if _sezonlar:
                 _milli_ad = ulke_goster((_kadro.get("vatandaslik") or _ilk_uyruk(vatandas) or "").strip())
                 _kariyer_kulup_milli(tam_isim, _sezonlar, "scouting", _milli_ad,
-                                     _sd_norm_bul(leistung_data, tam_isim).get("guncelleme", ""))
+                                     _kar_kayit.get("guncelleme", ""))
             else:
                 st.info(t("Bu oyuncu için detaylı kariyer verisi bulunamadı.", "No detailed career data found for this player."))
+    _tembel_bolum("KARİYER", "CAREER", "kariyer", tam_isim, _govde_kariyer)
 
     # ── 2) GÖZLEM ─────────────────────────────────────────────────────────────
-    with st.expander(_bolum_baslik("GÖZLEM", "OBSERVATION", "gozlem"), expanded=False):
+    def _govde_gozlem():
         if not _bolum_acik("gozlem"):
             _bolum_kilit("gozlem")
-        elif _d5.get(tam_isim):
+        elif _gozlem_var:
             render_scout_kadro_raporu(tam_isim, "gozlem")
         else:
             st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
                          "No scout observation added for this player yet."))
+    _tembel_bolum("GÖZLEM", "OBSERVATION", "gozlem", tam_isim, _govde_gozlem)
 
     # ── 3) ANALİZ ─────────────────────────────────────────────────────────────
-    with st.expander(_bolum_baslik("ANALİZ", "ANALYSIS", "analiz"), expanded=False):
+    def _govde_analiz():
         if not _bolum_acik("analiz"):
             _bolum_kilit("analiz")
         else:
@@ -6731,6 +6826,7 @@ def render_scouting_detay(tam_isim):
             render_scout_kadro_raporu(tam_isim, "analiz")   # Scout raporu + Nitelik İkizleri
             benzer_oyuncular_goster(tam_isim, "scouting")
             capraz_transfer_goster(tam_isim, hedef_kaynak="scouting")
+    _tembel_bolum("ANALİZ", "ANALYSIS", "analiz", tam_isim, _govde_analiz)
 
 
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
@@ -8226,6 +8322,29 @@ def _bolum_acik(k: str) -> bool:
 def _bolum_baslik(tr_, en_, k: str) -> str:
     return ("" if _bolum_acik(k) else "🔒 ") + t(tr_, en_)
 
+def _tembel_bolum(tr_, en_, k: str, oyuncu: str, govde):
+    """Profil AÇ-KAPA bölümü — içerik YALNIZ bölüm açılınca hesaplanır.
+    05.11.2026 (Yiğit: "Observation ve Analysis çok zor açılıyor"): eskiden kapalı
+    bölümler de her profil açılışında baştan hesaplanıyordu (Render 0,5 CPU'da
+    sayfanın yarısı); başlık görünüp içerik hâlâ hesaplanırken tıklanınca açılmıyordu.
+    Şimdi bölüm bir fragment + durumlu expander: açınca yalnız o bölüm çalışır
+    (sayfanın geri kalanı yeniden çalışmaz); açık bölüm sonraki çalışmalarda açık kalır.
+    Kilitli bölüm (üyelik yetmiyor) eskisi gibi düz expander + kilit mesajı."""
+    baslik = _bolum_baslik(tr_, en_, k)
+    if not _bolum_acik(k):
+        with st.expander(baslik, expanded=False):
+            govde()
+        return
+
+    @st.fragment
+    def _parca():
+        exp = st.expander(baslik, expanded=False, key=f"bolum_{k}_{oyuncu}",
+                          on_change="rerun")
+        with exp:
+            if exp.open:
+                govde()
+    _parca()
+
 def _bolum_kilit(k: str):
     """Kilitli bölümün gövdesi: hangi üyelikle açılacağını söyler."""
     ger = _BOLUM_TIER.get(k, "basic")
@@ -8623,7 +8742,7 @@ def _render_ana_lig_profil_ic(secili):
                     "border-radius:2px;margin:18px 0 12px;'></div>", unsafe_allow_html=True)
 
         # ── 1) İSTATİSTİKLER ──────────────────────────────────────────────────
-        with st.expander(_bolum_baslik("İSTATİSTİKLER", "STATISTICS", "istatistik"), expanded=False):
+        def _govde_istatistik():
             if not _bolum_acik("istatistik"):
                 _bolum_kilit("istatistik")
             else:
@@ -8877,8 +8996,9 @@ def _render_ana_lig_profil_ic(secili):
                           </span>
                         </div>"""
                     st.markdown(satirlar, unsafe_allow_html=True)
+        _tembel_bolum("İSTATİSTİKLER", "STATISTICS", "istatistik", secili, _govde_istatistik)
         # ── 2) KARİYER ────────────────────────────────────────────────────────
-        with st.expander(_bolum_baslik("KARİYER", "CAREER", "kariyer"), expanded=False):
+        def _govde_kariyer():
             if not _bolum_acik("kariyer"):
                 _bolum_kilit("kariyer")
             else:
@@ -8940,8 +9060,9 @@ def _render_ana_lig_profil_ic(secili):
                     # Milli takım: SD uyruk sırasında İLK ülke (= NT; çift-uyruklularda doğru takım)
                     _al_milli = ulke_goster(_ilk_uyruk(_sd_profil_bul(secili).get("Nationality", "")))
                     _kariyer_kulup_milli(secili, _al_sezon, "analig", _al_milli, _al.get("guncelleme", ""))
+        _tembel_bolum("KARİYER", "CAREER", "kariyer", secili, _govde_kariyer)
         # ── 3) GÖZLEM ─────────────────────────────────────────────────────────
-        with st.expander(_bolum_baslik("GÖZLEM", "OBSERVATION", "gozlem"), expanded=False):
+        def _govde_gozlem():
             if not _bolum_acik("gozlem"):
                 _bolum_kilit("gozlem")
             elif scotr_bul(secili):
@@ -8949,8 +9070,9 @@ def _render_ana_lig_profil_ic(secili):
             else:
                 st.caption(t("Bu oyuncu için scout gözlemi henüz eklenmedi.",
                              "No scout observation added for this player yet."))
+        _tembel_bolum("GÖZLEM", "OBSERVATION", "gozlem", secili, _govde_gozlem)
         # ── 4) ANALİZ ─────────────────────────────────────────────────────────
-        with st.expander(_bolum_baslik("ANALİZ", "ANALYSIS", "analiz"), expanded=False):
+        def _govde_analiz():
             if not _bolum_acik("analiz"):
                 _bolum_kilit("analiz")
             else:
@@ -8963,6 +9085,7 @@ def _render_ana_lig_profil_ic(secili):
 
                 # Benzer transfer hedefleri (scouting havuzundan — çapraz)
                 capraz_transfer_goster(secili)
+        _tembel_bolum("ANALİZ", "ANALYSIS", "analiz", secili, _govde_analiz)
 
 
 
@@ -9833,7 +9956,7 @@ def _odemeler_ws():
             return None
 
 
-@st.cache_data(ttl=120, show_spinner=False)
+@_arka_tazelenen(120)
 def odemeler_yukle() -> list:
     """Ödeme bildirimleri (admin için). 2 dk cache; bildirim/onay sonrası .clear()."""
     ws = _odemeler_ws()
