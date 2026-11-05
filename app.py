@@ -9382,7 +9382,7 @@ def _blog_duyuru(kap_stil: str = ""):
         return
     st.markdown(
         f"<div style='{kap_stil}'>"
-        "<a href='https://blog.womenfootballscouting.com/fenerbahce-galatasaray-derbi/' "
+        f"<a href='https://blog.womenfootballscouting.com/{t('', 'en/')}fenerbahce-galatasaray-derbi/' "
         "target='_blank' rel='noopener' style='display:block;text-decoration:none;color:#a78bfa;"
         "margin:10px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid #3d3180;"
         "border-left:4px solid #f7d417;border-right:4px solid #fdb913;"
@@ -9390,7 +9390,7 @@ def _blog_duyuru(kap_stil: str = ""):
         f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı · Derbi dosyası', 'New article · Derby file'))}</span><br>"
         f"<span class='tp-sekilli' style='color:#ffffff;'>"
         f"{_buyuk(t('Derbi öncesi üç bakış: Fenerbahçe – Galatasaray', 'Three views before the derby: Fenerbahçe – Galatasaray'))}</span><br>"
-        f"<span class='tp-arametin'>{t('Üç yorumcu, dört kilit eşleşme, skor tahminleri — okumak için tıkla →', 'Three pundits, four key duels, score predictions (in Turkish) — click to read →')}</span>"
+        f"<span class='tp-arametin'>{t('Üç yorumcu, ilk 11 tahminleri, animasyonlu senaryolar — okumak için tıkla →', 'Three pundits, predicted line-ups, animated scenarios — click to read →')}</span>"
         "</a></div>", unsafe_allow_html=True)
 
 
