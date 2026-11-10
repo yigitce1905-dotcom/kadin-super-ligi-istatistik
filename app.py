@@ -4445,6 +4445,183 @@ def _ab_uyumlu(*uyruklar) -> bool:
             return True
     return False
 
+# ─── Scouting listesi: başlığa tıklayınca sıralanan tablo (iframe) ───────────
+# 2026-11-10 isteği: W-Scope'taki gibi her sütun başlığına tıklayınca liste o
+# metriğe göre dizilsin (Değer dahil). Filtreli listenin TAMAMI JSON olarak
+# iframe'e gider; sıralama + 100'lük sayfalama tarayıcıda yapılır, tıklama
+# sunucuya gitmez. Seçilen sıralama sessionStorage'da kalır (filtre değişince
+# de korunur). Mobilde başlık satırı gizli olduğu için üstte açılır menü var.
+_WS_TABLO_SABLON = r"""<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:transparent;color:#d4d4d8;font-family:'Inter','Segoe UI',sans-serif;color-scheme:dark}
+#root{padding:0 0 4px}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:0 0 8px;font-size:0.75rem;color:#71717a}
+.bar .hint{flex:1 1 auto}
+.btn{background:#16161f;border:1px solid #2a2a38;color:#d4d4d8;border-radius:8px;padding:5px 11px;font:600 0.74rem 'Inter',sans-serif;cursor:pointer}
+.btn:hover:not(:disabled){border-color:#7c3aed;color:#c4b5fd}
+.btn:disabled{opacity:.4;cursor:default}
+.msort{display:none;align-items:center;gap:6px}
+.msort select{background:#16161f;border:1px solid #2a2a38;color:#d4d4d8;border-radius:8px;padding:5px 8px;font:600 0.74rem 'Inter',sans-serif}
+.ws-wrap{background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;overflow:auto;max-height:640px}
+.ws-table{width:100%;border-collapse:collapse;font-size:0.8rem}
+.ws-table thead th{position:sticky;top:0;z-index:2;background:#0d0d16;text-align:left;padding:10px 12px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:#71717a;border-bottom:1px solid #2a2a38;white-space:nowrap;cursor:pointer;user-select:none}
+.ws-table thead th:hover{color:#c4b5fd}
+.ws-table thead th.on{color:#a78bfa}
+.ws-table thead th .ar{display:inline-block;margin-left:5px;font-size:0.55rem;opacity:.45;letter-spacing:0}
+.ws-table thead th.on .ar{opacity:1}
+.ws-table th.num,.ws-table td.num{text-align:right}
+.ws-table tbody tr{border-bottom:1px solid #1a1a28;transition:background .12s}
+.ws-table tbody tr:hover{background:#13131f}
+.ws-table td{padding:9px 12px;color:#d4d4d8;white-space:nowrap;vertical-align:middle}
+.nm{display:flex;align-items:center;gap:10px}
+.ws-ava{width:28px;height:28px;border-radius:50%;background:#221f33;color:#a78bfa;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:0.78rem;flex-shrink:0}
+.ws-name{color:#f4f4f5;font-weight:600;text-decoration:none}
+.ws-name:hover{color:#c4b5fd}
+.ws-sub{color:#71717a;font-size:0.64rem;margin-top:1px}
+.ws-pos{background:#2a2a38;color:#d4d4d8;padding:2px 7px;border-radius:5px;font-size:0.64rem;font-family:'Sora',monospace;font-weight:700}
+.ws-mono{font-family:'Sora',monospace}
+.ws-ring{width:30px;height:30px;border-radius:50%;border:2px solid;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;font-family:'Sora',monospace}
+.ws-table td:first-child,.ws-table th:first-child{position:sticky;left:0;z-index:1;background:#0d0d16}
+.ws-table thead th:first-child{z-index:3}
+.ws-table tbody tr:hover td:first-child{background:#13131f}
+.pager{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:8px;font-size:0.75rem;color:#64748b}
+.pager .info{font-variant-numeric:tabular-nums}
+.empty{padding:18px;color:#71717a;font-size:0.85rem}
+@media (max-width:700px){
+  .bar .hint{display:none}
+  .msort{display:inline-flex}
+  .ws-wrap{overflow:visible;max-height:none;background:transparent;border:none}
+  .ws-table,.ws-table tbody,.ws-table tr,.ws-table td{display:block;width:100%}
+  .ws-table thead{display:none}
+  .ws-table tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;padding:12px 14px;margin-bottom:10px}
+  .ws-table tbody tr:hover{background:#0d0d16}
+  .ws-table tbody td{display:inline-flex;align-items:center;gap:5px;width:auto;max-width:100%;min-width:0;padding:0;border:none;white-space:normal;font-size:0.8rem;position:static}
+  .ws-table tbody td:first-child{flex:1 1 100%;padding-bottom:9px;margin-bottom:3px;border-bottom:1px solid #1c1c2a;white-space:normal}
+  .ws-table tbody td:first-child .ws-name{font-size:0.95rem}
+  .ws-table tbody td[data-label]::before{content:attr(data-label);color:#6b7280;font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:0.03em}
+}
+</style></head><body><div id="root">
+<div class="bar">
+  <span class="hint" id="hint"></span>
+  <span class="msort"><select id="msel" aria-label="sort"></select><button class="btn" id="mdir" type="button">▼</button></span>
+  <button class="btn" id="shuf" type="button"></button>
+</div>
+<div class="ws-wrap" id="wrap"><table class="ws-table"><thead id="th"></thead><tbody id="tb"></tbody></table></div>
+<div class="pager"><button class="btn" id="prev" type="button"></button><button class="btn" id="next" type="button"></button><span class="info" id="info"></span></div>
+</div>
+<script>
+(function(){
+var D=__VERI__, T=__ETIKET__;
+var COLS=[
+ {k:'n',l:T.player,t:'s',f:1},{k:'p',l:T.pos,t:'s',f:1},{k:'c',l:T.club,t:'s',f:1},
+ {k:'a',l:T.age,t:'n',f:1,num:1},{k:'kk',l:T.contract,t:'n',f:1},{k:'vv',l:T.value,t:'n',f:-1},
+ {k:'m',l:T.m,t:'n',f:-1,num:1},{k:'g',l:T.g,t:'n',f:-1,num:1},{k:'x',l:T.a,t:'n',f:-1,num:1},
+ {k:'sp',l:T.score,t:'n',f:-1}];
+var PS=100,sk=null,sd=1,pg=0,base=[],ord=[],i;
+for(i=0;i<D.length;i++)base.push(i);
+try{var ss=JSON.parse(sessionStorage.getItem('wsSort')||'null');if(ss&&COLS.some(function(c){return c.k===ss.k})){sk=ss.k;sd=ss.d===-1?-1:1}}catch(e){}
+var BASE='';try{BASE=window.parent.location.origin+window.parent.location.pathname}catch(e){}
+var $=function(id){return document.getElementById(id)};
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function col(k){for(var j=0;j<COLS.length;j++)if(COLS[j].k===k)return COLS[j];return null}
+function doSort(){
+  if(!sk){ord=base.slice();return}
+  var c=col(sk);
+  ord=base.slice().sort(function(x,y){
+    var a=D[x][sk],b=D[y][sk],ma=(a===null||a===undefined||a===''),mb=(b===null||b===undefined||b==='');
+    if(ma!==mb)return ma?1:-1;
+    var r=0;
+    if(!ma)r=(c.t==='s'?String(a).localeCompare(String(b),'tr',{sensitivity:'base'}):(a-b))*sd;
+    if(r===0)r=String(D[x].n).localeCompare(String(D[y].n),'tr');
+    return r;});
+}
+function head(){
+  var h='<tr>';
+  COLS.forEach(function(c){var on=c.k===sk;
+    h+='<th class="'+(c.num?'num ':'')+(on?'on':'')+'" data-k="'+c.k+'" tabindex="0" title="'+esc(T.sortBy)+'" aria-sort="'+(on?(sd>0?'ascending':'descending'):'none')+'">'+esc(c.l)+'<span class="ar">'+(on?(sd>0?'▲':'▼'):'↕')+'</span></th>';});
+  return h+'</tr>';
+}
+function row(r){
+  var star=r.s?'<span style="color:#fbbf24;">★</span> ':'';
+  var sc=r.sc?'<span class="ws-ring" style="border-color:'+esc(r.sr)+';color:'+esc(r.sr)+';">'+esc(r.sc)+'</span>':'<span style="color:#52525b;">—</span>';
+  return '<tr><td><div class="nm"><span class="ws-ava">'+esc((r.n||'?').charAt(0).toUpperCase())+'</span><div>'
+   +'<a class="ws-name" href="'+esc(BASE+r.h)+'" target="_blank" rel="noopener">'+star+esc(r.n)+'</a>'
+   +'<div class="ws-sub">'+esc(r.u)+'</div></div></div></td>'
+   +'<td data-label="'+esc(T.posS)+'">'+(r.p?'<span class="ws-pos">'+esc(r.p)+'</span>':'')+'</td>'
+   +'<td data-label="'+esc(T.clubS)+'">'+esc(r.c)+'<div class="ws-sub">'+esc(r.l)+'</div></td>'
+   +'<td class="num ws-mono" data-label="'+esc(T.age)+'">'+(r.a==null?'—':r.a)+'</td>'
+   +'<td class="ws-mono" data-label="'+esc(T.contract)+'" style="color:'+esc(r.kr)+';">'+(r.k?esc(r.k):'—')+'</td>'
+   +'<td class="ws-mono" data-label="'+esc(T.value)+'">'+(r.v?esc(r.v):'—')+'</td>'
+   +'<td class="num ws-mono" data-label="'+esc(T.m)+'">'+(r.m||'—')+'</td>'
+   +'<td class="num ws-mono" data-label="'+esc(T.g)+'">'+(r.g||'—')+'</td>'
+   +'<td class="num ws-mono" data-label="'+esc(T.a)+'">'+(r.x||'—')+'</td>'
+   +'<td data-label="'+esc(T.score)+'">'+sc+'</td></tr>';
+}
+function fit(){try{var fe=window.frameElement;if(!fe)return;var h=Math.ceil($('root').getBoundingClientRect().bottom)+2;if(fe.offsetHeight<h-2||fe.offsetHeight>h+40){fe.style.height=h+'px'}}catch(e){}}
+function render(){
+  doSort();
+  var n=ord.length,pages=Math.max(1,Math.ceil(n/PS));if(pg>=pages)pg=pages-1;if(pg<0)pg=0;
+  var s=pg*PS,e=Math.min(n,s+PS),h='';
+  for(var j=s;j<e;j++)h+=row(D[ord[j]]);
+  $('th').innerHTML=head();
+  $('tb').innerHTML=h||'<tr><td class="empty">'+esc(T.none)+'</td></tr>';
+  $('info').textContent=(n?(s+1):0)+'–'+e+' / '+n+' · '+T.page+' '+(pg+1)+'/'+pages;
+  $('prev').disabled=pg===0;$('next').disabled=pg>=pages-1;
+  $('msel').value=sk||'';$('mdir').textContent=sd>0?'▲':'▼';$('mdir').disabled=!sk;
+  fit();
+}
+function save(){try{if(sk)sessionStorage.setItem('wsSort',JSON.stringify({k:sk,d:sd}));else sessionStorage.removeItem('wsSort')}catch(e){}}
+function setSort(k){var c=col(k);if(!c)return;if(sk===k)sd=-sd;else{sk=k;sd=c.f}pg=0;save();render();$('wrap').scrollTop=0}
+function goPage(d){pg+=d;render();$('wrap').scrollTop=0;try{if(window.innerWidth<=700)window.frameElement.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}
+$('th').addEventListener('click',function(e){var th=e.target.closest('th');if(th)setSort(th.getAttribute('data-k'))});
+$('th').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var th=e.target.closest('th');if(th){e.preventDefault();setSort(th.getAttribute('data-k'))}}});
+$('prev').addEventListener('click',function(){goPage(-1)});
+$('next').addEventListener('click',function(){goPage(1)});
+$('shuf').addEventListener('click',function(){
+  for(var j=base.length-1;j>0;j--){var q=Math.floor(Math.random()*(j+1)),t=base[j];base[j]=base[q];base[q]=t}
+  sk=null;sd=1;pg=0;save();render();$('wrap').scrollTop=0;});
+var o='<option value="">'+esc(T.random)+'</option>';COLS.forEach(function(c){o+='<option value="'+c.k+'">'+esc(c.l)+'</option>'});$('msel').innerHTML=o;
+$('msel').addEventListener('change',function(){var v=this.value;if(!v){sk=null;pg=0;save();render()}else{sk=null;setSort(v)}});
+$('mdir').addEventListener('click',function(){if(sk){sd=-sd;pg=0;save();render()}});
+$('hint').textContent=T.hint;$('shuf').textContent='🔀 '+T.shuffle;$('prev').textContent='‹ '+T.prev;$('next').textContent=T.next+' ›';
+render();
+window.addEventListener('resize',fit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+setInterval(fit,1500);
+})();
+</script></body></html>"""
+
+
+def _ws_tablo_bileseni(satirlar: list) -> None:
+    """Scouting listesini başlıktan sıralanabilir tablo olarak basar (bkz. üstteki not)."""
+    _veri = json.dumps(satirlar, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    _etiket = json.dumps({
+        "player": t("Oyuncu", "Player"), "pos": t("Pozisyon", "Position"),
+        "club": t("Kulüp / Lig", "Club / League"), "age": t("Yaş", "Age"),
+        "contract": t("Kontrat", "Contract"), "value": t("Değer", "Value"),
+        "m": t("Maç", "M"), "g": t("Gol", "G"), "a": t("Asist", "A"),
+        "score": t("Skor", "Score"), "posS": t("Pozisyon", "Pos"), "clubS": t("Kulüp", "Club"),
+        "page": t("sayfa", "page"), "prev": t("Önceki", "Prev"), "next": t("Sonraki", "Next"),
+        "shuffle": t("Rastgele sıra", "Shuffle"), "random": t("Rastgele sıra", "Random order"),
+        "hint": t("Sıralamak için sütun başlığına tıkla; tekrar tıklayınca yön değişir.",
+                  "Click a column header to sort; click again to reverse."),
+        "sortBy": t("Bu sütuna göre sırala", "Sort by this column"),
+        "none": t("Oyuncu yok.", "No players."),
+    }, ensure_ascii=False)
+    _html = _WS_TABLO_SABLON.replace("__VERI__", _veri).replace("__ETIKET__", _etiket)
+    try:
+        if hasattr(st, "iframe"):
+            st.iframe(_html, height="content")
+        else:
+            import streamlit.components.v1 as _bilesen
+            _bilesen.html(_html, height=760, scrolling=True)
+    except Exception as _e:
+        st.error(t("Tablo yüklenemedi: ", "Table failed to load: ") + str(_e))
+
+
 def _kontrat_guncel(sozlesme, sd_contract):
     """Güncel sözleşme bitişi. SoccerDonna 'Contract until' geçerli bir tarihse onu
     döndürür (SD sheet'ten DAHA GÜNCEL — Baran'ın sozlesme'si bayat kalabiliyor);
@@ -11655,93 +11832,28 @@ if st.session_state.get("sayfa") == "scouting":
                     def _esc(s):
                         return str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-                    # ── SAYFALAMA ────────────────────────────────────────────
-                    # Tüm sonuç TEK st.markdown çağrısında basılıyordu. 1540
-                    # oyuncuda bu ~1,2 MB tek satırlık HTML demek; Streamlit
-                    # dizeyi önce Markdown ayrıştırıcısından geçirdiği için o
-                    # boyutta bozuluyor ve ham etiketler ekrana METİN olarak
-                    # dökülüyordu ("<td class='num ws-mono' data-label='Maç'>").
-                    # 100 satır ≈ 78 KB — güvenli aralık. (2026-08-17)
-                    # ── SIRALAMA ─────────────────────────────────────────────
-                    # Varsayılan SKOR: 1540 kişilik listede en iyi oyuncuların
-                    # başta olması gerekir. Eskiden sıralama yoktu, sheet satır
-                    # sırası geliyordu (önce Dünya, sonra TR) — yani listenin
-                    # başındaki isim tamamen tesadüfiydi.
-                    # VARSAYILAN RASTGELE (Yiğit, 2026-08-17): havuz keşif içindir,
-                    # hep aynı isimlerin başta olması listeyi tek yönlü okutuyor.
-                    # Tohum OTURUMDA SABİT — aksi hâlde her sayfa çevirmede yeniden
-                    # karışır ve aynı oyuncu iki kez/hiç görünmezdi.
-                    _SIRA = {
-                        t("🔀 Rastgele", "🔀 Random"): ("_Rastgele", True),
-                        t("Skor (yüksek → düşük)", "Score (high → low)"): ("_Skor", False),
-                        t("İsim (A → Z)", "Name (A → Z)"): (isim_col, True),
-                        t("Yaş (genç → yaşlı)", "Age (young → old)"): ("_Yas", True),
-                        t("Yaş (yaşlı → genç)", "Age (old → young)"): ("_Yas", False),
-                        t("Maç (çok → az)", "Matches (many → few)"): ("_Mac", False),
-                    }
+                    # ── SIRALAMA + SAYFALAMA → tarayıcıda (_ws_tablo_bileseni) ──
+                    # Eski 'Sırala' kutusu (5 seçenek, Değer yoktu) + sayfa kutusu
+                    # kaldırıldı (2026-11-10). Başlangıç sırası yine RASTGELE
+                    # (Yiğit, 2026-08-17): tohum oturumda sabit, sayfa çevirince
+                    # liste yeniden karışmaz.
                     if "sc_karistir_tohum" not in st.session_state:
                         import random as _rnd
                         st.session_state["sc_karistir_tohum"] = _rnd.randint(0, 10**6)
-                    _sc1, _sc2 = st.columns([1.4, 2.6])
-                    with _sc1:
-                        _sira_sec = st.selectbox(t("Sırala", "Sort"), list(_SIRA),
-                                                 key="sc_sirala")
-                    _skol, _artan = _SIRA[_sira_sec]
-                    if _skol == "_Rastgele":
-                        with _sc2:
-                            st.markdown("<div style='height:28px;'></div>",
-                                        unsafe_allow_html=True)
-                            if st.button("🔀 " + t("Yeniden karıştır", "Reshuffle"),
-                                         key="sc_karistir"):
-                                import random as _rnd2
-                                st.session_state["sc_karistir_tohum"] = _rnd2.randint(0, 10**6)
-                                st.session_state["sc_sayfa"] = 1
-                                st.rerun()
-                        filtered = filtered.sample(
-                            frac=1, random_state=st.session_state["sc_karistir_tohum"])
-                    elif _skol == "_Yas":
-                        # yaşı bilinmeyenler (0) hep SONA — küçük diye başa gelmesin
-                        filtered = filtered.assign(
-                            _YasSira=filtered["_Yas"].replace(0, 999 if _artan else -1))
-                        filtered = filtered.sort_values(
-                            ["_YasSira", isim_col], ascending=[_artan, True],
-                            kind="mergesort")
-                    else:
-                        filtered = filtered.sort_values(
-                            [_skol, isim_col], ascending=[_artan, True],
-                            kind="mergesort")
+                    filtered = filtered.sample(
+                        frac=1, random_state=st.session_state["sc_karistir_tohum"])
 
-                    _SAYFA_BOY = 100
-                    _top_kayit = len(filtered)
-                    _sayfa_sayisi = max(1, -(-_top_kayit // _SAYFA_BOY))
-                    _sf_key = "sc_sayfa"
-                    if st.session_state.get(_sf_key, 1) > _sayfa_sayisi:
-                        st.session_state[_sf_key] = 1
-                    if _sayfa_sayisi > 1:
-                        _pc1, _pc2 = st.columns([1, 3])
-                        with _pc1:
-                            _sayfa = st.number_input(
-                                t("Sayfa", "Page"), min_value=1,
-                                max_value=_sayfa_sayisi,
-                                key=_sf_key, step=1)
-                        with _pc2:
-                            _bas_i = (_sayfa - 1) * _SAYFA_BOY
-                            st.markdown(
-                                f"<div style='padding-top:30px;font-size:0.78rem;color:#64748b;'>"
-                                f"{_bas_i + 1}–{min(_bas_i + _SAYFA_BOY, _top_kayit)}"
-                                f" / {_top_kayit} · {_sayfa_sayisi} "
-                                f"{t('sayfa', 'pages')}</div>",
-                                unsafe_allow_html=True)
-                    else:
-                        _sayfa = 1
-                    _dilim = filtered.iloc[(_sayfa - 1) * _SAYFA_BOY:
-                                           (_sayfa - 1) * _SAYFA_BOY + _SAYFA_BOY]
+                    def _tarih_anahtar(_s):
+                        try:
+                            _g, _a, _y = (int(x) for x in str(_s).split(".")[:3])
+                            return _y * 10000 + _a * 100 + _g
+                        except Exception:
+                            return None
 
-                    _isim_sira, _sat = [], ""
-                    for _, row in _dilim.iterrows():
+                    _satirlar = []
+                    for _, row in filtered.iterrows():
                         tam_isim = str(row.get(isim_col, ""))
                         vatandas = str(row.get(vat_col, "")) if vat_col else ""
-                        _isim_sira.append(tam_isim)
                         sd  = sd_data.get(tam_isim, {})
                         _kd = _kadro_roster.get(tam_isim, {})
                         _yas = _kd.get("yas") or sd.get("Age", "") or ""
@@ -11756,54 +11868,33 @@ if st.session_state.get("sayfa") == "scouting":
                         if not _kl and _sezk:
                             _kl = _sezk[0].get("kulup", "")
                         _sz = _kontrat_guncel(_kd.get("sozlesme", ""), sd.get("Contract until", ""))
-                        _dg = _kd.get("deger", "") or ""
-                        _mac = sum(s.get("mac", 0) for s in _sezk)
-                        _gol = sum(s.get("gol", 0) for s in _sezk)
-                        _ast = sum(s.get("asist", 0) for s in _sezk)
-                        _nh  = _kd.get("nihai", "")
-                        if _nh:
-                            _rc = _scotr_renk(_scotr_puan(_nh))
-                            _skor = f"<span class='ws-ring' style='border-color:{_rc};color:{_rc};'>{_nh}</span>"
-                        else:
-                            _skor = "<span style='color:#52525b;'>—</span>"
-                        _poz_html = f"<span class='ws-pos'>{_esc(_poz)}</span>" if _poz else ""
-                        _yildiz = "<span style='color:#fbbf24;'>★</span> " if tam_isim in _sl_liste else ""
-                        # (🇹🇷 havuz rozeti KALDIRILDI — yabancı oyuncularda uyruk bayrağı
-                        #  gibi okunuyordu; TR liginde oynadığı zaten Kulüp/Lig kolonunda)
-                        _bayrak = _esc(ulke_goster(_uyruk_goster(vatandas))) if vatandas else ""
-                        _href = f"?oyuncu={_urlquote(tam_isim)}&dil={_dil_q}"
-                        _harf = (tam_isim[:1] or "?").upper()
-                        _sat += (
-                            "<tr>"
-                            "<td><div style='display:flex;align-items:center;gap:10px;'>"
-                            f"<span class='ws-ava'>{_esc(_harf)}</span><div>"
-                            f"<a class='ws-name' href='{_href}' target='_blank'>{_yildiz}{_esc(tam_isim)}</a>"
-                            f"<div class='ws-sub'>{_bayrak}</div></div></div></td>"
-                            f"<td data-label='{t('Pozisyon','Pos')}'>{_poz_html}</td>"
-                            f"<td data-label='{t('Kulüp','Club')}'>{_esc(_kl)}<div class='ws-sub'>{_esc(_lg)}</div></td>"
-                            f"<td class='num ws-mono' data-label='{t('Yaş','Age')}'>{_esc(_yas) if str(_yas).strip().isdigit() and 13 < int(str(_yas)) < 50 else '—'}</td>"
-                            f"<td class='ws-mono' data-label='{t('Kontrat','Contract')}' style='color:{_kontrat_renk(_sz)};'>{_esc(_sz) or '—'}</td>"
-                            f"<td class='ws-mono' data-label='{t('Değer','Value')}'>{_esc(_dg) or '—'}</td>"
-                            f"<td class='num ws-mono' data-label='{t('Maç','M')}'>{_mac or '—'}</td>"
-                            f"<td class='num ws-mono' data-label='{t('Gol','G')}'>{_gol or '—'}</td>"
-                            f"<td class='num ws-mono' data-label='{t('Asist','A')}'>{_ast or '—'}</td>"
-                            f"<td data-label='{t('Skor','Score')}'>{_skor}</td></tr>"
-                        )
-                    # zırh: markdown'ı bölebilecek satır sonu/kontrol karakterlerini süz
-                    _sat = "".join(c for c in _sat if ord(c) >= 32)
-
-                    _thead = (
-                        "<tr>"
-                        f"<th>{t('Oyuncu','Player')}</th><th>{t('Pozisyon','Position')}</th>"
-                        f"<th>{t('Kulüp / Lig','Club / League')}</th><th class='num'>{t('Yaş','Age')}</th>"
-                        f"<th>{t('Kontrat','Contract')}</th><th>{t('Değer','Value')}</th>"
-                        f"<th class='num'>{t('Maç','M')}</th><th class='num'>{t('Gol','G')}</th>"
-                        f"<th class='num'>{t('Asist','A')}</th><th>{t('Skor','Score')}</th></tr>"
-                    )
-                    st.markdown(
-                        f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
-                        f"<tbody>{_sat}</tbody></table></div>",
-                        unsafe_allow_html=True)
+                        _dg = str(_kd.get("deger", "") or "")
+                        _dg_say = _re.sub(r"\D", "", _dg)
+                        _nh = str(_kd.get("nihai", "") or "")
+                        _np = _scotr_puan(_nh) if _nh else 0.0
+                        _ys = str(_yas).strip()
+                        _satirlar.append({
+                            "n": tam_isim,
+                            "h": f"?oyuncu={_urlquote(tam_isim)}&dil={_dil_q}",
+                            "s": tam_isim in _sl_liste,
+                            "u": ulke_goster(_uyruk_goster(vatandas)) if vatandas else "",
+                            "p": str(_poz or ""),
+                            "c": str(_kl or ""),
+                            "l": str(_lg or ""),
+                            "a": int(_ys) if _ys.isdigit() and 13 < int(_ys) < 50 else None,
+                            "k": str(_sz or ""),
+                            "kk": _tarih_anahtar(_sz) if _sz else None,
+                            "kr": _kontrat_renk(_sz),
+                            "v": _dg,
+                            "vv": int(_dg_say) if _dg_say else None,
+                            "m": int(sum(s.get("mac", 0) or 0 for s in _sezk)),
+                            "g": int(sum(s.get("gol", 0) or 0 for s in _sezk)),
+                            "x": int(sum(s.get("asist", 0) or 0 for s in _sezk)),
+                            "sc": _nh,
+                            "sp": round(_np, 2) if _nh else None,
+                            "sr": _scotr_renk(_np) if _nh else "",
+                        })
+                    _ws_tablo_bileseni(_satirlar)
                     # (Liste-sayfası Shortlist/Etiket bloğu kaldırıldı — oyuncu profilindeki
                     #  "⭐ Shortliste ekle" yeterli ve daha kullanışlı.)
     else:
