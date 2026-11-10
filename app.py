@@ -2681,6 +2681,19 @@ def scotr_kadro_yukle() -> dict:
     return out
 
 
+def _sd_deger_bicim(s) -> str:
+    """SoccerDonna 'Market value' ('40.000 €') → site biçimi '€40.000'. SD değer
+    vermiyorsa ('unknown', '?', boş) '' döner — çağıran sheet değerini korur."""
+    import re as _r
+    s = str(s or "").strip()
+    if not s or s.lower() in ("unknown", "unbekannt", "?", "-", "—"):
+        return ""
+    m = _r.fullmatch(r"([\d.]+)\s*€", s)
+    if m:
+        return "€" + m.group(1)
+    return s if _r.search(r"\d", s) else ""
+
+
 @st.cache_data(show_spinner=False)
 def birlesik_scout_yukle() -> dict:
     """Scouting havuzu = Sco 🌍 (uluslararası) + Sco TR (Türkiye ligleri).
@@ -2703,6 +2716,37 @@ def birlesik_scout_yukle() -> dict:
             del out[eski_k]                   # ayni isim farklı harfle çift kayıt - bayat Dünya kaydı kaldırılır
         out[k] = v
         _norm_harita[n] = k
+    # Piyasa değeri SoccerDonna'dan (2026-11-10: "piyasa değerlerimiz güncel değil";
+    # 2026-10-19 kuralı: sheet ile SD uyuşmazsa SD kazanır). SD'de geçerli değer
+    # yoksa sheet'teki 'deger' korunur. Değerleri sd_tam_tazele.py tazeler.
+    # Önbellekli fonksiyon olduğu için bu birleştirme oturum başına bir kez yapılır.
+    # DİKKAT: birlesik_sd_yukle() burada ÇAĞRILAMAZ — o _sheet_alias_ekle üzerinden
+    # bu fonksiyonu çağırıyor (sonsuz döngü). Ham yükleyiciler kullanılır.
+    try:
+        _kaynaklar = []
+        for _ham in (scouting_sd_yukle(), sd_profiller_yukle()):
+            _nm = {}
+            for _k, _v in _ham.items():
+                if isinstance(_v, dict):
+                    _nm.setdefault(_n3(_k), _v)
+            _kaynaklar.append((_ham, _nm))
+        for k in list(out):
+            if not isinstance(out[k], dict):
+                continue
+            _mv = ""
+            for _ham, _nm in _kaynaklar:
+                _r = _ham.get(k)
+                if not isinstance(_r, dict):
+                    _r = _nm.get(_n3(k)) or {}
+                _mv = _sd_deger_bicim(_r.get("Market value"))
+                if _mv:
+                    break
+            if _mv and _mv != out[k].get("deger"):
+                _yeni = dict(out[k])
+                _yeni["deger"] = _mv
+                out[k] = _yeni
+    except Exception:
+        pass
     return out
 
 
