@@ -4593,6 +4593,25 @@ select option{background:#16161f;color:#d4d4d8}
 .ws-table td:first-child,.ws-table th:first-child{position:sticky;left:0;z-index:1;background:#0d0d16}
 .ws-table thead th:first-child{z-index:3}
 .ws-table tbody tr:hover td:first-child{background:#13131f}
+.nmt{min-width:0;flex:1 1 auto}
+.cb{margin-left:auto;background:transparent;border:1px solid #2a2a38;color:#71717a;border-radius:6px;width:26px;height:24px;font-size:0.72rem;cursor:pointer;flex-shrink:0;padding:0;line-height:1}
+.cb:hover{border-color:#7c3aed;color:#c4b5fd}
+.cb[aria-pressed="true"]{background:#7c3aed;border-color:#7c3aed;color:#fff}
+.cgo{display:block;border:0;background:transparent;color:#a78bfa;font-size:0.66rem;font-weight:700;cursor:pointer;padding:0;margin-top:3px;text-decoration:underline}
+.cmp{background:#0d0d16;border:1px solid #7c3aed55;border-radius:12px;padding:10px 12px;margin:0 0 8px}
+.cmph{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:0.76rem;font-weight:700;color:#c4b5fd}
+.cmph .sp{flex:1 1 auto}
+.cmph .warn{color:#fbbf24;font-weight:600}
+.cmpn{margin-top:6px;font-size:0.76rem;color:#a1a1aa}
+.cmpw{overflow-x:auto;margin-top:8px}
+.cmpt{border-collapse:collapse;font-size:0.78rem;min-width:100%}
+.cmpt th,.cmpt td{padding:7px 12px;border-bottom:1px solid #1a1a28;text-align:center;white-space:nowrap;color:#d4d4d8}
+.cmpt thead th{font-size:0.8rem;font-weight:700;color:#f4f4f5;vertical-align:bottom;min-width:118px}
+.cmpt th:first-child,.cmpt td:first-child{position:sticky;left:0;z-index:1;background:#0d0d16;text-align:left;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#71717a;min-width:0}
+.cmpt td.best{background:#1db95418;color:#86efac;font-weight:700}
+.cmpt tbody tr:last-child td{border-bottom:0}
+.cmpt .x{border:0;background:#2a2a38;color:#d4d4d8;border-radius:50%;width:18px;height:18px;line-height:16px;padding:0;cursor:pointer;font-size:0.75rem;margin-left:6px;vertical-align:middle}
+.cmpt .x:hover{background:#7c3aed}
 .pager{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:8px;font-size:0.75rem;color:#64748b}
 .pager .info{font-variant-numeric:tabular-nums}
 .empty{padding:18px;color:#8b8b99;font-size:0.85rem;white-space:normal}
@@ -4610,6 +4629,7 @@ select option{background:#16161f;color:#d4d4d8}
   .ws-table tbody td{display:inline-flex;align-items:center;gap:5px;width:auto;max-width:100%;min-width:0;padding:0;border:none;white-space:normal;font-size:0.8rem;position:static}
   .ws-table tbody td:first-child{flex:1 1 100%;padding-bottom:9px;margin-bottom:3px;border-bottom:1px solid #1c1c2a;white-space:normal}
   .ws-table tbody td:first-child .ws-name{font-size:0.95rem}
+  .ws-table tbody td:first-child .nm{flex:1 1 auto}
   .ws-table tbody td[data-label]::before{content:attr(data-label);color:#6b7280;font-size:0.6rem;font-weight:800;text-transform:uppercase;letter-spacing:0.03em}
 }
 </style></head><body><div id="root">
@@ -4637,9 +4657,12 @@ select option{background:#16161f;color:#d4d4d8}
   <span class="cnt" id="cnt"></span>
   <span class="hint" id="hint"></span>
   <span class="msort"><select id="msel" aria-label="sort"></select><button class="btn" id="mdir" type="button">▼</button></span>
+  <button class="btn" id="colb" type="button" aria-expanded="false"></button>
   <button class="btn" id="shuf" type="button"></button>
   <button class="btn" id="copy" type="button"></button>
 </div>
+<div class="fadv" id="colp" hidden></div>
+<div class="cmp" id="cmp" hidden></div>
 <div class="ws-wrap" id="wrap"><table class="ws-table"><thead id="th"></thead><tbody id="tb"></tbody></table></div>
 <div class="pager"><button class="btn" id="prev" type="button"></button><button class="btn" id="next" type="button"></button><span class="info" id="info"></span></div>
 </div>
@@ -4660,28 +4683,64 @@ var SUB={K:['GK'],D:['RFB','RWB','RCB','MCB','LCB','LFB','LWB'],O:['DMF','CMF','
 var VP=[5000,10000,25000,50000,100000,250000,500000,1000000];
 var SC=[['AA',5],['AB',4.5],['BB',4],['BC',3.5],['CC',3],['CD',2.5],['DD',2]],SCV={};SC.forEach(function(x){SCV[x[0]]=x[1]});
 function vfmt(v){return v>=1e6?'€'+(v/1e6)+'M':'€'+(v/1000)+'K'}
-var has={cn:{},lg:{},ro:{},ik:{},tg:{},eu:false};
+var has={cn:{},lg:{},ro:{},ik:{},tg:{},eu:false},NM={};
 D.forEach(function(r){
   r.sp=gp(r.sc);var b=r.b||[];r.g1=gp(b[0]);r.g2=gp(b[1]);r.g3=gp(b[2]);r.g4=gp(b[3]);
   r.km=r.kk?months(r.kk):null;r.c=r.c||'';r._s=norm(r.n+' '+r.c);
+  r.ron=r.ro?disp(M.ro,r.ro):'';r.cnn=r.cn?disp(M.cn,r.cn):'';
+  var io=(M.ikS||[]).indexOf(r.ik);r.iko=io>=0?io:null;var to=(M.tgS||[]).indexOf(r.tg);r.tgo=to>=0?to:null;
+  NM[r.n]=r;
   if(r.cn)has.cn[r.cn]=1;if(r.lg)has.lg[r.lg]=1;if(r.ro)has.ro[r.ro]=1;if(r.ik)has.ik[r.ik]=1;if(r.tg)has.tg[r.tg]=1;if(r.e)has.eu=true;
 });
 function disp(map,k){return (map&&map[k])||k||''}
+var DASH='<span class="dim">—</span>';
+var FTL={R:T.ftRs,L:T.ftLs,B:T.ftBs};
+var CMP=[],CMAX=4,cmpWarn=false,VIS={};
+function td(cls,label,html,style){return '<td'+(cls?' class="'+cls+'"':'')+(label?' data-label="'+esc(label)+'"':'')+(style?' style="'+style+'"':'')+'>'+html+'</td>'}
+function gspan(s,p){if(!s)return DASH;var c=gc(p);return '<span class="gr" style="background:'+c+'1f;border-color:'+c+'66;color:'+c+';">'+esc(s)+'</span>'}
+function ring(r){return r.sc?'<span class="ws-ring" style="border-color:'+gc(r.sp)+';color:'+gc(r.sp)+';">'+esc(r.sc)+'</span>':DASH}
+function purl(r){return esc(BASE+'?oyuncu='+encodeURIComponent(r.n)+'&dil='+DIL)}
+function nameCell(r){
+  var star=SLS[r.n]?'<span style="color:#fbbf24;">★</span> ':'',inC=CMP.indexOf(r.n)>=0;
+  return '<td><div class="nm"><span class="ws-ava">'+esc((r.n||'?').charAt(0).toLocaleUpperCase('tr'))+'</span><div class="nmt">'
+   +'<a class="ws-name" href="'+purl(r)+'" target="_blank" rel="noopener">'+star+esc(r.n)+'</a>'
+   +'<div class="ws-sub">'+esc(r.cnn)+'</div>'
+   +(inC&&CMP.length>1?'<button type="button" class="cgo">⚖ '+esc(T.compare)+' ('+CMP.length+') ↑</button>':'')
+   +'</div><button type="button" class="cb" data-n="'+esc(r.n)+'" aria-pressed="'+(inC?'true':'false')+'" title="'+esc(T.cmpAdd)+'" aria-label="'+esc(T.cmpAdd)+'">⚖</button></div></td>';
+}
 var COLS=[
- {k:'n',l:T.player,t:'s',f:1},{k:'p',l:T.pos,t:'s',f:1},{k:'c',l:T.club,t:'s',f:1},
- {k:'a',l:T.age,t:'n',f:1,num:1},{k:'kk',l:T.contract,t:'n',f:1},{k:'vv',l:T.value,t:'n',f:-1},
- {k:'m',l:T.m,t:'n',f:-1,num:1},{k:'g',l:T.g,t:'n',f:-1,num:1},{k:'x',l:T.a,t:'n',f:-1,num:1},
- {k:'g1',l:T.b1,t:'n',f:-1,ctr:1,tt:T.b1L},{k:'g2',l:T.b2,t:'n',f:-1,ctr:1,tt:T.b2L},
- {k:'g3',l:T.b3,t:'n',f:-1,ctr:1,tt:T.b3L},{k:'g4',l:T.b4,t:'n',f:-1,ctr:1,tt:T.b4L},
- {k:'sp',l:T.score,t:'n',f:-1}];
+ {k:'n',l:T.player,t:'s',f:1,fix:1,c:nameCell},
+ {k:'p',l:T.pos,t:'s',f:1,c:function(r){return td('',T.posS,r.p?'<span class="ws-pos">'+esc(r.p)+'</span>':'')}},
+ {k:'ron',l:T.role,t:'s',f:1,opt:1,c:function(r){return td('',T.role,r.ron?esc(r.ron):DASH)}},
+ {k:'c',l:T.club,t:'s',f:1,c:function(r){return td('',T.clubS,esc(r.c)+'<div class="ws-sub">'+esc(disp(M.lg,r.lg))+'</div>')}},
+ {k:'cnn',l:T.country,t:'s',f:1,opt:1,c:function(r){return td('',T.country,r.cnn?esc(r.cnn):DASH)}},
+ {k:'a',l:T.age,t:'n',f:1,num:1,c:function(r){return td('num ws-mono',T.age,r.a==null?'—':r.a)}},
+ {k:'hc',l:T.height,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.height,r.hc?r.hc+' cm':'—')}},
+ {k:'f',l:T.foot,t:'s',f:1,opt:1,c:function(r){return td('',T.foot,FTL[r.f]?esc(FTL[r.f]):DASH)}},
+ {k:'kk',l:T.contract,t:'n',f:1,c:function(r){return td('ws-mono',T.contract,r.k?esc(r.k):'—','color:'+kcol(r.km)+';')}},
+ {k:'vv',l:T.value,t:'n',f:-1,c:function(r){return td('ws-mono',T.value,r.v?esc(r.v):'—')}},
+ {k:'m',l:T.m,t:'n',f:-1,num:1,tt:T.mL,c:function(r){return td('num ws-mono',T.m,r.m||'—')}},
+ {k:'g',l:T.g,t:'n',f:-1,num:1,tt:T.gL,c:function(r){return td('num ws-mono',T.g,r.g||'—')}},
+ {k:'x',l:T.a,t:'n',f:-1,num:1,tt:T.aL,c:function(r){return td('num ws-mono',T.a,r.x||'—')}},
+ {k:'g1',l:T.b1,t:'n',f:-1,ctr:1,tt:T.b1L,c:function(r){return td('ctr',T.b1,gspan((r.b||[])[0],r.g1))}},
+ {k:'g2',l:T.b2,t:'n',f:-1,ctr:1,tt:T.b2L,c:function(r){return td('ctr',T.b2,gspan((r.b||[])[1],r.g2))}},
+ {k:'g3',l:T.b3,t:'n',f:-1,ctr:1,tt:T.b3L,c:function(r){return td('ctr',T.b3,gspan((r.b||[])[2],r.g3))}},
+ {k:'g4',l:T.b4,t:'n',f:-1,ctr:1,tt:T.b4L,c:function(r){return td('ctr',T.b4,gspan((r.b||[])[3],r.g4))}},
+ {k:'iko',l:T.cost,t:'n',f:1,opt:1,c:function(r){return td('',T.cost,r.ik?esc(disp(M.ik,r.ik)):DASH)}},
+ {k:'tgo',l:T.tr,t:'n',f:1,opt:1,c:function(r){return td('',T.tr,r.tg?esc(disp(M.tg,r.tg)):DASH)}},
+ {k:'sp',l:T.score,t:'n',f:-1,c:function(r){return td('',T.score,ring(r))}}];
 function col(k){for(var j=0;j<COLS.length;j++)if(COLS[j].k===k)return COLS[j];return null}
+function vcols(){return COLS.filter(function(c){return c.fix||VIS[c.k]})}
+function visDef(){VIS={};COLS.forEach(function(c){if(!c.opt)VIS[c.k]=1})}
+function visLoad(){visDef();try{var a=JSON.parse(localStorage.getItem('wsCols')||'null');if(a&&a.length){VIS={};a.forEach(function(k){if(col(k))VIS[k]=1})}}catch(e){}}
+function visSave(){try{localStorage.setItem('wsCols',JSON.stringify(COLS.filter(function(c){return VIS[c.k]&&!c.fix}).map(function(c){return c.k})))}catch(e){}}
 var FK=['q','pos','sub','cn','lg','amin','amax','vmin','vmax','con','sc','ro','ft','hmin','hmax','tg'];
 var F={},sk=null,sd=1,pg=0,PS=100,seed=1,base=[],ord=[];
 function reset(){FK.forEach(function(k){F[k]=''});F.ik=[]}
 reset();
 function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function shuffle(){var r=mulberry(seed);base=[];for(var i=0;i<D.length;i++)base.push(i);for(var j=base.length-1;j>0;j--){var q=Math.floor(r()*(j+1)),t=base[j];base[j]=base[q];base[q]=t}}
-function toQS(){var p=new URLSearchParams();FK.forEach(function(k){if(F[k]!=='')p.set(k,F[k])});if(F.ik.length)p.set('ik',F.ik.join('|'));if(sk){p.set('s',sk);p.set('d',String(sd))}return p.toString()}
+function toQS(){var p=new URLSearchParams();FK.forEach(function(k){if(F[k]!=='')p.set(k,F[k])});if(F.ik.length)p.set('ik',F.ik.join('|'));if(sk){p.set('s',sk);p.set('d',String(sd))}if(CMP.length)p.set('cmp',CMP.join('|'));return p.toString()}
 function fromQS(qs){
   reset();sk=null;sd=1;var p=new URLSearchParams(qs||'');
   FK.forEach(function(k){var v=p.get(k);if(v!=null)F[k]=v});
@@ -4692,6 +4751,7 @@ function fromQS(qs){
   if(['','x','6','12','18'].indexOf(F.con)<0)F.con='';
   if(['','R','L','B'].indexOf(F.ft)<0)F.ft='';
   var s=p.get('s');if(s&&col(s)){sk=s;sd=p.get('d')==='-1'?-1:1}
+  var cm=p.get('cmp');CMP=cm?cm.split('|').filter(function(n,i,a){return NM[n]&&a.indexOf(n)===i}).slice(0,CMAX):[];
 }
 function parentLoc(){try{return window.parent.location}catch(e){return null}}
 function save(){
@@ -4734,38 +4794,65 @@ function build(){
       var a=D[x][sk],b=D[y][sk],ma=(a===null||a===undefined||a===''),mb=(b===null||b===undefined||b==='');
       if(ma!==mb)return ma?1:-1;
       var r=0;if(!ma)r=(c.t==='s'?String(a).localeCompare(String(b),'tr',{sensitivity:'base'}):(a-b))*sd;
+      if(r===0&&sk==='sp')r=((D[x].q||0)-(D[y].q||0))*sd;
       if(r===0)r=String(D[x].n).localeCompare(String(D[y].n),'tr');
       return r;});}
   ord=list;
 }
 function head(){
   var h='<tr>';
-  COLS.forEach(function(c){var on=c.k===sk;
+  vcols().forEach(function(c){var on=c.k===sk;
     h+='<th class="'+(c.num?'num ':'')+(c.ctr?'ctr ':'')+(on?'on':'')+'" data-k="'+c.k+'" tabindex="0" title="'+esc(c.tt||T.sortBy)+'" aria-sort="'+(on?(sd>0?'ascending':'descending'):'none')+'">'+esc(c.l)+'<span class="ar">'+(on?(sd>0?'▲':'▼'):'↕')+'</span></th>';});
   return h+'</tr>';
 }
 var BASE='';(function(){var pl=parentLoc();try{if(pl)BASE=pl.origin+pl.pathname}catch(e){}})();
-function grade(s,p,label){
-  if(!s)return '<td class="ctr" data-label="'+esc(label)+'"><span class="dim">—</span></td>';
-  var c=gc(p);return '<td class="ctr" data-label="'+esc(label)+'"><span class="gr" style="background:'+c+'1f;border-color:'+c+'66;color:'+c+';">'+esc(s)+'</span></td>';
+function row(r){var h='<tr>';vcols().forEach(function(c){h+=c.c(r)});return h+'</tr>'}
+function renderCols(){
+  var h=esc(T.cols)+' ';
+  COLS.forEach(function(c){if(c.fix)return;h+='<button type="button" class="tgl" data-c="'+c.k+'" aria-pressed="'+(VIS[c.k]?'true':'false')+'">'+esc(c.tt||c.l)+'</button>'});
+  $('colp').innerHTML='<span class="grp">'+h+'<button type="button" class="clr" id="colr">'+esc(T.colsReset)+'</button></span>';
 }
-function row(r){
-  var star=SLS[r.n]?'<span style="color:#fbbf24;">★</span> ':'';
-  var sc=r.sc?'<span class="ws-ring" style="border-color:'+gc(r.sp)+';color:'+gc(r.sp)+';">'+esc(r.sc)+'</span>':'<span class="dim">—</span>';
-  var b=r.b||[];
-  return '<tr><td><div class="nm"><span class="ws-ava">'+esc((r.n||'?').charAt(0).toLocaleUpperCase('tr'))+'</span><div>'
-   +'<a class="ws-name" href="'+esc(BASE+'?oyuncu='+encodeURIComponent(r.n)+'&dil='+DIL)+'" target="_blank" rel="noopener">'+star+esc(r.n)+'</a>'
-   +'<div class="ws-sub">'+esc(disp(M.cn,r.cn))+'</div></div></div></td>'
-   +'<td data-label="'+esc(T.posS)+'">'+(r.p?'<span class="ws-pos">'+esc(r.p)+'</span>':'')+'</td>'
-   +'<td data-label="'+esc(T.clubS)+'">'+esc(r.c)+'<div class="ws-sub">'+esc(disp(M.lg,r.lg))+'</div></td>'
-   +'<td class="num ws-mono" data-label="'+esc(T.age)+'">'+(r.a==null?'—':r.a)+'</td>'
-   +'<td class="ws-mono" data-label="'+esc(T.contract)+'" style="color:'+kcol(r.km)+';">'+(r.k?esc(r.k):'—')+'</td>'
-   +'<td class="ws-mono" data-label="'+esc(T.value)+'">'+(r.v?esc(r.v):'—')+'</td>'
-   +'<td class="num ws-mono" data-label="'+esc(T.m)+'">'+(r.m||'—')+'</td>'
-   +'<td class="num ws-mono" data-label="'+esc(T.g)+'">'+(r.g||'—')+'</td>'
-   +'<td class="num ws-mono" data-label="'+esc(T.a)+'">'+(r.x||'—')+'</td>'
-   +grade(b[0],r.g1,T.b1)+grade(b[1],r.g2,T.b2)+grade(b[2],r.g3,T.b3)+grade(b[3],r.g4,T.b4)
-   +'<td data-label="'+esc(T.score)+'">'+sc+'</td></tr>';
+function cmpToggle(n){
+  var i=CMP.indexOf(n);cmpWarn=false;
+  if(i>=0)CMP.splice(i,1);else if(CMP.length>=CMAX)cmpWarn=true;else if(NM[n])CMP.push(n);
+  save();render();
+}
+function renderCmp(){
+  var el=$('cmp'),rs=CMP.map(function(n){return NM[n]}).filter(Boolean);
+  if(!rs.length){el.hidden=true;el.innerHTML='';return}
+  el.hidden=false;
+  var h='<div class="cmph"><span>⚖ '+esc(T.compare)+' ('+rs.length+'/'+CMAX+')</span>'+(cmpWarn?'<span class="warn">'+esc(T.cmpMax)+'</span>':'')
+   +'<span class="sp"></span><button type="button" class="btn" id="cmpx">'+esc(T.cmpClear)+'</button></div>';
+  if(rs.length<2){el.innerHTML=h+'<div class="cmpn"><b style="color:#f4f4f5;">'+esc(rs[0].n)+'</b> — '+esc(T.cmpHint)+'</div>';return}
+  function line(label,fn,key){
+    var vals=key?rs.map(function(r){var v=r[key];return (v===null||v===undefined||v==='')?null:v}):null,mx=null,same=true;
+    if(vals){vals.forEach(function(v){if(v!==vals[0])same=false;if(v!==null&&(mx===null||v>mx))mx=v})}
+    var s='<tr><td>'+esc(label)+'</td>';
+    rs.forEach(function(r,i){s+='<td'+(vals&&!same&&vals[i]!==null&&vals[i]===mx?' class="best"':'')+'>'+fn(r)+'</td>'});
+    return s+'</tr>';
+  }
+  h+='<div class="cmpw"><table class="cmpt"><thead><tr><th></th>'
+   +rs.map(function(r){return '<th><a class="ws-name" href="'+purl(r)+'" target="_blank" rel="noopener">'+esc(r.n)+'</a><button type="button" class="x" data-n="'+esc(r.n)+'" aria-label="'+esc(T.remove)+'">×</button></th>'}).join('')
+   +'</tr></thead><tbody>'
+   +line(T.pos,function(r){return r.p?'<span class="ws-pos">'+esc(r.p)+'</span>':DASH})
+   +line(T.role,function(r){return r.ron?esc(r.ron):DASH})
+   +line(T.clubS,function(r){return (r.c?esc(r.c):DASH)+(r.lg?'<div class="ws-sub">'+esc(disp(M.lg,r.lg))+'</div>':'')})
+   +line(T.country,function(r){return r.cnn?esc(r.cnn):DASH})
+   +line(T.age,function(r){return r.a==null?DASH:r.a})
+   +line(T.height,function(r){return r.hc?r.hc+' cm':DASH})
+   +line(T.foot,function(r){return FTL[r.f]?esc(FTL[r.f]):DASH})
+   +line(T.contract,function(r){return r.k?'<span style="color:'+kcol(r.km)+';">'+esc(r.k)+'</span>':DASH})
+   +line(T.value,function(r){return r.v?esc(r.v):DASH})
+   +line(T.mL,function(r){return r.m||DASH},'m')
+   +line(T.gL,function(r){return r.g||DASH},'g')
+   +line(T.aL,function(r){return r.x||DASH},'x')
+   +line(T.b1L,function(r){return gspan((r.b||[])[0],r.g1)},'g1')
+   +line(T.b2L,function(r){return gspan((r.b||[])[1],r.g2)},'g2')
+   +line(T.b3L,function(r){return gspan((r.b||[])[2],r.g3)},'g3')
+   +line(T.b4L,function(r){return gspan((r.b||[])[3],r.g4)},'g4')
+   +line(T.score,function(r){return ring(r)},'sp')
+   +'</tbody></table></div>';
+  el.innerHTML=h;
 }
 function fit(){try{var fe=window.frameElement;if(!fe)return;var h=Math.ceil($('root').getBoundingClientRect().bottom)+2;if(fe.offsetHeight<h-2||fe.offsetHeight>h+40){fe.style.height=h+'px'}}catch(e){}}
 function chipList(){
@@ -4807,15 +4894,15 @@ function render(){
   var s=pg*PS,e=Math.min(n,s+PS),h='';
   for(var j=s;j<e;j++)h+=row(D[ord[j]]);
   $('th').innerHTML=head();
-  $('tb').innerHTML=h||'<tr><td class="empty" colspan="'+COLS.length+'">'+esc(T.none)+'</td></tr>';
+  $('tb').innerHTML=h||'<tr><td class="empty" colspan="'+vcols().length+'">'+esc(T.none)+'</td></tr>';
   $('cnt').textContent=(n===D.length?n:n+' / '+D.length)+' '+T.found;
   $('info').textContent=(n?(s+1):0)+'–'+e+' / '+n+' · '+T.page+' '+(pg+1)+'/'+pages;
   $('prev').disabled=pg===0;$('next').disabled=pg>=pages-1;
   $('msel').value=sk||'';$('mdir').textContent=sd>0?'▲':'▼';$('mdir').disabled=!sk;
-  syncUI();fit();
+  renderCmp();syncUI();fit();
 }
 function apply(){pg=0;save();render();$('wrap').scrollTop=0}
-function setSort(k){var c=col(k);if(!c)return;if(sk===k)sd=-sd;else{sk=k;sd=c.f}apply()}
+function setSort(k){var c=col(k);if(!c)return;if(!c.fix&&!VIS[k]){VIS[k]=1;visSave();renderCols()}if(sk===k)sd=-sd;else{sk=k;sd=c.f}apply()}
 function goPage(d){pg+=d;render();$('wrap').scrollTop=0;try{if(window.innerWidth<=700)window.frameElement.scrollIntoView({block:'start',behavior:'smooth'})}catch(e){}}
 function opt(v,l){return '<option value="'+esc(v)+'">'+esc(l)+'</option>'}
 function fill(id,label,items){$(id).innerHTML=opt('',label+': '+T.all)+items.map(function(x){return opt(x[0],x[1])}).join('')}
@@ -4838,6 +4925,7 @@ function initUI(){
   fill('tg',T.tr,tgs.map(function(k){return [k,disp(M.tg,k)]}));
   var iks=(M.ikS||[]).filter(function(k){return has.ik[k]});Object.keys(has.ik).forEach(function(k){if(iks.indexOf(k)<0)iks.push(k)});
   $('ikg').innerHTML=iks.length?esc(T.cost)+' '+iks.map(function(k){return '<button type="button" class="tgl" data-v="'+esc(k)+'" aria-pressed="false">'+esc(disp(M.ik,k))+'</button>'}).join(''):'';
+  $('colb').textContent='👁 '+T.cols;renderCols();
   $('hint').textContent=T.hint;$('shuf').textContent='🔀 '+T.shuffle;$('copy').textContent='🔗 '+T.copy;
   $('prev').textContent='‹ '+T.prev;$('next').textContent=T.next+' ›';
   var o='<option value="">'+esc(T.random)+'</option>';COLS.forEach(function(c){o+='<option value="'+c.k+'">'+esc(c.tt||c.l)+'</option>'});$('msel').innerHTML=o;
@@ -4859,6 +4947,21 @@ $('chips').addEventListener('click',function(e){
 $('more').addEventListener('click',function(){var a=$('adv');a.hidden=!a.hidden;this.setAttribute('aria-expanded',a.hidden?'false':'true');try{sessionStorage.setItem('wsAdv',a.hidden?'0':'1')}catch(e){}fit()});
 $('th').addEventListener('click',function(e){var th=e.target.closest('th');if(th)setSort(th.getAttribute('data-k'))});
 $('th').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){var th=e.target.closest('th');if(th){e.preventDefault();setSort(th.getAttribute('data-k'))}}});
+$('tb').addEventListener('click',function(e){
+  var b=e.target.closest('.cb');if(b){cmpToggle(b.getAttribute('data-n'));return}
+  if(e.target.closest('.cgo')){try{$('cmp').scrollIntoView({block:'center',behavior:'smooth'})}catch(x){}}
+});
+$('cmp').addEventListener('click',function(e){
+  if(e.target.id==='cmpx'){CMP=[];cmpWarn=false;save();render();return}
+  var b=e.target.closest('.x');if(b)cmpToggle(b.getAttribute('data-n'));
+});
+$('colb').addEventListener('click',function(){var a=$('colp');a.hidden=!a.hidden;this.setAttribute('aria-expanded',a.hidden?'false':'true');fit()});
+$('colp').addEventListener('click',function(e){
+  if(e.target.id==='colr'){visDef();if(sk&&!VIS[sk])VIS[sk]=1;visSave();renderCols();render();return}
+  var b=e.target.closest('.tgl');if(!b)return;var k=b.getAttribute('data-c');
+  if(VIS[k]){delete VIS[k];if(sk===k){sk=null;sd=1;save()}}else VIS[k]=1;
+  visSave();renderCols();render();
+});
 $('prev').addEventListener('click',function(){goPage(-1)});
 $('next').addEventListener('click',function(){goPage(1)});
 $('shuf').addEventListener('click',function(){seed=Math.floor(Math.random()*1e9)+1;try{sessionStorage.setItem('wsSeed',String(seed))}catch(e){}shuffle();sk=null;sd=1;apply()});
@@ -4870,7 +4973,7 @@ $('copy').addEventListener('click',function(){
   function eski(){try{var ta=document.createElement('textarea');ta.value=url;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta)}catch(e){}ok()}
   try{if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(url).then(ok).catch(eski)}else eski()}catch(e){eski()}
 });
-load();shuffle();initUI();render();save();
+load();visLoad();if(sk&&!VIS[sk])VIS[sk]=1;shuffle();initUI();render();save();
 window.addEventListener('resize',fit);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 setInterval(fit,1500);
@@ -4957,6 +5060,9 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict, _sd: dict, _leistung: dict)
         _nh = str(_kd.get("nihai", "") or "").strip()
         if _nh:
             r["sc"] = _nh
+        _sa = _sira_anahtari(_kd)      # aynı skordakileri ayırmak için nitelik ortalaması
+        if _sa and _sa[1]:
+            r["q"] = int(round(_sa[1] * 100))
         _mk = _kd.get("makro") or {}
         _b = [str(_mk.get("beceri") or _mk.get("kaleci") or ""), str(_mk.get("beseri") or ""),
               str(_mk.get("fiziki") or ""), str(_mk.get("sahsi") or "")]
@@ -5019,7 +5125,17 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
         "b3L": t("Fiziki", "Physical"), "b4L": t("Şahsi", "Personal"),
         "page": t("sayfa", "page"), "prev": t("Önceki", "Prev"), "next": t("Sonraki", "Next"),
         "shuffle": t("Rastgele sıra", "Shuffle"), "random": t("Rastgele sıra", "Random order"),
-        "hint": t("Sıralamak için sütun başlığına tıkla.", "Click a column header to sort."),
+        "hint": t("Sıralamak için başlığa, karşılaştırmak için ⚖ simgesine tıkla.",
+                  "Click a header to sort, ⚖ to compare."),
+        "mL": t("Maç", "Matches"), "gL": t("Gol", "Goals"), "aL": t("Asist", "Assists"),
+        "ftRs": t("Sağ", "Right"), "ftLs": t("Sol", "Left"), "ftBs": t("Çift", "Both"),
+        "compare": t("Karşılaştır", "Compare"),
+        "cmpAdd": t("Karşılaştırmaya ekle / çıkar", "Add to / remove from comparison"),
+        "cmpHint": t("karşılaştırmak için bir oyuncu daha seç (⚖).",
+                     "pick one more player to compare (⚖)."),
+        "cmpMax": t("En fazla 4 oyuncu karşılaştırılabilir.", "You can compare up to 4 players."),
+        "cmpClear": t("Karşılaştırmayı kapat", "Close comparison"),
+        "cols": t("Sütunlar", "Columns"), "colsReset": t("Varsayılana dön", "Reset to default"),
         "sortBy": t("Bu sütuna göre sırala", "Sort by this column"),
         "none": t("Bu filtrelerle eşleşen oyuncu yok — birini gevşetmeyi dene.",
                   "No players match these filters — try relaxing one."),
@@ -7354,7 +7470,7 @@ def render_scouting_detay(tam_isim):
                 + ("#1db954" if _so_notu else "#64748b") + ';">'
                 + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
                 '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
-                '</div></div>', unsafe_allow_html=True)
+                '</div>' + _sira_satiri_html(_so, "tum") + '</div>', unsafe_allow_html=True)
 
     if _saha_svg:
         _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
@@ -7538,6 +7654,96 @@ def _scotr_segman(nt: str) -> int:
     # Ters yazım (ör. 'DC' → 'CD') veya bilinmeyen: puana göre yaklaşık
     p = _scotr_puan(nt)
     return max(0, min(10, round(p * 2 - 1))) if p > 0 else 0
+
+
+# ─── ROLDE / MEVKİDE SIRA (Futbin 'Rank #2' örneği, 2026-11-11) ───────────────
+_SIRA_ASGARI = 5      # bundan küçük grupta sıra anlam taşımaz
+
+
+def _sira_anahtari(r: dict):
+    """Sıralama anahtarı: (nihai kademe 1-10, nitelik ortalaması 0-10).
+    Nihai not Baran'ın kararıdır → önce o; aynı nottakiler nitelik ortalamasıyla
+    ayrışır (nihai yalnız 10 kademe: tek başına yüzlerce oyuncuyu eşit bırakıyor).
+    Notu olmayan (FF/boş) için None."""
+    r = r or {}
+    ns = _scotr_segman(r.get("nihai", ""))
+    if ns <= 0:
+        return None
+    seg = [s for s in (_scotr_segman(nt)
+                       for g in ("beceri", "beseri", "fiziki", "sahsi", "kaleci")
+                       for nt in (r.get(g) or {}).values() if nt) if s > 0]
+    return (ns, round(sum(seg) / len(seg), 3) if len(seg) >= 12 else 0.0)
+
+
+def _sira_mevki(r: dict) -> str:
+    """Ana mevki kodu — birleşik havuz ('mevki' listesi) ve ham Sco TR ('mevki1') şeması."""
+    m = (r or {}).get("mevki")
+    if isinstance(m, (list, tuple)):
+        return str(m[0] if m else "").strip()
+    return str(m or (r or {}).get("mevki1") or "").strip()
+
+
+@st.cache_data(show_spinner=False)
+def _sira_havuzu() -> dict:
+    """{'tum'|'tr': {'rol': {rol: [anahtar…]}, 'poz': {kod: [anahtar…]}}}, azalan sıralı.
+    'tum' = tabloda görünen havuz (düşük notlu TR hariç), 'tr' = Türkiye ligleri."""
+    out = {"tum": {"rol": {}, "poz": {}}, "tr": {"rol": {}, "poz": {}}}
+    for r in birlesik_scout_yukle().values():
+        if not isinstance(r, dict):
+            continue
+        a = _sira_anahtari(r)
+        if a is None:
+            continue
+        kapsamlar = ([] if _dusuk_notlu_tr_mi(r) else ["tum"]) + (["tr"] if r.get("havuz") == "tr" else [])
+        rol, kod = str(r.get("rol") or "").strip(), _sira_mevki(r)
+        for h in kapsamlar:
+            if rol:
+                out[h]["rol"].setdefault(rol, []).append(a)
+            if kod:
+                out[h]["poz"].setdefault(kod, []).append(a)
+    for h in out.values():
+        for grup in h.values():
+            for liste in grup.values():
+                liste.sort(reverse=True)
+    return out
+
+
+def _sira_bul(r: dict, kapsam: str = "tum") -> list:
+    """[(etiket, sıra, toplam), …] — önce rol, sonra mevki. Grup küçükse ya da
+    oyuncu o grubun üyesi değilse (arşiv kaydı, tablo dışı) o satır atlanır."""
+    a = _sira_anahtari(r)
+    if a is None:
+        return []
+    hv = _sira_havuzu().get(kapsam) or {}
+    out = []
+    for tur, ad in (("rol", str((r or {}).get("rol") or "").strip()), ("poz", _sira_mevki(r))):
+        liste = [tuple(x) for x in ((hv.get(tur) or {}).get(ad) or [])] if ad else []
+        if len(liste) < _SIRA_ASGARI or a not in liste:
+            continue
+        out.append((scout_rol_goster(ad) if tur == "rol" else ad,
+                    1 + sum(1 for x in liste if x > a), len(liste)))
+    return out
+
+
+def _sira_satiri_html(r: dict, kapsam: str = "tum") -> str:
+    """Gözlemcilik kartının alt satırı: 'Havuzda sıra: Çakılı Stoper 4. / 53 · LCB 7. / 58'."""
+    try:
+        sl = _sira_bul(r, kapsam)
+    except Exception:
+        return ""
+    if not sl:
+        return ""
+    import html as _h
+    parca = " &nbsp;·&nbsp; ".join(
+        "<span style='white-space:nowrap;'>" + _h.escape(str(ad))
+        + " <b style='font-family:Sora,sans-serif;font-style:normal;font-weight:700;font-size:12pt;color:"
+        + ("#1db954" if s <= max(3, n // 10) else "#f1f5f9") + ";'>" + str(s) + ".</b>"
+        + "<span style='font-style:normal;color:#64748b;'> / " + str(n) + "</span></span>"
+        for ad, s, n in sl)
+    bas = (t("Türkiye liglerinde sıra", "Rank in Turkish leagues") if kapsam == "tr"
+           else t("Havuzda sıra", "Rank in pool"))
+    return ("<div class='tp-arametin' style='margin-top:10px;padding-top:8px;"
+            "border-top:1px solid #2a3050;'>🏅 " + bas + ": " + parca + "</div>")
 
 
 # ─── NİTELİK İKİZLERİ (Moneyball) — 47 boyutlu nitelik vektörü benzerliği ────
@@ -9314,7 +9520,7 @@ def _render_ana_lig_profil_ic(secili):
                     + ("#1db954" if _so_notu else "#64748b") + ';">'
                     + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
                     '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
-                    '</div></div>', unsafe_allow_html=True)
+                    '</div>' + _sira_satiri_html(_so, "tr") + '</div>', unsafe_allow_html=True)
 
         if _saha_svg:
             _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
