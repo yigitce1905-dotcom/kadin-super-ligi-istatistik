@@ -147,12 +147,49 @@ def tazele(yol, yaz, limit):
     return say
 
 
+def deger_gecmisi_yaz(dosyalar):
+    """Piyasa değeri geçmişi: deger_gecmisi.json = {isim: [[tarih, euro], ...]}.
+    Değer ilk kez görüldüğünde ya da son kayıttan farklıysa yeni satır eklenir
+    (aynı değer tekrar yazılmaz). İleride 'değeri yükselenler/düşenler' listesi
+    ve profilde değer grafiği için — veri ancak biriktikçe anlam kazanır."""
+    yol = KOK / "deger_gecmisi.json"
+    gecmis = json.load(open(yol, encoding="utf-8")) if yol.exists() else {}
+    eklenen = 0
+    for ad in dosyalar:
+        f = KOK / ad
+        if not f.exists():
+            continue
+        for isim, v in json.load(open(f, encoding="utf-8")).items():
+            if not isinstance(v, dict) or v.get("bulunamadi"):
+                continue
+            mv = str(v.get("Market value") or "")
+            if not gecerli(mv):
+                continue
+            rakam = re.sub(r"[^0-9]", "", mv)
+            if not rakam:
+                continue
+            deger = int(rakam)
+            tarih = v.get("_tam_ts") or BUGUN
+            liste = gecmis.setdefault(isim, [])
+            if not liste or liste[-1][1] != deger:
+                if liste and liste[-1][0] == tarih:
+                    liste[-1][1] = deger          # aynı gün ikinci çekim: üzerine yaz
+                else:
+                    liste.append([tarih, deger])
+                eklenen += 1
+    json.dump(gecmis, open(yol, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
+    print(f"deger_gecmisi.json: {len(gecmis)} oyuncu, bu çalışmada {eklenen} yeni kayıt", flush=True)
+
+
 def main():
     yaz = "--kuru" not in sys.argv
     limit = next((int(a.split("=")[1]) for a in sys.argv if a.startswith("--limit=")), 0)
     dosyalar = [a.split("=", 1)[1] for a in sys.argv if a.startswith("--dosya=")] or VARSAYILAN
-    for ad in dosyalar:
-        tazele(KOK / ad, yaz, limit)
+    if "--sadece-gecmis" not in sys.argv:      # yalnız değer geçmişini yaz, SD'ye gitme
+        for ad in dosyalar:
+            tazele(KOK / ad, yaz, limit)
+    if yaz:
+        deger_gecmisi_yaz(dosyalar)
     print("\nBİTTİ" + ("" if yaz else "  [KURU — yazılmadı]"))
 
 
