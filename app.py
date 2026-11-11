@@ -2694,6 +2694,8 @@ def _sd_deger_bicim(s) -> str:
         return ""
     m = _r.fullmatch(r"([\d.]+)\s*€", s)
     if m:
+        if not m.group(1).strip("0."):      # "0 €" = değer girilmemiş
+            return ""
         return "€" + m.group(1)
     return s if _r.search(r"\d", s) else ""
 
@@ -5067,8 +5069,10 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict, _sd: dict, _leistung: dict)
         if _dg:
             r["v"] = _dg
             _dg_say = _r.sub(r"\D", "", _dg)
-            if _dg_say:
+            if _dg_say and int(_dg_say) > 0:
                 r["vv"] = int(_dg_say)
+            elif _dg_say:
+                r.pop("v", None)                  # "€0" = değer yok
         _gc = _gecmis.get(tam_isim) or []
         if len(_gc) >= 2 and _gc[-2][1]:          # son iki SoccerDonna değeri → yüzde değişim
             _yz = round((_gc[-1][1] - _gc[-2][1]) / _gc[-2][1] * 100)
@@ -9155,6 +9159,15 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
     _purl = f"https://womenfootballscouting.com/?paylas={_urlquote(isim)}" + ("&dil=EN" if EN else "")
     with st.container(border=True):
         st.markdown(f"##### 🔗 {t('Paylaşılabilir Rapor Linki','Shareable Report Link')}")
+        if st.session_state.get("kulup_kullanici") == "admin":
+            # Etiket linke &k= olarak eklenir; link açılınca Kokpit'teki açılış kaydında görünür
+            _etk = _etiket_slug(st.text_input(
+                t("Kime gönderiyorsun? (isteğe bağlı etiket)", "Who is it for? (optional tag)"),
+                key=f"pay_etk_{isim}", max_chars=30, placeholder="unye",
+                help=t("Linke eklenir; kulüp linki açtığında Kokpit › Link açılışları'nda bu etiketle görürsün.",
+                       "Added to the link; when the club opens it you see it under Cockpit › Link opens.")))
+            if _etk:
+                _purl += "&k=" + _etk
         st.caption(t("Bu linki kulübe gönder — alıcı GİRİŞ YAPMADAN markalı raporu görür (yalnız bu oyuncu).",
                      "Send this link to a club — they see the branded report WITHOUT login (this player only)."))
         st.code(_purl, language=None)
@@ -10525,6 +10538,228 @@ def _profil_dialog(isim, kaynak):
         render_ana_lig_profil(isim)
 
 
+# ─── PAYLAŞIM LİNKİ TAKİBİ (2026-11-11) ───────────────────────────────────────
+def _link_log_ws(sh):
+    if sh is None:
+        return None
+    try:
+        return sh.worksheet("LinkAcilis")
+    except Exception:
+        try:
+            ws = sh.add_worksheet(title="LinkAcilis", rows=5000, cols=5)
+            ws.update([["tarih", "tur", "hedef", "etiket", "dil"]])
+            return ws
+        except Exception:
+            return None
+
+
+def link_acilis_kaydet(tur: str, hedef: str, etiket: str = ""):
+    """Herkese açık paylaşım linki (?paylas= / ?kulup=) açıldığında Sheets'e bir satır yazar.
+    Oturum başına bir kez; yönetici kendi açtığında yazılmaz; arka planda çalışır (sayfa beklemez).
+    Kişisel veri TUTULMAZ (IP, tarayıcı, konum yok) — yalnız zaman, hedef ve linke eklenen etiket."""
+    try:
+        if st.session_state.get("kulup_kullanici") == "admin":
+            return
+        anahtar = f"_link_log_{tur}_{hedef}_{etiket}"
+        if st.session_state.get(anahtar):
+            return
+        st.session_state[anahtar] = True
+        from datetime import datetime, timedelta
+        satir = [(datetime.utcnow() + timedelta(hours=3)).strftime("%Y-%m-%d %H:%M"), tur,
+                 str(hedef)[:80], str(etiket or "")[:40], "EN" if EN else "TR"]
+        sh = _gs_sheet()
+
+        def _yaz():
+            try:
+                ws = _link_log_ws(sh)
+                if ws is not None:
+                    ws.append_row(satir)
+            except Exception:
+                pass
+        _threading.Thread(target=_yaz, daemon=True).start()
+    except Exception:
+        pass
+
+
+@st.cache_data(ttl=120, show_spinner=False)
+def link_acilis_oku() -> list:
+    """Son açılışlar (yeni → eski), yönetici görünümü için."""
+    try:
+        ws = _link_log_ws(_gs_sheet())
+        satirlar = ws.get_all_values()[1:] if ws is not None else []
+    except Exception:
+        return []
+    return satirlar[::-1][:200]
+
+
+def _etiket_slug(s: str) -> str:
+    """Link etiketi: küçük harf, harf/rakam/tire (ör. 'Ünye Kadın' → 'unye-kadin')."""
+    import re as _r
+    return _r.sub(r"[^a-z0-9]+", "-", _isim_norm(s or "")).strip("-")[:30]
+
+
+# ─── KULÜBE ÖZEL FIRSAT SAYFASI (?kulup=<anahtar>) ────────────────────────────
+@st.cache_data(show_spinner=False, ttl=600)
+def kulup_ihtiyac_yukle() -> dict:
+    """kulup_ihtiyac.json — elle tutulan kulüp ihtiyaç listesi (Baran/Yiğit söyler, dosyaya yazılır)."""
+    try:
+        return json.load(open(pathlib.Path(__file__).parent / "kulup_ihtiyac.json", encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _ihtiyac_adaylari(kriter: dict) -> list:
+    """Kritere uyan havuz oyuncuları, en yüksek nottan aşağı: [(anahtar, isim, mevki kodu, kayıt)].
+    Kriter alanları: mevki [kod…], yas_min, yas_max, deger_max (€), ayak (Sağ/Sol), ab (AB uyumlu), not_min."""
+    import re as _r
+    mevkiler = set(kriter.get("mevki") or [])
+    ymin, ymax, dmax = kriter.get("yas_min"), kriter.get("yas_max"), kriter.get("deger_max")
+    ayak = _AYAK_TR.get(str(kriter.get("ayak") or "").strip().lower(), "")
+    nmin = _scotr_segman(kriter.get("not_min", "")) if kriter.get("not_min") else 0
+    out = []
+    for isim, r in birlesik_scout_yukle().items():
+        if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
+            continue
+        a = _sira_anahtari(r)
+        if a is None or a[0] < nmin:
+            continue
+        kod = _sira_mevki(r)
+        if mevkiler and kod not in mevkiler:
+            continue
+        yas = str(r.get("yas") or "").strip()
+        yas = int(yas) if yas.isdigit() else None
+        if (ymin or ymax) and yas is None:
+            continue
+        if (ymin and yas < ymin) or (ymax and yas > ymax):
+            continue
+        if dmax:
+            dg = _r.sub(r"\D", "", str(r.get("deger") or ""))
+            if not dg or int(dg) == 0 or int(dg) > dmax:
+                continue
+        if ayak and _AYAK_TR.get(str(r.get("ayak") or "").strip().lower(), "") != ayak:
+            continue
+        if kriter.get("ab") and not _ab_uyumlu(r.get("vatandaslik", ""), r.get("milli_takim", "")):
+            continue
+        out.append((a, isim, kod, r))
+    out.sort(key=lambda x: x[0], reverse=True)
+    return out
+
+
+def render_kulup_firsat(anahtar: str):
+    """PUBLIC (giriş gerektirmez) kulübe özel sayfa: kulübün ihtiyaçlarına göre havuzdan
+    süzülmüş adaylar. Üye değilse isim ve kulüp GİZLİ (mevki, rol, yaş, ülke, lig, değer, not
+    görünür); Premium üye/yönetici isimleri görür. Satış aracı: link kulübe gönderilir."""
+    import html as _h
+    anahtar = _etiket_slug(anahtar)
+    kayit = kulup_ihtiyac_yukle().get(anahtar)
+    st.markdown(
+        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ".block-container{max-width:860px!important;padding-top:1rem!important;}</style>",
+        unsafe_allow_html=True)
+    if not isinstance(kayit, dict) or not kayit.get("ihtiyaclar"):
+        st.markdown(f"<div style='text-align:center;padding:70px 20px;color:#8899aa;'>"
+                    f"⚠️ {t('Sayfa bulunamadı.', 'Page not found.')}</div>", unsafe_allow_html=True)
+        st.stop()
+    link_acilis_kaydet("kulup", anahtar, st.query_params.get("k", ""))
+    acik = tier_yeterli("premium")
+    ad = _h.escape(str(kayit.get("ad") or anahtar))
+    toplam = _scouting_havuz_boyutu()
+    st.markdown(
+        "<div class='baslik-kutu'>"
+        f"<div class='ust-bant'>⚡ WOMEN'S FOOTBALL SCOUTING</div>"
+        f"<h1 lang='{_isim_dil(ad)}'>{ad}</h1>"
+        f"<p>{t('Kadro ihtiyaçlarınıza göre scouting havuzumuzdan süzülen adaylar', 'Candidates from our scouting pool, filtered to your squad needs')}"
+        f" · <b>{toplam}</b> {t('oyuncu arasından', 'players screened')}</p></div>", unsafe_allow_html=True)
+    _not = kayit.get("not_en" if EN else "not") or kayit.get("not") or ""
+    if _not:
+        st.markdown(f"<div class='tp-arametin' style='margin:-8px 0 14px;'>{_h.escape(str(_not))}</div>",
+                    unsafe_allow_html=True)
+    _maske = ("<span style='display:inline-block;height:10px;border-radius:6px;"
+              "background:linear-gradient(90deg,#4c3a8a,#2a2145);width:{w}px;'></span>")
+    _dq = "EN" if EN else "TR"
+    for ih in kayit["ihtiyaclar"]:
+        adaylar = _ihtiyac_adaylari(ih)
+        baslik = _h.escape(str(ih.get("baslik_en" if EN else "baslik") or ih.get("baslik") or " / ".join(ih.get("mevki") or [])))
+        cip = []
+        if ih.get("mevki"):
+            cip.append(" · ".join(ih["mevki"]))
+        if ih.get("yas_min") or ih.get("yas_max"):
+            cip.append(f"{t('Yaş', 'Age')} {ih.get('yas_min') or '…'}–{ih.get('yas_max') or '…'}")
+        if ih.get("deger_max"):
+            cip.append(f"{t('Değer', 'Value')} ≤ €{int(ih['deger_max']):,}".replace(",", "."))
+        if ih.get("ayak"):
+            cip.append(f"{t('Ayak', 'Foot')}: {_ayak_goster('', ih['ayak'])}")
+        if ih.get("ab"):
+            cip.append(t("AB uyumlu", "EU-eligible"))
+        if ih.get("not_min"):
+            cip.append(f"{t('Not', 'Grade')} ≥ {ih['not_min']}")
+        cipler = "".join(
+            "<span style='display:inline-block;margin:0 6px 4px 0;padding:3px 10px;border-radius:999px;background:#141a30;"
+            f"border:1px solid #2a3050;color:#cbd5e1;font-size:0.74rem;'>{_h.escape(c)}</span>" for c in cip)
+        govde = ""
+        for i, (a, isim, kod, r) in enumerate(adaylar[:5]):
+            nihai = str(r.get("nihai") or "")
+            renk = _scotr_renk(_scotr_puan(nihai)) if nihai else "#6b7280"
+            yas = str(r.get("yas") or "").strip()
+            if acik:
+                ad_h = (f"<a href='?oyuncu={_urlquote(isim)}&dil={_dq}' target='_blank' "
+                        f"style='color:#f4f4f5;font-weight:600;text-decoration:none;'>{_h.escape(isim)}</a>"
+                        f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_kulup_goster(r.get('kulup', '')) or '')}</div>")
+            else:
+                ad_h = _maske.format(w=86 + (i * 23) % 48)
+            govde += (
+                "<tr style='border-top:1px solid #241d3d;'>"
+                f"<td style='padding:8px 10px;'>{ad_h}</td>"
+                f"<td style='padding:8px 6px;'><span style='background:#2a2a38;color:#d4d4d8;padding:2px 7px;"
+                f"border-radius:5px;font-size:0.64rem;font-weight:700;'>{_h.escape(kod)}</span></td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;'>{_h.escape(scout_rol_goster(str(r.get('rol') or ''))) or '—'}</td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;text-align:right;'>{yas if yas.isdigit() else '—'}</td>"
+                f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('vatandaslik') or '')))) or '—'}"
+                f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_lig_goster(str(r.get('lig') or '')))}</div></td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;font-family:Sora,monospace;'>{_h.escape(str(r.get('deger') or '')) or '—'}</td>"
+                f"<td style='padding:8px 10px;text-align:center;'><span style='display:inline-flex;width:30px;height:30px;"
+                f"border-radius:50%;border:2px solid {renk};color:{renk};align-items:center;justify-content:center;"
+                f"font-size:0.6rem;font-weight:800;font-family:Sora,monospace;'>{_h.escape(nihai) or '—'}</span></td></tr>")
+        basliklar = "".join(
+            f"<th style='padding:8px {p};text-align:{h};' class='tp-arametin'>{_buyuk(x)}</th>"
+            for x, p, h in ((t("Oyuncu", "Player"), "10px", "left"), (t("Mevki", "Pos"), "6px", "left"),
+                            (t("Rol", "Role"), "6px", "left"), (t("Yaş", "Age"), "6px", "right"),
+                            (t("Ülke / Lig", "Country / League"), "6px", "left"), (t("Değer", "Value"), "6px", "left"),
+                            (t("Not", "Grade"), "10px", "center")))
+        if adaylar:
+            alt = (f"+{len(adaylar) - 5} {t('aday daha', 'more candidates')}" if len(adaylar) > 5 else "")
+            tablo = ("<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;font-size:0.8rem;white-space:nowrap;'>"
+                     f"<thead><tr>{basliklar}</tr></thead><tbody>{govde}</tbody></table></div>"
+                     + (f"<div style='padding:8px 14px;border-top:1px solid #241d3d;background:#141024;text-align:center;"
+                        f"font-size:10pt;color:#c4b5fd;font-weight:600;'>{'🔒 ' if not acik else ''}{alt}</div>" if alt else ""))
+        else:
+            tablo = (f"<div style='padding:14px;color:#8b8b99;font-size:0.85rem;'>"
+                     f"{t('Bu ölçütlerle havuzda şu an aday yok — ölçütleri birlikte gevşetebiliriz.', 'No candidates match these criteria right now — we can relax them together.')}</div>")
+        st.markdown(
+            "<div style='background:#0d0d16;border:1px solid #3b2d6e;border-radius:14px;overflow:hidden;margin-bottom:16px;'>"
+            "<div style='padding:12px 14px 6px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;'>"
+            f"<span class='tp-anabaslik'>{_buyuk(baslik)}</span>"
+            f"<span style='font-family:Sora,sans-serif;font-weight:800;color:#1db954;font-size:12pt;'>{len(adaylar)}</span>"
+            f"<span class='tp-arametin'>{t('aday', 'candidates')}</span></div>"
+            f"<div style='padding:0 14px 8px;'>{cipler}</div>{tablo}</div>", unsafe_allow_html=True)
+    if not acik:
+        st.markdown(
+            "<div style='text-align:center;background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
+            "border-radius:14px;padding:22px 18px;margin-top:6px;'>"
+            f"<div class='tp-anabaslik' style='color:#f1f5f9;'>{t('İsimler, scout raporları ve iletişim desteği', 'Names, scout reports and contact support')}</div>"
+            f"<div class='tp-arametin' style='margin:6px 0 14px;'>{t('Adayların isimlerini ve tam scout raporlarını açmak için bize yazın — 2 günlük ücretsiz deneme tanımlayalım.', 'Write to us to unlock candidate names and full scout reports — we will set up a 2-day free trial.')}</div>"
+            "<a href='mailto:womensfootballscouting@gmail.com?subject=" + _urlquote(str(kayit.get("ad") or anahtar) + " — scouting") + "' "
+            "style='display:inline-block;margin:3px;background:linear-gradient(135deg,#7c3aed,#db2777);color:#fff;font-weight:700;"
+            "padding:9px 18px;border-radius:8px;text-decoration:none;font-size:0.86rem;'>📧 womensfootballscouting@gmail.com</a>"
+            f"<a href='/?dil={_dq}' target='_self' style='display:inline-block;margin:3px;background:#1e2540;border:1px solid #7c3aed;"
+            f"color:#e2e8f0;font-weight:700;padding:9px 18px;border-radius:8px;text-decoration:none;font-size:0.86rem;'>"
+            f"🌍 {t('Platformu incele', 'Explore the platform')}</a></div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>"
+                f"womenfootballscouting.com · {t('Veri: saha gözlemi, TFF & SoccerDonna', 'Data: live scouting, TFF & SoccerDonna')}</div>",
+                unsafe_allow_html=True)
+    st.stop()
+
+
 def render_paylasim_raporu(isim: str):
     """PUBLIC (giriş gerektirmez) tek-oyuncu paylaşılabilir scout raporu (?paylas=X).
     Kulübe link gönderilir; alıcı giriş yapmadan markalı raporu görür. Tek oyuncu →
@@ -10667,7 +10902,12 @@ def render_paylasim_raporu(isim: str):
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
 # ─── PAYLAŞIM RAPORU (?paylas=X) — public, giriş gerektirmez ──────────────────
 if params.get("paylas", "").strip():
+    link_acilis_kaydet("rapor", params.get("paylas", "").strip(), params.get("k", ""))
     render_paylasim_raporu(params.get("paylas", ""))
+
+# ─── KULÜBE ÖZEL FIRSAT SAYFASI (?kulup=X) — public, giriş gerektirmez ────────
+if params.get("kulup", "").strip():
+    render_kulup_firsat(params.get("kulup", ""))
 
 # ─── E-POSTA DOĞRULAMA (?dogrula=TOKEN) — public, giriş gerektirmez ───────────
 if params.get("dogrula", "").strip():
@@ -11936,6 +12176,38 @@ def render_kokpit():
     kd = kulupler[secili]
     kadro = kd.get("kadro", [])
     _dq = "EN" if EN else "TR"
+
+    with st.expander(f"🔗 {t('Link açılışları ve kulüp sayfaları', 'Link opens and club pages')}"):
+        import html as _hk
+        _ks = kulup_ihtiyac_yukle()
+        if _ks:
+            st.markdown(
+                f"<div class='tp-arabaslik'>{_buyuk(t('Kulübe özel sayfalar', 'Club pages'))}</div>"
+                + "".join(
+                    f"<div style='margin:3px 0;font-size:0.84rem;'>"
+                    f"<a href='/?kulup={_urlquote(_k)}&dil={_dq}' target='_blank' style='color:#a78bfa;'>"
+                    f"womenfootballscouting.com/?kulup={_hk.escape(_k)}</a>"
+                    f"<span style='color:#94a3b8;'> · {_hk.escape(str(_v.get('ad', '')))} · "
+                    f"{len(_v.get('ihtiyaclar', []))} {t('ihtiyaç', 'needs')}</span></div>"
+                    for _k, _v in _ks.items() if isinstance(_v, dict)), unsafe_allow_html=True)
+        _acilis = link_acilis_oku()
+        st.markdown(f"<div class='tp-arabaslik' style='margin-top:10px;'>"
+                    f"{_buyuk(t('Son açılışlar', 'Latest opens'))} ({len(_acilis)})</div>", unsafe_allow_html=True)
+        if _acilis:
+            st.markdown(
+                "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;font-size:0.82rem;color:#cbd5e1;'>"
+                f"<thead><tr class='tp-arametin'><th style='text-align:left;padding:4px 8px;'>{t('Zaman', 'Time')}</th>"
+                f"<th style='text-align:left;padding:4px 8px;'>{t('Tür', 'Type')}</th>"
+                f"<th style='text-align:left;padding:4px 8px;'>{t('Hedef', 'Target')}</th>"
+                f"<th style='text-align:left;padding:4px 8px;'>{t('Etiket', 'Tag')}</th>"
+                f"<th style='text-align:left;padding:4px 8px;'>{t('Dil', 'Lang')}</th></tr></thead><tbody>"
+                + "".join("<tr style='border-top:1px solid #232a40;'>"
+                          + "".join(f"<td style='padding:4px 8px;'>{_hk.escape(str(_c))}</td>" for _c in (list(_r) + [""] * 5)[:5])
+                          + "</tr>" for _r in _acilis[:60])
+                + "</tbody></table></div>", unsafe_allow_html=True)
+        else:
+            st.caption(t("Henüz kayıtlı açılış yok. Kendi açtıkların (yönetici oturumu) sayılmaz.",
+                         "No opens logged yet. Your own opens (admin session) are not counted."))
 
     # ── Başlık (solda) + meta yazılar (SAĞ ÜSTTE — Baran isteği) ──
     st.markdown(

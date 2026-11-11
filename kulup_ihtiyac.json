@@ -1,0 +1,38 @@
+{
+ "ornek": {
+  "ad": "Örnek Kulüp",
+  "not": "Bu bir örnek sayfadır: ölçütler gerçek bir kulübe ait değildir.",
+  "not_en": "This is a sample page: the criteria do not belong to a real club.",
+  "ihtiyaclar": [
+   {
+    "baslik": "Sol bek",
+    "baslik_en": "Left-back",
+    "mevki": [
+     "LFB",
+     "LWB"
+    ],
+    "yas_max": 26,
+    "deger_max": 50000
+   },
+   {
+    "baslik": "Santrfor",
+    "baslik_en": "Centre-forward",
+    "mevki": [
+     "CFW"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000
+   },
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 28,
+    "deger_max": 40000,
+    "ab": true
+   }
+  ]
+ }
+}
