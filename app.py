@@ -4732,7 +4732,7 @@ var COLS=[
 function col(k){for(var j=0;j<COLS.length;j++)if(COLS[j].k===k)return COLS[j];return null}
 function vcols(){return COLS.filter(function(c){return c.fix||VIS[c.k]})}
 function visDef(){VIS={};COLS.forEach(function(c){if(!c.opt)VIS[c.k]=1})}
-function visLoad(){visDef();try{var a=JSON.parse(localStorage.getItem('wsCols')||'null');if(a&&a.length){VIS={};a.forEach(function(k){if(col(k))VIS[k]=1})}}catch(e){}}
+function visLoad(){visDef();try{var a=JSON.parse(localStorage.getItem('wsCols')||'null');if(Array.isArray(a)){VIS={};a.forEach(function(k){if(col(k))VIS[k]=1})}}catch(e){}}
 function visSave(){try{localStorage.setItem('wsCols',JSON.stringify(COLS.filter(function(c){return VIS[c.k]&&!c.fix}).map(function(c){return c.k})))}catch(e){}}
 var FK=['q','pos','sub','cn','lg','amin','amax','vmin','vmax','con','sc','ro','ft','hmin','hmax','tg'];
 var F={},sk=null,sd=1,pg=0,PS=100,seed=1,base=[],ord=[];
@@ -4810,7 +4810,7 @@ function row(r){var h='<tr>';vcols().forEach(function(c){h+=c.c(r)});return h+'<
 function renderCols(){
   var h=esc(T.cols)+' ';
   COLS.forEach(function(c){if(c.fix)return;h+='<button type="button" class="tgl" data-c="'+c.k+'" aria-pressed="'+(VIS[c.k]?'true':'false')+'">'+esc(c.tt||c.l)+'</button>'});
-  $('colp').innerHTML='<span class="grp">'+h+'<button type="button" class="clr" id="colr">'+esc(T.colsReset)+'</button></span>';
+  $('colp').innerHTML='<span class="grp">'+h+'<button type="button" class="clr" id="colr">'+esc(T.colsReset)+'</button>'+'<button type="button" class="clr" id="cola">'+esc(T.colsNone)+'</button></span>';
 }
 function cmpToggle(n){
   var i=CMP.indexOf(n);cmpWarn=false;
@@ -4958,6 +4958,7 @@ $('cmp').addEventListener('click',function(e){
 $('colb').addEventListener('click',function(){var a=$('colp');a.hidden=!a.hidden;this.setAttribute('aria-expanded',a.hidden?'false':'true');fit()});
 $('colp').addEventListener('click',function(e){
   if(e.target.id==='colr'){visDef();if(sk&&!VIS[sk])VIS[sk]=1;visSave();renderCols();render();return}
+  if(e.target.id==='cola'){VIS={};if(sk&&sk!=='n'){sk=null;sd=1;save()}visSave();renderCols();render();return}
   var b=e.target.closest('.tgl');if(!b)return;var k=b.getAttribute('data-c');
   if(VIS[k]){delete VIS[k];if(sk===k){sk=null;sd=1;save()}}else VIS[k]=1;
   visSave();renderCols();render();
@@ -5136,6 +5137,7 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
         "cmpMax": t("En fazla 4 oyuncu karşılaştırılabilir.", "You can compare up to 4 players."),
         "cmpClear": t("Karşılaştırmayı kapat", "Close comparison"),
         "cols": t("Sütunlar", "Columns"), "colsReset": t("Varsayılana dön", "Reset to default"),
+        "colsNone": t("Tümünü sıfırla", "Reset all"),
         "sortBy": t("Bu sütuna göre sırala", "Sort by this column"),
         "none": t("Bu filtrelerle eşleşen oyuncu yok — birini gevşetmeyi dene.",
                   "No players match these filters — try relaxing one."),
