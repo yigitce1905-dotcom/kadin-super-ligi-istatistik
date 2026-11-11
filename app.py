@@ -4728,7 +4728,8 @@ var COLS=[
  {k:'hc',l:T.height,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.height,r.hc?r.hc+' cm':'—')}},
  {k:'f',l:T.foot,t:'s',f:1,opt:1,c:function(r){return td('',T.foot,FTL[r.f]?esc(FTL[r.f]):DASH)}},
  {k:'kk',l:T.contract,t:'n',f:1,c:function(r){return td('ws-mono',T.contract,r.k?esc(r.k):'—','color:'+kcol(r.km)+';')}},
- {k:'vv',l:T.value,t:'n',f:-1,c:function(r){return td('ws-mono',T.value,r.v?esc(r.v):'—')}},
+ {k:'vv',l:T.value,t:'n',f:-1,c:function(r){return td('ws-mono',T.value,(r.v?esc(r.v):'—')+trend(r))}},
+ {k:'vd',l:T.trend,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.trend,r.vd?'<span style="color:'+(r.vd>0?'#34d399':'#f87171')+';">'+(r.vd>0?'+':'')+r.vd+'%</span>':'—')}},
  {k:'m',l:T.m,t:'n',f:-1,num:1,tt:T.mL,c:function(r){return td('num ws-mono',T.m,r.m||'—')}},
  {k:'g',l:T.g,t:'n',f:-1,num:1,tt:T.gL,c:function(r){return td('num ws-mono',T.g,r.g||'—')}},
  {k:'x',l:T.a,t:'n',f:-1,num:1,tt:T.aL,c:function(r){return td('num ws-mono',T.a,r.x||'—')}},
@@ -4739,6 +4740,8 @@ var COLS=[
  {k:'iko',l:T.cost,t:'n',f:1,opt:1,c:function(r){return td('',T.cost,r.ik?esc(disp(M.ik,r.ik)):DASH)}},
  {k:'tgo',l:T.tr,t:'n',f:1,opt:1,c:function(r){return td('',T.tr,r.tg?esc(disp(M.tg,r.tg)):DASH)}},
  {k:'sp',l:T.score,t:'n',f:-1,c:function(r){return td('',T.score,ring(r))}}];
+if(!D.some(function(r){return r.vd}))COLS=COLS.filter(function(c){return c.k!=='vd'});   // geçmiş birikmeden sütun önerilmez
+function trend(r){return r.vd?'<div class="ws-sub" style="color:'+(r.vd>0?'#34d399':'#f87171')+';">'+(r.vd>0?'▲ +':'▼ ')+r.vd+'%</div>':''}
 function col(k){for(var j=0;j<COLS.length;j++)if(COLS[j].k===k)return COLS[j];return null}
 function vcols(){return COLS.filter(function(c){return c.fix||VIS[c.k]})}
 function visDef(){VIS={};COLS.forEach(function(c){if(!c.opt)VIS[c.k]=1})}
@@ -5001,6 +5004,10 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict, _sd: dict, _leistung: dict)
     import re as _r
     satirlar = []
     cn_map, lg_map, ro_map, ik_map, tg_map = {}, {}, {}, {}, {}
+    try:      # piyasa değeri geçmişi (sd_tam_tazele.py yazar): {isim: [[tarih, euro], ...]}
+        _gecmis = json.load(open(pathlib.Path(__file__).parent / "deger_gecmisi.json", encoding="utf-8"))
+    except Exception:
+        _gecmis = {}
     for isim, _kd in _kadro.items():
         if not isinstance(_kd, dict) or _dusuk_notlu_tr_mi(_kd):
             continue
@@ -5062,6 +5069,11 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict, _sd: dict, _leistung: dict)
             _dg_say = _r.sub(r"\D", "", _dg)
             if _dg_say:
                 r["vv"] = int(_dg_say)
+        _gc = _gecmis.get(tam_isim) or []
+        if len(_gc) >= 2 and _gc[-2][1]:          # son iki SoccerDonna değeri → yüzde değişim
+            _yz = round((_gc[-1][1] - _gc[-2][1]) / _gc[-2][1] * 100)
+            if _yz:
+                r["vd"] = _yz
 
         for _alan, _anahtar in (("mac", "m"), ("gol", "g"), ("asist", "x")):
             _top = int(sum(s.get(_alan, 0) or 0 for s in _sezk))
@@ -5147,6 +5159,7 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
         "cmpMax": t("En fazla 4 oyuncu karşılaştırılabilir.", "You can compare up to 4 players."),
         "cmpClear": t("Karşılaştırmayı kapat", "Close comparison"),
         "cols": t("Sütunlar", "Columns"), "colsReset": t("Varsayılana dön", "Reset to default"),
+        "trend": t("Değer değişimi", "Value change"),
         "colsNone": t("Tümünü sıfırla", "Reset all"),
         "sortBy": t("Bu sütuna göre sırala", "Sort by this column"),
         "none": t("Bu filtrelerle eşleşen oyuncu yok — birini gevşetmeyi dene.",
@@ -5944,6 +5957,182 @@ def _dusuk_notlu_tr_mi(r: dict) -> bool:
     if (r or {}).get("havuz") != "tr":
         return False
     return (r.get("nihai") or "").strip().upper() in ("EE", "FF")
+
+
+# SoccerDonna kulüp kimliği → site takım adında aranan anahtar(lar) (diyakritiksiz, boşluksuz)
+_DIZILIS_ANAHTAR = {792: ("trabzon",), 6981: ("besiktas",), 7066: ("hakkari",), 7245: ("amed",),
+                    7247: ("fomget",), 7352: ("antalya",), 7356: ("kayseri",), 9522: ("fenerbahce",),
+                    9537: ("galatasaray",), 13095: ("unye",), 14028: ("bakirkoy",), 14056: ("giresun",),
+                    15697: ("yuksekova",), 15914: ("bilgidoga",), 16154: ("haymana",),
+                    18221: ("sultanbeyli", "fatihvatan")}
+
+
+@st.cache_data(show_spinner=False, ttl=3600)
+def _dizilis_takim_ozet() -> dict:
+    """sd_dizilis_<sezon>.json (sd_dizilis_cek.py) → takım başına şema sayacı + maç listesi.
+    {'guncelleme': tarih, 'takimlar': {sd_id: {'sayac': {şema: n}, 'maclar': [...]}}}"""
+    try:
+        dosyalar = sorted(pathlib.Path(__file__).parent.glob("sd_dizilis_*.json"))
+        veri = json.load(open(dosyalar[-1], encoding="utf-8")) if dosyalar else {}
+    except Exception:
+        return {}
+    out = {}
+    for m in sorted(veri.get("maclar", []), key=lambda x: x.get("hafta", 0)):
+        for taraf, diger in (("ev", "dep"), ("dep", "ev")):
+            kimlik = m.get(taraf + "_id")
+            d = (m.get("dizilis") or {}).get(taraf)
+            if kimlik not in _DIZILIS_ANAHTAR or not d:
+                continue
+            sema = (d.get("sema") or "").split(" ")[0]
+            o = out.setdefault(kimlik, {"sayac": {}, "maclar": []})
+            if sema and sema != "?":
+                o["sayac"][sema] = o["sayac"].get(sema, 0) + 1
+            no = {x.get("sd_id"): x.get("no") for x in (m.get("ilk11") or {}).get(taraf, [])}
+            o["maclar"].append({
+                "hafta": m.get("hafta"), "ev_mi": taraf == "ev", "rakip": m.get(diger, ""),
+                # skor takımın gözünden (kendi golü önce): deplasmanda ters çevrilir
+                "skor": "–".join(m.get("skor", "").split(":")[::(1 if taraf == "ev" else -1)]),
+                "sema": sema if sema and sema != "?" else "—",
+                "teknik": d.get("teknik", ""),
+                "hatlar": [[[no.get(p.get("sd_id")), p.get("ad", "")] for p in h]
+                           for h in d.get("hatlar", [])]})
+    return {"guncelleme": veri.get("guncelleme", ""), "takimlar": out}
+
+
+def takim_dizilis_goster(takim_kanon: str):
+    """Takım sayfası bloğu: sezon boyunca kullanılan dizilişler + son maçın ilk 11'i."""
+    try:
+        oz = _dizilis_takim_ozet()
+        n = _isim_norm(takim_kanon).replace(" ", "")
+    except Exception:
+        return
+    kimlik = next((k for k, anahtarlar in _DIZILIS_ANAHTAR.items() if any(a in n for a in anahtarlar)), None)
+    t_oz = (oz.get("takimlar") or {}).get(kimlik)
+    if not t_oz or not t_oz.get("maclar"):
+        return
+    import html as _h
+    st.markdown(f"##### 🧩 {t('Dizilişler', 'Formations')}")
+    sayac = sorted(t_oz["sayac"].items(), key=lambda x: -x[1])
+    cipler = "".join(
+        "<span style='display:inline-block;margin:0 6px 6px 0;padding:5px 12px;border-radius:999px;"
+        f"background:{'#7c3aed33' if i == 0 else '#141a30'};border:1px solid {'#7c3aed' if i == 0 else '#2a3050'};"
+        f"color:#e2e8f0;font-family:Sora,sans-serif;font-weight:700;font-size:0.82rem;'>{_h.escape(s)}"
+        f"<span style='color:#94a3b8;font-weight:600;'> ×{k}</span></span>"
+        for i, (s, k) in enumerate(sayac))
+    son = t_oz["maclar"][-1]
+    hat_ad = ([t("Kaleci", "Goalkeeper"), t("Savunma", "Defence"), t("Orta saha", "Midfield"), t("Forvet", "Attack")]
+              if len(son["hatlar"]) == 4 else [f"{t('Hat', 'Line')} {i + 1}" for i in range(len(son["hatlar"]))])
+    hat_html = "".join(
+        "<div style='display:flex;gap:10px;padding:5px 0;border-top:1px solid #232a40;'>"
+        f"<span class='tp-arametin' style='flex:none;width:86px;'>{_buyuk(hat_ad[i])}</span>"
+        "<span style='color:#e2e8f0;font-size:0.86rem;line-height:1.5;'>"
+        + " · ".join((f"<b style='color:#a78bfa;font-family:Sora,sans-serif;'>{no}</b> " if no else "") + _h.escape(ad)
+                     for no, ad in hat)
+        + "</span></div>"
+        for i, hat in enumerate(son["hatlar"]))
+    st.markdown(
+        f"<div style='margin-bottom:4px;'>{cipler}</div>"
+        "<div style='background:#11162a;border:1px solid #232a40;border-radius:10px;padding:12px 14px;'>"
+        f"<div class='tp-arabaslik'>{_buyuk(t('Son maç', 'Latest match'))} · {son['hafta']}. {t('hafta', 'wk')} · "
+        f"{'🏠' if son['ev_mi'] else '✈️'} {_h.escape(_takim_kisa(son['rakip']) or son['rakip'])} · {son['skor']} · "
+        f"<span style='color:#e2e8f0;'>{_h.escape(son['sema'])}</span></div>"
+        + (f"<div class='tp-arametin' style='margin:2px 0 6px;'>{t('Teknik sorumlu', 'Head coach')}: {_h.escape(son['teknik'])}</div>"
+           if son.get("teknik") else "<div style='height:6px;'></div>")
+        + hat_html + "</div>", unsafe_allow_html=True)
+    with st.expander(t(f"Tüm maçlar ({len(t_oz['maclar'])})", f"All matches ({len(t_oz['maclar'])})")):
+        satir = "".join(
+            "<tr style='border-top:1px solid #232a40;'>"
+            f"<td style='padding:5px 8px;color:#94a3b8;'>{m['hafta']}</td>"
+            f"<td style='padding:5px 8px;'>{'🏠' if m['ev_mi'] else '✈️'} {_h.escape(_takim_kisa(m['rakip']) or m['rakip'])}</td>"
+            f"<td style='padding:5px 8px;font-family:Sora,sans-serif;'>{m['skor']}</td>"
+            f"<td style='padding:5px 8px;font-family:Sora,sans-serif;font-weight:700;color:#e2e8f0;'>{_h.escape(m['sema'])}</td></tr>"
+            for m in t_oz["maclar"])
+        st.markdown(
+            "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;font-size:0.84rem;color:#cbd5e1;'>"
+            f"<thead><tr class='tp-arametin'><th style='text-align:left;padding:5px 8px;'>{t('Hafta', 'Wk')}</th>"
+            f"<th style='text-align:left;padding:5px 8px;'>{t('Rakip', 'Opponent')}</th>"
+            f"<th style='text-align:left;padding:5px 8px;'>{t('Skor', 'Score')}</th>"
+            f"<th style='text-align:left;padding:5px 8px;'>{t('Diziliş', 'Formation')}</th></tr></thead>"
+            f"<tbody>{satir}</tbody></table></div>", unsafe_allow_html=True)
+    st.caption(t(
+        f"Kaynak: SoccerDonna maç raporları · {oz.get('guncelleme', '')}. Hatlar oyuncunun kayıtlı ana mevkisine göre "
+        "yazılır; sahadaki yeri farklı olabilir. Hükmen biten maçların raporu yoktur.",
+        f"Source: SoccerDonna match reports · {oz.get('guncelleme', '')}. Lines follow each player's registered main "
+        "position, which may differ from where she played. Forfeited matches have no report."))
+    st.markdown("<br>", unsafe_allow_html=True)
+
+
+@st.cache_data(show_spinner=False, max_entries=2)
+def _duvar_onizleme_satirlari(dil: str) -> list:
+    """Ödeme duvarında gösterilen İSİMSİZ havuz kesiti: her bölgeden en yüksek notlu
+    iki oyuncu. İsim ve kulüp bilinçli olarak YOK — yalnız mevki, rol, yaş, ülke, lig, not
+    (ziyaretçi ne aldığını görsün, veri dışarı sızmasın). dil = önbellek anahtarı."""
+    grup = {}
+    for r in birlesik_scout_yukle().values():
+        if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
+            continue
+        a, kod = _sira_anahtari(r), _sira_mevki(r)
+        pk = _WS_KOD_GRUP.get(kod, "")
+        if a is None or not pk:
+            continue
+        grup.setdefault(pk, []).append((a, kod, r))
+    out = []
+    for pk in ("K", "D", "O", "F"):
+        for a, kod, r in sorted(grup.get(pk, []), key=lambda x: x[0], reverse=True)[:2]:
+            yas = str(r.get("yas") or "").strip()
+            out.append({"p": kod, "ro": scout_rol_goster(str(r.get("rol", "") or "")),
+                        "a": yas if yas.isdigit() else "",
+                        "cn": ulke_goster(_uyruk_goster(str(r.get("vatandaslik", "") or ""))),
+                        "lg": _lig_goster(str(r.get("lig", "") or "")),
+                        "sc": str(r.get("nihai", "") or "")})
+    return out
+
+
+def _duvar_onizleme_goster(kap_stil: str = ""):
+    """Premium duvarının üstünde: havuzdan isimsiz 8 satır + 'N oyuncu daha' kilidi."""
+    try:
+        sat = _duvar_onizleme_satirlari("EN" if EN else "TR")
+        toplam = _scouting_havuz_boyutu()
+    except Exception:
+        return
+    if not sat:
+        return
+    import html as _h
+    _maske = ("<span style='display:inline-block;height:10px;border-radius:6px;"
+              "background:linear-gradient(90deg,#4c3a8a,#2a2145);width:{w}px;'></span>")
+    govde = ""
+    for i, r in enumerate(sat):
+        renk = _scotr_renk(_scotr_puan(r["sc"])) if r["sc"] else "#6b7280"
+        govde += (
+            "<tr style='border-top:1px solid #241d3d;'>"
+            f"<td style='padding:8px 10px;'>{_maske.format(w=86 + (i * 23) % 48)}</td>"
+            f"<td style='padding:8px 6px;'><span style='background:#2a2a38;color:#d4d4d8;padding:2px 7px;"
+            f"border-radius:5px;font-size:0.64rem;font-weight:700;'>{_h.escape(r['p'])}</span></td>"
+            f"<td style='padding:8px 6px;color:#cbd5e1;'>{_h.escape(r['ro']) or '—'}</td>"
+            f"<td style='padding:8px 6px;color:#cbd5e1;text-align:right;'>{r['a'] or '—'}</td>"
+            f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(r['cn']) or '—'}"
+            f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(r['lg'])}</div></td>"
+            f"<td style='padding:8px 10px;text-align:center;'><span style='display:inline-flex;width:30px;height:30px;"
+            f"border-radius:50%;border:2px solid {renk};color:{renk};align-items:center;justify-content:center;"
+            f"font-size:0.6rem;font-weight:800;font-family:Sora,monospace;'>{_h.escape(r['sc']) or '—'}</span></td></tr>")
+    basliklar = "".join(
+        f"<th style='padding:8px {p};text-align:{h};' class='tp-arametin'>{_buyuk(x)}</th>"
+        for x, p, h in ((t("Oyuncu", "Player"), "10px", "left"), (t("Mevki", "Pos"), "6px", "left"),
+                        (t("Rol", "Role"), "6px", "left"), (t("Yaş", "Age"), "6px", "right"),
+                        (t("Ülke / Lig", "Country / League"), "6px", "left"), (t("Not", "Grade"), "10px", "center")))
+    st.markdown(
+        f"<div style='{kap_stil}'>"
+        "<div style='background:#0d0d16;border:1px solid #3b2d6e;border-radius:14px;overflow:hidden;'>"
+        "<div style='padding:12px 14px 8px;'>"
+        f"<div class='tp-arabaslik'>🔎 {_buyuk(t('Havuzdan canlı kesit', 'Live sample from the pool'))}</div>"
+        f"<div class='tp-arametin'>{t('Her bölgenin en yüksek notlu oyuncuları — isim ve kulüp Premium üyelikte açılır.', 'Top-graded players of each line — names and clubs unlock with Premium.')}</div>"
+        "</div>"
+        "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;font-size:0.8rem;white-space:nowrap;'>"
+        f"<thead><tr>{basliklar}</tr></thead><tbody>{govde}</tbody></table></div>"
+        "<div style='padding:10px 14px;border-top:1px solid #241d3d;background:#141024;text-align:center;'>"
+        f"<span style='font-size:11pt;font-weight:600;color:#e9d5ff;'>🔒 +{max(0, toplam - len(sat))} "
+        f"{t('oyuncu daha · filtre, karşılaştırma ve scout raporlarıyla', 'more players · with filters, comparison and scout reports')}</span>"
+        "</div></div></div>", unsafe_allow_html=True)
 
 
 @st.cache_data(show_spinner=False)
@@ -6948,6 +7137,14 @@ def _buyuk(s: str) -> str:
     return s.upper() if EN else s.replace("i", "İ").replace("ı", "I").upper()
 
 
+def _isim_dil(isim) -> str:
+    """CSS ile büyütülen AD öğeleri için lang değeri. Belge dili TR iken tarayıcı her
+    i'yi İ yapar; yabancı adlarda bu yanlış ("KRİSTİNA MAKSUTİ"). Adda yalnız Türkçe'ye
+    özgü harf (ğ, ı, İ, ş) varsa 'tr', yoksa 'en' (i→I)."""
+    import re as _r
+    return "tr" if _r.search("[ğĞıİşŞ]", str(isim or "")) else "en"
+
+
 def _profil_baslik(isim, sd_url="", tam_isim=""):
     """İsim başlığı (büyük, beyaz — 2026-08-19 revizyonu, bkz. aşağı).
 
@@ -6963,7 +7160,7 @@ def _profil_baslik(isim, sd_url="", tam_isim=""):
     ti = (tam_isim or "").strip()
     if ti and ti != isim.strip():
         alt = f'<div class="tp-arametin" style="margin:-2px 0 4px;">{_html.escape(ti)}</div>'
-    st.markdown(f'<div class="sc-isim" style="margin:2px 0 4px;">{isim}</div>{alt}',
+    st.markdown(f'<div class="sc-isim" lang="{_isim_dil(isim)}" style="margin:2px 0 4px;">{isim}</div>{alt}',
                 unsafe_allow_html=True)
 
 
@@ -10254,7 +10451,7 @@ def _blog_duyuru(kap_stil: str = ""):
         "background:linear-gradient(90deg,#0b2163dd 0%,#1a1438f2 50%,#7d1226dd 100%);'>"
         f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı · Derbi dosyası', 'New article · Derby file'))}</span><br>"
         f"<span class='tp-sekilli' style='color:#ffffff;'>"
-        f"{_buyuk(t('Derbi öncesi üç bakış: Fenerbahçe – Galatasaray', 'Three views before the derby: Fenerbahçe – Galatasaray'))}</span><br>"
+        f"{_buyuk(t('Derbi dosyası: Fenerbahçe – Galatasaray’a üç bakış', 'Derby file: three views on Fenerbahçe – Galatasaray'))}</span><br>"
         f"<span class='tp-arametin'>{t('Üç yorumcu, ilk 11 tahminleri, animasyonlu senaryolar — okumak için tıkla →', 'Three pundits, predicted line-ups, animated scenarios — click to read →')}</span>"
         "</a></div>", unsafe_allow_html=True)
 
@@ -12223,7 +12420,8 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
             with st.expander(f"📊 {t('Veri Kapsama', 'Data Coverage')}"):
                 veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data)
     else:
-        _blog_duyuru("max-width:560px;margin:24px auto -40px;")
+        _blog_duyuru("max-width:560px;margin:24px auto 0;")
+        _duvar_onizleme_goster("max-width:560px;margin:14px auto -40px;")
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
              background:linear-gradient(135deg,#1a0f2e,#1e1338);
@@ -12564,22 +12762,31 @@ def render_giris_ekrani():
 
 
 # ─── KARŞILAMA EKRANI (ana içeriğe geçmeden önce — herkese açık) ───────────────
+def _karsilama_dugmeleri(ek: str):
+    """Ön kapıdan iki yol (2026-11-11): Scouting Havuzu (üye değilse Premium duvarı +
+    örnek raporlar) ya da ücretsiz Türkiye ligi verileri. Eskiden tek düğme vardı ve
+    ziyaretçiyi doğrudan ödeme duvarına götürüyordu."""
+    _ka, _kb = st.columns(2)
+    with _ka:
+        if st.button(t("🌍 Scouting Havuzu · Premium", "🌍 Scouting Pool · Premium"),
+                     type="primary", width="stretch", key="karsilama_sc_" + ek):
+            st.session_state["sayfa"] = "scouting"
+            st.session_state["girildi"] = True
+            st.rerun()
+    with _kb:
+        if st.button(t("🇹🇷 Türkiye Ligi Verileri · ücretsiz", "🇹🇷 Turkish League Data · free"),
+                     width="stretch", key="karsilama_tr_" + ek):
+            st.session_state["sayfa"] = "ana"
+            st.session_state["girildi"] = True
+            st.rerun()
+
+
 if not st.session_state.get("girildi", False):
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
-    _kc = st.columns([1, 2, 1])[1]
-    with _kc:
-        if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
-                     type="primary", width="stretch", key="karsilama_gec_ust"):
-            st.session_state["girildi"] = True
-            st.rerun()
+    _karsilama_dugmeleri("ust")
     render_giris_ekrani()
     st.markdown("<br>", unsafe_allow_html=True)
-    _kc2 = st.columns([1, 2, 1])[1]
-    with _kc2:
-        if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
-                     type="primary", width="stretch", key="karsilama_gec_alt"):
-            st.session_state["girildi"] = True
-            st.rerun()
+    _karsilama_dugmeleri("alt")
     st.stop()
 
 
@@ -13171,6 +13378,7 @@ if tab4:
                 unsafe_allow_html=True)
 
         st.markdown("<br>", unsafe_allow_html=True)
+        takim_dizilis_goster(secili_t)
         sol, sag = st.columns(2)
 
         # ── Kadro tablosu ─────────────────────────────────────────────────
@@ -14297,6 +14505,8 @@ if tab9:
                 show = ["Oyuncu", "Takım", "Mevki", "Uyruk", "Yaş", "Maç", "İlk11", "Gol", "Dakika", "Sarı"]
                 show = [c for c in show if c in filtered.columns]
                 _goster_df = filtered[show].copy()
+                if "Takım" in _goster_df.columns:      # uzun sponsorlu ad yerine kısa ad (diğer sekmelerle aynı)
+                    _goster_df["Takım"] = _goster_df["Takım"].map(_takim_kisa)
                 if EN and "Mevki" in _goster_df.columns:
                     _goster_df["Mevki"] = _goster_df["Mevki"].map(mevki_goster)
                 if "Uyruk" in _goster_df.columns:
@@ -14419,11 +14629,13 @@ if tab10:
         with col_takim:
             st.markdown(f"**🏟 {t('Takım Yaş Ortalamaları', 'Team Age Averages')}**")
             takim_yas = (yas_df[yas_df["takim"] != "Bilinmiyor"]
+                         .assign(takim=lambda _d: _d["takim"].map(_takim_kanonlastir))
                          .groupby("takim")["yas"]
                          .agg(["mean","min","max","count"]).round(1)
                          .reset_index()
                          .rename(columns={"takim":"Takım","mean":"Ort","min":"Min","max":"Max","count":"Oyuncu"})
                          .sort_values("Ort"))
+            takim_yas["Takım"] = takim_yas["Takım"].map(_takim_kisa)   # kısa ad (diğer sekmelerle aynı)
             df_tablo(takim_yas,
                 basliklar={"Takım": t("Takım","Team"), "Ort": t("Ort","Avg"),
                            "Min": "Min", "Max": "Max", "Oyuncu": t("Oyuncu","Players")},
@@ -14490,8 +14702,10 @@ if tab11:
             for kol, sayi, etiket in [
                 (k1, len(aktif), t("Aktif Kaleci","Active GKs")),
                 (k2, int(kal_df["YenilenGol"].sum()), t("Toplam Gol","Total Goals")),
-                (k3, en_iyi['G/Maç'], t("En Az Yiyen","Fewest Conceded") + " · " + _ei_ad),
-                (k4, en_kotu['G/Maç'], t("En Çok Yiyen","Most Conceded") + " · " + _ek_ad),
+                (k3, en_iyi['G/Maç'], t("En Az Yiyen","Fewest Conceded") + " · "
+                 + f"<span lang='{_isim_dil(_ei_ad)}'>{_ei_ad}</span>"),
+                (k4, en_kotu['G/Maç'], t("En Çok Yiyen","Most Conceded") + " · "
+                 + f"<span lang='{_isim_dil(_ek_ad)}'>{_ek_ad}</span>"),
             ]:
                 kol.markdown(
                     f'<div class="stat-kart"><div class="sayi">{sayi}</div>'
@@ -14503,6 +14717,8 @@ if tab11:
         with col_tablo:
             st.markdown(f"**📋 {t('Tüm Kaleciler', 'All Goalkeepers')}**")
             goster = kal_df[kal_df["Maç"] > 0].copy()
+            if "Takım" in goster.columns:              # kısa ad (diğer sekmelerle aynı)
+                goster["Takım"] = goster["Takım"].map(_takim_kisa)
             goster.index = range(1, len(goster) + 1)
             df_tablo(
                 goster,
