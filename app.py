@@ -55,7 +55,7 @@ st.set_page_config(
 )
 
 
-def _pwa_kur() -> None:
+def _pwa_kur(dil: str = "en") -> None:
     """Sayfayı telefona kurulabilir hâle getirir (ana ekrana ekle).
 
     Streamlit'in index.html'i pakette olduğu için (site-packages) doğrudan
@@ -75,6 +75,8 @@ def _pwa_kur() -> None:
 (function () {
   try {
     var d = window.parent.document;
+    // Belge dili: CSS büyük harf dönüşümü Türkçe'de i→İ yapsın (yoksa "DAKIKA", "LIGI")
+    if (d && d.documentElement) d.documentElement.lang = '__DIL__';
     if (!d || d.getElementById('wfs-pwa')) return;          // bir kez yeter
     var im = d.createElement('meta'); im.id = 'wfs-pwa';    // işaret
     im.name = 'wfs-pwa'; im.content = '1'; d.head.appendChild(im);
@@ -100,6 +102,7 @@ def _pwa_kur() -> None:
     # a future release → use st.iframe"). Yenisi varsa o kullanılır, yoksa
     # eskisine düşülür. Her ikisi de patlarsa PWA'sız devam edilir — bir ana
     # ekran kısayolu için sitenin tamamı riske atılmaz.
+    _kod = _kod.replace("__DIL__", "tr" if dil == "tr" else "en")
     try:
         if hasattr(st, "iframe"):
             st.iframe(_kod, height=1)
@@ -110,7 +113,6 @@ def _pwa_kur() -> None:
         pass
 
 
-_pwa_kur()
 
 # ─── Dil (EN varsayılan — uluslararası scouting ağı görünümü / TR isteğe bağlı) ───
 # Tercih URL'de (?dil=EN) saklanır → sayfa yenilense de korunur.
@@ -123,6 +125,7 @@ def t(tr, en):
     return en if st.session_state.get("dil") == "EN" else tr
 
 EN = st.session_state.get("dil") == "EN"
+_pwa_kur("en" if EN else "tr")      # dil belli olduktan sonra: <html lang> de ayarlanır
 
 
 def _sayfa_banner(img: str, baslik: str, alt: str = ""):
@@ -1089,8 +1092,9 @@ def puan_durumu_cek():
             pass
     url = "https://www.tff.org/Default.aspx?pageID=1000&hafta=30"
     try:
+        from bs4 import BeautifulSoup
         r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
-        soup = BeautifulSoup(r.content, "lxml")
+        soup = BeautifulSoup(r.content, "html.parser")
         tablo = soup.find("table", class_="s-table")
         if not tablo:
             return pd.DataFrame()
@@ -2802,7 +2806,11 @@ def dunya_havuz_ozet() -> dict:
     """Uluslararası scouting havuzunun büyüklüğünü gösteren sayılar (karşılama
     ekranı + ana sayfa hero'su için). Yalnız Dünya havuzundan (scout_kadro_yukle)
     hesaplanır — TR ligi buraya karışırsa 'ülke/lig sayısı' anlamsızlaşır."""
-    d = scout_kadro_yukle()
+    # 2026-11-11: sayılar artık Scouting Havuzu tablosuyla AYNI kümeden (birleşik
+    # havuz, düşük notlu TR hariç). Eskiden yalnız Dünya sekmesi sayılıyordu:
+    # karşılama "1151 oyuncu" derken sol menü ve tablo "1519" diyordu.
+    d = {k: v for k, v in birlesik_scout_yukle().items()
+         if isinstance(v, dict) and not _dusuk_notlu_tr_mi(v)}
     ulke = {v.get("vatandaslik", "").strip() for v in d.values() if v.get("vatandaslik", "").strip()}
     lig = {v.get("lig", "").strip() for v in d.values()
            if v.get("lig", "").strip() and v.get("lig", "").strip() != "-"}
@@ -4349,6 +4357,8 @@ def _lig_goster(m):
     sondaki bölüm numarasını koruyup sadece ülke kısmını çevirir. Numara yoksa
     (ör. sadece 'Türkiye') düz ulke_goster ile aynı davranır."""
     m = (m or "").strip()
+    if m in ("-", "—", "–"):
+        return ""
     if not m:
         return m
     parcalar = m.rsplit(" ", 1)
@@ -6094,7 +6104,7 @@ def radar_goster(isim, kaynak):
                    radialaxis=dict(range=[0, 100], gridcolor="#1e293b", tickfont=dict(size=9)),
                    angularaxis=dict(gridcolor="#334155")),
         showlegend=False)
-    st.markdown(f"#### 🕸️ {q['kat']} {t('Profili', 'Profile')}")
+    st.markdown(f"#### 🕸️ {mevki_goster(q['kat'])} {t('Profili', 'Profile')}")
     st.caption(t("Aynı mevkideki oyunculara göre yüzdelik dilim (100 = en iyi)",
                  "Percentile vs players in the same position (100 = best)"))
     st.plotly_chart(fig, width="stretch", key=_pk("plt_1966"))
@@ -6976,6 +6986,34 @@ def _profil_kutulari(gruplar):
     st.markdown(f"<div class='bilgi-grid'>{_html}</div>", unsafe_allow_html=True)
 
 
+_YARISMA_CEVIRI = [
+    # (desen, TR, EN) — yalnız GENEL adlar; "DFB-Pokal", "Frauen Bundesliga" gibi özel adlara dokunulmaz
+    (r"\bFreundschaftsspiele\b", "Hazırlık Maçları", "Friendlies"),
+    (r"\bOlympische Spiele\b", "Olimpiyat Oyunları", "Olympic Games"),
+    (r"\bWM Qualifikation Playoffs\b", "Dünya Kupası Elemeleri Play-off", "World Cup Qualifying Play-offs"),
+    (r"\bWM[- ]Qualifikation\b", "Dünya Kupası Elemeleri", "World Cup Qualifiers"),
+    (r"\bEM[- ]Qualifikation\b", "Avrupa Şampiyonası Elemeleri", "Euro Qualifiers"),
+    (r"\bEuropameisterschaft\b", "Avrupa Şampiyonası", "European Championship"),
+    (r"\bU(\d+)-Südamerikameisterschaft\b", r"U\1 Güney Amerika Şampiyonası", r"U\1 South American Championship"),
+    (r"\bVier-Nationen-Turnier\b", "Dört Uluslu Turnuva", "Four Nations Tournament"),
+]
+
+
+def _yarisma_goster(ad) -> str:
+    """Kariyer tablosundaki yarışma adı: SoccerDonna'nın Almanca bıraktığı genel
+    adları aktif dile çevirir ("Freundschaftsspiele" → "Hazırlık Maçları")."""
+    import re as _r
+    ad = str(ad or "")
+    if not ad:
+        return ad
+    eleme = "Qualifikation" in ad
+    for desen, tr_, en_ in _YARISMA_CEVIRI:
+        ad = _r.sub(desen, en_ if EN else tr_, ad)
+    if eleme:      # "… Liga A" yalnız eleme adlarında çevrilir (lig özel adlarıyla karışmasın)
+        ad = _r.sub(r"\bLiga ([A-D])\b", r"League \1" if EN else r"\1 Ligi", ad)
+    return ad
+
+
 def _kariyer_kulup_milli(isim, sezonlar, kaynak, milli_ad="", guncelleme=""):
     """Trend + Radar yan yana + Kulüp/Milli ayrı tablolar (iki profilde ortak)."""
     if not sezonlar:
@@ -7005,7 +7043,8 @@ def _kariyer_kulup_milli(isim, sezonlar, kaynak, milli_ad="", guncelleme=""):
             _td = sum(x.get("dakika", 0) for x in _grp)
             _coklu = len(_grp) > 1
             _ana = max(_grp, key=lambda x: x.get("mac", 0))
-            _yari = f"{len(_grp)} {t('yarışma','comp.')}" if _coklu else _grp[0].get("lig", "")
+            _yari = (f"{len(_grp)} {t('yarışma','comp.')}" if _coklu
+                     else _yarisma_goster(_grp[0].get("lig", "")))
             # TOPLAM satırı — BEYAZ, kalın
             _sh += (
                 "<tr style='color:#f8fafc;font-weight:700;border-top:1px solid #2c3550;'>"
@@ -7023,7 +7062,7 @@ def _kariyer_kulup_milli(isim, sezonlar, kaynak, milli_ad="", guncelleme=""):
                     _sh += (
                         "<tr style='color:#64748b;font-size:0.79rem;'>"
                         "<td style='padding:2px 8px;'></td><td style='padding:2px 8px;'></td>"
-                        f"<td style='padding:2px 8px 2px 18px;'>↳ {x.get('lig','')}</td>"
+                        f"<td style='padding:2px 8px 2px 18px;'>↳ {_yarisma_goster(x.get('lig',''))}</td>"
                         f"<td style='padding:2px 8px;text-align:right;'>{x.get('mac',0)}</td>"
                         f"<td style='padding:2px 8px;text-align:right;'>{x.get('gol',0)}</td>"
                         f"<td style='padding:2px 8px;text-align:right;'>{x.get('asist',0)}</td>"
@@ -7369,7 +7408,7 @@ def render_scouting_detay(tam_isim):
     _vucut = vucut_goster((_kadro.get("vucut_tipi") or "").strip())
     _boy_tip = " / ".join(x for x in (boy if boy != "—" else "", _vucut) if x)
     _bolge_g = bolge_goster(_kadro.get("bolge", ""))
-    _lig_g = (_kadro.get("lig") or "").strip()
+    _lig_g = _lig_goster((_kadro.get("lig") or "").strip())   # "-" → boş; EN modda ülke adı çevrilir
     _takim_ham = (_kadro.get("kulup") or "").strip()
     _takim_g = (t("Serbest", "Free Agent") if _takim_ham.lower() in _KONTRAT_SERBEST
                 else t("Kariyere Ara Verdi", "Career Break") if _takim_ham.lower() == "career break"
@@ -7739,7 +7778,8 @@ def _sira_satiri_html(r: dict, kapsam: str = "tum") -> str:
     parca = " &nbsp;·&nbsp; ".join(
         "<span style='white-space:nowrap;'>" + _h.escape(str(ad))
         + " <b style='font-family:Sora,sans-serif;font-style:normal;font-weight:700;font-size:12pt;color:"
-        + ("#1db954" if s <= max(3, n // 10) else "#f1f5f9") + ";'>" + str(s) + ".</b>"
+        + ("#1db954" if s <= max(3, n // 10) else "#f1f5f9") + ";'>"
+        + (("#" + str(s)) if EN else (str(s) + ".")) + "</b>"
         + "<span style='font-style:normal;color:#64748b;'> / " + str(n) + "</span></span>"
         for ad, s, n in sl)
     bas = (t("Türkiye liglerinde sıra", "Rank in Turkish leagues") if kapsam == "tr"
@@ -8787,7 +8827,7 @@ def render_scout_kadro_raporu(isim: str, bolum: str = "analiz"):
                 break
         mevki_kod = " / ".join(rapor.get("mevki", []))
         alt_satir = " · ".join(x for x in [scout_rol_goster(rapor.get("rol","")), mevki_kod,
-                    f"{rapor.get('boy','')} · {rapor.get('ayak','')}".strip(" ·"),
+                    f"{rapor.get('boy','')} · {_ayak_goster('', rapor.get('ayak',''))}".strip(" ·"),
                     ulke_goster(rapor.get("vatandaslik",""))] if x)
         kulup_satir = " · ".join(x for x in [_kulup_goster(rapor.get("kulup","")), _lig_goster(rapor.get("lig","")),
                       (f"💰 {rapor.get('deger')}" if rapor.get("deger") else ""),
@@ -9650,10 +9690,12 @@ def _render_ana_lig_profil_ic(secili):
                                 "border-radius:9px;padding:8px 4px;'>"
                                 f"<div style='height:16px;font-size:0.6rem;color:#64748b;font-weight:700;"
                                 f"text-align:center;letter-spacing:0.03em;'>{_h}. {t('Hafta','Wk')}</div>"
-                                + _hucre(f"{_dk}′", _sure_renk, 800)
-                                + _hucre(_gl, _gl_renk)
+                                # Takımın o hafta oynanmış maçı yoksa (erteleme) oyuncu "oynamadı"
+                                # gibi görünmesin: tüm satırlar "—".
+                                + _hucre("—" if (_yen is None and not m) else f"{_dk}′", _sure_renk, 800)
+                                + _hucre("—" if (_yen is None and not m) else _gl, _gl_renk)
                                 + _hucre(_cs_v, _cs_renk)
-                                + _hucre(_kart_v, _kart_renk)
+                                + _hucre("—" if (_yen is None and not m) else _kart_v, _kart_renk)
                                 + "</div>")
                         # 26.08.2026: legend(34px) + 5 kart(min 60px) = ~364px sabit min genişlik —
                         # mobilde (p1/p2 dikey yığılınca bile ~320px kalıyor) taşıyordu; site
@@ -9664,8 +9706,8 @@ def _render_ana_lig_profil_ic(secili):
                             f"<div style='display:flex;gap:6px;align-items:stretch;'>{_lejant}{_kartlar}</div>"
                             "</div>",
                             unsafe_allow_html=True)
-                        st.caption(t("⏱ Süre · ⚽ Gol · 🛡 Clean Sheet · 🟨 Kart (oynamadıysa 0′)",
-                                     "⏱ Minutes · ⚽ Goals · 🛡 Clean Sheet · 🟨 Cards (0′ if didn't play)"))
+                        st.caption(t("⏱ Süre · ⚽ Gol · 🛡 Clean Sheet · 🟨 Kart (oynamadıysa 0′ · takımın maçı yoksa —)",
+                                     "⏱ Minutes · ⚽ Goals · 🛡 Clean Sheet · 🟨 Cards (0′ if didn't play · — if the team had no match)"))
 
                 # ── Lig sıralamaları ─────────────────────────────────────────────────
                 with p2, st.container(border=True):
@@ -11991,7 +12033,10 @@ if st.session_state.get("sayfa") == "kokpit":
     st.stop()
 
 # ─── SCOUTİNG SAYFASI (Premium kademe) ───────────────────────────────────────
-if st.session_state.get("sayfa") == "scouting":
+# girildi=False iken bu blok ATLANIR: aşağıdaki KARŞILAMA EKRANI ön kapıdır
+# (render_giris_ekrani). Eskiden varsayılan sayfa scouting olduğu için yeni
+# ziyaretçi karşılamayı hiç görmeden Premium ödeme duvarına düşüyordu (2026-11-11).
+if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi", False):
     geri_ana_butonu("geri_scouting")
     if tier_yeterli("premium"):
         _sayfa_banner("b2.jpg", f"🔎 {t('Scouting Havuzu','Scouting Pool')}",
@@ -12520,6 +12565,7 @@ def render_giris_ekrani():
 
 # ─── KARŞILAMA EKRANI (ana içeriğe geçmeden önce — herkese açık) ───────────────
 if not st.session_state.get("girildi", False):
+    _blog_duyuru("max-width:760px;margin:0 auto 14px;")
     _kc = st.columns([1, 2, 1])[1]
     with _kc:
         if st.button(t("🚀 Ana Sayfaya Geç", "🚀 Enter the App"),
