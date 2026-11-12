@@ -13318,6 +13318,15 @@ def _karsilama_dugmeleri(ek: str):
 
 
 if not st.session_state.get("girildi", False):
+    # Çerez oturumu ilk çalışmadan SONRA gelir. İlk çalışmada karşılamanın tamamını çizmek
+    # girişli üyeyi bekletiyordu (canlı ölçüm 12.11.2026: havuz 2,6 sn → 4-6 sn; önce karşılama
+    # çiziliyor, sonra çerez gelince havuz). İlk çalışmada yalnız hafif bir bekleme gösterilir;
+    # çerez bileşeni yeniden çalıştırmayı tetikler (?oyuncu sayfasındaki kalıbın aynısı, tek seferlik).
+    if _cookie_ctrl() is not None and not st.session_state.get("_ck_grace_karsilama"):
+        st.session_state["_ck_grace_karsilama"] = True
+        st.markdown("<div style='text-align:center;padding:110px 20px;color:#8899aa;'>"
+                    "<div style='font-size:1.8rem;'>⏳</div></div>", unsafe_allow_html=True)
+        st.stop()
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
     _karsilama_dugmeleri("ust")
     _uye_giris_dugmesi("karsilama")
