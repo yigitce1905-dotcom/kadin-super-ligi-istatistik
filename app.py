@@ -10657,6 +10657,12 @@ def link_acilis_kaydet(tur: str, hedef: str, etiket: str = ""):
     try:
         if st.session_state.get("kulup_kullanici") == "admin":
             return
+        # Çerez oturumu ilk çalışmadan SONRA geri gelir: ilk çalışmada yazılırsa yöneticinin
+        # yeni sekmede açtığı link de sayılıyordu (12 Kasım'da 4 sahte kayıt). İlk çalışmayı
+        # atla; çerez bileşeni yeniden çalıştırma tetikler, kayıt o zaman (yönetici değilse) düşer.
+        if _cookie_ctrl() is not None and not st.session_state.get("_link_ilk_gecti"):
+            st.session_state["_link_ilk_gecti"] = True
+            return
         anahtar = f"_link_log_{tur}_{hedef}_{etiket}"
         if st.session_state.get(anahtar):
             return
