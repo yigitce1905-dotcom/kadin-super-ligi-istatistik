@@ -34,5 +34,53 @@
     "ab": true
    }
   ]
+ },
+ "sc-freiburg": {
+  "ad": "SC Freiburg",
+  "sd_verein": 292,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (sözleşme bitişi, yaş, mevki derinliği) çıkarılmıştır. Kaynak: SoccerDonna, 12.11.2026.",
+  "not_en": "The highlighted areas are derived from your public squad data (contract expiry, age, positional depth). Source: SoccerDonna, 12 Nov 2026.",
+  "ihtiyaclar": [
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 150000,
+    "not_min": "BB",
+    "neden": "Kayıtlı 5 stoperden 4'ünün sözleşmesi 30.06.2027'de bitiyor; biri 35 yaşında.",
+    "neden_en": "4 of the 5 registered centre-backs are out of contract on 30.06.2027; one is 35."
+   },
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 28,
+    "deger_max": 150000,
+    "not_min": "BB",
+    "neden": "Dört kalecinin en deneyimlisi 34 yaşında ve sözleşmesi 30.06.2027'de bitiyor.",
+    "neden_en": "The most experienced of the four goalkeepers is 34 and out of contract on 30.06.2027."
+   },
+   {
+    "baslik": "Sol bek",
+    "baslik_en": "Left-back",
+    "mevki": [
+     "LFB",
+     "LWB"
+    ],
+    "yas_max": 27,
+    "deger_max": 150000,
+    "not_min": "BB",
+    "neden": "Sol bek olarak kayıtlı tek oyuncu 19 yaşında.",
+    "neden_en": "The only player registered as a left-back is 19."
+   }
+  ]
  }
 }

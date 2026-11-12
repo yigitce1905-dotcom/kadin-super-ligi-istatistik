@@ -10745,7 +10745,31 @@ def _ihtiyac_adaylari(kriter: dict) -> list:
             continue
         out.append((a, isim, kod, r))
     out.sort(key=lambda x: x[0], reverse=True)
-    return out
+    # Havuzda aynı oyuncu iki adla kayıtlı olabiliyor ("Mariza" / "Mariza Nascimento"):
+    # ilk ad + kulüp + mevki + yaş aynıysa tek say (kulübe giden sayfada çift satır güven kırar).
+    tekil, gorulen = [], set()
+    for a, isim, kod, r in out:
+        iz = ((_isim_norm(isim).split() or [""])[0], _isim_norm(str(r.get("kulup") or "")), kod, str(r.get("yas") or ""))
+        if iz in gorulen:
+            continue
+        gorulen.add(iz)
+        tekil.append((a, isim, kod, r))
+    return tekil
+
+
+def _rol_mevkiye_uyar(rol: str, kod: str) -> bool:
+    """Rol ile mevki kodu açıkça çelişiyor mu? (Havuzda 'LCB · Komple #9' gibi hatalı satırlar var.)
+    Çelişen rol kulüp sayfasında GÖSTERİLMEZ; emin olunamayan durumda True döner."""
+    r, pk = (rol or "").lower(), _WS_KOD_GRUP.get(kod, "")
+    if not r or not pk:
+        return True
+    if "kaleci" in r:
+        return pk == "K"
+    if "stoper" in r:
+        return pk == "D"
+    if "#9" in r or "santrfor" in r or "golcü" in r:
+        return pk == "F"
+    return pk != "K"
 
 
 def render_kulup_firsat(anahtar: str):
@@ -10771,7 +10795,7 @@ def render_kulup_firsat(anahtar: str):
         "<div class='baslik-kutu'>"
         f"<div class='ust-bant'>⚡ WOMEN'S FOOTBALL SCOUTING</div>"
         f"<h1 lang='{_isim_dil(ad)}'>{ad}</h1>"
-        f"<p>{t('Kadro ihtiyaçlarınıza göre scouting havuzumuzdan süzülen adaylar', 'Candidates from our scouting pool, filtered to your squad needs')}"
+        f"<p>{t('Kadro verinizin öne çıkardığı bölgeler için scouting havuzumuzdan adaylar', 'Candidates from our scouting pool for the areas your squad data highlights')}"
         f" · <b>{toplam}</b> {t('oyuncu arasından', 'players screened')}</p></div>", unsafe_allow_html=True)
     _not = kayit.get("not_en" if EN else "not") or kayit.get("not") or ""
     if _not:
@@ -10815,7 +10839,7 @@ def render_kulup_firsat(anahtar: str):
                 f"<td style='padding:8px 10px;'>{ad_h}</td>"
                 f"<td style='padding:8px 6px;'><span style='background:#2a2a38;color:#d4d4d8;padding:2px 7px;"
                 f"border-radius:5px;font-size:0.64rem;font-weight:700;'>{_h.escape(kod)}</span></td>"
-                f"<td style='padding:8px 6px;color:#cbd5e1;'>{_h.escape(scout_rol_goster(str(r.get('rol') or ''))) or '—'}</td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;'>{(_h.escape(scout_rol_goster(str(r.get('rol') or ''))) if _rol_mevkiye_uyar(str(r.get('rol') or ''), kod) else '') or '—'}</td>"
                 f"<td style='padding:8px 6px;color:#cbd5e1;text-align:right;'>{yas if yas.isdigit() else '—'}</td>"
                 f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('vatandaslik') or '')))) or '—'}"
                 f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_lig_goster(str(r.get('lig') or '')))}</div></td>"
@@ -10844,7 +10868,9 @@ def render_kulup_firsat(anahtar: str):
             f"<span class='tp-anabaslik'>{_buyuk(baslik)}</span>"
             f"<span style='font-family:Sora,sans-serif;font-weight:800;color:#1db954;font-size:12pt;'>{len(adaylar)}</span>"
             f"<span class='tp-arametin'>{t('aday', 'candidates')}</span></div>"
-            f"<div style='padding:0 14px 8px;'>{cipler}</div>{tablo}</div>", unsafe_allow_html=True)
+            + (f"<div class='tp-arametin' style='padding:0 14px 8px;'>{_h.escape(str(ih.get('neden_en' if EN else 'neden') or ih.get('neden') or ''))}</div>"
+               if (ih.get('neden') or ih.get('neden_en')) else "")
+            + f"<div style='padding:0 14px 8px;'>{cipler}</div>{tablo}</div>", unsafe_allow_html=True)
     if not acik:
         st.markdown(
             "<div style='text-align:center;background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
