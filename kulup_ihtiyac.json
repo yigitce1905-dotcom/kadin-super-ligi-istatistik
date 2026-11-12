@@ -82,5 +82,429 @@
     "neden_en": "The only player registered as a left-back is 19."
    }
   ]
+ },
+ "kups": {
+  "ad": "KuPS",
+  "sd_verein": 6880,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000,
+    "not_min": "BC",
+    "neden": "6 oyuncudan 3'ünin sözleşmesi 30.06.2027'ye kadar bitiyor; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "3 of 6 contracts expiring by 30.06.2027; 1 aged 31 or over."
+   },
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000,
+    "not_min": "BC",
+    "neden": "4 oyuncudan 3'ünin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "3 of 4 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Sol bek",
+    "baslik_en": "Left-back",
+    "mevki": [
+     "LFB",
+     "LWB"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one player is registered in this position; contract ends by 30.06.2027."
+   }
+  ]
+ },
+ "gc-frauen": {
+  "ad": "GC Frauenfussball",
+  "sd_verein": 157,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Sol kanat",
+    "baslik_en": "Left winger",
+    "mevki": [
+     "LWF"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one player is registered in this position; contract ends by 30.06.2027."
+   },
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000,
+    "not_min": "BC",
+    "neden": "3 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "1 of 3 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 75000,
+    "not_min": "BC",
+    "neden": "4 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "1 of 4 contracts expiring by 30.06.2027."
+   }
+  ]
+ },
+ "skn-st-polten": {
+  "ad": "SKN St. Pölten Frauen",
+  "sd_verein": 1471,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 100000,
+    "not_min": "BC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var; 3 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one senior player (20+) is registered in this position; 1 of 3 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 100000,
+    "not_min": "BC",
+    "neden": "3 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "1 of 3 contracts expiring by 30.06.2027; 1 aged 31 or over."
+   },
+   {
+    "baslik": "Sol bek",
+    "baslik_en": "Left-back",
+    "mevki": [
+     "LFB",
+     "LWB"
+    ],
+    "yas_max": 27,
+    "deger_max": 100000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "Only one player is registered in this position; 1 aged 31 or over."
+   }
+  ]
+ },
+ "first-vienna": {
+  "ad": "First Vienna FC",
+  "sd_verein": 5299,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Merkez orta saha",
+    "baslik_en": "Central midfielder",
+    "mevki": [
+     "CMF"
+    ],
+    "yas_max": 27,
+    "deger_max": 100000,
+    "not_min": "BC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "Only one senior player (20+) is registered in this position; 1 aged 31 or over."
+   },
+   {
+    "baslik": "Ofansif orta saha",
+    "baslik_en": "Attacking midfielder",
+    "mevki": [
+     "AMF"
+    ],
+    "yas_max": 27,
+    "deger_max": 100000,
+    "not_min": "BC",
+    "neden": "2 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "1 of 2 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Sağ kanat",
+    "baslik_en": "Right winger",
+    "mevki": [
+     "RWF"
+    ],
+    "yas_max": 27,
+    "deger_max": 100000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var.",
+    "neden_en": "Only one player is registered in this position."
+   }
+  ]
+ },
+ "sv-67-weinberg": {
+  "ad": "SV 67 Weinberg",
+  "sd_verein": 334,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "6 oyuncudan 2'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "2 of 6 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var; 2 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one senior player (20+) is registered in this position; 1 of 2 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Sağ bek",
+    "baslik_en": "Right-back",
+    "mevki": [
+     "RFB",
+     "RWB"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "Only one player is registered in this position; 1 aged 31 or over."
+   }
+  ]
+ },
+ "wexford": {
+  "ad": "Wexford FC",
+  "sd_verein": 13754,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "4 oyuncudan 4'ünin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "4 of 4 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Santrfor",
+    "baslik_en": "Centre-forward",
+    "mevki": [
+     "CFW",
+     "2ST"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "6 oyuncudan 4'ünin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "4 of 6 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Ofansif orta saha",
+    "baslik_en": "Attacking midfielder",
+    "mevki": [
+     "AMF"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var; 2 oyuncudan 2'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one senior player (20+) is registered in this position; 2 of 2 contracts expiring by 30.06.2027."
+   }
+  ]
+ },
+ "cardiff-city-women": {
+  "ad": "Cardiff City FC Women",
+  "sd_verein": 527,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "4 oyuncudan 2'inin sözleşmesi 30.06.2027'ye kadar bitiyor; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "2 of 4 contracts expiring by 30.06.2027; 1 aged 31 or over."
+   },
+   {
+    "baslik": "Merkez orta saha",
+    "baslik_en": "Central midfielder",
+    "mevki": [
+     "CMF"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; sözleşmesi 30.06.2027'ye kadar bitiyor; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "Only one player is registered in this position; contract ends by 30.06.2027; 1 aged 31 or over."
+   },
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "CC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var; 3 oyuncudan 1'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one senior player (20+) is registered in this position; 1 of 3 contracts expiring by 30.06.2027."
+   }
+  ]
+ },
+ "kristianstads-dff": {
+  "ad": "Kristianstads DFF",
+  "sd_verein": 200,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Merkez orta saha",
+    "baslik_en": "Central midfielder",
+    "mevki": [
+     "CMF"
+    ],
+    "yas_max": 27,
+    "deger_max": 150000,
+    "not_min": "BC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var; 2 oyuncudan 2'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one senior player (20+) is registered in this position; 2 of 2 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Sağ bek",
+    "baslik_en": "Right-back",
+    "mevki": [
+     "RFB",
+     "RWB"
+    ],
+    "yas_max": 27,
+    "deger_max": 150000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one player is registered in this position; contract ends by 30.06.2027."
+   },
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 150000,
+    "not_min": "BC",
+    "neden": "Bu mevkide 20 yaş üstü tek oyuncu var.",
+    "neden_en": "Only one senior player (20+) is registered in this position."
+   }
+  ]
+ },
+ "eskilstuna-united": {
+  "ad": "Eskilstuna United",
+  "sd_verein": 1472,
+  "guncelleme": "2026-11-12",
+  "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
+  "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
+  "ihtiyaclar": [
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "BC",
+    "neden": "3 oyuncudan 2'inin sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "2 of 3 contracts expiring by 30.06.2027."
+   },
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; sözleşmesi 30.06.2027'ye kadar bitiyor.",
+    "neden_en": "Only one player is registered in this position; contract ends by 30.06.2027."
+   },
+   {
+    "baslik": "Ön libero",
+    "baslik_en": "Defensive midfielder",
+    "mevki": [
+     "DMF"
+    ],
+    "yas_max": 27,
+    "deger_max": 50000,
+    "not_min": "BC",
+    "neden": "Bu mevkide kayıtlı tek oyuncu var; 1 oyuncu 31 yaş ve üstü.",
+    "neden_en": "Only one player is registered in this position; 1 aged 31 or over."
+   }
+  ]
  }
 }

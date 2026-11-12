@@ -5007,7 +5007,7 @@ setInterval(fit,1500);
 </script></body></html>"""
 
 
-@st.cache_data(show_spinner=False, ttl=3600, max_entries=4)
+@st.cache_data(show_spinner=False, max_entries=4)
 def _ws_havuz_json(dil: str, gun: str, _kadro: dict = None, _sd: dict = None,
                    _leistung: dict = None) -> tuple:
     """Scouting havuzunun tablo satırları + filtre etiket haritaları, JSON metni olarak.
@@ -6201,6 +6201,29 @@ def _havuz_kimlik_listesi() -> list:
     return [[k, v.get("vatandaslik", ""), v.get("milli_takim", "")]
             for k, v in birlesik_scout_yukle().items()
             if isinstance(v, dict) and not _dusuk_notlu_tr_mi(v)]
+
+
+@st.cache_resource(show_spinner=False)
+def _isinma_baslat() -> bool:
+    """Süreç başına BİR kez: ağır, DİLDEN BAĞIMSIZ veri yükleyicilerini arka planda doldurur.
+    12 Kasım 2026 canlı ölçümü: ısınmış hâlde havuz ve profil 2,7 sn; yayından sonraki ilk
+    açılışta havuz 6 sn, ilk profil 14 sn (8 MB'lık kariyer JSON'unun 0,5 işlemcide ayrıştırılması).
+    Yalnız dile bağlı OLMAYAN yükleyiciler çağrılır — etiket üreten fonksiyonlar (_ws_havuz_json
+    vb.) o anki oturumun diline bakar; iş parçacığında çağrılırsa yanlış dilde önbelleğe girer."""
+    def _isin():
+        import time as _t
+        _t.sleep(2.5)
+        for _adim in (scouting_sd_yukle, sd_profiller_yukle, scouting_leistung_yukle,
+                      analig_leistung_yukle, birlesik_scout_yukle, _sira_havuzu, _dizilis_takim_ozet):
+            try:
+                _adim()
+            except Exception:
+                pass
+    try:
+        _threading.Thread(target=_isin, daemon=True).start()
+    except Exception:
+        pass
+    return True
 
 
 @st.cache_resource(show_spinner=False)
@@ -10701,6 +10724,95 @@ def _etiket_slug(s: str) -> str:
     return _r.sub(r"[^a-z0-9]+", "-", _isim_norm(s or "")).strip("-")[:30]
 
 
+# ─── ZİYARET SAYACI (2026-11-12) ──────────────────────────────────────────────
+def _ziyaret_ws(sh):
+    if sh is None:
+        return None
+    try:
+        return sh.worksheet("Ziyaret")
+    except Exception:
+        try:
+            ws = sh.add_worksheet(title="Ziyaret", rows=20000, cols=5)
+            ws.update([["tarih", "saat", "giris_sayfasi", "kim", "dil"]])
+            return ws
+        except Exception:
+            return None
+
+
+def ziyaret_kaydet():
+    """Oturum başına BİR satır: giriş sayfası + üye/ziyaretçi + dil → Sheets 'Ziyaret'.
+    Kişisel veri yok (IP, tarayıcı, kullanıcı adı tutulmaz). Yönetici sayılmaz.
+
+    Çerez oturumu ilk çalışmadan sonra geri geldiği için yazma 6 sn geciktirilir: bu sürede
+    sonraki çalışmalar aynı sözlüğü günceller (üye mi, yönetici mi), iş parçacığı son hâli yazar.
+    Neden: 12 Kasım 2026'da son 30 günde giriş yapan 2 hesap vardı ama girişsiz gezenleri
+    hiç ölçmüyorduk — hangi çabanın siteye insan getirdiği görünmüyordu."""
+    try:
+        d = st.session_state.get("_zy")
+        if d is None:
+            qp = st.query_params
+            if qp.get("paylas"):
+                sayfa = "rapor"
+            elif qp.get("kulup"):
+                sayfa = "kulup:" + _etiket_slug(qp.get("kulup"))
+            elif qp.get("oyuncu"):
+                sayfa = "profil"
+            elif not st.session_state.get("girildi"):
+                sayfa = "karsilama"
+            else:
+                sayfa = str(st.session_state.get("sayfa", ""))
+            d = {"sayfa": sayfa, "uye": False, "admin": False, "dil": "EN" if EN else "TR"}
+            st.session_state["_zy"] = d
+            sh = _gs_sheet()
+
+            def _yaz():
+                import time as _t
+                from datetime import datetime, timedelta
+                _t.sleep(6)
+                try:
+                    if d["admin"]:
+                        return
+                    ws = _ziyaret_ws(sh)
+                    if ws is not None:
+                        z = datetime.utcnow() + timedelta(hours=3)
+                        ws.append_row([z.strftime("%Y-%m-%d"), z.strftime("%H:%M"), d["sayfa"],
+                                       "üye" if d["uye"] else "ziyaretçi", d["dil"]])
+                except Exception:
+                    pass
+            _threading.Thread(target=_yaz, daemon=True).start()
+        if st.session_state.get("kulup_giris"):
+            d["uye"] = True
+            if d["sayfa"] == "karsilama":
+                d["sayfa"] = str(st.session_state.get("sayfa", ""))
+            if st.session_state.get("kulup_kullanici") == "admin":
+                d["admin"] = True
+    except Exception:
+        pass
+
+
+@st.cache_data(ttl=300, show_spinner=False)
+def ziyaret_ozet(gun: int = 14) -> dict:
+    """Son `gun` günün özeti: {'gunler': [(tarih, toplam, ziyaretçi, üye)], 'sayfalar': [(sayfa, adet)], 'toplam': n}"""
+    try:
+        ws = _ziyaret_ws(_gs_sheet())
+        satirlar = ws.get_all_values()[1:] if ws is not None else []
+    except Exception:
+        return {}
+    from collections import Counter
+    from datetime import datetime, timedelta
+    esik = ((datetime.utcnow() + timedelta(hours=3)).date() - timedelta(days=gun - 1)).isoformat()
+    gunluk, sayfalar = {}, Counter()
+    for r in satirlar:
+        if len(r) < 4 or r[0] < esik:
+            continue
+        g = gunluk.setdefault(r[0], [0, 0, 0])
+        g[0] += 1
+        g[1 if r[3] != "üye" else 2] += 1
+        sayfalar[r[2]] += 1
+    return {"gunler": sorted(((t_, *v) for t_, v in gunluk.items()), reverse=True),
+            "sayfalar": sayfalar.most_common(12), "toplam": sum(v[0] for v in gunluk.values())}
+
+
 # ─── KULÜBE ÖZEL FIRSAT SAYFASI (?kulup=<anahtar>) ────────────────────────────
 @st.cache_data(show_spinner=False, ttl=600)
 def kulup_ihtiyac_yukle() -> dict:
@@ -11030,6 +11142,8 @@ def render_paylasim_raporu(isim: str):
 
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
 _bellek_izi()
+ziyaret_kaydet()
+_isinma_baslat()
 
 # ─── PAYLAŞIM RAPORU (?paylas=X) — public, giriş gerektirmez ──────────────────
 if params.get("paylas", "").strip():
@@ -12308,8 +12422,28 @@ def render_kokpit():
     kadro = kd.get("kadro", [])
     _dq = "EN" if EN else "TR"
 
-    with st.expander(f"🔗 {t('Link açılışları ve kulüp sayfaları', 'Link opens and club pages')}"):
+    with st.expander(f"📈 {t('Ziyaretler, link açılışları ve kulüp sayfaları', 'Visits, link opens and club pages')}"):
         import html as _hk
+        _zo = ziyaret_ozet(14)
+        st.markdown(f"<div class='tp-arabaslik'>{_buyuk(t('Ziyaretler — son 14 gün', 'Visits — last 14 days'))} "
+                    f"({_zo.get('toplam', 0)})</div>", unsafe_allow_html=True)
+        if _zo.get("gunler"):
+            st.markdown(
+                "<div style='overflow-x:auto;'><table style='border-collapse:collapse;font-size:0.82rem;color:#cbd5e1;'>"
+                f"<thead><tr class='tp-arametin'><th style='text-align:left;padding:4px 10px;'>{t('Gün', 'Day')}</th>"
+                f"<th style='text-align:right;padding:4px 10px;'>{t('Toplam', 'Total')}</th>"
+                f"<th style='text-align:right;padding:4px 10px;'>{t('Ziyaretçi', 'Visitors')}</th>"
+                f"<th style='text-align:right;padding:4px 10px;'>{t('Üye', 'Members')}</th></tr></thead><tbody>"
+                + "".join(f"<tr style='border-top:1px solid #232a40;'><td style='padding:4px 10px;'>{_hk.escape(str(_g[0]))}</td>"
+                          + "".join(f"<td style='padding:4px 10px;text-align:right;font-family:Sora,sans-serif;'>{_x}</td>" for _x in _g[1:4])
+                          + "</tr>" for _g in _zo["gunler"])
+                + "</tbody></table></div>"
+                + f"<div class='tp-arametin' style='margin:6px 0 10px;'>{t('Giriş sayfaları', 'Entry pages')}: "
+                + " · ".join(f"{_hk.escape(str(_s))} <b style='color:#e2e8f0;font-style:normal;'>{_n}</b>" for _s, _n in _zo.get("sayfalar", []))
+                + "</div>", unsafe_allow_html=True)
+        else:
+            st.caption(t("Henüz kayıtlı ziyaret yok (yönetici oturumu sayılmaz; sayaç 12 Kasım 2026'da başladı).",
+                         "No visits logged yet (admin sessions are not counted; the counter started on 12 Nov 2026)."))
         _ks = kulup_ihtiyac_yukle()
         if _ks:
             st.markdown(

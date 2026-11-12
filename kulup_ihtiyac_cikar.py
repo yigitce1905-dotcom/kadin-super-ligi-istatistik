@@ -119,16 +119,32 @@ def main():
         print(__doc__)
         return
     anahtar, ad, vid = sys.argv[1], sys.argv[2], sys.argv[3]
-    oyuncular = kadro(vid)
+    # Aynı gün yeniden çalıştırınca SoccerDonna'ya tekrar gitme (kural değişikliği denemeleri için)
+    onbellek = KOK / f"_kadro_onbellek_{vid}.json"          # '_*.json' .gitignore'da
+    ham = {}
+    if onbellek.exists():
+        try:
+            ham = json.load(open(onbellek, encoding="utf-8"))
+        except Exception:
+            ham = {}
+    if ham.get("gun") != BUGUN.isoformat():
+        ham = {"gun": BUGUN.isoformat(), "oyuncular": kadro(vid), "profiller": {}}
+    oyuncular = ham["oyuncular"]
     print(f"{ad}: {len(oyuncular)} oyuncu (SoccerDonna verein_{vid})")
     for o in oyuncular:
-        p = profil(o["url"])
+        if o["url"] not in ham["profiller"]:
+            ham["profiller"][o["url"]] = profil(o["url"])
+        p = ham["profiller"][o["url"]]
         o["poz"] = p.get("Position", "")
         o["bolge"] = bolge_bul(o["poz"])
         o["bitis"] = tarih(p.get("Contract until", ""))
         yas = re.search(r"\d+", p.get("Age", "") or "")
         o["yas"] = int(yas.group()) if yas else None
         o["deger"] = euro(p.get("Market value", ""))
+    try:
+        json.dump(ham, open(onbellek, "w", encoding="utf-8"), ensure_ascii=False)
+    except Exception:
+        pass
     grup = defaultdict(list)
     for o in oyuncular:
         grup[o["bolge"]].append(o)
@@ -163,16 +179,29 @@ def main():
     for puan, kod, tr, en, mevki, liste, biten, yasli in aday[:3]:
         if puan <= 0:
             continue
-        ned_tr = [f"bu mevkide kayıtlı {len(liste)} oyuncu"]
-        ned_en = [f"{len(liste)} player{'s' if len(liste) != 1 else ''} registered in this position"]
+        # Gerekçe yalnız KANITI söyler; "bu mevkide 6 oyuncu var" gibi ihtiyaçla çelişen sayı yazılmaz.
+        # Takvim yılı liglerinde (İskandinavya, İrlanda) sözleşmeler yıl sonunda biter → "…'ye kadar".
+        ned_tr, ned_en = [], []
+        buyuk = [o for o in liste if (o["yas"] or 0) >= 20]
+        if len(liste) == 1:
+            ned_tr.append("Bu mevkide kayıtlı tek oyuncu var")
+            ned_en.append("Only one player is registered in this position")
+        elif len(buyuk) <= 1:
+            ned_tr.append("Bu mevkide 20 yaş üstü " + ("tek oyuncu var" if len(buyuk) == 1 else "oyuncu yok"))
+            ned_en.append(("Only one" if len(buyuk) == 1 else "No") + " senior player (20+) is registered in this position")
         if biten:
-            ned_tr.append(f"{len(biten)} sözleşme {SEZON_SONU.strftime('%d.%m.%Y')}'de bitiyor")
-            ned_en.append(f"{len(biten)} contract{'s' if len(biten) != 1 else ''} ending {SEZON_SONU.strftime('%d.%m.%Y')}")
+            ned_tr.append(f"{len(liste)} oyuncudan {len(biten)}'{'i' if len(biten) in (2, 7, 8) else 'ü' if len(biten) in (3, 4) else 'i'}nin "
+                          f"sözleşmesi {SEZON_SONU.strftime('%d.%m.%Y')}'ye kadar bitiyor" if len(liste) > 1 else
+                          f"sözleşmesi {SEZON_SONU.strftime('%d.%m.%Y')}'ye kadar bitiyor")
+            ned_en.append(f"{len(biten)} of {len(liste)} contracts end by {SEZON_SONU.strftime('%d.%m.%Y')}" if len(liste) > 1 else
+                          f"contract ends by {SEZON_SONU.strftime('%d.%m.%Y')}")
         if yasli:
             ned_tr.append(f"{len(yasli)} oyuncu 31 yaş ve üstü")
             ned_en.append(f"{len(yasli)} aged 31 or over")
+        if not ned_en:
+            continue
         ihtiyaclar.append({"baslik": tr, "baslik_en": en, "mevki": mevki, "yas_max": 27, "deger_max": deger_max,
-                           "not_min": not_min, "neden": " · ".join(ned_tr), "neden_en": " · ".join(ned_en)})
+                           "not_min": not_min, "neden": "; ".join(ned_tr) + ".", "neden_en": "; ".join(ned_en) + "."})
     kayit = {"ad": ad, "sd_verein": int(vid), "guncelleme": BUGUN.isoformat(),
              "not": "Öne çıkan bölgeler herkese açık kadro verinizden (mevki derinliği, sözleşme bitişi, yaş) çıkarılmıştır.",
              "not_en": "The highlighted areas are derived from your public squad data (positional depth, contract expiry, age).",
