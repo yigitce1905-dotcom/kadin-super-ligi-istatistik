@@ -12,8 +12,9 @@ Kayıt anahtarı SoccerDonna oyuncu kimliğidir (profil_url'deki spieler_<id>):
 
 TAKIM DEĞİŞTİREN OYUNCU: sayılar takım takım tutulur; yalnız EN SON kadroya girdiği takımın dönemi yazılır
 (ilk sürüm iki takımı toplayıp eski takımın maç sayısına bölüyordu: NWSL'den WSL'e geçen kaleci "9/29" görünüyordu).
-Ligin son maçından 60 günden fazla önce kadrodan çıkmış ve başka takımda görünmeyen oyuncunun kaydı YAZILMAZ:
-büyük olasılıkla kapsam dışı bir lige gitmiştir; eski takımın "kadroda yok" satırı yanıltır.
+Ligin son maçından 60 günden fazla önce kadrodan çıkmış oyuncu: profilindeki güncel kulüp hâlâ o takımsa kayıt KALIR
+(sakat / kadro dışı — "Ağustos'tan beri yok" bilgisi değerlidir); kulübü değişmişse ya da profilini tutmuyorsak YAZILMAZ
+(kapsam dışı bir lige gitmiştir; eski takımın "kadroda yok" satırı yanıltır).
 
 Dakika hesabı yaklaşıktır: maç 90 dk sayılır, uzatmalar ve kırmızı kart sonrası eksik süre hesaba
 katılmaz (ilk 11 → çıktığı dakika ya da 90; sonradan giren → 90 − girdiği dakika).
@@ -38,6 +39,12 @@ BAYAT_GUN = 60
 def _dk(s):
     m = re.match(r"(\d+)", str(s or ""))
     return min(int(m.group(1)), 90) if m else None
+
+
+def _sade(ad):
+    import unicodedata
+    ad = unicodedata.normalize("NFKD", str(ad).replace("ı", "i").replace("İ", "I")).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]", "", ad)
 
 
 def _tarih(s):
@@ -110,25 +117,65 @@ def main():
     for (sid, tid), o in donem.items():
         if sid not in guncel or o["_sonk"] > guncel[sid][1]["_sonk"]:
             guncel[sid] = (tid, o)
-    oyuncu, bayat, cok_takim = {}, 0, 0
+    oyuncu, bayat, cok_takim, uzun_yok = {}, 0, 0, 0
+    guncel_kulup, profil_ad = {}, {}          # sd_id → profildeki güncel kulüp / ad (yalnız profilini tuttuğumuz oyuncular)
+    havuz_kimlik = set()                       # scouting havuzu profilleri (sd_tam_tazele.py ile tazelenen, güvenilir olanlar)
+    for dosya in ("soccerdonna_profiller.json", "scouting_sd_profiller.json"):
+        try:
+            for ad, r in json.load(open(KOK / dosya, encoding="utf-8")).items():
+                m = re.search(r"spieler_(\d+)", str(r.get("profil_url", ""))) if isinstance(r, dict) else None
+                if m and r.get("guncel_kulup"):
+                    guncel_kulup[m.group(1)] = str(r["guncel_kulup"])
+                    profil_ad[m.group(1)] = ad
+                    if dosya.startswith("scouting_"):
+                        havuz_kimlik.add(m.group(1))
+        except Exception:
+            pass
     sayim = {}
     for (sid, _tid) in donem:
         sayim[sid] = sayim.get(sid, 0) + 1
     for sid, (tid, o) in guncel.items():
         if (lig_son[o["lig"]] - o["_sonk"]).days > BAYAT_GUN:
-            bayat += 1
-            continue
+            # Uzun süredir kadroda yok: ya ayrıldı ya da sakat. Profilindeki güncel kulüp hâlâ bu takımsa KALIR
+            # ("16 maç kadrodaydı, Ağustos'tan beri yok" en değerli bilgi); değilse / bilinmiyorsa yazılmaz.
+            gk = guncel_kulup.get(str(sid), "")
+            if not gk or not (_sade(gk) == _sade(o["takim"]) or _sade(gk) in _sade(o["takim"]) or _sade(o["takim"]) in _sade(gk)):
+                bayat += 1
+                continue
+            uzun_yok += 1
         cok_takim += sayim[sid] > 1
         tm = [(t, d) for t, d in takim_mac[tid] if t >= o["_ilk"]]
         kayit = {k: v for k, v in o.items() if not k.startswith("_")}
         kayit["tm"] = len(tm)
         kayit["son5"] = "".join((d.get(sid) or ("-",))[0] for _, d in tm[-5:])
         oyuncu[str(sid)] = kayit
+    # Sezon boyunca HİÇ kadroya girmemiş ama profilindeki güncel kulübü kapsamdaki bir takım olan oyuncu → sıfır kaydı
+    # ("0/9 · kadroda yok": sakat, kadro dışı ya da lisansı çıkmamış). Yalnız profilini tuttuğumuz oyuncular; takım adı
+    # birebir (sadeleştirilmiş) eşleşmeli. Profildeki kulüp bayatsa yanlış olur → sd_tam_tazele.py güncel olmalı.
+    # Yalnız scouting havuzu profilleri ve Süper Lig dışı.
+    takim_ad = {}
+    for (_sid, tid), o in donem.items():
+        takim_ad.setdefault(_sade(o["takim"]), (tid, o["takim"], o["lig"]))
+    hic = 0
+    for sid, gk in guncel_kulup.items():
+        if sid in oyuncu or int(sid) in guncel or _sade(gk) not in takim_ad or sid not in havuz_kimlik:
+            continue
+        tid, tad, kod = takim_ad[_sade(gk)]
+        n = len(takim_mac[tid])
+        # Süper Lig'de sıfır kaydı YOK: TR profil dosyasında bırakmış oyuncular / teknik ekip de "güncel kulüp" taşıyor
+        # (Beşiktaş teknik sorumlusu "0/10 kadroda yok" çıkıyordu); TR oyuncusunun sezonu zaten TFF verisinden görünüyor.
+        if n < 3 or kod == "TUR1":
+            continue
+        oyuncu[sid] = {"ad": profil_ad.get(sid, ""), "takim": tad, "lig": kod, "kadro": 0, "ilk11": 0, "sonradan": 0, "dk": 0,
+                       "gol": 0, "asist": 0, "sari": 0, "kirmizi": 0, "son": "", "tm": n, "son5": "-" * min(5, n)}
+        hic += 1
+    print(f"sezon boyunca hiç kadroya girmemiş (profildeki kulübü kapsamda): {hic}")
     cikti = {"guncelleme": datetime.date.today().isoformat(), "kaynak": "soccerdonna.de maç raporları", "ligler": ligler,
              "oyuncular": oyuncu}
     json.dump(cikti, open(CIKTI, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print(f"\n{len(oyuncu)} oyuncu → {CIKTI.name} ({CIKTI.stat().st_size // 1024} KB) · "
-          f"birden çok takımda görünen {cok_takim} · bayat olduğu için yazılmayan {bayat}")
+          f"birden çok takımda görünen {cok_takim} · uzun süredir kadroda olmayıp kulübünde kalan {uzun_yok} · "
+          f"ayrılmış sayılıp yazılmayan {bayat}")
 
 
 if __name__ == "__main__":
