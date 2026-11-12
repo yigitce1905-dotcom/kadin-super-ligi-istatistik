@@ -25892,7 +25892,9 @@
    "hafta": 6,
    "ev": "FC Fleury 91",
    "dep": "Toulouse FC",
-   "skor": "7:0"
+   "skor": "7:0",
+   "ev_id": 6327,
+   "dep_id": 361
   }
  ]
 }

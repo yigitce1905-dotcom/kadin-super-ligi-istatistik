@@ -10473,6 +10473,65 @@ def _tr_veri_git():
     st.rerun()
 
 # ─── SOL NAVİGASYON — SİTE AĞACI (üst menü + sekmeler tek dikey panelde) ──────
+# ─── LİG VERİLERİ: sabitler (kenar çubuğu da kullanır → ondan ÖNCE tanımlı) ────
+# kod: (bayrak, ad, dosya son eki). Takvim yılı ligleri SoccerDonna'da bir önceki yılın anahtarıyla durur (2025_26).
+_LIG_SAYFA = {
+    "ENG1": ("\U0001F3F4\U000E0067\U000E0062\U000E0065\U000E006E\U000E0067\U000E007F", "Women's Super League", "2026_27"),
+    "BL1": ("🇩🇪", "Frauen-Bundesliga", "2026_27"),
+    "ESP1": ("🇪🇸", "Liga F", "2026_27"),
+    "IT1": ("🇮🇹", "Serie A Women", "2026_27"),
+    "DAN1": ("🇫🇷", "Première Ligue", "2026_27"),
+    "NWSL": ("🇺🇸", "NWSL", "2025_26"),
+    "SWE1": ("🇸🇪", "Damallsvenskan", "2025_26"),
+    "NOR1": ("🇳🇴", "Toppserien", "2025_26"),
+    "3FL": ("🇩🇰", "A-Liga", "2026_27"),
+    "Nais": ("🇫🇮", "Kansallinen Liiga", "2025_26"),
+    "ISL1": ("🇮🇸", "Besta deild kvenna", "2025_26"),
+    "LNF": ("🇵🇹", "Liga BPI", "2026_27"),
+    "UNG1": ("🇭🇺", "Női NB I", "2026_27"),
+    "CL": ("🇪🇺", "UEFA Şampiyonlar Ligi", "2026_27"),
+    "CLQ": ("🇪🇺", "Şampiyonlar Ligi ön eleme", "2026_27"),
+    "EC": ("🇪🇺", "UEFA Avrupa Kupası", "2026_27"),
+}
+_LIG_AD_EN = {"CL": "UEFA Champions League", "CLQ": "Champions League qualifying", "EC": "UEFA Europa Cup"}
+_LIG_KUPA = {"CL", "CLQ", "EC"}
+_LIG_SEKME = ["liste", "genc", "profil", "karsilastir", "takim", "tablo", "eniyi", "arama", "yas", "kaleci"]
+
+
+def _lig_dosya(kod: str) -> pathlib.Path:
+    return pathlib.Path(__file__).parent / f"sd_dizilis_{kod}_{_LIG_SAYFA[kod][2]}.json"
+
+
+@st.cache_resource(show_spinner=False)
+def _lig_mevcut() -> list:
+    """Maç dosyası depoda bulunan lig kodları (seçim kutusunda yalnız bunlar görünür)."""
+    return [k for k in _LIG_SAYFA if _lig_dosya(k).exists()]
+
+
+def _lig_etiket(kod: str) -> str:
+    if kod == "TR":
+        return "🇹🇷 " + t("Türkiye · Süper Lig", "Türkiye · Süper Lig")
+    b, ad, _ = _LIG_SAYFA[kod]
+    return f"{b} {_LIG_AD_EN.get(kod, ad) if EN else ad}"
+
+
+def _lig_sekme_etiketleri(kod: str) -> list:
+    """Lig kipinde sol menü sekmeleri: [(anahtar, etiket)] — TR Veri ile aynı adlar; kulüp hesabına bağlı olanlar yok."""
+    ad = {"liste": t("📋 Oyuncu Listesi", "📋 Player List"), "genc": t("🌱 Genç Yetenekler", "🌱 Young Talents"),
+          "profil": t("👤 Oyuncu Profili", "👤 Player Profile"), "karsilastir": t("⚡ Karşılaştırma", "⚡ Comparison"),
+          "takim": t("🏟️ Takımlar", "🏟️ Teams"), "tablo": t("🏆 Lig Tablosu", "🏆 League Table"),
+          "eniyi": t("🌟 En İyiler", "🌟 Top Performers"), "arama": t("🔍 Gelişmiş Arama", "🔍 Advanced Search"),
+          "yas": t("🎂 Yaş Analizi", "🎂 Age Analysis"), "kaleci": t("🧤 Kaleciler", "🧤 Goalkeepers")}
+    return [(k, ad[k]) for k in _LIG_SEKME if not (k == "tablo" and kod in _LIG_KUPA)]
+
+
+def _acik_param_temizle():
+    """Herkese açık sayfa parametrelerini (takvim, lig, sb, kulup…) adres çubuğundan siler; dil kalır."""
+    for _k in ("takvim", "lig", "sb", "kulup", "paylas", "k"):
+        if _k in st.query_params:
+            del st.query_params[_k]
+
+
 def _tr_sekme_etiketleri(giris: bool) -> list:
     """TR Veri sekme etiketleri — st.tabs ile birebir aynı sırada (login-gated)."""
     ust = []
@@ -10602,6 +10661,42 @@ with st.sidebar:
 
     # ── TR DATA — sadece aktif bölümken görünür (üstteki ikon çubuğu geçiş için yeter) ──
     if _aktif_bolum == 1:
+        # ── LİG SEÇİMİ (13 Kasım 2026, Yiğit: "TR Veri'deki gibi diğer ligler de olsun, soldan seçtirsin") ──
+        # Türkiye = TFF verisiyle çalışan asıl TR Veri; diğer ligler SoccerDonna maç raporlarından (render_lig_sekme).
+        _veri_lig = st.session_state.get("veri_lig", "TR")
+        _lig_liste = ["TR"] + _lig_mevcut()
+        if _veri_lig not in _lig_liste:
+            _veri_lig = "TR"
+            st.session_state["veri_lig"] = "TR"
+        _acik_sayfa_var = any(params.get(_k, "").strip() for _k in ("takvim", "sb", "kulup", "lig"))
+        st.markdown(f"<div class='nav-grup'>{t('LİG', 'LEAGUE')}</div>", unsafe_allow_html=True)
+        if st.session_state.get("nav_lig_sec") not in _lig_liste:
+            st.session_state["nav_lig_sec"] = _veri_lig
+        _lig_secim = st.selectbox(t("Lig", "League"), _lig_liste, key="nav_lig_sec", format_func=_lig_etiket,
+                                  label_visibility="collapsed")
+        if _lig_secim != _veri_lig:
+            st.session_state["veri_lig"] = _lig_secim
+            st.session_state["lig_sekme"] = "liste"
+            st.session_state["sayfa"] = "ana"
+            st.session_state["girildi"] = True
+            _acik_param_temizle()
+            if "oyuncu" in st.query_params:
+                del st.query_params["oyuncu"]
+            st.rerun()
+    if _aktif_bolum == 1 and _veri_lig != "TR":
+        st.markdown(f"<div class='nav-grup'>{t('SEKMELER', 'TABS')}</div>", unsafe_allow_html=True)
+        _lg_aktif = st.session_state.get("lig_sekme", "liste")
+        for _lk, _le in _lig_sekme_etiketleri(_veri_lig):
+            _akt = (_aktif_sayfa == "ana" and not _acik_sayfa_var and not url_oyuncu and _lk == _lg_aktif)
+            if st.button(_le, key=f"navlig_{_lk}", width="stretch", type="primary" if _akt else "secondary"):
+                st.session_state["lig_sekme"] = _lk
+                st.session_state["sayfa"] = "ana"
+                st.session_state["girildi"] = True
+                _acik_param_temizle()
+                if "oyuncu" in st.query_params:
+                    del st.query_params["oyuncu"]
+                st.rerun()
+    if _aktif_bolum == 1 and _veri_lig == "TR":
         if st.button(t(f"🇹🇷 TR VERİ {SEZON_AKTIF}", f"🇹🇷 TR DATA {SEZON_AKTIF}"), key="nav_b1",
                      width="stretch", type="primary"):
             _tr_veri_git()
@@ -10612,11 +10707,12 @@ with st.sidebar:
             _aktif_sekme = _sk_etiketler[0]
             st.session_state["tr_sekme"] = _aktif_sekme
         for _i, _et in enumerate(_sk_etiketler):
-            _akt = (_aktif_sayfa == "ana" and _et == _aktif_sekme)
+            _akt = (_aktif_sayfa == "ana" and not _acik_sayfa_var and _et == _aktif_sekme)
             if st.button(_et, key=f"navsek_{_i}", width="stretch",
                          type="primary" if _akt else "secondary"):
                 st.session_state["tr_sekme"] = _et
                 st.session_state["girildi"] = True
+                _acik_param_temizle()
                 if _aktif_sayfa != "ana":
                     _dil_k = st.query_params.get("dil", "")
                     st.query_params.clear()
@@ -10642,6 +10738,23 @@ with st.sidebar:
                 st.session_state["arsiv_sezon"] = _sezon_key
                 _nav_git("arsiv")
 
+    if True:
+        # ── ARAÇLAR: herkese açık sayfalar (takvim, sözleşme takibi, olay verisi arşivi) — hangi bölüm açık olursa
+        # olsun menüde görünür (Yiğit, 13 Kasım 2026: "takvimi nereye koydun, kullanıcı nasıl bulacak") ──
+        st.markdown(f"<div class='nav-grup'>{t('ARAÇLAR', 'TOOLS')}</div>", unsafe_allow_html=True)
+        for _ak, _ae, _ap, _av in (
+                ("takvim", t("🗓️ Takvim ve Transfer Dönemleri", "🗓️ Calendar & Transfer Windows"), "takvim", "1"),
+                ("sozlesme", t("📋 Sözleşme Takibi 2027", "📋 Contract Watch 2027"), "kulup", "sozlesme-2027"),
+                ("arsiv", t("📊 Olay Verisi Arşivi", "📊 Event Data Archive"), "sb", "liste")):
+            _akt = params.get(_ap, "").strip() == _av or (_ak == "arsiv" and bool(params.get("sb", "").strip()))
+            if st.button(_ae, key=f"navarac_{_ak}", width="stretch", type="primary" if _akt else "secondary"):
+                _acik_param_temizle()
+                if "oyuncu" in st.query_params:
+                    del st.query_params["oyuncu"]
+                st.query_params[_ap] = _av
+                st.session_state["sayfa"] = "ana"
+                st.session_state["girildi"] = True
+                st.rerun()
     # ── DÜNYA VERİ / SCOUTING — sadece aktif bölümken görünür ──
     if _aktif_bolum == 2:
         st.markdown("<div style='margin-top:12px;'></div>", unsafe_allow_html=True)
@@ -10741,7 +10854,9 @@ _tr_sekmeler_h = _tr_sekme_etiketleri(st.session_state.get("kulup_giris", False)
 _ilk_tr_sekme  = _tr_sekmeler_h[0] if _tr_sekmeler_h else None
 _tr_sekme_sec  = st.session_state.get("tr_sekme", _ilk_tr_sekme)
 _ilk_sekmede   = (_tr_sekme_sec == _ilk_tr_sekme) or (_tr_sekme_sec not in _tr_sekmeler_h)
-_ust_blok_goster = _ana_ekran and _ilk_sekmede and not params.get("paylas", "").strip()
+_ust_blok_goster = (_ana_ekran and _ilk_sekmede and not params.get("paylas", "").strip()
+                    and st.session_state.get("veri_lig", "TR") == "TR"
+                    and not any(params.get(_k, "").strip() for _k in ("takvim", "sb", "kulup", "lig")))
 if _ust_blok_goster:
   try:    _hero_dh = dunya_havuz_ozet()
   except Exception: _hero_dh = {"oyuncu": 0, "degerlendirilmis": 0, "ulke": 0, "lig": 0}
@@ -11158,7 +11273,7 @@ def render_kulup_firsat(anahtar: str):
     anahtar = _etiket_slug(anahtar)
     kayit = kulup_ihtiyac_yukle().get(anahtar)
     st.markdown(
-        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ("" if st.session_state.get("girildi") else "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}</style>") + "<style>"
         ".block-container{max-width:860px!important;padding-top:1rem!important;}</style>",
         unsafe_allow_html=True)
     if not isinstance(kayit, dict) or not kayit.get("ihtiyaclar"):
@@ -11514,7 +11629,7 @@ def render_sb_arsiv(anahtar: str):
     Lisans gereği logo + kaynak gösterilir; sayfa Premium içeriğe bağlanmaz."""
     import html as _h
     st.markdown(
-        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ("" if st.session_state.get("girildi") else "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}</style>") + "<style>"
         ".block-container{max-width:860px!important;padding-top:1rem!important;}</style>", unsafe_allow_html=True)
     _dq = "EN" if EN else "TR"
     _kaynak_logo = (
@@ -11650,18 +11765,527 @@ def render_sb_arsiv(anahtar: str):
 # Yiğit: "TR VERİ gibi Fransa veri, Amerika veri… seçmeli olsun, isteyen dolaşsın." Kaynak: SoccerDonna maç raporları
 # (sd_dizilis_<KOD>_*.json; sd_form_tazele.py haftada bir tazeler). Puan durumu maç sonuçlarından HESAPLANIR:
 # raporu olmayan maçlar ve federasyon cezaları yansımaz → sayfada belirtilir.
-_LIG_SAYFA = {            # kod: (bayrak, ad, dosya son eki)
-    "ENG1": ("\U0001F3F4\U000E0067\U000E0062\U000E0065\U000E006E\U000E0067\U000E007F", "Women's Super League", "2026_27"),
-    "BL1": ("🇩🇪", "Frauen-Bundesliga", "2026_27"),
-    "ESP1": ("🇪🇸", "Liga F", "2026_27"),
-    "IT1": ("🇮🇹", "Serie A Women", "2026_27"),
-    "DAN1": ("🇫🇷", "Première Ligue", "2026_27"),
-    "NWSL": ("🇺🇸", "NWSL", "2025_26"),
-    "CL": ("🇪🇺", "UEFA Şampiyonlar Ligi", "2026_27"),
-    "CLQ": ("🇪🇺", "Şampiyonlar Ligi ön eleme", "2026_27"),
-    "EC": ("🇪🇺", "UEFA Avrupa Kupası", "2026_27"),
-}
-_LIG_AD_EN = {"CL": "UEFA Champions League", "CLQ": "Champions League qualifying", "EC": "UEFA Europa Cup"}
+@st.cache_resource(show_spinner=False, max_entries=5)      # lig başına birkaç MB; Render 512 MB → aynı anda en çok 5 lig bellekte
+def lig_tam_yukle(kod: str) -> dict:
+    """Bir ligin sekmeler için tam özeti — SALT OKUNUR (cache_resource: kopyalanmaz).
+    {'ad','kupa','guncelleme','raporsuz','oyuncu': {sd_id: kayıt}, 'takim': {ad: kayıt}, 'puan': [...]}
+    Oyuncu kaydı: ad, takim (en son), takimlar, yas, grup (K/D/O/F), mac, ilk11, yedek, dk, gol, gk (kafa), gp (penaltı),
+    asist, sari, kirmizi, yg (kalecinin sahadayken yediği gol), gy (gol yemeden tam maç), log: [maç satırları].
+    Kaynak: sd_dizilis_<KOD>_*.json (SoccerDonna maç raporları). Dakika yaklaşık (maç 90 dk sayılır)."""
+    import re as _r
+    from collections import Counter as _C
+    if kod not in _LIG_SAYFA:
+        return {}
+    try:
+        with open(_lig_dosya(kod), encoding="utf-8") as f:
+            veri = json.load(f)
+    except Exception:
+        return {}
+
+    def _dk(s):
+        m = _r.match(r"(\d+)", str(s or ""))
+        return min(int(m.group(1)), 90) if m else None
+
+    def _trh(s):
+        try:
+            g, a, y = str(s).split(".")
+            return f"{y}-{a}-{g}"
+        except Exception:
+            return ""
+
+    def _grup(mv):
+        p = (mv or "").lower()
+        return "K" if "goalkeeper" in p else "D" if "defen" in p else "O" if "midfield" in p else "F" if p else ""
+
+    oyuncu, takim = {}, {}
+    maclar = sorted((m for m in veri.get("maclar", []) if _r.fullmatch(r"\d+:\d+", str(m.get("skor") or ""))),
+                    key=lambda m: _trh(m.get("tarih")))
+    for m in maclar:
+        eg, dg = (int(x) for x in m["skor"].split(":"))
+        tarih = _trh(m.get("tarih"))
+        goller = [(g.get("taraf"), _dk(g.get("dk")) or 0) for g in m.get("goller", [])]
+        for taraf, rakip_taraf, a, y in (("ev", "dep", eg, dg), ("dep", "ev", dg, eg)):
+            tad = m.get(taraf, "")
+            tk = takim.setdefault(tad, {"ad": tad, "o": 0, "g": 0, "b": 0, "m": 0, "a": 0, "y": 0, "sema": _C(), "hoca": _C(), "mac": []})
+            tk["o"] += 1; tk["a"] += a; tk["y"] += y
+            tk["g" if a > y else "b" if a == y else "m"] += 1
+            dz = (m.get("dizilis") or {}).get(taraf) or {}
+            if dz.get("sema"):
+                tk["sema"][str(dz["sema"]).split(" ")[0]] += 1
+            if dz.get("teknik"):
+                tk["hoca"][dz["teknik"]] += 1
+            tk["mac"].append({"i": m.get("id"), "t": tarih, "h": m.get("hafta") or 0, "rk": m.get(rakip_taraf, ""), "ev": taraf == "ev", "sk": f"{a}:{y}"})
+            giren = {d["giren_sd_id"]: _dk(d["dk"]) for d in m.get("degisiklikler", []) if d["taraf"] == taraf and d.get("giren_sd_id")}
+            cikan = {d["cikan_sd_id"]: _dk(d["dk"]) for d in m.get("degisiklikler", []) if d["taraf"] == taraf and d.get("cikan_sd_id")}
+            yenen = [dk for tr_, dk in goller if tr_ == rakip_taraf]          # bu takımın yediği gollerin dakikaları
+            for liste, ilk in (((m.get("ilk11") or {}).get(taraf, []), True), ((m.get("yedekler") or {}).get(taraf, []), False)):
+                for p in liste:
+                    sid = p.get("sd_id")
+                    if not sid:
+                        continue
+                    if ilk:
+                        durum, bas, bit = "S", 0, (cikan.get(sid) or 90)
+                    elif giren.get(sid) is not None:
+                        durum, bas, bit = "Y", giren[sid], (cikan.get(sid) or 90)
+                    else:
+                        durum, bas, bit = "B", 0, 0
+                    dk = max(1, bit - bas) if durum == "Y" else (bit if durum == "S" else 0)
+                    o = oyuncu.setdefault(str(sid), {"sid": str(sid), "ad": p.get("ad", ""), "takim": tad, "takimlar": [], "yas": None, "_mv": _C(),
+                                                     "mac": 0, "ilk11": 0, "yedek": 0, "dk": 0, "gol": 0, "gk": 0, "gp": 0, "asist": 0,
+                                                     "sari": 0, "kirmizi": 0, "yg": 0, "gy": 0, "log": []})
+                    o["takim"] = tad
+                    if tad not in o["takimlar"]:
+                        o["takimlar"].append(tad)
+                    if p.get("yas"):
+                        o["yas"] = p["yas"]
+                    if p.get("mevki"):
+                        o["_mv"][_grup(p["mevki"])] += 1
+                    satir = {"i": m.get("id"), "t": tarih, "h": m.get("hafta") or 0, "tk": tad, "rk": m.get(rakip_taraf, ""), "ev": taraf == "ev",
+                             "sk": f"{a}:{y}", "d": durum, "dk": dk, "g": 0, "a": 0, "s": 0, "k": 0, "yg": 0, "_ar": (bas, bit)}
+                    if durum in ("S", "Y"):
+                        o["mac"] += 1
+                        o["ilk11"] += durum == "S"
+                        o["yedek"] += durum == "Y"
+                        o["dk"] += dk
+                        satir["yg"] = sum(1 for g in yenen if bas <= g <= (bit if bit < 90 else 200))
+                    o["log"].append(satir)
+        ic = {}
+        for o in oyuncu.values():
+            if o["log"] and o["log"][-1]["i"] == m.get("id"):
+                ic[int(o["sid"])] = (o, o["log"][-1])
+        for g in m.get("goller", []):
+            tur = (g.get("tur") or "").lower()
+            if g.get("sd_id") in ic and "own goal" not in tur:
+                o, s = ic[g["sd_id"]]
+                o["gol"] += 1; s["g"] += 1
+                o["gk"] += "header" in tur
+                o["gp"] += "penalty" in tur
+            if g.get("asist_sd_id") in ic:
+                o, s = ic[g["asist_sd_id"]]
+                o["asist"] += 1; s["a"] += 1
+        for k in m.get("kartlar", []):
+            if k.get("sd_id") in ic:
+                o, s = ic[k["sd_id"]]
+                kr = "red" in (k.get("kart") or "").lower()
+                o["kirmizi" if kr else "sari"] += 1; s["k" if kr else "s"] += 1
+    # Raporu olmayan ama sonucu bilinen maçlar (hafta sayfasında skor var, maç raporu açılmamış): oyuncu istatistiğine
+    # GİREMEZ ama puan durumuna ve takımın maç listesine girer. 13 Kasım 2026: Finlandiya'da 80 maçın 36'sının, İsveç'te
+    # 16'sının raporu yoktu; tablo yalnız raporlu maçlardan hesaplanınca yanlış çıkıyordu.
+    import unicodedata as _ud
+
+    def _sd(ad):
+        return _r.sub(r"[^a-z0-9]", "", _ud.normalize("NFKD", str(ad).replace("ı", "i")).encode("ascii", "ignore").decode().lower())
+    ad_harita = {_sd(a): a for a in takim}
+    ad_kimlik = {}                      # SoccerDonna takım kimliği → maç raporlarındaki ad (raporsuz maçı doğru takıma bağlar)
+    for m in maclar:
+        for tf in ("ev", "dep"):
+            if m.get(tf + "_id"):
+                ad_kimlik[m[tf + "_id"]] = m.get(tf, "")
+
+    def _ad_bul(ad):
+        """Hafta sayfasındaki kısa ad → maç raporlarındaki takım adı ('HJK' → 'HJK Helsinki'); tek aday varsa eşler."""
+        n = _sd(ad)
+        if n in ad_harita:
+            return ad_harita[n]
+        aday = [a for k, a in ad_harita.items() if n and (k.startswith(n) or n.startswith(k) or n in k)]
+        return aday[0] if len(aday) == 1 else (ad or "")
+    rs_say = 0
+    for x in veri.get("raporsuz", []):
+        sk = _r.fullmatch(r"(\d+):(\d+)", str(x.get("skor") or ""))
+        if not sk:
+            continue
+        eg, dg = int(sk.group(1)), int(sk.group(2))
+        ev = ad_kimlik.get(x.get("ev_id")) or _ad_bul(x.get("ev"))
+        dep = ad_kimlik.get(x.get("dep_id")) or _ad_bul(x.get("dep"))
+        rs_say += 1
+        for tad, rk, a, y, evde in ((ev, dep, eg, dg, True), (dep, ev, dg, eg, False)):
+            tk = takim.setdefault(tad, {"ad": tad, "o": 0, "g": 0, "b": 0, "m": 0, "a": 0, "y": 0, "sema": _C(), "hoca": _C(), "mac": []})
+            tk["o"] += 1; tk["a"] += a; tk["y"] += y
+            tk["g" if a > y else "b" if a == y else "m"] += 1
+            tk["mac"].append({"i": None, "t": "", "h": x.get("hafta") or 0, "rk": rk, "ev": evde, "sk": f"{a}:{y}", "rs": True})
+    for tk in takim.values():
+        tk["rapor"] = sum(1 for x in tk["mac"] if x.get("i"))            # raporu olan maç sayısı (ilk 11 oranının paydası)
+        if rs_say and not (kod in _LIG_KUPA):
+            tk["mac"].sort(key=lambda x: (x["h"], x["t"]))
+    for o in oyuncu.values():
+        o["grup"] = o["_mv"].most_common(1)[0][0] if o["_mv"] else ""
+        del o["_mv"]
+        if o["grup"] == "K":
+            for s in o["log"]:
+                if s["d"] in ("S", "Y"):
+                    o["yg"] += s["yg"]
+                    o["gy"] += (s["d"] == "S" and s["dk"] >= 90 and s["yg"] == 0)
+        for s in o["log"]:
+            s.pop("_ar", None)
+    tablo = sorted(takim.values(), key=lambda p: (-(3 * p["g"] + p["b"]), -(p["a"] - p["y"]), -p["a"], p["ad"]))
+    for i, tk in enumerate(tablo, 1):
+        tk["sira"] = i
+    return {"ad": veri.get("lig", kod), "kupa": kod in _LIG_KUPA, "guncelleme": veri.get("guncelleme", ""),
+            "raporsuz": rs_say, "oyuncu": oyuncu, "takim": takim, "puan": tablo,
+            "mac_sayisi": len(maclar), "son_mac": (_trh(maclar[-1].get("tarih")) if maclar else "")}
+
+
+@st.cache_resource(show_spinner=False)
+def _havuz_sd_kimlik() -> dict:
+    """SoccerDonna oyuncu kimliği → havuzdaki ad (lig sayfasından scouting profiline bağlantı için)."""
+    import re as _r
+    out = {}
+    try:
+        for ad, r in birlesik_sd_yukle().items():
+            m = _r.search(r"spieler_(\d+)", str(r.get("profil_url") or "")) if isinstance(r, dict) else None
+            if m:
+                out.setdefault(m.group(1), ad)
+    except Exception:
+        pass
+    return out
+
+
+def _lg_tarih(s: str) -> str:
+    return f"{s[8:10]}.{s[5:7]}.{s[:4]}" if s and len(s) >= 10 else "—"
+
+
+def _lg_grup_ad(g: str) -> str:
+    return {"K": t("Kaleci", "Goalkeeper"), "D": t("Defans", "Defender"), "O": t("Orta Saha", "Midfielder"),
+            "F": t("Forvet", "Forward")}.get(g, "—")
+
+
+def _lg_kart(deger, etiket, renk="#f1f5f9") -> str:
+    return ("<div style='flex:1 1 110px;background:#0d0d16;border:1px solid #2a3050;border-radius:12px;padding:10px 12px;'>"
+            f"<div style='font-family:Sora,sans-serif;font-weight:800;font-size:1.35rem;color:{renk};'>{deger}</div>"
+            f"<div class='tp-arametin'>{etiket}</div></div>")
+
+
+def _lg_oyuncu_df(liste: list) -> "pd.DataFrame":
+    """Oyuncu kayıtları → görüntü tablosu (TR Veri'deki ws-table ile aynı görünüm için df_tablo'ya verilir)."""
+    return pd.DataFrame([{"ad": o["ad"], "mv": _lg_grup_ad(o.get("grup", "")), "tk": o["takim"],
+                          "yas": (int(o["yas"]) if o.get("yas") else None), "mac": o["mac"], "i11": o["ilk11"], "dk": o["dk"],
+                          "gol": o["gol"], "as": o["asist"], "sr": o["sari"], "kr": o["kirmizi"]} for o in liste])
+
+
+_LG_BASLIK = None
+
+
+def _lg_basliklar() -> dict:
+    return {"ad": t("Oyuncu", "Player"), "mv": t("Mevki", "Position"), "tk": t("Takım", "Team"), "yas": t("Yaş", "Age"),
+            "mac": t("Maç", "Apps"), "i11": t("İlk 11", "Starts"), "dk": t("Dk", "Min"), "gol": t("Gol", "Goals"),
+            "as": t("Asist", "Assists"), "sr": t("Sarı", "Yellow"), "kr": t("Kırmızı", "Red")}
+
+
+def _lg_puan_html(L: dict) -> str:
+    import html as _h
+    govde = ""
+    for p in L["puan"]:
+        av = p["a"] - p["y"]
+        govde += ("<tr><td class='num ws-mono'>" + str(p["sira"]) + "</td>"
+                  f"<td><span class='ws-name'>{_h.escape(p['ad'])}</span></td>"
+                  + "".join(f"<td class='num ws-mono' data-label='{e}'>{x}</td>" for e, x in (
+                      (t("O", "P"), p["o"]), (t("G", "W"), p["g"]), (t("B", "D"), p["b"]), (t("M", "L"), p["m"]),
+                      (t("A", "GF"), p["a"]), (t("Y", "GA"), p["y"]), (t("Av", "GD"), f"{av:+d}")))
+                  + f"<td class='num ws-mono' data-label='{t('P', 'Pts')}'><b style='color:#1db954;'>{3 * p['g'] + p['b']}</b></td></tr>")
+    bas = "".join(f"<th class='{c}'>{x}</th>" for x, c in (
+        ("#", "num"), (t("Takım", "Team"), ""), (t("O", "P"), "num"), (t("G", "W"), "num"), (t("B", "D"), "num"), (t("M", "L"), "num"),
+        (t("A", "GF"), "num"), (t("Y", "GA"), "num"), (t("Av", "GD"), "num"), (t("P", "Pts"), "num")))
+    return f"<div class='ws-wrap'><table class='ws-table'><thead><tr>{bas}</tr></thead><tbody>{govde}</tbody></table></div>"
+
+
+def render_lig_sekme(kod: str, sekme: str):
+    """Lig kipi: TR Veri sekmelerinin SoccerDonna maç raporlarından üretilen karşılığı (ücretsiz).
+    AYRI MOTOR: TR Veri'nin veri katmanına (oyuncular.json, TFF, önbellekler) dokunmaz — canlıdaki Türkiye bölümünü
+    bozma riski alınmadı (13 Kasım 2026). Görünüm aynı bileşenlerle (ws-table, df_tablo) kurulur."""
+    import html as _h
+    L = lig_tam_yukle(kod)
+    bayrak, ad, _ = _LIG_SAYFA[kod]
+    ad = _LIG_AD_EN.get(kod, ad) if EN else ad
+    dq = "EN" if EN else "TR"
+    sekmeler = dict(_lig_sekme_etiketleri(kod))
+    if sekme not in sekmeler:
+        sekme = "liste"
+    st.markdown(
+        _html_bmp(f"<div style='display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin:0 0 10px;'>"
+                  f"<span class='tp-anabaslik' style='font-size:1.25rem;'>{bayrak} {_h.escape(ad)}</span>"
+                  f"<span class='tp-arametin'>{t('bu sezon', 'this season')} · {L.get('mac_sayisi', 0)} {t('maç', 'matches')} · "
+                  f"{len(L.get('oyuncu', {}))} {t('oyuncu', 'players')} · {t('son maç', 'latest match')} {_lg_tarih(L.get('son_mac', ''))} · "
+                  f"{t('kaynak: SoccerDonna maç raporları', 'source: SoccerDonna match reports')}"
+                  + (f" · <span style='color:#f59e0b;'>{L['raporsuz']} {t('maçın raporu yok (oyuncu verisi eksik)', 'matches lack a report (player data incomplete)')}</span>"
+                     if L.get("raporsuz") else "") + "</span></div>"),
+        unsafe_allow_html=True)
+    if not L.get("oyuncu"):
+        st.info(t("Bu lig için veri yok.", "No data for this league."))
+        return
+    st.markdown(f"### {sekmeler[sekme]}")
+    P = list(L["oyuncu"].values())
+    saha = [o for o in P if o["mac"] > 0]
+    takimlar = sorted(L["takim"])
+    B = _lg_basliklar()
+    TUM_T, TUM_M = t("Tüm Takımlar", "All Teams"), t("Tüm Mevkiler", "All Positions")
+    anahtar = f"{kod}_{dq}"
+
+    def _profile_git(sid):
+        st.session_state["lig_oyuncu_git"] = str(sid)
+        st.session_state["lig_sekme"] = "profil"
+        st.session_state["lg_sec_n"] = st.session_state.get("lg_sec_n", 0) + 1     # "profilini aç" kutuları sıfırlansın
+        st.rerun()
+
+    def _sec_oyuncu(etiket, liste, key):
+        """Oyuncu seçim kutusu → sd_id ya da None."""
+        sirali = sorted(liste, key=lambda o: o["ad"])
+        ids = [""] + [o["sid"] for o in sirali]
+        ad_h = {o["sid"]: f"{o['ad']} — {o['takim']}" for o in sirali}
+        s = st.selectbox(etiket, ids, key=f"{key}_{st.session_state.get('lg_sec_n', 0)}",
+                         format_func=lambda x: ad_h.get(x, t("— seç —", "— select —")))
+        return s or None
+
+    # ───────────────────────── OYUNCU LİSTESİ ─────────────────────────
+    if sekme == "liste":
+        f1, f2, f3, f4 = st.columns([2, 2, 1.3, 1.3])
+        ara = f1.text_input(t("Oyuncu ara", "Search player"), key=f"lg_ara_{anahtar}")
+        tk = f2.selectbox(t("Takım", "Team"), [TUM_T] + takimlar, key=f"lg_tk_{anahtar}")
+        gr = f3.selectbox(t("Mevki", "Position"), ["", "K", "D", "O", "F"], key=f"lg_gr_{anahtar}",
+                          format_func=lambda x: _lg_grup_ad(x) if x else TUM_M)
+        sr = f4.selectbox(t("Sırala", "Sort"), ["dk", "mac", "gol", "asist", "sari"], key=f"lg_sr_{anahtar}",
+                          format_func=lambda x: {"dk": t("Dakika ↓", "Minutes ↓"), "mac": t("Maç ↓", "Matches ↓"), "gol": t("Gol ↓", "Goals ↓"),
+                                                 "asist": t("Asist ↓", "Assists ↓"), "sari": t("Sarı ↓", "Yellow ↓")}[x])
+        liste = [o for o in saha if (not ara or ara.lower() in o["ad"].lower()) and (tk == TUM_T or tk in o["takimlar"])
+                 and (not gr or o.get("grup") == gr)]
+        liste.sort(key=lambda o: (-o[sr], o["ad"]))
+        st.markdown(f"#### {len(liste)} {t('oyuncu', 'players')}")
+        if len(liste) > 200:
+            st.caption(t("İlk 200 oyuncu gösteriliyor; takım ya da mevki seçerek daralt.", "Showing the first 200; narrow down by team or position."))
+        if liste:
+            df_tablo(_lg_oyuncu_df(liste[:200]), basliklar=B)
+            sid = _sec_oyuncu(t("Profilini aç", "Open profile"), liste, f"lg_pa_{anahtar}")
+            if sid:
+                _profile_git(sid)
+
+    # ───────────────────────── GENÇ YETENEKLER ─────────────────────────
+    elif sekme == "genc":
+        c1, c2 = st.columns(2)
+        yas_ust = c1.slider(t("En fazla yaş", "Maximum age"), 16, 23, 21, key=f"lg_gy_{anahtar}")
+        dk_alt = c2.slider(t("En az dakika", "Minimum minutes"), 0, 900, 90, step=45, key=f"lg_gd_{anahtar}")
+        liste = sorted((o for o in saha if o.get("yas") and o["yas"] <= yas_ust and o["dk"] >= dk_alt), key=lambda o: -o["dk"])
+        st.markdown("<div style='display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px;'>"
+                    + _lg_kart(len(liste), t(f"{yas_ust} yaş ve altı oyuncu", f"players aged {yas_ust} or under"), "#1db954")
+                    + _lg_kart(sum(o["dk"] for o in liste), t("toplam dakika", "total minutes"))
+                    + _lg_kart(sum(o["gol"] for o in liste), t("gol", "goals"))
+                    + _lg_kart(len({o["takim"] for o in liste}), t("takım", "teams")) + "</div>", unsafe_allow_html=True)
+        if liste:
+            df_tablo(_lg_oyuncu_df(liste[:150]), basliklar=B)
+            sid = _sec_oyuncu(t("Profilini aç", "Open profile"), liste, f"lg_gp_{anahtar}")
+            if sid:
+                _profile_git(sid)
+        else:
+            st.info(t("Bu ölçütlerde oyuncu yok.", "No players match."))
+
+    # ───────────────────────── OYUNCU PROFİLİ ─────────────────────────
+    elif sekme == "profil":
+        sirali = sorted(saha, key=lambda o: o["ad"])
+        ids = [o["sid"] for o in sirali]
+        ad_h = {o["sid"]: f"{o['ad']} — {o['takim']}" for o in sirali}
+        _pk = f"lg_pr_{anahtar}"
+        hedef = st.session_state.pop("lig_oyuncu_git", None)          # başka sekmeden "profilini aç" ile gelindiyse
+        if hedef in ad_h:
+            st.session_state[_pk] = hedef
+        elif st.session_state.get(_pk) not in ad_h:
+            st.session_state[_pk] = ids[0]
+        sid = st.selectbox(t("Oyuncu", "Player"), ids, key=_pk, format_func=lambda x: ad_h.get(x, x))
+        o = L["oyuncu"][sid]
+        tkm = L["takim"].get(o["takim"], {})
+        st.markdown(
+            "<div style='background:linear-gradient(135deg,#1a0f2e,#141a30);border:1px solid #3b2d6e;border-radius:14px;padding:16px 18px;margin:6px 0 12px;'>"
+            f"<div class='tp-anabaslik' style='font-size:1.4rem;' lang='{_isim_dil(o['ad'])}'>{_h.escape(o['ad'])}</div>"
+            f"<div class='tp-arametin' style='margin-top:4px;'>{_h.escape(o['takim'])}"
+            + (f" ({t('önceki', 'earlier')}: {_h.escape(', '.join(x for x in o['takimlar'] if x != o['takim']))})" if len(o["takimlar"]) > 1 else "")
+            + f" · {_lg_grup_ad(o.get('grup', ''))}" + (f" · {o['yas']} {t('yaş', 'yrs')}" if o.get("yas") else "") + "</div></div>",
+            unsafe_allow_html=True)
+        g90 = round(o["gol"] * 90 / o["dk"], 2) if o["dk"] else 0
+        st.markdown("<div style='display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px;'>"
+                    + _lg_kart(o["mac"], t("maç", "apps")) + _lg_kart(f"{o['ilk11']} / {tkm.get('rapor', tkm.get('o', 0))}", t("ilk 11 / takımın maçı", "starts / team matches"))
+                    + _lg_kart(o["dk"], t("dakika", "minutes")) + _lg_kart(o["gol"], t("gol", "goals"), "#1db954")
+                    + _lg_kart(o["asist"], t("asist", "assists")) + _lg_kart(g90, t("gol / 90 dk", "goals per 90"))
+                    + _lg_kart(f"{o['sari']} / {o['kirmizi']}", t("sarı / kırmızı", "yellow / red"), "#f59e0b")
+                    + (_lg_kart(f"{o['yg']} · {o['gy']}", t("yenilen gol · gol yemeden", "conceded · clean sheets"), "#c4b5fd") if o.get("grup") == "K" else "")
+                    + "</div>", unsafe_allow_html=True)
+        durum = {s["i"]: s["d"] for s in o["log"]}
+        son5 = "".join(durum.get(x["i"], "-") for x in [x for x in (tkm.get("mac") or []) if x.get("i")][-5:])
+        ek = []
+        if son5:
+            ek.append(f"{t('Takımın son 5 maçı', 'Team’s last 5 matches')}: {_form_kareler(son5)}")
+        fr = (sd_form_yukle().get("oyuncular") or {}).get(sid) or {}
+        for av in fr.get("avr") or []:
+            ek.append(f"<span style='color:#c4b5fd;font-weight:700;font-style:normal;'>{av['y']}</span> {av.get('mac', 0)} {t('maç', 'apps')} · {av.get('dk', 0)} {t('dk', 'min')}"
+                      + (f" · {av['gol']} {t('gol', 'goals')}" if av.get("gol") else ""))
+        hv = _havuz_sd_kimlik().get(sid)
+        if hv:
+            ek.append(f"<a href='?oyuncu={_urlquote(hv)}&dil={dq}' target='_blank' style='color:#c4b5fd;text-decoration:none;'>🔎 "
+                      f"{t('Scouting profili (Premium)', 'Scouting profile (Premium)')} →</a>")
+        try:
+            sb = _sb_bul(o["ad"], "")
+        except Exception:
+            sb = None
+        if sb:
+            ek.append(f"<a href='/?sb={sb[0]}&dil={dq}' target='_blank' style='color:#c4b5fd;text-decoration:none;'>📊 "
+                      f"{t('Olay verisi arşivi (ücretsiz)', 'Event data archive (free)')} →</a>")
+        if ek:
+            st.markdown("<div class='tp-arametin' style='margin:0 0 12px;'>" + " &nbsp;·&nbsp; ".join(ek) + "</div>", unsafe_allow_html=True)
+        D = {"S": t("İlk 11", "Started"), "Y": t("Sonradan", "Sub"), "B": t("Yedek", "Bench")}
+        satir = [{"t": _lg_tarih(s["t"]), "rk": ("" if s["ev"] else "@ ") + s["rk"], "sk": s["sk"].replace(":", " – "), "d": D.get(s["d"], ""),
+                  "dk": s["dk"], "g": s["g"], "a": s["a"], "k": ("🟨" * s["s"]) + ("🟥" * s["k"])} for s in reversed(o["log"])]
+        st.markdown(f"#### {t('Maç maç', 'Match by match')}")
+        df_tablo(pd.DataFrame(satir), basliklar={"t": t("Tarih", "Date"), "rk": t("Rakip", "Opponent"), "sk": t("Skor", "Score"), "d": t("Durum", "Status"),
+                                                 "dk": t("Dk", "Min"), "g": t("Gol", "Goals"), "a": t("Asist", "Assists"), "k": t("Kart", "Cards")})
+
+    # ───────────────────────── KARŞILAŞTIRMA ─────────────────────────
+    elif sekme == "karsilastir":
+        sirali = sorted(saha, key=lambda o: o["ad"])
+        ad_h = {o["sid"]: f"{o['ad']} — {o['takim']}" for o in sirali}
+        sec = st.multiselect(t("Oyuncular (en fazla 4)", "Players (up to 4)"), [o["sid"] for o in sirali], key=f"lg_kr_{anahtar}",
+                             format_func=lambda x: ad_h.get(x, x), max_selections=4)
+        if len(sec) < 2:
+            st.info(t("Karşılaştırmak için en az iki oyuncu seç.", "Pick at least two players to compare."))
+        else:
+            ol = [L["oyuncu"][s] for s in sec]
+
+            def _p90(o, a):
+                return round(o[a] * 90 / o["dk"], 2) if o["dk"] else 0
+            satirlar = [(t("Takım", "Team"), [o["takim"] for o in ol]), (t("Mevki", "Position"), [_lg_grup_ad(o.get("grup", "")) for o in ol]),
+                        (t("Yaş", "Age"), [o.get("yas") or "—" for o in ol]), (t("Maç", "Apps"), [o["mac"] for o in ol]),
+                        (t("İlk 11", "Starts"), [o["ilk11"] for o in ol]), (t("Dakika", "Minutes"), [o["dk"] for o in ol]),
+                        (t("Gol", "Goals"), [o["gol"] for o in ol]), (t("Asist", "Assists"), [o["asist"] for o in ol]),
+                        (t("Gol / 90 dk", "Goals per 90"), [_p90(o, "gol") for o in ol]), (t("Asist / 90 dk", "Assists per 90"), [_p90(o, "asist") for o in ol]),
+                        (t("Sarı", "Yellow"), [o["sari"] for o in ol]), (t("Kırmızı", "Red"), [o["kirmizi"] for o in ol])]
+            govde = ""
+            for et, dg in satirlar:
+                sayi = [x for x in dg if isinstance(x, (int, float))]
+                eniyi = max(sayi) if len(sayi) == len(dg) and et not in (t("Yaş", "Age"), t("Sarı", "Yellow"), t("Kırmızı", "Red")) else None
+                govde += (f"<tr><td><span class='tp-arametin'>{et}</span></td>"
+                          + "".join(f"<td class='num ws-mono'>" + (f"<b style='color:#1db954;'>{x}</b>" if eniyi is not None and x == eniyi and eniyi > 0 else _h.escape(str(x))) + "</td>" for x in dg)
+                          + "</tr>")
+            bas = "<th></th>" + "".join(f"<th class='num'>{_h.escape(o['ad'])}</th>" for o in ol)
+            st.markdown(f"<div class='ws-wrap'><table class='ws-table'><thead><tr>{bas}</tr></thead><tbody>{govde}</tbody></table></div>", unsafe_allow_html=True)
+
+    # ───────────────────────── TAKIMLAR ─────────────────────────
+    elif sekme == "takim":
+        tk = st.selectbox(t("Takım", "Team"), takimlar, key=f"lg_tm_{anahtar}")
+        T = L["takim"][tk]
+        st.markdown("<div style='display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px;'>"
+                    + ("" if L.get("kupa") else _lg_kart(f"{T['sira']}.", t("sıra", "position"), "#1db954"))
+                    + _lg_kart(T["o"], t("maç", "matches")) + _lg_kart(f"{T['g']}-{T['b']}-{T['m']}", t("G-B-M", "W-D-L"))
+                    + _lg_kart(f"{T['a']} : {T['y']}", t("attığı : yediği", "for : against"))
+                    + ("" if L.get("kupa") else _lg_kart(3 * T["g"] + T["b"], t("puan", "points"), "#c4b5fd")) + "</div>", unsafe_allow_html=True)
+        cip = "".join(f"<span style='display:inline-block;margin:0 6px 6px 0;padding:3px 10px;border-radius:999px;background:#141a30;border:1px solid #2a3050;"
+                      f"color:#cbd5e1;font-size:0.76rem;'>{_h.escape(s)} × {n}</span>" for s, n in T["sema"].most_common(6))
+        hoca = T["hoca"].most_common(1)
+        st.markdown(f"<div class='tp-arametin' style='margin-bottom:10px;'>{t('Dizilişler', 'Formations')}: {cip or '—'}"
+                    + (f" &nbsp;·&nbsp; {t('Teknik sorumlu', 'Coach')}: <b style='font-style:normal;color:#e2e8f0;'>{_h.escape(hoca[0][0])}</b>" if hoca else "")
+                    + "</div>", unsafe_allow_html=True)
+        st.markdown(f"#### {t('Kadro', 'Squad')}")
+        kadro = sorted((o for o in P if tk in o["takimlar"]), key=lambda o: (-o["dk"], o["ad"]))
+        df_tablo(_lg_oyuncu_df(kadro).drop(columns=["tk"]), basliklar=B)
+        st.markdown(f"#### {t('Maçlar', 'Matches')}")
+        df_tablo(pd.DataFrame([{"t": (_lg_tarih(x["t"]) if x["t"] else f"{x['h']}. {t('hafta', 'round')}"), "rk": ("" if x["ev"] else "@ ") + x["rk"],
+                                "sk": x["sk"].replace(":", " – ")} for x in reversed(T["mac"])]),
+                 basliklar={"t": t("Tarih", "Date"), "rk": t("Rakip", "Opponent"), "sk": t("Skor", "Score")})
+
+    # ───────────────────────── LİG TABLOSU ─────────────────────────
+    elif sekme == "tablo":
+        st.markdown(_lg_puan_html(L), unsafe_allow_html=True)
+        st.caption(t("Maç sonuçlarından hesaplanmıştır; federasyon kararları (puan silme, hükmen sonuç) yansımayabilir.",
+                     "Computed from match results; federation rulings (point deductions, awarded results) may not be reflected.")
+                   + (" " + t(f"{L['raporsuz']} maçın raporu yok: sonuçları tabloya dahil, oyuncu istatistiklerine dahil değil.",
+                                   f"{L['raporsuz']} matches have no report: their results are in the table but not in the player statistics.")
+                      if L.get("raporsuz") else ""))
+
+    # ───────────────────────── EN İYİLER ─────────────────────────
+    elif sekme == "eniyi":
+        esik = st.slider(t("90 dakika başına sıralamalar için en az dakika", "Minimum minutes for per-90 rankings"), 90, 900, 270, step=45, key=f"lg_ei_{anahtar}")
+
+        def _ilk(baslik, anahtar_fn, deger_fn, havuz, n=10):
+            sir = [o for o in sorted(havuz, key=anahtar_fn, reverse=True)[:n] if anahtar_fn(o) > 0]
+            st.markdown(f"#### {baslik}")
+            if not sir:
+                st.caption("—")
+                return
+            df_tablo(pd.DataFrame([{"ad": o["ad"], "tk": o["takim"], "v": deger_fn(o)} for o in sir]),
+                     basliklar={"ad": t("Oyuncu", "Player"), "tk": t("Takım", "Team"), "v": t("Değer", "Value")})
+        k1, k2 = st.columns(2)
+        with k1:
+            _ilk(t("⚽ Gol", "⚽ Goals"), lambda o: o["gol"], lambda o: o["gol"], saha)
+            _ilk(t("⏱️ Dakika", "⏱️ Minutes"), lambda o: o["dk"], lambda o: o["dk"], saha)
+            _ilk(t("🟨 Kart (sarı + 2×kırmızı)", "🟨 Cards (yellow + 2×red)"), lambda o: o["sari"] + 2 * o["kirmizi"], lambda o: f"{o['sari']} / {o['kirmizi']}", saha)
+        with k2:
+            _ilk(t("🎯 Asist", "🎯 Assists"), lambda o: o["asist"], lambda o: o["asist"], saha)
+            uzun = [o for o in saha if o["dk"] >= esik]
+            _ilk(t("🔥 Gol + asist / 90 dk", "🔥 Goals + assists per 90"), lambda o: (o["gol"] + o["asist"]) * 90 / o["dk"],
+                 lambda o: round((o["gol"] + o["asist"]) * 90 / o["dk"], 2), uzun)
+            _ilk(t("🧱 Tam süre oynanan maç", "🧱 Full matches played"), lambda o: sum(1 for s in o["log"] if s["d"] == "S" and s["dk"] >= 90),
+                 lambda o: sum(1 for s in o["log"] if s["d"] == "S" and s["dk"] >= 90), saha)
+
+    # ───────────────────────── GELİŞMİŞ ARAMA ─────────────────────────
+    elif sekme == "arama":
+        yaslar = [o["yas"] for o in saha if o.get("yas")]
+        a1, a2, a3 = st.columns(3)
+        yas_ar = a1.slider(t("Yaş", "Age"), min(yaslar or [15]), max(yaslar or [40]), (min(yaslar or [15]), max(yaslar or [40])), key=f"lg_aa_{anahtar}")
+        dk_alt = a2.number_input(t("En az dakika", "Minimum minutes"), 0, 5000, 0, step=90, key=f"lg_ad_{anahtar}")
+        gol_alt = a3.number_input(t("En az gol", "Minimum goals"), 0, 60, 0, key=f"lg_ag_{anahtar}")
+        b1, b2, b3 = st.columns(3)
+        gr = b1.multiselect(t("Mevki", "Position"), ["K", "D", "O", "F"], key=f"lg_am_{anahtar}", format_func=_lg_grup_ad)
+        tks = b2.multiselect(t("Takım", "Team"), takimlar, key=f"lg_at_{anahtar}")
+        i11 = b3.slider(t("İlk 11 oranı en az (%)", "Minimum start share (%)"), 0, 100, 0, step=10, key=f"lg_ai_{anahtar}")
+        liste = [o for o in saha if (not o.get("yas") or yas_ar[0] <= o["yas"] <= yas_ar[1]) and o["dk"] >= dk_alt and o["gol"] >= gol_alt
+                 and (not gr or o.get("grup") in gr) and (not tks or any(x in tks for x in o["takimlar"]))
+                 and (100 * o["ilk11"] / max(1, L["takim"].get(o["takim"], {}).get("rapor", 1)) >= i11)]
+        liste.sort(key=lambda o: (-o["dk"], o["ad"]))
+        st.markdown(f"#### {len(liste)} {t('oyuncu', 'players')}")
+        if liste:
+            df_tablo(_lg_oyuncu_df(liste[:200]), basliklar=B)
+            sid = _sec_oyuncu(t("Profilini aç", "Open profile"), liste, f"lg_ap_{anahtar}")
+            if sid:
+                _profile_git(sid)
+
+    # ───────────────────────── YAŞ ANALİZİ ─────────────────────────
+    elif sekme == "yas":
+        yasli = [o for o in saha if o.get("yas")]
+        if not yasli:
+            st.info(t("Yaş verisi yok.", "No age data."))
+        else:
+            agir = sum(o["yas"] * o["dk"] for o in yasli) / max(1, sum(o["dk"] for o in yasli))
+            enG, enY = min(yasli, key=lambda o: o["yas"]), max(yasli, key=lambda o: o["yas"])
+            st.markdown("<div style='display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px;'>"
+                        + _lg_kart(f"{agir:.1f}", t("dakika ağırlıklı ortalama yaş", "minutes-weighted average age"), "#c4b5fd")
+                        + _lg_kart(enG["yas"], f"{t('en genç', 'youngest')}: {_h.escape(enG['ad'])}", "#1db954")
+                        + _lg_kart(enY["yas"], f"{t('en yaşlı', 'oldest')}: {_h.escape(enY['ad'])}", "#f59e0b")
+                        + _lg_kart(f"%{100 * sum(o['dk'] for o in yasli if o['yas'] <= 21) / max(1, sum(o['dk'] for o in yasli)):.0f}",
+                                   t("dakikaların 21 yaş ve altına giden payı", "share of minutes played by 21-and-unders")) + "</div>", unsafe_allow_html=True)
+            sat = []
+            for tk in takimlar:
+                k = [o for o in yasli if o["takim"] == tk]
+                if not k:
+                    continue
+                top = max(1, sum(o["dk"] for o in k))
+                sat.append({"tk": tk, "ort": round(sum(o["yas"] * o["dk"] for o in k) / top, 1), "g": min(o["yas"] for o in k), "y": max(o["yas"] for o in k),
+                            "u21": round(100 * sum(o["dk"] for o in k if o["yas"] <= 21) / top), "o30": round(100 * sum(o["dk"] for o in k if o["yas"] >= 30) / top)})
+            sat.sort(key=lambda x: x["ort"])
+            st.markdown(f"#### {t('Takımlar (gençten yaşlıya)', 'Teams (youngest first)')}")
+            df_tablo(pd.DataFrame(sat), basliklar={"tk": t("Takım", "Team"), "ort": t("Ort. yaş", "Avg age"), "g": t("En genç", "Youngest"), "y": t("En yaşlı", "Oldest"),
+                                                   "u21": t("≤21 dk %", "≤21 min %"), "o30": t("≥30 dk %", "≥30 min %")})
+            st.markdown(f"#### {t('Yaş dağılımı (oyuncu sayısı)', 'Age distribution (players)')}")
+            from collections import Counter as _C
+            sy = _C(o["yas"] for o in yasli)
+            st.bar_chart(pd.DataFrame({t("Oyuncu", "Players"): [sy.get(y, 0) for y in range(min(sy), max(sy) + 1)]},
+                                      index=[str(y) for y in range(min(sy), max(sy) + 1)]), height=240)
+
+    # ───────────────────────── KALECİLER ─────────────────────────
+    elif sekme == "kaleci":
+        kl = sorted((o for o in saha if o.get("grup") == "K" and o["dk"] >= 90), key=lambda o: (o["yg"] * 90 / o["dk"], -o["dk"]))
+        if not kl:
+            st.info(t("Kaleci verisi yok.", "No goalkeeper data."))
+        else:
+            df_tablo(pd.DataFrame([{"ad": o["ad"], "tk": o["takim"], "yas": (int(o["yas"]) if o.get("yas") else None), "mac": o["mac"], "dk": o["dk"],
+                                    "yg": o["yg"], "gy": o["gy"], "y90": round(o["yg"] * 90 / o["dk"], 2)} for o in kl]),
+                     basliklar={"ad": t("Kaleci", "Goalkeeper"), "tk": t("Takım", "Team"), "yas": t("Yaş", "Age"), "mac": t("Maç", "Apps"), "dk": t("Dk", "Min"),
+                                "yg": t("Yenilen gol", "Conceded"), "gy": t("Gol yemeden", "Clean sheets"), "y90": t("Yenilen / 90 dk", "Conceded per 90")})
+            st.caption(t("En az 90 dakika oynayan kaleciler; yenilen gol, kaleci sahadayken yenen gollerdir. Gol yemeden: 90 dakika oynayıp gol yemediği maçlar.",
+                         "Goalkeepers with at least 90 minutes; goals conceded while on the pitch. Clean sheets: full matches without conceding."))
 
 
 def _html_bmp(s: str) -> str:
@@ -11734,6 +12358,33 @@ def lig_ozet_yukle(kod: str) -> dict:
         for k in m.get("kartlar", []):
             if k.get("sd_id") in macta:
                 macta[k["sd_id"]]["kirmizi" if "red" in (k.get("kart") or "").lower() else "sari"] += 1
+    import unicodedata as _ud
+
+    def _sd(ad):
+        return _r.sub(r"[^a-z0-9]", "", _ud.normalize("NFKD", str(ad).replace("ı", "i")).encode("ascii", "ignore").decode().lower())
+    ad_harita = {_sd(a): a for a in puan}
+    ad_kimlik = {}
+    for m in veri.get("maclar", []):
+        for tf in ("ev", "dep"):
+            if m.get(tf + "_id") and m.get("skor"):
+                ad_kimlik[m[tf + "_id"]] = m.get(tf, "")
+
+    def _ad_bul(ad):
+        n = _sd(ad)
+        if n in ad_harita:
+            return ad_harita[n]
+        aday = [a for k, a in ad_harita.items() if n and (k.startswith(n) or n.startswith(k) or n in k)]
+        return aday[0] if len(aday) == 1 else (ad or "")
+    for x in veri.get("raporsuz", []):          # raporu olmayan maçların sonuçları da tabloya girer
+        sk = _r.fullmatch(r"(\d+):(\d+)", str(x.get("skor") or ""))
+        if not sk:
+            continue
+        eg, dg = int(sk.group(1)), int(sk.group(2))
+        for ad, a, y in ((ad_kimlik.get(x.get("ev_id")) or _ad_bul(x.get("ev")), eg, dg),
+                         (ad_kimlik.get(x.get("dep_id")) or _ad_bul(x.get("dep")), dg, eg)):
+            p = puan.setdefault(ad, {"takim": ad, "o": 0, "g": 0, "b": 0, "m": 0, "a": 0, "y": 0})
+            p["o"] += 1; p["a"] += a; p["y"] += y
+            p["g" if a > y else "b" if a == y else "m"] += 1
     tablo = sorted(puan.values(), key=lambda p: (-(3 * p["g"] + p["b"]), -(p["a"] - p["y"]), -p["a"], p["takim"]))
     sonuc.sort(key=lambda x: (x["tarih"], x["ev"]), reverse=True)
     return {"ad": veri.get("lig", kod), "kupa": bool(veri.get("kupa")), "puan": tablo, "oyuncu": list(oyuncu.values()),
@@ -11759,11 +12410,9 @@ def render_lig_veri(kod: str):
     """PUBLIC ve ücretsiz: bir ligin bu sezonki puan durumu, oyuncu tablosu ve sonuçları."""
     import html as _h
     st.markdown(
-        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ("" if st.session_state.get("girildi") else "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}</style>") + "<style>"
         ".block-container{max-width:980px!important;padding-top:1rem!important;}</style>", unsafe_allow_html=True)
-    kod = str(kod or "").strip().upper()
-    if kod not in _LIG_SAYFA:
-        kod = "ENG1"
+    kod = {k.upper(): k for k in _LIG_SAYFA}.get(str(kod or "").strip().upper(), "ENG1")
     oz = lig_ozet_yukle(kod)
     bayrak, ad, _ = _LIG_SAYFA[kod]
     ad = _LIG_AD_EN.get(kod, ad) if EN else ad
@@ -11801,7 +12450,9 @@ def render_lig_veri(kod: str):
             "<div class='tp-arametin' style='padding:8px 14px;border-top:1px solid #241d3d;'>"
             + t("Maç sonuçlarından hesaplanmıştır; federasyon kararları (puan silme, hükmen sonuç) yansımayabilir.",
                 "Computed from match results; federation rulings (point deductions, awarded results) may not be reflected.")
-            + (f" {oz['raporsuz']} {t('maçın raporu henüz yok.', 'matches have no report yet.')}" if oz.get("raporsuz") else "")
+            + (" " + t(f"{oz['raporsuz']} maçın raporu yok: sonuçları tabloya dahil, oyuncu istatistiklerine dahil değil.",
+                       f"{oz['raporsuz']} matches have no report: their results are in the table but not in the player statistics.")
+               if oz.get("raporsuz") else "")
             + "</div></div>", unsafe_allow_html=True)
     elif sec == t("Oyuncular", "Players"):
         takimlar = sorted({o["takim"] for o in oz["oyuncu"]})
@@ -11850,7 +12501,7 @@ def render_takvim():
     import html as _h
     from datetime import date as _date, datetime as _dt, timedelta as _td
     st.markdown(
-        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ("" if st.session_state.get("girildi") else "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}</style>") + "<style>"
         ".block-container{max-width:980px!important;padding-top:1rem!important;}</style>", unsafe_allow_html=True)
     veri = takvim_yukle()
     bugun = (_dt.utcnow() + _td(hours=3)).date()
@@ -11995,7 +12646,7 @@ def render_paylasim_raporu(isim: str):
     isim = (isim or "").strip()
     # Temiz public sayfa: sol nav + chrome gizle, dar kolon
     st.markdown(
-        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ("" if st.session_state.get("girildi") else "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}</style>") + "<style>"
         ".block-container{max-width:820px!important;padding-top:1rem!important;}</style>",
         unsafe_allow_html=True)
     kadro = birlesik_scout_yukle().get(isim, {})
@@ -12153,6 +12804,13 @@ if params.get("takvim", "").strip():
 # ─── LİG VERİLERİ (?lig=<kod>) — public ve ücretsiz ──────────────────────────
 if params.get("lig", "").strip():
     render_lig_veri(params.get("lig", ""))
+
+# ─── LİG KİPİ: sol menüden Türkiye dışı bir lig seçiliyse TR Veri sekmelerinin yerine o ligin sekmeleri ──
+_veri_lig_r = st.session_state.get("veri_lig", "TR")
+if (_veri_lig_r != "TR" and _veri_lig_r in _lig_mevcut() and st.session_state.get("sayfa", "ana") == "ana"
+        and st.session_state.get("girildi") and not url_oyuncu):
+    render_lig_sekme(_veri_lig_r, st.session_state.get("lig_sekme", "liste"))
+    st.stop()
 
 # ─── E-POSTA DOĞRULAMA (?dogrula=TOKEN) — public, giriş gerektirmez ───────────
 if params.get("dogrula", "").strip():

@@ -46,6 +46,14 @@ LIGLER = {
     "IT1": ("serie-a-women", "Serie A Women"),
     "DAN1": ("premire-ligue", "Première Ligue"),
     "NWSL": ("nwsl", "NWSL"),
+    # 13 Kasım 2026 (Yiğit: İskandinavya, Portekiz, Macaristan öncelikli). Takvim yılı ligleri --sezon=2025 ile çekilir.
+    "SWE1": ("damallsvenskan", "Damallsvenskan"),
+    "NOR1": ("toppserien", "Toppserien"),
+    "3FL": ("a-liga", "A-Liga (Danimarka)"),
+    "Nais": ("kansallinen-liiga", "Kansallinen Liiga"),          # SD kodu gerçekten 'Nais' (büyük/küçük harf duyarlı)
+    "ISL1": ("besta-deild-kvenna", "Besta deild kvenna"),
+    "LNF": ("campeonato-nacional-feminino", "Liga BPI (Portekiz)"),
+    "UNG1": ("ni-nb-i", "Női NB I (Macaristan)"),
     # Avrupa kupaları (13 Kasım 2026): hafta sayfası yok, bütün turlar tek sayfada (gruppenspieltage + startseite)
     "CL": ("uefa-womens-champions-league", "UEFA Şampiyonlar Ligi"),
     "CLQ": ("uefa-womens-champions-league-qualifying", "UEFA Şampiyonlar Ligi ön eleme"),
@@ -293,6 +301,14 @@ def kadro_coz(html):
 
 def hafta_listesi(html):
     """Hafta sayfasında listelenen maçlar: [(ev, dep, skor), ...] — raporu olmayanlar dahil."""
+    # Önce satır yapısından oku: takım KİMLİKLERİ de gelir (13 Kasım 2026: ad karşılaştırması yanlış "raporsuz" üretiyordu —
+    # hafta sayfası "HJK", maç raporu "HJK Helsinki" yazınca raporu OLAN maç da raporsuz sayılıp tabloda iki kez görünüyordu).
+    out = []
+    for m in re.finditer(r'<td class="ar fb"[^>]*>\s*<a href="[^"]*verein_(\d+)\.html"[^>]*>([^<]+)</a>\s*</td>\s*<td[^>]*>\s*(?:<a[^>]*>)?\s*'
+                         r'([\d-]+:[\d-]+)[^<]*(?:</a>)?\s*</td>\s*<td class="al fb"[^>]*>\s*<a href="[^"]*verein_(\d+)\.html"[^>]*>([^<]+)</a>', html):
+        out.append((m.group(2).strip(), m.group(5).strip(), m.group(3).strip(), int(m.group(1)), int(m.group(4))))
+    if out:
+        return out
     satirlar = BeautifulSoup(html, AYRISTIRICI).get_text("\n", strip=True).split("\n")
     out = []
     for i in range(len(satirlar) - 3):
@@ -438,9 +454,13 @@ def main():
         if len(listelenen) > len(liste):
             adlar = {_sade(m.get("ev", "")) + "|" + _sade(m.get("dep", ""))
                      for m in maclar + oynanmayan if m.get("hafta") == hafta}
-            for ev, dep, skor in listelenen:
-                if _sade(ev) + "|" + _sade(dep) not in adlar and re.fullmatch(r"\d+:\d+", skor):
-                    raporsuz.append({"hafta": hafta, "ev": ev, "dep": dep, "skor": skor})
+            kimlikler = {(m.get("ev_id"), m.get("dep_id")) for m in maclar if m.get("hafta") == hafta and m.get("ev_id")}
+            for kayit in listelenen:
+                ev, dep, skor = kayit[:3]
+                eid, did = (kayit[3], kayit[4]) if len(kayit) >= 5 else (None, None)
+                var = ((eid, did) in kimlikler) if (eid and kimlikler) else (_sade(ev) + "|" + _sade(dep) in adlar)
+                if not var and re.fullmatch(r"\d+:\d+", skor):
+                    raporsuz.append({"hafta": hafta, "ev": ev, "dep": dep, "skor": skor, "ev_id": eid, "dep_id": did})
         veri = {"sezon": f"{SEZON_YIL}-{str(SEZON_YIL + 1)[2:]}", "lig": LIG_AD, "lig_kod": LIG_KOD,
                 "kaynak": "soccerdonna.de", "guncelleme": datetime.date.today().isoformat(),
                 "maclar": maclar, "oynanmayan": oynanmayan, "raporsuz": raporsuz}

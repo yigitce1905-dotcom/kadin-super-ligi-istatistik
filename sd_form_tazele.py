@@ -13,6 +13,7 @@ from pathlib import Path
 KOK = Path(__file__).parent
 # kod → SD sezon anahtarı (NWSL takvim yılı ligi: 2026 sezonu SD'de 2025 anahtarıyla duruyor)
 LIGLER = {"TUR1": 2026, "ENG1": 2026, "BL1": 2026, "ESP1": 2026, "IT1": 2026, "DAN1": 2026, "NWSL": 2025,
+          "SWE1": 2025, "NOR1": 2025, "3FL": 2026, "Nais": 2025, "ISL1": 2025, "LNF": 2026, "UNG1": 2026,
           "CL": 2026, "CLQ": 2026, "EC": 2026}          # Avrupa kupaları (Şampiyonlar Ligi, ön elemesi, Avrupa Kupası)
 
 

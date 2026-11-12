@@ -1,6 +1,6 @@
 {
  "guncelleme": "2026-11-13",
- "kaynak": "FIFA federasyon sayfaları (tescil dönemleri) · TFF (Türkiye amatör dönemleri) · SoccerDonna (lig maç günleri)",
+ "kaynak": "FIFA federasyon sayfaları (tescil dönemleri) · SoccerDonna (lig maç günleri)",
  "ulkeler": [
   {
    "fifa": "ENG",
@@ -180,16 +180,16 @@
      "2027-03-26"
     ]
    ],
+   "amator": true,
+   "kaynak": "TFF Yönetim Kurulu kararı, 30.07.2026 (2026-2027 amatör transfer ve tescil dönemleri)",
+   "kaynak_en": "Turkish FA board decision, 30 Jul 2026 (2026-27 amateur transfer and registration periods)",
    "lig": {
     "ad": "Kadın Futbol Süper Ligi",
     "ilk_mac": "2026-08-29",
     "son_mac": null,
     "hafta": 15,
     "takim": 14
-   },
-   "amator": true,
-   "kaynak": "TFF Yönetim Kurulu kararı, 30.07.2026 (2026-2027 amatör transfer ve tescil dönemleri)",
-   "kaynak_en": "Turkish FA board decision, 30 Jul 2026 (2026-27 amateur transfer and registration periods)"
+   }
   },
   {
    "fifa": "SWE",
@@ -236,7 +236,14 @@
      "2026-07-22",
      "2026-09-10"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Toppserien",
+    "ilk_mac": "2026-03-20",
+    "son_mac": "2026-11-07",
+    "hafta": 22,
+    "takim": 12
+   }
   },
   {
    "fifa": "DEN",
@@ -323,7 +330,14 @@
      "2027-01-15",
      "2027-02-15"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Women's Super League",
+    "ilk_mac": "2026-08-07",
+    "son_mac": null,
+    "hafta": 13,
+    "takim": 10
+   }
   },
   {
    "fifa": "AUT",
@@ -397,7 +411,14 @@
      "2027-01-04",
      "2027-02-05"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "SWPL 1",
+    "ilk_mac": "2026-08-16",
+    "son_mac": null,
+    "hafta": 14,
+    "takim": 10
+   }
   },
   {
    "fifa": "WAL",
@@ -471,7 +492,14 @@
      "2026-06-30",
      "2026-08-24"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Kansallinen Liiga",
+    "ilk_mac": "2026-03-28",
+    "son_mac": "2026-07-25",
+    "hafta": 14,
+    "takim": 8
+   }
   },
   {
    "fifa": "ISL",
@@ -491,7 +519,14 @@
      "2026-07-16",
      "2026-08-12"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Besta deild kvenna",
+    "ilk_mac": "2026-04-24",
+    "son_mac": "2026-08-30",
+    "hafta": 18,
+    "takim": 10
+   }
   },
   {
    "fifa": "POL",
@@ -511,7 +546,8 @@
      "2027-02-01",
      "2027-03-01"
     ]
-   ]
+   ],
+   "lig": null
   },
   {
    "fifa": "CZE",
@@ -531,7 +567,14 @@
      "2027-01-16",
      "2027-02-12"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "1. liga žen",
+    "ilk_mac": "2026-08-15",
+    "son_mac": null,
+    "hafta": 11,
+    "takim": 4
+   }
   },
   {
    "fifa": "HUN",
@@ -551,7 +594,14 @@
      "2027-01-15",
      "2027-02-14"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Női NB I",
+    "ilk_mac": "2026-08-08",
+    "son_mac": "2027-04-03",
+    "hafta": 22,
+    "takim": 12
+   }
   },
   {
    "fifa": "SVN",
@@ -571,7 +621,14 @@
      "2027-01-16",
      "2027-02-15"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "1. ŽFL",
+    "ilk_mac": "2026-09-12",
+    "son_mac": null,
+    "hafta": 8,
+    "takim": 4
+   }
   },
   {
    "fifa": "SRB",
@@ -699,7 +756,14 @@
      "2026-07-21",
      "2026-08-31"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Northern Super League",
+    "ilk_mac": "2026-04-25",
+    "son_mac": "2026-10-27",
+    "hafta": 25,
+    "takim": 6
+   }
   },
   {
    "fifa": "AUS",
@@ -746,7 +810,14 @@
      "2027-01-05",
      "2027-02-03"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "WE League",
+    "ilk_mac": "2026-08-22",
+    "son_mac": "2027-05-15",
+    "hafta": 22,
+    "takim": 12
+   }
   },
   {
    "fifa": "KOR",
@@ -766,7 +837,14 @@
      "2026-06-15",
      "2026-07-24"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "WK League",
+    "ilk_mac": "2026-04-04",
+    "son_mac": "2026-10-31",
+    "hafta": 28,
+    "takim": 8
+   }
   },
   {
    "fifa": "CHN",
@@ -786,7 +864,14 @@
      "2026-07-01",
      "2026-07-31"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Chinese Women's Super League",
+    "ilk_mac": "2026-04-25",
+    "son_mac": null,
+    "hafta": 11,
+    "takim": 12
+   }
   },
   {
    "fifa": "KSA",
@@ -806,7 +891,14 @@
      "2027-01-03",
      "2027-01-31"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Saudi Women's Premier League",
+    "ilk_mac": "2026-09-10",
+    "son_mac": null,
+    "hafta": 5,
+    "takim": 0
+   }
   },
   {
    "fifa": "RSA",

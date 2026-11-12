@@ -39091,31 +39091,41 @@
    "hafta": 1,
    "ev": "Yüksekova SK",
    "dep": "Bilgi Doğa SK",
-   "skor": "3:0"
+   "skor": "3:0",
+   "ev_id": 15697,
+   "dep_id": 15914
   },
   {
    "hafta": 2,
    "ev": "Trabzonspor",
    "dep": "Bakirköy KFSK",
-   "skor": "3:0"
+   "skor": "3:0",
+   "ev_id": 792,
+   "dep_id": 14028
   },
   {
    "hafta": 3,
    "ev": "Giresun Sanayispor",
    "dep": "1207 Antalyaspor",
-   "skor": "0:3"
+   "skor": "0:3",
+   "ev_id": 14056,
+   "dep_id": 7352
   },
   {
    "hafta": 5,
    "ev": "Giresun Sanayispor",
    "dep": "Beşiktaş JK",
-   "skor": "0:3"
+   "skor": "0:3",
+   "ev_id": 14056,
+   "dep_id": 6981
   },
   {
    "hafta": 6,
    "ev": "Ünye Kadın SK",
    "dep": "Giresun Sanayispor",
-   "skor": "3:0"
+   "skor": "3:0",
+   "ev_id": 13095,
+   "dep_id": 14056
   }
  ]
 }
