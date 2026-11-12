@@ -6203,6 +6203,66 @@ def _havuz_kimlik_listesi() -> list:
             if isinstance(v, dict) and not _dusuk_notlu_tr_mi(v)]
 
 
+_KABUK_ETIKET = """<title>Women's Football Scouting | 1,500+ scouted players</title>
+    <meta name="wfs-kabuk" content="1" />
+    <meta name="description" content="The scouting database for women's football: 1,500+ players with scout grades, playing roles, contract dates and market values across 110+ leagues." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Women's Football Scouting" />
+    <meta property="og:title" content="Women's Football Scouting | 1,500+ scouted players" />
+    <meta property="og:description" content="Scout grades, playing roles, contract dates and market values for 1,500+ players across 110+ leagues." />
+    <meta property="og:image" content="https://womenfootballscouting.com/app/static/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Women's Football Scouting | 1,500+ scouted players" />
+    <meta name="twitter:description" content="Scout grades, playing roles, contract dates and market values for 1,500+ players across 110+ leagues." />
+    <meta name="twitter:image" content="https://womenfootballscouting.com/app/static/og.jpg" />"""
+
+
+@st.cache_resource(show_spinner=False)
+def _kabuk_yamala() -> str:
+    """Süreç başına BİR kez: Streamlit'in statik index.html'ine marka başlığı, açıklama ve paylaşım
+    (Open Graph / Twitter) etiketleri yazar; kök dizine robots.txt koyar.
+
+    Neden (12 Kasım 2026): site linki WhatsApp / LinkedIn / e-postada paylaşılınca önizleme
+    "Streamlit" başlığıyla, görselsiz ve açıklamasız çıkıyordu — kulüplere gönderilen her linkin
+    ilk izlenimi buydu. Önizleme botları JavaScript çalıştırmaz, yalnız bu statik kabuğu okur;
+    st.set_page_config ve _pwa_kur (çalışma anı enjeksiyonu) onlara görünmez.
+    Sunucu (Starlette StaticFiles) dosyayı her istekte diskten okur → yama anında etkili olur,
+    yeniden başlatma gerekmez. Paket her yayında yeniden kurulduğu için yama her süreçte tekrarlanır.
+    og:url BİLEREK yok: platformlar paylaşılan adresi (?kulup=… dahil) korusun.
+    Yalnız Render'da çalışır (RENDER ortam değişkeni): yerelde site-packages'a dokunulmaz."""
+    import os
+    if not os.environ.get("RENDER"):
+        return "yerel"
+    try:
+        from streamlit import file_util as _fu
+        kok = _fu.get_static_dir()
+        yol = os.path.join(kok, "index.html")
+        with open(yol, encoding="utf-8") as f:
+            s = f.read()
+        if "wfs-kabuk" in s:
+            return "zaten"
+        if "<title>Streamlit</title>" not in s:
+            return "baslik-bulunamadi"
+        s = s.replace("<title>Streamlit</title>", _KABUK_ETIKET, 1)
+        s = s.replace('<link rel="shortcut icon" href="./favicon.png" />',
+                      '<link rel="shortcut icon" href="/app/static/pwa-192.png" />', 1)
+        with open(yol + ".wfs", "w", encoding="utf-8") as f:
+            f.write(s)
+        os.replace(yol + ".wfs", yol)                    # yarım yazılmış dosya sunulmasın
+        try:
+            with open(os.path.join(kok, "robots.txt"), "w", encoding="utf-8") as f:
+                f.write("User-agent: *\nAllow: /\n")
+        except Exception:
+            pass
+        print("[kabuk] index.html yamalandi", flush=True)
+        return "yamalandi"
+    except Exception as e:
+        print(f"[kabuk] hata: {type(e).__name__}: {e}", flush=True)
+        return f"hata: {type(e).__name__}: {e}"
+
+
 @st.cache_resource(show_spinner=False)
 def _isinma_baslat() -> bool:
     """Süreç başına BİR kez: ağır, DİLDEN BAĞIMSIZ veri yükleyicilerini arka planda doldurur.
@@ -10849,7 +10909,8 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
     """Bir kulüp kaydının HER ihtiyaç alanı için adaylar: [[hafif sözlük…], …] (alan sırasıyla).
     Sıra: nihai not → müsaitlik (serbest / sözleşmesi sezon sonuna kadar biten) → nitelik ortalaması.
 
-    Alan ölçütleri: mevki [kod…], yas_min, yas_max, deger_max (€), ayak, ab, not_min.
+    Alan ölçütleri: mevki [kod…], yas_min, yas_max, deger_max (€), ayak, ab, not_min,
+    musait (true → yalnız serbest ya da sözleşmesi sezon sonuna kadar biten).
     Kulüp düzeyi (kayıtta): seviye (1-3), kendi [havuzdaki kulüp ad(lar)ı].
 
     GERÇEKÇİLİK (12 Kasım 2026 denetimi: Wexford'a Everton stoperi, Weinberg'e NWSL kalecisi
@@ -10922,12 +10983,15 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
             biter = bool(bitis and bugun <= bitis <= sinir)
             if ks and not (serbest or sv >= ks or (sv == ks - 1 and biter)):
                 continue
+            if kriter.get("musait") and not (serbest or biter):   # yalnız serbest / sezon sonuna kadar biten
+                continue
             durum = "serbest" if serbest else "bitiyor" if biter else ""
             out.append(((a[0], 1 if durum else 0, a[1]), {
                 "isim": isim, "kod": kod, "nihai": str(r.get("nihai") or ""), "yas": yas,
                 "kulup": str(r.get("kulup") or ""), "rol": str(r.get("rol") or ""),
                 "uyruk": str(r.get("vatandaslik") or ""), "lig": str(r.get("lig") or ""),
-                "deger": str(r.get("deger") or ""), "durum": durum,
+                # yer tutucu değer (üst/orta ligde tam €10.000) gösterilmez: Brezilya millî oyuncusu "€10.000" görünmesin
+                "deger": "" if (dg == 10000 and sv <= 2 and not serbest) else str(r.get("deger") or ""), "durum": durum,
                 "bitis": bitis.strftime("%m/%Y") if (bitis and bitis >= bugun and not serbest) else ""}))
         out.sort(key=lambda x: x[0], reverse=True)
         # Havuzda aynı oyuncu iki adla kayıtlı olabiliyor ("Mariza" / "Mariza Nascimento"):
@@ -10941,6 +11005,47 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
             tekil.append(d)
         cikti.append(tekil)
     return cikti
+
+
+@st.cache_data(show_spinner=False, max_entries=2)
+def _musait_ozet(gun: str) -> dict:
+    """Havuzda serbest ya da sözleşmesi sezon sonuna kadar biten notlu oyuncular (günde bir hesap):
+    {'toplam', 'serbest', 'bc' (notu BC ve üstü), 'sinir' (gg.aa.yyyy)}."""
+    from datetime import date as _date
+    b = _date.fromisoformat(gun)
+    sinir = _date(b.year + (1 if b.month >= 7 else 0), 6, 30)
+    try:
+        hepsi, iyi = _kulup_adaylari(json.dumps(
+            {"ad": "-", "ihtiyaclar": [{"musait": True}, {"musait": True, "not_min": "BC"}]}, sort_keys=True), gun)
+        return {"toplam": len(hepsi), "serbest": sum(1 for d in hepsi if d["durum"] == "serbest"),
+                "bc": len(iyi), "sinir": sinir.strftime("%d.%m.%Y")}
+    except Exception:
+        return {"toplam": 0, "serbest": 0, "bc": 0, "sinir": sinir.strftime("%d.%m.%Y")}
+
+
+def _sozlesme_duyuru(kap_stil: str = ""):
+    """Karşılama + ödeme duvarı üstünde 'Sözleşme Takibi' kartı → herkese açık ?kulup=sozlesme-2027 sayfası.
+    Girişsiz ziyaretçiye ürünün en somut faydasını (kim boşta, kimin sözleşmesi bitiyor) tek tıkla gösterir."""
+    if "sozlesme-2027" not in kulup_ihtiyac_yukle():
+        return
+    from datetime import datetime as _dt, timedelta as _td
+    o = _musait_ozet((_dt.utcnow() + _td(hours=3)).date().isoformat())
+    if not o.get("toplam"):
+        return
+    st.markdown(
+        f"<div style='{kap_stil}'>"
+        f"<a href='/?kulup=sozlesme-2027&dil={'EN' if EN else 'TR'}' target='_self' style='display:block;text-decoration:none;"
+        "margin:10px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid #3d3180;border-left:4px solid #1db954;"
+        "background:linear-gradient(90deg,#0f2a1ddd 0%,#1a1438f2 60%,#2a1245dd 100%);'>"
+        f"<span class='tp-arabaslik'>📋 {_buyuk(t('Sözleşme takibi 2027', 'Contract Watch 2027'))}</span><br>"
+        f"<span class='tp-sekilli' style='color:#ffffff;'>"
+        + _buyuk(t(f"{o['toplam']} oyuncu serbest ya da sözleşmesi {o['sinir']} tarihine kadar bitiyor",
+                   f"{o['toplam']} scouted players are free or out of contract by {o['sinir']}"))
+        + "</span><br>"
+        f"<span class='tp-arametin'>"
+        + t(f"{o['serbest']} serbest oyuncu · notu BC ve üstü {o['bc']} isim — mevki mevki görmek için tıkla →",
+            f"{o['serbest']} free agents · {o['bc']} graded BC or better — click to see them by position →")
+        + "</span></a></div>", unsafe_allow_html=True)
 
 
 def _rol_mevkiye_uyar(rol: str, kod: str) -> bool:
@@ -10975,7 +11080,7 @@ def render_kulup_firsat(anahtar: str):
         st.stop()
     link_acilis_kaydet("kulup", anahtar, st.query_params.get("k", ""))
     acik = tier_yeterli("premium")
-    ad = _h.escape(str(kayit.get("ad") or anahtar))
+    ad = _h.escape(str(kayit.get("ad_en" if EN else "ad") or kayit.get("ad") or anahtar))
     toplam = _scouting_havuz_boyutu()
     # 'genel': kadro verisi (mevki/sözleşme ayrıntısı) kanıt çıkarmaya yetmeyen kulüp → sayfa
     # "kadro analizi" iddia etmez, seviyeye uygun örnek kısa liste olarak sunulur (First Vienna).
@@ -10984,6 +11089,8 @@ def render_kulup_firsat(anahtar: str):
                    if kayit.get("genel") else
                    t("Kadro verinizin öne çıkardığı bölgeler için scouting havuzumuzdan adaylar",
                      "Candidates from our scouting pool for the areas your squad data highlights"))
+    if kayit.get("alt_baslik"):                      # liste sayfaları (ör. sozlesme-2027) kendi alt başlığını taşır
+        _alt_baslik = _h.escape(str(kayit.get("alt_baslik_en" if EN else "alt_baslik") or kayit["alt_baslik"]))
     st.markdown(
         "<div class='baslik-kutu'>"
         f"<div class='ust-bant'>⚡ WOMEN'S FOOTBALL SCOUTING</div>"
@@ -11001,6 +11108,19 @@ def render_kulup_firsat(anahtar: str):
     _bugun = (_dt.utcnow() + _td(hours=3)).date()
     _sinir = _date(_bugun.year + (1 if _bugun.month >= 7 else 0), 6, 30).strftime("%d.%m.%Y")
     _tum_adaylar = _kulup_adaylari(json.dumps(kayit, sort_keys=True, ensure_ascii=False), _bugun.isoformat())
+    if kayit.get("ozet") == "musait":
+        _mo = _musait_ozet(_bugun.isoformat())
+        st.markdown(
+            "<div style='display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px;'>" + "".join(
+                "<div style='flex:1 1 150px;background:#0d0d16;border:1px solid #3b2d6e;border-radius:12px;padding:12px 14px;'>"
+                f"<div style='font-family:Sora,sans-serif;font-weight:800;font-size:1.55rem;color:{_r};'>{_n}</div>"
+                f"<div class='tp-arametin'>{_e}</div></div>"
+                for _n, _e, _r in (
+                    (_mo["toplam"], t(f"oyuncu serbest ya da sözleşmesi {_mo['sinir']} tarihine kadar bitiyor",
+                                      f"players free or out of contract by {_mo['sinir']}"), "#f59e0b"),
+                    (_mo["serbest"], t("serbest oyuncu", "free agents"), "#1db954"),
+                    (_mo["bc"], t("tanesinin scout notu BC ve üstü", "of them graded BC or better"), "#c4b5fd")))
+            + "</div>", unsafe_allow_html=True)
     if int(kayit.get("seviye") or 0) >= 2:
         st.markdown(
             "<div class='tp-arametin' style='margin:-6px 0 14px;'>"
@@ -11249,6 +11369,7 @@ def render_paylasim_raporu(isim: str):
 _bellek_izi()
 ziyaret_kaydet()
 _isinma_baslat()
+_kabuk_yamala()
 
 # ─── PAYLAŞIM RAPORU (?paylas=X) — public, giriş gerektirmez ──────────────────
 if params.get("paylas", "").strip():
@@ -13061,6 +13182,7 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
                     veri_kapsama_goster(sc_df, isim_col, birlesik_sd_yukle(), birlesik_leistung_yukle())
     else:
         _blog_duyuru("max-width:560px;margin:24px auto 0;")
+        _sozlesme_duyuru("max-width:560px;margin:14px auto 0;")
         _uye_giris_dugmesi("duvar")       # çıkış yapmış üye duvarı "bozuk tablo" sanmasın
         _duvar_onizleme_goster("max-width:560px;margin:14px auto -40px;")
         st.markdown(f"""
@@ -13433,6 +13555,7 @@ if not st.session_state.get("girildi", False):
                     "<div style='font-size:1.8rem;'>⏳</div></div>", unsafe_allow_html=True)
         st.stop()
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
+    _sozlesme_duyuru("max-width:760px;margin:0 auto 14px;")
     _karsilama_dugmeleri("ust")
     _uye_giris_dugmesi("karsilama")
     render_giris_ekrani()

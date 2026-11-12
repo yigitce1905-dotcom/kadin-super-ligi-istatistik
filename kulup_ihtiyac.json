@@ -35,6 +35,113 @@
    }
   ]
  },
+ "sozlesme-2027": {
+  "ad": "Sözleşme Takibi 2027",
+  "ad_en": "Contract Watch 2027",
+  "ozet": "musait",
+  "liste": true,
+  "alt_baslik": "Serbest ya da sözleşmesi 30.06.2027 tarihine kadar biten, scout notu en yüksek oyuncular",
+  "alt_baslik_en": "The highest-graded players in our pool who are free agents or out of contract by 30 June 2027",
+  "not": "Sözleşme tarihleri SoccerDonna ve kulüp kaynaklarından derlenir; işlem öncesinde doğrulayın. Liste her gün yeniden hesaplanır.",
+  "not_en": "Contract dates are compiled from SoccerDonna and club sources; verify before acting. The list is recalculated daily.",
+  "ihtiyaclar": [
+   {
+    "baslik": "Kaleci",
+    "baslik_en": "Goalkeeper",
+    "mevki": [
+     "GK"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Stoper",
+    "baslik_en": "Centre-back",
+    "mevki": [
+     "RCB",
+     "MCB",
+     "LCB"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Sol bek",
+    "baslik_en": "Left-back",
+    "mevki": [
+     "LFB",
+     "LWB"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Sağ bek",
+    "baslik_en": "Right-back",
+    "mevki": [
+     "RFB",
+     "RWB"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Ön libero",
+    "baslik_en": "Defensive midfielder",
+    "mevki": [
+     "DMF"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Merkez orta saha",
+    "baslik_en": "Central midfielder",
+    "mevki": [
+     "CMF"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Ofansif orta saha",
+    "baslik_en": "Attacking midfielder",
+    "mevki": [
+     "AMF"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Sol kanat",
+    "baslik_en": "Left winger",
+    "mevki": [
+     "LWF"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Sağ kanat",
+    "baslik_en": "Right winger",
+    "mevki": [
+     "RWF"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   },
+   {
+    "baslik": "Santrfor",
+    "baslik_en": "Centre-forward",
+    "mevki": [
+     "CFW",
+     "2ST"
+    ],
+    "musait": true,
+    "not_min": "BC"
+   }
+  ]
+ },
  "sc-freiburg": {
   "ad": "SC Freiburg",
   "sd_verein": 292,
