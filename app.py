@@ -5973,6 +5973,19 @@ def _dusuk_notlu_tr_mi(r: dict) -> bool:
     return (r.get("nihai") or "").strip().upper() in ("EE", "FF")
 
 
+def _uye_giris_dugmesi(ek: str):
+    """Ortada tek düğme: giriş kartını açar (kart sayfanın üstünde çıkar — giris_formu_ana).
+    Giriş sol menüde kapalı durduğu için çıkış yapmış üye 'oyuncuları göremiyorum' diyordu."""
+    if st.session_state.get("kulup_giris") or st.session_state.get("login_ac"):
+        return
+    _gk = st.columns([1, 1.2, 1])[1]
+    with _gk:
+        if st.button(t("🔐 Üyeyseniz giriş yapın", "🔐 Members: log in"),
+                     width="stretch", key="uye_giris_" + ek):
+            st.session_state["login_ac"] = True
+            st.rerun()
+
+
 # SoccerDonna kulüp kimliği → site takım adında aranan anahtar(lar) (diyakritiksiz, boşluksuz)
 _DIZILIS_ANAHTAR = {792: ("trabzon",), 6981: ("besiktas",), 7066: ("hakkari",), 7245: ("amed",),
                     7247: ("fomget",), 7352: ("antalya",), 7356: ("kayseri",), 9522: ("fenerbahce",),
@@ -10235,6 +10248,10 @@ _oturum_geri_yukle()
 if "girildi" not in st.session_state:
     # Doğrudan oyuncu profil linki (?oyuncu=...) veya geçerli oturum varsa karşılamayı atla
     st.session_state["girildi"] = bool(url_oyuncu) or st.session_state.get("kulup_giris", False)
+# Çerez oturumu ilk çalışmadan SONRA geri gelir (o an girildi=False yazılmış olur):
+# oturum açıkken karşılama asla gösterilmez — üye doğrudan Scouting Havuzu'na düşer.
+if st.session_state.get("kulup_giris"):
+    st.session_state["girildi"] = True
 
 # ─── BAŞLIK & NAVİGASYON ──────────────────────────────────────────────────────
 _nav_is_admin = st.session_state.get("kulup_kullanici") == "admin"
@@ -12740,6 +12757,7 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
                     veri_kapsama_goster(sc_df, isim_col, birlesik_sd_yukle(), birlesik_leistung_yukle())
     else:
         _blog_duyuru("max-width:560px;margin:24px auto 0;")
+        _uye_giris_dugmesi("duvar")       # çıkış yapmış üye duvarı "bozuk tablo" sanmasın
         _duvar_onizleme_goster("max-width:560px;margin:14px auto -40px;")
         st.markdown(f"""
         <div style="max-width:560px;margin:60px auto;text-align:center;
@@ -13103,6 +13121,7 @@ def _karsilama_dugmeleri(ek: str):
 if not st.session_state.get("girildi", False):
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
     _karsilama_dugmeleri("ust")
+    _uye_giris_dugmesi("karsilama")
     render_giris_ekrani()
     st.markdown("<br>", unsafe_allow_html=True)
     _karsilama_dugmeleri("alt")
