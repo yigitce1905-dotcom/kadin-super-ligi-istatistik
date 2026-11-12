@@ -10823,50 +10823,124 @@ def kulup_ihtiyac_yukle() -> dict:
         return {}
 
 
-def _ihtiyac_adaylari(kriter: dict) -> list:
-    """Kritere uyan havuz oyuncuları, en yüksek nottan aşağı: [(anahtar, isim, mevki kodu, kayıt)].
-    Kriter alanları: mevki [kod…], yas_min, yas_max, deger_max (€), ayak (Sağ/Sol), ab (AB uyumlu), not_min."""
+# Lig seviyesi — kulüp sayfasının gerçekçilik süzgeci (2026-11-12). 1 = en üst altı lig,
+# 2 = güçlü profesyonel ligler, 3 = geri kalan her şey (varsayılan). KABA bir kademe: amaç
+# İrlanda/Galler kulübüne WSL-NWSL oyuncusu önermemek. Baran kademeyi buradan düzeltebilir.
+_LIG_SEV1 = {"WSL", "NWSL", "Première Ligue", "Liga F", "Serie A"}
+_LIG_SEV2 = {"Damallsvenskan", "Toppserien", "Eredivisie", "Liga MX", "Série A", "WEリーグ", "A-League", "Liga BPI",
+             "A-Liga", "WSL 2", "NSL", "USL Super", "超级联赛", "WK리그", "Besta deild", "SWPL", "Bundesliga 2"}
+_LIG_SEV_OZEL = {("🇩🇪", "Bundesliga"): 1, ("🇦🇹", "Bundesliga"): 2,
+                 ("🇨🇭", "Super League"): 2, ("🇧🇪", "Super League"): 2}
+_SERBEST_ADLAR = {"serbest", "free agent", "free agents", "vereinslos", "without club", "kulupsuz"}
+_MOLA_ADLAR = {"career break", "kariyer molasi"}
+
+
+def _lig_seviye(lig: str) -> int:
+    """'🇩🇪 Bundesliga' → 1, '🇸🇪 Damallsvenskan' → 2, bilinmeyen/boş → 3."""
+    b, _, ad = str(lig or "").strip().partition(" ")
+    ad = ad.strip()
+    if (b, ad) in _LIG_SEV_OZEL:
+        return _LIG_SEV_OZEL[(b, ad)]
+    return 1 if ad in _LIG_SEV1 else 2 if ad in _LIG_SEV2 else 3
+
+
+@st.cache_data(show_spinner=False, ttl=1800, max_entries=32)
+def _kulup_adaylari(kayit_json: str, gun: str) -> list:
+    """Bir kulüp kaydının HER ihtiyaç alanı için adaylar: [[hafif sözlük…], …] (alan sırasıyla).
+    Sıra: nihai not → müsaitlik (serbest / sözleşmesi sezon sonuna kadar biten) → nitelik ortalaması.
+
+    Alan ölçütleri: mevki [kod…], yas_min, yas_max, deger_max (€), ayak, ab, not_min.
+    Kulüp düzeyi (kayıtta): seviye (1-3), kendi [havuzdaki kulüp ad(lar)ı].
+
+    GERÇEKÇİLİK (12 Kasım 2026 denetimi: Wexford'a Everton stoperi, Weinberg'e NWSL kalecisi
+    öneriyorduk; Kristianstad sayfasında KENDİ iki oyuncusu aday görünüyordu):
+      · kulübün kendi oyuncuları ve kariyerine ara verenler çıkarılır;
+      · Kuzey Kore ligi oyuncuları çıkarılır (yurt dışına transfer edilemiyor);
+      · 'seviye' varsa: aynı/alt seviye ligler serbest; BİR üst seviyeden yalnız sözleşmesi
+        sezon sonuna kadar biten oyuncu; iki üst seviyeden kimse; serbest oyuncu her zaman;
+      · üst/orta liglerde tam €10.000 değer SoccerDonna'nın yer tutucusudur (Brezilya/Meksika'da
+        değer biçmiyor: Corinthians millî oyuncusu €10.000 görünüyor) → değer tavanında 'bilinmiyor' sayılır.
+    Büyük sözlükler yalnız önbellek ıskasında (kulüp başına 30 dk'da bir) yüklenir; dönen
+    kayıtlar hafiftir (Render 512 MB)."""
     import re as _r
-    mevkiler = set(kriter.get("mevki") or [])
-    ymin, ymax, dmax = kriter.get("yas_min"), kriter.get("yas_max"), kriter.get("deger_max")
-    ayak = _AYAK_TR.get(str(kriter.get("ayak") or "").strip().lower(), "")
-    nmin = _scotr_segman(kriter.get("not_min", "")) if kriter.get("not_min") else 0
-    out = []
-    for isim, r in birlesik_scout_yukle().items():
+    from datetime import date as _date
+    kayit = json.loads(kayit_json)
+    bugun = _date.fromisoformat(gun)
+    sinir = _date(bugun.year + (1 if bugun.month >= 7 else 0), 6, 30)
+    ks = int(kayit.get("seviye") or 0)
+    kendi = [k for k in (_isim_norm(x) for x in [kayit.get("ad", "")] + list(kayit.get("kendi") or [])) if len(k) >= 4]
+    havuz, sd = birlesik_scout_yukle(), birlesik_sd_yukle()
+
+    def _bitis(isim, r):
+        m = _r.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})",
+                      _kontrat_guncel(r.get("sozlesme", ""), (sd.get(isim) or {}).get("Contract until", "")))
+        try:
+            return _date(int(m.group(3)), int(m.group(2)), int(m.group(1))) if m else None
+        except ValueError:
+            return None
+
+    hazir = []          # (kayıt, sıra anahtarı, kod, yaş, değer, bitiş, serbest, lig seviyesi)
+    for isim, r in havuz.items():
         if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
             continue
         a = _sira_anahtari(r)
-        if a is None or a[0] < nmin:
+        if a is None:
             continue
-        kod = _sira_mevki(r)
-        if mevkiler and kod not in mevkiler:
+        kn = _isim_norm(str(r.get("kulup") or ""))
+        lig = str(r.get("lig") or "")
+        if kn in _MOLA_ADLAR or lig.startswith("🇰🇵"):
+            continue
+        if kn and any(k == kn or k in kn or (len(kn) >= 6 and kn in k) for k in kendi):
             continue
         yas = str(r.get("yas") or "").strip()
-        yas = int(yas) if yas.isdigit() else None
-        if (ymin or ymax) and yas is None:
-            continue
-        if (ymin and yas < ymin) or (ymax and yas > ymax):
-            continue
-        if dmax:
-            dg = _r.sub(r"\D", "", str(r.get("deger") or ""))
-            if not dg or int(dg) == 0 or int(dg) > dmax:
+        dg = _r.sub(r"\D", "", str(r.get("deger") or ""))
+        hazir.append((isim, r, a, _sira_mevki(r), int(yas) if yas.isdigit() else None,
+                      int(dg) if dg else 0, _bitis(isim, r), kn in _SERBEST_ADLAR, _lig_seviye(lig)))
+    del havuz, sd
+
+    cikti = []
+    for kriter in kayit.get("ihtiyaclar") or []:
+        mevkiler = set(kriter.get("mevki") or [])
+        ymin, ymax, dmax = kriter.get("yas_min"), kriter.get("yas_max"), kriter.get("deger_max")
+        ayak = _AYAK_TR.get(str(kriter.get("ayak") or "").strip().lower(), "")
+        nmin = _scotr_segman(kriter.get("not_min", "")) if kriter.get("not_min") else 0
+        out = []
+        for isim, r, a, kod, yas, dg, bitis, serbest, sv in hazir:
+            if a[0] < nmin or (mevkiler and kod not in mevkiler):
                 continue
-        if ayak and _AYAK_TR.get(str(r.get("ayak") or "").strip().lower(), "") != ayak:
-            continue
-        if kriter.get("ab") and not _ab_uyumlu(r.get("vatandaslik", ""), r.get("milli_takim", "")):
-            continue
-        out.append((a, isim, kod, r))
-    out.sort(key=lambda x: x[0], reverse=True)
-    # Havuzda aynı oyuncu iki adla kayıtlı olabiliyor ("Mariza" / "Mariza Nascimento"):
-    # ilk ad + kulüp + mevki + yaş aynıysa tek say (kulübe giden sayfada çift satır güven kırar).
-    tekil, gorulen = [], set()
-    for a, isim, kod, r in out:
-        iz = ((_isim_norm(isim).split() or [""])[0], _isim_norm(str(r.get("kulup") or "")), kod, str(r.get("yas") or ""))
-        if iz in gorulen:
-            continue
-        gorulen.add(iz)
-        tekil.append((a, isim, kod, r))
-    return tekil
+            if (ymin or ymax) and yas is None:
+                continue
+            if (ymin and yas < ymin) or (ymax and yas > ymax):
+                continue
+            if dmax:
+                if not dg or dg > dmax or (dg == 10000 and sv <= 2 and not serbest):
+                    continue
+            if ayak and _AYAK_TR.get(str(r.get("ayak") or "").strip().lower(), "") != ayak:
+                continue
+            if kriter.get("ab") and not _ab_uyumlu(r.get("vatandaslik", ""), r.get("milli_takim", "")):
+                continue
+            biter = bool(bitis and bugun <= bitis <= sinir)
+            if ks and not (serbest or sv >= ks or (sv == ks - 1 and biter)):
+                continue
+            durum = "serbest" if serbest else "bitiyor" if biter else ""
+            out.append(((a[0], 1 if durum else 0, a[1]), {
+                "isim": isim, "kod": kod, "nihai": str(r.get("nihai") or ""), "yas": yas,
+                "kulup": str(r.get("kulup") or ""), "rol": str(r.get("rol") or ""),
+                "uyruk": str(r.get("vatandaslik") or ""), "lig": str(r.get("lig") or ""),
+                "deger": str(r.get("deger") or ""), "durum": durum,
+                "bitis": bitis.strftime("%m/%Y") if (bitis and bitis >= bugun and not serbest) else ""}))
+        out.sort(key=lambda x: x[0], reverse=True)
+        # Havuzda aynı oyuncu iki adla kayıtlı olabiliyor ("Mariza" / "Mariza Nascimento"):
+        # ilk ad + kulüp + mevki + yaş aynıysa tek say (kulübe giden sayfada çift satır güven kırar).
+        tekil, gorulen = [], set()
+        for _, d in out:
+            iz = ((_isim_norm(d["isim"]).split() or [""])[0], _isim_norm(d["kulup"]), d["kod"], d["yas"])
+            if iz in gorulen:
+                continue
+            gorulen.add(iz)
+            tekil.append(d)
+        cikti.append(tekil)
+    return cikti
 
 
 def _rol_mevkiye_uyar(rol: str, kod: str) -> bool:
@@ -10903,11 +10977,18 @@ def render_kulup_firsat(anahtar: str):
     acik = tier_yeterli("premium")
     ad = _h.escape(str(kayit.get("ad") or anahtar))
     toplam = _scouting_havuz_boyutu()
+    # 'genel': kadro verisi (mevki/sözleşme ayrıntısı) kanıt çıkarmaya yetmeyen kulüp → sayfa
+    # "kadro analizi" iddia etmez, seviyeye uygun örnek kısa liste olarak sunulur (First Vienna).
+    _alt_baslik = (t("Sizin seviyenizdeki bir kulüp için scouting havuzumuzdan örnek kısa liste",
+                     "A sample shortlist from our scouting pool for a club at your level")
+                   if kayit.get("genel") else
+                   t("Kadro verinizin öne çıkardığı bölgeler için scouting havuzumuzdan adaylar",
+                     "Candidates from our scouting pool for the areas your squad data highlights"))
     st.markdown(
         "<div class='baslik-kutu'>"
         f"<div class='ust-bant'>⚡ WOMEN'S FOOTBALL SCOUTING</div>"
         f"<h1 lang='{_isim_dil(ad)}'>{ad}</h1>"
-        f"<p>{t('Kadro verinizin öne çıkardığı bölgeler için scouting havuzumuzdan adaylar', 'Candidates from our scouting pool for the areas your squad data highlights')}"
+        f"<p>{_alt_baslik}"
         f" · <b>{toplam}</b> {t('oyuncu arasından', 'players screened')}</p></div>", unsafe_allow_html=True)
     _not = kayit.get("not_en" if EN else "not") or kayit.get("not") or ""
     if _not:
@@ -10916,8 +10997,18 @@ def render_kulup_firsat(anahtar: str):
     _maske = ("<span style='display:inline-block;height:10px;border-radius:6px;"
               "background:linear-gradient(90deg,#4c3a8a,#2a2145);width:{w}px;'></span>")
     _dq = "EN" if EN else "TR"
-    for ih in kayit["ihtiyaclar"]:
-        adaylar = _ihtiyac_adaylari(ih)
+    from datetime import date as _date, datetime as _dt, timedelta as _td
+    _bugun = (_dt.utcnow() + _td(hours=3)).date()
+    _sinir = _date(_bugun.year + (1 if _bugun.month >= 7 else 0), 6, 30).strftime("%d.%m.%Y")
+    _tum_adaylar = _kulup_adaylari(json.dumps(kayit, sort_keys=True, ensure_ascii=False), _bugun.isoformat())
+    if int(kayit.get("seviye") or 0) >= 2:
+        st.markdown(
+            "<div class='tp-arametin' style='margin:-6px 0 14px;'>"
+            + t(f"Adaylar gerçekçilik için süzüldü: sizinkine denk ligler ve daha güçlü liglerden yalnız sözleşmesi {_sinir} tarihine kadar biten oyuncular.",
+                f"Candidates are filtered for realism: leagues comparable to yours, plus players from stronger leagues only if their contract ends by {_sinir}.")
+            + "</div>", unsafe_allow_html=True)
+    for _ihi, ih in enumerate(kayit["ihtiyaclar"]):
+        adaylar = _tum_adaylar[_ihi] if _ihi < len(_tum_adaylar) else []
         baslik = _h.escape(str(ih.get("baslik_en" if EN else "baslik") or ih.get("baslik") or " / ".join(ih.get("mevki") or [])))
         cip = []
         if ih.get("mevki"):
@@ -10936,10 +11027,19 @@ def render_kulup_firsat(anahtar: str):
             "<span style='display:inline-block;margin:0 6px 4px 0;padding:3px 10px;border-radius:999px;background:#141a30;"
             f"border:1px solid #2a3050;color:#cbd5e1;font-size:0.74rem;'>{_h.escape(c)}</span>" for c in cip)
         govde = ""
-        for i, (a, isim, kod, r) in enumerate(adaylar[:5]):
-            nihai = str(r.get("nihai") or "")
+        for i, r in enumerate(adaylar[:5]):
+            isim, kod = r["isim"], r["kod"]
+            nihai = r["nihai"]
             renk = _scotr_renk(_scotr_puan(nihai)) if nihai else "#6b7280"
-            yas = str(r.get("yas") or "").strip()
+            yas = str(r["yas"] or "")
+            if r["durum"] == "serbest":
+                soz_h = (f"<div style='font-size:0.68rem;color:#1db954;font-weight:700;'>"
+                         f"{t('Serbest oyuncu', 'Free agent')}</div>")
+            elif r["bitis"]:
+                soz_h = (f"<div style='font-size:0.68rem;color:{'#f59e0b' if r['durum'] else '#64748b'};"
+                         f"font-weight:{'700' if r['durum'] else '400'};'>{t('Sözleşme', 'Contract')} {r['bitis']}</div>")
+            else:
+                soz_h = ""
             if acik:
                 ad_h = (f"<a href='?oyuncu={_urlquote(isim)}&dil={_dq}' target='_blank' "
                         f"style='color:#f4f4f5;font-weight:600;text-decoration:none;'>{_h.escape(isim)}</a>"
@@ -10953,9 +11053,9 @@ def render_kulup_firsat(anahtar: str):
                 f"border-radius:5px;font-size:0.64rem;font-weight:700;'>{_h.escape(kod)}</span></td>"
                 f"<td style='padding:8px 6px;color:#cbd5e1;'>{(_h.escape(scout_rol_goster(str(r.get('rol') or ''))) if _rol_mevkiye_uyar(str(r.get('rol') or ''), kod) else '') or '—'}</td>"
                 f"<td style='padding:8px 6px;color:#cbd5e1;text-align:right;'>{yas if yas.isdigit() else '—'}</td>"
-                f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('vatandaslik') or '')))) or '—'}"
+                f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('uyruk') or '')))) or '—'}"
                 f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_lig_goster(str(r.get('lig') or '')))}</div></td>"
-                f"<td style='padding:8px 6px;color:#cbd5e1;font-family:Sora,monospace;'>{_h.escape(str(r.get('deger') or '')) or '—'}</td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;font-family:Sora,monospace;'>{_h.escape(str(r.get('deger') or '')) or '—'}{soz_h}</td>"
                 f"<td style='padding:8px 10px;text-align:center;'><span style='display:inline-flex;width:30px;height:30px;"
                 f"border-radius:50%;border:2px solid {renk};color:{renk};align-items:center;justify-content:center;"
                 f"font-size:0.6rem;font-weight:800;font-family:Sora,monospace;'>{_h.escape(nihai) or '—'}</span></td></tr>")
@@ -10963,7 +11063,7 @@ def render_kulup_firsat(anahtar: str):
             f"<th style='padding:8px {p};text-align:{h};' class='tp-arametin'>{_buyuk(x)}</th>"
             for x, p, h in ((t("Oyuncu", "Player"), "10px", "left"), (t("Mevki", "Pos"), "6px", "left"),
                             (t("Rol", "Role"), "6px", "left"), (t("Yaş", "Age"), "6px", "right"),
-                            (t("Ülke / Lig", "Country / League"), "6px", "left"), (t("Değer", "Value"), "6px", "left"),
+                            (t("Ülke / Lig", "Country / League"), "6px", "left"), (t("Değer / Sözleşme", "Value / Contract"), "6px", "left"),
                             (t("Not", "Grade"), "10px", "center")))
         if adaylar:
             alt = (f"+{len(adaylar) - 5} {t('aday daha', 'more candidates')}" if len(adaylar) > 5 else "")
@@ -10983,6 +11083,11 @@ def render_kulup_firsat(anahtar: str):
             + (f"<div class='tp-arametin' style='padding:0 14px 8px;'>{_h.escape(str(ih.get('neden_en' if EN else 'neden') or ih.get('neden') or ''))}</div>"
                if (ih.get('neden') or ih.get('neden_en')) else "")
             + f"<div style='padding:0 14px 8px;'>{cipler}</div>{tablo}</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='tp-arametin' style='text-align:center;margin:-4px 0 14px;'>"
+        f"<span style='color:#1db954;font-weight:700;font-style:normal;'>●</span> {t('serbest oyuncu', 'free agent')} &nbsp;·&nbsp; "
+        f"<span style='color:#f59e0b;font-weight:700;font-style:normal;'>●</span> "
+        f"{t('sözleşmesi', 'contract ends by')} {_sinir}{t(' tarihine kadar bitiyor', '')}</div>", unsafe_allow_html=True)
     if not acik:
         st.markdown(
             "<div style='text-align:center;background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
