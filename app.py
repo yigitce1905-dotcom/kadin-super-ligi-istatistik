@@ -11220,6 +11220,40 @@ def render_kulup_firsat(anahtar: str):
             f"<a href='/?dil={_dq}' target='_self' style='display:inline-block;margin:3px;background:#1e2540;border:1px solid #7c3aed;"
             f"color:#e2e8f0;font-weight:700;padding:9px 18px;border-radius:8px;text-decoration:none;font-size:0.86rem;'>"
             f"🌍 {t('Platformu incele', 'Explore the platform')}</a></div>", unsafe_allow_html=True)
+        # Mail programı açtırmadan talep: form → Sheets 'Talepler' + bildirim e-postası (talep_gonder).
+        # 12 Kasım 2026: tek dönüşüm yolu mailto bağlantısıydı; kurum bilgisayarında çoğu zaman hiçbir
+        # şey açmaz ve ziyaretçi iz bırakmadan gider. Form, hangi sayfadan / hangi etiketle geldiğini de yazar.
+        _fk = "kf_" + anahtar
+        if st.session_state.get(_fk + "_ok"):
+            st.success(t("Teşekkürler. Deneme erişiminizi açıp size yazacağız (genellikle bir iş günü içinde).",
+                         "Thank you. We will set up your trial access and write to you, usually within one working day."))
+        else:
+            with st.form(_fk, border=True):
+                st.markdown(f"<div class='tp-arabaslik'>"
+                            f"{_buyuk(t('İsimleri açalım: 2 günlük ücretsiz erişim', 'Unlock the names: free 2-day access'))}</div>",
+                            unsafe_allow_html=True)
+                _c1, _c2 = st.columns(2)
+                _f_ad = _c1.text_input(t("Adınız", "Your name"), max_chars=80, key=_fk + "_ad")
+                _f_kl = _c2.text_input(t("Kulüp / kurum", "Club / organisation"), max_chars=80, key=_fk + "_kl")
+                _f_ep = st.text_input(t("E-posta", "Work email"), max_chars=120, key=_fk + "_ep")
+                _f_gonder = st.form_submit_button(t("Erişim iste", "Request access"), type="primary")
+                st.caption(t("Bilgilerinizi yalnız size dönüş yapmak için kullanırız.",
+                             "We use these details only to reply to you."))
+            if _f_gonder:
+                import re as _re_f
+                if not _f_ad.strip() or not _re_f.match(r"^[^@\s]+@[^@\s]+\.[^@\s]{2,}$", _f_ep.strip()):
+                    st.warning(t("Adınızı ve geçerli bir e-posta adresi yazın.",
+                                 "Please enter your name and a valid email address."))
+                else:
+                    _t_ok, _t_mail = talep_gonder(
+                        "Kulüp sayfası", _f_ad.strip(), _f_kl.strip(), _f_ep.strip(),
+                        f"Sayfa: {anahtar} · etiket: {st.query_params.get('k', '') or '-'} · dil: {_dq}")
+                    if _t_ok or _t_mail:
+                        st.session_state[_fk + "_ok"] = True
+                        st.rerun()
+                    else:
+                        st.error(t("Kaydedilemedi. Lütfen womensfootballscouting@gmail.com adresine yazın.",
+                                   "Could not be saved. Please write to womensfootballscouting@gmail.com."))
     st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>"
                 f"womenfootballscouting.com · {t('Veri: saha gözlemi, TFF & SoccerDonna', 'Data: live scouting, TFF & SoccerDonna')}</div>",
                 unsafe_allow_html=True)
