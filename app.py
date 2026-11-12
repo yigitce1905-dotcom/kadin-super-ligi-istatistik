@@ -4582,7 +4582,7 @@ select option{background:#16161f;color:#d4d4d8}
 .msort select{background:#16161f;border:1px solid #2a2a38;color:#d4d4d8;border-radius:8px;padding:5px 8px;font-size:0.74rem;font-weight:600}
 .ws-wrap{background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;overflow:auto;max-height:640px}
 .ws-table{width:100%;border-collapse:collapse;font-size:0.8rem}
-.ws-table thead th{position:sticky;top:0;z-index:2;background:#0d0d16;text-align:left;padding:10px 12px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.13em;color:#71717a;border-bottom:1px solid #2a2a38;white-space:nowrap;cursor:pointer;user-select:none}
+.ws-table thead th{position:sticky;top:0;z-index:2;background:#0d0d16;text-align:left;padding:10px 7px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:#71717a;border-bottom:1px solid #2a2a38;white-space:nowrap;cursor:pointer;user-select:none}
 .ws-table thead th:hover{color:#c4b5fd}
 .ws-table thead th.on{color:#a78bfa}
 .ws-table thead th .ar{display:inline-block;margin-left:5px;font-size:0.55rem;opacity:.45;letter-spacing:0}
@@ -4591,12 +4591,14 @@ select option{background:#16161f;color:#d4d4d8}
 .ws-table th.ctr,.ws-table td.ctr{text-align:center;padding-left:6px;padding-right:6px}
 .ws-table tbody tr{border-bottom:1px solid #1a1a28;transition:background .12s}
 .ws-table tbody tr:hover{background:#13131f}
-.ws-table td{padding:9px 12px;color:#d4d4d8;white-space:nowrap;vertical-align:middle}
+.ws-table td{padding:9px 7px;color:#d4d4d8;white-space:nowrap;vertical-align:middle}
+.ws-table th:first-child,.ws-table td:first-child{padding-left:12px}
 .nm{display:flex;align-items:center;gap:10px}
 .ws-ava{width:28px;height:28px;border-radius:50%;background:#221f33;color:#a78bfa;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:0.78rem;flex-shrink:0}
-.ws-name{color:#f4f4f5;font-weight:600;text-decoration:none}
+.ws-name{color:#f4f4f5;font-weight:600;text-decoration:none;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ws-name:hover{color:#c4b5fd}
-.ws-sub{color:#71717a;font-size:0.64rem;margin-top:1px}
+.ws-sub{color:#71717a;font-size:0.64rem;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.clb{max-width:clamp(104px,15vw,250px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .ws-pos{background:#2a2a38;color:#d4d4d8;padding:2px 7px;border-radius:5px;font-size:0.64rem;font-family:'Sora',monospace;font-weight:700}
 .ws-mono{font-family:'Sora',monospace}
 .ws-ring{width:30px;height:30px;border-radius:50%;border:2px solid;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:800;font-family:'Sora',monospace}
@@ -4605,7 +4607,13 @@ select option{background:#16161f;color:#d4d4d8}
 .ws-table td:first-child,.ws-table th:first-child{position:sticky;left:0;z-index:1;background:#0d0d16}
 .ws-table thead th:first-child{z-index:3}
 .ws-table tbody tr:hover td:first-child{background:#13131f}
-.nmt{min-width:0;flex:1 1 auto}
+.nmt{min-width:0;flex:1 1 auto;max-width:clamp(112px,17vw,280px)}
+.ws-table th.skc,.ws-table td.skc{position:sticky;right:0;background:#0d0d16;text-align:center;padding-left:8px;padding-right:10px;box-shadow:-10px 0 10px -10px #000}
+.ws-table thead th.skc{z-index:3}
+.ws-table tbody tr:hover td.skc{background:#13131f}
+@media (max-width:1150px) and (min-width:701px){.ws-ava{display:none}.ws-table thead th .ar{margin-left:2px}}
+.ws-pos{display:inline-block;max-width:84px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}
+@media (max-width:1000px) and (min-width:701px){.ws-table{font-size:0.76rem}.ws-table thead th,.ws-table td{padding-left:5px;padding-right:5px}.nmt{max-width:clamp(104px,14vw,150px)}.clb{max-width:clamp(96px,13vw,130px)}.gr{min-width:26px;padding:3px 3px}.ws-pos{max-width:66px}}
 .cb{margin-left:auto;background:transparent;border:1px solid #2a2a38;color:#71717a;border-radius:6px;width:26px;height:24px;font-size:0.72rem;cursor:pointer;flex-shrink:0;padding:0;line-height:1}
 .cb:hover{border-color:#7c3aed;color:#c4b5fd}
 .cb[aria-pressed="true"]{background:#7c3aed;border-color:#7c3aed;color:#fff}
@@ -4639,6 +4647,8 @@ select option{background:#16161f;color:#d4d4d8}
   .ws-table tbody tr{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px;background:#0d0d16;border:1px solid #2a2a38;border-radius:12px;padding:12px 14px;margin-bottom:10px}
   .ws-table tbody tr:hover{background:#0d0d16}
   .ws-table tbody td{display:inline-flex;align-items:center;gap:5px;width:auto;max-width:100%;min-width:0;padding:0;border:none;white-space:normal;font-size:0.8rem;position:static}
+  .ws-table tbody td.skc{position:static;box-shadow:none;background:transparent;padding:0}
+  .nmt,.clb{max-width:none}
   .ws-table tbody td:first-child{flex:1 1 100%;padding-bottom:9px;margin-bottom:3px;border-bottom:1px solid #1c1c2a;white-space:normal}
   .ws-table tbody td:first-child .ws-name{font-size:0.95rem}
   .ws-table tbody td:first-child .nm{flex:1 1 auto}
@@ -4715,16 +4725,16 @@ function purl(r){return esc(BASE+'?oyuncu='+encodeURIComponent(r.n)+'&dil='+DIL)
 function nameCell(r){
   var star=SLS[r.n]?'<span style="color:#fbbf24;">★</span> ':'',inC=CMP.indexOf(r.n)>=0;
   return '<td><div class="nm"><span class="ws-ava">'+esc((r.n||'?').charAt(0).toLocaleUpperCase('tr'))+'</span><div class="nmt">'
-   +'<a class="ws-name" href="'+purl(r)+'" target="_blank" rel="noopener">'+star+esc(r.n)+'</a>'
+   +'<a class="ws-name" href="'+purl(r)+'" target="_blank" rel="noopener" title="'+esc(r.n)+'">'+star+esc(r.n)+'</a>'
    +'<div class="ws-sub">'+esc(r.cnn)+'</div>'
    +(inC&&CMP.length>1?'<button type="button" class="cgo">⚖ '+esc(T.compare)+' ('+CMP.length+') ↑</button>':'')
    +'</div><button type="button" class="cb" data-n="'+esc(r.n)+'" aria-pressed="'+(inC?'true':'false')+'" title="'+esc(T.cmpAdd)+'" aria-label="'+esc(T.cmpAdd)+'">⚖</button></div></td>';
 }
 var COLS=[
  {k:'n',l:T.player,t:'s',f:1,fix:1,c:nameCell},
- {k:'p',l:T.pos,t:'s',f:1,c:function(r){return td('',T.posS,r.p?'<span class="ws-pos">'+esc(r.p)+'</span>':'')}},
+ {k:'p',l:T.posS,t:'s',f:1,tt:T.pos,c:function(r){return td('',T.posS,r.p?'<span class="ws-pos" title="'+esc(r.p)+'">'+esc(r.p)+'</span>':'')}},
  {k:'ron',l:T.role,t:'s',f:1,opt:1,c:function(r){return td('',T.role,r.ron?esc(r.ron):DASH)}},
- {k:'c',l:T.club,t:'s',f:1,c:function(r){return td('',T.clubS,esc(r.c)+'<div class="ws-sub">'+esc(disp(M.lg,r.lg))+'</div>')}},
+ {k:'c',l:T.club,t:'s',f:1,c:function(r){return td('',T.clubS,'<div class="clb" title="'+esc(r.c)+'">'+esc(r.c)+'</div><div class="ws-sub clb">'+esc(disp(M.lg,r.lg))+'</div>')}},
  {k:'cnn',l:T.country,t:'s',f:1,opt:1,c:function(r){return td('',T.country,r.cnn?esc(r.cnn):DASH)}},
  {k:'a',l:T.age,t:'n',f:1,num:1,c:function(r){return td('num ws-mono',T.age,r.a==null?'—':r.a)}},
  {k:'hc',l:T.height,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.height,r.hc?r.hc+' cm':'—')}},
@@ -4741,7 +4751,7 @@ var COLS=[
  {k:'g4',l:T.b4,t:'n',f:-1,ctr:1,tt:T.b4L,c:function(r){return td('ctr',T.b4,gspan((r.b||[])[3],r.g4))}},
  {k:'iko',l:T.cost,t:'n',f:1,opt:1,c:function(r){return td('',T.cost,r.ik?esc(disp(M.ik,r.ik)):DASH)}},
  {k:'tgo',l:T.tr,t:'n',f:1,opt:1,c:function(r){return td('',T.tr,r.tg?esc(disp(M.tg,r.tg)):DASH)}},
- {k:'sp',l:T.score,t:'n',f:-1,c:function(r){return td('',T.score,ring(r))}}];
+ {k:'sp',l:T.score,t:'n',f:-1,x:'skc',c:function(r){return td('skc',T.score,ring(r))}}];
 if(!D.some(function(r){return r.vd}))COLS=COLS.filter(function(c){return c.k!=='vd'});   // geçmiş birikmeden sütun önerilmez
 function trend(r){return r.vd?'<div class="ws-sub" style="color:'+(r.vd>0?'#34d399':'#f87171')+';">'+(r.vd>0?'▲ +':'▼ ')+r.vd+'%</div>':''}
 function col(k){for(var j=0;j<COLS.length;j++)if(COLS[j].k===k)return COLS[j];return null}
@@ -4817,7 +4827,7 @@ function build(){
 function head(){
   var h='<tr>';
   vcols().forEach(function(c){var on=c.k===sk;
-    h+='<th class="'+(c.num?'num ':'')+(c.ctr?'ctr ':'')+(on?'on':'')+'" data-k="'+c.k+'" tabindex="0" title="'+esc(c.tt||T.sortBy)+'" aria-sort="'+(on?(sd>0?'ascending':'descending'):'none')+'">'+esc(c.l)+'<span class="ar">'+(on?(sd>0?'▲':'▼'):'↕')+'</span></th>';});
+    h+='<th class="'+(c.num?'num ':'')+(c.ctr?'ctr ':'')+(c.x?c.x+' ':'')+(on?'on':'')+'" data-k="'+c.k+'" tabindex="0" title="'+esc(c.tt||T.sortBy)+'" aria-sort="'+(on?(sd>0?'ascending':'descending'):'none')+'">'+esc(c.l)+'<span class="ar">'+(on?(sd>0?'▲':'▼'):'↕')+'</span></th>';});
   return h+'</tr>';
 }
 var BASE='';(function(){var pl=parentLoc();try{if(pl)BASE=pl.origin+pl.pathname}catch(e){}})();
@@ -5148,6 +5158,25 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict = None, _sd: dict = None,
             json.dumps(haritalar, ensure_ascii=False, separators=(",", ":")))
 
 
+def _bmp_kacis(s: str) -> str:
+    """BMP dışı karakterleri (bayrak ve emoji) JS/JSON kaçışına çevirir: 🇲 → \ud83c\uddf2.
+
+    NEDEN (2026-11-12): Streamlit ön yüzü (protobufjs) uzun metni 8192'lik parçalarla
+    çözüyor; iki birimlik bir karakter (emoji) tam parça sınırına denk gelirse o andan
+    sonra HER 8193 karakterde bir başıboş '\uddf2' ekliyor. ~430 bin karakterlik tablo
+    verisinde ~4 bin bayrak var → veri rastgele bozulup JSON geçersizleşiyor, tablo
+    BOŞ geliyordu ("oyuncu göremiyorum"). Bozulma metnin hizasına bağlı olduğundan
+    bir gün çalışıp ertesi gün çalışmayabiliyordu. Kaçışlı metinde iki birimlik
+    karakter kalmadığı için hata tetiklenemez; tarayıcı kaçışı yine bayrak olarak gösterir.
+    YALNIZ betik/JSON içinde kullan (HTML metninde kaçış olduğu gibi görünür)."""
+    import re as _r
+
+    def _k(m):
+        c = ord(m.group()) - 0x10000
+        return "\\u%04x\\u%04x" % (0xD800 + (c >> 10), 0xDC00 + (c & 0x3FF))
+    return _r.sub("[\U00010000-\U0010FFFF]", _k, s)
+
+
 def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
     """Scouting havuzu tablosunu (filtre + başlıktan sıralama + sayfalama) basar."""
     _dil = "EN" if st.session_state.get("dil") == "EN" else "TR"
@@ -5156,7 +5185,7 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
         "club": t("Kulüp / Lig", "Club / League"), "age": t("Yaş", "Age"),
         "contract": t("Kontrat", "Contract"), "value": t("Değer", "Value"),
         "m": t("Maç", "M"), "g": t("Gol", "G"), "a": t("Asist", "A"),
-        "score": t("Skor", "Score"), "posS": t("Pozisyon", "Pos"), "clubS": t("Kulüp", "Club"),
+        "score": t("Skor", "Score"), "posS": t("Poz", "Pos"), "clubS": t("Kulüp", "Club"),
         "b1": t("Bec", "Tec"), "b2": t("Beş", "Men"), "b3": t("Fiz", "Phy"), "b4": t("Şah", "Per"),
         "b1L": t("Beceri / Kalecilik", "Technical / Goalkeeping"), "b2L": t("Beşeri", "Mental"),
         "b3L": t("Fiziki", "Physical"), "b4L": t("Şahsi", "Personal"),
@@ -5205,6 +5234,10 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
              .replace("__DIL__", json.dumps(_dil))
              .replace("__HARITA__", _guv(harita_json))
              .replace("__VERI__", _guv(satir_json)))
+    # <script>'ten sonrası yalnız betik + veri: emoji kaçışı (bkz. _bmp_kacis)
+    _bi = _html.find("<script>")
+    if _bi >= 0:
+        _html = _html[:_bi] + _bmp_kacis(_html[_bi:])
     try:
         if hasattr(st, "iframe"):
             st.iframe(_html, height="content")

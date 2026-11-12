@@ -39,3 +39,9 @@ _*.json
 BARAN_*.txt
 KULUP_GUNCELLEME_BARAN.txt
 _*.log
+
+# İletişim listeleri: kişi adı ve adres içerir — herkese açık depoya GİRMEZ
+avrupa_kulup_iletisim_listesi.*
+kulup_iletisim_ham.json
+mail_hedef_listesi_v3_master.md
+mail_gun*
