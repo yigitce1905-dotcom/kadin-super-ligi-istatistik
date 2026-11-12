@@ -2494,6 +2494,66 @@ def _sheet_alias_ekle(out: dict) -> dict:
     return out
 
 
+@st.cache_resource(show_spinner=False)
+def sd_form_yukle() -> dict:
+    """Bu sezonun oynama özeti (sd_form_uret.py → sd_form_2026_27.json): {'guncelleme', 'ligler', 'oyuncular': {sd_id: {...}}}.
+    cache_RESOURCE: satır satır sorgulanıyor; cache_data her çağrıda tüm sözlüğü kopyalardı. SALT OKUNUR kullan."""
+    yol = pathlib.Path(__file__).parent / "sd_form_2026_27.json"
+    try:
+        with open(yol, encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {"oyuncular": {}, "ligler": []}
+
+
+def _form_bul(sd_kayit):
+    """SoccerDonna profil kaydından (profil_url → spieler_<id>) oyuncunun bu sezon özeti; yoksa None.
+    Yalnız maç raporu çekilen liglerde (Süper Lig, WSL, Frauen-Bundesliga, Liga F, Serie A, Première Ligue, NWSL)
+    ve en az bir maç kadrosuna girmiş oyuncuda kayıt vardır."""
+    import re as _r
+    m = _r.search(r"spieler_(\d+)", str((sd_kayit or {}).get("profil_url") or "")) if isinstance(sd_kayit, dict) else None
+    f = sd_form_yukle().get("oyuncular", {}).get(m.group(1)) if m else None
+    return f if (f and f.get("tm")) else None
+
+
+_FORM_RENK = {"S": "#1db954", "Y": "#f59e0b", "B": "#475569"}
+
+
+def _form_kareler(son5: str) -> str:
+    """Son 5 maç: yeşil = ilk 11, turuncu = sonradan girdi, gri = yedekte kaldı, boş = kadroda yok (eskiden yeniye)."""
+    ipucu = {"S": t("ilk 11", "started"), "Y": t("sonradan girdi", "came on"), "B": t("yedekte kaldı", "unused sub"),
+             "-": t("kadroda yok", "not in squad")}
+    return "".join(
+        f"<span title='{ipucu.get(c, '')}' style='display:inline-block;width:7px;height:7px;margin-left:2px;border-radius:2px;"
+        + (f"background:{_FORM_RENK[c]};" if c in _FORM_RENK else "border:1px solid #475569;box-sizing:border-box;")
+        + "'></span>" for c in str(son5 or ""))
+
+
+def _form_satiri_html(sd_kayit) -> str:
+    """Profilde gözlemcilik kartının alt satırı: 'Bu sezon: İlk 11 8 / 10 · 702 dk · 3 gol · son 5 ■■■■□'."""
+    try:
+        f = _form_bul(sd_kayit)
+    except Exception:
+        f = None
+    if not f:
+        return ""
+    _b = "<b style='font-family:Sora,sans-serif;font-style:normal;font-weight:700;font-size:12pt;color:#f1f5f9;'>"
+    parca = [f"{t('İlk 11', 'Starts')} {_b}{f.get('ilk11', 0)}</b><span style='font-style:normal;color:#64748b;'> / {f['tm']}</span>",
+             f"{_b}{f.get('dk', 0)}</b> {t('dk', 'min')}"]
+    if f.get("sonradan"):
+        parca.append(f"{t('sonradan', 'as sub')} {_b}{f['sonradan']}</b>")
+    if f.get("gol"):
+        parca.append(f"{_b}{f['gol']}</b> {t('gol', 'goals' if f['gol'] != 1 else 'goal')}")
+    if f.get("asist"):
+        parca.append(f"{_b}{f['asist']}</b> {t('asist', 'assists' if f['asist'] != 1 else 'assist')}")
+    if f.get("son5"):
+        parca.append(f"{t('son 5', 'last 5')} {_form_kareler(f['son5'])}")
+    return ("<div class='tp-arametin' style='margin-top:8px;padding-top:8px;border-top:1px solid #2a3050;' "
+            f"title='{t('Kaynak: SoccerDonna maç raporları', 'Source: SoccerDonna match reports')}'>📅 "
+            + t("Bu sezon", "This season") + ": "
+            + " &nbsp;·&nbsp; ".join(f"<span style='white-space:nowrap;'>{p}</span>" for p in parca) + "</div>")
+
+
 @st.cache_data(show_spinner=False)
 def birlesik_sd_yukle() -> dict:
     """SD profilleri: scouting havuzu + TR ligi (soccerdonna_profiller.json).
@@ -4742,6 +4802,7 @@ var COLS=[
  {k:'kk',l:T.contract,t:'n',f:1,c:function(r){return td('ws-mono',T.contract,r.k?esc(r.k):'—','color:'+kcol(r.km)+';')}},
  {k:'vv',l:T.value,t:'n',f:-1,c:function(r){return td('ws-mono',T.value,(r.v?esc(r.v):'—')+trend(r))}},
  {k:'vd',l:T.trend,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.trend,r.vd?'<span style="color:'+(r.vd>0?'#34d399':'#f87171')+';">'+(r.vd>0?'+':'')+r.vd+'%</span>':'—')}},
+ {k:'bd',l:T.ssn,t:'n',f:-1,num:1,opt:1,tt:T.ssnL,c:function(r){return td('num ws-mono',T.ssn,r.bt?(r.bd+'′<div class="ws-sub">'+r.bs+'/'+r.bt+' '+l5(r.b5)+'</div>'):'—')}},
  {k:'m',l:T.m,t:'n',f:-1,num:1,tt:T.mL,c:function(r){return td('num ws-mono',T.m,r.m||'—')}},
  {k:'g',l:T.g,t:'n',f:-1,num:1,tt:T.gL,c:function(r){return td('num ws-mono',T.g,r.g||'—')}},
  {k:'x',l:T.a,t:'n',f:-1,num:1,tt:T.aL,c:function(r){return td('num ws-mono',T.a,r.x||'—')}},
@@ -4753,6 +4814,7 @@ var COLS=[
  {k:'tgo',l:T.tr,t:'n',f:1,opt:1,c:function(r){return td('',T.tr,r.tg?esc(disp(M.tg,r.tg)):DASH)}},
  {k:'sp',l:T.score,t:'n',f:-1,x:'skc',c:function(r){return td('skc',T.score,ring(r))}}];
 if(!D.some(function(r){return r.vd}))COLS=COLS.filter(function(c){return c.k!=='vd'});   // geçmiş birikmeden sütun önerilmez
+function l5(s){var o="",R={S:"#1db954",Y:"#f59e0b",B:"#475569"};s=s||"";for(var i=0;i<s.length;i++){var c=s.charAt(i);o+='<i style="display:inline-block;width:6px;height:6px;margin-left:1px;border-radius:1px;'+(R[c]?'background:'+R[c]:'border:1px solid #475569;box-sizing:border-box')+'"></i>'}return o}
 function trend(r){return r.vd?'<div class="ws-sub" style="color:'+(r.vd>0?'#34d399':'#f87171')+';">'+(r.vd>0?'▲ +':'▼ ')+r.vd+'%</div>':''}
 function col(k){for(var j=0;j<COLS.length;j++)if(COLS[j].k===k)return COLS[j];return null}
 function vcols(){return COLS.filter(function(c){return c.fix||VIS[c.k]})}
@@ -5145,6 +5207,12 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict = None, _sd: dict = None,
                 tg_map[_tg] = tr_gorus_goster(_tg)
             r["tg"] = _tg
 
+        _fm = _form_bul(sd)             # bu sezon: dakika, ilk 11 / takımın maçı, son 5 (SoccerDonna maç raporları)
+        if _fm:
+            r["bd"], r["bs"], r["bt"] = int(_fm.get("dk") or 0), int(_fm.get("ilk11") or 0), int(_fm["tm"])
+            if _fm.get("son5"):
+                r["b5"] = _fm["son5"]
+
         satirlar.append(r)
 
     haritalar = {
@@ -5203,6 +5271,9 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
         "cmpClear": t("Karşılaştırmayı kapat", "Close comparison"),
         "cols": t("Sütunlar", "Columns"), "colsReset": t("Varsayılana dön", "Reset to default"),
         "trend": t("Değer değişimi", "Value change"),
+        "ssn": t("Bu sezon dk", "Mins this season"),
+        "ssnL": t("Bu sezon: dakika · ilk 11 / takımın maçı · son 5 maç (yeşil ilk 11, turuncu sonradan, gri yedek, boş kadroda yok). Kaynak: SoccerDonna maç raporları",
+                  "This season: minutes · starts / team matches · last 5 (green started, amber sub, grey bench, empty not in squad). Source: SoccerDonna match reports"),
         "colsNone": t("Tümünü sıfırla", "Reset all"),
         "sortBy": t("Bu sütuna göre sırala", "Sort by this column"),
         "none": t("Bu filtrelerle eşleşen oyuncu yok — birini gevşetmeyi dene.",
@@ -7888,7 +7959,7 @@ def render_scouting_detay(tam_isim):
                 + ("#1db954" if _so_notu else "#64748b") + ';">'
                 + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
                 '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
-                '</div>' + _sira_satiri_html(_so, "tum") + '</div>', unsafe_allow_html=True)
+                '</div>' + _sira_satiri_html(_so, "tum") + _form_satiri_html(sd) + _sb_satiri_html(tam_isim, (_so or {}).get("vatandaslik", "")) + '</div>', unsafe_allow_html=True)
 
     if _saha_svg:
         _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
@@ -9948,7 +10019,7 @@ def _render_ana_lig_profil_ic(secili):
                     + ("#1db954" if _so_notu else "#64748b") + ';">'
                     + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
                     '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
-                    '</div>' + _sira_satiri_html(_so, "tr") + '</div>', unsafe_allow_html=True)
+                    '</div>' + _sira_satiri_html(_so, "tr") + _form_satiri_html(sd) + _sb_satiri_html(secili, (_so or {}).get("vatandaslik", "")) + '</div>', unsafe_allow_html=True)
 
         if _saha_svg:
             _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
@@ -10815,6 +10886,8 @@ def ziyaret_kaydet():
                 sayfa = "rapor"
             elif qp.get("kulup"):
                 sayfa = "kulup:" + _etiket_slug(qp.get("kulup"))
+            elif qp.get("sb"):
+                sayfa = "olay-verisi"
             elif qp.get("oyuncu"):
                 sayfa = "profil"
             elif not st.session_state.get("girildi"):
@@ -10940,7 +11013,7 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
         except ValueError:
             return None
 
-    hazir = []          # (kayıt, sıra anahtarı, kod, yaş, değer, bitiş, serbest, lig seviyesi)
+    hazir = []          # (kayıt, sıra anahtarı, kod, yaş, değer, bitiş, serbest, lig seviyesi, bu sezon özeti)
     for isim, r in havuz.items():
         if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
             continue
@@ -10955,8 +11028,10 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
             continue
         yas = str(r.get("yas") or "").strip()
         dg = _r.sub(r"\D", "", str(r.get("deger") or ""))
+        _fm = _form_bul(sd.get(isim))
         hazir.append((isim, r, a, _sira_mevki(r), int(yas) if yas.isdigit() else None,
-                      int(dg) if dg else 0, _bitis(isim, r), kn in _SERBEST_ADLAR, _lig_seviye(lig)))
+                      int(dg) if dg else 0, _bitis(isim, r), kn in _SERBEST_ADLAR, _lig_seviye(lig),
+                      {"ilk11": _fm.get("ilk11", 0), "tm": _fm["tm"], "dk": _fm.get("dk", 0), "son5": _fm.get("son5", "")} if _fm else None))
     del havuz, sd
 
     cikti = []
@@ -10966,7 +11041,7 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
         ayak = _AYAK_TR.get(str(kriter.get("ayak") or "").strip().lower(), "")
         nmin = _scotr_segman(kriter.get("not_min", "")) if kriter.get("not_min") else 0
         out = []
-        for isim, r, a, kod, yas, dg, bitis, serbest, sv in hazir:
+        for isim, r, a, kod, yas, dg, bitis, serbest, sv, form in hazir:
             if a[0] < nmin or (mevkiler and kod not in mevkiler):
                 continue
             if (ymin or ymax) and yas is None:
@@ -10992,7 +11067,8 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
                 "uyruk": str(r.get("vatandaslik") or ""), "lig": str(r.get("lig") or ""),
                 # yer tutucu değer (üst/orta ligde tam €10.000) gösterilmez: Brezilya millî oyuncusu "€10.000" görünmesin
                 "deger": "" if (dg == 10000 and sv <= 2 and not serbest) else str(r.get("deger") or ""), "durum": durum,
-                "bitis": bitis.strftime("%m/%Y") if (bitis and bitis >= bugun and not serbest) else ""}))
+                "bitis": bitis.strftime("%m/%Y") if (bitis and bitis >= bugun and not serbest) else "",
+                "form": form}))
         out.sort(key=lambda x: x[0], reverse=True)
         # Havuzda aynı oyuncu iki adla kayıtlı olabiliyor ("Mariza" / "Mariza Nascimento"):
         # ilk ad + kulüp + mevki + yaş aynıysa tek say (kulübe giden sayfada çift satır güven kırar).
@@ -11160,6 +11236,9 @@ def render_kulup_firsat(anahtar: str):
                          f"font-weight:{'700' if r['durum'] else '400'};'>{t('Sözleşme', 'Contract')} {r['bitis']}</div>")
             else:
                 soz_h = ""
+            _f = r.get("form")
+            form_h = (f"<div style='font-size:0.68rem;color:#64748b;white-space:nowrap;'>{t('İlk 11', 'Starts')} "
+                      f"<span style='color:#cbd5e1;'>{_f['ilk11']}/{_f['tm']}</span> · {_f['dk']}′ {_form_kareler(_f['son5'])}</div>") if _f else ""
             if acik:
                 ad_h = (f"<a href='?oyuncu={_urlquote(isim)}&dil={_dq}' target='_blank' "
                         f"style='color:#f4f4f5;font-weight:600;text-decoration:none;'>{_h.escape(isim)}</a>"
@@ -11171,7 +11250,7 @@ def render_kulup_firsat(anahtar: str):
                 f"<td style='padding:8px 10px;'>{ad_h}</td>"
                 f"<td style='padding:8px 6px;'><span style='background:#2a2a38;color:#d4d4d8;padding:2px 7px;"
                 f"border-radius:5px;font-size:0.64rem;font-weight:700;'>{_h.escape(kod)}</span></td>"
-                f"<td style='padding:8px 6px;color:#cbd5e1;'>{(_h.escape(scout_rol_goster(str(r.get('rol') or ''))) if _rol_mevkiye_uyar(str(r.get('rol') or ''), kod) else '') or '—'}</td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;'>{(_h.escape(scout_rol_goster(str(r.get('rol') or ''))) if _rol_mevkiye_uyar(str(r.get('rol') or ''), kod) else '') or '—'}{form_h}</td>"
                 f"<td style='padding:8px 6px;color:#cbd5e1;text-align:right;'>{yas if yas.isdigit() else '—'}</td>"
                 f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('uyruk') or '')))) or '—'}"
                 f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_lig_goster(str(r.get('lig') or '')))}</div></td>"
@@ -11182,7 +11261,7 @@ def render_kulup_firsat(anahtar: str):
         basliklar = "".join(
             f"<th style='padding:8px {p};text-align:{h};' class='tp-arametin'>{_buyuk(x)}</th>"
             for x, p, h in ((t("Oyuncu", "Player"), "10px", "left"), (t("Mevki", "Pos"), "6px", "left"),
-                            (t("Rol", "Role"), "6px", "left"), (t("Yaş", "Age"), "6px", "right"),
+                            (t("Rol / Bu sezon", "Role / This season"), "6px", "left"), (t("Yaş", "Age"), "6px", "right"),
                             (t("Ülke / Lig", "Country / League"), "6px", "left"), (t("Değer / Sözleşme", "Value / Contract"), "6px", "left"),
                             (t("Not", "Grade"), "10px", "center")))
         if adaylar:
@@ -11207,7 +11286,10 @@ def render_kulup_firsat(anahtar: str):
         "<div class='tp-arametin' style='text-align:center;margin:-4px 0 14px;'>"
         f"<span style='color:#1db954;font-weight:700;font-style:normal;'>●</span> {t('serbest oyuncu', 'free agent')} &nbsp;·&nbsp; "
         f"<span style='color:#f59e0b;font-weight:700;font-style:normal;'>●</span> "
-        f"{t('sözleşmesi', 'contract ends by')} {_sinir}{t(' tarihine kadar bitiyor', '')}</div>", unsafe_allow_html=True)
+        f"{t('sözleşmesi', 'contract ends by')} {_sinir}{t(' tarihine kadar bitiyor', '')}"
+        f"<br>{t('Bu sezon (son 5 maç)', 'This season (last 5 matches)')}: {_form_kareler('S')} {t('ilk 11', 'started')} &nbsp;"
+        f"{_form_kareler('Y')} {t('sonradan girdi', 'came on')} &nbsp;{_form_kareler('B')} {t('yedekte kaldı', 'unused sub')} &nbsp;"
+        f"{_form_kareler('-')} {t('kadroda yok', 'not in squad')}</div>", unsafe_allow_html=True)
     if not acik:
         st.markdown(
             "<div style='text-align:center;background:linear-gradient(135deg,#1a0f2e,#1e1338);border:1px solid #e040fb55;"
@@ -11257,6 +11339,293 @@ def render_kulup_firsat(anahtar: str):
     st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>"
                 f"womenfootballscouting.com · {t('Veri: saha gözlemi, TFF & SoccerDonna', 'Data: live scouting, TFF & SoccerDonna')}</div>",
                 unsafe_allow_html=True)
+    st.stop()
+
+
+# ─── OLAY VERİSİ ARŞİVİ — Hudl StatsBomb açık verisi (13 Kasım 2026) ──────────
+# Kaynak: github.com/statsbomb/open-data → sb_indir.py (ham, depo dışı) → sb_ozet_uret.py → sb_ozet.json (türetilmiş özet).
+# LİSANS SINIRI: StatsBomb Public Data User Agreement ticari kullanımı ve yeniden dağıtımı yasaklar, yayımlanan analizde
+# logoyla kaynak göstermeyi şart koşar. Bu yüzden veri YALNIZ herkese açık, ücretsiz, logolu ?sb= sayfasında gösterilir;
+# Premium bölüme, kulüp sayfalarına, paylaşım raporuna ve ISM belgelerine KONMAZ. Profilden yalnız bu ücretsiz sayfaya link verilir.
+@st.cache_resource(show_spinner=False)
+def sb_ozet_yukle() -> dict:
+    try:
+        with open(pathlib.Path(__file__).parent / "sb_ozet.json", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return {"oyuncular": {}, "yarismalar": []}
+
+
+_SB_ULKE_ES = {"united states of america": "united states", "usa": "united states", "the netherlands": "netherlands",
+               "turkiye": "turkey", "danmark": "denmark", "korea (south)": "south korea", "korea republic": "south korea",
+               "korea (north)": "north korea", "korea dpr": "north korea", "china pr": "china"}
+
+
+def _sb_ulke(s) -> str:
+    n = _isim_norm(str(s or ""))
+    return _SB_ULKE_ES.get(n, n)
+
+
+@st.cache_resource(show_spinner=False)
+def _sb_ad_dizini() -> dict:
+    """Normalize ad → {sb id…}: tam ad, takma ad ve 'ilk + son' ad."""
+    d = {}
+    for pid, o in sb_ozet_yukle().get("oyuncular", {}).items():
+        tam = _isim_norm(o.get("ad", ""))
+        adlar = {tam, _isim_norm(o.get("takma", ""))}
+        p = tam.split()
+        if len(p) >= 2:
+            adlar.add(p[0] + " " + p[-1])
+        for a in adlar - {""}:
+            d.setdefault(a, set()).add(pid)
+    return d
+
+
+def _sb_bul(isim: str, uyruk: str = ""):
+    """Havuzdaki addan StatsBomb kaydı: (sb id, kayıt) ya da None. TEDBİRLİ eşleşme — yanlış oyuncuyu göstermek,
+    hiç göstermemekten kötü: ad TEK oyuncuya çıkmalı; tek sözcüklü adlarda (Brezilyalı lakaplar) ülke de tutmalı."""
+    n = _isim_norm(isim or "")
+    if not n:
+        return None
+    dz = _sb_ad_dizini()
+    p = n.split()
+    aday = dz.get(n) or (dz.get(p[0] + " " + p[-1]) if len(p) >= 2 else None)
+    if not aday or len(aday) != 1:
+        return None
+    pid = next(iter(aday))
+    o = sb_ozet_yukle()["oyuncular"].get(pid)
+    if not o:
+        return None
+    if len(p) < 2:
+        u1, u2 = _sb_ulke(uyruk), _sb_ulke(o.get("ulke"))
+        if not u1 or not u2 or not (u1 == u2 or u1 in u2 or u2 in u1):
+            return None
+    return pid, o
+
+
+def _sb_grup(poz: str) -> str:
+    p = (poz or "").lower()
+    return "K" if "goalkeeper" in p else "D" if "back" in p else "O" if "midfield" in p else "F"
+
+
+# (anahtar, TR, EN, tür) — tür: 90 = 90 dk başına · (pay, payda) = yüzde
+_SB_OLCU = [
+    ("gol", "Gol", "Goals", 90), ("xg", "Gol beklentisi (xG)", "Expected goals (xG)", 90), ("sut", "Şut", "Shots", 90),
+    ("asist", "Asist", "Assists", 90), ("xa", "Asist beklentisi (xA)", "Expected assists (xA)", 90),
+    ("kp", "Kilit pas", "Key passes", 90), ("cb", "Ceza sahasına pas", "Passes into box", 90),
+    ("ip", "İlerletici pas", "Progressive passes", 90), ("it", "İlerletici top taşıma", "Progressive carries", 90),
+    ("dr_ok", "Başarılı çalım", "Successful take-ons", 90), ("pas", "Pas", "Passes", 90),
+    ("pas%", "Pas isabeti", "Pass accuracy", ("pas_ok", "pas")),
+    ("pres", "Pres", "Pressures", 90), ("tk", "Top kazanma", "Ball recoveries", 90),
+    ("md_ok", "Kazanılan müdahale", "Tackles won", 90), ("ag", "Araya girme", "Interceptions", 90),
+    ("hv%", "Hava topu kazanma", "Aerial duels won", ("hv_ok", "hv")), ("uz", "Uzaklaştırma", "Clearances", 90),
+]
+_SB_OLCU_K = [
+    ("kt", "Kurtarış", "Saves", 90), ("kt%", "Kurtarış oranı", "Save percentage", ("kt", "ks")),
+    ("yg", "Yenilen gol", "Goals conceded", 90), ("pas", "Pas", "Passes", 90),
+    ("pas%", "Pas isabeti", "Pass accuracy", ("pas_ok", "pas")),
+]
+_SB_TERS = {"yg"}          # düşük olan iyi
+
+
+def _sb_deger(k: dict, anahtar: str, tur):
+    """Kaydın bir ölçüdeki değeri (90 dk başına ya da yüzde); hesaplanamıyorsa None."""
+    if tur == 90:
+        return (k.get(anahtar, 0) * 90.0 / k["dk"]) if k.get("dk") else None
+    pay, payda = tur
+    return (100.0 * k.get(pay, 0) / k[payda]) if k.get(payda) else None
+
+
+@st.cache_resource(show_spinner=False)
+def _sb_dagilim() -> dict:
+    """{(yarışma, mevki grubu): {ölçü: sıralı değerler}} — en az 300 dk (turnuvada 180 dk) oynayanlar; yüzdelik için."""
+    d = {}
+    for o in sb_ozet_yukle().get("oyuncular", {}).values():
+        for k in o["k"]:
+            esik = 180 if ("Euro" in k["y"] or "Kupası" in k["y"]) else 300
+            if k.get("dk", 0) < esik:
+                continue
+            g = _sb_grup(k.get("poz", ""))
+            hedef = d.setdefault((k["y"], g), {})
+            for a, _, _, tur in (_SB_OLCU_K if g == "K" else _SB_OLCU):
+                v = _sb_deger(k, a, tur)
+                if v is not None:
+                    hedef.setdefault(a, []).append(v)
+    for h in d.values():
+        for a in h:
+            h[a].sort()
+    return d
+
+
+def _sb_yuzdelik(yarisma: str, grup: str, anahtar: str, deger):
+    import bisect as _bs
+    liste = _sb_dagilim().get((yarisma, grup), {}).get(anahtar) or []
+    if deger is None or len(liste) < 10:
+        return None
+    y = 100.0 * _bs.bisect_right(liste, deger) / len(liste)
+    return int(round(100 - y if anahtar in _SB_TERS else y))
+
+
+_SB_YARISMA_EN = {"Dünya Kupası 2023": "World Cup 2023"}
+_SB_POZ_TR = {"Goalkeeper": "Kaleci", "Right Back": "Sağ Bek", "Left Back": "Sol Bek", "Right Center Back": "Sağ Stoper",
+              "Left Center Back": "Sol Stoper", "Center Back": "Stoper", "Right Wing Back": "Sağ Kanat Bek",
+              "Left Wing Back": "Sol Kanat Bek", "Center Defensive Midfield": "Ön Libero", "Right Defensive Midfield": "Ön Libero (sağ)",
+              "Left Defensive Midfield": "Ön Libero (sol)", "Center Midfield": "Merkez Orta Saha", "Right Center Midfield": "Merkez Orta Saha (sağ)",
+              "Left Center Midfield": "Merkez Orta Saha (sol)", "Right Midfield": "Sağ Orta Saha", "Left Midfield": "Sol Orta Saha",
+              "Center Attacking Midfield": "Ofansif Orta Saha", "Right Attacking Midfield": "Ofansif Orta Saha (sağ)",
+              "Left Attacking Midfield": "Ofansif Orta Saha (sol)", "Right Wing": "Sağ Kanat", "Left Wing": "Sol Kanat",
+              "Center Forward": "Santrfor", "Right Center Forward": "Santrfor (sağ)", "Left Center Forward": "Santrfor (sol)",
+              "Striker": "Santrfor", "Secondary Striker": "İkinci Forvet"}
+
+
+def _sb_satiri_html(isim: str, uyruk: str = "") -> str:
+    """Profilde tek satır: oyuncunun StatsBomb açık verisindeki yarışmaları + ÜCRETSİZ arşiv sayfasına link."""
+    try:
+        b = _sb_bul(isim, uyruk)
+    except Exception:
+        b = None
+    if not b:
+        return ""
+    pid, o = b
+    yar = " · ".join((_SB_YARISMA_EN.get(k["y"], k["y"]) if EN else k["y"]) for k in o["k"][:4])
+    return ("<div class='tp-arametin' style='margin-top:8px;padding-top:8px;border-top:1px solid #2a3050;'>📊 "
+            f"<a href='/?sb={pid}&dil={'EN' if EN else 'TR'}' target='_blank' rel='noopener' style='color:#c4b5fd;text-decoration:none;'>"
+            + t("Olay verisi arşivi (ücretsiz)", "Event data archive (free)") + f": {yar} →</a></div>")
+
+
+def render_sb_arsiv(anahtar: str):
+    """PUBLIC ve ÜCRETSİZ (giriş yok, ödeme duvarı yok): bir oyuncunun Hudl StatsBomb açık verisindeki özeti.
+    Lisans gereği logo + kaynak gösterilir; sayfa Premium içeriğe bağlanmaz."""
+    import html as _h
+    st.markdown(
+        "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}"
+        ".block-container{max-width:860px!important;padding-top:1rem!important;}</style>", unsafe_allow_html=True)
+    _dq = "EN" if EN else "TR"
+    _kaynak_logo = (
+        "<a href='https://github.com/statsbomb/open-data' target='_blank' rel='noopener' style='background:#fff;border-radius:8px;"
+        "padding:8px 12px;display:inline-flex;'><img src='/app/static/statsbomb_logo.png' alt='StatsBomb' style='height:22px;'></a>")
+    if str(anahtar).strip().lower() in ("liste", "arsiv", "1"):
+        # Dizin: yarışma × mevki grubu × ölçü → ilk 25 (90 dk başına; asgari süre şartıyla)
+        tum = sb_ozet_yukle()
+        st.markdown(
+            "<div class='baslik-kutu'>"
+            f"<div class='ust-bant'>📊 {t('OLAY VERİSİ ARŞİVİ · ÜCRETSİZ', 'EVENT DATA ARCHIVE · FREE')}</div>"
+            f"<h1>{t('Beş lig, iki turnuva', 'Five leagues, two tournaments')}</h1>"
+            f"<p>{t('WSL, Frauen-Bundesliga, Liga F ve Serie A 2023/24 · NWSL 2023 · Dünya Kupası 2023 · Euro 2025', 'WSL, Frauen-Bundesliga, Liga F and Serie A 2023/24 · NWSL 2023 · World Cup 2023 · Euro 2025')}"
+            f" · <b>{len(tum.get('oyuncular', {}))}</b> {t('oyuncu', 'players')}</p></div>", unsafe_allow_html=True)
+        st.markdown(
+            "<div style='display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#0d0d16;border:1px solid #3b2d6e;"
+            "border-radius:12px;padding:12px 14px;margin:0 0 16px;'>" + _kaynak_logo
+            + "<div class='tp-arametin' style='flex:1 1 300px;'>"
+            + t("Veri: Hudl StatsBomb açık verisi. Bu bölüm ücretsizdir ve giriş gerektirmez. Değerler 90 dakika başınadır.",
+                "Data: Hudl StatsBomb open data. This section is free and needs no login. Values are per 90 minutes.")
+            + "</div></div>", unsafe_allow_html=True)
+        yarismalar = tum.get("yarismalar") or []
+        if not yarismalar:
+            st.stop()
+        _g_ad = {"F": t("Forvet", "Forwards"), "O": t("Orta saha", "Midfielders"), "D": t("Savunma", "Defenders"), "K": t("Kaleci", "Goalkeepers")}
+        _c1, _c2, _c3 = st.columns(3)
+        # Seçenekler doğrudan etiket metni (format_func yok): dil değişince eski seçim anahtarı karışmasın diye anahtarda dil var.
+        _y_et = {(_SB_YARISMA_EN.get(x, x) if EN else x): x for x in yarismalar}
+        _y = _y_et[_c1.selectbox(t("Yarışma", "Competition"), list(_y_et), key="sb_y_" + _dq)]
+        _g_et = {v: k for k, v in _g_ad.items()}
+        _g = _g_et[_c2.selectbox(t("Mevki grubu", "Position group"), list(_g_et), key="sb_g_" + _dq)]
+        _olcu = _SB_OLCU_K if _g == "K" else _SB_OLCU
+        _o_et = {t(x[1], x[2]): i for i, x in enumerate(_olcu)}
+        _oi = _o_et[_c3.selectbox(t("Ölçü", "Metric"), list(_o_et), key="sb_o_" + _g + _dq)]
+        _a, _tr, _en, _tur = _olcu[_oi]
+        _esik = 180 if ("Euro" in _y or "Kupası" in _y) else 300
+        _sat = []
+        for _pid, _o in tum.get("oyuncular", {}).items():
+            for _k in _o["k"]:
+                if _k["y"] == _y and _k.get("dk", 0) >= _esik and _sb_grup(_k.get("poz", "")) == _g:
+                    _v = _sb_deger(_k, _a, _tur)
+                    if _v is not None:
+                        _sat.append((_v, _pid, _o, _k))
+        _sat.sort(key=lambda x: x[0], reverse=_a not in _SB_TERS)
+        govde = ""
+        for _i, (_v, _pid, _o, _k) in enumerate(_sat[:25], 1):
+            _dg = (f"%{_v:.0f}" if not EN else f"{_v:.0f}%") if _tur != 90 else f"{_v:.2f}".replace(".", "." if EN else ",")
+            _pz = _k.get("poz", "")
+            govde += ("<tr style='border-top:1px solid #241d3d;'>"
+                      f"<td style='padding:7px 8px;color:#64748b;font-family:Sora,monospace;'>{_i}</td>"
+                      f"<td style='padding:7px 8px;'><a href='/?sb={_pid}&dil={_dq}' target='_self' style='color:#f4f4f5;font-weight:600;"
+                      f"text-decoration:none;'>{_h.escape(_o.get('takma') or _o.get('ad') or '')}</a>"
+                      f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_k.get('takim', ''))}</div></td>"
+                      f"<td style='padding:7px 8px;color:#94a3b8;font-size:0.76rem;'>{_h.escape(_pz if EN else _SB_POZ_TR.get(_pz, _pz))}</td>"
+                      f"<td style='padding:7px 8px;text-align:right;color:#94a3b8;font-family:Sora,monospace;'>{_k.get('dk', 0)}</td>"
+                      f"<td style='padding:7px 10px;text-align:right;color:#1db954;font-weight:700;font-family:Sora,monospace;'>{_dg}</td></tr>")
+        st.markdown(
+            "<div style='background:#0d0d16;border:1px solid #3b2d6e;border-radius:14px;overflow:hidden;'>"
+            "<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;font-size:0.82rem;'>"
+            "<thead><tr>" + "".join(
+                f"<th style='padding:8px;text-align:{h};' class='tp-arametin'>{_buyuk(x)}</th>" for x, h in (
+                    ("#", "left"), (t("Oyuncu", "Player"), "left"), (t("Mevki", "Position"), "left"),
+                    (t("Dk", "Min"), "right"), (t(_tr, _en), "right")))
+            + f"</tr></thead><tbody>{govde}</tbody></table></div>"
+            f"<div class='tp-arametin' style='padding:8px 14px;border-top:1px solid #241d3d;'>"
+            + t(f"En az {_esik} dakika oynayan {len(_sat)} oyuncu arasında ilk 25.", f"Top 25 of {len(_sat)} players with at least {_esik} minutes.")
+            + "</div></div>", unsafe_allow_html=True)
+        st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>"
+                    f"womenfootballscouting.com · {t('Veri', 'Data')}: Hudl StatsBomb</div>", unsafe_allow_html=True)
+        st.stop()
+    o = sb_ozet_yukle().get("oyuncular", {}).get(str(anahtar).strip())
+    if not o:
+        st.markdown(f"<div style='text-align:center;padding:70px 20px;color:#8899aa;'>"
+                    f"⚠️ {t('Kayıt bulunamadı.', 'Record not found.')}</div>", unsafe_allow_html=True)
+        st.stop()
+    st.markdown(f"<a href='/?sb=liste&dil={_dq}' target='_self' class='tp-arametin' style='text-decoration:none;color:#c4b5fd;'>"
+                f"← {t('Tüm arşiv ve sıralamalar', 'Full archive and rankings')}</a>", unsafe_allow_html=True)
+    ad = _h.escape(o.get("takma") or o.get("ad") or "")
+    st.markdown(
+        "<div class='baslik-kutu'>"
+        f"<div class='ust-bant'>📊 {t('OLAY VERİSİ ARŞİVİ · ÜCRETSİZ', 'EVENT DATA ARCHIVE · FREE')}</div>"
+        f"<h1 lang='{_isim_dil(ad)}'>{ad}</h1>"
+        f"<p>{_h.escape(o.get('ad', ''))} · {_h.escape(ulke_goster(o.get('ulke', '')) or o.get('ulke', ''))}</p></div>",
+        unsafe_allow_html=True)
+    kaynak = (
+        "<div style='display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:#0d0d16;border:1px solid #3b2d6e;"
+        "border-radius:12px;padding:12px 14px;margin:0 0 16px;'>"
+        "<a href='https://github.com/statsbomb/open-data' target='_blank' rel='noopener' style='background:#fff;border-radius:8px;"
+        "padding:8px 12px;display:inline-flex;'><img src='/app/static/statsbomb_logo.png' alt='StatsBomb' style='height:22px;'></a>"
+        "<div class='tp-arametin' style='flex:1 1 300px;'>"
+        + t("Veri: Hudl StatsBomb açık verisi. Bu sayfa ücretsizdir ve giriş gerektirmez. Değerler 90 dakika başınadır; "
+            "çubuk, aynı yarışmada aynı mevki grubundaki oyuncular arasındaki yüzdelik sırayı gösterir.",
+            "Data: Hudl StatsBomb open data. This page is free and needs no login. Values are per 90 minutes; "
+            "the bar shows the percentile rank among players in the same position group in the same competition.")
+        + "</div></div>")
+    st.markdown(kaynak, unsafe_allow_html=True)
+    for k in o["k"]:
+        g = _sb_grup(k.get("poz", ""))
+        esik = 180 if ("Euro" in k["y"] or "Kupası" in k["y"]) else 300
+        satirlar = ""
+        for a, tr_, en_, tur in (_SB_OLCU_K if g == "K" else _SB_OLCU):
+            v = _sb_deger(k, a, tur)
+            if v is None:
+                continue
+            yz = _sb_yuzdelik(k["y"], g, a, v) if k.get("dk", 0) >= esik else None
+            renk = "#1db954" if (yz or 0) >= 80 else "#c4b5fd" if (yz or 0) >= 50 else "#64748b"
+            deger = (f"%{v:.0f}" if not EN else f"{v:.0f}%") if tur != 90 else f"{v:.2f}".replace(".", "." if EN else ",")
+            cubuk = (f"<div style='flex:1 1 90px;height:6px;background:#1c2136;border-radius:4px;overflow:hidden;'>"
+                     f"<div style='width:{yz}%;height:100%;background:{renk};'></div></div>"
+                     f"<span style='width:30px;text-align:right;color:{renk};font-family:Sora,monospace;font-size:0.72rem;'>{yz}</span>"
+                     if yz is not None else "<div style='flex:1 1 90px;'></div><span style='width:30px;'></span>")
+            satirlar += ("<div style='display:flex;align-items:center;gap:10px;padding:5px 0;border-top:1px solid #1c2136;'>"
+                         f"<span style='flex:0 0 46%;color:#cbd5e1;font-size:0.82rem;'>{t(tr_, en_)}</span>"
+                         f"<span style='flex:0 0 56px;text-align:right;color:#f4f4f5;font-family:Sora,monospace;font-size:0.82rem;'>{deger}</span>"
+                         f"{cubuk}</div>")
+        poz = k.get("poz", "")
+        st.markdown(
+            "<div style='background:#0d0d16;border:1px solid #3b2d6e;border-radius:14px;padding:14px 16px;margin-bottom:16px;'>"
+            f"<div class='tp-anabaslik'>{_buyuk(_SB_YARISMA_EN.get(k['y'], k['y']) if EN else k['y'])}</div>"
+            f"<div class='tp-arametin' style='margin:4px 0 10px;'>{_h.escape(k.get('takim', ''))} · "
+            f"{_h.escape(poz if EN else _SB_POZ_TR.get(poz, poz))} · "
+            f"{k.get('mac', 0)} {t('maç', 'matches')} ({k.get('ilk11', 0)} {t('ilk 11', 'starts')}) · {k.get('dk', 0)} {t('dk', 'min')}"
+            + (f" · <span style='color:#f59e0b;'>{t('az süre: yüzdelik gösterilmez', 'small sample: no percentiles')}</span>"
+               if k.get("dk", 0) < esik else "")
+            + f"</div>{satirlar}</div>", unsafe_allow_html=True)
+    st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:6px;'>"
+                f"womenfootballscouting.com · {t('Veri', 'Data')}: Hudl StatsBomb</div>", unsafe_allow_html=True)
     st.stop()
 
 
@@ -11413,6 +11782,10 @@ if params.get("paylas", "").strip():
 # ─── KULÜBE ÖZEL FIRSAT SAYFASI (?kulup=X) — public, giriş gerektirmez ────────
 if params.get("kulup", "").strip():
     render_kulup_firsat(params.get("kulup", ""))
+
+# ─── OLAY VERİSİ ARŞİVİ (?sb=<StatsBomb oyuncu kimliği>) — public ve ücretsiz ──
+if params.get("sb", "").strip():
+    render_sb_arsiv(params.get("sb", ""))
 
 # ─── E-POSTA DOĞRULAMA (?dogrula=TOKEN) — public, giriş gerektirmez ───────────
 if params.get("dogrula", "").strip():

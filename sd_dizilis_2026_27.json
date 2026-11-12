@@ -1,8 +1,9 @@
 {
  "sezon": "2026-27",
  "lig": "Kadın Futbol Süper Ligi",
+ "lig_kod": "TUR1",
  "kaynak": "soccerdonna.de",
- "guncelleme": "2026-11-11",
+ "guncelleme": "2026-11-13",
  "maclar": [
   {
    "id": 172164,
@@ -36452,6 +36453,2636 @@
     ]
    },
    "tam": true
+  },
+  {
+   "id": 172361,
+   "hafta": 10,
+   "ev": "Haymana SK",
+   "dep": "Bakirkoy KFSK",
+   "tarih": "08.11.2026",
+   "skor": "1:1",
+   "iy": "1:1",
+   "hafta_sd": 10,
+   "saat": "14:00",
+   "seyirci": 150,
+   "hakem": "Yusuf Can Bulut",
+   "stat": "Haymana Ilce Stadi",
+   "ev_id": 16154,
+   "dep_id": 14028,
+   "dizilis": {
+    "ev": {
+     "takim": "Haymana SK",
+     "sema": "4-5-1 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Sydney Bellamy",
+        "sd_id": 121181
+       }
+      ],
+      [
+       {
+        "ad": "Ezel Göçmen",
+        "sd_id": 116435
+       },
+       {
+        "ad": "Nursena Gokkaya",
+        "sd_id": 122654
+       },
+       {
+        "ad": "Ozge Harman",
+        "sd_id": 116439
+       },
+       {
+        "ad": "Euphrasier Shilwatso",
+        "sd_id": 121524
+       }
+      ],
+      [
+       {
+        "ad": "Elvin Balci",
+        "sd_id": 104963
+       },
+       {
+        "ad": "Aleksandra Markovska",
+        "sd_id": 20261
+       }
+      ],
+      [
+       {
+        "ad": "Raheemot Adebayo",
+        "sd_id": 109735
+       },
+       {
+        "ad": "Blue Ellis",
+        "sd_id": 80705
+       },
+       {
+        "ad": "Princess Owusu",
+        "sd_id": 100391
+       },
+       {
+        "ad": "Azra Tiraş",
+        "sd_id": 71136
+       }
+      ]
+     ],
+     "teknik": "Metin Karagöz",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Bakirkoy KFSK",
+     "sema": "4-5-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Lara Karaca",
+        "sd_id": 122197
+       }
+      ],
+      [
+       {
+        "ad": "Sibel Duman",
+        "sd_id": 11467
+       },
+       {
+        "ad": "Betul Karaca",
+        "sd_id": 65306
+       },
+       {
+        "ad": "Beyza Kocatürk",
+        "sd_id": 40747
+       },
+       {
+        "ad": "María Sánchez",
+        "sd_id": 79406
+       }
+      ],
+      [
+       {
+        "ad": "Yetunde Ayantosho",
+        "sd_id": 78786
+       },
+       {
+        "ad": "Gizem Aydin",
+        "sd_id": 14304
+       },
+       {
+        "ad": "Helin Erbulun",
+        "sd_id": 89433
+       },
+       {
+        "ad": "Vivian Nasaka",
+        "sd_id": 45462
+       }
+      ],
+      [
+       {
+        "ad": "Milena De Paula",
+        "sd_id": 83368
+       },
+       {
+        "ad": "Aurea Del Carmen",
+        "sd_id": 121817
+       }
+      ]
+     ],
+     "teknik": "Goksel Asan",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Raheemot Adebayo",
+     "sd_id": 109735,
+     "dk": "7",
+     "tur": "Header goal",
+     "asist": "Princess Owusu",
+     "asist_sd_id": 100391,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Sibel Duman",
+     "sd_id": 11467,
+     "dk": "29",
+     "tur": "Right-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Ozge Harman",
+     "cikan_sd_id": 116439,
+     "giren": "Yağmur Özkumru",
+     "giren_sd_id": 32659,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Elvin Balci",
+     "cikan_sd_id": 104963,
+     "giren": "Nisa Yesilyurt",
+     "giren_sd_id": 116443,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "83",
+     "cikan": "Milena De Paula",
+     "cikan_sd_id": 83368,
+     "giren": "İmren Akkaya",
+     "giren_sd_id": 66411,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "88",
+     "cikan": "Yetunde Ayantosho",
+     "cikan_sd_id": 78786,
+     "giren": "İsmigül Yalçıner",
+     "giren_sd_id": 41641,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "ad": "Azra Tiraş",
+     "sd_id": 71136,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "72",
+     "ad": "Betul Karaca",
+     "sd_id": 65306,
+     "kart": "red card",
+     "neden": "brutal foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sydney Bellamy",
+      "sd_id": 121181,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Ezel Göçmen",
+      "sd_id": 116435,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 78,
+      "ad": "Nursena Gokkaya",
+      "sd_id": 122654,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 57,
+      "ad": "Ozge Harman",
+      "sd_id": 116439,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 22,
+      "ad": "Euphrasier Shilwatso",
+      "sd_id": 121524,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Elvin Balci",
+      "sd_id": 104963,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 8,
+      "ad": "Aleksandra Markovska",
+      "sd_id": 20261,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 9,
+      "ad": "Raheemot Adebayo",
+      "sd_id": 109735,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 11,
+      "ad": "Blue Ellis",
+      "sd_id": 80705,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 7,
+      "ad": "Princess Owusu",
+      "sd_id": 100391,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 77,
+      "ad": "Azra Tiraş",
+      "sd_id": 71136,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 18,
+      "ad": "Lara Karaca",
+      "sd_id": 122197,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 13,
+      "ad": "Sibel Duman",
+      "sd_id": 11467,
+      "mevki": "Defence",
+      "yas": 36
+     },
+     {
+      "no": 2,
+      "ad": "Betul Karaca",
+      "sd_id": 65306,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 41,
+      "ad": "Beyza Kocatürk",
+      "sd_id": 40747,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 5,
+      "ad": "María Sánchez",
+      "sd_id": 79406,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 14,
+      "ad": "Yetunde Ayantosho",
+      "sd_id": 78786,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 10,
+      "ad": "Gizem Aydin",
+      "sd_id": 14304,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 12,
+      "ad": "Helin Erbulun",
+      "sd_id": 89433,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 0,
+      "ad": "Vivian Nasaka",
+      "sd_id": 45462,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 0,
+      "ad": "Milena De Paula",
+      "sd_id": 83368,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Aurea Del Carmen",
+      "sd_id": 121817,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Ela Uyanik",
+      "sd_id": 122656,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 2,
+      "ad": "Seyma Ercan",
+      "sd_id": 122905,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 26,
+      "ad": "Yağmur Özkumru",
+      "sd_id": 32659,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 10,
+      "ad": "Nisa Yesilyurt",
+      "sd_id": 116443,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 17,
+      "ad": "Sila Tıras",
+      "sd_id": 122655,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ],
+    "dep": [
+     {
+      "no": 48,
+      "ad": "Özlem Aliosmanoğlu",
+      "sd_id": 104554,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 1,
+      "ad": "Shivani Battaglia",
+      "sd_id": 124974,
+      "mevki": "Goalkeeper",
+      "yas": 22
+     },
+     {
+      "no": 3,
+      "ad": "Zeynep Biriz",
+      "sd_id": 123157,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 33,
+      "ad": "Ecrin Senturk",
+      "sd_id": 105235,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 7,
+      "ad": "İmren Akkaya",
+      "sd_id": 66411,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 6,
+      "ad": "Ece Aydin",
+      "sd_id": 105231,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 23,
+      "ad": "İsmigül Yalçıner",
+      "sd_id": 41641,
+      "mevki": "Midfield",
+      "yas": 32
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 172363,
+   "hafta": 10,
+   "ev": "Giresun Sanayispor",
+   "dep": "Kayseri Kadin FK",
+   "tarih": "08.11.2026",
+   "skor": "0:4",
+   "iy": "0:3",
+   "hafta_sd": 10,
+   "saat": "14:00",
+   "seyirci": 50,
+   "hakem": "Umut Göktaş",
+   "stat": "Giresun 75. Yil Sahasi",
+   "ev_id": 14056,
+   "dep_id": 7356,
+   "dizilis": {
+    "ev": {
+     "takim": "Giresun Sanayispor",
+     "sema": "4-5-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Thaynara",
+        "sd_id": 126270
+       }
+      ],
+      [
+       {
+        "ad": "Esma Celik",
+        "sd_id": 112725
+       },
+       {
+        "ad": "Juliet Emereole",
+        "sd_id": 122962
+       },
+       {
+        "ad": "Melisa Keser",
+        "sd_id": 39869
+       },
+       {
+        "ad": "Ayse Kirca",
+        "sd_id": 126139
+       }
+      ],
+      [
+       {
+        "ad": "Nisa Bekdemir",
+        "sd_id": 122652
+       },
+       {
+        "ad": "Tetê",
+        "sd_id": 73006
+       },
+       {
+        "ad": "Nice Santos",
+        "sd_id": 126840
+       }
+      ],
+      [
+       {
+        "ad": "İlayda Akdeniz",
+        "sd_id": 109046
+       },
+       {
+        "ad": "Marlene Flores",
+        "sd_id": 46682
+       },
+       {
+        "ad": "Seda Turkes",
+        "sd_id": 126152
+       }
+      ]
+     ],
+     "teknik": "Berfu Kaya",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Kayseri Kadin FK",
+     "sema": "4-5-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Damla Kasap",
+        "sd_id": 117896
+       }
+      ],
+      [
+       {
+        "ad": "Blessed Isigbo",
+        "sd_id": 122963
+       },
+       {
+        "ad": "Bunmi Oladeji",
+        "sd_id": 122908
+       }
+      ],
+      [
+       {
+        "ad": "Aysegul Aydin",
+        "sd_id": 106847
+       },
+       {
+        "ad": "Mine Okaytu",
+        "sd_id": 42000
+       },
+       {
+        "ad": "Ayo Omosuyi",
+        "sd_id": 122966
+       },
+       {
+        "ad": "Nur Şenses",
+        "sd_id": 42001
+       }
+      ],
+      [
+       {
+        "ad": "Hembafan Ayatsea",
+        "sd_id": 122961
+       },
+       {
+        "ad": "Kafayat Bashiru",
+        "sd_id": 120621
+       },
+       {
+        "ad": "Cynthia Mega",
+        "sd_id": 122965
+       },
+       {
+        "ad": "Laurie Moïse",
+        "sd_id": 99816
+       }
+      ]
+     ],
+     "teknik": "Enes Karakaya",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Kafayat Bashiru",
+     "sd_id": 120621,
+     "dk": "2",
+     "tur": "Right-foot shot",
+     "asist": "Mine Okaytu",
+     "asist_sd_id": 42000,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:2",
+     "taraf": "dep",
+     "ad": "Laurie Moïse",
+     "sd_id": 99816,
+     "dk": "17",
+     "tur": "Penalty",
+     "asist": "Melisa Keser",
+     "asist_sd_id": 39869,
+     "asist_tur": "Penalty: handball by"
+    },
+    {
+     "skor": "0:3",
+     "taraf": "dep",
+     "ad": "Mine Okaytu",
+     "sd_id": 42000,
+     "dk": "44",
+     "tur": "Right-foot shot",
+     "asist": "Kafayat Bashiru",
+     "asist_sd_id": 120621,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:4",
+     "taraf": "dep",
+     "ad": "Hembafan Ayatsea",
+     "sd_id": 122961,
+     "dk": "88",
+     "tur": "Long distance kick",
+     "asist": "Mariam Abdulkabir",
+     "asist_sd_id": 122959,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "İlayda Akdeniz",
+     "cikan_sd_id": 109046,
+     "giren": "Yaren Civelek",
+     "giren_sd_id": 79487,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "69",
+     "cikan": "Nisa Bekdemir",
+     "cikan_sd_id": 122652,
+     "giren": "Asya Bayraktar",
+     "giren_sd_id": 112715,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "69",
+     "cikan": "Tetê",
+     "cikan_sd_id": 73006,
+     "giren": "Sevgi Kuvan",
+     "giren_sd_id": 126150,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "76",
+     "cikan": "Esma Celik",
+     "cikan_sd_id": 112725,
+     "giren": "Fatma Koc",
+     "giren_sd_id": 126140,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Aysegul Aydin",
+     "cikan_sd_id": 106847,
+     "giren": "Ayşe Demirci",
+     "giren_sd_id": 108900,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "65",
+     "cikan": "Mine Okaytu",
+     "cikan_sd_id": 42000,
+     "giren": "Mariam Abdulkabir",
+     "giren_sd_id": 122959,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "65",
+     "cikan": "Blessed Isigbo",
+     "cikan_sd_id": 122963,
+     "giren": "Marlène Essimi",
+     "giren_sd_id": 91919,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "74",
+     "cikan": "Laurie Moïse",
+     "cikan_sd_id": 99816,
+     "giren": "Yaren Cankaya",
+     "giren_sd_id": 122732,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "80",
+     "cikan": "Cynthia Mega",
+     "cikan_sd_id": 122965,
+     "giren": "Elanur Cikili",
+     "giren_sd_id": 106848,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "82",
+     "ad": "Ayşe Demirci",
+     "sd_id": 108900,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Thaynara",
+      "sd_id": 126270,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Esma Celik",
+      "sd_id": 112725,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 15,
+      "ad": "Juliet Emereole",
+      "sd_id": 122962,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Melisa Keser",
+      "sd_id": 39869,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 21,
+      "ad": "Ayse Kirca",
+      "sd_id": 126139,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 0,
+      "ad": "Nisa Bekdemir",
+      "sd_id": 122652,
+      "mevki": "Midfield",
+      "yas": 16
+     },
+     {
+      "no": 0,
+      "ad": "Tetê",
+      "sd_id": 73006,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 0,
+      "ad": "Nice Santos",
+      "sd_id": 126840,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 10,
+      "ad": "İlayda Akdeniz",
+      "sd_id": 109046,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 9,
+      "ad": "Marlene Flores",
+      "sd_id": 46682,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 28,
+      "ad": "Seda Turkes",
+      "sd_id": 126152,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ],
+    "dep": [
+     {
+      "no": 77,
+      "ad": "Damla Kasap",
+      "sd_id": 117896,
+      "mevki": "Goalkeeper",
+      "yas": 16
+     },
+     {
+      "no": 16,
+      "ad": "Blessed Isigbo",
+      "sd_id": 122963,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 15,
+      "ad": "Bunmi Oladeji",
+      "sd_id": 122908,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 74,
+      "ad": "Aysegul Aydin",
+      "sd_id": 106847,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 10,
+      "ad": "Mine Okaytu",
+      "sd_id": 42000,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 33,
+      "ad": "Ayo Omosuyi",
+      "sd_id": 122966,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 11,
+      "ad": "Nur Şenses",
+      "sd_id": 42001,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 13,
+      "ad": "Hembafan Ayatsea",
+      "sd_id": 122961,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 17,
+      "ad": "Kafayat Bashiru",
+      "sd_id": 120621,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 20,
+      "ad": "Cynthia Mega",
+      "sd_id": 122965,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 22,
+      "ad": "Laurie Moïse",
+      "sd_id": 99816,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 22,
+      "ad": "Melisa Kara",
+      "sd_id": 118833,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 6,
+      "ad": "Yaren Civelek",
+      "sd_id": 79487,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 4,
+      "ad": "Fatma Koc",
+      "sd_id": 126140,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 11,
+      "ad": "Sevgi Kuvan",
+      "sd_id": 126150,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 7,
+      "ad": "Asya Bayraktar",
+      "sd_id": 112715,
+      "mevki": "Striker",
+      "yas": 17
+     }
+    ],
+    "dep": [
+     {
+      "no": 27,
+      "ad": "Rita Akarekor",
+      "sd_id": 33536,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 18,
+      "ad": "Yaren Cankaya",
+      "sd_id": 122732,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 3,
+      "ad": "Marlène Essimi",
+      "sd_id": 91919,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 23,
+      "ad": "Elanur Cikili",
+      "sd_id": 106848,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 9,
+      "ad": "Ayşe Demirci",
+      "sd_id": 108900,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 14,
+      "ad": "Mariam Abdulkabir",
+      "sd_id": 122959,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 172364,
+   "hafta": 10,
+   "ev": "Amed Sportif FK",
+   "dep": "1207 Antalyaspor",
+   "tarih": "08.11.2026",
+   "skor": "2:0",
+   "iy": "1:0",
+   "hafta_sd": 10,
+   "saat": "14:00",
+   "seyirci": 50,
+   "hakem": "Gülsüm Bahce",
+   "stat": "Seyrantepe 1 No.lu Çim Saha",
+   "ev_id": 7245,
+   "dep_id": 7352,
+   "dizilis": {
+    "ev": {
+     "takim": "Amed Sportif FK",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Tina Kolgeci",
+        "sd_id": 30908
+       }
+      ],
+      [
+       {
+        "ad": "Inès Maague",
+        "sd_id": 91920
+       },
+       {
+        "ad": "Nazlı Örnek",
+        "sd_id": 41789
+       },
+       {
+        "ad": "Betina Petit-Frère",
+        "sd_id": 33917
+       },
+       {
+        "ad": "Sema Polat",
+        "sd_id": 41722
+       }
+      ],
+      [
+       {
+        "ad": "Büsra Becerikli",
+        "sd_id": 40739
+       },
+       {
+        "ad": "Kevser Kartal",
+        "sd_id": 39867
+       }
+      ],
+      [
+       {
+        "ad": "Vina Crnoja",
+        "sd_id": 54800
+       },
+       {
+        "ad": "Tatiana Ewodo",
+        "sd_id": 40051
+       },
+       {
+        "ad": "Yolande Gnammi",
+        "sd_id": 115423
+       },
+       {
+        "ad": "Sara Vranić",
+        "sd_id": 61304
+       }
+      ]
+     ],
+     "teknik": "Cemal Cengizoglu",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "1207 Antalyaspor",
+     "sema": "4-5-1 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Olivia Asiamah",
+        "sd_id": 123060
+       }
+      ],
+      [
+       {
+        "ad": "Rita Doku",
+        "sd_id": 123067
+       },
+       {
+        "ad": "Amanda Lihv",
+        "sd_id": 123077
+       },
+       {
+        "ad": "Myla Schneider",
+        "sd_id": 117081
+       }
+      ],
+      [
+       {
+        "ad": "Yagmur Gönüllü",
+        "sd_id": 113665
+       },
+       {
+        "ad": "Chinatsu Kaio",
+        "sd_id": 123074
+       },
+       {
+        "ad": "Fatma Kilinc",
+        "sd_id": 98196
+       },
+       {
+        "ad": "Kiera Laney",
+        "sd_id": 123076
+       },
+       {
+        "ad": "Francesca Lueya",
+        "sd_id": 75204
+       },
+       {
+        "ad": "Beyza Saruhan",
+        "sd_id": 66603
+       }
+      ],
+      [
+       {
+        "ad": "Helena Obeng",
+        "sd_id": 35901
+       }
+      ]
+     ],
+     "teknik": "Murat Yilmaz",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Yolande Gnammi",
+     "sd_id": 115423,
+     "dk": "37",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Vina Crnoja",
+     "sd_id": 54800,
+     "dk": "59",
+     "tur": "Right-foot shot",
+     "asist": "Nazlı Örnek",
+     "asist_sd_id": 41789,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Betina Petit-Frère",
+     "cikan_sd_id": 33917,
+     "giren": "Rabiya Karagül",
+     "giren_sd_id": 98505,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "cikan": "Yolande Gnammi",
+     "cikan_sd_id": 115423,
+     "giren": "Melike Dinçel",
+     "giren_sd_id": 40699,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Tatiana Ewodo",
+     "cikan_sd_id": 40051,
+     "giren": "Buket Karadağ",
+     "giren_sd_id": 76902,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Vina Crnoja",
+     "cikan_sd_id": 54800,
+     "giren": "Meryem Sevent",
+     "giren_sd_id": 112962,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "87",
+     "cikan": "Nazlı Örnek",
+     "cikan_sd_id": 41789,
+     "giren": "Beyza Semercioğlu",
+     "giren_sd_id": 41791,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "59",
+     "cikan": "Yagmur Gönüllü",
+     "cikan_sd_id": 113665,
+     "giren": "Sefika Öz",
+     "giren_sd_id": 98197,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Sefika Öz",
+     "cikan_sd_id": 98197,
+     "giren": "Nasma Manduta",
+     "giren_sd_id": 125122,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Olivia Asiamah",
+     "cikan_sd_id": 123060,
+     "giren": "Nurcan Yagci",
+     "giren_sd_id": 79433,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Francesca Lueya",
+     "cikan_sd_id": 75204,
+     "giren": "Karly Harfouche",
+     "giren_sd_id": 124482,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "68",
+     "ad": "Inès Maague",
+     "sd_id": 91920,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Tina Kolgeci",
+      "sd_id": 30908,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 15,
+      "ad": "Inès Maague",
+      "sd_id": 91920,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Nazlı Örnek",
+      "sd_id": 41789,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 7,
+      "ad": "Betina Petit-Frère",
+      "sd_id": 33917,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Sema Polat",
+      "sd_id": 41722,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 21,
+      "ad": "Büsra Becerikli",
+      "sd_id": 40739,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 61,
+      "ad": "Kevser Kartal",
+      "sd_id": 39867,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 10,
+      "ad": "Vina Crnoja",
+      "sd_id": 54800,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 99,
+      "ad": "Tatiana Ewodo",
+      "sd_id": 40051,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 12,
+      "ad": "Yolande Gnammi",
+      "sd_id": 115423,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 36,
+      "ad": "Sara Vranić",
+      "sd_id": 61304,
+      "mevki": "Striker",
+      "yas": 30
+     }
+    ],
+    "dep": [
+     {
+      "no": 23,
+      "ad": "Olivia Asiamah",
+      "sd_id": 123060,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 14,
+      "ad": "Rita Doku",
+      "sd_id": 123067,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 19,
+      "ad": "Amanda Lihv",
+      "sd_id": 123077,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 25,
+      "ad": "Myla Schneider",
+      "sd_id": 117081,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Yagmur Gönüllü",
+      "sd_id": 113665,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 30,
+      "ad": "Chinatsu Kaio",
+      "sd_id": 123074,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 22,
+      "ad": "Fatma Kilinc",
+      "sd_id": 98196,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 15,
+      "ad": "Kiera Laney",
+      "sd_id": 123076,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 8,
+      "ad": "Francesca Lueya",
+      "sd_id": 75204,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 61,
+      "ad": "Beyza Saruhan",
+      "sd_id": 66603,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 13,
+      "ad": "Helena Obeng",
+      "sd_id": 35901,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 29,
+      "ad": "Sude Sözüdoğru",
+      "sd_id": 42002,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 27,
+      "ad": "Nida Daglioglu",
+      "sd_id": 110743,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 28,
+      "ad": "Rabiya Karagül",
+      "sd_id": 98505,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 22,
+      "ad": "Beyza Semercioğlu",
+      "sd_id": 41791,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 72,
+      "ad": "Kezban Yorğa",
+      "sd_id": 111318,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 20,
+      "ad": "Melike Dinçel",
+      "sd_id": 40699,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 65,
+      "ad": "Esma Dural",
+      "sd_id": 111313,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 18,
+      "ad": "Tuana Şahin",
+      "sd_id": 57208,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 6,
+      "ad": "Meryem Sevent",
+      "sd_id": 112962,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 97,
+      "ad": "Buket Karadağ",
+      "sd_id": 76902,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Nurcan Yagci",
+      "sd_id": 79433,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Karly Harfouche",
+      "sd_id": 124482,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 17,
+      "ad": "Nasma Manduta",
+      "sd_id": 125122,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 6,
+      "ad": "Sefika Öz",
+      "sd_id": 98197,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 35,
+      "ad": "Sude Koc",
+      "sd_id": 126412,
+      "mevki": "Striker",
+      "yas": 16
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 172358,
+   "hafta": 10,
+   "ev": "Beşiktaş JK",
+   "dep": "Sultanbeyli Gücü SK",
+   "tarih": "08.11.2026",
+   "skor": "3:1",
+   "iy": "1:0",
+   "hafta_sd": 10,
+   "saat": "14:30",
+   "seyirci": 500,
+   "hakem": "Gurcan Bayraktar",
+   "stat": "15 Temmuz Stadı",
+   "ev_id": 6981,
+   "dep_id": 18221,
+   "dizilis": {
+    "ev": {
+     "takim": "Beşiktaş JK",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Selda Akgöz",
+        "sd_id": 15623
+       }
+      ],
+      [
+       {
+        "ad": "Yana Derkach",
+        "sd_id": 38636
+       },
+       {
+        "ad": "Meryem Küçükbirinci",
+        "sd_id": 70675
+       },
+       {
+        "ad": "Glory Ogbonna",
+        "sd_id": 35763
+       }
+      ],
+      [
+       {
+        "ad": "İlayda Civelek",
+        "sd_id": 40741
+       },
+       {
+        "ad": "Fatima Kome",
+        "sd_id": 37706
+       },
+       {
+        "ad": "Amira Ould Braham",
+        "sd_id": 30644
+       },
+       {
+        "ad": "Rafa Sudré",
+        "sd_id": 51334
+       }
+      ],
+      [
+       {
+        "ad": "Jelena Karličić",
+        "sd_id": 36125
+       },
+       {
+        "ad": "Esra Manya",
+        "sd_id": 44807
+       },
+       {
+        "ad": "Birgül Sadikoğlu",
+        "sd_id": 39871
+       }
+      ]
+     ],
+     "teknik": "Didem Karagenç",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Sultanbeyli Gücü SK",
+     "sema": "4-5-1 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Duygu Yılmaz",
+        "sd_id": 10623
+       }
+      ],
+      [
+       {
+        "ad": "Cigdem Belci",
+        "sd_id": 10526
+       },
+       {
+        "ad": "Serpil Isler",
+        "sd_id": 115930
+       },
+       {
+        "ad": "Armera Tukaj",
+        "sd_id": 42682
+       }
+      ],
+      [
+       {
+        "ad": "Ayse Sevval Ay",
+        "sd_id": 40664
+       },
+       {
+        "ad": "Teresa Deda",
+        "sd_id": 113119
+       },
+       {
+        "ad": "Açelya Nomak",
+        "sd_id": 79476
+       },
+       {
+        "ad": "Tuana Yılmaz",
+        "sd_id": 57412
+       }
+      ],
+      [
+       {
+        "ad": "Şehriban Dülek",
+        "sd_id": 39864
+       },
+       {
+        "ad": "Irmak Olmezer",
+        "sd_id": 110771
+       },
+       {
+        "ad": "Valentina Troka",
+        "sd_id": 90951
+       }
+      ]
+     ],
+     "teknik": "Çağdaş Töre",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "İlayda Civelek",
+     "sd_id": 40741,
+     "dk": "4",
+     "tur": "Long distance kick"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Jelena Karličić",
+     "sd_id": 36125,
+     "dk": "48",
+     "tur": "Right-foot shot",
+     "asist": "Fatima Kome",
+     "asist_sd_id": 37706,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "3:0",
+     "taraf": "ev",
+     "ad": "Sevgi Çınar",
+     "sd_id": 15624,
+     "dk": "79",
+     "tur": "Counter attack goal"
+    },
+    {
+     "skor": "3:1",
+     "taraf": "dep",
+     "ad": "Şehriban Dülek",
+     "sd_id": 39864,
+     "dk": "82",
+     "tur": "Right-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "58",
+     "cikan": "Esra Manya",
+     "cikan_sd_id": 44807,
+     "giren": "Milica Popović",
+     "giren_sd_id": 89266,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "58",
+     "cikan": "Yana Derkach",
+     "cikan_sd_id": 38636,
+     "giren": "Ecemnur Öztürk",
+     "giren_sd_id": 77024,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Jelena Karličić",
+     "cikan_sd_id": 36125,
+     "giren": "Sevgi Çınar",
+     "giren_sd_id": 15624,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Rafa Sudré",
+     "cikan_sd_id": 51334,
+     "giren": "Cansu Kaya",
+     "giren_sd_id": 39868,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Amira Ould Braham",
+     "cikan_sd_id": 30644,
+     "giren": "Nihal Saraç",
+     "giren_sd_id": 63004,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Armera Tukaj",
+     "cikan_sd_id": 42682,
+     "giren": "Amani Ayed",
+     "giren_sd_id": 110242,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "58",
+     "cikan": "Tuana Yılmaz",
+     "cikan_sd_id": 57412,
+     "giren": "Cansu İriş",
+     "giren_sd_id": 43159,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "58",
+     "cikan": "Irmak Olmezer",
+     "cikan_sd_id": 110771,
+     "giren": "Ülkü Kahya",
+     "giren_sd_id": 56518,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "74",
+     "cikan": "Valentina Troka",
+     "cikan_sd_id": 90951,
+     "giren": "Canan Çetin",
+     "giren_sd_id": 41994,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Serpil Isler",
+     "cikan_sd_id": 115930,
+     "giren": "Judith Menguene",
+     "giren_sd_id": 123523,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "74",
+     "ad": "Açelya Nomak",
+     "sd_id": 79476,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Selda Akgöz",
+      "sd_id": 15623,
+      "mevki": "Goalkeeper",
+      "yas": 33
+     },
+     {
+      "no": 99,
+      "ad": "Yana Derkach",
+      "sd_id": 38636,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 5,
+      "ad": "Meryem Küçükbirinci",
+      "sd_id": 70675,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Glory Ogbonna",
+      "sd_id": 35763,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 17,
+      "ad": "İlayda Civelek",
+      "sd_id": 40741,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 10,
+      "ad": "Fatima Kome",
+      "sd_id": 37706,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 22,
+      "ad": "Amira Ould Braham",
+      "sd_id": 30644,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 7,
+      "ad": "Rafa Sudré",
+      "sd_id": 51334,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 11,
+      "ad": "Jelena Karličić",
+      "sd_id": 36125,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Esra Manya",
+      "sd_id": 44807,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 27,
+      "ad": "Birgül Sadikoğlu",
+      "sd_id": 39871,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Duygu Yılmaz",
+      "sd_id": 10623,
+      "mevki": "Goalkeeper",
+      "yas": 38
+     },
+     {
+      "no": 5,
+      "ad": "Cigdem Belci",
+      "sd_id": 10526,
+      "mevki": "Defence",
+      "yas": 39
+     },
+     {
+      "no": 14,
+      "ad": "Serpil Isler",
+      "sd_id": 115930,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 13,
+      "ad": "Armera Tukaj",
+      "sd_id": 42682,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 4,
+      "ad": "Ayse Sevval Ay",
+      "sd_id": 40664,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 21,
+      "ad": "Teresa Deda",
+      "sd_id": 113119,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 18,
+      "ad": "Açelya Nomak",
+      "sd_id": 79476,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 8,
+      "ad": "Tuana Yılmaz",
+      "sd_id": 57412,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 10,
+      "ad": "Şehriban Dülek",
+      "sd_id": 39864,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 84,
+      "ad": "Irmak Olmezer",
+      "sd_id": 110771,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 15,
+      "ad": "Valentina Troka",
+      "sd_id": 90951,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 26,
+      "ad": "Damla Şahin",
+      "sd_id": 39873,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 23,
+      "ad": "Yeliz Açar",
+      "sd_id": 41607,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 21,
+      "ad": "Damla Bozyel",
+      "sd_id": 40697,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 13,
+      "ad": "Ece Tekmen",
+      "sd_id": 41726,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 2,
+      "ad": "Berna Yeniçeri",
+      "sd_id": 22244,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 77,
+      "ad": "Sevgi Çınar",
+      "sd_id": 15624,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 20,
+      "ad": "Cansu Kaya",
+      "sd_id": 39868,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 18,
+      "ad": "Ecemnur Öztürk",
+      "sd_id": 77024,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 8,
+      "ad": "Nihal Saraç",
+      "sd_id": 63004,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 9,
+      "ad": "Milica Popović",
+      "sd_id": 89266,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ],
+    "dep": [
+     {
+      "no": 25,
+      "ad": "Ayse Göktürk",
+      "sd_id": 43415,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 96,
+      "ad": "Sude Yolcu",
+      "sd_id": 41733,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 3,
+      "ad": "Judith Menguene",
+      "sd_id": 123523,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 6,
+      "ad": "Nur Yuntur",
+      "sd_id": 115934,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 55,
+      "ad": "Amani Ayed",
+      "sd_id": 110242,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 7,
+      "ad": "Canan Çetin",
+      "sd_id": 41994,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 30,
+      "ad": "Havva Isgi",
+      "sd_id": 103628,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 23,
+      "ad": "Ülkü Kahya",
+      "sd_id": 56518,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 99,
+      "ad": "Cansu İriş",
+      "sd_id": 43159,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 172365,
+   "hafta": 10,
+   "ev": "Bilgi Doga SK",
+   "dep": "Trabzonspor",
+   "tarih": "08.11.2026",
+   "skor": "0:7",
+   "iy": "0:4",
+   "hafta_sd": 10,
+   "saat": "14:30",
+   "seyirci": 50,
+   "hakem": "Mahmut Mert Ipek",
+   "stat": "Şile İlçe Stadı",
+   "ev_id": 15914,
+   "dep_id": 792,
+   "dizilis": {
+    "ev": {
+     "takim": "Bilgi Doga SK",
+     "sema": "4-5-1 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Nisa Kizilkaya",
+        "sd_id": 103382
+       }
+      ],
+      [
+       {
+        "ad": "Samira Ashirova",
+        "sd_id": 47347
+       },
+       {
+        "ad": "Hilal Karagöz",
+        "sd_id": 72539
+       },
+       {
+        "ad": "Ecrin Koyun",
+        "sd_id": 105233
+       }
+      ],
+      [
+       {
+        "ad": "Nazli Feride Aletirik",
+        "sd_id": 43190
+       },
+       {
+        "ad": "Gamze Demirtas",
+        "sd_id": 124495
+       },
+       {
+        "ad": "Filiz Kurtuluş",
+        "sd_id": 80930
+       },
+       {
+        "ad": "Amarachi Odoma",
+        "sd_id": 121300
+       }
+      ],
+      [
+       {
+        "ad": "Grace Bleu",
+        "sd_id": 122865
+       },
+       {
+        "ad": "Bouazo Gemima",
+        "sd_id": 123589
+       },
+       {
+        "ad": "Judy Okah",
+        "sd_id": 107687
+       }
+      ]
+     ],
+     "teknik": "Mihrican Ocaktan",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Trabzonspor",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Fatma Şahin",
+        "sd_id": 11484
+       }
+      ],
+      [
+       {
+        "ad": "Medine Erkan",
+        "sd_id": 30280
+       },
+       {
+        "ad": "Sare Öztürk",
+        "sd_id": 41721
+       },
+       {
+        "ad": "Blerta Smaili",
+        "sd_id": 33313
+       }
+      ],
+      [
+       {
+        "ad": "Marija Aleksić",
+        "sd_id": 26469
+       },
+       {
+        "ad": "Benan Altintaş",
+        "sd_id": 41694
+       },
+       {
+        "ad": "Azra Ardos",
+        "sd_id": 41990
+       },
+       {
+        "ad": "Donjeta Halilaj",
+        "sd_id": 30929
+       },
+       {
+        "ad": "Chioma Olise",
+        "sd_id": 75544
+       }
+      ],
+      [
+       {
+        "ad": "Millie Farrow",
+        "sd_id": 26152
+       },
+       {
+        "ad": "Violah Nambi",
+        "sd_id": 39207
+       }
+      ]
+     ],
+     "teknik": "Bahar Özgüvenç",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Medine Erkan",
+     "sd_id": 30280,
+     "dk": "13",
+     "tur": "Tap-in",
+     "asist": "Donjeta Halilaj",
+     "asist_sd_id": 30929,
+     "asist_tur": "Corner"
+    },
+    {
+     "skor": "0:2",
+     "taraf": "dep",
+     "ad": "Millie Farrow",
+     "sd_id": 26152,
+     "dk": "32",
+     "tur": "Tap-in",
+     "asist": "Violah Nambi",
+     "asist_sd_id": 39207,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:3",
+     "taraf": "dep",
+     "ad": "Marija Aleksić",
+     "sd_id": 26469,
+     "dk": "34",
+     "tur": "Long distance kick",
+     "asist": "Donjeta Halilaj",
+     "asist_sd_id": 30929,
+     "asist_tur": "4. Vorlage"
+    },
+    {
+     "skor": "0:4",
+     "taraf": "dep",
+     "ad": "Donjeta Halilaj",
+     "sd_id": 30929,
+     "dk": "45+1",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "0:5",
+     "taraf": "dep",
+     "ad": "Donjeta Halilaj",
+     "sd_id": 30929,
+     "dk": "55",
+     "tur": "Penalty"
+    },
+    {
+     "skor": "0:6",
+     "taraf": "dep",
+     "ad": "Donjeta Halilaj",
+     "sd_id": 30929,
+     "dk": "72",
+     "tur": "Direct free kick"
+    },
+    {
+     "skor": "0:7",
+     "taraf": "dep",
+     "ad": "Millie Farrow",
+     "sd_id": 26152,
+     "dk": "90+1",
+     "tur": "Right-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Samira Ashirova",
+     "cikan_sd_id": 47347,
+     "giren": "Ilden Simsek",
+     "giren_sd_id": 123478,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Marija Aleksić",
+     "cikan_sd_id": 26469,
+     "giren": "Rabiya Isgi",
+     "giren_sd_id": 41996,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Azra Ardos",
+     "cikan_sd_id": 41990,
+     "giren": "Başak İçinözbebek",
+     "giren_sd_id": 40759,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "ad": "Nazli Feride Aletirik",
+     "sd_id": 43190,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "ad": "Filiz Kurtuluş",
+     "sd_id": 80930,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "80",
+     "ad": "Başak İçinözbebek",
+     "sd_id": 40759,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 29,
+      "ad": "Nisa Kizilkaya",
+      "sd_id": 103382,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 14,
+      "ad": "Samira Ashirova",
+      "sd_id": 47347,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 9,
+      "ad": "Hilal Karagöz",
+      "sd_id": 72539,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 4,
+      "ad": "Ecrin Koyun",
+      "sd_id": 105233,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 17,
+      "ad": "Nazli Feride Aletirik",
+      "sd_id": 43190,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 23,
+      "ad": "Gamze Demirtas",
+      "sd_id": 124495,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 6,
+      "ad": "Filiz Kurtuluş",
+      "sd_id": 80930,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 2,
+      "ad": "Amarachi Odoma",
+      "sd_id": 121300,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 21,
+      "ad": "Grace Bleu",
+      "sd_id": 122865,
+      "mevki": "Striker",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Bouazo Gemima",
+      "sd_id": 123589,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 26,
+      "ad": "Judy Okah",
+      "sd_id": 107687,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Fatma Şahin",
+      "sd_id": 11484,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 23,
+      "ad": "Medine Erkan",
+      "sd_id": 30280,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 13,
+      "ad": "Sare Öztürk",
+      "sd_id": 41721,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 5,
+      "ad": "Blerta Smaili",
+      "sd_id": 33313,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Marija Aleksić",
+      "sd_id": 26469,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 90,
+      "ad": "Benan Altintaş",
+      "sd_id": 41694,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 18,
+      "ad": "Azra Ardos",
+      "sd_id": 41990,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 10,
+      "ad": "Donjeta Halilaj",
+      "sd_id": 30929,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 16,
+      "ad": "Chioma Olise",
+      "sd_id": 75544,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 61,
+      "ad": "Millie Farrow",
+      "sd_id": 26152,
+      "mevki": "Striker",
+      "yas": 30
+     },
+     {
+      "no": 11,
+      "ad": "Violah Nambi",
+      "sd_id": 39207,
+      "mevki": "Striker",
+      "yas": 31
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 77,
+      "ad": "Ilden Simsek",
+      "sd_id": 123478,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 61,
+      "ad": "Arife Ispiroglu",
+      "sd_id": 117430,
+      "mevki": "Midfield",
+      "yas": 16
+     },
+     {
+      "no": 10,
+      "ad": "Ilayda Pinar",
+      "sd_id": 123477,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 55,
+      "ad": "Yaren Surutoglu",
+      "sd_id": 106704,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 8,
+      "ad": "Arzu Yedikardes",
+      "sd_id": 123476,
+      "mevki": "Midfield",
+      "yas": 18
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Zeynep Akdeniz",
+      "sd_id": 56515,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Rabia Küçük",
+      "sd_id": 41720,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 14,
+      "ad": "Madina Rouamba",
+      "sd_id": 74288,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Başak İçinözbebek",
+      "sd_id": 40759,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 22,
+      "ad": "Rabiya Isgi",
+      "sd_id": 41996,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 28,
+      "ad": "Fatma Kara",
+      "sd_id": 3461,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 17,
+      "ad": "Jae-eun Song",
+      "sd_id": 69661,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 6,
+      "ad": "Barbara Zágonyi",
+      "sd_id": 50909,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 25,
+      "ad": "Melissa Behinan",
+      "sd_id": 93028,
+      "mevki": "Striker",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Abi Kim",
+      "sd_id": 33938,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ]
+   },
+   "tam": true
   }
  ],
  "oynanmayan": [],
@@ -36485,36 +39116,6 @@
    "ev": "Ünye Kadın SK",
    "dep": "Giresun Sanayispor",
    "skor": "3:0"
-  },
-  {
-   "hafta": 10,
-   "ev": "Haymana SK",
-   "dep": "Bakirköy KFSK",
-   "skor": "1:1"
-  },
-  {
-   "hafta": 10,
-   "ev": "Giresun Sanayispor",
-   "dep": "Kayseri Kadın FK",
-   "skor": "0:4"
-  },
-  {
-   "hafta": 10,
-   "ev": "Amed Sportif FK",
-   "dep": "1207 Antalyaspor",
-   "skor": "2:0"
-  },
-  {
-   "hafta": 10,
-   "ev": "Beşiktaş JK",
-   "dep": "Sultanbeyli Gücü SK",
-   "skor": "3:1"
-  },
-  {
-   "hafta": 10,
-   "ev": "Bilgi Doğa SK",
-   "dep": "Trabzonspor",
-   "skor": "0:7"
   }
  ]
 }

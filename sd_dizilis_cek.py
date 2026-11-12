@@ -1,5 +1,6 @@
 """SoccerDonna — Kadın Futbol Süper Ligi maç raporları: diziliş, ilk 11, yedekler,
-goller, oyuncu değişiklikleri, kartlar.
+goller, oyuncu değişiklikleri, kartlar. --lig=<kod> ile başka ligler de çekilir
+(ENG1 WSL · BL1 Frauen-Bundesliga · ESP1 Liga F · IT1 Serie A · DAN1 Première Ligue · NWSL).
 
 Kaynak sayfalar (maç başına 2 istek):
   /index/spielbericht_<id>.html       → diziliş ("4-3-3 offensively-minded" + hatlar),
@@ -17,6 +18,7 @@ Kullanım:
     python sd_dizilis_cek.py              # eksik maçları çeker (tamamlananları atlar)
     python sd_dizilis_cek.py --tazele     # hepsini baştan çeker
     python sd_dizilis_cek.py --ozet       # çekmeden, eldeki dosyadan takım özeti
+    python sd_dizilis_cek.py --lig=ENG1   # başka lig → sd_dizilis_ENG1_2026_27.json (--sezon=2025, --azami=3 deneme)
 """
 import datetime
 import json
@@ -34,14 +36,29 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 KOK = Path(__file__).parent
 TABAN = "https://www.soccerdonna.de"
-LIG_SLUG = "kadin-futbol-sueper-ligi"
-LIG_KOD = "TUR1"
-SEZON_YIL = 2026                      # SD sezon anahtarı = sezonun başladığı yıl
-CIKTI = KOK / f"sd_dizilis_{SEZON_YIL}_{str(SEZON_YIL + 1)[2:]}.json"
+# SD lig kodu → (adres parçası, lig adı). 13 Kasım 2026: Süper Lig'in yanına büyük ligler eklendi
+# (havuzdaki oyuncuların BU SEZON oynama süresi için — açık olay verisi 2023/24'te kalıyor).
+LIGLER = {
+    "TUR1": ("kadin-futbol-sueper-ligi", "Kadın Futbol Süper Ligi"),
+    "ENG1": ("womens-super-league", "Women's Super League"),
+    "BL1": ("bundesliga", "Frauen-Bundesliga"),
+    "ESP1": ("primera-division-femenina", "Liga F"),
+    "IT1": ("serie-a-women", "Serie A Women"),
+    "DAN1": ("premire-ligue", "Première Ligue"),
+    "NWSL": ("nwsl", "NWSL"),
+}
+LIG_KOD = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--lig=")), "TUR1")
+LIG_SLUG, LIG_AD = LIGLER[LIG_KOD]
+# SD sezon anahtarı = sezonun başladığı yıl (2026 → 2026/27). Takvim yılı liglerinde (NWSL) de aynı anahtar denenir;
+# tutmazsa --sezon=2025 ile çağır.
+SEZON_YIL = int(next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--sezon=")), 2026))
+CIKTI = KOK / (f"sd_dizilis_{SEZON_YIL}_{str(SEZON_YIL + 1)[2:]}.json" if LIG_KOD == "TUR1"      # eski ad korunur (app.py okuyor)
+               else f"sd_dizilis_{LIG_KOD}_{SEZON_YIL}_{str(SEZON_YIL + 1)[2:]}.json")
+AZAMI_MAC = int(next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--azami=")), 0))    # deneme için: en çok N maç
 H = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
      "Accept-Language": "en-US,en;q=0.9"}
-BEKLE = 1.2
+BEKLE = 1.0
 try:
     import lxml  # noqa: F401
     AYRISTIRICI = "lxml"
@@ -319,6 +336,7 @@ def main():
     tazele = "--tazele" in sys.argv
     hazir = {} if tazele else {m["id"]: m for m in eski.get("maclar", []) if m.get("tam")}
     maclar, oynanmayan, raporsuz = [], [], []
+    bos_hafta, yeni_cekilen = 0, 0
     for hafta in range(1, AZAMI_HAFTA + 1):
         try:
             listelenen = []
@@ -333,6 +351,9 @@ def main():
             if kimlik in hazir:
                 maclar.append(hazir[kimlik]); oynanan += 1
                 continue
+            if AZAMI_MAC and yeni_cekilen >= AZAMI_MAC:
+                continue
+            yeni_cekilen += 1
             try:
                 m = index_coz(getir(yol))
             except Exception as e:
@@ -363,12 +384,17 @@ def main():
             for ev, dep, skor in listelenen:
                 if _sade(ev) + "|" + _sade(dep) not in adlar and re.fullmatch(r"\d+:\d+", skor):
                     raporsuz.append({"hafta": hafta, "ev": ev, "dep": dep, "skor": skor})
-        veri = {"sezon": f"{SEZON_YIL}-{str(SEZON_YIL + 1)[2:]}", "lig": "Kadın Futbol Süper Ligi",
+        veri = {"sezon": f"{SEZON_YIL}-{str(SEZON_YIL + 1)[2:]}", "lig": LIG_AD, "lig_kod": LIG_KOD,
                 "kaynak": "soccerdonna.de", "guncelleme": datetime.date.today().isoformat(),
                 "maclar": maclar, "oynanmayan": oynanmayan, "raporsuz": raporsuz}
         json.dump(veri, open(CIKTI, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        if oynanan == 0:          # bu haftada oynanmış maç yok → sonrası da oynanmamıştır
+        # Art arda İKİ haftada oynanmış maç yoksa dur (tek hafta ertelenmiş olabilir: milli ara, hava).
+        bos_hafta = bos_hafta + 1 if oynanan == 0 else 0
+        if bos_hafta >= 2 or (AZAMI_MAC and yeni_cekilen >= AZAMI_MAC):
             break
+    if not CIKTI.exists():
+        print(f"Hiç maç bulunamadı ({LIG_KOD}, sezon anahtarı {SEZON_YIL}) — takvim yılı liginde --sezon={SEZON_YIL - 1} dene.")
+        return
     ozet(json.load(open(CIKTI, encoding="utf-8")))
     print(f"\nYazıldı: {CIKTI}")
 
