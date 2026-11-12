@@ -4998,12 +4998,22 @@ setInterval(fit,1500);
 
 
 @st.cache_data(show_spinner=False, ttl=3600, max_entries=4)
-def _ws_havuz_json(dil: str, gun: str, _kadro: dict, _sd: dict, _leistung: dict) -> tuple:
+def _ws_havuz_json(dil: str, gun: str, _kadro: dict = None, _sd: dict = None,
+                   _leistung: dict = None) -> tuple:
     """Scouting havuzunun tablo satırları + filtre etiket haritaları, JSON metni olarak.
-    dil/gun önbellek anahtarıdır (etiketler dile, sözleşme rengi güne bağlı);
-    alt çizgili sözlükler hash'lenmez — çağıran zaten yüklediği kopyaları verir
-    (burada yeniden yüklemek ~40 MB'lık geçici kopya demekti, Render 512 MB)."""
+    dil/gun önbellek anahtarıdır (etiketler dile, sözleşme rengi güne bağlı).
+
+    BELLEK (2026-11-12, Render 512 MB aşımı → site 1,5 saat yanıtsız kaldı): büyük
+    sözlükler (havuz, SD profilleri, ~33 bin satırlık kariyer verisi ≈ 80-100 MB kopya)
+    eskiden HER scouting sayfa çalışmasında yüklenip buraya veriliyordu; oysa yalnız
+    önbellek kaçırınca (saatte bir) gerekiyor. Artık verilmezse burada, yalnız o an yüklenir."""
     import re as _r
+    if _kadro is None:
+        _kadro = birlesik_scout_yukle()
+    if _sd is None:
+        _sd = birlesik_sd_yukle()
+    if _leistung is None:
+        _leistung = birlesik_leistung_yukle()
     satirlar = []
     cn_map, lg_map, ro_map, ik_map, tg_map = {}, {}, {}, {}, {}
     try:      # piyasa değeri geçmişi (sd_tam_tazele.py yazar): {isim: [[tarih, euro], ...]}
@@ -6137,6 +6147,43 @@ def _duvar_onizleme_goster(kap_stil: str = ""):
         f"<span style='font-size:11pt;font-weight:600;color:#e9d5ff;'>🔒 +{max(0, toplam - len(sat))} "
         f"{t('oyuncu daha · filtre, karşılaştırma ve scout raporlarıyla', 'more players · with filters, comparison and scout reports')}</span>"
         "</div></div></div>", unsafe_allow_html=True)
+
+
+@st.cache_data(show_spinner=False)
+def _havuz_kimlik_listesi() -> list:
+    """Scouting havuzundaki (düşük notlu TR hariç) oyuncular: [isim, uyruk, 2. uyruk] — küçük liste."""
+    return [[k, v.get("vatandaslik", ""), v.get("milli_takim", "")]
+            for k, v in birlesik_scout_yukle().items()
+            if isinstance(v, dict) and not _dusuk_notlu_tr_mi(v)]
+
+
+@st.cache_resource(show_spinner=False)
+def _bellek_durum() -> dict:
+    return {"son": 0, "onceki": ""}
+
+
+def _bellek_izi():
+    """Render günlüğüne bellek izi (yalnız Linux): RSS en az 15 MB değiştiyse bir satır.
+    Artış bir ÖNCEKİ isteğin işidir, o yüzden önceki istek de yazılır. 12 Kasım 2026'da
+    bellek 512 MB sınırına dayanıp site 1,5 saat yanıtsız kaldı ve hangi sayfanın
+    şişirdiği günlükten anlaşılamadı — bu satırlar onun için."""
+    try:
+        with open("/proc/self/statm") as f:
+            rss = int(f.read().split()[1]) * 4096 // (1024 * 1024)
+    except Exception:
+        return
+    try:
+        qp = st.query_params
+        simdi = (f"sayfa={st.session_state.get('sayfa', '')} sekme={str(st.session_state.get('tr_sekme', ''))[:18]} "
+                 f"oyuncu={str(qp.get('oyuncu', ''))[:28]} paylas={str(qp.get('paylas', ''))[:28]} "
+                 f"kulup={str(qp.get('kulup', ''))[:20]} giris={bool(st.session_state.get('kulup_giris'))}")
+        d = _bellek_durum()
+        if abs(rss - d["son"]) >= 15:
+            print(f"[bellek] {d['son']} -> {rss} MB | onceki: {d['onceki']} | simdi: {simdi}", flush=True)
+            d["son"] = rss
+        d["onceki"] = simdi
+    except Exception:
+        pass
 
 
 @st.cache_data(show_spinner=False)
@@ -10900,6 +10947,8 @@ def render_paylasim_raporu(isim: str):
 
 
 # ─── HAKKINDA SAYFASI ─────────────────────────────────────────────────────────
+_bellek_izi()
+
 # ─── PAYLAŞIM RAPORU (?paylas=X) — public, giriş gerektirmez ──────────────────
 if params.get("paylas", "").strip():
     link_acilis_kaydet("rapor", params.get("paylas", "").strip(), params.get("k", ""))
@@ -12514,19 +12563,14 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
 
         # Roster kaynağı: Sco 🌍 sekmesi (scout_kadro_raporlar.json — commit'li snapshot).
         # Eşleşme anahtarı "Tam İsmi" = Sco 🌍'daki "Oyuncu Adı"; SD + scout raporu isimle eşleşir.
-        _kadro_roster = birlesik_scout_yukle()
-        # Türkiye ligi kaynaklı EE/FF notlu oyuncular scouting keşif/liste
-        # yüzeyinden çıkarılır (Yiğit, 19.08.2026: "genel olarak scouting
-        # tarafında ... göstermeyelim kararı aldık EE ve altını"). Kendi
-        # profiline doğrudan linkle erişim (paylaşım linki, My Squad'a
-        # önceden eklenmiş olma) etkilenmez — sadece keşif/liste görünümü.
-        sc_df = pd.DataFrame(
-            [{"Tam İsmi": _isim, "Vatandaşlık": _v.get("vatandaslik", ""),
-              "Vatandaşlık2": _v.get("milli_takim", "")}   # 2. pasaport (AB filtresi için)
-             for _isim, _v in _kadro_roster.items() if not _dusuk_notlu_tr_mi(_v)]
-        )
-        sd_data = birlesik_sd_yukle()
-        leistung_data = birlesik_leistung_yukle()
+        # Türkiye ligi kaynaklı EE/FF notlu oyuncular scouting keşif/liste yüzeyinden
+        # çıkarılır (Yiğit, 19.08.2026). Kendi profiline doğrudan linkle erişim etkilenmez.
+        # BELLEK (2026-11-12): yalnız isim + iki uyruk gerekiyor; eskiden bunun için
+        # havuzun TAM kopyası (~25 MB) her sayfa çalışmasında çekiliyordu.
+        sc_df = pd.DataFrame(_havuz_kimlik_listesi(),
+                             columns=["Tam İsmi", "Vatandaşlık", "Vatandaşlık2"])
+        # SD profilleri ve kariyer verisi artık burada YÜKLENMEZ (bkz. _ws_havuz_json
+        # bellek notu) — yalnız gerçekten kullanan dal kendi yükler.
         _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
         _etiket_liste = etiket_kullanici(_sl_kullanici)
@@ -12673,15 +12717,15 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
                     with st.expander(
                             t("⚖️ Shortlist Karşılaştırma", "⚖️ Shortlist Comparison"),
                             expanded=True):
-                        shortlist_karsilastirma_goster(_sl_gorunen, sd_data, leistung_data)
+                        shortlist_karsilastirma_goster(_sl_gorunen, birlesik_sd_yukle(),
+                                                       birlesik_leistung_yukle())
                 # Shortlist sekmesi: W-Scope 'Favoriler' tarzı kartlar + scout notu/durum
                 render_shortlist_kartlari(_sl_liste, _sl_kullanici)
             else:
                 import datetime as _dt_ws
                 _sat_json, _har_json = _ws_havuz_json(
                     "EN" if st.session_state.get("dil") == "EN" else "TR",
-                    _dt_ws.date.today().isoformat(),
-                    _kadro_roster, sd_data, leistung_data)
+                    _dt_ws.date.today().isoformat())
                 if _deneme_scout:
                     _sat_json = json.dumps(
                         [_r for _r in json.loads(_sat_json)
@@ -12690,7 +12734,10 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
                 _ws_tablo_bileseni(_sat_json, _har_json, _sl_liste)
 
             with st.expander(f"📊 {t('Veri Kapsama', 'Data Coverage')}"):
-                veri_kapsama_goster(sc_df, isim_col, sd_data, leistung_data)
+                # İsteğe bağlı: açılmadıkça büyük veri yüklenmez (expander gövdesi her
+                # çalışmada koşar — eskiden her sayfa açılışında ~100 MB kopya demekti).
+                if st.checkbox(t("Kapsama özetini hesapla", "Compute coverage summary"), key="kapsama_goster"):
+                    veri_kapsama_goster(sc_df, isim_col, birlesik_sd_yukle(), birlesik_leistung_yukle())
     else:
         _blog_duyuru("max-width:560px;margin:24px auto 0;")
         _duvar_onizleme_goster("max-width:560px;margin:14px auto -40px;")
