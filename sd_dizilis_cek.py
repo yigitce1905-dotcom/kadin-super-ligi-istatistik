@@ -46,7 +46,12 @@ LIGLER = {
     "IT1": ("serie-a-women", "Serie A Women"),
     "DAN1": ("premire-ligue", "Première Ligue"),
     "NWSL": ("nwsl", "NWSL"),
+    # Avrupa kupaları (13 Kasım 2026): hafta sayfası yok, bütün turlar tek sayfada (gruppenspieltage + startseite)
+    "CL": ("uefa-womens-champions-league", "UEFA Şampiyonlar Ligi"),
+    "CLQ": ("uefa-womens-champions-league-qualifying", "UEFA Şampiyonlar Ligi ön eleme"),
+    "EC": ("uefa-womens-europa-cup", "UEFA Avrupa Kupası"),
 }
+KUPALAR = {"CL", "CLQ", "EC"}
 LIG_KOD = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--lig=")), "TUR1")
 LIG_SLUG, LIG_AD = LIGLER[LIG_KOD]
 # SD sezon anahtarı = sezonun başladığı yıl (2026 → 2026/27). Takvim yılı liglerinde (NWSL) de aynı anahtar denenir;
@@ -328,10 +333,62 @@ def ozet(veri):
         print(f"{ad[:28]:28} {sum(c.values()):>3}  " + ", ".join(f"{k} ×{n}" for k, n in c.most_common()))
 
 
+def kupa_main(eski):
+    """Kupa yarışması: maç raporu bağlantıları iki sayfadan toplanır, her maç lig maçıyla aynı biçimde okunur."""
+    tazele = "--tazele" in sys.argv
+    hazir = {} if tazele else {m["id"]: m for m in eski.get("maclar", []) if m.get("tam")}
+    baglar = {}
+    for sayfa in ("gruppenspieltage", "startseite"):
+        html = getir(f"/en/{LIG_SLUG}/{sayfa}/pokalwettbewerb_{LIG_KOD}.html")
+        for yol, kimlik in re.findall(r'href="(/en/[^"]*/index/spielbericht_(\d+)\.html)"', html):
+            baglar.setdefault(int(kimlik), yol)
+    print(f"{LIG_AD}: {len(baglar)} maç bağlantısı · önceden tam {sum(1 for k in baglar if k in hazir)}", flush=True)
+    maclar, oynanmayan, yeni = [], [], 0
+    for kimlik, yol in sorted(baglar.items()):
+        if kimlik in hazir:
+            maclar.append(hazir[kimlik])
+            continue
+        if AZAMI_MAC and yeni >= AZAMI_MAC:
+            continue
+        yeni += 1
+        try:
+            m = index_coz(getir(yol))
+        except Exception as e:
+            print(f"[kupa] {kimlik} HATA {type(e).__name__}: {str(e)[:60]}", flush=True)
+            continue
+        m = {"id": kimlik, "hafta": m.get("hafta_sd") or 0, **m}
+        if not m.get("skor"):
+            oynanmayan.append({"id": kimlik, "hafta": 0, "ev": m.get("ev", ""), "dep": m.get("dep", ""), "tarih": m.get("tarih", "")})
+            continue
+        try:
+            m.update(kadro_coz(getir(yol.replace("/index/", "/aufstellung/"))))
+        except Exception as e:
+            print(f"[kupa] {kimlik} kadro HATA {type(e).__name__}: {str(e)[:60]}", flush=True)
+        m["tam"] = bool(m.get("dizilis", {}).get("ev") and m.get("dizilis", {}).get("dep")
+                        and m.get("ilk11", {}).get("ev") and m.get("ilk11", {}).get("dep"))
+        maclar.append(m)
+        print(f"[hafta 0] {m.get('ev', '?')[:22]:22} {m['skor']:>5} {m.get('dep', '?')[:22]:22} {m.get('tarih', '')}"
+              + ("" if m["tam"] else "  (eksik)"), flush=True)
+        if yeni % 10 == 0:
+            json.dump({"sezon": f"{SEZON_YIL}-{str(SEZON_YIL + 1)[2:]}", "lig": LIG_AD, "lig_kod": LIG_KOD, "kupa": True,
+                       "kaynak": "soccerdonna.de", "guncelleme": datetime.date.today().isoformat(),
+                       "maclar": maclar, "oynanmayan": oynanmayan, "raporsuz": []},
+                      open(CIKTI, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    json.dump({"sezon": f"{SEZON_YIL}-{str(SEZON_YIL + 1)[2:]}", "lig": LIG_AD, "lig_kod": LIG_KOD, "kupa": True,
+               "kaynak": "soccerdonna.de", "guncelleme": datetime.date.today().isoformat(),
+               "maclar": maclar, "oynanmayan": oynanmayan, "raporsuz": []},
+              open(CIKTI, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"{len(maclar)} maç kaydı · tam {sum(1 for m in maclar if m.get('tam'))} · oynanmamış {len(oynanmayan)}")
+    print(f"Yazıldı: {CIKTI}")
+
+
 def main():
     eski = json.load(open(CIKTI, encoding="utf-8")) if CIKTI.exists() else {}
     if "--ozet" in sys.argv:
         ozet(eski)
+        return
+    if LIG_KOD in KUPALAR:
+        kupa_main(eski)
         return
     tazele = "--tazele" in sys.argv
     hazir = {} if tazele else {m["id"]: m for m in eski.get("maclar", []) if m.get("tam")}

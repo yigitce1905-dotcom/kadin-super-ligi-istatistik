@@ -1,6 +1,6 @@
 """Bütün liglerin maç raporlarını tazeleyip oyuncu 'bu sezon' özetini yeniden üretir (haftada bir, tek komut).
 
-    python sd_form_tazele.py            # yedi lig: yalnız yeni maçlar çekilir, sonra sd_form_2026_27.json üretilir
+    python sd_form_tazele.py            # yedi lig + üç Avrupa kupası: yalnız yeni maçlar çekilir, sonra sd_form_2026_27.json üretilir
     python sd_form_tazele.py ENG1 BL1   # yalnız seçilen ligler
 
 Her lig ayrı süreçte çalışır (sd_dizilis_cek.py lig kodunu komut satırından okur). İlk tam çekim ~35 dk;
@@ -12,7 +12,8 @@ from pathlib import Path
 
 KOK = Path(__file__).parent
 # kod → SD sezon anahtarı (NWSL takvim yılı ligi: 2026 sezonu SD'de 2025 anahtarıyla duruyor)
-LIGLER = {"TUR1": 2026, "ENG1": 2026, "BL1": 2026, "ESP1": 2026, "IT1": 2026, "DAN1": 2026, "NWSL": 2025}
+LIGLER = {"TUR1": 2026, "ENG1": 2026, "BL1": 2026, "ESP1": 2026, "IT1": 2026, "DAN1": 2026, "NWSL": 2025,
+          "CL": 2026, "CLQ": 2026, "EC": 2026}          # Avrupa kupaları (Şampiyonlar Ligi, ön elemesi, Avrupa Kupası)
 
 
 def main():

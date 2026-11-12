@@ -55,13 +55,39 @@ def _tarih(s):
         return datetime.date(1900, 1, 1)
 
 
+def _durumlar(m, taraf):
+    """Bir maçta bir tarafın oyuncuları: {sd_id: (S ilk 11 | Y sonradan | B yedekte kaldı, dakika, ad)}."""
+    durum = {}
+    giren = {d["giren_sd_id"]: _dk(d["dk"]) for d in m.get("degisiklikler", []) if d["taraf"] == taraf and d.get("giren_sd_id")}
+    cikan = {d["cikan_sd_id"]: _dk(d["dk"]) for d in m.get("degisiklikler", []) if d["taraf"] == taraf and d.get("cikan_sd_id")}
+    for p in m["ilk11"].get(taraf, []):
+        if p.get("sd_id"):
+            durum[p["sd_id"]] = ("S", (cikan.get(p["sd_id"]) or 90), p["ad"])
+    for p in m.get("yedekler", {}).get(taraf, []):
+        sid = p.get("sd_id")
+        if not sid or sid in durum:
+            continue
+        if sid in giren and giren[sid] is not None:
+            durum[sid] = ("Y", max(1, (cikan.get(sid) or 90) - giren[sid]), p["ad"])
+        else:
+            durum[sid] = ("B", 0, p["ad"])
+    return durum
+
+
+AVR_ETIKET = {"CL": "UWCL", "CLQ": "UWCL", "EC": "UWEC"}      # ön eleme Şampiyonlar Ligi'ne sayılır
+
+
 def main():
     donem = {}            # (sd_id, takım kimliği) → sayaçlar
     takim_mac = {}        # (lig, takım kimliği) → [(tarih, {sd_id: durum})]
     lig_son, ligler = {}, []
+    kupalar = []
     for yol in sorted(glob.glob(str(KOK / "sd_dizilis_*.json"))):
         veri = json.load(open(yol, encoding="utf-8"))
         kod = veri.get("lig_kod") or "TUR1"
+        if veri.get("kupa"):              # Avrupa kupaları ayrı toplanır (lig "x/y ilk 11" hesabına karışmaz)
+            kupalar.append(veri)
+            continue
         maclar = sorted((m for m in veri.get("maclar", []) if m.get("ilk11", {}).get("ev") and m.get("ilk11", {}).get("dep")),
                         key=lambda m: _tarih(m.get("tarih")))
         if not maclar:
@@ -72,20 +98,7 @@ def main():
             for taraf in ("ev", "dep"):
                 tid = (kod, m.get(taraf + "_id") or m.get(taraf))
                 tad = m.get(taraf, "")
-                durum = {}
-                giren = {d["giren_sd_id"]: _dk(d["dk"]) for d in m.get("degisiklikler", []) if d["taraf"] == taraf and d.get("giren_sd_id")}
-                cikan = {d["cikan_sd_id"]: _dk(d["dk"]) for d in m.get("degisiklikler", []) if d["taraf"] == taraf and d.get("cikan_sd_id")}
-                for p in m["ilk11"].get(taraf, []):
-                    if p.get("sd_id"):
-                        durum[p["sd_id"]] = ("S", (cikan.get(p["sd_id"]) or 90), p["ad"])
-                for p in m.get("yedekler", {}).get(taraf, []):
-                    sid = p.get("sd_id")
-                    if not sid or sid in durum:
-                        continue
-                    if sid in giren and giren[sid] is not None:
-                        durum[sid] = ("Y", max(1, (cikan.get(sid) or 90) - giren[sid]), p["ad"])
-                    else:
-                        durum[sid] = ("B", 0, p["ad"])
+                durum = _durumlar(m, taraf)
                 takim_mac.setdefault(tid, []).append((tarih, durum))
                 for sid, (kod_d, dk, ad) in durum.items():
                     o = donem.setdefault((sid, tid), {"ad": ad, "takim": tad, "lig": kod, "kadro": 0, "ilk11": 0, "sonradan": 0,
@@ -170,6 +183,44 @@ def main():
                        "gol": 0, "asist": 0, "sari": 0, "kirmizi": 0, "son": "", "tm": n, "son5": "-" * min(5, n)}
         hic += 1
     print(f"sezon boyunca hiç kadroya girmemiş (profildeki kulübü kapsamda): {hic}")
+    # Avrupa kupaları: oyuncu başına yarışma etiketiyle ayrı sayaç → kayıt["avr"] = [{"y": "UWCL", "mac", "ilk11", "dk", "gol"}]
+    # (mac = forma giydiği maç). Ligi kapsam dışı olup yalnız Avrupa'da görünen oyuncuya (KuPS, St. Pölten, Vålerenga…)
+    # lig bölümü boş (tm = 0) bir kayıt açılır.
+    avrupa, avr_ad = {}, {}
+    for veri in kupalar:
+        et = AVR_ETIKET.get(veri.get("lig_kod"), veri.get("lig_kod"))
+        n = 0
+        for m in veri.get("maclar", []):
+            if not (m.get("ilk11", {}).get("ev") and m.get("ilk11", {}).get("dep")):
+                continue
+            n += 1
+            macta = {}
+            for taraf in ("ev", "dep"):
+                for sid, (kod_d, dk, ad) in _durumlar(m, taraf).items():
+                    sy = avrupa.setdefault(sid, {}).setdefault(et, {"mac": 0, "ilk11": 0, "dk": 0, "gol": 0})
+                    avr_ad[sid] = (ad, m.get(taraf, ""))
+                    if kod_d in ("S", "Y"):
+                        sy["mac"] += 1
+                        sy["ilk11"] += kod_d == "S"
+                        sy["dk"] += dk
+                    macta[sid] = sy
+            for g in m.get("goller", []):
+                if g.get("sd_id") in macta and "own goal" not in (g.get("tur") or "").lower():
+                    macta[g["sd_id"]]["gol"] += 1
+        print(f"{veri.get('lig_kod'):5} {veri.get('lig', ''):32} {n:4} maç (Avrupa)")
+    yalniz_avr = 0
+    for sid, etiketler in avrupa.items():
+        liste = [{"y": et, **sy} for et, sy in etiketler.items() if sy["mac"]]
+        if not liste:
+            continue
+        kayit = oyuncu.get(str(sid))
+        if kayit is None:
+            ad, takim = avr_ad[sid]
+            kayit = oyuncu[str(sid)] = {"ad": ad, "takim": takim, "lig": "", "kadro": 0, "ilk11": 0, "sonradan": 0, "dk": 0,
+                                        "gol": 0, "asist": 0, "sari": 0, "kirmizi": 0, "son": "", "tm": 0, "son5": ""}
+            yalniz_avr += 1
+        kayit["avr"] = liste
+    print(f"Avrupa kupalarında forma giyen: {sum(1 for k in oyuncu.values() if k.get('avr'))} · yalnız Avrupa'da görünen: {yalniz_avr}")
     cikti = {"guncelleme": datetime.date.today().isoformat(), "kaynak": "soccerdonna.de maç raporları", "ligler": ligler,
              "oyuncular": oyuncu}
     json.dump(cikti, open(CIKTI, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
