@@ -28,7 +28,7 @@ async def calistir(ws, etiket):
     m.rerun_script.query_string = qs
     t0 = time.perf_counter()
     await ws.send(m.SerializeToString())
-    metinler, tur = [], set()
+    metinler, tur, ogeler = [], set(), {}
     while True:
         ham = await asyncio.wait_for(ws.recv(), timeout=90)
         f = ForwardMsg()
@@ -37,13 +37,15 @@ async def calistir(ws, etiket):
         tur.add(t)
         if t == "delta" and f.delta.WhichOneof("type") == "new_element":
             e = f.delta.new_element
+            ogeler[e.WhichOneof("type")] = ogeler.get(e.WhichOneof("type"), 0) + 1
             if e.WhichOneof("type") == "markdown":
                 x = sade(e.markdown.body)
                 if x:
                     metinler.append(x)
         if t == "script_finished":
             break
-    print(f"--- {etiket}: {time.perf_counter() - t0:.1f} sn · {len(metinler)} metin bloğu · mesaj türleri {sorted(tur)}")
+    print(f"--- {etiket}: {time.perf_counter() - t0:.1f} sn · {len(metinler)} metin bloğu · öğeler {ogeler}"
+          + (" · İSTİSNA VAR" if "exception" in ogeler else ""))
     return metinler
 
 
