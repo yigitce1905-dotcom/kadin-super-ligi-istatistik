@@ -10558,7 +10558,7 @@ if str(pathlib.Path(__file__).parent) not in _sys.path:      # streamlit run bun
 import lig_motor as _lig_motor
 from lig_motor import LIG_SAYFA as _LIG_SAYFA, LIG_AD_EN as _LIG_AD_EN, LIG_KUPA as _LIG_KUPA, OPTA_SIRA as _OPTA_SIRA
 from lig_motor import LIG_ULKE as _LIG_ULKE
-_LIG_SEKME = ["liste", "genc", "profil", "karsilastir", "takim", "tablo", "eniyi", "arama", "yas", "kaleci"]
+_LIG_SEKME = ["liste", "oner", "genc", "profil", "karsilastir", "takim", "tablo", "eniyi", "onbir", "arama", "yas", "kaleci"]
 _CAPRAZ_SEKME = ["ligler", "eniyi", "genc", "kaleci", "arama"]          # "Tüm Ligler" kipi (lig kodu "ALL")
 
 
@@ -10604,6 +10604,7 @@ def _lig_sekme_etiketleri(kod: str) -> list:
               "arama": t("🔍 Oyuncu Arama", "🔍 Player Search")}
         return [(k, ad[k]) for k in _CAPRAZ_SEKME]
     ad = {"liste": t("📋 Oyuncu Listesi", "📋 Player List"), "genc": t("🌱 Genç Yetenekler", "🌱 Young Talents"),
+          "oner": t("🔄 Transfer Öner", "🔄 Transfer Suggest"), "onbir": t("⚽ Sezonun 11'i", "⚽ Team of the Season"),
           "profil": t("👤 Oyuncu Profili", "👤 Player Profile"), "karsilastir": t("⚡ Karşılaştırma", "⚡ Comparison"),
           "takim": t("🏟️ Takımlar", "🏟️ Teams"), "tablo": t("🏆 Lig Tablosu", "🏆 League Table"),
           "eniyi": t("🌟 En İyiler", "🌟 Top Performers"), "arama": t("🔍 Gelişmiş Arama", "🔍 Advanced Search"),
@@ -12166,6 +12167,29 @@ def lig_tam_yukle(kod: str) -> dict:
 
 
 @st.cache_resource(show_spinner=False)
+def _havuz_sd_sozlesme() -> dict:
+    """SoccerDonna oyuncu kimliği → (havuzdaki ad, sözleşme bitişi 'yyyy-aa-gg' ya da '', serbest mi).
+    Lig kipindeki Transfer Öner sekmesi için HAFİF harita: büyük sözlükler yalnız süreç başına bir kez okunur (Render 512 MB)."""
+    import re as _r
+    out = {}
+    try:
+        sd = birlesik_sd_yukle()
+        for ad, r in birlesik_scout_yukle().items():
+            if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
+                continue
+            p = sd.get(ad) if isinstance(sd.get(ad), dict) else {}
+            m = _r.search(r"spieler_(\d+)", str(p.get("profil_url") or ""))
+            if not m:
+                continue
+            k = _r.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", _kontrat_guncel(r.get("sozlesme", ""), p.get("Contract until", "")))
+            bitis = f"{k.group(3)}-{int(k.group(2)):02d}-{int(k.group(1)):02d}" if k else ""
+            out.setdefault(m.group(1), (ad, bitis, _isim_norm(str(r.get("kulup") or "")) in _SERBEST_ADLAR))
+    except Exception:
+        pass
+    return out
+
+
+@st.cache_resource(show_spinner=False)
 def _havuz_sd_kimlik() -> dict:
     """SoccerDonna oyuncu kimliği → havuzdaki ad (lig sayfasından scouting profiline bağlantı için)."""
     import re as _r
@@ -12463,6 +12487,137 @@ def render_lig_sekme(kod: str, sekme: str):
                  lambda o: round((o["gol"] + o["asist"]) * 90 / o["dk"], 2), uzun)
             _ilk(t("🧱 Tam süre oynanan maç", "🧱 Full matches played"), lambda o: sum(1 for s in o["log"] if s["d"] == "S" and s["dk"] >= 90),
                  lambda o: sum(1 for s in o["log"] if s["d"] == "S" and s["dk"] >= 90), saha)
+
+    # ───────────────────────── TRANSFER ÖNER (lig içi) ─────────────────────────
+    # TR Veri'deki Transfer Öner'in karşılığı (14 Kasım 2026): ligin kendi maç verisinden, seçilen ölçütlere göre öneri.
+    # Havuzda scouting kaydı olan oyuncuda sözleşme bitişi ve alıcı ülkenin transfer dönemine göre durum da görünür.
+    elif sekme == "oner":
+        from datetime import date as _date_o, datetime as _dt_o, timedelta as _td_o
+        _bugun_o = (_dt_o.utcnow() + _td_o(hours=3)).date()
+        _trd_o = _transfer_donemi(_trf_ulke_varsayilan(), _bugun_o.isoformat())
+        if _trd_o.get("fifa"):
+            st.markdown(f"<div class='tp-arametin' style='margin:-2px 0 10px;'>&#x1F5D3; {_html_bmp(_trf_donem_cumle(_trd_o))} · "
+                        + t("alıcı ülkeyi Sözleşme Takibi sayfasından değiştirebilirsin", "change the buying country on the Contract Watch page") + "</div>",
+                        unsafe_allow_html=True)
+        c1, c2, c3 = st.columns(3)
+        benim = c1.selectbox(t("Takımın (öneriden çıkarılır)", "Your team (excluded)"), [""] + takimlar, key=f"lg_ob_{anahtar}",
+                             format_func=lambda x: x or t("— seçme —", "— none —"))
+        gr = c2.selectbox(t("Mevki", "Position"), ["F", "O", "D", "K"], key=f"lg_og_{anahtar}", format_func=_lg_grup_ad)
+        ONC = {"skor": t("Skor katkısı (gol + asist / 90 dk)", "Output (goals + assists per 90)"),
+               "sure": t("Takımının değişmezi (ilk 11 payı)", "Regular starter (start share)"),
+               "genc": t("Genç ve süre alan (23 yaş ve altı)", "Young and playing (23 and under)")}
+        onc = c3.selectbox(t("Öncelik", "Priority"), list(ONC), key=f"lg_oo_{anahtar}", format_func=ONC.get)
+        c4, c5 = st.columns(2)
+        yas_o = c4.slider(t("Yaş", "Age"), 15, 40, (16, 30), key=f"lg_oy_{anahtar}")
+        dk_o = c5.slider(t("En az dakika", "Minimum minutes"), 0, 1800, 270, step=90, key=f"lg_od_{anahtar}")
+
+        def _pay(o):
+            return o["ilk11"] / max(1, L["takim"].get(o["takim"], {}).get("rapor", 1))
+
+        def _ga90(o):
+            return (o["gol"] + o["asist"]) * 90 / o["dk"] if o["dk"] else 0.0
+        aday = [o for o in saha if o.get("grup") == gr and o["dk"] >= dk_o and (not benim or o["takim"] != benim)
+                and (not o.get("yas") or yas_o[0] <= o["yas"] <= yas_o[1]) and (onc != "genc" or (o.get("yas") and o["yas"] <= 23))]
+        if gr == "K" and onc == "skor":
+            aday.sort(key=lambda o: (-o["gy"], o["yg"] * 90 / max(1, o["dk"]), -o["dk"]))
+        elif onc == "skor":
+            aday.sort(key=lambda o: (-_ga90(o), -o["dk"]))
+        elif onc == "sure":
+            aday.sort(key=lambda o: (-_pay(o), -o["dk"]))
+        else:
+            aday.sort(key=lambda o: (-o["dk"], o["yas"] or 99))
+        aday = aday[:15]
+        if not aday:
+            st.info(t("Bu ölçütlerde oyuncu yok; dakika ya da yaş sınırını gevşet.", "No players match; relax the minutes or age limits."))
+        else:
+            hs = _havuz_sd_sozlesme()
+            s1o, s2o = _date_o.fromisoformat(_trd_o["sinir1"]), _date_o.fromisoformat(_trd_o["sinir2"])
+            S = [t("Takım", "Team"), t("Yaş", "Age"), t("Maç", "Apps"), t("İlk 11 payı", "Start share"), t("Dk", "Min"), t("Gol", "Goals"), t("Asist", "Assists"),
+                 (t("Gol yemeden", "Clean sheets") if gr == "K" else t("G+A / 90", "G+A / 90")), t("Sözleşme · transfer dönemi", "Contract · window")]
+            bas = "<th class='num'>#</th>" + f"<th>{t('Oyuncu', 'Player')}</th>" + "".join(f"<th class='{'num' if 0 < i < 8 else ''}'>{x}</th>" for i, x in enumerate(S))
+            govde = ""
+            for i, o in enumerate(aday, 1):
+                hk = hs.get(o["sid"])
+                ad_h = f"<span class='ws-name' lang='{_isim_dil(o['ad'])}'>{_h.escape(o['ad'])}</span>"
+                soz = "<span style='color:#566179;'>—</span>"
+                if hk:
+                    ad_h += (f" <a href='?oyuncu={_urlquote(hk[0])}&dil={dq}' target='_blank' title='{t('Scouting profili', 'Scouting profile')}' "
+                             "style='text-decoration:none;font-size:0.78rem;'>&#x1F50E;</a>")
+                    try:
+                        bt = _date_o.fromisoformat(hk[1]) if hk[1] else None
+                    except ValueError:
+                        bt = None
+                    if hk[2]:
+                        soz = f"<span style='color:#1db954;font-weight:700;'>{t('serbest oyuncu', 'free agent')}</span>"
+                    elif bt and bt >= _bugun_o:
+                        if bt <= s1o:
+                            soz = f"<span style='color:#1db954;font-weight:700;'>{bt.strftime('%m/%Y')} · {t('sıradaki dönemde bonservissiz', 'free in the next window')}</span>"
+                        elif bt <= s2o:
+                            soz = f"<span style='color:#f59e0b;font-weight:700;'>{bt.strftime('%m/%Y')} · {t('sezon sonunda bonservissiz', 'free at season end')}</span>"
+                        else:
+                            soz = f"<span style='color:#94a3b8;'>{bt.strftime('%m/%Y')}</span>"
+                son = o["gy"] if gr == "K" else f"{_ga90(o):.2f}"
+                hucre = [(S[0], _h.escape(o["takim"]), ""), (S[1], o["yas"] or "—", "num ws-mono"), (S[2], o["mac"], "num ws-mono"),
+                         (S[3], f"%{round(100 * _pay(o))}", "num ws-mono"), (S[4], o["dk"], "num ws-mono"),
+                         (S[5], (f"<b style='color:#1db954;'>{o['gol']}</b>" if o["gol"] else 0), "num ws-mono"), (S[6], o["asist"], "num ws-mono"),
+                         (S[7], f"<b style='color:#c4b5fd;'>{son}</b>", "num ws-mono"), (S[8], soz, "")]
+                govde += (f"<tr><td class='num ws-mono'>{i}</td><td>{ad_h}</td>" + "".join(f"<td class='{c}' data-label='{e}'>{x}</td>" for e, x, c in hucre) + "</tr>")
+            st.markdown(_html_bmp(f"<div class='ws-wrap'><table class='ws-table'><thead><tr>{bas}</tr></thead><tbody>{govde}</tbody></table></div>"), unsafe_allow_html=True)
+            st.caption(t("İlk 15 öneri. Sözleşme bilgisi yalnız scouting havuzundaki oyuncularda vardır (🔎 = scouting profili, Premium); diğerlerinde SoccerDonna maç verisi gösterilir.",
+                         "Top 15 suggestions. Contract data exists only for players in the scouting pool (🔎 = scouting profile, Premium); the others show SoccerDonna match data."))
+            sid = _sec_oyuncu(t("Profilini aç", "Open profile"), aday, f"lg_op_{anahtar}")
+            if sid:
+                _profile_git(sid)
+
+    # ───────────────────────── SEZONUN 11'İ ─────────────────────────
+    # TR Veri'deki Fantasy Kadro'nun karşılığı: istatistikten kurulan 11. Kural sayfada yazılı (gizli bir "puan" yok).
+    elif sekme == "onbir":
+        DZ = {"4-3-3": (4, 3, 3), "4-4-2": (4, 4, 2), "3-5-2": (3, 5, 2), "4-2-3-1": (4, 5, 1)}
+        dz = st.radio(t("Diziliş", "Formation"), list(DZ), horizontal=True, key=f"lg_xi_{anahtar}")
+        nd, no, nf = DZ[dz]
+
+        def _duzenli(o):
+            tm = L["takim"].get(o["takim"], {}).get("rapor", 0)
+            return o["dk"] >= max(270, 45 * tm)                    # takımının raporlu dakikalarının en az yarısı (en az 270 dk)
+
+        def _ga90x(o):
+            return (o["gol"] + o["asist"]) * 90 / o["dk"]
+
+        def _yen90(o):                                             # oyuncu sahadayken takımının 90 dakikada yediği gol
+            return sum(s["yg"] for s in o["log"] if s["d"] in ("S", "Y")) * 90 / o["dk"]
+        dzn = [o for o in saha if _duzenli(o)]
+        K_ = sorted((o for o in dzn if o.get("grup") == "K"), key=lambda o: (-o["gy"], o["yg"] * 90 / o["dk"], -o["dk"]))[:1]
+        D_ = sorted((o for o in dzn if o.get("grup") == "D"), key=lambda o: (_yen90(o), -o["dk"]))[:nd]
+        O_ = sorted((o for o in dzn if o.get("grup") == "O"), key=lambda o: (-_ga90x(o), -o["dk"]))[:no]
+        F_ = sorted((o for o in dzn if o.get("grup") == "F"), key=lambda o: (-_ga90x(o), -o["gol"], -o["dk"]))[:nf]
+        if len(K_) < 1 or len(D_) < nd or len(O_) < no or len(F_) < nf:
+            st.info(t("Bu ligde 11 kurmaya yetecek kadar düzenli oynayan oyuncu verisi henüz yok.", "Not enough regular players in the data yet to build an XI for this league."))
+        else:
+            def _cip(o, satir):
+                return ("<div style='flex:0 1 150px;min-width:104px;text-align:center;background:rgba(10,14,28,0.82);border:1px solid #2f6b4a;border-radius:10px;padding:7px 6px;'>"
+                        f"<div style='font-family:Sora,sans-serif;font-weight:700;font-size:0.8rem;color:#f1f5f9;line-height:1.2;' lang='{_isim_dil(o['ad'])}'>{_h.escape(o['ad'])}</div>"
+                        f"<div style='font-size:0.66rem;color:#94a3b8;margin-top:1px;'>{_h.escape(o['takim'])}" + (f" · {o['yas']}" if o.get("yas") else "") + "</div>"
+                        f"<div style='font-size:0.7rem;color:#1db954;font-weight:700;margin-top:3px;'>{satir}</div></div>")
+            sira = [(F_, lambda o: f"{o['gol']} {t('gol', 'G')} · {o['asist']} {t('asist', 'A')}"),
+                    (O_, lambda o: f"{o['gol']} {t('gol', 'G')} · {o['asist']} {t('asist', 'A')}"),
+                    (D_, lambda o: f"{_yen90(o):.2f} {t('yenilen / 90', 'conceded / 90')}"),
+                    (K_, lambda o: f"{o['gy']} {t('gol yemeden', 'clean sheets')}")]
+            saha_h = "".join("<div style='display:flex;justify-content:space-evenly;gap:8px;flex-wrap:wrap;'>" + "".join(_cip(o, fn(o)) for o in grup) + "</div>"
+                             for grup, fn in sira)
+            st.markdown(
+                "<div style='background:linear-gradient(180deg,#0f3d2e 0%,#14532d 50%,#0f3d2e 100%);border:1px solid #2f6b4a;border-radius:16px;padding:18px 12px;"
+                "display:flex;flex-direction:column;gap:18px;margin:6px 0 10px;position:relative;'>"
+                "<div style='position:absolute;left:8%;right:8%;top:50%;border-top:1px solid rgba(255,255,255,0.14);'></div>" + saha_h + "</div>",
+                unsafe_allow_html=True)
+            st.caption(t("Kural: takımının maç dakikalarının en az yarısında oynayan oyuncular arasından. Kaleci: gol yemeden tamamladığı maç; defans: sahadayken takımının "
+                         "90 dakikada yediği gol (az olan); orta saha ve forvet: 90 dakika başına gol + asist. Kaynak: SoccerDonna maç raporları.",
+                         "Rule: among players with at least half of their team's match minutes. Goalkeeper: clean sheets; defenders: goals conceded per 90 while on the pitch "
+                         "(fewer is better); midfielders and forwards: goals + assists per 90. Source: SoccerDonna match reports."))
+            onbir = K_ + D_ + O_ + F_
+            df_tablo(_lg_oyuncu_df(onbir), basliklar=B)
+            sid = _sec_oyuncu(t("Profilini aç", "Open profile"), onbir, f"lg_xp_{anahtar}")
+            if sid:
+                _profile_git(sid)
 
     # ───────────────────────── GELİŞMİŞ ARAMA ─────────────────────────
     elif sekme == "arama":
