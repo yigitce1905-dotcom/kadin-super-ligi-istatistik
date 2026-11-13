@@ -1,5 +1,5 @@
 """Canlı siteye GİRİŞSİZ bir ziyaretçi gibi bağlanır (Streamlit websocket), sayfayı çalıştırır ve çizilen metni döker.
-Kullanım: python canli_ziyaretci.py "kulup=kups&dil=EN&k=claude-test" [ikinci çalışma: 1/0]
+Kullanım: python canli_ziyaretci.py "kulup=kups&dil=EN&k=claude-test" [ikinci çalışma: 1/0] [ikinci çalışmada aranacak metin]
 Kendi sitemizin kendi sayfası için doğrulama aracı (ziyaret sayacı + link kaydı + ziyaretçi görünümü)."""
 import asyncio
 import html
@@ -15,6 +15,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 SITE = "womenfootballscouting.com"
 qs = sys.argv[1] if len(sys.argv) > 1 else "kulup=kups&dil=EN&k=claude-test"
 ikinci = (sys.argv[2] == "1") if len(sys.argv) > 2 else True
+ara = sys.argv[3].lower() if len(sys.argv) > 3 else ""
 
 
 def sade(s):
@@ -59,6 +60,9 @@ async def main():
         await asyncio.sleep(1.5)
         m2 = await calistir(ws, "2. çalışma (çerez bileşeni sonrası yeniden çalışmayı taklit)")
         print("    ikinci çalışmada blok sayısı:", len(m2))
+        for x in m2:
+            if ara and ara in x.lower():
+                print("  ✓", x[:330])
     await asyncio.sleep(8)          # ziyaret satırı 6 sn gecikmeyle yazılıyor
     await ws.close()
 
