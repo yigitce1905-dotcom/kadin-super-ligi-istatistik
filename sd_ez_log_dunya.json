@@ -702,6 +702,13 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Haimata Nacoulma",
+   "alan": "dogum",
+   "sheet": "26.02.2001",
+   "sd": "27.02.2001"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Felicite Kafando",
    "alan": "boy",
    "sheet": "1,58",
@@ -2026,6 +2033,13 @@
   {
    "kaynak": "dunya",
    "isim": "Nesryne El-Chad",
+   "alan": "dogum",
+   "sheet": "09.03.2003",
+   "sd": "13.03.2003"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Nesryne El-Chad",
    "alan": "boy",
    "sheet": "1,72",
    "sd": "1,67"
@@ -2277,6 +2291,13 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Onyi Echegini",
+   "alan": "dogum",
+   "sheet": "24.03.2001",
+   "sd": "22.03.2001"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Rasheedat Ajibade",
    "alan": "boy",
    "sheet": "1,66",
@@ -2400,6 +2421,13 @@
    "alan": "boy",
    "sheet": "1,63",
    "sd": "1,66"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Ryong-jong Jon",
+   "alan": "ayak",
+   "sheet": "Sağ",
+   "sd": "Sol"
   },
   {
    "kaynak": "dunya",
@@ -3002,6 +3030,13 @@
    "alan": "ayak",
    "sheet": "",
    "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Kebotseng Moletsane",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,70"
   },
   {
    "kaynak": "dunya",
@@ -5266,6 +5301,90 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Annecy Nguiadem",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Annecy Nguiadem",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Çift"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Catherine Mbangono",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,60"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Claudine Meffometou",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Claudine Meffometou",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Diane Wabeua",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,69"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Diane Wabeua",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Eliane Bodolo",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,72"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Fadimatou Kome",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Fadimatou Kome",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Jeannette Yango",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,63"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Jeannette Yango",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Hildur Antonsdottir",
    "alan": "boy",
    "sheet": "1,73",
@@ -5284,6 +5403,132 @@
    "alan": "boy",
    "sheet": "1,68",
    "sd": "1,69"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Marieme Babou",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,65"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Marieme Babou",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Pascaline Bassane",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,64"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Pascaline Bassane",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Tenning Sene",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Tenning Sene",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Noxolo Casane",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,55"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Noxolo Casane",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Moussourieto Adinda-Apko",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,61"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Moussourieto Adinda-Apko",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Reine Gake",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,60"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Reine Gake",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Letisha Lungu",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,72"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Letisha Lungu",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sol"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Lubandji Ochumba",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,73"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Lubandji Ochumba",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Pauline Xulu",
+   "alan": "boy",
+   "sheet": "",
+   "sd": "1,70"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Pauline Xulu",
+   "alan": "ayak",
+   "sheet": "",
+   "sd": "Sağ"
   },
   {
    "kaynak": "dunya",
@@ -5364,13 +5609,6 @@
   },
   {
    "kaynak": "dunya",
-   "isim": "Burcu Ozsoy",
-   "alan": "boy",
-   "sheet": "1,64",
-   "sd": "1,62"
-  },
-  {
-   "kaynak": "dunya",
    "isim": "Fernanda Viafara",
    "alan": "boy",
    "sheet": "1,70",
@@ -5385,10 +5623,31 @@
   },
   {
    "kaynak": "dunya",
+   "isim": "Fatima Tagnaout",
+   "alan": "dogum",
+   "sheet": "03.01.1999",
+   "sd": "20.01.1999"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Fatima Tagnaout",
+   "alan": "boy",
+   "sheet": "1,65",
+   "sd": "1,58"
+  },
+  {
+   "kaynak": "dunya",
    "isim": "Sine Buyuk",
    "alan": "boy",
    "sheet": "1,62",
    "sd": "1,64"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Aylin Veli",
+   "alan": "ayak",
+   "sheet": "Sol",
+   "sd": "Sağ"
   },
   {
    "kaynak": "dunya",
@@ -5403,13 +5662,6 @@
    "alan": "boy",
    "sheet": "1,74",
    "sd": "1,72"
-  },
-  {
-   "kaynak": "dunya",
-   "isim": "Yaren Oz",
-   "alan": "ayak",
-   "sheet": "Sağ",
-   "sd": "Sol"
   },
   {
    "kaynak": "dunya",
@@ -5443,6 +5695,16 @@
    "sheet_uyruk": "Burkina Faso",
    "sd_uyruk": "Burkina Faso",
    "sd_url": "https://www.soccerdonna.de/en/mounifatou-helby/profil/spieler_74281.html"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Fariratou Tarnadga",
+   "neden": "doğum tarihi farkı 1948 gün",
+   "sheet_dogum": "14.01.2004",
+   "sd_dogum": "14.09.1998",
+   "sheet_uyruk": "Burkina Faso",
+   "sd_uyruk": "Burkina Faso",
+   "sd_url": "https://www.soccerdonna.de/en/x/profil/spieler_74302.html"
   },
   {
    "kaynak": "dunya",
@@ -5483,6 +5745,16 @@
    "sheet_uyruk": "PR China",
    "sd_uyruk": "China",
    "sd_url": "https://www.soccerdonna.de/en/xiaoxu-huang/profil/spieler_69084.html"
+  },
+  {
+   "kaynak": "dunya",
+   "isim": "Shin Na-yeong",
+   "neden": "doğum tarihi farkı 1202 gün",
+   "sheet_dogum": "23.01.2003",
+   "sd_dogum": "09.10.1999",
+   "sheet_uyruk": "South Korea",
+   "sd_uyruk": "Korea, South",
+   "sd_url": "https://www.soccerdonna.de/en/x/profil/spieler_66301.html"
   }
  ]
 }

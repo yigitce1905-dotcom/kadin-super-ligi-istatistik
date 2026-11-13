@@ -97,7 +97,7 @@
     "vatandaslik": "Algeria",
     "milli_takim": "France",
     "dogum": "08.11.1998",
-    "yas": 27,
+    "yas": 28,
     "boy": "1,69",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Ektomorf",
@@ -1304,7 +1304,7 @@
     "vatandaslik": "Australia",
     "milli_takim": "",
     "dogum": "10.11.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,62",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -1999,7 +1999,7 @@
     "kulup": "London City Lionesses",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€140.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -2325,7 +2325,7 @@
     "vatandaslik": "Australia",
     "milli_takim": "",
     "dogum": "11.11.1994",
-    "yas": 31,
+    "yas": 32,
     "boy": "1,69",
     "ayak": "Sol",
     "vucut_tipi": "Mezomorf",
@@ -3802,7 +3802,7 @@
     "kulup": "Dynamo Minsk",
     "lig": "🇧🇾 Жаночая ліга",
     "deger": "€15.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2026",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -5066,10 +5066,10 @@
       "LCB"
     ],
     "rol": "",
-    "kulup": "RSC Anderlecht",
-    "lig": "🇧🇪 Super League",
-    "deger": "€40.000",
-    "sozlesme": "30.06.2026",
+    "kulup": "Retired",
+    "lig": "End of Career",
+    "deger": "",
+    "sozlesme": "",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -6810,7 +6810,7 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Marlene Flores is an international forward for Bolivia. She displays basic channel running pace and opportunistic finishing in regional South American fixtures, with physical engine and technical areas requiring development.",
     "degerlendirildi": true,
-    "kulup_sd": "Missouri Valley Vikings"
+    "kulup_sd": "Giresun Sanayispor"
   },
   "Vina Crnoja": {
     "tam_isim": "Vina Crnoja",
@@ -6923,10 +6923,10 @@
       "LCB"
     ],
     "rol": "Limitli Stoper",
-    "kulup": "Al-Ula FC",
+    "kulup": "Eastern Flames",
     "lig": "🇸🇦 SWPL",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "deger": "€30.000",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -7482,7 +7482,7 @@
     "vatandaslik": "Bosnia&Herzegovina",
     "milli_takim": "Croatia",
     "dogum": "07.11.1997",
-    "yas": 28,
+    "yas": 29,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Endomorf",
@@ -10954,7 +10954,7 @@
     "vatandaslik": "Brazil",
     "milli_takim": "",
     "dogum": "08.11.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,64",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -14431,7 +14431,7 @@
     "tam_isim": "Haimata Nacoulma",
     "vatandaslik": "Burkina Faso",
     "milli_takim": "",
-    "dogum": "26.02.2001",
+    "dogum": "27.02.2001",
     "yas": 25,
     "boy": "1,76",
     "ayak": "Sağ",
@@ -14441,10 +14441,10 @@
       "RCB"
     ],
     "rol": "Çakılı Stoper",
-    "kulup": "ASO Burkina Faso",
-    "lig": "🇧🇫 W-Championnat D1",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "kulup": "Eccellenza Calabria",
+    "lig": "🇮🇹 Serie C",
+    "deger": "€5.000",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DE",
@@ -14512,7 +14512,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Neutral",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ASO Burkina Faso"
   },
   "Chantal Zongo": {
     "tam_isim": "Chantal Zongo",
@@ -14532,7 +14533,7 @@
     "kulup": "ASO Burkina Faso",
     "lig": "🇧🇫 W-Championnat D1",
     "deger": "€2.500",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "DD",
       "Top Tekniği": "CC",
@@ -14622,8 +14623,8 @@
     "rol": "Çizgi Kalecisi",
     "kulup": "ASO Burkina Faso",
     "lig": "🇧🇫 W-Championnat D1",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "deger": "€2.500",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -14894,7 +14895,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Intentioned",
     "scout_notu": "Fadiratou Tarnadga is a young central midfielder operating as a mezzala for Burkina Faso. She carries the ball effectively through half-spaces, though her physical duel endurance is developing.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Etincelles"
   },
   "Ami Sanou": {
     "tam_isim": "Ami Sanou",
@@ -15853,10 +15855,10 @@
       "RCB"
     ],
     "rol": "Pozisyoncu Stoper",
-    "kulup": "Sparks",
-    "lig": "🇺🇸 NCAA Div. I",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "kulup": "Etincelles",
+    "lig": "🇧🇫 W-Championnat D1",
+    "deger": "€2.500",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "CD",
@@ -16854,7 +16856,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Willing",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Rayon Sports Women Football Club"
   },
   "Annociate Nshimirimana": {
     "tam_isim": "",
@@ -17153,7 +17156,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Neutral",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Shan United WFC"
   },
   "Aniella Uwimana": {
     "tam_isim": "",
@@ -18148,10 +18152,10 @@
       "RWF"
     ],
     "rol": "İçe Kat Eden Kanat",
-    "kulup": "Al-Ula FC",
-    "lig": "🇸🇦 SWPL",
-    "deger": "€5.000",
-    "sozlesme": "30.06.2026",
+    "kulup": "Serbest",
+    "lig": "-",
+    "deger": "€10.000",
+    "sozlesme": "",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -18569,7 +18573,7 @@
     "vatandaslik": "Cameroon",
     "milli_takim": "",
     "dogum": "13.11.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,62",
     "ayak": "",
     "vucut_tipi": "Mezomorf",
@@ -18727,7 +18731,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -18787,7 +18791,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Serbest"
   },
   "Tatiana Ewodo Ekogo": {
     "tam_isim": "",
@@ -19195,10 +19200,10 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "Al-Qadsiah FC",
-    "lig": "🇸🇦 SWPL",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "kulup": "Serbest",
+    "lig": "-",
+    "deger": "€30.000",
+    "sozlesme": "",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BB",
@@ -25495,16 +25500,16 @@
     "yas": 22,
     "boy": "1,70",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
       "CMF"
     ],
-    "rol": "",
+    "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
-    "deger": "€150.000",
-    "sozlesme": "30.06.2026",
+    "deger": "€260.000",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "AA",
@@ -30714,7 +30719,7 @@
     "vatandaslik": "France",
     "milli_takim": "Algeria",
     "dogum": "09.11.2000",
-    "yas": 25,
+    "yas": 26,
     "boy": "1,61",
     "ayak": "Sol",
     "vucut_tipi": "Mezo-Endomorf",
@@ -31356,7 +31361,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Reluctant",
     "scout_notu": "[Completed]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Eintracht Frankfurt"
   },
   "Marie Muller": {
     "tam_isim": "Marie Müller",
@@ -33407,7 +33413,7 @@
     "vatandaslik": "Germany",
     "milli_takim": "",
     "dogum": "12.11.1997",
-    "yas": 28,
+    "yas": 29,
     "boy": "1,73",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -34666,9 +34672,9 @@
     ],
     "rol": "Çalışkan Kenar",
     "kulup": "Aris Limassol",
-    "lig": "🇨🇾 Πρωτάθλημα",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "lig": "-",
+    "deger": "€5.000",
+    "sozlesme": "",
     "beceri": {
       "Bitiricilik": "DE",
       "Top Tekniği": "DD",
@@ -35760,7 +35766,7 @@
     "vatandaslik": "Hungary",
     "milli_takim": "United States",
     "dogum": "08.11.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,78",
     "ayak": "Sol",
     "vucut_tipi": "Mezo-Endomorf",
@@ -36700,7 +36706,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "1. FC Köln"
   },
   "Fanney Inga Birkisdottir": {
     "tam_isim": "Fanney Inga Birkisdóttir",
@@ -37033,7 +37040,7 @@
     "vatandaslik": "Iceland",
     "milli_takim": "",
     "dogum": "11.11.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,77",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -37929,7 +37936,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Rasenballsport Leipzig"
   },
   "Karolina Lea Vilhjalmsdottir": {
     "tam_isim": "Karólína Lea Vilhjálmsdóttir",
@@ -39727,7 +39735,7 @@
     "vatandaslik": "Italy",
     "milli_takim": "",
     "dogum": "07.11.2006",
-    "yas": 19,
+    "yas": 20,
     "boy": "1,65",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -39883,7 +39891,7 @@
     "vatandaslik": "Italy",
     "milli_takim": "",
     "dogum": "07.11.1997",
-    "yas": 28,
+    "yas": 29,
     "boy": "1,78",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -40795,16 +40803,16 @@
     "yas": 22,
     "boy": "1,73",
     "ayak": "Sağ",
-    "vucut_tipi": "",
+    "vucut_tipi": "Mezomorf",
     "bolge": "Kale",
     "mevki": [
       "GK"
     ],
-    "rol": "",
+    "rol": "Süpürücü Kaleci",
     "kulup": "Aston Villa LFC",
     "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€10.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -43055,8 +43063,8 @@
     "rol": "Çizgi Kalecisi",
     "kulup": "Asteras Tripolis",
     "lig": "🇬🇷 Α΄",
-    "deger": "€10.000",
-    "sozlesme": "30.06.2026",
+    "deger": "€5.000",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -43313,7 +43321,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Willing",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "KFF Mitrovica"
   },
   "Santa Vuskane": {
     "tam_isim": "Santa Sanija Vuškāne",
@@ -44720,7 +44729,7 @@
     "kulup_sd": "SC Chabab Mohammédia"
   },
   "Fatima Dahmos": {
-    "tam_isim": "Fatima Dahmos",
+    "tam_isim": "Fatima Zahra Dahmos | دهموس فاطمة الزهراء",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "05.08.1992",
@@ -44737,7 +44746,7 @@
     "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€20.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "BC",
@@ -44814,7 +44823,7 @@
     "kulup_sd": "AS Far"
   },
   "Najat Badri": {
-    "tam_isim": "Najat Badri",
+    "tam_isim": "Najat Badri | نجاة بدري",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "19.05.1988",
@@ -44831,7 +44840,7 @@
     "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€20.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -44907,7 +44916,7 @@
     "kulup_sd": "AS Far"
   },
   "Hind Hasnaoui": {
-    "tam_isim": "Hind Hasnaoui",
+    "tam_isim": "هند الحسناوي | Hind El Hasnaoui",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "13.09.1996",
@@ -44924,7 +44933,7 @@
     "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€25.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CD",
       "Top Tekniği": "CD",
@@ -45296,7 +45305,7 @@
     "kulup_sd": "Wydad Casablanca"
   },
   "Ghizlane Chhiri": {
-    "tam_isim": "Ghizlane Chhiri",
+    "tam_isim": "Ghizlane Chhiri | غزلان الشهيري",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "11.09.1994",
@@ -45313,7 +45322,7 @@
     "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€30.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DD",
@@ -45389,7 +45398,7 @@
     "kulup_sd": "AS Far"
   },
   "Sofia Bouftini": {
-    "tam_isim": "Sofia Bouftini",
+    "tam_isim": "Sofia Bouftini | صوفيا بوفتيني",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "25.01.2002",
@@ -45406,7 +45415,7 @@
     "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€30.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -45768,7 +45777,7 @@
     "kulup_sd": "FC Nantes"
   },
   "Khadija Er-Rmichi": {
-    "tam_isim": "Khadija Er-Rmichi",
+    "tam_isim": "Khadija Er-Rmichi | خديجة الرميشي",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "16.09.1989",
@@ -45784,7 +45793,7 @@
     "kulup": "AS Far",
     "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€45.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "FF",
       "Top Tekniği": "FF",
@@ -45976,7 +45985,7 @@
     "tam_isim": "Nesryne El-Chad",
     "vatandaslik": "Morocco",
     "milli_takim": "France",
-    "dogum": "09.03.2003",
+    "dogum": "13.03.2003",
     "yas": 23,
     "boy": "1,67",
     "ayak": "Sağ",
@@ -46063,10 +46072,11 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Neutral",
     "scout_notu": "Nesryne El-Chad is Morocco's top young central defender. Playing for Lille, she combines proactive tackle timing, clean short build-up passing, and strong aerial duel capability.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Le Mans FC"
   },
   "Zineb Redouani": {
-    "tam_isim": "Zineb Redouani",
+    "tam_isim": "Zineb Redouani | زينب رضواني",
     "vatandaslik": "Morocco",
     "milli_takim": "",
     "dogum": "12.06.2000",
@@ -46081,10 +46091,10 @@
       "LWB"
     ],
     "rol": "Hücum Bek",
-    "kulup": "AS Far",
-    "lig": "🇲🇦 الوطنية الاحترافية",
+    "kulup": "FC Badalona",
+    "lig": "🇪🇸 Liga F",
     "deger": "€55.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2028",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -46160,7 +46170,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "Zineb Redouani is an elite full-back for Morocco. She offers high dynamic overlap speed, crisp 1v1 ground duel tackles, and dangerous flank crossing deliveries.",
     "degerlendirildi": true,
-    "kulup_sd": "Serbest"
+    "kulup_sd": "FC Badalona Women"
   },
   "Elodie Nakkach": {
     "tam_isim": "Elodie Nakkach",
@@ -46370,7 +46380,7 @@
     "kulup": "Al Hilal FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€70.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "BB",
       "Top Tekniği": "BC",
@@ -46548,9 +46558,9 @@
     "tam_isim": "Fatima Tagnout",
     "vatandaslik": "Morocco",
     "milli_takim": "",
-    "dogum": "03.01.1999",
+    "dogum": "20.01.1999",
     "yas": 27,
-    "boy": "1,65",
+    "boy": "1,58",
     "ayak": "Sol",
     "vucut_tipi": "Mezo-Ektomorf",
     "bolge": "Hücum",
@@ -46638,7 +46648,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "Fatima Tagnout is a creative left-footed winger for Sevilla and Morocco. She provides mesmerizing 1v1 dribbles, pinpoint crossing, and dangerous inner-channel key passes.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "AS Far"
   },
   "Ghizlane Chebbak": {
     "tam_isim": "Ghizlane Chebbak",
@@ -48275,7 +48286,7 @@
     "vatandaslik": "Nigeria",
     "milli_takim": "",
     "dogum": "07.11.1993",
-    "yas": 32,
+    "yas": 33,
     "boy": "1,61",
     "ayak": "Sağ",
     "vucut_tipi": "Ektomorf",
@@ -48757,7 +48768,7 @@
     "kulup": "Al-Ittihad FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€30.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "BC",
@@ -49044,7 +49055,7 @@
     "kulup": "AFC Toronto",
     "lig": "🇨🇦 NSL",
     "deger": "€35.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "31.12.2027",
     "beceri": {
       "Bitiricilik": "BC",
       "Top Tekniği": "BC",
@@ -50185,7 +50196,7 @@
     "tam_isim": "Onyi Echegini",
     "vatandaslik": "Nigeria",
     "milli_takim": "England",
-    "dogum": "24.03.2001",
+    "dogum": "22.03.2001",
     "yas": 25,
     "boy": "1,70",
     "ayak": "Sağ",
@@ -50275,7 +50286,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Onyi Echegini is a rising creative playmaker for PSG and Nigeria. She displays elegant ball control, sharp pocket movement, and lethal box finishing from attacking midfield zones.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Paris Saint-Germain"
   },
   "Rasheedat Ajibade": {
     "tam_isim": "Rasheedat Ajibade",
@@ -50392,7 +50404,7 @@
     "kulup": "Al Hilal FC",
     "lig": "🇸🇦 SWPL",
     "deger": "€150.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "AB",
       "Top Tekniği": "BC",
@@ -52011,7 +52023,7 @@
     "dogum": "25.07.2004",
     "yas": 22,
     "boy": "1,66",
-    "ayak": "Sağ",
+    "ayak": "Sol",
     "vucut_tipi": "Mezomorf",
     "bolge": "Orta Saha",
     "mevki": [
@@ -53335,7 +53347,7 @@
     "vatandaslik": "North Korea",
     "milli_takim": "",
     "dogum": "08.11.2003",
-    "yas": 22,
+    "yas": 23,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "",
@@ -53435,7 +53447,7 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "Kuzey Kore'nin son donemdeki en buyuk kaleci yetenegi, cizgi refleksleri ogb karsi karsiya aci kapatmada kusursuz bir Sweeper-Keeper kalecidir. Ayak teknigi ogb eliyle oyunu baslatma vizyonu asya standartlarinin cok uzerindedir. Hava toplarinda ogb yan ortalarda mutlak bir guven asilar.",
     "degerlendirildi": true,
-    "kulup_sd": "Sobaeksu"
+    "kulup_sd": "April 25"
   },
   "Un-yong Chae": {
     "tam_isim": "채은영",
@@ -54483,7 +54495,7 @@
     "vatandaslik": "Norway",
     "milli_takim": "",
     "dogum": "7.11.1997",
-    "yas": 28,
+    "yas": 29,
     "boy": "1,67",
     "ayak": "Sol",
     "vucut_tipi": "",
@@ -58344,7 +58356,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "[Completed]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "GD Estoril Praia"
   },
   "Dou Jiaxing": {
     "tam_isim": "窦加星",
@@ -59925,7 +59938,7 @@
     "tr_gorusu": "Intentioned",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Zenit St. Petersburg"
+    "kulup_sd": "Rubin Kazan"
   },
   "Albina Fomchenko": {
     "tam_isim": "Альбина Сергіївна Фомченк",
@@ -60003,7 +60016,7 @@
     "kulup": "AS Cherbourg",
     "lig": "🇫🇷 3e Ligue",
     "deger": "€5.000",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -60281,9 +60294,9 @@
     "mevki": [],
     "rol": "",
     "kulup": "Al-Hmmah Club",
-    "lig": "🇸🇦 SWPL",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "lig": "-",
+    "deger": "€5.000",
+    "sozlesme": "",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "EE",
@@ -60825,7 +60838,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Al-Yarmuk SC",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -60885,7 +60898,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Al-Yarmuk SC"
   },
   "Ndeye Meissa Diaw": {
     "tam_isim": "",
@@ -62790,9 +62804,9 @@
     "tam_isim": "",
     "vatandaslik": "South Africa",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
+    "dogum": "03.03.1995",
+    "yas": 31,
+    "boy": "1,70",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "Kale",
@@ -62800,7 +62814,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "",
+    "kulup": "University of Fort Hare Football Club",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -62876,7 +62890,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "University of Fort Hare Football Club"
   },
   "Amogelang Motau": {
     "tam_isim": "",
@@ -66144,7 +66159,7 @@
     "vatandaslik": "Spain",
     "milli_takim": "",
     "dogum": "09.11.2007",
-    "yas": 18,
+    "yas": 19,
     "boy": "1,73",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -68676,7 +68691,7 @@
     "vatandaslik": "Spain",
     "milli_takim": "Equatorial Guinea",
     "dogum": "13.11.2003",
-    "yas": 22,
+    "yas": 23,
     "boy": "1,74",
     "ayak": "Sol",
     "vucut_tipi": "",
@@ -69725,7 +69740,7 @@
     "vatandaslik": "Sweden",
     "milli_takim": "Mali",
     "dogum": "12.11.1995",
-    "yas": 30,
+    "yas": 31,
     "boy": "1,64",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -72292,7 +72307,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Unwilling",
     "scout_notu": "[Completed]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "1. FC Union Berlin"
   },
   "Ana-Maria Crnogorcevic": {
     "tam_isim": "Ana-Maria Crnogorčević",
@@ -78611,7 +78627,7 @@
     "kulup": "ACF Brescia",
     "lig": "🇮🇹 Serie B",
     "deger": "",
-    "sozlesme": "30.06.2026",
+    "sozlesme": "30.06.2027",
     "beceri": {
       "Bitiricilik": "CC",
       "Top Tekniği": "CC",
@@ -79976,7 +79992,7 @@
     "vatandaslik": "Türkiye",
     "milli_takim": "",
     "dogum": "12.11.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,76",
     "ayak": "Sağ",
     "vucut_tipi": "Ektomorf",
@@ -80650,7 +80666,7 @@
     "vatandaslik": "Uganda",
     "milli_takim": "",
     "dogum": "08.11.1999",
-    "yas": 26,
+    "yas": 27,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -81273,9 +81289,9 @@
     "mevki": [],
     "rol": "",
     "kulup": "AO PEA",
-    "lig": "🇬🇷 Α΄",
-    "deger": "",
-    "sozlesme": "30.06.2026",
+    "lig": "-",
+    "deger": "€5.000",
+    "sozlesme": "",
     "beceri": {
       "Bitiricilik": "EE",
       "Top Tekniği": "DE",
@@ -82322,7 +82338,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Trabzonspor"
   },
   "Khrystyna Pereviznyk": {
     "tam_isim": "Христина Перевізник",
@@ -85053,7 +85070,7 @@
     "vatandaslik": "United States",
     "milli_takim": "Peru",
     "dogum": "07.11.2004",
-    "yas": 21,
+    "yas": 22,
     "boy": "1,62",
     "ayak": "Sağ",
     "vucut_tipi": "Mezo-Endomorf",
@@ -87975,7 +87992,7 @@
     "vatandaslik": "United States",
     "milli_takim": "",
     "dogum": "07.11.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,63",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -92700,7 +92717,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "FC Barcelona II"
   },
   "Alina Kerschbaumer": {
     "tam_isim": "Alina Kerschbaumer",
@@ -93078,7 +93096,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Real Madrid"
   },
   "Una Rankic": {
     "tam_isim": "Una Rankic",
@@ -93855,7 +93874,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Willing",
     "scout_notu": "Iva Kocijan is a Slovenian goalkeeper born in 2004 who operates with the intention of being a sweeper keeper. She developed her foundational shot-stopping mechanics within domestic youth academies before earning opportunities in competitive senior tiers. Because she possesses adequate static positioning, she is capable of maintaining standard defensive angles against direct central shots. Developing her tactical decision-making and distribution vision is critically necessary to prevent severe unforced turnovers when facing organized high-pressing units. Furthermore, dramatically improving her acceleration and sprinting pace will be required if she is to successfully execute the advanced sweeping actions her role demands. Her overall technical handling, kicking ability, and pressure resistance are exceptionally poor, making her a massive liability during build-up phases. Functioning as an aspiring sweeper keeper, she struggles to execute her proactive role due to severe physical and technical limitations. Given her profound developmental gaps, she is best evaluated as a Backup Player for a Low-Level Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ZNK Radomlje"
   },
   "Tinkara Testen": {
     "tam_isim": "Tinkara Testen",
@@ -93947,7 +93967,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "Tinkara Testen is a Slovenian central defender born in 2006 who acts as a traditional, no-nonsense back. She established her physical dueling capacity and defensive fundamentals in domestic youth systems prior to transitioning to senior football. Owing to her strong tackling technique and reliable physical strength, she consistently neutralizes opposition forwards in direct ground duels and static box-defending scenarios. Moreover, her conservative positional discipline ensures she remains anchored to the defensive line, effectively clearing immediate danger from the penalty area. Refining her short-passing technique and decision-making under pressure will prevent her from aimlessly clearing the ball when passing options are available. Additionally, improving her long-range distribution vision will allow her to contribute constructively to early build-up phases rather than turning possession over to the opponent. Her dribbling execution and offensive finishing are entirely undeveloped, restricting her utility strictly to defensive actions. Operating as a gritty, risk-averse limited defender, she maintains a highly pragmatic and clearance-first psychological approach on the pitch. Because she provides reliable tackling but lacks modern ball-playing skills, she is best evaluated as a Starting XI Player for a Mid-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "SL Benfica"
   },
   "Kaja Erzen": {
     "tam_isim": "Kaja Eržen",
@@ -94037,7 +94058,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Intentioned",
     "scout_notu": "Kaja Erzen is a Slovenian right full-back born in 1994 who operates as a defensively solid traditional full-back. She honed her defensive mechanics and wide tactical awareness within Slovenian football systems before establishing a long-standing senior career. Because she possesses excellent tackling execution, elite positional awareness, and highly reliable decision-making, she consistently shuts down opposing wingers in 1v1 isolation. Furthermore, her solid short passing and pressure resistance allow her to recycle possession cleanly along the touchline during build-up phases. Developing her dynamic dribbling agility will help her bypass aggressive wide pressing when she is trapped against the touchline. Additionally, improving her final-third crossing vision and overall offensive finishing will make her overlapping runs much more threatening to opposition defenses. Her offensive finishing and progressive dribbling capacity remain weak, limiting her ability to act as a modern attacking wing-back. Functioning as a disciplined, defense-first traditional full-back, she maintains a calm, highly professional approach focused on structural stability. Based on her elite defensive positioning but limited offensive output, she is best evaluated as a Starting XI Player for a Mid-Table Team in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Ternana Women"
   },
   "Evelina Kos": {
     "tam_isim": "Evelina Kos",
@@ -94131,7 +94153,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Evelina Kos is a Slovenian central defender born in 1996 who operates primarily as a physically dominant limited back. She built her robust defensive profile and combative tackling nature during her developmental years in competitive European academies. Owing to her elite physical strength, outstanding positional awareness, and exceptional pressure resistance, she easily dominates static aerial duels and anchors the backline against heavy opposition pressing. Moreover, her reliable tackling mechanics ensure she can consistently dispossess target forwards who attempt to hold up the ball in the central channel. Improving her basic ball technique and short passing accuracy will be necessary to prevent unforced errors during the first phase of build-up play. Furthermore, enhancing her initial acceleration and sprinting pace will help her recover more effectively when rapid attackers exploit the space behind the defensive line. Her dynamic dribbling and offensive vision are practically non-existent, making her entirely one-dimensional in possession. Operating as a highly physical, combative limited defender, she exhibits a fierce, uncompromising mentality dedicated solely to protecting the penalty area. Given her extreme physical dominance but technical limitations, she is best evaluated as a Starting XI Player for an Upper-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "LASK"
   },
   "Sara Agrez": {
     "tam_isim": "Sara Agrež",
@@ -94224,7 +94247,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Sara Agrez is a Slovenian central defender born in 2000 who functions as an elite ball-playing back on the left side of the defense. She refined her exceptional tactical intelligence and technical distribution within top-tier European academies before becoming a standout in senior competitive football. Because she possesses elite tackling precision, outstanding short and long passing execution, and superb decision-making, she consistently neutralizes counter-attacks and launches fluid offensive transitions directly from the defensive third. Furthermore, her high-level positional awareness and pressure resistance allow her to act as a virtually press-immune playmaker stationed in the backline. Developing her raw physical strength will improve her ability to consistently overpower elite, physically imposing target strikers in static box battles. Additionally, enhancing her offensive finishing metrics on set-pieces could add a valuable goal-scoring dimension to her overall game profile. Her physical strength and final-third finishing remain only average, preventing her from being utterly dominant in brute-force scenarios. Functioning as an intellectual, modern ball-playing defender, she displays a highly composed, leadership-oriented psychological profile that stabilizes the entire squad. Because she offers world-class distribution and defensive reading, she is best evaluated as a Starting XI Player for a Championship Contender in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Liverpool FC"
   },
   "Lana Golob": {
     "tam_isim": "Lana Golob",
@@ -94319,7 +94343,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Reluctant",
     "scout_notu": "Lana Golob is a Slovenian central defender born in 1999 who operates as a versatile, complete back in the defensive line. She developed her comprehensive defensive mechanics and tactical adaptability through international youth and collegiate systems before entering professional senior tiers. Owing to her very strong short-passing technique, reliable tackling, and solid spatial positioning, she seamlessly balances defensive solidity with clean build-up play. Moreover, her adequate physical strength and acceleration allow her to manage both physical target forwards and dynamic vertical runners effectively. Refining her long-range passing vision will elevate her ability to execute rapid switches of play to isolated wingers during transition moments. Additionally, improving her dynamic dribbling agility will help her step out of the defensive block with the ball more confidently to disrupt opposition pressing structures. Her offensive finishing and wide crossing capabilities remain poor, restricting her utility in advanced overlapping scenarios. Operating as a well-rounded, complete defender, she maintains a balanced, professional approach that adapts smoothly to various tactical demands. Given her well-rounded technical and defensive profile, she is best evaluated as a Rotation Player for an Upper-Table Team in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "FC Porto"
   },
   "Izabela Krizaj": {
     "tam_isim": "Izabela Križaj",
@@ -94413,7 +94438,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Willing",
     "scout_notu": "Izabela Krizaj is a Slovenian right full-back born in 2000 who functions as a highly athletic, balanced full-back. She established her dynamic running profile and wide defensive mechanics within domestic Slovenian youth structures prior to advancing to senior professional leagues. Because she possesses excellent acceleration and strong sprinting pace, she easily tracks rapid opposition wingers and executes swift overlapping runs down the right flank. Furthermore, her reliable short passing and solid decision-making allow her to link up effectively with her midfield teammates during wide possession phases. Enhancing her physical core strength and tackling precision will be critical to ensuring she does not get outmuscled during intense 1v1 ground duels. Additionally, developing her long-passing vision and crossing accuracy will make her final-third deliveries much more threatening to organized defenses. Her defensive tackling output and physical strength remain weak, leaving her vulnerable against highly physical wide forwards. Functioning as a pacey, balanced full-back, she exhibits an energetic, high-work-rate psychological profile suited for transitional, end-to-end matches. Because she provides excellent pace but lacks elite defensive solidity, she is best evaluated as a Starting XI Player for a Mid-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "SKN St. Pölten Frauen"
   },
   "Naja Mihelic": {
     "tam_isim": "Naja Poje Mihelič",
@@ -94510,7 +94536,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Reluctant",
     "scout_notu": "Naja Mihelic is a Slovenian central midfielder born in 2006 who operates as a dynamic, half-space exploiting mezzala. She honed her tactical intelligence and athletic foundation within the Slovenian youth development system before breaking into competitive senior squads. Owing to her strong decision-making capabilities and excellent acceleration, she frequently drives into the offensive half-spaces to create overloads and disrupt defensive structures. Moreover, her reliable short-passing technique and positional awareness enable her to combine fluidly with wingers and overlapping full-backs in the final third. Improving her defensive tackling engagement and physical strength will help her win more second balls and contribute effectively to central defensive transitions. Additionally, refining her long-range passing vision will allow her to dictate play more comprehensively rather than relying solely on short combination sequences. Her defensive tackling and raw physical strength remain quite mediocre, making her a lightweight presence in gritty midfield battles. Operating as an offensively-minded mezzala, she displays a proactive, highly creative psychological approach focused on breaking defensive lines. Since she offers strong dynamic movement but limited defensive output, she is best evaluated as a Rotation Player for an Upper-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Napoli Women"
   },
   "Zara Kramzar": {
     "tam_isim": "Zara Kramžar",
@@ -94606,7 +94633,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Zara Kramzar is a Slovenian attacking midfielder born in 2006 who functions primarily as a highly technical mezzala. She built her elite creative foundation and spatial awareness in top-tier European academies prior to stepping up to senior professional competitions. Because she possesses excellent ball technique, dynamic dribbling, and highly refined decision-making, she consistently unlocks deep defensive blocks with incisive progressive carries and intricate passing combinations. Furthermore, her advanced positional intelligence allows her to exploit the pockets of space between the opposition's midfield and defensive lines. Developing her defensive tackling output and overall physical strength will be necessary to ensure she can sustain her influence in highly physical, combative matches. Additionally, improving her long-range passing vision will diversify her creative arsenal, allowing her to switch play effectively when the central channels are congested. Her defensive tackling mechanics and core strength remain mediocre, meaning she relies on agility rather than force to retain possession. Functioning as a flair-driven, creative mezzala, she approaches the game with immense technical confidence and a sophisticated attacking mentality. Given her high-ceiling technical and mental attributes, she is best evaluated as a Starting XI Player for a Championship Contender in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Everton LFC"
   },
   "Jona Javoric": {
     "tam_isim": "Jona Javorič",
@@ -94698,7 +94726,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Intentioned",
     "scout_notu": "Jona Javoric is a Slovenian right wing-back born in 2006 who operates with a focus on overlapping offensive runs. She developed her wide attacking mechanics and athletic endurance within domestic youth systems before transitioning to the senior competitive stage. Because she possesses adequate short-passing technique and decent sprinting pace, she is capable of providing functional width and supporting passing triangles along the right touchline. Furthermore, her basic dribbling control allows her to carry the ball forward when afforded open space during transition phases. Dramatically improving her physical strength and tactical decision-making will be essential to surviving the physical and mental demands of high-level defensive assignments. Additionally, enhancing her defensive tackling and positional awareness will prevent her from leaving massive gaps behind her when she commits to forward runs. Her physical strength and long-range vision are extremely poor, making her highly susceptible to being outmuscled and forcing unforced errors under pressure. Operating as an attack-minded overlapping full-back, she displays an eager but raw psychological profile that requires significant tactical refinement. Based on her athletic potential but profound developmental gaps, she is best evaluated as a Rotation Player for a Low-Level Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ZNK Radomlje"
   },
   "Ziva Rakovec": {
     "tam_isim": "Živa Rakovec",
@@ -94788,7 +94817,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Neutral",
     "scout_notu": "Ziva Rakovec is a Slovenian defensive midfielder born in 2005 who functions as a physically robust midfield anchor. She established her combative defensive profile and tackling fundamentals in domestic youth structures prior to entering senior competitive football. Owing to her reliable tackling execution and solid physical strength, she effectively disrupts central opposition attacks and provides a stabilizing presence in front of the defensive line. Moreover, her basic short-passing capability allows her to act as a simple recycling outlet once possession is regained. Developing her tactical decision-making and overall vision will be crucial to preventing her from making dangerous unforced errors when distributing the ball under pressure. Additionally, improving her ball technique and first touch will help her navigate congested mid-blocks without instantly turning the ball over. Her overall passing vision, decision-making, and technical execution are exceptionally weak, rendering her a significant liability during offensive build-up phases. Operating as a purely destructive midfield anchor, she maintains a gritty, highly combative psychological approach dedicated exclusively to defensive disruption. Because she offers solid defensive disruption but lacks necessary technical refinement, she is best evaluated as a Starting XI Player for a Low-Level Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ŽNK Mura Nona"
   },
   "Mirjam Kastelec": {
     "tam_isim": "Mirjam Kastelec",
@@ -94879,7 +94909,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "Mirjam Kastelec is a Slovenian forward born in 2002 who operates as a tactically intelligent assistant forward. She refined her offensive movement and link-up mechanics within Slovenian development academies before stepping up to the senior competitive level. Because she possesses excellent spatial positioning and reliable short-passing technique, she expertly finds pockets of space to connect the midfield with the primary attacking line. Furthermore, her adequate ball technique and finishing composure allow her to capitalize on secondary goal-scoring opportunities inside the penalty area. Enhancing her overall sprinting pace and acceleration will help her create better separation from tight markers during vertical counter-attacks. Additionally, improving her defensive tackling engagement will increase her effectiveness as the first line of pressure in out-of-possession transition phases. Her defensive tackling mechanics and top-end pace remain mediocre, preventing her from executing highly dynamic, high-speed offensive transitions. Functioning as a collaborative assistant forward, she exhibits a highly unselfish, team-oriented psychological profile focused on creating space for others. Given her intelligent positioning but average athleticism, she is best evaluated as a Starting XI Player for a Mid-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ZNK Radomlje"
   },
   "Sara Makovec": {
     "tam_isim": "Sara Makovec",
@@ -94974,7 +95005,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Reluctant",
     "scout_notu": "Sara Makovec is a Slovenian defensive midfielder born in 2000 who commands the center of the pitch as a deep-lying playmaker. She built her tactical vision and distribution mechanics through extensive domestic and international senior football experience. Owing to her excellent long-passing range, solid ball technique, and highly reliable positional awareness, she consistently dictates the tempo of the match and breaks lines from deep areas. Moreover, her calm decision-making and strong pressure resistance enable her to safely navigate opposition pressing schemes during complex build-up phases. Developing her defensive tackling tenacity and physical strength will be important for her to act as a more imposing physical shield in front of her defense. Additionally, improving her initial acceleration will help her close down spaces more effectively during rapid defensive transitions. Her defensive tackling output and physical dominance remain only average, meaning she relies heavily on positioning rather than physical force. Operating as an intellectual, passing-oriented deep-lying playmaker, she brings a composed, highly analytical psychological approach to the midfield zone. Because she possesses excellent distribution but lacks elite physical destruction, she is best evaluated as a Rotation Player for an Upper-Table Team in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "SKN St. Pölten Frauen"
   },
   "Sara Ketis": {
     "tam_isim": "Sara Ketiš",
@@ -95071,7 +95103,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Reluctant",
     "scout_notu": "Sara Ketis is a Slovenian central midfielder born in 1996 who operates as a hard-working, box-to-box midfield warrior. She developed her competitive drive and tactical versatility within Slovenian football systems before embarking on an extensive senior professional career. Because she possesses reliable ball technique, solid short-passing execution, and functional tackling mechanics, she effectively links the defensive and offensive thirds while competing fiercely for second balls. Furthermore, her proactive decision-making and adequate acceleration allow her to support attacking transitions and track back defensively with consistent energy. Improving her physical core strength will be essential for her to hold her ground against physically dominant opponents in congested central duels. Additionally, refining her long-range passing vision will enable her to execute decisive, line-breaking balls rather than relying purely on short combinations. Her overall physical strength and advanced creative vision remain mediocre, limiting her ability to act as a primary playmaker or physical destroyer. Functioning as a gritty, high-energy midfield warrior, she displays a relentless, highly dedicated psychological profile focused on team work rate. Due to her balanced but non-elite profile, she is best evaluated as a Starting XI Player for a Mid-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Hellas Verona"
   },
   "Mateja Zver": {
     "tam_isim": "Mateja Zver",
@@ -95162,7 +95195,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Neutral",
     "scout_notu": "Mateja Zver is a highly experienced Slovenian midfielder born in 1988 who operates as a deeply stationed anchor and possession hub. She forged her elite technical foundation and world-class vision over a prolonged, highly successful international and domestic professional career. Because she possesses exceptional short and long passing execution, elite ball technique, and supreme pressure resistance, she acts as the ultimate press-immune metronome who flawlessly dictates team possession. Furthermore, her outstanding decision-making and progressive dribbling ability allow her to effortlessly manipulate opposition defensive structures from deep areas. Enhancing her severely declining sprinting pace and acceleration is impossible, so her team must surround her with highly mobile midfielders to compensate for her lack of mobility. Additionally, masking her diminished tackling output and physical strength will require a tactical system that does not expose her to isolated defensive duels. Her top-end pace, defensive tackling, and physical strength are extremely poor due to advanced athletic decline, completely negating her ability to cover large areas. Functioning as a deeply stationed, intellectual anchor, she relies entirely on her generational tactical intelligence and world-class distribution rather than physical exertion. Based on her elite passing but severe physical limitations, she is best evaluated as a Rotation Player for a Mid-Table Team in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ŽNK Mura Nona"
   },
   "Maja Sternad": {
     "tam_isim": "Maja Sternad",
@@ -95255,7 +95289,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Maja Sternad is a Slovenian wide forward born in 2003 who operates dynamically as an inverted left winger. She refined her attacking mechanics and high-speed dribbling within competitive European youth academies prior to advancing to senior professional leagues. Owing to her excellent sprinting pace, reliable ball technique, and composed final-third finishing, she consistently cuts inside from the flank to create high-value goal-scoring opportunities. Moreover, her dynamic dribbling execution and solid acceleration allow her to easily bypass isolated full-backs during rapid counter-attacking transitions. Improving her long-range passing vision and crossing accuracy will make her much more unpredictable, preventing defenders from simply forcing her outside. Additionally, developing her defensive tackling engagement will ensure she does not leave her overlapping full-back exposed during out-of-possession phases. Her defensive tackling and physical core strength remain exceptionally weak, making her a massive liability in gritty, physical transition duels. Operating as an aggressive, goal-oriented inverted winger, she exhibits a highly confident, attack-focused psychological profile that constantly threatens the opposition penalty area. Because she offers excellent pace and finishing but lacks defensive output, she is best evaluated as a Starting XI Player for an Upper-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Bayer Leverkusen"
   },
   "Nina Kajzba": {
     "tam_isim": "Nina Kajzba",
@@ -95349,7 +95384,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Nina Kajzba is a Slovenian forward born in 2004 who functions as a clinical, penalty-box poacher. She established her goal-scoring instincts and physical attacking profile within Slovenian and European youth systems before stepping into senior competitive squads. Because she possesses exceptional finishing technique, excellent physical strength, and sharp positional awareness inside the box, she consistently converts high-value scoring chances under heavy defensive pressure. Furthermore, her solid ball technique and short-passing ability allow her to function as a reliable focal point for attacking combinations in the final third. Enhancing her tactical vision and long-range passing will help her contribute more significantly to the build-up phase when she is forced to drop deep. Additionally, improving her defensive tackling and pressing engagement will increase her overall value in high-intensity, modern tactical systems. Her long-range vision and defensive tackling mechanics remain mediocre, restricting her utility primarily to the penalty area. Functioning as a pure, goal-obsessed poacher, she displays a highly determined, ruthless psychological approach focused entirely on offensive execution. Given her high-level finishing and physical presence, she is best evaluated as a Rotation Player for an Upper-Table Team in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "FC Zürich"
   },
   "Adrijana Mori": {
     "tam_isim": "Adrijana Mori",
@@ -95439,7 +95475,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Reluctant",
     "scout_notu": "Adrijana Mori is a Slovenian forward born in 2000 who operates as a direct, penalty-box poacher. She developed her offensive movement and attacking fundamentals through domestic and international youth pathways before establishing her senior career. Because she possesses solid physical strength and reliable final-third finishing, she is capable of holding off central defenders and converting high-probability chances inside the penalty area. Furthermore, her adequate positional awareness allows her to consistently find dangerous spaces during vertical transition attacks. Developing her overall technical ball control and short-passing accuracy will be critical to preventing unforced turnovers when she attempts to link up play under pressure. Additionally, improving her long-range passing vision and tactical decision-making will make her a more versatile, unpredictable attacking threat outside the box. Her defensive tackling, advanced vision, and passing range are extremely weak, making her a highly one-dimensional offensive player. Operating as a traditional, straightforward poacher, she maintains a hyper-focused, goal-oriented psychological profile that isolates her from deep build-up phases. Based on her adequate finishing but severe technical limitations, she is best evaluated as a Starting XI Player for a Mid-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ŽNK Mura Nona"
   },
   "Lara Prasnikar": {
     "tam_isim": "Lara Prašnikar",
@@ -95539,7 +95576,8 @@
     "iktisadi_durum": "Yüksek",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Lara Prasnikar is a Slovenian forward born in 1998 who functions as a world-class, elite assistant forward. She forged her exceptional tactical intelligence and offensive mechanics within top-tier European academies before becoming a standout star in elite senior competitions. Owing to her world-class decision-making, exceptional finishing ability, and elite short-passing combinations, she single-handedly dismantles defensive structures by seamlessly linking play and converting chances. Moreover, her outstanding acceleration, top-end pace, and elite pressure resistance allow her to dominate both open-field transitions and highly congested penalty-box scenarios. Improving her defensive tackling output would technically round out her profile, though she is already highly effective in her primary offensive duties. Additionally, maximizing her physical strength would further enhance her ability to endure heavy, aggressive fouling from desperate center-backs. Her defensive tackling output remains her only mediocre trait, which is heavily masked by her overwhelming offensive dominance. Operating as a highly intellectual, complete attacking orchestrator, she displays an immensely confident, leadership-oriented psychological profile that elevates the entire attacking unit. Because she possesses world-class offensive attributes across the board, she is best evaluated as a Starting XI Player for a Championship Contender in the Top 10 Leagues in the World.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "VfL Wolfsburg"
   },
   "Megan Campbell": {
     "tam_isim": "Megan Campbell",
@@ -96181,8 +96219,8 @@
     "tam_isim": "",
     "vatandaslik": "Botswana",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
+    "dogum": "01.12.1997",
+    "yas": 28,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
@@ -96191,7 +96229,7 @@
       "GK"
     ],
     "rol": "",
-    "kulup": "",
+    "kulup": "Mamelodi Sundowns",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -96281,7 +96319,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "Willing",
     "scout_notu": "Sedilame Boseja is the starter goalkeeper for Mamelodi Sundowns. She displays solid aerial area claims and dependable goal-line shot stopping.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Mamelodi Sundowns"
   },
   "Gudny Arnadottir": {
     "tam_isim": "Guðný Árnadóttir",
@@ -97413,15 +97452,15 @@
     "tam_isim": "",
     "vatandaslik": "Botswana",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
+    "dogum": "23.11.1996",
+    "yas": 29,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Botswana Defence Force",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97495,14 +97534,15 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Willing",
     "scout_notu": "Marilyn Johnson is a young midfielder for Double Action. She shows energetic short passing in localized central phases.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Botswana Defence Force"
   },
   "Jheniffer Cordinali": {
     "tam_isim": "/Jheniffer/ da Silva Cordinali Gouveia",
     "vatandaslik": "Brazil",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
+    "dogum": "06.11.2001",
+    "yas": 25,
     "boy": "1,70",
     "ayak": "Sağ",
     "vucut_tipi": "Ektomorf",
@@ -97512,7 +97552,7 @@
       "2ST"
     ],
     "rol": "Fırsatçı Golcü",
-    "kulup": "",
+    "kulup": "Tigres de la UANL",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97535,21 +97575,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Tigres de la UANL"
   },
   "Annecy Nguiadem": {
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "04.04.1994",
+    "yas": 32,
+    "boy": "1,73",
+    "ayak": "Çift",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Hapoel Ra’anana",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97572,7 +97613,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Hapoel Ra’anana"
   },
   "Kathleen McGovern": {
     "tam_isim": "Kathleen Mary McGovern",
@@ -97655,15 +97697,15 @@
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
+    "dogum": "08.09.1996",
+    "yas": 30,
+    "boy": "1,60",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Bourges FC",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97686,21 +97728,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Bourges FC"
   },
   "Claudine Meffometou": {
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "01.07.1990",
+    "yas": 36,
+    "boy": "1,63",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "FC Fleury 91",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97723,21 +97766,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "FC Fleury 91"
   },
   "Diane Wabeua": {
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "09.06.2003",
+    "yas": 23,
+    "boy": "1,69",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Sport Futebol Damaiense",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97760,21 +97804,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Sport Futebol Damaiense"
   },
   "Eliane Bodolo": {
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
+    "dogum": "03.07.1991",
+    "yas": 35,
+    "boy": "1,72",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "CD Getafe Femenino",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97797,21 +97842,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "CD Getafe Femenino"
   },
   "Fadimatou Kome": {
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "22.07.2002",
+    "yas": 24,
+    "boy": "1,70",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Beşiktaş JK",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -97834,16 +97880,17 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Beşiktaş JK"
   },
   "Jeannette Yango": {
     "tam_isim": "",
     "vatandaslik": "Cameroon",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "12.06.1993",
+    "yas": 33,
+    "boy": "1,63",
+    "ayak": "Sol",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
@@ -97871,7 +97918,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Without Club"
   },
   "Hildur Antonsdottir": {
     "tam_isim": "Hildur Antonsdóttir",
@@ -98032,15 +98080,15 @@
     "tam_isim": "",
     "vatandaslik": "Senegal",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
+    "dogum": "05.02.1998",
+    "yas": 28,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "AS Dakar Sacré-Cœur",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98063,16 +98111,17 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "AS Dakar Sacré-Cœur"
   },
   "Marieme Babou": {
     "tam_isim": "",
     "vatandaslik": "Senegal",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "13.04.2003",
+    "yas": 23,
+    "boy": "1,65",
+    "ayak": "Sol",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
@@ -98100,21 +98149,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Without Club"
   },
   "Pascaline Bassane": {
     "tam_isim": "",
     "vatandaslik": "Senegal",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "22.10.2002",
+    "yas": 24,
+    "boy": "1,64",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "SE AEM Lleida",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98137,21 +98187,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "SE AEM Lleida"
   },
   "Tenning Sene": {
     "tam_isim": "",
     "vatandaslik": "Senegal",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "21.01.1990",
+    "yas": 36,
+    "boy": "1,73",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Jappo Olympique Guédiawaye",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98174,21 +98225,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Jappo Olympique Guédiawaye"
   },
   "Noxolo Casane": {
     "tam_isim": "",
     "vatandaslik": "South Africa",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "11.10.2000",
+    "yas": 26,
+    "boy": "1,55",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Mamelodi Sundowns",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98211,7 +98263,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Mamelodi Sundowns"
   },
   "Shin Na-yeong": {
     "tam_isim": "신나영",
@@ -98227,7 +98280,7 @@
       "LFB"
     ],
     "rol": "",
-    "kulup": "",
+    "kulup": "Brooklyn FC",
     "lig": "",
     "deger": "€70.000",
     "sozlesme": "31.12.2026",
@@ -98250,21 +98303,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Brooklyn FC"
   },
   "Moussourieto Adinda-Apko": {
     "tam_isim": "",
     "vatandaslik": "Togo",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "31.01.1996",
+    "yas": 30,
+    "boy": "1,61",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Amis Du Monde",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98287,16 +98341,17 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Amis Du Monde"
   },
   "Reine Gake": {
     "tam_isim": "",
     "vatandaslik": "Togo",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "31.12.2002",
+    "yas": 23,
+    "boy": "1,60",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
@@ -98324,21 +98379,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Without Club"
   },
   "Tayla Gace": {
     "tam_isim": "",
     "vatandaslik": "Togo",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
+    "dogum": "13.02.1998",
+    "yas": 28,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "CD Argual",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98361,21 +98417,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "CD Argual"
   },
   "Nesrine Zizi": {
     "tam_isim": "",
     "vatandaslik": "Tunisia",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
+    "dogum": "30.08.1992",
+    "yas": 34,
     "boy": "",
     "ayak": "",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "AS Banque de l Habitat",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98398,7 +98455,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "AS Banque de l Habitat"
   },
   "Biira Nadunga": {
     "tam_isim": "",
@@ -98441,15 +98499,15 @@
     "tam_isim": "",
     "vatandaslik": "Zambia",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "07.08.2004",
+    "yas": 22,
+    "boy": "1,72",
+    "ayak": "Sol",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "ZESCO United",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98472,21 +98530,22 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "ZESCO United"
   },
   "Lubandji Ochumba": {
     "tam_isim": "",
     "vatandaslik": "Zambia",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "01.07.2001",
+    "yas": 25,
+    "boy": "1,73",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Fujian",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98509,7 +98568,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "Fujian"
   },
   "Sanne Troelsgaard": {
     "tam_isim": "Sanne Troelsgaard Nielsen",
@@ -98592,15 +98652,15 @@
     "tam_isim": "",
     "vatandaslik": "Zambia",
     "milli_takim": "",
-    "dogum": "",
-    "yas": "",
-    "boy": "",
-    "ayak": "",
+    "dogum": "03.03.2003",
+    "yas": 23,
+    "boy": "1,70",
+    "ayak": "Sağ",
     "vucut_tipi": "",
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "ZANACO Ladies",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98623,7 +98683,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": false
+    "degerlendirildi": false,
+    "kulup_sd": "ZANACO Ladies"
   },
   "Angelica Soffia": {
     "tam_isim": "Angelica Soffia",
@@ -99213,7 +99274,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Teja Truntič is a Slovenian goalkeeper born in 2005 who primarily operates as a traditional line keeper with developing sweeper responsibilities. She established her foundational shot-stopping mechanics and defensive positioning within the Slovenian youth development system before advancing into competitive senior tiers. Because her exact technical grades are absent from the provided scouting database, this professional evaluation relies upon her general positional profile and core goalkeeping responsibilities. Because she possesses sharp reflexes and solid spatial awareness, she effectively commands her six-yard box to neutralize close-range finishing attempts. Owing to her reliable handling mechanics and calm demeanor under pressure, she securely claims crosses during crowded set-piece situations to relieve defensive tension. Refining her tactical reading of the game and proactive line domination will help her intercept deep through-balls more effectively when operating behind a high defensive block. Additionally, improving her weak-foot distribution and passing vision under intense pressing will prevent unforced turnovers during the initial phase of build-up play. Because her physical strength in static aerial duels and her overall top-end acceleration remain mediocre, she is left somewhat vulnerable against highly physical target strikers in congested penalty areas. Because she approaches the game with quiet resilience, she functions as a highly focused shot-stopper who provides vital psychological stability to her defensive unit. Evaluating her profile against the 3-Criteria Fit parameters, she is best categorized as a Rotation Player for an Mid-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ŽNK Mura Nona"
   },
   "Olasubomi Ogundele": {
     "tam_isim": "Olasubomi Ogundele",
@@ -99310,7 +99372,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Willing",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Remo Stars Ladies"
   },
   "Mounifatou Helbi": {
     "tam_isim": "Mounifatou Helbi",
@@ -99405,7 +99468,8 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Intentioned",
     "scout_notu": "Mounifatou Helby is a progressive left wingback for Burkina Faso. She displays neat technical control and smart progressive passing along the left flank.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "ASO Burkina Faso"
   },
   "Freyja Stefansdottir": {
     "tam_isim": "Freyja Stefánsdóttir",
@@ -99479,7 +99543,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Djurgarden IF"
   },
   "Hapsatou Malado": {
     "tam_isim": "Hapsatou Malado Diallo",
@@ -99553,7 +99618,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Palm Hills SC"
   },
   "Zuzanna Witek": {
     "tam_isim": "Zuzanna Izabela Witek",
@@ -99627,7 +99693,8 @@
     "iktisadi_durum": "Tanımlanmamış",
     "tr_gorusu": "",
     "scout_notu": "[NC]",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "HB Køge"
   },
   "Viktoria Pinther": {
     "tam_isim": "Viktoria Pinther",
@@ -99720,7 +99787,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Reluctant",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "RC Strasbourg"
   },
   "Amber Barrett": {
     "tam_isim": "Amber Barrett",
@@ -99820,7 +99888,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "RC Strasbourg"
   },
   "Kristin Kogel": {
     "tam_isim": "Kristin Kögel",
@@ -99920,7 +99989,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "RC Strasbourg"
   },
   "Laurine Hannequin": {
     "tam_isim": "Laurine Hannequin",
@@ -100012,7 +100082,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "RC Strasbourg"
   },
   "Lea Declercq": {
     "tam_isim": "Léa Declercq",
@@ -100109,7 +100180,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Reluctant",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "RC Strasbourg"
   },
   "Goknur Guleryuz": {
     "tam_isim": "Göknur Güleryüz",
@@ -100213,7 +100285,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Willing",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Toulouse FC"
   },
   "Tuana Mahmoud": {
     "tam_isim": "Tuana Shahnis Cindy Keleş Mahmoud",
@@ -100309,7 +100382,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Werder Bremen"
   },
   "Leyila Aydin": {
     "tam_isim": "Leyilâ Aydın",
@@ -100406,14 +100480,15 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "FC Viktoria 1889 Berlin"
   },
   "Mariza Nascimento": {
     "tam_isim": "Mariza Nascimento Silva",
     "vatandaslik": "Brazil",
     "milli_takim": "",
     "dogum": "08.11.2001",
-    "yas": 24,
+    "yas": 25,
     "boy": "1,64",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
@@ -100503,7 +100578,8 @@
     "iktisadi_durum": "Orta",
     "tr_gorusu": "Unwilling",
     "scout_notu": "Mariza is a Brazilian defender born in 2001 who operates as a cover center-back capable of playing on both the right and left sides of the backline. She built her foundational tactical discipline, marking rigor, and defensive resilience within the competitive youth setups and senior domestic ranks in Brazil. Because she possesses elite spatial perception, sharp marking discipline, and exceptional concentration, she consistently anticipates line-breaking passes to execute timely tackling interventions. Furthermore, her superior ball technique, two-footed distribution comfort, and outstanding pressure resistance allow her to dictate first-phase build-up play with remarkable composure. Improving her long-range sprinting pace will enable her to recover position more effectively when facing fast vertical transitions behind a high defensive line. Additionally, sharpening her long-range shooting mechanics will provide an extra offensive dimension during set-piece second balls. Her final-third finishing instinct and progressive dribbling capacity remain mediocre, restricting her utility strictly to defensive and early build-up duties. Functioning as a vocal defensive leader with area dominance, she exhibits relentless determination, tactical loyalty, and focused composure that instills psychological stability across the entire backline. She is best evaluated as a Starting XI Player for a Good Teams in the Top 10 Leagues in the World, or as a Star Player for an Upper-Table Team in a Professional League.",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Tigres de la UANL"
   },
   "Burcu Ozsoy": {
     "tam_isim": "Burcu Özsoy",
@@ -100511,7 +100587,7 @@
     "milli_takim": "",
     "dogum": "28.01.2009",
     "yas": 17,
-    "boy": "1,62",
+    "boy": "1,64",
     "ayak": "Sağ",
     "vucut_tipi": "Mezomorf",
     "bolge": "Savunma",
@@ -100546,7 +100622,8 @@
     "iktisadi_durum": "",
     "tr_gorusu": "",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Dudullu SK"
   },
   "Fernanda Viafara": {
     "tam_isim": "María Fernanda Viáfara Bravo",
@@ -100637,7 +100714,8 @@
     "iktisadi_durum": "Düşük",
     "tr_gorusu": "Neutral",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Millonarios FC"
   },
   "Mercedes Martinez": {
     "tam_isim": "Mercedes María Martínez Medina",
@@ -100729,6 +100807,196 @@
     "iktisadi_durum": "Ucuz",
     "tr_gorusu": "Neutral",
     "scout_notu": "",
-    "degerlendirildi": true
+    "degerlendirildi": true,
+    "kulup_sd": "Fortaleza C.E.I.F."
+  },
+  "Fatima Tagnaout": {
+    "tam_isim": "Fatima Zahra Tagnaout | فاطمة الزهراء تاكناوت",
+    "vatandaslik": "Morocco",
+    "milli_takim": "",
+    "dogum": "20.01.1999",
+    "yas": 27,
+    "boy": "1,58",
+    "ayak": "Sol",
+    "vucut_tipi": "Mezo-Ektomorf",
+    "bolge": "Hücum",
+    "mevki": [
+      "LWF",
+      "RWF",
+      "AMF"
+    ],
+    "rol": "Oyun Kurucu Kanat",
+    "kulup": "AS Far",
+    "lig": "🇲🇦 الوطنية الاحترافية",
+    "deger": "€80.000",
+    "sozlesme": "30.06.2027",
+    "beceri": {
+      "Bitiricilik": "BC",
+      "Top Tekniği": "AB",
+      "Penaltı Vuruşu": "BC",
+      "Markaj": "EE",
+      "Top Kapma": "EE",
+      "Uzun Taç": "DE",
+      "Duran Top": "BC",
+      "İlk Kontrol": "BC",
+      "Kafa Vuruşu": "BC",
+      "Orta Yapma": "BC",
+      "Kısa Pas": "BC",
+      "Uzun Pas": "BC",
+      "Top Sürme": "BC",
+      "Uzaktan Şut": "BC"
+    },
+    "beseri": {
+      "Agresiflik": "BC",
+      "Cesaret": "BC",
+      "Karar Alma": "BC",
+      "Kararlılık": "BC",
+      "Konsantrasyon": "BC",
+      "Liderlik": "DD",
+      "Önsezi": "BC",
+      "Konumlanma": "BC",
+      "Soğukkanlılık": "BC",
+      "Takım Oyunu": "BB",
+      "Topsuz Alan": "BC",
+      "Görüş": "BC"
+    },
+    "fiziki": {
+      "Çeviklik": "BC",
+      "Dayanıklılık": "BC",
+      "Denge": "BC",
+      "Güç": "BB",
+      "Sürat": "BC",
+      "Hızlanma": "BC",
+      "Koordinasyon": "CC",
+      "Zindelik": "BC",
+      "Zıplama": "CD",
+      "Zayıf Ayak": "CC"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "BC",
+      "Sportmenlik": "BC",
+      "Profesyonellik": "BC",
+      "Sadakat": "BC",
+      "Baskıya Dayanıklılık": "BC",
+      "Uyumluluk": "BC",
+      "Süreklilik": "BC",
+      "Çalışkanlık": "BC"
+    },
+    "kaleci": {},
+    "makro": {
+      "beceri": "CC",
+      "beseri": "BC",
+      "fiziki": "BC",
+      "sahsi": "BC",
+      "kaleci": ""
+    },
+    "tarz": [
+      "Kanattan Bindirme Yapar",
+      "Fırsat Buldukça Hücuma Katılır",
+      "Başarılıı Plase veya Kavisli Şut/Orta Dener",
+      "Yüksek Tempolu Oynar",
+      "Hızını Sahaya Yansıtır",
+      "Tekniği İle Rakipten Sıyrılabilir"
+    ],
+    "nihai": "BC",
+    "ivme": "⬆︎",
+    "yetenek_kumesi": "🏅 Önemli",
+    "iktisadi_durum": "Düşük",
+    "tr_gorusu": "Neutral",
+    "scout_notu": "Fatima Tagnout is a creative left-footed winger for Sevilla and Morocco. She provides mesmerizing 1v1 dribbles, pinpoint crossing, and dangerous inner-channel key passes.",
+    "degerlendirildi": true,
+    "kulup_sd": "AS Far"
+  },
+  "Camila Jimenez": {
+    "tam_isim": "Camila Jiménez",
+    "vatandaslik": "United States",
+    "milli_takim": "Venezuela",
+    "dogum": "08.04.2002",
+    "yas": 24,
+    "boy": "1,57",
+    "ayak": "Sağ",
+    "vucut_tipi": "Mezo-Endomorf",
+    "bolge": "Orta Saha",
+    "mevki": [
+      "AMF",
+      "2ST"
+    ],
+    "rol": "Sahte #9",
+    "kulup": "Miami Grove FC",
+    "lig": "🇺🇸 UPSL",
+    "deger": "€1.000",
+    "sozlesme": "31.12.2026",
+    "beceri": {
+      "Bitiricilik": "CD",
+      "Top Tekniği": "DE",
+      "Penaltı Vuruşu": "EE",
+      "Markaj": "EE",
+      "Top Kapma": "EE",
+      "Uzun Taç": "EE",
+      "Duran Top": "DE",
+      "İlk Kontrol": "DD",
+      "Kafa Vuruşu": "EE",
+      "Orta Yapma": "EE",
+      "Kısa Pas": "DD",
+      "Uzun Pas": "DE",
+      "Top Sürme": "DE",
+      "Uzaktan Şut": "CD"
+    },
+    "beseri": {
+      "Agresiflik": "DD",
+      "Cesaret": "DE",
+      "Karar Alma": "DE",
+      "Kararlılık": "DE",
+      "Konsantrasyon": "EE",
+      "Liderlik": "EE",
+      "Önsezi": "EE",
+      "Konumlanma": "DE",
+      "Soğukkanlılık": "EE",
+      "Takım Oyunu": "EE",
+      "Topsuz Alan": "DE",
+      "Görüş": "EE"
+    },
+    "fiziki": {
+      "Çeviklik": "DE",
+      "Dayanıklılık": "DE",
+      "Denge": "DD",
+      "Güç": "EE",
+      "Sürat": "DE",
+      "Hızlanma": "DD",
+      "Koordinasyon": "DD",
+      "Zindelik": "EE",
+      "Zıplama": "EE",
+      "Zayıf Ayak": "DD"
+    },
+    "sahsi": {
+      "Sakatlanma Direnci": "EE",
+      "Sportmenlik": "DE",
+      "Profesyonellik": "DE",
+      "Sadakat": "EE",
+      "Baskıya Dayanıklılık": "DE",
+      "Uyumluluk": "DD",
+      "Süreklilik": "DE",
+      "Çalışkanlık": "DE"
+    },
+    "kaleci": {},
+    "makro": {
+      "beceri": "DE",
+      "beseri": "DE",
+      "fiziki": "DE",
+      "sahsi": "DE",
+      "kaleci": ""
+    },
+    "tarz": [
+      "Kaleyi Uzaktan Yoklar",
+      "Sert Şutlar/Ortalar Yapabilir"
+    ],
+    "nihai": "DE",
+    "ivme": "⬌",
+    "yetenek_kumesi": "🍂 Tercih Dışı",
+    "iktisadi_durum": "Ucuz",
+    "tr_gorusu": "Intentioned",
+    "scout_notu": "",
+    "degerlendirildi": true,
+    "kulup_sd": "Fort Lauderdale United (W League)"
   }
 }
