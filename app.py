@@ -2783,6 +2783,20 @@ def scotr_kadro_yukle() -> dict:
     return out
 
 
+def _bolge_sd(pozisyon: str) -> str:
+    """SoccerDonna mevkisinden saha bölgesi (sheet'teki dört değerle aynı: Kale / Savunma / Orta Saha / Hücum)."""
+    n = mevki_normalize(pozisyon) if pozisyon else ""
+    if not n or n == "Bilinmiyor":
+        return ""
+    if n == "Kaleci":
+        return "Kale"
+    if n in ("Sağ Bek", "Sol Bek", "Stoper", "Defans"):
+        return "Savunma"
+    if "Orta Saha" in n:
+        return "Orta Saha"
+    return "Hücum"
+
+
 def _sd_deger_bicim(s) -> str:
     """SoccerDonna 'Market value' ('40.000 €') → site biçimi '€40.000'. SD değer
     vermiyorsa ('unknown', '?', boş) '' döner — çağıran sheet değerini korur."""
@@ -2898,6 +2912,11 @@ def _scout_kayit_bul(isim: str, _veri: dict = None, _haritalar: tuple = None,
                    and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
         if len(adaylar) == 1:
             return veri.get(adaylar.pop(), {})
+    _kp = _dogum_kopru(isim)
+    if _kp:
+        _kk = _kp if _kp in veri else norm_harita.get(_isim_norm(_kp))
+        if _kk and veri.get(_kk):
+            return veri[_kk]
     return _scotr_arsiv_bul(isim, *(_arsiv or (None, None)))
 
 
@@ -2970,6 +2989,51 @@ def _scotr_token_harita() -> dict:
     return harita
 
 
+@st.cache_resource(show_spinner=False)
+def _dogum_kopru_haritasi() -> dict:
+    """Doğum tarihi → [(sheet anahtarı, ad sözcükleri)]. TFF'nin resmi adı ile sheet'teki kısa ya da takma adı
+    (PAOLA SIMONE NICOLE ELLIS ↔ Blue Ellis, FLORENTİNA KOLGECİ ↔ Tina Kolgeci) bağlamak için."""
+    out = {}
+    for k, v in scotr_yukle().items():
+        if not isinstance(v, dict):
+            continue
+        dg = str(v.get("dogum") or "").strip()
+        if len(dg) != 10:
+            continue
+        tok = {x for x in _isim_norm(f"{k} {v.get('tam_isim') or ''}").replace("-", " ").split() if len(x) >= 3}
+        out.setdefault(dg, []).append((k, tok))
+    return out
+
+
+@st.cache_resource(show_spinner=False)
+def _dogum_kopru_onbellek() -> dict:
+    return {}
+
+
+def _dogum_kopru(isim: str) -> str:
+    """Ad eşleşmesi tutmayan oyuncu için sheet anahtarı: SoccerDonna profilindeki doğum tarihi AYNI ve en az bir
+    ad sözcüğü ortak olan TEK sheet kaydı; yoksa ''. (13 Kasım 2026: 28 Süper Lig oyuncusunun dolu scout kaydı,
+    sheet'te kısa adla durduğu için profilde görünmüyordu — Blue Ellis, Abi Kim, Katie Bowen, Sol Belotto…)"""
+    ob = _dogum_kopru_onbellek()
+    if isim in ob:
+        return ob[isim]
+    sonuc = ""
+    try:
+        sd = _sd_profil_bul(isim) or {}
+        dg = str(sd.get("Date of birth") or "").strip()
+        adaylar = _dogum_kopru_haritasi().get(dg) or []
+        if adaylar:
+            hedef = {x for x in _isim_norm(f"{isim} {sd.get('sd_isim') or ''} {sd.get('Name in native country') or ''}")
+                     .replace("-", " ").split() if len(x) >= 3}
+            uygun = [k for k, tok in adaylar if hedef & tok]
+            if len(uygun) == 1:
+                sonuc = uygun[0]
+    except Exception:
+        sonuc = ""
+    ob[isim] = sonuc
+    return sonuc
+
+
 def scotr_bul(isim: str) -> dict:
     """Sco Tr kaydını getirir; birebir yoksa diakritiksiz, o da yoksa eksik/fazla
     orta ad toleranslı (token alt-küme) eşleştirir.
@@ -3000,6 +3064,9 @@ def scotr_bul(isim: str) -> dict:
                    and (hedef <= set(aday_tk) or set(aday_tk) <= hedef)}
         if len(adaylar) == 1:
             return d.get(adaylar.pop()) or {}
+    _kp = _dogum_kopru(isim)
+    if _kp and d.get(_kp):
+        return d[_kp]
     return _scotr_arsiv_bul(isim)
 
 
@@ -4452,11 +4519,27 @@ def _ayak_goster(sd_ayak: str, sheet_ayak: str = "") -> str:
 
 def bolge_goster(m):
     return _BOLGE_EN.get(m, m) if EN else m
+# Sheet'te lig adı ülkenin kendi yazısıyla duruyor (Çince, Korece, Arapça, Kiril…): arayüzde okunmuyor ve aranamıyordu
+# (13 Kasım 2026 taraması: 17 lig, 120 oyuncu). Gösterimde Latin harfli karşılığı kullanılır; veri değişmez.
+_LIG_LATIN = {
+    "🇨🇳 超级联赛": "🇨🇳 Super League", "🇰🇵 1부류": "🇰🇵 1st Division", "🇲🇦 الوطنية الاحترافية": "🇲🇦 Championnat Pro",
+    "🇰🇷 WK리그": "🇰🇷 WK League", "🇷🇺 Суперлига": "🇷🇺 Superliga", "🇹🇳 البطولة": "🇹🇳 Championnat",
+    "🇯🇵 WEリーグ": "🇯🇵 WE League", "🇬🇪 ქალთა ლიგა": "🇬🇪 Women's League", "🇧🇾 Жаночая ліга": "🇧🇾 Women's League",
+    "🇬🇷 Α΄": "🇬🇷 A Division", "🇷🇸 Супер лига": "🇷🇸 Super Liga", "🇰🇼 الدرجة الأولى": "🇰🇼 First Division",
+    "🇮🇱 ליגת": "🇮🇱 Ligat Nashim", "🇲🇲 မြန်မာနေရှင်နယ်လိဂ်": "🇲🇲 National League", "🇪🇬 الممتاز": "🇪🇬 Premier League",
+}
+# Aynı ligin sheet'teki iki yazımı: süzgeçte iki ayrı seçenek olarak çıkıyordu
+_LIG_ESIT = {"🇹🇷 Süper Lig": "🇹🇷 TSL", "🇫🇷 Seconde Ligue": "🇫🇷 2e Ligue"}
+
+
 def _lig_goster(m):
     """'lig' alanı çoğunlukla 'Ülke N' şeklinde (örn. 'Almanya 1', 'ABD 2') —
     sondaki bölüm numarasını koruyup sadece ülke kısmını çevirir. Numara yoksa
     (ör. sadece 'Türkiye') düz ulke_goster ile aynı davranır."""
     m = (m or "").strip()
+    m = _LIG_ESIT.get(m, m)
+    if m in _LIG_LATIN:
+        return _LIG_LATIN[m]
     if m in ("-", "—", "–"):
         return ""
     if not m:
@@ -4495,7 +4578,25 @@ _ULKE_TR.update({
     "Bosnia & Herzegovina": "Bosna Hersek", "Bosnia&Herzegovina": "Bosna Hersek",
     "El Salvador": "El Salvador", "Pakistan": "Pakistan", "Syria": "Suriye",
     "Marocco": "Fas", "Tunusia": "Tunus",
+    # 13 Kasım 2026 taraması: SD/sheet'te geçen ama çevrilmeyen adlar
+    "Suriname": "Surinam", "Philippines": "Filipinler", "Lebanon": "Lübnan", "Thailand": "Tayland",
+    "South Korea": "Güney Kore", "DR Congo": "Kongo DC", "Cote D'Ivoire": "Fildişi Sahili",
+    "Ivory Coast": "Fildişi Sahili", "North Macedonia": "Kuzey Makedonya", "Czechia": "Çekya",
+    "Dominica": "Dominika", "Faroe Island": "Faroe Adaları", "Equatorial Guinea": "Ekvator Ginesi",
+    "Cyprus": "Kıbrıs", "Holland": "Hollanda", "Botsuana": "Botsvana", "Senegal": "Senegal",
+    "Togo": "Togo", "Mali": "Mali", "Korea, North": "Kuzey Kore",
 })
+
+# İngilizce arayüzde SD/sheet yazım hataları ve yerel adlar düzgün İngilizce ada çevrilir
+_ULKE_EN_DUZELT = {
+    "Danmark": "Denmark", "Moldovo": "Moldova", "Kazakhistan": "Kazakhstan", "Marocco": "Morocco",
+    "Botsuana": "Botswana", "PR China": "China", "The Netherlands": "Netherlands", "the Netherlands": "Netherlands",
+    "Holland": "Netherlands", "Czezchia": "Czechia", "Tunusia": "Tunisia", "Scottland": "Scotland",
+    "Turkiye": "Türkiye", "Cote D'Ivoire": "Côte d'Ivoire", "Cote d'Ivoire": "Côte d'Ivoire",
+    "Bosnia&Herzegovina": "Bosnia & Herzegovina", "Trinidad&Tobago": "Trinidad & Tobago",
+    "Faroe Island": "Faroe Islands", "Macedonia": "North Macedonia",
+    "Korea, North": "North Korea", "Korea, South": "South Korea",
+}
 
 _ULKE_COKLU_BOLUCU = _re.compile(r"(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])")
 
@@ -4504,8 +4605,12 @@ def _ulke_coklu_ayir(m: str) -> list:
     'AzerbaijanTurkey', 'KolombyaHonduras') — iki ülke adı camelCase sınırında
     birbirine yapışık. Ayraç (/ veya ,) yoksa bu sınırdan böler."""
     m = (m or "").strip()
-    if not m or "/" in m or "," in m:
-        return [m] if m else []
+    if not m:
+        return []
+    if "/" in m:        # 'Canada / Trinidad and Tobago' — eskiden tek parça sayılıp TR arayüzde çevrilmeden kalıyordu
+        return [x for p in m.split("/") for x in _ulke_coklu_ayir(p)]
+    if "," in m:        # 'Korea, South' gibi adın kendi virgülü: bölme
+        return [m]
     parcalar = [p.strip() for p in _ULKE_COKLU_BOLUCU.split(m) if p.strip()]
     return parcalar if parcalar else [m]
 
@@ -4545,6 +4650,23 @@ _ULKE_ISO = {
  "Kongo DC":"CD","Kongo Demokratik Cumhuriyeti":"CD","Congo DR":"CD",
 }
 
+_ULKE_ISO.update({     # 13 Kasım 2026 taraması: bayraksız kalan 50 yazım
+ "Turkiye":"TR","Senegal":"SN","Burundi":"BI","Togo":"TG","Danmark":"DK","South Korea":"KR","PR China":"CN",
+ "Botsuana":"BW","Botswana":"BW","Botsvana":"BW","The Netherlands":"NL","the Netherlands":"NL","Holland":"NL",
+ "North Korea":"KP","Kuzey Kore":"KP","Bosnia&Herzegovina":"BA","Bosnia & Herzegovina":"BA","Angola":"AO",
+ "DR Congo":"CD","Mali":"ML","Cote D'Ivoire":"CI","Côte d'Ivoire":"CI","Ivory Coast":"CI",
+ "Trinidad & Tobago":"TT","Trinidad&Tobago":"TT","Suriname":"SR","Surinam":"SR","Philippines":"PH","Filipinler":"PH",
+ "Lebanon":"LB","Lübnan":"LB","Thailand":"TH","Tayland":"TH","Cuba":"CU","Küba":"CU","Macedonia":"MK",
+ "North Macedonia":"MK","Kuzey Makedonya":"MK","Czechia":"CZ","Moldovo":"MD","Afghanistan":"AF","Afganistan":"AF",
+ "Indonesia":"ID","Endonezya":"ID","Guadeloupe":"GP","San Marino":"SM","Eritrea":"ER","Eritre":"ER",
+ "Ethiopia":"ET","Etiyopya":"ET","Liberia":"LR","Liberya":"LR","Dominica":"DM","Dominika":"DM",
+ "Faroe Island":"FO","Faroe Islands":"FO","Faroe Adaları":"FO","Kazakhistan":"KZ","Marocco":"MA",
+ "Equatorial Guinea":"GQ","Ekvator Ginesi":"GQ","Cyprus":"CY","Kıbrıs":"CY","Zimbabwe":"ZW","Zimbabve":"ZW",
+ "Scotland":"GB","Wales":"GB","Galler":"GB","Northern Ireland":"GB","Kuzey İrlanda":"GB","Tunusia":"TN",
+ "Ruanda":"RW","Zambiya":"ZM",
+})
+
+
 def _iso_bayrak(iso):
     return "".join(chr(0x1F1E6 + ord(c) - 65) for c in iso) if len(iso) == 2 and iso != "XK" else ("🏳️" if iso == "XK" else "")
 
@@ -4554,8 +4676,9 @@ def bayrakli_ulke(m):
     if not m:
         return ""
     ana = m.split("&")[0].strip()          # 'Türkiye&Almanya' → 'Türkiye'
-    iso = _ULKE_ISO.get(ana, "")
-    ad = ulke_goster(ana if iso else m)
+    tam = _ULKE_ISO.get(m, "")             # 'Bosnia&Herzegovina', 'Trinidad & Tobago': adın kendisi '&' içeriyor
+    iso = tam or _ULKE_ISO.get(ana, "")
+    ad = ulke_goster(m if tam else (ana if iso else m))
     return f"{_iso_bayrak(iso)} {ad}".strip() if iso else ad
 
 
@@ -4567,7 +4690,7 @@ def ulke_goster(m):
     parcalar = _ulke_coklu_ayir(m)
     if len(parcalar) > 1:
         return " / ".join(ulke_goster(p) for p in parcalar)
-    return _ULKE_EN.get(m, m) if EN else _ULKE_TR.get(m, m)
+    return (_ULKE_EN.get(m) or _ULKE_EN_DUZELT.get(m, m)) if EN else _ULKE_TR.get(m, m)
 
 # ── AB (Avrupa Birliği) uyumluluğu: iki uyruktan biri EU-27 ise "AB uyumlu" ──
 _AB_SEC = "__AB_UYUMLU__"          # ülke filtresi sentinel'i
@@ -5175,6 +5298,7 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict = None, _sd: dict = None,
         if _isim_norm(str(_kd.get("kulup") or "")) in _SERBEST_ADLAR:
             r["fa"] = 1                       # serbest oyuncu: transfer dönemi süzgecinde "hemen alınabilir"
         _lg = str(_kd.get("lig", "") or "").strip()
+        _lg = _LIG_ESIT.get(_lg, _lg)
         if _lg and _lg != "-":
             if _lg not in lg_map:
                 lg_map[_lg] = _lig_goster(_lg)
@@ -5504,12 +5628,21 @@ def isim_goster(s: str) -> str:
     _kanon, _sd_profil_bul, dict anahtarları, URL parametreleri) HİÇ
     değişmez (bkz. Uyruk dersi)."""
     s = str(s or "")
+    if s and " " in s and s == s.lower() and s != s.upper():
+        # TFF'nin tamamen küçük harfle girdiği tek tük ad ('anastthesıa achıaa'): Türkçe klavyede 'I' küçülünce 'ı'
+        # olmuş. Başka Türkçe harf yoksa yabancı ad sayılır (ı → i), sonra baş harfler büyütülür.
+        _trk = any(ch in s for ch in "çğöşü")
+        _g = s if _trk else s.replace("ı", "i")
+        return " ".join((("İ" if k[0] == "i" else "I" if k[0] == "ı" else k[0].upper()) if _trk else k[0].upper()) + k[1:]
+                        for k in _g.split(" ") if k)
     if not s or s != s.upper():
         return s  # zaten karışık/küçük harfli (Dünya kaynağı) — dokunma
     turkce = bool(_TR_ISARET_RE.search(s))
     parcalar = []
     for k in s.split(" "):
-        if not k or _KISALTMA_RE.match(k):
+        if not k:
+            continue                     # çift boşluk ('RECALDE  CABANAS') gösterimde tek boşluk olur
+        if _KISALTMA_RE.match(k):
             parcalar.append(k)
             continue
         kucuk = _tr_kucuk(k) if turkce else k.lower()
@@ -5617,7 +5750,9 @@ def _uyruk_ayir(nat_str: str) -> tuple:
     s = (nat_str or "").strip()
     if not s:
         return ("", "")
-    p = [x.strip() for x in _re.split(r"(?<=[a-z])(?=[A-Z])|\s*/\s*", s) if x.strip()]
+    # 'Congo DRBelgium' (büyük harfle biten ad + yeni ad) ve 'Albania,Finland' (boşluksuz virgül) de ayrılır;
+    # 'Korea, South' gibi adın kendi virgülü (ardında boşluk var) bölünmez.
+    p = [x.strip() for x in _re.split(r"(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|\s*/\s*|,(?=\S)", s) if x.strip()]
     return (p[0] if p else "", p[1] if len(p) > 1 else "")
 
 
@@ -7886,6 +8021,8 @@ def render_scouting_detay(tam_isim):
     # scout_kadro'dan ek bilgiler (piyasa değeri, milli takım) — norm toleranslı
     _kadro  = _d5.get(tam_isim) or _scout_norm_bul(tam_isim) or {}
     _deger  = _kadro.get("deger", "")
+    if not str(_deger).strip("€ 0.,"):
+        _deger = ""                              # "€0" = değer girilmemiş (tabloda da boş gösteriliyor)
     # Milli takım = "Vatandaşlık (Millî)" (vatandaslik). NOT: milli_takim alanı aslında
     # "2. Vatandaşlık" (ikinci pasaport) → milli takım için YANLIŞ (örn. Miray Cin Türkiye
     # oynar ama 2. vatandaşlığı Almanya). Çift uyruklularda doğru NT = Millî vatandaşlık.
@@ -7937,7 +8074,7 @@ def render_scouting_detay(tam_isim):
     _mevki_g = "-".join(_mevki_kod) if _mevki_kod else mevki_disp(mevki)
     _vucut = vucut_goster((_kadro.get("vucut_tipi") or "").strip())
     _boy_tip = " / ".join(x for x in (boy if boy != "—" else "", _vucut) if x)
-    _bolge_g = bolge_goster(_kadro.get("bolge", ""))
+    _bolge_g = bolge_goster(_kadro.get("bolge", "") or _bolge_sd(mevki if mevki != "—" else ""))   # sheet'te bölge yoksa SD mevkisinden
     _lig_g = _lig_goster((_kadro.get("lig") or "").strip())   # "-" → boş; EN modda ülke adı çevrilir
     _takim_ham = (_kadro.get("kulup") or "").strip()
     _takim_g = (t("Serbest", "Free Agent") if _takim_ham.lower() in _KONTRAT_SERBEST
@@ -9904,8 +10041,8 @@ def _render_ana_lig_profil_ic(secili):
         if sd.get("Nationality"):   sd_parcalar.append(f"🏳️ {sd['Nationality']}")
         if sd.get("Height"):        sd_parcalar.append(f"📏 {sd['Height']} m")
         if sd.get("Foot"):          sd_parcalar.append(f"👟 {sd['Foot'].capitalize()}")
-        if sd.get("Market value") and sd["Market value"] not in ("unknown","?",""):
-            sd_parcalar.append(f"💰 {sd['Market value']}")
+        if _sd_deger_bicim(sd.get("Market value")):
+            sd_parcalar.append(f"💰 {_sd_deger_bicim(sd.get('Market value'))}")
         sd_bilgi_html = ""
         if sd_parcalar:
             sd_bilgi_html = (
@@ -9934,7 +10071,7 @@ def _render_ana_lig_profil_ic(secili):
             _profil_baslik(isim_goster(secili), tam_isim=_d_scout.get(secili, {}).get("tam_isim", ""))
         with _bs2:
             _profil_link_kopyala(secili, sd.get("profil_url", ""))
-        _mv = sd.get("Market value", "")
+        _mv = _sd_deger_bicim(sd.get("Market value", ""))   # '35.000 €' → '€35.000' (sheet ile aynı biçim)
         # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
         # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
         _sc_kayit = _d_scout.get(secili) or _scout_norm_bul(secili) or {}
@@ -9977,7 +10114,8 @@ def _render_ana_lig_profil_ic(secili):
                 (f"📅 {t('Doğum Tarihi','Date of Birth')}", _tr_dogum),
                 (f"🎂 {t('Yaş','Age')}", _tr_yas)]),
             (f"⚽ {t('Futbolcu Bilgileri','Footballer Info')}", [
-                (f"📍 {t('Bölge','Area')}", bolge_goster(_st.get("bolge", ""))),
+                # Sheet'te kaydı olmayan oyuncuda (ör. yeni transfer) bölge SD mevkisinden türetilir
+                (f"📍 {t('Bölge','Area')}", bolge_goster(_st.get("bolge", "") or _bolge_sd(sd.get("Position", "")))),
                 (f"📌 {t('Mevki','Position')}", _tr_mevki or _mevki_deger),
                 (f"📏 {t('Boy / Tip','Height / Type')}",
                  " / ".join(x for x in (_tr_boy, _tr_tip) if x)),
@@ -9988,7 +10126,7 @@ def _render_ana_lig_profil_ic(secili):
                 # _guncel_kulup_goster ile aynı kanonik kıyas) sheet'in "lig"i
                 # (hep 🇹🇷) gösterilmez — "Como 1907, TSL'de oynuyor" gibi
                 # tutarsız bir kombinasyon olurdu (Yiğit, 19.08.2026 — Giacinti).
-                (f"🏆 {t('Lig','League')}", "" if _sd_kulup_farkli else _st.get("lig", "")),
+                (f"🏆 {t('Lig','League')}", "" if _sd_kulup_farkli else (_st.get("lig", "") or "🇹🇷 TSL")),
                 (f"👕 {t('Takım','Team')}", _guncel_kulup_goster(sd, _sezon_takim)),
                 (f"📄 {t('Sözleşme','Contract')}",
                  _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
@@ -13550,7 +13688,7 @@ def render_paylasim_raporu(isim: str):
     except Exception: milli = kadro.get("milli_takim", "")
     kulup = _kulup_goster(kadro.get("kulup", "")) or "—"
     lig   = _lig_goster(kadro.get("lig", "")) or "—"
-    deger = kadro.get("deger", "") or sd.get("Market value", "") or "—"
+    deger = kadro.get("deger", "") or _sd_deger_bicim(sd.get("Market value", "")) or "—"
     sozl  = _kontrat_guncel(kadro.get("sozlesme", ""), sd.get("Contract until", ""))
     nihai = (kadro.get("nihai", "") or "").strip()
     tarz  = kadro.get("tarz", "") or ""
