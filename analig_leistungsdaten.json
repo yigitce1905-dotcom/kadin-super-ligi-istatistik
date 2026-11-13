@@ -62270,5 +62270,154 @@
       }
     ],
     "guncelleme": "2026-11-11"
+  },
+  "ELİF EKİN ŞAHİN": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "1207 Antalya",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 107,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
+  },
+  "DENİZ YILDIZ": {
+    "sezonlar": [],
+    "guncelleme": "2026-11-13"
+  },
+  "MILENA APARICDA DE PAULA SILVA": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Haymana",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 82,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Atlético Mineiro",
+        "lig": "Brasileirão Feminino",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 20,
+        "milli": false
+      },
+      {
+        "sezon": "22/23",
+        "kulup": "Atlético Mineiro",
+        "lig": "Supercopa do Brasil",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 15,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
+  },
+  "ESTEFANE ROSSETTO DE SOL'SA": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Sanayispor",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 68,
+        "milli": false
+      },
+      {
+        "sezon": "21/22",
+        "kulup": "São José Esporte Clube",
+        "lig": "Brasileirão Feminino",
+        "mac": 2,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 0,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
+  },
+  "IVANICE SANTOS NEVES": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Sanayispor",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
+  },
+  "NİSANUR BEKDEMİR": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Sanayispor",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 68,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
+  },
+  "ELANUR ÇIKILI": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Kayseri",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 11,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
+  },
+  "CORDELIA AMARACHI ODOMA": {
+    "sezonlar": [
+      {
+        "sezon": "26/27",
+        "kulup": "Bilgi Doga",
+        "lig": "Kadın Futbol Süper Ligi",
+        "mac": 1,
+        "gol": 0,
+        "asist": 0,
+        "sari": 0,
+        "dakika": 90,
+        "milli": false
+      }
+    ],
+    "guncelleme": "2026-11-13"
   }
 }

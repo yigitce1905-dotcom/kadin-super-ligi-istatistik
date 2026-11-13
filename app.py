@@ -7247,6 +7247,7 @@ def render_serbest_radar():
             st.session_state["ssr_ulke"] = _trf_ulke_varsayilan() if _trf_ulke_varsayilan() in _ukod_r else _ukod_r[0]
         _ulke_r = st.selectbox(t("Kulübün ülkesi (transfer dönemi buna göre hesaplanır)", "Club's country (the transfer window is worked out from it)"),
                                _ukod_r, key="ssr_ulke", format_func=lambda k: _uad_r.get(k, k))
+        st.session_state["trf_ulke"] = _ulke_r
         _trd_r = _transfer_donemi(_ulke_r, _bugun_r.isoformat())
         _sinir_r = _date_r.fromisoformat(_trd_r["sinir1" if _pencere == "donem" else "sinir2"])
         _gun_siniri = max(0, (_sinir_r - _bugun_r).days)
@@ -8019,7 +8020,7 @@ def render_scouting_detay(tam_isim):
                 + ("#1db954" if _so_notu else "#64748b") + ';">'
                 + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
                 '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
-                '</div>' + _sira_satiri_html(_so, "tum") + _form_satiri_html(sd) + _sb_satiri_html(tam_isim, (_so or {}).get("vatandaslik", "")) + '</div>', unsafe_allow_html=True)
+                '</div>' + _sira_satiri_html(_so, "tum") + _form_satiri_html(sd) + _donem_satiri_html(_so, sd) + _sb_satiri_html(tam_isim, (_so or {}).get("vatandaslik", "")) + '</div>', unsafe_allow_html=True)
 
     if _saha_svg:
         _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
@@ -10079,7 +10080,7 @@ def _render_ana_lig_profil_ic(secili):
                     + ("#1db954" if _so_notu else "#64748b") + ';">'
                     + (t("Var", "Yes") if _so_notu else t("Yok", "No")) + '</div>'
                     '<div class="tp-arametin">' + t("Analiz Raporu", "Analysis Report") + '</div></div>'
-                    '</div>' + _sira_satiri_html(_so, "tr") + _form_satiri_html(sd) + _sb_satiri_html(secili, (_so or {}).get("vatandaslik", "")) + '</div>', unsafe_allow_html=True)
+                    '</div>' + _sira_satiri_html(_so, "tr") + _form_satiri_html(sd) + _donem_satiri_html(_so, sd) + _sb_satiri_html(secili, (_so or {}).get("vatandaslik", "")) + '</div>', unsafe_allow_html=True)
 
         if _saha_svg:
             _bk_col, _sh_col = st.columns([2.6, 1], gap="medium")
@@ -10535,6 +10536,7 @@ if str(pathlib.Path(__file__).parent) not in _sys.path:      # streamlit run bun
     _sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import lig_motor as _lig_motor
 from lig_motor import LIG_SAYFA as _LIG_SAYFA, LIG_AD_EN as _LIG_AD_EN, LIG_KUPA as _LIG_KUPA, OPTA_SIRA as _OPTA_SIRA
+from lig_motor import LIG_ULKE as _LIG_ULKE
 _LIG_SEKME = ["liste", "genc", "profil", "karsilastir", "takim", "tablo", "eniyi", "arama", "yas", "kaleci"]
 _CAPRAZ_SEKME = ["ligler", "eniyi", "genc", "kaleci", "arama"]          # "Tüm Ligler" kipi (lig kodu "ALL")
 
@@ -11307,7 +11309,10 @@ def _trf_ulke_varsayilan() -> str:
     """Liste sayfasında alıcı ülke: ?ulke= → yoksa Türkçe arayüzde Türkiye, İngilizcede İngiltere."""
     q = str(st.query_params.get("ulke", "") or "").strip().upper()
     kodlar = {x.get("fifa") for x in takvim_yukle().get("ulkeler", [])}
-    return q if q in kodlar else ("ENG" if EN else "TUR")
+    if q in kodlar:
+        return q
+    s = st.session_state.get("trf_ulke")          # Sözleşme Takibi / Radar'da seçilen ülke oturum boyunca geçerli (profil satırı da onu kullanır)
+    return s if s in kodlar else ("ENG" if EN else "TUR")
 
 
 @st.cache_data(show_spinner=False, ttl=1800, max_entries=48)
@@ -11438,6 +11443,83 @@ def _musait_ozet(gun: str, ulke: str = "") -> dict:
         return {"toplam": 0, "serbest": 0, "donem": 0, "sezon": 0, "bc": 0}
 
 
+def _donem_satiri_html(scout_kayit, sd_kayit) -> str:
+    """Profilde (TR lig + scouting, ikisinde de) sözleşmeyi TRANSFER DÖNEMİNE bağlayan satır:
+    '🗓️ Sözleşme 31.12.2026 · 🇹🇷 Türkiye'nin sıradaki döneminde (4 Oca – 26 Mar 2027) bonservissiz alınabilir'.
+    Alıcı ülke: ?ulke= → oturumda seçilen → dile göre (TR: Türkiye, EN: İngiltere). Sözleşmesi daha uzun olan oyuncuda ya da
+    tarih bilinmiyorsa satır çıkmaz. Profil çizimi hiçbir koşulda bu satır yüzünden bozulmamalı → hata olursa boş döner."""
+    try:
+        import re as _r
+        from datetime import date as _date, datetime as _dt, timedelta as _tdl
+        r = scout_kayit if isinstance(scout_kayit, dict) else {}
+        sd = sd_kayit if isinstance(sd_kayit, dict) else {}
+        bugun = (_dt.utcnow() + _tdl(hours=3)).date()
+        td = _transfer_donemi(_trf_ulke_varsayilan(), bugun.isoformat())
+        if not td.get("fifa"):
+            return ""
+        kn = _isim_norm(str(r.get("kulup") or sd.get("guncel_kulup") or ""))
+        serbest = kn in _SERBEST_ADLAR
+        m = _r.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", _kontrat_guncel(r.get("sozlesme", ""), sd.get("Contract until", "")))
+        bitis = _date(int(m.group(3)), int(m.group(2)), int(m.group(1))) if m else None
+        s1, s2 = _date.fromisoformat(td["sinir1"]), _date.fromisoformat(td["sinir2"])
+        ulke = f"{td.get('bayrak', '')} {td.get('ulke_en' if EN else 'ulke', '')}".strip()
+        donem = (f"{_trf_aralik(td['bas'], td['bit'])}" if td.get("bas") else t("yeni sezonun ilk dönemi", "the new season's first period"))
+        if serbest:
+            renk, metin = "#1db954", t(f"Serbest oyuncu · {ulke}: sıradaki tescil dönemi {donem}", f"Free agent · {ulke}: next registration period {donem}")
+        elif bitis and bugun <= bitis <= s1:
+            renk, metin = "#1db954", t(f"Sözleşme {bitis.strftime('%d.%m.%Y')} · {ulke} için sıradaki dönemde ({donem}) bonservissiz alınabilir",
+                                       f"Contract until {bitis.strftime('%d.%m.%Y')} · can be signed for free in {ulke}'s next window ({donem})")
+        elif bitis and s1 < bitis <= s2:
+            renk, metin = "#f59e0b", t(f"Sözleşme {bitis.strftime('%d.%m.%Y')} · sezon sonunda bonservissiz ({ulke} dönemi {donem} açıldığında son 6 ayında)",
+                                       f"Contract until {bitis.strftime('%d.%m.%Y')} · free at season end (inside its last 6 months when {ulke}'s window {donem} opens)")
+        else:
+            return ""
+        return _html_bmp("<div class='tp-arametin' style='margin-top:8px;padding-top:8px;border-top:1px solid #2a3050;' "
+                         f"title='{t('Alıcı ülkeyi Sözleşme Takibi sayfasından değiştirebilirsiniz', 'Change the buying country on the Contract Watch page')}'>🗓️ "
+                         f"<span style='color:{renk};font-style:normal;font-weight:600;'>{metin}</span></div>")
+    except Exception:
+        return ""
+
+
+def _lig_donem_satiri(kod: str, stil: str = "margin:-4px 0 10px;") -> str:
+    """Lig sayfalarının başlığı altında: o ülkenin sıradaki transfer ve tescil dönemi + takvim ve Sözleşme Takibi bağlantıları."""
+    try:
+        from datetime import datetime as _dt, timedelta as _tdl
+        fifa = _LIG_ULKE.get(kod)
+        if not fifa:
+            return ""
+        td = _transfer_donemi(fifa, (_dt.utcnow() + _tdl(hours=3)).date().isoformat())
+        if not td.get("fifa"):
+            return ""
+        dq = "EN" if EN else "TR"
+        return _html_bmp(
+            f"<div class='tp-arametin' style='{stil}'>&#x1F5D3; {_trf_donem_cumle(td)} &nbsp;·&nbsp; "
+            f"<a href='/?kulup=sozlesme-2027&ulke={fifa}&dil={dq}' target='_blank' style='color:#c4b5fd;text-decoration:none;'>"
+            f"{t('bu döneme göre bonservissiz oyuncular', 'free-transfer players for this window')} →</a> &nbsp;·&nbsp; "
+            f"<a href='/?takvim=1&dil={dq}' target='_blank' style='color:#c4b5fd;text-decoration:none;'>{t('tüm takvim', 'full calendar')} →</a></div>")
+    except Exception:
+        return ""
+
+
+def _ligler_duyuru(kap_stil: str = ""):
+    """Karşılama + ödeme duvarı üstünde 'Tüm Ligler' kartı → herkese açık ?ligler=1 (22 ligin sezon verisi, ücretsiz)."""
+    C = capraz_yukle()
+    if not C["ligler"]:
+        return
+    st.markdown(
+        f"<div style='{kap_stil}'>"
+        f"<a href='/?ligler=1&dil={'EN' if EN else 'TR'}' target='_self' style='display:block;text-decoration:none;"
+        "margin:10px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid #3d3180;border-left:4px solid #7c3aed;"
+        "background:linear-gradient(90deg,#1a1438f2 0%,#151a33f2 60%,#2a1245dd 100%);'>"
+        f"<span class='tp-arabaslik'>&#x1F30D; {_buyuk(t('Tüm ligler · ücretsiz', 'All leagues · free'))}</span><br>"
+        f"<span class='tp-sekilli' style='color:#ffffff;'>"
+        + _buyuk(t(f"{len(C['ligler'])} ligin bu sezonki verisi tek sayfada", f"This season's data for {len(C['ligler'])} leagues on one page"))
+        + "</span><br><span class='tp-arametin'>"
+        + t(f"{sum(x['mac'] for x in C['ligler'])} maç · {len(C['oyuncular'])} oyuncu · gol krallığı, 20 yaş altı en çok süre alanlar, kaleciler — tıkla →",
+            f"{sum(x['mac'] for x in C['ligler'])} matches · {len(C['oyuncular'])} players · top scorers, most-used under-20s, goalkeepers — click →")
+        + "</span></a></div>", unsafe_allow_html=True)
+
+
 def _trf_donem_cumle(td: dict) -> str:
     """Alıcı ülkenin sıradaki dönemi, tek cümle (HTML). Tarih yoksa neyin bilinmediğini söyler; tahmin yazmaz."""
     ulke = f"{td.get('bayrak', '')} {td.get('ulke_en' if EN else 'ulke', '')}".strip()
@@ -11559,6 +11641,7 @@ def render_kulup_firsat(anahtar: str):
             _ulke = st.selectbox(t("Kulübünüzün ülkesi (transfer dönemi buna göre hesaplanır)", "Your club's country (the transfer window is worked out from it)"),
                                  _ukod, key=_uk, format_func=lambda k: _uad.get(k, k))
         kayit = {**kayit, "ulke": _ulke}
+        st.session_state["trf_ulke"] = _ulke
     _trd = _transfer_donemi(_ulke, _bugun.isoformat())
     _s1, _s2 = _trf_gun(_trd["sinir1"]), _trf_gun(_trd["sinir2"])
     _ET_D = t("sıradaki dönemde bonservissiz", "free in the next window")
@@ -12144,6 +12227,9 @@ def render_lig_sekme(kod: str, sekme: str):
     if not L.get("oyuncu"):
         st.info(t("Bu lig için veri yok.", "No data for this league."))
         return
+    _lds = _lig_donem_satiri(kod)
+    if _lds:
+        st.markdown(_lds, unsafe_allow_html=True)
     st.markdown(f"### {sekmeler[sekme]}")
     P = list(L["oyuncu"].values())
     saha = [o for o in P if o["mac"] > 0]
@@ -12590,6 +12676,8 @@ def _cp_lig_tablo(acik: bool = False) -> str:
     import html as _h
     C = capraz_yukle()
     dq = "EN" if EN else "TR"
+    from datetime import datetime as _dt_z, timedelta as _td_z
+    _gun_z = (_dt_z.utcnow() + _td_z(hours=3)).date().isoformat()
     S = [t("Maç", "Matches"), t("Takım", "Teams"), t("Lider", "Leader"), t("Gol kralı", "Top scorer"), t("Maç başı gol", "Goals per match"),
          t("Son maç", "Latest match")]
     bas = ("<th class='num'>Opta</th>" + f"<th>{t('Lig', 'League')}</th>"
@@ -12607,6 +12695,15 @@ def _cp_lig_tablo(acik: bool = False) -> str:
         mbg = f"{lg['gol'] / lg['mac']:.2f}".replace(".", "," if not EN else ".") if lg.get("mac") else "—"
         hucre = [(S[0], lg["mac"], "num ws-mono"), (S[1], lg["takim"], "num ws-mono"), (S[2], lider, ""), (S[3], golcu, ""),
                  (S[4], mbg, "num ws-mono"), (S[5], _lg_tarih(lg.get("son_mac", "")), "ws-mono")]
+        _fz = _LIG_ULKE.get(lg["kod"])
+        if _fz:
+            _tdz = _transfer_donemi(_fz, _gun_z)
+            if _tdz.get("bas"):
+                ad += ("<div class='tp-arametin' style='margin-top:1px;font-weight:400;'>" + t("dönem", "window") + f" {_trf_aralik(_tdz['bas'], _tdz['bit'])} · "
+                       + (f"<span style='color:#1db954;font-style:normal;font-weight:700;'>{t('açık', 'open')}</span>" if _tdz["acik"]
+                          else t(f"{_tdz['gun']} gün sonra", f"in {_tdz['gun']} days")) + "</div>")
+            elif _tdz.get("fifa"):
+                ad += f"<div class='tp-arametin' style='margin-top:1px;font-weight:400;'>{t('yeni sezon dönemi yayımlanmadı', 'next-season window not published')}</div>"
         govde += (f"<tr><td class='num ws-mono'>{lg['opta'] or '—'}</td><td><span class='ws-name'>{ad}</span></td>"
                   + "".join(f"<td class='{c}' data-label='{e}'>{x}</td>" for e, x, c in hucre) + "</tr>")
     return _html_bmp(f"<div class='ws-wrap'><table class='ws-table'><thead><tr>{bas}</tr></thead><tbody>{govde}</tbody></table></div>")
@@ -12666,6 +12763,12 @@ def render_capraz(sekme: str):
     st.markdown(f"### {sekmeler[sekme]}")
     KAD = _cp_kademe_ad()
     TUM_M = t("Tüm Mevkiler", "All Positions")
+    # KEŞİF (yalnız yönetici): scouting havuzunda HENÜZ olmayan oyuncular — havuzu büyütürken "kimi izlemeliyiz" listesi.
+    if sekme != "ligler" and st.session_state.get("kulup_kullanici") == "admin":
+        if st.checkbox(t("🔭 Keşif: yalnız scouting havuzunda olmayanlar (bu kutuyu yalnız yönetici görür)",
+                         "🔭 Discovery: only players not yet in the scouting pool (admins only)"), key="cp_kesif"):
+            _hv_k = _havuz_sd_kimlik()
+            P = [o for o in P if str(o["sid"]) not in _hv_k]
 
     def _g90(o, alan="gol"):
         d = (o["gol"] + o["asist"]) if alan == "ga" else o[alan]
@@ -12874,6 +12977,9 @@ def render_lig_veri(kod: str):
                   + (f" · {t('son maç', 'latest match')} {oz['mac'][0]['tarih'][8:]}.{oz['mac'][0]['tarih'][5:7]}.{oz['mac'][0]['tarih'][:4]}" if oz.get("mac") else "")
                   + "</p></div>"), unsafe_allow_html=True)
     st.markdown(_lig_cipleri(kod), unsafe_allow_html=True)
+    _lds = _lig_donem_satiri(kod, "margin:-6px 0 12px;")
+    if _lds:
+        st.markdown(_lds, unsafe_allow_html=True)
     if not oz.get("mac"):
         st.markdown(f"<div style='text-align:center;padding:50px 20px;color:#8899aa;'>{t('Bu lig için veri yok.', 'No data for this league.')}</div>",
                     unsafe_allow_html=True)
@@ -13062,7 +13168,11 @@ def render_takvim():
             f"<td style='padding:8px 10px;white-space:nowrap;color:#f4f4f5;font-weight:600;'>{u.get('bayrak', '')} "
             f"{_h.escape(u.get('ulke_en' if EN else 'ulke', ''))}</td>"
             f"<td style='padding:8px 8px;font-size:0.8rem;'>{lig_h}</td>{pen_h}"
-            f"<td style='padding:8px 8px;'>{d_h}</td>"
+            f"<td style='padding:8px 8px;'>{d_h}"
+            + (f"<div style='margin-top:5px;'><a href='/?kulup=sozlesme-2027&ulke={u.get('fifa', '')}&dil={'EN' if EN else 'TR'}' target='_self' "
+               f"style='color:#c4b5fd;text-decoration:none;font-size:0.68rem;white-space:nowrap;'>{t('bonservissiz oyuncular', 'free-transfer players')} →</a></div>"
+               if (pen or u.get("sezon")) else "")
+            + "</td>"
             f"<td style='padding:14px 10px 8px;min-width:230px;'><div style='position:relative;height:16px;'>{cubuk}</div></td></tr>")
     basliklar = "".join(
         f"<th style='padding:8px;text-align:left;' class='tp-arametin'>{_buyuk(x)}</th>" for x in (
@@ -14523,6 +14633,85 @@ _SCOUT_KOD_GRUP = {"GK": "KALECİ", "LFB": "SOL BEK", "LWB": "SOL BEK",
                    "AMF": "HÜCUMCU ORTA SAHA", "LWF": "SOL KANAT", "RWF": "SAĞ KANAT",
                    "CFW": "SANTRFOR", "CF": "SANTRFOR", "ST": "SANTRFOR", "2ST": "SANTRFOR"}
 
+_KLT_GENEL = {"fc", "cf", "sk", "fk", "if", "bk", "ac", "as", "sc", "sv", "cd", "ud", "kulubu", "spor", "women", "ladies", "kadin", "futbol", "club",
+              "de", "la", "the", "wfc", "lfc", "afc", "frauen", "femenino", "feminin", "femminile", "fem", "klubu", "genclik", "ve", "united", "city",
+              "real", "sporting", "olympique", "athletic", "atletico", "team", "dff", "ff", "kif", "fotball", "football"}
+_KLT_ES = {"nurnberg": "nuremberg", "munchen": "munich", "koln": "cologne"}          # aynı kulübün iki yazımı fark sayılmasın
+
+
+@st.cache_data(show_spinner=False, ttl=3600, max_entries=2)
+def _havuz_kalite(gun: str) -> dict:
+    """Havuz veri kalitesi (Kokpit, yalnız yönetici): sheet kaydı ↔ SoccerDonna profili ↔ bu sezon maç kadroları.
+    14 Kasım 2026: 22 ligin maç verisi gelince havuzdaki hatalar ölçülebilir oldu (Rosengård oyuncuları "Toppserien",
+    San Diego Wave oyuncuları "Sacramento NWSL", 122 geçmiş tarihli sözleşme). Dört liste, hepsi "kontrol et" niteliğinde:
+      gecmis: sözleşme tarihi geçmiş (kulüp güncellenmemiş ya da yenilenen sözleşme girilmemiş)
+      lig:    havuzdaki lig, oyuncunun bu sezon maç kadrosuna girdiği ligle aynı ülkede değil
+      kulup:  havuzdaki kulüp, oyuncunun bu sezon EN SON kadrosuna girdiği takımla uyuşmuyor (transfer olmuş olabilir)
+      yok:    takımı 5+ maç oynadı, oyuncu hiç kadroda yok ya da son 5 maçtır kadroda yok (sakat / ayrılmış olabilir)"""
+    import re as _r
+    import unicodedata as _ud
+    from datetime import date as _date
+    bugun = _date.fromisoformat(gun)
+
+    def _n(s):
+        s = _ud.normalize("NFKD", str(s or "").replace("ı", "i").replace("İ", "I").replace("ø", "o").replace("ß", "ss")).encode("ascii", "ignore").decode().lower()
+        return _r.sub(r"[^a-z0-9 ]", " ", s)
+
+    def _anahtar(s):
+        return {_KLT_ES.get(w, w) for w in _n(s).split() if len(w) >= 3 and w not in _KLT_GENEL}
+
+    def _uyar(a, b):
+        x, y = _anahtar(a), _anahtar(b)
+        if not x or not y:
+            return None
+        if x & y:
+            return True
+        na, nb = _n(a).replace(" ", ""), _n(b).replace(" ", "")
+        return any(w in nb for w in x if len(w) >= 5) or any(w in na for w in y if len(w) >= 5)
+
+    def _duz(s):
+        return _r.sub("[\U00010000-\U0010FFFF]", "", str(s or "")).replace("\ufe0f", "").strip() or "—"
+
+    bayrak = {k: b for k, (b, _, _) in _LIG_SAYFA.items()}
+    bayrak["TUR1"] = "🇹🇷"
+    lig_ad = {k: ad for k, (_, ad, _) in _LIG_SAYFA.items()}
+    lig_ad["TUR1"] = "Süper Lig"
+    sd = birlesik_sd_yukle()
+    out = {"gecmis": [], "lig": [], "kulup": [], "yok": []}
+    for isim, r in birlesik_scout_yukle().items():
+        if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
+            continue
+        p = sd.get(isim) if isinstance(sd.get(isim), dict) else {}
+        kulup, lig = str(r.get("kulup") or ""), str(r.get("lig") or "")
+        kn = _isim_norm(kulup)
+        if kn in _SERBEST_ADLAR:
+            continue
+        m = _r.search(r"(\d{1,2})\.(\d{1,2})\.(\d{4})", _kontrat_guncel(r.get("sozlesme", ""), p.get("Contract until", "")))
+        if m and kn not in _MOLA_ADLAR:
+            try:
+                d = _date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+            except ValueError:
+                d = None
+            if d and d < bugun:
+                out["gecmis"].append({"o": isim, "k": kulup, "t": d.strftime("%d.%m.%Y"), "s": str(r.get("sozlesme") or "—"), "sd": str(p.get("Contract until") or "—"), "_s": d.isoformat()})
+        f = _form_bul(p)
+        if not f or not f.get("lig") or not f.get("tm"):
+            continue
+        b = bayrak.get(f["lig"], "")
+        pb = lig.strip().split(" ")[0] if lig.strip() else ""
+        if b and pb != b:
+            out["lig"].append({"o": isim, "k": kulup, "hl": _duz(lig), "ol": lig_ad.get(f["lig"], f["lig"]), "tk": f.get("takim", "")})
+        if f.get("takim") and _uyar(kulup, f["takim"]) is False:
+            out["kulup"].append({"o": isim, "k": kulup, "tk": f["takim"], "ol": lig_ad.get(f["lig"], f["lig"]), "son": f.get("son") or "—"})
+        if f["tm"] >= 5 and (not f.get("kadro") or (f.get("son5") or "").count("-") == 5):
+            out["yok"].append({"o": isim, "k": kulup, "tm": f["tm"], "kd": f.get("kadro", 0), "son": f.get("son") or "—"})
+    out["gecmis"].sort(key=lambda x: x["_s"])
+    for x in out["gecmis"]:
+        x.pop("_s", None)
+    out["yok"].sort(key=lambda x: (x["kd"], -x["tm"]))
+    return out
+
+
 def render_kokpit():
     veri = kokpit_yukle()
     kulupler = veri.get("kulupler", {})
@@ -14536,6 +14725,42 @@ def render_kokpit():
     kadro = kd.get("kadro", [])
     _dq = "EN" if EN else "TR"
 
+    try:
+        from datetime import datetime as _dt_kl, timedelta as _td_kl
+        _kl = _havuz_kalite((_dt_kl.utcnow() + _td_kl(hours=3)).date().isoformat())
+    except Exception:
+        _kl = {"gecmis": [], "lig": [], "kulup": [], "yok": []}
+    with st.expander(f"🧹 {t('Havuz veri kalitesi', 'Pool data quality')} ({sum(len(x) for x in _kl.values())})"):
+        st.markdown("<div class='tp-arametin' style='margin-bottom:8px;'>"
+                    + t("Havuz kaydı, SoccerDonna profili ve bu sezonun maç kadroları karşılaştırılır (22 lig). Hepsi \"kontrol et\" listesidir; "
+                        "sheet düzeltildiğinde bir sonraki veri çekiminde kendiliğinden düşer.",
+                        "The pool record, the SoccerDonna profile and this season's matchday squads are compared (22 leagues). These are "
+                        "\"please check\" lists; a row disappears after the sheet is corrected and the data is refreshed.") + "</div>", unsafe_allow_html=True)
+        for _ka, _kb, _kc, _kh in (
+                ("kulup", t("Kulüp uyuşmuyor: bu sezon başka takımın kadrosunda", "Club mismatch: in another team's squad this season"),
+                 t("Transfer olmuş olabilir; havuzdaki kulübü ve ligi güncelle.", "Possibly transferred; update club and league in the pool."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Havuzdaki kulüp", "Club in pool"), "tk": t("Maç kadrosundaki takım", "Team in match squads"),
+                  "ol": t("Lig", "League"), "son": t("Son kadro", "Last squad")}),
+                ("lig", t("Lig uyuşmuyor: bu sezon başka ülkenin liginde oynuyor", "League mismatch: playing in another country's league"),
+                 t("Çoğu yanlış lig etiketi (ör. Rosengård oyuncuları Toppserien görünüyor).", "Mostly a wrong league label (e.g. Rosengård players shown in Toppserien)."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Kulüp", "Club"), "hl": t("Havuzdaki lig", "League in pool"), "ol": t("Oynadığı lig", "League played in"),
+                  "tk": t("Takım", "Team")}),
+                ("gecmis", t("Sözleşme tarihi geçmiş", "Contract date in the past"),
+                 t("Kulüp değişmiş ya da yenilenen sözleşme girilmemiş; bu oyuncular transfer önerilerinde \"bitiyor\" sayılmaz.",
+                   "Club changed or the renewal was not entered; these players are not counted as expiring in transfer suggestions."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Kulüp", "Club"), "t": t("Geçerli tarih", "Effective date"), "s": "Sheet", "sd": "SoccerDonna"}),
+                ("yok", t("Uzun süredir kadroda yok", "Long absent from squads"),
+                 t("Takımı 5+ maç oynadı; oyuncu hiç kadroda yok ya da son 5 maçtır yok (sakat, kadro dışı ya da ayrılmış olabilir).",
+                   "The team has played 5+ matches; the player was never in the squad or missed the last 5 (injured, dropped or gone)."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Kulüp", "Club"), "tm": t("Takımın maçı", "Team matches"), "kd": t("Kadroya girdiği", "In squad"),
+                  "son": t("Son kadro", "Last squad")})):
+            _kliste = _kl.get(_ka) or []
+            st.markdown(f"<div class='tp-arabaslik' style='margin-top:10px;'>{_buyuk(_kb)} ({len(_kliste)})</div>"
+                        f"<div class='tp-arametin' style='margin:2px 0 6px;'>{_kc}</div>", unsafe_allow_html=True)
+            if _kliste:
+                df_tablo(pd.DataFrame(_kliste[:80])[list(_kh)], basliklar=_kh)
+                if len(_kliste) > 80:
+                    st.caption(t(f"İlk 80 satır gösteriliyor ({len(_kliste)} toplam).", f"Showing the first 80 rows ({len(_kliste)} in total)."))
     with st.expander(f"📈 {t('Ziyaretler, link açılışları ve kulüp sayfaları', 'Visits, link opens and club pages')}"):
         import html as _hk
         _zo = ziyaret_ozet(14)
@@ -15071,6 +15296,7 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
     else:
         _blog_duyuru("max-width:560px;margin:24px auto 0;")
         _sozlesme_duyuru("max-width:560px;margin:14px auto 0;")
+        _ligler_duyuru("max-width:560px;margin:0 auto;")
         _uye_giris_dugmesi("duvar")       # çıkış yapmış üye duvarı "bozuk tablo" sanmasın
         _duvar_onizleme_goster("max-width:560px;margin:14px auto -40px;")
         st.markdown(f"""
@@ -15444,6 +15670,7 @@ if not st.session_state.get("girildi", False):
         st.stop()
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
     _sozlesme_duyuru("max-width:760px;margin:0 auto 14px;")
+    _ligler_duyuru("max-width:760px;margin:0 auto 14px;")
     _karsilama_dugmeleri("ust")
     # Ücretsiz, girişsiz bölümler: lig verileri, takvim, olay verisi arşivi (13 Kasım 2026)
     st.markdown("<div style='max-width:760px;margin:12px auto 0;text-align:center;'>"
@@ -17582,6 +17809,25 @@ if tab_transfer:
         st.markdown(f"##### 🔄 {t('Transfer Öner', 'Transfer Suggest')}")
         st.caption(t("Adım adım bütçe ve kriterlere göre lig içi transfer önerisi",
                      "Step-by-step in-league transfer suggestion based on budget and criteria"))
+        # Lig dışı seçenekler: transfer dönemine göre bonservissiz alınabilecekler (Yiğit, 14 Kasım 2026: öneri transfer dönemine göre olsun)
+        try:
+            from datetime import datetime as _dt_to, timedelta as _td_to
+            _gun_to = (_dt_to.utcnow() + _td_to(hours=3)).date().isoformat()
+            _trd_to = _transfer_donemi("TUR", _gun_to)
+            _mo_to = _musait_ozet(_gun_to, "TUR")
+            if _trd_to.get("fifa") and _mo_to.get("toplam"):
+                st.markdown(
+                    "<a href='/?kulup=sozlesme-2027&ulke=TUR&dil=" + ("EN" if EN else "TR") + "' target='_blank' style='display:block;text-decoration:none;"
+                    "margin:4px 0 12px;padding:11px 14px;border-radius:12px;border:1px solid #3b2d6e;border-left:4px solid #1db954;background:#0d0d16;'>"
+                    f"<span class='tp-arametin' style='font-size:0.86rem;'>&#x1F5D3; {_html_bmp(_trf_donem_cumle(_trd_to))}</span><br>"
+                    "<span class='tp-arametin'>"
+                    + t(f"Yurt dışından: <b style='color:#1db954;font-style:normal;'>{_mo_to['serbest'] + _mo_to['donem']}</b> oyuncu bu dönemde bonservissiz alınabilir, "
+                        f"<b style='color:#f59e0b;font-style:normal;'>{_mo_to['sezon']}</b> oyuncu sezon sonunda serbest kalıyor — mevki mevki görmek için tıkla →",
+                        f"From abroad: <b style='color:#1db954;font-style:normal;'>{_mo_to['serbest'] + _mo_to['donem']}</b> players can be signed for free in this window, "
+                        f"<b style='color:#f59e0b;font-style:normal;'>{_mo_to['sezon']}</b> are free at season end — click to see them by position →")
+                    + "</span></a>", unsafe_allow_html=True)
+        except Exception:
+            pass
 
         if "tr_adim" not in st.session_state:
             st.session_state["tr_adim"] = 0

@@ -48,6 +48,12 @@ OPTA_SIRA = {"NWSL": 1, "ENG1": 2, "BL1": 3, "ESP1": 4, "SWE1": 5, "IT1": 6, "DA
              "CA1": 13, "3FL": 14, "JAPW": 16, "WL": 17, "USGS": 18, "NOR1": 19, "KOR1": 20}
 
 
+# Lig kodu → ülkenin FIFA kodu (takvim_2026_27.json ile eşleşir): lig sayfasında o ülkenin transfer ve tescil dönemi gösterilir.
+LIG_ULKE = {"NWSL": "USA", "ENG1": "ENG", "BL1": "GER", "ESP1": "ESP", "SWE1": "SWE", "IT1": "ITA", "DAN1": "FRA", "ENG2": "ENG", "MXAP": "MEX",
+            "LNF": "POR", "Ered": "NED", "CA1": "CAN", "3FL": "DEN", "JAPW": "JPN", "WL": "AUS", "USGS": "USA", "NOR1": "NOR", "KOR1": "KOR",
+            "ISL1": "ISL", "Nais": "FIN", "UNG1": "HUN", "TUR1": "TUR"}
+
+
 def lig_dosya(kod: str) -> pathlib.Path:
     return KOK / f"sd_dizilis_{kod}_{LIG_SAYFA[kod][2]}.json"
 
