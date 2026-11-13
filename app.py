@@ -10981,19 +10981,19 @@ with st.sidebar:
 # bitiş tarihinden sonra kendiliğinden kalkar.
 def _blog_duyuru(kap_stil: str = ""):
     import datetime as _dt_blog
-    if _dt_blog.date.today() > _dt_blog.date(2026, 11, 14):
+    if _dt_blog.date.today() > _dt_blog.date(2026, 11, 21):
         return
     st.markdown(
         f"<div style='{kap_stil}'>"
-        f"<a href='https://blog.womenfootballscouting.com/{t('', 'en/')}fenerbahce-galatasaray-derbi/' "
+        f"<a href='https://blog.womenfootballscouting.com/{t('', 'en/')}fomget-besiktas/' "
         "target='_blank' rel='noopener' style='display:block;text-decoration:none;color:#a78bfa;"
         "margin:10px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid #3d3180;"
-        "border-left:4px solid #f7d417;border-right:4px solid #fdb913;"
-        "background:linear-gradient(90deg,#0b2163dd 0%,#1a1438f2 50%,#7d1226dd 100%);'>"
-        f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı · Derbi dosyası', 'New article · Derby file'))}</span><br>"
+        "border-left:4px solid #c4162f;border-right:4px solid #f1f5f9;"
+        "background:linear-gradient(90deg,#7a0f20dd 0%,#1a1438f2 50%,#16181fee 100%);'>"
+        f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı · Zirve dosyası', 'New article · Title-race file'))}</span><br>"
         f"<span class='tp-sekilli' style='color:#ffffff;'>"
-        f"{_buyuk(t('Derbi dosyası: Fenerbahçe – Galatasaray’a üç bakış', 'Derby file: three views on Fenerbahçe – Galatasaray'))}</span><br>"
-        f"<span class='tp-arametin'>{t('Üç yorumcu, ilk 11 tahminleri, animasyonlu senaryolar — okumak için tıkla →', 'Three pundits, predicted line-ups, animated scenarios — click to read →')}</span>"
+        f"{_buyuk(t('Zirve dosyası: ABB FOMGET – Beşiktaş’a üç bakış', 'Title-race file: three views on ABB FOMGET – Beşiktaş'))}</span><br>"
+        f"<span class='tp-arametin'>{t('İki tribün ve analiz masası: atmosfer, puan hesabı, skor tahminleri — okumak için tıkla →', 'Two sets of supporters and the analysis desk: atmosphere, title maths, predictions — click to read →')}</span>"
         "</a></div>", unsafe_allow_html=True)
 
 
