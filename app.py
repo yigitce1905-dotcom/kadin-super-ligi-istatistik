@@ -4798,6 +4798,9 @@ function gc(p){if(p==null)return '#6b7280';return p>=4.75?'#1F51FF':p>=3.75?'#39
 var NOW=new Date();NOW.setHours(0,0,0,0);
 function months(kk){var y=Math.floor(kk/10000),mo=Math.floor(kk/100)%100,d=kk%100;return (new Date(y,mo-1,d)-NOW)/864e5/30}
 function kcol(km){return km==null?'#a1a1aa':km<6?'#f87171':km<12?'#fbbf24':'#34d399'}
+/* Transfer dönemi durumu (alıcı ülkenin sıradaki tescil dönemine göre; sınırlar T.ws1 / T.ws2, yyyymmdd):
+   1 = serbest ya da dönem kapanana kadar sözleşmesi bitiyor, 2 = sezon sonunda bonservissiz, 0 = sözleşmeli / bilinmiyor */
+function wst(r){if(r.fa)return 1;if(!r.kk||r.kk<T.wnow)return 0;return r.kk<=T.ws1?1:(r.kk<=T.ws2?2:0)}
 var SLS={};SL.forEach(function(n){SLS[n]=1});
 var SUB={K:['GK'],D:['RFB','RWB','RCB','MCB','LCB','LFB','LWB'],O:['DMF','CMF','AMF'],F:['RWF','LWF','2ST','CFW']};
 var VP=[5000,10000,25000,50000,100000,250000,500000,1000000];
@@ -4837,7 +4840,7 @@ var COLS=[
  {k:'a',l:T.age,t:'n',f:1,num:1,c:function(r){return td('num ws-mono',T.age,r.a==null?'—':r.a)}},
  {k:'hc',l:T.height,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.height,r.hc?r.hc+' cm':'—')}},
  {k:'f',l:T.foot,t:'s',f:1,opt:1,c:function(r){return td('',T.foot,FTL[r.f]?esc(FTL[r.f]):DASH)}},
- {k:'kk',l:T.contract,t:'n',f:1,c:function(r){return td('ws-mono',T.contract,r.k?esc(r.k):'—','color:'+kcol(r.km)+';')}},
+ {k:'kk',l:T.contract,t:'n',f:1,c:function(r){var w=wst(r);return td('ws-mono',T.contract,(r.k?esc(r.k):'—')+(w?'<div class="ws-sub" style="color:'+(w===1?'#34d399':'#fbbf24')+';">'+esc(r.fa?T.wfs:(w===1?T.w1s:T.w2s))+'</div>':''),'color:'+kcol(r.km)+';')}},
  {k:'vv',l:T.value,t:'n',f:-1,c:function(r){return td('ws-mono',T.value,(r.v?esc(r.v):'—')+trend(r))}},
  {k:'vd',l:T.trend,t:'n',f:-1,num:1,opt:1,c:function(r){return td('num ws-mono',T.trend,r.vd?'<span style="color:'+(r.vd>0?'#34d399':'#f87171')+';">'+(r.vd>0?'+':'')+r.vd+'%</span>':'—')}},
  {k:'bd',l:T.ssn,t:'n',f:-1,num:1,opt:1,tt:T.ssnL,c:function(r){return td('num ws-mono',T.ssn,r.bt?(r.bd+'′<div class="ws-sub">'+r.bs+'/'+r.bt+' '+l5(r.b5)+'</div>'):'—')}},
@@ -4873,7 +4876,7 @@ function fromQS(qs){
   if(!SUB[F.pos])F.pos='';if(F.pos===''||SUB[F.pos].indexOf(F.sub)<0)F.sub='';
   ['amin','amax','hmin','hmax','vmin','vmax'].forEach(function(k){if(F[k]!==''&&!/^\d+$/.test(F[k]))F[k]=''});
   if(F.sc&&SCV[F.sc]===undefined)F.sc='';
-  if(['','x','6','12','18'].indexOf(F.con)<0)F.con='';
+  if(['','w1','w2','x','6','12','18'].indexOf(F.con)<0)F.con='';
   if(['','R','L','B'].indexOf(F.ft)<0)F.ft='';
   var s=p.get('s');if(s&&col(s)){sk=s;sd=p.get('d')==='-1'?-1:1}
   var cm=p.get('cmp');CMP=cm?cm.split('|').filter(function(n,i,a){return NM[n]&&a.indexOf(n)===i}).slice(0,CMAX):[];
@@ -4902,7 +4905,8 @@ function pass(r){
   if(F.amax!==''&&(r.a==null||r.a>+F.amax))return false;
   if(F.vmin!==''&&(r.vv==null||r.vv<+F.vmin))return false;
   if(F.vmax!==''&&(r.vv==null||r.vv>+F.vmax))return false;
-  if(F.con){if(r.km==null)return false;if(F.con==='x'){if(r.km>=0)return false}else if(r.km<0||r.km>+F.con)return false}
+  if(F.con==='w1'||F.con==='w2'){var w=wst(r);if(!(w===1||(F.con==='w2'&&w===2)))return false}
+  else if(F.con){if(r.km==null)return false;if(F.con==='x'){if(r.km>=0)return false}else if(r.km<0||r.km>+F.con)return false}
   if(F.sc&&(r.sp==null||r.sp<SCV[F.sc]))return false;
   if(F.ro&&r.ro!==F.ro)return false;
   if(F.ft&&r.f!==F.ft)return false;
@@ -5039,7 +5043,7 @@ function initUI(){
   fill('pos',T.pos,['K','D','O','F'].map(function(k){return [k,disp(M.pk,k)]}));
   $('vmin').innerHTML=opt('',T.min)+VP.map(function(v){return opt(String(v),vfmt(v))}).join('');
   $('vmax').innerHTML=opt('',T.max)+VP.map(function(v){return opt(String(v),vfmt(v))}).join('');
-  $('con').innerHTML=opt('',T.contract+': '+T.all)+opt('x',T.conx)+opt('6',T.con6)+opt('12',T.con12)+opt('18',T.con18);
+  $('con').innerHTML=opt('',T.contract+': '+T.all)+opt('w1',T.conw1)+opt('w2',T.conw2)+opt('x',T.conx)+opt('6',T.con6)+opt('12',T.con12)+opt('18',T.con18);
   $('sc').innerHTML=opt('',T.score+': '+T.all)+SC.map(function(x){return opt(x[0],T.score+' ≥ '+x[0])}).join('');
   fillSub();
   fill('cn',T.country,(has.eu?[['__EU__',T.eu]]:[]).concat(sorted(M.cn,has.cn)));
@@ -5168,6 +5172,8 @@ def _ws_havuz_json(dil: str, gun: str, _kadro: dict = None, _sd: dict = None,
             _kl = _sezk[0].get("kulup", "")
         if _kl:
             r["c"] = str(_kl)
+        if _isim_norm(str(_kd.get("kulup") or "")) in _SERBEST_ADLAR:
+            r["fa"] = 1                       # serbest oyuncu: transfer dönemi süzgecinde "hemen alınabilir"
         _lg = str(_kd.get("lig", "") or "").strip()
         if _lg and _lg != "-":
             if _lg not in lg_map:
@@ -5286,7 +5292,22 @@ def _bmp_kacis(s: str) -> str:
 def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
     """Scouting havuzu tablosunu (filtre + başlıktan sıralama + sayfalama) basar."""
     _dil = "EN" if st.session_state.get("dil") == "EN" else "TR"
+    # Transfer dönemi: alıcı ülkenin sıradaki tescil dönemi (bkz. _transfer_donemi). Sınırlar etiketlerle gider → ülke
+    # değişince satır verisini (günde bir kurulan önbellek) yeniden kurmak gerekmez.
+    from datetime import datetime as _dt_w, timedelta as _td_w
+    _gun_w = (_dt_w.utcnow() + _td_w(hours=3)).date().isoformat()
+    try:
+        _trd_w = _transfer_donemi(_trf_ulke_varsayilan(), _gun_w)
+    except Exception:
+        _trd_w = {"sinir1": _gun_w, "sinir2": _gun_w}
+    _w_ad = (f"{_trd_w.get('bayrak', '')} " + (_trf_aralik(_trd_w["bas"], _trd_w["bit"]) if _trd_w.get("bas")
+                                              else t("yeni sezonun ilk dönemi", "next season's first window"))).strip()
     _etiket = json.dumps({
+        "conw1": t(f"Sıradaki dönemde bonservissiz · {_w_ad}", f"Free in the next window · {_w_ad}"),
+        "conw2": t("Sezon sonuna kadar bonservissiz", "Free by season end"),
+        "w1s": t("bu dönem bonservissiz", "free this window"), "w2s": t("sezon sonu bonservissiz", "free at season end"),
+        "wfs": t("serbest", "free agent"),
+        "ws1": int(_trd_w["sinir1"].replace("-", "")), "ws2": int(_trd_w["sinir2"].replace("-", "")), "wnow": int(_gun_w.replace("-", "")),
         "player": t("Oyuncu", "Player"), "pos": t("Pozisyon", "Position"),
         "club": t("Kulüp / Lig", "Club / League"), "age": t("Yaş", "Age"),
         "contract": t("Kontrat", "Contract"), "value": t("Değer", "Value"),
@@ -11678,6 +11699,11 @@ def render_kulup_firsat(anahtar: str):
             + t("Adaylar gerçekçilik için süzüldü: sizinkine denk ligler ve daha güçlü liglerden yalnız bonservissiz alınabilecek (sıradaki dönemde ya da sezon sonunda sözleşmesi biten) oyuncular.",
                 "Candidates are filtered for realism: leagues comparable to yours, plus players from stronger leagues only if they can be signed for free (out of contract in the next window or at season end).")
             + "</div>", unsafe_allow_html=True)
+    # Üyeler mevki başına ilk 5 ile sınırlı kalmasın (liste sayfasında kalecide 18, santrforda 33 aday var)
+    _lim = 5
+    if acik and any(len(x) > 5 for x in _tum_adaylar):
+        if st.toggle(t("Tüm adayları göster (mevki başına en çok 40)", "Show all candidates (up to 40 per position)"), key=f"kf_hepsi_{anahtar}"):
+            _lim = 40
     for _ihi, ih in enumerate(kayit["ihtiyaclar"]):
         adaylar = _tum_adaylar[_ihi] if _ihi < len(_tum_adaylar) else []
         baslik = _h.escape(str(ih.get("baslik_en" if EN else "baslik") or ih.get("baslik") or " / ".join(ih.get("mevki") or [])))
@@ -11698,7 +11724,7 @@ def render_kulup_firsat(anahtar: str):
             "<span style='display:inline-block;margin:0 6px 4px 0;padding:3px 10px;border-radius:999px;background:#141a30;"
             f"border:1px solid #2a3050;color:#cbd5e1;font-size:0.74rem;'>{_h.escape(c)}</span>" for c in cip)
         govde = ""
-        for i, r in enumerate(adaylar[:5]):
+        for i, r in enumerate(adaylar[:_lim]):
             isim, kod = r["isim"], r["kod"]
             nihai = r["nihai"]
             renk = _scotr_renk(_scotr_puan(nihai)) if nihai else "#6b7280"
@@ -11747,7 +11773,7 @@ def render_kulup_firsat(anahtar: str):
                             (t("Ülke / Lig", "Country / League"), "6px", "left"), (t("Değer / Sözleşme", "Value / Contract"), "6px", "left"),
                             (t("Not", "Grade"), "10px", "center")))
         if adaylar:
-            alt = (f"+{len(adaylar) - 5} {t('aday daha', 'more candidates')}" if len(adaylar) > 5 else "")
+            alt = (f"+{len(adaylar) - _lim} {t('aday daha', 'more candidates')}" if len(adaylar) > _lim else "")
             tablo = ("<div style='overflow-x:auto;'><table style='width:100%;border-collapse:collapse;font-size:0.8rem;white-space:nowrap;'>"
                      f"<thead><tr>{basliklar}</tr></thead><tbody>{govde}</tbody></table></div>"
                      + (f"<div style='padding:8px 14px;border-top:1px solid #241d3d;background:#141024;text-align:center;"
@@ -12942,7 +12968,7 @@ def render_capraz_acik():
     st.stop()
 
 
-def _lig_cipleri(secili: str = "") -> str:
+def _lig_cipleri(secili: str = "", kisa: bool = False) -> str:
     """Herkese açık veri sayfaları arasında gezinme şeridi (ligler + takvim + olay verisi arşivi)."""
     _dq = "EN" if EN else "TR"
 
@@ -12951,7 +12977,9 @@ def _lig_cipleri(secili: str = "") -> str:
                 f"text-decoration:none;font-size:0.76rem;font-weight:600;border:1px solid {'#7c3aed' if aktif else '#2a3050'};"
                 f"background:{'#2a1f55' if aktif else '#141a30'};color:{'#ffffff' if aktif else '#cbd5e1'};'>{metin}</a>")
     out = _c(f"/?ligler=1&dil={_dq}", "🌍 " + t("Tüm ligler", "All leagues"), secili == "ligler")
-    out += "".join(_c(f"/?lig={k}&dil={_dq}", f"{b} {(_LIG_AD_EN.get(k, ad) if EN else ad)}", k == secili) for k, (b, ad, _) in _LIG_SAYFA.items())
+    # kisa: karşılama ekranında yalnız Opta ilk 7 lig (26 çip iki satırı aşıyordu; hepsi "Tüm ligler" sayfasında)
+    out += "".join(_c(f"/?lig={k}&dil={_dq}", f"{b} {(_LIG_AD_EN.get(k, ad) if EN else ad)}", k == secili) for k, (b, ad, _) in _LIG_SAYFA.items()
+                   if not kisa or (_OPTA_SIRA.get(k) or 99) <= 7)
     out += _c(f"/?takvim=1&dil={_dq}", "🗓️ " + t("Takvim ve transfer dönemleri", "Calendar and transfer windows"), secili == "takvim")
     out += _c(f"/?sb=liste&dil={_dq}", "📊 " + t("Olay verisi arşivi", "Event data archive"), secili == "sb")
     out += _c(f"/?kulup=sozlesme-2027&dil={_dq}", "📋 " + t("Sözleşme Takibi", "Contract Watch"))
@@ -15675,7 +15703,7 @@ if not st.session_state.get("girildi", False):
     # Ücretsiz, girişsiz bölümler: lig verileri, takvim, olay verisi arşivi (13 Kasım 2026)
     st.markdown("<div style='max-width:760px;margin:12px auto 0;text-align:center;'>"
                 f"<div class='tp-arametin' style='margin-bottom:6px;'>{t('Ücretsiz bölümler · giriş gerekmez', 'Free sections · no login needed')}</div>"
-                + _lig_cipleri() + "</div>", unsafe_allow_html=True)
+                + _lig_cipleri(kisa=True) + "</div>", unsafe_allow_html=True)
     _uye_giris_dugmesi("karsilama")
     render_giris_ekrani()
     st.markdown("<br>", unsafe_allow_html=True)
