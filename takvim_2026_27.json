@@ -290,7 +290,14 @@
      "2027-01-04",
      "2027-02-04"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Vrouwen Eredivisie",
+    "ilk_mac": "2026-08-16",
+    "son_mac": null,
+    "hafta": 18,
+    "takim": 10
+   }
   },
   {
    "fifa": "BEL",
@@ -736,7 +743,14 @@
      "2027-01-01",
      "2027-02-09"
     ]
-   ]
+   ],
+   "lig": {
+    "ad": "Liga MX Femenil (Apertura)",
+    "ilk_mac": "2026-08-01",
+    "son_mac": null,
+    "hafta": 14,
+    "takim": 18
+   }
   },
   {
    "fifa": "CAN",

@@ -1,0 +1,9764 @@
+{
+ "sezon": "2026-27",
+ "lig": "A-League Women",
+ "lig_kod": "WL",
+ "kaynak": "soccerdonna.de",
+ "guncelleme": "2026-11-13",
+ "maclar": [
+  {
+   "id": 171839,
+   "hafta": 1,
+   "ev": "Newcastle United Jets",
+   "dep": "Perth Glory",
+   "tarih": "17.10.2026",
+   "skor": "0:1",
+   "iy": "0:1",
+   "hafta_sd": 1,
+   "saat": "06:00",
+   "seyirci": 708,
+   "hakem": "Caitlin Williams",
+   "stat": "Hunter City Motor Group Stadium",
+   "ev_id": 236,
+   "dep_id": 257,
+   "dizilis": {
+    "ev": {
+     "takim": "Newcastle United Jets",
+     "sema": "3-1-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Claire Henninger",
+        "sd_id": 101375
+       }
+      ],
+      [
+       {
+        "ad": "Zoe Karipidis",
+        "sd_id": 91880
+       },
+       {
+        "ad": "Natascha Prior",
+        "sd_id": 34036
+       },
+       {
+        "ad": "Akeisha Sandhu",
+        "sd_id": 107763
+       }
+      ],
+      [
+       {
+        "ad": "Josie Allan",
+        "sd_id": 80641
+       },
+       {
+        "ad": "Libby Copus-Brown",
+        "sd_id": 21803
+       },
+       {
+        "ad": "Cassidy Davis",
+        "sd_id": 21804
+       },
+       {
+        "ad": "Emma Dundas",
+        "sd_id": 91881
+       },
+       {
+        "ad": "Alex Klos",
+        "sd_id": 123639
+       },
+       {
+        "ad": "Tamar Levin",
+        "sd_id": 80780
+       },
+       {
+        "ad": "Allie Thornton",
+        "sd_id": 48589
+       }
+      ]
+     ],
+     "teknik": "Stephen Hoyle",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Perth Glory",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Alyssa Dall’Oste",
+        "sd_id": 79678
+       }
+      ],
+      [
+       {
+        "ad": "Ella Buchanan",
+        "sd_id": 96519
+       },
+       {
+        "ad": "Julia Sardo",
+        "sd_id": 42976
+       },
+       {
+        "ad": "Baxter Thew",
+        "sd_id": 114333
+       },
+       {
+        "ad": "Onyinyechi Zogg",
+        "sd_id": 34587
+       }
+      ],
+      [
+       {
+        "ad": "Ella Abdul Massih",
+        "sd_id": 68854
+       },
+       {
+        "ad": "Georgia Cassidy",
+        "sd_id": 87218
+       },
+       {
+        "ad": "Emma Tovar",
+        "sd_id": 70692
+       }
+      ],
+      [
+       {
+        "ad": "Rola Badawiya",
+        "sd_id": 63269
+       },
+       {
+        "ad": "Ella Lincoln",
+        "sd_id": 103927
+       },
+       {
+        "ad": "Susan Phonsongkham",
+        "sd_id": 39326
+       }
+      ]
+     ],
+     "teknik": "Stephen Peters",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Rola Badawiya",
+     "sd_id": 63269,
+     "dk": "13",
+     "tur": "Penalty"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Akeisha Sandhu",
+     "cikan_sd_id": 107763,
+     "giren": "Chloe Walandouw",
+     "giren_sd_id": 80548,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Josie Allan",
+     "cikan_sd_id": 80641,
+     "giren": "Cameron Valladares",
+     "giren_sd_id": 123450,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "78",
+     "cikan": "Libby Copus-Brown",
+     "cikan_sd_id": 21803,
+     "giren": "Claire Adams",
+     "giren_sd_id": 103660,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Susan Phonsongkham",
+     "cikan_sd_id": 39326,
+     "giren": "Maggie Jenkins",
+     "giren_sd_id": 35835,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "56",
+     "cikan": "Ella Abdul Massih",
+     "cikan_sd_id": 68854,
+     "giren": "Clancy Westaway",
+     "giren_sd_id": 88711,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "67",
+     "cikan": "Ella Lincoln",
+     "cikan_sd_id": 103927,
+     "giren": "Megan Wynne",
+     "giren_sd_id": 4183,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "67",
+     "cikan": "Rola Badawiya",
+     "cikan_sd_id": 63269,
+     "giren": "Bronte Trew",
+     "giren_sd_id": 105016,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "88",
+     "cikan": "Georgia Cassidy",
+     "cikan_sd_id": 87218,
+     "giren": "Mischa Anderson",
+     "giren_sd_id": 91883,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "90+2",
+     "ad": "Zoe Karipidis",
+     "sd_id": 91880,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "19",
+     "ad": "Georgia Cassidy",
+     "sd_id": 87218,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "34",
+     "ad": "Susan Phonsongkham",
+     "sd_id": 39326,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Claire Henninger",
+      "sd_id": 101375,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 23,
+      "ad": "Zoe Karipidis",
+      "sd_id": 91880,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 4,
+      "ad": "Natascha Prior",
+      "sd_id": 34036,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 7,
+      "ad": "Akeisha Sandhu",
+      "sd_id": 107763,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 26,
+      "ad": "Josie Allan",
+      "sd_id": 80641,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 10,
+      "ad": "Libby Copus-Brown",
+      "sd_id": 21803,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 6,
+      "ad": "Cassidy Davis",
+      "sd_id": 21804,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 8,
+      "ad": "Emma Dundas",
+      "sd_id": 91881,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Alex Klos",
+      "sd_id": 123639,
+      "mevki": "Midfield",
+      "yas": null
+     },
+     {
+      "no": 19,
+      "ad": "Tamar Levin",
+      "sd_id": 80780,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 11,
+      "ad": "Allie Thornton",
+      "sd_id": 48589,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Alyssa Dall’Oste",
+      "sd_id": 79678,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Ella Buchanan",
+      "sd_id": 96519,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Julia Sardo",
+      "sd_id": 42976,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 5,
+      "ad": "Baxter Thew",
+      "sd_id": 114333,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 29,
+      "ad": "Onyinyechi Zogg",
+      "sd_id": 34587,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 11,
+      "ad": "Ella Abdul Massih",
+      "sd_id": 68854,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 8,
+      "ad": "Georgia Cassidy",
+      "sd_id": 87218,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Emma Tovar",
+      "sd_id": 70692,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 17,
+      "ad": "Rola Badawiya",
+      "sd_id": 63269,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 25,
+      "ad": "Ella Lincoln",
+      "sd_id": 103927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 10,
+      "ad": "Susan Phonsongkham",
+      "sd_id": 39326,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Georgia Ritchie",
+      "sd_id": 88713,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Poppie Hooks",
+      "sd_id": 65559,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 27,
+      "ad": "Chloe Walandouw",
+      "sd_id": 80548,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 32,
+      "ad": "Claire Adams",
+      "sd_id": 103660,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 21,
+      "ad": "Aaliyah Kilroy",
+      "sd_id": 125598,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 20,
+      "ad": "Cameron Valladares",
+      "sd_id": 123450,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Mackenzie Preston-Poole",
+      "sd_id": 125601,
+      "mevki": "Striker",
+      "yas": 16
+     }
+    ],
+    "dep": [
+     {
+      "no": 30,
+      "ad": "Daisy McGreadie-Cole",
+      "sd_id": 125603,
+      "mevki": "Goalkeeper",
+      "yas": 16
+     },
+     {
+      "no": 2,
+      "ad": "Mischa Anderson",
+      "sd_id": 91883,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 19,
+      "ad": "Clancy Westaway",
+      "sd_id": 88711,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 9,
+      "ad": "Maggie Jenkins",
+      "sd_id": 35835,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 18,
+      "ad": "Theodora Mouithys",
+      "sd_id": 125604,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 12,
+      "ad": "Bronte Trew",
+      "sd_id": 105016,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Megan Wynne",
+      "sd_id": 4183,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171840,
+   "hafta": 1,
+   "ev": "Western Sydney Wanderers",
+   "dep": "Melbourne Victory",
+   "tarih": "17.10.2026",
+   "skor": "0:1",
+   "iy": "0:1",
+   "hafta_sd": 1,
+   "saat": "06:00",
+   "seyirci": 304,
+   "hakem": "Mikayla Ryan",
+   "stat": "Marconi Stadium",
+   "ev_id": 4667,
+   "dep_id": 226,
+   "dizilis": {
+    "ev": {
+     "takim": "Western Sydney Wanderers",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Sarah Langman",
+        "sd_id": 26663
+       }
+      ],
+      [
+       {
+        "ad": "Silje Bjørneboe",
+        "sd_id": 30441
+       },
+       {
+        "ad": "Tiana Jaber",
+        "sd_id": 42923
+       },
+       {
+        "ad": "Sofia Palywoda",
+        "sd_id": 125618
+       },
+       {
+        "ad": "Laura Pickett",
+        "sd_id": 92083
+       }
+      ],
+      [
+       {
+        "ad": "Milly Bennett",
+        "sd_id": 103560
+       },
+       {
+        "ad": "Rhianna Pollicina",
+        "sd_id": 26655
+       },
+       {
+        "ad": "Sofia Sakalis",
+        "sd_id": 34039
+       },
+       {
+        "ad": "Talia Younis",
+        "sd_id": 87490
+       }
+      ],
+      [
+       {
+        "ad": "Elexa Bahr",
+        "sd_id": 49276
+       },
+       {
+        "ad": "Brooke Miller",
+        "sd_id": 122361
+       }
+      ]
+     ],
+     "teknik": "Geoff Abrahams",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Melbourne Victory",
+     "sema": "3-4-3 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Courtney Newbon",
+        "sd_id": 31951
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Bunge",
+        "sd_id": 35823
+       },
+       {
+        "ad": "Alana Jančevski",
+        "sd_id": 42930
+       },
+       {
+        "ad": "Zoe McMeeken",
+        "sd_id": 64226
+       },
+       {
+        "ad": "Kayla Morrison",
+        "sd_id": 52196
+       }
+      ],
+      [
+       {
+        "ad": "Sienna Saveska",
+        "sd_id": 82318
+       },
+       {
+        "ad": "Anna Sutter",
+        "sd_id": 44891
+       },
+       {
+        "ad": "Alicia Woods",
+        "sd_id": 96360
+       }
+      ],
+      [
+       {
+        "ad": "Angela Beard",
+        "sd_id": 26643
+       },
+       {
+        "ad": "Holly Furphy",
+        "sd_id": 106456
+       },
+       {
+        "ad": "Sophie Harding",
+        "sd_id": 53580
+       }
+      ]
+     ],
+     "teknik": "Jeff Hopkins",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Alana Jančevski",
+     "sd_id": 42930,
+     "dk": "32",
+     "tur": "Direct free kick"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "16",
+     "cikan": "Rhianna Pollicina",
+     "cikan_sd_id": 26655,
+     "giren": "Samantha Iredale",
+     "giren_sd_id": 31296,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Brooke Miller",
+     "cikan_sd_id": 122361,
+     "giren": "Allyssa Ng-Saad",
+     "giren_sd_id": 114241,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Sofia Sakalis",
+     "cikan_sd_id": 34039,
+     "giren": "Nikkita Fazzari",
+     "giren_sd_id": 111510,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Milly Bennett",
+     "cikan_sd_id": 103560,
+     "giren": "Estelle Fragale",
+     "giren_sd_id": 123863,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "53",
+     "cikan": "Sophie Harding",
+     "cikan_sd_id": 53580,
+     "giren": "Ella O’Grady",
+     "giren_sd_id": 84871,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "67",
+     "cikan": "Claudia Bunge",
+     "cikan_sd_id": 35823,
+     "giren": "Chelsea Blissett",
+     "giren_sd_id": 39211,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "67",
+     "cikan": "Anna Sutter",
+     "cikan_sd_id": 44891,
+     "giren": "Sienna Techera",
+     "giren_sd_id": 108568,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Alana Jančevski",
+     "cikan_sd_id": 42930,
+     "giren": "Skye Leach",
+     "giren_sd_id": 106723,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "83",
+     "ad": "Silje Bjørneboe",
+     "sd_id": 30441,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "39",
+     "ad": "Zoe McMeeken",
+     "sd_id": 64226,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sarah Langman",
+      "sd_id": 26663,
+      "mevki": "Goalkeeper",
+      "yas": 31
+     },
+     {
+      "no": 4,
+      "ad": "Silje Bjørneboe",
+      "sd_id": 30441,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Tiana Jaber",
+      "sd_id": 42923,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 15,
+      "ad": "Sofia Palywoda",
+      "sd_id": 125618,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 21,
+      "ad": "Laura Pickett",
+      "sd_id": 92083,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Milly Bennett",
+      "sd_id": 103560,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 10,
+      "ad": "Rhianna Pollicina",
+      "sd_id": 26655,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 8,
+      "ad": "Sofia Sakalis",
+      "sd_id": 34039,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Talia Younis",
+      "sd_id": 87490,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 9,
+      "ad": "Elexa Bahr",
+      "sd_id": 49276,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Brooke Miller",
+      "sd_id": 122361,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Courtney Newbon",
+      "sd_id": 31951,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Bunge",
+      "sd_id": 35823,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 66,
+      "ad": "Alana Jančevski",
+      "sd_id": 42930,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Zoe McMeeken",
+      "sd_id": 64226,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 18,
+      "ad": "Kayla Morrison",
+      "sd_id": 52196,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 10,
+      "ad": "Sienna Saveska",
+      "sd_id": 82318,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Anna Sutter",
+      "sd_id": 44891,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 14,
+      "ad": "Alicia Woods",
+      "sd_id": 96360,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 13,
+      "ad": "Angela Beard",
+      "sd_id": 26643,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 9,
+      "ad": "Holly Furphy",
+      "sd_id": 106456,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Sophie Harding",
+      "sd_id": 53580,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Brianna Edwards",
+      "sd_id": 64708,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Isabella Chidiac",
+      "sd_id": 123876,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Nikkita Fazzari",
+      "sd_id": 111510,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 16,
+      "ad": "Estelle Fragale",
+      "sd_id": 123863,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Samantha Iredale",
+      "sd_id": 31296,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Allyssa Ng-Saad",
+      "sd_id": 114241,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ],
+    "dep": [
+     {
+      "no": 25,
+      "ad": "Ayana Aoyagi",
+      "sd_id": 113069,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Chelsea Blissett",
+      "sd_id": 39211,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Skye Leach",
+      "sd_id": 106723,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Ella O’Grady",
+      "sd_id": 84871,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Sienna Techera",
+      "sd_id": 108568,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171841,
+   "hafta": 1,
+   "ev": "Brisbane Roar",
+   "dep": "Central Coast Mariners",
+   "tarih": "17.10.2026",
+   "skor": "2:4",
+   "iy": "1:2",
+   "hafta_sd": 1,
+   "saat": "08:00",
+   "seyirci": 1018,
+   "hakem": "Isabella Mossin",
+   "stat": "Goica Stadium",
+   "ev_id": 75,
+   "dep_id": 81,
+   "dizilis": {
+    "ev": {
+     "takim": "Brisbane Roar",
+     "sema": "5-3-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Chloe Lincoln",
+        "sd_id": 66795
+       }
+      ],
+      [
+       {
+        "ad": "Rosie Curtis",
+        "sd_id": 79936
+       },
+       {
+        "ad": "Isabel Hodgson",
+        "sd_id": 22048
+       },
+       {
+        "ad": "Josie Studer",
+        "sd_id": 100662
+       },
+       {
+        "ad": "Natalie Tathem",
+        "sd_id": 31861
+       }
+      ],
+      [
+       {
+        "ad": "Zara Kruger",
+        "sd_id": 81092
+       },
+       {
+        "ad": "Emily Roach",
+        "sd_id": 79933
+       },
+       {
+        "ad": "Kijah Stephenson",
+        "sd_id": 78309
+       }
+      ],
+      [
+       {
+        "ad": "Murphy Agnew",
+        "sd_id": 73120
+       },
+       {
+        "ad": "Daisy Brown",
+        "sd_id": 110818
+       },
+       {
+        "ad": "Abby Smothers",
+        "sd_id": 122909
+       }
+      ]
+     ],
+     "teknik": "Jonathan Clemente",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Central Coast Mariners",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Morgan Aquino",
+        "sd_id": 31963
+       }
+      ],
+      [
+       {
+        "ad": "Talia Kapetanellis",
+        "sd_id": 105017
+       },
+       {
+        "ad": "Taren King",
+        "sd_id": 34049
+       },
+       {
+        "ad": "Rebecca Lake",
+        "sd_id": 35819
+       },
+       {
+        "ad": "Danika Matos",
+        "sd_id": 44746
+       }
+      ],
+      [
+       {
+        "ad": "Greta Kraszula",
+        "sd_id": 75486
+       },
+       {
+        "ad": "Charlotte Lancaster",
+        "sd_id": 64527
+       },
+       {
+        "ad": "Tess Quilligan",
+        "sd_id": 91871
+       }
+      ],
+      [
+       {
+        "ad": "Eliza Familton",
+        "sd_id": 107462
+       },
+       {
+        "ad": "Skye Halmarick",
+        "sd_id": 110671
+       },
+       {
+        "ad": "Peta Trimis",
+        "sd_id": 91870
+       }
+      ]
+     ],
+     "teknik": "Dean Heffernan",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Peta Trimis",
+     "sd_id": 91870,
+     "dk": "7",
+     "tur": "Right-foot shot",
+     "asist": "Danika Matos",
+     "asist_sd_id": 44746,
+     "asist_tur": "Header ball"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Daisy Brown",
+     "sd_id": 110818,
+     "dk": "26",
+     "tur": "Header goal",
+     "asist": "Murphy Agnew",
+     "asist_sd_id": 73120,
+     "asist_tur": "Corner"
+    },
+    {
+     "skor": "1:2",
+     "taraf": "dep",
+     "ad": "Talia Kapetanellis",
+     "sd_id": 105017,
+     "dk": "44",
+     "tur": "Left-foot shot"
+    },
+    {
+     "skor": "1:3",
+     "taraf": "dep",
+     "ad": "Skye Halmarick",
+     "sd_id": 110671,
+     "dk": "59",
+     "tur": "Right-foot shot",
+     "asist": "Talia Kapetanellis",
+     "asist_sd_id": 105017,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:4",
+     "taraf": "dep",
+     "ad": "Morgan Witz",
+     "sd_id": 125621,
+     "dk": "75",
+     "tur": "Right-foot shot",
+     "asist": "Skye Halmarick",
+     "asist_sd_id": 110671,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:4",
+     "taraf": "ev",
+     "ad": "Katrina Guillou",
+     "sd_id": 35029,
+     "dk": "77",
+     "tur": "Left-foot shot",
+     "asist": "Zara Kruger",
+     "asist_sd_id": 81092,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Abby Smothers",
+     "cikan_sd_id": 122909,
+     "giren": "Lily Punch",
+     "giren_sd_id": 88694,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Daisy Brown",
+     "cikan_sd_id": 110818,
+     "giren": "Maja Markovski",
+     "giren_sd_id": 42975,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "71",
+     "cikan": "Isabel Hodgson",
+     "cikan_sd_id": 22048,
+     "giren": "Annabel Martin",
+     "giren_sd_id": 30041,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "71",
+     "cikan": "Kijah Stephenson",
+     "cikan_sd_id": 78309,
+     "giren": "Katrina Guillou",
+     "giren_sd_id": 35029,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "79",
+     "cikan": "Natalie Tathem",
+     "cikan_sd_id": 31861,
+     "giren": "Hali Long",
+     "giren_sd_id": 67109,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "69",
+     "cikan": "Eliza Familton",
+     "cikan_sd_id": 107462,
+     "giren": "Morgan Witz",
+     "giren_sd_id": 125621,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Tess Quilligan",
+     "cikan_sd_id": 91871,
+     "giren": "Te Reremoana Walker",
+     "giren_sd_id": 64352,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Skye Halmarick",
+     "cikan_sd_id": 110671,
+     "giren": "Kiara de Domizio",
+     "giren_sd_id": 91893,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+2",
+     "cikan": "Charlotte Lancaster",
+     "cikan_sd_id": 64527,
+     "giren": "Kaiya Buchanan",
+     "giren_sd_id": 114329,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+2",
+     "cikan": "Rebecca Lake",
+     "cikan_sd_id": 35819,
+     "giren": "Elizabeth Barwick-Grey",
+     "giren_sd_id": 114327,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "ad": "Tess Quilligan",
+     "sd_id": 91871,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "82",
+     "ad": "Greta Kraszula",
+     "sd_id": 75486,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "83",
+     "ad": "Taren King",
+     "sd_id": 34049,
+     "kart": "yellow card",
+     "neden": "Dissent by word"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Chloe Lincoln",
+      "sd_id": 66795,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 27,
+      "ad": "Rosie Curtis",
+      "sd_id": 79936,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Isabel Hodgson",
+      "sd_id": 22048,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 8,
+      "ad": "Josie Studer",
+      "sd_id": 100662,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 22,
+      "ad": "Natalie Tathem",
+      "sd_id": 31861,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 14,
+      "ad": "Zara Kruger",
+      "sd_id": 81092,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 24,
+      "ad": "Emily Roach",
+      "sd_id": 79933,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 4,
+      "ad": "Kijah Stephenson",
+      "sd_id": 78309,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Murphy Agnew",
+      "sd_id": 73120,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 3,
+      "ad": "Daisy Brown",
+      "sd_id": 110818,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Abby Smothers",
+      "sd_id": 122909,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Morgan Aquino",
+      "sd_id": 31963,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Talia Kapetanellis",
+      "sd_id": 105017,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Taren King",
+      "sd_id": 34049,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Rebecca Lake",
+      "sd_id": 35819,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Danika Matos",
+      "sd_id": 44746,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 14,
+      "ad": "Greta Kraszula",
+      "sd_id": 75486,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Charlotte Lancaster",
+      "sd_id": 64527,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Tess Quilligan",
+      "sd_id": 91871,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 21,
+      "ad": "Eliza Familton",
+      "sd_id": 107462,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Skye Halmarick",
+      "sd_id": 110671,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Peta Trimis",
+      "sd_id": 91870,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Tahlia Franco",
+      "sd_id": 68855,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 23,
+      "ad": "Isabela Hoyos",
+      "sd_id": 88687,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 15,
+      "ad": "Hali Long",
+      "sd_id": 67109,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 2,
+      "ad": "Annabel Martin",
+      "sd_id": 30041,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 21,
+      "ad": "Katrina Guillou",
+      "sd_id": 35029,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 17,
+      "ad": "Maja Markovski",
+      "sd_id": 42975,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Lily Punch",
+      "sd_id": 88694,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ],
+    "dep": [
+     {
+      "no": 15,
+      "ad": "Annalee Grove",
+      "sd_id": 31967,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Elizabeth Barwick-Grey",
+      "sd_id": 114327,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 13,
+      "ad": "Kaiya Buchanan",
+      "sd_id": 114329,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Te Reremoana Walker",
+      "sd_id": 64352,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 17,
+      "ad": "Kiara de Domizio",
+      "sd_id": 91893,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 7,
+      "ad": "Morgan Witz",
+      "sd_id": 125621,
+      "mevki": "Striker",
+      "yas": null
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171842,
+   "hafta": 1,
+   "ev": "Wellington Phoenix FC",
+   "dep": "Melbourne City",
+   "tarih": "18.10.2026",
+   "skor": "1:2",
+   "iy": "0:0",
+   "hafta_sd": 1,
+   "saat": "01:15",
+   "seyirci": 3695,
+   "hakem": "Casey Reibelt",
+   "stat": "Sky Stadium",
+   "ev_id": 9549,
+   "dep_id": 5956,
+   "dizilis": {
+    "ev": {
+     "takim": "Wellington Phoenix FC",
+     "sema": "3-5-2 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Victoria Esson",
+        "sd_id": 22501
+       }
+      ],
+      [
+       {
+        "ad": "Mackenzie Barry",
+        "sd_id": 37795
+       },
+       {
+        "ad": "Abby Erceg",
+        "sd_id": 458
+       },
+       {
+        "ad": "Ellie Walker",
+        "sd_id": 75355
+       }
+      ],
+      [
+       {
+        "ad": "Manaia Elliott",
+        "sd_id": 78949
+       },
+       {
+        "ad": "Grace Jale",
+        "sd_id": 35826
+       },
+       {
+        "ad": "Brooke Nunn",
+        "sd_id": 7376
+       },
+       {
+        "ad": "Pia Vlok",
+        "sd_id": 104116
+       },
+       {
+        "ad": "Tameka Yallop",
+        "sd_id": 252
+       }
+      ],
+      [
+       {
+        "ad": "Indiah-Paige Riley",
+        "sd_id": 38947
+       },
+       {
+        "ad": "Makala Woods",
+        "sd_id": 108359
+       }
+      ]
+     ],
+     "teknik": "Bev Priestman",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "Melbourne City",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Malena Mieres",
+        "sd_id": 35560
+       }
+      ],
+      [
+       {
+        "ad": "Aimee Medwin",
+        "sd_id": 39226
+       },
+       {
+        "ad": "Jessika Nash",
+        "sd_id": 51943
+       },
+       {
+        "ad": "Karly Roestbakken",
+        "sd_id": 31974
+       }
+      ],
+      [
+       {
+        "ad": "Momo Hayashi",
+        "sd_id": 64021
+       },
+       {
+        "ad": "Deven Jackson",
+        "sd_id": 82249
+       },
+       {
+        "ad": "Shelby McMahon",
+        "sd_id": 88702
+       },
+       {
+        "ad": "Taylor Ray",
+        "sd_id": 34034
+       }
+      ],
+      [
+       {
+        "ad": "Melina Ayres",
+        "sd_id": 29995
+       },
+       {
+        "ad": "Aideen Keane",
+        "sd_id": 53578
+       },
+       {
+        "ad": "Cortnee Vine",
+        "sd_id": 30086
+       }
+      ]
+     ],
+     "teknik": "Michael Matricciani",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Makala Woods",
+     "sd_id": 108359,
+     "dk": "51",
+     "tur": "Left-foot shot"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Melina Ayres",
+     "sd_id": 29995,
+     "dk": "73",
+     "tur": "Penalty"
+    },
+    {
+     "skor": "1:2",
+     "taraf": "dep",
+     "ad": "Momo Hayashi",
+     "sd_id": 64021,
+     "dk": "87",
+     "tur": "Direct free kick"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "67",
+     "cikan": "Manaia Elliott",
+     "cikan_sd_id": 78949,
+     "giren": "Emma Taylor-Main",
+     "giren_sd_id": 64472,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Indiah-Paige Riley",
+     "cikan_sd_id": 38947,
+     "giren": "Lara Wall",
+     "giren_sd_id": 105015,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Mackenzie Barry",
+     "cikan_sd_id": 37795,
+     "giren": "Marisa van der Meer",
+     "giren_sd_id": 37797,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Grace Jale",
+     "cikan_sd_id": 35826,
+     "giren": "Alyssha Eglinton",
+     "giren_sd_id": 104101,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Karly Roestbakken",
+     "cikan_sd_id": 31974,
+     "giren": "Rebekah Stott",
+     "giren_sd_id": 7063,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "71",
+     "cikan": "Deven Jackson",
+     "cikan_sd_id": 82249,
+     "giren": "Kelli McGroarty",
+     "giren_sd_id": 123573,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "77",
+     "ad": "Ellie Walker",
+     "sd_id": 75355,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Victoria Esson",
+      "sd_id": 22501,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 4,
+      "ad": "Mackenzie Barry",
+      "sd_id": 37795,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 6,
+      "ad": "Abby Erceg",
+      "sd_id": 458,
+      "mevki": "Defence",
+      "yas": 36
+     },
+     {
+      "no": 5,
+      "ad": "Ellie Walker",
+      "sd_id": 75355,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Manaia Elliott",
+      "sd_id": 78949,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 7,
+      "ad": "Grace Jale",
+      "sd_id": 35826,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 23,
+      "ad": "Brooke Nunn",
+      "sd_id": 7376,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 24,
+      "ad": "Pia Vlok",
+      "sd_id": 104116,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 13,
+      "ad": "Tameka Yallop",
+      "sd_id": 252,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 17,
+      "ad": "Indiah-Paige Riley",
+      "sd_id": 38947,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 31,
+      "ad": "Makala Woods",
+      "sd_id": 108359,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 24,
+      "ad": "Malena Mieres",
+      "sd_id": 35560,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 5,
+      "ad": "Aimee Medwin",
+      "sd_id": 39226,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 4,
+      "ad": "Jessika Nash",
+      "sd_id": 51943,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Karly Roestbakken",
+      "sd_id": 31974,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Momo Hayashi",
+      "sd_id": 64021,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 11,
+      "ad": "Deven Jackson",
+      "sd_id": 82249,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 12,
+      "ad": "Shelby McMahon",
+      "sd_id": 88702,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Taylor Ray",
+      "sd_id": 34034,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 14,
+      "ad": "Melina Ayres",
+      "sd_id": 29995,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 21,
+      "ad": "Aideen Keane",
+      "sd_id": 53578,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 9,
+      "ad": "Cortnee Vine",
+      "sd_id": 30086,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 22,
+      "ad": "Aimee Danieli",
+      "sd_id": 78951,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 25,
+      "ad": "Alyssha Eglinton",
+      "sd_id": 104101,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 16,
+      "ad": "Marisa van der Meer",
+      "sd_id": 37797,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Lara Wall",
+      "sd_id": 105015,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 21,
+      "ad": "Sienna Candy",
+      "sd_id": 113965,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 26,
+      "ad": "Lily Brazendale",
+      "sd_id": 115097,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 20,
+      "ad": "Emma Taylor-Main",
+      "sd_id": 64472,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ],
+    "dep": [
+     {
+      "no": 23,
+      "ad": "Melissa Barbieri",
+      "sd_id": 102,
+      "mevki": "Goalkeeper",
+      "yas": 46
+     },
+     {
+      "no": 27,
+      "ad": "Chelsea Biggs",
+      "sd_id": 118383,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 13,
+      "ad": "Rebekah Stott",
+      "sd_id": 7063,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 10,
+      "ad": "Avaani Prakash",
+      "sd_id": 92935,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 26,
+      "ad": "Izabella Rako",
+      "sd_id": 113074,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 20,
+      "ad": "Kelli McGroarty",
+      "sd_id": 123573,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171843,
+   "hafta": 1,
+   "ev": "Sydney FC",
+   "dep": "Adelaide United",
+   "tarih": "18.10.2026",
+   "skor": "2:2",
+   "iy": "1:1",
+   "hafta_sd": 1,
+   "saat": "07:30",
+   "seyirci": 776,
+   "hakem": "Noah Moss",
+   "stat": "Leichhardt Oval",
+   "ev_id": 345,
+   "dep_id": 24,
+   "dizilis": {
+    "ev": {
+     "takim": "Sydney FC",
+     "sema": "4-1-4-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Tiahna Robertson",
+        "sd_id": 97860
+       }
+      ],
+      [
+       {
+        "ad": "Poppy Channing",
+        "sd_id": 125660
+       },
+       {
+        "ad": "Kiley Dulaney",
+        "sd_id": 107461
+       },
+       {
+        "ad": "Charlotte McLean",
+        "sd_id": 49715
+       },
+       {
+        "ad": "Josie Wilson",
+        "sd_id": 91879
+       }
+      ],
+      [
+       {
+        "ad": "Maddie Caspers",
+        "sd_id": 94684
+       },
+       {
+        "ad": "Olivia Price",
+        "sd_id": 26661
+       }
+      ],
+      [
+       {
+        "ad": "Riley Cohn",
+        "sd_id": 83326
+       },
+       {
+        "ad": "Kenzie Roling",
+        "sd_id": 123449
+       },
+       {
+        "ad": "Asha Sutton",
+        "sd_id": 125663
+       },
+       {
+        "ad": "Faith Webber",
+        "sd_id": 116649
+       }
+      ]
+     ],
+     "teknik": "James Slaveski",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Adelaide United",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Ilona Melegh",
+        "sd_id": 104980
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Cicco",
+        "sd_id": 78930
+       },
+       {
+        "ad": "Emily Hodgson",
+        "sd_id": 31853
+       },
+       {
+        "ad": "Holly Murray",
+        "sd_id": 77077
+       },
+       {
+        "ad": "Bella Yakel",
+        "sd_id": 125665
+       }
+      ],
+      [
+       {
+        "ad": "Melissa Taranto",
+        "sd_id": 30047
+       },
+       {
+        "ad": "Adriana Taranto",
+        "sd_id": 30046
+       },
+       {
+        "ad": "Paige Zois",
+        "sd_id": 42937
+       }
+      ],
+      [
+       {
+        "ad": "Chelsie Dawber",
+        "sd_id": 34911
+       },
+       {
+        "ad": "Kiera Meyers",
+        "sd_id": 83712
+       },
+       {
+        "ad": "Carina Rossi",
+        "sd_id": 88706
+       }
+      ]
+     ],
+     "teknik": "Theo Tsiounis",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Asha Sutton",
+     "sd_id": 125663,
+     "dk": "6",
+     "tur": "Left-foot shot",
+     "asist": "Riley Cohn",
+     "asist_sd_id": 83326,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Charlotte McLean",
+     "sd_id": 49715,
+     "dk": "8",
+     "tur": "Own goal -"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Riley Cohn",
+     "sd_id": 83326,
+     "dk": "55",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "2:2",
+     "taraf": "dep",
+     "ad": "India Breier",
+     "sd_id": 90276,
+     "dk": "88",
+     "tur": "Direct corner"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "19",
+     "cikan": "Josie Wilson",
+     "cikan_sd_id": 91879,
+     "giren": "Megan Mifsud",
+     "giren_sd_id": 125662,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Olivia Price",
+     "cikan_sd_id": 26661,
+     "giren": "Lauren Nada",
+     "giren_sd_id": 88703,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "67",
+     "cikan": "Carina Rossi",
+     "cikan_sd_id": 88706,
+     "giren": "Emilia Makris",
+     "giren_sd_id": 65674,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "67",
+     "cikan": "Adriana Taranto",
+     "cikan_sd_id": 30046,
+     "giren": "Lara Gooch",
+     "giren_sd_id": 65560,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "79",
+     "cikan": "Chelsie Dawber",
+     "cikan_sd_id": 34911,
+     "giren": "India Breier",
+     "giren_sd_id": 90276,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "79",
+     "cikan": "Bella Yakel",
+     "cikan_sd_id": 125665,
+     "giren": "Tianna Harris",
+     "giren_sd_id": 89218,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+2",
+     "cikan": "Melissa Taranto",
+     "cikan_sd_id": 30047,
+     "giren": "Daisy Drawwater",
+     "giren_sd_id": 126172,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "45+4",
+     "ad": "Adriana Taranto",
+     "sd_id": 30046,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 30,
+      "ad": "Tiahna Robertson",
+      "sd_id": 97860,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 27,
+      "ad": "Poppy Channing",
+      "sd_id": 125660,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Kiley Dulaney",
+      "sd_id": 107461,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Charlotte McLean",
+      "sd_id": 49715,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 24,
+      "ad": "Josie Wilson",
+      "sd_id": 91879,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 26,
+      "ad": "Maddie Caspers",
+      "sd_id": 94684,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "Olivia Price",
+      "sd_id": 26661,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 13,
+      "ad": "Riley Cohn",
+      "sd_id": 83326,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 28,
+      "ad": "Kenzie Roling",
+      "sd_id": 123449,
+      "mevki": "Striker",
+      "yas": 23
+     },
+     {
+      "no": 39,
+      "ad": "Asha Sutton",
+      "sd_id": 125663,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 2,
+      "ad": "Faith Webber",
+      "sd_id": 116649,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Ilona Melegh",
+      "sd_id": 104980,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Cicco",
+      "sd_id": 78930,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 2,
+      "ad": "Emily Hodgson",
+      "sd_id": 31853,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Holly Murray",
+      "sd_id": 77077,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Bella Yakel",
+      "sd_id": 125665,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Melissa Taranto",
+      "sd_id": 30047,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 15,
+      "ad": "Adriana Taranto",
+      "sd_id": 30046,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Paige Zois",
+      "sd_id": 42937,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Chelsie Dawber",
+      "sd_id": 34911,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Kiera Meyers",
+      "sd_id": 83712,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 12,
+      "ad": "Carina Rossi",
+      "sd_id": 88706,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 0,
+      "ad": "Chelsea McCredie",
+      "sd_id": 125661,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 0,
+      "ad": "Megan Mifsud",
+      "sd_id": 125662,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 0,
+      "ad": "Lauren Nada",
+      "sd_id": 88703,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 12,
+      "ad": "Natalie Tobin",
+      "sd_id": 18343,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 19,
+      "ad": "Amy Chessari",
+      "sd_id": 80615,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 0,
+      "ad": "Poppy Tay",
+      "sd_id": 125664,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 18,
+      "ad": "Amelie Millar",
+      "sd_id": 113419,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 5,
+      "ad": "India Breier",
+      "sd_id": 90276,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 23,
+      "ad": "Tianna Harris",
+      "sd_id": 89218,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 29,
+      "ad": "Daisy Drawwater",
+      "sd_id": 126172,
+      "mevki": "Striker",
+      "yas": null
+     },
+     {
+      "no": 25,
+      "ad": "Lara Gooch",
+      "sd_id": 65560,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 7,
+      "ad": "Emilia Makris",
+      "sd_id": 65674,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 11,
+      "ad": "Tessa Salvestrin",
+      "sd_id": 106631,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171844,
+   "hafta": 2,
+   "ev": "Western Sydney Wanderers",
+   "dep": "Brisbane Roar",
+   "tarih": "24.10.2026",
+   "skor": "3:1",
+   "iy": "1:1",
+   "hafta_sd": 2,
+   "saat": "05:15",
+   "seyirci": 1824,
+   "hakem": "Charles Hollings",
+   "stat": "Marconi Stadium",
+   "ev_id": 4667,
+   "dep_id": 75,
+   "dizilis": {
+    "ev": {
+     "takim": "Western Sydney Wanderers",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Sarah Langman",
+        "sd_id": 26663
+       }
+      ],
+      [
+       {
+        "ad": "Silje Bjørneboe",
+        "sd_id": 30441
+       },
+       {
+        "ad": "Tiana Jaber",
+        "sd_id": 42923
+       },
+       {
+        "ad": "Sofia Palywoda",
+        "sd_id": 125618
+       },
+       {
+        "ad": "Laura Pickett",
+        "sd_id": 92083
+       }
+      ],
+      [
+       {
+        "ad": "Milly Bennett",
+        "sd_id": 103560
+       },
+       {
+        "ad": "Samantha Iredale",
+        "sd_id": 31296
+       },
+       {
+        "ad": "Sofia Sakalis",
+        "sd_id": 34039
+       },
+       {
+        "ad": "Talia Younis",
+        "sd_id": 87490
+       }
+      ],
+      [
+       {
+        "ad": "Elexa Bahr",
+        "sd_id": 49276
+       },
+       {
+        "ad": "Brooke Miller",
+        "sd_id": 122361
+       }
+      ]
+     ],
+     "teknik": "Geoff Abrahams",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Brisbane Roar",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Tahlia Franco",
+        "sd_id": 68855
+       }
+      ],
+      [
+       {
+        "ad": "Rosie Curtis",
+        "sd_id": 79936
+       },
+       {
+        "ad": "Amali Kinsella",
+        "sd_id": 107407
+       },
+       {
+        "ad": "Hali Long",
+        "sd_id": 67109
+       },
+       {
+        "ad": "Annabel Martin",
+        "sd_id": 30041
+       }
+      ],
+      [
+       {
+        "ad": "Katrina Guillou",
+        "sd_id": 35029
+       },
+       {
+        "ad": "Zara Kruger",
+        "sd_id": 81092
+       },
+       {
+        "ad": "Emily Roach",
+        "sd_id": 79933
+       }
+      ],
+      [
+       {
+        "ad": "Murphy Agnew",
+        "sd_id": 73120
+       },
+       {
+        "ad": "Daisy Brown",
+        "sd_id": 110818
+       },
+       {
+        "ad": "Abby Smothers",
+        "sd_id": 122909
+       }
+      ]
+     ],
+     "teknik": "Jonathan Clemente",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Sofia Sakalis",
+     "sd_id": 34039,
+     "dk": "7",
+     "tur": "Own goal -"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Sofia Palywoda",
+     "sd_id": 125618,
+     "dk": "15",
+     "tur": "Header goal",
+     "asist": "Talia Younis",
+     "asist_sd_id": 87490,
+     "asist_tur": "Corner"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Talia Younis",
+     "sd_id": 87490,
+     "dk": "66",
+     "tur": "Penalty"
+    },
+    {
+     "skor": "3:1",
+     "taraf": "ev",
+     "ad": "Brooke Miller",
+     "sd_id": 122361,
+     "dk": "80",
+     "tur": "Right-foot shot",
+     "asist": "Allyssa Ng-Saad",
+     "asist_sd_id": 114241,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Samantha Iredale",
+     "cikan_sd_id": 31296,
+     "giren": "Allyssa Ng-Saad",
+     "giren_sd_id": 114241,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "69",
+     "cikan": "Sofia Sakalis",
+     "cikan_sd_id": 34039,
+     "giren": "Nikkita Fazzari",
+     "giren_sd_id": 111510,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "69",
+     "cikan": "Elexa Bahr",
+     "cikan_sd_id": 49276,
+     "giren": "Carleigh Frilles",
+     "giren_sd_id": 67544,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "cikan": "Brooke Miller",
+     "cikan_sd_id": 122361,
+     "giren": "Isabella Chidiac",
+     "giren_sd_id": 123876,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+2",
+     "cikan": "Talia Younis",
+     "cikan_sd_id": 87490,
+     "giren": "Estelle Fragale",
+     "giren_sd_id": 123863,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Emily Roach",
+     "cikan_sd_id": 79933,
+     "giren": "Natalie Tathem",
+     "giren_sd_id": 31861,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "72",
+     "cikan": "Daisy Brown",
+     "cikan_sd_id": 110818,
+     "giren": "Maja Markovski",
+     "giren_sd_id": 42975,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "72",
+     "cikan": "Abby Smothers",
+     "cikan_sd_id": 122909,
+     "giren": "Lily Punch",
+     "giren_sd_id": 88694,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "79",
+     "cikan": "Annabel Martin",
+     "cikan_sd_id": 30041,
+     "giren": "Isabel Hodgson",
+     "giren_sd_id": 22048,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "79",
+     "cikan": "Zara Kruger",
+     "cikan_sd_id": 81092,
+     "giren": "Kijah Stephenson",
+     "giren_sd_id": 78309,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "39",
+     "ad": "Laura Pickett",
+     "sd_id": 92083,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sarah Langman",
+      "sd_id": 26663,
+      "mevki": "Goalkeeper",
+      "yas": 31
+     },
+     {
+      "no": 4,
+      "ad": "Silje Bjørneboe",
+      "sd_id": 30441,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Tiana Jaber",
+      "sd_id": 42923,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 15,
+      "ad": "Sofia Palywoda",
+      "sd_id": 125618,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 21,
+      "ad": "Laura Pickett",
+      "sd_id": 92083,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Milly Bennett",
+      "sd_id": 103560,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 7,
+      "ad": "Samantha Iredale",
+      "sd_id": 31296,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Sofia Sakalis",
+      "sd_id": 34039,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Talia Younis",
+      "sd_id": 87490,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Elexa Bahr",
+      "sd_id": 49276,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Brooke Miller",
+      "sd_id": 122361,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 12,
+      "ad": "Tahlia Franco",
+      "sd_id": 68855,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 27,
+      "ad": "Rosie Curtis",
+      "sd_id": 79936,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Amali Kinsella",
+      "sd_id": 107407,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 15,
+      "ad": "Hali Long",
+      "sd_id": 67109,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 2,
+      "ad": "Annabel Martin",
+      "sd_id": 30041,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 21,
+      "ad": "Katrina Guillou",
+      "sd_id": 35029,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 14,
+      "ad": "Zara Kruger",
+      "sd_id": 81092,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 24,
+      "ad": "Emily Roach",
+      "sd_id": 79933,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Murphy Agnew",
+      "sd_id": 73120,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 3,
+      "ad": "Daisy Brown",
+      "sd_id": 110818,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Abby Smothers",
+      "sd_id": 122909,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Brianna Edwards",
+      "sd_id": 64708,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Isabella Chidiac",
+      "sd_id": 123876,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Nikkita Fazzari",
+      "sd_id": 111510,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 16,
+      "ad": "Estelle Fragale",
+      "sd_id": 123863,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 22,
+      "ad": "Carleigh Frilles",
+      "sd_id": 67544,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Allyssa Ng-Saad",
+      "sd_id": 114241,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 23,
+      "ad": "Miriam Zumaya",
+      "sd_id": 114243,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Chloe Lincoln",
+      "sd_id": 66795,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Isabel Hodgson",
+      "sd_id": 22048,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 23,
+      "ad": "Isabela Hoyos",
+      "sd_id": 88687,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Natalie Tathem",
+      "sd_id": 31861,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 4,
+      "ad": "Kijah Stephenson",
+      "sd_id": 78309,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Maja Markovski",
+      "sd_id": 42975,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Lily Punch",
+      "sd_id": 88694,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171845,
+   "hafta": 2,
+   "ev": "Central Coast Mariners",
+   "dep": "Canberra United",
+   "tarih": "24.10.2026",
+   "skor": "5:1",
+   "iy": "2:0",
+   "hafta_sd": 2,
+   "saat": "06:00",
+   "seyirci": 1576,
+   "hakem": "Charlotte Flynn",
+   "stat": "Industree Group Stadium",
+   "ev_id": 81,
+   "dep_id": 79,
+   "dizilis": {
+    "ev": {
+     "takim": "Central Coast Mariners",
+     "sema": "3-4-1-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Morgan Aquino",
+        "sd_id": 31963
+       }
+      ],
+      [
+       {
+        "ad": "Kaiya Buchanan",
+        "sd_id": 114329
+       },
+       {
+        "ad": "Talia Kapetanellis",
+        "sd_id": 105017
+       },
+       {
+        "ad": "Taren King",
+        "sd_id": 34049
+       },
+       {
+        "ad": "Rebecca Lake",
+        "sd_id": 35819
+       },
+       {
+        "ad": "Danika Matos",
+        "sd_id": 44746
+       },
+       {
+        "ad": "Te Reremoana Walker",
+        "sd_id": 64352
+       }
+      ],
+      [
+       {
+        "ad": "Greta Kraszula",
+        "sd_id": 75486
+       }
+      ],
+      [
+       {
+        "ad": "Eliza Familton",
+        "sd_id": 107462
+       },
+       {
+        "ad": "Skye Halmarick",
+        "sd_id": 110671
+       },
+       {
+        "ad": "Peta Trimis",
+        "sd_id": 91870
+       }
+      ]
+     ],
+     "teknik": "Dean Heffernan",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Canberra United",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Sally James",
+        "sd_id": 46076
+       }
+      ],
+      [
+       {
+        "ad": "Elizabeth Anton",
+        "sd_id": 22850
+       },
+       {
+        "ad": "Madison Ayson",
+        "sd_id": 99577
+       },
+       {
+        "ad": "Hayley Taylor-Young",
+        "sd_id": 42934
+       },
+       {
+        "ad": "Zoe Tolland",
+        "sd_id": 80388
+       }
+      ],
+      [
+       {
+        "ad": "Bethany Gordon",
+        "sd_id": 34047
+       },
+       {
+        "ad": "Darcey Malone",
+        "sd_id": 39191
+       },
+       {
+        "ad": "Nanako Sasaki",
+        "sd_id": 64711
+       }
+      ],
+      [
+       {
+        "ad": "Kelli Brown",
+        "sd_id": 37799
+       },
+       {
+        "ad": "Sofia Christopherson",
+        "sd_id": 80413
+       },
+       {
+        "ad": "Michelle Heyman",
+        "sd_id": 725
+       }
+      ]
+     ],
+     "teknik": "Antoni Jagarinec",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Skye Halmarick",
+     "sd_id": 110671,
+     "dk": "6",
+     "tur": "Right-foot shot",
+     "asist": "Danika Matos",
+     "asist_sd_id": 44746,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Talia Kapetanellis",
+     "sd_id": 105017,
+     "dk": "31",
+     "tur": "Header goal",
+     "asist": "Peta Trimis",
+     "asist_sd_id": 91870,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "3:0",
+     "taraf": "ev",
+     "ad": "Te Reremoana Walker",
+     "sd_id": 64352,
+     "dk": "55",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "4:0",
+     "taraf": "ev",
+     "ad": "Talia Kapetanellis",
+     "sd_id": 105017,
+     "dk": "70",
+     "tur": "Left-foot shot",
+     "asist": "Danika Matos",
+     "asist_sd_id": 44746,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "5:0",
+     "taraf": "ev",
+     "ad": "Alexia Karrys-Stahl",
+     "sd_id": 64206,
+     "dk": "80",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "5:1",
+     "taraf": "dep",
+     "ad": "Sienna Dale",
+     "sd_id": 88692,
+     "dk": "87",
+     "tur": "Left-foot shot",
+     "asist": "Elizabeth Anton",
+     "asist_sd_id": 22850,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "71",
+     "cikan": "Eliza Familton",
+     "cikan_sd_id": 107462,
+     "giren": "Morgan Witz",
+     "giren_sd_id": 125621,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "74",
+     "cikan": "Te Reremoana Walker",
+     "cikan_sd_id": 64352,
+     "giren": "Alexia Karrys-Stahl",
+     "giren_sd_id": 64206,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "82",
+     "cikan": "Skye Halmarick",
+     "cikan_sd_id": 110671,
+     "giren": "Kiara de Domizio",
+     "giren_sd_id": 91893,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "83",
+     "cikan": "Kaiya Buchanan",
+     "cikan_sd_id": 114329,
+     "giren": "Tiana Fuller",
+     "giren_sd_id": 88697,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "50",
+     "cikan": "Darcey Malone",
+     "cikan_sd_id": 39191,
+     "giren": "Emily Condon",
+     "giren_sd_id": 22045,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "56",
+     "cikan": "Nanako Sasaki",
+     "cikan_sd_id": 64711,
+     "giren": "Sienna Dale",
+     "giren_sd_id": 88692,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Kelli Brown",
+     "cikan_sd_id": 37799,
+     "giren": "Sarah Morgan",
+     "giren_sd_id": 34051,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Sofia Christopherson",
+     "cikan_sd_id": 80413,
+     "giren": "Caley Tallon-Henniker",
+     "giren_sd_id": 93198,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Morgan Aquino",
+      "sd_id": 31963,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Kaiya Buchanan",
+      "sd_id": 114329,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 8,
+      "ad": "Talia Kapetanellis",
+      "sd_id": 105017,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Taren King",
+      "sd_id": 34049,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Rebecca Lake",
+      "sd_id": 35819,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Danika Matos",
+      "sd_id": 44746,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 6,
+      "ad": "Te Reremoana Walker",
+      "sd_id": 64352,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Greta Kraszula",
+      "sd_id": 75486,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 21,
+      "ad": "Eliza Familton",
+      "sd_id": 107462,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Skye Halmarick",
+      "sd_id": 110671,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Peta Trimis",
+      "sd_id": 91870,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Sally James",
+      "sd_id": 46076,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Elizabeth Anton",
+      "sd_id": 22850,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 22,
+      "ad": "Madison Ayson",
+      "sd_id": 99577,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 12,
+      "ad": "Hayley Taylor-Young",
+      "sd_id": 42934,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Zoe Tolland",
+      "sd_id": 80388,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 32,
+      "ad": "Bethany Gordon",
+      "sd_id": 34047,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 25,
+      "ad": "Darcey Malone",
+      "sd_id": 39191,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 33,
+      "ad": "Nanako Sasaki",
+      "sd_id": 64711,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 44,
+      "ad": "Kelli Brown",
+      "sd_id": 37799,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Sofia Christopherson",
+      "sd_id": 80413,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 23,
+      "ad": "Michelle Heyman",
+      "sd_id": 725,
+      "mevki": "Striker",
+      "yas": 38
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 15,
+      "ad": "Annalee Grove",
+      "sd_id": 31967,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Elizabeth Barwick-Grey",
+      "sd_id": 114327,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 4,
+      "ad": "Alexia Karrys-Stahl",
+      "sd_id": 64206,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 17,
+      "ad": "Kiara de Domizio",
+      "sd_id": 91893,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 12,
+      "ad": "Tiana Fuller",
+      "sd_id": 88697,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 19,
+      "ad": "Fiorina Iaria",
+      "sd_id": 112264,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 7,
+      "ad": "Morgan Witz",
+      "sd_id": 125621,
+      "mevki": "Striker",
+      "yas": null
+     }
+    ],
+    "dep": [
+     {
+      "no": 18,
+      "ad": "Coco Majstorovic",
+      "sd_id": 52208,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 8,
+      "ad": "Sasha Grove",
+      "sd_id": 53566,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 10,
+      "ad": "Emily Condon",
+      "sd_id": 22045,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 5,
+      "ad": "Sarah Morgan",
+      "sd_id": 34051,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 7,
+      "ad": "Sienna Dale",
+      "sd_id": 88692,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 6,
+      "ad": "Lily McMahon",
+      "sd_id": 103963,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Caley Tallon-Henniker",
+      "sd_id": 93198,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171846,
+   "hafta": 2,
+   "ev": "Adelaide United",
+   "dep": "Perth Glory",
+   "tarih": "24.10.2026",
+   "skor": "0:0",
+   "iy": "0:0",
+   "hafta_sd": 2,
+   "saat": "08:00",
+   "seyirci": 816,
+   "hakem": "Caitlin Williams",
+   "stat": "ServiceFM Stadium",
+   "ev_id": 24,
+   "dep_id": 257,
+   "dizilis": {
+    "ev": {
+     "takim": "Adelaide United",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Ilona Melegh",
+        "sd_id": 104980
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Cicco",
+        "sd_id": 78930
+       },
+       {
+        "ad": "Emily Hodgson",
+        "sd_id": 31853
+       },
+       {
+        "ad": "Holly Murray",
+        "sd_id": 77077
+       },
+       {
+        "ad": "Bella Yakel",
+        "sd_id": 125665
+       }
+      ],
+      [
+       {
+        "ad": "Melissa Taranto",
+        "sd_id": 30047
+       },
+       {
+        "ad": "Adriana Taranto",
+        "sd_id": 30046
+       },
+       {
+        "ad": "Paige Zois",
+        "sd_id": 42937
+       }
+      ],
+      [
+       {
+        "ad": "Chelsie Dawber",
+        "sd_id": 34911
+       },
+       {
+        "ad": "Kiera Meyers",
+        "sd_id": 83712
+       },
+       {
+        "ad": "Carina Rossi",
+        "sd_id": 88706
+       }
+      ]
+     ],
+     "teknik": "Theo Tsiounis",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "Perth Glory",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Alyssa Dall’Oste",
+        "sd_id": 79678
+       }
+      ],
+      [
+       {
+        "ad": "Ella Buchanan",
+        "sd_id": 96519
+       },
+       {
+        "ad": "Julia Sardo",
+        "sd_id": 42976
+       },
+       {
+        "ad": "Baxter Thew",
+        "sd_id": 114333
+       },
+       {
+        "ad": "Onyinyechi Zogg",
+        "sd_id": 34587
+       }
+      ],
+      [
+       {
+        "ad": "Ella Abdul Massih",
+        "sd_id": 68854
+       },
+       {
+        "ad": "Georgia Cassidy",
+        "sd_id": 87218
+       },
+       {
+        "ad": "Emma Tovar",
+        "sd_id": 70692
+       },
+       {
+        "ad": "Clancy Westaway",
+        "sd_id": 88711
+       }
+      ],
+      [
+       {
+        "ad": "Rola Badawiya",
+        "sd_id": 63269
+       },
+       {
+        "ad": "Maggie Jenkins",
+        "sd_id": 35835
+       }
+      ]
+     ],
+     "teknik": "Stephen Peters",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "55",
+     "cikan": "Carina Rossi",
+     "cikan_sd_id": 88706,
+     "giren": "Lara Gooch",
+     "giren_sd_id": 65560,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "71",
+     "cikan": "Kiera Meyers",
+     "cikan_sd_id": 83712,
+     "giren": "India Breier",
+     "giren_sd_id": 90276,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Bella Yakel",
+     "cikan_sd_id": 125665,
+     "giren": "Tianna Harris",
+     "giren_sd_id": 89218,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Adriana Taranto",
+     "cikan_sd_id": 30046,
+     "giren": "Emilia Makris",
+     "giren_sd_id": 65674,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Ella Abdul Massih",
+     "cikan_sd_id": 68854,
+     "giren": "Susan Phonsongkham",
+     "giren_sd_id": 39326,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "62",
+     "cikan": "Rola Badawiya",
+     "cikan_sd_id": 63269,
+     "giren": "Megan Wynne",
+     "giren_sd_id": 4183,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "62",
+     "cikan": "Georgia Cassidy",
+     "cikan_sd_id": 87218,
+     "giren": "Mischa Anderson",
+     "giren_sd_id": 91883,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "62",
+     "cikan": "Maggie Jenkins",
+     "cikan_sd_id": 35835,
+     "giren": "Bronte Trew",
+     "giren_sd_id": 105016,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Clancy Westaway",
+     "cikan_sd_id": 88711,
+     "giren": "Theodora Mouithys",
+     "giren_sd_id": 125604,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "ad": "India Breier",
+     "sd_id": 90276,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "34",
+     "ad": "Teresa Morrissey",
+     "sd_id": 49115,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "72",
+     "ad": "Ella Abdul Massih",
+     "sd_id": 68854,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Ilona Melegh",
+      "sd_id": 104980,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Cicco",
+      "sd_id": 78930,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 2,
+      "ad": "Emily Hodgson",
+      "sd_id": 31853,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Holly Murray",
+      "sd_id": 77077,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Bella Yakel",
+      "sd_id": 125665,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Melissa Taranto",
+      "sd_id": 30047,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 15,
+      "ad": "Adriana Taranto",
+      "sd_id": 30046,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Paige Zois",
+      "sd_id": 42937,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Chelsie Dawber",
+      "sd_id": 34911,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Kiera Meyers",
+      "sd_id": 83712,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 12,
+      "ad": "Carina Rossi",
+      "sd_id": 88706,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Alyssa Dall’Oste",
+      "sd_id": 79678,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Ella Buchanan",
+      "sd_id": 96519,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Julia Sardo",
+      "sd_id": 42976,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 5,
+      "ad": "Baxter Thew",
+      "sd_id": 114333,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 29,
+      "ad": "Onyinyechi Zogg",
+      "sd_id": 34587,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 11,
+      "ad": "Ella Abdul Massih",
+      "sd_id": 68854,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 8,
+      "ad": "Georgia Cassidy",
+      "sd_id": 87218,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Emma Tovar",
+      "sd_id": 70692,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 19,
+      "ad": "Clancy Westaway",
+      "sd_id": 88711,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Rola Badawiya",
+      "sd_id": 63269,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 9,
+      "ad": "Maggie Jenkins",
+      "sd_id": 35835,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 18,
+      "ad": "Amelie Millar",
+      "sd_id": 113419,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 5,
+      "ad": "India Breier",
+      "sd_id": 90276,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 23,
+      "ad": "Tianna Harris",
+      "sd_id": 89218,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 27,
+      "ad": "Sian Dewey",
+      "sd_id": 94676,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 25,
+      "ad": "Lara Gooch",
+      "sd_id": 65560,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 7,
+      "ad": "Emilia Makris",
+      "sd_id": 65674,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 11,
+      "ad": "Tessa Salvestrin",
+      "sd_id": 106631,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Teresa Morrissey",
+      "sd_id": 49115,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Mischa Anderson",
+      "sd_id": 91883,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 18,
+      "ad": "Theodora Mouithys",
+      "sd_id": 125604,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 10,
+      "ad": "Susan Phonsongkham",
+      "sd_id": 39326,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 12,
+      "ad": "Bronte Trew",
+      "sd_id": 105016,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Megan Wynne",
+      "sd_id": 4183,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171847,
+   "hafta": 2,
+   "ev": "Wellington Phoenix FC",
+   "dep": "Melbourne Victory",
+   "tarih": "25.10.2026",
+   "skor": "1:1",
+   "iy": "0:1",
+   "hafta_sd": 2,
+   "saat": "01:15",
+   "seyirci": 1897,
+   "hakem": "Sarah Jones",
+   "stat": "Sky Stadium",
+   "ev_id": 9549,
+   "dep_id": 226,
+   "dizilis": {
+    "ev": {
+     "takim": "Wellington Phoenix FC",
+     "sema": "3-4-3 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Victoria Esson",
+        "sd_id": 22501
+       }
+      ],
+      [
+       {
+        "ad": "Mackenzie Barry",
+        "sd_id": 37795
+       },
+       {
+        "ad": "Abby Erceg",
+        "sd_id": 458
+       },
+       {
+        "ad": "Ellie Walker",
+        "sd_id": 75355
+       }
+      ],
+      [
+       {
+        "ad": "Manaia Elliott",
+        "sd_id": 78949
+       },
+       {
+        "ad": "Grace Jale",
+        "sd_id": 35826
+       },
+       {
+        "ad": "Brooke Nunn",
+        "sd_id": 7376
+       },
+       {
+        "ad": "Pia Vlok",
+        "sd_id": 104116
+       },
+       {
+        "ad": "Tameka Yallop",
+        "sd_id": 252
+       }
+      ],
+      [
+       {
+        "ad": "Indiah-Paige Riley",
+        "sd_id": 38947
+       },
+       {
+        "ad": "Makala Woods",
+        "sd_id": 108359
+       }
+      ]
+     ],
+     "teknik": "Bev Priestman",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Melbourne Victory",
+     "sema": "4-3-1-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Courtney Newbon",
+        "sd_id": 31951
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Bunge",
+        "sd_id": 35823
+       },
+       {
+        "ad": "Alana Jančevski",
+        "sd_id": 42930
+       },
+       {
+        "ad": "Zoe McMeeken",
+        "sd_id": 64226
+       },
+       {
+        "ad": "Kayla Morrison",
+        "sd_id": 52196
+       }
+      ],
+      [
+       {
+        "ad": "Sienna Saveska",
+        "sd_id": 82318
+       },
+       {
+        "ad": "Anna Sutter",
+        "sd_id": 44891
+       },
+       {
+        "ad": "Alicia Woods",
+        "sd_id": 96360
+       }
+      ],
+      [
+       {
+        "ad": "Angela Beard",
+        "sd_id": 26643
+       },
+       {
+        "ad": "Holly Furphy",
+        "sd_id": 106456
+       },
+       {
+        "ad": "Sophie Harding",
+        "sd_id": 53580
+       }
+      ]
+     ],
+     "teknik": "Jeff Hopkins",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Holly Furphy",
+     "sd_id": 106456,
+     "dk": "40",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Makala Woods",
+     "sd_id": 108359,
+     "dk": "63",
+     "tur": "Right-foot shot",
+     "asist": "Brooke Nunn",
+     "asist_sd_id": 7376,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "78",
+     "cikan": "Manaia Elliott",
+     "cikan_sd_id": 78949,
+     "giren": "Alyssha Eglinton",
+     "giren_sd_id": 104101,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+3",
+     "cikan": "Tameka Yallop",
+     "cikan_sd_id": 252,
+     "giren": "Emma Taylor-Main",
+     "giren_sd_id": 64472,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "39",
+     "cikan": "Alicia Woods",
+     "cikan_sd_id": 96360,
+     "giren": "Skye Leach",
+     "giren_sd_id": 106723,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Sophie Harding",
+     "cikan_sd_id": 53580,
+     "giren": "Ella O’Grady",
+     "giren_sd_id": 84871,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Alana Jančevski",
+     "cikan_sd_id": 42930,
+     "giren": "Sienna Techera",
+     "giren_sd_id": 108568,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Holly Furphy",
+     "cikan_sd_id": 106456,
+     "giren": "Nikki Flannery",
+     "giren_sd_id": 30075,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Sienna Saveska",
+     "cikan_sd_id": 82318,
+     "giren": "Jasmine Millar",
+     "giren_sd_id": 125768,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Victoria Esson",
+      "sd_id": 22501,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 4,
+      "ad": "Mackenzie Barry",
+      "sd_id": 37795,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 6,
+      "ad": "Abby Erceg",
+      "sd_id": 458,
+      "mevki": "Defence",
+      "yas": 36
+     },
+     {
+      "no": 5,
+      "ad": "Ellie Walker",
+      "sd_id": 75355,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Manaia Elliott",
+      "sd_id": 78949,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 7,
+      "ad": "Grace Jale",
+      "sd_id": 35826,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 23,
+      "ad": "Brooke Nunn",
+      "sd_id": 7376,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 24,
+      "ad": "Pia Vlok",
+      "sd_id": 104116,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 13,
+      "ad": "Tameka Yallop",
+      "sd_id": 252,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 17,
+      "ad": "Indiah-Paige Riley",
+      "sd_id": 38947,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 31,
+      "ad": "Makala Woods",
+      "sd_id": 108359,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Courtney Newbon",
+      "sd_id": 31951,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Bunge",
+      "sd_id": 35823,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 66,
+      "ad": "Alana Jančevski",
+      "sd_id": 42930,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Zoe McMeeken",
+      "sd_id": 64226,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 18,
+      "ad": "Kayla Morrison",
+      "sd_id": 52196,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 10,
+      "ad": "Sienna Saveska",
+      "sd_id": 82318,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Anna Sutter",
+      "sd_id": 44891,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 14,
+      "ad": "Alicia Woods",
+      "sd_id": 96360,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 13,
+      "ad": "Angela Beard",
+      "sd_id": 26643,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 9,
+      "ad": "Holly Furphy",
+      "sd_id": 106456,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Sophie Harding",
+      "sd_id": 53580,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 22,
+      "ad": "Aimee Danieli",
+      "sd_id": 78951,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 25,
+      "ad": "Alyssha Eglinton",
+      "sd_id": 104101,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 16,
+      "ad": "Marisa van der Meer",
+      "sd_id": 37797,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Lara Wall",
+      "sd_id": 105015,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 21,
+      "ad": "Sienna Candy",
+      "sd_id": 113965,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 26,
+      "ad": "Lily Brazendale",
+      "sd_id": 115097,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 20,
+      "ad": "Emma Taylor-Main",
+      "sd_id": 64472,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ],
+    "dep": [
+     {
+      "no": 25,
+      "ad": "Ayana Aoyagi",
+      "sd_id": 113069,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Chelsea Blissett",
+      "sd_id": 39211,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Skye Leach",
+      "sd_id": 106723,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 11,
+      "ad": "Nikki Flannery",
+      "sd_id": 30075,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 21,
+      "ad": "Jasmine Millar",
+      "sd_id": 125768,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 7,
+      "ad": "Ella O’Grady",
+      "sd_id": 84871,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Sienna Techera",
+      "sd_id": 108568,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171848,
+   "hafta": 2,
+   "ev": "Sydney FC",
+   "dep": "Melbourne City",
+   "tarih": "25.10.2026",
+   "skor": "0:5",
+   "iy": "0:4",
+   "hafta_sd": 2,
+   "saat": "07:45",
+   "seyirci": 1324,
+   "hakem": "Sophie Allum",
+   "stat": "Sydney Olympic Park Athletic Centre",
+   "ev_id": 345,
+   "dep_id": 5956,
+   "dizilis": {
+    "ev": {
+     "takim": "Sydney FC",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Tiahna Robertson",
+        "sd_id": 97860
+       }
+      ],
+      [
+       {
+        "ad": "Poppy Channing",
+        "sd_id": 125660
+       },
+       {
+        "ad": "Kiley Dulaney",
+        "sd_id": 107461
+       },
+       {
+        "ad": "Charlotte McLean",
+        "sd_id": 49715
+       }
+      ],
+      [
+       {
+        "ad": "Maddie Caspers",
+        "sd_id": 94684
+       },
+       {
+        "ad": "Amy Chessari",
+        "sd_id": 80615
+       },
+       {
+        "ad": "Olivia Price",
+        "sd_id": 26661
+       }
+      ],
+      [
+       {
+        "ad": "Riley Cohn",
+        "sd_id": 83326
+       },
+       {
+        "ad": "Kenzie Roling",
+        "sd_id": 123449
+       },
+       {
+        "ad": "Asha Sutton",
+        "sd_id": 125663
+       },
+       {
+        "ad": "Faith Webber",
+        "sd_id": 116649
+       }
+      ]
+     ],
+     "teknik": "James Slaveski",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Melbourne City",
+     "sema": "4-1-4-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Malena Mieres",
+        "sd_id": 35560
+       }
+      ],
+      [
+       {
+        "ad": "Jessika Nash",
+        "sd_id": 51943
+       },
+       {
+        "ad": "Karly Roestbakken",
+        "sd_id": 31974
+       },
+       {
+        "ad": "Rebekah Stott",
+        "sd_id": 7063
+       }
+      ],
+      [
+       {
+        "ad": "Momo Hayashi",
+        "sd_id": 64021
+       },
+       {
+        "ad": "Deven Jackson",
+        "sd_id": 82249
+       },
+       {
+        "ad": "Avaani Prakash",
+        "sd_id": 92935
+       },
+       {
+        "ad": "Taylor Ray",
+        "sd_id": 34034
+       }
+      ],
+      [
+       {
+        "ad": "Melina Ayres",
+        "sd_id": 29995
+       },
+       {
+        "ad": "Aideen Keane",
+        "sd_id": 53578
+       },
+       {
+        "ad": "Cortnee Vine",
+        "sd_id": 30086
+       }
+      ]
+     ],
+     "teknik": "Michael Matricciani",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Cortnee Vine",
+     "sd_id": 30086,
+     "dk": "13",
+     "tur": "Right-foot shot",
+     "asist": "Aideen Keane",
+     "asist_sd_id": 53578,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:2",
+     "taraf": "dep",
+     "ad": "Momo Hayashi",
+     "sd_id": 64021,
+     "dk": "16",
+     "tur": "Right-foot shot",
+     "asist": "Avaani Prakash",
+     "asist_sd_id": 92935,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:3",
+     "taraf": "dep",
+     "ad": "Deven Jackson",
+     "sd_id": 82249,
+     "dk": "24",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "0:4",
+     "taraf": "dep",
+     "ad": "Charlotte McLean",
+     "sd_id": 49715,
+     "dk": "30",
+     "tur": "Own goal -"
+    },
+    {
+     "skor": "0:5",
+     "taraf": "dep",
+     "ad": "Melina Ayres",
+     "sd_id": 29995,
+     "dk": "53",
+     "tur": "Penalty"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Olivia Price",
+     "cikan_sd_id": 26661,
+     "giren": "Megan Mifsud",
+     "giren_sd_id": 125662,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "cikan": "Charlotte McLean",
+     "cikan_sd_id": 49715,
+     "giren": "Lauren Nada",
+     "giren_sd_id": 88703,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "62",
+     "cikan": "Aideen Keane",
+     "cikan_sd_id": 53578,
+     "giren": "Tully Heatley",
+     "giren_sd_id": 125670,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "62",
+     "cikan": "Rebekah Stott",
+     "cikan_sd_id": 7063,
+     "giren": "Kelli McGroarty",
+     "giren_sd_id": 123573,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "63",
+     "cikan": "Karly Roestbakken",
+     "cikan_sd_id": 31974,
+     "giren": "Aimee Medwin",
+     "giren_sd_id": 39226,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "83",
+     "cikan": "Momo Hayashi",
+     "cikan_sd_id": 64021,
+     "giren": "Izabella Rako",
+     "giren_sd_id": 113074,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Cortnee Vine",
+     "cikan_sd_id": 30086,
+     "giren": "Chelsea Biggs",
+     "giren_sd_id": 118383,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "58",
+     "ad": "Riley Cohn",
+     "sd_id": 83326,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 30,
+      "ad": "Tiahna Robertson",
+      "sd_id": 97860,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 27,
+      "ad": "Poppy Channing",
+      "sd_id": 125660,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Kiley Dulaney",
+      "sd_id": 107461,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Charlotte McLean",
+      "sd_id": 49715,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 26,
+      "ad": "Maddie Caspers",
+      "sd_id": 94684,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 19,
+      "ad": "Amy Chessari",
+      "sd_id": 80615,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Olivia Price",
+      "sd_id": 26661,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 13,
+      "ad": "Riley Cohn",
+      "sd_id": 83326,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 28,
+      "ad": "Kenzie Roling",
+      "sd_id": 123449,
+      "mevki": "Striker",
+      "yas": 23
+     },
+     {
+      "no": 39,
+      "ad": "Asha Sutton",
+      "sd_id": 125663,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 2,
+      "ad": "Faith Webber",
+      "sd_id": 116649,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 24,
+      "ad": "Malena Mieres",
+      "sd_id": 35560,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Jessika Nash",
+      "sd_id": 51943,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Karly Roestbakken",
+      "sd_id": 31974,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Rebekah Stott",
+      "sd_id": 7063,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 8,
+      "ad": "Momo Hayashi",
+      "sd_id": 64021,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 11,
+      "ad": "Deven Jackson",
+      "sd_id": 82249,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 10,
+      "ad": "Avaani Prakash",
+      "sd_id": 92935,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 22,
+      "ad": "Taylor Ray",
+      "sd_id": 34034,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 14,
+      "ad": "Melina Ayres",
+      "sd_id": 29995,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 21,
+      "ad": "Aideen Keane",
+      "sd_id": 53578,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 9,
+      "ad": "Cortnee Vine",
+      "sd_id": 30086,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 0,
+      "ad": "Chelsea McCredie",
+      "sd_id": 125661,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 0,
+      "ad": "Megan Mifsud",
+      "sd_id": 125662,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 0,
+      "ad": "Lauren Nada",
+      "sd_id": 88703,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 0,
+      "ad": "Poppy Tay",
+      "sd_id": 125664,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 23,
+      "ad": "Melissa Barbieri",
+      "sd_id": 102,
+      "mevki": "Goalkeeper",
+      "yas": 46
+     },
+     {
+      "no": 27,
+      "ad": "Chelsea Biggs",
+      "sd_id": 118383,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 5,
+      "ad": "Aimee Medwin",
+      "sd_id": 39226,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 15,
+      "ad": "Tully Heatley",
+      "sd_id": 125670,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 26,
+      "ad": "Izabella Rako",
+      "sd_id": 113074,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 20,
+      "ad": "Kelli McGroarty",
+      "sd_id": 123573,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171849,
+   "hafta": 3,
+   "ev": "Brisbane Roar",
+   "dep": "Sydney FC",
+   "tarih": "31.10.2026",
+   "skor": "0:1",
+   "iy": "0:0",
+   "hafta_sd": 3,
+   "saat": "05:00",
+   "seyirci": 885,
+   "hakem": "Bec Mackie",
+   "stat": "Ballymore Stadium",
+   "ev_id": 75,
+   "dep_id": 345,
+   "dizilis": {
+    "ev": {
+     "takim": "Brisbane Roar",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Chloe Lincoln",
+        "sd_id": 66795
+       }
+      ],
+      [
+       {
+        "ad": "Rosie Curtis",
+        "sd_id": 79936
+       },
+       {
+        "ad": "Amali Kinsella",
+        "sd_id": 107407
+       },
+       {
+        "ad": "Hali Long",
+        "sd_id": 67109
+       },
+       {
+        "ad": "Annabel Martin",
+        "sd_id": 30041
+       },
+       {
+        "ad": "Natalie Tathem",
+        "sd_id": 31861
+       }
+      ],
+      [
+       {
+        "ad": "Katrina Guillou",
+        "sd_id": 35029
+       },
+       {
+        "ad": "Zara Kruger",
+        "sd_id": 81092
+       }
+      ],
+      [
+       {
+        "ad": "Murphy Agnew",
+        "sd_id": 73120
+       },
+       {
+        "ad": "Daisy Brown",
+        "sd_id": 110818
+       },
+       {
+        "ad": "Abby Smothers",
+        "sd_id": 122909
+       }
+      ]
+     ],
+     "teknik": "Jonathan Clemente",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Sydney FC",
+     "sema": "5-3-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Tiahna Robertson",
+        "sd_id": 97860
+       }
+      ],
+      [
+       {
+        "ad": "Poppy Channing",
+        "sd_id": 125660
+       },
+       {
+        "ad": "Kiley Dulaney",
+        "sd_id": 107461
+       },
+       {
+        "ad": "Willa Pearson",
+        "sd_id": 110673
+       }
+      ],
+      [
+       {
+        "ad": "Maddie Caspers",
+        "sd_id": 94684
+       },
+       {
+        "ad": "Amy Chessari",
+        "sd_id": 80615
+       },
+       {
+        "ad": "Claire Corbett",
+        "sd_id": 110672
+       },
+       {
+        "ad": "Olivia Price",
+        "sd_id": 26661
+       }
+      ],
+      [
+       {
+        "ad": "Riley Cohn",
+        "sd_id": 83326
+       },
+       {
+        "ad": "Kenzie Roling",
+        "sd_id": 123449
+       },
+       {
+        "ad": "Faith Webber",
+        "sd_id": 116649
+       }
+      ]
+     ],
+     "teknik": "James Slaveski",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Faith Webber",
+     "sd_id": 116649,
+     "dk": "66",
+     "tur": "Right-foot shot",
+     "asist": "Maddie Caspers",
+     "asist_sd_id": 94684,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "57",
+     "cikan": "Abby Smothers",
+     "cikan_sd_id": 122909,
+     "giren": "Lily Punch",
+     "giren_sd_id": 88694,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Natalie Tathem",
+     "cikan_sd_id": 31861,
+     "giren": "Kijah Stephenson",
+     "giren_sd_id": 78309,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Daisy Brown",
+     "cikan_sd_id": 110818,
+     "giren": "Maja Markovski",
+     "giren_sd_id": 42975,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "85",
+     "cikan": "Annabel Martin",
+     "cikan_sd_id": 30041,
+     "giren": "Emily Roach",
+     "giren_sd_id": 79933,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "56",
+     "cikan": "Olivia Price",
+     "cikan_sd_id": 26661,
+     "giren": "Amber Luchtmeijer",
+     "giren_sd_id": 100889,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Claire Corbett",
+     "cikan_sd_id": 110672,
+     "giren": "Rubi Sullivan",
+     "giren_sd_id": 103558,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "ad": "Natalie Tathem",
+     "sd_id": 31861,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "59",
+     "ad": "Kiley Dulaney",
+     "sd_id": 107461,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Chloe Lincoln",
+      "sd_id": 66795,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 27,
+      "ad": "Rosie Curtis",
+      "sd_id": 79936,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Amali Kinsella",
+      "sd_id": 107407,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 15,
+      "ad": "Hali Long",
+      "sd_id": 67109,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 2,
+      "ad": "Annabel Martin",
+      "sd_id": 30041,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 22,
+      "ad": "Natalie Tathem",
+      "sd_id": 31861,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 21,
+      "ad": "Katrina Guillou",
+      "sd_id": 35029,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 14,
+      "ad": "Zara Kruger",
+      "sd_id": 81092,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 7,
+      "ad": "Murphy Agnew",
+      "sd_id": 73120,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 3,
+      "ad": "Daisy Brown",
+      "sd_id": 110818,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Abby Smothers",
+      "sd_id": 122909,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 30,
+      "ad": "Tiahna Robertson",
+      "sd_id": 97860,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 27,
+      "ad": "Poppy Channing",
+      "sd_id": 125660,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Kiley Dulaney",
+      "sd_id": 107461,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 16,
+      "ad": "Willa Pearson",
+      "sd_id": 110673,
+      "mevki": "Defence",
+      "yas": 15
+     },
+     {
+      "no": 26,
+      "ad": "Maddie Caspers",
+      "sd_id": 94684,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 19,
+      "ad": "Amy Chessari",
+      "sd_id": 80615,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 17,
+      "ad": "Claire Corbett",
+      "sd_id": 110672,
+      "mevki": "Midfield",
+      "yas": 16
+     },
+     {
+      "no": 14,
+      "ad": "Olivia Price",
+      "sd_id": 26661,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 13,
+      "ad": "Riley Cohn",
+      "sd_id": 83326,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 28,
+      "ad": "Kenzie Roling",
+      "sd_id": 123449,
+      "mevki": "Striker",
+      "yas": 23
+     },
+     {
+      "no": 2,
+      "ad": "Faith Webber",
+      "sd_id": 116649,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Tahlia Franco",
+      "sd_id": 68855,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Isabel Hodgson",
+      "sd_id": 22048,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 23,
+      "ad": "Isabela Hoyos",
+      "sd_id": 88687,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 24,
+      "ad": "Emily Roach",
+      "sd_id": 79933,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 4,
+      "ad": "Kijah Stephenson",
+      "sd_id": 78309,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Maja Markovski",
+      "sd_id": 42975,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Lily Punch",
+      "sd_id": 88694,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ],
+    "dep": [
+     {
+      "no": 37,
+      "ad": "Annabelle Croll",
+      "sd_id": 114239,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 23,
+      "ad": "Rubi Sullivan",
+      "sd_id": 103558,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 33,
+      "ad": "Abbie Puckett",
+      "sd_id": 123874,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 20,
+      "ad": "Sophie Aungle",
+      "sd_id": 123871,
+      "mevki": "Striker",
+      "yas": 15
+     },
+     {
+      "no": 18,
+      "ad": "Amber Luchtmeijer",
+      "sd_id": 100889,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 22,
+      "ad": "Jada Taylor",
+      "sd_id": 123875,
+      "mevki": "Striker",
+      "yas": 16
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171850,
+   "hafta": 3,
+   "ev": "Central Coast Mariners",
+   "dep": "Adelaide United",
+   "tarih": "31.10.2026",
+   "skor": "2:0",
+   "iy": "1:0",
+   "hafta_sd": 3,
+   "saat": "07:00",
+   "seyirci": 735,
+   "hakem": "Shab Roshan",
+   "stat": "Industree Group Stadium",
+   "ev_id": 81,
+   "dep_id": 24,
+   "dizilis": {
+    "ev": {
+     "takim": "Central Coast Mariners",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Morgan Aquino",
+        "sd_id": 31963
+       }
+      ],
+      [
+       {
+        "ad": "Kaiya Buchanan",
+        "sd_id": 114329
+       },
+       {
+        "ad": "Talia Kapetanellis",
+        "sd_id": 105017
+       },
+       {
+        "ad": "Taren King",
+        "sd_id": 34049
+       },
+       {
+        "ad": "Rebecca Lake",
+        "sd_id": 35819
+       },
+       {
+        "ad": "Danika Matos",
+        "sd_id": 44746
+       },
+       {
+        "ad": "Te Reremoana Walker",
+        "sd_id": 64352
+       }
+      ],
+      [
+       {
+        "ad": "Greta Kraszula",
+        "sd_id": 75486
+       }
+      ],
+      [
+       {
+        "ad": "Eliza Familton",
+        "sd_id": 107462
+       },
+       {
+        "ad": "Skye Halmarick",
+        "sd_id": 110671
+       },
+       {
+        "ad": "Peta Trimis",
+        "sd_id": 91870
+       }
+      ]
+     ],
+     "teknik": "Dean Heffernan",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Adelaide United",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Ilona Melegh",
+        "sd_id": 104980
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Cicco",
+        "sd_id": 78930
+       },
+       {
+        "ad": "Tianna Harris",
+        "sd_id": 89218
+       },
+       {
+        "ad": "Emily Hodgson",
+        "sd_id": 31853
+       },
+       {
+        "ad": "Holly Murray",
+        "sd_id": 77077
+       }
+      ],
+      [
+       {
+        "ad": "Melissa Taranto",
+        "sd_id": 30047
+       },
+       {
+        "ad": "Adriana Taranto",
+        "sd_id": 30046
+       },
+       {
+        "ad": "Paige Zois",
+        "sd_id": 42937
+       }
+      ],
+      [
+       {
+        "ad": "Chelsie Dawber",
+        "sd_id": 34911
+       },
+       {
+        "ad": "Lara Gooch",
+        "sd_id": 65560
+       },
+       {
+        "ad": "Kiera Meyers",
+        "sd_id": 83712
+       }
+      ]
+     ],
+     "teknik": "Theo Tsiounis",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Talia Kapetanellis",
+     "sd_id": 105017,
+     "dk": "10",
+     "tur": "Right-foot shot",
+     "asist": "Eliza Familton",
+     "asist_sd_id": 107462,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Talia Kapetanellis",
+     "sd_id": 105017,
+     "dk": "53",
+     "tur": "Header goal",
+     "asist": "Peta Trimis",
+     "asist_sd_id": 91870,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "cikan": "Eliza Familton",
+     "cikan_sd_id": 107462,
+     "giren": "Morgan Witz",
+     "giren_sd_id": 125621,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Peta Trimis",
+     "cikan_sd_id": 91870,
+     "giren": "Alexia Karrys-Stahl",
+     "giren_sd_id": 64206,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+3",
+     "cikan": "Kaiya Buchanan",
+     "cikan_sd_id": 114329,
+     "giren": "Tiana Fuller",
+     "giren_sd_id": 88697,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Lara Gooch",
+     "cikan_sd_id": 65560,
+     "giren": "Carina Rossi",
+     "giren_sd_id": 88706,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Chelsie Dawber",
+     "cikan_sd_id": 34911,
+     "giren": "Tessa Salvestrin",
+     "giren_sd_id": 106631,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "76",
+     "cikan": "Paige Zois",
+     "cikan_sd_id": 42937,
+     "giren": "Bella Yakel",
+     "giren_sd_id": 125665,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "77",
+     "cikan": "Claudia Cicco",
+     "cikan_sd_id": 78930,
+     "giren": "India Breier",
+     "giren_sd_id": 90276,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "88",
+     "cikan": "Kiera Meyers",
+     "cikan_sd_id": 83712,
+     "giren": "Sian Dewey",
+     "giren_sd_id": 94676,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "90+4",
+     "ad": "Morgan Witz",
+     "sd_id": 125621,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Morgan Aquino",
+      "sd_id": 31963,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Kaiya Buchanan",
+      "sd_id": 114329,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 8,
+      "ad": "Talia Kapetanellis",
+      "sd_id": 105017,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Taren King",
+      "sd_id": 34049,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Rebecca Lake",
+      "sd_id": 35819,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Danika Matos",
+      "sd_id": 44746,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 6,
+      "ad": "Te Reremoana Walker",
+      "sd_id": 64352,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 14,
+      "ad": "Greta Kraszula",
+      "sd_id": 75486,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 21,
+      "ad": "Eliza Familton",
+      "sd_id": 107462,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Skye Halmarick",
+      "sd_id": 110671,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Peta Trimis",
+      "sd_id": 91870,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Ilona Melegh",
+      "sd_id": 104980,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Cicco",
+      "sd_id": 78930,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 23,
+      "ad": "Tianna Harris",
+      "sd_id": 89218,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Emily Hodgson",
+      "sd_id": 31853,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Holly Murray",
+      "sd_id": 77077,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Melissa Taranto",
+      "sd_id": 30047,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 15,
+      "ad": "Adriana Taranto",
+      "sd_id": 30046,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Paige Zois",
+      "sd_id": 42937,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Chelsie Dawber",
+      "sd_id": 34911,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 25,
+      "ad": "Lara Gooch",
+      "sd_id": 65560,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 9,
+      "ad": "Kiera Meyers",
+      "sd_id": 83712,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 15,
+      "ad": "Annalee Grove",
+      "sd_id": 31967,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 4,
+      "ad": "Alexia Karrys-Stahl",
+      "sd_id": 64206,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 16,
+      "ad": "Tess Quilligan",
+      "sd_id": 91871,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 17,
+      "ad": "Kiara de Domizio",
+      "sd_id": 91893,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 12,
+      "ad": "Tiana Fuller",
+      "sd_id": 88697,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 19,
+      "ad": "Fiorina Iaria",
+      "sd_id": 112264,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 7,
+      "ad": "Morgan Witz",
+      "sd_id": 125621,
+      "mevki": "Striker",
+      "yas": null
+     }
+    ],
+    "dep": [
+     {
+      "no": 18,
+      "ad": "Amelie Millar",
+      "sd_id": 113419,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 5,
+      "ad": "India Breier",
+      "sd_id": 90276,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Bella Yakel",
+      "sd_id": 125665,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 27,
+      "ad": "Sian Dewey",
+      "sd_id": 94676,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 29,
+      "ad": "Daisy Drawwater",
+      "sd_id": 126172,
+      "mevki": "Striker",
+      "yas": null
+     },
+     {
+      "no": 12,
+      "ad": "Carina Rossi",
+      "sd_id": 88706,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Tessa Salvestrin",
+      "sd_id": 106631,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171851,
+   "hafta": 3,
+   "ev": "Canberra United",
+   "dep": "Western Sydney Wanderers",
+   "tarih": "01.11.2026",
+   "skor": "0:2",
+   "iy": "0:2",
+   "hafta_sd": 3,
+   "saat": "05:00",
+   "seyirci": 1053,
+   "hakem": "Angelique Mangion",
+   "stat": "McKellar Park",
+   "ev_id": 79,
+   "dep_id": 4667,
+   "dizilis": {
+    "ev": {
+     "takim": "Canberra United",
+     "sema": "4-1-4-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Sally James",
+        "sd_id": 46076
+       }
+      ],
+      [
+       {
+        "ad": "Elizabeth Anton",
+        "sd_id": 22850
+       },
+       {
+        "ad": "Madison Ayson",
+        "sd_id": 99577
+       },
+       {
+        "ad": "Sasha Grove",
+        "sd_id": 53566
+       },
+       {
+        "ad": "Hayley Taylor-Young",
+        "sd_id": 42934
+       },
+       {
+        "ad": "Zoe Tolland",
+        "sd_id": 80388
+       }
+      ],
+      [
+       {
+        "ad": "Emily Condon",
+        "sd_id": 22045
+       },
+       {
+        "ad": "Bethany Gordon",
+        "sd_id": 34047
+       },
+       {
+        "ad": "Sarah Morgan",
+        "sd_id": 34051
+       }
+      ],
+      [
+       {
+        "ad": "Sofia Christopherson",
+        "sd_id": 80413
+       },
+       {
+        "ad": "Michelle Heyman",
+        "sd_id": 725
+       }
+      ]
+     ],
+     "teknik": "Antoni Jagarinec",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Western Sydney Wanderers",
+     "sema": "3-5-2 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Sarah Langman",
+        "sd_id": 26663
+       }
+      ],
+      [
+       {
+        "ad": "Silje Bjørneboe",
+        "sd_id": 30441
+       },
+       {
+        "ad": "Tiana Jaber",
+        "sd_id": 42923
+       },
+       {
+        "ad": "Sofia Palywoda",
+        "sd_id": 125618
+       },
+       {
+        "ad": "Laura Pickett",
+        "sd_id": 92083
+       }
+      ],
+      [
+       {
+        "ad": "Milly Bennett",
+        "sd_id": 103560
+       },
+       {
+        "ad": "Sofia Sakalis",
+        "sd_id": 34039
+       },
+       {
+        "ad": "Talia Younis",
+        "sd_id": 87490
+       }
+      ],
+      [
+       {
+        "ad": "Elexa Bahr",
+        "sd_id": 49276
+       },
+       {
+        "ad": "Brooke Miller",
+        "sd_id": 122361
+       },
+       {
+        "ad": "Allyssa Ng-Saad",
+        "sd_id": 114241
+       }
+      ]
+     ],
+     "teknik": "Geoff Abrahams",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Milly Bennett",
+     "sd_id": 103560,
+     "dk": "1",
+     "tur": "Right-foot shot",
+     "asist": "Allyssa Ng-Saad",
+     "asist_sd_id": 114241,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:2",
+     "taraf": "dep",
+     "ad": "Elexa Bahr",
+     "sd_id": 49276,
+     "dk": "19",
+     "tur": "Left-foot shot",
+     "asist": "Milly Bennett",
+     "asist_sd_id": 103560,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "54",
+     "cikan": "Sarah Morgan",
+     "cikan_sd_id": 34051,
+     "giren": "Nanako Sasaki",
+     "giren_sd_id": 64711,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Sofia Christopherson",
+     "cikan_sd_id": 80413,
+     "giren": "Sienna Dale",
+     "giren_sd_id": 88692,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Emily Condon",
+     "cikan_sd_id": 22045,
+     "giren": "Kelli Brown",
+     "giren_sd_id": 37799,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "83",
+     "cikan": "Zoe Tolland",
+     "cikan_sd_id": 80388,
+     "giren": "Naila Schöfberger",
+     "giren_sd_id": 80647,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "83",
+     "cikan": "Sasha Grove",
+     "cikan_sd_id": 53566,
+     "giren": "Lily McMahon",
+     "giren_sd_id": 103963,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Milly Bennett",
+     "cikan_sd_id": 103560,
+     "giren": "Carleigh Frilles",
+     "giren_sd_id": 67544,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Sofia Sakalis",
+     "cikan_sd_id": 34039,
+     "giren": "Nikkita Fazzari",
+     "giren_sd_id": 111510,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Allyssa Ng-Saad",
+     "cikan_sd_id": 114241,
+     "giren": "Samantha Iredale",
+     "giren_sd_id": 31296,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90",
+     "cikan": "Elexa Bahr",
+     "cikan_sd_id": 49276,
+     "giren": "Isabella Chidiac",
+     "giren_sd_id": 123876,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "37",
+     "ad": "Elizabeth Anton",
+     "sd_id": 22850,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "ad": "Sienna Dale",
+     "sd_id": 88692,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "ad": "Lily McMahon",
+     "sd_id": 103963,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "79",
+     "ad": "Elexa Bahr",
+     "sd_id": 49276,
+     "kart": "yellow card",
+     "neden": "Delay of game"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sally James",
+      "sd_id": 46076,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Elizabeth Anton",
+      "sd_id": 22850,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 22,
+      "ad": "Madison Ayson",
+      "sd_id": 99577,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Sasha Grove",
+      "sd_id": 53566,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 12,
+      "ad": "Hayley Taylor-Young",
+      "sd_id": 42934,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Zoe Tolland",
+      "sd_id": 80388,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Emily Condon",
+      "sd_id": 22045,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 32,
+      "ad": "Bethany Gordon",
+      "sd_id": 34047,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 5,
+      "ad": "Sarah Morgan",
+      "sd_id": 34051,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Sofia Christopherson",
+      "sd_id": 80413,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 23,
+      "ad": "Michelle Heyman",
+      "sd_id": 725,
+      "mevki": "Striker",
+      "yas": 38
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Sarah Langman",
+      "sd_id": 26663,
+      "mevki": "Goalkeeper",
+      "yas": 31
+     },
+     {
+      "no": 4,
+      "ad": "Silje Bjørneboe",
+      "sd_id": 30441,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Tiana Jaber",
+      "sd_id": 42923,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 15,
+      "ad": "Sofia Palywoda",
+      "sd_id": 125618,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 21,
+      "ad": "Laura Pickett",
+      "sd_id": 92083,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Milly Bennett",
+      "sd_id": 103560,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 8,
+      "ad": "Sofia Sakalis",
+      "sd_id": 34039,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Talia Younis",
+      "sd_id": 87490,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Elexa Bahr",
+      "sd_id": 49276,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Brooke Miller",
+      "sd_id": 122361,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 17,
+      "ad": "Allyssa Ng-Saad",
+      "sd_id": 114241,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 18,
+      "ad": "Coco Majstorovic",
+      "sd_id": 52208,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Naila Schöfberger",
+      "sd_id": 80647,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 25,
+      "ad": "Darcey Malone",
+      "sd_id": 39191,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 33,
+      "ad": "Nanako Sasaki",
+      "sd_id": 64711,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 44,
+      "ad": "Kelli Brown",
+      "sd_id": 37799,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 7,
+      "ad": "Sienna Dale",
+      "sd_id": 88692,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 6,
+      "ad": "Lily McMahon",
+      "sd_id": 103963,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 12,
+      "ad": "Brianna Edwards",
+      "sd_id": 64708,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Isabella Chidiac",
+      "sd_id": 123876,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Nikkita Fazzari",
+      "sd_id": 111510,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 16,
+      "ad": "Estelle Fragale",
+      "sd_id": 123863,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 22,
+      "ad": "Carleigh Frilles",
+      "sd_id": 67544,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Samantha Iredale",
+      "sd_id": 31296,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 23,
+      "ad": "Miriam Zumaya",
+      "sd_id": 114243,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171852,
+   "hafta": 3,
+   "ev": "Melbourne Victory",
+   "dep": "Newcastle United Jets",
+   "tarih": "01.11.2026",
+   "skor": "1:0",
+   "iy": "1:0",
+   "hafta_sd": 3,
+   "saat": "07:45",
+   "seyirci": 1716,
+   "hakem": "Caitlin Williams",
+   "stat": "AAMI Park",
+   "ev_id": 226,
+   "dep_id": 236,
+   "dizilis": {
+    "ev": {
+     "takim": "Melbourne Victory",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Courtney Newbon",
+        "sd_id": 31951
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Bunge",
+        "sd_id": 35823
+       },
+       {
+        "ad": "Alana Jančevski",
+        "sd_id": 42930
+       },
+       {
+        "ad": "Zoe McMeeken",
+        "sd_id": 64226
+       },
+       {
+        "ad": "Kayla Morrison",
+        "sd_id": 52196
+       }
+      ],
+      [
+       {
+        "ad": "Skye Leach",
+        "sd_id": 106723
+       },
+       {
+        "ad": "Sienna Saveska",
+        "sd_id": 82318
+       },
+       {
+        "ad": "Anna Sutter",
+        "sd_id": 44891
+       }
+      ],
+      [
+       {
+        "ad": "Angela Beard",
+        "sd_id": 26643
+       },
+       {
+        "ad": "Holly Furphy",
+        "sd_id": 106456
+       },
+       {
+        "ad": "Sophie Harding",
+        "sd_id": 53580
+       }
+      ]
+     ],
+     "teknik": "Jeff Hopkins",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "Newcastle United Jets",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Claire Henninger",
+        "sd_id": 101375
+       }
+      ],
+      [
+       {
+        "ad": "Poppie Hooks",
+        "sd_id": 65559
+       },
+       {
+        "ad": "Zoe Karipidis",
+        "sd_id": 91880
+       },
+       {
+        "ad": "Natascha Prior",
+        "sd_id": 34036
+       }
+      ],
+      [
+       {
+        "ad": "Libby Copus-Brown",
+        "sd_id": 21803
+       },
+       {
+        "ad": "Cassidy Davis",
+        "sd_id": 21804
+       },
+       {
+        "ad": "Emma Dundas",
+        "sd_id": 91881
+       },
+       {
+        "ad": "Alex Klos",
+        "sd_id": 123639
+       },
+       {
+        "ad": "Tamar Levin",
+        "sd_id": 80780
+       },
+       {
+        "ad": "Cameron Valladares",
+        "sd_id": 123450
+       }
+      ],
+      [
+       {
+        "ad": "Allie Thornton",
+        "sd_id": 48589
+       }
+      ]
+     ],
+     "teknik": "Stephen Hoyle",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Sienna Saveska",
+     "sd_id": 82318,
+     "dk": "25",
+     "tur": "Right-foot shot",
+     "asist": "Holly Furphy",
+     "asist_sd_id": 106456,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "cikan": "Zoe McMeeken",
+     "cikan_sd_id": 64226,
+     "giren": "Ella O’Grady",
+     "giren_sd_id": 84871,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "77",
+     "cikan": "Alana Jančevski",
+     "cikan_sd_id": 42930,
+     "giren": "Jasmine Millar",
+     "giren_sd_id": 125768,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "77",
+     "cikan": "Sophie Harding",
+     "cikan_sd_id": 53580,
+     "giren": "Nikki Flannery",
+     "giren_sd_id": 30075,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "65",
+     "cikan": "Alex Klos",
+     "cikan_sd_id": 123639,
+     "giren": "Claire Adams",
+     "giren_sd_id": 103660,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "65",
+     "cikan": "Libby Copus-Brown",
+     "cikan_sd_id": 21803,
+     "giren": "Josie Allan",
+     "giren_sd_id": 80641,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "77",
+     "cikan": "Poppie Hooks",
+     "cikan_sd_id": 65559,
+     "giren": "Akeisha Sandhu",
+     "giren_sd_id": 107763,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "ad": "Zoe Karipidis",
+     "sd_id": 91880,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Courtney Newbon",
+      "sd_id": 31951,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Bunge",
+      "sd_id": 35823,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 66,
+      "ad": "Alana Jančevski",
+      "sd_id": 42930,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Zoe McMeeken",
+      "sd_id": 64226,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 18,
+      "ad": "Kayla Morrison",
+      "sd_id": 52196,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Skye Leach",
+      "sd_id": 106723,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Sienna Saveska",
+      "sd_id": 82318,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Anna Sutter",
+      "sd_id": 44891,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 13,
+      "ad": "Angela Beard",
+      "sd_id": 26643,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 9,
+      "ad": "Holly Furphy",
+      "sd_id": 106456,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Sophie Harding",
+      "sd_id": 53580,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Claire Henninger",
+      "sd_id": 101375,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 22,
+      "ad": "Poppie Hooks",
+      "sd_id": 65559,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 23,
+      "ad": "Zoe Karipidis",
+      "sd_id": 91880,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 4,
+      "ad": "Natascha Prior",
+      "sd_id": 34036,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 10,
+      "ad": "Libby Copus-Brown",
+      "sd_id": 21803,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 6,
+      "ad": "Cassidy Davis",
+      "sd_id": 21804,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 8,
+      "ad": "Emma Dundas",
+      "sd_id": 91881,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Alex Klos",
+      "sd_id": 123639,
+      "mevki": "Midfield",
+      "yas": null
+     },
+     {
+      "no": 19,
+      "ad": "Tamar Levin",
+      "sd_id": 80780,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 20,
+      "ad": "Cameron Valladares",
+      "sd_id": 123450,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 11,
+      "ad": "Allie Thornton",
+      "sd_id": 48589,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 25,
+      "ad": "Ayana Aoyagi",
+      "sd_id": 113069,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 20,
+      "ad": "Leyla Hussein",
+      "sd_id": 124865,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 11,
+      "ad": "Nikki Flannery",
+      "sd_id": 30075,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 21,
+      "ad": "Jasmine Millar",
+      "sd_id": 125768,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 7,
+      "ad": "Ella O’Grady",
+      "sd_id": 84871,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Sienna Techera",
+      "sd_id": 108568,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 12,
+      "ad": "Georgia Ritchie",
+      "sd_id": 88713,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 5,
+      "ad": "Emma Bates",
+      "sd_id": 114317,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Akeisha Sandhu",
+      "sd_id": 107763,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 27,
+      "ad": "Chloe Walandouw",
+      "sd_id": 80548,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 32,
+      "ad": "Claire Adams",
+      "sd_id": 103660,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 26,
+      "ad": "Josie Allan",
+      "sd_id": 80641,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 24,
+      "ad": "Erin Flurey",
+      "sd_id": 116643,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171853,
+   "hafta": 3,
+   "ev": "Perth Glory",
+   "dep": "Wellington Phoenix FC",
+   "tarih": "01.11.2026",
+   "skor": "2:0",
+   "iy": "2:0",
+   "hafta_sd": 3,
+   "saat": "11:45",
+   "seyirci": 1200,
+   "hakem": "Mikayla Ryan",
+   "stat": "Sam Kerr Football Centre",
+   "ev_id": 257,
+   "dep_id": 9549,
+   "dizilis": {
+    "ev": {
+     "takim": "Perth Glory",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Alyssa Dall’Oste",
+        "sd_id": 79678
+       }
+      ],
+      [
+       {
+        "ad": "Ella Buchanan",
+        "sd_id": 96519
+       },
+       {
+        "ad": "Julia Sardo",
+        "sd_id": 42976
+       },
+       {
+        "ad": "Baxter Thew",
+        "sd_id": 114333
+       },
+       {
+        "ad": "Onyinyechi Zogg",
+        "sd_id": 34587
+       }
+      ],
+      [
+       {
+        "ad": "Georgia Cassidy",
+        "sd_id": 87218
+       },
+       {
+        "ad": "Emma Tovar",
+        "sd_id": 70692
+       },
+       {
+        "ad": "Clancy Westaway",
+        "sd_id": 88711
+       }
+      ],
+      [
+       {
+        "ad": "Rola Badawiya",
+        "sd_id": 63269
+       },
+       {
+        "ad": "Maggie Jenkins",
+        "sd_id": 35835
+       },
+       {
+        "ad": "Susan Phonsongkham",
+        "sd_id": 39326
+       }
+      ]
+     ],
+     "teknik": "Stephen Peters",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Wellington Phoenix FC",
+     "sema": "3-5-2 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Victoria Esson",
+        "sd_id": 22501
+       }
+      ],
+      [
+       {
+        "ad": "Mackenzie Barry",
+        "sd_id": 37795
+       },
+       {
+        "ad": "Alyssha Eglinton",
+        "sd_id": 104101
+       },
+       {
+        "ad": "Abby Erceg",
+        "sd_id": 458
+       },
+       {
+        "ad": "Ellie Walker",
+        "sd_id": 75355
+       }
+      ],
+      [
+       {
+        "ad": "Grace Jale",
+        "sd_id": 35826
+       },
+       {
+        "ad": "Brooke Nunn",
+        "sd_id": 7376
+       },
+       {
+        "ad": "Pia Vlok",
+        "sd_id": 104116
+       },
+       {
+        "ad": "Tameka Yallop",
+        "sd_id": 252
+       }
+      ],
+      [
+       {
+        "ad": "Indiah-Paige Riley",
+        "sd_id": 38947
+       },
+       {
+        "ad": "Makala Woods",
+        "sd_id": 108359
+       }
+      ]
+     ],
+     "teknik": "Bev Priestman",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Emma Tovar",
+     "sd_id": 70692,
+     "dk": "5",
+     "tur": "Left-foot shot",
+     "asist": "Susan Phonsongkham",
+     "asist_sd_id": 39326,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Rola Badawiya",
+     "sd_id": 63269,
+     "dk": "40",
+     "tur": "Header goal",
+     "asist": "Susan Phonsongkham",
+     "asist_sd_id": 39326,
+     "asist_tur": "Corner"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "cikan": "Rola Badawiya",
+     "cikan_sd_id": 63269,
+     "giren": "Megan Wynne",
+     "giren_sd_id": 4183,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "63",
+     "cikan": "Clancy Westaway",
+     "cikan_sd_id": 88711,
+     "giren": "Isobel Dalton",
+     "giren_sd_id": 27367,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "66",
+     "cikan": "Maggie Jenkins",
+     "cikan_sd_id": 35835,
+     "giren": "Ella Lincoln",
+     "giren_sd_id": 103927,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "73",
+     "cikan": "Georgia Cassidy",
+     "cikan_sd_id": 87218,
+     "giren": "Ella Abdul Massih",
+     "giren_sd_id": 68854,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "73",
+     "cikan": "Ella Buchanan",
+     "cikan_sd_id": 96519,
+     "giren": "Bronte Trew",
+     "giren_sd_id": 105016,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "17",
+     "cikan": "Makala Woods",
+     "cikan_sd_id": 108359,
+     "giren": "Emma Taylor-Main",
+     "giren_sd_id": 64472,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Alyssha Eglinton",
+     "cikan_sd_id": 104101,
+     "giren": "Kam Pickett",
+     "giren_sd_id": 108346,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Emma Taylor-Main",
+     "cikan_sd_id": 64472,
+     "giren": "Milly Clegg",
+     "giren_sd_id": 75613,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Tameka Yallop",
+     "cikan_sd_id": 252,
+     "giren": "Manaia Elliott",
+     "giren_sd_id": 78949,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "27",
+     "ad": "Grace Jale",
+     "sd_id": 35826,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 21,
+      "ad": "Alyssa Dall’Oste",
+      "sd_id": 79678,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Ella Buchanan",
+      "sd_id": 96519,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Julia Sardo",
+      "sd_id": 42976,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 5,
+      "ad": "Baxter Thew",
+      "sd_id": 114333,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 29,
+      "ad": "Onyinyechi Zogg",
+      "sd_id": 34587,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 8,
+      "ad": "Georgia Cassidy",
+      "sd_id": 87218,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Emma Tovar",
+      "sd_id": 70692,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 19,
+      "ad": "Clancy Westaway",
+      "sd_id": 88711,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Rola Badawiya",
+      "sd_id": 63269,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 9,
+      "ad": "Maggie Jenkins",
+      "sd_id": 35835,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 10,
+      "ad": "Susan Phonsongkham",
+      "sd_id": 39326,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Victoria Esson",
+      "sd_id": 22501,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 4,
+      "ad": "Mackenzie Barry",
+      "sd_id": 37795,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 25,
+      "ad": "Alyssha Eglinton",
+      "sd_id": 104101,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 6,
+      "ad": "Abby Erceg",
+      "sd_id": 458,
+      "mevki": "Defence",
+      "yas": 36
+     },
+     {
+      "no": 5,
+      "ad": "Ellie Walker",
+      "sd_id": 75355,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 7,
+      "ad": "Grace Jale",
+      "sd_id": 35826,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 23,
+      "ad": "Brooke Nunn",
+      "sd_id": 7376,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 24,
+      "ad": "Pia Vlok",
+      "sd_id": 104116,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 13,
+      "ad": "Tameka Yallop",
+      "sd_id": 252,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 17,
+      "ad": "Indiah-Paige Riley",
+      "sd_id": 38947,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 31,
+      "ad": "Makala Woods",
+      "sd_id": 108359,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Teresa Morrissey",
+      "sd_id": 49115,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Mischa Anderson",
+      "sd_id": 91883,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 11,
+      "ad": "Ella Abdul Massih",
+      "sd_id": 68854,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 23,
+      "ad": "Isobel Dalton",
+      "sd_id": 27367,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 25,
+      "ad": "Ella Lincoln",
+      "sd_id": 103927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 12,
+      "ad": "Bronte Trew",
+      "sd_id": 105016,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Megan Wynne",
+      "sd_id": 4183,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ],
+    "dep": [
+     {
+      "no": 32,
+      "ad": "Brooke Neary",
+      "sd_id": 104127,
+      "mevki": "Goalkeeper",
+      "yas": 19
+     },
+     {
+      "no": 16,
+      "ad": "Marisa van der Meer",
+      "sd_id": 37797,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Lara Wall",
+      "sd_id": 105015,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 11,
+      "ad": "Manaia Elliott",
+      "sd_id": 78949,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 30,
+      "ad": "Kam Pickett",
+      "sd_id": 108346,
+      "mevki": "Midfield",
+      "yas": null
+     },
+     {
+      "no": 8,
+      "ad": "Milly Clegg",
+      "sd_id": 75613,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 20,
+      "ad": "Emma Taylor-Main",
+      "sd_id": 64472,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171854,
+   "hafta": 4,
+   "ev": "Adelaide United",
+   "dep": "Wellington Phoenix FC",
+   "tarih": "06.11.2026",
+   "skor": "0:2",
+   "iy": "0:1",
+   "hafta_sd": 4,
+   "saat": "09:00",
+   "seyirci": 634,
+   "hakem": "Isabella Mossin",
+   "stat": "ServiceFM Stadium",
+   "ev_id": 24,
+   "dep_id": 9549,
+   "dizilis": {
+    "ev": {
+     "takim": "Adelaide United",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Ilona Melegh",
+        "sd_id": 104980
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Cicco",
+        "sd_id": 78930
+       },
+       {
+        "ad": "Tianna Harris",
+        "sd_id": 89218
+       },
+       {
+        "ad": "Emily Hodgson",
+        "sd_id": 31853
+       },
+       {
+        "ad": "Holly Murray",
+        "sd_id": 77077
+       }
+      ],
+      [
+       {
+        "ad": "Melissa Taranto",
+        "sd_id": 30047
+       },
+       {
+        "ad": "Adriana Taranto",
+        "sd_id": 30046
+       },
+       {
+        "ad": "Paige Zois",
+        "sd_id": 42937
+       }
+      ],
+      [
+       {
+        "ad": "Chelsie Dawber",
+        "sd_id": 34911
+       },
+       {
+        "ad": "Lara Gooch",
+        "sd_id": 65560
+       },
+       {
+        "ad": "Kiera Meyers",
+        "sd_id": 83712
+       }
+      ]
+     ],
+     "teknik": "Theo Tsiounis",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Wellington Phoenix FC",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Brooke Neary",
+        "sd_id": 104127
+       }
+      ],
+      [
+       {
+        "ad": "Abby Erceg",
+        "sd_id": 458
+       },
+       {
+        "ad": "Marisa van der Meer",
+        "sd_id": 37797
+       },
+       {
+        "ad": "Ellie Walker",
+        "sd_id": 75355
+       }
+      ],
+      [
+       {
+        "ad": "Grace Jale",
+        "sd_id": 35826
+       },
+       {
+        "ad": "Brooke Nunn",
+        "sd_id": 7376
+       },
+       {
+        "ad": "Kam Pickett",
+        "sd_id": 108346
+       },
+       {
+        "ad": "Pia Vlok",
+        "sd_id": 104116
+       },
+       {
+        "ad": "Tameka Yallop",
+        "sd_id": 252
+       }
+      ],
+      [
+       {
+        "ad": "Milly Clegg",
+        "sd_id": 75613
+       },
+       {
+        "ad": "Makala Woods",
+        "sd_id": 108359
+       }
+      ]
+     ],
+     "teknik": "Bev Priestman",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Tameka Yallop",
+     "sd_id": 252,
+     "dk": "15",
+     "tur": "Left-foot shot",
+     "asist": "Makala Woods",
+     "asist_sd_id": 108359,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:2",
+     "taraf": "dep",
+     "ad": "Indiah-Paige Riley",
+     "sd_id": 38947,
+     "dk": "88",
+     "tur": "Right-foot shot",
+     "asist": "Manaia Elliott",
+     "asist_sd_id": 78949,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "57",
+     "cikan": "Lara Gooch",
+     "cikan_sd_id": 65560,
+     "giren": "Tessa Salvestrin",
+     "giren_sd_id": 106631,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "67",
+     "cikan": "Emily Hodgson",
+     "cikan_sd_id": 31853,
+     "giren": "India Breier",
+     "giren_sd_id": 90276,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "67",
+     "cikan": "Holly Murray",
+     "cikan_sd_id": 77077,
+     "giren": "Bella Yakel",
+     "giren_sd_id": 125665,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "79",
+     "cikan": "Chelsie Dawber",
+     "cikan_sd_id": 34911,
+     "giren": "Carina Rossi",
+     "giren_sd_id": 88706,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Melissa Taranto",
+     "cikan_sd_id": 30047,
+     "giren": "Maeve Nicholas",
+     "giren_sd_id": 115268,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Kam Pickett",
+     "cikan_sd_id": 108346,
+     "giren": "Manaia Elliott",
+     "giren_sd_id": 78949,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Pia Vlok",
+     "cikan_sd_id": 104116,
+     "giren": "Emma Taylor-Main",
+     "giren_sd_id": 64472,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Milly Clegg",
+     "cikan_sd_id": 75613,
+     "giren": "Indiah-Paige Riley",
+     "giren_sd_id": 38947,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+2",
+     "cikan": "Brooke Nunn",
+     "cikan_sd_id": 7376,
+     "giren": "Lara Wall",
+     "giren_sd_id": 105015,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "23",
+     "ad": "Holly Murray",
+     "sd_id": 77077,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "69",
+     "ad": "Brooke Nunn",
+     "sd_id": 7376,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Ilona Melegh",
+      "sd_id": 104980,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Cicco",
+      "sd_id": 78930,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 23,
+      "ad": "Tianna Harris",
+      "sd_id": 89218,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Emily Hodgson",
+      "sd_id": 31853,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Holly Murray",
+      "sd_id": 77077,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Melissa Taranto",
+      "sd_id": 30047,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 15,
+      "ad": "Adriana Taranto",
+      "sd_id": 30046,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Paige Zois",
+      "sd_id": 42937,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Chelsie Dawber",
+      "sd_id": 34911,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 25,
+      "ad": "Lara Gooch",
+      "sd_id": 65560,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 9,
+      "ad": "Kiera Meyers",
+      "sd_id": 83712,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ],
+    "dep": [
+     {
+      "no": 32,
+      "ad": "Brooke Neary",
+      "sd_id": 104127,
+      "mevki": "Goalkeeper",
+      "yas": 19
+     },
+     {
+      "no": 6,
+      "ad": "Abby Erceg",
+      "sd_id": 458,
+      "mevki": "Defence",
+      "yas": 36
+     },
+     {
+      "no": 16,
+      "ad": "Marisa van der Meer",
+      "sd_id": 37797,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Ellie Walker",
+      "sd_id": 75355,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 7,
+      "ad": "Grace Jale",
+      "sd_id": 35826,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 23,
+      "ad": "Brooke Nunn",
+      "sd_id": 7376,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 30,
+      "ad": "Kam Pickett",
+      "sd_id": 108346,
+      "mevki": "Midfield",
+      "yas": null
+     },
+     {
+      "no": 24,
+      "ad": "Pia Vlok",
+      "sd_id": 104116,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 13,
+      "ad": "Tameka Yallop",
+      "sd_id": 252,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 8,
+      "ad": "Milly Clegg",
+      "sd_id": 75613,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 31,
+      "ad": "Makala Woods",
+      "sd_id": 108359,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 18,
+      "ad": "Amelie Millar",
+      "sd_id": 113419,
+      "mevki": "Goalkeeper",
+      "yas": 17
+     },
+     {
+      "no": 5,
+      "ad": "India Breier",
+      "sd_id": 90276,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Bella Yakel",
+      "sd_id": 125665,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 27,
+      "ad": "Sian Dewey",
+      "sd_id": 94676,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "Maeve Nicholas",
+      "sd_id": 115268,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 12,
+      "ad": "Carina Rossi",
+      "sd_id": 88706,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Tessa Salvestrin",
+      "sd_id": 106631,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Victoria Esson",
+      "sd_id": 22501,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 4,
+      "ad": "Mackenzie Barry",
+      "sd_id": 37795,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 25,
+      "ad": "Alyssha Eglinton",
+      "sd_id": 104101,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 3,
+      "ad": "Lara Wall",
+      "sd_id": 105015,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 11,
+      "ad": "Manaia Elliott",
+      "sd_id": 78949,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 17,
+      "ad": "Indiah-Paige Riley",
+      "sd_id": 38947,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 20,
+      "ad": "Emma Taylor-Main",
+      "sd_id": 64472,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 176018,
+   "hafta": 4,
+   "ev": "Central Coast Mariners",
+   "dep": "Newcastle United Jets",
+   "tarih": "07.11.2026",
+   "skor": "1:1",
+   "iy": "1:0",
+   "hafta_sd": 4,
+   "saat": "05:00",
+   "seyirci": 1647,
+   "hakem": "Sophie Allum",
+   "stat": "Industree Group Stadium",
+   "ev_id": 81,
+   "dep_id": 236,
+   "dizilis": {
+    "ev": {
+     "takim": "Central Coast Mariners",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Morgan Aquino",
+        "sd_id": 31963
+       }
+      ],
+      [
+       {
+        "ad": "Kaiya Buchanan",
+        "sd_id": 114329
+       },
+       {
+        "ad": "Talia Kapetanellis",
+        "sd_id": 105017
+       },
+       {
+        "ad": "Taren King",
+        "sd_id": 34049
+       },
+       {
+        "ad": "Rebecca Lake",
+        "sd_id": 35819
+       },
+       {
+        "ad": "Danika Matos",
+        "sd_id": 44746
+       },
+       {
+        "ad": "Te Reremoana Walker",
+        "sd_id": 64352
+       }
+      ],
+      [
+       {
+        "ad": "Greta Kraszula",
+        "sd_id": 75486
+       }
+      ],
+      [
+       {
+        "ad": "Eliza Familton",
+        "sd_id": 107462
+       },
+       {
+        "ad": "Skye Halmarick",
+        "sd_id": 110671
+       },
+       {
+        "ad": "Peta Trimis",
+        "sd_id": 91870
+       }
+      ]
+     ],
+     "teknik": "Dean Heffernan",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Newcastle United Jets",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Claire Henninger",
+        "sd_id": 101375
+       }
+      ],
+      [
+       {
+        "ad": "Poppie Hooks",
+        "sd_id": 65559
+       },
+       {
+        "ad": "Zoe Karipidis",
+        "sd_id": 91880
+       },
+       {
+        "ad": "Natascha Prior",
+        "sd_id": 34036
+       }
+      ],
+      [
+       {
+        "ad": "Claire Adams",
+        "sd_id": 103660
+       },
+       {
+        "ad": "Cassidy Davis",
+        "sd_id": 21804
+       },
+       {
+        "ad": "Emma Dundas",
+        "sd_id": 91881
+       },
+       {
+        "ad": "Alex Klos",
+        "sd_id": 123639
+       },
+       {
+        "ad": "Tamar Levin",
+        "sd_id": 80780
+       },
+       {
+        "ad": "Cameron Valladares",
+        "sd_id": 123450
+       }
+      ],
+      [
+       {
+        "ad": "Allie Thornton",
+        "sd_id": 48589
+       }
+      ]
+     ],
+     "teknik": "Stephen Hoyle",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Skye Halmarick",
+     "sd_id": 110671,
+     "dk": "5",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Tamar Levin",
+     "sd_id": 80780,
+     "dk": "71",
+     "tur": "Right-foot shot",
+     "asist": "Erin Flurey",
+     "asist_sd_id": 116643,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Te Reremoana Walker",
+     "cikan_sd_id": 64352,
+     "giren": "Tess Quilligan",
+     "giren_sd_id": 91871,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Talia Kapetanellis",
+     "cikan_sd_id": 105017,
+     "giren": "Morgan Witz",
+     "giren_sd_id": 125621,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "86",
+     "cikan": "Eliza Familton",
+     "cikan_sd_id": 107462,
+     "giren": "Alexia Karrys-Stahl",
+     "giren_sd_id": 64206,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "87",
+     "cikan": "Skye Halmarick",
+     "cikan_sd_id": 110671,
+     "giren": "Charlotte Lancaster",
+     "giren_sd_id": 64527,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "68",
+     "cikan": "Cameron Valladares",
+     "cikan_sd_id": 123450,
+     "giren": "Josie Allan",
+     "giren_sd_id": 80641,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "68",
+     "cikan": "Claire Adams",
+     "cikan_sd_id": 103660,
+     "giren": "Erin Flurey",
+     "giren_sd_id": 116643,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "76",
+     "cikan": "Natascha Prior",
+     "cikan_sd_id": 34036,
+     "giren": "Emma Bates",
+     "giren_sd_id": 114317,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Morgan Aquino",
+      "sd_id": 31963,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Kaiya Buchanan",
+      "sd_id": 114329,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 8,
+      "ad": "Talia Kapetanellis",
+      "sd_id": 105017,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 18,
+      "ad": "Taren King",
+      "sd_id": 34049,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Rebecca Lake",
+      "sd_id": 35819,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Danika Matos",
+      "sd_id": 44746,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 6,
+      "ad": "Te Reremoana Walker",
+      "sd_id": 64352,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 14,
+      "ad": "Greta Kraszula",
+      "sd_id": 75486,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 21,
+      "ad": "Eliza Familton",
+      "sd_id": 107462,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Skye Halmarick",
+      "sd_id": 110671,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 22,
+      "ad": "Peta Trimis",
+      "sd_id": 91870,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Claire Henninger",
+      "sd_id": 101375,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 22,
+      "ad": "Poppie Hooks",
+      "sd_id": 65559,
+      "mevki": "Defence",
+      "yas": null
+     },
+     {
+      "no": 23,
+      "ad": "Zoe Karipidis",
+      "sd_id": 91880,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 4,
+      "ad": "Natascha Prior",
+      "sd_id": 34036,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 32,
+      "ad": "Claire Adams",
+      "sd_id": 103660,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 6,
+      "ad": "Cassidy Davis",
+      "sd_id": 21804,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 8,
+      "ad": "Emma Dundas",
+      "sd_id": 91881,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Alex Klos",
+      "sd_id": 123639,
+      "mevki": "Midfield",
+      "yas": null
+     },
+     {
+      "no": 19,
+      "ad": "Tamar Levin",
+      "sd_id": 80780,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 20,
+      "ad": "Cameron Valladares",
+      "sd_id": 123450,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 11,
+      "ad": "Allie Thornton",
+      "sd_id": 48589,
+      "mevki": "Striker",
+      "yas": 28
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 15,
+      "ad": "Annalee Grove",
+      "sd_id": 31967,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 4,
+      "ad": "Alexia Karrys-Stahl",
+      "sd_id": 64206,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 5,
+      "ad": "Charlotte Lancaster",
+      "sd_id": 64527,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 16,
+      "ad": "Tess Quilligan",
+      "sd_id": 91871,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 17,
+      "ad": "Kiara de Domizio",
+      "sd_id": 91893,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 12,
+      "ad": "Tiana Fuller",
+      "sd_id": 88697,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 7,
+      "ad": "Morgan Witz",
+      "sd_id": 125621,
+      "mevki": "Striker",
+      "yas": null
+     }
+    ],
+    "dep": [
+     {
+      "no": 12,
+      "ad": "Georgia Ritchie",
+      "sd_id": 88713,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 5,
+      "ad": "Emma Bates",
+      "sd_id": 114317,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Akeisha Sandhu",
+      "sd_id": 107763,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 27,
+      "ad": "Chloe Walandouw",
+      "sd_id": 80548,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 26,
+      "ad": "Josie Allan",
+      "sd_id": 80641,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 10,
+      "ad": "Libby Copus-Brown",
+      "sd_id": 21803,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 24,
+      "ad": "Erin Flurey",
+      "sd_id": 116643,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171856,
+   "hafta": 4,
+   "ev": "Brisbane Roar",
+   "dep": "Melbourne Victory",
+   "tarih": "07.11.2026",
+   "skor": "2:0",
+   "iy": "2:0",
+   "hafta_sd": 4,
+   "saat": "07:00",
+   "seyirci": 936,
+   "hakem": "Mikayla Ryan",
+   "stat": "Ballymore Stadium",
+   "ev_id": 75,
+   "dep_id": 226,
+   "dizilis": {
+    "ev": {
+     "takim": "Brisbane Roar",
+     "sema": "3-1-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Chloe Lincoln",
+        "sd_id": 66795
+       }
+      ],
+      [
+       {
+        "ad": "Rosie Curtis",
+        "sd_id": 79936
+       },
+       {
+        "ad": "Isabel Hodgson",
+        "sd_id": 22048
+       },
+       {
+        "ad": "Hali Long",
+        "sd_id": 67109
+       },
+       {
+        "ad": "Annabel Martin",
+        "sd_id": 30041
+       },
+       {
+        "ad": "Natalie Tathem",
+        "sd_id": 31861
+       }
+      ],
+      [
+       {
+        "ad": "Katrina Guillou",
+        "sd_id": 35029
+       },
+       {
+        "ad": "Zara Kruger",
+        "sd_id": 81092
+       }
+      ],
+      [
+       {
+        "ad": "Murphy Agnew",
+        "sd_id": 73120
+       },
+       {
+        "ad": "Maja Markovski",
+        "sd_id": 42975
+       },
+       {
+        "ad": "Lily Punch",
+        "sd_id": 88694
+       }
+      ]
+     ],
+     "teknik": "Jonathan Clemente",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Melbourne Victory",
+     "sema": "3-4-3 flat",
+     "hatlar": [
+      [
+       {
+        "ad": "Ayana Aoyagi",
+        "sd_id": 113069
+       }
+      ],
+      [
+       {
+        "ad": "Claudia Bunge",
+        "sd_id": 35823
+       },
+       {
+        "ad": "Zoe McMeeken",
+        "sd_id": 64226
+       },
+       {
+        "ad": "Kayla Morrison",
+        "sd_id": 52196
+       }
+      ],
+      [
+       {
+        "ad": "Skye Leach",
+        "sd_id": 106723
+       },
+       {
+        "ad": "Sienna Saveska",
+        "sd_id": 82318
+       },
+       {
+        "ad": "Anna Sutter",
+        "sd_id": 44891
+       },
+       {
+        "ad": "Alicia Woods",
+        "sd_id": 96360
+       }
+      ],
+      [
+       {
+        "ad": "Angela Beard",
+        "sd_id": 26643
+       },
+       {
+        "ad": "Holly Furphy",
+        "sd_id": 106456
+       },
+       {
+        "ad": "Sophie Harding",
+        "sd_id": 53580
+       }
+      ]
+     ],
+     "teknik": "Jeff Hopkins",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Murphy Agnew",
+     "sd_id": 73120,
+     "dk": "36",
+     "tur": "Left-foot shot"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Maja Markovski",
+     "sd_id": 42975,
+     "dk": "45+2",
+     "tur": "Header goal",
+     "asist": "Murphy Agnew",
+     "asist_sd_id": 73120,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "57",
+     "cikan": "Natalie Tathem",
+     "cikan_sd_id": 31861,
+     "giren": "Kijah Stephenson",
+     "giren_sd_id": 78309,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "58",
+     "cikan": "Maja Markovski",
+     "cikan_sd_id": 42975,
+     "giren": "Daisy Brown",
+     "giren_sd_id": 110818,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "73",
+     "cikan": "Lily Punch",
+     "cikan_sd_id": 88694,
+     "giren": "Abby Smothers",
+     "giren_sd_id": 122909,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+2",
+     "cikan": "Murphy Agnew",
+     "cikan_sd_id": 73120,
+     "giren": "Emily Roach",
+     "giren_sd_id": 79933,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Zoe McMeeken",
+     "cikan_sd_id": 64226,
+     "giren": "Ella O’Grady",
+     "giren_sd_id": 84871,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Skye Leach",
+     "cikan_sd_id": 106723,
+     "giren": "Alana Jančevski",
+     "giren_sd_id": 42930,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "61",
+     "cikan": "Sophie Harding",
+     "cikan_sd_id": 53580,
+     "giren": "Nikki Flannery",
+     "giren_sd_id": 30075,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "80",
+     "cikan": "Sienna Saveska",
+     "cikan_sd_id": 82318,
+     "giren": "Sienna Techera",
+     "giren_sd_id": 108568,
+     "neden": "Tactic"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "77",
+     "ad": "Sienna Saveska",
+     "sd_id": 82318,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Chloe Lincoln",
+      "sd_id": 66795,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 27,
+      "ad": "Rosie Curtis",
+      "sd_id": 79936,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Isabel Hodgson",
+      "sd_id": 22048,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 15,
+      "ad": "Hali Long",
+      "sd_id": 67109,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 2,
+      "ad": "Annabel Martin",
+      "sd_id": 30041,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 22,
+      "ad": "Natalie Tathem",
+      "sd_id": 31861,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 21,
+      "ad": "Katrina Guillou",
+      "sd_id": 35029,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 14,
+      "ad": "Zara Kruger",
+      "sd_id": 81092,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 7,
+      "ad": "Murphy Agnew",
+      "sd_id": 73120,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 17,
+      "ad": "Maja Markovski",
+      "sd_id": 42975,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Lily Punch",
+      "sd_id": 88694,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ],
+    "dep": [
+     {
+      "no": 25,
+      "ad": "Ayana Aoyagi",
+      "sd_id": 113069,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 3,
+      "ad": "Claudia Bunge",
+      "sd_id": 35823,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 19,
+      "ad": "Zoe McMeeken",
+      "sd_id": 64226,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 18,
+      "ad": "Kayla Morrison",
+      "sd_id": 52196,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Skye Leach",
+      "sd_id": 106723,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Sienna Saveska",
+      "sd_id": 82318,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Anna Sutter",
+      "sd_id": 44891,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 14,
+      "ad": "Alicia Woods",
+      "sd_id": 96360,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 13,
+      "ad": "Angela Beard",
+      "sd_id": 26643,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 9,
+      "ad": "Holly Furphy",
+      "sd_id": 106456,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Sophie Harding",
+      "sd_id": 53580,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Tahlia Franco",
+      "sd_id": 68855,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 23,
+      "ad": "Isabela Hoyos",
+      "sd_id": 88687,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 18,
+      "ad": "Amali Kinsella",
+      "sd_id": 107407,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 24,
+      "ad": "Emily Roach",
+      "sd_id": 79933,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 4,
+      "ad": "Kijah Stephenson",
+      "sd_id": 78309,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Daisy Brown",
+      "sd_id": 110818,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Abby Smothers",
+      "sd_id": 122909,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 30,
+      "ad": "Chloe McKenzie",
+      "sd_id": 112265,
+      "mevki": "Goalkeeper",
+      "yas": 19
+     },
+     {
+      "no": 4,
+      "ad": "Chelsea Blissett",
+      "sd_id": 39211,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 66,
+      "ad": "Alana Jančevski",
+      "sd_id": 42930,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 20,
+      "ad": "Leyla Hussein",
+      "sd_id": 124865,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 11,
+      "ad": "Nikki Flannery",
+      "sd_id": 30075,
+      "mevki": "Striker",
+      "yas": 27
+     },
+     {
+      "no": 7,
+      "ad": "Ella O’Grady",
+      "sd_id": 84871,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Sienna Techera",
+      "sd_id": 108568,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 171857,
+   "hafta": 4,
+   "ev": "Perth Glory",
+   "dep": "Canberra United",
+   "tarih": "07.11.2026",
+   "skor": "0:1",
+   "iy": "0:0",
+   "hafta_sd": 4,
+   "saat": "09:00",
+   "seyirci": 1561,
+   "hakem": "Charlotte Flynn",
+   "stat": "Sam Kerr Football Centre",
+   "ev_id": 257,
+   "dep_id": 79,
+   "dizilis": {
+    "ev": {
+     "takim": "Perth Glory",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Alyssa Dall’Oste",
+        "sd_id": 79678
+       }
+      ],
+      [
+       {
+        "ad": "Ella Buchanan",
+        "sd_id": 96519
+       },
+       {
+        "ad": "Julia Sardo",
+        "sd_id": 42976
+       },
+       {
+        "ad": "Baxter Thew",
+        "sd_id": 114333
+       },
+       {
+        "ad": "Onyinyechi Zogg",
+        "sd_id": 34587
+       }
+      ],
+      [
+       {
+        "ad": "Georgia Cassidy",
+        "sd_id": 87218
+       },
+       {
+        "ad": "Emma Tovar",
+        "sd_id": 70692
+       },
+       {
+        "ad": "Clancy Westaway",
+        "sd_id": 88711
+       }
+      ],
+      [
+       {
+        "ad": "Rola Badawiya",
+        "sd_id": 63269
+       },
+       {
+        "ad": "Maggie Jenkins",
+        "sd_id": 35835
+       },
+       {
+        "ad": "Susan Phonsongkham",
+        "sd_id": 39326
+       }
+      ]
+     ],
+     "teknik": "Stephen Peters",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "Canberra United",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Sally James",
+        "sd_id": 46076
+       }
+      ],
+      [
+       {
+        "ad": "Elizabeth Anton",
+        "sd_id": 22850
+       },
+       {
+        "ad": "Madison Ayson",
+        "sd_id": 99577
+       },
+       {
+        "ad": "Sasha Grove",
+        "sd_id": 53566
+       },
+       {
+        "ad": "Hayley Taylor-Young",
+        "sd_id": 42934
+       }
+      ],
+      [
+       {
+        "ad": "Emily Condon",
+        "sd_id": 22045
+       },
+       {
+        "ad": "Bethany Gordon",
+        "sd_id": 34047
+       },
+       {
+        "ad": "Nanako Sasaki",
+        "sd_id": 64711
+       }
+      ],
+      [
+       {
+        "ad": "Sofia Christopherson",
+        "sd_id": 80413
+       },
+       {
+        "ad": "Sienna Dale",
+        "sd_id": 88692
+       },
+       {
+        "ad": "Michelle Heyman",
+        "sd_id": 725
+       }
+      ]
+     ],
+     "teknik": "Antoni Jagarinec",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Emily Condon",
+     "sd_id": 22045,
+     "dk": "55",
+     "tur": "Left-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "64",
+     "cikan": "Georgia Cassidy",
+     "cikan_sd_id": 87218,
+     "giren": "Ella Lincoln",
+     "giren_sd_id": 103927,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "64",
+     "cikan": "Maggie Jenkins",
+     "cikan_sd_id": 35835,
+     "giren": "Isobel Dalton",
+     "giren_sd_id": 27367,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "75",
+     "cikan": "Clancy Westaway",
+     "cikan_sd_id": 88711,
+     "giren": "Charli Wainwright",
+     "giren_sd_id": 103928,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "75",
+     "cikan": "Susan Phonsongkham",
+     "cikan_sd_id": 39326,
+     "giren": "Megan Wynne",
+     "giren_sd_id": 4183,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Rola Badawiya",
+     "cikan_sd_id": 63269,
+     "giren": "Bronte Trew",
+     "giren_sd_id": 105016,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "71",
+     "cikan": "Emily Condon",
+     "cikan_sd_id": 22045,
+     "giren": "Lily McMahon",
+     "giren_sd_id": 103963,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "71",
+     "cikan": "Nanako Sasaki",
+     "cikan_sd_id": 64711,
+     "giren": "Darcey Malone",
+     "giren_sd_id": 39191,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "89",
+     "cikan": "Sienna Dale",
+     "cikan_sd_id": 88692,
+     "giren": "Caley Tallon-Henniker",
+     "giren_sd_id": 93198,
+     "neden": "Tactic"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+2",
+     "cikan": "Sofia Christopherson",
+     "cikan_sd_id": 80413,
+     "giren": "Zoe Tolland",
+     "giren_sd_id": 80388,
+     "neden": "Injury"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "28",
+     "ad": "Elizabeth Anton",
+     "sd_id": 22850,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "ad": "Sofia Christopherson",
+     "sd_id": 80413,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 21,
+      "ad": "Alyssa Dall’Oste",
+      "sd_id": 79678,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Ella Buchanan",
+      "sd_id": 96519,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Julia Sardo",
+      "sd_id": 42976,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 5,
+      "ad": "Baxter Thew",
+      "sd_id": 114333,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 29,
+      "ad": "Onyinyechi Zogg",
+      "sd_id": 34587,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 8,
+      "ad": "Georgia Cassidy",
+      "sd_id": 87218,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Emma Tovar",
+      "sd_id": 70692,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 19,
+      "ad": "Clancy Westaway",
+      "sd_id": 88711,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Rola Badawiya",
+      "sd_id": 63269,
+      "mevki": "Striker",
+      "yas": 28
+     },
+     {
+      "no": 9,
+      "ad": "Maggie Jenkins",
+      "sd_id": 35835,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 10,
+      "ad": "Susan Phonsongkham",
+      "sd_id": 39326,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Sally James",
+      "sd_id": 46076,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Elizabeth Anton",
+      "sd_id": 22850,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 22,
+      "ad": "Madison Ayson",
+      "sd_id": 99577,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Sasha Grove",
+      "sd_id": 53566,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 12,
+      "ad": "Hayley Taylor-Young",
+      "sd_id": 42934,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Emily Condon",
+      "sd_id": 22045,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 32,
+      "ad": "Bethany Gordon",
+      "sd_id": 34047,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 33,
+      "ad": "Nanako Sasaki",
+      "sd_id": 64711,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 13,
+      "ad": "Sofia Christopherson",
+      "sd_id": 80413,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 7,
+      "ad": "Sienna Dale",
+      "sd_id": 88692,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 23,
+      "ad": "Michelle Heyman",
+      "sd_id": 725,
+      "mevki": "Striker",
+      "yas": 38
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Teresa Morrissey",
+      "sd_id": 49115,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Mischa Anderson",
+      "sd_id": 91883,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 23,
+      "ad": "Isobel Dalton",
+      "sd_id": 27367,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 14,
+      "ad": "Charli Wainwright",
+      "sd_id": 103928,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 25,
+      "ad": "Ella Lincoln",
+      "sd_id": 103927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 12,
+      "ad": "Bronte Trew",
+      "sd_id": 105016,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Megan Wynne",
+      "sd_id": 4183,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ],
+    "dep": [
+     {
+      "no": 18,
+      "ad": "Coco Majstorovic",
+      "sd_id": 52208,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 2,
+      "ad": "Naila Schöfberger",
+      "sd_id": 80647,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 17,
+      "ad": "Zoe Tolland",
+      "sd_id": 80388,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 25,
+      "ad": "Darcey Malone",
+      "sd_id": 39191,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Lily McMahon",
+      "sd_id": 103963,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 24,
+      "ad": "Caley Tallon-Henniker",
+      "sd_id": 93198,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "tam": true
+  }
+ ],
+ "oynanmayan": [],
+ "raporsuz": []
+}

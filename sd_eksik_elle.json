@@ -1,0 +1,89 @@
+{
+ "_aciklama": "sd_eksik_coz.py'nin elle kararları. kabul: oyuncu adı → [SD kimliği, kanıt]. yok: SoccerDonna'da kaydı olmayanlar → kanıt.",
+ "kabul": {
+  "ESTEFANE ROSSETTO DE SOL'SA": [
+   "73006",
+   "SD adı 'Tetê', tam adı Estefane Rossetto de Sousa, Giresun Sanayispor"
+  ],
+  "Vic Thalita": [
+   "71282",
+   "SD adı 'Vic', tam adı Victória Thalita Alvarenga Dias, Hakkarigücü, 03.04.2000"
+  ],
+  "Precious Onyinyechi": [
+   "66727",
+   "SD adı 'Precious Christopher', tam adı Precious Onyinyechi Christopher, Ünye Kadın"
+  ],
+  "Jeannette Yango": [
+   "16563",
+   "SD adı 'Grace Yango', tam adı Jeannette Grâce Ngock Yango, Kamerun"
+  ],
+  "Annecy Nguiadem": [
+   "62045",
+   "SD adı 'Annecy Kamdem', tam adı Annecy Candide Nguiadem Kamdem, Kamerun"
+  ],
+  "Diane Wabeua": [
+   "66692",
+   "SD adı 'Doly Wabeua', tam adı Doly Diane Wabeua Djiatio, Kamerun"
+  ],
+  "Eliane Bodolo": [
+   "53106",
+   "SD adı 'Eliane Manbolamo', tam adı Eliane Manbolamo Bodolo, Kamerun"
+  ],
+  "Reine Gake": [
+   "70198",
+   "SD adı 'Ami Gake', tam adı Ami Reine Gake, Togo"
+  ],
+  "Moussourieto Adinda-Apko": [
+   "74260",
+   "SD adı 'Moussirietou Adinda-Akpo', Togo"
+  ],
+  "Kebotseng Moletsane": [
+   "74418",
+   "SD adı 'Katlego Moletsane', tam adı Kebotseng Katlego Getrude Moletsane, Güney Afrika"
+  ],
+  "Claudine Meffometou": [
+   "16627",
+   "SD adı 'Falonne Meffometou' (Claudine Falonne Meffometou), Kamerun"
+  ],
+  "Sedilame Boseja": [
+   "74232",
+   "SD adı 'Sedilame Bosija', Botsvana"
+  ],
+  "Marilyin Johnson": [
+   "74233",
+   "SD adı 'Marilyn John', Botsvana kalecisi; SD'de Botsvanalı tek Marilyn, kimliği Bosija'nın ardışığı (aynı kadro listesi)"
+  ],
+  "Nesrine Zizi": [
+   "74278",
+   "SD adı 'Nesrine Zenzi', Tunus kalecisi; FBref'te 'Zizi' 17.07.2022'de 29 yaş 321 gün = 30.08.1992, SD doğum tarihiyle aynı"
+  ],
+  "Fariratou Tarnadga": [
+   "74302",
+   "SD adı 'Faridatou Tarnagda', Etincelles, Burkina Faso"
+  ],
+  "Fadimatou Kome": [
+   "37706",
+   "SD adı 'Fatima Kome', tam adı Fadimatou Aretouyap Kome, Kamerun"
+  ],
+  "Catherine Mbangono": [
+   "56678",
+   "SD adı 'Catherine Mbengono', Kamerun, Bourges FC"
+  ],
+  "Shin Na-yeong": [
+   "66301",
+   "SD adı 'Na-yeong Shin', Güney Kore, Brooklyn FC"
+  ],
+  "Pauline Xulu": [
+   "82348",
+   "SD adı 'Pauline Zulu', Zambiya, ZANACO Ladies"
+  ],
+  "Fatima Tagnout": [
+   "64331",
+   "SD adı 'Fatima Tagnaout', Fas"
+  ]
+ },
+ "yok": {
+  "Lorall Romain": "SD araması (romain, lorall, loral) ve Trinidad ve Tobago milli takım kadro sayfaları (27 oyuncu) boş; FotMob'da var (orta saha, 12.03.1998). Kontrol 13.11.2026",
+  "Biira Nadunga": "SD kimliği 74370 idi; profil sayfası boşaltılmış, aramada çıkmıyor. Kontrol 13.11.2026"
+ }
+}

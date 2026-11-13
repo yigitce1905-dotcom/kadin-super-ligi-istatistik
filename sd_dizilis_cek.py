@@ -54,6 +54,15 @@ LIGLER = {
     "ISL1": ("besta-deild-kvenna", "Besta deild kvenna"),
     "LNF": ("campeonato-nacional-feminino", "Liga BPI (Portekiz)"),
     "UNG1": ("ni-nb-i", "Női NB I (Macaristan)"),
+    # Opta'nın en iyi 20 lig listesinden SoccerDonna'da bulunanlar (Yiğit, 13 Kasım 2026). Brezilya A1 ve Kolombiya SD'de yok.
+    "ENG2": ("womens-super-league-2", "Women's Super League 2"),
+    "MXAP": ("liga-femenil-apertura", "Liga MX Femenil (Apertura)"),
+    "Ered": ("vrouwen-eredivisie", "Vrouwen Eredivisie"),
+    "CA1": ("northern-super-league", "Northern Super League"),
+    "JAPW": ("we-league", "WE League"),
+    "WL": ("a-league-women", "A-League Women"),
+    "USGS": ("usl-super-league", "USL Super League"),
+    "KOR1": ("wk-league", "WK League"),
     # Avrupa kupaları (13 Kasım 2026): hafta sayfası yok, bütün turlar tek sayfada (gruppenspieltage + startseite)
     "CL": ("uefa-womens-champions-league", "UEFA Şampiyonlar Ligi"),
     "CLQ": ("uefa-womens-champions-league-qualifying", "UEFA Şampiyonlar Ligi ön eleme"),
@@ -318,10 +327,16 @@ def hafta_listesi(html):
     return out
 
 
-def hafta_maclari(hafta, tumu=None):
+def hafta_maclari(hafta, tumu=None, tarihler=None):
     html = getir(f"/en/{LIG_SLUG}/spieltagsuebersicht/wettbewerb_{LIG_KOD}_{SEZON_YIL}_{hafta}.html")
     if tumu is not None:
         tumu.extend(hafta_listesi(html))
+    if tarihler is not None:
+        for g, a, y in re.findall(r"Kick-off:[^<]{0,20}?(\d{2})\.(\d{2})\.(\d{4})", html):
+            try:
+                tarihler.append(datetime.date(int(y), int(a), int(g)))
+            except ValueError:
+                pass
     bul = re.findall(r'href="(/en/[^"]*/index/spielbericht_(\d+)\.html)"', html)
     sirali, gorulen = [], set()
     for yol, kimlik in bul:
@@ -412,12 +427,14 @@ def main():
     bos_hafta, yeni_cekilen = 0, 0
     for hafta in range(1, AZAMI_HAFTA + 1):
         try:
-            listelenen = []
-            liste = hafta_maclari(hafta, listelenen)
+            listelenen, tarihler = [], []
+            liste = hafta_maclari(hafta, listelenen, tarihler)
         except Exception as e:
             print(f"[hafta {hafta}] liste alınamadı: {type(e).__name__} {str(e)[:60]}", flush=True)
             break
-        if not liste:
+        # 13 Kasım 2026: eskiden rapor bağlantısı olmayan ilk haftada duruyordu; WE League'de 4. haftadan sonra sonuçlar girilmiş
+        # ama rapor açılmamıştı → o haftalar (ve sonrasında raporu olanlar) hiç okunmuyordu. Artık yalnız sayfa tamamen boşsa durur.
+        if not liste and not listelenen:
             break
         oynanan = 0
         for kimlik, yol in liste:
@@ -451,6 +468,7 @@ def main():
                   f"{(d.get('dep') or {}).get('sema', '—').split(' ')[0]:<8}"
                   + ("" if m["tam"] else "  (eksik)"), flush=True)
         # SD'de sonucu girilmiş ama maç raporu açılmamış karşılaşmalar
+        skorlu = 0
         if len(listelenen) > len(liste):
             adlar = {_sade(m.get("ev", "")) + "|" + _sade(m.get("dep", ""))
                      for m in maclar + oynanmayan if m.get("hafta") == hafta}
@@ -461,12 +479,17 @@ def main():
                 var = ((eid, did) in kimlikler) if (eid and kimlikler) else (_sade(ev) + "|" + _sade(dep) in adlar)
                 if not var and re.fullmatch(r"\d+:\d+", skor):
                     raporsuz.append({"hafta": hafta, "ev": ev, "dep": dep, "skor": skor, "ev_id": eid, "dep_id": did})
+                    skorlu += 1
         veri = {"sezon": f"{SEZON_YIL}-{str(SEZON_YIL + 1)[2:]}", "lig": LIG_AD, "lig_kod": LIG_KOD,
                 "kaynak": "soccerdonna.de", "guncelleme": datetime.date.today().isoformat(),
                 "maclar": maclar, "oynanmayan": oynanmayan, "raporsuz": raporsuz}
         json.dump(veri, open(CIKTI, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        # Art arda İKİ haftada oynanmış maç yoksa dur (tek hafta ertelenmiş olabilir: milli ara, hava).
-        bos_hafta = bos_hafta + 1 if oynanan == 0 else 0
+        # Art arda İKİ haftada oynanmış maç yoksa dur (tek hafta ertelenmiş olabilir: milli ara, hava). Tarihi GEÇMİŞ ama sonucu
+        # girilmemiş hafta (SD gecikmesi; WSL 2'de 25 Ekim haftası 13 Kasım'da hâlâ boştu) sayaca girmez: sonraki haftalara bakılır.
+        if oynanan or skorlu:
+            bos_hafta = 0
+        elif not tarihler or min(tarihler) >= datetime.date.today():
+            bos_hafta += 1
         if bos_hafta >= 2 or (AZAMI_MAC and yeni_cekilen >= AZAMI_MAC):
             break
     if not CIKTI.exists():

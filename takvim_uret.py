@@ -39,7 +39,7 @@ ULKELER = [
     ("SWE", "İsveç", "Sweden", "🇸🇪", ("SWE1", "damallsvenskan", 2025, "Damallsvenskan")),
     ("NOR", "Norveç", "Norway", "🇳🇴", ("NOR1", "toppserien", 2025, "Toppserien")),
     ("DEN", "Danimarka", "Denmark", "🇩🇰", ("3FL", "a-liga", 2026, "A-Liga")),
-    ("NED", "Hollanda", "Netherlands", "🇳🇱", None),
+    ("NED", "Hollanda", "Netherlands", "🇳🇱", ("Ered", "vrouwen-eredivisie", 2026, "Vrouwen Eredivisie")),
     ("BEL", "Belçika", "Belgium", "🇧🇪", None),
     ("SUI", "İsviçre", "Switzerland", "🇨🇭", ("SUI1", "womens-super-league", 2026, "Women's Super League")),
     ("AUT", "Avusturya", "Austria", "🇦🇹", ("A1", "frauen-bundesliga", 2026, "ÖFB Frauen-Bundesliga")),
@@ -58,7 +58,7 @@ ULKELER = [
     ("GRE", "Yunanistan", "Greece", "🇬🇷", None),
     ("UKR", "Ukrayna", "Ukraine", "🇺🇦", None),
     ("BRA", "Brezilya", "Brazil", "🇧🇷", None),
-    ("MEX", "Meksika", "Mexico", "🇲🇽", None),
+    ("MEX", "Meksika", "Mexico", "🇲🇽", ("MXAP", "liga-femenil-apertura", 2026, "Liga MX Femenil (Apertura)")),
     ("CAN", "Kanada", "Canada", "🇨🇦", ("CA1", "x", 2025, "Northern Super League")),
     ("AUS", "Avustralya", "Australia", "🇦🇺", ("WL", "a-league-women", 2026, "A-League Women")),
     ("JPN", "Japonya", "Japan", "🇯🇵", ("JAPW", "x", 2026, "WE League")),
@@ -145,6 +145,8 @@ def sd_lig_tarih(kod, slug, yil):
     # SD fikstürün tamamını girmemiş olabilir (13 Kasım 2026: Fransa 12, İtalya 7 hafta görünüyordu) → çift devreli lig
     # için beklenen hafta sayısına ulaşmamışsa "son maç" YAZILMAZ; yanlış bitiş tarihi göstermektense boş bırak.
     tam = takim >= 6 and son_hafta >= 2 * (takim - 1)
+    if son[-1] <= ilk[0]:                         # SD'de yıl hatası (Hollanda: son hafta 21.02.2026 görünüyor, sezon Ağustos 2026'da başlıyor)
+        tam = False
     return {"ilk_mac": ilk[0].isoformat(), "son_mac": son[-1].isoformat() if tam else None, "hafta": son_hafta, "takim": takim}
 
 
@@ -186,6 +188,8 @@ def main():
                 lt = {"ad": lig[3], **t} if t else None
             # SD'nin hafta listesi eksik kalabiliyor (NWSL: 26 görünüyor, 30 hafta oynandı). Kendi çektiğimiz maç dosyasında
             # çift devreli ligin TÜM maçları (n × (n-1)) varsa normal sezon bitmiştir → son maç günü oradan.
+            if lt and lt.get("son_mac") and lt.get("ilk_mac") and lt["son_mac"] <= lt["ilk_mac"]:
+                lt = {**lt, "son_mac": None}       # bitiş başlangıçtan önce olamaz (kaynakta yıl hatası) → boş bırak
             if lt and not lt.get("son_mac"):
                 bitis = cekilen_lig_bitis(lig[0])
                 if bitis:

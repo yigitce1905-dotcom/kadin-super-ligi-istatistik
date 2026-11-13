@@ -280,7 +280,7 @@
     "neden_en": "One of the two registered attacking midfielders is 32."
    }
   ],
-  "seviye": 2,
+  "seviye": 3,
   "kendi": [
    "Grasshoppers Zürich",
    "Grasshopper Club Zürich"
@@ -333,7 +333,7 @@
     "neden_en": "Your registered left-back is 32."
    }
   ],
-  "seviye": 2,
+  "seviye": 3,
   "kendi": [
    "SKN St. Pölten"
   ]
@@ -578,7 +578,7 @@
     "neden_en": "One of the two registered left-backs is 32."
    }
   ],
-  "seviye": 2,
+  "seviye": 1,
   "kendi": [
    "Kristianstads DFF",
    "Kristianstad"
@@ -635,7 +635,7 @@
     "neden_en": "One of your six registered defenders is 37; two others are out of contract on 31.12.2026."
    }
   ],
-  "seviye": 2,
+  "seviye": 1,
   "kendi": [
    "Eskilstuna United",
    "Eskilstuna"

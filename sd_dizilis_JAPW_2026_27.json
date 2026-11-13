@@ -1,0 +1,10145 @@
+{
+ "sezon": "2026-27",
+ "lig": "WE League",
+ "lig_kod": "JAPW",
+ "kaynak": "soccerdonna.de",
+ "guncelleme": "2026-11-13",
+ "maclar": [
+  {
+   "id": 169516,
+   "hafta": 1,
+   "ev": "INAC Kobe Leonessa",
+   "dep": "Sanfrecce Hiroshima Ladies",
+   "tarih": "22.08.2026",
+   "skor": "2:1",
+   "iy": "0:1",
+   "hafta_sd": 1,
+   "saat": "11:00",
+   "seyirci": 4183,
+   "hakem": "Asaka Koizumi",
+   "stat": "Noevir Stadium Kobe",
+   "ev_id": 180,
+   "dep_id": 8401,
+   "dizilis": {
+    "ev": {
+     "takim": "INAC Kobe Leonessa",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Momoko Tanaka",
+        "sd_id": 44633
+       }
+      ],
+      [
+       {
+        "ad": "Natsume Kingetsu",
+        "sd_id": 85205
+       },
+       {
+        "ad": "Shiori Miyake",
+        "sd_id": 18016
+       },
+       {
+        "ad": "Mitsuki Ota",
+        "sd_id": 104290
+       }
+      ],
+      [
+       {
+        "ad": "Azumi Manriki",
+        "sd_id": 120542
+       },
+       {
+        "ad": "Yui Narumiya",
+        "sd_id": 18011
+       },
+       {
+        "ad": "Tamaki Okuma",
+        "sd_id": 37759
+       },
+       {
+        "ad": "Maya Yamamoto",
+        "sd_id": 42259
+       }
+      ],
+      [
+       {
+        "ad": "Mao Kubota",
+        "sd_id": 79095
+       },
+       {
+        "ad": "Ai Tsujisawa",
+        "sd_id": 79098
+       },
+       {
+        "ad": "Riko Yoshida",
+        "sd_id": 48326
+       }
+      ]
+     ],
+     "teknik": "Tomomi Miyamoto",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Sanfrecce Hiroshima Ladies",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Runa Konomi",
+        "sd_id": 43061
+       }
+      ],
+      [
+       {
+        "ad": "Kanako Asakura",
+        "sd_id": 73298
+       },
+       {
+        "ad": "Natsumi Fujiu",
+        "sd_id": 102084
+       },
+       {
+        "ad": "Chisato Ichinose",
+        "sd_id": 43058
+       }
+      ],
+      [
+       {
+        "ad": "Yoshino Nakashima",
+        "sd_id": 48365
+       },
+       {
+        "ad": "Ai Ogawa",
+        "sd_id": 55780
+       },
+       {
+        "ad": "Namie Shimabukuro",
+        "sd_id": 43065
+       },
+       {
+        "ad": "Funa Yanase",
+        "sd_id": 55784
+       }
+      ],
+      [
+       {
+        "ad": "Chiina Kamiya",
+        "sd_id": 37755
+       },
+       {
+        "ad": "Hanano Koga",
+        "sd_id": 106389
+       },
+       {
+        "ad": "Song-a Ri",
+        "sd_id": 44323
+       }
+      ]
+     ],
+     "teknik": "Shuichi Akai",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Yoshino Nakashima",
+     "sd_id": 48365,
+     "dk": "8",
+     "tur": "Right-foot shot",
+     "asist": "Ai Ogawa",
+     "asist_sd_id": 55780,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Mitsuki Ota",
+     "sd_id": 104290,
+     "dk": "57",
+     "tur": "Header goal",
+     "asist": "Yui Narumiya",
+     "asist_sd_id": 18011,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Tamaki Okuma",
+     "sd_id": 37759,
+     "dk": "72",
+     "tur": "Right-foot shot",
+     "asist": "Mitsuki Ota",
+     "asist_sd_id": 104290,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "cikan": "Mao Kubota",
+     "cikan_sd_id": 79095,
+     "giren": "Ai Kuwahara",
+     "giren_sd_id": 81927,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "cikan": "Ai Tsujisawa",
+     "cikan_sd_id": 79098,
+     "giren": "Yuka Kishida",
+     "giren_sd_id": 120822,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "76",
+     "cikan": "Azumi Manriki",
+     "cikan_sd_id": 120542,
+     "giren": "Chisato Minowa",
+     "giren_sd_id": 70370,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "76",
+     "cikan": "Maya Yamamoto",
+     "cikan_sd_id": 42259,
+     "giren": "Arisu Ota",
+     "giren_sd_id": 106542,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "cikan": "Yuka Kishida",
+     "cikan_sd_id": 120822,
+     "giren": "Megumi Takase",
+     "giren_sd_id": 5944,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Namie Shimabukuro",
+     "cikan_sd_id": 43065,
+     "giren": "Hana Shimada",
+     "giren_sd_id": 101419,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Hanano Koga",
+     "cikan_sd_id": 106389,
+     "giren": "Manaka Matsumoto",
+     "giren_sd_id": 56135,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Ai Ogawa",
+     "cikan_sd_id": 55780,
+     "giren": "Mai Watanabe",
+     "giren_sd_id": 44335,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Song-a Ri",
+     "cikan_sd_id": 44323,
+     "giren": "Mami Ueno",
+     "giren_sd_id": 44588,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "83",
+     "cikan": "Natsumi Fujiu",
+     "cikan_sd_id": 102084,
+     "giren": "Miku Hayama",
+     "giren_sd_id": 101638,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "58",
+     "ad": "Tamaki Okuma",
+     "sd_id": 37759,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Momoko Tanaka",
+      "sd_id": 44633,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 18,
+      "ad": "Natsume Kingetsu",
+      "sd_id": 85205,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 5,
+      "ad": "Shiori Miyake",
+      "sd_id": 18016,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 3,
+      "ad": "Mitsuki Ota",
+      "sd_id": 104290,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 22,
+      "ad": "Azumi Manriki",
+      "sd_id": 120542,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Yui Narumiya",
+      "sd_id": 18011,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 25,
+      "ad": "Tamaki Okuma",
+      "sd_id": 37759,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Maya Yamamoto",
+      "sd_id": 42259,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 19,
+      "ad": "Mao Kubota",
+      "sd_id": 79095,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 29,
+      "ad": "Ai Tsujisawa",
+      "sd_id": 79098,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 9,
+      "ad": "Riko Yoshida",
+      "sd_id": 48326,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Runa Konomi",
+      "sd_id": 43061,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Kanako Asakura",
+      "sd_id": 73298,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 15,
+      "ad": "Natsumi Fujiu",
+      "sd_id": 102084,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 5,
+      "ad": "Chisato Ichinose",
+      "sd_id": 43058,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Yoshino Nakashima",
+      "sd_id": 48365,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Ai Ogawa",
+      "sd_id": 55780,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 20,
+      "ad": "Namie Shimabukuro",
+      "sd_id": 43065,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 23,
+      "ad": "Funa Yanase",
+      "sd_id": 55784,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Chiina Kamiya",
+      "sd_id": 37755,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 28,
+      "ad": "Hanano Koga",
+      "sd_id": 106389,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 30,
+      "ad": "Song-a Ri",
+      "sd_id": 44323,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 99,
+      "ad": "Mayu Funada",
+      "sd_id": 12748,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 30,
+      "ad": "Kana Matsuura",
+      "sd_id": 117128,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 40,
+      "ad": "Yuka Kishida",
+      "sd_id": 120822,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 17,
+      "ad": "Chisato Minowa",
+      "sd_id": 70370,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 20,
+      "ad": "Arisu Ota",
+      "sd_id": 106542,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 13,
+      "ad": "Ai Kuwahara",
+      "sd_id": 81927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 11,
+      "ad": "Megumi Takase",
+      "sd_id": 5944,
+      "mevki": "Striker",
+      "yas": 35
+     }
+    ],
+    "dep": [
+     {
+      "no": 32,
+      "ad": "Hinaha Ishida",
+      "sd_id": 106394,
+      "mevki": "Goalkeeper",
+      "yas": 19
+     },
+     {
+      "no": 38,
+      "ad": "Hana Shimada",
+      "sd_id": 101419,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 16,
+      "ad": "Miku Hayama",
+      "sd_id": 101638,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 7,
+      "ad": "Megumi Ito",
+      "sd_id": 59322,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 14,
+      "ad": "Manaka Matsumoto",
+      "sd_id": 56135,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 9,
+      "ad": "Mami Ueno",
+      "sd_id": 44588,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 18,
+      "ad": "Mai Watanabe",
+      "sd_id": 44335,
+      "mevki": "Midfield",
+      "yas": 25
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169517,
+   "hafta": 1,
+   "ev": "Nojima Stella Kanagawa",
+   "dep": "AS Elfen Sayama",
+   "tarih": "22.08.2026",
+   "skor": "1:0",
+   "iy": "1:0",
+   "hafta_sd": 1,
+   "saat": "11:00",
+   "seyirci": 1001,
+   "hakem": "Kenshi Uda",
+   "stat": "Sagamihara Gion Stadium",
+   "ev_id": 5557,
+   "dep_id": 1117,
+   "dizilis": {
+    "ev": {
+     "takim": "Nojima Stella Kanagawa",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Uruha Iwasaki",
+        "sd_id": 79088
+       }
+      ],
+      [
+       {
+        "ad": "Shiori Akira",
+        "sd_id": 85206
+       },
+       {
+        "ad": "An Nanri",
+        "sd_id": 101420
+       },
+       {
+        "ad": "Risako Oga",
+        "sd_id": 39527
+       },
+       {
+        "ad": "Riko Tsutsui",
+        "sd_id": 44547
+       }
+      ],
+      [
+       {
+        "ad": "Juri Ito",
+        "sd_id": 56133
+       },
+       {
+        "ad": "Haruna Kawashima",
+        "sd_id": 22402
+       },
+       {
+        "ad": "Iku Tsukiji",
+        "sd_id": 107756
+       },
+       {
+        "ad": "Hikaru Yumura",
+        "sd_id": 48328
+       }
+      ],
+      [
+       {
+        "ad": "Yuna Katayama",
+        "sd_id": 55737
+       },
+       {
+        "ad": "Mayu Otake",
+        "sd_id": 48373
+       }
+      ]
+     ],
+     "teknik": "Tadashi Ogasahara",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "AS Elfen Sayama",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Natsumi Asano",
+        "sd_id": 22888
+       }
+      ],
+      [
+       {
+        "ad": "Maho Hirao",
+        "sd_id": 55816
+       },
+       {
+        "ad": "Shoko Miaki",
+        "sd_id": 116436
+       },
+       {
+        "ad": "Sakurako Ohashi",
+        "sd_id": 117125
+       },
+       {
+        "ad": "Miki Sakuma",
+        "sd_id": 76740
+       }
+      ],
+      [
+       {
+        "ad": "Yuki Seno",
+        "sd_id": 44330
+       },
+       {
+        "ad": "Kozue Setoguchi",
+        "sd_id": 23145
+       },
+       {
+        "ad": "Hina Takahashi",
+        "sd_id": 84930
+       },
+       {
+        "ad": "Yui Tanaka",
+        "sd_id": 110811
+       }
+      ],
+      [
+       {
+        "ad": "Nanasa Ikuta",
+        "sd_id": 110809
+       },
+       {
+        "ad": "Shoko Uemura",
+        "sd_id": 43032
+       }
+      ]
+     ],
+     "teknik": "Yasuhiro Higuchi",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Yuna Katayama",
+     "sd_id": 55737,
+     "dk": "41",
+     "tur": "Right-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Haruna Kawashima",
+     "cikan_sd_id": 22402,
+     "giren": "Chinari Sasai",
+     "giren_sd_id": 78403,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+1",
+     "cikan": "Hikaru Yumura",
+     "cikan_sd_id": 48328,
+     "giren": "Yua Sasai",
+     "giren_sd_id": 101422,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Hina Takahashi",
+     "cikan_sd_id": 84930,
+     "giren": "Miu Tochitani",
+     "giren_sd_id": 107532,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "57",
+     "cikan": "Miki Sakuma",
+     "cikan_sd_id": 76740,
+     "giren": "Rinka Higuchi",
+     "giren_sd_id": 56796,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Sakurako Ohashi",
+     "cikan_sd_id": 117125,
+     "giren": "Minori Kishi",
+     "giren_sd_id": 48612,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Shoko Uemura",
+     "cikan_sd_id": 43032,
+     "giren": "Yuna Nakamura",
+     "giren_sd_id": 120398,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "83",
+     "cikan": "Maho Hirao",
+     "cikan_sd_id": 55816,
+     "giren": "Hibari Hara",
+     "giren_sd_id": 56801,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Uruha Iwasaki",
+      "sd_id": 79088,
+      "mevki": "Goalkeeper",
+      "yas": 20
+     },
+     {
+      "no": 24,
+      "ad": "Shiori Akira",
+      "sd_id": 85206,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 14,
+      "ad": "An Nanri",
+      "sd_id": 101420,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Risako Oga",
+      "sd_id": 39527,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Riko Tsutsui",
+      "sd_id": 44547,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 4,
+      "ad": "Juri Ito",
+      "sd_id": 56133,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Haruna Kawashima",
+      "sd_id": 22402,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 19,
+      "ad": "Iku Tsukiji",
+      "sd_id": 107756,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 29,
+      "ad": "Hikaru Yumura",
+      "sd_id": 48328,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Yuna Katayama",
+      "sd_id": 55737,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Mayu Otake",
+      "sd_id": 48373,
+      "mevki": "Striker",
+      "yas": 29
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Natsumi Asano",
+      "sd_id": 22888,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 4,
+      "ad": "Maho Hirao",
+      "sd_id": 55816,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 32,
+      "ad": "Shoko Miaki",
+      "sd_id": 116436,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 35,
+      "ad": "Sakurako Ohashi",
+      "sd_id": 117125,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 13,
+      "ad": "Miki Sakuma",
+      "sd_id": 76740,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 6,
+      "ad": "Yuki Seno",
+      "sd_id": 44330,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 5,
+      "ad": "Kozue Setoguchi",
+      "sd_id": 23145,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 18,
+      "ad": "Hina Takahashi",
+      "sd_id": 84930,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Yui Tanaka",
+      "sd_id": 110811,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 10,
+      "ad": "Nanasa Ikuta",
+      "sd_id": 110809,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Shoko Uemura",
+      "sd_id": 43032,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 21,
+      "ad": "Yuka Kazama",
+      "sd_id": 43040,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 13,
+      "ad": "Kyoka Goshima",
+      "sd_id": 43037,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 3,
+      "ad": "Hikari Nagashima",
+      "sd_id": 48362,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 8,
+      "ad": "Natsuki Kishikawa",
+      "sd_id": 22066,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 18,
+      "ad": "Yua Sasai",
+      "sd_id": 101422,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 15,
+      "ad": "Himeno Shirai",
+      "sd_id": 43132,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Chinari Sasai",
+      "sd_id": 78403,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Akari Kashima",
+      "sd_id": 56783,
+      "mevki": "Goalkeeper",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Hibari Hara",
+      "sd_id": 56801,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 20,
+      "ad": "Minori Kishi",
+      "sd_id": 48612,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 25,
+      "ad": "Kokoro Otaka",
+      "sd_id": 110810,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 16,
+      "ad": "Miu Tochitani",
+      "sd_id": 107532,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Rinka Higuchi",
+      "sd_id": 56796,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 36,
+      "ad": "Yuna Nakamura",
+      "sd_id": 120398,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169518,
+   "hafta": 1,
+   "ev": "RB Omiya Ardija Women",
+   "dep": "Urawa Reds",
+   "tarih": "22.08.2026",
+   "skor": "0:1",
+   "iy": "0:1",
+   "hafta_sd": 1,
+   "saat": "12:30",
+   "seyirci": 2387,
+   "hakem": "Kotomi Omura",
+   "stat": "NACK5 Stadion Omiya",
+   "ev_id": 16987,
+   "dep_id": 397,
+   "dizilis": {
+    "ev": {
+     "takim": "RB Omiya Ardija Women",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Minami Imamura",
+        "sd_id": 61161
+       }
+      ],
+      [
+       {
+        "ad": "Risa Kanehira",
+        "sd_id": 44371
+       },
+       {
+        "ad": "Ruka Norimatsu",
+        "sd_id": 18020
+       },
+       {
+        "ad": "Ena Ochiai",
+        "sd_id": 107755
+       },
+       {
+        "ad": "Mone Sato",
+        "sd_id": 107796
+       }
+      ],
+      [
+       {
+        "ad": "Megu Hamada",
+        "sd_id": 82016
+       },
+       {
+        "ad": "Minami Munakata",
+        "sd_id": 107795
+       },
+       {
+        "ad": "Moeno Sakaguchi",
+        "sd_id": 22093
+       },
+       {
+        "ad": "Minori Takahashi",
+        "sd_id": 44317
+       }
+      ],
+      [
+       {
+        "ad": "Mai Kadowaki",
+        "sd_id": 90035
+       },
+       {
+        "ad": "Hanon Nishio",
+        "sd_id": 64505
+       }
+      ]
+     ],
+     "teknik": "Rina Yanai",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "Urawa Reds",
+     "sema": "4-1-4-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Sakiko Ikeda",
+        "sd_id": 14455
+       }
+      ],
+      [
+       {
+        "ad": "Nonoka Nagao",
+        "sd_id": 116547
+       },
+       {
+        "ad": "Reina Nagashima",
+        "sd_id": 43030
+       },
+       {
+        "ad": "Hana Takahashi",
+        "sd_id": 35797
+       }
+      ],
+      [
+       {
+        "ad": "Miki Ito",
+        "sd_id": 18000
+       },
+       {
+        "ad": "Maria Kikuchi",
+        "sd_id": 48438
+       },
+       {
+        "ad": "Kotono Sakakibara",
+        "sd_id": 86563
+       },
+       {
+        "ad": "Yuu Shimizu",
+        "sd_id": 121832
+       },
+       {
+        "ad": "Ena Takatsuka",
+        "sd_id": 99395
+       },
+       {
+        "ad": "Ririka Tanno",
+        "sd_id": 64508
+       }
+      ],
+      [
+       {
+        "ad": "Sunshine Fontes",
+        "sd_id": 35363
+       }
+      ]
+     ],
+     "teknik": "Takafumi Hori",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Miki Ito",
+     "sd_id": 18000,
+     "dk": "24",
+     "tur": "Right-foot shot",
+     "asist": "Kotono Sakakibara",
+     "asist_sd_id": 86563,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "65",
+     "cikan": "Mone Sato",
+     "cikan_sd_id": 107796,
+     "giren": "Mihoshi Sugisawa",
+     "giren_sd_id": 61165,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "65",
+     "cikan": "Mai Kadowaki",
+     "cikan_sd_id": 90035,
+     "giren": "Yuma Saito",
+     "giren_sd_id": 107798,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Minami Munakata",
+     "cikan_sd_id": 107795,
+     "giren": "Yuna Takahashi",
+     "giren_sd_id": 110335,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "87",
+     "cikan": "Minori Takahashi",
+     "cikan_sd_id": 44317,
+     "giren": "Miyu Makino",
+     "giren_sd_id": 107476,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "87",
+     "cikan": "Megu Hamada",
+     "cikan_sd_id": 82016,
+     "giren": "Haruna Oshima",
+     "giren_sd_id": 84946,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Ririka Tanno",
+     "cikan_sd_id": 64508,
+     "giren": "Wakana Onishi",
+     "giren_sd_id": 56115,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Sunshine Fontes",
+     "cikan_sd_id": 35363,
+     "giren": "Akimi Kawafune",
+     "giren_sd_id": 43039,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Yuu Shimizu",
+     "cikan_sd_id": 121832,
+     "giren": "Chika Kato",
+     "giren_sd_id": 14450,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+3",
+     "cikan": "Kotono Sakakibara",
+     "cikan_sd_id": 86563,
+     "giren": "Laurie Teinturier",
+     "giren_sd_id": 19719,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "35",
+     "ad": "Ena Ochiai",
+     "sd_id": 107755,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 22,
+      "ad": "Minami Imamura",
+      "sd_id": 61161,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 3,
+      "ad": "Risa Kanehira",
+      "sd_id": 44371,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 10,
+      "ad": "Ruka Norimatsu",
+      "sd_id": 18020,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Ena Ochiai",
+      "sd_id": 107755,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 33,
+      "ad": "Mone Sato",
+      "sd_id": 107796,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 34,
+      "ad": "Megu Hamada",
+      "sd_id": 82016,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 14,
+      "ad": "Minami Munakata",
+      "sd_id": 107795,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 8,
+      "ad": "Moeno Sakaguchi",
+      "sd_id": 22093,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 4,
+      "ad": "Minori Takahashi",
+      "sd_id": 44317,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 20,
+      "ad": "Mai Kadowaki",
+      "sd_id": 90035,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 9,
+      "ad": "Hanon Nishio",
+      "sd_id": 64505,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Sakiko Ikeda",
+      "sd_id": 14455,
+      "mevki": "Goalkeeper",
+      "yas": 33
+     },
+     {
+      "no": 30,
+      "ad": "Nonoka Nagao",
+      "sd_id": 116547,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 13,
+      "ad": "Reina Nagashima",
+      "sd_id": 43030,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 7,
+      "ad": "Hana Takahashi",
+      "sd_id": 35797,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 5,
+      "ad": "Miki Ito",
+      "sd_id": 18000,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 14,
+      "ad": "Maria Kikuchi",
+      "sd_id": 48438,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Kotono Sakakibara",
+      "sd_id": 86563,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 32,
+      "ad": "Yuu Shimizu",
+      "sd_id": 121832,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 20,
+      "ad": "Ena Takatsuka",
+      "sd_id": 99395,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 26,
+      "ad": "Ririka Tanno",
+      "sd_id": 64508,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Sunshine Fontes",
+      "sd_id": 35363,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Yuria Ito",
+      "sd_id": 37764,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 7,
+      "ad": "Hinano Nishizawa",
+      "sd_id": 48311,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 6,
+      "ad": "Mihoshi Sugisawa",
+      "sd_id": 61165,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 27,
+      "ad": "Miyu Makino",
+      "sd_id": 107476,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 11,
+      "ad": "Haruna Oshima",
+      "sd_id": 84946,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 17,
+      "ad": "Yuma Saito",
+      "sd_id": 107798,
+      "mevki": "Striker",
+      "yas": 33
+     },
+     {
+      "no": 18,
+      "ad": "Yuna Takahashi",
+      "sd_id": 110335,
+      "mevki": "Striker",
+      "yas": 17
+     }
+    ],
+    "dep": [
+     {
+      "no": 12,
+      "ad": "Shiori Fukuda",
+      "sd_id": 37762,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 35,
+      "ad": "Nodoka Yoneguchi",
+      "sd_id": 122288,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 6,
+      "ad": "Chika Kato",
+      "sd_id": 14450,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 16,
+      "ad": "Wakana Onishi",
+      "sd_id": 56115,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 28,
+      "ad": "Madoka Sakurai",
+      "sd_id": 71380,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 21,
+      "ad": "Laurie Teinturier",
+      "sd_id": 19719,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 11,
+      "ad": "Akimi Kawafune",
+      "sd_id": 43039,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169519,
+   "hafta": 1,
+   "ev": "NTV Beleza",
+   "dep": "JEF United Chiba",
+   "tarih": "23.08.2026",
+   "skor": "2:1",
+   "iy": "1:1",
+   "hafta_sd": 1,
+   "saat": "11:00",
+   "seyirci": 2513,
+   "hakem": "Tomoka Beppu",
+   "stat": "Ajinomoto Field Nishigaoka",
+   "ev_id": 243,
+   "dep_id": 1120,
+   "dizilis": {
+    "ev": {
+     "takim": "NTV Beleza",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Nina Noda",
+        "sd_id": 60086
+       }
+      ],
+      [
+       {
+        "ad": "Yuna Aoki",
+        "sd_id": 85211
+       },
+       {
+        "ad": "Tamami Aso",
+        "sd_id": 85209
+       },
+       {
+        "ad": "Mayo Doko",
+        "sd_id": 14410
+       },
+       {
+        "ad": "Tomoko Muramatsu",
+        "sd_id": 12787
+       }
+      ],
+      [
+       {
+        "ad": "Miyu Matsunaga",
+        "sd_id": 73499
+       },
+       {
+        "ad": "Miharu Shinjo",
+        "sd_id": 79094
+       },
+       {
+        "ad": "Yuzuho Shiokoshi",
+        "sd_id": 25180
+       },
+       {
+        "ad": "Rin Sumida",
+        "sd_id": 14412
+       }
+      ],
+      [
+       {
+        "ad": "Rikako Kobayashi",
+        "sd_id": 22897
+       },
+       {
+        "ad": "Rihona Ujihara",
+        "sd_id": 82060
+       }
+      ]
+     ],
+     "teknik": "Naoki Kusunose",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "JEF United Chiba",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Miku Shimizu",
+        "sd_id": 107740
+       }
+      ],
+      [
+       {
+        "ad": "Kanae Hayashi",
+        "sd_id": 43056
+       },
+       {
+        "ad": "Nanami Ishida",
+        "sd_id": 53775
+       },
+       {
+        "ad": "Sumire Suzuki",
+        "sd_id": 110887
+       }
+      ],
+      [
+       {
+        "ad": "Miyu Inayama",
+        "sd_id": 107506
+       },
+       {
+        "ad": "Nanami Sone",
+        "sd_id": 43066
+       },
+       {
+        "ad": "Runa Sumiya",
+        "sd_id": 107507
+       },
+       {
+        "ad": "Ami Uemoto",
+        "sd_id": 107509
+       },
+       {
+        "ad": "Chihiro Yamaguchi",
+        "sd_id": 44589
+       }
+      ],
+      [
+       {
+        "ad": "Ayaka Inoue",
+        "sd_id": 18178
+       },
+       {
+        "ad": "Yuki Ogawa",
+        "sd_id": 82069
+       }
+      ]
+     ],
+     "teknik": "Karmele Torés",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Ayaka Inoue",
+     "sd_id": 18178,
+     "dk": "10",
+     "tur": "Right-foot shot",
+     "asist": "Yuki Ogawa",
+     "asist_sd_id": 82069,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Rihona Ujihara",
+     "sd_id": 82060,
+     "dk": "23",
+     "tur": "Right-foot shot",
+     "asist": "Rikako Kobayashi",
+     "asist_sd_id": 22897,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Miharu Shinjo",
+     "sd_id": 79094,
+     "dk": "89",
+     "tur": "Right-foot shot",
+     "asist": "Niko Shikida",
+     "asist_sd_id": 113259,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Miyu Matsunaga",
+     "cikan_sd_id": 73499,
+     "giren": "Nanami Kitamura",
+     "giren_sd_id": 35813,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "cikan": "Rikako Kobayashi",
+     "cikan_sd_id": 22897,
+     "giren": "Hikaru Naomoto",
+     "giren_sd_id": 16771,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Tamami Aso",
+     "cikan_sd_id": 85209,
+     "giren": "Shino Matsuda",
+     "giren_sd_id": 37756,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Rihona Ujihara",
+     "cikan_sd_id": 82060,
+     "giren": "Niko Shikida",
+     "giren_sd_id": 113259,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+1",
+     "cikan": "Miharu Shinjo",
+     "cikan_sd_id": 79094,
+     "giren": "Kozue Ando",
+     "giren_sd_id": 40,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "37",
+     "cikan": "Nanami Sone",
+     "cikan_sd_id": 43066,
+     "giren": "Runa Masano",
+     "giren_sd_id": 82275,
+     "neden": "Injury"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Sumire Suzuki",
+     "cikan_sd_id": 110887,
+     "giren": "Mariko Tanaka",
+     "giren_sd_id": 43067,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Kanae Hayashi",
+     "cikan_sd_id": 43056,
+     "giren": "Ella Johnson",
+     "giren_sd_id": 120729,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Runa Sumiya",
+     "cikan_sd_id": 107507,
+     "giren": "Yuka Kurimoto",
+     "giren_sd_id": 75984,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "ad": "Yuka Kurimoto",
+     "sd_id": 75984,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Nina Noda",
+      "sd_id": 60086,
+      "mevki": "Goalkeeper",
+      "yas": 22
+     },
+     {
+      "no": 2,
+      "ad": "Yuna Aoki",
+      "sd_id": 85211,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 17,
+      "ad": "Tamami Aso",
+      "sd_id": 85209,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 4,
+      "ad": "Mayo Doko",
+      "sd_id": 14410,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 3,
+      "ad": "Tomoko Muramatsu",
+      "sd_id": 12787,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 18,
+      "ad": "Miyu Matsunaga",
+      "sd_id": 73499,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 14,
+      "ad": "Miharu Shinjo",
+      "sd_id": 79094,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 19,
+      "ad": "Yuzuho Shiokoshi",
+      "sd_id": 25180,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 6,
+      "ad": "Rin Sumida",
+      "sd_id": 14412,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 20,
+      "ad": "Rikako Kobayashi",
+      "sd_id": 22897,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 13,
+      "ad": "Rihona Ujihara",
+      "sd_id": 82060,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Miku Shimizu",
+      "sd_id": 107740,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 4,
+      "ad": "Kanae Hayashi",
+      "sd_id": 43056,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 3,
+      "ad": "Nanami Ishida",
+      "sd_id": 53775,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 99,
+      "ad": "Sumire Suzuki",
+      "sd_id": 110887,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 18,
+      "ad": "Miyu Inayama",
+      "sd_id": 107506,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Nanami Sone",
+      "sd_id": 43066,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 13,
+      "ad": "Runa Sumiya",
+      "sd_id": 107507,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 14,
+      "ad": "Ami Uemoto",
+      "sd_id": 107509,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 17,
+      "ad": "Chihiro Yamaguchi",
+      "sd_id": 44589,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 9,
+      "ad": "Ayaka Inoue",
+      "sd_id": 18178,
+      "mevki": "Striker",
+      "yas": 31
+     },
+     {
+      "no": 10,
+      "ad": "Yuki Ogawa",
+      "sd_id": 82069,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 21,
+      "ad": "Mayu Mizuguchi",
+      "sd_id": 44326,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 22,
+      "ad": "Hinata Ide",
+      "sd_id": 70369,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Shino Matsuda",
+      "sd_id": 37756,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 7,
+      "ad": "Nanami Kitamura",
+      "sd_id": 35813,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 8,
+      "ad": "Hikaru Naomoto",
+      "sd_id": 16771,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 40,
+      "ad": "Kozue Ando",
+      "sd_id": 40,
+      "mevki": "Striker",
+      "yas": 44
+     },
+     {
+      "no": 38,
+      "ad": "Niko Shikida",
+      "sd_id": 113259,
+      "mevki": "Striker",
+      "yas": 17
+     }
+    ],
+    "dep": [
+     {
+      "no": 30,
+      "ad": "Kaede Adachi",
+      "sd_id": 85201,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 16,
+      "ad": "Ella Johnson",
+      "sd_id": 120729,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 5,
+      "ad": "Mariko Tanaka",
+      "sd_id": 43067,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 84,
+      "ad": "Ami Kitazawa",
+      "sd_id": 73895,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 47,
+      "ad": "Mai Kokubo",
+      "sd_id": 122343,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 36,
+      "ad": "Yuka Kurimoto",
+      "sd_id": 75984,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 20,
+      "ad": "Runa Masano",
+      "sd_id": 82275,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169520,
+   "hafta": 1,
+   "ev": "Cerezo Osaka Sakai Ladies",
+   "dep": "Albirex Niigata",
+   "tarih": "23.08.2026",
+   "skor": "1:1",
+   "iy": "0:1",
+   "hafta_sd": 1,
+   "saat": "11:00",
+   "seyirci": 3403,
+   "hakem": "Yurina Tazawa",
+   "stat": "YANMAR Stadium Nagai",
+   "ev_id": 6670,
+   "dep_id": 1116,
+   "dizilis": {
+    "ev": {
+     "takim": "Cerezo Osaka Sakai Ladies",
+     "sema": "3-4-3",
+     "hatlar": [
+      [
+       {
+        "ad": "Sako Nawa",
+        "sd_id": 106354
+       }
+      ],
+      [
+       {
+        "ad": "Rina Nakatani",
+        "sd_id": 56138
+       },
+       {
+        "ad": "Hiromi Yoneda",
+        "sd_id": 76343
+       },
+       {
+        "ad": "Honoka Yotsumoto",
+        "sd_id": 110823
+       }
+      ],
+      [
+       {
+        "ad": "Yumi Hayashi",
+        "sd_id": 122102
+       },
+       {
+        "ad": "Hikari Miyamoto",
+        "sd_id": 44561
+       },
+       {
+        "ad": "Miyuka Momono",
+        "sd_id": 44562
+       },
+       {
+        "ad": "Reina Wakisaka",
+        "sd_id": 44568
+       }
+      ],
+      [
+       {
+        "ad": "Natsumi Tago",
+        "sd_id": 85824
+       },
+       {
+        "ad": "Saori Takarada",
+        "sd_id": 35816
+       },
+       {
+        "ad": "Asaki Wada",
+        "sd_id": 75989
+       }
+      ]
+     ],
+     "teknik": "Takeo Matsuda",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    },
+    "dep": {
+     "takim": "Albirex Niigata",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Chika Hirao",
+        "sd_id": 17996
+       }
+      ],
+      [
+       {
+        "ad": "Saori Ariyoshi",
+        "sd_id": 12774
+       },
+       {
+        "ad": "Yurie Shirasawa",
+        "sd_id": 64506
+       },
+       {
+        "ad": "Mizuki Sonoda",
+        "sd_id": 43133
+       },
+       {
+        "ad": "Chiho Takanashi",
+        "sd_id": 113310
+       },
+       {
+        "ad": "Ema Yokoyama",
+        "sd_id": 106548
+       }
+      ],
+      [
+       {
+        "ad": "Yui Shimoyoshi",
+        "sd_id": 106547
+       },
+       {
+        "ad": "Reina Shirowa",
+        "sd_id": 59320
+       },
+       {
+        "ad": "Yume Takikawa",
+        "sd_id": 43050
+       }
+      ],
+      [
+       {
+        "ad": "Nahomi Kawasumi",
+        "sd_id": 5938
+       },
+       {
+        "ad": "Kanami Shinbori",
+        "sd_id": 48628
+       }
+      ]
+     ],
+     "teknik": "Yuji Sakakura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Mizuki Sonoda",
+     "sd_id": 43133,
+     "dk": "10",
+     "tur": "Header goal",
+     "asist": "Reina Shirowa",
+     "asist_sd_id": 59320,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Reina Wakisaka",
+     "sd_id": 44568,
+     "dk": "88",
+     "tur": "Right-foot shot",
+     "asist": "Haruka Kubota",
+     "asist_sd_id": 55779,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "59",
+     "cikan": "Miyuka Momono",
+     "cikan_sd_id": 44562,
+     "giren": "Serika Takawa",
+     "giren_sd_id": 48467,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "75",
+     "cikan": "Saori Takarada",
+     "cikan_sd_id": 35816,
+     "giren": "Maia Takeuchi",
+     "giren_sd_id": 121473,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "87",
+     "cikan": "Asaki Wada",
+     "cikan_sd_id": 75989,
+     "giren": "Haruka Kubota",
+     "giren_sd_id": 55779,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Ema Yokoyama",
+     "cikan_sd_id": 106548,
+     "giren": "Chihiro Tomioka",
+     "giren_sd_id": 37761,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Reina Shirowa",
+     "cikan_sd_id": 59320,
+     "giren": "Seira Tanaka",
+     "giren_sd_id": 64507,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "60",
+     "cikan": "Nahomi Kawasumi",
+     "cikan_sd_id": 5938,
+     "giren": "Yuina Yamamoto",
+     "giren_sd_id": 61166,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "79",
+     "cikan": "Kanami Shinbori",
+     "cikan_sd_id": 48628,
+     "giren": "Anna Ezaki",
+     "giren_sd_id": 44319,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90+1",
+     "cikan": "Yume Takikawa",
+     "cikan_sd_id": 43050,
+     "giren": "Rion Fujihara",
+     "giren_sd_id": 106595,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "90+3",
+     "ad": "Serika Takawa",
+     "sd_id": 48467,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+4",
+     "ad": "Natsumi Tago",
+     "sd_id": 85824,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sako Nawa",
+      "sd_id": 106354,
+      "mevki": "Goalkeeper",
+      "yas": 19
+     },
+     {
+      "no": 17,
+      "ad": "Rina Nakatani",
+      "sd_id": 56138,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 3,
+      "ad": "Hiromi Yoneda",
+      "sd_id": 76343,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 4,
+      "ad": "Honoka Yotsumoto",
+      "sd_id": 110823,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 35,
+      "ad": "Yumi Hayashi",
+      "sd_id": 122102,
+      "mevki": "Midfield",
+      "yas": 16
+     },
+     {
+      "no": 18,
+      "ad": "Hikari Miyamoto",
+      "sd_id": 44561,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Miyuka Momono",
+      "sd_id": 44562,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 10,
+      "ad": "Reina Wakisaka",
+      "sd_id": 44568,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 20,
+      "ad": "Natsumi Tago",
+      "sd_id": 85824,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 11,
+      "ad": "Saori Takarada",
+      "sd_id": 35816,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Asaki Wada",
+      "sd_id": 75989,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Chika Hirao",
+      "sd_id": 17996,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 6,
+      "ad": "Saori Ariyoshi",
+      "sd_id": 12774,
+      "mevki": "Defence",
+      "yas": 38
+     },
+     {
+      "no": 5,
+      "ad": "Yurie Shirasawa",
+      "sd_id": 64506,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 7,
+      "ad": "Mizuki Sonoda",
+      "sd_id": 43133,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 25,
+      "ad": "Chiho Takanashi",
+      "sd_id": 113310,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Ema Yokoyama",
+      "sd_id": 106548,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "Yui Shimoyoshi",
+      "sd_id": 106547,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 19,
+      "ad": "Reina Shirowa",
+      "sd_id": 59320,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Yume Takikawa",
+      "sd_id": 43050,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Nahomi Kawasumi",
+      "sd_id": 5938,
+      "mevki": "Striker",
+      "yas": 40
+     },
+     {
+      "no": 11,
+      "ad": "Kanami Shinbori",
+      "sd_id": 48628,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 27,
+      "ad": "Maho Nishinaka",
+      "sd_id": 44546,
+      "mevki": "Goalkeeper",
+      "yas": 28
+     },
+     {
+      "no": 6,
+      "ad": "Haruka Kubota",
+      "sd_id": 55779,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 7,
+      "ad": "Yuri Ogikubo",
+      "sd_id": 48466,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 26,
+      "ad": "Shuka Kitahara",
+      "sd_id": 44556,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Serika Takawa",
+      "sd_id": 48467,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 15,
+      "ad": "Amy Yoneda",
+      "sd_id": 114240,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 16,
+      "ad": "Maia Takeuchi",
+      "sd_id": 121473,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 22,
+      "ad": "Riko Sanuga",
+      "sd_id": 113309,
+      "mevki": "Goalkeeper",
+      "yas": 22
+     },
+     {
+      "no": 16,
+      "ad": "Chihiro Tomioka",
+      "sd_id": 37761,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 18,
+      "ad": "Anna Ezaki",
+      "sd_id": 44319,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 10,
+      "ad": "Megumi Kamionobe",
+      "sd_id": 5937,
+      "mevki": "Midfield",
+      "yas": 40
+     },
+     {
+      "no": 27,
+      "ad": "Rion Fujihara",
+      "sd_id": 106595,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 33,
+      "ad": "Seira Tanaka",
+      "sd_id": 64507,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 23,
+      "ad": "Yuina Yamamoto",
+      "sd_id": 61166,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169521,
+   "hafta": 1,
+   "ev": "Vegalta Sendai",
+   "dep": "AC Nagano Parceiro",
+   "tarih": "23.08.2026",
+   "skor": "2:1",
+   "iy": "1:1",
+   "hafta_sd": 1,
+   "saat": "11:00",
+   "seyirci": 1260,
+   "hakem": "Satomi Arakawa",
+   "stat": "Yurtec Stadium Sendai",
+   "ev_id": 4783,
+   "dep_id": 2263,
+   "dizilis": {
+    "ev": {
+     "takim": "Vegalta Sendai",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Shiori Shimizu",
+        "sd_id": 48334
+       }
+      ],
+      [
+       {
+        "ad": "Nonoha Abe",
+        "sd_id": 70366
+       },
+       {
+        "ad": "Satsuki Miura",
+        "sd_id": 43062
+       },
+       {
+        "ad": "Akane Nishino",
+        "sd_id": 37769
+       }
+      ],
+      [
+       {
+        "ad": "Yume Endo",
+        "sd_id": 86523
+       },
+       {
+        "ad": "Hina Inoue",
+        "sd_id": 44554
+       },
+       {
+        "ad": "Hana Kikuchi",
+        "sd_id": 85214
+       },
+       {
+        "ad": "Moe Ota",
+        "sd_id": 56789
+       },
+       {
+        "ad": "Niina Sato",
+        "sd_id": 107801
+       }
+      ],
+      [
+       {
+        "ad": "Anon Tsuda",
+        "sd_id": 73497
+       },
+       {
+        "ad": "Miyu Yakata",
+        "sd_id": 44569
+       }
+      ]
+     ],
+     "teknik": "Futoshi Ikeda",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "AC Nagano Parceiro",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Aina Kakiuchi",
+        "sd_id": 48608
+       }
+      ],
+      [
+       {
+        "ad": "Nanao Chiku",
+        "sd_id": 107723
+       },
+       {
+        "ad": "Chisa Okugawa",
+        "sd_id": 43025
+       },
+       {
+        "ad": "Ayaka Osajima",
+        "sd_id": 44582
+       },
+       {
+        "ad": "Konatsu Suzuki",
+        "sd_id": 107736
+       },
+       {
+        "ad": "Rei Tachibana",
+        "sd_id": 22554
+       },
+       {
+        "ad": "Yurina Tsukazaki",
+        "sd_id": 116228
+       }
+      ],
+      [
+       {
+        "ad": "Sayaka Mitani",
+        "sd_id": 22979
+       },
+       {
+        "ad": "Mayu Tsuneda",
+        "sd_id": 54835
+       }
+      ],
+      [
+       {
+        "ad": "Runa Shioya",
+        "sd_id": 71227
+       },
+       {
+        "ad": "Mao Yoshino",
+        "sd_id": 85829
+       }
+      ]
+     ],
+     "teknik": "Atsushi Nakamura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Yume Endo",
+     "sd_id": 86523,
+     "dk": "9",
+     "tur": "Left-foot shot",
+     "asist": "Moe Ota",
+     "asist_sd_id": 56789,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Runa Shioya",
+     "sd_id": 71227,
+     "dk": "45+2",
+     "tur": "Left-foot shot"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Miyu Yakata",
+     "sd_id": 44569,
+     "dk": "54",
+     "tur": "Penalty"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Hana Kikuchi",
+     "cikan_sd_id": 85214,
+     "giren": "Hitomi Shibata",
+     "giren_sd_id": 79092,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Anon Tsuda",
+     "cikan_sd_id": 73497,
+     "giren": "Honoka Shinoda",
+     "giren_sd_id": 77967,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90",
+     "cikan": "Miyu Yakata",
+     "cikan_sd_id": 44569,
+     "giren": "Miyu Matsui",
+     "giren_sd_id": 110846,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+4",
+     "cikan": "Honoka Shinoda",
+     "cikan_sd_id": 77967,
+     "giren": "Kotone Nakano",
+     "giren_sd_id": 107478,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Yurina Tsukazaki",
+     "cikan_sd_id": 116228,
+     "giren": "Ami Kubota",
+     "giren_sd_id": 49087,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Nanao Chiku",
+     "cikan_sd_id": 107723,
+     "giren": "Meiko Matsuura",
+     "giren_sd_id": 116227,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "85",
+     "cikan": "Sayaka Mitani",
+     "cikan_sd_id": 22979,
+     "giren": "Yurara Hamada",
+     "giren_sd_id": 107738,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "88",
+     "cikan": "Mayu Tsuneda",
+     "cikan_sd_id": 54835,
+     "giren": "Yura Matsuoka",
+     "giren_sd_id": 110480,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "ad": "Hina Inoue",
+     "sd_id": 44554,
+     "kart": "yellow card",
+     "neden": "Foul"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 15,
+      "ad": "Shiori Shimizu",
+      "sd_id": 48334,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 19,
+      "ad": "Nonoha Abe",
+      "sd_id": 70366,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Satsuki Miura",
+      "sd_id": 43062,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Akane Nishino",
+      "sd_id": 37769,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Yume Endo",
+      "sd_id": 86523,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 6,
+      "ad": "Hina Inoue",
+      "sd_id": 44554,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 20,
+      "ad": "Hana Kikuchi",
+      "sd_id": 85214,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 25,
+      "ad": "Moe Ota",
+      "sd_id": 56789,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 18,
+      "ad": "Niina Sato",
+      "sd_id": 107801,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 9,
+      "ad": "Anon Tsuda",
+      "sd_id": 73497,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 13,
+      "ad": "Miyu Yakata",
+      "sd_id": 44569,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Aina Kakiuchi",
+      "sd_id": 48608,
+      "mevki": "Goalkeeper",
+      "yas": 30
+     },
+     {
+      "no": 15,
+      "ad": "Nanao Chiku",
+      "sd_id": 107723,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 25,
+      "ad": "Chisa Okugawa",
+      "sd_id": 43025,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 27,
+      "ad": "Ayaka Osajima",
+      "sd_id": 44582,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 34,
+      "ad": "Konatsu Suzuki",
+      "sd_id": 107736,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 5,
+      "ad": "Rei Tachibana",
+      "sd_id": 22554,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 24,
+      "ad": "Yurina Tsukazaki",
+      "sd_id": 116228,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Sayaka Mitani",
+      "sd_id": 22979,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 6,
+      "ad": "Mayu Tsuneda",
+      "sd_id": 54835,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 14,
+      "ad": "Runa Shioya",
+      "sd_id": 71227,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 33,
+      "ad": "Mao Yoshino",
+      "sd_id": 85829,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 16,
+      "ad": "Miyu Yokobori",
+      "sd_id": 107805,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 28,
+      "ad": "Miina Matsunaga",
+      "sd_id": 44324,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 27,
+      "ad": "Kotone Nakano",
+      "sd_id": 107478,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 7,
+      "ad": "Honoka Shinoda",
+      "sd_id": 77967,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 11,
+      "ad": "Satoko Fujisaki",
+      "sd_id": 106342,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 50,
+      "ad": "Miyu Matsui",
+      "sd_id": 110846,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 23,
+      "ad": "Hitomi Shibata",
+      "sd_id": 79092,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Mao Umemura",
+      "sd_id": 101674,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 22,
+      "ad": "Ichiho Kodama",
+      "sd_id": 107739,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 3,
+      "ad": "Ami Kubota",
+      "sd_id": 49087,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 18,
+      "ad": "Mika Machida",
+      "sd_id": 107521,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 23,
+      "ad": "Meiko Matsuura",
+      "sd_id": 116227,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 35,
+      "ad": "Yurara Hamada",
+      "sd_id": 107738,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 20,
+      "ad": "Yura Matsuoka",
+      "sd_id": 110480,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169522,
+   "hafta": 2,
+   "ev": "AC Nagano Parceiro",
+   "dep": "NTV Beleza",
+   "tarih": "29.08.2026",
+   "skor": "1:4",
+   "iy": "1:1",
+   "hafta_sd": 2,
+   "saat": "11:00",
+   "seyirci": 1319,
+   "hakem": "Azusa Sugino",
+   "stat": "Nagano U Stadium",
+   "ev_id": 2263,
+   "dep_id": 243,
+   "dizilis": {
+    "ev": {
+     "takim": "AC Nagano Parceiro",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Aina Kakiuchi",
+        "sd_id": 48608
+       }
+      ],
+      [
+       {
+        "ad": "Nanao Chiku",
+        "sd_id": 107723
+       },
+       {
+        "ad": "Ami Kubota",
+        "sd_id": 49087
+       },
+       {
+        "ad": "Chisa Okugawa",
+        "sd_id": 43025
+       },
+       {
+        "ad": "Ayaka Osajima",
+        "sd_id": 44582
+       },
+       {
+        "ad": "Konatsu Suzuki",
+        "sd_id": 107736
+       },
+       {
+        "ad": "Rei Tachibana",
+        "sd_id": 22554
+       }
+      ],
+      [
+       {
+        "ad": "Sayaka Mitani",
+        "sd_id": 22979
+       },
+       {
+        "ad": "Mayu Tsuneda",
+        "sd_id": 54835
+       }
+      ],
+      [
+       {
+        "ad": "Runa Shioya",
+        "sd_id": 71227
+       },
+       {
+        "ad": "Mao Yoshino",
+        "sd_id": 85829
+       }
+      ]
+     ],
+     "teknik": "Atsushi Nakamura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "NTV Beleza",
+     "sema": "4-3-2-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Nina Noda",
+        "sd_id": 60086
+       }
+      ],
+      [
+       {
+        "ad": "Mayo Doko",
+        "sd_id": 14410
+       },
+       {
+        "ad": "Hinata Ide",
+        "sd_id": 70369
+       },
+       {
+        "ad": "Ema Matsuoka",
+        "sd_id": 113316
+       },
+       {
+        "ad": "Tomoko Muramatsu",
+        "sd_id": 12787
+       }
+      ],
+      [
+       {
+        "ad": "Nanami Kitamura",
+        "sd_id": 35813
+       },
+       {
+        "ad": "Yuzuho Shiokoshi",
+        "sd_id": 25180
+       },
+       {
+        "ad": "Rin Sumida",
+        "sd_id": 14412
+       },
+       {
+        "ad": "Honoka Sunaga",
+        "sd_id": 113322
+       }
+      ],
+      [
+       {
+        "ad": "Rikako Kobayashi",
+        "sd_id": 22897
+       },
+       {
+        "ad": "Rihona Ujihara",
+        "sd_id": 82060
+       }
+      ]
+     ],
+     "teknik": "Naoki Kusunose",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Rin Sumida",
+     "sd_id": 14412,
+     "dk": "27",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Mao Yoshino",
+     "sd_id": 85829,
+     "dk": "34",
+     "tur": "Header goal",
+     "asist": "Sayaka Mitani",
+     "asist_sd_id": 22979,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "1:2",
+     "taraf": "dep",
+     "ad": "Nanami Kitamura",
+     "sd_id": 35813,
+     "dk": "59",
+     "tur": "Left-foot shot",
+     "asist": "Rikako Kobayashi",
+     "asist_sd_id": 22897,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:3",
+     "taraf": "dep",
+     "ad": "Niko Shikida",
+     "sd_id": 113259,
+     "dk": "67",
+     "tur": "Right-foot shot",
+     "asist": "Yuzuho Shiokoshi",
+     "asist_sd_id": 25180,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:4",
+     "taraf": "dep",
+     "ad": "Nanami Kitamura",
+     "sd_id": 35813,
+     "dk": "86",
+     "tur": "Right-foot shot",
+     "asist": "Niko Shikida",
+     "asist_sd_id": 113259,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "65",
+     "cikan": "Ami Kubota",
+     "cikan_sd_id": 49087,
+     "giren": "Yurara Hamada",
+     "giren_sd_id": 107738,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "65",
+     "cikan": "Sayaka Mitani",
+     "cikan_sd_id": 22979,
+     "giren": "Meiko Matsuura",
+     "giren_sd_id": 116227,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "76",
+     "cikan": "Runa Shioya",
+     "cikan_sd_id": 71227,
+     "giren": "Eri Kitagawa",
+     "giren_sd_id": 85821,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "83",
+     "cikan": "Mayu Tsuneda",
+     "cikan_sd_id": 54835,
+     "giren": "Mika Machida",
+     "giren_sd_id": 107521,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "83",
+     "cikan": "Nanao Chiku",
+     "cikan_sd_id": 107723,
+     "giren": "Yura Matsuoka",
+     "giren_sd_id": 110480,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "66",
+     "cikan": "Ema Matsuoka",
+     "cikan_sd_id": 113316,
+     "giren": "Shino Matsuda",
+     "giren_sd_id": 37756,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "66",
+     "cikan": "Rihona Ujihara",
+     "cikan_sd_id": 82060,
+     "giren": "Niko Shikida",
+     "giren_sd_id": 113259,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "66",
+     "cikan": "Rikako Kobayashi",
+     "cikan_sd_id": 22897,
+     "giren": "Hikaru Naomoto",
+     "giren_sd_id": 16771,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "75",
+     "cikan": "Honoka Sunaga",
+     "cikan_sd_id": 113322,
+     "giren": "Sana Morota",
+     "giren_sd_id": 120707,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "81",
+     "cikan": "Hinata Ide",
+     "cikan_sd_id": 70369,
+     "giren": "Kozue Ando",
+     "giren_sd_id": 40,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 21,
+      "ad": "Aina Kakiuchi",
+      "sd_id": 48608,
+      "mevki": "Goalkeeper",
+      "yas": 30
+     },
+     {
+      "no": 15,
+      "ad": "Nanao Chiku",
+      "sd_id": 107723,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Ami Kubota",
+      "sd_id": 49087,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 25,
+      "ad": "Chisa Okugawa",
+      "sd_id": 43025,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 27,
+      "ad": "Ayaka Osajima",
+      "sd_id": 44582,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 34,
+      "ad": "Konatsu Suzuki",
+      "sd_id": 107736,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 5,
+      "ad": "Rei Tachibana",
+      "sd_id": 22554,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 7,
+      "ad": "Sayaka Mitani",
+      "sd_id": 22979,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 6,
+      "ad": "Mayu Tsuneda",
+      "sd_id": 54835,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 14,
+      "ad": "Runa Shioya",
+      "sd_id": 71227,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 33,
+      "ad": "Mao Yoshino",
+      "sd_id": 85829,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Nina Noda",
+      "sd_id": 60086,
+      "mevki": "Goalkeeper",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Mayo Doko",
+      "sd_id": 14410,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 22,
+      "ad": "Hinata Ide",
+      "sd_id": 70369,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 32,
+      "ad": "Ema Matsuoka",
+      "sd_id": 113316,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 3,
+      "ad": "Tomoko Muramatsu",
+      "sd_id": 12787,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 7,
+      "ad": "Nanami Kitamura",
+      "sd_id": 35813,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 19,
+      "ad": "Yuzuho Shiokoshi",
+      "sd_id": 25180,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 6,
+      "ad": "Rin Sumida",
+      "sd_id": 14412,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 35,
+      "ad": "Honoka Sunaga",
+      "sd_id": 113322,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 20,
+      "ad": "Rikako Kobayashi",
+      "sd_id": 22897,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 13,
+      "ad": "Rihona Ujihara",
+      "sd_id": 82060,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Mao Umemura",
+      "sd_id": 101674,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 22,
+      "ad": "Ichiho Kodama",
+      "sd_id": 107739,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 18,
+      "ad": "Mika Machida",
+      "sd_id": 107521,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 23,
+      "ad": "Meiko Matsuura",
+      "sd_id": 116227,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 35,
+      "ad": "Yurara Hamada",
+      "sd_id": 107738,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 10,
+      "ad": "Eri Kitagawa",
+      "sd_id": 85821,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 20,
+      "ad": "Yura Matsuoka",
+      "sd_id": 110480,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Mayu Mizuguchi",
+      "sd_id": 44326,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 5,
+      "ad": "Shino Matsuda",
+      "sd_id": 37756,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Hikaru Naomoto",
+      "sd_id": 16771,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 40,
+      "ad": "Kozue Ando",
+      "sd_id": 40,
+      "mevki": "Striker",
+      "yas": 44
+     },
+     {
+      "no": 43,
+      "ad": "Sana Morota",
+      "sd_id": 120707,
+      "mevki": "Striker",
+      "yas": 15
+     },
+     {
+      "no": 38,
+      "ad": "Niko Shikida",
+      "sd_id": 113259,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 25,
+      "ad": "Danelle Tan",
+      "sd_id": 67162,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169523,
+   "hafta": 2,
+   "ev": "Sanfrecce Hiroshima Ladies",
+   "dep": "RB Omiya Ardija Women",
+   "tarih": "29.08.2026",
+   "skor": "2:0",
+   "iy": "1:0",
+   "hafta_sd": 2,
+   "saat": "12:00",
+   "seyirci": 8080,
+   "hakem": "Haruna Kanematsu",
+   "stat": "Edion Peace Wing Hiroshima",
+   "ev_id": 8401,
+   "dep_id": 16987,
+   "dizilis": {
+    "ev": {
+     "takim": "Sanfrecce Hiroshima Ladies",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Runa Konomi",
+        "sd_id": 43061
+       }
+      ],
+      [
+       {
+        "ad": "Kanako Asakura",
+        "sd_id": 73298
+       },
+       {
+        "ad": "Natsumi Fujiu",
+        "sd_id": 102084
+       },
+       {
+        "ad": "Hana Shimada",
+        "sd_id": 101419
+       }
+      ],
+      [
+       {
+        "ad": "Megumi Ito",
+        "sd_id": 59322
+       },
+       {
+        "ad": "Yoshino Nakashima",
+        "sd_id": 48365
+       },
+       {
+        "ad": "Ai Ogawa",
+        "sd_id": 55780
+       },
+       {
+        "ad": "Namie Shimabukuro",
+        "sd_id": 43065
+       },
+       {
+        "ad": "Mami Ueno",
+        "sd_id": 44588
+       },
+       {
+        "ad": "Funa Yanase",
+        "sd_id": 55784
+       },
+       {
+        "ad": "Chiina Kamiya",
+        "sd_id": 37755
+       }
+      ]
+     ],
+     "teknik": "Shuichi Akai",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "RB Omiya Ardija Women",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Yuria Ito",
+        "sd_id": 37764
+       }
+      ],
+      [
+       {
+        "ad": "Risa Kanehira",
+        "sd_id": 44371
+       },
+       {
+        "ad": "Ruka Norimatsu",
+        "sd_id": 18020
+       },
+       {
+        "ad": "Ena Ochiai",
+        "sd_id": 107755
+       },
+       {
+        "ad": "Mihoshi Sugisawa",
+        "sd_id": 61165
+       }
+      ],
+      [
+       {
+        "ad": "Megu Hamada",
+        "sd_id": 82016
+       },
+       {
+        "ad": "Minami Munakata",
+        "sd_id": 107795
+       },
+       {
+        "ad": "Moeno Sakaguchi",
+        "sd_id": 22093
+       },
+       {
+        "ad": "Minori Takahashi",
+        "sd_id": 44317
+       }
+      ],
+      [
+       {
+        "ad": "Mai Kadowaki",
+        "sd_id": 90035
+       },
+       {
+        "ad": "Hanon Nishio",
+        "sd_id": 64505
+       }
+      ]
+     ],
+     "teknik": "Rina Yanai",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": false
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Yoshino Nakashima",
+     "sd_id": 48365,
+     "dk": "40",
+     "tur": "Left-foot shot",
+     "asist": "Chiina Kamiya",
+     "asist_sd_id": 37755,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Chiina Kamiya",
+     "sd_id": 37755,
+     "dk": "80",
+     "tur": "Header goal",
+     "asist": "Ai Ogawa",
+     "asist_sd_id": 55780,
+     "asist_tur": "Corner"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Namie Shimabukuro",
+     "cikan_sd_id": 43065,
+     "giren": "Mai Watanabe",
+     "giren_sd_id": 44335,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Megumi Ito",
+     "cikan_sd_id": 59322,
+     "giren": "Manaka Matsumoto",
+     "giren_sd_id": 56135,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "70",
+     "cikan": "Mami Ueno",
+     "cikan_sd_id": 44588,
+     "giren": "Hanano Koga",
+     "giren_sd_id": 106389,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Natsumi Fujiu",
+     "cikan_sd_id": 102084,
+     "giren": "Miku Hayama",
+     "giren_sd_id": 101638,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Ai Ogawa",
+     "cikan_sd_id": 55780,
+     "giren": "Eriko Goya",
+     "giren_sd_id": 44575,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Mai Kadowaki",
+     "cikan_sd_id": 90035,
+     "giren": "Yuma Saito",
+     "giren_sd_id": 107798,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "72",
+     "cikan": "Minami Munakata",
+     "cikan_sd_id": 107795,
+     "giren": "Kirara Iwashita",
+     "giren_sd_id": 115233,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "85",
+     "cikan": "Mihoshi Sugisawa",
+     "cikan_sd_id": 61165,
+     "giren": "Haruna Oshima",
+     "giren_sd_id": 84946,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "85",
+     "cikan": "Ruka Norimatsu",
+     "cikan_sd_id": 18020,
+     "giren": "Hinano Nishizawa",
+     "giren_sd_id": 48311,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "85",
+     "cikan": "Moeno Sakaguchi",
+     "cikan_sd_id": 22093,
+     "giren": "Miyu Makino",
+     "giren_sd_id": 107476,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Runa Konomi",
+      "sd_id": 43061,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Kanako Asakura",
+      "sd_id": 73298,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 15,
+      "ad": "Natsumi Fujiu",
+      "sd_id": 102084,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 38,
+      "ad": "Hana Shimada",
+      "sd_id": 101419,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Megumi Ito",
+      "sd_id": 59322,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 11,
+      "ad": "Yoshino Nakashima",
+      "sd_id": 48365,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Ai Ogawa",
+      "sd_id": 55780,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 20,
+      "ad": "Namie Shimabukuro",
+      "sd_id": 43065,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 9,
+      "ad": "Mami Ueno",
+      "sd_id": 44588,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 23,
+      "ad": "Funa Yanase",
+      "sd_id": 55784,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Chiina Kamiya",
+      "sd_id": 37755,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Yuria Ito",
+      "sd_id": 37764,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 3,
+      "ad": "Risa Kanehira",
+      "sd_id": 44371,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 10,
+      "ad": "Ruka Norimatsu",
+      "sd_id": 18020,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Ena Ochiai",
+      "sd_id": 107755,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Mihoshi Sugisawa",
+      "sd_id": 61165,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 34,
+      "ad": "Megu Hamada",
+      "sd_id": 82016,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 14,
+      "ad": "Minami Munakata",
+      "sd_id": 107795,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 8,
+      "ad": "Moeno Sakaguchi",
+      "sd_id": 22093,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 4,
+      "ad": "Minori Takahashi",
+      "sd_id": 44317,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 20,
+      "ad": "Mai Kadowaki",
+      "sd_id": 90035,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 9,
+      "ad": "Hanon Nishio",
+      "sd_id": 64505,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 22,
+      "ad": "Nanami Fujita",
+      "sd_id": 55778,
+      "mevki": "Goalkeeper",
+      "yas": 28
+     },
+     {
+      "no": 3,
+      "ad": "Eriko Goya",
+      "sd_id": 44575,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 6,
+      "ad": "Momoko Sayama",
+      "sd_id": 23180,
+      "mevki": "Defence",
+      "yas": 34
+     },
+     {
+      "no": 16,
+      "ad": "Miku Hayama",
+      "sd_id": 101638,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 14,
+      "ad": "Manaka Matsumoto",
+      "sd_id": 56135,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 18,
+      "ad": "Mai Watanabe",
+      "sd_id": 44335,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 28,
+      "ad": "Hanano Koga",
+      "sd_id": 106389,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 31,
+      "ad": "Momoka Hattori",
+      "sd_id": 56776,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Kirara Iwashita",
+      "sd_id": 115233,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 7,
+      "ad": "Hinano Nishizawa",
+      "sd_id": 48311,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 27,
+      "ad": "Miyu Makino",
+      "sd_id": 107476,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 11,
+      "ad": "Haruna Oshima",
+      "sd_id": 84946,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 17,
+      "ad": "Yuma Saito",
+      "sd_id": 107798,
+      "mevki": "Striker",
+      "yas": 33
+     },
+     {
+      "no": 19,
+      "ad": "Amiru Tsuji",
+      "sd_id": 85218,
+      "mevki": "Striker",
+      "yas": 18
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169524,
+   "hafta": 2,
+   "ev": "Albirex Niigata",
+   "dep": "Vegalta Sendai",
+   "tarih": "30.08.2026",
+   "skor": "3:2",
+   "iy": "1:1",
+   "hafta_sd": 2,
+   "saat": "11:00",
+   "seyirci": 2049,
+   "hakem": "Ryuta Suzuki",
+   "stat": "Denka Big Swan Stadium",
+   "ev_id": 1116,
+   "dep_id": 4783,
+   "dizilis": {
+    "ev": {
+     "takim": "Albirex Niigata",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Chika Hirao",
+        "sd_id": 17996
+       }
+      ],
+      [
+       {
+        "ad": "Saori Ariyoshi",
+        "sd_id": 12774
+       },
+       {
+        "ad": "Yurie Shirasawa",
+        "sd_id": 64506
+       },
+       {
+        "ad": "Mizuki Sonoda",
+        "sd_id": 43133
+       },
+       {
+        "ad": "Chiho Takanashi",
+        "sd_id": 113310
+       },
+       {
+        "ad": "Ema Yokoyama",
+        "sd_id": 106548
+       }
+      ],
+      [
+       {
+        "ad": "Yui Shimoyoshi",
+        "sd_id": 106547
+       },
+       {
+        "ad": "Yume Takikawa",
+        "sd_id": 43050
+       }
+      ],
+      [
+       {
+        "ad": "Nahomi Kawasumi",
+        "sd_id": 5938
+       },
+       {
+        "ad": "Kanami Shinbori",
+        "sd_id": 48628
+       },
+       {
+        "ad": "Seira Tanaka",
+        "sd_id": 64507
+       }
+      ]
+     ],
+     "teknik": "Yuji Sakakura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Vegalta Sendai",
+     "sema": "4-5-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Shiori Shimizu",
+        "sd_id": 48334
+       }
+      ],
+      [
+       {
+        "ad": "Nonoha Abe",
+        "sd_id": 70366
+       },
+       {
+        "ad": "Satsuki Miura",
+        "sd_id": 43062
+       },
+       {
+        "ad": "Akane Nishino",
+        "sd_id": 37769
+       }
+      ],
+      [
+       {
+        "ad": "Yume Endo",
+        "sd_id": 86523
+       },
+       {
+        "ad": "Hina Inoue",
+        "sd_id": 44554
+       },
+       {
+        "ad": "Hana Kikuchi",
+        "sd_id": 85214
+       },
+       {
+        "ad": "Moe Ota",
+        "sd_id": 56789
+       },
+       {
+        "ad": "Niina Sato",
+        "sd_id": 107801
+       }
+      ],
+      [
+       {
+        "ad": "Satoko Fujisaki",
+        "sd_id": 106342
+       },
+       {
+        "ad": "Miyu Yakata",
+        "sd_id": 44569
+       }
+      ]
+     ],
+     "teknik": "Futoshi Ikeda",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Miyu Yakata",
+     "sd_id": 44569,
+     "dk": "6",
+     "tur": "Right-foot shot",
+     "asist": "Hana Kikuchi",
+     "asist_sd_id": 85214,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Yume Takikawa",
+     "sd_id": 43050,
+     "dk": "21",
+     "tur": "Right-foot shot",
+     "asist": "Yui Shimoyoshi",
+     "asist_sd_id": 106547,
+     "asist_tur": "shot on goal"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Yui Shimoyoshi",
+     "sd_id": 106547,
+     "dk": "47",
+     "tur": "Direct free kick"
+    },
+    {
+     "skor": "2:2",
+     "taraf": "dep",
+     "ad": "Hitomi Shibata",
+     "sd_id": 79092,
+     "dk": "57",
+     "tur": "Right-foot shot",
+     "asist": "Yume Endo",
+     "asist_sd_id": 86523,
+     "asist_tur": "Corner"
+    },
+    {
+     "skor": "3:2",
+     "taraf": "ev",
+     "ad": "Reina Shirowa",
+     "sd_id": 59320,
+     "dk": "90+1",
+     "tur": "Header goal",
+     "asist": "Yui Shimoyoshi",
+     "asist_sd_id": 106547,
+     "asist_tur": "Free kick"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "68",
+     "cikan": "Seira Tanaka",
+     "cikan_sd_id": 64507,
+     "giren": "Reina Shirowa",
+     "giren_sd_id": 59320,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "68",
+     "cikan": "Nahomi Kawasumi",
+     "cikan_sd_id": 5938,
+     "giren": "Yuina Yamamoto",
+     "giren_sd_id": 61166,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "82",
+     "cikan": "Saori Ariyoshi",
+     "cikan_sd_id": 12774,
+     "giren": "Ruka Yamaya",
+     "giren_sd_id": 43137,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90",
+     "cikan": "Yume Takikawa",
+     "cikan_sd_id": 43050,
+     "giren": "Megumi Kamionobe",
+     "giren_sd_id": 5937,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90",
+     "cikan": "Kanami Shinbori",
+     "cikan_sd_id": 48628,
+     "giren": "Anna Ezaki",
+     "giren_sd_id": 44319,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Satoko Fujisaki",
+     "cikan_sd_id": 106342,
+     "giren": "Hitomi Shibata",
+     "giren_sd_id": 79092,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Hana Kikuchi",
+     "cikan_sd_id": 85214,
+     "giren": "Seira Esaki",
+     "giren_sd_id": 107804,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Miyu Yakata",
+     "cikan_sd_id": 44569,
+     "giren": "Honoka Shinoda",
+     "giren_sd_id": 77967,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "86",
+     "cikan": "Niina Sato",
+     "cikan_sd_id": 107801,
+     "giren": "Kotone Nakano",
+     "giren_sd_id": 107478,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "38",
+     "ad": "Saori Ariyoshi",
+     "sd_id": 12774,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Chika Hirao",
+      "sd_id": 17996,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 6,
+      "ad": "Saori Ariyoshi",
+      "sd_id": 12774,
+      "mevki": "Defence",
+      "yas": 38
+     },
+     {
+      "no": 5,
+      "ad": "Yurie Shirasawa",
+      "sd_id": 64506,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 7,
+      "ad": "Mizuki Sonoda",
+      "sd_id": 43133,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 25,
+      "ad": "Chiho Takanashi",
+      "sd_id": 113310,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Ema Yokoyama",
+      "sd_id": 106548,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "Yui Shimoyoshi",
+      "sd_id": 106547,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 17,
+      "ad": "Yume Takikawa",
+      "sd_id": 43050,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 9,
+      "ad": "Nahomi Kawasumi",
+      "sd_id": 5938,
+      "mevki": "Striker",
+      "yas": 40
+     },
+     {
+      "no": 11,
+      "ad": "Kanami Shinbori",
+      "sd_id": 48628,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 33,
+      "ad": "Seira Tanaka",
+      "sd_id": 64507,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ],
+    "dep": [
+     {
+      "no": 15,
+      "ad": "Shiori Shimizu",
+      "sd_id": 48334,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 19,
+      "ad": "Nonoha Abe",
+      "sd_id": 70366,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Satsuki Miura",
+      "sd_id": 43062,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Akane Nishino",
+      "sd_id": 37769,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Yume Endo",
+      "sd_id": 86523,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 6,
+      "ad": "Hina Inoue",
+      "sd_id": 44554,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 20,
+      "ad": "Hana Kikuchi",
+      "sd_id": 85214,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 25,
+      "ad": "Moe Ota",
+      "sd_id": 56789,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 18,
+      "ad": "Niina Sato",
+      "sd_id": 107801,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Satoko Fujisaki",
+      "sd_id": 106342,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 13,
+      "ad": "Miyu Yakata",
+      "sd_id": 44569,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 31,
+      "ad": "Fubuki Kuno",
+      "sd_id": 12724,
+      "mevki": "Goalkeeper",
+      "yas": 36
+     },
+     {
+      "no": 16,
+      "ad": "Chihiro Tomioka",
+      "sd_id": 37761,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 20,
+      "ad": "Ruka Yamaya",
+      "sd_id": 43137,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 18,
+      "ad": "Anna Ezaki",
+      "sd_id": 44319,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 10,
+      "ad": "Megumi Kamionobe",
+      "sd_id": 5937,
+      "mevki": "Midfield",
+      "yas": 40
+     },
+     {
+      "no": 19,
+      "ad": "Reina Shirowa",
+      "sd_id": 59320,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 23,
+      "ad": "Yuina Yamamoto",
+      "sd_id": 61166,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ],
+    "dep": [
+     {
+      "no": 16,
+      "ad": "Miyu Yokobori",
+      "sd_id": 107805,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 28,
+      "ad": "Miina Matsunaga",
+      "sd_id": 44324,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 27,
+      "ad": "Kotone Nakano",
+      "sd_id": 107478,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 8,
+      "ad": "Seira Esaki",
+      "sd_id": 107804,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 7,
+      "ad": "Honoka Shinoda",
+      "sd_id": 77967,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 50,
+      "ad": "Miyu Matsui",
+      "sd_id": 110846,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 23,
+      "ad": "Hitomi Shibata",
+      "sd_id": 79092,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169525,
+   "hafta": 2,
+   "ev": "JEF United Chiba",
+   "dep": "Cerezo Osaka Sakai Ladies",
+   "tarih": "30.08.2026",
+   "skor": "1:3",
+   "iy": "0:2",
+   "hafta_sd": 2,
+   "saat": "11:00",
+   "seyirci": 1087,
+   "hakem": "Satomi Arakawa",
+   "stat": "Fukuda Denshi Arena",
+   "ev_id": 1120,
+   "dep_id": 6670,
+   "dizilis": {
+    "ev": {
+     "takim": "JEF United Chiba",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Miku Shimizu",
+        "sd_id": 107740
+       }
+      ],
+      [
+       {
+        "ad": "Makoto Hasuwa",
+        "sd_id": 73339
+       },
+       {
+        "ad": "Kanae Hayashi",
+        "sd_id": 43056
+       },
+       {
+        "ad": "Nanami Ishida",
+        "sd_id": 53775
+       },
+       {
+        "ad": "Sumire Suzuki",
+        "sd_id": 110887
+       },
+       {
+        "ad": "Mariko Tanaka",
+        "sd_id": 43067
+       }
+      ],
+      [
+       {
+        "ad": "Miyu Inayama",
+        "sd_id": 107506
+       },
+       {
+        "ad": "Runa Sumiya",
+        "sd_id": 107507
+       }
+      ],
+      [
+       {
+        "ad": "Ayaka Inoue",
+        "sd_id": 18178
+       },
+       {
+        "ad": "Runa Masano",
+        "sd_id": 82275
+       },
+       {
+        "ad": "Yuki Ogawa",
+        "sd_id": 82069
+       }
+      ]
+     ],
+     "teknik": "Karmele Torés",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Cerezo Osaka Sakai Ladies",
+     "sema": "3-4-3",
+     "hatlar": [
+      [
+       {
+        "ad": "Maho Nishinaka",
+        "sd_id": 44546
+       }
+      ],
+      [
+       {
+        "ad": "Rina Nakatani",
+        "sd_id": 56138
+       },
+       {
+        "ad": "Hiromi Yoneda",
+        "sd_id": 76343
+       },
+       {
+        "ad": "Honoka Yotsumoto",
+        "sd_id": 110823
+       }
+      ],
+      [
+       {
+        "ad": "Yumi Hayashi",
+        "sd_id": 122102
+       },
+       {
+        "ad": "Hikari Miyamoto",
+        "sd_id": 44561
+       },
+       {
+        "ad": "Miyuka Momono",
+        "sd_id": 44562
+       },
+       {
+        "ad": "Serika Takawa",
+        "sd_id": 48467
+       },
+       {
+        "ad": "Reina Wakisaka",
+        "sd_id": 44568
+       }
+      ],
+      [
+       {
+        "ad": "Saori Takarada",
+        "sd_id": 35816
+       },
+       {
+        "ad": "Asaki Wada",
+        "sd_id": 75989
+       }
+      ]
+     ],
+     "teknik": "Takeo Matsuda",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Saori Takarada",
+     "sd_id": 35816,
+     "dk": "24",
+     "tur": "Right-foot shot",
+     "asist": "Asaki Wada",
+     "asist_sd_id": 75989,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "0:2",
+     "taraf": "dep",
+     "ad": "Serika Takawa",
+     "sd_id": 48467,
+     "dk": "30",
+     "tur": "Right-foot shot",
+     "asist": "Honoka Yotsumoto",
+     "asist_sd_id": 110823,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "0:3",
+     "taraf": "dep",
+     "ad": "Reina Wakisaka",
+     "sd_id": 44568,
+     "dk": "79",
+     "tur": "Right-foot shot",
+     "asist": "Mahiro Asayama",
+     "asist_sd_id": 56137,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "1:3",
+     "taraf": "ev",
+     "ad": "Makoto Hasuwa",
+     "sd_id": 73339,
+     "dk": "85",
+     "tur": "Left-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Sumire Suzuki",
+     "cikan_sd_id": 110887,
+     "giren": "Chihiro Yamaguchi",
+     "giren_sd_id": 44589,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Runa Masano",
+     "cikan_sd_id": 82275,
+     "giren": "Ami Uemoto",
+     "giren_sd_id": 107509,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "73",
+     "cikan": "Runa Sumiya",
+     "cikan_sd_id": 107507,
+     "giren": "Sakura Masuda",
+     "giren_sd_id": 102529,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "cikan": "Miyu Inayama",
+     "cikan_sd_id": 107506,
+     "giren": "Mai Kokubo",
+     "giren_sd_id": 122343,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "cikan": "Ayaka Inoue",
+     "cikan_sd_id": 18178,
+     "giren": "Ami Kitazawa",
+     "giren_sd_id": 73895,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "73",
+     "cikan": "Serika Takawa",
+     "cikan_sd_id": 48467,
+     "giren": "Mahiro Asayama",
+     "giren_sd_id": 56137,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "82",
+     "cikan": "Reina Wakisaka",
+     "cikan_sd_id": 44568,
+     "giren": "Haruka Kubota",
+     "giren_sd_id": 55779,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "82",
+     "cikan": "Miyuka Momono",
+     "cikan_sd_id": 44562,
+     "giren": "Shuka Kitahara",
+     "giren_sd_id": 44556,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Hiromi Yoneda",
+     "cikan_sd_id": 76343,
+     "giren": "Yuri Ogikubo",
+     "giren_sd_id": 48466,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Saori Takarada",
+     "cikan_sd_id": 35816,
+     "giren": "Amy Yoneda",
+     "giren_sd_id": 114240,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "60",
+     "ad": "Makoto Hasuwa",
+     "sd_id": 73339,
+     "kart": "yellow card",
+     "neden": "Foul"
+    },
+    {
+     "taraf": "dep",
+     "dk": "85",
+     "ad": "Honoka Yotsumoto",
+     "sd_id": 110823,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Miku Shimizu",
+      "sd_id": 107740,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 6,
+      "ad": "Makoto Hasuwa",
+      "sd_id": 73339,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 4,
+      "ad": "Kanae Hayashi",
+      "sd_id": 43056,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 3,
+      "ad": "Nanami Ishida",
+      "sd_id": 53775,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 99,
+      "ad": "Sumire Suzuki",
+      "sd_id": 110887,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 5,
+      "ad": "Mariko Tanaka",
+      "sd_id": 43067,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 18,
+      "ad": "Miyu Inayama",
+      "sd_id": 107506,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 13,
+      "ad": "Runa Sumiya",
+      "sd_id": 107507,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 9,
+      "ad": "Ayaka Inoue",
+      "sd_id": 18178,
+      "mevki": "Striker",
+      "yas": 31
+     },
+     {
+      "no": 20,
+      "ad": "Runa Masano",
+      "sd_id": 82275,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 10,
+      "ad": "Yuki Ogawa",
+      "sd_id": 82069,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ],
+    "dep": [
+     {
+      "no": 27,
+      "ad": "Maho Nishinaka",
+      "sd_id": 44546,
+      "mevki": "Goalkeeper",
+      "yas": 28
+     },
+     {
+      "no": 17,
+      "ad": "Rina Nakatani",
+      "sd_id": 56138,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 3,
+      "ad": "Hiromi Yoneda",
+      "sd_id": 76343,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 4,
+      "ad": "Honoka Yotsumoto",
+      "sd_id": 110823,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 35,
+      "ad": "Yumi Hayashi",
+      "sd_id": 122102,
+      "mevki": "Midfield",
+      "yas": 16
+     },
+     {
+      "no": 18,
+      "ad": "Hikari Miyamoto",
+      "sd_id": 44561,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Miyuka Momono",
+      "sd_id": 44562,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 14,
+      "ad": "Serika Takawa",
+      "sd_id": 48467,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Reina Wakisaka",
+      "sd_id": 44568,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Saori Takarada",
+      "sd_id": 35816,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Asaki Wada",
+      "sd_id": 75989,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 30,
+      "ad": "Kaede Adachi",
+      "sd_id": 85201,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 16,
+      "ad": "Ella Johnson",
+      "sd_id": 120729,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 25,
+      "ad": "Sakura Masuda",
+      "sd_id": 102529,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 14,
+      "ad": "Ami Uemoto",
+      "sd_id": 107509,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 17,
+      "ad": "Chihiro Yamaguchi",
+      "sd_id": 44589,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 84,
+      "ad": "Ami Kitazawa",
+      "sd_id": 73895,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 47,
+      "ad": "Mai Kokubo",
+      "sd_id": 122343,
+      "mevki": "Striker",
+      "yas": 17
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Kokona Ishida",
+      "sd_id": 44543,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Mahiro Asayama",
+      "sd_id": 56137,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Haruka Kubota",
+      "sd_id": 55779,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 7,
+      "ad": "Yuri Ogikubo",
+      "sd_id": 48466,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 26,
+      "ad": "Shuka Kitahara",
+      "sd_id": 44556,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 15,
+      "ad": "Amy Yoneda",
+      "sd_id": 114240,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 16,
+      "ad": "Maia Takeuchi",
+      "sd_id": 121473,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169526,
+   "hafta": 2,
+   "ev": "AS Elfen Sayama",
+   "dep": "INAC Kobe Leonessa",
+   "tarih": "30.08.2026",
+   "skor": "2:1",
+   "iy": "1:0",
+   "hafta_sd": 2,
+   "saat": "11:00",
+   "seyirci": 1342,
+   "hakem": "Kotomi Omura",
+   "stat": "Kumagaya Athletic Stadium",
+   "ev_id": 1117,
+   "dep_id": 180,
+   "dizilis": {
+    "ev": {
+     "takim": "AS Elfen Sayama",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Natsumi Asano",
+        "sd_id": 22888
+       }
+      ],
+      [
+       {
+        "ad": "Maho Hirao",
+        "sd_id": 55816
+       },
+       {
+        "ad": "Shoko Miaki",
+        "sd_id": 116436
+       },
+       {
+        "ad": "Sakurako Ohashi",
+        "sd_id": 117125
+       },
+       {
+        "ad": "Kokoro Otaka",
+        "sd_id": 110810
+       }
+      ],
+      [
+       {
+        "ad": "Yuki Seno",
+        "sd_id": 44330
+       },
+       {
+        "ad": "Kozue Setoguchi",
+        "sd_id": 23145
+       },
+       {
+        "ad": "Hina Takahashi",
+        "sd_id": 84930
+       },
+       {
+        "ad": "Yui Tanaka",
+        "sd_id": 110811
+       }
+      ],
+      [
+       {
+        "ad": "Nanasa Ikuta",
+        "sd_id": 110809
+       },
+       {
+        "ad": "Shoko Uemura",
+        "sd_id": 43032
+       }
+      ]
+     ],
+     "teknik": "Yasuhiro Higuchi",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "INAC Kobe Leonessa",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Momoko Tanaka",
+        "sd_id": 44633
+       }
+      ],
+      [
+       {
+        "ad": "Natsume Kingetsu",
+        "sd_id": 85205
+       },
+       {
+        "ad": "Kana Matsuura",
+        "sd_id": 117128
+       },
+       {
+        "ad": "Shiori Miyake",
+        "sd_id": 18016
+       }
+      ],
+      [
+       {
+        "ad": "Azumi Manriki",
+        "sd_id": 120542
+       },
+       {
+        "ad": "Yui Narumiya",
+        "sd_id": 18011
+       },
+       {
+        "ad": "Tamaki Okuma",
+        "sd_id": 37759
+       },
+       {
+        "ad": "Maya Yamamoto",
+        "sd_id": 42259
+       }
+      ],
+      [
+       {
+        "ad": "Ai Kuwahara",
+        "sd_id": 81927
+       },
+       {
+        "ad": "Ai Tsujisawa",
+        "sd_id": 79098
+       },
+       {
+        "ad": "Riko Yoshida",
+        "sd_id": 48326
+       }
+      ]
+     ],
+     "teknik": "Tomomi Miyamoto",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Shoko Uemura",
+     "sd_id": 43032,
+     "dk": "8",
+     "tur": "Left-foot shot",
+     "asist": "Maho Hirao",
+     "asist_sd_id": 55816,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Riko Yoshida",
+     "sd_id": 48326,
+     "dk": "59",
+     "tur": "Right-foot shot",
+     "asist": "Yui Narumiya",
+     "asist_sd_id": 18011,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Miki Sakuma",
+     "sd_id": 76740,
+     "dk": "90+4",
+     "tur": "Header goal",
+     "asist": "Miu Tochitani",
+     "asist_sd_id": 107532,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "66",
+     "cikan": "Hina Takahashi",
+     "cikan_sd_id": 84930,
+     "giren": "Miu Tochitani",
+     "giren_sd_id": 107532,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Shoko Uemura",
+     "cikan_sd_id": 43032,
+     "giren": "Yoshino Osone",
+     "giren_sd_id": 84931,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90",
+     "cikan": "Maho Hirao",
+     "cikan_sd_id": 55816,
+     "giren": "Miki Sakuma",
+     "giren_sd_id": 76740,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90",
+     "cikan": "Yui Tanaka",
+     "cikan_sd_id": 110811,
+     "giren": "Minori Kishi",
+     "giren_sd_id": 48612,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Maya Yamamoto",
+     "cikan_sd_id": 42259,
+     "giren": "Mao Kubota",
+     "giren_sd_id": 79095,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Ai Tsujisawa",
+     "cikan_sd_id": 79098,
+     "giren": "Megumi Takase",
+     "giren_sd_id": 5944,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "76",
+     "cikan": "Azumi Manriki",
+     "cikan_sd_id": 120542,
+     "giren": "Chisato Minowa",
+     "giren_sd_id": 70370,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "76",
+     "cikan": "Natsume Kingetsu",
+     "cikan_sd_id": 85205,
+     "giren": "Arisu Ota",
+     "giren_sd_id": 106542,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "90",
+     "cikan": "Kana Matsuura",
+     "cikan_sd_id": 117128,
+     "giren": "Ayaka Michigami",
+     "giren_sd_id": 16773,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "62",
+     "ad": "Kozue Setoguchi",
+     "sd_id": 23145,
+     "kart": "yellow card",
+     "neden": "Delay of game"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Natsumi Asano",
+      "sd_id": 22888,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 4,
+      "ad": "Maho Hirao",
+      "sd_id": 55816,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 32,
+      "ad": "Shoko Miaki",
+      "sd_id": 116436,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 35,
+      "ad": "Sakurako Ohashi",
+      "sd_id": 117125,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 25,
+      "ad": "Kokoro Otaka",
+      "sd_id": 110810,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Yuki Seno",
+      "sd_id": 44330,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 5,
+      "ad": "Kozue Setoguchi",
+      "sd_id": 23145,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 18,
+      "ad": "Hina Takahashi",
+      "sd_id": 84930,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Yui Tanaka",
+      "sd_id": 110811,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 10,
+      "ad": "Nanasa Ikuta",
+      "sd_id": 110809,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Shoko Uemura",
+      "sd_id": 43032,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Momoko Tanaka",
+      "sd_id": 44633,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 18,
+      "ad": "Natsume Kingetsu",
+      "sd_id": 85205,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 30,
+      "ad": "Kana Matsuura",
+      "sd_id": 117128,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Shiori Miyake",
+      "sd_id": 18016,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 22,
+      "ad": "Azumi Manriki",
+      "sd_id": 120542,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Yui Narumiya",
+      "sd_id": 18011,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 25,
+      "ad": "Tamaki Okuma",
+      "sd_id": 37759,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Maya Yamamoto",
+      "sd_id": 42259,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 13,
+      "ad": "Ai Kuwahara",
+      "sd_id": 81927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 29,
+      "ad": "Ai Tsujisawa",
+      "sd_id": 79098,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 9,
+      "ad": "Riko Yoshida",
+      "sd_id": 48326,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 51,
+      "ad": "Saion Yamada",
+      "sd_id": 116235,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 20,
+      "ad": "Minori Kishi",
+      "sd_id": 48612,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 13,
+      "ad": "Miki Sakuma",
+      "sd_id": 76740,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 16,
+      "ad": "Miu Tochitani",
+      "sd_id": 107532,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 24,
+      "ad": "Yoshino Osone",
+      "sd_id": 84931,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 29,
+      "ad": "Asako Yamashita",
+      "sd_id": 113586,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 36,
+      "ad": "Yuna Nakamura",
+      "sd_id": 120398,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 99,
+      "ad": "Mayu Funada",
+      "sd_id": 12748,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 15,
+      "ad": "Natsuki Matsuo",
+      "sd_id": 73372,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 17,
+      "ad": "Chisato Minowa",
+      "sd_id": 70370,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 20,
+      "ad": "Arisu Ota",
+      "sd_id": 106542,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 19,
+      "ad": "Mao Kubota",
+      "sd_id": 79095,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 16,
+      "ad": "Ayaka Michigami",
+      "sd_id": 16773,
+      "mevki": "Striker",
+      "yas": 32
+     },
+     {
+      "no": 11,
+      "ad": "Megumi Takase",
+      "sd_id": 5944,
+      "mevki": "Striker",
+      "yas": 35
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169527,
+   "hafta": 2,
+   "ev": "Urawa Reds",
+   "dep": "Nojima Stella Kanagawa",
+   "tarih": "30.08.2026",
+   "skor": "5:1",
+   "iy": "1:1",
+   "hafta_sd": 2,
+   "saat": "11:00",
+   "seyirci": 2519,
+   "hakem": "Yurina Tazawa",
+   "stat": "Urawa Komaba Stadium",
+   "ev_id": 397,
+   "dep_id": 5557,
+   "dizilis": {
+    "ev": {
+     "takim": "Urawa Reds",
+     "sema": "4-1-4-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Sakiko Ikeda",
+        "sd_id": 14455
+       }
+      ],
+      [
+       {
+        "ad": "Nonoka Nagao",
+        "sd_id": 116547
+       },
+       {
+        "ad": "Reina Nagashima",
+        "sd_id": 43030
+       },
+       {
+        "ad": "Hana Takahashi",
+        "sd_id": 35797
+       }
+      ],
+      [
+       {
+        "ad": "Miki Ito",
+        "sd_id": 18000
+       },
+       {
+        "ad": "Chika Kato",
+        "sd_id": 14450
+       },
+       {
+        "ad": "Maria Kikuchi",
+        "sd_id": 48438
+       },
+       {
+        "ad": "Kotono Sakakibara",
+        "sd_id": 86563
+       },
+       {
+        "ad": "Madoka Sakurai",
+        "sd_id": 71380
+       },
+       {
+        "ad": "Laurie Teinturier",
+        "sd_id": 19719
+       },
+       {
+        "ad": "Sunshine Fontes",
+        "sd_id": 35363
+       }
+      ]
+     ],
+     "teknik": "Takafumi Hori",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Nojima Stella Kanagawa",
+     "sema": "4-4-1-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Yuka Kazama",
+        "sd_id": 43040
+       }
+      ],
+      [
+       {
+        "ad": "Shiori Akira",
+        "sd_id": 85206
+       },
+       {
+        "ad": "An Nanri",
+        "sd_id": 101420
+       },
+       {
+        "ad": "Risako Oga",
+        "sd_id": 39527
+       },
+       {
+        "ad": "Riko Tsutsui",
+        "sd_id": 44547
+       }
+      ],
+      [
+       {
+        "ad": "Juri Ito",
+        "sd_id": 56133
+       },
+       {
+        "ad": "Himeno Shirai",
+        "sd_id": 43132
+       },
+       {
+        "ad": "Hikaru Yumura",
+        "sd_id": 48328
+       }
+      ],
+      [
+       {
+        "ad": "Yuna Katayama",
+        "sd_id": 55737
+       },
+       {
+        "ad": "Mayu Otake",
+        "sd_id": 48373
+       },
+       {
+        "ad": "Chinari Sasai",
+        "sd_id": 78403
+       }
+      ]
+     ],
+     "teknik": "Tadashi Ogasahara",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Mayu Otake",
+     "sd_id": 48373,
+     "dk": "37",
+     "tur": "Penalty",
+     "asist": "Reina Nagashima",
+     "asist_sd_id": 43030,
+     "asist_tur": "Penalty: handball by"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Maria Kikuchi",
+     "sd_id": 48438,
+     "dk": "45+1",
+     "tur": "Left-foot shot"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Akimi Kawafune",
+     "sd_id": 43039,
+     "dk": "63",
+     "tur": "Left-foot shot",
+     "asist": "Kotono Sakakibara",
+     "asist_sd_id": 86563,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "3:1",
+     "taraf": "ev",
+     "ad": "Kyoka Goshima",
+     "sd_id": 43037,
+     "dk": "71",
+     "tur": "Own goal -"
+    },
+    {
+     "skor": "4:1",
+     "taraf": "ev",
+     "ad": "Akimi Kawafune",
+     "sd_id": 43039,
+     "dk": "83",
+     "tur": "Penalty"
+    },
+    {
+     "skor": "5:1",
+     "taraf": "ev",
+     "ad": "Hanae Shibata",
+     "sd_id": 16772,
+     "dk": "87",
+     "tur": "Left-foot shot",
+     "asist": "Miki Ito",
+     "asist_sd_id": 18000,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Sunshine Fontes",
+     "cikan_sd_id": 35363,
+     "giren": "Akimi Kawafune",
+     "giren_sd_id": 43039,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Laurie Teinturier",
+     "cikan_sd_id": 19719,
+     "giren": "Wakana Onishi",
+     "giren_sd_id": 56115,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Maria Kikuchi",
+     "cikan_sd_id": 48438,
+     "giren": "Ena Takatsuka",
+     "giren_sd_id": 99395,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "80",
+     "cikan": "Chika Kato",
+     "cikan_sd_id": 14450,
+     "giren": "Hanae Shibata",
+     "giren_sd_id": 16772,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "cikan": "Madoka Sakurai",
+     "cikan_sd_id": 71380,
+     "giren": "Kanon Akimoto",
+     "giren_sd_id": 106340,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Himeno Shirai",
+     "cikan_sd_id": 43132,
+     "giren": "Hikari Nagashima",
+     "giren_sd_id": 48362,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Chinari Sasai",
+     "cikan_sd_id": 78403,
+     "giren": "Iku Tsukiji",
+     "giren_sd_id": 107756,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Yuna Katayama",
+     "cikan_sd_id": 55737,
+     "giren": "Kyoka Goshima",
+     "giren_sd_id": 43037,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Shiori Akira",
+     "cikan_sd_id": 85206,
+     "giren": "Natsuki Kishikawa",
+     "giren_sd_id": 22066,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Hikaru Yumura",
+     "cikan_sd_id": 48328,
+     "giren": "Haruna Kawashima",
+     "giren_sd_id": 22402,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sakiko Ikeda",
+      "sd_id": 14455,
+      "mevki": "Goalkeeper",
+      "yas": 33
+     },
+     {
+      "no": 30,
+      "ad": "Nonoka Nagao",
+      "sd_id": 116547,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 13,
+      "ad": "Reina Nagashima",
+      "sd_id": 43030,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 7,
+      "ad": "Hana Takahashi",
+      "sd_id": 35797,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 5,
+      "ad": "Miki Ito",
+      "sd_id": 18000,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 6,
+      "ad": "Chika Kato",
+      "sd_id": 14450,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 14,
+      "ad": "Maria Kikuchi",
+      "sd_id": 48438,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Kotono Sakakibara",
+      "sd_id": 86563,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Madoka Sakurai",
+      "sd_id": 71380,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 21,
+      "ad": "Laurie Teinturier",
+      "sd_id": 19719,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 19,
+      "ad": "Sunshine Fontes",
+      "sd_id": 35363,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Yuka Kazama",
+      "sd_id": 43040,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 24,
+      "ad": "Shiori Akira",
+      "sd_id": 85206,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "An Nanri",
+      "sd_id": 101420,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Risako Oga",
+      "sd_id": 39527,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Riko Tsutsui",
+      "sd_id": 44547,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 4,
+      "ad": "Juri Ito",
+      "sd_id": 56133,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 15,
+      "ad": "Himeno Shirai",
+      "sd_id": 43132,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 29,
+      "ad": "Hikaru Yumura",
+      "sd_id": 48328,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Yuna Katayama",
+      "sd_id": 55737,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Mayu Otake",
+      "sd_id": 48373,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 9,
+      "ad": "Chinari Sasai",
+      "sd_id": 78403,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Shiori Fukuda",
+      "sd_id": 37762,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 22,
+      "ad": "Kanon Akimoto",
+      "sd_id": 106340,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 16,
+      "ad": "Wakana Onishi",
+      "sd_id": 56115,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 18,
+      "ad": "Hanae Shibata",
+      "sd_id": 16772,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 20,
+      "ad": "Ena Takatsuka",
+      "sd_id": 99395,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 26,
+      "ad": "Ririka Tanno",
+      "sd_id": 64508,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 11,
+      "ad": "Akimi Kawafune",
+      "sd_id": 43039,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 16,
+      "ad": "Nagisa Ikejiri",
+      "sd_id": 43026,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 13,
+      "ad": "Kyoka Goshima",
+      "sd_id": 43037,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 3,
+      "ad": "Hikari Nagashima",
+      "sd_id": 48362,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 17,
+      "ad": "Haruna Kawashima",
+      "sd_id": 22402,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 8,
+      "ad": "Natsuki Kishikawa",
+      "sd_id": 22066,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 6,
+      "ad": "Paola Soldevila",
+      "sd_id": 23157,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 19,
+      "ad": "Iku Tsukiji",
+      "sd_id": 107756,
+      "mevki": "Midfield",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169528,
+   "hafta": 3,
+   "ev": "Cerezo Osaka Sakai Ladies",
+   "dep": "Sanfrecce Hiroshima Ladies",
+   "tarih": "05.09.2026",
+   "skor": "0:1",
+   "iy": "0:0",
+   "hafta_sd": 3,
+   "saat": "11:00",
+   "seyirci": 3401,
+   "hakem": "Kotomi Omura",
+   "stat": "YANMAR Stadium Nagai",
+   "ev_id": 6670,
+   "dep_id": 8401,
+   "dizilis": {
+    "ev": {
+     "takim": "Cerezo Osaka Sakai Ladies",
+     "sema": "3-4-3",
+     "hatlar": [
+      [
+       {
+        "ad": "Maho Nishinaka",
+        "sd_id": 44546
+       }
+      ],
+      [
+       {
+        "ad": "Rina Nakatani",
+        "sd_id": 56138
+       },
+       {
+        "ad": "Hiromi Yoneda",
+        "sd_id": 76343
+       },
+       {
+        "ad": "Honoka Yotsumoto",
+        "sd_id": 110823
+       }
+      ],
+      [
+       {
+        "ad": "Yumi Hayashi",
+        "sd_id": 122102
+       },
+       {
+        "ad": "Hikari Miyamoto",
+        "sd_id": 44561
+       },
+       {
+        "ad": "Miyuka Momono",
+        "sd_id": 44562
+       },
+       {
+        "ad": "Serika Takawa",
+        "sd_id": 48467
+       },
+       {
+        "ad": "Reina Wakisaka",
+        "sd_id": 44568
+       }
+      ],
+      [
+       {
+        "ad": "Saori Takarada",
+        "sd_id": 35816
+       },
+       {
+        "ad": "Asaki Wada",
+        "sd_id": 75989
+       }
+      ]
+     ],
+     "teknik": "Takeo Matsuda",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Sanfrecce Hiroshima Ladies",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Runa Konomi",
+        "sd_id": 43061
+       }
+      ],
+      [
+       {
+        "ad": "Kanako Asakura",
+        "sd_id": 73298
+       },
+       {
+        "ad": "Natsumi Fujiu",
+        "sd_id": 102084
+       },
+       {
+        "ad": "Hana Shimada",
+        "sd_id": 101419
+       }
+      ],
+      [
+       {
+        "ad": "Yoshino Nakashima",
+        "sd_id": 48365
+       },
+       {
+        "ad": "Ai Ogawa",
+        "sd_id": 55780
+       },
+       {
+        "ad": "Mami Ueno",
+        "sd_id": 44588
+       },
+       {
+        "ad": "Mai Watanabe",
+        "sd_id": 44335
+       },
+       {
+        "ad": "Funa Yanase",
+        "sd_id": 55784
+       }
+      ],
+      [
+       {
+        "ad": "Chiina Kamiya",
+        "sd_id": 37755
+       },
+       {
+        "ad": "Song-a Ri",
+        "sd_id": 44323
+       }
+      ]
+     ],
+     "teknik": "Shuichi Akai",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Manaka Matsumoto",
+     "sd_id": 56135,
+     "dk": "82",
+     "tur": "Left-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Yumi Hayashi",
+     "cikan_sd_id": 122102,
+     "giren": "Shuka Kitahara",
+     "giren_sd_id": 44556,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Serika Takawa",
+     "cikan_sd_id": 48467,
+     "giren": "Maia Takeuchi",
+     "giren_sd_id": 121473,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Reina Wakisaka",
+     "cikan_sd_id": 44568,
+     "giren": "Mahiro Asayama",
+     "giren_sd_id": 56137,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+1",
+     "cikan": "Asaki Wada",
+     "cikan_sd_id": 75989,
+     "giren": "Haruka Kubota",
+     "giren_sd_id": 55779,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "90+1",
+     "cikan": "Hikari Miyamoto",
+     "cikan_sd_id": 44561,
+     "giren": "Amy Yoneda",
+     "giren_sd_id": 114240,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "63",
+     "cikan": "Song-a Ri",
+     "cikan_sd_id": 44323,
+     "giren": "Manaka Matsumoto",
+     "giren_sd_id": 56135,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "77",
+     "cikan": "Funa Yanase",
+     "cikan_sd_id": 55784,
+     "giren": "Namie Shimabukuro",
+     "giren_sd_id": 43065,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "77",
+     "cikan": "Mami Ueno",
+     "cikan_sd_id": 44588,
+     "giren": "Hanano Koga",
+     "giren_sd_id": 106389,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Ai Ogawa",
+     "cikan_sd_id": 55780,
+     "giren": "Eriko Goya",
+     "giren_sd_id": 44575,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Yoshino Nakashima",
+     "cikan_sd_id": 48365,
+     "giren": "Miku Hayama",
+     "giren_sd_id": 101638,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 27,
+      "ad": "Maho Nishinaka",
+      "sd_id": 44546,
+      "mevki": "Goalkeeper",
+      "yas": 28
+     },
+     {
+      "no": 17,
+      "ad": "Rina Nakatani",
+      "sd_id": 56138,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 3,
+      "ad": "Hiromi Yoneda",
+      "sd_id": 76343,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 4,
+      "ad": "Honoka Yotsumoto",
+      "sd_id": 110823,
+      "mevki": "Defence",
+      "yas": 17
+     },
+     {
+      "no": 35,
+      "ad": "Yumi Hayashi",
+      "sd_id": 122102,
+      "mevki": "Midfield",
+      "yas": 16
+     },
+     {
+      "no": 18,
+      "ad": "Hikari Miyamoto",
+      "sd_id": 44561,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 13,
+      "ad": "Miyuka Momono",
+      "sd_id": 44562,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 14,
+      "ad": "Serika Takawa",
+      "sd_id": 48467,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Reina Wakisaka",
+      "sd_id": 44568,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 11,
+      "ad": "Saori Takarada",
+      "sd_id": 35816,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 9,
+      "ad": "Asaki Wada",
+      "sd_id": 75989,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Runa Konomi",
+      "sd_id": 43061,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 4,
+      "ad": "Kanako Asakura",
+      "sd_id": 73298,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 15,
+      "ad": "Natsumi Fujiu",
+      "sd_id": 102084,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 38,
+      "ad": "Hana Shimada",
+      "sd_id": 101419,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 11,
+      "ad": "Yoshino Nakashima",
+      "sd_id": 48365,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Ai Ogawa",
+      "sd_id": 55780,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 9,
+      "ad": "Mami Ueno",
+      "sd_id": 44588,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 18,
+      "ad": "Mai Watanabe",
+      "sd_id": 44335,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 23,
+      "ad": "Funa Yanase",
+      "sd_id": 55784,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Chiina Kamiya",
+      "sd_id": 37755,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 30,
+      "ad": "Song-a Ri",
+      "sd_id": 44323,
+      "mevki": "Striker",
+      "yas": 27
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 21,
+      "ad": "Kokona Ishida",
+      "sd_id": 44543,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Mahiro Asayama",
+      "sd_id": 56137,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 6,
+      "ad": "Haruka Kubota",
+      "sd_id": 55779,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 7,
+      "ad": "Yuri Ogikubo",
+      "sd_id": 48466,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 26,
+      "ad": "Shuka Kitahara",
+      "sd_id": 44556,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 15,
+      "ad": "Amy Yoneda",
+      "sd_id": 114240,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 16,
+      "ad": "Maia Takeuchi",
+      "sd_id": 121473,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 22,
+      "ad": "Nanami Fujita",
+      "sd_id": 55778,
+      "mevki": "Goalkeeper",
+      "yas": 28
+     },
+     {
+      "no": 3,
+      "ad": "Eriko Goya",
+      "sd_id": 44575,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 16,
+      "ad": "Miku Hayama",
+      "sd_id": 101638,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 7,
+      "ad": "Megumi Ito",
+      "sd_id": 59322,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 14,
+      "ad": "Manaka Matsumoto",
+      "sd_id": 56135,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 20,
+      "ad": "Namie Shimabukuro",
+      "sd_id": 43065,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 28,
+      "ad": "Hanano Koga",
+      "sd_id": 106389,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169529,
+   "hafta": 3,
+   "ev": "JEF United Chiba",
+   "dep": "Vegalta Sendai",
+   "tarih": "05.09.2026",
+   "skor": "2:0",
+   "iy": "1:0",
+   "hafta_sd": 3,
+   "saat": "11:00",
+   "seyirci": 1104,
+   "hakem": "Azusa Sugino",
+   "stat": "Fukuda Denshi Arena",
+   "ev_id": 1120,
+   "dep_id": 4783,
+   "dizilis": {
+    "ev": {
+     "takim": "JEF United Chiba",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Miku Shimizu",
+        "sd_id": 107740
+       }
+      ],
+      [
+       {
+        "ad": "Makoto Hasuwa",
+        "sd_id": 73339
+       },
+       {
+        "ad": "Kanae Hayashi",
+        "sd_id": 43056
+       },
+       {
+        "ad": "Nanami Ishida",
+        "sd_id": 53775
+       },
+       {
+        "ad": "Mariko Tanaka",
+        "sd_id": 43067
+       }
+      ],
+      [
+       {
+        "ad": "Miyu Inayama",
+        "sd_id": 107506
+       },
+       {
+        "ad": "Runa Sumiya",
+        "sd_id": 107507
+       },
+       {
+        "ad": "Ami Uemoto",
+        "sd_id": 107509
+       },
+       {
+        "ad": "Chihiro Yamaguchi",
+        "sd_id": 44589
+       }
+      ],
+      [
+       {
+        "ad": "Ayaka Inoue",
+        "sd_id": 18178
+       },
+       {
+        "ad": "Yuki Ogawa",
+        "sd_id": 82069
+       }
+      ]
+     ],
+     "teknik": "Karmele Torés",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Vegalta Sendai",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Shiori Shimizu",
+        "sd_id": 48334
+       }
+      ],
+      [
+       {
+        "ad": "Nonoha Abe",
+        "sd_id": 70366
+       },
+       {
+        "ad": "Satsuki Miura",
+        "sd_id": 43062
+       },
+       {
+        "ad": "Akane Nishino",
+        "sd_id": 37769
+       }
+      ],
+      [
+       {
+        "ad": "Yume Endo",
+        "sd_id": 86523
+       },
+       {
+        "ad": "Seira Esaki",
+        "sd_id": 107804
+       },
+       {
+        "ad": "Hina Inoue",
+        "sd_id": 44554
+       },
+       {
+        "ad": "Hana Kikuchi",
+        "sd_id": 85214
+       },
+       {
+        "ad": "Moe Ota",
+        "sd_id": 56789
+       },
+       {
+        "ad": "Niina Sato",
+        "sd_id": 107801
+       }
+      ],
+      [
+       {
+        "ad": "Miyu Yakata",
+        "sd_id": 44569
+       }
+      ]
+     ],
+     "teknik": "Futoshi Ikeda",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Ayaka Inoue",
+     "sd_id": 18178,
+     "dk": "26",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Yuki Ogawa",
+     "sd_id": 82069,
+     "dk": "77",
+     "tur": "Left-foot shot",
+     "asist": "Ayaka Inoue",
+     "asist_sd_id": 18178,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "66",
+     "cikan": "Kanae Hayashi",
+     "cikan_sd_id": 43056,
+     "giren": "Ella Johnson",
+     "giren_sd_id": 120729,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "77",
+     "cikan": "Mariko Tanaka",
+     "cikan_sd_id": 43067,
+     "giren": "Sumire Suzuki",
+     "giren_sd_id": 110887,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "77",
+     "cikan": "Runa Sumiya",
+     "cikan_sd_id": 107507,
+     "giren": "Sakura Masuda",
+     "giren_sd_id": 102529,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "cikan": "Miyu Inayama",
+     "cikan_sd_id": 107506,
+     "giren": "Amyu Hirai",
+     "giren_sd_id": 107474,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "66",
+     "cikan": "Seira Esaki",
+     "cikan_sd_id": 107804,
+     "giren": "Rinka Iwata",
+     "giren_sd_id": 107803,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "66",
+     "cikan": "Hana Kikuchi",
+     "cikan_sd_id": 85214,
+     "giren": "Honoka Shinoda",
+     "giren_sd_id": 77967,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Miyu Yakata",
+     "cikan_sd_id": 44569,
+     "giren": "Miyu Matsui",
+     "giren_sd_id": 110846,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Miku Shimizu",
+      "sd_id": 107740,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 6,
+      "ad": "Makoto Hasuwa",
+      "sd_id": 73339,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 4,
+      "ad": "Kanae Hayashi",
+      "sd_id": 43056,
+      "mevki": "Defence",
+      "yas": 32
+     },
+     {
+      "no": 3,
+      "ad": "Nanami Ishida",
+      "sd_id": 53775,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 5,
+      "ad": "Mariko Tanaka",
+      "sd_id": 43067,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 18,
+      "ad": "Miyu Inayama",
+      "sd_id": 107506,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 13,
+      "ad": "Runa Sumiya",
+      "sd_id": 107507,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 14,
+      "ad": "Ami Uemoto",
+      "sd_id": 107509,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 17,
+      "ad": "Chihiro Yamaguchi",
+      "sd_id": 44589,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 9,
+      "ad": "Ayaka Inoue",
+      "sd_id": 18178,
+      "mevki": "Striker",
+      "yas": 31
+     },
+     {
+      "no": 10,
+      "ad": "Yuki Ogawa",
+      "sd_id": 82069,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ],
+    "dep": [
+     {
+      "no": 15,
+      "ad": "Shiori Shimizu",
+      "sd_id": 48334,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 19,
+      "ad": "Nonoha Abe",
+      "sd_id": 70366,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Satsuki Miura",
+      "sd_id": 43062,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Akane Nishino",
+      "sd_id": 37769,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Yume Endo",
+      "sd_id": 86523,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 8,
+      "ad": "Seira Esaki",
+      "sd_id": 107804,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Hina Inoue",
+      "sd_id": 44554,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 20,
+      "ad": "Hana Kikuchi",
+      "sd_id": 85214,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 25,
+      "ad": "Moe Ota",
+      "sd_id": 56789,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 18,
+      "ad": "Niina Sato",
+      "sd_id": 107801,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 13,
+      "ad": "Miyu Yakata",
+      "sd_id": 44569,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 30,
+      "ad": "Kaede Adachi",
+      "sd_id": 85201,
+      "mevki": "Goalkeeper",
+      "yas": 18
+     },
+     {
+      "no": 16,
+      "ad": "Ella Johnson",
+      "sd_id": 120729,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 99,
+      "ad": "Sumire Suzuki",
+      "sd_id": 110887,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 25,
+      "ad": "Sakura Masuda",
+      "sd_id": 102529,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 15,
+      "ad": "Amyu Hirai",
+      "sd_id": 107474,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 84,
+      "ad": "Ami Kitazawa",
+      "sd_id": 73895,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 20,
+      "ad": "Runa Masano",
+      "sd_id": 82275,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Maya Ino",
+      "sd_id": 44359,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 28,
+      "ad": "Miina Matsunaga",
+      "sd_id": 44324,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 27,
+      "ad": "Kotone Nakano",
+      "sd_id": 107478,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 35,
+      "ad": "Rinka Iwata",
+      "sd_id": 107803,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 7,
+      "ad": "Honoka Shinoda",
+      "sd_id": 77967,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 11,
+      "ad": "Satoko Fujisaki",
+      "sd_id": 106342,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 50,
+      "ad": "Miyu Matsui",
+      "sd_id": 110846,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169530,
+   "hafta": 3,
+   "ev": "RB Omiya Ardija Women",
+   "dep": "Albirex Niigata",
+   "tarih": "05.09.2026",
+   "skor": "2:1",
+   "iy": "0:1",
+   "hafta_sd": 3,
+   "saat": "11:00",
+   "seyirci": 2154,
+   "hakem": "Masaaki Hiratsuka",
+   "stat": "NACK5 Stadion Omiya",
+   "ev_id": 16987,
+   "dep_id": 1116,
+   "dizilis": {
+    "ev": {
+     "takim": "RB Omiya Ardija Women",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Minami Imamura",
+        "sd_id": 61161
+       }
+      ],
+      [
+       {
+        "ad": "Kirara Iwashita",
+        "sd_id": 115233
+       },
+       {
+        "ad": "Risa Kanehira",
+        "sd_id": 44371
+       },
+       {
+        "ad": "Ruka Norimatsu",
+        "sd_id": 18020
+       },
+       {
+        "ad": "Ena Ochiai",
+        "sd_id": 107755
+       },
+       {
+        "ad": "Mihoshi Sugisawa",
+        "sd_id": 61165
+       }
+      ],
+      [
+       {
+        "ad": "Megu Hamada",
+        "sd_id": 82016
+       },
+       {
+        "ad": "Minami Munakata",
+        "sd_id": 107795
+       },
+       {
+        "ad": "Minori Takahashi",
+        "sd_id": 44317
+       }
+      ],
+      [
+       {
+        "ad": "Hanon Nishio",
+        "sd_id": 64505
+       },
+       {
+        "ad": "Yuma Saito",
+        "sd_id": 107798
+       }
+      ]
+     ],
+     "teknik": "Rina Yanai",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "Albirex Niigata",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Chika Hirao",
+        "sd_id": 17996
+       }
+      ],
+      [
+       {
+        "ad": "Saori Ariyoshi",
+        "sd_id": 12774
+       },
+       {
+        "ad": "Yurie Shirasawa",
+        "sd_id": 64506
+       },
+       {
+        "ad": "Mizuki Sonoda",
+        "sd_id": 43133
+       },
+       {
+        "ad": "Chiho Takanashi",
+        "sd_id": 113310
+       },
+       {
+        "ad": "Ema Yokoyama",
+        "sd_id": 106548
+       }
+      ],
+      [
+       {
+        "ad": "Yui Shimoyoshi",
+        "sd_id": 106547
+       },
+       {
+        "ad": "Yume Takikawa",
+        "sd_id": 43050
+       }
+      ],
+      [
+       {
+        "ad": "Nahomi Kawasumi",
+        "sd_id": 5938
+       },
+       {
+        "ad": "Kanami Shinbori",
+        "sd_id": 48628
+       },
+       {
+        "ad": "Seira Tanaka",
+        "sd_id": 64507
+       }
+      ]
+     ],
+     "teknik": "Yuji Sakakura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Kanami Shinbori",
+     "sd_id": 48628,
+     "dk": "12",
+     "tur": "Right-foot shot"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Hanon Nishio",
+     "sd_id": 64505,
+     "dk": "55",
+     "tur": "Right-foot shot",
+     "asist": "Risa Kanehira",
+     "asist_sd_id": 44371,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:1",
+     "taraf": "ev",
+     "ad": "Megu Hamada",
+     "sd_id": 82016,
+     "dk": "65",
+     "tur": "Right-foot shot"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "77",
+     "cikan": "Yuma Saito",
+     "cikan_sd_id": 107798,
+     "giren": "Mai Kadowaki",
+     "giren_sd_id": 90035,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Megu Hamada",
+     "cikan_sd_id": 82016,
+     "giren": "Haruna Oshima",
+     "giren_sd_id": 84946,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "81",
+     "cikan": "Hanon Nishio",
+     "cikan_sd_id": 64505,
+     "giren": "Amiru Tsuji",
+     "giren_sd_id": 85218,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "57",
+     "cikan": "Ema Yokoyama",
+     "cikan_sd_id": 106548,
+     "giren": "Ruka Yamaya",
+     "giren_sd_id": 43137,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Yume Takikawa",
+     "cikan_sd_id": 43050,
+     "giren": "Yuina Yamamoto",
+     "giren_sd_id": 61166,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Nahomi Kawasumi",
+     "cikan_sd_id": 5938,
+     "giren": "Reina Shirowa",
+     "giren_sd_id": 59320,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "70",
+     "cikan": "Kanami Shinbori",
+     "cikan_sd_id": 48628,
+     "giren": "Anna Ezaki",
+     "giren_sd_id": 44319,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "78",
+     "cikan": "Seira Tanaka",
+     "cikan_sd_id": 64507,
+     "giren": "Chihiro Tomioka",
+     "giren_sd_id": 37761,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 22,
+      "ad": "Minami Imamura",
+      "sd_id": 61161,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 5,
+      "ad": "Kirara Iwashita",
+      "sd_id": 115233,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Risa Kanehira",
+      "sd_id": 44371,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 10,
+      "ad": "Ruka Norimatsu",
+      "sd_id": 18020,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 2,
+      "ad": "Ena Ochiai",
+      "sd_id": 107755,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 6,
+      "ad": "Mihoshi Sugisawa",
+      "sd_id": 61165,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 34,
+      "ad": "Megu Hamada",
+      "sd_id": 82016,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 14,
+      "ad": "Minami Munakata",
+      "sd_id": 107795,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 4,
+      "ad": "Minori Takahashi",
+      "sd_id": 44317,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 9,
+      "ad": "Hanon Nishio",
+      "sd_id": 64505,
+      "mevki": "Striker",
+      "yas": 23
+     },
+     {
+      "no": 17,
+      "ad": "Yuma Saito",
+      "sd_id": 107798,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Chika Hirao",
+      "sd_id": 17996,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 6,
+      "ad": "Saori Ariyoshi",
+      "sd_id": 12774,
+      "mevki": "Defence",
+      "yas": 38
+     },
+     {
+      "no": 5,
+      "ad": "Yurie Shirasawa",
+      "sd_id": 64506,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 7,
+      "ad": "Mizuki Sonoda",
+      "sd_id": 43133,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 25,
+      "ad": "Chiho Takanashi",
+      "sd_id": 113310,
+      "mevki": "Defence",
+      "yas": 22
+     },
+     {
+      "no": 4,
+      "ad": "Ema Yokoyama",
+      "sd_id": 106548,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "Yui Shimoyoshi",
+      "sd_id": 106547,
+      "mevki": "Midfield",
+      "yas": 20
+     },
+     {
+      "no": 17,
+      "ad": "Yume Takikawa",
+      "sd_id": 43050,
+      "mevki": "Midfield",
+      "yas": 27
+     },
+     {
+      "no": 9,
+      "ad": "Nahomi Kawasumi",
+      "sd_id": 5938,
+      "mevki": "Striker",
+      "yas": 40
+     },
+     {
+      "no": 11,
+      "ad": "Kanami Shinbori",
+      "sd_id": 48628,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 33,
+      "ad": "Seira Tanaka",
+      "sd_id": 64507,
+      "mevki": "Striker",
+      "yas": 20
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Yuria Ito",
+      "sd_id": 37764,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 7,
+      "ad": "Hinano Nishizawa",
+      "sd_id": 48311,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 15,
+      "ad": "Minori Hayashi",
+      "sd_id": 71721,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 11,
+      "ad": "Haruna Oshima",
+      "sd_id": 84946,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 20,
+      "ad": "Mai Kadowaki",
+      "sd_id": 90035,
+      "mevki": "Striker",
+      "yas": 25
+     },
+     {
+      "no": 18,
+      "ad": "Yuna Takahashi",
+      "sd_id": 110335,
+      "mevki": "Striker",
+      "yas": 17
+     },
+     {
+      "no": 19,
+      "ad": "Amiru Tsuji",
+      "sd_id": 85218,
+      "mevki": "Striker",
+      "yas": 19
+     }
+    ],
+    "dep": [
+     {
+      "no": 31,
+      "ad": "Fubuki Kuno",
+      "sd_id": 12724,
+      "mevki": "Goalkeeper",
+      "yas": 36
+     },
+     {
+      "no": 16,
+      "ad": "Chihiro Tomioka",
+      "sd_id": 37761,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 20,
+      "ad": "Ruka Yamaya",
+      "sd_id": 43137,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 18,
+      "ad": "Anna Ezaki",
+      "sd_id": 44319,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 10,
+      "ad": "Megumi Kamionobe",
+      "sd_id": 5937,
+      "mevki": "Midfield",
+      "yas": 40
+     },
+     {
+      "no": 19,
+      "ad": "Reina Shirowa",
+      "sd_id": 59320,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 23,
+      "ad": "Yuina Yamamoto",
+      "sd_id": 61166,
+      "mevki": "Striker",
+      "yas": 23
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169531,
+   "hafta": 3,
+   "ev": "AS Elfen Sayama",
+   "dep": "AC Nagano Parceiro",
+   "tarih": "05.09.2026",
+   "skor": "0:0",
+   "iy": "0:0",
+   "hafta_sd": 3,
+   "saat": "11:00",
+   "seyirci": 789,
+   "hakem": "Yurina Tazawa",
+   "stat": "Kumagaya Athletic Stadium",
+   "ev_id": 1117,
+   "dep_id": 2263,
+   "dizilis": {
+    "ev": {
+     "takim": "AS Elfen Sayama",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Natsumi Asano",
+        "sd_id": 22888
+       }
+      ],
+      [
+       {
+        "ad": "Maho Hirao",
+        "sd_id": 55816
+       },
+       {
+        "ad": "Shoko Miaki",
+        "sd_id": 116436
+       },
+       {
+        "ad": "Kokoro Otaka",
+        "sd_id": 110810
+       },
+       {
+        "ad": "Miki Sakuma",
+        "sd_id": 76740
+       }
+      ],
+      [
+       {
+        "ad": "Yuki Seno",
+        "sd_id": 44330
+       },
+       {
+        "ad": "Kozue Setoguchi",
+        "sd_id": 23145
+       },
+       {
+        "ad": "Hina Takahashi",
+        "sd_id": 84930
+       },
+       {
+        "ad": "Yui Tanaka",
+        "sd_id": 110811
+       }
+      ],
+      [
+       {
+        "ad": "Nanasa Ikuta",
+        "sd_id": 110809
+       },
+       {
+        "ad": "Shoko Uemura",
+        "sd_id": 43032
+       }
+      ]
+     ],
+     "teknik": "Yasuhiro Higuchi",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "AC Nagano Parceiro",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Mao Umemura",
+        "sd_id": 101674
+       }
+      ],
+      [
+       {
+        "ad": "Nanao Chiku",
+        "sd_id": 107723
+       },
+       {
+        "ad": "Ami Kubota",
+        "sd_id": 49087
+       },
+       {
+        "ad": "Chisa Okugawa",
+        "sd_id": 43025
+       },
+       {
+        "ad": "Ayaka Osajima",
+        "sd_id": 44582
+       },
+       {
+        "ad": "Konatsu Suzuki",
+        "sd_id": 107736
+       },
+       {
+        "ad": "Rei Tachibana",
+        "sd_id": 22554
+       }
+      ],
+      [
+       {
+        "ad": "Sayaka Mitani",
+        "sd_id": 22979
+       },
+       {
+        "ad": "Mayu Tsuneda",
+        "sd_id": 54835
+       }
+      ],
+      [
+       {
+        "ad": "Runa Shioya",
+        "sd_id": 71227
+       },
+       {
+        "ad": "Mao Yoshino",
+        "sd_id": 85829
+       }
+      ]
+     ],
+     "teknik": "Atsushi Nakamura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Miki Sakuma",
+     "cikan_sd_id": 76740,
+     "giren": "Miu Tochitani",
+     "giren_sd_id": 107532,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Shoko Uemura",
+     "cikan_sd_id": 43032,
+     "giren": "Yoshino Osone",
+     "giren_sd_id": 84931,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Shoko Miaki",
+     "cikan_sd_id": 116436,
+     "giren": "Mayuko Umezuki",
+     "giren_sd_id": 118771,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "cikan": "Hina Takahashi",
+     "cikan_sd_id": 84930,
+     "giren": "Eriko Arakawa",
+     "giren_sd_id": 53,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "59",
+     "cikan": "Ami Kubota",
+     "cikan_sd_id": 49087,
+     "giren": "Yurina Tsukazaki",
+     "giren_sd_id": 116228,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Mayu Tsuneda",
+     "cikan_sd_id": 54835,
+     "giren": "Meiko Matsuura",
+     "giren_sd_id": 116227,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "87",
+     "cikan": "Nanao Chiku",
+     "cikan_sd_id": 107723,
+     "giren": "Yurara Hamada",
+     "giren_sd_id": 107738,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "ad": "Yuki Seno",
+     "sd_id": 44330,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Natsumi Asano",
+      "sd_id": 22888,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 4,
+      "ad": "Maho Hirao",
+      "sd_id": 55816,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 32,
+      "ad": "Shoko Miaki",
+      "sd_id": 116436,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 25,
+      "ad": "Kokoro Otaka",
+      "sd_id": 110810,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 13,
+      "ad": "Miki Sakuma",
+      "sd_id": 76740,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 6,
+      "ad": "Yuki Seno",
+      "sd_id": 44330,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 5,
+      "ad": "Kozue Setoguchi",
+      "sd_id": 23145,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 18,
+      "ad": "Hina Takahashi",
+      "sd_id": 84930,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 8,
+      "ad": "Yui Tanaka",
+      "sd_id": 110811,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 10,
+      "ad": "Nanasa Ikuta",
+      "sd_id": 110809,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 14,
+      "ad": "Shoko Uemura",
+      "sd_id": 43032,
+      "mevki": "Striker",
+      "yas": 33
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Mao Umemura",
+      "sd_id": 101674,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 15,
+      "ad": "Nanao Chiku",
+      "sd_id": 107723,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Ami Kubota",
+      "sd_id": 49087,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 25,
+      "ad": "Chisa Okugawa",
+      "sd_id": 43025,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 27,
+      "ad": "Ayaka Osajima",
+      "sd_id": 44582,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 34,
+      "ad": "Konatsu Suzuki",
+      "sd_id": 107736,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 5,
+      "ad": "Rei Tachibana",
+      "sd_id": 22554,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 7,
+      "ad": "Sayaka Mitani",
+      "sd_id": 22979,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 6,
+      "ad": "Mayu Tsuneda",
+      "sd_id": 54835,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 14,
+      "ad": "Runa Shioya",
+      "sd_id": 71227,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 33,
+      "ad": "Mao Yoshino",
+      "sd_id": 85829,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 51,
+      "ad": "Saion Yamada",
+      "sd_id": 116235,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 16,
+      "ad": "Miu Tochitani",
+      "sd_id": 107532,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Hina Morinaka",
+      "sd_id": 44545,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 24,
+      "ad": "Yoshino Osone",
+      "sd_id": 84931,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 37,
+      "ad": "Mayuko Umezuki",
+      "sd_id": 118771,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 29,
+      "ad": "Asako Yamashita",
+      "sd_id": 113586,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 9,
+      "ad": "Eriko Arakawa",
+      "sd_id": 53,
+      "mevki": "Striker",
+      "yas": 46
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Aina Kakiuchi",
+      "sd_id": 48608,
+      "mevki": "Goalkeeper",
+      "yas": 30
+     },
+     {
+      "no": 22,
+      "ad": "Ichiho Kodama",
+      "sd_id": 107739,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 18,
+      "ad": "Mika Machida",
+      "sd_id": 107521,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 24,
+      "ad": "Yurina Tsukazaki",
+      "sd_id": 116228,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 23,
+      "ad": "Meiko Matsuura",
+      "sd_id": 116227,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 35,
+      "ad": "Yurara Hamada",
+      "sd_id": 107738,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 10,
+      "ad": "Eri Kitagawa",
+      "sd_id": 85821,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169532,
+   "hafta": 3,
+   "ev": "Urawa Reds",
+   "dep": "NTV Beleza",
+   "tarih": "05.09.2026",
+   "skor": "3:1",
+   "iy": "3:1",
+   "hafta_sd": 3,
+   "saat": "11:00",
+   "seyirci": 2770,
+   "hakem": "Mari Yamamoto",
+   "stat": "Urawa Komaba Stadium",
+   "ev_id": 397,
+   "dep_id": 243,
+   "dizilis": {
+    "ev": {
+     "takim": "Urawa Reds",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Sakiko Ikeda",
+        "sd_id": 14455
+       }
+      ],
+      [
+       {
+        "ad": "Nonoka Nagao",
+        "sd_id": 116547
+       },
+       {
+        "ad": "Reina Nagashima",
+        "sd_id": 43030
+       },
+       {
+        "ad": "Hana Takahashi",
+        "sd_id": 35797
+       }
+      ],
+      [
+       {
+        "ad": "Miki Ito",
+        "sd_id": 18000
+       },
+       {
+        "ad": "Chika Kato",
+        "sd_id": 14450
+       },
+       {
+        "ad": "Maria Kikuchi",
+        "sd_id": 48438
+       },
+       {
+        "ad": "Wakana Onishi",
+        "sd_id": 56115
+       },
+       {
+        "ad": "Kotono Sakakibara",
+        "sd_id": 86563
+       },
+       {
+        "ad": "Madoka Sakurai",
+        "sd_id": 71380
+       },
+       {
+        "ad": "Sunshine Fontes",
+        "sd_id": 35363
+       }
+      ]
+     ],
+     "teknik": "Takafumi Hori",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "NTV Beleza",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Nina Noda",
+        "sd_id": 60086
+       }
+      ],
+      [
+       {
+        "ad": "Hinata Ide",
+        "sd_id": 70369
+       },
+       {
+        "ad": "Shino Matsuda",
+        "sd_id": 37756
+       },
+       {
+        "ad": "Ema Matsuoka",
+        "sd_id": 113316
+       },
+       {
+        "ad": "Tomoko Muramatsu",
+        "sd_id": 12787
+       }
+      ],
+      [
+       {
+        "ad": "Nanami Kitamura",
+        "sd_id": 35813
+       },
+       {
+        "ad": "Yuzuho Shiokoshi",
+        "sd_id": 25180
+       },
+       {
+        "ad": "Rin Sumida",
+        "sd_id": 14412
+       },
+       {
+        "ad": "Honoka Sunaga",
+        "sd_id": 113322
+       }
+      ],
+      [
+       {
+        "ad": "Kozue Ando",
+        "sd_id": 40
+       },
+       {
+        "ad": "Rihona Ujihara",
+        "sd_id": 82060
+       }
+      ]
+     ],
+     "teknik": "Naoki Kusunose",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Kotono Sakakibara",
+     "sd_id": 86563,
+     "dk": "4",
+     "tur": "Header goal"
+    },
+    {
+     "skor": "2:0",
+     "taraf": "ev",
+     "ad": "Wakana Onishi",
+     "sd_id": 56115,
+     "dk": "28",
+     "tur": "Left-foot shot",
+     "asist": "Maria Kikuchi",
+     "asist_sd_id": 48438,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "3:0",
+     "taraf": "ev",
+     "ad": "Miki Ito",
+     "sd_id": 18000,
+     "dk": "37",
+     "tur": "Right-foot shot",
+     "asist": "Wakana Onishi",
+     "asist_sd_id": 56115,
+     "asist_tur": "Cross"
+    },
+    {
+     "skor": "3:1",
+     "taraf": "dep",
+     "ad": "Rihona Ujihara",
+     "sd_id": 82060,
+     "dk": "39",
+     "tur": "Left-foot shot",
+     "asist": "Nanami Kitamura",
+     "asist_sd_id": 35813,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Sunshine Fontes",
+     "cikan_sd_id": 35363,
+     "giren": "Akimi Kawafune",
+     "giren_sd_id": 43039,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "67",
+     "cikan": "Wakana Onishi",
+     "cikan_sd_id": 56115,
+     "giren": "Ririka Tanno",
+     "giren_sd_id": 64508,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "76",
+     "cikan": "Chika Kato",
+     "cikan_sd_id": 14450,
+     "giren": "Hanae Shibata",
+     "giren_sd_id": 16772,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "cikan": "Madoka Sakurai",
+     "cikan_sd_id": 71380,
+     "giren": "Easther Mayi Kith",
+     "giren_sd_id": 22998,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "89",
+     "cikan": "Miki Ito",
+     "cikan_sd_id": 18000,
+     "giren": "Ena Takatsuka",
+     "giren_sd_id": 99395,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "31",
+     "cikan": "Hinata Ide",
+     "cikan_sd_id": 70369,
+     "giren": "Sana Morota",
+     "giren_sd_id": 120707,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Kozue Ando",
+     "cikan_sd_id": 40,
+     "giren": "Hikaru Naomoto",
+     "giren_sd_id": 16771,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Honoka Sunaga",
+     "cikan_sd_id": 113322,
+     "giren": "Kotone Ito",
+     "giren_sd_id": 108309,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Nanami Kitamura",
+     "cikan_sd_id": 35813,
+     "giren": "Niko Shikida",
+     "giren_sd_id": 113259,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "81",
+     "cikan": "Rihona Ujihara",
+     "cikan_sd_id": 82060,
+     "giren": "Moka Hiwatari",
+     "giren_sd_id": 79097,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "52",
+     "ad": "Ema Matsuoka",
+     "sd_id": 113316,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Sakiko Ikeda",
+      "sd_id": 14455,
+      "mevki": "Goalkeeper",
+      "yas": 34
+     },
+     {
+      "no": 30,
+      "ad": "Nonoka Nagao",
+      "sd_id": 116547,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 13,
+      "ad": "Reina Nagashima",
+      "sd_id": 43030,
+      "mevki": "Defence",
+      "yas": 28
+     },
+     {
+      "no": 7,
+      "ad": "Hana Takahashi",
+      "sd_id": 35797,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 5,
+      "ad": "Miki Ito",
+      "sd_id": 18000,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 6,
+      "ad": "Chika Kato",
+      "sd_id": 14450,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 14,
+      "ad": "Maria Kikuchi",
+      "sd_id": 48438,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 16,
+      "ad": "Wakana Onishi",
+      "sd_id": 56115,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Kotono Sakakibara",
+      "sd_id": 86563,
+      "mevki": "Midfield",
+      "yas": 21
+     },
+     {
+      "no": 28,
+      "ad": "Madoka Sakurai",
+      "sd_id": 71380,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 19,
+      "ad": "Sunshine Fontes",
+      "sd_id": 35363,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Nina Noda",
+      "sd_id": 60086,
+      "mevki": "Goalkeeper",
+      "yas": 23
+     },
+     {
+      "no": 22,
+      "ad": "Hinata Ide",
+      "sd_id": 70369,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 5,
+      "ad": "Shino Matsuda",
+      "sd_id": 37756,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 32,
+      "ad": "Ema Matsuoka",
+      "sd_id": 113316,
+      "mevki": "Defence",
+      "yas": 18
+     },
+     {
+      "no": 3,
+      "ad": "Tomoko Muramatsu",
+      "sd_id": 12787,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 7,
+      "ad": "Nanami Kitamura",
+      "sd_id": 35813,
+      "mevki": "Midfield",
+      "yas": 26
+     },
+     {
+      "no": 19,
+      "ad": "Yuzuho Shiokoshi",
+      "sd_id": 25180,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 6,
+      "ad": "Rin Sumida",
+      "sd_id": 14412,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 35,
+      "ad": "Honoka Sunaga",
+      "sd_id": 113322,
+      "mevki": "Midfield",
+      "yas": 18
+     },
+     {
+      "no": 40,
+      "ad": "Kozue Ando",
+      "sd_id": 40,
+      "mevki": "Striker",
+      "yas": 44
+     },
+     {
+      "no": 13,
+      "ad": "Rihona Ujihara",
+      "sd_id": 82060,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 12,
+      "ad": "Shiori Fukuda",
+      "sd_id": 37762,
+      "mevki": "Goalkeeper",
+      "yas": 24
+     },
+     {
+      "no": 2,
+      "ad": "Easther Mayi Kith",
+      "sd_id": 22998,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 18,
+      "ad": "Hanae Shibata",
+      "sd_id": 16772,
+      "mevki": "Midfield",
+      "yas": 34
+     },
+     {
+      "no": 20,
+      "ad": "Ena Takatsuka",
+      "sd_id": 99395,
+      "mevki": "Midfield",
+      "yas": 22
+     },
+     {
+      "no": 26,
+      "ad": "Ririka Tanno",
+      "sd_id": 64508,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 21,
+      "ad": "Laurie Teinturier",
+      "sd_id": 19719,
+      "mevki": "Midfield",
+      "yas": 30
+     },
+     {
+      "no": 11,
+      "ad": "Akimi Kawafune",
+      "sd_id": 43039,
+      "mevki": "Striker",
+      "yas": 22
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Mayu Mizuguchi",
+      "sd_id": 44326,
+      "mevki": "Goalkeeper",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Hikaru Naomoto",
+      "sd_id": 16771,
+      "mevki": "Midfield",
+      "yas": 32
+     },
+     {
+      "no": 11,
+      "ad": "Moka Hiwatari",
+      "sd_id": 79097,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 24,
+      "ad": "Kotone Ito",
+      "sd_id": 108309,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 20,
+      "ad": "Rikako Kobayashi",
+      "sd_id": 22897,
+      "mevki": "Striker",
+      "yas": 29
+     },
+     {
+      "no": 43,
+      "ad": "Sana Morota",
+      "sd_id": 120707,
+      "mevki": "Striker",
+      "yas": 15
+     },
+     {
+      "no": 38,
+      "ad": "Niko Shikida",
+      "sd_id": 113259,
+      "mevki": "Striker",
+      "yas": 17
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169533,
+   "hafta": 3,
+   "ev": "Nojima Stella Kanagawa",
+   "dep": "INAC Kobe Leonessa",
+   "tarih": "06.09.2026",
+   "skor": "1:4",
+   "iy": "1:0",
+   "hafta_sd": 3,
+   "saat": "10:00",
+   "seyirci": 405,
+   "hakem": "Satomi Arakawa",
+   "stat": "Sagamihara Gion Stadium",
+   "ev_id": 5557,
+   "dep_id": 180,
+   "dizilis": {
+    "ev": {
+     "takim": "Nojima Stella Kanagawa",
+     "sema": "4-4-2",
+     "hatlar": [
+      [
+       {
+        "ad": "Nagisa Ikejiri",
+        "sd_id": 43026
+       }
+      ],
+      [
+       {
+        "ad": "Shiori Akira",
+        "sd_id": 85206
+       },
+       {
+        "ad": "An Nanri",
+        "sd_id": 101420
+       },
+       {
+        "ad": "Risako Oga",
+        "sd_id": 39527
+       }
+      ],
+      [
+       {
+        "ad": "Juri Ito",
+        "sd_id": 56133
+       },
+       {
+        "ad": "Haruna Kawashima",
+        "sd_id": 22402
+       },
+       {
+        "ad": "Paola Soldevila",
+        "sd_id": 23157
+       },
+       {
+        "ad": "Iku Tsukiji",
+        "sd_id": 107756
+       },
+       {
+        "ad": "Hikaru Yumura",
+        "sd_id": 48328
+       }
+      ],
+      [
+       {
+        "ad": "Yuna Katayama",
+        "sd_id": 55737
+       },
+       {
+        "ad": "Mayu Otake",
+        "sd_id": 48373
+       }
+      ]
+     ],
+     "teknik": "Tadashi Ogasahara",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "INAC Kobe Leonessa",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Momoko Tanaka",
+        "sd_id": 44633
+       }
+      ],
+      [
+       {
+        "ad": "Natsume Kingetsu",
+        "sd_id": 85205
+       },
+       {
+        "ad": "Kana Matsuura",
+        "sd_id": 117128
+       },
+       {
+        "ad": "Shiori Miyake",
+        "sd_id": 18016
+       }
+      ],
+      [
+       {
+        "ad": "Fukina Mizuno",
+        "sd_id": 43063
+       },
+       {
+        "ad": "Yui Narumiya",
+        "sd_id": 18011
+       },
+       {
+        "ad": "Tamaki Okuma",
+        "sd_id": 37759
+       },
+       {
+        "ad": "Maya Yamamoto",
+        "sd_id": 42259
+       }
+      ],
+      [
+       {
+        "ad": "Mao Kubota",
+        "sd_id": 79095
+       },
+       {
+        "ad": "Ai Tsujisawa",
+        "sd_id": 79098
+       },
+       {
+        "ad": "Riko Yoshida",
+        "sd_id": 48326
+       }
+      ]
+     ],
+     "teknik": "Tomomi Miyamoto",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "1:0",
+     "taraf": "ev",
+     "ad": "Juri Ito",
+     "sd_id": 56133,
+     "dk": "31",
+     "tur": "Right-foot shot",
+     "asist": "Mayu Otake",
+     "asist_sd_id": 48373,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "dep",
+     "ad": "Kana Matsuura",
+     "sd_id": 117128,
+     "dk": "54",
+     "tur": "Header goal",
+     "asist": "Mao Kubota",
+     "asist_sd_id": 79095,
+     "asist_tur": "Corner"
+    },
+    {
+     "skor": "1:2",
+     "taraf": "dep",
+     "ad": "Arisu Ota",
+     "sd_id": 106542,
+     "dk": "74",
+     "tur": "Right-foot shot",
+     "asist": "Ai Kuwahara",
+     "asist_sd_id": 81927,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:3",
+     "taraf": "dep",
+     "ad": "Yuka Kishida",
+     "sd_id": 120822,
+     "dk": "78",
+     "tur": "Left-foot shot",
+     "asist": "Natsume Kingetsu",
+     "asist_sd_id": 85205,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:4",
+     "taraf": "dep",
+     "ad": "Riko Yoshida",
+     "sd_id": 48326,
+     "dk": "85",
+     "tur": "Right-foot shot",
+     "asist": "Megumi Takase",
+     "asist_sd_id": 5944,
+     "asist_tur": "Pass"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Haruna Kawashima",
+     "cikan_sd_id": 22402,
+     "giren": "Chinari Sasai",
+     "giren_sd_id": 78403,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "70",
+     "cikan": "An Nanri",
+     "cikan_sd_id": 101420,
+     "giren": "Kyoka Goshima",
+     "giren_sd_id": 43037,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "79",
+     "cikan": "Nagisa Ikejiri",
+     "cikan_sd_id": 43026,
+     "giren": "Kana Igarashi",
+     "giren_sd_id": 123836,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "79",
+     "cikan": "Mayu Otake",
+     "cikan_sd_id": 48373,
+     "giren": "Chiharu Aoyama",
+     "giren_sd_id": 123837,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "88",
+     "cikan": "Chinari Sasai",
+     "cikan_sd_id": 78403,
+     "giren": "Yua Sasai",
+     "giren_sd_id": 101422,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Fukina Mizuno",
+     "cikan_sd_id": 43063,
+     "giren": "Chisato Minowa",
+     "giren_sd_id": 70370,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "46",
+     "cikan": "Maya Yamamoto",
+     "cikan_sd_id": 42259,
+     "giren": "Arisu Ota",
+     "giren_sd_id": 106542,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "63",
+     "cikan": "Mao Kubota",
+     "cikan_sd_id": 79095,
+     "giren": "Ai Kuwahara",
+     "giren_sd_id": 81927,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "63",
+     "cikan": "Ai Tsujisawa",
+     "cikan_sd_id": 79098,
+     "giren": "Yuka Kishida",
+     "giren_sd_id": 120822,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "81",
+     "cikan": "Natsume Kingetsu",
+     "cikan_sd_id": 85205,
+     "giren": "Megumi Takase",
+     "giren_sd_id": 5944,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 16,
+      "ad": "Nagisa Ikejiri",
+      "sd_id": 43026,
+      "mevki": "Goalkeeper",
+      "yas": 29
+     },
+     {
+      "no": 24,
+      "ad": "Shiori Akira",
+      "sd_id": 85206,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 14,
+      "ad": "An Nanri",
+      "sd_id": 101420,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 5,
+      "ad": "Risako Oga",
+      "sd_id": 39527,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 4,
+      "ad": "Juri Ito",
+      "sd_id": 56133,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Haruna Kawashima",
+      "sd_id": 22402,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 6,
+      "ad": "Paola Soldevila",
+      "sd_id": 23157,
+      "mevki": "Midfield",
+      "yas": 29
+     },
+     {
+      "no": 19,
+      "ad": "Iku Tsukiji",
+      "sd_id": 107756,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 29,
+      "ad": "Hikaru Yumura",
+      "sd_id": 48328,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 11,
+      "ad": "Yuna Katayama",
+      "sd_id": 55737,
+      "mevki": "Striker",
+      "yas": 24
+     },
+     {
+      "no": 10,
+      "ad": "Mayu Otake",
+      "sd_id": 48373,
+      "mevki": "Striker",
+      "yas": 29
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Momoko Tanaka",
+      "sd_id": 44633,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 18,
+      "ad": "Natsume Kingetsu",
+      "sd_id": 85205,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 30,
+      "ad": "Kana Matsuura",
+      "sd_id": 117128,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Shiori Miyake",
+      "sd_id": 18016,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 14,
+      "ad": "Fukina Mizuno",
+      "sd_id": 43063,
+      "mevki": "Midfield",
+      "yas": 25
+     },
+     {
+      "no": 10,
+      "ad": "Yui Narumiya",
+      "sd_id": 18011,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 25,
+      "ad": "Tamaki Okuma",
+      "sd_id": 37759,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 8,
+      "ad": "Maya Yamamoto",
+      "sd_id": 42259,
+      "mevki": "Midfield",
+      "yas": 33
+     },
+     {
+      "no": 19,
+      "ad": "Mao Kubota",
+      "sd_id": 79095,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 29,
+      "ad": "Ai Tsujisawa",
+      "sd_id": 79098,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 9,
+      "ad": "Riko Yoshida",
+      "sd_id": 48326,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 31,
+      "ad": "Kana Igarashi",
+      "sd_id": 123836,
+      "mevki": "Goalkeeper",
+      "yas": 16
+     },
+     {
+      "no": 13,
+      "ad": "Kyoka Goshima",
+      "sd_id": 43037,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 2,
+      "ad": "Riko Tsutsui",
+      "sd_id": 44547,
+      "mevki": "Defence",
+      "yas": 27
+     },
+     {
+      "no": 8,
+      "ad": "Natsuki Kishikawa",
+      "sd_id": 22066,
+      "mevki": "Midfield",
+      "yas": 35
+     },
+     {
+      "no": 18,
+      "ad": "Yua Sasai",
+      "sd_id": 101422,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 26,
+      "ad": "Chiharu Aoyama",
+      "sd_id": 123837,
+      "mevki": "Striker",
+      "yas": 18
+     },
+     {
+      "no": 9,
+      "ad": "Chinari Sasai",
+      "sd_id": 78403,
+      "mevki": "Striker",
+      "yas": 21
+     }
+    ],
+    "dep": [
+     {
+      "no": 99,
+      "ad": "Mayu Funada",
+      "sd_id": 12748,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 40,
+      "ad": "Yuka Kishida",
+      "sd_id": 120822,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 22,
+      "ad": "Azumi Manriki",
+      "sd_id": 120542,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 17,
+      "ad": "Chisato Minowa",
+      "sd_id": 70370,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 20,
+      "ad": "Arisu Ota",
+      "sd_id": 106542,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 13,
+      "ad": "Ai Kuwahara",
+      "sd_id": 81927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 11,
+      "ad": "Megumi Takase",
+      "sd_id": 5944,
+      "mevki": "Striker",
+      "yas": 35
+     }
+    ]
+   },
+   "tam": true
+  },
+  {
+   "id": 169552,
+   "hafta": 7,
+   "ev": "INAC Kobe Leonessa",
+   "dep": "AC Nagano Parceiro",
+   "tarih": "02.09.2026",
+   "skor": "2:2",
+   "iy": "1:2",
+   "hafta_sd": 7,
+   "saat": "12:00",
+   "seyirci": 1312,
+   "hakem": "Azusa Sugino",
+   "stat": "Noevir Stadium Kobe",
+   "ev_id": 180,
+   "dep_id": 2263,
+   "dizilis": {
+    "ev": {
+     "takim": "INAC Kobe Leonessa",
+     "sema": "4-3-3 offensively-minded",
+     "hatlar": [
+      [
+       {
+        "ad": "Momoko Tanaka",
+        "sd_id": 44633
+       }
+      ],
+      [
+       {
+        "ad": "Natsume Kingetsu",
+        "sd_id": 85205
+       },
+       {
+        "ad": "Natsuki Matsuo",
+        "sd_id": 73372
+       },
+       {
+        "ad": "Kana Matsuura",
+        "sd_id": 117128
+       },
+       {
+        "ad": "Shiori Miyake",
+        "sd_id": 18016
+       }
+      ],
+      [
+       {
+        "ad": "Yui Narumiya",
+        "sd_id": 18011
+       },
+       {
+        "ad": "Tamaki Okuma",
+        "sd_id": 37759
+       }
+      ],
+      [
+       {
+        "ad": "Mao Kubota",
+        "sd_id": 79095
+       },
+       {
+        "ad": "Ai Kuwahara",
+        "sd_id": 81927
+       },
+       {
+        "ad": "Ai Tsujisawa",
+        "sd_id": 79098
+       },
+       {
+        "ad": "Riko Yoshida",
+        "sd_id": 48326
+       }
+      ]
+     ],
+     "teknik": "Tomomi Miyamoto",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    },
+    "dep": {
+     "takim": "AC Nagano Parceiro",
+     "sema": "4-2-3-1",
+     "hatlar": [
+      [
+       {
+        "ad": "Mao Umemura",
+        "sd_id": 101674
+       }
+      ],
+      [
+       {
+        "ad": "Nanao Chiku",
+        "sd_id": 107723
+       },
+       {
+        "ad": "Ami Kubota",
+        "sd_id": 49087
+       },
+       {
+        "ad": "Chisa Okugawa",
+        "sd_id": 43025
+       },
+       {
+        "ad": "Ayaka Osajima",
+        "sd_id": 44582
+       },
+       {
+        "ad": "Konatsu Suzuki",
+        "sd_id": 107736
+       },
+       {
+        "ad": "Rei Tachibana",
+        "sd_id": 22554
+       }
+      ],
+      [
+       {
+        "ad": "Sayaka Mitani",
+        "sd_id": 22979
+       },
+       {
+        "ad": "Mayu Tsuneda",
+        "sd_id": 54835
+       }
+      ],
+      [
+       {
+        "ad": "Runa Shioya",
+        "sd_id": 71227
+       },
+       {
+        "ad": "Mao Yoshino",
+        "sd_id": 85829
+       }
+      ]
+     ],
+     "teknik": "Atsushi Nakamura",
+     "oyuncu_sayisi": 11,
+     "hat_uyumsuz": true
+    }
+   },
+   "goller": [
+    {
+     "skor": "0:1",
+     "taraf": "dep",
+     "ad": "Mayu Tsuneda",
+     "sd_id": 54835,
+     "dk": "27",
+     "tur": "Right-foot shot",
+     "asist": "Konatsu Suzuki",
+     "asist_sd_id": 107736,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:1",
+     "taraf": "ev",
+     "ad": "Riko Yoshida",
+     "sd_id": 48326,
+     "dk": "34",
+     "tur": "Left-foot shot",
+     "asist": "Yui Narumiya",
+     "asist_sd_id": 18011,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "1:2",
+     "taraf": "dep",
+     "ad": "Ayaka Osajima",
+     "sd_id": 44582,
+     "dk": "39",
+     "tur": "Right-foot shot",
+     "asist": "Nanao Chiku",
+     "asist_sd_id": 107723,
+     "asist_tur": "Pass"
+    },
+    {
+     "skor": "2:2",
+     "taraf": "ev",
+     "ad": "Megumi Takase",
+     "sd_id": 5944,
+     "dk": "82",
+     "tur": "Header goal",
+     "asist": "Chisato Minowa",
+     "asist_sd_id": 70370,
+     "asist_tur": "Cross"
+    }
+   ],
+   "degisiklikler": [
+    {
+     "taraf": "ev",
+     "dk": "46",
+     "cikan": "Natsuki Matsuo",
+     "cikan_sd_id": 73372,
+     "giren": "Arisu Ota",
+     "giren_sd_id": 106542,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Kana Matsuura",
+     "cikan_sd_id": 117128,
+     "giren": "Chisato Minowa",
+     "giren_sd_id": 70370,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "61",
+     "cikan": "Mao Kubota",
+     "cikan_sd_id": 79095,
+     "giren": "Yuka Kishida",
+     "giren_sd_id": 120822,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "72",
+     "cikan": "Ai Tsujisawa",
+     "cikan_sd_id": 79098,
+     "giren": "Megumi Takase",
+     "giren_sd_id": 5944,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "ev",
+     "dk": "84",
+     "cikan": "Natsume Kingetsu",
+     "cikan_sd_id": 85205,
+     "giren": "Ayaka Michigami",
+     "giren_sd_id": 16773,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Ami Kubota",
+     "cikan_sd_id": 49087,
+     "giren": "Yurina Tsukazaki",
+     "giren_sd_id": 116228,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "64",
+     "cikan": "Runa Shioya",
+     "cikan_sd_id": 71227,
+     "giren": "Meiko Matsuura",
+     "giren_sd_id": 116227,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Sayaka Mitani",
+     "cikan_sd_id": 22979,
+     "giren": "Yurara Hamada",
+     "giren_sd_id": 107738,
+     "neden": "Not reported"
+    },
+    {
+     "taraf": "dep",
+     "dk": "84",
+     "cikan": "Nanao Chiku",
+     "cikan_sd_id": 107723,
+     "giren": "Eri Kitagawa",
+     "giren_sd_id": 85821,
+     "neden": "Not reported"
+    }
+   ],
+   "kartlar": [
+    {
+     "taraf": "dep",
+     "dk": "89",
+     "ad": "Yurara Hamada",
+     "sd_id": 107738,
+     "kart": "yellow card",
+     "neden": "lack of sportsmanship"
+    }
+   ],
+   "ilk11": {
+    "ev": [
+     {
+      "no": 1,
+      "ad": "Momoko Tanaka",
+      "sd_id": 44633,
+      "mevki": "Goalkeeper",
+      "yas": 26
+     },
+     {
+      "no": 18,
+      "ad": "Natsume Kingetsu",
+      "sd_id": 85205,
+      "mevki": "Defence",
+      "yas": 19
+     },
+     {
+      "no": 15,
+      "ad": "Natsuki Matsuo",
+      "sd_id": 73372,
+      "mevki": "Defence",
+      "yas": 25
+     },
+     {
+      "no": 30,
+      "ad": "Kana Matsuura",
+      "sd_id": 117128,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 5,
+      "ad": "Shiori Miyake",
+      "sd_id": 18016,
+      "mevki": "Defence",
+      "yas": 30
+     },
+     {
+      "no": 10,
+      "ad": "Yui Narumiya",
+      "sd_id": 18011,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 25,
+      "ad": "Tamaki Okuma",
+      "sd_id": 37759,
+      "mevki": "Midfield",
+      "yas": 24
+     },
+     {
+      "no": 19,
+      "ad": "Mao Kubota",
+      "sd_id": 79095,
+      "mevki": "Striker",
+      "yas": 21
+     },
+     {
+      "no": 13,
+      "ad": "Ai Kuwahara",
+      "sd_id": 81927,
+      "mevki": "Striker",
+      "yas": 22
+     },
+     {
+      "no": 29,
+      "ad": "Ai Tsujisawa",
+      "sd_id": 79098,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 9,
+      "ad": "Riko Yoshida",
+      "sd_id": 48326,
+      "mevki": "Striker",
+      "yas": 24
+     }
+    ],
+    "dep": [
+     {
+      "no": 1,
+      "ad": "Mao Umemura",
+      "sd_id": 101674,
+      "mevki": "Goalkeeper",
+      "yas": 25
+     },
+     {
+      "no": 15,
+      "ad": "Nanao Chiku",
+      "sd_id": 107723,
+      "mevki": "Defence",
+      "yas": 24
+     },
+     {
+      "no": 3,
+      "ad": "Ami Kubota",
+      "sd_id": 49087,
+      "mevki": "Defence",
+      "yas": 26
+     },
+     {
+      "no": 25,
+      "ad": "Chisa Okugawa",
+      "sd_id": 43025,
+      "mevki": "Defence",
+      "yas": 31
+     },
+     {
+      "no": 27,
+      "ad": "Ayaka Osajima",
+      "sd_id": 44582,
+      "mevki": "Defence",
+      "yas": 29
+     },
+     {
+      "no": 34,
+      "ad": "Konatsu Suzuki",
+      "sd_id": 107736,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 5,
+      "ad": "Rei Tachibana",
+      "sd_id": 22554,
+      "mevki": "Defence",
+      "yas": 33
+     },
+     {
+      "no": 7,
+      "ad": "Sayaka Mitani",
+      "sd_id": 22979,
+      "mevki": "Midfield",
+      "yas": 31
+     },
+     {
+      "no": 6,
+      "ad": "Mayu Tsuneda",
+      "sd_id": 54835,
+      "mevki": "Midfield",
+      "yas": 28
+     },
+     {
+      "no": 14,
+      "ad": "Runa Shioya",
+      "sd_id": 71227,
+      "mevki": "Striker",
+      "yas": 26
+     },
+     {
+      "no": 33,
+      "ad": "Mao Yoshino",
+      "sd_id": 85829,
+      "mevki": "Striker",
+      "yas": 26
+     }
+    ]
+   },
+   "yedekler": {
+    "ev": [
+     {
+      "no": 99,
+      "ad": "Mayu Funada",
+      "sd_id": 12748,
+      "mevki": "Goalkeeper",
+      "yas": 35
+     },
+     {
+      "no": 40,
+      "ad": "Yuka Kishida",
+      "sd_id": 120822,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 17,
+      "ad": "Chisato Minowa",
+      "sd_id": 70370,
+      "mevki": "Midfield",
+      "yas": 23
+     },
+     {
+      "no": 20,
+      "ad": "Arisu Ota",
+      "sd_id": 106542,
+      "mevki": "Midfield",
+      "yas": 17
+     },
+     {
+      "no": 16,
+      "ad": "Ayaka Michigami",
+      "sd_id": 16773,
+      "mevki": "Striker",
+      "yas": 32
+     },
+     {
+      "no": 39,
+      "ad": "Rena Nakahira",
+      "sd_id": 85212,
+      "mevki": "Striker",
+      "yas": 19
+     },
+     {
+      "no": 11,
+      "ad": "Megumi Takase",
+      "sd_id": 5944,
+      "mevki": "Striker",
+      "yas": 35
+     }
+    ],
+    "dep": [
+     {
+      "no": 21,
+      "ad": "Aina Kakiuchi",
+      "sd_id": 48608,
+      "mevki": "Goalkeeper",
+      "yas": 30
+     },
+     {
+      "no": 22,
+      "ad": "Ichiho Kodama",
+      "sd_id": 107739,
+      "mevki": "Defence",
+      "yas": 20
+     },
+     {
+      "no": 18,
+      "ad": "Mika Machida",
+      "sd_id": 107521,
+      "mevki": "Defence",
+      "yas": 21
+     },
+     {
+      "no": 24,
+      "ad": "Yurina Tsukazaki",
+      "sd_id": 116228,
+      "mevki": "Defence",
+      "yas": 23
+     },
+     {
+      "no": 23,
+      "ad": "Meiko Matsuura",
+      "sd_id": 116227,
+      "mevki": "Midfield",
+      "yas": 19
+     },
+     {
+      "no": 35,
+      "ad": "Yurara Hamada",
+      "sd_id": 107738,
+      "mevki": "Striker",
+      "yas": 20
+     },
+     {
+      "no": 10,
+      "ad": "Eri Kitagawa",
+      "sd_id": 85821,
+      "mevki": "Striker",
+      "yas": 25
+     }
+    ]
+   },
+   "tam": true
+  }
+ ],
+ "oynanmayan": [],
+ "raporsuz": [
+  {
+   "hafta": 4,
+   "ev": "Albirex Niigata",
+   "dep": "AC Nagano Parceiro",
+   "skor": "0:0",
+   "ev_id": 1116,
+   "dep_id": 2263
+  },
+  {
+   "hafta": 4,
+   "ev": "JEF United Ichihara Chiba",
+   "dep": "Urawa Red Diamonds",
+   "skor": "2:1",
+   "ev_id": 1120,
+   "dep_id": 397
+  },
+  {
+   "hafta": 4,
+   "ev": "RB Omiya Ardija Women",
+   "dep": "AS Elfen Saitama",
+   "skor": "0:2",
+   "ev_id": 16987,
+   "dep_id": 1117
+  },
+  {
+   "hafta": 4,
+   "ev": "Cerezo Osaka",
+   "dep": "Nojima Stella Kanagawa Sagamihara",
+   "skor": "2:2",
+   "ev_id": 6670,
+   "dep_id": 5557
+  },
+  {
+   "hafta": 4,
+   "ev": "Mynavi Sendai",
+   "dep": "INAC Kobe Leonessa",
+   "skor": "3:4",
+   "ev_id": 4783,
+   "dep_id": 180
+  },
+  {
+   "hafta": 4,
+   "ev": "Sanfrecce Hiroshima Regina",
+   "dep": "Tokyo Verdy Beleza",
+   "skor": "2:3",
+   "ev_id": 8401,
+   "dep_id": 243
+  },
+  {
+   "hafta": 5,
+   "ev": "INAC Kobe Leonessa",
+   "dep": "JEF United Ichihara Chiba",
+   "skor": "1:2",
+   "ev_id": 180,
+   "dep_id": 1120
+  },
+  {
+   "hafta": 5,
+   "ev": "AS Elfen Saitama",
+   "dep": "Mynavi Sendai",
+   "skor": "1:2",
+   "ev_id": 1117,
+   "dep_id": 4783
+  },
+  {
+   "hafta": 5,
+   "ev": "Nojima Stella Kanagawa Sagamihara",
+   "dep": "Albirex Niigata",
+   "skor": "1:0",
+   "ev_id": 5557,
+   "dep_id": 1116
+  },
+  {
+   "hafta": 6,
+   "ev": "Tokyo Verdy Beleza",
+   "dep": "AS Elfen Saitama",
+   "skor": "4:1",
+   "ev_id": 243,
+   "dep_id": 1117
+  },
+  {
+   "hafta": 6,
+   "ev": "Albirex Niigata",
+   "dep": "JEF United Ichihara Chiba",
+   "skor": "0:1",
+   "ev_id": 1116,
+   "dep_id": 1120
+  },
+  {
+   "hafta": 6,
+   "ev": "Mynavi Sendai",
+   "dep": "Nojima Stella Kanagawa Sagamihara",
+   "skor": "0:0",
+   "ev_id": 4783,
+   "dep_id": 5557
+  },
+  {
+   "hafta": 6,
+   "ev": "Urawa Red Diamonds",
+   "dep": "INAC Kobe Leonessa",
+   "skor": "2:0",
+   "ev_id": 397,
+   "dep_id": 180
+  },
+  {
+   "hafta": 6,
+   "ev": "RB Omiya Ardija Women",
+   "dep": "Cerezo Osaka",
+   "skor": "1:2",
+   "ev_id": 16987,
+   "dep_id": 6670
+  },
+  {
+   "hafta": 6,
+   "ev": "Sanfrecce Hiroshima Regina",
+   "dep": "AC Nagano Parceiro",
+   "skor": "1:0",
+   "ev_id": 8401,
+   "dep_id": 2263
+  }
+ ]
+}

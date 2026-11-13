@@ -35229,5 +35229,46 @@
   }
  ],
  "oynanmayan": [],
- "raporsuz": []
+ "raporsuz": [
+  {
+   "hafta": 14,
+   "ev": "HB Køge",
+   "dep": "Aarhus GF",
+   "skor": "6:0",
+   "ev_id": 7307,
+   "dep_id": 8184
+  },
+  {
+   "hafta": 14,
+   "ev": "Fortuna Hjørring",
+   "dep": "Brøndby IF",
+   "skor": "1:2",
+   "ev_id": 143,
+   "dep_id": 76
+  },
+  {
+   "hafta": 14,
+   "ev": "Kolding IF",
+   "dep": "FC København",
+   "skor": "2:2",
+   "ev_id": 11144,
+   "dep_id": 14990
+  },
+  {
+   "hafta": 14,
+   "ev": "FC Nordsjælland",
+   "dep": "ASA Aarhus",
+   "skor": "3:0",
+   "ev_id": 6588,
+   "dep_id": 6051
+  },
+  {
+   "hafta": 14,
+   "ev": "FC Midtjylland",
+   "dep": "Odense Boldklub Q",
+   "skor": "2:0",
+   "ev_id": 15549,
+   "dep_id": 13809
+  }
+ ]
 }

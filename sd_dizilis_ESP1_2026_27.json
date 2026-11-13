@@ -40053,6 +40053,62 @@
    "skor": "2:0",
    "ev_id": 16818,
    "dep_id": 44
+  },
+  {
+   "hafta": 10,
+   "ev": "Granada CF",
+   "dep": "RCD Espanyol",
+   "skor": "0:1",
+   "ev_id": 4897,
+   "dep_id": 552
+  },
+  {
+   "hafta": 10,
+   "ev": "Athletic Club",
+   "dep": "Real Madrid CF",
+   "skor": "1:1",
+   "ev_id": 44,
+   "dep_id": 6551
+  },
+  {
+   "hafta": 10,
+   "ev": "SD Eibar",
+   "dep": "Real Sociedad",
+   "skor": "1:2",
+   "ev_id": 1133,
+   "dep_id": 1135
+  },
+  {
+   "hafta": 10,
+   "ev": "Logroño United",
+   "dep": "Sevilla FC",
+   "skor": "2:2",
+   "ev_id": 18067,
+   "dep_id": 1140
+  },
+  {
+   "hafta": 10,
+   "ev": "FC Barcelona",
+   "dep": "Madrid CFF",
+   "skor": "5:1",
+   "ev_id": 1132,
+   "dep_id": 5649
+  },
+  {
+   "hafta": 10,
+   "ev": "Atlético de Madrid",
+   "dep": "FC Badalona Women",
+   "skor": "3:0",
+   "ev_id": 1129,
+   "dep_id": 17008
+  },
+  {
+   "hafta": 10,
+   "ev": "RC Deportivo A Coruña",
+   "dep": "Valencia Féminas CF",
+   "skor": "0:2",
+   "ev_id": 7278,
+   "dep_id": 1143
   }
  ]
 }
