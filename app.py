@@ -10676,7 +10676,7 @@ def _lig_seridi(aktif: str):
 
 def _acik_param_temizle():
     """Herkese açık sayfa parametrelerini (takvim, lig, sb, kulup…) adres çubuğundan siler; dil kalır."""
-    for _k in ("takvim", "lig", "ligler", "sb", "kulup", "paylas", "k"):
+    for _k in ("takvim", "blog", "lig", "ligler", "sb", "kulup", "paylas", "k"):
         if _k in st.query_params:
             del st.query_params[_k]
 
@@ -10821,7 +10821,7 @@ with st.sidebar:
         if _veri_lig not in _lig_liste:
             _veri_lig = "TR"
             st.session_state["veri_lig"] = "TR"
-        _acik_sayfa_var = any(params.get(_k, "").strip() for _k in ("takvim", "sb", "kulup", "lig", "ligler"))
+        _acik_sayfa_var = any(params.get(_k, "").strip() for _k in ("takvim", "blog", "sb", "kulup", "lig", "ligler"))
         _nl_lig = sum(1 for _k in _lig_liste if _k not in ("TR", "ALL") and _k not in _LIG_KUPA)
         _nl_kupa = sum(1 for _k in _lig_liste if _k in _LIG_KUPA)
         st.markdown(f"<div class='nav-grup nav-grup-lig'>🌍 {t('LİG SEÇ', 'PICK A LEAGUE')}"
@@ -10901,6 +10901,7 @@ with st.sidebar:
         # olsun menüde görünür (Yiğit, 13 Kasım 2026: "takvimi nereye koydun, kullanıcı nasıl bulacak") ──
         st.markdown(f"<div class='nav-grup'>{t('ARAÇLAR', 'TOOLS')}</div>", unsafe_allow_html=True)
         for _ak, _ae, _ap, _av in (
+                ("blog", t("📝 Blog · Haftanın Dosyası", "📝 Blog · File of the Week"), "blog", "1"),
                 ("takvim", t("🗓️ Takvim ve Transfer Dönemleri", "🗓️ Calendar & Transfer Windows"), "takvim", "1"),
                 ("sozlesme", t("📋 Sözleşme Takibi 2027", "📋 Contract Watch 2027"), "kulup", "sozlesme-2027"),
                 ("arsiv", t("📊 Olay Verisi Arşivi", "📊 Event Data Archive"), "sb", "liste")):
@@ -10975,26 +10976,161 @@ with st.sidebar:
                      type="primary" if _aktif_sayfa == "kokpit" else "secondary"):
             _nav_git("kokpit")
 
-# ─── Blog duyurusu (süreli) ──────────────────────────────────────────────────
-# Yazılar blog.womenfootballscouting.com'da (GitHub Pages, repo wfs-blog). Kart hem ana
-# sayfa hero'sunda hem yeni ziyaretçinin düştüğü Scouting Havuzu sayfasında çıkar;
-# bitiş tarihinden sonra kendiliğinden kalkar.
+# ─── Blog (blog.womenfootballscouting.com, GitHub Pages, repo wfs-blog) ──────────────────────────
+# Yazı listesi blogdaki yazilar.json'dan okunur (wfs-blog/_araclar/yazilar.py üretir): yeni yazı için kod
+# değişikliği ve deploy gerekmez. İstek arka planda yapılır, ziyaretçi beklemez; blog erişilemezse depodaki
+# blog_yazilar.json kullanılır. Görünür yerler: kenar çubuğu ARAÇLAR > Blog, ?blog=1 sayfası, açık sayfa
+# şeridindeki çip ve son yazı 8 günden yeniyse hero + karşılama + Scouting duvarındaki duyuru kartı.
+_BLOG_ALAN = "https://blog.womenfootballscouting.com"
+
+
+@st.cache_resource
+def _blog_kasa():
+    try:
+        with open(pathlib.Path(__file__).parent / "blog_yazilar.json", encoding="utf-8") as f:
+            v = json.load(f)
+    except Exception:
+        v = {"yazilar": []}
+    return {"veri": v, "zaman": 0.0, "calisiyor": False}
+
+
+def _blog_gecerli(v) -> list:
+    """Dışarıdan gelen listeyi süzer: yalnız beklenen alanlar, sınırlı uzunluk, güvenli slug ve renk."""
+    import re as _re_b
+    out = []
+    for y in (v.get("yazilar") or []) if isinstance(v, dict) else []:
+        try:
+            if not (_re_b.fullmatch(r"[a-z0-9-]{1,80}", y["slug"]) and _re_b.fullmatch(r"\d{4}-\d\d-\d\d", y["tarih"])):
+                continue
+            renk = [c for c in (y.get("renk") or []) if _re_b.fullmatch(r"#[0-9a-fA-F]{6}", str(c))]
+            kayit = {"slug": y["slug"], "tarih": y["tarih"], "okuma": int(y.get("okuma") or 0), "en": bool(y.get("en")),
+                     "renk": renk if len(renk) == 2 else ["#a855f7", "#a855f7"]}
+            for k in ("kick", "baslik", "ozet", "kart", "ek"):
+                kayit[k] = {"tr": str(y[k]["tr"])[:300], "en": str(y[k].get("en") or y[k]["tr"])[:300]}
+            out.append(kayit)
+        except Exception:
+            continue
+    return out[:60]
+
+
+def blog_yazilar() -> list:
+    k = _blog_kasa()
+    if _time.time() - k["zaman"] > 1800 and not k["calisiyor"]:
+        k["calisiyor"] = True
+
+        def _cek():
+            try:
+                r = requests.get(_BLOG_ALAN + "/yazilar.json", timeout=6, headers={"User-Agent": "wfs-site"})
+                if r.status_code == 200:
+                    v = r.json()
+                    if _blog_gecerli(v):
+                        k["veri"] = v
+            except Exception:
+                pass
+            finally:
+                k["zaman"] = _time.time()
+                k["calisiyor"] = False
+        _threading.Thread(target=_cek, daemon=True).start()
+    return _blog_gecerli(k["veri"])
+
+
+def _blog_tarih(iso: str) -> str:
+    _ay = (["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] if EN else
+           ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"])
+    try:
+        _y, _m, _g = (int(x) for x in iso.split("-"))
+        return f"{_g} {_ay[_m - 1]} {_y}"
+    except Exception:
+        return iso
+
+
+def _blog_link(y: dict) -> tuple:
+    """(adres, dil) — site İngilizceyse ve yazının çevirisi varsa İngilizce sürüm."""
+    d = "en" if (EN and y["en"]) else "tr"
+    return f"{_BLOG_ALAN}/{'en/' if d == 'en' else ''}{y['slug']}/", d
+
+
 def _blog_duyuru(kap_stil: str = ""):
+    """Son yazı 8 günden yeniyse duyuru kartı. Haftalık yazıda burada değişiklik gerekmez."""
     import datetime as _dt_blog
-    if _dt_blog.date.today() > _dt_blog.date(2026, 11, 21):
+    ys = blog_yazilar()
+    if not ys:
         return
+    y = ys[0]
+    try:
+        if (_dt_blog.date.today() - _dt_blog.date.fromisoformat(y["tarih"])).days > 8:
+            return
+    except Exception:
+        return
+    href, d = _blog_link(y)
     st.markdown(
         f"<div style='{kap_stil}'>"
-        f"<a href='https://blog.womenfootballscouting.com/{t('', 'en/')}fomget-besiktas/' "
-        "target='_blank' rel='noopener' style='display:block;text-decoration:none;color:#a78bfa;"
+        f"<a href='{href}' target='_blank' rel='noopener' style='display:block;text-decoration:none;color:#a78bfa;"
         "margin:10px 0 4px;padding:12px 16px;border-radius:12px;border:1px solid #3d3180;"
-        "border-left:4px solid #c4162f;border-right:4px solid #f1f5f9;"
-        "background:linear-gradient(90deg,#7a0f20dd 0%,#1a1438f2 50%,#16181fee 100%);'>"
-        f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı · Zirve dosyası', 'New article · Title-race file'))}</span><br>"
-        f"<span class='tp-sekilli' style='color:#ffffff;'>"
-        f"{_buyuk(t('Zirve dosyası: ABB FOMGET – Beşiktaş’a üç bakış', 'Title-race file: three views on ABB FOMGET – Beşiktaş'))}</span><br>"
-        f"<span class='tp-arametin'>{t('İki tribün ve analiz masası: atmosfer, puan hesabı, skor tahminleri — okumak için tıkla →', 'Two sets of supporters and the analysis desk: atmosphere, title maths, predictions — click to read →')}</span>"
-        "</a></div>", unsafe_allow_html=True)
+        f"border-left:4px solid {y['renk'][0]};border-right:4px solid {y['renk'][1]};"
+        "background:linear-gradient(90deg,#241a52 0%,#1a1438 50%,#171b31 100%);'>"
+        f"<span class='tp-arabaslik'>📝 {_buyuk(t('Yeni yazı', 'New article'))} · {_html.escape(_buyuk(y['kick'][d]))}</span><br>"
+        f"<span class='tp-sekilli' style='color:#ffffff;'>{_html.escape(_buyuk(y['baslik'][d]))}</span><br>"
+        f"<span class='tp-arametin'>{_html.escape(y['kart'][d])} — {t('okumak için tıkla →', 'click to read →')}</span>"
+        "</a>"
+        f"<div style='text-align:right;margin:2px 4px 0;'><a href='/?blog=1&dil={'EN' if EN else 'TR'}' target='_self' "
+        f"class='tp-arametin' style='color:#a78bfa;text-decoration:none;'>{t('Tüm yazılar →', 'All articles →')}</a></div>"
+        "</div>", unsafe_allow_html=True)
+
+
+def render_blog():
+    """?blog=1 — herkese açık: blog yazılarının listesi. Yazılar blogda açılır (yeni sekme)."""
+    st.markdown(
+        ("" if st.session_state.get("girildi") else "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']{display:none!important;}</style>") + "<style>"
+        ".block-container{max-width:980px!important;padding-top:1rem!important;}"
+        ".blg-kart{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);border:1px solid #2a3050;border-radius:14px;overflow:hidden;"
+        "background:#141a30;text-decoration:none!important;margin:0 0 6px;}"
+        ".blg-kart:hover,.blg-kk:hover{border-color:#7c3aed;}"
+        ".blg-kart img{width:100%;height:100%;object-fit:cover;display:block;min-height:200px;}"
+        ".blg-m{padding:18px 20px;display:flex;flex-direction:column;justify-content:center;min-width:0;}"
+        ".blg-izgara{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}"
+        ".blg-kk{display:block;border:1px solid #2a3050;border-radius:14px;overflow:hidden;background:#141a30;text-decoration:none!important;}"
+        ".blg-kk img{width:100%;height:auto;display:block;}"
+        ".blg-alt{display:block;margin-top:10px;font-size:0.74rem;color:#7c86a8;}"
+        "@media (max-width:720px){.blg-kart{grid-template-columns:1fr;}.blg-kart img{min-height:0;}}"
+        "</style>", unsafe_allow_html=True)
+    ys = blog_yazilar()
+    st.markdown(
+        "<div class='baslik-kutu'>"
+        f"<div class='ust-bant'>📝 {t('BLOG · HAFTANIN DOSYASI', 'BLOG · FILE OF THE WEEK')}</div>"
+        f"<h1>{t('Maç öncesi dosyalar', 'Pre-match files')}</h1>"
+        f"<p>{t('Her hafta bir maç: yorumcuların bakışı, sitenin verisi ve animasyonlu senaryolar.', 'One match every week: our pundits’ views, the site’s data and animated scenarios.')}"
+        + (f" · <b>{len(ys)}</b> {t('yazı', 'articles' if len(ys) != 1 else 'article')}" if ys else "") + "</p></div>", unsafe_allow_html=True)
+    st.markdown(_lig_cipleri("blog"), unsafe_allow_html=True)
+    if not ys:
+        st.markdown(f"<div class='tp-arametin' style='padding:30px 4px;'>{t('Yazı listesi şu an yüklenemedi.', 'The article list could not be loaded right now.')} "
+                    f"<a href='{_BLOG_ALAN}/' target='_blank' rel='noopener' style='color:#a78bfa;'>blog.womenfootballscouting.com →</a></div>", unsafe_allow_html=True)
+        st.stop()
+
+    def _kart(y, buyuk_mu):
+        href, d = _blog_link(y)
+        kapak = f"{_BLOG_ALAN}/{'en/' if d == 'en' else ''}{y['slug']}/kapak.png"
+        tr_not = f" · {t('Türkçe', 'in Turkish')}" if (EN and d == "tr") else ""
+        govde = (f"<span class='tp-arabaslik'>{_html.escape(_buyuk(y['kick'][d]))} · {_html.escape(_buyuk(_blog_tarih(y['tarih'])))}</span>"
+                 f"<span class='tp-sekilli' style='color:#ffffff;display:block;margin:6px 0 8px;line-height:1.25;'>{_html.escape(_buyuk(y['baslik'][d]))}</span>"
+                 f"<span class='tp-arametin' style='display:block;'>{_html.escape(y['ozet'][d])}</span>"
+                 f"<span class='blg-alt'>{y['okuma']} {t('dk okuma', 'min read')} · {_html.escape(y['ek'][d])}{tr_not}</span>")
+        if buyuk_mu:
+            return (f"<a class='blg-kart' href='{href}' target='_blank' rel='noopener'><img src='{kapak}' alt='' loading='lazy'>"
+                    f"<div class='blg-m'>{govde}</div></a>")
+        return (f"<a class='blg-kk' href='{href}' target='_blank' rel='noopener'><img src='{kapak}' alt='' loading='lazy'>"
+                f"<div style='padding:14px 16px 16px;'>{govde}</div></a>")
+    out = f"<div class='tp-arabaslik' style='margin:4px 2px 8px;'>{t('SON DOSYA', 'LATEST FILE')}</div>" + _kart(ys[0], True)
+    if len(ys) > 1:
+        out += (f"<div class='tp-arabaslik' style='margin:26px 2px 10px;'>{t('ÖNCEKİ DOSYALAR', 'EARLIER FILES')}</div>"
+                "<div class='blg-izgara'>" + "".join(_kart(y, False) for y in ys[1:]) + "</div>")
+    st.markdown(_html_bmp(out), unsafe_allow_html=True)
+    st.markdown(
+        f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:22px;'>womenfootballscouting.com · "
+        f"{t('Yazılar blogda açılır:', 'Articles open on the blog:')} "
+        f"<a href='{_BLOG_ALAN}/{'en/' if EN else ''}' target='_blank' rel='noopener' style='color:#7c86a8;'>blog.womenfootballscouting.com</a> · "
+        f"<a href='{_BLOG_ALAN}/feed.xml' target='_blank' rel='noopener' style='color:#7c86a8;'>RSS</a></div>", unsafe_allow_html=True)
+    st.stop()
 
 
 # ─── HERO (tam genişlik — sağda boşluk kalmaz) ────────────────────────────────
@@ -11014,7 +11150,7 @@ _tr_sekme_sec  = st.session_state.get("tr_sekme", _ilk_tr_sekme)
 _ilk_sekmede   = (_tr_sekme_sec == _ilk_tr_sekme) or (_tr_sekme_sec not in _tr_sekmeler_h)
 _ust_blok_goster = (_ana_ekran and _ilk_sekmede and not params.get("paylas", "").strip()
                     and st.session_state.get("veri_lig", "TR") == "TR"
-                    and not any(params.get(_k, "").strip() for _k in ("takvim", "sb", "kulup", "lig", "ligler")))
+                    and not any(params.get(_k, "").strip() for _k in ("takvim", "blog", "sb", "kulup", "lig", "ligler")))
 if _ust_blok_goster:
   try:    _hero_dh = dunya_havuz_ozet()
   except Exception: _hero_dh = {"oyuncu": 0, "degerlendirilmis": 0, "ulke": 0, "lig": 0}
@@ -11169,6 +11305,8 @@ def ziyaret_kaydet():
                 sayfa = "olay-verisi"
             elif qp.get("takvim"):
                 sayfa = "takvim"
+            elif qp.get("blog"):
+                sayfa = "blog"
             elif qp.get("ligler"):
                 sayfa = "ligler"
             elif qp.get("lig"):
@@ -13138,6 +13276,7 @@ def _lig_cipleri(secili: str = "", kisa: bool = False) -> str:
     out += _c(f"/?takvim=1&dil={_dq}", "🗓️ " + t("Takvim ve transfer dönemleri", "Calendar and transfer windows"), secili == "takvim")
     out += _c(f"/?sb=liste&dil={_dq}", "📊 " + t("Olay verisi arşivi", "Event data archive"), secili == "sb")
     out += _c(f"/?kulup=sozlesme-2027&dil={_dq}", "📋 " + t("Sözleşme Takibi", "Contract Watch"))
+    out += _c(f"/?blog=1&dil={_dq}", "📝 Blog", secili == "blog")
     return _html_bmp("<div style='margin:0 0 14px;'>" + out + "</div>")
 
 
@@ -13542,6 +13681,10 @@ if params.get("sb", "").strip():
 # ─── LİG TAKVİMİ + TRANSFER DÖNEMLERİ (?takvim=1) — public ──────────────────
 if params.get("takvim", "").strip():
     render_takvim()
+
+# ─── BLOG (?blog=1) — public: haftalık maç dosyalarının listesi ──────────────
+if params.get("blog", "").strip():
+    render_blog()
 
 # ─── TÜM LİGLER (?ligler=1) — public ve ücretsiz ─────────────────────────────
 if params.get("ligler", "").strip():

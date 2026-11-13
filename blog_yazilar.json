@@ -1,0 +1,66 @@
+{
+ "guncelleme": "2026-11-13",
+ "alan": "https://blog.womenfootballscouting.com",
+ "yazilar": [
+  {
+   "slug": "fomget-besiktas",
+   "tarih": "2026-11-13",
+   "okuma": 16,
+   "en": true,
+   "renk": [
+    "#c4162f",
+    "#f1f5f9"
+   ],
+   "kick": {
+    "tr": "ZİRVE DOSYASI",
+    "en": "TITLE-RACE FILE"
+   },
+   "baslik": {
+    "tr": "Zirve Maçı Öncesi Üç Bakış: ABB FOMGET – Beşiktaş",
+    "en": "Three Views Before the Top-of-the-Table Clash: ABB FOMGET vs Beşiktaş"
+   },
+   "ozet": {
+    "tr": "11. haftanın zirve maçını üç pencereden sorduk: atmosfer, puan hesabı, taktik düğüm ve skor tahminleri.",
+    "en": "Three views of matchweek 11's top-of-the-table game: atmosphere, the title maths, the tactical knot and score predictions."
+   },
+   "kart": {
+    "tr": "İki tribün ve analiz masası: atmosfer, puan hesabı, skor tahminleri",
+    "en": "Two sets of supporters and the analysis desk: atmosphere, title maths, predictions"
+   },
+   "ek": {
+    "tr": "ilk 11 tahminleri ve animasyonlu senaryolarla",
+    "en": "with predicted line-ups and animated scenarios"
+   }
+  },
+  {
+   "slug": "fenerbahce-galatasaray-derbi",
+   "tarih": "2026-11-06",
+   "okuma": 14,
+   "en": true,
+   "renk": [
+    "#f7d417",
+    "#fdb913"
+   ],
+   "kick": {
+    "tr": "DERBİ DOSYASI",
+    "en": "DERBY FILE"
+   },
+   "baslik": {
+    "tr": "Derbi Öncesi Üç Bakış: Fenerbahçe – Galatasaray",
+    "en": "Three Views Before the Derby: Fenerbahçe vs Galatasaray"
+   },
+   "ozet": {
+    "tr": "10. haftanın derbisini üç yorumcuya sorduk: form, kilit eşleşmeler, senaryolar ve skor tahminleri.",
+    "en": "We asked three pundits about matchweek 10's derby: form, key duels, scenarios and score predictions."
+   },
+   "kart": {
+    "tr": "Üç yorumcu, ilk 11 tahminleri, animasyonlu senaryolar",
+    "en": "Three pundits, predicted line-ups, animated scenarios"
+   },
+   "ek": {
+    "tr": "ilk 11 tahminleri ve animasyonlu senaryolarla",
+    "en": "with predicted line-ups and animated scenarios"
+   }
+  }
+ ]
+}
