@@ -33,15 +33,16 @@
     "deger_max": 40000,
     "ab": true
    }
-  ]
+  ],
+  "ulke": "TUR"
  },
  "sozlesme-2027": {
   "ad": "Sözleşme Takibi 2027",
   "ad_en": "Contract Watch 2027",
   "ozet": "musait",
   "liste": true,
-  "alt_baslik": "Serbest ya da sözleşmesi 30.06.2027 tarihine kadar biten, scout notu en yüksek oyuncular",
-  "alt_baslik_en": "The highest-graded players in our pool who are free agents or out of contract by 30 June 2027",
+  "alt_baslik": "Transfer dönemine göre: serbest oyuncular ile sıradaki dönemde ve sezon sonunda bonservissiz alınabilecek, scout notu en yüksek isimler",
+  "alt_baslik_en": "By transfer window: free agents and the highest-graded players who can be signed for free in the next window or at season end",
   "not": "Sözleşme tarihleri SoccerDonna ve kulüp kaynaklarından derlenir; işlem öncesinde doğrulayın. Liste her gün yeniden hesaplanır.",
   "not_en": "Contract dates are compiled from SoccerDonna and club sources; verify before acting. The list is recalculated daily.",
   "ihtiyaclar": [
@@ -192,7 +193,8 @@
   "seviye": 1,
   "kendi": [
    "SC Freiburg"
-  ]
+  ],
+  "ulke": "GER"
  },
  "kups": {
   "ad": "KuPS",
@@ -245,7 +247,8 @@
   "kendi": [
    "KuPS",
    "KuPS Kuopio"
-  ]
+  ],
+  "ulke": "FIN"
  },
  "gc-frauen": {
   "ad": "GC Frauenfussball",
@@ -284,7 +287,8 @@
   "kendi": [
    "Grasshoppers Zürich",
    "Grasshopper Club Zürich"
-  ]
+  ],
+  "ulke": "SUI"
  },
  "skn-st-polten": {
   "ad": "SKN St. Pölten Frauen",
@@ -336,7 +340,8 @@
   "seviye": 3,
   "kendi": [
    "SKN St. Pölten"
-  ]
+  ],
+  "ulke": "AUT"
  },
  "first-vienna": {
   "ad": "First Vienna FC",
@@ -386,7 +391,8 @@
    "First Vienna",
    "Vienna FC"
   ],
-  "genel": true
+  "genel": true,
+  "ulke": "AUT"
  },
  "sv-67-weinberg": {
   "ad": "SV 67 Weinberg",
@@ -428,7 +434,8 @@
     "neden_en": "5 of your 12 registered midfielders are out of contract on 30.06.2027."
    }
   ],
-  "seviye": 3
+  "seviye": 3,
+  "ulke": "GER"
  },
  "wexford": {
   "ad": "Wexford FC",
@@ -480,7 +487,8 @@
   "seviye": 3,
   "kendi": [
    "Wexford"
-  ]
+  ],
+  "ulke": "IRL"
  },
  "cardiff-city-women": {
   "ad": "Cardiff City FC Women",
@@ -531,7 +539,8 @@
   "seviye": 3,
   "kendi": [
    "Cardiff City"
-  ]
+  ],
+  "ulke": "WAL"
  },
  "kristianstads-dff": {
   "ad": "Kristianstads DFF",
@@ -582,7 +591,8 @@
   "kendi": [
    "Kristianstads DFF",
    "Kristianstad"
-  ]
+  ],
+  "ulke": "SWE"
  },
  "eskilstuna-united": {
   "ad": "Eskilstuna United",
@@ -639,6 +649,7 @@
   "kendi": [
    "Eskilstuna United",
    "Eskilstuna"
-  ]
+  ],
+  "ulke": "SWE"
  }
 }

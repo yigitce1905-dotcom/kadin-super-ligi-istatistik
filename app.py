@@ -704,6 +704,38 @@ section[data-testid="stSidebar"] [data-testid="stVerticalBlock"] { gap:0.2rem; }
     to{opacity:1; transform:none;} }
 .nav-marka-logo img { animation:marka-belir .55s cubic-bezier(.2,.8,.2,1) both; }
 
+/* Lig seçimi — sol menüde belirgin kutu + ana alanda lig şeridi */
+.nav-grup-lig { color:#c4b5fd; border-bottom-color:#3b2d6e; display:flex; align-items:center; justify-content:space-between; }
+.nav-rozet { font-size:0.56rem; letter-spacing:0.04em; color:#e9d5ff; background:#2a1f55; border:1px solid #4c3a8f;
+    border-radius:999px; padding:1px 7px; text-transform:none; font-weight:700; }
+section[data-testid="stSidebar"] .st-key-nav_lig_sec div[data-baseweb="select"] > div {
+    background:linear-gradient(135deg,#1b1540,#161c36) !important; border:1px solid #6d4fd6 !important; border-radius:9px !important;
+    box-shadow:0 0 0 1px rgba(124,58,237,0.18), 0 6px 18px -10px rgba(124,58,237,0.9); font-weight:700; color:#fff; min-height:42px; }
+section[data-testid="stSidebar"] .st-key-nav_lig_sec div[data-baseweb="select"] > div:hover { border-color:#a855f7 !important; }
+.nav-lig-ipucu { font-size:0.66rem; line-height:1.35; color:#7f89a8; margin:0 4px 12px; }
+.st-key-lig_serit { background:linear-gradient(135deg,#121831,#1a1438); border:1px solid #2f2a5c; border-radius:14px;
+    padding:11px 16px 6px !important; margin:0 0 14px; }
+.lig-serit-bas { display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 12px; margin:0 0 2px; }
+.lig-serit-etiket { font-family:Sora,sans-serif; font-size:0.72rem; font-weight:800; letter-spacing:0.14em; color:#c4b5fd; }
+.st-key-lig_serit [data-testid="stPills"] button, .st-key-lig_serit [data-testid="stButtonGroup"] button {
+    background:#141a30; border:1px solid #2a3050; color:#cbd5e1; border-radius:999px; font-weight:600; font-size:0.76rem;
+    padding:2px 10px; min-height:30px; }
+.st-key-lig_serit [data-testid="stButtonGroup"] { gap:6px; }
+.st-key-lig_serit [data-testid="stButtonGroup"] button p { font-size:0.76rem; }
+@media (max-width: 768px) {            /* telefonda: açıklama gizli, çipler tek satırda yana kaydırılır (dört satır yer kaplamasın) */
+    .st-key-lig_serit { padding:9px 12px 4px !important; }
+    .lig-serit-bas .tp-arametin { display:none; }
+    .st-key-lig_serit [data-testid="stColumn"]:first-child { min-height:26px; }      /* başlık, alttaki kutunun altında kalmasın */
+    .st-key-lig_serit [data-testid="stButtonGroup"] > div { flex-wrap:nowrap !important; overflow-x:auto; padding-bottom:6px; scrollbar-width:none; }
+    .st-key-lig_serit [data-testid="stButtonGroup"] > div::-webkit-scrollbar { display:none; }
+    .st-key-lig_serit [data-testid="stButtonGroup"] button { flex:0 0 auto; }
+}
+.st-key-lig_serit [data-testid="stButtonGroup"] button:hover { border-color:#7c3aed; color:#fff; }
+.st-key-lig_serit [data-testid="stButtonGroup"] button[kind="pillsActive"],
+.st-key-lig_serit [data-testid="stButtonGroup"] button[aria-checked="true"],
+.st-key-lig_serit [data-testid="stButtonGroup"] button[aria-pressed="true"] {
+    background:linear-gradient(135deg,#7c3aed,#a855f7) !important; border-color:#a855f7 !important; color:#fff !important; }
+
 /* Grup başlığı — keskin alt çizgi */
 .nav-grup { font-size:0.6rem; font-weight:800; letter-spacing:0.16em;
     color:#6b7494; text-transform:uppercase; margin:15px 4px 7px;
@@ -7192,14 +7224,36 @@ def render_serbest_radar():
     _durum_sec = _kol1.selectbox(
         t("Durum", "Status"), [_TUMU, "serbest", "bitiyor"],
         format_func=lambda k: _DURUM_ETIKET[k], key="ssr_durum")
-    _pencere = _kol2.selectbox(t("Pencere (ay)", "Window (months)"), [3, 6, 12], index=1, key="ssr_pencere")
+    # Zaman aralığı artık ALICI ülkenin transfer dönemine göre de seçilebilir (14 Kasım 2026, Yiğit: öneriler transfer dönemine
+    # göre olsun). "Sıradaki dönem" = o ülkenin sıradaki tescil dönemi kapanana kadar sözleşmesi bitenler (bkz. _transfer_donemi).
+    from datetime import date as _date_r, datetime as _dt_r, timedelta as _td_r
+    _bugun_r = (_dt_r.utcnow() + _td_r(hours=3)).date()
+    _ulkeler_r = [x for x in takvim_yukle().get("ulkeler", []) if x.get("pencere") or x.get("sezon")]
+    _ukod_r = [x["fifa"] for x in _ulkeler_r]
+    _uad_r = {x["fifa"]: f"{x.get('bayrak', '')} {x.get('ulke_en' if EN else 'ulke', '')}" for x in _ulkeler_r}
+    _PEN_ETIKET = {"donem": t("Sıradaki transfer dönemi", "Next transfer window"), "sezon": t("Sezon sonuna kadar", "Until season end"),
+                   3: t("3 ay", "3 months"), 6: t("6 ay", "6 months"), 12: t("12 ay", "12 months")}
+    _pencere = _kol2.selectbox(t("Zaman aralığı", "Time frame"), ["donem", "sezon", 3, 6, 12], index=0, key="ssr_pencere",
+                               format_func=lambda k: _PEN_ETIKET[k])
     _GRUP_ETIKET = {"GK": t("Kaleci", "Goalkeeper"), "DEF": t("Defans", "Defender"),
                      "MID": t("Orta Saha", "Midfielder"), "FWD": t("Forvet", "Forward")}
     _mevki_sec = _kol3.selectbox(t("Mevki Grubu", "Position Group"),
                                  [_TUMU] + list(_GRUP_ETIKET.keys()), key="ssr_mevki",
                                  format_func=lambda k: _DURUM_ETIKET.get(k) or _GRUP_ETIKET.get(k, k))
 
-    _gun_siniri = _pencere * 30
+    _gun_siniri = _pencere * 30 if isinstance(_pencere, int) else 180
+    if _ukod_r and not isinstance(_pencere, int):
+        if st.session_state.get("ssr_ulke") not in _ukod_r:
+            st.session_state["ssr_ulke"] = _trf_ulke_varsayilan() if _trf_ulke_varsayilan() in _ukod_r else _ukod_r[0]
+        _ulke_r = st.selectbox(t("Kulübün ülkesi (transfer dönemi buna göre hesaplanır)", "Club's country (the transfer window is worked out from it)"),
+                               _ukod_r, key="ssr_ulke", format_func=lambda k: _uad_r.get(k, k))
+        _trd_r = _transfer_donemi(_ulke_r, _bugun_r.isoformat())
+        _sinir_r = _date_r.fromisoformat(_trd_r["sinir1" if _pencere == "donem" else "sinir2"])
+        _gun_siniri = max(0, (_sinir_r - _bugun_r).days)
+        st.markdown(f"<div class='tp-arametin' style='margin:-4px 0 8px;'>🗓️ {_html_bmp(_trf_donem_cumle(_trd_r))} · "
+                    + t(f"listede: serbest oyuncular ve sözleşmesi {_trf_gun(_sinir_r.isoformat())} tarihine kadar bitenler",
+                        f"listed: free agents and players out of contract by {_trf_gun(_sinir_r.isoformat())}") + "</div>",
+                    unsafe_allow_html=True)
     _sonuc = []
     for k in havuz:
         if _durum_sec == "serbest" and not k["serbest"]:
@@ -10534,6 +10588,68 @@ def _lig_sekme_etiketleri(kod: str) -> list:
     return [(k, ad[k]) for k in _LIG_SEKME if not (k == "tablo" and kod in _LIG_KUPA)]
 
 
+# Şerit ve dar yerler için kısa lig adları (uzun resmî ad seçim kutusunda ve sayfa başlığında kalır)
+_LIG_KISA = {"ENG1": "WSL", "BL1": "Bundesliga", "IT1": "Serie A", "ENG2": "WSL 2", "MXAP": "Liga MX", "Ered": "Eredivisie",
+             "CA1": "NSL", "WL": "A-League", "USGS": "USL Super League", "CL": "UWCL", "EC": "UWEC"}
+
+
+def _lig_kisa(kod: str) -> str:
+    if kod == "TR":
+        return "🇹🇷 Türkiye"
+    if kod == "ALL":
+        return "🌍 " + t("Tüm Ligler", "All Leagues")
+    b, ad, _ = _LIG_SAYFA[kod]
+    return f"{b} {_LIG_KISA.get(kod) or (_LIG_AD_EN.get(kod, ad) if EN else ad)}"
+
+
+def _lig_gecis_yap(kod: str):
+    """Sayfa gövdesinden lig değiştirir: istek bir sonraki çalışmada sol menüde (kutu çizilmeden önce) uygulanır."""
+    st.session_state["_lig_gecis"] = kod
+    st.session_state["lig_sekme"] = "ligler" if kod == "ALL" else "liste"
+    st.session_state["sayfa"] = "ana"
+    st.session_state["girildi"] = True
+    st.session_state["lg_serit_n"] = st.session_state.get("lg_serit_n", 0) + 1
+    _acik_param_temizle()
+    if "oyuncu" in st.query_params:
+        del st.query_params["oyuncu"]
+    st.rerun()
+
+
+def _lig_seridi(aktif: str):
+    """Ana alanın üstündeki LİG ŞERİDİ: Türkiye · Tüm Ligler · Opta'nın ilk 7 ligi tek tıkla, kalanlar yandaki kutuda.
+    14 Kasım 2026 (Yiğit: "TR Veri kısmında başka ligleri seçebileceğimi bilebilmem gerekiyor"): lig seçimi yalnız sol
+    menüdeki küçük açılır kutudaydı; TR Veri'ye bakan kullanıcı başka liglerin de olduğunu fark etmiyordu.
+    TR Veri'de, lig kipinde ve Tüm Ligler'de aynı yerde durur → hangi ligde olunduğu ve diğerlerine nasıl geçileceği hep görünür."""
+    mevcut = _lig_mevcut()
+    capraz = bool(capraz_yukle()["ligler"])
+    one = ["TR"] + (["ALL"] if capraz else []) + [k for k in mevcut if (_OPTA_SIRA.get(k) or 99) <= 7]
+    diger = [k for k in mevcut if k not in one]
+    n = st.session_state.get("lg_serit_n", 0)
+    lig_say = sum(1 for k in mevcut if k not in _LIG_KUPA)
+    kupa_say = sum(1 for k in mevcut if k in _LIG_KUPA)
+    with st.container(key="lig_serit"):
+        c1, c2 = st.columns([4.2, 1.8], vertical_alignment="center")
+        with c1:
+            st.markdown(
+                "<div class='lig-serit-bas'>"
+                f"<span class='lig-serit-etiket'>🌍 {_buyuk(t('Lig seç', 'Pick a league'))}</span>"
+                f"<span class='tp-arametin'>{t(f'Türkiye + {lig_say} lig ve {kupa_say} Avrupa kupası · bu sezonun maç verisi, hepsi ücretsiz', f'Türkiye + {lig_say} leagues and {kupa_say} European cups · this season’s match data, all free')}</span>"
+                "</div>", unsafe_allow_html=True)
+        with c2:
+            sec2 = st.selectbox(t("Diğer ligler", "More leagues"), [""] + diger, index=(diger.index(aktif) + 1 if aktif in diger else 0),
+                                format_func=lambda k: _lig_etiket(k) if k else t(f"＋ {len(diger)} lig daha…", f"＋ {len(diger)} more leagues…"),
+                                key=f"ligserit_s_{aktif}_{n}", label_visibility="collapsed")
+        sec = st.pills(t("Lig", "League"), one, default=(aktif if aktif in one else None), format_func=_lig_kisa,
+                       key=f"ligserit_p_{aktif}_{n}", label_visibility="collapsed")
+    if sec and sec != aktif:
+        _lig_gecis_yap(sec)
+    if sec2 and sec2 != aktif:
+        _lig_gecis_yap(sec2)
+    if sec is None and aktif in one:               # etkin çipe yeniden basıldı (seçim kalktı) → vurguyu geri getir
+        st.session_state["lg_serit_n"] = n + 1
+        st.rerun()
+
+
 def _acik_param_temizle():
     """Herkese açık sayfa parametrelerini (takvim, lig, sb, kulup…) adres çubuğundan siler; dil kalır."""
     for _k in ("takvim", "lig", "ligler", "sb", "kulup", "paylas", "k"):
@@ -10682,11 +10798,16 @@ with st.sidebar:
             _veri_lig = "TR"
             st.session_state["veri_lig"] = "TR"
         _acik_sayfa_var = any(params.get(_k, "").strip() for _k in ("takvim", "sb", "kulup", "lig", "ligler"))
-        st.markdown(f"<div class='nav-grup'>{t('LİG', 'LEAGUE')}</div>", unsafe_allow_html=True)
+        _nl_lig = sum(1 for _k in _lig_liste if _k not in ("TR", "ALL") and _k not in _LIG_KUPA)
+        _nl_kupa = sum(1 for _k in _lig_liste if _k in _LIG_KUPA)
+        st.markdown(f"<div class='nav-grup nav-grup-lig'>🌍 {t('LİG SEÇ', 'PICK A LEAGUE')}"
+                    f"<span class='nav-rozet'>{_nl_lig + 1} {t('lig', 'leagues')}</span></div>", unsafe_allow_html=True)
         if st.session_state.get("nav_lig_sec") not in _lig_liste:
             st.session_state["nav_lig_sec"] = _veri_lig
         _lig_secim = st.selectbox(t("Lig", "League"), _lig_liste, key="nav_lig_sec", format_func=_lig_etiket,
                                   label_visibility="collapsed")
+        st.markdown(f"<div class='nav-lig-ipucu'>{t(f'Türkiye dışında {_nl_lig} lig ve {_nl_kupa} Avrupa kupası: NWSL, WSL, Bundesliga, Liga F…', f'{_nl_lig} more leagues and {_nl_kupa} European cups: NWSL, WSL, Bundesliga, Liga F…')}</div>",
+                    unsafe_allow_html=True)
         if _lig_secim != _veri_lig:
             st.session_state["veri_lig"] = _lig_secim
             st.session_state["lig_sekme"] = "ligler" if _lig_secim == "ALL" else "liste"
@@ -11118,14 +11239,87 @@ def _lig_seviye(lig: str) -> int:
     return 1 if ad in _LIG_SEV1 else 2 if ad in _LIG_SEV2 else 3
 
 
-@st.cache_data(show_spinner=False, ttl=1800, max_entries=32)
+def _ay_ekle(d, n: int):
+    import calendar as _cal
+    from datetime import date as _date
+    y, m = d.year + (d.month - 1 + n) // 12, (d.month - 1 + n) % 12 + 1
+    return _date(y, m, min(d.day, _cal.monthrange(y, m)[1]))
+
+
+@st.cache_data(show_spinner=False, max_entries=128)
+def _transfer_donemi(fifa: str, gun: str) -> dict:
+    """ALICI ülkenin sıradaki transfer ve tescil dönemi + bonservissiz alım sınırları (takvim_2026_27.json: FIFA; Türkiye = TFF amatör).
+    14 Kasım 2026 (Yiğit: "liglerin transfer dönemlerine göre transfer önerisi daha mantıklı olur, taa 2027 haziran sonundansa"):
+    öneriler tek bir "30.06.2027'ye kadar biten" sınırına göre yapılıyordu; Kasım'da asıl soru "Ocak'ta kimi alabilirim"dir.
+      sinir1: sözleşmesi bu tarihe kadar biten oyuncu SIRADAKİ dönemde bonservissiz tescil edilebilir (dönemin kapanış günü);
+      sinir2: sözleşmesi bu tarihe kadar biten oyuncu dönem açıldığında son 6 ayındadır → sezon sonunda bonservissiz.
+    Takvim yılı liglerinde (İsveç, Norveç, ABD…) yeni sezonun dönemi FIFA'da henüz yoksa 'bas'/'bit' boş kalır, sinir1 =
+    sezonun bittiği yılın 31 Aralık'ı; 'onceki' = bu sezonun ilk dönemi (yalnız bilgi; tarih TAHMİN EDİLMEZ).
+    Ülke takvimde yoksa: sinir1 = bugün (yalnız serbest oyuncu "şimdi"), sinir2 = içinde bulunulan sezonun 30 Haziran'ı."""
+    from datetime import date as _date
+    b = _date.fromisoformat(gun)
+    u = next((x for x in takvim_yukle().get("ulkeler", []) if x.get("fifa") == fifa), None)
+    out = {"fifa": fifa if u else "", "ulke": (u or {}).get("ulke", ""), "ulke_en": (u or {}).get("ulke_en", ""), "bayrak": (u or {}).get("bayrak", ""),
+           "amator": bool((u or {}).get("amator")), "bas": "", "bit": "", "acik": False, "gun": None, "onceki": None}
+    pen = sorted((_date.fromisoformat(a), _date.fromisoformat(c)) for a, c in ((u or {}).get("pencere") or []))
+    gelecek = [p for p in pen if p[1] >= b]
+    # Açık dönem bir hafta içinde kapanıyorsa planlama SONRAKİ döneme göre yapılır (13 Kasım 2026: Türkiye'nin ilk amatör dönemi
+    # o gün kapanıyordu; "kapanmasına 0 gün" diyen bir döneme göre öneri sunmak işe yaramaz). Kapanan dönem bilgi olarak kalır.
+    out["kapanan"] = None
+    if gelecek and gelecek[0][0] <= b and (gelecek[0][1] - b).days < 7:
+        out["kapanan"] = [gelecek[0][0].isoformat(), gelecek[0][1].isoformat(), (gelecek[0][1] - b).days]
+        gelecek = gelecek[1:]
+    if gelecek:
+        bas, bit = gelecek[0]
+        out.update({"bas": bas.isoformat(), "bit": bit.isoformat(), "acik": bas <= b, "gun": ((bit - b).days if bas <= b else (bas - b).days)})
+        s1, taban = bit, max(bas, b)
+    elif u and (pen or u.get("sezon")):
+        sezon_bit = _date.fromisoformat(u["sezon"][1]) if u.get("sezon") else (pen[-1][1] if pen else b)
+        s1 = max(sezon_bit, _date(sezon_bit.year, 12, 31) if sezon_bit.month >= 9 else sezon_bit, b)
+        taban = s1
+        out["onceki"] = [pen[0][0].isoformat(), pen[0][1].isoformat()] if pen else None
+    else:
+        s1 = b
+        taban = _date(b.year + (1 if b.month >= 7 else 0), 1, 1)
+    s2 = max(_ay_ekle(taban, 6), s1)
+    out.update({"sinir1": s1.isoformat(), "sinir2": s2.isoformat()})
+    return out
+
+
+_AY_KISA = (("Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"),
+            ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+
+
+def _trf_gun(iso: str, yil: bool = True) -> str:
+    """'2027-01-04' → '4 Oca 2027' / '4 Jan 2027'."""
+    try:
+        y, m, g = (int(x) for x in str(iso)[:10].split("-"))
+    except Exception:
+        return ""
+    return f"{g} {_AY_KISA[1 if EN else 0][m - 1]}" + (f" {y}" if yil else "")
+
+
+def _trf_aralik(bas: str, bit: str) -> str:
+    return f"{_trf_gun(bas, bas[:4] != bit[:4])} – {_trf_gun(bit)}" if bas and bit else ""
+
+
+def _trf_ulke_varsayilan() -> str:
+    """Liste sayfasında alıcı ülke: ?ulke= → yoksa Türkçe arayüzde Türkiye, İngilizcede İngiltere."""
+    q = str(st.query_params.get("ulke", "") or "").strip().upper()
+    kodlar = {x.get("fifa") for x in takvim_yukle().get("ulkeler", [])}
+    return q if q in kodlar else ("ENG" if EN else "TUR")
+
+
+@st.cache_data(show_spinner=False, ttl=1800, max_entries=48)
 def _kulup_adaylari(kayit_json: str, gun: str) -> list:
     """Bir kulüp kaydının HER ihtiyaç alanı için adaylar: [[hafif sözlük…], …] (alan sırasıyla).
-    Sıra: nihai not → müsaitlik (serbest / sözleşmesi sezon sonuna kadar biten) → nitelik ortalaması.
+    Sıra: sıradaki dönemde alınabilir mi (serbest / dönem içinde sözleşmesi biten) → nihai not → sezon sonunda serbest
+    kalıyor mu → nitelik ortalaması. Alınabilirlik ALICI ülkenin tescil dönemine göre hesaplanır (kayıtta 'ulke' = FIFA kodu;
+    bkz. _transfer_donemi). Dönen 'durum': 'serbest' | 'donem' | 'sezon' | ''.
 
     Alan ölçütleri: mevki [kod…], yas_min, yas_max, deger_max (€), ayak, ab, not_min,
-    musait (true → yalnız serbest ya da sözleşmesi sezon sonuna kadar biten).
-    Kulüp düzeyi (kayıtta): seviye (1-3), kendi [havuzdaki kulüp ad(lar)ı].
+    musait (true → yalnız serbest, sıradaki dönemde ya da sezon sonunda bonservissiz).
+    Kulüp düzeyi (kayıtta): seviye (1-3), kendi [havuzdaki kulüp ad(lar)ı], ulke (FIFA kodu).
 
     GERÇEKÇİLİK (12 Kasım 2026 denetimi: Wexford'a Everton stoperi, Weinberg'e NWSL kalecisi
     öneriyorduk; Kristianstad sayfasında KENDİ iki oyuncusu aday görünüyordu):
@@ -11141,7 +11335,8 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
     from datetime import date as _date
     kayit = json.loads(kayit_json)
     bugun = _date.fromisoformat(gun)
-    sinir = _date(bugun.year + (1 if bugun.month >= 7 else 0), 6, 30)
+    _td = _transfer_donemi(str(kayit.get("ulke") or ""), gun)
+    sinir1, sinir2 = _date.fromisoformat(_td["sinir1"]), _date.fromisoformat(_td["sinir2"])
     ks = int(kayit.get("seviye") or 0)
     kendi = [k for k in (_isim_norm(x) for x in [kayit.get("ad", "")] + list(kayit.get("kendi") or [])) if len(k) >= 4]
     havuz, sd = birlesik_scout_yukle(), birlesik_sd_yukle()
@@ -11197,13 +11392,18 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
                 continue
             if kriter.get("ab") and not _ab_uyumlu(r.get("vatandaslik", ""), r.get("milli_takim", "")):
                 continue
-            biter = bool(bitis and bugun <= bitis <= sinir)
+            donem = bool(bitis and bugun <= bitis <= sinir1)          # sıradaki tescil döneminde bonservissiz
+            sezon = bool(bitis and sinir1 < bitis <= sinir2)          # dönem açıldığında son 6 ayında → sezon sonunda bonservissiz
+            biter = donem or sezon
             if ks and not (serbest or sv >= ks or (sv == ks - 1 and biter)):
                 continue
-            if kriter.get("musait") and not (serbest or biter):   # yalnız serbest / sezon sonuna kadar biten
+            if kriter.get("musait") and not (serbest or biter):   # yalnız serbest / bonservissiz alınabilecek
                 continue
-            durum = "serbest" if serbest else "bitiyor" if biter else ""
-            out.append(((a[0], 1 if durum else 0, a[1]), {
+            durum = "serbest" if serbest else "donem" if donem else "sezon" if sezon else ""
+            # Sıra: sıradaki dönemde alınabilecekler (serbest / dönem içinde sözleşmesi biten) en üstte; sonra scout notu;
+            # aynı notta sezon sonunda serbest kalan öne geçer. ("Sezon sonunda bonservissiz" tek başına notun önüne
+            # geçmez: Kristianstad sayfasında BC notlu 06/2027'liler AB notlu adayların üstüne çıkıyordu.)
+            out.append(((1 if durum in ("serbest", "donem") else 0, a[0], 1 if durum else 0, a[1]), {
                 "isim": isim, "kod": kod, "nihai": str(r.get("nihai") or ""), "yas": yas,
                 "kulup": str(r.get("kulup") or ""), "rol": str(r.get("rol") or ""),
                 "uyruk": str(r.get("vatandaslik") or ""), "lig": str(r.get("lig") or ""),
@@ -11225,20 +11425,38 @@ def _kulup_adaylari(kayit_json: str, gun: str) -> list:
     return cikti
 
 
-@st.cache_data(show_spinner=False, max_entries=2)
-def _musait_ozet(gun: str) -> dict:
-    """Havuzda serbest ya da sözleşmesi sezon sonuna kadar biten notlu oyuncular (günde bir hesap):
-    {'toplam', 'serbest', 'bc' (notu BC ve üstü), 'sinir' (gg.aa.yyyy)}."""
-    from datetime import date as _date
-    b = _date.fromisoformat(gun)
-    sinir = _date(b.year + (1 if b.month >= 7 else 0), 6, 30)
+@st.cache_data(show_spinner=False, max_entries=8)
+def _musait_ozet(gun: str, ulke: str = "") -> dict:
+    """Havuzda serbest ya da bonservissiz alınabilecek notlu oyuncular, ALICI ülkenin tescil dönemine göre (günde bir hesap):
+    {'toplam', 'serbest', 'donem' (sıradaki dönemde bonservissiz), 'sezon' (sezon sonunda bonservissiz), 'bc' (notu BC ve üstü)}."""
     try:
         hepsi, iyi = _kulup_adaylari(json.dumps(
-            {"ad": "-", "ihtiyaclar": [{"musait": True}, {"musait": True, "not_min": "BC"}]}, sort_keys=True), gun)
-        return {"toplam": len(hepsi), "serbest": sum(1 for d in hepsi if d["durum"] == "serbest"),
-                "bc": len(iyi), "sinir": sinir.strftime("%d.%m.%Y")}
+            {"ad": "-", "ulke": ulke, "ihtiyaclar": [{"musait": True}, {"musait": True, "not_min": "BC"}]}, sort_keys=True), gun)
+        say = lambda d: sum(1 for x in hepsi if x["durum"] == d)       # noqa: E731
+        return {"toplam": len(hepsi), "serbest": say("serbest"), "donem": say("donem"), "sezon": say("sezon"), "bc": len(iyi)}
     except Exception:
-        return {"toplam": 0, "serbest": 0, "bc": 0, "sinir": sinir.strftime("%d.%m.%Y")}
+        return {"toplam": 0, "serbest": 0, "donem": 0, "sezon": 0, "bc": 0}
+
+
+def _trf_donem_cumle(td: dict) -> str:
+    """Alıcı ülkenin sıradaki dönemi, tek cümle (HTML). Tarih yoksa neyin bilinmediğini söyler; tahmin yazmaz."""
+    ulke = f"{td.get('bayrak', '')} {td.get('ulke_en' if EN else 'ulke', '')}".strip()
+    if not td.get("fifa"):
+        return ""
+    tur = t("amatör transfer ve tescil dönemi", "amateur transfer and registration period") if td.get("amator") else t("transfer ve tescil dönemi", "registration period")
+    if td.get("kapanan"):
+        _kg = td["kapanan"][2]
+        ulke += " · " + (t("açık dönem bugün kapanıyor", "the open period closes today") if _kg <= 0
+                         else t(f"açık dönem {_kg} gün içinde kapanıyor", f"the open period closes in {_kg} days"))
+    if td.get("bas"):
+        if td["acik"]:
+            durum = f"<b style='color:#1db954;font-style:normal;'>{t('AÇIK', 'OPEN')}</b> · " + t(f"kapanmasına {td['gun']} gün", f"closes in {td['gun']} days")
+        else:
+            durum = t(f"açılmasına <b style='color:#f59e0b;font-style:normal;'>{td['gun']} gün</b>", f"opens in <b style='color:#f59e0b;font-style:normal;'>{td['gun']} days</b>")
+        return f"{ulke} · {t('sıradaki', 'next')} {tur}: <b style='color:#f1f5f9;font-style:normal;'>{_trf_aralik(td['bas'], td['bit'])}</b> · {durum}"
+    onceki = (t(f" (bu sezon {_trf_aralik(*td['onceki'])} idi)", f" (this season it ran {_trf_aralik(*td['onceki'])})") if td.get("onceki") else "")
+    return (f"{ulke} · " + t("yeni sezonun ilk tescil dönemi FIFA'da henüz yayımlanmadı", "the first registration period of the new season is not yet published by FIFA")
+            + onceki)
 
 
 def _sozlesme_duyuru(kap_stil: str = ""):
@@ -11247,9 +11465,13 @@ def _sozlesme_duyuru(kap_stil: str = ""):
     if "sozlesme-2027" not in kulup_ihtiyac_yukle():
         return
     from datetime import datetime as _dt, timedelta as _td
-    o = _musait_ozet((_dt.utcnow() + _td(hours=3)).date().isoformat())
+    _gun = (_dt.utcnow() + _td(hours=3)).date().isoformat()
+    _ulke = _trf_ulke_varsayilan()
+    o = _musait_ozet(_gun, _ulke)
     if not o.get("toplam"):
         return
+    td = _transfer_donemi(_ulke, _gun)
+    _donem_ad = (_trf_aralik(td["bas"], td["bit"]) if td.get("bas") else t("yeni sezonun ilk dönemi", "the next season's first period"))
     st.markdown(
         f"<div style='{kap_stil}'>"
         f"<a href='/?kulup=sozlesme-2027&dil={'EN' if EN else 'TR'}' target='_self' style='display:block;text-decoration:none;"
@@ -11257,12 +11479,12 @@ def _sozlesme_duyuru(kap_stil: str = ""):
         "background:linear-gradient(90deg,#0f2a1ddd 0%,#1a1438f2 60%,#2a1245dd 100%);'>"
         f"<span class='tp-arabaslik'>📋 {_buyuk(t('Sözleşme takibi 2027', 'Contract Watch 2027'))}</span><br>"
         f"<span class='tp-sekilli' style='color:#ffffff;'>"
-        + _buyuk(t(f"{o['toplam']} oyuncu serbest ya da sözleşmesi {o['sinir']} tarihine kadar bitiyor",
-                   f"{o['toplam']} scouted players are free or out of contract by {o['sinir']}"))
+        + _buyuk(t(f"{o['serbest'] + o['donem']} oyuncu sıradaki transfer döneminde bonservissiz alınabilir",
+                   f"{o['serbest'] + o['donem']} scouted players can be signed for free in the next window"))
         + "</span><br>"
         f"<span class='tp-arametin'>"
-        + t(f"{o['serbest']} serbest oyuncu · notu BC ve üstü {o['bc']} isim — mevki mevki görmek için tıkla →",
-            f"{o['serbest']} free agents · {o['bc']} graded BC or better — click to see them by position →")
+        + t(f"{td.get('bayrak', '')} {_donem_ad} · {o['serbest']} serbest · {o['donem']} sözleşmesi dönem içinde biten · {o['sezon']} sezon sonunda serbest kalan — mevki mevki görmek için tıkla →",
+            f"{td.get('bayrak', '')} {_donem_ad} · {o['serbest']} free agents · {o['donem']} out of contract within the window · {o['sezon']} free at season end — click to see them by position →")
         + "</span></a></div>", unsafe_allow_html=True)
 
 
@@ -11324,26 +11546,54 @@ def render_kulup_firsat(anahtar: str):
     _dq = "EN" if EN else "TR"
     from datetime import date as _date, datetime as _dt, timedelta as _td
     _bugun = (_dt.utcnow() + _td(hours=3)).date()
-    _sinir = _date(_bugun.year + (1 if _bugun.month >= 7 else 0), 6, 30).strftime("%d.%m.%Y")
+    # ALICI ÜLKE → tescil dönemi. Kulüp sayfasında kayıttan gelir; liste sayfasında (Sözleşme Takibi) ziyaretçi seçer.
+    _ulke = str(kayit.get("ulke") or "")
+    if kayit.get("liste"):
+        _ulkeler = [x for x in takvim_yukle().get("ulkeler", []) if x.get("pencere") or x.get("sezon")]
+        _ukod = [x["fifa"] for x in _ulkeler]
+        _uad = {x["fifa"]: f"{x.get('bayrak', '')} {x.get('ulke_en' if EN else 'ulke', '')}" for x in _ulkeler}
+        _uk = f"kf_ulke_{anahtar}_{_dq}"
+        if st.session_state.get(_uk) not in _ukod:
+            st.session_state[_uk] = _trf_ulke_varsayilan() if _trf_ulke_varsayilan() in _ukod else (_ukod[0] if _ukod else "")
+        if _ukod:
+            _ulke = st.selectbox(t("Kulübünüzün ülkesi (transfer dönemi buna göre hesaplanır)", "Your club's country (the transfer window is worked out from it)"),
+                                 _ukod, key=_uk, format_func=lambda k: _uad.get(k, k))
+        kayit = {**kayit, "ulke": _ulke}
+    _trd = _transfer_donemi(_ulke, _bugun.isoformat())
+    _s1, _s2 = _trf_gun(_trd["sinir1"]), _trf_gun(_trd["sinir2"])
+    _ET_D = t("sıradaki dönemde bonservissiz", "free in the next window")
+    _ET_S = t("sezon sonunda bonservissiz", "free at season end")
     _tum_adaylar = _kulup_adaylari(json.dumps(kayit, sort_keys=True, ensure_ascii=False), _bugun.isoformat())
+    if _trd.get("fifa"):
+        st.markdown(
+            "<div style='background:#0d0d16;border:1px solid #3b2d6e;border-left:4px solid #7c3aed;border-radius:12px;padding:11px 14px;margin:0 0 14px;'>"
+            f"<div class='tp-arametin' style='font-size:0.86rem;'>🗓️ {_html_bmp(_trf_donem_cumle(_trd))}</div>"
+            "<div class='tp-arametin' style='margin-top:6px;'>"
+            f"<span style='color:#1db954;font-weight:700;font-style:normal;'>●</span> {t('serbest oyuncu', 'free agent')} &nbsp;·&nbsp; "
+            f"<span style='color:#1db954;font-weight:700;font-style:normal;'>●</span> {_ET_D}: "
+            f"{t(f'sözleşmesi {_s1} tarihine kadar bitiyor', f'contract ends by {_s1}')} &nbsp;·&nbsp; "
+            f"<span style='color:#f59e0b;font-weight:700;font-style:normal;'>●</span> {_ET_S}: "
+            f"{t(f'sözleşmesi {_s2} tarihine kadar bitiyor (dönem açıldığında son 6 ayında)', f'contract ends by {_s2} (inside its last 6 months when the window opens)')}"
+            f" &nbsp;·&nbsp; <a href='/?takvim=1&dil={_dq}' target='_blank' style='color:#c4b5fd;text-decoration:none;'>{t('tüm ülkelerin takvimi', 'calendar for all countries')} →</a>"
+            "</div></div>", unsafe_allow_html=True)
     if kayit.get("ozet") == "musait":
-        _mo = _musait_ozet(_bugun.isoformat())
+        _mo = _musait_ozet(_bugun.isoformat(), _ulke)
         st.markdown(
             "<div style='display:flex;flex-wrap:wrap;gap:10px;margin:0 0 16px;'>" + "".join(
                 "<div style='flex:1 1 150px;background:#0d0d16;border:1px solid #3b2d6e;border-radius:12px;padding:12px 14px;'>"
                 f"<div style='font-family:Sora,sans-serif;font-weight:800;font-size:1.55rem;color:{_r};'>{_n}</div>"
                 f"<div class='tp-arametin'>{_e}</div></div>"
                 for _n, _e, _r in (
-                    (_mo["toplam"], t(f"oyuncu serbest ya da sözleşmesi {_mo['sinir']} tarihine kadar bitiyor",
-                                      f"players free or out of contract by {_mo['sinir']}"), "#f59e0b"),
-                    (_mo["serbest"], t("serbest oyuncu", "free agents"), "#1db954"),
+                    (_mo["serbest"], t("serbest oyuncu: hemen", "free agents: available now"), "#1db954"),
+                    (_mo["donem"], t(f"oyuncunun sözleşmesi {_s1} tarihine kadar bitiyor: {_ET_D}", f"players out of contract by {_s1}: {_ET_D}"), "#1db954"),
+                    (_mo["sezon"], t(f"oyuncunun sözleşmesi {_s2} tarihine kadar bitiyor: {_ET_S}", f"players out of contract by {_s2}: {_ET_S}"), "#f59e0b"),
                     (_mo["bc"], t("tanesinin scout notu BC ve üstü", "of them graded BC or better"), "#c4b5fd")))
             + "</div>", unsafe_allow_html=True)
     if int(kayit.get("seviye") or 0) >= 2:
         st.markdown(
             "<div class='tp-arametin' style='margin:-6px 0 14px;'>"
-            + t(f"Adaylar gerçekçilik için süzüldü: sizinkine denk ligler ve daha güçlü liglerden yalnız sözleşmesi {_sinir} tarihine kadar biten oyuncular.",
-                f"Candidates are filtered for realism: leagues comparable to yours, plus players from stronger leagues only if their contract ends by {_sinir}.")
+            + t("Adaylar gerçekçilik için süzüldü: sizinkine denk ligler ve daha güçlü liglerden yalnız bonservissiz alınabilecek (sıradaki dönemde ya da sezon sonunda sözleşmesi biten) oyuncular.",
+                "Candidates are filtered for realism: leagues comparable to yours, plus players from stronger leagues only if they can be signed for free (out of contract in the next window or at season end).")
             + "</div>", unsafe_allow_html=True)
     for _ihi, ih in enumerate(kayit["ihtiyaclar"]):
         adaylar = _tum_adaylar[_ihi] if _ihi < len(_tum_adaylar) else []
@@ -11374,8 +11624,10 @@ def render_kulup_firsat(anahtar: str):
                 soz_h = (f"<div style='font-size:0.68rem;color:#1db954;font-weight:700;'>"
                          f"{t('Serbest oyuncu', 'Free agent')}</div>")
             elif r["bitis"]:
-                soz_h = (f"<div style='font-size:0.68rem;color:{'#f59e0b' if r['durum'] else '#64748b'};"
-                         f"font-weight:{'700' if r['durum'] else '400'};'>{t('Sözleşme', 'Contract')} {r['bitis']}</div>")
+                _dr = {"donem": "#1db954", "sezon": "#f59e0b"}.get(r["durum"], "#64748b")
+                soz_h = (f"<div style='font-size:0.68rem;color:{_dr};font-weight:{'700' if r['durum'] else '400'};'>"
+                         f"{t('Sözleşme', 'Contract')} {r['bitis']}"
+                         + (f"<br>{_ET_D if r['durum'] == 'donem' else _ET_S}" if r["durum"] in ("donem", "sezon") else "") + "</div>")
             else:
                 soz_h = ""
             _f = r.get("form")
@@ -11425,15 +11677,19 @@ def render_kulup_firsat(anahtar: str):
             "<div style='padding:12px 14px 6px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;'>"
             f"<span class='tp-anabaslik'>{_buyuk(baslik)}</span>"
             f"<span style='font-family:Sora,sans-serif;font-weight:800;color:#1db954;font-size:12pt;'>{len(adaylar)}</span>"
-            f"<span class='tp-arametin'>{t('aday', 'candidates')}</span></div>"
+            f"<span class='tp-arametin'>{t('aday', 'candidates')}"
+            + (f" · <span style='color:#1db954;font-style:normal;font-weight:700;'>{sum(1 for x in adaylar if x['durum'] in ('serbest', 'donem'))}</span> {_ET_D}"
+               if any(x["durum"] in ("serbest", "donem") for x in adaylar) else "")
+            + "</span></div>"
             + (f"<div class='tp-arametin' style='padding:0 14px 8px;'>{_h.escape(str(ih.get('neden_en' if EN else 'neden') or ih.get('neden') or ''))}</div>"
                if (ih.get('neden') or ih.get('neden_en')) else "")
             + f"<div style='padding:0 14px 8px;'>{cipler}</div>{tablo}</div>", unsafe_allow_html=True)
     st.markdown(
         "<div class='tp-arametin' style='text-align:center;margin:-4px 0 14px;'>"
         f"<span style='color:#1db954;font-weight:700;font-style:normal;'>●</span> {t('serbest oyuncu', 'free agent')} &nbsp;·&nbsp; "
-        f"<span style='color:#f59e0b;font-weight:700;font-style:normal;'>●</span> "
-        f"{t('sözleşmesi', 'contract ends by')} {_sinir}{t(' tarihine kadar bitiyor', '')}"
+        f"<span style='color:#1db954;font-weight:700;font-style:normal;'>●</span> {_ET_D} &nbsp;·&nbsp; "
+        f"<span style='color:#f59e0b;font-weight:700;font-style:normal;'>●</span> {_ET_S}"
+        f"<br>{t('Sıra: önce sıradaki dönemde bonservissiz alınabilecekler, sonra scout notu.', 'Order: players who can be signed for free in the next window first, then scout grade.')}"
         f"<br>{t('Bu sezon (son 5 maç)', 'This season (last 5 matches)')}: {_form_kareler('S')} {t('ilk 11', 'started')} &nbsp;"
         f"{_form_kareler('Y')} {t('sonradan girdi', 'came on')} &nbsp;{_form_kareler('B')} {t('yedekte kaldı', 'unused sub')} &nbsp;"
         f"{_form_kareler('-')} {t('kadroda yok', 'not in squad')}</div>", unsafe_allow_html=True)
@@ -11875,6 +12131,7 @@ def render_lig_sekme(kod: str, sekme: str):
     sekmeler = dict(_lig_sekme_etiketleri(kod))
     if sekme not in sekmeler:
         sekme = "liste"
+    _lig_seridi(kod)
     st.markdown(
         _html_bmp(f"<div style='display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin:0 0 10px;'>"
                   f"<span class='tp-anabaslik' style='font-size:1.25rem;'>{bayrak} {_h.escape(ad)}</span>"
@@ -12395,6 +12652,7 @@ def render_capraz(sekme: str):
         sekme = "ligler"
     LIGLER, P, LH = C["ligler"], C["oyuncular"], C["lig_h"]
     dq = "EN" if EN else "TR"
+    _lig_seridi("ALL")
     st.markdown(
         _html_bmp("<div style='display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin:0 0 10px;'>"
                   f"<span class='tp-anabaslik' style='font-size:1.25rem;'>🌍 {t('Tüm Ligler', 'All Leagues')}</span>"
@@ -15197,6 +15455,10 @@ if not st.session_state.get("girildi", False):
     _karsilama_dugmeleri("alt")
     st.stop()
 
+
+# ─── LİG ŞERİDİ — TR Veri'nin her sekmesinde, içeriğin üstünde ─────────────────
+if _ana_ekran and st.session_state.get("veri_lig", "TR") == "TR":
+    _lig_seridi("TR")
 
 # ─── DANIŞMANLIK TALEP BANNER — yalnız ilk sekmede (Oyuncu Listesi) ───────────
 if _ust_blok_goster:
