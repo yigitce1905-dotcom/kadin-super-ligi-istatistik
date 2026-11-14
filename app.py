@@ -10946,6 +10946,30 @@ url_oyuncu = params.get("oyuncu", "")
 if "sayfa" not in st.session_state:
     st.session_state["sayfa"] = "scouting"
 
+# Oturumun İLK çalışması mı? Çerez bekleme kapıları (karşılama, ?oyuncu, kokpit) yalnız ilk çalışmada ⏳ gösterir.
+# Bayrak çerez bileşeni ÇİZİLMEDEN önce işaretlenir (14 Kasım 2026): eskiden her kapı kendi bayrağını betiğin
+# sonlarında koyuyordu; bileşen değerini ilk çalışma oraya varmadan gönderince hızlı yeniden çalıştırma ilk
+# çalışmayı kesiyor, yeni çalışma kapıyı ilk kez görüp duruyor, bileşen de bir daha değer göndermiyordu →
+# yeni ziyaretçi ana sayfada sonsuza dek ⏳ görüyordu (canlıda ölçüldü).
+_ilk_calisma = not st.session_state.get("_ck_ilk_gecti")
+st.session_state["_ck_ilk_gecti"] = True
+
+
+def _ck_bekleme_kapisi(html_icerik: str):
+    """⏳ bekleme ekranı + emniyet: çerez bileşeni hiç yanıt vermezse (engellenmiş iframe, yavaş ağ) ~3 sn sonra
+    sayfayı kendisi tam yeniden çalıştırır; ilk çalışma geçtiği için kapı bir daha çıkmaz. Ardından st.stop()."""
+    st.markdown(html_icerik, unsafe_allow_html=True)
+
+    @st.fragment(run_every=1.5)
+    def _ck_zamanlayici():
+        n = st.session_state.get("_ck_bekle_n", 0) + 1
+        st.session_state["_ck_bekle_n"] = n
+        if n >= 3:
+            st.rerun()
+    _ck_zamanlayici()
+    st.stop()
+
+
 # Kalıcı oturum: cookie geçerliyse sayfa yenilense de girişi geri yükle
 _oturum_geri_yukle()
 
@@ -14162,18 +14186,14 @@ if url_oyuncu:
     # Yeni sekmede çerez/oturum geri yüklenirken İLK run'da kullanıcı "giriş yapmamış"
     # görünür → gate (paywall) bir an flaş eder. Çereze bir rerun şansı vermek için ilk
     # run'da "Yükleniyor" göster + dur (cookie controller mount olunca rerun tetikler).
-    # _ck_grace_oyuncu tek seferlik → sonsuz döngü yok; cookie yoksa (None) atlanır.
-    if (_cookie_ctrl() is not None and not st.session_state.get("kulup_giris")
-            and not st.session_state.get("_ck_grace_oyuncu")):
-        st.session_state["_ck_grace_oyuncu"] = True
-        st.markdown(
+    # Yalnız oturumun ilk çalışmasında (_ilk_calisma); cookie bileşeni yoksa (None) atlanır.
+    if _cookie_ctrl() is not None and not st.session_state.get("kulup_giris") and _ilk_calisma:
+        _ck_bekleme_kapisi(
             "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']"
             "{display:none!important;}</style>"
             "<div style='text-align:center;padding:100px 20px;color:#8899aa;'>"
             "<div style='font-size:1.8rem;'>⏳</div>"
-            f"<div style='margin-top:10px;font-size:0.95rem;'>{t('Profil yükleniyor…','Loading profile…')}</div></div>",
-            unsafe_allow_html=True)
-        st.stop()
+            f"<div style='margin-top:10px;font-size:0.95rem;'>{t('Profil yükleniyor…','Loading profile…')}</div></div>")
     render_odakli_profil(url_oyuncu)
     st.stop()
 
@@ -15935,12 +15955,9 @@ if st.session_state.get("sayfa") == "kokpit":
     geri_ana_butonu("geri_kokpit")
     if st.session_state.get("kulup_kullanici") == "admin":
         render_kokpit()
-    elif _cookie_ctrl() is not None and not st.session_state.get("_ck_grace_kokpit"):
-        # Arma linki tam sayfa yükler → çerez oturumu ilk run'da henüz gelmemiş olur;
-        # tek seferlik bekleme (?oyuncu grace kalıbının aynısı)
-        st.session_state["_ck_grace_kokpit"] = True
-        st.markdown("<div style='text-align:center;padding:60px;color:#8899aa;'>⏳ Yükleniyor…</div>",
-                    unsafe_allow_html=True)
+    elif _cookie_ctrl() is not None and _ilk_calisma:
+        # Arma linki tam sayfa yükler → çerez oturumu ilk run'da henüz gelmemiş olur; tek seferlik bekleme
+        _ck_bekleme_kapisi(f"<div style='text-align:center;padding:60px;color:#8899aa;'>⏳ {t('Yükleniyor…', 'Loading…')}</div>")
     else:
         st.warning(t("Bu sayfa yönetici içindir.", "This page is admin-only."))
     st.stop()
@@ -16503,11 +16520,9 @@ if not st.session_state.get("girildi", False):
     # girişli üyeyi bekletiyordu (canlı ölçüm 12.11.2026: havuz 2,6 sn → 4-6 sn; önce karşılama
     # çiziliyor, sonra çerez gelince havuz). İlk çalışmada yalnız hafif bir bekleme gösterilir;
     # çerez bileşeni yeniden çalıştırmayı tetikler (?oyuncu sayfasındaki kalıbın aynısı, tek seferlik).
-    if _cookie_ctrl() is not None and not st.session_state.get("_ck_grace_karsilama"):
-        st.session_state["_ck_grace_karsilama"] = True
-        st.markdown("<div style='text-align:center;padding:110px 20px;color:#8899aa;'>"
-                    "<div style='font-size:1.8rem;'>⏳</div></div>", unsafe_allow_html=True)
-        st.stop()
+    if _cookie_ctrl() is not None and _ilk_calisma:
+        _ck_bekleme_kapisi("<div style='text-align:center;padding:110px 20px;color:#8899aa;'>"
+                           "<div style='font-size:1.8rem;'>⏳</div></div>")
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
     _sozlesme_duyuru("max-width:760px;margin:0 auto 14px;")
     _ligler_duyuru("max-width:760px;margin:0 auto 14px;")
