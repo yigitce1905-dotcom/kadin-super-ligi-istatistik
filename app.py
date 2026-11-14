@@ -13488,7 +13488,8 @@ def _cp_lig_tablo(acik: bool = False) -> str:
         ad = f"{lg.get('bayrak', '')} {_h.escape(_cp_lig_ad(lg))}"
         if acik and lg["kod"] != "TUR1":
             ad = f"<a href='/?lig={lg['kod']}&dil={dq}' target='_self' style='color:#f1f5f9;text-decoration:none;'>{ad} <span style='color:#7c3aed;'>→</span></a>"
-        lider = (f"{_h.escape(lg['lider'])} <span class='tp-arametin'>· {lg['lider_p']} {t('p', 'pts')} / {lg['lider_o']} {t('m', 'm')}</span>"
+        # İstatistik alt satırda: yan yana dururken tablo masaüstünde bile taşıyor, "Son maç" sütunu kesiliyordu
+        lider = (f"{_h.escape(lg['lider'])}<div class='tp-arametin' style='white-space:normal;'>{lg['lider_p']} {t('p', 'pts')} / {lg['lider_o']} {t('m', 'm')}</div>"
                  if lg.get("lider") else "—")
         gk = lg.get("golcu")
         golcu = (f"<span lang='{_isim_dil(gk[0])}' title='{_h.escape(gk[1])}'>{_h.escape(gk[0])}</span> "
@@ -13500,11 +13501,11 @@ def _cp_lig_tablo(acik: bool = False) -> str:
         if _fz:
             _tdz = _transfer_donemi(_fz, _gun_z)
             if _tdz.get("bas"):
-                ad += ("<div class='tp-arametin' style='margin-top:1px;font-weight:400;'>" + t("dönem", "window") + f" {_trf_aralik(_tdz['bas'], _tdz['bit'])} · "
+                ad += ("<div class='tp-arametin' style='margin-top:1px;font-weight:400;white-space:normal;'>" + t("dönem", "window") + f" {_trf_aralik(_tdz['bas'], _tdz['bit'])} · "
                        + (f"<span style='color:#1db954;font-style:normal;font-weight:700;'>{t('açık', 'open')}</span>" if _tdz["acik"]
-                          else t(f"{_tdz['gun']} gün sonra", f"in {_tdz['gun']} days")) + "</div>")
+                          else t(f"{_tdz['gun']}\u00a0gün\u00a0sonra", f"in\u00a0{_tdz['gun']}\u00a0days")) + "</div>")
             elif _tdz.get("fifa"):
-                ad += f"<div class='tp-arametin' style='margin-top:1px;font-weight:400;'>{t('yeni sezon dönemi yayımlanmadı', 'next-season window not published')}</div>"
+                ad += f"<div class='tp-arametin' style='margin-top:1px;font-weight:400;white-space:normal;'>{t('yeni sezon dönemi yayımlanmadı', 'next-season window not published')}</div>"
         govde += (f"<tr><td class='num ws-mono'>{lg['opta'] or '—'}</td><td><span class='ws-name'>{ad}</span></td>"
                   + "".join(f"<td class='{c}' data-label='{e}'>{x}</td>" for e, x, c in hucre) + "</tr>")
     return _html_bmp(f"<div class='ws-wrap'><table class='ws-table'><thead><tr>{bas}</tr></thead><tbody>{govde}</tbody></table></div>")
