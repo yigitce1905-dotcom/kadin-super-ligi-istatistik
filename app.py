@@ -1279,7 +1279,9 @@ def _arka_tazelenen(tazelik: int):
                 deger = fn()
                 with d["kilit"]:
                     if d["nesil"].get(ad, 0) == nesil:
-                        d["veri"][ad] = (_time.time(), deger)
+                        # Boş sonuç (Sheets geçici hatası olabilir) eski damgayla saklanır → bir sonraki çağrı arka planda
+                        # yeniden çeker; eskiden tazelik süresince (60-300 sn) boş kalıp üstüne yazılan kayıt herkesi siliyordu
+                        d["veri"][ad] = (_time.time() - (tazelik if not deger else 0), deger)
                 return _copy.deepcopy(deger)
             if baslat:
                 th = _threading.Thread(target=_arkada_yenile, args=(nesil,), daemon=True,
@@ -1333,7 +1335,7 @@ def uyeler_yukle() -> dict:
         return {}
     try:
         out = {}
-        for r in ws.get_all_records():
+        for r in ws.get_all_records(numericise_ignore=["all"]):
             ku = str(r.get("kullanici", "")).strip().lower()
             if ku and r.get("hash"):
                 out[ku] = {
@@ -1456,7 +1458,11 @@ def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
 
 
 def uye_dogrula(kullanici: str) -> bool:
-    """E-posta doğrulama tokenı geçerliyse durumu 'aktif' yapar."""
+    """E-posta doğrulama tokenı geçerliyse durumu 'aktif' yapar — YALNIZ doğrulama bekleyen hesapta
+    (yönetici 'pasif' yaptıysa eski doğrulama linki hesabı yeniden açmasın; 14 Kasım 2026 denetimi)."""
+    _mevcut = str((uyeler_yukle().get((kullanici or "").strip().lower()) or {}).get("durum") or "").strip()
+    if _mevcut and _mevcut != "beklemede_dogrulama":
+        return _mevcut == "aktif"
     return uye_guncelle(kullanici, durum="aktif")
 
 
@@ -1483,7 +1489,7 @@ def _uye_satir_bul(ws, kullanici: str):
     """kullanici'nin GSheets satır numarasını döndürür (başlık=1, veri 2'den başlar)."""
     kullanici = (kullanici or "").strip().lower()
     try:
-        for i, r in enumerate(ws.get_all_records(), start=2):
+        for i, r in enumerate(ws.get_all_records(numericise_ignore=["all"]), start=2):
             if str(r.get("kullanici", "")).strip().lower() == kullanici:
                 return i
     except Exception:
@@ -1635,8 +1641,10 @@ def _oturum_kaydet(kullanici: str):
     st.session_state["_ck_islem"] = ("set", _oturum_token_uret(kullanici))
 
 def _oturum_cikis():
-    """Cookie silmeyi bir sonraki run'a erteler."""
+    """Cookie silmeyi bir sonraki run'a erteler. _cikis_yapildi: bu oturumda bağlantı anındaki çerez kopyası
+    (_ilk_cerezler) bir daha kullanılmaz — yoksa çıkıştan sonra üye geri giriyordu (14 Kasım 2026 denetimi)."""
     st.session_state["_ck_islem"] = ("sil",)
+    st.session_state["_cikis_yapildi"] = True
 
 def _oturum_geri_yukle():
     """Her run başında: bekleyen cookie işlemini uygula, yoksa oturumu geri yükle."""
@@ -1669,7 +1677,7 @@ def _oturum_geri_yukle():
     # Bileşen ilk çalışmada henüz değer göndermemiş olur; sunucu çerezi websocket bağlantısında zaten gördü
     # (st.context.cookies, 14 Kasım 2026). YALNIZ oturumun ilk çalışmasında: bu kopya oturum boyunca sabit kalır,
     # çıkıştan sonra okunursa üyeyi yeniden içeri alırdı.
-    if not token and _ilk_calisma and _ilk_cerezler:
+    if not token and _ilk_calisma and _ilk_cerezler and not st.session_state.get("_cikis_yapildi"):
         token = _ilk_cerezler.get(_COOKIE_AD)
     if not token:
         return
@@ -1678,9 +1686,12 @@ def _oturum_geri_yukle():
         return
     # Kulüp (secrets, hızlı) + üye (GSheets, 5dk cache) birleşik — cache hit'te hot path ucuz
     bilgi = tum_giris_kayitlari().get((kullanici or "").strip().lower())
-    if bilgi:
+    # Yalnız aktif hesap (kulüp hesaplarında durum alanı yok → aktif). Pasif / doğrulama bekleyen hesabın çerezi silinir.
+    if bilgi and str(bilgi.get("durum") or "aktif").strip().lower() == "aktif":
         _oturum_session_doldur(kullanici, bilgi)
         st.session_state["girildi"] = True
+    elif bilgi:
+        _oturum_cikis()
 
 def giris_gerekli_ekrani():
     """Giriş gerektiren sekmelerde gösterilen yönlendirme + PRO tanıtım ekranı."""
@@ -3375,7 +3386,7 @@ def shortlist_yukle() -> dict:
     if ws is not None:
         try:
             d = {}
-            for r in ws.get_all_records():
+            for r in ws.get_all_records(numericise_ignore=["all"]):
                 k = str(r.get("kullanici", "")).strip()
                 o = str(r.get("oyuncu", "")).strip()
                 if k and o:
@@ -3393,6 +3404,25 @@ def shortlist_yukle() -> dict:
     except Exception:
         return {}
 
+def _ws_tam_yaz(ws, rows: list) -> None:
+    """Sheets sayfasını rows ile değiştirir (başlık dahil) — VERİ KAYBINA KARŞI KORUMALI (14 Kasım 2026 denetimi).
+    1) Önce mevcut dolu satır sayısı okunur; okunamazsa YAZILMAZ (istisna).
+    2) Sayfada 5'ten fazla kayıt varken yeni veri mevcudun yarısından azsa YAZILMAZ: bu neredeyse her zaman okuma
+       hatasıyla gelen boş listenin üstüne tek kayıt eklenmesidir (eskiden tüm kullanıcıların listesini siliyordu).
+    3) Önce A1'den üzerine yazılır, SONRA artakalan satırlar temizlenir — yazma düşerse (ör. 50.000 karakter sınırı)
+       eski veri yerinde kalır (eskiden önce clear() çalışıp sayfa boş kalıyordu).
+    Hata istisna olarak çıkar; çağıranın mevcut except yolu (yerel JSON) aynen çalışır."""
+    dolu = len([v for v in ws.col_values(1) if str(v).strip()])        # başlık dahil
+    eski_kayit, yeni_kayit = max(0, dolu - 1), max(0, len(rows) - 1)
+    if eski_kayit > 5 and yeni_kayit < eski_kayit * 0.5:
+        print(f"[sheets] {getattr(ws, 'title', '?')}: {eski_kayit} kayıt yerine {yeni_kayit} yazılmak istendi — REDDEDİLDİ",
+              flush=True)
+        raise RuntimeError("şüpheli küçülme: yazma reddedildi")
+    ws.update(rows)
+    if dolu > len(rows):
+        ws.batch_clear([f"A{len(rows) + 1}:Z{dolu + 5}"])
+
+
 def shortlist_kaydet(data: dict):
     ws = _shortlist_ws()
     if ws is not None:
@@ -3401,8 +3431,7 @@ def shortlist_kaydet(data: dict):
             for k, lst in data.items():
                 for o in lst:
                     rows.append([k, o])
-            ws.clear()
-            ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             shortlist_yukle.clear()   # cache tazele → toggle anında yansır
             return
         except Exception:
@@ -3486,7 +3515,7 @@ def my11_yukle() -> dict:
     if ws is not None:
         try:
             d = {}
-            for r in ws.get_all_records():
+            for r in ws.get_all_records(numericise_ignore=["all"]):
                 k = str(r.get("kullanici", "")).strip()
                 o = str(r.get("oyuncu", "")).strip()
                 if k and o:
@@ -3511,8 +3540,7 @@ def my11_kaydet(data: dict):
             for k, lst in data.items():
                 for o in lst:
                     rows.append([k, o])
-            ws.clear()
-            ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             my11_yukle.clear()
             return
         except Exception:
@@ -3589,7 +3617,7 @@ def _denemeler_kaydet(kayitlar: list):
             for d in kayitlar:
                 rows.append([d.get("kullanici",""), d.get("tier",""),
                              d.get("baslangic",""), d.get("bitis",""), d.get("veren","")])
-            ws.clear(); ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             denemeler_yukle.clear()
             return
         except Exception:
@@ -3669,7 +3697,7 @@ def _internal_tum() -> list:
     if ws is not None:
         try:
             out = []
-            for r in ws.get_all_records():
+            for r in ws.get_all_records(numericise_ignore=["all"]):
                 d = dict(r)
                 try: d["oyuncular"] = json.loads(d.get("oyuncular_json") or "[]")
                 except Exception: d["oyuncular"] = []
@@ -3719,7 +3747,7 @@ def _internal_kaydet_hepsi(kayitlar: list):
                              r.get("genel_not",""),
                              json.dumps(r.get("oyuncular",[]), ensure_ascii=False),
                              r.get("olusturma","")])
-            ws.clear(); ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             _internal_tum.clear()
             return
         except Exception:
@@ -3875,7 +3903,7 @@ def etiket_yukle() -> dict:
     if ws is not None:
         try:
             d = {}
-            for r in ws.get_all_records():
+            for r in ws.get_all_records(numericise_ignore=["all"]):
                 k = str(r.get("kullanici", "")).strip()
                 o = str(r.get("oyuncu", "")).strip()
                 e = str(r.get("etiket", "")).strip()
@@ -3902,8 +3930,7 @@ def etiket_kaydet(data: dict):
                 for o, e in om.items():
                     if e and e != "—":
                         rows.append([k, o, e])
-            ws.clear()
-            ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             etiket_yukle.clear()
             return
         except Exception:
@@ -3961,7 +3988,7 @@ def scoutnot_yukle() -> dict:
     if ws is not None:
         try:
             d = {}
-            for r in ws.get_all_records():
+            for r in ws.get_all_records(numericise_ignore=["all"]):
                 k = str(r.get("kullanici", "")).strip()
                 o = str(r.get("oyuncu", "")).strip()
                 if k and o:
@@ -3991,7 +4018,7 @@ def scoutnot_kaydet(data: dict):
                 for o, v in om.items():
                     rows.append([k, o, v.get("durum",""), v.get("oncelik",""),
                                  v.get("not",""), v.get("tarih","")])
-            ws.clear(); ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             scoutnot_yukle.clear()
             return
         except Exception:
@@ -4052,7 +4079,7 @@ def oneriler_yukle() -> list:
     if ws is not None:
         try:
             return [{k: str(r.get(k, "")).strip() for k in _ONERI_KOLON}
-                    for r in ws.get_all_records() if str(r.get("id", "")).strip()]
+                    for r in ws.get_all_records(numericise_ignore=["all"]) if str(r.get("id", "")).strip()]
         except Exception:
             pass
     if not _ONERI_YOL.exists():
@@ -4069,7 +4096,7 @@ def oneriler_kaydet(liste: list):
     if ws is not None:
         try:
             rows = [_ONERI_KOLON] + [[o.get(k, "") for k in _ONERI_KOLON] for o in liste]
-            ws.clear(); ws.update(rows)
+            _ws_tam_yaz(ws, rows)
             oneriler_yukle.clear()
             return
         except Exception:
@@ -4083,7 +4110,7 @@ def oneri_ekle(sahip, oyuncu, kulup, oneren, oncelik, notu, sd_url=""):
     import uuid
     from datetime import date as _d
     liste = list(oneriler_yukle())
-    liste.append({"id": uuid.uuid4().hex[:8], "sahip": sahip,
+    liste.append({"id": "o" + uuid.uuid4().hex[:8], "sahip": sahip,   # 'o' öneki: kimlik asla sayı gibi okunmasın
                   "tarih": _d.today().isoformat(), "oyuncu": oyuncu, "kulup": kulup,
                   "oneren": oneren, "durum": _ONERI_DURUMLAR[0],
                   "oncelik": oncelik or _ONERI_ONCELIK[1], "not": notu, "sd_url": sd_url})
@@ -8380,7 +8407,7 @@ def render_scouting_detay(tam_isim):
     with _bs2:
         _profil_link_kopyala(tam_isim, sd_url)
     # Tek tıkla My Squad'a al/çıkar + My 11'e al/çıkar (profili açınca anında, ismin hemen altında)
-    _sl_kul = st.session_state.get("kulup_kullanici", "admin")
+    _sl_kul = st.session_state.get("kulup_kullanici") or "_misafir"   # "admin" varsayılanı yöneticinin listesine yazdırırdı
     _in_sl = tam_isim in shortlist_kullanici(_sl_kul)
     _in_m11 = tam_isim in my11_kullanici(_sl_kul)
     _bcol1, _bcol2 = st.columns(2)
@@ -10381,7 +10408,8 @@ def render_ana_lig_profil(secili):
 def _render_ana_lig_profil_ic(secili):
     _PROFIL_CTX["n"] += 1   # her render benzersiz key bağlamı
     # Deneme modunda yalnızca vitrin oyuncuları açık
-    if deneme_modunda() and secili not in DENEME_TR_OYUNCULAR:
+    # Deneme modu ya da ücretsiz kademe: yalnız vitrin oyuncuları (Oyuncu Listesi'yle aynı kural; 14 Kasım 2026 denetimi)
+    if (deneme_modunda() or not tier_yeterli("basic")) and secili not in DENEME_TR_OYUNCULAR:
         deneme_kilit(t("Bu oyuncunun detaylı profili", "This player's detailed profile"), "tr")
         return
     if secili and secili in oyuncu_detay:
@@ -10679,7 +10707,9 @@ def _render_ana_lig_profil_ic(secili):
         # <div> denendi ama Streamlit markdown kabını 6px'e sabitleyip
         # overflow:visible bıraktığı için 22px'lik çocuk butonu itmiyordu.
         _pdfk = f"lig_pdf_iste_{secili}"
-        if not st.session_state.get(_pdfk):
+        if not _bolum_acik("istatistik"):
+            pass   # PDF istatistik/yüzdelik içerir: istatistik bölümü kilitliyse PDF de yok
+        elif not st.session_state.get(_pdfk):
             if st.button(f"📄 {t('Oyuncu Raporu PDF hazırla', 'Prepare Player Report PDF')}",
                          width="stretch", key=_pk("pdf_hazirla")):
                 st.session_state[_pdfk] = True
@@ -11146,8 +11176,10 @@ def _tr_veri_git():
     if _dil_koru:
         st.query_params["dil"] = _dil_koru
     for k in list(st.session_state.keys()):
+        # _ck_ilk_gecti / _cikis_yapildi korunur: silinirse sonraki çalışma "oturumun ilk çalışması" sayılıp
+        # bağlantı anındaki (çıkıştan önceki) çerez kopyasıyla üyeyi geri içeri alıyordu
         if k not in ("sayfa","kulup_giris","kulup_kullanici","kulup_takim","kulup_ad",
-                     "kulup_rol","kulup_tier","kulup_pro","dil","girildi"):
+                     "kulup_rol","kulup_tier","kulup_pro","dil","girildi","_ck_ilk_gecti","_cikis_yapildi"):
             del st.session_state[k]
     st.session_state["sayfa"] = "ana"
     st.session_state["girildi"] = True
@@ -14621,7 +14653,7 @@ def render_profil():
                 odemeler_yukle.clear(); st.rerun()
             if not _bekleyen:
                 st.caption(t("Bekleyen ödeme bildirimi yok.", "No pending payment notifications."))
-            for _o in _bekleyen:
+            for _oi, _o in enumerate(_bekleyen):
                 _oku = str(_o.get("kullanici", "")); _opl = str(_o.get("plan", "")); _otr = str(_o.get("tarih", ""))
                 _pad = _PLAN_FIYAT.get(_opl, (_opl, ""))[0]
                 _r1, _r2, _r3 = st.columns([3, 1, 1])
@@ -14631,7 +14663,7 @@ def render_profil():
                     f"<span style='color:#64748b;'>({_html.escape(_otr)})</span>"
                     + (f"<br><span style='color:#8899aa;font-size:0.78rem;'>📝 {_html.escape(_o.get('not',''))}</span>"
                        if _o.get("not") else "") + "</div>", unsafe_allow_html=True)
-                if _r2.button(t("✅ Onayla", "✅ Approve"), key=f"odm_ok_{_oku}_{_otr}",
+                if _r2.button(t("✅ Onayla", "✅ Approve"), key=f"odm_ok_{_oi}_{_oku}_{_otr}",
                               type="primary", width="stretch"):
                     from datetime import date, timedelta
                     _bt = (date.today() + timedelta(days=365)).isoformat()
@@ -14643,7 +14675,7 @@ def render_profil():
                         st.error(t("Üye bulunamadı (kayıtlı mı?) — manuel kontrol et.",
                                    "Member not found (registered?) — check manually."))
                     st.rerun()
-                if _r3.button(t("✖ Reddet", "✖ Reject"), key=f"odm_no_{_oku}_{_otr}", width="stretch"):
+                if _r3.button(t("✖ Reddet", "✖ Reject"), key=f"odm_no_{_oi}_{_oku}_{_otr}", width="stretch"):
                     odeme_durum_guncelle(_oku, _opl, _otr, "reddedildi")
                     st.rerun()
 
@@ -14754,7 +14786,7 @@ def odemeler_yukle() -> list:
     if ws is None:
         return []
     try:
-        return [dict(r) for r in ws.get_all_records()]
+        return [dict(r) for r in ws.get_all_records(numericise_ignore=["all"])]
     except Exception:
         return []
 
@@ -14781,7 +14813,7 @@ def odeme_durum_guncelle(kullanici: str, plan: str, tarih: str, durum: str) -> b
         return False
     try:
         ku = (kullanici or "").strip().lower()
-        for i, r in enumerate(ws.get_all_records(), start=2):
+        for i, r in enumerate(ws.get_all_records(numericise_ignore=["all"]), start=2):
             if (str(r.get("kullanici", "")).strip().lower() == ku
                     and str(r.get("plan", "")) == plan and str(r.get("tarih", "")) == tarih):
                 ws.update_cell(i, 5, durum)   # durum = E kolonu
@@ -14885,13 +14917,20 @@ if st.session_state["sayfa"] == "profil":
 if st.session_state.get("sayfa") == "my_squad":
     geri_ana_butonu("geri_mysquad")
     st.markdown(f"## ⭐ {t('My Squad', 'My Squad')}")
-    render_my_squad(st.session_state.get("kulup_kullanici", "admin"))
+    # 14 Kasım 2026 denetimi: girişsiz ziyaretçi "admin" varsayılanıyla yöneticinin listesini görüp değiştirebiliyordu
+    if not st.session_state.get("kulup_giris") or not st.session_state.get("kulup_kullanici"):
+        st.info(t("My Squad'ı görmek için giriş yap.", "Log in to see your My Squad."))
+        st.stop()
+    render_my_squad(st.session_state["kulup_kullanici"])
     st.stop()
 
 if st.session_state.get("sayfa") == "my11":
     geri_ana_butonu("geri_my11")
     st.markdown(f"## 🟣 {t('My 11', 'My 11')}")
-    render_my11(st.session_state.get("kulup_kullanici", "admin"))
+    if not st.session_state.get("kulup_giris") or not st.session_state.get("kulup_kullanici"):
+        st.info(t("My 11'i görmek için giriş yap.", "Log in to see your My 11."))
+        st.stop()
+    render_my11(st.session_state["kulup_kullanici"])
     st.stop()
 
 if st.session_state.get("sayfa") == "arsiv":
@@ -16199,7 +16238,7 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
                              columns=["Tam İsmi", "Vatandaşlık", "Vatandaşlık2"])
         # SD profilleri ve kariyer verisi artık burada YÜKLENMEZ (bkz. _ws_havuz_json
         # bellek notu) — yalnız gerçekten kullanan dal kendi yükler.
-        _sl_kullanici = st.session_state.get("kulup_kullanici", "admin")
+        _sl_kullanici = st.session_state.get("kulup_kullanici") or "_misafir"
         _sl_liste     = shortlist_kullanici(_sl_kullanici)
         _etiket_liste = etiket_kullanici(_sl_kullanici)
 
