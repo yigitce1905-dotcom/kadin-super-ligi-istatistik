@@ -1648,6 +1648,11 @@ def _oturum_geri_yukle():
         token = ctrl.get(_COOKIE_AD)
     except Exception:
         token = None
+    # Bileşen ilk çalışmada henüz değer göndermemiş olur; sunucu çerezi websocket bağlantısında zaten gördü
+    # (st.context.cookies, 14 Kasım 2026). YALNIZ oturumun ilk çalışmasında: bu kopya oturum boyunca sabit kalır,
+    # çıkıştan sonra okunursa üyeyi yeniden içeri alırdı.
+    if not token and _ilk_calisma and _ilk_cerezler:
+        token = _ilk_cerezler.get(_COOKIE_AD)
     if not token:
         return
     kullanici = _oturum_token_coz(token)
@@ -10955,6 +10960,21 @@ _ilk_calisma = not st.session_state.get("_ck_ilk_gecti")
 st.session_state["_ck_ilk_gecti"] = True
 
 
+def _baglam_cerezleri():
+    """Tarayıcı çerezleri, sunucunun websocket bağlantısında gördüğü hâliyle (st.context.cookies); okunamazsa None.
+    Strict çerez de gelir (yerelde doğrulandı). Oturum boyunca SABİT — yalnız ilk çalışmada kullan."""
+    try:
+        return dict(st.context.cookies)
+    except Exception:
+        return None
+
+
+_ilk_cerezler = _baglam_cerezleri() if _ilk_calisma else None
+# ⏳ çerez bekleme kapısı yalnız sunucu çerezleri OKUYAMADIYSA gerekir: okuyabildiyse üye bu çalışmada zaten
+# tanındı (aşağıda _oturum_geri_yukle), çerezi olmayan ziyaretçinin de bekleyeceği bir şey yok.
+_ck_kapi_gerekli = _ilk_calisma and _ilk_cerezler is None
+
+
 def _ck_bekleme_kapisi(html_icerik: str):
     """⏳ bekleme ekranı + emniyet: çerez bileşeni hiç yanıt vermezse (engellenmiş iframe, yavaş ağ) ~3 sn sonra
     sayfayı kendisi tam yeniden çalıştırır; ilk çalışma geçtiği için kapı bir daha çıkmaz. Ardından st.stop()."""
@@ -14187,7 +14207,7 @@ if url_oyuncu:
     # görünür → gate (paywall) bir an flaş eder. Çereze bir rerun şansı vermek için ilk
     # run'da "Yükleniyor" göster + dur (cookie controller mount olunca rerun tetikler).
     # Yalnız oturumun ilk çalışmasında (_ilk_calisma); cookie bileşeni yoksa (None) atlanır.
-    if _cookie_ctrl() is not None and not st.session_state.get("kulup_giris") and _ilk_calisma:
+    if _cookie_ctrl() is not None and not st.session_state.get("kulup_giris") and _ck_kapi_gerekli:
         _ck_bekleme_kapisi(
             "<style>section[data-testid='stSidebar'],[data-testid='stSidebarCollapsedControl']"
             "{display:none!important;}</style>"
@@ -15955,7 +15975,7 @@ if st.session_state.get("sayfa") == "kokpit":
     geri_ana_butonu("geri_kokpit")
     if st.session_state.get("kulup_kullanici") == "admin":
         render_kokpit()
-    elif _cookie_ctrl() is not None and _ilk_calisma:
+    elif _cookie_ctrl() is not None and _ck_kapi_gerekli:
         # Arma linki tam sayfa yükler → çerez oturumu ilk run'da henüz gelmemiş olur; tek seferlik bekleme
         _ck_bekleme_kapisi(f"<div style='text-align:center;padding:60px;color:#8899aa;'>⏳ {t('Yükleniyor…', 'Loading…')}</div>")
     else:
@@ -16520,7 +16540,7 @@ if not st.session_state.get("girildi", False):
     # girişli üyeyi bekletiyordu (canlı ölçüm 12.11.2026: havuz 2,6 sn → 4-6 sn; önce karşılama
     # çiziliyor, sonra çerez gelince havuz). İlk çalışmada yalnız hafif bir bekleme gösterilir;
     # çerez bileşeni yeniden çalıştırmayı tetikler (?oyuncu sayfasındaki kalıbın aynısı, tek seferlik).
-    if _cookie_ctrl() is not None and _ilk_calisma:
+    if _cookie_ctrl() is not None and _ck_kapi_gerekli:
         _ck_bekleme_kapisi("<div style='text-align:center;padding:110px 20px;color:#8899aa;'>"
                            "<div style='font-size:1.8rem;'>⏳</div></div>")
     _blog_duyuru("max-width:760px;margin:0 auto 14px;")
