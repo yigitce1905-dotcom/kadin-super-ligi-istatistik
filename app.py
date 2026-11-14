@@ -436,13 +436,17 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
     overflow:auto; max-height:640px; }
 .ws-table { width:100%; border-collapse:collapse; font-size:0.8rem; }
 .ws-table thead th { position:sticky; top:0; z-index:2; background:#0d0d16;
-    text-align:left; padding:10px 12px; font-size:0.6rem; font-weight:700;
+    text-align:left; padding:10px 9px; font-size:0.6rem; font-weight:700;
     text-transform:uppercase; letter-spacing:0.13em; color:#71717a;
     border-bottom:1px solid #2a2a38; white-space:nowrap; }
 .ws-table th.num, .ws-table td.num { text-align:right; }
 .ws-table tbody tr { border-bottom:1px solid #1a1a28; transition:background .12s; }
 .ws-table tbody tr:hover { background:#13131f; }
-.ws-table td { padding:9px 12px; color:#d4d4d8; white-space:nowrap; vertical-align:middle; }
+.ws-table td { padding:9px 9px; color:#d4d4d8; white-space:nowrap; vertical-align:middle; }
+@media (min-width: 641px) { .ws-table td.ws-sar { white-space:normal; min-width:110px; max-width:190px; } }
+/* ws-sar: uzun metinli hücre (Takım · Lig) masaüstünde satır kırar; mobil kart düzeni etkilenmez.
+   14 Kasım 2026: yatay iç boşluk 12→9 px — giriş yapılmış uygulamada 16 tablo 1366 px ekranda 9-50 px taşıyor,
+   son sütun ancak kaydırınca görünüyordu; sütun başına 6 px kazanç küçük taşmaların çoğunu kapatır. */
 .ws-ava { width:28px; height:28px; border-radius:50%; background:#221f33;
     color:#a78bfa; display:inline-flex; align-items:center; justify-content:center;
     font-weight:800; font-size:0.78rem; flex-shrink:0; }
@@ -13481,8 +13485,10 @@ def _cp_tablo(liste: list, ek: list = None) -> str:
     # Lig ayrı sütun değil, takımın altında ikinci satır: 11 sütunluk tablo ana sütuna sığmıyordu (sağdaki sütunlar kaydırmayla görünüyordu).
     S = [t("Takım · Lig", "Team · League"), t("Yaş", "Age"), t("Mevki", "Position"), t("Maç", "Apps"), t("İlk 11", "Starts"),
          t("Dk", "Min"), t("Gol", "Goals"), t("Asist", "Assists")]
+    # Tüm satırlar aynı mevkideyse (ör. Kaleciler listesi) Mevki sütunu bilgi taşımaz → gizlenir (tablo masaüstüne sığsın)
+    _tek_mevki = len({o.get("grup", "") for o in liste}) == 1
     bas = ("<th class='num'>#</th>" + f"<th>{t('Oyuncu', 'Player')}</th>"
-           + "".join(f"<th class='{'num' if i >= 3 or i == 1 else ''}'>{x}</th>" for i, x in enumerate(S))
+           + "".join(f"<th class='{'num' if i >= 3 or i == 1 else ''}'>{x}</th>" for i, x in enumerate(S) if not (_tek_mevki and i == 2))
            + "".join(f"<th class='num'>{x}</th>" for x, _, _ in ek))
     govde = ""
     for i, o in enumerate(liste, 1):
@@ -13492,10 +13498,12 @@ def _cp_tablo(liste: list, ek: list = None) -> str:
         if hvad:
             ad += (f" <a href='?oyuncu={_urlquote(hvad)}&dil={dq}' target='_blank' title='{t('Scouting profili', 'Scouting profile')}' "
                    "style='text-decoration:none;font-size:0.78rem;'>🔎</a>")
-        hucre = [(S[0], f"{_h.escape(o['takim'])}<div class='tp-arametin' style='margin-top:1px;'>{lg.get('bayrak', '')} {_h.escape(_cp_lig_ad(lg))}</div>", ""),
+        hucre = [(S[0], f"{_h.escape(o['takim'])}<div class='tp-arametin' style='margin-top:1px;'>{lg.get('bayrak', '')} {_h.escape(_cp_lig_ad(lg))}</div>", "ws-sar"),
                  (S[1], o["yas"] or "—", "num ws-mono"), (S[2], _lg_grup_ad(o.get("grup", "")), ""), (S[3], o["mac"], "num ws-mono"),
                  (S[4], o["ilk11"], "num ws-mono"), (S[5], o["dk"], "num ws-mono"),
                  (S[6], (f"<b style='color:#1db954;'>{o['gol']}</b>" if o["gol"] else 0), "num ws-mono"), (S[7], o["asist"], "num ws-mono")]
+        if _tek_mevki:
+            del hucre[2]
         hucre += [(x, (f"<b style='color:#c4b5fd;'>{fn(o)}</b>" if vurgu else fn(o)), "num ws-mono") for x, fn, vurgu in ek]
         govde += (f"<tr><td class='num ws-mono'>{i}</td><td>{ad}</td>"
                   + "".join(f"<td class='{c}' data-label='{e}'>{x}</td>" for e, x, c in hucre) + "</tr>")
