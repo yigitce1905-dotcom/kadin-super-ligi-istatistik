@@ -11755,14 +11755,37 @@ def _ziyaret_ws(sh):
     if sh is None:
         return None
     try:
-        return sh.worksheet("Ziyaret")
+        ws = sh.worksheet("Ziyaret")
     except Exception:
         try:
-            ws = sh.add_worksheet(title="Ziyaret", rows=20000, cols=5)
-            ws.update([["tarih", "saat", "giris_sayfasi", "kim", "dil"]])
+            ws = sh.add_worksheet(title="Ziyaret", rows=20000, cols=6)
+            ws.update([["tarih", "saat", "giris_sayfasi", "kim", "dil", "kaynak"]])
             return ws
         except Exception:
             return None
+    # 14 Kasım 2026: 6. sütun (kaynak) eklendi; eski sayfa 5 sütunla açılmıştı — 6 değerli satır ızgarayı aşıp
+    # hata verirse ziyaretler sessizce hiç yazılmazdı. Sütun bir kez eklenir (col_count meta veriden, ek çağrı yok).
+    try:
+        if ws.col_count < 6:
+            ws.add_cols(6 - ws.col_count)
+            ws.update_acell("F1", "kaynak")
+    except Exception:
+        pass
+    return ws
+
+
+def _ziyaret_kaynak() -> str:
+    """Tanıtım kanalı: ?ref=ig / ?utm_source=linkedin → 'ig' / 'linkedin' (küçük harf, a-z0-9_-, en çok 24).
+    14 Kasım 2026: hangi kanalın (Instagram, LinkedIn, blog, WhatsApp grubu…) insan getirdiği ölçülebilsin diye
+    her kanalda ayrı link kullanılır: womenfootballscouting.com/?ref=ig. Değer kişisel veri değildir."""
+    import re as _r
+    try:
+        qp = st.query_params
+        v = str(qp.get("ref") or qp.get("utm_source") or "").strip().lower()
+    except Exception:
+        return ""
+    v = _r.sub(r"[^a-z0-9_-]", "", v)[:24]
+    return v
 
 
 def ziyaret_kaydet():
@@ -11797,7 +11820,7 @@ def ziyaret_kaydet():
                 sayfa = "karsilama"
             else:
                 sayfa = str(st.session_state.get("sayfa", ""))
-            d = {"sayfa": sayfa, "uye": False, "admin": False, "dil": "EN" if EN else "TR"}
+            d = {"sayfa": sayfa, "uye": False, "admin": False, "dil": "EN" if EN else "TR", "kaynak": _ziyaret_kaynak()}
             st.session_state["_zy"] = d
             sh = _gs_sheet()
 
@@ -11812,7 +11835,7 @@ def ziyaret_kaydet():
                     if ws is not None:
                         z = datetime.utcnow() + timedelta(hours=3)
                         ws.append_row([z.strftime("%Y-%m-%d"), z.strftime("%H:%M"), d["sayfa"],
-                                       "üye" if d["uye"] else "ziyaretçi", d["dil"]])
+                                       "üye" if d["uye"] else "ziyaretçi", d["dil"], d.get("kaynak", "")])
                 except Exception:
                     pass
             _threading.Thread(target=_yaz, daemon=True).start()
@@ -11837,7 +11860,7 @@ def ziyaret_ozet(gun: int = 14) -> dict:
     from collections import Counter
     from datetime import datetime, timedelta
     esik = ((datetime.utcnow() + timedelta(hours=3)).date() - timedelta(days=gun - 1)).isoformat()
-    gunluk, sayfalar = {}, Counter()
+    gunluk, sayfalar, kaynaklar = {}, Counter(), Counter()
     for r in satirlar:
         if len(r) < 4 or r[0] < esik:
             continue
@@ -11845,8 +11868,10 @@ def ziyaret_ozet(gun: int = 14) -> dict:
         g[0] += 1
         g[1 if r[3] != "üye" else 2] += 1
         sayfalar[r[2]] += 1
+        kaynaklar[(r[5] if len(r) > 5 else "").strip() or "—"] += 1
     return {"gunler": sorted(((t_, *v) for t_, v in gunluk.items()), reverse=True),
-            "sayfalar": sayfalar.most_common(12), "toplam": sum(v[0] for v in gunluk.values())}
+            "sayfalar": sayfalar.most_common(12), "kaynaklar": kaynaklar.most_common(12),
+            "toplam": sum(v[0] for v in gunluk.values())}
 
 
 # ─── KULÜBE ÖZEL FIRSAT SAYFASI (?kulup=<anahtar>) ────────────────────────────
@@ -12467,6 +12492,9 @@ def render_kulup_firsat(anahtar: str):
                     else:
                         st.error(t("Kaydedilemedi. Lütfen womensfootballscouting@gmail.com adresine yazın.",
                                    "Could not be saved. Please write to womensfootballscouting@gmail.com."))
+    if str(anahtar or "").strip().lower() == "sozlesme-2027":
+        st.markdown(_paylas_seridi("kulup=sozlesme-2027", "Sözleşmesi biten / bonservissiz alınabilecek kadın futbolcular — Sözleşme Takibi 2027:",
+                                   "Out-of-contract women's football players you can sign for free — Contract Watch 2027:"), unsafe_allow_html=True)
     st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>"
                 f"womenfootballscouting.com · {t('Veri: saha gözlemi, TFF & SoccerDonna', 'Data: live scouting, TFF & SoccerDonna')}</div>",
                 unsafe_allow_html=True)
@@ -12698,6 +12726,8 @@ def render_sb_arsiv(anahtar: str):
             f"<div class='tp-arametin' style='padding:8px 14px;border-top:1px solid #241d3d;'>"
             + t(f"En az {_esik} dakika oynayan {len(_sat)} oyuncu arasında ilk 25.", f"Top 25 of {len(_sat)} players with at least {_esik} minutes.")
             + "</div></div>", unsafe_allow_html=True)
+        st.markdown(_paylas_seridi("sb=liste", "Kadın futbolu olay verisi arşivi (ücretsiz):", "Women's football event-data archive (free):"),
+                    unsafe_allow_html=True)
         st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>"
                     f"womenfootballscouting.com · {t('Veri', 'Data')}: Hudl StatsBomb</div>", unsafe_allow_html=True)
         st.stop()
@@ -13732,6 +13762,8 @@ def render_capraz_acik():
             st.markdown(_cp_tablo(liste, ek), unsafe_allow_html=True)
         else:
             st.markdown(f"<div style='text-align:center;padding:30px 20px;color:#8899aa;'>{t('Bu ölçütlerde oyuncu yok.', 'No players match.')}</div>", unsafe_allow_html=True)
+    st.markdown(_paylas_seridi("ligler=1", "Kadın futbolunun önde gelen liglerinin bu sezonki verisi tek sayfada (ücretsiz):",
+                               "This season's data from the leading women's football leagues on one page (free):"), unsafe_allow_html=True)
     st.markdown(
         f"<div class='tp-arametin' style='margin:12px 0 0;'>{_cp_not()}</div>"
         "<div style='margin-top:14px;padding:18px;background:linear-gradient(135deg,#151a33,#1d1438);border:1px solid #3b2d6e;border-radius:14px;text-align:center;'>"
@@ -13742,6 +13774,30 @@ def render_capraz_acik():
         f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>womenfootballscouting.com · {t('Veri: SoccerDonna maç raporları', 'Data: SoccerDonna match reports')}</div>",
         unsafe_allow_html=True)
     st.stop()
+
+
+def _paylas_seridi(qs: str, metin_tr: str, metin_en: str) -> str:
+    """Herkese açık sayfa için paylaşım şeridi (14 Kasım 2026, tanıtım): WhatsApp · X · LinkedIn · Facebook düğmeleri ve
+    kopyalanabilir link. Her link ?ref=paylas-<kanal> taşır → Kokpit › Ziyaretler'deki kaynak sayımına düşer.
+    Toplu gönderim DEĞİL: ziyaretçi kendi seçtiği yerde kendisi paylaşır."""
+    import html as _h
+    from urllib.parse import quote as _q
+    dq = "EN" if EN else "TR"
+    taban = f"https://womenfootballscouting.com/?{qs}&dil={dq}"
+    metin = t(metin_tr, metin_en)
+
+    def _u(kanal):
+        return f"{taban}&ref=paylas-{kanal}"
+    dugmeler = [("WhatsApp", f"https://wa.me/?text={_q(metin + ' ' + _u('wa'))}", "#25D366", "#0b141a"),
+                ("X", f"https://twitter.com/intent/tweet?text={_q(metin)}&url={_q(_u('x'))}", "#e7e9ea", "#0f1419"),
+                ("LinkedIn", f"https://www.linkedin.com/sharing/share-offsite/?url={_q(_u('li'))}", "#0a66c2", "#ffffff"),
+                ("Facebook", f"https://www.facebook.com/sharer/sharer.php?u={_q(_u('fb'))}", "#1877f2", "#ffffff")]
+    return ("<div style='margin:16px auto 0;max-width:760px;text-align:center;'>"
+            f"<div class='tp-arametin' style='margin-bottom:6px;'>🔗 {t('Bu sayfayı paylaş', 'Share this page')}</div>"
+            + "".join(f"<a href='{_h.escape(u)}' target='_blank' rel='noopener' style='display:inline-block;margin:0 4px 6px;padding:6px 14px;"
+                      f"border-radius:999px;background:{bg};color:{fg};font-weight:700;font-size:0.78rem;text-decoration:none;'>{ad}</a>"
+                      for ad, u, bg, fg in dugmeler)
+            + f"<div style='margin-top:4px;font-size:0.72rem;color:#8b93a7;user-select:all;word-break:break-all;'>{_h.escape(_u('link'))}</div></div>")
 
 
 def _lig_cipleri(secili: str = "", kisa: bool = False) -> str:
@@ -13839,6 +13895,9 @@ def render_lig_veri(kod: str):
         st.markdown(
             "<div style='background:#0d0d16;border:1px solid #3b2d6e;border-radius:14px;overflow:hidden;'><div style='overflow-x:auto;'>"
             f"<table style='width:100%;border-collapse:collapse;font-size:0.84rem;'><tbody>{govde}</tbody></table></div></div>", unsafe_allow_html=True)
+    st.markdown(_paylas_seridi(f"lig={kod}", f"{_LIG_SAYFA[kod][1]} — bu sezonun puan durumu, golcüler ve oyuncu verisi (ücretsiz):",
+                               f"{_LIG_AD_EN.get(kod, _LIG_SAYFA[kod][1])} — this season's table, scorers and player data (free):"),
+                unsafe_allow_html=True)
     st.markdown(f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>womenfootballscouting.com · "
                 f"{t('Veri: SoccerDonna maç raporları', 'Data: SoccerDonna match reports')} · {t('güncelleme', 'updated')} {_h.escape(str(oz.get('guncelleme', '')))}</div>",
                 unsafe_allow_html=True)
@@ -14000,6 +14059,8 @@ def render_takvim():
         f"<div style='text-align:center;color:#566179;font-size:0.72rem;margin-top:14px;'>womenfootballscouting.com · "
         f"{t('Kaynak: FIFA (tescil dönemleri), SoccerDonna (maç günleri)', 'Sources: FIFA (registration periods), SoccerDonna (match dates)')}</div>",
         unsafe_allow_html=True)
+    st.markdown(_paylas_seridi("takvim=1", "Kadın futbolu lig takvimleri ve ülke ülke transfer dönemleri:",
+                               "Women's football league calendars and transfer windows by country:"), unsafe_allow_html=True)
     st.stop()
 
 
@@ -15658,6 +15719,10 @@ def render_kokpit():
                 + "</tbody></table></div>"
                 + f"<div class='tp-arametin' style='margin:6px 0 10px;'>{t('Giriş sayfaları', 'Entry pages')}: "
                 + " · ".join(f"{_hk.escape(str(_s))} <b style='color:#e2e8f0;font-style:normal;'>{_n}</b>" for _s, _n in _zo.get("sayfalar", []))
+                + "</div>"
+                + f"<div class='tp-arametin' style='margin:0 0 10px;'>{t('Kaynak (?ref=)', 'Source (?ref=)')}: "
+                + " · ".join(f"{_hk.escape(str(_s))} <b style='color:#e2e8f0;font-style:normal;'>{_n}</b>" for _s, _n in _zo.get("kaynaklar", []))
+                + f"<br>{t('Her kanalda ayrı link: womenfootballscouting.com/?ref=ig · ?ref=linkedin · ?ref=blog · ?ref=wa — «—» = kaynaksız (doğrudan / arama)', 'One link per channel: womenfootballscouting.com/?ref=ig · ?ref=linkedin · ?ref=blog · ?ref=wa — «—» = no source (direct / search)')}"
                 + "</div>", unsafe_allow_html=True)
         else:
             st.caption(t("Henüz kayıtlı ziyaret yok (yönetici oturumu sayılmaz; sayaç 12 Kasım 2026'da başladı).",
