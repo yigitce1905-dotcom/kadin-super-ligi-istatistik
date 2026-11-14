@@ -1387,7 +1387,7 @@ def _hesap_epostasi_gonder(kime: str, konu: str, govde: str) -> bool:
 def _dogrulama_epostasi_gonder(kullanici: str, ad: str) -> bool:
     token = _amacli_token_uret("dogrula", kullanici, saat=48)
     # Arayüz dili (kayıt anındaki oturum): EN kullanıcıya İngilizce e-posta ve İngilizce açılan link (14 Kasım 2026)
-    link = f"{WFS_BASE_URL}/?dogrula={token}" + ("&dil=EN" if EN else "")
+    link = f"{WFS_BASE_URL}/?dogrula={token}&dil=" + ("EN" if EN else "TR")   # varsayılan dil EN; TR de yazılmalı
     govde = t(f"Merhaba {ad or kullanici},\n\n"
               f"Women's Football Scouting hesabını doğrulamak için aşağıdaki linke tıkla "
               f"(48 saat geçerli):\n\n{link}\n\n"
@@ -1402,7 +1402,7 @@ def _dogrulama_epostasi_gonder(kullanici: str, ad: str) -> bool:
 
 def _sifre_sifirlama_epostasi_gonder(kullanici: str) -> bool:
     token = _amacli_token_uret("sifirla", kullanici, saat=2)
-    link = f"{WFS_BASE_URL}/?sifirla={token}" + ("&dil=EN" if EN else "")
+    link = f"{WFS_BASE_URL}/?sifirla={token}&dil=" + ("EN" if EN else "TR")
     govde = t(f"Merhaba,\n\n"
               f"Women's Football Scouting hesabın için şifre sıfırlama talebi aldık. "
               f"Yeni şifre belirlemek için aşağıdaki linke tıkla (2 saat geçerli):\n\n{link}\n\n"
@@ -2507,12 +2507,28 @@ def _son_lig_haftasi() -> int:
 
 GSHEET_ID = "1xeViJ3s2aOmZB2LfCQKb4fliFkd_f_ncYa-P69ch2mw"
 
+import functools as _functools
+import operator as _operator
+
+
 @st.cache_resource(show_spinner=False)
+def _gs_hata_kasasi() -> dict:
+    """Son başarısız Sheets bağlantısının zamanı (süreç geneli, küçük)."""
+    return {"t": 0.0}
+
+
+# validate: operator.is_not(None, sh) == (sh is not None). Lambda KULLANMA — app.py'de tanımlı lambda o çalışmanın bütün
+# modül sözlüğünü (__globals__) taşır ve önbellek onu süreç boyu tutar (14 Kasım 2026 fark incelemesi).
+@st.cache_resource(show_spinner=False, validate=_functools.partial(_operator.is_not, None))
 def _gs_sheet():
     """Tek seferlik Google Sheets auth + acma (Spreadsheet nesnesi tum sure boyunca
     paylasilir). Onceden her _xxx_ws() kendi basina auth+open_by_key yapiyordu —
     her shortlist/etiket/not/giris-log okuma-yazmasinda gereksiz bir OAuth+API
     round-trip'e yol aciyordu. Hata -> None (cagiran yerler yerel JSON'a duser)."""
+    import time as _tm_gs
+    _kasa_gs = _gs_hata_kasasi()
+    if _tm_gs.time() - _kasa_gs["t"] < 60:      # hata sonrası 60 sn yeniden deneme yok (Google çökükken her çalışma beklemesin)
+        return None
     try:
         import gspread
         from google.oauth2.service_account import Credentials as GCredentials
@@ -2523,7 +2539,11 @@ def _gs_sheet():
         creds = GCredentials.from_service_account_info(creds_info, scopes=scopes)
         gc = gspread.authorize(creds)
         return gc.open_by_key(GSHEET_ID)
-    except Exception:
+    except Exception as _e:
+        # validate=: None önbellekte kalmaz, sonraki çağrı yeniden dener (14 Kasım 2026 denetimi: tek geçici hata
+        # süreç boyu üye girişi, ziyaret kaydı, kısa listeler ve notları kapatıyordu — yeniden başlatmaya kadar)
+        _kasa_gs["t"] = _tm_gs.time()
+        print(f"[gs] bağlantı kurulamadı: {type(_e).__name__}: {str(_e)[:160]}", flush=True)
         return None
 
 @st.cache_data(ttl=300)
@@ -3123,12 +3143,13 @@ def _scout_norm_harita() -> dict:
     return {_n(k): k for k in birlesik_scout_yukle()}
 
 
-def _scout_norm_bul(isim: str):
-    """İsmi normalize ederek scout kaydını bulur (birebir eşleşme yoksa)."""
+def _scout_norm_bul(isim: str, _veri: dict = None):
+    """İsmi normalize ederek scout kaydını bulur (birebir eşleşme yoksa). _veri: çağıranın elindeki
+    birlesik_scout_yukle() (yeni tam kopya alınmasın)."""
     import unicodedata as _ud
     s = _ud.normalize("NFKD", str(isim)).encode("ascii", "ignore").decode()
     anahtar = _scout_norm_harita().get(" ".join(s.casefold().split()))
-    return birlesik_scout_yukle().get(anahtar) if anahtar else None
+    return (_veri if _veri is not None else birlesik_scout_yukle()).get(anahtar) if anahtar else None
 
 
 _ISIM_HARF_TABLO = {ord(a): b for a, b in {"ı": "i", "İ": "I", "ø": "o", "Ø": "O", "ł": "l", "Ł": "L", "đ": "d",
@@ -3915,7 +3936,7 @@ ONCELIK_OPSIYON = ["—", "🔴 Yüksek", "🟡 Orta", "🟢 Düşük"]
 _DURUM_EN   = {"—": "—", "👀 İzleniyor": "👀 Watching", "📞 İlgileniyor": "📞 Interested",
                "💬 Müzakere": "💬 Negotiating", "🤝 Anlaşıldı": "🤝 Agreed",
                "⏳ Beklemede": "⏳ On Hold", "❌ Vazgeçildi": "❌ Dropped",
-               "📥 Yeni Öneri": "📥 New", "📞 İletişimde": "📞 In Contact"}
+               "📥 Yeni Öneri": "📥 New", "📞 İletişimde": "📞 In Contact", "👀 İlgileniyor": "👀 Interested"}
 _ONCELIK_EN = {"—": "—", "🔴 Yüksek": "🔴 High", "🟡 Orta": "🟡 Medium", "🟢 Düşük": "🟢 Low"}
 _DURUM_RENK = {"👀 İzleniyor": "#60a5fa", "📞 İlgileniyor": "#22d3ee", "💬 Müzakere": "#fbbf24",
                "🤝 Anlaşıldı": "#34d399", "⏳ Beklemede": "#94a3b8", "❌ Vazgeçildi": "#f87171"}
@@ -7039,7 +7060,7 @@ def capraz_transfer_goster(hedef_isim, hedef_kaynak="analig", aday_kaynak="scout
     oyuncular dersek, TR'den isim görebiliriz" — yani kural artık "TR hariç"
     değil, "sorgunun KENDİ ligi hariç")."""
     h = _benzer_havuz(hedef_kaynak)
-    a = _benzer_havuz(aday_kaynak)
+    a = h if aday_kaynak == hedef_kaynak else _benzer_havuz(aday_kaynak)   # aynı kaynak: ikinci kopya yok
     _hn = _isim_norm(hedef_isim)
     q = next((o for o in h if _isim_norm(o["isim"]) == _hn), None)
     if not q or q["kat"] == "?":
@@ -8144,7 +8165,7 @@ def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar, _havuz=None):
                     if _ok: st.rerun()
                     else: st.warning(_msg)
 
-def render_shortlist_kartlari(isimler, kullanici):
+def render_shortlist_kartlari(isimler, kullanici, _sd=None):
     """Shortlist oyuncularını W-Scope 'Favoriler' tarzı kartlarla göster (düz liste,
     gruplanmamış). Bölge-gruplu görünüm için render_my_squad kullanılır."""
     if not isimler:
@@ -8158,7 +8179,7 @@ def render_shortlist_kartlari(isimler, kullanici):
         return
     _ta = _cift_takma_ad()
     isimler = list(dict.fromkeys(_ta.get(i, i) for i in isimler))
-    sd_data = birlesik_sd_yukle()
+    sd_data = _sd if _sd is not None else birlesik_sd_yukle()
     _notlar = scoutnot_kullanici(kullanici)
     # Düşen çift kaydın adıyla yazılmış scout notu kalan kayda taşınır (yalnız gösterim kopyasında)
     _notlar = dict(_notlar or {})
@@ -8435,7 +8456,7 @@ def render_scouting_detay(tam_isim):
     ]
     def _ozet_ciz():   # özet kartları — künye altındaki boşluğu doldurur
         # ── ÖZET satırı: hep görünür (TR profiliyle aynı standart) ────────────────
-        _so = _scout_kayit_bul(tam_isim)
+        _so = _scout_kayit_bul(tam_isim, _veri=_d5)   # havuzun yeni kopyası alınmasın
         _so_nihai = (_so.get("nihai") or "").strip()
         _so_ivme_ham = (_so.get("ivme") or "").strip()
         _so_ivme  = _SCOTR_POT.get(_so_ivme_ham, (_so_ivme_ham,))[0] or "—"
@@ -8597,6 +8618,9 @@ def render_scouting_detay(tam_isim):
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
     _d6 = birlesik_scout_yukle()   # 26.08.2026: tek çekim — bu router her profil görüntülemede 3x çekiyordu
+    # 14 Kasım 2026: SD bir kez ve YALNIZ TR kadrosunda olmayan isim için (TR profilinde hiç gerekmiyor;
+    # aşağıdaki kullanımlar TR ismi için df_tam kontrolüyle zaten kısa devre yapıyor)
+    _sd6 = {} if isim in df_tam["Oyuncu"].values else birlesik_sd_yukle()
     # Havuzdan düşen çift kaydın adıyla gelindiyse (eski link/favori) kalan kayda yönlen
     if isim not in _d6 and isim not in df_tam["Oyuncu"].values:
         isim = _cift_takma_ad().get(isim, isim)
@@ -8604,11 +8628,13 @@ def render_odakli_profil(isim):
     # (STAŠKOVÁ ↔ STASKOVA gibi kaynaklar arası yazım farkları)
     if (isim not in df_tam["Oyuncu"].values
             and isim not in _d6
-            and isim not in birlesik_sd_yukle()):
+            and isim not in _sd6):
         isim = _profil_norm_harita().get(_isim_norm(isim), isim)
     # Kaynak: scouting oyuncusu mu (ana lig kadrosunda değil ama SD havuzunda var)?
     _scout_oyuncu = (isim not in df_tam["Oyuncu"].values) and (
-        isim in birlesik_sd_yukle() or isim in _d6)
+        isim in _sd6 or isim in _d6)
+    _sd6_var = isim in _sd6
+    del _sd6   # profil çizimi kendi SD kopyasını alır; burada tutulursa tepe bellekte iki kopya olurdu
     _geri_lbl = (t("← Scouting'e Dön", "← Back to Scouting") if _scout_oyuncu
                  else t("← Listeye Dön", "← Back to List"))
     if st.button(_geri_lbl, key="odakli_geri", type="primary"):
@@ -8635,7 +8661,7 @@ def render_odakli_profil(isim):
     # Scouting oyuncusu mu? (Premium kademe gerekir) — TR havuzu dahil
     # (Sco TR oyuncularının SD'si soccerdonna_profiller'de; eskiden yalnız
     # dünya SD dosyasına bakıldığından profilleri 'bulunamadı' oluyordu)
-    if isim in birlesik_sd_yukle() or isim in _d6:
+    if _sd6_var or isim in _d6:
         if not tier_yeterli("premium"):
             pro_paywall_goster(t("Scouting oyuncu profili", "Scouting player profile"),
                                tier="premium")
@@ -8879,7 +8905,7 @@ def nitelik_radari_goster(isim: str):
     fig = go.Figure(go.Scatterpolar(
         r=r + [r[0]], theta=theta + [theta[0]], fill="toself",
         line=dict(color="#a78bfa", width=2), fillcolor="rgba(124,58,237,0.32)",
-        hovertemplate="%{theta}: %{r}" + t(". yüzdelik", "th percentile") + "<extra></extra>"))
+        hovertemplate="%{theta}: " + t("%{r}. yüzdelik", "percentile %{r}") + "<extra></extra>"))
     fig.update_layout(
         height=300, paper_bgcolor="rgba(0,0,0,0)",
         polar=dict(bgcolor="rgba(255,255,255,0.02)",
@@ -9411,31 +9437,65 @@ def _ceviri_zaman_asimli(fn, *args, timeout=5.0):
 
 
 @st.cache_data(show_spinner=False, max_entries=1024)
-def _tr_en_ceviri(metin: str) -> str:
-    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata/zaman aşımı → orijinal TR.
+def _tr_en_ceviri_ic(metin: str) -> str:
+    """Serbest TR metni EN'e çevirir (deep-translator/Google). Hata İSTİSNA olarak çıkar (önbelleğe girmez).
     Kadın futbolu: Google TR cinsiyetsiz 'o'yu 'he' çevirdiği için eril zamirler dişile çekilir."""
-    try:
+    if True:
         import re
         from deep_translator import GoogleTranslator
-        cev = _ceviri_zaman_asimli(GoogleTranslator(source="tr", target="en").translate, metin) or metin
+        cev = _ceviri_zaman_asimli(GoogleTranslator(source="tr", target="en").translate, metin)
+        if not cev:
+            raise RuntimeError("boş çeviri")
         for pat, rep in ((r"\bhimself\b", "herself"), (r"\bHimself\b", "Herself"),
                          (r"\bhe\b", "she"), (r"\bHe\b", "She"),
                          (r"\bhim\b", "her"), (r"\bHim\b", "Her"),
                          (r"\bhis\b", "her"), (r"\bHis\b", "Her")):
             cev = re.sub(pat, rep, cev)
         return cev
-    except Exception:
+
+
+@st.cache_resource(show_spinner=False)
+def _ceviri_hata_kasasi() -> dict:
+    """{(yön, metin): son başarısız deneme zamanı} — servis düşükken her çalışma 5 sn beklemesin. Paylaşılan, küçük."""
+    return {}
+
+
+def _ceviri_dene(yon: str, fn, metin: str) -> str:
+    """Önbellekli çeviriyi çağırır; hata/zaman aşımında orijinal metni döndürür ve 10 dk yeniden denemez.
+    14 Kasım 2026: eskiden zaman aşımı sonucu (çevrilmemiş metin) kalıcı önbelleğe giriyordu."""
+    import time as _tm
+    kasa = _ceviri_hata_kasasi()
+    k = (yon, metin)
+    if _tm.time() - kasa.get(k, 0) < 600:
         return metin
+    try:
+        return fn(metin)
+    except Exception:
+        if len(kasa) > 2000:
+            kasa.clear()
+        kasa[k] = _tm.time()
+        return metin
+
+
+def _tr_en_ceviri(metin: str) -> str:
+    """Serbest TR metni EN'e çevirir. Hata/zaman aşımı → orijinal TR (önbelleğe girmez)."""
+    return _ceviri_dene("tr-en", _tr_en_ceviri_ic, metin)
+
+
+def _en_tr_ceviri(metin: str) -> str:
+    """Serbest EN metni TR'ye çevirir. Hata/zaman aşımı → orijinal EN (önbelleğe girmez)."""
+    return _ceviri_dene("en-tr", _en_tr_ceviri_ic, metin)
 
 
 @st.cache_data(show_spinner=False, max_entries=1024)
-def _en_tr_ceviri(metin: str) -> str:
-    """Serbest EN metni TR'ye çevirir. Hata/zaman aşımı → orijinal EN."""
-    try:
+def _en_tr_ceviri_ic(metin: str) -> str:
+    """Serbest EN metni TR'ye çevirir. Hata İSTİSNA olarak çıkar (önbelleğe girmez)."""
+    if True:
         from deep_translator import GoogleTranslator
-        return _ceviri_zaman_asimli(GoogleTranslator(source="en", target="tr").translate, metin) or metin
-    except Exception:
-        return metin
+        cev = _ceviri_zaman_asimli(GoogleTranslator(source="en", target="tr").translate, metin)
+        if not cev:
+            raise RuntimeError("boş çeviri")
+        return cev
 
 
 def scout_notu_goster(metin) -> str:
@@ -10208,13 +10268,23 @@ def _tembel_bolum(tr_, en_, k: str, oyuncu: str, govde):
             govde()
         return
 
+    # 14 Kasım 2026: bölüm açılınca YALNIZ fragment çalışır; profil sezon bağlamı (_PROFIL_SEZON) önceki tam çalışmanın
+    # sonunda sıfırlandığı için 2025-26 seçiliyken İstatistikler bu sezonun fikstürüyle hesaplanıyordu → bağlam yakalanıp
+    # fragment içinde geri konur.
+    _sez_baglam = _PROFIL_SEZON["s"]
+
     @st.fragment
     def _parca():
-        exp = st.expander(baslik, expanded=False, key=f"bolum_{k}_{oyuncu}",
-                          on_change="rerun")
-        with exp:
-            if exp.open:
-                govde()
+        _onceki = _PROFIL_SEZON["s"]
+        _PROFIL_SEZON["s"] = _sez_baglam
+        try:
+            exp = st.expander(baslik, expanded=False, key=f"bolum_{k}_{oyuncu}",
+                              on_change="rerun")
+            with exp:
+                if exp.open:
+                    govde()
+        finally:
+            _PROFIL_SEZON["s"] = _onceki
     _parca()
 
 def _bolum_kilit(k: str):
@@ -10407,7 +10477,7 @@ def _render_ana_lig_profil_ic(secili):
         _mv = _sd_deger_bicim(sd.get("Market value", ""))   # '35.000 €' → '€35.000' (sheet ile aynı biçim)
         # Mevki: excel (scout havuzu) çoklu mevki ÖNCELİKLİ; yoksa SD tek mevki
         # (isim diakritik farkına toleranslı: KARLİCİC ↔ KARLIČIĆ)
-        _sc_kayit = _d_scout.get(secili) or _scout_norm_bul(secili) or {}
+        _sc_kayit = _d_scout.get(secili) or _scout_norm_bul(secili, _veri=_d_scout) or {}
         _sc_mevki = list(_sc_kayit.get("mevki") or [])
         _mevki_deger = " / ".join(_sc_mevki) if _sc_mevki else mevki_disp(sd.get("Position",""))
         # ── Künye kutuları — Baran'ın profil tasarımı (2026-08) ───────────────
@@ -12235,8 +12305,8 @@ def _ligler_duyuru(kap_stil: str = ""):
         f"<span class='tp-sekilli' style='color:#ffffff;'>"
         + _buyuk(t(f"{len(C['ligler'])} ligin bu sezonki verisi tek sayfada", f"This season's data for {len(C['ligler'])} leagues on one page"))
         + "</span><br><span class='tp-arametin'>"
-        + t(f"{sum(x['mac'] for x in C['ligler'])} maç · {len(C['oyuncular'])} oyuncu · gol krallığı, 20 yaş altı en çok süre alanlar, kaleciler — tıkla →",
-            f"{sum(x['mac'] for x in C['ligler'])} matches · {len(C['oyuncular'])} players · top scorers, most-used under-20s, goalkeepers — click →")
+        + t(f"{sum(x['mac'] + x.get('raporsuz', 0) for x in C['ligler'])} maç · {len(C['oyuncular'])} oyuncu · gol krallığı, 20 yaş altı en çok süre alanlar, kaleciler — tıkla →",
+            f"{sum(x['mac'] + x.get('raporsuz', 0) for x in C['ligler'])} matches · {len(C['oyuncular'])} players · top scorers, most-used under-20s, goalkeepers — click →")
         + "</span></a></div>", unsafe_allow_html=True)
 
 
@@ -13584,7 +13654,8 @@ def _cp_lig_tablo(acik: bool = False) -> str:
         golcu = (f"<span lang='{_isim_dil(gk[0])}' title='{_h.escape(gk[1])}'>{_h.escape(gk[0])}</span> "
                  f"<b style='color:#1db954;'>{gk[2]}</b>") if gk else "—"
         mbg = f"{lg['gol'] / lg['mac']:.2f}".replace(".", "," if not EN else ".") if lg.get("mac") else "—"
-        hucre = [(S[0], lg["mac"], "num ws-mono"), (S[1], lg["takim"], "num ws-mono"), (S[2], lider, ""), (S[3], golcu, ""),
+        # Maç = oynanan (raporu olmayanlar dahil; aynı satırdaki lider puan/maç onları sayıyor). Maç başı gol raporlu maçlardan.
+        hucre = [(S[0], lg["mac"] + lg.get("raporsuz", 0), "num ws-mono"), (S[1], lg["takim"], "num ws-mono"), (S[2], lider, ""), (S[3], golcu, ""),
                  (S[4], mbg, "num ws-mono"), (S[5], _lg_tarih(lg.get("son_mac", "")), "ws-mono")]
         _fz = _LIG_ULKE.get(lg["kod"])
         if _fz:
@@ -13645,7 +13716,7 @@ def render_capraz(sekme: str):
         _html_bmp("<div style='display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;margin:0 0 10px;'>"
                   f"<span class='tp-anabaslik' style='font-size:1.25rem;'>🌍 {t('Tüm Ligler', 'All Leagues')}</span>"
                   f"<span class='tp-arametin'>{t('bu sezon', 'this season')} · {len(LIGLER)} {t('lig', 'leagues')} · "
-                  f"{sum(x['mac'] for x in LIGLER)} {t('maç', 'matches')} · {len(P)} {t('oyuncu', 'players')} · "
+                  f"{sum(x['mac'] + x.get('raporsuz', 0) for x in LIGLER)} {t('maç', 'matches')} · {len(P)} {t('oyuncu', 'players')} · "
                   f"{t('güncelleme', 'updated')} {_lg_tarih(C.get('guncelleme', ''))} · {t('kaynak: SoccerDonna maç raporları', 'source: SoccerDonna match reports')}"
                   "</span></div>"), unsafe_allow_html=True)
     if not LIGLER:
@@ -13668,7 +13739,7 @@ def render_capraz(sekme: str):
     # ───────────────────────── LİGLER ─────────────────────────
     if sekme == "ligler":
         st.markdown("<div style='display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 12px;'>"
-                    + _lg_kart(len(LIGLER), t("lig", "leagues"), "#1db954") + _lg_kart(sum(x["mac"] for x in LIGLER), t("maç", "matches"))
+                    + _lg_kart(len(LIGLER), t("lig", "leagues"), "#1db954") + _lg_kart(sum(x["mac"] + x.get("raporsuz", 0) for x in LIGLER), t("maç", "matches"))
                     + _lg_kart(sum(x["gol"] for x in LIGLER), t("gol", "goals")) + _lg_kart(sum(x["oyuncu"] for x in LIGLER), t("forma giyen oyuncu", "players used"))
                     + "</div>", unsafe_allow_html=True)
         st.markdown(_cp_lig_tablo(), unsafe_allow_html=True)
@@ -13793,7 +13864,7 @@ def render_capraz_acik():
         _html_bmp("<div class='baslik-kutu'>"
                   f"<div class='ust-bant'>🌍 {t('LİG VERİLERİ · ÜCRETSİZ', 'LEAGUE DATA · FREE')}</div>"
                   f"<h1>{t('Tüm ligler, tek sayfada', 'Every league on one page')}</h1>"
-                  f"<p>{t('Bu sezon', 'This season')} · <b>{len(LIGLER)}</b> {t('lig', 'leagues')} · <b>{sum(x['mac'] for x in LIGLER)}</b> {t('maç', 'matches')} · "
+                  f"<p>{t('Bu sezon', 'This season')} · <b>{len(LIGLER)}</b> {t('lig', 'leagues')} · <b>{sum(x['mac'] + x.get('raporsuz', 0) for x in LIGLER)}</b> {t('maç', 'matches')} · "
                   f"<b>{len(P)}</b> {t('oyuncu', 'players')} · {t('güncelleme', 'updated')} {_lg_tarih(C.get('guncelleme', ''))}</p></div>"),
         unsafe_allow_html=True)
     st.markdown(_lig_cipleri("ligler"), unsafe_allow_html=True)
@@ -16270,14 +16341,15 @@ if st.session_state.get("sayfa") == "scouting" and st.session_state.get("girildi
                 _sl_gorunen = [_n for _n in sc_df[isim_col]
                                if _n in _sl_liste
                                and (not _deneme_scout or _n in DENEME_SCOUT_OYUNCULAR)]
+                _sd_sl = birlesik_sd_yukle()   # bir kez: karşılaştırma ve kartlar ortak kullanır (önce 2 kopya)
                 if len(_sl_gorunen) >= 2:
                     with st.expander(
                             t("⚖️ Shortlist Karşılaştırma", "⚖️ Shortlist Comparison"),
                             expanded=True):
-                        shortlist_karsilastirma_goster(_sl_gorunen, birlesik_sd_yukle(),
+                        shortlist_karsilastirma_goster(_sl_gorunen, _sd_sl,
                                                        birlesik_leistung_yukle())
                 # Shortlist sekmesi: W-Scope 'Favoriler' tarzı kartlar + scout notu/durum
-                render_shortlist_kartlari(_sl_liste, _sl_kullanici)
+                render_shortlist_kartlari(_sl_liste, _sl_kullanici, _sd=_sd_sl)
             else:
                 import datetime as _dt_ws
                 _sat_json, _har_json = _ws_havuz_json(
