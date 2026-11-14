@@ -15463,7 +15463,7 @@ def _havuz_kalite(gun: str) -> dict:
         if not f or not f.get("lig") or not f.get("tm"):
             if r.get("lig_sheet"):   # maç verisi yok; veri hattı etiketi takım arkadaşlarından düzeltti
                 out["lig"].append({"o": isim, "k": kulup, "hl": f"{_duz(r['lig_sheet'])} → {_duz(lig)} ✓",
-                                   "ol": t("(takım arkadaşları)", "(teammates)"), "tk": "—"})
+                                   "ol": t("(otomatik: takım arkadaşları / kulüp adı)", "(auto: teammates / club name)"), "tk": "—"})
             continue
         b = bayrak.get(f["lig"], "")
         # lig_sheet: veri hattı (lig_formdan_duzelt) etiketi maç raporundan düzelttiyse sheet'teki ilk değer —

@@ -514,6 +514,18 @@ def _klt_ayni(a, b):
     return any(w in nb for w in x if len(w) >= 5) or any(w in na for w in y if len(w) >= 5)
 
 
+def _klt_siki(a, b):
+    """Sıkı kulüp eşleşmesi (yalnız ada dayanan kararlar için): ayırt edici kelime kümeleri aynı ya da biri
+    ötekinin alt kümesi VE küçük kümede en az bir 5+ harfli kelime. _klt_ayni'nin alt dize kuralı burada fazla
+    gevşek: "Monte Real Football Academy" ↔ "Rayados de Monterrey", "University of Fort Hare" ↔ "Fort Lauderdale"."""
+    x = {_KLT_ES.get(w, w) for w in _klt_n(a).split() if len(w) >= 3 and w not in _KLT_GENEL}
+    y = {_KLT_ES.get(w, w) for w in _klt_n(b).split() if len(w) >= 3 and w not in _KLT_GENEL}
+    if not x or not y:
+        return False
+    kucuk, buyuk = (x, y) if len(x) <= len(y) else (y, x)
+    return kucuk <= buyuk and any(len(w) >= 5 for w in kucuk)
+
+
 def lig_formdan_duzelt(veriler: dict) -> list:
     """Havuzdaki lig etiketi bu sezonun maç raporlarıyla (sd_form_2026_27.json) çelişiyorsa düzeltir.
 
@@ -593,6 +605,26 @@ def lig_formdan_duzelt(veriler: dict) -> list:
                 k.setdefault("lig_sheet", lig or "-")
                 k["lig"] = yeni
                 duzelen.append(isim)
+    # Üçüncü geçiş (yalnız BOŞ etiket, oyuncunun kendi maç kaydı yok): kulüp, maç verisinde TEK bir ligin takımına
+    # denk geliyorsa o lig (ABB Fomget SK → Süper Lig, Kolbotn IL → Toppserien...). Serbest/ara verenlere dokunmaz.
+    lig_takim = collections.defaultdict(set)
+    for f in form.values():
+        if f.get("lig") in bayrak and f.get("takim"):
+            lig_takim[f["lig"]].add(f["takim"])
+    for isim, k in veriler.items():
+        if not isinstance(k, dict) or isim in duzelen:
+            continue
+        lig = str(k.get("lig") or "").strip()
+        kl = str(k.get("kulup") or "").strip()
+        if lig not in bos or kl.lower() in _KULUP_COP or kl.lower() in ("serbest", "free agent", "free agents", "career break"):
+            continue
+        kodlar = {kod for kod, tk in lig_takim.items() if any(_klt_siki(kl, x) for x in tk)}
+        if len(kodlar) != 1:
+            continue
+        kod = kodlar.pop()
+        k.setdefault("lig_sheet", lig or "-")
+        k["lig"] = sayac[kod].most_common(1)[0][0] if sayac[kod] else f"{bayrak[kod]} {ad[kod]}"
+        duzelen.append(isim)
     return duzelen
 
 
@@ -625,6 +657,12 @@ def kulup_guncelle(veriler: dict) -> int:
         if not g:
             continue
         k["kulup_sd"] = g
+        # SD "Without Club" / "vereinslos" = serbest oyuncu: sheet'te kulüp boşsa bu BİLGİDİR, çöp değil
+        # (14 Kasım 2026: 3 oyuncunun künyesinde takım satırı boş kalıyordu)
+        if g.lower() in ("without club", "vereinslos") and (k.get("kulup") or "").strip().lower() in _KULUP_COP:
+            k["kulup"] = "Serbest"
+            n += 1
+            continue
         if g.lower() in _KULUP_COP:
             continue
         if (k.get("kulup") or "").strip().lower() in _KULUP_COP:

@@ -44031,7 +44031,7 @@
     ],
     "rol": "Hücumcu Oyun Kurucu",
     "kulup": "ABB Fomget SK",
-    "lig": "-",
+    "lig": "🇹🇷 Süper Lig",
     "deger": "€10.000",
     "sozlesme": "",
     "beceri": {
@@ -44104,7 +44104,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "ABB Fomget SK"
+    "kulup_sd": "ABB Fomget SK",
+    "lig_sheet": "-"
   },
   "Ajsa Kalac": {
     "tam_isim": "Ајша Калач",
@@ -97922,7 +97923,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98154,7 +98155,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
@@ -98386,7 +98387,7 @@
     "bolge": "",
     "mevki": [],
     "rol": "",
-    "kulup": "",
+    "kulup": "Serbest",
     "lig": "",
     "deger": "",
     "sozlesme": "",
