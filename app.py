@@ -1043,7 +1043,7 @@ def render_arsiv(sezon_key: str):
     with f1:
         _secenekler = [_TUM_OYUNCU] + sorted(df_a["Oyuncu"].tolist())
         _secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), _secenekler,
-                                      key=_pk(f"arsiv_oyuncu_{sezon_key}"))
+                                      key=_pk(f"arsiv_oyuncu_{sezon_key}"), format_func=isim_goster)
     with f2:
         _takimlar = [_TUM_TAKIM] + _takim_kanon_liste(df_a["Takım"])
         _secili_takim = st.selectbox(t("Takım", "Team"), _takimlar,
@@ -15754,8 +15754,10 @@ def render_kokpit():
         st.markdown(f"<div class='tp-anabaslik' style='margin:10px 0 4px;'>{_buyuk('Kadro Sahası')}</div>",
                     unsafe_allow_html=True)
     with _cs:
-        _sira = st.selectbox("Sırala", ["Değere göre", "Yaşa göre", "Boya göre", "İsme göre"],
-                             key="kokpit_sirala", label_visibility="collapsed")
+        _sira_en = {"Değere göre": "By value", "Yaşa göre": "By age", "Boya göre": "By height", "İsme göre": "By name"}
+        _sira = st.selectbox(t("Sırala", "Sort"), ["Değere göre", "Yaşa göre", "Boya göre", "İsme göre"],
+                             key="kokpit_sirala", label_visibility="collapsed",
+                             format_func=lambda x: _sira_en.get(x, x) if EN else x)
     with _ce:
         _duzenle = st.toggle(f"✏️ {t('Düzenle','Edit')}", key="kokpit_duzenle",
                              help=t("Gerçek kadro üzerinde oyuncuları mevkiler arası taşı — diziliş dene",
@@ -16591,7 +16593,7 @@ if tab_internal:
             ic1, ic2, ic3, ic4 = st.columns([1.2, 1.4, 1.4, 0.9])
             with ic1: _i_tarih = st.date_input(t("Maç Tarihi", "Match Date"), key="int_tarih")
             with ic2: _i_ev    = st.text_input(t("Ev Sahibi", "Home"), key="int_ev", placeholder="Türkiye U19")
-            with ic3: _i_dep   = st.text_input(t("Deplasman", "Away"), key="int_dep", placeholder="Karadağ U19")
+            with ic3: _i_dep   = st.text_input(t("Deplasman", "Away"), key="int_dep", placeholder=t("Karadağ U19", "Montenegro U19"))
             with ic4: _i_skor  = st.text_input(t("Skor", "Score"), key="int_skor", placeholder="5-0")
             _i_genel = st.text_area(t("Genel Not / Maç Özeti", "General Note / Match Summary"),
                                     key="int_genel", height=110,
@@ -16679,7 +16681,7 @@ if tab1:
     f1, f2, f3, f4 = st.columns([2, 2, 1, 1])
     with f1:
         secenekler = [_TUM_OYUNCU] + sorted(df_tam["Oyuncu"].tolist())
-        secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), secenekler,
+        secili_oyuncu = st.selectbox(t("Oyuncu Ara", "Search Player"), secenekler, format_func=isim_goster,
             index=secenekler.index(url_oyuncu) if url_oyuncu in secenekler else 0)
     with f2:
         takimlar = [_TUM_TAKIM] + _takim_kanon_liste(df_tam["Takım"])
@@ -17557,7 +17559,7 @@ if tab7:
                 secili_hoca = st.selectbox(
                     f"🧑‍💼 {t('Teknik Direktör','Head Coach')}",
                     [_hoca_sec_sentinel] + hoca_listesi,
-                    key="ff_hoca",
+                    key="ff_hoca", format_func=isim_goster,
                 )
             else:
                 secili_hoca = st.text_input(f"🧑‍💼 {t('Teknik Direktör','Head Coach')}", key="ff_hoca_text",
@@ -17581,8 +17583,8 @@ if tab7:
                 else:
                     havuz = sorted(df_tam["Oyuncu"].tolist())
                 secenekler = ["—"] + [o for o in havuz if o not in zaten_sec]
-                secim = st.selectbox(etiket, secenekler, key=f"ff_{etiket}",
-                                     label_visibility="collapsed")
+                secim = st.selectbox(_ETIKET_EN.get(etiket, etiket) if EN else etiket, secenekler, key=f"ff_{etiket}",
+                                     label_visibility="collapsed", format_func=lambda x: isim_goster(x) if x != "—" else x)
                 secimler[etiket] = secim
                 if secim != "—":
                     zaten_sec.add(secim)
@@ -17658,6 +17660,7 @@ if tab7:
                 bgcolor="rgba(0,0,0,0.4)", borderpad=4)
 
             # ── Hoca etiketi (alt) ─────────────────────────────────
+            import html as _h_fan
             hoca_goster = ""
             if "ff_hoca" in st.session_state:
                 h = st.session_state["ff_hoca"]
@@ -17668,7 +17671,7 @@ if tab7:
             if hoca_goster:
                 fig.add_annotation(
                     x=W/2, y=-5.5,
-                    text=f"🧑‍💼 <b>{hoca_goster}</b>",
+                    text=f"🧑‍💼 <b>{_h_fan.escape(isim_goster(hoca_goster))}</b>",
                     showarrow=False,
                     font=dict(size=13, color="white", family="Arial"),
                     bgcolor="rgba(0,0,0,0.5)", borderpad=5,
@@ -17681,13 +17684,13 @@ if tab7:
                 renk   = MEVKI_RENK_F.get(mevki, "#aaa")
 
                 if dolu:
-                    hover        = f"<b>{oyuncu}</b><br>{etiket_goster(etiket)}"
+                    hover        = f"<b>{_h_fan.escape(isim_goster(oyuncu))}</b><br>{etiket_goster(etiket)}"
                     marker_renk  = renk
                     border_renk  = "white"
                     border_kalin = 2.5
                     opak         = 1.0
-                    # Tam isim — iki satıra böl (ad / soyad)
-                    parcalar = oyuncu.title().split()
+                    # Tam isim — iki satıra böl (ad / soyad). isim_goster: str.title() Türkçe 'İ'yi 'i̇' yapıyordu
+                    parcalar = _h_fan.escape(isim_goster(oyuncu)).split()
                     if len(parcalar) >= 2:
                         # İlk kelime(ler) + son kelime ayrı satır
                         isim_ust = " ".join(parcalar[:-1])
