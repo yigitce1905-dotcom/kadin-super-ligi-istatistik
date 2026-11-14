@@ -442,6 +442,9 @@ div[data-testid="stExpander"] summary p { font-size:12pt !important;
 .ws-table th.num, .ws-table td.num { text-align:right; }
 .ws-table tbody tr { border-bottom:1px solid #1a1a28; transition:background .12s; }
 .ws-table tbody tr:hover { background:#13131f; }
+/* Profil: telefonda künye/özet sütunu ile mevki haritası alt alta dizilir, aradaki boşluk 0 olur ve özet kartı
+   ~16 px taşar → "MEVKİ HARİTASI" etiketi karta biniyordu (14 Kasım 2026) */
+@media (max-width: 640px) { .mh-etiket { margin-top:26px !important; } }
 .ws-table td { padding:9px 9px; color:#d4d4d8; white-space:nowrap; vertical-align:middle; }
 @media (min-width: 641px) { .ws-table td.ws-sar { white-space:normal; min-width:110px; max-width:190px; } }
 /* ws-sar: uzun metinli hücre (Takım · Lig) masaüstünde satır kırar; mobil kart düzeni etkilenmez.
@@ -1086,7 +1089,7 @@ def render_arsiv(sezon_key: str):
                 "Dakika": st.column_config.NumberColumn(t("Dakika", "Min"), width="small"),
             })
     with col_detay:
-        _secili_satirlar = secim.selection.rows if secim and secim.selection else []
+        _secili_satirlar = [i for i in (secim.selection.rows if secim and secim.selection else []) if i < len(liste_df)]  # süzgeç değişince eski seçim yeni listenin dışında kalabiliyor → IndexError (14 Kasım 2026)
         if not _secili_satirlar:
             st.markdown(
                 f"<div style='background:linear-gradient(180deg,#12182e,#0e1322);border:1px dashed #2d3561;"
@@ -1383,22 +1386,33 @@ def _hesap_epostasi_gonder(kime: str, konu: str, govde: str) -> bool:
 
 def _dogrulama_epostasi_gonder(kullanici: str, ad: str) -> bool:
     token = _amacli_token_uret("dogrula", kullanici, saat=48)
-    link = f"{WFS_BASE_URL}/?dogrula={token}"
-    govde = (f"Merhaba {ad or kullanici},\n\n"
-             f"Women's Football Scouting hesabını doğrulamak için aşağıdaki linke tıkla "
-             f"(48 saat geçerli):\n\n{link}\n\n"
-             f"Bu kaydı sen yapmadıysan bu e-postayı yok sayabilirsin.")
-    return _hesap_epostasi_gonder(kullanici, "Hesabını Doğrula — Women's Football Scouting", govde)
+    # Arayüz dili (kayıt anındaki oturum): EN kullanıcıya İngilizce e-posta ve İngilizce açılan link (14 Kasım 2026)
+    link = f"{WFS_BASE_URL}/?dogrula={token}" + ("&dil=EN" if EN else "")
+    govde = t(f"Merhaba {ad or kullanici},\n\n"
+              f"Women's Football Scouting hesabını doğrulamak için aşağıdaki linke tıkla "
+              f"(48 saat geçerli):\n\n{link}\n\n"
+              f"Bu kaydı sen yapmadıysan bu e-postayı yok sayabilirsin.",
+              f"Hi {ad or kullanici},\n\n"
+              f"Please confirm your Women's Football Scouting account with the link below "
+              f"(valid for 48 hours):\n\n{link}\n\n"
+              f"If you did not sign up, you can ignore this email.")
+    return _hesap_epostasi_gonder(kullanici, t("Hesabını Doğrula — Women's Football Scouting",
+                                               "Confirm your account — Women's Football Scouting"), govde)
 
 
 def _sifre_sifirlama_epostasi_gonder(kullanici: str) -> bool:
     token = _amacli_token_uret("sifirla", kullanici, saat=2)
-    link = f"{WFS_BASE_URL}/?sifirla={token}"
-    govde = (f"Merhaba,\n\n"
-             f"Women's Football Scouting hesabın için şifre sıfırlama talebi aldık. "
-             f"Yeni şifre belirlemek için aşağıdaki linke tıkla (2 saat geçerli):\n\n{link}\n\n"
-             f"Bu talebi sen yapmadıysan bu e-postayı yok sayabilirsin, şifren değişmez.")
-    return _hesap_epostasi_gonder(kullanici, "Şifre Sıfırlama — Women's Football Scouting", govde)
+    link = f"{WFS_BASE_URL}/?sifirla={token}" + ("&dil=EN" if EN else "")
+    govde = t(f"Merhaba,\n\n"
+              f"Women's Football Scouting hesabın için şifre sıfırlama talebi aldık. "
+              f"Yeni şifre belirlemek için aşağıdaki linke tıkla (2 saat geçerli):\n\n{link}\n\n"
+              f"Bu talebi sen yapmadıysan bu e-postayı yok sayabilirsin, şifren değişmez.",
+              f"Hi,\n\n"
+              f"We received a request to reset the password of your Women's Football Scouting account. "
+              f"Set a new password with the link below (valid for 2 hours):\n\n{link}\n\n"
+              f"If you did not ask for this, you can ignore this email: your password stays the same.")
+    return _hesap_epostasi_gonder(kullanici, t("Şifre Sıfırlama — Women's Football Scouting",
+                                               "Password reset — Women's Football Scouting"), govde)
 
 
 def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
@@ -1422,7 +1436,7 @@ def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
     if ws is None:
         return (False, "Kayıt servisi şu an kullanılamıyor, sonra tekrar dene.", "Registration service is unavailable, try again later.")
     try:
-        from datetime import datetime
+        from datetime import datetime, timedelta
         h = _bcrypt.hashpw(sifre.encode(), _bcrypt.gensalt()).decode()
         try:
             _smtp_var = bool(st.secrets.get("smtp"))
@@ -1430,7 +1444,7 @@ def uye_kaydet(kullanici: str, sifre: str, ad: str, kulup: str = "") -> tuple:
             _smtp_var = False
         _durum = "beklemede_dogrulama" if _smtp_var else "aktif"
         ws.append_row([kullanici, h, ad, (kulup or "").strip(), "kulup", "free",
-                       datetime.now().strftime("%Y-%m-%d %H:%M"), "", _durum])
+                       (datetime.utcnow() + timedelta(hours=3)).strftime("%Y-%m-%d %H:%M"), "", _durum])
         uyeler_yukle.clear()   # cache tazele
         if _durum == "beklemede_dogrulama" and _dogrulama_epostasi_gonder(kullanici, ad):
             return (True, "Kayıt alındı! E-postana gönderdiğimiz doğrulama linkine tıklayınca giriş yapabilirsin.",
@@ -1989,7 +2003,7 @@ _TIER_RANK = {"free": 0, "basic": 1, "pro": 2, "premium": 3, "admin": 99}
 
 # Kademe görünüm bilgisi: etiket, renk, ikon (sidebar rozeti + her yerde)
 _TIER_GORUNUM = {
-    "free":    ("Ücretsiz", "#8899aa", "🔓"),
+    "free":    (t("Ücretsiz", "Free"), "#8899aa", "🔓"),
     "basic":   ("Basic",    "#29b6f6", "🔹"),
     "pro":     ("Pro",      "#1db954", "⚡"),
     "premium": ("Premium",  "#e040fb", "👑"),
@@ -3087,8 +3101,10 @@ def dunya_havuz_ozet() -> dict:
     d = {k: v for k, v in birlesik_scout_yukle().items()
          if isinstance(v, dict) and not _dusuk_notlu_tr_mi(v)}
     ulke = {v.get("vatandaslik", "").strip() for v in d.values() if v.get("vatandaslik", "").strip()}
-    lig = {v.get("lig", "").strip() for v in d.values()
-           if v.get("lig", "").strip() and v.get("lig", "").strip() != "-"}
+    lig = {_LIG_ESIT.get(v.get("lig", "").strip(), v.get("lig", "").strip()) for v in d.values()
+           if v.get("lig", "").strip() and v.get("lig", "").strip() != "-"
+           and not v.get("lig", "").strip().endswith(" -")
+           and v.get("lig", "").strip().lower() not in ("end of career", "retired")}
     return {
         "oyuncu": len(d),
         "degerlendirilmis": sum(1 for v in d.values() if v.get("degerlendirildi")),
@@ -3766,7 +3782,7 @@ def giris_logla(kullanici: str, basarili: bool = True):
         return
     try:
         from datetime import datetime, timedelta
-        now_dt = datetime.now()
+        now_dt = datetime.utcnow() + timedelta(hours=3)   # TR saati (kilit karşılaştırması da TR saatiyle)
         now = now_dt.strftime("%Y-%m-%d %H:%M")
         records = ws.get_all_records()
         idx, row = None, {}
@@ -3804,9 +3820,9 @@ def giris_kilit_durumu(kullanici: str) -> int:
     if not kilit_bitis:
         return 0
     try:
-        from datetime import datetime
+        from datetime import datetime, timedelta
         bitis = datetime.strptime(kilit_bitis, "%Y-%m-%d %H:%M")
-        kalan = (bitis - datetime.now()).total_seconds() / 60
+        kalan = (bitis - (datetime.utcnow() + timedelta(hours=3))).total_seconds() / 60
         return max(0, int(kalan) + 1) if kalan > 0 else 0
     except Exception:
         return 0
@@ -3898,7 +3914,8 @@ DURUM_OPSIYON   = ["—", "👀 İzleniyor", "📞 İlgileniyor", "💬 Müzaker
 ONCELIK_OPSIYON = ["—", "🔴 Yüksek", "🟡 Orta", "🟢 Düşük"]
 _DURUM_EN   = {"—": "—", "👀 İzleniyor": "👀 Watching", "📞 İlgileniyor": "📞 Interested",
                "💬 Müzakere": "💬 Negotiating", "🤝 Anlaşıldı": "🤝 Agreed",
-               "⏳ Beklemede": "⏳ On Hold", "❌ Vazgeçildi": "❌ Dropped"}
+               "⏳ Beklemede": "⏳ On Hold", "❌ Vazgeçildi": "❌ Dropped",
+               "📥 Yeni Öneri": "📥 New", "📞 İletişimde": "📞 In Contact"}
 _ONCELIK_EN = {"—": "—", "🔴 Yüksek": "🔴 High", "🟡 Orta": "🟡 Medium", "🟢 Düşük": "🟢 Low"}
 _DURUM_RENK = {"👀 İzleniyor": "#60a5fa", "📞 İlgileniyor": "#22d3ee", "💬 Müzakere": "#fbbf24",
                "🤝 Anlaşıldı": "#34d399", "⏳ Beklemede": "#94a3b8", "❌ Vazgeçildi": "#f87171"}
@@ -4091,7 +4108,7 @@ def _sd_url_isim(url: str) -> str:
                 return " ".join(w.capitalize() for w in slug.split())
     return ""
 
-@st.dialog("➕ Oyuncu Öner")
+@st.dialog(t("➕ Oyuncu Öner", "➕ Recommend a Player"))
 def _oneri_ekle_dialog(sahip: str):
     _mod0 = st.session_state.get("_oneri_dialog_mod", "url")
     _MOD_ETIKET = {"url": t("🔗 SoccerDonna URL", "🔗 SoccerDonna URL"), "manuel": t("✏️ Elle Ekle", "✏️ Manual")}
@@ -4109,7 +4126,7 @@ def _oneri_ekle_dialog(sahip: str):
         kulup = st.text_input(t("Kulüp", "Club"), key="_oneri_kulup")
     oneren = st.text_input(t("Öneren Scout / Menajer", "Recommended by (Scout / Agent)"), key="_oneri_oneren")
     oncelik = st.radio(t("Öncelik", "Priority"), _ONERI_ONCELIK, index=1,
-                       horizontal=True, key="_oneri_oncelik")
+                       horizontal=True, key="_oneri_oncelik", format_func=lambda x: _ONCELIK_EN.get(x, x) if EN else x)
     notu = st.text_area(t("Not", "Note"), placeholder=t("Scout gözlemi veya not…", "Scout observation or note…"),
                         key="_oneri_not")
     c1, c2 = st.columns(2)
@@ -4184,13 +4201,15 @@ def render_oneri_merkezi(sahip: str):
         # Durum (değiştirilebilir)
         _d_idx = _ONERI_DURUMLAR.index(o["durum"]) if o.get("durum") in _ONERI_DURUMLAR else 0
         yeni_d = rc[2].selectbox("durum", _ONERI_DURUMLAR, index=_d_idx,
-                                 label_visibility="collapsed", key=f"_od_{oid}")
+                                 label_visibility="collapsed", key=f"_od_{oid}",
+                                 format_func=lambda x: _DURUM_EN.get(x, x) if EN else x)
         if yeni_d != o.get("durum"):
             oneri_guncelle(oid, durum=yeni_d); st.rerun()
         # Öncelik (değiştirilebilir)
         _o_idx = _ONERI_ONCELIK.index(o["oncelik"]) if o.get("oncelik") in _ONERI_ONCELIK else 1
         yeni_o = rc[3].selectbox("oncelik", _ONERI_ONCELIK, index=_o_idx,
-                                 label_visibility="collapsed", key=f"_oo_{oid}")
+                                 label_visibility="collapsed", key=f"_oo_{oid}",
+                                 format_func=lambda x: _ONCELIK_EN.get(x, x) if EN else x)
         if yeni_o != o.get("oncelik"):
             oneri_guncelle(oid, oncelik=yeni_o); st.rerun()
         rc[4].markdown(f"<div style='color:#aab4c4;font-size:0.80rem;line-height:1.45;'>"
@@ -4241,8 +4260,8 @@ def _talep_ws():
 
 def talep_gonder(tip, isim, kulup, email, detay, oneri=""):
     """Talebi Sheets'e yazar ve e-posta gönderir. (kayit_ok, mail_ok) döndürür."""
-    from datetime import datetime
-    tarih = datetime.now().strftime("%Y-%m-%d %H:%M")
+    from datetime import datetime, timedelta
+    tarih = (datetime.utcnow() + timedelta(hours=3)).strftime("%Y-%m-%d %H:%M")   # TR saati
     kayit_ok = mail_ok = False
     ws = _talep_ws()
     if ws is not None:
@@ -4375,7 +4394,7 @@ def manuel_yaslar_yukle(file_hash: str = "") -> tuple:
     for isim, veri in raw.items():
         try:
             born_dt = pd.to_datetime(veri["born"], format="%d.%m.%Y")
-            ages[isim] = round((today - born_dt).days / 365.25, 1)
+            ages[isim] = int(today.year - born_dt.year - ((today.month, today.day) < (born_dt.month, born_dt.day)))
         except Exception:
             pass
         if "position" in veri:
@@ -5216,6 +5235,11 @@ function fromQS(qs){
   reset();sk=null;sd=1;var p=new URLSearchParams(qs||'');
   FK.forEach(function(k){var v=p.get(k);if(v!=null)F[k]=v});
   if(p.get('ik'))F.ik=p.get('ik').split('|').filter(Boolean);
+  // 14 Kasım 2026: adres çubuğundan (#f&...) gelen değerler yalnız tabloda gerçekten var olanlarla sınırlanır;
+  // ik kontrolsüz kalıp data-k özniteliğine kaçışsız yazılıyordu (paylaşılan linkle sayfaya HTML sokulabiliyordu)
+  function hv(k,v){return has[k]&&Object.prototype.hasOwnProperty.call(has[k],v)}
+  F.ik=F.ik.filter(function(v){return hv('ik',v)});
+  ['cn','lg','ro','tg'].forEach(function(k){if(F[k]!==''&&!(k==='cn'&&F[k]==='__EU__')&&!hv(k,F[k]))F[k]=''});
   if(!SUB[F.pos])F.pos='';if(F.pos===''||SUB[F.pos].indexOf(F.sub)<0)F.sub='';
   ['amin','amax','hmin','hmax','vmin','vmax'].forEach(function(k){if(F[k]!==''&&!/^\d+$/.test(F[k]))F[k]=''});
   if(F.sc&&SCV[F.sc]===undefined)F.sc='';
@@ -5329,7 +5353,7 @@ function renderCmp(){
 function fit(){try{var fe=window.frameElement;if(!fe)return;var h=Math.ceil($('root').getBoundingClientRect().bottom)+2;if(fe.offsetHeight<h-2||fe.offsetHeight>h+40){fe.style.height=h+'px'}}catch(e){}}
 function chipList(){
   var c=[];
-  function add(k,txt){c.push('<span class="chip">'+esc(txt)+'<button type="button" data-k="'+k+'" aria-label="'+esc(T.remove)+'">×</button></span>')}
+  function add(k,txt){c.push('<span class="chip">'+esc(txt)+'<button type="button" data-k="'+esc(k)+'" aria-label="'+esc(T.remove)+'">×</button></span>')}
   if(F.q)add('q','"'+F.q+'"');
   if(F.pos)add('pos',disp(M.pk,F.pos));
   if(F.sub)add('sub',F.sub);
@@ -6040,6 +6064,15 @@ def df_zenginlestir(_df: "pd.DataFrame", file_hash: str = "", _v: str = "v3") ->
         if oyuncu in _MANUEL_YAS:
             return _MANUEL_YAS[oyuncu]
         profil = _sd_profil_bul(oyuncu)
+        # 14 Kasım 2026: doğum tarihi geçerliyse önce o (SD 'Age' çekim anındaki yaş, bir yıla kadar bayat kalabiliyor)
+        _m0 = _re.search(r"(\d{2})\.(\d{2})\.(\d{4})", profil.get("Date of birth", "") or "")
+        if _m0:
+            _g0, _a0, _y0 = map(int, _m0.groups())
+            from datetime import date as _date0
+            _t0 = _date0.today()
+            _dy0 = _t0.year - _y0 - ((_t0.month, _t0.day) < (_a0, _g0))
+            if 15 <= _dy0 <= 40:
+                return _dy0
         try:
             age = float(str(profil.get("Age", "")).split()[0])
             if 15 <= age <= 40:
@@ -6546,7 +6579,11 @@ def _dizilis_takim_ozet() -> dict:
     """sd_dizilis_<sezon>.json (sd_dizilis_cek.py) → takım başına şema sayacı + maç listesi.
     {'guncelleme': tarih, 'takimlar': {sd_id: {'sayac': {şema: n}, 'maclar': [...]}}}"""
     try:
-        dosyalar = sorted(pathlib.Path(__file__).parent.glob("sd_dizilis_*.json"))
+        # Yalnız Türkiye dosyaları (sd_dizilis_<yıl>_<yıl>.json). Diğer ligler sd_dizilis_<KOD>_<yıl>_<yıl>.json; eskiden
+        # glob'un alfabetik son dosyası (sd_dizilis_WL_... = A-League) okunuyor, Takımlar'daki Dizilişler bloğu kayboluyordu.
+        import re as _r_dz
+        dosyalar = sorted(p for p in pathlib.Path(__file__).parent.glob("sd_dizilis_*.json")
+                          if _r_dz.fullmatch(r"sd_dizilis_\d{4}_\d{2}\.json", p.name))
         veri = json.load(open(dosyalar[-1], encoding="utf-8")) if dosyalar else {}
     except Exception:
         return {}
@@ -7533,7 +7570,8 @@ _KONTRAT_MEVKI_GRUP = {
     "LWF": "FWD", "RWF": "FWD", "CFW": "FWD", "2ST": "FWD",
     "ST": "FWD", "CF": "FWD", "2ndST": "FWD",
 }
-_KONTRAT_SERBEST = {"serbest", "free", "free agent", "bosta", "unemployed", "vereinslos", "without club", "kulupsuz"}
+_KONTRAT_SERBEST = {"serbest", "free", "free agent", "free agents", "bosta", "unemployed", "vereinslos", "without club",
+                    "kulupsuz", "kulüpsüz"}   # 14 Kasım 2026: "free agents" eksikti (10 serbest oyuncu sayılmıyordu)
 
 
 def _tr_lig_son_hafta() -> int:
@@ -7575,7 +7613,7 @@ def _serbest_sozlesme_havuzu():
     dunya   = scout_kadro_yukle()
     sd      = birlesik_sd_yukle()
     kariyer = birlesik_leistung_yukle()
-    bugun   = _dt.date.today()
+    bugun   = (_dt.datetime.utcnow() + _dt.timedelta(hours=3)).date()   # TR tarihi (Render UTC; sınır günü düşmesin)
     out = []
     for isim, v in dunya.items():
         if not v.get("degerlendirildi") or v.get("nihai") not in _KONTRAT_PUAN:
@@ -7589,7 +7627,7 @@ def _serbest_sozlesme_havuzu():
         kb = _kontrat_guncel(v.get("sozlesme"), p.get("Contract until")).strip()
         if not re.match(r"^\d{2}\.\d{2}\.\d{4}$", kb):
             kb = (v.get("sozlesme") or "").strip()
-        serbest = kulup.lower() in _KONTRAT_SERBEST
+        serbest = kulup.lower() in _KONTRAT_SERBEST or _isim_norm(kulup) in _SERBEST_ADLAR
         kalan_gun = None
         if not serbest and re.match(r"^\d{2}\.\d{2}\.\d{4}$", kb):
             try:
@@ -8474,7 +8512,7 @@ def render_scouting_detay(tam_isim):
             _profil_kutulari(_kutu_grp)
             _ozet_ciz()
         with _sh_col:
-            st.markdown(f"<div class='tp-anabaslik' style='text-align:center;"
+            st.markdown(f"<div class='tp-anabaslik mh-etiket' style='text-align:center;"
                         f"letter-spacing:0.1em;margin-bottom:4px;'>"
                         f"📍 {_buyuk(t('Mevki Haritası','Position Map'))}</div>{_saha_svg}",
                         unsafe_allow_html=True)
@@ -8604,7 +8642,10 @@ def render_odakli_profil(isim):
             return
         render_scouting_detay(isim)
         return
-    st.warning(t(f"Oyuncu bulunamadı: {isim}", f"Player not found: {isim}"))
+    # Ham sorgu parametresi Markdown'a girmez (14 Kasım 2026): ?oyuncu= ile sahte link/görsel/kalın metin
+    # sitenin kendi sayfasında gösterilebiliyordu. Ad düz metin olarak, kısaltılarak gösterilir.
+    st.warning(t("Oyuncu bulunamadı.", "Player not found."))
+    st.text(str(isim)[:80])
 
 
 # ─── SCO TR SCOUT RAPORU (1207 Antalyaspor — FM tarzı nitelik paneli) ─────────
@@ -8838,7 +8879,7 @@ def nitelik_radari_goster(isim: str):
     fig = go.Figure(go.Scatterpolar(
         r=r + [r[0]], theta=theta + [theta[0]], fill="toself",
         line=dict(color="#a78bfa", width=2), fillcolor="rgba(124,58,237,0.32)",
-        hovertemplate="%{theta}: %{r}. yüzdelik<extra></extra>"))
+        hovertemplate="%{theta}: %{r}" + t(". yüzdelik", "th percentile") + "<extra></extra>"))
     fig.update_layout(
         height=300, paper_bgcolor="rgba(0,0,0,0)",
         polar=dict(bgcolor="rgba(255,255,255,0.02)",
@@ -9054,22 +9095,22 @@ def akilli_arama(q: str, n: int = 15):
     if yas_min: ozet.append(f"🎂 ≥{yas_min}")
     ayak = ("Sol" if ("sol ayak" in s or "left foot" in s or "left-foot" in s) else
             "Sağ" if ("sağ ayak" in s or "sag ayak" in s or "right foot" in s or "right-foot" in s) else None)
-    if ayak: ozet.append(f"🦶 {ayak}")
+    if ayak: ozet.append(f"🦶 {t(ayak, _AYAK_EN.get(ayak, ayak))}")
     butce = None
     m = _re.search(r"(?:max|maks|en fazla|altı|alti)?\s*€?\s*(\d+)\s*(k|bin)\b", s)
     if m: butce = int(m.group(1)) * 1000
     if butce: ozet.append("💰 ≤€" + f"{butce:,}".replace(",", "."))
     serbest = any(k in s for k in ("serbest", "bedava", "bonservissiz", "free agent", "free transfer"))
-    if serbest: ozet.append("🆓 Serbest")
+    if serbest: ozet.append(t("🆓 Serbest", "🆓 Free agent"))
     kelepir = any(k in s for k in ("kelepir", "ucuz", "fırsat", "f/p", "bargain", "cheap", "value for money", "undervalued"))
-    if kelepir: ozet.append("💎 F/P sıralı")
-    istekli = "istekli" in s or "willing" in s
-    if istekli: ozet.append("🇹🇷 TR'ye istekli")
+    if kelepir: ozet.append(t("💎 F/P sıralı", "💎 Sorted by value for money"))
+    istekli = ("istekli" in s and "isteksiz" not in s) or ("willing" in s and "unwilling" not in s)
+    if istekli: ozet.append(t("🇹🇷 TR'ye istekli", "🇹🇷 Willing to move to Türkiye"))
     nit_krit = []
     for kelimeler, attrs in _AA_NITELIK:
         if any(k in s for k in kelimeler):
             nit_krit.append(attrs)
-            ozet.append("⭐ " + attrs[0].split(":", 1)[1])
+            ozet.append("⭐ " + nitelik_goster(attrs[0].split(":", 1)[1]))
     if not ozet:
         return None, None
 
@@ -9088,10 +9129,11 @@ def akilli_arama(q: str, n: int = 15):
         if yas_max and (yas is None or yas > yas_max): continue
         if yas_min and (yas is None or yas < yas_min): continue
         if ayak and (r.get("ayak") or "") not in (ayak, "Çift"): continue
-        if serbest and (r.get("kulup") or "").strip().lower() != "serbest": continue
+        if serbest and _isim_norm(r.get("kulup") or "") not in _SERBEST_ADLAR: continue   # "Free Agents" / "Without Club" de serbest
         deger_eur = _aa_deger_eur(r.get("deger"))
         if butce and (deger_eur is None or deger_eur > butce): continue
-        if istekli and "istekli" not in (r.get("tr_gorusu") or "").lower(): continue
+        # 'istekli' alt dizesi aranıyordu: 'Willing'/'Intentioned' ve 'İstekli'.lower() ('i̇stekli') hiç tutmuyordu → sonuç hep boştu
+        if istekli and tr_gorus_oncelik(r.get("tr_gorusu")) not in (0, 1): continue
 
         v = ham_gk.get(isim) or ham_saha.get(isim) or {}
         cipler, puanlar = [], []
@@ -9666,13 +9708,13 @@ def _scout_pdf_uret(isim: str, rapor: dict, en: bool = False) -> bytes:
     kunye = [
         (t("Uyruk","Nationality"), ulke_goster(rapor.get("vatandaslik","")) or "—"),
         (t("Doğum","Born"), f"{rapor.get('dogum','—')} ({rapor.get('yas','?')})"),
-        (t("Boy/Ayak","Height/Foot"), f"{rapor.get('boy','—')} · {rapor.get('ayak','—')}"),
+        (t("Boy/Ayak","Height/Foot"), f"{rapor.get('boy','—')} · {_ayak_goster('', rapor.get('ayak','')) or '—'}"),
         (t("Lig","League"), _lig_goster(rapor.get("lig","")) or "—"),
         (t("Sözleşme","Contract"), rapor.get("sozlesme","—")),
     ]
     for et, dg in kunye:
         pdf.set_text_color(*GRI); pdf.set_font("DV","",7.5)
-        pdf.cell(W/5, 4, et.upper(), align="C")
+        pdf.cell(W/5, 4, _buyuk(et), align="C")
     pdf.ln(4)
     for et, dg in kunye:
         pdf.set_text_color(30,30,30); pdf.set_font("DV","B",8.5)
@@ -10051,7 +10093,7 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
     yas_s = (f"{yas:.0f}" if isinstance(yas, (int, float)) else
              (str(sd.get("Age", "")).split()[0] if sd.get("Age") else "—"))
     uyruk = ulke_goster(_MANUEL_UYRUK.get(secili) or row.get("Uyruk", "")) or "—"
-    mevki = row.get("Mevki", "—"); takim = isim_goster(row.get("Takım", "—"))
+    mevki = mevki_goster(row.get("Mevki", "—")); takim = isim_goster(row.get("Takım", "—"))
 
     pdf = FPDF(orientation="P", unit="mm", format="A4")
     pdf.set_auto_page_break(True, margin=14)
@@ -10078,7 +10120,7 @@ def _ana_lig_pdf_uret(secili: str, en: bool = False) -> bytes:
              (t("Ayak", "Foot"), str((sd.get("Foot", "") or "—")).capitalize()),
              (t("Doğum", "Born"), str(sd.get("Date of birth", "—") or "—"))]
     for et, _ in kunye:
-        pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7.5); pdf.cell(W / 5, 4, et.upper(), align="C")
+        pdf.set_text_color(*GRI); pdf.set_font("DV", "", 7.5); pdf.cell(W / 5, 4, _buyuk(et), align="C")
     pdf.ln(4)
     for _, dg in kunye:
         pdf.set_text_color(30, 30, 30); pdf.set_font("DV", "B", 8.5); pdf.cell(W / 5, 5, str(dg)[:22], align="C")
@@ -10554,7 +10596,7 @@ def _render_ana_lig_profil_ic(secili):
                 _profil_kutulari(_kutu_grp)
                 _ozet_ciz()
             with _sh_col:
-                st.markdown(f"<div style='text-align:center;font-size:0.6rem;color:#64748b;"
+                st.markdown(f"<div class='mh-etiket' style='text-align:center;font-size:0.6rem;color:#64748b;"
                             f"text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;'>"
                             f"📍 {t('Mevki Haritası','Position Map')}</div>{_saha_svg}",
                             unsafe_allow_html=True)
@@ -10974,6 +11016,15 @@ def _baglam_cerezleri():
 
 
 _ilk_cerezler = _baglam_cerezleri() if _ilk_calisma else None
+
+
+def _mobil_mi() -> bool:
+    """İstek telefondan mı (User-Agent; st.context.headers). Okunamazsa False (masaüstü davranışı)."""
+    try:
+        ua = str(st.context.headers.get("User-Agent") or "")
+    except Exception:
+        return False
+    return any(k in ua for k in ("Mobi", "Android", "iPhone", "iPod"))
 # ⏳ çerez bekleme kapısı yalnız sunucu çerezleri OKUYAMADIYSA gerekir: okuyabildiyse üye bu çalışmada zaten
 # tanındı (aşağıda _oturum_geri_yukle), çerezi olmayan ziyaretçinin de bekleyeceği bir şey yok.
 _ck_kapi_gerekli = _ilk_calisma and _ilk_cerezler is None
@@ -12965,7 +13016,7 @@ def render_lig_sekme(kod: str, sekme: str):
         sr = f4.selectbox(t("Sırala", "Sort"), ["dk", "mac", "gol", "asist", "sari"], key=f"lg_sr_{anahtar}",
                           format_func=lambda x: {"dk": t("Dakika ↓", "Minutes ↓"), "mac": t("Maç ↓", "Matches ↓"), "gol": t("Gol ↓", "Goals ↓"),
                                                  "asist": t("Asist ↓", "Assists ↓"), "sari": t("Sarı ↓", "Yellow ↓")}[x])
-        liste = [o for o in saha if (not ara or ara.lower() in o["ad"].lower()) and (tk == TUM_T or tk in o["takimlar"])
+        liste = [o for o in saha if (not ara or _cp_sade(ara) in _cp_sade(o["ad"])) and (tk == TUM_T or tk in o["takimlar"])
                  and (not gr or o.get("grup") == gr)]
         liste.sort(key=lambda o: (-o[sr], o["ad"]))
         st.markdown(f"#### {len(liste)} {t('oyuncu', 'players')}")
@@ -14380,7 +14431,7 @@ def render_profil():
             f"<div style='background:#e040fb1a;border:1px solid #e040fb;border-radius:10px;"
             f"padding:10px 16px;margin-top:6px;color:#e9d5ff;font-size:0.86rem;font-weight:600;'>"
             f"🎁 {t(f'{_d_ad} deneme aktif', f'{_d_ad} trial active')} · "
-            f"<b>{_saat}s {_dk}dk</b> {t('kaldı','left')}</div>",
+            f"<b>{_saat}{t('s','h')} {_dk}{t('dk','m')}</b> {t('kaldı','left')}</div>",
             unsafe_allow_html=True)
 
     # ── Admin: Deneme Yönetimi ──
@@ -14642,10 +14693,10 @@ def odeme_bildir(kullanici: str, plan: str, not_: str = "") -> bool:
     if ws is None:
         return False
     try:
-        from datetime import datetime
+        from datetime import datetime, timedelta
         _ad, fiyat = _PLAN_FIYAT.get(plan, (plan, ""))
         ws.append_row([(kullanici or "").strip().lower(), plan, fiyat,
-                        datetime.now().strftime("%Y-%m-%d %H:%M"), "beklemede", (not_ or "").strip()])
+                        (datetime.utcnow() + timedelta(hours=3)).strftime("%Y-%m-%d %H:%M"), "beklemede", (not_ or "").strip()])
         odemeler_yukle.clear()
         return True
     except Exception:
@@ -15095,7 +15146,7 @@ def render_altlig():
 
     gruplar = data.get("gruplar", {})
     _oyuncular = data.get("oyuncular", [])
-    _ad = t(_lig.replace("Kadınlar ", "").upper(), _ALTLIG_KISA_EN.get(_lig, _lig.upper()))
+    _ad = t(_buyuk(_lig.replace("Kadınlar ", "")), _ALTLIG_KISA_EN.get(_lig, _lig.upper()))
     _GORUNUM_ETIKET = {
         "oyuncular": t("👤 Oyuncular", "👤 Players"),
         "puan_durumu": t("🏆 Puan Durumu", "🏆 Standings"),
@@ -15154,9 +15205,9 @@ def render_altlig():
                          key="altlig_ara", placeholder=t("İsim veya takım…", "Name or team…"))
     oyuncular = list(_oyuncular)
     if _ara.strip():
-        _q = _ara.strip().lower()
+        _q = _cp_sade(_ara.strip())     # .lower() Türkçe İ/I'yi eşleştirmiyordu (İREM ↔ irem)
         oyuncular = [o for o in oyuncular
-                     if _q in o.get("oyuncu","").lower() or _q in o.get("tum_takimlar","").lower()]
+                     if _q in _cp_sade(o.get("oyuncu","")) or _q in _cp_sade(o.get("tum_takimlar",""))]
     st.markdown(f"##### 👤 {t('Oyuncular', 'Players')} ({len(oyuncular)})")
     if not oyuncular:
         st.caption(t("Eşleşen oyuncu yok.", "No matching players."))
@@ -15296,9 +15347,9 @@ def render_altyas():
     _grup_sec = _c2.selectbox(t("Grup", "Group"), [_TUM_GRUP] + [str(g) for g in _gruplar],
                               key="altyas_grup", label_visibility="collapsed",
                               format_func=lambda x: t("Tüm gruplar", "All groups") if x == _TUM_GRUP else x)
-    _arl = (_ara or "").lower().strip()
+    _arl = _cp_sade((_ara or "").strip())
     flt = [o for o in oyuncular
-           if (not _arl or _arl in o["oyuncu"].lower() or _arl in o.get("takim", "").lower())
+           if (not _arl or _arl in _cp_sade(o["oyuncu"]) or _arl in _cp_sade(o.get("takim", "")))
            and (_grup_sec == _TUM_GRUP or str(o.get("grup")) == _grup_sec)]
     if not flt:
         st.caption(t("Eşleşen oyuncu yok.", "No matching players."))
@@ -15326,7 +15377,7 @@ def render_altyas():
                 "Kırmızı": st.column_config.NumberColumn("🟥", format="%d", width="small"),
             })
     with col_r:
-        _sel = _secdf.selection.rows if hasattr(_secdf, "selection") else []
+        _sel = [i for i in (_secdf.selection.rows if hasattr(_secdf, "selection") else []) if i < len(odf)]  # süzgeç değişince eski seçim yeni listenin dışında kalabiliyor → IndexError (14 Kasım 2026)
         if not _sel:
             st.markdown(
                 f"<div style='color:#64748b;padding:34px 10px;text-align:center;font-size:0.9rem;'>"
@@ -16543,7 +16594,7 @@ def render_giris_ekrani():
     if dh:
         st.markdown(
             f"<div style='font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a855f7;"
-            f"font-weight:700;margin:10px 0 10px;'>🌍 {t('Dünya Scouting Havuzu','Global Scouting Pool')}</div>",
+            f"font-weight:700;margin:10px 0 10px;'>🌍 {t('Dünya <span lang=en>Scouting</span> Havuzu','Global Scouting Pool')}</div>",
             unsafe_allow_html=True)
         # Disiplinli palet: platform/scouting=mor vurgu (#a855f7), veri=yeşil (#1db954).
         dunya_satiri = [
@@ -16761,19 +16812,19 @@ if tab_internal:
                         st.markdown(
                             f"<div style='background:#11162a;border-left:3px solid #7c3aed;"
                             f"padding:8px 12px;border-radius:6px;font-size:0.86rem;color:#cbd5e1;"
-                            f"margin-bottom:10px;'>📝 {_r['genel_not']}</div>", unsafe_allow_html=True)
+                            f"margin-bottom:10px;'>📝 {_html.escape(str(_r['genel_not'])).replace(chr(10), '<br>')}</div>", unsafe_allow_html=True)
                     for _o in _oys:
                         _mvk = _o.get("Mevki", ""); _tkm = _o.get("Takım", "")
                         st.markdown(
-                            f"<div style='font-weight:700;color:#e2e8f0;margin-top:6px;'>{_o.get('Oyuncu','')}"
+                            f"<div style='font-weight:700;color:#e2e8f0;margin-top:6px;'>{_html.escape(str(_o.get('Oyuncu','')))}"
                             f" <span style='color:#8899aa;font-weight:400;font-size:0.78rem;'>"
-                            f"{_mvk}{' · ' + _tkm if _tkm else ''}</span></div>", unsafe_allow_html=True)
+                            f"{_html.escape(str(_mvk))}{' · ' + _html.escape(str(_tkm)) if _tkm else ''}</span></div>", unsafe_allow_html=True)
                         for _ik, _hf, _ak, _clr in [("💪","S","S","#4ade80"),("⚠️","W","W","#fbbf24"),
                                                     ("📈","O","O","#60a5fa"),("🛑","T","T","#f87171")]:
                             if str(_o.get(_ak,"")).strip():
                                 st.markdown(
                                     f"<div style='font-size:0.82rem;margin-left:10px;color:#cbd5e1;'>"
-                                    f"{_ik} <b style='color:{_clr};'>{_hf}</b>: {_o[_ak]}</div>",
+                                    f"{_ik} <b style='color:{_clr};'>{_hf}</b>: {_html.escape(str(_o[_ak]))}</div>",
                                     unsafe_allow_html=True)
                     if st.button(t("🗑️ Sil", "🗑️ Delete"), key=f"int_sil_{_r.get('id')}"):
                         internal_sil(_r.get("id")); st.rerun()
@@ -16879,7 +16930,11 @@ if tab1:
                      "👉 Click a name → full profile opens in a new tab"))
         _dil_q = st.session_state.get("dil", "TR")
         _sat = ""
-        for _i in range(len(df)):
+        # Telefonda 350 kart birden ~51.000 px'lik sayfa ve ağır DOM demekti: 60'ar gösterilir (14 Kasım 2026).
+        # Masaüstünde tablo kendi kaydırma kutusunda, tamamı gösterilmeye devam eder.
+        _ol_mobil = _mobil_mi()
+        _ol_n = min(len(df), st.session_state.get("ol_mobil_n", 60)) if _ol_mobil else len(df)
+        for _i in range(_ol_n):
             _r = df.iloc[_i]
             _ad = str(_r["Oyuncu"])
             _sdp = _sd_profil_bul(_ad)
@@ -16917,6 +16972,11 @@ if tab1:
         st.markdown(
             f"<div class='ws-wrap'><table class='ws-table'><thead>{_thead}</thead>"
             f"<tbody>{_sat}</tbody></table></div>", unsafe_allow_html=True)
+        if _ol_n < len(df):
+            if st.button(t(f"Daha fazla göster ({len(df) - _ol_n} oyuncu daha)", f"Show more ({len(df) - _ol_n} more players)"),
+                         key="ol_mobil_daha", width="stretch"):
+                st.session_state["ol_mobil_n"] = _ol_n + 60
+                st.rerun()
     else:
         # Girişsiz: kısa liste + ücretsiz önizleme kartı (freemium teaser korunur)
         col_liste, col_detay = st.columns([5, 4], gap="medium")
@@ -16932,7 +16992,7 @@ if tab1:
                 })
 
         with col_detay:
-            secili_satirlar = secim.selection.rows if secim and secim.selection else []
+            secili_satirlar = [i for i in (secim.selection.rows if secim and secim.selection else []) if i < len(liste_df)]  # süzgeç değişince eski seçim yeni listenin dışında kalabiliyor → IndexError (14 Kasım 2026)
             if not secili_satirlar:
                 st.markdown(
                     f"<div style='background:linear-gradient(180deg,#12182e,#0e1322);border:1px dashed #2d3561;"
@@ -17989,9 +18049,14 @@ if tab_benim:
             st.caption(f"{SEZON_AKTIF} {t('sezonu','season')} · {kulup_takim}")
 
             _tk_kelime = (kulup_takim or "").split()
-            kadro = df_tam[df_tam["Takım"].str.contains(
-                _tk_kelime[0], case=False, na=False
-            )].copy() if (not df_tam.empty and _tk_kelime) else pd.DataFrame()
+            # Kanonik ad karşılaştırması (14 Kasım 2026): ilk kelimeyle str.contains Türkçe İ'de tutmuyordu
+            # ("GİRESUN".lower() = "gi̇resun") ve adı değişen kulübü bulamıyordu (Fatih Vatan → Sultanbeyligücü).
+            _tk_es = {"Fatih Vatan": "Sultanbeyligücü"}
+            _tk_hedef = _tk_es.get(_takim_kanonlastir(kulup_takim or ""), _takim_kanonlastir(kulup_takim or ""))
+            kadro = (df_tam[df_tam["Takım"].map(lambda x: _tk_es.get(_takim_kanonlastir(str(x)), _takim_kanonlastir(str(x)))) == _tk_hedef].copy()
+                     if (not df_tam.empty and _tk_kelime) else pd.DataFrame())
+            if kadro.empty and not df_tam.empty and _tk_kelime:      # eski yol (yedek)
+                kadro = df_tam[df_tam["Takım"].str.contains(_tk_kelime[0], case=False, na=False)].copy()
 
             if kadro.empty:
                 if not _tk_kelime:   # üye (kulüp değil) → tanımlı takım yok
@@ -18230,8 +18295,8 @@ if tab_genç:
                     textfont=dict(size=9, color="#c9d1d9"),
                     hovertemplate=(
                         "<b>%{customdata[0]}</b><br>"
-                        "Yaş: %{x}<br>G/Maç: %{y}<br>"
-                        "Maç: %{customdata[1]}<extra></extra>"
+                        + t("Yaş", "Age") + ": %{x}<br>" + t("G/Maç", "Goals/Match") + ": %{y}<br>"
+                        + t("Maç", "Matches") + ": %{customdata[1]}<extra></extra>"
                     ),
                     customdata=grp.assign(Oyuncu=grp["Oyuncu"].map(isim_goster))[["Oyuncu","Maç"]].values,
                 ))

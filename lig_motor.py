@@ -117,8 +117,13 @@ def hesapla(veri: dict, kupa: bool = False) -> dict:
                     o["takim"] = tad
                     if tad not in o["takimlar"]:
                         o["takimlar"].append(tad)
-                    if p.get("yas"):
-                        o["yas"] = p["yas"]
+                    # SoccerDonna maç raporlarında olanaksız yaşlar var (972, 1, 56 — 14 Kasım 2026 denetimi): 14-50 dışı yok sayılır
+                    try:
+                        _y = int(str(p.get("yas") or "").strip() or 0)
+                    except ValueError:
+                        _y = 0
+                    if 14 <= _y <= 50:
+                        o["yas"] = _y
                     if p.get("mevki"):
                         o["_mv"][_grup(p["mevki"])] += 1
                     satir = {"i": m.get("id"), "t": tarih, "h": m.get("hafta") or 0, "tk": tad, "rk": m.get(rakip_taraf, ""), "ev": taraf == "ev",
