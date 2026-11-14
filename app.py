@@ -968,6 +968,16 @@ def arsiv_sezon_yukle(sezon_key: str):
         df[s] = pd.to_numeric(df[s], errors="coerce").fillna(0).astype(int)
     return df, liste
 
+
+def _satir_uygula(df, fn):
+    """df.apply(fn, axis=1) — BOŞ tabloda pandas Series yerine DataFrame döndürür ve `df["sütun"] = ...` ataması
+    "Cannot set a DataFrame with multiple columns" hatasıyla sayfayı çökertir (13 Kasım 2026: Oyuncu Listesi'nde
+    bir oyuncu seçiliyken onu içermeyen takım süzgeci seçilince). Boş tabloda boş Series döner."""
+    if df.empty:
+        return pd.Series([], index=df.index, dtype=object)
+    return df.apply(fn, axis=1)
+
+
 def _oyuncu_coklu_sezon_gecmisi(isim: str):
     """Bir oyuncunun güncel sezon + tüm arşiv sezonlarındaki Maç/Gol/Dakika
     toplamlarını (varsa) tek listede döner:
@@ -1032,8 +1042,8 @@ def render_arsiv(sezon_key: str):
     if _secili_takim != _TUM_TAKIM:
         df = df[df["TümTakımlar"].apply(lambda x: _tum_takim_icerir_mi(x, _secili_takim))]
     df = df.sort_values(_sira_map[_siralama], ascending=False).reset_index(drop=True)
-    df["Takım (Gösterim)"] = df.apply(
-        lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]), axis=1)
+    df["Takım (Gösterim)"] = _satir_uygula(
+        df, lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]))
 
     st.markdown(f"#### {len(df)} {t('oyuncu', 'players')} · {sezon_key}")
 
@@ -2834,12 +2844,8 @@ def birlesik_scout_yukle() -> dict:
             del out[eski_k]                   # ayni isim farklı harfle çift kayıt - bayat Dünya kaydı kaldırılır
         out[k] = v
         _norm_harita[n] = k
-    # Piyasa değeri SoccerDonna'dan (2026-11-10: "piyasa değerlerimiz güncel değil";
-    # 2026-10-19 kuralı: sheet ile SD uyuşmazsa SD kazanır). SD'de geçerli değer
-    # yoksa sheet'teki 'deger' korunur. Değerleri sd_tam_tazele.py tazeler.
-    # Önbellekli fonksiyon olduğu için bu birleştirme oturum başına bir kez yapılır.
-    # DİKKAT: birlesik_sd_yukle() burada ÇAĞRILAMAZ — o _sheet_alias_ekle üzerinden
-    # bu fonksiyonu çağırıyor (sonsuz döngü). Ham yükleyiciler kullanılır.
+    # SD kaynakları (ham sözlük + normalize-isim haritası) BİR KEZ hazırlanır: çift kayıt ayıklaması ve
+    # piyasa değeri ikisi de kullanır (Render 512 MB — her biri ayrı kopya almasın).
     try:
         _kaynaklar = []
         for _ham in (scouting_sd_yukle(), sd_profiller_yukle()):
@@ -2848,6 +2854,21 @@ def birlesik_scout_yukle() -> dict:
                 if isinstance(_v, dict):
                     _nm.setdefault(_n3(_k), _v)
             _kaynaklar.append((_ham, _nm))
+    except Exception:
+        _kaynaklar = []
+    # Aynı oyuncunun iki ayrı yazımla iki kaydı (13 Kasım 2026: 15 çift) — zayıf kayıt düşer
+    try:
+        for _dusen, _kalan in _cift_kayit_bul(out, _kaynaklar):
+            out.pop(_dusen, None)
+    except Exception:
+        pass
+    # Piyasa değeri SoccerDonna'dan (2026-11-10: "piyasa değerlerimiz güncel değil";
+    # 2026-10-19 kuralı: sheet ile SD uyuşmazsa SD kazanır). SD'de geçerli değer
+    # yoksa sheet'teki 'deger' korunur. Değerleri sd_tam_tazele.py tazeler.
+    # Önbellekli fonksiyon olduğu için bu birleştirme oturum başına bir kez yapılır.
+    # DİKKAT: birlesik_sd_yukle() burada ÇAĞRILAMAZ — o _sheet_alias_ekle üzerinden
+    # bu fonksiyonu çağırıyor (sonsuz döngü). Ham yükleyiciler kullanılır.
+    try:
         for k in list(out):
             if not isinstance(out[k], dict):
                 continue
@@ -2866,6 +2887,109 @@ def birlesik_scout_yukle() -> dict:
     except Exception:
         pass
     return out
+
+
+def _cift_kayit_bul(out: dict, kaynaklar: list = None) -> list:
+    """Havuzda AYNI oyuncunun iki ayrı yazımla iki kaydı → [(düşen anahtar, kalan anahtar)].
+    13 Kasım 2026 taraması: 15 çift ("Mariza" ↔ "Mariza Nascimento", "Fadimatou Kome" ↔ "Fatima Kome",
+    "Fatima Tagnout" ↔ "Fatima Tagnaout"…); tabloda ve süzgeçlerde aynı oyuncu iki satır çıkıyordu.
+    Kimlik kanıtı (ikisi de isim parçası ortaklığı ister, tek başına isim benzerliği yetmez):
+      a) aynı SoccerDonna profili (spieler_<id>) + en az bir ortak isim parçası (4+ harf)
+      b) aynı doğum tarihi + ortak isim parçası + (aynı vatandaşlık ya da kulüp adında ortak parça)
+    Kalan kayıt: Sco TR > değerlendirilmiş > daha dolu kayıt > sheet'te daha altta (yeni) olan.
+    Düşenler Kokpit'te "çift kayıt" listesinde görünür; kalıcı çözüm sheet'ten fazlalığı silmek."""
+    import re as _r
+    if not kaynaklar:
+        kaynaklar = []
+        for ham in (scouting_sd_yukle(), sd_profiller_yukle()):
+            nm = {}
+            for k, v in ham.items():
+                if isinstance(v, dict):
+                    nm.setdefault(_isim_norm(k), v)
+            kaynaklar.append((ham, nm))
+
+    def _sdk(k):
+        for ham, nm in kaynaklar:
+            r = ham.get(k)
+            if not isinstance(r, dict):
+                r = nm.get(_isim_norm(k))
+            if isinstance(r, dict):
+                return r
+        return {}
+
+    tr_ad = set(scotr_kadro_yukle())
+    sira = {k: i for i, k in enumerate(out)}
+    bos = ("", None, "-", "—")
+
+    def _guc(k):
+        r = out[k]
+        dolu = sum(1 for v in r.values() if not (v in bos if isinstance(v, (str, type(None))) else not v))
+        return (k in tr_ad, bool(r.get("degerlendirildi")), dolu, sira[k])
+
+    def _parca(x):
+        return {w for w in _isim_norm(x).split() if len(w) >= 4}
+
+    bilgi, url_g, dog_g = {}, {}, {}
+    for k, r in out.items():
+        if not isinstance(r, dict):
+            continue
+        p = _sdk(k)
+        m = _r.search(r"spieler_(\d+)", str(p.get("profil_url") or ""))
+        dm = _r.search(r"(\d{1,2})\.(\d{1,2})\.((?:19|20)\d{2})", str(p.get("Date of birth") or r.get("dogum") or ""))
+        bilgi[k] = (m.group(1) if m else "", _parca(k), _isim_norm(str(r.get("vatandaslik") or "")), _parca(r.get("kulup") or ""))
+        if m:
+            url_g.setdefault(m.group(1), []).append(k)
+        if dm:
+            dog_g.setdefault((int(dm.group(1)), int(dm.group(2)), dm.group(3)), []).append(k)
+    ciftler, dusmus = [], set()
+
+    def _ekle(a, b):
+        dusen, kalan = sorted((a, b), key=_guc)
+        if dusen not in dusmus and kalan not in dusmus:
+            dusmus.add(dusen)
+            ciftler.append((dusen, kalan))
+
+    for ks in url_g.values():
+        if len(ks) > 1:
+            ks = sorted(ks, key=_guc, reverse=True)
+            for k in ks[1:]:
+                if bilgi[k][1] & bilgi[ks[0]][1]:
+                    _ekle(k, ks[0])
+    for ks in dog_g.values():
+        for i in range(len(ks)):
+            for j in range(i + 1, len(ks)):
+                a, b = bilgi[ks[i]], bilgi[ks[j]]
+                if a[0] and a[0] == b[0]:
+                    continue
+                if (a[1] & b[1]) and ((a[2] and a[2] == b[2]) or (a[3] & b[3])):
+                    _ekle(ks[i], ks[j])
+    return ciftler
+
+
+def _scout_ham_birlesim() -> dict:
+    """Çift kayıt ayıklanMAMIŞ ham birleşim (Dünya + TR) — yalnız Kokpit'teki çift kayıt listesi için."""
+    out = dict(scout_kadro_yukle())
+    nh = {_isim_norm(k): k for k in out}
+    for k, v in scotr_kadro_yukle().items():
+        n = _isim_norm(k)
+        e = nh.get(n)
+        if e == k:
+            continue
+        if e is not None:
+            del out[e]
+        out[k] = v
+        nh[n] = k
+    return out
+
+
+@st.cache_resource(show_spinner=False)
+def _cift_takma_ad() -> dict:
+    """Düşen çift kayıt adı → kalan kayıt adı. Eski linkler, favoriler ve kısa listeler düşen adla
+    kaydedilmiş olabilir; profil o adla açılınca kalan kaydın notları gösterilir. SALT OKUNUR."""
+    try:
+        return {d: k for d, k in _cift_kayit_bul(_scout_ham_birlesim())}
+    except Exception:
+        return {}
 
 
 @st.cache_data(show_spinner=False)
@@ -2895,6 +3019,9 @@ def _scout_kayit_bul(isim: str, _veri: dict = None, _haritalar: tuple = None,
     veri = _veri if _veri is not None else birlesik_scout_yukle()
     if isim in veri:
         return veri[isim]
+    _ta = _cift_takma_ad().get(isim)
+    if _ta and _ta in veri:
+        return veri[_ta]
     norm_harita, token_harita = (_haritalar if _haritalar is not None
                                  else _scout_kayit_esleme_haritalari())
     n = _isim_norm(isim)
@@ -5505,11 +5632,34 @@ def _ws_tablo_bileseni(satir_json: str, harita_json: str, sl_liste) -> None:
 def _kontrat_guncel(sozlesme, sd_contract):
     """Güncel sözleşme bitişi. SoccerDonna 'Contract until' geçerli bir tarihse onu
     döndürür (SD sheet'ten DAHA GÜNCEL — Baran'ın sozlesme'si bayat kalabiliyor);
-    SD '?'/boş ise sheet 'sozlesme'ye düşer, o da yoksa '—'."""
+    SD '?'/boş ise sheet 'sozlesme'ye düşer, o da yoksa '—'.
+    İSTİSNA (13 Kasım 2026): SD tarihi GEÇMİŞTE, sheet tarihi bugün/ileride ise sheet kazanır —
+    SD yenilemeyi geç işliyor; biten sözleşmeyle sahaya çıkan oyuncu olmaz. 10 aktif oyuncu
+    (7'si Süper Lig: Fatma Kılınç, Sevgi Çınar…) "sözleşmesi bitmiş" görünüyordu."""
     _sd = str(sd_contract or "").strip()
+    _sh = str(sozlesme or "").strip()
     if _sd and _sd not in ("?", "-", "—", ""):
+        _a, _b = _tarih_ayikla(_sd), _tarih_ayikla(_sh)
+        if _a and _b:
+            import datetime as _dt
+            _bg = _dt.date.today()
+            if _a < _bg <= _b:
+                return _sh
         return _sd
-    return str(sozlesme or "").strip() or "—"
+    return _sh or "—"
+
+
+def _tarih_ayikla(s):
+    """'30.06.2027' / '30/06/2027' → date; okunamazsa None."""
+    import datetime as _dt
+    import re as _r2
+    m = _r2.search(r"(\d{1,2})[./-](\d{1,2})[./-]((?:19|20)\d{2})", str(s or ""))
+    if not m:
+        return None
+    try:
+        return _dt.date(int(m.group(3)), int(m.group(2)), int(m.group(1)))
+    except ValueError:
+        return None
 
 def _boy_guncel(kadro_boy, sd_height):
     """Boy: sheet 'boy' varsa onu, yoksa SoccerDonna 'Height'a düşer (332 boş boy dolar)."""
@@ -7284,7 +7434,23 @@ _KONTRAT_MEVKI_GRUP = {
     "LWF": "FWD", "RWF": "FWD", "CFW": "FWD", "2ST": "FWD",
     "ST": "FWD", "CF": "FWD", "2ndST": "FWD",
 }
-_KONTRAT_SERBEST = {"serbest", "free", "free agent", "bosta", "unemployed", "vereinslos"}
+_KONTRAT_SERBEST = {"serbest", "free", "free agent", "bosta", "unemployed", "vereinslos", "without club", "kulupsuz"}
+
+
+def _tr_lig_son_hafta() -> int:
+    """Süper Lig'de maç verisi olan en son hafta (oyuncular.json maç geçmişlerinden)."""
+    try:
+        return max((m.get("hafta") or 0) for o in ham_liste for m in (o.get("mac_gecmisi") or []))
+    except (ValueError, NameError):
+        return 0
+
+
+def _tr_son_mac_hafta(detay) -> int:
+    """Oyuncunun Süper Lig'de forma giydiği son hafta; yoksa 0."""
+    try:
+        return max((m.get("hafta") or 0) for m in ((detay or {}).get("mac_gecmisi") or []))
+    except ValueError:
+        return 0
 _KONTRAT_PUAN = {"A+": 12.5, "AA": 12, "AB": 11, "BB": 10, "BC": 9,
                   "CC": 8, "CD": 7, "DD": 6, "DE": 5, "EE": 4, "FF": 0}
 
@@ -8077,9 +8243,9 @@ def render_scouting_detay(tam_isim):
     _bolge_g = bolge_goster(_kadro.get("bolge", "") or _bolge_sd(mevki if mevki != "—" else ""))   # sheet'te bölge yoksa SD mevkisinden
     _lig_g = _lig_goster((_kadro.get("lig") or "").strip())   # "-" → boş; EN modda ülke adı çevrilir
     _takim_ham = (_kadro.get("kulup") or "").strip()
-    _takim_g = (t("Serbest", "Free Agent") if _takim_ham.lower() in _KONTRAT_SERBEST
-                else t("Kariyere Ara Verdi", "Career Break") if _takim_ham.lower() == "career break"
-                else _takim_ham)
+    # _kulup_goster: havuz tablosuyla aynı ad (TFF'nin resmî 'BEŞİKTAŞ JİMNASTİK KULÜBÜ'sü → 'Beşiktaş'),
+    # Serbest / Career break çevirisi de orada.
+    _takim_g = _kulup_goster(_takim_ham) if _takim_ham else ""
     # 2. Uyruk = ikinci pasaport ('milli_takim' alanı — ad yanıltıcı, bkz. üstteki
     # not). Millî takım uyruğu ise _milli'de ve ilk satırda gösteriliyor.
     _ikinci_uyruk = (_kadro.get("milli_takim") or "").strip()
@@ -8271,6 +8437,9 @@ def render_scouting_detay(tam_isim):
 # -- Odakli profil yonlendirici: ?oyuncu=X (ana lig veya scouting) --
 def render_odakli_profil(isim):
     _d6 = birlesik_scout_yukle()   # 26.08.2026: tek çekim — bu router her profil görüntülemede 3x çekiyordu
+    # Havuzdan düşen çift kaydın adıyla gelindiyse (eski link/favori) kalan kayda yönlen
+    if isim not in _d6 and isim not in df_tam["Oyuncu"].values:
+        isim = _cift_takma_ad().get(isim, isim)
     # Gelen isim hiçbir katmanda birebir yoksa diakritik-toleranslı çözümle
     # (STAŠKOVÁ ↔ STASKOVA gibi kaynaklar arası yazım farkları)
     if (isim not in df_tam["Oyuncu"].values
@@ -9682,9 +9851,9 @@ def _percentil_hesapla(secili: str, df=None):
     if secili not in set(peers["Oyuncu"]):
         peers = pd.concat([peers, grup_df[grup_df["Oyuncu"] == secili]])
     peers = peers.drop_duplicates(subset=["Oyuncu"]).copy()
-    peers["Gol/90"]  = peers.apply(lambda r: r["Gol"]/r["Dakika"]*90 if r["Dakika"] > 0 else 0, axis=1)
-    peers["Sarı/90"] = peers.apply(lambda r: r["Sarı"]/r["Dakika"]*90 if r["Dakika"] > 0 else 0, axis=1)
-    peers["İlk11%"]  = peers.apply(lambda r: r["İlk11"]/r["Maç"]*100 if r["Maç"] > 0 else 0, axis=1)
+    peers["Gol/90"]  = _satir_uygula(peers, lambda r: r["Gol"]/r["Dakika"]*90 if r["Dakika"] > 0 else 0)
+    peers["Sarı/90"] = _satir_uygula(peers, lambda r: r["Sarı"]/r["Dakika"]*90 if r["Dakika"] > 0 else 0)
+    peers["İlk11%"]  = _satir_uygula(peers, lambda r: r["İlk11"]/r["Maç"]*100 if r["Maç"] > 0 else 0)
     if grup == "Kaleci":
         setler = [("Maç",    t("Maç", "Matches"),    0, False),
                   ("Dakika", t("Süre (dk)", "Minutes"), 0, False),
@@ -10104,7 +10273,20 @@ def _render_ana_lig_profil_ic(secili):
         _sd_uyruk1, _sd_uyruk2 = _uyruk_ayir(sd.get("Nationality", ""))
         _sezon_takim = row["TümTakımlar"] if transfer else row["Takım"]
         _sd_kulup_ham = (sd.get("guncel_kulup") or "").strip()
-        _sd_kulup_farkli = bool(_sd_kulup_ham) and _kanon(_sd_kulup_ham) != _kanon(_sezon_takim or "")
+        # 14 Kasım 2026: transferli oyuncuda sezon takımı 'A / B' — SD kulübü parçalardan biriyle aynıysa transfer
+        # yok (Ayantosho, Okah, Emereole'de lig satırı boş kalıyordu). Oyuncu ligin son iki haftasından birinde
+        # TFF kadrosunda oynadıysa SD bayattır (Nisanur Bekdemir: 10. haftada oynadı, SD "Without Club").
+        _sd_gecerli = bool(_sd_kulup_ham) and _sd_kulup_ham.lower() not in ("unbekannt", "unknown", "?", "-")
+        _sez_parca = [p.strip() for p in str(_sezon_takim or "").split("/") if p.strip()]
+        _sd_ligde = _sd_gecerli and any(_kanon(_sd_kulup_ham) == _kanon(p) for p in _sez_parca)
+        _sd_kulup_farkli = _sd_gecerli and not _sd_ligde
+        if _sd_kulup_farkli and _tr_son_mac_hafta(detay) >= _tr_lig_son_hafta() - 1:
+            _sd_kulup_farkli = False
+            _takim_kunye = _takim_kisa(row["Takım"] or _sezon_takim or "")
+        elif _sd_kulup_farkli or _sd_ligde:
+            _takim_kunye = _kulup_goster(_sd_kulup_ham)
+        else:
+            _takim_kunye = _takim_kisa(_sezon_takim or "")
         _kutu_grp = [
             (f"👤 {t('Kişisel Bilgiler','Personal Info')}", [
                 (f"🌍 {t('Uyruk','Nationality')}",
@@ -10127,9 +10309,12 @@ def _render_ana_lig_profil_ic(secili):
                 # (hep 🇹🇷) gösterilmez — "Como 1907, TSL'de oynuyor" gibi
                 # tutarsız bir kombinasyon olurdu (Yiğit, 19.08.2026 — Giacinti).
                 (f"🏆 {t('Lig','League')}", "" if _sd_kulup_farkli else (_st.get("lig", "") or "🇹🇷 TSL")),
-                (f"👕 {t('Takım','Team')}", _guncel_kulup_goster(sd, _sezon_takim)),
+                (f"👕 {t('Takım','Team')}", _takim_kunye),
+                # SD "Serbest" diyorsa _kontrat_taban_uygula'nın koyduğu 29.08.2027 tabanı gösterilmez
+                # (Mavis Owusu: "Serbest" + "Sözleşme 29.08.2027" çelişkisi)
                 (f"📄 {t('Sözleşme','Contract')}",
-                 _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
+                 "" if (_sd_kulup_farkli and _sd_kulup_ham.lower() in _KONTRAT_SERBEST and "_sd_kontrat_ham" in sd)
+                 else _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
                 # Değer yalnızca SD'den okunuyordu; SD'de boş olan oyuncularda
                 # (örn. Busem Şeker) satır tamamen kayboluyordu → sheet yedeği.
                 # Doğum Yeri kaldırıldı (Baran, 2026-08) — künyede yer kaplıyordu.
@@ -12682,8 +12867,10 @@ def render_lig_sekme(kod: str, sekme: str):
     elif sekme == "karsilastir":
         sirali = sorted(saha, key=lambda o: o["ad"])
         ad_h = {o["sid"]: f"{o['ad']} — {o['takim']}" for o in sirali}
+        # İlk açılışta boş sayfa yerine ligin en çok süre alan iki oyuncusu hazır gelir
+        _vars = [o["sid"] for o in sorted(saha, key=lambda o: (-o["dk"], o["ad"]))[:2]]
         sec = st.multiselect(t("Oyuncular (en fazla 4)", "Players (up to 4)"), [o["sid"] for o in sirali], key=f"lg_kr_{anahtar}",
-                             format_func=lambda x: ad_h.get(x, x), max_selections=4)
+                             default=_vars, format_func=lambda x: ad_h.get(x, x), max_selections=4)
         if len(sec) < 2:
             st.info(t("Karşılaştırmak için en az iki oyuncu seç.", "Pick at least two players to compare."))
         else:
@@ -14616,8 +14803,8 @@ def _altlig_en_iyiler(oyuncular):
            for o in oyuncular if o.get("mac_sayisi", 0) >= 3 and o.get("toplam_dakika", 0) > 0]
     mac_sure = min(90, int(round(max(_dm)))) if _dm else 90
     _mindk = 5 * mac_sure   # ~5 maç eşiği (gürültüyü ele)
-    df["grate"] = df.apply(lambda r: round(r["gol_sayisi"] / r["toplam_dakika"] * mac_sure, 2)
-                           if r.get("toplam_dakika", 0) > 0 else 0.0, axis=1)
+    df["grate"] = _satir_uygula(df, lambda r: round(r["gol_sayisi"] / r["toplam_dakika"] * mac_sure, 2)
+                                if r.get("toplam_dakika", 0) > 0 else 0.0)
     st.markdown(f"#### 🌟 {t('En İyiler', 'Top Performers')}")
     kategoriler = [
         ("⚽ " + t("En Golcü", "Top Scorers"),      "gol_sayisi",    lambda v: f"{int(v)}",  0),
@@ -15173,6 +15360,51 @@ def _havuz_kalite(gun: str) -> dict:
     for x in out["gecmis"]:
         x.pop("_s", None)
     out["yok"].sort(key=lambda x: (x["kd"], -x["tm"]))
+    # ── Süper Lig ↔ Sco TR sheet'i (13 Kasım 2026 taraması) ──
+    #   sheet_yok: bu sezon forma giyen ama sheet'te kaydı olmayan oyuncular (profilde not/rol/bölge boş kalıyor)
+    #   tr_takim:  sheet'teki takım, oyuncunun bu sezon oynadığı takımdan farklı (lig içi transfer işlenmemiş)
+    #   lig_adi:   havuzda okunamayan ya da lig olmayan lig etiketi (yalnız bayrak, başka yazı sistemi, "End of Career")
+    out["sheet_yok"], out["tr_takim"], out["lig_adi"], out["cift"] = [], [], [], []
+    try:
+        _hamb = _scout_ham_birlesim()
+        for _d, _k in _cift_kayit_bul(_hamb):
+            _rd, _rk = _hamb.get(_d) or {}, _hamb.get(_k) or {}
+            out["cift"].append({"o": _k, "d": _d, "k": _kulup_goster(str(_rk.get("kulup") or "")) or "—",
+                                "n": f"{_rk.get('nihai') or '—'} / {_rd.get('nihai') or '—'}",
+                                "dk": _kulup_goster(str(_rd.get("kulup") or "")) or "—"})
+    except Exception:
+        pass
+    try:
+        for o in ham_liste:
+            isim = o["oyuncu"]
+            stt = scotr_bul(isim)
+            tff_tk = _takim_kanonlastir(o.get("takim", ""))
+            if not stt:
+                out["sheet_yok"].append({"o": isim_goster(isim), "k": tff_tk, "mac": o.get("mac_sayisi", 0),
+                                         "dk": o.get("toplam_dakika", 0), "gol": o.get("gol_sayisi", 0)})
+            else:
+                st_tk = _takim_kanonlastir(str(stt.get("takim") or ""))
+                if st_tk and tff_tk and _kanon(st_tk) != _kanon(tff_tk):
+                    out["tr_takim"].append({"o": isim_goster(isim), "k": st_tk, "tk": tff_tk, "dk": o.get("toplam_dakika", 0)})
+        out["sheet_yok"].sort(key=lambda x: -(x["dk"] or 0))
+        out["tr_takim"].sort(key=lambda x: -(x["dk"] or 0))
+    except Exception:
+        pass
+    try:
+        for isim, r in birlesik_scout_yukle().items():
+            if not isinstance(r, dict) or _dusuk_notlu_tr_mi(r):
+                continue
+            lg = str(r.get("lig") or "").strip()
+            if not lg or lg == "-":
+                continue
+            ad = _duz(_lig_goster(lg))
+            # Latin dışı yazı: Latin Extended (ə dahil IPA bloğu 0x250-0x2AF) ve birleşen imler hata sayılmaz
+            latin_disi = any(ord(ch) > 0x2AF and not (0x300 <= ord(ch) <= 0x36F) and not (0x1E00 <= ord(ch) <= 0x1EFF)
+                             and ch not in "’‘–—…" for ch in ad)
+            if ad == "—" or ad.lower() == "end of career" or latin_disi:
+                out["lig_adi"].append({"o": isim, "k": str(r.get("kulup") or "—"), "hl": lg})
+    except Exception:
+        pass
     return out
 
 
@@ -15193,7 +15425,7 @@ def render_kokpit():
         from datetime import datetime as _dt_kl, timedelta as _td_kl
         _kl = _havuz_kalite((_dt_kl.utcnow() + _td_kl(hours=3)).date().isoformat())
     except Exception:
-        _kl = {"gecmis": [], "lig": [], "kulup": [], "yok": []}
+        _kl = {"gecmis": [], "lig": [], "kulup": [], "yok": [], "sheet_yok": [], "tr_takim": [], "lig_adi": [], "cift": []}
     with st.expander(f"🧹 {t('Havuz veri kalitesi', 'Pool data quality')} ({sum(len(x) for x in _kl.values())})"):
         st.markdown("<div class='tp-arametin' style='margin-bottom:8px;'>"
                     + t("Havuz kaydı, SoccerDonna profili ve bu sezonun maç kadroları karşılaştırılır (22 lig). Hepsi \"kontrol et\" listesidir; "
@@ -15201,6 +15433,24 @@ def render_kokpit():
                         "The pool record, the SoccerDonna profile and this season's matchday squads are compared (22 leagues). These are "
                         "\"please check\" lists; a row disappears after the sheet is corrected and the data is refreshed.") + "</div>", unsafe_allow_html=True)
         for _ka, _kb, _kc, _kh in (
+                ("sheet_yok", t("Süper Lig: sheet'te kaydı olmayan oyuncular", "Süper Lig: players missing from the sheet"),
+                 t("Bu sezon forma giydi ama Sco TR sheet'inde yok; profilinde not, rol ve vücut tipi boş görünüyor.",
+                   "Played this season but is not in the Sco TR sheet; the profile shows no grade, role or body type."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Takım", "Team"), "mac": t("Maç", "Apps"), "dk": t("Dakika", "Minutes"), "gol": t("Gol", "Goals")}),
+                ("tr_takim", t("Süper Lig: sheet'teki takım güncel değil", "Süper Lig: team in the sheet is out of date"),
+                 t("Oyuncu bu sezon başka bir Süper Lig takımında oynuyor; sheet'teki takımı güncelle.",
+                   "The player is at another Süper Lig club this season; update the team in the sheet."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Sheet'teki takım", "Team in sheet"), "tk": t("Bu sezonki takım", "Team this season"),
+                  "dk": t("Dakika", "Minutes")}),
+                ("cift", t("Çift kayıt: aynı oyuncu sheet'te iki ayrı adla", "Duplicate: same player under two names in the sheet"),
+                 t("Sitede yalnız soldaki kayıt gösteriliyor (Sco TR > değerlendirilmiş > daha dolu kayıt). Sheet'ten fazla satırı sil.",
+                   "The site shows only the record on the left (Sco TR > evaluated > fuller record). Delete the extra row in the sheet."),
+                 {"o": t("Gösterilen kayıt", "Record shown"), "d": t("Gizlenen kayıt", "Record hidden"), "k": t("Kulüp", "Club"),
+                  "dk": t("Gizlenendeki kulüp", "Club on hidden"), "n": t("Not (gösterilen / gizlenen)", "Grade (shown / hidden)")}),
+                ("lig_adi", t("Lig etiketi okunamıyor ya da lig değil", "League label unreadable or not a league"),
+                 t("Yalnız bayrak, başka yazı sistemi ya da lig olmayan bir değer; süzgeçte anlamsız bir seçenek olarak çıkıyor.",
+                   "Flag only, another script or a non-league value; it shows up as a meaningless filter option."),
+                 {"o": t("Oyuncu", "Player"), "k": t("Kulüp", "Club"), "hl": t("Havuzdaki lig", "League in pool")}),
                 ("kulup", t("Kulüp uyuşmuyor: bu sezon başka takımın kadrosunda", "Club mismatch: in another team's squad this season"),
                  t("Transfer olmuş olabilir; havuzdaki kulübü ve ligi güncelle.", "Possibly transferred; update club and league in the pool."),
                  {"o": t("Oyuncu", "Player"), "k": t("Havuzdaki kulüp", "Club in pool"), "tk": t("Maç kadrosundaki takım", "Team in match squads"),
@@ -16350,8 +16600,8 @@ if tab1:
     df.index += 1
 
     df = df.copy()
-    df["Takım (Gösterim)"] = df.apply(
-        lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]), axis=1)
+    df["Takım (Gösterim)"] = _satir_uygula(
+        df, lambda r: _takim_kisa(r["TümTakımlar"] if r["Transfer"] else r["Takım"]))
 
     # Free kademe (girişsiz VEYA ücretsiz üye) kısa liste; Basic+ (kulüp/ödeyen üye/admin) tam liste.
     # NOT: Eskiden "giriş var mı" idi → self-servis free üyeler tam listeyi görüyordu (bug). Artık tier kapısı.
@@ -16361,6 +16611,9 @@ if tab1:
     if not _tam_yetki:
         df = df.head(40)
 
+    if df.empty:
+        st.info(t("Bu süzgeçlerle eşleşen oyuncu yok. Oyuncu, takım ya da mevki seçimini değiştir.",
+                  "No players match these filters. Change the player, team or position selection."))
     bas, ind = st.columns([3, 1])
     with bas:
         if _tam_yetki or _toplam_oy <= len(df):
