@@ -12379,9 +12379,9 @@ def render_kulup_firsat(anahtar: str):
                 f"border-radius:5px;font-size:0.64rem;font-weight:700;'>{_h.escape(kod)}</span></td>"
                 f"<td style='padding:8px 6px;color:#cbd5e1;'>{(_h.escape(scout_rol_goster(str(r.get('rol') or ''))) if _rol_mevkiye_uyar(str(r.get('rol') or ''), kod) else '') or '—'}{form_h}</td>"
                 f"<td style='padding:8px 6px;color:#cbd5e1;text-align:right;'>{yas if yas.isdigit() else '—'}</td>"
-                f"<td style='padding:8px 6px;color:#94a3b8;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('uyruk') or '')))) or '—'}"
+                f"<td style='padding:8px 6px;color:#94a3b8;white-space:normal;min-width:84px;'>{_h.escape(ulke_goster(_uyruk_goster(str(r.get('uyruk') or '')))) or '—'}"
                 f"<div style='font-size:0.68rem;color:#64748b;'>{_h.escape(_lig_goster(str(r.get('lig') or '')))}</div></td>"
-                f"<td style='padding:8px 6px;color:#cbd5e1;font-family:Sora,monospace;'>{_h.escape(str(r.get('deger') or '')) or '—'}{soz_h}</td>"
+                f"<td style='padding:8px 6px;color:#cbd5e1;font-family:Sora,monospace;white-space:normal;min-width:118px;'>{_h.escape(str(r.get('deger') or '')) or '—'}{soz_h}</td>"
                 f"<td style='padding:8px 10px;text-align:center;'><span style='display:inline-flex;width:30px;height:30px;"
                 f"border-radius:50%;border:2px solid {renk};color:{renk};align-items:center;justify-content:center;"
                 f"font-size:0.6rem;font-weight:800;font-family:Sora,monospace;'>{_h.escape(nihai) or '—'}</span></td></tr>")
