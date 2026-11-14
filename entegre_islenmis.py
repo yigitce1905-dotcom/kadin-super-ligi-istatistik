@@ -49,6 +49,9 @@ def main():
     # sheet kulübü üzerine yeniden uygula — yoksa sheet çekişi Serbest/transfer
     # bilgisini eski sheet değerine geri döndürür (ağ gerektirmez; SD JSON kalıcı).
     kg = kulup_guncelle(sonuc)
+    # Lig etiketi bu sezonun maç raporlarıyla çelişiyorsa (kulüp aynı, lig yanlış/boş) düzelt — bkz. lig_formdan_duzelt
+    from fetch_scout_kadro import lig_formdan_duzelt
+    lig_duz = lig_formdan_duzelt(sonuc)
     # SD ↔ sheet uyuşmazlığında SD kazanır (doğum/boy/ayak) — bkz sd_ez.py. Yaş doğumdan yeniden hesaplanır.
     from sd_ez import uygula as sd_ez_uygula
     from fetch_scout_kadro import SD_YOL, yas_dogumdan_tazele
@@ -69,6 +72,7 @@ def main():
     print(f"  ✗ atlanan (ham): {len(atlanan)} (ham Afrika bloğu — eklenmedi)")
     print(f"Yaş backfill     : {bf}")
     print(f"SD kulüp uygulandı: {kg} (Serbest/transfer korundu)")
+    print(f"Lig etiketi düzeltildi (maç raporu / takım arkadaşları): {len(lig_duz)}" + (f" ({', '.join(lig_duz[:8])}{'…' if len(lig_duz) > 8 else ''})" if lig_duz else ""))
     print(f"SD ezdi (doğum/boy/ayak): {len(ez_deg)} alan | şüpheli eşleşme (dokunulmadı): {len(ez_suphe)}")
     print(f"Odak dışı (TR vatandaşı Unpredictable/Callow): {len(odak_disi)} oyuncu çıkarıldı")
     print(f"SONUÇ            : {len(sonuc)} oyuncu")

@@ -188,9 +188,26 @@ def _pk(base: str) -> str:
 # ─── CSS ─────────────────────────────────────────────────────────────────────
 st.markdown("""<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&family=Oswald:wght@500;600;700&display=swap');
+/* ── BAYRAKLAR (14 Kasım 2026): Windows bayrak emojisi çizmiyor, 🇹🇷 yerine 'TR' görünüyordu. Twemoji Country Flags
+   (CC-BY 4.0, alt bilgide atıf) yalnız bayrak karakterleri için; site yazı tiplerine unicode-range ile eklenir. ── */
+@font-face{font-family:'Twemoji Country Flags';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:800;font-display:swap}
+@font-face{font-family:'Sora';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
+@font-face{font-family:'Sora';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
+@font-face{font-family:'Sora';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:800;font-display:swap}
+@font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:500;font-display:swap}
+@font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
+@font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
+@font-face{font-family:'Source Sans';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans Pro';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
 
 /* ── MARKA TİPOGRAFİSİ: gövde Inter · başlıklar Sora (logo diliyle uyumlu) ── */
-html, body { font-family:'Inter','Segoe UI',sans-serif; }
+html, body { font-family:'Twemoji Country Flags','Inter','Segoe UI',sans-serif; }
 h1, h2, h3, h4, h5, h6 { font-family:'Sora','Inter',sans-serif !important; }
 
 /* ── Streamlit "prototip" chrome'unu gizle (profesyonel görünüm) ──
@@ -2860,8 +2877,8 @@ def birlesik_scout_yukle() -> dict:
     try:
         for _dusen, _kalan in _cift_kayit_bul(out, _kaynaklar):
             out.pop(_dusen, None)
-    except Exception:
-        pass
+    except Exception as _e:          # sessiz kalmasın: önbellek süreç boyu çift kayıtlı kalır (Render günlüğünde görünür)
+        print(f"[cift_kayit] ayıklanamadı: {_e!r}", flush=True)
     # Piyasa değeri SoccerDonna'dan (2026-11-10: "piyasa değerlerimiz güncel değil";
     # 2026-10-19 kuralı: sheet ile SD uyuşmazsa SD kazanır). SD'de geçerli değer
     # yoksa sheet'teki 'deger' korunur. Değerleri sd_tam_tazele.py tazeler.
@@ -3347,14 +3364,32 @@ def shortlist_kaydet(data: dict):
         json.dump(data, f, ensure_ascii=False, indent=2)
     shortlist_yukle.clear()
 
+def _liste_takma_ad_coz(lst: list) -> bool:
+    """Yerinde: havuzdan düşen çift kayıt adlarını (bkz. _cift_kayit_bul) kalan kayda çevirir, tekrarı atar.
+    Değiştiyse True. Ekle/çıkar kaydederken liste de böylece kalıcı olarak düzelir."""
+    try:
+        ta = _cift_takma_ad()
+    except Exception:
+        return False
+    yeni = list(dict.fromkeys(ta.get(x, x) for x in lst))
+    if yeni != lst:
+        lst[:] = yeni
+        return True
+    return False
+
+
 def shortlist_kullanici(kullanici: str) -> list:
-    return shortlist_yukle().get(kullanici, [])
+    _l = list(shortlist_yukle().get(kullanici, []))
+    _liste_takma_ad_coz(_l)
+    return _l
 
 def shortlist_toggle(kullanici: str, oyuncu: str):
     """My Squad ekle/çıkar. Dönüş: (basarili, mesaj). Ekleme 33 toplam + bölge başı 3
     limitine tabi (Total Futbol 11-bölge sistemi, Baran'ın planı 2026-08-02)."""
     data = shortlist_yukle()
     lst  = data.setdefault(kullanici, [])
+    _liste_takma_ad_coz(lst)
+    oyuncu = _cift_takma_ad().get(oyuncu, oyuncu)
     if oyuncu in lst:
         lst.remove(oyuncu)
         shortlist_kaydet(data)
@@ -3362,10 +3397,11 @@ def shortlist_toggle(kullanici: str, oyuncu: str):
     if len(lst) >= 33:
         return False, t("My Squad dolu (33/33) — önce birini çıkarmalısın.",
                          "My Squad is full (33/33) — remove someone first.")
-    _bolge = _bolge_bul(birlesik_scout_yukle().get(oyuncu, {}).get("mevki"))
+    _havuz_t = birlesik_scout_yukle()     # bir kez: eskiden listedeki her oyuncu için tam kopya (33'e kadar) alınıyordu
+    _bolge = _bolge_bul(_havuz_t.get(oyuncu, {}).get("mevki"))
     if _bolge is not None:
         _dolu = sum(1 for o in lst
-                    if _bolge_bul(birlesik_scout_yukle().get(o, {}).get("mevki")) == _bolge)
+                    if _bolge_bul(_havuz_t.get(o, {}).get("mevki")) == _bolge)
         if _dolu >= 3:
             _ad = _TOTAL_FUTBOL_BOLGE[_bolge]["ad_en" if EN else "ad"]
             return False, t(f"'{_ad}' bölgesinde zaten 3 oyuncu var.",
@@ -3438,12 +3474,16 @@ def my11_kaydet(data: dict):
     my11_yukle.clear()
 
 def my11_kullanici(kullanici: str) -> list:
-    return my11_yukle().get(kullanici, [])
+    _l = list(my11_yukle().get(kullanici, []))
+    _liste_takma_ad_coz(_l)
+    return _l
 
 def my11_toggle(kullanici: str, oyuncu: str):
     """My 11'e ekle/çıkar. Dönüş: (basarili, mesaj). Üst limit 11, bölge sınırı yok."""
     data = my11_yukle()
     lst  = data.setdefault(kullanici, [])
+    _liste_takma_ad_coz(lst)
+    oyuncu = _cift_takma_ad().get(oyuncu, oyuncu)
     if oyuncu in lst:
         lst.remove(oyuncu)
         my11_kaydet(data)
@@ -4659,6 +4699,24 @@ _LIG_LATIN = {
 _LIG_ESIT = {"🇹🇷 Süper Lig": "🇹🇷 TSL", "🇫🇷 Seconde Ligue": "🇫🇷 2e Ligue"}
 
 
+def _bayrak_ulke_adi(m):
+    """Lig alanı yalnız bayraksa ('🇲🇹') → '🇲🇹 Malta' (aktif dilde); değilse None. 14 Kasım 2026: havuzda 7 oyuncunun
+    ligi çıplak bayraktı, süzgeçte ve künyede anlamsız görünüyordu. Lig adı tahmin edilmez, yalnız bayrağın ülkesi yazılır."""
+    s = (m or "").strip()
+    if len(s) != 2 or not all(0x1F1E6 <= ord(c) <= 0x1F1FF for c in s):
+        return None
+    iso = "".join(chr(ord(c) - 0x1F1E6 + 65) for c in s)
+    h = getattr(_bayrak_ulke_adi, "_h", None)
+    if h is None:
+        h = {}
+        for ad, kod in _ULKE_ISO.items():
+            if ad in _ULKE_TR:                 # İngilizce ad (TR karşılığı olan anahtar)
+                h.setdefault(kod, ad)
+        _bayrak_ulke_adi._h = h
+    ad = h.get(iso)
+    return f"{s} {ulke_goster(ad)}" if ad else None
+
+
 def _lig_goster(m):
     """'lig' alanı çoğunlukla 'Ülke N' şeklinde (örn. 'Almanya 1', 'ABD 2') —
     sondaki bölüm numarasını koruyup sadece ülke kısmını çevirir. Numara yoksa
@@ -4667,6 +4725,11 @@ def _lig_goster(m):
     m = _LIG_ESIT.get(m, m)
     if m in _LIG_LATIN:
         return _LIG_LATIN[m]
+    _yb = _bayrak_ulke_adi(m)
+    if _yb:
+        return _yb
+    if m.lower() in ("end of career", "retired"):
+        return t("Futbolu Bıraktı", "Retired")
     if m in ("-", "—", "–"):
         return ""
     if not m:
@@ -4894,10 +4957,25 @@ _WS_TABLO_SABLON = r"""<!doctype html><html lang="__LANG__"><head><meta charset=
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap">
 <style>
+@font-face{font-family:'Twemoji Country Flags';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:400;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:500;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
+@font-face{font-family:'Inter';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:800;font-display:swap}
+@font-face{font-family:'Sora';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
+@font-face{font-family:'Sora';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
+@font-face{font-family:'Sora';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:800;font-display:swap}
+@font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:500;font-display:swap}
+@font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
+@font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
+@font-face{font-family:'Source Sans';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans Pro';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
 *,*::before,*::after{box-sizing:border-box}
-html,body{margin:0;padding:0;background:transparent;color:#d4d4d8;font-family:'Inter','Segoe UI',sans-serif;color-scheme:dark}
+html,body{margin:0;padding:0;background:transparent;color:#d4d4d8;font-family:'Twemoji Country Flags','Inter','Segoe UI',sans-serif;color-scheme:dark}
 #root{padding:0 0 4px}
-button,input,select{font-family:'Inter','Segoe UI',sans-serif}
+button,input,select{font-family:'Twemoji Country Flags','Inter','Segoe UI',sans-serif}
 :focus-visible{outline:2px solid #a78bfa;outline-offset:1px}
 .fbar,.fadv{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
 .fadv{padding:10px;background:#0d0d16;border:1px solid #2a2a38;border-radius:10px}
@@ -5645,6 +5723,10 @@ def _kontrat_guncel(sozlesme, sd_contract):
             _bg = _dt.date.today()
             if _a < _bg <= _b:
                 return _sh
+            # 14 Kasım 2026: SD değeri _kontrat_taban_uygula'nın sentetik tabanıysa (SD boş/geçmişti) sheet'teki
+            # gerçek ileri tarih kazanır — 31 Süper Lig oyuncusu 30.06.2027 yerine 29.08.2027 görünüyordu.
+            if _sd == _KONTRAT_TABAN_2627 and _b >= _bg:
+                return _sh
         return _sd
     return _sh or "—"
 
@@ -5856,6 +5938,8 @@ def _kulup_goster(ham: str) -> str:
         return t("Serbest", "Free Agent")
     if ham.lower() == "career break":        # SD 'Career break' (ara vermiş) ham İngilizce basılıyordu
         return t("Kariyere Ara Verdi", "Career Break")
+    if ham.lower() in ("retired", "end of career"):
+        return t("Futbolu Bıraktı", "Retired")
     return _takim_kisa(ham)
 
 
@@ -7486,7 +7570,8 @@ def _serbest_sozlesme_havuzu():
             continue
         kulup = (v.get("kulup") or "").strip()
         p = sd.get(isim) or {}
-        kb = (p.get("Contract until") or "").strip()
+        # Profil ve havuz tablosuyla aynı kural (_kontrat_guncel: SD esas; SD geçmiş/taban ise sheet'teki ileri tarih)
+        kb = _kontrat_guncel(v.get("sozlesme"), p.get("Contract until")).strip()
         if not re.match(r"^\d{2}\.\d{2}\.\d{4}$", kb):
             kb = (v.get("sozlesme") or "").strip()
         serbest = kulup.lower() in _KONTRAT_SERBEST
@@ -7941,12 +8026,13 @@ def _sl_kutu(lbl, val, clr="#e8eef7"):
             f"<div style='font-size:0.56rem;color:#64748b;text-transform:uppercase;letter-spacing:0.08em;'>{lbl}</div>"
             f"<div style='font-size:0.95rem;font-weight:800;color:{clr};margin-top:2px;'>{val}</div></div>")
 
-def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar):
+def _shortlist_kart_tek(isim, kullanici, sd_data, _notlar, _havuz=None):
     """Tek My Squad/Shortlist kartı: avatar+isim+durum+skor + stat kutuları + not +
     ✏️ durum/öncelik/not düzenleme expander'ı. render_shortlist_kartlari ve
     render_my_squad ortak kullanır (2026-08-02 refaktör)."""
     if True:
-        _kd = birlesik_scout_yukle().get(isim, {})
+        # _havuz: çağıran döngüden BİR kez alınmış birlesik_scout_yukle() (her kartta tam kopya alınmasın)
+        _kd = (_havuz if _havuz is not None else birlesik_scout_yukle()).get(isim, {})
         sd  = sd_data.get(isim, {})
         _yas = _kd.get("yas") or sd.get("Age", "") or "—"
         _pos = (_kd.get("mevki") or [""])[0] or "—"
@@ -8017,18 +8103,28 @@ def render_shortlist_kartlari(isimler, kullanici):
         st.info(t("Shortlist'in boş. Oyuncu profillerindeki ⭐ ile ekleyebilirsin.",
                   "Your shortlist is empty. Add players with ⭐ from player profiles."))
         return
+    _ta = _cift_takma_ad()
+    isimler = list(dict.fromkeys(_ta.get(i, i) for i in isimler))
     sd_data = birlesik_sd_yukle()
     _notlar = scoutnot_kullanici(kullanici)
+    # Düşen çift kaydın adıyla yazılmış scout notu kalan kayda taşınır (yalnız gösterim kopyasında)
+    _notlar = dict(_notlar or {})
+    for _eski, _yeni in _cift_takma_ad().items():
+        if _eski in _notlar and _yeni not in _notlar:
+            _notlar[_yeni] = _notlar[_eski]
+    _havuz_sl = birlesik_scout_yukle()
     st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 10px;'>"
                 f"⭐ {len(isimler)} {t('oyuncu takipte','players tracked')}</div>",
                 unsafe_allow_html=True)
     for isim in isimler:
-        _shortlist_kart_tek(isim, kullanici, sd_data, _notlar)
+        _shortlist_kart_tek(isim, kullanici, sd_data, _notlar, _havuz_sl)
 
 def render_my_squad(kullanici):
     """My Squad — Total Futbol 11-bölge gruplu takip listesi (üst limit 33, bölge
     başına 3). Baran'ın site mimarisi planı, Profile > My Squad (2026-08-02)."""
-    isimler = shortlist_kullanici(kullanici)
+    # Havuzdan düşen çift kaydın adıyla eklenmiş oyuncu kalan kayda çevrilir (aynı oyuncu iki kez sayılmaz)
+    _ta = _cift_takma_ad()
+    isimler = list(dict.fromkeys(_ta.get(i, i) for i in shortlist_kullanici(kullanici)))
     st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 14px;'>"
                 f"⭐ {len(isimler)}/33 {t('oyuncu takipte (bölge başına en fazla 3)','players tracked (max 3 per zone)')}</div>",
                 unsafe_allow_html=True)
@@ -8038,10 +8134,16 @@ def render_my_squad(kullanici):
         return
     sd_data = birlesik_sd_yukle()
     _notlar = scoutnot_kullanici(kullanici)
+    # Düşen çift kaydın adıyla yazılmış scout notu kalan kayda taşınır (yalnız gösterim kopyasında)
+    _notlar = dict(_notlar or {})
+    for _eski, _yeni in _cift_takma_ad().items():
+        if _eski in _notlar and _yeni not in _notlar:
+            _notlar[_yeni] = _notlar[_eski]
     _gruplar = {no: [] for no in _TOTAL_FUTBOL_BOLGE}
     _tanimsiz = []
+    _havuz_ms = birlesik_scout_yukle()     # döngü dışında BİR kopya (cache_data her çağrıda tam kopya döndürür)
     for isim in isimler:
-        _kd = birlesik_scout_yukle().get(isim, {})
+        _kd = _havuz_ms.get(isim, {})
         _b = _bolge_bul(_kd.get("mevki"))
         (_gruplar[_b] if _b is not None else _tanimsiz).append(isim)
     for no, v in _TOTAL_FUTBOL_BOLGE.items():
@@ -8055,14 +8157,14 @@ def render_my_squad(kullanici):
             f"{no}. {_ad} <span style='color:#52525b;font-weight:600;'>({len(_oyuncular)}/3)</span></div>",
             unsafe_allow_html=True)
         for isim in _oyuncular:
-            _shortlist_kart_tek(isim, kullanici, sd_data, _notlar)
+            _shortlist_kart_tek(isim, kullanici, sd_data, _notlar, _havuz_ms)
     if _tanimsiz:
         st.markdown(
             f"<div style='margin:18px 0 6px;font-size:0.72rem;font-weight:800;"
             f"letter-spacing:0.08em;text-transform:uppercase;color:#71717a;'>"
             f"{t('Bölgesiz','Unassigned')}</div>", unsafe_allow_html=True)
         for isim in _tanimsiz:
-            _shortlist_kart_tek(isim, kullanici, sd_data, _notlar)
+            _shortlist_kart_tek(isim, kullanici, sd_data, _notlar, _havuz_ms)
 
 
 # ─── MY 11 — "kadromda olsaydı nasıl olurdu" saha görselli wishlist (üst limit 11) ──
@@ -8102,10 +8204,10 @@ def _my11_saha(oyuncu_bolgeler) -> str:
         "<rect x='40' y='124' width='20' height='6' fill='none' stroke='#2f6b4a' stroke-width='0.7'/>"
         f"{nokta}</svg>")
 
-def _my11_kart_tek(isim, kullanici, sd_data):
+def _my11_kart_tek(isim, kullanici, sd_data, _havuz=None):
     """My 11 kartı: shortlist kartına benzer ama not/durum editörü yok — sadece
     detay görüntüleme + çıkar butonu (my11_toggle)."""
-    _kd = birlesik_scout_yukle().get(isim, {})
+    _kd = (_havuz if _havuz is not None else birlesik_scout_yukle()).get(isim, {})
     sd  = sd_data.get(isim, {})
     _yas = _kd.get("yas") or sd.get("Age", "") or "—"
     _pos = (_kd.get("mevki") or [""])[0] or "—"
@@ -8137,7 +8239,8 @@ def _my11_kart_tek(isim, kullanici, sd_data):
 def render_my11(kullanici):
     """My 11 — transfer dönemi 'kadromda olsaydı nasıl olurdu' saha görselli wishlist
     (üst limit 11, bölge sınırı yok). Baran'ın site mimarisi planı 3.2 (2026-08-02)."""
-    isimler = my11_kullanici(kullanici)
+    _ta = _cift_takma_ad()
+    isimler = list(dict.fromkeys(_ta.get(i, i) for i in my11_kullanici(kullanici)))
     st.markdown(f"<div style='color:#71717a;font-size:0.8rem;margin:2px 0 14px;'>"
                 f"🟣 {len(isimler)}/11 {t('oyuncu eklendi','players added')}</div>",
                 unsafe_allow_html=True)
@@ -8147,15 +8250,16 @@ def render_my11(kullanici):
         return
     sd_data = birlesik_sd_yukle()
     _oyuncu_bolgeler = []
+    _havuz_11 = birlesik_scout_yukle()
     for isim in isimler:
-        _kd = birlesik_scout_yukle().get(isim, {})
+        _kd = _havuz_11.get(isim, {})
         _b = _bolge_bul(_kd.get("mevki"))
         if _b is not None:
             _oyuncu_bolgeler.append((isim, _b))
     st.markdown(_my11_saha(_oyuncu_bolgeler), unsafe_allow_html=True)
     st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
     for isim in isimler:
-        _my11_kart_tek(isim, kullanici, sd_data)
+        _my11_kart_tek(isim, kullanici, sd_data, _havuz_11)
 
 
 # -- Odakli scouting oyuncu profili: kart + tum kariyer performansi --
@@ -8243,9 +8347,12 @@ def render_scouting_detay(tam_isim):
     _bolge_g = bolge_goster(_kadro.get("bolge", "") or _bolge_sd(mevki if mevki != "—" else ""))   # sheet'te bölge yoksa SD mevkisinden
     _lig_g = _lig_goster((_kadro.get("lig") or "").strip())   # "-" → boş; EN modda ülke adı çevrilir
     _takim_ham = (_kadro.get("kulup") or "").strip()
-    # _kulup_goster: havuz tablosuyla aynı ad (TFF'nin resmî 'BEŞİKTAŞ JİMNASTİK KULÜBÜ'sü → 'Beşiktaş'),
-    # Serbest / Career break çevirisi de orada.
-    _takim_g = _kulup_goster(_takim_ham) if _takim_ham else ""
+    # TFF'nin büyük harfli Türkçe resmî adı ('BEŞİKTAŞ JİMNASTİK KULÜBÜ') kısa ada iner; yabancı kulüp adı
+    # olduğu gibi kalır ('LASK', 'PSV' — isim_goster bunları 'Lask' yapıyordu). Serbest / Career break çevrilir.
+    _tff_resmi = _takim_ham == _takim_ham.upper() and bool(_TR_ISARET_RE.search(_takim_ham))
+    _takim_g = (_kulup_goster(_takim_ham) if (_tff_resmi or _takim_ham.lower() in _KONTRAT_SERBEST
+                                              or _takim_ham.lower() in ("career break", "retired", "end of career"))
+                else _takim_ham)
     # 2. Uyruk = ikinci pasaport ('milli_takim' alanı — ad yanıltıcı, bkz. üstteki
     # not). Millî takım uyruğu ise _milli'de ve ilk satırda gösteriliyor.
     _ikinci_uyruk = (_kadro.get("milli_takim") or "").strip()
@@ -10314,7 +10421,7 @@ def _render_ana_lig_profil_ic(secili):
                 # (Mavis Owusu: "Serbest" + "Sözleşme 29.08.2027" çelişkisi)
                 (f"📄 {t('Sözleşme','Contract')}",
                  "" if (_sd_kulup_farkli and _sd_kulup_ham.lower() in _KONTRAT_SERBEST and "_sd_kontrat_ham" in sd)
-                 else _ilk_dolu(sd.get("Contract until"), _st.get("sozlesme"))),
+                 else _kontrat_guncel(_st.get("sozlesme"), sd.get("Contract until")).replace("—", "")),
                 # Değer yalnızca SD'den okunuyordu; SD'de boş olan oyuncularda
                 # (örn. Busem Şeker) satır tamamen kayboluyordu → sheet yedeği.
                 # Doğum Yeri kaldırıldı (Baran, 2026-08) — künyede yer kaplıyordu.
@@ -14108,6 +14215,7 @@ def render_hakkinda_icerik():
     <p style='color:#505870;font-size:12px;margin-top:36px;border-top:1px solid #21262d;padding-top:16px;'>
     {t("⚠️ Veriler TFF ve SoccerDonna kaynaklarından derlenmektedir. İstatistikler bilgi amaçlıdır; hata veya eksiklik içerebilir. Gözlemlerimiz ve değerlendirmelerimiz kişisel yoruma dayanır, yanılabiliriz — bu yüzden her zaman veriyi ön plana çıkarmaya çalışırız.",
        "⚠️ Data is compiled from TFF and SoccerDonna sources. Stats are for informational purposes and may contain errors or gaps. Our observations and evaluations rely on personal judgement and can be wrong — that's why we always try to put the data first.")}
+    <br>{t("Bayrak görselleri: Twemoji (CC-BY 4.0).", "Flag graphics: Twemoji (CC-BY 4.0).")}
     </p>
     </div>
     """, unsafe_allow_html=True)
@@ -15347,11 +15455,18 @@ def _havuz_kalite(gun: str) -> dict:
                 out["gecmis"].append({"o": isim, "k": kulup, "t": d.strftime("%d.%m.%Y"), "s": str(r.get("sozlesme") or "—"), "sd": str(p.get("Contract until") or "—"), "_s": d.isoformat()})
         f = _form_bul(p)
         if not f or not f.get("lig") or not f.get("tm"):
+            if r.get("lig_sheet"):   # maç verisi yok; veri hattı etiketi takım arkadaşlarından düzeltti
+                out["lig"].append({"o": isim, "k": kulup, "hl": f"{_duz(r['lig_sheet'])} → {_duz(lig)} ✓",
+                                   "ol": t("(takım arkadaşları)", "(teammates)"), "tk": "—"})
             continue
         b = bayrak.get(f["lig"], "")
-        pb = lig.strip().split(" ")[0] if lig.strip() else ""
+        # lig_sheet: veri hattı (lig_formdan_duzelt) etiketi maç raporundan düzelttiyse sheet'teki ilk değer —
+        # liste sheet'in hâlini gösterir ki Baran orada da düzeltsin
+        _lig_sh = str(r.get("lig_sheet") or lig)
+        pb = _lig_sh.strip().split(" ")[0] if _lig_sh.strip() else ""
         if b and pb != b:
-            out["lig"].append({"o": isim, "k": kulup, "hl": _duz(lig), "ol": lig_ad.get(f["lig"], f["lig"]), "tk": f.get("takim", "")})
+            out["lig"].append({"o": isim, "k": kulup, "hl": _duz(_lig_sh) + (f" → {_duz(lig)} ✓" if r.get("lig_sheet") else ""),
+                               "ol": lig_ad.get(f["lig"], f["lig"]), "tk": f.get("takim", "")})
         if f.get("takim") and _uyar(kulup, f["takim"]) is False:
             out["kulup"].append({"o": isim, "k": kulup, "tk": f["takim"], "ol": lig_ad.get(f["lig"], f["lig"]), "son": f.get("son") or "—"})
         if f["tm"] >= 5 and (not f.get("kadro") or (f.get("son5") or "").count("-") == 5):
@@ -15401,7 +15516,7 @@ def _havuz_kalite(gun: str) -> dict:
             # Latin dışı yazı: Latin Extended (ə dahil IPA bloğu 0x250-0x2AF) ve birleşen imler hata sayılmaz
             latin_disi = any(ord(ch) > 0x2AF and not (0x300 <= ord(ch) <= 0x36F) and not (0x1E00 <= ord(ch) <= 0x1EFF)
                              and ch not in "’‘–—…" for ch in ad)
-            if ad == "—" or ad.lower() == "end of career" or latin_disi:
+            if ad == "—" or lg.lower() in ("end of career", "retired") or latin_disi:
                 out["lig_adi"].append({"o": isim, "k": str(r.get("kulup") or "—"), "hl": lg})
     except Exception:
         pass
@@ -15456,7 +15571,10 @@ def render_kokpit():
                  {"o": t("Oyuncu", "Player"), "k": t("Havuzdaki kulüp", "Club in pool"), "tk": t("Maç kadrosundaki takım", "Team in match squads"),
                   "ol": t("Lig", "League"), "son": t("Son kadro", "Last squad")}),
                 ("lig", t("Lig uyuşmuyor: bu sezon başka ülkenin liginde oynuyor", "League mismatch: playing in another country's league"),
-                 t("Çoğu yanlış lig etiketi (ör. Rosengård oyuncuları Toppserien görünüyor).", "Mostly a wrong league label (e.g. Rosengård players shown in Toppserien)."),
+                 t("Kulüp maç kadrosundaki takımla aynıysa sitede maç raporundaki lig gösteriliyor (✓, sheet'te de düzelt); "
+                   "kulüp farklıysa oyuncu transfer olmuş olabilir.",
+                   "If the club matches the match-squad team the site already shows the league from match reports (✓, fix it in the sheet too); "
+                   "if the club differs the player may have moved."),
                  {"o": t("Oyuncu", "Player"), "k": t("Kulüp", "Club"), "hl": t("Havuzdaki lig", "League in pool"), "ol": t("Oynadığı lig", "League played in"),
                   "tk": t("Takım", "Team")}),
                 ("gecmis", t("Sözleşme tarihi geçmiş", "Contract date in the past"),

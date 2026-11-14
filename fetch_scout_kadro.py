@@ -488,6 +488,113 @@ def yas_backfill(veriler: dict) -> int:
 _KULUP_COP = {"", "-", "?", "pausiert", "karriereende", "unbekannt", "unknown",
               "vereinslos", "without club"}
 
+# Kulüp adı karşılaştırması — app.py'deki _havuz_kalite ile AYNI kural (_KLT_GENEL / _KLT_ES orada da var; birini
+# değiştirirsen ötekini de değiştir).
+_KLT_GENEL = {"fc", "cf", "sk", "fk", "if", "bk", "ac", "as", "sc", "sv", "cd", "ud", "kulubu", "spor", "women", "ladies", "kadin", "futbol", "club",
+              "de", "la", "the", "wfc", "lfc", "afc", "frauen", "femenino", "feminin", "femminile", "fem", "klubu", "genclik", "ve", "united", "city",
+              "real", "sporting", "olympique", "athletic", "atletico", "team", "dff", "ff", "kif", "fotball", "football"}
+_KLT_ES = {"nurnberg": "nuremberg", "munchen": "munich", "koln": "cologne"}
+
+
+def _klt_n(s):
+    import unicodedata
+    s = unicodedata.normalize("NFKD", str(s or "").replace("ı", "i").replace("İ", "I").replace("ø", "o").replace("ß", "ss"))
+    return re.sub(r"[^a-z0-9 ]", " ", s.encode("ascii", "ignore").decode().lower())
+
+
+def _klt_ayni(a, b):
+    """İki kulüp adı aynı kulübü mü gösteriyor? True / False / None (karar verilemiyor)."""
+    x = {_KLT_ES.get(w, w) for w in _klt_n(a).split() if len(w) >= 3 and w not in _KLT_GENEL}
+    y = {_KLT_ES.get(w, w) for w in _klt_n(b).split() if len(w) >= 3 and w not in _KLT_GENEL}
+    if not x or not y:
+        return None
+    if x & y:
+        return True
+    na, nb = _klt_n(a).replace(" ", ""), _klt_n(b).replace(" ", "")
+    return any(w in nb for w in x if len(w) >= 5) or any(w in na for w in y if len(w) >= 5)
+
+
+def lig_formdan_duzelt(veriler: dict) -> list:
+    """Havuzdaki lig etiketi bu sezonun maç raporlarıyla (sd_form_2026_27.json) çelişiyorsa düzeltir.
+
+    13-14 Kasım 2026 taraması: 19 oyuncuda lig etiketi yanlış ya da boştu (Rosengård/Hammarby oyuncuları
+    "Toppserien", Manchester City'li kaleci "NWSL", Benfica'lı oyuncu "Süper Lig"...). Yanlış ülke, transfer
+    dönemi hesabını da bozuyordu (öneriler yanlış ülkenin tescil dönemine göre).
+
+    Yalnız şu durumda dokunur: havuzdaki KULÜP, oyuncunun bu sezon maç kadrosuna girdiği takımla AYNI kulüp
+    (transfer değil, salt etiket hatası) VE etiket boş ya da başka ülkenin bayrağını taşıyor. Yeni etiket
+    Baran'ın o lig için kullandığı yazımdır (havuzda o ligde oynayıp bayrağı doğru olan kayıtlarda en sık
+    geçen etiket) — kulup_guncelle'deki "sheet'in yazım biçimi kalır" kuralı. Sheet'teki ilk değer
+    `lig_sheet`te saklanır; Kokpit veri kalitesi panelinde gösterilmeye devam eder. Dönüş: düzeltilen adlar."""
+    import collections
+    form_yol = Path(__file__).parent / "sd_form_2026_27.json"
+    if not form_yol.exists() or not SD_YOL.exists():
+        return []
+    form = json.load(open(form_yol, encoding="utf-8")).get("oyuncular", {})
+    sd = json.load(open(SD_YOL, encoding="utf-8"))
+    try:
+        from lig_motor import LIG_SAYFA
+        bayrak = {k: b for k, (b, _, _) in LIG_SAYFA.items()}
+        ad = {k: a for k, (_, a, _) in LIG_SAYFA.items()}
+    except Exception:
+        return []
+    bayrak["TUR1"], ad["TUR1"] = "🇹🇷", "TSL"
+
+    def _f(isim):
+        p = sd.get(isim)
+        m = re.search(r"spieler_(\d+)", str((p or {}).get("profil_url") or "")) if isinstance(p, dict) else None
+        f = form.get(m.group(1)) if m else None
+        return f if f and f.get("lig") in bayrak and f.get("takim") and (f.get("kadro") or f.get("tm")) else None
+
+    bos = {"", "-", "—", "–", "?"}
+    sayac = collections.defaultdict(collections.Counter)
+    adaylar = []
+    for isim, k in veriler.items():
+        if not isinstance(k, dict):
+            continue
+        f = _f(isim)
+        if not f:
+            continue
+        lig = str(k.get("lig_sheet") or k.get("lig") or "").strip()
+        b = bayrak[f["lig"]]
+        if lig not in bos and lig.split(" ")[0] == b:
+            sayac[f["lig"]][lig] += 1
+        elif _klt_ayni(k.get("kulup") or "", f["takim"]) is True:
+            adaylar.append((isim, f["lig"], lig))
+    duzelen = []
+    for isim, kod, eski in adaylar:
+        yeni = sayac[kod].most_common(1)[0][0] if sayac[kod] else f"{bayrak[kod]} {ad[kod]}"
+        k = veriler[isim]
+        k.setdefault("lig_sheet", eski or "-")
+        k["lig"] = yeni
+        duzelen.append(isim)
+    # İkinci geçiş (maç verisi olmayanlar): aynı kulübün EN AZ 2 başka oyuncusu oybirliğiyle aynı etiketi taşıyor,
+    # bu oyuncununki boş ya da başka ülke bayraklı → takım arkadaşlarının etiketi (Stephanie Sow: kulübü Burkina
+    # Faso'daki USFA, 4 takım arkadaşı "🇧🇫 W-Championnat D1", kendisi eski "🇩🇪 Regionalliga West").
+    kulup_lig = collections.defaultdict(list)
+    for isim, k in veriler.items():
+        if isinstance(k, dict) and isim not in duzelen:
+            kl = str(k.get("kulup") or "").strip()
+            if kl.lower() not in _KULUP_COP:
+                kulup_lig[_klt_n(kl).strip()].append(isim)
+    for kl, adlar in kulup_lig.items():
+        if not kl or len(adlar) < 3:
+            continue
+        for isim in adlar:
+            k = veriler[isim]
+            lig = str(k.get("lig_sheet") or k.get("lig") or "").strip()
+            digerleri = {str(veriler[o].get("lig") or "").strip() for o in adlar if o != isim}
+            if len(digerleri) != 1:
+                continue
+            yeni = digerleri.pop()
+            if yeni in bos or yeni == lig:
+                continue
+            if lig in bos or lig.split(" ")[0] != yeni.split(" ")[0]:
+                k.setdefault("lig_sheet", lig or "-")
+                k["lig"] = yeni
+                duzelen.append(isim)
+    return duzelen
+
 
 def kulup_guncelle(veriler: dict) -> int:
     """Sitede görünen takım SHEET'ten gelir; SD yalnızca boşluğu doldurur.

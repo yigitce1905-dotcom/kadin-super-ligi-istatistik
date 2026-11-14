@@ -1315,7 +1315,7 @@
     ],
     "rol": "Sahte #9",
     "kulup": "FC Rosengård",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€85.000",
     "sozlesme": "31.12.2026",
     "beceri": {
@@ -1378,7 +1378,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "FC Rosengård"
+    "kulup_sd": "FC Rosengård",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Courtney Nevin": {
     "tam_isim": "Courtney Ellen Nevin",
@@ -3894,7 +3895,7 @@
     ],
     "rol": "Çalışkan Kenar",
     "kulup": "FC Rosengård",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "",
     "sozlesme": "31.12.2028",
     "beceri": {
@@ -3971,7 +3972,8 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Anastasiya Shuppo is an experienced Belarusian attacking midfielder for Dynamo Minsk. She offers refined spatial passing vision, set-piece accuracy, and clever half-space pocket turns.",
     "degerlendirildi": true,
-    "kulup_sd": "FC Rosengård"
+    "kulup_sd": "FC Rosengård",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Anna Kozyupa": {
     "tam_isim": "анна Іванаўна Казюпа",
@@ -7206,7 +7208,7 @@
     ],
     "rol": "Çakılı Stoper",
     "kulup": "SC Heerenveen",
-    "lig": "-",
+    "lig": "🇳🇱 Eredivisie",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -7282,7 +7284,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Gloria Slišković is a top young Bosnian central defender playing in Italy's Serie A for Juventus. She displays excellent zone positioning, proactive aerial clearing capability, and composed short build-up passing.",
     "degerlendirildi": true,
-    "kulup_sd": "SC Heerenveen"
+    "kulup_sd": "SC Heerenveen",
+    "lig_sheet": "-"
   },
   "Emina Ekic": {
     "tam_isim": "Emina Ekić",
@@ -16335,7 +16338,7 @@
     ],
     "rol": "Hücum Bek",
     "kulup": "Union Sportive des Forces Armées",
-    "lig": "🇩🇪 Regionalliga West",
+    "lig": "🇧🇫 W-Championnat D1",
     "deger": "",
     "sozlesme": "30.06.2026",
     "beceri": {
@@ -16410,7 +16413,8 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Stephanie Sow is an active forward for Burkina Faso acting as a defensive focal point. She works relentlessly during high pressing blocks and shields possession cleanly.",
     "degerlendirildi": true,
-    "kulup_sd": "Union Sportive des Forces Armées"
+    "kulup_sd": "Union Sportive des Forces Armées",
+    "lig_sheet": "🇩🇪 Regionalliga West"
   },
   "Rukiya Bizimana": {
     "tam_isim": "Rukiya Bizimana",
@@ -22294,7 +22298,7 @@
     ],
     "rol": "Çizgi Kalecisi",
     "kulup": "NEOM SC",
-    "lig": "-",
+    "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -22373,7 +22377,8 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "NEOM SC"
+    "kulup_sd": "NEOM SC",
+    "lig_sheet": "-"
   },
   "Ivana Rudelic": {
     "tam_isim": "Ivana Rudelić",
@@ -23054,7 +23059,7 @@
     ],
     "rol": "",
     "kulup": "Hammarby",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€40.000",
     "sozlesme": "31.12.2026",
     "beceri": {
@@ -23130,7 +23135,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Hammarby"
+    "kulup_sd": "Hammarby",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Josefine Hasbo": {
     "tam_isim": "Josefine Hasbo",
@@ -23304,7 +23310,7 @@
     ],
     "rol": "",
     "kulup": "Växjö DFF",
-    "lig": "🇩🇰 A-Liga",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€60.000",
     "sozlesme": "31.12.2027",
     "beceri": {
@@ -23380,7 +23386,8 @@
     "tr_gorusu": "Reluctant",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Växjö DFF"
+    "kulup_sd": "Växjö DFF",
+    "lig_sheet": "🇩🇰 A-Liga"
   },
   "Mille Gejl Jensen": {
     "tam_isim": "Mille Gejl Jensen",
@@ -25110,7 +25117,7 @@
     ],
     "rol": "Limitli Stoper",
     "kulup": "FC Rosengård",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€30.000",
     "sozlesme": "31.12.2026",
     "beceri": {
@@ -25181,7 +25188,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "FC Rosengård"
+    "kulup_sd": "FC Rosengård",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Freya Godfrey": {
     "tam_isim": "Freya Godfrey",
@@ -25295,7 +25303,7 @@
     ],
     "rol": "",
     "kulup": "Manchester City LFC",
-    "lig": "🇺🇸 NWSL",
+    "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
     "deger": "€80.000",
     "sozlesme": "31.12.2027",
     "beceri": {
@@ -25384,7 +25392,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Orlando Pride formasiyla NWSL liginde yilin kaleciligine oynayan, inanilmaz bir hava hakimiyeti olan eldivendir. Yan ortalardaki cikis zamanlamasi ogb kale cizgisi basarisi rasyonel duzeyde hatasizdir. Turkiye buyuk takimlari icin kalede mutlak bir elit emniyet sibobu olabilecek kalitededir.",
     "degerlendirildi": true,
-    "kulup_sd": "Manchester City"
+    "kulup_sd": "Manchester City",
+    "lig_sheet": "🇺🇸 NWSL"
   },
   "Mary Earps": {
     "tam_isim": "Mary Alexandra Earps",
@@ -37782,7 +37791,7 @@
     ],
     "rol": "",
     "kulup": "Hammarby",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€80.000",
     "sozlesme": "31.12.2027",
     "beceri": {
@@ -37842,7 +37851,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Hammarby"
+    "kulup_sd": "Hammarby",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Emilia Asgeirsdottir": {
     "tam_isim": "Emilía Kiær Ásgeirsdóttir",
@@ -46668,7 +46678,7 @@
     ],
     "rol": "Hücumcu Oyun Kurucu",
     "kulup": "AS Far",
-    "lig": "-",
+    "lig": "🇲🇦 الوطنية الاحترافية",
     "deger": "€90.000",
     "sozlesme": "30.06.2026",
     "beceri": {
@@ -46746,7 +46756,8 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Ghizlane Chebbak is Morocco's legendary captain and star playmaker. She displays world-class spatial vision, exquisite progressive key passing, and lethal set-piece scoring execution.",
     "degerlendirildi": true,
-    "kulup_sd": "AS Far"
+    "kulup_sd": "AS Far",
+    "lig_sheet": "-"
   },
   "Rosella Ayane": {
     "tam_isim": "Rosella Ayane",
@@ -48204,7 +48215,7 @@
     ],
     "rol": "Çakılı Stoper",
     "kulup": "Benfica",
-    "lig": "🇹🇷 Süper Lig",
+    "lig": "🇵🇹 Liga BPI",
     "deger": "€10.000",
     "sozlesme": "30.06.2027",
     "beceri": {
@@ -48279,7 +48290,8 @@
     "tr_gorusu": "Willing",
     "scout_notu": "Oluwatosin Blessing Demehin is a robust 24-year-old Nigerian international center-back who brings immense athletic density and elite recovery strength to the defense. Educated in major tournament environments with Nigeria, she excels at tight man-marking, aerial box-clearances, and physical ground duels. However, her short passing range and ball control under intense pressing blocks represent noticeable technical restrictions.",
     "degerlendirildi": true,
-    "kulup_sd": "SL Benfica"
+    "kulup_sd": "SL Benfica",
+    "lig_sheet": "🇹🇷 Süper Lig"
   },
   "Charity Adule": {
     "tam_isim": "Charity Ogbenyealu Adule",
@@ -48500,7 +48512,7 @@
     ],
     "rol": "Komple #9",
     "kulup": "Napoli Women",
-    "lig": "-",
+    "lig": "🇮🇹 Serie A",
     "deger": "€15.000",
     "sozlesme": "30.06.2027",
     "beceri": {
@@ -48575,7 +48587,8 @@
     "tr_gorusu": "Reluctant",
     "scout_notu": "",
     "degerlendirildi": true,
-    "kulup_sd": "Napoli Women"
+    "kulup_sd": "Napoli Women",
+    "lig_sheet": "-"
   },
   "Vivian Ikechukwu": {
     "tam_isim": "Vivian Obianujuwan Ikechukwu",
@@ -49148,7 +49161,7 @@
     ],
     "rol": "Fırsatçı Golcü",
     "kulup": "FC Rosengård",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€35.000",
     "sozlesme": "30.06.2026",
     "beceri": {
@@ -49225,7 +49238,8 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Anam Imo is an agile striker for Piteå IF and Nigeria. She displays quick off-ball channel runs and clean penalty-box finishing, offering sharp transition pace.",
     "degerlendirildi": true,
-    "kulup_sd": "FC Rosengård"
+    "kulup_sd": "FC Rosengård",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Deborah Abiodun": {
     "tam_isim": "Deborah Abiodun",
@@ -49908,7 +49922,7 @@
     ],
     "rol": "Hücumcu Oyun Kurucu",
     "kulup": "Inter Milan",
-    "lig": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL",
+    "lig": "🇮🇹 Serie A",
     "deger": "€65.000",
     "sozlesme": "30.06.2026",
     "beceri": {
@@ -49986,7 +50000,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Toni Payne is a highly technical attacking playmaker for Everton and Nigeria. She excels at half-space ball carrying, sharp 1v1 dribbles, and clever progressive key passing.",
     "degerlendirildi": true,
-    "kulup_sd": "Inter Milano"
+    "kulup_sd": "Inter Milano",
+    "lig_sheet": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 WSL"
   },
   "Christy Ucheibe": {
     "tam_isim": "Christy Ucheibe",
@@ -50005,7 +50020,7 @@
     ],
     "rol": "Dinamo/İki Yönlü",
     "kulup": "Al Hilal FC",
-    "lig": "-",
+    "lig": "🇸🇦 SWPL",
     "deger": "€70.000",
     "sozlesme": "30.06.2026",
     "beceri": {
@@ -50081,7 +50096,8 @@
     "tr_gorusu": "Neutral",
     "scout_notu": "Christy Ucheibe is a powerful engine midfielder for Benfica and Nigeria. She delivers dominant ground duel wins, high stamina coverage, and versatile ball circulation across central corridors.",
     "degerlendirildi": true,
-    "kulup_sd": "Al Hilal FC"
+    "kulup_sd": "Al Hilal FC",
+    "lig_sheet": "-"
   },
   "Chiamaka Nnadozie": {
     "tam_isim": "Chiamaka Nnadozie",
@@ -60839,7 +60855,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "Al-Yarmuk SC",
-    "lig": "",
+    "lig": "🇰🇼 الدرجة الأولى",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -60899,7 +60915,8 @@
     "tr_gorusu": "",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Al-Yarmuk SC"
+    "kulup_sd": "Al-Yarmuk SC",
+    "lig_sheet": "-"
   },
   "Ndeye Meissa Diaw": {
     "tam_isim": "",
@@ -64053,7 +64070,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "Al-Ittihad FC",
-    "lig": "-",
+    "lig": "🇸🇦 SWPL",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -64113,7 +64130,8 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Al-Ittihad FC"
+    "kulup_sd": "Al-Ittihad FC",
+    "lig_sheet": "-"
   },
   "Thalea Smidt": {
     "tam_isim": "",
@@ -66353,7 +66371,7 @@
     ],
     "rol": "",
     "kulup": "Club Atlético de Madrid",
-    "lig": "🇲🇽 Liga MX",
+    "lig": "🇪🇸 Liga F",
     "deger": "€100.000",
     "sozlesme": "31.12.2025",
     "beceri": {
@@ -66441,7 +66459,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "Ispanya tarihinin en golcu efsanelerinden biri, harika bir sahte dokuz numara ogb bağlantı oyuncusu maestrosudur. Futbol akli, ceza sahasi onundeki tek pas kalitesi ogb pas vizyonu dunya klasidir. Boyunun avantajiyla hava toplarinda da ciddî bir istasyon olusturur.",
     "degerlendirildi": true,
-    "kulup_sd": "Club Atlético de Madrid"
+    "kulup_sd": "Club Atlético de Madrid",
+    "lig_sheet": "🇲🇽 Liga MX"
   },
   "Jana Fernandez": {
     "tam_isim": "Jana Fernández Velasco",
@@ -67881,7 +67900,7 @@
     ],
     "rol": "",
     "kulup": "Club Atlético de Madrid",
-    "lig": "-",
+    "lig": "🇪🇸 Liga F",
     "deger": "€300.000",
     "sozlesme": "30.06.2026",
     "beceri": {
@@ -67969,7 +67988,8 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "Real Madrid orta sahasinda derinden oyun kurma ogb olumcul duran top varyasyonlarindaki kavis kalitesiyle bilinen registadir. Uzun capraz paslari ogb vizyonu ust seviyededir. Boyunun kısalıgı sebebiyle defansif hava hakimiyeti zayiftir ancak pas organizasyonu elit duzeydedir.",
     "degerlendirildi": true,
-    "kulup_sd": "Club Atlético de Madrid"
+    "kulup_sd": "Club Atlético de Madrid",
+    "lig_sheet": "-"
   },
   "Mariona Caldentey": {
     "tam_isim": "María Francesca Caldentey Oliver",
@@ -69058,7 +69078,7 @@
     ],
     "rol": "Süpürücü Kaleci",
     "kulup": "FC Rosengård",
-    "lig": "🇳🇴 Toppserien",
+    "lig": "🇸🇪 Damallsvenskan",
     "deger": "€45.000",
     "sozlesme": "31.12.2027",
     "beceri": {
@@ -69134,7 +69154,8 @@
     "tr_gorusu": "Unwilling",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "FC Rosengård"
+    "kulup_sd": "FC Rosengård",
+    "lig_sheet": "🇳🇴 Toppserien"
   },
   "Tove Enblom": {
     "tam_isim": "Tove Evelina Enblom",
@@ -81198,7 +81219,7 @@
     ],
     "rol": "",
     "kulup": "Simba Queens SC",
-    "lig": "-",
+    "lig": "🇹🇿 Premier League",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -81274,7 +81295,8 @@
     "tr_gorusu": "Uncertain",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "Simba Queens SC"
+    "kulup_sd": "Simba Queens SC",
+    "lig_sheet": "-"
   },
   "Yudaya Nakayenze": {
     "tam_isim": "Yudaya Nakayenze",
@@ -93262,7 +93284,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "HB Køge",
-    "lig": "",
+    "lig": "🇩🇰 A-Liga",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -93322,7 +93344,8 @@
     "tr_gorusu": "",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "HB Køge"
+    "kulup_sd": "HB Køge",
+    "lig_sheet": "-"
   },
   "Emanuela Pfister": {
     "tam_isim": "",
@@ -97553,7 +97576,7 @@
     ],
     "rol": "Fırsatçı Golcü",
     "kulup": "Tigres de la UANL",
-    "lig": "",
+    "lig": "🇲🇽 Liga MX",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -97576,7 +97599,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "Tigres de la UANL"
+    "kulup_sd": "Tigres de la UANL",
+    "lig_sheet": "-"
   },
   "Annecy Nguiadem": {
     "tam_isim": "",
@@ -97591,7 +97615,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "Hapoel Ra’anana",
-    "lig": "",
+    "lig": "🇮🇱 ליגת",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -97614,7 +97638,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "Hapoel Ra’anana"
+    "kulup_sd": "Hapoel Ra’anana",
+    "lig_sheet": "-"
   },
   "Kathleen McGovern": {
     "tam_isim": "Kathleen Mary McGovern",
@@ -97744,7 +97769,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "FC Fleury 91",
-    "lig": "",
+    "lig": "🇫🇷 Première Ligue",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -97767,7 +97792,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "FC Fleury 91"
+    "kulup_sd": "FC Fleury 91",
+    "lig_sheet": "-"
   },
   "Diane Wabeua": {
     "tam_isim": "",
@@ -97858,7 +97884,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "Beşiktaş JK",
-    "lig": "",
+    "lig": "🇹🇷 Süper Lig",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -97881,7 +97907,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "Beşiktaş JK"
+    "kulup_sd": "Beşiktaş JK",
+    "lig_sheet": "-"
   },
   "Jeannette Yango": {
     "tam_isim": "",
@@ -98089,7 +98116,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "AS Dakar Sacré-Cœur",
-    "lig": "",
+    "lig": "🇸🇳 D1 Championship",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -98112,7 +98139,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "AS Dakar Sacré-Cœur"
+    "kulup_sd": "AS Dakar Sacré-Cœur",
+    "lig_sheet": "-"
   },
   "Marieme Babou": {
     "tam_isim": "",
@@ -98281,7 +98309,7 @@
     ],
     "rol": "",
     "kulup": "Brooklyn FC",
-    "lig": "",
+    "lig": "🇺🇸 USL Super",
     "deger": "€70.000",
     "sozlesme": "31.12.2026",
     "beceri": {},
@@ -98304,7 +98332,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "Brooklyn FC"
+    "kulup_sd": "Brooklyn FC",
+    "lig_sheet": "-"
   },
   "Moussourieto Adinda-Apko": {
     "tam_isim": "",
@@ -98319,7 +98348,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "Amis Du Monde",
-    "lig": "",
+    "lig": "🇹🇬 D1",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -98342,7 +98371,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "Amis Du Monde"
+    "kulup_sd": "Amis Du Monde",
+    "lig_sheet": "-"
   },
   "Reine Gake": {
     "tam_isim": "",
@@ -98433,7 +98463,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "AS Banque de l Habitat",
-    "lig": "",
+    "lig": "🇹🇳 البطولة",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -98456,7 +98486,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "AS Banque de l Habitat"
+    "kulup_sd": "AS Banque de l Habitat",
+    "lig_sheet": "-"
   },
   "Biira Nadunga": {
     "tam_isim": "",
@@ -98508,7 +98539,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "ZESCO United",
-    "lig": "",
+    "lig": "🇿🇲 Super League",
     "deger": "",
     "sozlesme": "",
     "beceri": {},
@@ -98531,7 +98562,8 @@
     "tr_gorusu": "",
     "scout_notu": "",
     "degerlendirildi": false,
-    "kulup_sd": "ZESCO United"
+    "kulup_sd": "ZESCO United",
+    "lig_sheet": "-"
   },
   "Lubandji Ochumba": {
     "tam_isim": "",
@@ -99634,7 +99666,7 @@
     "mevki": [],
     "rol": "",
     "kulup": "HB Køge",
-    "lig": "",
+    "lig": "🇩🇰 A-Liga",
     "deger": "",
     "sozlesme": "",
     "beceri": {
@@ -99694,7 +99726,8 @@
     "tr_gorusu": "",
     "scout_notu": "[NC]",
     "degerlendirildi": true,
-    "kulup_sd": "HB Køge"
+    "kulup_sd": "HB Køge",
+    "lig_sheet": "-"
   },
   "Viktoria Pinther": {
     "tam_isim": "Viktoria Pinther",
