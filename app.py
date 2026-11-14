@@ -203,8 +203,11 @@ st.markdown("""<style>
 @font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
 @font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
 @font-face{font-family:'Source Sans';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-style:italic;font-display:swap}
 @font-face{font-family:'Source Sans Pro';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans Pro';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-style:italic;font-display:swap}
 @font-face{font-family:'Source Sans 3';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-style:italic;font-display:swap}
 
 /* ── MARKA TİPOGRAFİSİ: gövde Inter · başlıklar Sora (logo diliyle uyumlu) ── */
 html, body { font-family:'Twemoji Country Flags','Inter','Segoe UI',sans-serif; }
@@ -4970,8 +4973,11 @@ _WS_TABLO_SABLON = r"""<!doctype html><html lang="__LANG__"><head><meta charset=
 @font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:600;font-display:swap}
 @font-face{font-family:'Oswald';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:700;font-display:swap}
 @font-face{font-family:'Source Sans';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-style:italic;font-display:swap}
 @font-face{font-family:'Source Sans Pro';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans Pro';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-style:italic;font-display:swap}
 @font-face{font-family:'Source Sans 3';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-display:swap}
+@font-face{font-family:'Source Sans 3';src:url('https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/dist/TwemojiCountryFlags.woff2') format('woff2');unicode-range:U+1F1E6-1F1FF, U+1F3F4, U+E0062-E0063, U+E0065, U+E0067, U+E006C, U+E006E, U+E0073-E0074, U+E0077, U+E007F;font-weight:100 900;font-style:italic;font-display:swap}
 *,*::before,*::after{box-sizing:border-box}
 html,body{margin:0;padding:0;background:transparent;color:#d4d4d8;font-family:'Twemoji Country Flags','Inter','Segoe UI',sans-serif;color-scheme:dark}
 #root{padding:0 0 4px}
@@ -16897,7 +16903,7 @@ if tab2:
             # Vitrin oyuncu butonları (tıkla → profil seçilir)
             _vbtn = st.columns(len(oyuncu_listesi)) if oyuncu_listesi else []
             for _bc, _oy in zip(_vbtn, oyuncu_listesi):
-                _kisa = " ".join(_oy.title().split()[:2])
+                _kisa = " ".join(isim_goster(_oy).split()[:2])     # str.title() Türkçe 'İ'yi 'i̇' yapıyordu
                 if _bc.button(f"⭐ {_kisa}", key=f"vitrin_tr_{_oy}", width="stretch"):
                     st.session_state["profil_sec"] = _oy
                     st.rerun()
@@ -18432,8 +18438,8 @@ if tab11:
             en_iyi = aktif.loc[aktif["G/Maç"].idxmin()]
             en_kotu = aktif.loc[aktif["G/Maç"].idxmax()]
             k1, k2, k3, k4 = st.columns(4)
-            _ei_ad = en_iyi['Kaleci'].split()[0].title()
-            _ek_ad = en_kotu['Kaleci'].split()[0].title()
+            _ei_ad = isim_goster(en_iyi['Kaleci']).split()[0]     # str.title() Türkçe 'İ'yi 'i̇' yapıyordu
+            _ek_ad = isim_goster(en_kotu['Kaleci']).split()[0]
             for kol, sayi, etiket in [
                 (k1, len(aktif), t("Aktif Kaleci","Active GKs")),
                 (k2, int(kal_df["YenilenGol"].sum()), t("Toplam Gol","Total Goals")),
